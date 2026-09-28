@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Harbor Eats — Vertical Slice Prototype</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="stage">
+    <p class="stage-label">Harbor Eats · 375px · vertical slice</p>
+    <nav class="screen-nav" id="screenNav" aria-label="Screen navigator">
+      <button type="button" data-go="home">Home</button>
+      <button type="button" data-go="choices" class="stub">Choice Set</button>
+      <button type="button" data-go="detail">Recipe Detail</button>
+      <button type="button" data-go="cook">Kitchen Cook</button>
+      <button type="button" data-go="finished">Cook Finished</button>
+      <button type="button" data-go="rate">Dual Rating</button>
+      <button type="button" data-go="loop">Loop Closed</button>
+      <button type="button" data-go="create" class="stub">Create HH</button>
+      <button type="button" data-go="constraints" class="stub">Constraints</button>
+    </nav>
+    <p class="nav-hint">P0 path: Recipe Detail → Cook → Finish → Dual Rate → Loop Closed. Stubs linked for context.</p>
+
+    <div class="phone" id="app">
+      <div class="debug" id="debug" hidden></div>
+
+      <header class="topbar" id="topbar">
+        <div class="brand">
+          <span class="mark" aria-hidden="true"></span>
+          <div>
+            <div class="brand-name">Harbor Eats</div>
+            <div class="brand-sub">Household 001</div>
+          </div>
+        </div>
+        <div class="diners" aria-label="Household diners">
+          <span class="avatar active" title="Tom">T</span>
+          <span class="avatar" title="Renata">R</span>
+        </div>
+      </header>
+
+      <!-- HOME (stub) -->
+      <section class="view view-home" data-view="home" aria-label="Home">
+        <div class="scroll">
+          <p class="eyebrow">Selected · awaiting cook</p>
+          <h1 class="title">Tonight’s plan</h1>
+          <p class="lede">3 selected meals from week batch. Cook → dual rate closes the loop.</p>
+
+          <div class="status-card">
+            <div class="status-row">
+              <span class="pill pill-eats">Selected</span>
+              <span class="meta">HE-2026-09-23-P01-A</span>
+            </div>
+            <h2 class="card-title">Crispy Chipotle Tofu Tacos</h2>
+            <p class="status-copy">~40 min · Mexican · air-fried · passes household locks</p>
+            <button class="btn btn-primary" type="button" data-go="detail">Open recipe</button>
+          </div>
+
+          <div class="card soft">
+            <div class="card-kicker">Also selected</div>
+            <p class="meta" style="margin:0">Tomato-Basil White Bean Rigatoni · Moroccan Lentil Tagine</p>
+          </div>
+
+          <div class="invite">
+            <div>
+              <strong>Invite cookmate</strong>
+              <p>Share link + email code — equal.</p>
+            </div>
+            <button class="btn btn-ghost" type="button" data-go="create">Invite</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CHOICE SET (stub) -->
+      <section class="view view-choices" data-view="choices" aria-label="Choice set">
+        <div class="scroll">
+          <button class="back" type="button" data-go="home">← Home</button>
+          <p class="eyebrow">Plan stub <span class="stub-badge">STUB</span></p>
+          <h1 class="title">Pick one</h1>
+          <p class="why-strip"><span class="brass-dot"></span> Sample choice set chrome — email short-code remains first-class.</p>
+
+          <article class="option-card selected-mark" data-go="detail">
+            <div class="letter">A</div>
+            <div class="option-body">
+              <h2>Crispy Chipotle Tofu Tacos</h2>
+              <div class="chips">
+                <span class="chip">Plant</span>
+                <span class="chip">40 min</span>
+                <span class="chip">Air fry</span>
+              </div>
+              <p class="why">Selected via short code 1A · texture + format probe</p>
+            </div>
+            <span class="chev" aria-hidden="true">›</span>
+          </article>
+
+          <article class="option-card">
+            <div class="letter">B</div>
+            <div class="option-body">
+              <h2>Blackstone Miso-Ginger Salmon</h2>
+              <div class="chips"><span class="chip">Fish</span><span class="chip">35 min</span></div>
+            </div>
+            <span class="chev" aria-hidden="true">›</span>
+          </article>
+
+          <article class="option-card">
+            <div class="letter">C</div>
+            <div class="option-body">
+              <h2>Coconut Chickpea Spinach Curry</h2>
+              <div class="chips"><span class="chip">Plant</span><span class="chip">40 min</span></div>
+            </div>
+            <span class="chev" aria-hidden="true">›</span>
+          </article>
+        </div>
+      </section>
+
+      <!-- RECIPE DETAIL (P0) -->
+      <section class="view view-detail is-active" data-view="detail" aria-label="Recipe Detail">
+        <div class="scroll">
+          <button class="back" type="button" data-go="home">← Home</button>
+          <div class="hero-ph" aria-hidden="true"><span>A</span></div>
+          <p class="eyebrow">Selected · HE-2026-09-23-P01-A</p>
+          <h1 class="title display">Crispy Chipotle Tofu Tacos with Lime Slaw</h1>
+          <div class="chips">
+            <span class="chip chip-lock">Passes household locks</span>
+            <span class="chip">~40 min</span>
+            <span class="chip">Serves 2</span>
+            <span class="chip">Moderate</span>
+          </div>
+          <p class="lede" style="margin-top:12px">Smoky air-fried tofu, tangy lime slaw, corn tortillas. Dairy-free · nut-free (cashew exception N/A).</p>
+
+          <div class="card soft" id="whySlot">
+            <div class="card-kicker">Why this option</div>
+            <p style="margin:0;font-size:14px;line-height:1.45">Texture + format probe (crispy tofu, taco format) — from plan exploration field.</p>
+          </div>
+
+          <h3 class="section-h">Ingredients</h3>
+          <ul class="ing">
+            <li>14 oz extra-firm tofu, pressed &amp; cubed</li>
+            <li>Chipotle powder, smoked paprika, cumin, garlic</li>
+            <li>Cornstarch + oil (for crisp)</li>
+            <li>Green cabbage, carrot, cilantro, lime</li>
+            <li>6 corn tortillas · avocado · lime wedges</li>
+          </ul>
+
+          <h3 class="section-h">Time</h3>
+          <p class="meta" style="margin:0 0 8px">Prep 20 min · Cook 20 min · Air fryer 400°F</p>
+
+          <div class="sticky-actions">
+            <button class="btn btn-primary wide" type="button" id="btnStartCook" data-go="cook">Cook</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- KITCHEN COOK (P0) — system chrome -->
+      <section class="view view-cook" data-view="cook" aria-label="Kitchen Cook Mode">
+        <div class="cook-chrome">
+          <button class="exit" type="button" id="btnExitCook">Exit</button>
+          <span class="meta" style="color:var(--kitchen-muted);font-weight:600">Kitchen</span>
+          <span class="meta" id="cookStepMeta" style="color:var(--kitchen-muted)">1 / 5</span>
+        </div>
+        <div class="cook-progress" id="cookProgress" aria-hidden="true"></div>
+        <div class="scroll">
+          <p class="cook-step-label" id="cookStepLabel">Step 1</p>
+          <h2 class="cook-step-title" id="cookStepTitle">Press &amp; season tofu</h2>
+          <p class="cook-step-body" id="cookStepBody">Press tofu 10–15 min, cube, and pat dry. Toss with oil, cornstarch, chipotle, paprika, cumin, garlic powder, salt, and pepper until coated.</p>
+          <div class="cook-ings" id="cookIngs">
+            <h4>This step</h4>
+            <ul id="cookIngList"></ul>
+          </div>
+        </div>
+        <div class="cook-nav">
+          <button class="btn btn-prev" type="button" id="btnPrevStep">Previous</button>
+          <button class="btn btn-next" type="button" id="btnNextStep">Next</button>
+        </div>
+      </section>
+
+      <!-- COOK FINISHED (P0) -->
+      <section class="view view-finished" data-view="finished" aria-label="Cook Finished">
+        <div class="scroll">
+          <div class="center-block">
+            <div class="confirm-icon" aria-hidden="true">✓</div>
+            <p class="eyebrow">Cooked</p>
+            <h1 class="title">Marked cooked</h1>
+            <p class="lede">Crispy Chipotle Tofu Tacos is now <strong>Cooked</strong> in SoR. Rate while it’s fresh — or save one diner and finish later.</p>
+            <div class="card soft" style="text-align:left">
+              <div class="card-kicker">Lifecycle</div>
+              <p style="margin:0;font-size:14px">Selected → <strong>Cooked</strong> → Rated (both diners)</p>
+              <p class="hint">Email/chat cook marks write the same SoR.</p>
+            </div>
+            <div class="sticky-actions" style="flex-direction:column">
+              <button class="btn btn-primary wide" type="button" data-go="rate">Rate now</button>
+              <button class="btn btn-secondary wide" type="button" data-go="home">Rate later</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DUAL RATING (P0) — N named rows -->
+      <section class="view view-rate" data-view="rate" aria-label="Dual Rating">
+        <div class="scroll">
+          <button class="back" type="button" data-go="finished">← Back</button>
+          <p class="eyebrow">Experienced · 1–10</p>
+          <h1 class="title">How was it?</h1>
+          <p class="lede">Crispy Chipotle Tofu Tacos · rate each diner separately. <code>Rated</code> only when both present.</p>
+
+          <div id="raterList"></div>
+
+          <p class="hint" id="rateHint">Submit Rated when both have scores. Partial save keeps Cooked without claiming a loop.</p>
+
+          <div class="sticky-actions" style="flex-direction:column">
+            <button class="btn btn-primary wide" type="button" id="btnSubmitRated" disabled>Submit Rated (both)</button>
+            <button class="btn btn-secondary wide" type="button" id="btnSavePartial">Save partial</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- LOOP CLOSED (P0) -->
+      <section class="view view-loop" data-view="loop" aria-label="Loop Closed">
+        <div class="scroll">
+          <div class="center-block">
+            <div class="confirm-icon" aria-hidden="true">◎</div>
+            <p class="eyebrow">Completed Meal Loop</p>
+            <h1 class="title">Loop closed</h1>
+            <p class="lede">Both diners rated. We’ll remember this for the next choice set — experienced evidence only.</p>
+            <ul class="loop-check" id="loopSummary">
+              <li><span class="ok">✓</span> Presented → Selected</li>
+              <li><span class="ok">✓</span> Cooked</li>
+              <li><span class="ok">✓</span> Tom rated</li>
+              <li><span class="ok">✓</span> Renata rated</li>
+            </ul>
+            <button class="btn btn-primary wide" type="button" data-go="home">Back to Home</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CREATE HOUSEHOLD (stub) -->
+      <section class="view view-create" data-view="create" aria-label="Create Household">
+        <div class="scroll">
+          <button class="back" type="button" data-go="home">← Home</button>
+          <p class="eyebrow">Onboarding <span class="stub-badge">STUB</span></p>
+          <h1 class="title">Create household</h1>
+          <p class="lede">Name the eating unit. Then invite via share link or email code — both first-class.</p>
+          <label class="field">
+            <span>Household name</span>
+            <input type="text" value="Tom &amp; Renata" />
+          </label>
+          <label class="field">
+            <span>Member 1</span>
+            <input type="text" value="Tom" />
+          </label>
+          <label class="field">
+            <span>Member 2</span>
+            <input type="text" value="Renata" />
+          </label>
+          <div class="card soft">
+            <div class="card-kicker">Invite</div>
+            <p style="margin:0 0 8px;font-size:14px">Share link · Email code <strong>HARBOR-001</strong></p>
+            <p class="hint">Taste Sparks cut from v1 — hard constraints next.</p>
+          </div>
+          <button class="btn btn-primary wide" type="button" data-go="constraints">Continue to constraints</button>
+        </div>
+      </section>
+
+      <!-- HARD CONSTRAINTS (stub) -->
+      <section class="view view-constraints" data-view="constraints" aria-label="Hard Constraints">
+        <div class="scroll">
+          <button class="back" type="button" data-go="create">← Back</button>
+          <p class="eyebrow">Onboarding <span class="stub-badge">STUB</span></p>
+          <h1 class="title">Hard constraints</h1>
+          <p class="lede">Eligibility only — never soft preference. None is allowed.</p>
+          <div class="constraint-grid" id="constraints">
+            <label class="is-on"><input type="checkbox" checked /> Dairy-free</label>
+            <label class="is-on"><input type="checkbox" checked /> No meat*</label>
+            <label class="is-on"><input type="checkbox" checked /> No poultry</label>
+            <label class="is-on"><input type="checkbox" checked /> No shellfish</label>
+            <label class="is-on"><input type="checkbox" checked /> Nuts except cashew</label>
+            <label><input type="checkbox" /> None</label>
+          </div>
+          <p class="hint">*Fish (finfish) permitted for HH001. Soft taste signals deferred until ≥1 completed loop.</p>
+          <button class="btn btn-primary wide" type="button" data-go="home">Go to Home</button>
+        </div>
+      </section>
+
+      <nav class="tabbar" id="tabbar" aria-label="Primary">
+        <button type="button" class="tab" data-go="home"><span>Home</span></button>
+        <button type="button" class="tab" data-go="choices"><span>Choices</span></button>
+        <button type="button" class="tab is-on" data-go="detail"><span>Recipe</span></button>
+        <button type="button" class="tab" data-go="rate"><span>Rate</span></button>
+      </nav>
+    </div>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
