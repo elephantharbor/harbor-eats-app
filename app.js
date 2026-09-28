@@ -90,6 +90,22 @@
     }
   }
 
+  async function apiGet(path) {
+    if (!(await apiProbe())) return null;
+    try {
+      const r = await fetch(path, { method: "GET", credentials: "same-origin" });
+      const j = await r.json().catch(() => null);
+      if (!r.ok || (j && j.ok === false)) {
+        console.warn("[he-api]", path, r.status, j);
+        return null;
+      }
+      return j;
+    } catch (e) {
+      console.warn("[he-api]", path, e);
+      return null;
+    }
+  }
+
   function persistEvent(event, props) {
     apiPost("/api/events", {
       event_name: event,
@@ -205,6 +221,7 @@
     shareReady: false,
     selectedMealId: null,
     guestPick: null,
+    sharedMeals: null, // D1-resolved A/B/C for guest; null = local meals
     lastTouch: "organic",
     ratings: {},
     onboarded: false,
@@ -308,7 +325,29 @@
     return "";
   }
 
-  function mealCardHtml(m, opts) {
+  function optionsFromApi(options) {
+    if (!Array.isArray(options) || !options.length) return null;
+    const tones = { A: "tone-a", B: "tone-b", C: "tone-c" };
+    const plates = { A: "🌮", B: "🐟", C: "🍲" };
+    return options.map((o) => {
+      const letter = o.letter || "A";
+      return {
+        letter,
+        id: o.meal_option_id || o.id || (PLAN_ID + "-" + letter),
+        title: o.title || o.name || ("Option " + letter),
+        chips: Array.isArray(o.chips) && o.chips.length ? o.chips : ["Shared"],
+        plate: o.plate || plates[letter] || "🍽️",
+        tone: o.tone || tones[letter] || "tone-a",
+        pers: o.pers || { type: "why", label: "Shared pick", line: "Your partner sent these three" },
+      };
+    });
+  }
+
+  function guestMeals() {
+    return state.sharedMeals && state.sharedMeals.length ? state.sharedMeals : meals;
+  }
+
+    function mealCardHtml(m, opts) {
     const { selected, goDetail } = opts || {};
     const go = goDetail ? ` data-go="detail" data-select="${m.id}"` : ` data-select="${m.id}"`;
     const tone = m.tone || "tone-a";
@@ -334,10 +373,16 @@
   }
 
   function renderGuestChoices() {
-    document.getElementById("guestChoiceCards").innerHTML = meals
+    const list = guestMeals();
+    document.getElementById("guestChoiceCards").innerHTML = list
       .map((m) => mealCardHtml(m, { selected: state.guestPick === m.id }))
       .join("");
-    document.getElementById("guestShareMeta").textContent = "Shared picks for tonight";
+    const meta = document.getElementById("guestShareMeta");
+    if (meta) {
+      meta.textContent = state.sharedMeals
+        ? "Shared picks for tonight"
+        : "Shared picks for tonight";
+    }
   }
 
   function show(name) {
@@ -750,9 +795,22 @@
       "Ready to send";
   });
 
-  document.getElementById("btnSendInvite").addEventListener("click", () => {
+  document.getElementById("btnSendInvite").addEventListener("click", async () => {
+    const hh = API.householdId || state.householdId;
+    if (hh && (await apiProbe())) {
+      const res = await apiPost("/api/invites", {
+        household_id: hh,
+        inviter_member_id: state.members[0] && state.members[0].id,
+        channel: state.inviteChannel || "copy",
+        invite_code: state.inviteCode,
+      });
+      if (res && res.invite_code) {
+        state.inviteCode = res.invite_code;
+        refreshInviteUi();
+      }
+    }
     track("invite_sent", {
-      household_id: "HH-demo",
+      household_id: hh || state.householdId || "HH-demo",
       inviter_id: state.members[0]?.id,
       channel: state.inviteChannel,
       invite_code: state.inviteCode,
@@ -856,10 +914,38 @@
   document.getElementById("btnShareChoices").addEventListener("click", async () => {
     state.shareObjectId = makeShareId();
     state.shareReady = true;
+    // Persist to D1 when API live so device B can resolve the same A/B/C
+    let url = shareUrl(state.shareObjectId);
+    const hh = API.householdId || state.householdId;
+    if (hh && (await apiProbe())) {
+      const planId = (await ensurePlan()) || PLAN_ID;
+      const res = await apiPost("/api/shares", {
+        household_id: hh,
+        plan_id: planId,
+        token: state.shareObjectId,
+        share_object_id: state.shareObjectId,
+        created_by_member_id: state.members[0] && state.members[0].id,
+        channel: "copy",
+        options: meals.map((m) => ({
+          letter: m.letter,
+          meal_option_id: m.id,
+          name: m.title,
+          title: m.title,
+          chips: m.chips,
+          plate: m.plate,
+          tone: m.tone,
+          pers: m.pers,
+        })),
+      });
+      if (res && res.token) {
+        state.shareObjectId = res.token;
+        if (res.share_url) url = res.share_url;
+        if (res.plan_id) API.planId = res.plan_id;
+      }
+    }
     refreshShareUi();
-    const url = shareUrl(state.shareObjectId);
     track("share_choice_created", {
-      plan_id: PLAN_ID,
+      plan_id: API.planId || PLAN_ID,
       share_object_id: state.shareObjectId,
       member_id: state.members[0] && state.members[0].id,
       share_url: url,
@@ -1045,8 +1131,8 @@
     else console.info("[he-api] offline/unbound — in-memory only");
   });
 
-  // Deep links: ?share=HE-SHARE-* · ?invite=HE-INV-*
-  (function bootFromQuery() {
+  // Deep links: ?share=HE-SHARE-* · ?invite=HE-INV-* (resolve from D1 when API live)
+  (async function bootFromQuery() {
     const q = new URLSearchParams(location.search);
     const share = q.get("share");
     const invite = q.get("invite");
@@ -1055,6 +1141,22 @@
       state.lastTouch = share;
       refreshShareUi();
       show("shareGuest");
+      if (await apiProbe()) {
+        const res = await apiGet("/api/shares/" + encodeURIComponent(share));
+        if (res && res.ok && Array.isArray(res.options) && res.options.length) {
+          state.sharedMeals = optionsFromApi(res.options);
+          if (res.plan_id) API.planId = res.plan_id;
+          if (res.household_id) {
+            // Guest attribution only — do not bind as owner household
+            state.lastTouch = res.token || share;
+          }
+          renderGuestChoices();
+          const meta = document.getElementById("guestShareMeta");
+          if (meta) meta.textContent = "Shared picks for tonight";
+        } else {
+          console.warn("[he-api] share resolve miss — showing local demo cards", share);
+        }
+      }
       return;
     }
     if (invite && invite.startsWith("HE-INV")) {
@@ -1063,6 +1165,22 @@
       const jc = document.getElementById("joinCode");
       if (jc) jc.value = invite;
       show("join");
+      if (await apiProbe()) {
+        const res = await apiGet("/api/invites/" + encodeURIComponent(invite));
+        if (res && res.ok) {
+          state.inviteCode = res.invite_code || invite;
+          if (jc) jc.value = state.inviteCode;
+          if (res.household_display_name) {
+            const joinHint = document.getElementById("joinHouseholdHint");
+            if (joinHint) {
+              joinHint.hidden = false;
+              joinHint.textContent = "Joining " + res.household_display_name;
+            }
+          }
+        } else {
+          console.warn("[he-api] invite resolve miss", invite);
+        }
+      }
       return;
     }
     show("welcome");
