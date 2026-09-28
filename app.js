@@ -142,7 +142,7 @@
       chips: ["Plant", "40 min", "Air fry"],
       plate: "🌮",
       tone: "tone-a",
-      pers: { type: "why", label: "Why this", line: "Passes both locks · texture + format probe" },
+      pers: { type: "why", label: "Why this", line: "Fits both of you · crispy + taco night" },
     },
     {
       letter: "B",
@@ -151,7 +151,7 @@
       chips: ["Fish", "35 min"],
       plate: "🐟",
       tone: "tone-b",
-      pers: { type: "new", label: "Trying something new", line: "Exploration — Blackstone finfish" },
+      pers: { type: "new", label: "Trying something new", line: "A little adventure — miso-ginger fish" },
     },
     {
       letter: "C",
@@ -230,7 +230,7 @@
           `<span class="avatar${i === 0 ? " active" : ""}" title="${m.name} (${m.status})">${m.initial}</span>`
       )
       .join("");
-    document.getElementById("brandSub").textContent = state.householdName || "Your household";
+    document.getElementById("brandSub").textContent = state.householdName || "Your kitchen";
   }
 
   function renderProgressDots() {
@@ -332,14 +332,14 @@
     document.getElementById("choiceCards").innerHTML = meals
       .map((m) => mealCardHtml(m, { selected: state.selectedMealId === m.id, goDetail: true }))
       .join("");
-    document.getElementById("shareIdMeta").textContent = `share_object_id: ${state.shareObjectId} · plan ${PLAN_ID}`;
+    document.getElementById("shareIdMeta").textContent = "Share link ready";
   }
 
   function renderGuestChoices() {
     document.getElementById("guestChoiceCards").innerHTML = meals
       .map((m) => mealCardHtml(m, { selected: state.guestPick === m.id }))
       .join("");
-    document.getElementById("guestShareMeta").textContent = `${state.shareObjectId} · plan ${PLAN_ID}`;
+    document.getElementById("guestShareMeta").textContent = "Shared picks for tonight";
   }
 
   function show(name) {
@@ -402,7 +402,7 @@
     if (name === "invite") {
       document.getElementById("inviteCodeDisplay").textContent = state.inviteCode;
       document.getElementById("inviteAttrMeta").textContent =
-        `invite_code=${state.inviteCode} · channel=${state.inviteChannel} · utm_source=share · this HH only`;
+        "For your kitchen only · ready to share";
     }
     if (name === "join") renderConstraintGrid("joinConstraints", state.joinConstraints);
     if (name === "choices") {
@@ -427,15 +427,20 @@
   function updateHome() {
     const pill = document.getElementById("homePill");
     const eye = document.getElementById("homeEyebrow");
-    pill.textContent = state.lifecycle === "Unselected" ? "Ready" : state.lifecycle;
+    pill.textContent =
+      state.lifecycle === "Unselected" ? "Ready"
+      : state.lifecycle === "Selected" ? "Picked"
+      : state.lifecycle === "Cooked" ? "Cooked"
+      : state.lifecycle === "Rated" ? "Rated"
+      : state.lifecycle;
     eye.textContent =
       state.lifecycle === "Rated"
-        ? "Loop closed"
+        ? "Both of you rated"
         : state.lifecycle === "Cooked"
-          ? "Cooked · awaiting dual rate"
+          ? "Cooked · waiting on ratings"
           : state.lifecycle === "Selected"
-            ? "Selected · awaiting cook"
-            : "Pick from choices";
+            ? "Ready to cook"
+            : "Tonight’s picks";
     const meal = meals.find((m) => m.id === state.selectedMealId) || meals[0];
     document.getElementById("homeMealTitle").textContent = meal.title;
   }
@@ -508,8 +513,8 @@
       .map((m) => {
         const r = state.ratings[m.id] || { score: null, note: "" };
         const status = r.score
-          ? `<span class="rater-status done">Rated ${r.score}/10</span>`
-          : `<span class="rater-status">Not rated</span>`;
+          ? `<span class="rater-status done">${r.score}/10</span>`
+          : `<span class="rater-status">Waiting</span>`;
         const row = (from, to) =>
           Array.from({ length: to - from + 1 }, (_, i) => from + i)
             .map(
@@ -549,16 +554,16 @@
     const hint = document.getElementById("rateHint");
     submit.disabled = !bothRated();
     if (bothRated()) {
-      hint.textContent = "Both diners rated — submit to close the Completed Meal Loop.";
+      hint.textContent = "Both of you rated — tap submit to save.";
     } else if (anyRated()) {
       const missing = state.members
         .filter((m) => state.ratings[m.id]?.score == null)
         .map((m) => m.name)
         .join(", ");
-      hint.textContent = `Partial OK — waiting on ${missing}. Stays Cooked until both rate 1–10.`;
+      hint.textContent = `Waiting on ${missing}. You can save and finish later.`;
     } else {
       hint.textContent =
-        "Submit Rated when both have 1–10. Partial save keeps Cooked without claiming a loop.";
+        "Each of you picks 1–10. Save a partial anytime — we wait for both.";
     }
     updateDebug();
   }
@@ -566,13 +571,14 @@
   function renderLoopSummary() {
     const ul = document.getElementById("loopSummary");
     ul.innerHTML = [
-      "Presented → Selected",
-      "Cooked",
+      "Picked tonight’s dinner",
+      "Cooked it",
       ...state.members.map((m) => `${m.name} rated ${state.ratings[m.id].score}/10`),
     ]
       .map((t) => `<li><span class="ok">✓</span> ${t}</li>`)
       .join("");
-    document.getElementById("loopAttr").textContent = `attribution_last_touch: ${state.lastTouch}`;
+    const loopAttr = document.getElementById("loopAttr");
+    if (loopAttr) { loopAttr.hidden = true; loopAttr.textContent = ""; }
   }
 
   async function ensurePlan() {
@@ -634,7 +640,7 @@
       const i = state.sparks.indexOf(id);
       if (i >= 0) state.sparks.splice(i, 1);
       else if (state.sparks.length < 3) state.sparks.push(id);
-      else toast("Max 3 sparks — deselect one first");
+      else toast("Pick up to 3 — tap one off to swap");
       renderSparks();
       return;
     }
@@ -674,7 +680,7 @@
   });
 
   document.getElementById("btnCreateHh").addEventListener("click", async () => {
-    state.householdName = document.getElementById("hhName").value.trim() || "Household";
+    state.householdName = document.getElementById("hhName").value.trim() || "Our kitchen";
     state.inviteCode = makeInviteCode();
     track("household_created", {
       household_name: state.householdName,
@@ -704,7 +710,7 @@
     const name = input.value.trim();
     if (!name) return;
     if (state.members.length >= 4) {
-      toast("Household unit max 4");
+      toast("Up to 4 people in a kitchen");
       return;
     }
     const mid = name.toLowerCase().replace(/\s+/g, "-");
@@ -742,7 +748,7 @@
       c.classList.toggle("is-on", c === chip);
     });
     document.getElementById("inviteAttrMeta").textContent =
-      `invite_code=${state.inviteCode} · channel=${state.inviteChannel} · utm_source=share`;
+      "Ready to send";
   });
 
   document.getElementById("btnSendInvite").addEventListener("click", () => {
@@ -757,8 +763,8 @@
     });
     state.lastTouch = state.inviteCode;
     const partner = state.members.find((m) => m.status === "Invited");
-    if (partner) toast("Invite sent · " + partner.name + " is Invited");
-    else toast("Invite sent · " + state.inviteCode);
+    if (partner) toast("Invite sent to " + partner.name);
+    else toast("Invite sent");
     show("choices");
   });
 
@@ -793,14 +799,14 @@
       inherited_primary_constraints: false,
     });
     state.lastTouch = code;
-    toast("You’re Active · own locks saved");
+    toast("You’re in — diet limits saved");
     show("choices");
   });
 
   function refreshShareUi() {
     const url = shareUrl(state.shareObjectId);
     const meta = document.getElementById("shareIdMeta");
-    if (meta) meta.textContent = state.shareObjectId;
+    if (meta) meta.textContent = "Link ready — copy below";
     const field = document.getElementById("shareUrlField");
     const input = document.getElementById("shareUrlInput");
     const copyBtn = document.getElementById("btnCopyShareUrl");
@@ -810,7 +816,7 @@
     }
     if (copyBtn) copyBtn.hidden = false;
     const guestMeta = document.getElementById("guestShareMeta");
-    if (guestMeta) guestMeta.textContent = state.shareObjectId + " · plan " + PLAN_ID;
+    if (guestMeta) guestMeta.textContent = "Shared picks for tonight";
   }
 
   async function copyText(text) {
@@ -850,7 +856,7 @@
     btnCopyShare.addEventListener("click", async () => {
       const url = shareUrl(state.shareObjectId);
       const ok = await copyText(url);
-      toast(ok ? "Share link copied" : "Copy failed — select the link");
+      toast(ok ? "Share link copied" : "Couldn’t copy — select the link");
       track("share_choice_acted", {
         share_object_id: state.shareObjectId,
         action: "copy_link",
@@ -863,13 +869,13 @@
     btnCopyInvite.addEventListener("click", async () => {
       const url = inviteUrl(state.inviteCode);
       const ok = await copyText(url + "  code:" + state.inviteCode);
-      toast(ok ? "Invite link copied" : "Copy failed");
+      toast(ok ? "Invite link copied" : "Couldn’t copy");
     });
   }
 
   document.getElementById("btnGuestSelect").addEventListener("click", () => {
     if (!state.guestPick) {
-      toast("Pick A, B, or C first");
+      toast("Pick one of the three first");
       return;
     }
     track("share_choice_acted", {
@@ -877,7 +883,7 @@
       action: "select",
       meal_option_id: state.guestPick,
     });
-    toast("Saved preference · join Active to cook & rate");
+    toast("Saved — join to cook & rate together");
   });
 
   document.getElementById("btnPrevStep").addEventListener("click", () => {
@@ -899,7 +905,7 @@
   });
 
   document.getElementById("btnExitCook").addEventListener("click", () => {
-    if (confirm("Exit cook without finishing? Meal stays Selected (not Cooked).")) {
+    if (confirm("Exit without finishing? You can come back to cook later.")) {
       show("detail");
     }
   });
@@ -966,8 +972,8 @@
     updateDebug();
     toast(
       anyRated()
-        ? "Partial saved · Cooked (not Rated until both 1–10)"
-        : "Pick at least one diner’s 1–10"
+        ? "Saved — waiting on the other rating"
+        : "Pick at least one person’s 1–10"
     );
     if (anyRated()) show("home");
   });
