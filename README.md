@@ -1,61 +1,70 @@
-# Harbor Eats — Vertical Slice Prototype
+# Harbor Eats — Consumer Prototype
 
 **Owner:** Mira (Product & Experience)  
-**Date:** 2026-09-28  
-**PRD:** [`docs/product/PRD-VERTICAL-SLICE.md`](../../docs/product/PRD-VERTICAL-SLICE.md)
+**Date:** 2026-09-28 (CDT)  
+**PRD:** [`docs/product/PRD-VERTICAL-SLICE.md`](../../docs/product/PRD-VERTICAL-SLICE.md)  
+**Decisions:** [`docs/product/DECISIONS.md`](../../docs/product/DECISIONS.md)
 
-Phone-first static HTML/CSS/JS. No build step, no framework, no CDN fonts.
+Phone-first static HTML/CSS/JS under **`product/prototype/`** only (no competing tree). No build step. Consumer look — not Operating Desk.
 
 ## How to open
 
 ```bash
-# From repo root — any static server, or open the file directly:
-open product/prototype/index.html
-# or
+# From repo root:
 python3 -m http.server 8765 --directory product/prototype
-# then visit http://localhost:8765/
+# → http://localhost:8765/
+# or open product/prototype/index.html directly
 ```
 
-Use a phone or narrow window (~375px). The stage shows a 375×812 frame plus a screen navigator for review.
+Use ~375px width. Subtle QA screen-jump sits **outside** the phone frame; primary flow is sequential.
 
-## What’s P0 (clickable end-to-end)
+## Clickable flows
 
-Sample meal: **Crispy Chipotle Tofu Tacos with Lime Slaw** (`HE-2026-09-23-P01-A`, real HH001 selection). Steps from `recipes/crispy-chipotle-tofu-tacos/v1.md`.
+### A. Onboarding (first-class)
+Welcome → Create Household → Add Members → Hard Constraints (per diner) → Taste Seed (≤3, Skip) → Invite S1 (Skip OK) → First N×3
 
-1. **Recipe Detail** — ingredients, time, why-slot, **Cook** CTA  
-2. **Kitchen Cook Mode** — one step at a time, progress, Previous/Next, **Finish**  
-3. **Cook Finished** — lifecycle bridge; Rate now / Rate later  
-4. **Dual Rating** — N named rows (Tom + Renata), 1–10, optional note, partial save, Submit Rated when both  
-5. **Loop Closed** — both rated acknowledgment  
+Approved copy: *“Dinner choices both of you can live with…”* · *“Two profiles. One dinner. Eligibility is hard law.”*
 
-**Kitchen chrome** follows `prefers-color-scheme` (system light/dark) — not forced night.
+### B. Meal loop
+Select → Recipe Detail → Cook → Finish → Dual Rating **1–10** (Tom + Renata) → Loop Closed (“we’ll remember / smarter next time”)
 
-## What’s stub (linked, minimal)
+Anchors: **1** hard miss · **5** fine · **10** craving. CML only when both rated. Never invent scores. (Cora: 1–5 revoked. Sage: model aligning to 1–10 — no blockers.)
 
-- Home / Plans  
-- Choice Set (N×3)  
-- Create Household (+ invite chrome: share link + email code)  
-- Hard Constraints  
+### C. Personalization chips
+Demo slots on choice cards: Why this / Trying something new / Improved / Returning favorite.
 
-**Taste Sparks:** intentionally omitted (Cora lock — cut until ≥1 completed loop).
+### D. PLG surfaces (Bloom)
+| ID | Surface |
+|----|---------|
+| **S1** | Household invite — `HE-INV-*`, channel chips, Invited→Active; join sets **own** constraints |
+| **S2** | Shareable choice-set — `HE-SHARE-*`, “which should we make tonight?”, minimal account view |
+| **S3** | Read-only dual-constraint demo card |
+| S4/S5 | Stub labels only |
+
+Viral-to-new-HH **OFF**. External acquisition CLOSED.
+
+### Analytics stubs (`window.__HE_ANALYTICS__`)
+`invite_sent`, `invite_accepted`, `share_choice_created`, `share_choice_viewed`, `share_choice_acted`, `selection_recorded`, `cook_recorded`, `rating_submitted`, `loop_completed` (+ `attribution_last_touch`). Namespaces: `HE-INV` / `HE-SHARE` (+ `HE-AFF` future). UTMs stubbed. Dashboards should prefer **loops**, not installs.
 
 ## Brand tokens
 
-| Token | Hex |
-|---|---|
-| Ink | `#10262C` |
-| Deep Tide | `#236B6A` |
-| Signal Brass | `#D49A45` |
-| Canvas | `#F5F2EA` |
-| Fog | `#E8EFED` |
-| Eats accent | `#B85F35` |
+Ink `#10262C` · Deep Tide `#236B6A` · Signal Brass `#D49A45` · Canvas `#F5F2EA` · Fog `#E8EFED` · Eats `#B85F35`
 
-## Prototype limits
+Kitchen chrome follows `prefers-color-scheme`.
 
-- Ratings/cook state are **in-memory only** (debug chip top-right). Does not write `plans/` or invent ops metrics.  
-- Email/chat cook + select paths are first-class in product SoR; this UI demonstrates the in-app Finish → dual rate path.  
-- Explainability slot shows the plan’s exploration field as sample evidence; empty when Sage has none.
+## Publish (product ≠ desk)
 
-## Cora §6 locks reflected here
+```bash
+bash product/app/scripts/prepare-github-io.sh
+bash product/app/scripts/publish-github-io.sh
+# → https://elephantharbor.github.io/harbor-eats-app/
+# Desk untouched: https://elephantharbor.github.io/harbor-eats/
+```
 
-Cook SoR both channels · partial ratings OK · either member cooks · email+app select · invite parity · no Taste Sparks · system kitchen chrome · N-row dual rating.
+Persistence target: Cloudflare Pages + Workers + D1 (`product/app/`). See [`docs/product/PERSISTENCE-PLAN.md`](../../docs/product/PERSISTENCE-PLAN.md).
+
+## Limits
+
+- In-memory state only; does not write `plans/` or invent ops metrics.
+- Email/chat pilot paths remain first-class conceptually (mirror SoR).
+- Explainability / personalization demo strings labeled; Sage owns real evidence.
