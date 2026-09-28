@@ -141,6 +141,10 @@
           <div class="card soft">
             <div class="card-kicker">Invite code</div>
             <div class="code-block" id="inviteCodeDisplay">—</div>
+            <label class="field share-url-field" id="inviteUrlField" hidden style="margin-top:10px">
+              <span>Invite link</span>
+              <input type="text" id="inviteUrlInput" readonly onclick="this.select()" />
+            </label>
             <button class="btn btn-ghost wide" type="button" id="btnCopyInvite" style="margin-top:8px">Copy invite link</button>
             <p class="attr-meta" id="inviteAttrMeta">For your kitchen only</p>
             <p class="hint" style="margin:0">Link or code — either works.</p>
@@ -188,16 +192,17 @@
           <h1 class="title display">Which should we make?</h1>
           <p class="why-strip"><span class="brass-dot"></span> Three options that work for both of you. Tap one — or send the set.</p>
           <div id="choiceCards"></div>
-          <div class="card soft">
+          <div class="card soft" id="shareCard">
             <div class="card-kicker">Send this plan</div>
             <p style="margin:0 0 8px;font-size:14px">Share A/B/C so your partner can weigh in.</p>
             <p class="attr-meta" id="shareIdMeta">Tap below for a share link</p>
-            <label class="field" id="shareUrlField" hidden>
+            <label class="field share-url-field" id="shareUrlField" hidden>
               <span>Share link</span>
-              <input type="text" id="shareUrlInput" readonly />
+              <input type="text" id="shareUrlInput" readonly onclick="this.select()" />
             </label>
             <button class="btn btn-secondary wide" type="button" id="btnShareChoices">Share tonight’s picks</button>
             <button class="btn btn-ghost wide" type="button" id="btnCopyShareUrl" hidden>Copy share link</button>
+            <button class="btn btn-ghost wide" type="button" id="btnPreviewShare" hidden>Preview what they’ll see</button>
           </div>
         </div>
       </section>

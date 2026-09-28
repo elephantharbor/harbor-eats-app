@@ -34,16 +34,13 @@
   function makeShareId() {
     return "HE-SHARE-" + randToken(6).toLowerCase();
   }
+  /** Live product origin for share/invite links (FamilyPlate-class PLG). */
+  const CANONICAL_ORIGIN = "https://harbor-eats-app.elephantharbor.workers.dev";
+
   function appBaseUrl() {
-    const u = new URL(location.href);
-    u.search = "";
-    u.hash = "";
-    // Prefer clean path ending with /
-    let path = u.pathname;
-    if (path.endsWith("index.html")) path = path.slice(0, -10);
-    if (!path.endsWith("/")) path += "/";
-    u.pathname = path;
-    return u.toString().replace(/\/$/, "/") ;
+    // Always absolute to the live consumer product so a pasted link works
+    // from SMS/iMessage — not guest-view-only, not host-relative to github.io.
+    return CANONICAL_ORIGIN.replace(/\/$/, "") + "/";
   }
   function inviteUrl(code) {
     return appBaseUrl() + "?invite=" + encodeURIComponent(code);
@@ -205,6 +202,7 @@
     inviteChannel: "share_sheet",
     inviteCode: makeInviteCode(),
     shareObjectId: makeShareId(),
+    shareReady: false,
     selectedMealId: null,
     guestPick: null,
     lastTouch: "organic",
@@ -400,13 +398,14 @@
     }
     if (name === "taste") renderSparks();
     if (name === "invite") {
-      document.getElementById("inviteCodeDisplay").textContent = state.inviteCode;
+      refreshInviteUi();
       document.getElementById("inviteAttrMeta").textContent =
         "For your kitchen only · ready to share";
     }
     if (name === "join") renderConstraintGrid("joinConstraints", state.joinConstraints);
     if (name === "choices") {
       renderChoices();
+      if (state.shareReady) refreshShareUi();
       if (!state.onboarded) state.onboarded = true;
     }
     if (name === "shareGuest") {
@@ -806,17 +805,37 @@
   function refreshShareUi() {
     const url = shareUrl(state.shareObjectId);
     const meta = document.getElementById("shareIdMeta");
-    if (meta) meta.textContent = "Link ready — copy below";
+    if (meta) meta.textContent = "Link ready — copy & send";
     const field = document.getElementById("shareUrlField");
     const input = document.getElementById("shareUrlInput");
     const copyBtn = document.getElementById("btnCopyShareUrl");
+    const previewBtn = document.getElementById("btnPreviewShare");
+    const createBtn = document.getElementById("btnShareChoices");
     if (field && input) {
       field.hidden = false;
       input.value = url;
+      input.setAttribute("aria-label", "Share link");
     }
-    if (copyBtn) copyBtn.hidden = false;
+    if (copyBtn) {
+      copyBtn.hidden = false;
+      copyBtn.classList.remove("btn-ghost");
+      copyBtn.classList.add("btn-primary");
+    }
+    if (previewBtn) previewBtn.hidden = false;
+    if (createBtn) createBtn.textContent = "Make a new link";
     const guestMeta = document.getElementById("guestShareMeta");
     if (guestMeta) guestMeta.textContent = "Shared picks for tonight";
+  }
+
+  function refreshInviteUi() {
+    const codeEl = document.getElementById("inviteCodeDisplay");
+    if (codeEl) codeEl.textContent = state.inviteCode;
+    const field = document.getElementById("inviteUrlField");
+    const input = document.getElementById("inviteUrlInput");
+    if (field && input) {
+      field.hidden = false;
+      input.value = inviteUrl(state.inviteCode);
+    }
   }
 
   async function copyText(text) {
@@ -834,21 +853,33 @@
     }
   }
 
-  document.getElementById("btnShareChoices").addEventListener("click", () => {
+  document.getElementById("btnShareChoices").addEventListener("click", async () => {
     state.shareObjectId = makeShareId();
+    state.shareReady = true;
     refreshShareUi();
+    const url = shareUrl(state.shareObjectId);
     track("share_choice_created", {
       plan_id: PLAN_ID,
       share_object_id: state.shareObjectId,
       member_id: state.members[0] && state.members[0].id,
-      share_url: shareUrl(state.shareObjectId),
+      share_url: url,
       utm_source: "share",
       utm_medium: "referral",
       utm_campaign: "alpha_warm",
     });
     state.lastTouch = state.shareObjectId;
-    toast("Share link ready — copy & send");
-    show("shareGuest");
+    // Stay on choices with a clear copyable URL (not guest-view-only).
+    show("choices");
+    const ok = await copyText(url);
+    if (ok) {
+      toast("Link copied — send it to your partner");
+      track("share_choice_acted", {
+        share_object_id: state.shareObjectId,
+        action: "copy_link",
+      });
+    } else {
+      toast("Link ready — tap Copy share link");
+    }
   });
 
   const btnCopyShare = document.getElementById("btnCopyShareUrl");
@@ -856,7 +887,7 @@
     btnCopyShare.addEventListener("click", async () => {
       const url = shareUrl(state.shareObjectId);
       const ok = await copyText(url);
-      toast(ok ? "Share link copied" : "Couldn’t copy — select the link");
+      toast(ok ? "Link copied — send it to your partner" : "Couldn’t copy — select the link");
       track("share_choice_acted", {
         share_object_id: state.shareObjectId,
         action: "copy_link",
@@ -864,12 +895,23 @@
     });
   }
 
+  const btnPreviewShare = document.getElementById("btnPreviewShare");
+  if (btnPreviewShare) {
+    btnPreviewShare.addEventListener("click", () => {
+      if (!state.shareObjectId) {
+        state.shareObjectId = makeShareId();
+        refreshShareUi();
+      }
+      show("shareGuest");
+    });
+  }
+
   const btnCopyInvite = document.getElementById("btnCopyInvite");
   if (btnCopyInvite) {
     btnCopyInvite.addEventListener("click", async () => {
       const url = inviteUrl(state.inviteCode);
-      const ok = await copyText(url + "  code:" + state.inviteCode);
-      toast(ok ? "Invite link copied" : "Couldn’t copy");
+      const ok = await copyText(url);
+      toast(ok ? "Invite link copied" : "Couldn’t copy — select the link");
     });
   }
 

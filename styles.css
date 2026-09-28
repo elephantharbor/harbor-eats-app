@@ -895,9 +895,20 @@ a { color: var(--tide); }
 
 /* Alpha: hide internal stage chrome */
 .alpha-hide { display: none !important; }
-#shareUrlField input {
+#shareUrlField input,
+#inviteUrlField input,
+.share-url-field input {
   font-family: var(--font-mono);
+  font-size: 11px;
+  word-break: break-all;
+  cursor: text;
+}
+.share-url-field {
+  margin: 8px 0 10px;
+}
+.share-url-field span {
   font-size: 12px;
+  color: var(--muted);
 }
 
 @media (prefers-reduced-motion: reduce) {
