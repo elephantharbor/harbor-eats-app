@@ -140,6 +140,8 @@
       id: MEAL_A,
       title: "Crispy Chipotle Tofu Tacos",
       chips: ["Plant", "40 min", "Air fry"],
+      plate: "🌮",
+      tone: "tone-a",
       pers: { type: "why", label: "Why this", line: "Passes both locks · texture + format probe" },
     },
     {
@@ -147,6 +149,8 @@
       id: PLAN_ID + "-B",
       title: "Blackstone Miso-Ginger Salmon",
       chips: ["Fish", "35 min"],
+      plate: "🐟",
+      tone: "tone-b",
       pers: { type: "new", label: "Trying something new", line: "Exploration — Blackstone finfish" },
     },
     {
@@ -154,6 +158,8 @@
       id: PLAN_ID + "-C",
       title: "Coconut Chickpea Spinach Curry",
       chips: ["Plant", "40 min"],
+      plate: "🍛",
+      tone: "tone-c",
       pers: { type: "favorite", label: "Returning favorite", line: "Familiar flavors both of you liked" },
     },
   ];
@@ -307,9 +313,11 @@
   function mealCardHtml(m, opts) {
     const { selected, goDetail } = opts || {};
     const go = goDetail ? ` data-go="detail" data-select="${m.id}"` : ` data-select="${m.id}"`;
+    const tone = m.tone || "tone-a";
+    const plate = m.plate || "🍽️";
     return `
       <article class="option-card is-pickable${selected ? " selected-mark" : ""}"${go}>
-        <div class="letter">${m.letter}</div>
+        <div class="option-plate ${tone}" aria-hidden="true"><span class="letter-mini">${m.letter}</span><span>${plate}</span></div>
         <div class="option-body">
           <h2>${m.title}</h2>
           <div class="chips">${m.chips.map((c) => `<span class="chip">${c}</span>`).join("")}</div>
@@ -515,8 +523,8 @@
               <span class="avatar active">${m.initial}</span>
               <div><div class="rater-name">${m.name}</div>${status}</div>
             </div>
-            <div class="score-row" role="group" aria-label="${m.name} 1–5">${row(1, 5)}</div>
-            <div class="score-row" role="group" aria-label="${m.name} 6–10">${row(6, 10)}</div>
+            <div class="score-row" role="group" aria-label="${m.name} scores 1 to 5">${row(1, 5)}</div>
+            <div class="score-row" role="group" aria-label="${m.name} scores 6 to 10">${row(6, 10)}</div>
             <div class="anchors"><span>1 hard miss</span><span>5 fine</span><span>10 craving</span></div>
             <label class="field">
               <span>Note (optional)</span>

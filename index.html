@@ -6,6 +6,9 @@
   <meta name="color-scheme" content="light dark" />
   <title>Harbor Eats</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
@@ -31,7 +34,7 @@
     </nav>
     <p class="nav-hint alpha-hide" hidden></p>
 
-    <div class="phone" id="app">
+    <div class="phone he-visual-20260928" id="app">
       <div class="debug" id="debug" hidden></div>
       <div class="toast" id="toast" role="status"></div>
 
@@ -71,7 +74,7 @@
           <div class="progress-dots" data-step="1"></div>
           <button class="back" type="button" data-go="welcome">← Back</button>
           <p class="eyebrow">Step 1 of 6</p>
-          <h1 class="title">Name your household</h1>
+          <h1 class="title display">Name your household</h1>
           <p class="lede">The eating unit — usually a couple or small household (2–4).</p>
           <label class="field">
             <span>Household name</span>
@@ -87,7 +90,7 @@
           <div class="progress-dots" data-step="2"></div>
           <button class="back" type="button" data-go="create">← Back</button>
           <p class="eyebrow">Step 2 of 6</p>
-          <h1 class="title">Who’s eating?</h1>
+          <h1 class="title display">Who’s eating?</h1>
           <p class="lede">Add diners now. You’ll invite them to set their own constraints next.</p>
           <div id="memberList"></div>
           <label class="field">
@@ -107,7 +110,7 @@
           <div class="progress-dots" data-step="3"></div>
           <button class="back" type="button" data-go="members">← Back</button>
           <p class="eyebrow">Step 3 of 6 · <span id="constraintFor">Your</span> locks</p>
-          <h1 class="title">Hard constraints</h1>
+          <h1 class="title display">Hard constraints</h1>
           <p class="lede">Eligibility only — allergies and absolute “never.” Per diner. Never inherited. Never paywalled.</p>
           <div class="constraint-grid" id="constraints"></div>
           <p class="hint">Soft likes come later (optional taste seed). Partners set their own locks when they join.</p>
@@ -121,7 +124,7 @@
           <div class="progress-dots" data-step="4"></div>
           <button class="back" type="button" data-go="constraints">← Back</button>
           <p class="eyebrow">Step 4 of 6 · optional</p>
-          <h1 class="title">A few sparks?</h1>
+          <h1 class="title display">A few sparks?</h1>
           <p class="lede">Pick up to 3 soft signals — or skip. We learn the rest after you cook and rate.</p>
           <div class="spark-grid" id="tasteSparks"></div>
           <p class="hint" id="sparkHint">0 of 3 selected</p>
@@ -138,7 +141,7 @@
           <div class="progress-dots" data-step="5"></div>
           <button class="back" type="button" data-go="taste">← Back</button>
           <p class="eyebrow">Step 5 of 6 · invite</p>
-          <h1 class="title">Invite your cookmate</h1>
+          <h1 class="title display">Invite your cookmate</h1>
           <p class="lede">Two profiles. One dinner. They’ll set their own hard constraints — we never copy yours onto them.</p>
           <div class="card soft">
             <div class="card-kicker">Invite code</div>
@@ -166,7 +169,7 @@
         <div class="scroll">
           <button class="back" type="button" data-go="welcome">← Back</button>
           <p class="eyebrow">Join · Invited → Active</p>
-          <h1 class="title">Join this household</h1>
+          <h1 class="title display">Join this household</h1>
           <p class="lede">Deep link is for this household only. You’ll set your own hard constraints before cook/rate.</p>
           <label class="field">
             <span>Invite code</span>
@@ -187,7 +190,7 @@
         <div class="scroll">
           <div class="progress-dots" data-step="6"></div>
           <p class="eyebrow">Tonight · 3 options</p>
-          <h1 class="title">Which should we make?</h1>
+          <h1 class="title display">Which should we make?</h1>
           <p class="why-strip"><span class="brass-dot"></span> Three options both profiles can live with. Tap one — or share the set.</p>
           <div id="choiceCards"></div>
           <div class="card soft">
@@ -208,7 +211,7 @@
       <section class="view" data-view="shareGuest" aria-label="Shared choice set">
         <div class="scroll">
           <p class="eyebrow">Shared plan · minimal account</p>
-          <h1 class="title">Which should we make tonight?</h1>
+          <h1 class="title display">Which should we make tonight?</h1>
           <div class="guest-banner">You’re viewing a shared choice set. Pick a favorite — full Active membership is required before cook &amp; rate.</div>
           <p class="attr-meta" id="guestShareMeta">Shared choice set</p>
           <div id="guestChoiceCards"></div>
@@ -223,7 +226,7 @@
       <section class="view" data-view="home" aria-label="Home">
         <div class="scroll">
           <p class="eyebrow" id="homeEyebrow">Selected · awaiting cook</p>
-          <h1 class="title">Tonight’s plan</h1>
+          <h1 class="title display">Tonight’s plan</h1>
           <p class="lede">Cook → dual 1–10 rate closes the Completed Meal Loop.</p>
           <div class="status-card">
             <div class="status-row">
@@ -249,7 +252,7 @@
       <section class="view" data-view="detail" aria-label="Recipe Detail">
         <div class="scroll">
           <button class="back" type="button" data-go="home">← Home</button>
-          <div class="hero-ph" aria-hidden="true"><span>A</span></div>
+          <div class="hero-ph" aria-hidden="true"><span class="food-emoji" aria-hidden="true">🌮</span></div>
           <p class="eyebrow">Selected · HE-2026-09-23-P01-A</p>
           <h1 class="title display">Crispy Chipotle Tofu Tacos with Lime Slaw</h1>
           <div class="chips">
@@ -303,7 +306,7 @@
           <div class="center-block">
             <div class="confirm-icon" aria-hidden="true">✓</div>
             <p class="eyebrow">Cooked</p>
-            <h1 class="title">Marked cooked</h1>
+            <h1 class="title display">Marked cooked</h1>
             <p class="lede">Rate while it’s fresh — each diner, 1–10. Or save one and finish later.</p>
             <div class="sticky-actions">
               <button class="btn btn-primary wide" type="button" data-go="rate">Rate now</button>
@@ -318,7 +321,7 @@
         <div class="scroll">
           <button class="back" type="button" data-go="finished">← Back</button>
           <p class="eyebrow">Experienced · 1–10</p>
-          <h1 class="title">How was it?</h1>
+          <h1 class="title display">How was it?</h1>
           <p class="lede">Rate each diner separately. <code>Rated</code> only when both present. Never invent scores.</p>
           <div id="raterList"></div>
           <p class="hint" id="rateHint">Submit when both have scores. Partial keeps Cooked without claiming a loop.</p>
@@ -335,7 +338,7 @@
           <div class="center-block">
             <div class="confirm-icon" aria-hidden="true">◎</div>
             <p class="eyebrow">Completed Meal Loop</p>
-            <h1 class="title">We’ll remember this</h1>
+            <h1 class="title display">We’ll remember this</h1>
             <p class="lede">Both of you rated. Smarter next time — experienced evidence only.</p>
             <ul class="loop-check" id="loopSummary"></ul>
             <p class="attr-meta" id="loopAttr">attribution_last_touch: organic</p>
@@ -349,7 +352,7 @@
         <div class="scroll">
           <button class="back" type="button" data-go="home">← Home</button>
           <p class="eyebrow">How it works</p>
-          <h1 class="title">Two profiles. One dinner.</h1>
+          <h1 class="title display">Two profiles. One dinner.</h1>
           <p class="lede">Eligibility is hard law. No private ratings on this card.</p>
           <div class="demo-pair">
             <div class="demo-diner">
