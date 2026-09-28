@@ -1,7 +1,8 @@
 /**
  * Harbor Eats consumer prototype (product/prototype only — no competing tree)
  * Sample meal: HE-2026-09-23-P01-A Crispy Chipotle Tofu Tacos
- * Ratings: 1–10 dual per diner (Cora confirmed; 1–5 revoked). In-memory only.
+ * Ratings: 1–10 dual per diner (Cora confirmed; 1–5 revoked).
+ * Same-origin /api/* when D1 live; graceful in-memory fallback.
  * Sage owns Taste Model alignment to 1–10.
  *
  * Analytics stubs (Bloom PLG + CHANNEL-RESEARCH):
@@ -18,18 +19,100 @@
   const screenNav = document.getElementById("screenNav");
   const toastEl = document.getElementById("toast");
 
-  const INVITE_CODE = "HE-INV-HH001A";
-  const SHARE_OBJECT_ID = "HE-SHARE-demo01";
   const PLAN_ID = "HE-2026-09-23-P01";
   const MEAL_A = "HE-2026-09-23-P01-A";
 
+  function randToken(n) {
+    const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    const bytes = new Uint8Array(n);
+    crypto.getRandomValues(bytes);
+    return Array.from(bytes, (b) => alphabet[b % alphabet.length]).join("");
+  }
+  function makeInviteCode() {
+    return "HE-INV-" + randToken(6);
+  }
+  function makeShareId() {
+    return "HE-SHARE-" + randToken(6).toLowerCase();
+  }
+  function appBaseUrl() {
+    const u = new URL(location.href);
+    u.search = "";
+    u.hash = "";
+    // Prefer clean path ending with /
+    let path = u.pathname;
+    if (path.endsWith("index.html")) path = path.slice(0, -10);
+    if (!path.endsWith("/")) path += "/";
+    u.pathname = path;
+    return u.toString().replace(/\/$/, "/") ;
+  }
+  function inviteUrl(code) {
+    return appBaseUrl() + "?invite=" + encodeURIComponent(code);
+  }
+  function shareUrl(shareId) {
+    return appBaseUrl() + "?share=" + encodeURIComponent(shareId);
+  }
+
   /** Analytics stub — console + in-memory log; never invents loops */
   const analyticsLog = [];
+
+  // —— Persistence API (same-origin /api/*; graceful fallback if unbound) ——
+  const API = { available: null, householdId: null, planId: null };
+
+  async function apiProbe() {
+    if (API.available !== null) return API.available;
+    try {
+      const r = await fetch("/api/health", { method: "GET", credentials: "same-origin" });
+      if (!r.ok) { API.available = false; return false; }
+      const j = await r.json();
+      API.available = !!(j && j.ok && j.d1 === "ok");
+      return API.available;
+    } catch (_) {
+      API.available = false;
+      return false;
+    }
+  }
+
+  async function apiPost(path, body) {
+    if (!(await apiProbe())) return null;
+    try {
+      const r = await fetch(path, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify(body || {}),
+      });
+      const j = await r.json().catch(() => null);
+      if (!r.ok || (j && j.ok === false)) {
+        console.warn("[he-api]", path, r.status, j);
+        return null;
+      }
+      return j;
+    } catch (e) {
+      console.warn("[he-api]", path, e);
+      return null;
+    }
+  }
+
+  function persistEvent(event, props) {
+    apiPost("/api/events", {
+      event_name: event,
+      household_id: API.householdId || state.householdId || (props && props.household_id) || null,
+      member_id: (props && (props.member_id || props.person_id || props.inviter_id)) || null,
+      plan_id: (props && props.plan_id) || API.planId || PLAN_ID,
+      meal_option_id: (props && props.meal_option_id) || null,
+      invite_code: (props && props.invite_code) || null,
+      share_object_id: (props && props.share_object_id) || null,
+      channel: (props && props.channel) || null,
+      attribution_last_touch: (props && props.attribution_last_touch) || state.lastTouch || null,
+    }).catch(function () {});
+  }
+
   function track(event, props) {
     const row = { event, ts: new Date().toISOString(), ...props };
     analyticsLog.push(row);
     // eslint-disable-next-line no-console
     console.info("[he-analytics]", event, props || {});
+    persistEvent(event, props);
     return row;
   }
 
@@ -71,7 +154,7 @@
       id: PLAN_ID + "-C",
       title: "Coconut Chickpea Spinach Curry",
       chips: ["Plant", "40 min"],
-      pers: { type: "favorite", label: "Returning favorite", line: "Demo slot — high prior craving" },
+      pers: { type: "favorite", label: "Returning favorite", line: "Familiar flavors both of you liked" },
     },
   ];
 
@@ -107,17 +190,15 @@
     view: "welcome",
     lifecycle: "Unselected", // → Selected → Cooked → Rated
     cookStep: 0,
-    householdName: "Tom & Renata",
-    members: [
-      { id: "tom", name: "Tom", initial: "T", status: "Active" },
-      { id: "renata", name: "Renata", initial: "R", status: "Invited" },
-    ],
-    primaryConstraints: ["dairy", "meat", "poultry", "shellfish", "nuts"],
-    joinConstraints: ["shellfish"],
+    householdId: null, // set when POST /api/households succeeds
+    householdName: "",
+    members: [],
+    primaryConstraints: [],
+    joinConstraints: [],
     sparks: [],
     inviteChannel: "share_sheet",
-    inviteCode: INVITE_CODE,
-    shareObjectId: SHARE_OBJECT_ID,
+    inviteCode: makeInviteCode(),
+    shareObjectId: makeShareId(),
     selectedMealId: null,
     guestPick: null,
     lastTouch: "organic",
@@ -254,6 +335,18 @@
   }
 
   function show(name) {
+    const prev = state.view;
+    // Persist hard constraints when leaving constraints screen (per primary diner)
+    if (prev === "constraints" && name !== "constraints") {
+      const hh = API.householdId || state.householdId;
+      const primary = state.members[0];
+      if (hh && primary) {
+        apiPost(`/api/members/${encodeURIComponent(primary.id)}/constraints`, {
+          household_id: hh,
+          keys: state.primaryConstraints.slice(),
+        }).catch(function () {});
+      }
+    }
     state.view = name;
     app.querySelectorAll(".view").forEach((v) => {
       v.classList.toggle("is-active", v.dataset.view === name);
@@ -280,9 +373,11 @@
     tabbar.querySelectorAll(".tab").forEach((t) => {
       t.classList.toggle("is-on", t.dataset.go === (tabMap[name] || name));
     });
-    screenNav.querySelectorAll("button").forEach((b) => {
-      b.classList.toggle("is-on", b.dataset.go === name);
-    });
+    if (screenNav) {
+      screenNav.querySelectorAll("button").forEach((b) => {
+        b.classList.toggle("is-on", b.dataset.go === name);
+      });
+    }
 
     const active = app.querySelector(".view.is-active .scroll");
     if (active) active.scrollTop = 0;
@@ -377,7 +472,20 @@
 
   function finishCook() {
     state.lifecycle = "Cooked";
-    track("cook_recorded", { plan_id: PLAN_ID, meal_option_id: state.selectedMealId || MEAL_A });
+    const mealId = state.selectedMealId || MEAL_A;
+    track("cook_recorded", { plan_id: PLAN_ID, meal_option_id: mealId });
+    (async () => {
+      const planId = (await ensurePlan()) || PLAN_ID;
+      const hh = API.householdId || state.householdId;
+      if (!hh) return;
+      await apiPost("/api/cooks", {
+        plan_id: planId,
+        meal_option_id: mealId,
+        household_id: hh,
+        source: "app",
+        actor_member_id: state.members[0] && state.members[0].id,
+      });
+    })();
     show("finished");
   }
 
@@ -421,6 +529,7 @@
   }
 
   function bothRated() {
+    if (state.members.length < 2) return false;
     return state.members.every((m) => state.ratings[m.id]?.score != null);
   }
   function anyRated() {
@@ -458,6 +567,35 @@
     document.getElementById("loopAttr").textContent = `attribution_last_touch: ${state.lastTouch}`;
   }
 
+  async function ensurePlan() {
+    const hh = API.householdId || state.householdId;
+    if (!hh) return null;
+    if (API.planId) return API.planId;
+    const res = await apiPost("/api/plans", {
+      plan_id: PLAN_ID,
+      household_id: hh,
+      meal_options: meals.map((m) => ({
+        letter: m.letter,
+        meal_option_id: m.id,
+        name: m.title,
+      })),
+      attribution_last_touch: state.lastTouch,
+      attribution_kind:
+        state.lastTouch && String(state.lastTouch).startsWith("HE-INV")
+          ? "invite_code"
+          : state.lastTouch && String(state.lastTouch).startsWith("HE-SHARE")
+            ? "share_object_id"
+            : state.lastTouch === "organic"
+              ? "organic"
+              : "unknown",
+    });
+    if (res && res.plan_id) {
+      API.planId = res.plan_id;
+      return res.plan_id;
+    }
+    return null;
+  }
+
   function selectMeal(id) {
     state.selectedMealId = id;
     state.lifecycle = "Selected";
@@ -466,6 +604,18 @@
       meal_option_id: id,
       source: "app",
     });
+    (async () => {
+      const planId = (await ensurePlan()) || PLAN_ID;
+      const hh = API.householdId || state.householdId;
+      if (!hh) return;
+      await apiPost("/api/selections", {
+        plan_id: planId,
+        meal_option_id: id,
+        household_id: hh,
+        source: "app",
+        actor_member_id: state.members[0] && state.members[0].id,
+      });
+    })();
   }
 
   // —— Navigation ——
@@ -510,18 +660,38 @@
     }
   });
 
-  screenNav.addEventListener("click", (e) => {
+  if (screenNav) screenNav.addEventListener("click", (e) => {
     const go = e.target.closest("[data-go]");
     if (go) show(go.dataset.go);
   });
 
-  document.getElementById("btnCreateHh").addEventListener("click", () => {
+  document.getElementById("btnCreateHh").addEventListener("click", async () => {
     state.householdName = document.getElementById("hhName").value.trim() || "Household";
-    track("household_created", { household_name: state.householdName });
+    state.inviteCode = makeInviteCode();
+    track("household_created", {
+      household_name: state.householdName,
+      invite_code: state.inviteCode,
+    });
+    const res = await apiPost("/api/households", {
+      display_name: state.householdName,
+      acquisition_source: "organic",
+    });
+    if (res && res.household_id) {
+      state.householdId = res.household_id;
+      API.householdId = res.household_id;
+      for (const m of state.members) {
+        await apiPost(`/api/households/${encodeURIComponent(res.household_id)}/members`, {
+          member_id: m.id,
+          display_name: m.name,
+          role: m.id === state.members[0].id ? "owner" : "member",
+          status: m.status === "Invited" ? "invited" : "active",
+        });
+      }
+    }
     show("members");
   });
 
-  document.getElementById("btnAddMember").addEventListener("click", () => {
+  document.getElementById("btnAddMember").addEventListener("click", async () => {
     const input = document.getElementById("newMemberName");
     const name = input.value.trim();
     if (!name) return;
@@ -529,16 +699,26 @@
       toast("Household unit max 4");
       return;
     }
+    const mid = name.toLowerCase().replace(/\s+/g, "-");
     state.members.push({
-      id: name.toLowerCase().replace(/\s+/g, "-"),
+      id: mid,
       name,
       initial: name[0].toUpperCase(),
       status: "Invited",
     });
-    state.ratings[state.members[state.members.length - 1].id] = { score: null, note: "" };
+    state.ratings[mid] = { score: null, note: "" };
     input.value = "";
     renderMembers();
     syncAvatars();
+    const hh = API.householdId || state.householdId;
+    if (hh) {
+      await apiPost(`/api/households/${encodeURIComponent(hh)}/members`, {
+        member_id: mid,
+        display_name: name,
+        role: "member",
+        status: "invited",
+      });
+    }
   });
 
   document.getElementById("btnSkipTaste").addEventListener("click", () => {
@@ -569,8 +749,8 @@
     });
     state.lastTouch = state.inviteCode;
     const partner = state.members.find((m) => m.status === "Invited");
-    if (partner) toast(`Invite sent · ${partner.name} is Invited`);
-    else toast("Invite sent · HE-INV");
+    if (partner) toast("Invite sent · " + partner.name + " is Invited");
+    else toast("Invite sent · " + state.inviteCode);
     show("choices");
   });
 
@@ -579,7 +759,7 @@
   });
 
   document.getElementById("btnAcceptInvite").addEventListener("click", () => {
-    const code = document.getElementById("joinCode").value.trim() || INVITE_CODE;
+    const code = document.getElementById("joinCode").value.trim() || state.inviteCode;
     const name = document.getElementById("joinName").value.trim() || "Partner";
     // Second diner sets OWN constraints — never inherit primary
     let member = state.members.find((m) => m.name.toLowerCase() === name.toLowerCase());
@@ -609,19 +789,75 @@
     show("choices");
   });
 
+  function refreshShareUi() {
+    const url = shareUrl(state.shareObjectId);
+    const meta = document.getElementById("shareIdMeta");
+    if (meta) meta.textContent = state.shareObjectId;
+    const field = document.getElementById("shareUrlField");
+    const input = document.getElementById("shareUrlInput");
+    const copyBtn = document.getElementById("btnCopyShareUrl");
+    if (field && input) {
+      field.hidden = false;
+      input.value = url;
+    }
+    if (copyBtn) copyBtn.hidden = false;
+    const guestMeta = document.getElementById("guestShareMeta");
+    if (guestMeta) guestMeta.textContent = state.shareObjectId + " · plan " + PLAN_ID;
+  }
+
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (_) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); return true; }
+      catch (e) { return false; }
+      finally { ta.remove(); }
+    }
+  }
+
   document.getElementById("btnShareChoices").addEventListener("click", () => {
+    state.shareObjectId = makeShareId();
+    refreshShareUi();
     track("share_choice_created", {
       plan_id: PLAN_ID,
       share_object_id: state.shareObjectId,
-      member_id: state.members[0]?.id,
+      member_id: state.members[0] && state.members[0].id,
+      share_url: shareUrl(state.shareObjectId),
       utm_source: "share",
       utm_medium: "referral",
       utm_campaign: "alpha_warm",
     });
     state.lastTouch = state.shareObjectId;
-    toast("Link ready · HE-SHARE (one plan’s A/B/C)");
+    toast("Share link ready — copy & send");
     show("shareGuest");
   });
+
+  const btnCopyShare = document.getElementById("btnCopyShareUrl");
+  if (btnCopyShare) {
+    btnCopyShare.addEventListener("click", async () => {
+      const url = shareUrl(state.shareObjectId);
+      const ok = await copyText(url);
+      toast(ok ? "Share link copied" : "Copy failed — select the link");
+      track("share_choice_acted", {
+        share_object_id: state.shareObjectId,
+        action: "copy_link",
+      });
+    });
+  }
+
+  const btnCopyInvite = document.getElementById("btnCopyInvite");
+  if (btnCopyInvite) {
+    btnCopyInvite.addEventListener("click", async () => {
+      const url = inviteUrl(state.inviteCode);
+      const ok = await copyText(url + "  code:" + state.inviteCode);
+      toast(ok ? "Invite link copied" : "Copy failed");
+    });
+  }
 
   document.getElementById("btnGuestSelect").addEventListener("click", () => {
     if (!state.guestPick) {
@@ -672,13 +908,29 @@
       const score = Number(scoreBtn.dataset.score);
       if (!state.ratings[id]) state.ratings[id] = { score: null, note: "" };
       state.ratings[id].score = score;
+      const mealId = state.selectedMealId || MEAL_A;
       track("rating_submitted", {
         person_id: id,
         score,
         scale: "1-10",
-        meal_option_id: state.selectedMealId || MEAL_A,
+        meal_option_id: mealId,
         partial: !bothRated(),
       });
+      (async () => {
+        const planId = (await ensurePlan()) || PLAN_ID;
+        const hh = API.householdId || state.householdId;
+        if (!hh) return;
+        await apiPost("/api/ratings", {
+          plan_id: planId,
+          meal_option_id: mealId,
+          household_id: hh,
+          member_id: id,
+          score,
+          note: (state.ratings[id] && state.ratings[id].note) || null,
+          source: "app",
+          attribution_last_touch: state.lastTouch,
+        });
+      })();
       renderRaters();
     }
   });
@@ -727,9 +979,36 @@
     show("loop");
   });
 
-  // Expose for QA
+  // Expose for QA / analytics inspection
   window.__HE_ANALYTICS__ = analyticsLog;
   window.__HE_STATE__ = state;
+  window.__HE_API__ = API;
 
-  show("welcome");
+  apiProbe().then(function (ok) {
+    if (ok) console.info("[he-api] D1 live — write paths enabled");
+    else console.info("[he-api] offline/unbound — in-memory only");
+  });
+
+  // Deep links: ?share=HE-SHARE-* · ?invite=HE-INV-*
+  (function bootFromQuery() {
+    const q = new URLSearchParams(location.search);
+    const share = q.get("share");
+    const invite = q.get("invite");
+    if (share && share.startsWith("HE-SHARE")) {
+      state.shareObjectId = share;
+      state.lastTouch = share;
+      refreshShareUi();
+      show("shareGuest");
+      return;
+    }
+    if (invite && invite.startsWith("HE-INV")) {
+      state.inviteCode = invite;
+      state.lastTouch = invite;
+      const jc = document.getElementById("joinCode");
+      if (jc) jc.value = invite;
+      show("join");
+      return;
+    }
+    show("welcome");
+  })();
 })();

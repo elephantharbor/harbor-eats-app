@@ -602,3 +602,10 @@ a { color: var(--tide); }
   margin-bottom: 12px;
   line-height: 1.4;
 }
+
+/* Alpha: hide internal stage chrome */
+.alpha-hide { display: none !important; }
+#shareUrlField input {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+}

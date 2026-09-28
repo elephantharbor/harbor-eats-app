@@ -4,13 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
-  <title>Harbor Eats — Consumer Prototype</title>
+  <title>Harbor Eats</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <div class="stage">
-    <p class="stage-label">Harbor Eats · consumer · 375px</p>
-    <nav class="screen-nav" id="screenNav" aria-label="QA screen jump">
+    <p class="stage-label alpha-hide">Harbor Eats</p>
+    <nav class="screen-nav alpha-hide" id="screenNav" aria-label="Screen jump" hidden>
       <button type="button" data-go="welcome">Welcome</button>
       <button type="button" data-go="create">Household</button>
       <button type="button" data-go="members">Members</button>
@@ -28,7 +29,7 @@
       <button type="button" data-go="home">Home</button>
       <button type="button" data-go="join">Join invite</button>
     </nav>
-    <p class="nav-hint">Primary flow is sequential. Subtle QA jump above — not product chrome.</p>
+    <p class="nav-hint alpha-hide" hidden></p>
 
     <div class="phone" id="app">
       <div class="debug" id="debug" hidden></div>
@@ -74,7 +75,7 @@
           <p class="lede">The eating unit — usually a couple or small household (2–4).</p>
           <label class="field">
             <span>Household name</span>
-            <input type="text" id="hhName" value="Tom &amp; Renata" maxlength="48" />
+            <input type="text" id="hhName" value="" placeholder="e.g. Alex &amp; Jordan" maxlength="48" />
           </label>
           <button class="btn btn-primary wide" type="button" id="btnCreateHh">Continue</button>
         </div>
@@ -136,12 +137,13 @@
         <div class="scroll">
           <div class="progress-dots" data-step="5"></div>
           <button class="back" type="button" data-go="taste">← Back</button>
-          <p class="eyebrow">Step 5 of 6 · S1 invite</p>
+          <p class="eyebrow">Step 5 of 6 · invite</p>
           <h1 class="title">Invite your cookmate</h1>
           <p class="lede">Two profiles. One dinner. They’ll set their own hard constraints — we never copy yours onto them.</p>
           <div class="card soft">
             <div class="card-kicker">Invite code</div>
-            <div class="code-block" id="inviteCodeDisplay">HE-INV-HH001A</div>
+            <div class="code-block" id="inviteCodeDisplay">—</div>
+            <button class="btn btn-ghost wide" type="button" id="btnCopyInvite" style="margin-top:8px">Copy invite link</button>
             <p class="attr-meta" id="inviteAttrMeta">invite_code · this household only · viral-to-new-HH OFF</p>
             <p class="hint" style="margin:0">Share link + email/SMS code are equal. Invited shows immediately.</p>
           </div>
@@ -168,11 +170,11 @@
           <p class="lede">Deep link is for this household only. You’ll set your own hard constraints before cook/rate.</p>
           <label class="field">
             <span>Invite code</span>
-            <input type="text" id="joinCode" value="HE-INV-HH001A" />
+            <input type="text" id="joinCode" value="" placeholder="HE-INV-…" />
           </label>
           <label class="field">
             <span>Your name</span>
-            <input type="text" id="joinName" value="Renata" />
+            <input type="text" id="joinName" value="" placeholder="Your name" />
           </label>
           <p class="section-h">Your hard constraints (not inherited)</p>
           <div class="constraint-grid" id="joinConstraints"></div>
@@ -184,15 +186,20 @@
       <section class="view" data-view="choices" aria-label="Choice set">
         <div class="scroll">
           <div class="progress-dots" data-step="6"></div>
-          <p class="eyebrow">Tonight · N×3</p>
+          <p class="eyebrow">Tonight · 3 options</p>
           <h1 class="title">Which should we make?</h1>
           <p class="why-strip"><span class="brass-dot"></span> Three options both profiles can live with. Tap one — or share the set.</p>
           <div id="choiceCards"></div>
           <div class="card soft">
-            <div class="card-kicker">Share this plan · S2</div>
+            <div class="card-kicker">Share this plan</div>
             <p style="margin:0 0 8px;font-size:14px">Send A/B/C so your partner can weigh in — one plan only, not a catalog.</p>
-            <p class="attr-meta" id="shareIdMeta">share_object_id: HE-SHARE-demo01</p>
+            <p class="attr-meta" id="shareIdMeta">Share link ready after you tap below</p>
+            <label class="field" id="shareUrlField" hidden>
+              <span>Share link</span>
+              <input type="text" id="shareUrlInput" readonly />
+            </label>
             <button class="btn btn-secondary wide" type="button" id="btnShareChoices">Share choice set</button>
+            <button class="btn btn-ghost wide" type="button" id="btnCopyShareUrl" hidden>Copy share link</button>
           </div>
         </div>
       </section>
@@ -203,7 +210,7 @@
           <p class="eyebrow">Shared plan · minimal account</p>
           <h1 class="title">Which should we make tonight?</h1>
           <div class="guest-banner">You’re viewing a shared choice set. Pick a favorite — full Active membership is required before cook &amp; rate.</div>
-          <p class="attr-meta" id="guestShareMeta">HE-SHARE-demo01 · plan HE-2026-09-23-P01</p>
+          <p class="attr-meta" id="guestShareMeta">Shared choice set</p>
           <div id="guestChoiceCards"></div>
           <div class="sticky-actions">
             <button class="btn btn-primary wide" type="button" id="btnGuestSelect">Confirm pick (needs Active to cook)</button>
@@ -230,12 +237,11 @@
           <div class="invite">
             <div>
               <strong>Invite cookmate</strong>
-              <p>S1 · HE-INV · channel attribution</p>
+              <p>Share a link or code — this household only</p>
             </div>
             <button class="btn btn-ghost" type="button" data-go="invite">Invite</button>
           </div>
-          <button class="btn btn-ghost wide" type="button" data-go="demo">View dual-constraint demo (S3)</button>
-          <p class="hint">S4 recipe URL · S5 post-loop share — stubbed for later.</p>
+          <button class="btn btn-ghost wide" type="button" data-go="demo">How dual profiles work</button>
         </div>
       </section>
 
@@ -334,8 +340,7 @@
             <ul class="loop-check" id="loopSummary"></ul>
             <p class="attr-meta" id="loopAttr">attribution_last_touch: organic</p>
             <button class="btn btn-primary wide" type="button" data-go="home">Back to Home</button>
-            <p class="hint">S5 post-loop share stub — “we both rated” without scores · later</p>
-          </div>
+                      </div>
         </div>
       </section>
 
@@ -343,25 +348,25 @@
       <section class="view" data-view="demo" aria-label="Dual constraint demo">
         <div class="scroll">
           <button class="back" type="button" data-go="home">← Home</button>
-          <p class="eyebrow">S3 · read-only demo</p>
+          <p class="eyebrow">How it works</p>
           <h1 class="title">Two profiles. One dinner.</h1>
           <p class="lede">Eligibility is hard law. No private ratings on this card.</p>
           <div class="demo-pair">
             <div class="demo-diner">
-              <strong>Tom</strong>
+              <strong>You</strong>
               <div class="chips"><span class="chip">Dairy-free</span><span class="chip">No meat*</span><span class="chip">Nuts except cashew</span></div>
             </div>
             <div class="demo-diner">
-              <strong>Renata</strong>
+              <strong>Partner</strong>
               <div class="chips"><span class="chip">No shellfish</span><span class="chip">Low spice preferred†</span></div>
               <p class="hint" style="margin:8px 0 0">† Soft preference — not an eligibility lock.</p>
             </div>
           </div>
           <div class="card soft">
-            <div class="card-kicker">Conflict-resolved sample set</div>
+            <div class="card-kicker">Both profiles can eat these</div>
             <p style="margin:0;font-size:14px;line-height:1.45">A Tofu tacos · B Miso-ginger salmon · C Chickpea curry — all pass both hard locks.</p>
           </div>
-          <p class="hint">*Fish (finfish) permitted for HH001. For alpha conversations — not cold outreach.</p>
+          <p class="hint">*Fish (finfish) permitted when both profiles allow it. Soft prefs never override hard locks.</p>
         </div>
       </section>
 
