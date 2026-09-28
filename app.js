@@ -155,6 +155,8 @@
       chips: ["Plant", "40 min", "Air fry"],
       plate: "🌮",
       tone: "tone-a",
+      time: "40 min",
+      effort: "Easy",
       pers: { type: "why", label: "Why this", line: "Fits both of you · crispy + taco night" },
     },
     {
@@ -164,6 +166,8 @@
       chips: ["Fish", "35 min"],
       plate: "🐟",
       tone: "tone-b",
+      time: "35 min",
+      effort: "Medium",
       pers: { type: "new", label: "Trying something new", line: "A little adventure — miso-ginger fish" },
     },
     {
@@ -173,6 +177,8 @@
       chips: ["Plant", "40 min"],
       plate: "🍛",
       tone: "tone-c",
+      time: "40 min",
+      effort: "Easy",
       pers: { type: "favorite", label: "Returning favorite", line: "Familiar flavors both of you liked" },
     },
   ];
@@ -338,7 +344,7 @@
         chips: Array.isArray(o.chips) && o.chips.length ? o.chips : ["Shared"],
         plate: o.plate || plates[letter] || "🍽️",
         tone: o.tone || tones[letter] || "tone-a",
-        pers: o.pers || { type: "why", label: "Shared pick", line: "Your partner sent these three" },
+        pers: o.pers || { type: "why", label: "Shared pick", line: "Someone shared these three with you" },
       };
     });
   }
@@ -352,12 +358,22 @@
     const go = goDetail ? ` data-go="detail" data-select="${m.id}"` : ` data-select="${m.id}"`;
     const tone = m.tone || "tone-a";
     const plate = m.plate || "🍽️";
+    const time = m.time || (m.chips || []).find((c) => /min/i.test(c)) || "";
+    const effort = m.effort || "";
+    const metaBits = [];
+    if (time) metaBits.push(`<span>${time}</span>`);
+    if (effort) metaBits.push(`<span>${effort}</span>`);
+    const meta = metaBits.length
+      ? `<div class="option-meta" aria-label="Time and effort">${metaBits.join("")}</div>`
+      : "";
+    const selectedAttr = selected ? ' aria-pressed="true"' : ' aria-pressed="false"';
     return `
-      <article class="option-card is-pickable${selected ? " selected-mark" : ""}"${go}>
+      <article class="option-card is-pickable${selected ? " selected-mark" : ""}" role="listitem" tabindex="0"${selectedAttr}${go} aria-label="Option ${m.letter}: ${m.title}">
         <div class="option-plate ${tone}" aria-hidden="true"><span class="letter-mini">${m.letter}</span><span>${plate}</span></div>
         <div class="option-body">
           <h2>${m.title}</h2>
           <div class="chips">${m.chips.map((c) => `<span class="chip">${c}</span>`).join("")}</div>
+          ${meta}
           <span class="pers-chip ${persClass(m.pers.type)}">${m.pers.label}</span>
           <p class="why">${m.pers.line}</p>
         </div>
@@ -489,7 +505,36 @@
     document.getElementById("homeMealTitle").textContent = meal.title;
   }
 
+  function isQaMode() {
+    try {
+      return new URLSearchParams(location.search).get("qa") === "1"
+        || localStorage.getItem("he_qa") === "1";
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function applyQaChrome() {
+    const on = isQaMode();
+    document.body.classList.toggle("qa-on", on);
+    if (debug) {
+      debug.hidden = !on;
+      if (!on) debug.textContent = "";
+    }
+  }
+
   function updateDebug() {
+    applyQaChrome();
+  // Keyboard: activate meal cards with Enter/Space
+  app.addEventListener("keydown", (e) => {
+    const card = e.target.closest(".option-card.is-pickable");
+    if (!card) return;
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    card.click();
+  });
+
+    if (!isQaMode() || !debug) return;
     const scores = state.members
       .map((m) => `${m.initial}:${state.ratings[m.id]?.score ?? "—"}`)
       .join(" ");
@@ -506,7 +551,11 @@
     document.getElementById("cookStepTitle").textContent = step.title;
     document.getElementById("cookStepBody").textContent = step.body;
     document.getElementById("cookIngList").innerHTML = step.ings.map((x) => `<li>${x}</li>`).join("");
-    document.getElementById("cookProgress").innerHTML = steps
+    const prog = document.getElementById("cookProgress");
+    prog.setAttribute("aria-valuenow", String(i + 1));
+    prog.setAttribute("aria-valuemax", String(n));
+    prog.setAttribute("aria-label", `Cooking step ${i + 1} of ${n}`);
+    prog.innerHTML = steps
       .map((_, idx) => {
         const cls = idx === i ? "is-on" : idx < i ? "is-done" : "";
         return `<span class="dot ${cls}"></span>`;
@@ -563,7 +612,7 @@
           Array.from({ length: to - from + 1 }, (_, i) => from + i)
             .map(
               (n) =>
-                `<button type="button" class="score${r.score === n ? " is-picked" : ""}" data-person="${m.id}" data-score="${n}" aria-label="${m.name} ${n}">${n}</button>`
+                `<button type="button" class="score${r.score === n ? " is-picked" : ""}" data-person="${m.id}" data-score="${n}" aria-label="${m.name} rates ${n} out of 10" aria-pressed="${r.score === n}">${n}</button>`
             )
             .join("");
         return `
@@ -820,7 +869,7 @@
     });
     state.lastTouch = state.inviteCode;
     const partner = state.members.find((m) => m.status === "Invited");
-    if (partner) toast("Invite sent to " + partner.name);
+    if (partner) toast("Invite ready for " + partner.name);
     else toast("Invite sent");
     show("choices");
   });
@@ -958,7 +1007,7 @@
     show("choices");
     const ok = await copyText(url);
     if (ok) {
-      toast("Link copied — send it to your partner");
+      toast("Link copied — send it to whoever’s cooking with you");
       track("share_choice_acted", {
         share_object_id: state.shareObjectId,
         action: "copy_link",
@@ -973,7 +1022,7 @@
     btnCopyShare.addEventListener("click", async () => {
       const url = shareUrl(state.shareObjectId);
       const ok = await copyText(url);
-      toast(ok ? "Link copied — send it to your partner" : "Couldn’t copy — select the link");
+      toast(ok ? "Link copied — send it to whoever’s cooking with you" : "Couldn’t copy — select the link");
       track("share_choice_acted", {
         share_object_id: state.shareObjectId,
         action: "copy_link",
@@ -1125,6 +1174,16 @@
   window.__HE_ANALYTICS__ = analyticsLog;
   window.__HE_STATE__ = state;
   window.__HE_API__ = API;
+  applyQaChrome();
+  // Keyboard: activate meal cards with Enter/Space
+  app.addEventListener("keydown", (e) => {
+    const card = e.target.closest(".option-card.is-pickable");
+    if (!card) return;
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    card.click();
+  });
+
 
   apiProbe().then(function (ok) {
     if (ok) console.info("[he-api] D1 live — write paths enabled");

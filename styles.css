@@ -1,5 +1,5 @@
-/* Harbor Eats consumer — visual + voice v2.1 vibrant primary 2026-09-28 (Thomas lock via Cora)
-   Supersedes cream/serif v1. Primary scheme: vivid coral-rose CTAs + electric indigo (left muted teal/terracotta). */
+/* Harbor Eats consumer — visual + voice v2.1 + responsive web 2026-09-28 (Thomas lock via Cora)
+   Bright white / Plus Jakarta / vibrant accents. Mobile phone-frame + large-screen web shell. */
 :root {
   /* Locked brand roles */
   --ink: #10262C;
@@ -81,6 +81,11 @@
   --dur-fast: 140ms;
   --dur: 220ms;
   --dur-enter: 280ms;
+
+  /* Responsive shell */
+  --shell-pad: 16px;
+  --content-max: 720px;
+  --focus-ring: 0 0 0 3px rgba(91, 77, 255, 0.35);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -115,8 +120,15 @@
 }
 
 * { box-sizing: border-box; }
-html, body {
+html {
+  margin: 0;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
   margin: 0; min-height: 100%;
+  min-height: 100dvh;
   background: var(--grad-stage);
   background-attachment: fixed;
   color: var(--fg);
@@ -128,6 +140,28 @@ html, body {
 button, textarea, input { font: inherit; color: inherit; }
 button { cursor: pointer; border: 0; background: none; }
 a { color: var(--tide); }
+
+/* Global focus rings (keyboard / a11y) */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--tide);
+  outline-offset: 3px;
+  box-shadow: var(--focus-ring);
+}
+.btn:focus-visible,
+.tab:focus-visible,
+.score:focus-visible,
+.chip-tog:focus-visible,
+.channel-chip:focus-visible,
+.option-card:focus-visible,
+.back:focus-visible {
+  outline: 2px solid var(--tide);
+  outline-offset: 3px;
+}
+.btn-primary:focus-visible {
+  outline-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 51, 102, 0.45), var(--shadow-cta);
+}
 
 /* —— Stage / phone frame —— */
 .stage {
@@ -890,11 +924,19 @@ a { color: var(--tide); }
 .optional-block { margin-top: 8px; }
 .optional-block[hidden] { display: none !important; }
 
-/* Visual direction fingerprint v2 (deploy verify) */
+/* Visual direction fingerprint v2 + responsive (deploy verify) */
 .he-visual-20260928-v2 { --he-visual-lock: "thomas-cora-2026-09-28-v2"; }
+.he-responsive-20260928 { --he-responsive-lock: "thomas-cora-2026-09-28-responsive"; }
 
-/* Alpha: hide internal stage chrome */
+/* Alpha: hide internal stage chrome (QA: ?qa=1 shows via .qa-on) */
 .alpha-hide { display: none !important; }
+body.qa-on .alpha-hide { display: flex !important; }
+body.qa-on .stage-label.alpha-hide,
+body.qa-on .nav-hint.alpha-hide { display: block !important; }
+body.qa-on .screen-nav.alpha-hide { display: flex !important; }
+.debug { display: none; }
+body.qa-on .debug { display: block; }
+
 #shareUrlField input,
 #inviteUrlField input,
 .share-url-field input {
@@ -911,6 +953,395 @@ a { color: var(--tide); }
   color: var(--muted);
 }
 
+/* Meal meta (time / effort) — used on choice cards */
+.option-meta {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 8px;
+  font-size: 12px; color: var(--muted); font-weight: 600;
+}
+.option-meta span {
+  display: inline-flex; align-items: center; gap: 4px;
+}
+
+/* Recipe split (ingredients || steps) — stacks on phone */
+.recipe-split {
+  display: grid;
+  gap: 16px;
+  margin-top: 8px;
+}
+.recipe-panel {
+  background: var(--surface-muted);
+  border-radius: var(--radius-card);
+  padding: 16px;
+}
+.recipe-panel h3.section-h { margin-top: 0; }
+.recipe-steps { margin: 0; padding-left: 0; list-style: none; }
+.recipe-steps li {
+  position: relative;
+  padding: 10px 0 10px 36px;
+  font-size: 14px; line-height: 1.45; color: var(--muted);
+  border-bottom: 1px solid var(--hairline);
+}
+.recipe-steps li:last-child { border-bottom: 0; }
+.recipe-steps li::before {
+  content: attr(data-n);
+  position: absolute; left: 0; top: 10px;
+  width: 26px; height: 26px; border-radius: 8px;
+  background: var(--surface); color: var(--tide);
+  font-size: 12px; font-weight: 800;
+  display: grid; place-items: center;
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+
+/* Members: Add person secondary to Continue */
+.members-actions {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-top: 8px;
+}
+.members-actions .btn-secondary { order: 2; }
+.members-actions .sticky-actions { order: 1; margin-top: 4px; }
+
+/* Score row a11y: slightly taller touch */
+.score { min-height: 44px; min-width: 44px; }
+
+/* Screen-reader only */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* —— Responsive: phone → tablet → laptop → large desktop —— */
+/* Mobile (<768): keep phone-frame excellence */
+@media (max-width: 767.98px) {
+  .stage {
+    padding: 12px 10px 24px;
+  }
+  .phone {
+    width: min(100%, 390px);
+    height: min(812px, calc(100dvh - 48px));
+    max-height: 900px;
+  }
+}
+
+/* Tablet ≥768: leave floating phone; real web shell */
+@media (min-width: 768px) {
+  body {
+    background: var(--surface-muted);
+    background-attachment: scroll;
+  }
+  .stage {
+    display: block;
+    min-height: 100dvh;
+    padding: 0;
+    max-width: none;
+  }
+  .stage-label, .nav-hint { display: none; }
+  body.qa-on .stage-label { display: block; padding: 12px 24px 0; }
+  body.qa-on .screen-nav {
+    max-width: 960px; margin: 8px auto; padding: 0 24px;
+  }
+  .phone {
+    width: 100%;
+    height: auto;
+    min-height: 100dvh;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
+    border: 0;
+    background: var(--grad-page);
+  }
+  .topbar {
+    padding: 16px clamp(20px, 4vw, 48px) 12px;
+    max-width: 1120px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .scroll {
+    padding: 8px clamp(20px, 4vw, 48px) 120px;
+    max-width: 880px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .tabbar {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: min(420px, calc(100% - 32px));
+  }
+  .toast {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) translateY(6px);
+    width: min(420px, calc(100% - 32px));
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Choice grid: 3 side-by-side on tablet+ */
+  #choiceCards,
+  #guestChoiceCards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .option-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+    min-height: 100%;
+    padding: 16px;
+    margin-bottom: 0;
+  }
+  .option-card .chev { display: none; }
+  .option-plate {
+    width: 100%;
+    height: 120px;
+    border-radius: 14px;
+    font-size: 40px;
+  }
+  .option-plate .letter-mini {
+    font-size: 12px; top: 8px; left: 10px;
+  }
+  .option-body h2 { font-size: 15px; }
+
+  /* Taste sparks use horizontal space */
+  .spark-grid { gap: 10px; }
+  .spark-grid .chip-tog { min-height: 48px; padding: 12px 16px; }
+
+  /* Ratings: full 1–10 row */
+  .score-row {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 6px;
+  }
+  .score { min-height: 48px; font-size: 15px; }
+
+  /* Constraint grid wider */
+  .constraint-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Demo pair side-by-side */
+  .demo-pair {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  /* Recipe: ingredients || overview steps */
+  .recipe-split {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .hero-ph { height: 200px; }
+
+  /* Cook: iPad-friendly */
+  .view-cook .scroll {
+    max-width: 720px;
+    padding-bottom: 140px;
+  }
+  .cook-chrome,
+  .cook-progress {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-left: clamp(20px, 4vw, 48px);
+    padding-right: clamp(20px, 4vw, 48px);
+  }
+  .cook-nav {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: min(640px, calc(100% - 32px));
+  }
+  .cook-step-title { font-size: 32px; }
+  .cook-step-body { font-size: 19px; }
+}
+
+/* Laptop ≥1024: richer web shell */
+@media (min-width: 1024px) {
+  .scroll {
+    max-width: 1040px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .topbar {
+    max-width: 1040px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  #choiceCards,
+  #guestChoiceCards {
+    gap: 18px;
+  }
+  .option-plate { height: 148px; font-size: 48px; }
+  .option-body h2 { font-size: 17px; }
+  .option-card { padding: 18px; }
+
+  /* Two-column useful screens: home status + invite */
+  .view[data-view="home"] .scroll {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-areas:
+      "eye eye"
+      "title title"
+      "lede lede"
+      "status invite"
+      "demo demo";
+    column-gap: 24px;
+    align-items: start;
+  }
+  .view[data-view="home"] .eyebrow { grid-area: eye; }
+  .view[data-view="home"] .title { grid-area: title; }
+  .view[data-view="home"] .lede { grid-area: lede; }
+  .view[data-view="home"] .status-card { grid-area: status; margin-bottom: 0; }
+  .view[data-view="home"] .invite { grid-area: invite; margin-bottom: 0; align-self: stretch; }
+  .view[data-view="home"] .scroll > .btn-ghost.wide { grid-area: demo; margin-top: 16px; max-width: 320px; }
+
+  /* Choices header + cards use width */
+  .view[data-view="choices"] .scroll,
+  .view[data-view="shareGuest"] .scroll {
+    max-width: 1100px;
+  }
+  #shareCard {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 20px;
+    align-items: center;
+  }
+  #shareCard .card-kicker { grid-column: 1 / -1; }
+  #shareCard > p { margin: 0; }
+  #shareCard .btn { width: auto; margin-top: 0; min-width: 200px; }
+
+  /* Rate: two raters side-by-side when space */
+  #raterList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  #raterList .rater-card { margin-bottom: 0; }
+
+  /* Invite / onboarding content max readable */
+  .view[data-view="welcome"] .scroll,
+  .view[data-view="create"] .scroll,
+  .view[data-view="members"] .scroll,
+  .view[data-view="constraints"] .scroll,
+  .view[data-view="taste"] .scroll,
+  .view[data-view="invite"] .scroll,
+  .view[data-view="join"] .scroll {
+    max-width: 560px;
+  }
+  .view[data-view="welcome"] .scroll {
+    max-width: 480px;
+    text-align: center;
+  }
+  .view[data-view="welcome"] .sticky-actions { align-items: stretch; }
+
+  .title.hero { font-size: clamp(34px, 4vw, 42px); }
+
+  /* Cook kitchen chrome — Crouton-like persistent progress */
+  .cook-progress {
+    max-width: 880px;
+    gap: 8px;
+  }
+  .cook-progress .dot {
+    flex: 1;
+    height: 6px;
+    width: auto;
+    border-radius: 4px;
+    max-width: none;
+  }
+  .cook-progress .dot.is-on {
+    width: auto;
+    background: var(--eats);
+  }
+  .view-cook .scroll,
+  .cook-chrome {
+    max-width: 880px;
+  }
+  .cook-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .cook-ings { margin-bottom: 0; }
+}
+
+/* Large desktop ≥1280: max-width content, generous padding */
+@media (min-width: 1280px) {
+  .scroll {
+    max-width: 1180px;
+    padding-left: 56px;
+    padding-right: 56px;
+  }
+  .topbar {
+    max-width: 1180px;
+    padding-left: 56px;
+    padding-right: 56px;
+  }
+  .view[data-view="choices"] .scroll,
+  .view[data-view="shareGuest"] .scroll {
+    max-width: 1180px;
+  }
+  #choiceCards,
+  #guestChoiceCards {
+    gap: 22px;
+  }
+  .option-plate { height: 168px; font-size: 56px; border-radius: 16px; }
+  .option-body h2 { font-size: 18px; }
+  .option-card { padding: 20px; border-radius: 18px; }
+  .why { font-size: 13px; }
+
+  .view[data-view="detail"] .scroll {
+    max-width: 1080px;
+  }
+  .view[data-view="detail"] .hero-ph {
+    height: 240px;
+  }
+  .recipe-split { gap: 28px; }
+
+  .view-cook .scroll,
+  .cook-chrome,
+  .cook-progress {
+    max-width: 960px;
+  }
+  .cook-nav {
+    width: min(720px, calc(100% - 48px));
+  }
+}
+
+/* Prevent stretched full-bleed controls on wide shells */
+@media (min-width: 768px) {
+  .sticky-actions .btn.wide,
+  .btn.wide {
+    max-width: 420px;
+  }
+  .view[data-view="welcome"] .sticky-actions .btn.wide,
+  .view[data-view="choices"] #shareCard .btn.wide,
+  .status-card .btn {
+    max-width: none;
+  }
+  .view[data-view="choices"] #shareCard .btn.wide {
+    width: auto;
+  }
+  /* Onboarding forms: don't stretch inputs endlessly */
+  .view[data-view="create"] .field,
+  .view[data-view="members"] .field,
+  .view[data-view="join"] .field {
+    max-width: 420px;
+  }
+  .view[data-view="create"] .btn.wide,
+  .view[data-view="members"] .btn.wide,
+  .view[data-view="constraints"] .btn.wide,
+  .view[data-view="taste"] .btn.wide,
+  .view[data-view="invite"] .btn.wide,
+  .view[data-view="join"] .btn.wide {
+    max-width: 420px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -923,4 +1354,8 @@ a { color: var(--tide); }
     transform: none;
   }
   .score.is-picked { transform: none; }
+  .toast, .toast.show { transform: none; }
+  @media (min-width: 768px) {
+    .toast, .toast.show { transform: translateX(-50%); }
+  }
 }
