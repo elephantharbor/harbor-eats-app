@@ -25,17 +25,22 @@ export async function apiCreateHousehold(request, name) {
   await request.post(`${base}/api/households/${household_id}/members`, {
     data: { member_id, display_name: "Owner", role: "owner", status: "active" },
   });
-  await request.post(`${base}/api/members/${member_id}/constraints`, {
-    data: { household_id, keys: ["dairy"] },
-  });
   const sess = await request.post(`${base}/api/sessions`, {
     data: { household_id, member_id },
   });
   const setCookie = sess.headers()["set-cookie"] || "";
   const tokenMatch = /he_session=([^;]+)/.exec(setCookie);
+  const sessionToken = tokenMatch ? decodeURIComponent(tokenMatch[1]) : null;
+  const cookieHeader = sessionToken
+    ? { Cookie: `he_session=${encodeURIComponent(sessionToken)}` }
+    : {};
+  await request.post(`${base}/api/members/${member_id}/constraints`, {
+    headers: cookieHeader,
+    data: { household_id, keys: ["dairy"] },
+  });
   return {
     household_id,
     memberId: member_id,
-    sessionToken: tokenMatch ? decodeURIComponent(tokenMatch[1]) : null,
+    sessionToken,
   };
 }

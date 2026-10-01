@@ -1,7 +1,7 @@
 /**
  * Harbor Eats consumer API (Workers + D1) — MVO write/read paths.
  * Ratings: 1–10 per diner; CML when both present. No invented metrics.
- * Auth: member session cookie (alpha); household APIs still open — document in README.
+ * Auth: HttpOnly session cookie; household scope enforced server-side (Phase 2).
  */
 
 import { filterEligibleOptions } from "./lib/eligibility.js";
@@ -13,6 +13,15 @@ import {
   resolveSession,
 } from "./lib/session.js";
 import { sessionClearCookieHeader } from "./lib/cookies.js";
+import {
+  requireSession,
+  assertMemberInSessionHousehold,
+  assertPlanInHousehold,
+  countActiveMembers,
+  validateInviteForHousehold,
+} from "./lib/auth.js";
+import { createRecoveryToken, consumeRecoveryToken } from "./lib/recovery.js";
+import { deliverRecoveryLink } from "./lib/mail.js";
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -135,13 +144,27 @@ async function createHousehold(env, body) {
   return json({ ok: true, household_id, display_name, status, created_at: ts }, 201);
 }
 
-async function addMember(env, household_id, body) {
+async function addMember(env, household_id, body, request) {
   const hh = await env.DB.prepare(
     "SELECT household_id FROM household WHERE household_id = ?"
   )
     .bind(household_id)
     .first();
   if (!hh) return err("household_not_found", 404);
+
+  const auth = await requireSession(env.DB, request);
+  if (auth.error) {
+    const active = await countActiveMembers(env.DB, household_id);
+    const invite_code = body.invite_code || null;
+    if (invite_code) {
+      const invErr = await validateInviteForHousehold(env.DB, invite_code, household_id);
+      if (invErr) return err(invErr, invErr === "invite_expired" ? 410 : 403);
+    } else if (active > 0) {
+      return auth.error;
+    }
+  } else if (auth.session.household_id !== household_id) {
+    return err("forbidden_cross_household", 403);
+  }
 
   const display_name = (body.display_name || body.name || "").trim();
   if (!display_name) return err("display_name_required");
@@ -181,7 +204,10 @@ async function addMember(env, household_id, body) {
   return json({ ok: true, member_id, household_id, display_name, role, status }, 201);
 }
 
-async function setConstraints(env, member_id, body) {
+async function setConstraints(env, member_id, body, session) {
+  const memberErr = await assertMemberInSessionHousehold(env.DB, member_id, session);
+  if (memberErr) return err(memberErr, 403);
+
   const member = await env.DB.prepare(
     "SELECT member_id, household_id FROM member WHERE member_id = ?"
   )
@@ -189,7 +215,7 @@ async function setConstraints(env, member_id, body) {
     .first();
   if (!member) return err("member_not_found", 404);
 
-  const household_id = body.household_id || member.household_id;
+  const household_id = session.household_id;
   let rules = Array.isArray(body.constraints)
     ? body.constraints.slice()
     : Array.isArray(body.rules)
@@ -258,9 +284,11 @@ async function setConstraints(env, member_id, body) {
   return json({ ok: true, member_id, household_id, constraints: saved });
 }
 
-async function createPlan(env, body) {
-  const household_id = body.household_id;
-  if (!household_id) return err("household_id_required");
+async function createPlan(env, body, session) {
+  const household_id = session.household_id;
+  if (body.household_id && body.household_id !== household_id) {
+    return err("forbidden_cross_household", 403);
+  }
   const hh = await env.DB.prepare(
     "SELECT household_id FROM household WHERE household_id = ?"
   )
@@ -331,11 +359,17 @@ async function createPlan(env, body) {
   }
 }
 
-async function createSelection(env, body) {
-  const { plan_id, meal_option_id, household_id } = body;
-  if (!plan_id || !meal_option_id || !household_id) {
-    return err("plan_id_meal_option_id_household_id_required");
+async function createSelection(env, body, session) {
+  const { plan_id, meal_option_id } = body;
+  const household_id = session.household_id;
+  if (!plan_id || !meal_option_id) {
+    return err("plan_id_and_meal_option_id_required");
   }
+  if (body.household_id && body.household_id !== household_id) {
+    return err("forbidden_cross_household", 403);
+  }
+  const planErr = await assertPlanInHousehold(env.DB, plan_id, session);
+  if (planErr) return err(planErr, 403);
   const selection_id = body.selection_id || id("sel");
   const ts = nowIso();
   const source = body.source || "app";
@@ -351,7 +385,7 @@ async function createSelection(env, body) {
         meal_option_id,
         household_id,
         source,
-        body.actor_member_id || null,
+        body.actor_member_id || session.member_id,
         body.share_object_id || null,
         ts
       ),
@@ -368,11 +402,17 @@ async function createSelection(env, body) {
   return json({ ok: true, selection_id, plan_id, meal_option_id, status: "Selected" }, 201);
 }
 
-async function createCook(env, body) {
-  const { plan_id, meal_option_id, household_id } = body;
-  if (!plan_id || !meal_option_id || !household_id) {
-    return err("plan_id_meal_option_id_household_id_required");
+async function createCook(env, body, session) {
+  const { plan_id, meal_option_id } = body;
+  const household_id = session.household_id;
+  if (!plan_id || !meal_option_id) {
+    return err("plan_id_and_meal_option_id_required");
   }
+  if (body.household_id && body.household_id !== household_id) {
+    return err("forbidden_cross_household", 403);
+  }
+  const planErr = await assertPlanInHousehold(env.DB, plan_id, session);
+  if (planErr) return err(planErr, 403);
   const cook_id = body.cook_id || id("cook");
   const ts = nowIso();
   const cooked_at = body.cooked_at || ts;
@@ -389,7 +429,7 @@ async function createCook(env, body) {
         meal_option_id,
         household_id,
         source,
-        body.actor_member_id || null,
+        body.actor_member_id || session.member_id,
         cooked_at,
         ts
       ),
@@ -403,12 +443,22 @@ async function createCook(env, body) {
   return json({ ok: true, cook_id, plan_id, meal_option_id, status: "Cooked" }, 201);
 }
 
-async function createRating(env, body) {
-  const { plan_id, meal_option_id, household_id, member_id } = body;
+async function createRating(env, body, session) {
+  const { plan_id, meal_option_id } = body;
+  const household_id = session.household_id;
+  const member_id = session.member_id;
   const score = Number(body.score);
-  if (!plan_id || !meal_option_id || !household_id || !member_id) {
-    return err("plan_id_meal_option_id_household_id_member_id_required");
+  if (!plan_id || !meal_option_id) {
+    return err("plan_id_and_meal_option_id_required");
   }
+  if (body.household_id && body.household_id !== household_id) {
+    return err("forbidden_cross_household", 403);
+  }
+  if (body.member_id && body.member_id !== member_id) {
+    return err("forbidden_member", 403);
+  }
+  const planErr = await assertPlanInHousehold(env.DB, plan_id, session);
+  if (planErr) return err(planErr, 403);
   if (!Number.isInteger(score) || score < 1 || score > 10) {
     return err("score_must_be_integer_1_to_10", 400, { score: body.score });
   }
@@ -487,9 +537,16 @@ async function createRating(env, body) {
   }
 }
 
-async function createEvent(env, body) {
+async function createEvent(env, body, session) {
   const event_name = body.event_name || body.event;
   if (!event_name) return err("event_name_required");
+  if (body.household_id && body.household_id !== session.household_id) {
+    return err("forbidden_cross_household", 403);
+  }
+  if (body.member_id && body.member_id !== session.member_id) {
+    const memberErr = await assertMemberInSessionHousehold(env.DB, body.member_id, session);
+    if (memberErr) return err(memberErr, 403);
+  }
   // Allow known + HE-INV / HE-SHARE related; do not invent metrics — just store what client sends
   const event_id = body.event_id || id("evt");
   const ts = body.created_at || nowIso();
@@ -525,8 +582,8 @@ async function createEvent(env, body) {
       .bind(
         event_id,
         event_name,
-        body.household_id || null,
-        body.member_id || null,
+        session.household_id,
+        body.member_id || session.member_id,
         body.plan_id || null,
         body.meal_option_id || null,
         invite_code,
@@ -659,9 +716,11 @@ async function ensurePlanWithOptions(env, household_id, plan_id, options, attrib
   return created;
 }
 
-async function createShare(env, body, requestUrl) {
-  const household_id = body.household_id;
-  if (!household_id) return err("household_id_required");
+async function createShare(env, body, requestUrl, session) {
+  const household_id = session.household_id;
+  if (body.household_id && body.household_id !== household_id) {
+    return err("forbidden_cross_household", 403);
+  }
   const hh = await env.DB.prepare(
     "SELECT household_id FROM household WHERE household_id = ?"
   )
@@ -741,7 +800,7 @@ async function createShare(env, body, requestUrl) {
         share_object_id,
         plan_id,
         household_id,
-        body.created_by_member_id || body.member_id || null,
+        body.created_by_member_id || session.member_id,
         token,
         option_letters,
         body.referrer_household_id || null,
@@ -770,7 +829,7 @@ async function createShare(env, body, requestUrl) {
       .bind(
         id("evt"),
         household_id,
-        body.created_by_member_id || body.member_id || null,
+        body.created_by_member_id || session.member_id,
         plan_id,
         share_object_id,
         channel,
@@ -784,7 +843,7 @@ async function createShare(env, body, requestUrl) {
   }
 
   const origin = productOrigin(requestUrl);
-  const share_url = `${origin}/?share=${encodeURIComponent(token)}`;
+  const share_url = `${origin}/share/${encodeURIComponent(token)}`;
   return json(
     {
       ok: true,
@@ -885,9 +944,11 @@ async function resolveShare(env, token) {
   });
 }
 
-async function createInvite(env, body, requestUrl) {
-  const household_id = body.household_id;
-  if (!household_id) return err("household_id_required");
+async function createInvite(env, body, requestUrl, session) {
+  const household_id = session.household_id;
+  if (body.household_id && body.household_id !== household_id) {
+    return err("forbidden_cross_household", 403);
+  }
   const hh = await env.DB.prepare(
     "SELECT household_id, display_name FROM household WHERE household_id = ?"
   )
@@ -895,16 +956,16 @@ async function createInvite(env, body, requestUrl) {
     .first();
   if (!hh) return err("household_not_found", 404);
 
-  let inviter_member_id = body.inviter_member_id || body.member_id || null;
-  if (!inviter_member_id) {
-    const first = await env.DB.prepare(
-      `SELECT member_id FROM member WHERE household_id = ? AND status = 'active' ORDER BY created_at LIMIT 1`
-    )
-      .bind(household_id)
-      .first();
-    inviter_member_id = first && first.member_id;
+  let inviter_member_id = body.inviter_member_id || session.member_id;
+  if (body.inviter_member_id && body.inviter_member_id !== session.member_id) {
+    const memberErr = await assertMemberInSessionHousehold(
+      env.DB,
+      body.inviter_member_id,
+      session
+    );
+    if (memberErr) return err(memberErr, 403);
+    inviter_member_id = body.inviter_member_id;
   }
-  if (!inviter_member_id) return err("inviter_member_id_required");
 
   const inviter = await env.DB.prepare(
     "SELECT member_id FROM member WHERE member_id = ? AND household_id = ?"
@@ -961,7 +1022,7 @@ async function createInvite(env, body, requestUrl) {
   }
 
   const origin = productOrigin(requestUrl);
-  const invite_url = `${origin}/?invite=${encodeURIComponent(invite_code)}`;
+  const invite_url = `${origin}/invite/${encodeURIComponent(invite_code)}`;
   return json(
     {
       ok: true,
@@ -1086,6 +1147,55 @@ async function postSession(env, body, request, requestUrl) {
   );
 }
 
+async function postRecoveryRequest(env, body, requestUrl) {
+  const household_id = body.household_id;
+  const member_id = body.member_id;
+  if (!household_id || !member_id) return err("household_id_and_member_id_required");
+  const destination_path =
+    body.destination_path || body.dest || "/";
+  const origin = productOrigin(requestUrl);
+  const created = await createRecoveryToken(
+    env.DB,
+    { household_id, member_id, destination_path },
+    origin
+  );
+  if (created.error) return err(created.error, created.status || 400);
+  const mail = await deliverRecoveryLink(env, {
+    to: body.email || null,
+    recovery_url: created.recovery_url,
+    member_id,
+  });
+  const dev_recovery_url = created.recovery_url;
+  return json({
+    ok: true,
+    expires_at: created.expires_at,
+    destination_path,
+    mail,
+    dev_recovery_url,
+  });
+}
+
+async function postRecoveryConsume(env, body, request, requestUrl) {
+  const plain = body.token || body.recovery_token;
+  if (!plain) return err("recovery_token_required");
+  const secure = requestUrl.protocol === "https:";
+  const consumed = await consumeRecoveryToken(env.DB, plain, {
+    secure,
+    user_agent: request.headers.get("User-Agent") || undefined,
+  });
+  if (consumed.error) return err(consumed.error, consumed.status || 400);
+  return json(
+    {
+      ok: true,
+      household_id: consumed.household_id,
+      member_id: consumed.member_id,
+      destination_path: consumed.destination_path,
+    },
+    200,
+    { "Set-Cookie": consumed.set_cookie }
+  );
+}
+
 async function getSessionMe(env, request, requestUrl) {
   const secure = requestUrl.protocol === "https:";
   const token = readSessionToken(request);
@@ -1129,10 +1239,12 @@ async function getSessionMe(env, request, requestUrl) {
   });
 }
 
-async function postEligibilityCheck(env, body) {
-  const household_id = body.household_id;
+async function postEligibilityCheck(env, body, session) {
+  const household_id = session.household_id;
   const options = body.meal_options || body.options;
-  if (!household_id) return err("household_id_required");
+  if (body.household_id && body.household_id !== household_id) {
+    return err("forbidden_cross_household", 403);
+  }
   if (!Array.isArray(options)) return err("meal_options_required");
   const activity = await loadHouseholdActivity(env.DB, household_id);
   if (!activity) return err("household_not_found", 404);
@@ -1186,6 +1298,11 @@ export default {
         {
           const m = matchPath(path, "/api/households/:id/state");
           if (m && request.method === "GET") {
+            const auth = await requireSession(env.DB, request);
+            if (auth.error) return auth.error;
+            if (m.id !== auth.session.household_id) {
+              return err("forbidden_cross_household", 403);
+            }
             return getHouseholdState(env, m.id);
           }
         }
@@ -1194,6 +1311,11 @@ export default {
         {
           const m = matchPath(path, "/api/households/:id");
           if (m && request.method === "GET") {
+            const auth = await requireSession(env.DB, request);
+            if (auth.error) return auth.error;
+            if (m.id !== auth.session.household_id) {
+              return err("forbidden_cross_household", 403);
+            }
             return getHousehold(env, m.id);
           }
         }
@@ -1210,11 +1332,27 @@ export default {
           return getSessionMe(env, request, url);
         }
 
+        // POST /api/recovery/request
+        if (path === "/api/recovery/request" && request.method === "POST") {
+          const body = await readBody(request);
+          if (body === null) return err("invalid_json");
+          return postRecoveryRequest(env, body, url);
+        }
+
+        // POST /api/recovery/consume
+        if (path === "/api/recovery/consume" && request.method === "POST") {
+          const body = await readBody(request);
+          if (body === null) return err("invalid_json");
+          return postRecoveryConsume(env, body, request, url);
+        }
+
         // POST /api/eligibility/check
         if (path === "/api/eligibility/check" && request.method === "POST") {
           const body = await readBody(request);
           if (body === null) return err("invalid_json");
-          return postEligibilityCheck(env, body);
+          const auth = await requireSession(env.DB, request);
+          if (auth.error) return auth.error;
+          return postEligibilityCheck(env, body, auth.session);
         }
 
         // POST /api/households/:id/members
@@ -1223,7 +1361,7 @@ export default {
           if (m && request.method === "POST") {
             const body = await readBody(request);
             if (body === null) return err("invalid_json");
-            return addMember(env, m.id, body);
+            return addMember(env, m.id, body, request);
           }
         }
 
@@ -1233,7 +1371,9 @@ export default {
           if (m && request.method === "POST") {
             const body = await readBody(request);
             if (body === null) return err("invalid_json");
-            return setConstraints(env, m.id, body);
+            const auth = await requireSession(env.DB, request);
+            if (auth.error) return auth.error;
+            return setConstraints(env, m.id, body, auth.session);
           }
         }
 
@@ -1241,35 +1381,45 @@ export default {
         if (path === "/api/plans" && request.method === "POST") {
           const body = await readBody(request);
           if (body === null) return err("invalid_json");
-          return createPlan(env, body);
+          const auth = await requireSession(env.DB, request);
+          if (auth.error) return auth.error;
+          return createPlan(env, body, auth.session);
         }
 
         // POST /api/selections
         if (path === "/api/selections" && request.method === "POST") {
           const body = await readBody(request);
           if (body === null) return err("invalid_json");
-          return createSelection(env, body);
+          const auth = await requireSession(env.DB, request);
+          if (auth.error) return auth.error;
+          return createSelection(env, body, auth.session);
         }
 
         // POST /api/cooks
         if (path === "/api/cooks" && request.method === "POST") {
           const body = await readBody(request);
           if (body === null) return err("invalid_json");
-          return createCook(env, body);
+          const auth = await requireSession(env.DB, request);
+          if (auth.error) return auth.error;
+          return createCook(env, body, auth.session);
         }
 
         // POST /api/ratings
         if (path === "/api/ratings" && request.method === "POST") {
           const body = await readBody(request);
           if (body === null) return err("invalid_json");
-          return createRating(env, body);
+          const auth = await requireSession(env.DB, request);
+          if (auth.error) return auth.error;
+          return createRating(env, body, auth.session);
         }
 
         // POST /api/events
         if (path === "/api/events" && request.method === "POST") {
           const body = await readBody(request);
           if (body === null) return err("invalid_json");
-          return createEvent(env, body);
+          const auth = await requireSession(env.DB, request);
+          if (auth.error) return auth.error;
+          return createEvent(env, body, auth.session);
         }
 
 
@@ -1277,7 +1427,9 @@ export default {
         if (path === "/api/shares" && request.method === "POST") {
           const body = await readBody(request);
           if (body === null) return err("invalid_json");
-          return createShare(env, body, url);
+          const auth = await requireSession(env.DB, request);
+          if (auth.error) return auth.error;
+          return createShare(env, body, url, auth.session);
         }
 
         // GET /api/shares/:token  or  GET /api/shares?token=
@@ -1297,7 +1449,9 @@ export default {
         if (path === "/api/invites" && request.method === "POST") {
           const body = await readBody(request);
           if (body === null) return err("invalid_json");
-          return createInvite(env, body, url);
+          const auth = await requireSession(env.DB, request);
+          if (auth.error) return auth.error;
+          return createInvite(env, body, url, auth.session);
         }
 
         // GET /api/invites/:code  or  GET /api/invites?code=
@@ -1321,8 +1475,14 @@ export default {
       return err("internal_error", 500, { detail: String(e.message || e) });
     }
 
-    // Static assets via Workers assets binding
+    // SPA deep-link routes → index.html (auth boundary handled client-side)
     if (env.ASSETS) {
+      const spaPaths = ["/invite/", "/share/", "/recover/", "/rate/", "/meal/"];
+      if (spaPaths.some((p) => path.startsWith(p))) {
+        const idx = new URL(request.url);
+        idx.pathname = "/index.html";
+        return env.ASSETS.fetch(new Request(idx.toString(), request));
+      }
       return env.ASSETS.fetch(request);
     }
 

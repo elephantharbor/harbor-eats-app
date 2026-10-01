@@ -43,10 +43,10 @@
     return CANONICAL_ORIGIN.replace(/\/$/, "") + "/";
   }
   function inviteUrl(code) {
-    return appBaseUrl() + "?invite=" + encodeURIComponent(code);
+    return appBaseUrl() + "invite/" + encodeURIComponent(code);
   }
   function shareUrl(shareId) {
-    return appBaseUrl() + "?share=" + encodeURIComponent(shareId);
+    return appBaseUrl() + "share/" + encodeURIComponent(shareId);
   }
 
   /** Analytics stub — console + in-memory log; never invents loops */
@@ -54,27 +54,14 @@
 
   // —— Persistence API (same-origin /api/*; graceful fallback if unbound) ——
   const API = { available: null, householdId: null, planId: null };
+  /** Recovery hints only — session is HttpOnly cookie (not localStorage). */
   const LS_HH = "he_household_id";
   const LS_MEMBER = "he_member_id";
-  const LS_SESSION = "he_session_token";
 
-  function apiAuthHeaders() {
-    const headers = {};
-    try {
-      const t = localStorage.getItem(LS_SESSION);
-      if (t) {
-        headers.Authorization = "Bearer " + t;
-        headers["X-HE-Session"] = t;
-      }
-    } catch (_) { /* ignore */ }
-    return headers;
-  }
-
-  function rememberSessionIds(householdId, memberId, sessionToken) {
+  function rememberSessionIds(householdId, memberId) {
     try {
       if (householdId) localStorage.setItem(LS_HH, householdId);
       if (memberId) localStorage.setItem(LS_MEMBER, memberId);
-      if (sessionToken) localStorage.setItem(LS_SESSION, sessionToken);
     } catch (_) { /* private mode */ }
   }
 
@@ -137,7 +124,7 @@
       member_id: primary.id,
     });
     if (res && res.ok) {
-      rememberSessionIds(hh, primary.id, res.session_token);
+      rememberSessionIds(hh, primary.id);
       return true;
     }
     return false;
@@ -149,12 +136,34 @@
       try {
         const hh = localStorage.getItem(LS_HH);
         const mid = localStorage.getItem(LS_MEMBER);
+        const dest = location.pathname + location.search;
         if (hh && mid) {
-          const reb = await apiPost("/api/sessions", { household_id: hh, member_id: mid });
-          if (reb && reb.ok && reb.session_token) {
-            rememberSessionIds(hh, mid, reb.session_token);
+          const rec = await fetch("/api/recovery/request", {
+            method: "POST",
+            credentials: "same-origin",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              household_id: hh,
+              member_id: mid,
+              destination_path: dest || "/",
+            }),
+          });
+          const recBody = await rec.json().catch(function () {
+            return null;
+          });
+          const consumeUrl =
+            (recBody && recBody.dev_recovery_url) ||
+            (recBody && recBody.mail && recBody.mail.dev_recovery_url);
+          if (consumeUrl && consumeUrl.includes("/recover/")) {
+            const token = consumeUrl.split("/recover/")[1].split("?")[0];
+            await fetch("/api/recovery/consume", {
+              method: "POST",
+              credentials: "same-origin",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ token }),
+            });
+            snap = await apiGet("/api/sessions/me");
           }
-          snap = await apiGet("/api/sessions/me");
         }
       } catch (_) { /* ignore */ }
     }
@@ -194,7 +203,7 @@
     try {
       const r = await fetch(path, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...apiAuthHeaders() },
+        headers: { "Content-Type": "application/json" },
         credentials: "same-origin",
         body: JSON.stringify(body || {}),
       });
@@ -216,7 +225,6 @@
       const r = await fetch(path, {
         method: "GET",
         credentials: "same-origin",
-        headers: apiAuthHeaders(),
       });
       const j = await r.json().catch(() => null);
       if (!r.ok || (j && j.ok === false)) {
@@ -932,13 +940,15 @@
       state.householdId = res.household_id;
       API.householdId = res.household_id;
       rememberSessionIds(res.household_id, state.members[0] && state.members[0].id);
-      for (const m of state.members) {
+      for (let i = 0; i < state.members.length; i++) {
+        const m = state.members[i];
         await apiPost(`/api/households/${encodeURIComponent(res.household_id)}/members`, {
           member_id: m.id,
           display_name: m.name,
           role: m.id === state.members[0].id ? "owner" : "member",
           status: m.status === "Invited" ? "invited" : "active",
         });
+        if (i === 0) await ensureMemberSession();
       }
       await ensureMemberSession();
     }
@@ -969,6 +979,7 @@
     syncAvatars();
     const hh = API.householdId || state.householdId;
     if (hh) {
+      await ensureMemberSession();
       await apiPost(`/api/households/${encodeURIComponent(hh)}/members`, {
         member_id: mid,
         display_name: name,
@@ -1342,11 +1353,49 @@
     else console.info("[he-api] offline/unbound — in-memory only");
   });
 
-  // Deep links: ?share=HE-SHARE-* · ?invite=HE-INV-* (resolve from D1 when API live)
-  (async function bootFromQuery() {
+  function deepLinkTokensFromLocation() {
+    const parts = location.pathname.replace(/\/+$/, "").split("/").filter(Boolean);
     const q = new URLSearchParams(location.search);
-    const share = q.get("share");
-    const invite = q.get("invite");
+    let share = q.get("share");
+    let invite = q.get("invite");
+    if (parts[0] === "share" && parts[1]) share = decodeURIComponent(parts[1]);
+    if (parts[0] === "invite" && parts[1]) invite = decodeURIComponent(parts[1]);
+    if (parts[0] === "recover" && parts[1]) {
+      return { recoverToken: decodeURIComponent(parts[1]), dest: q.get("dest") || "/" };
+    }
+    if (parts[0] === "rate") {
+      return { ratePlan: parts[1] || null, share, invite };
+    }
+    return { share, invite };
+  }
+
+  // Deep links: /share/* · /invite/* · /recover/* (+ legacy ?query)
+  (async function bootFromQuery() {
+    const link = deepLinkTokensFromLocation();
+    if (link.recoverToken) {
+      const consumed = await fetch("/api/recovery/consume", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: link.recoverToken }),
+      });
+      const body = await consumed.json().catch(function () {
+        return null;
+      });
+      if (body && body.ok) {
+        const dest = link.dest || body.destination_path || "/";
+        history.replaceState(null, "", dest);
+        const restored = await restoreSession();
+        if (restored) {
+          show(restored.next_view || "home");
+          return;
+        }
+      }
+      show("welcome");
+      return;
+    }
+    const share = link.share;
+    const invite = link.invite;
     if (share && share.startsWith("HE-SHARE")) {
       state.shareObjectId = share;
       state.lastTouch = share;
