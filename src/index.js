@@ -1,6 +1,6 @@
 /**
  * Harbor Eats consumer API (Workers + D1) — MVO write/read paths.
- * Ratings: 1–10 per diner; CML when both present. No invented metrics.
+ * Ratings: 1–10 per diner; CML when every active member rated. No invented metrics.
  * Auth: HttpOnly session cookie; household scope enforced server-side (Phase 2).
  */
 
@@ -39,6 +39,7 @@ import {
   getRecipeVersion,
   catalogCoverageMetrics,
 } from "./lib/recipe-store.js";
+import { scaleRecipeVersion } from "./lib/recipe-scaling.js";
 import { resolveMealSelection, membersWithoutVote } from "./lib/selection-resolution.js";
 import { runAllCatalogQualityChecks } from "./lib/catalog-quality.js";
 
@@ -1469,6 +1470,20 @@ async function getFunnelAnalytics(env, household_id, session) {
   });
 }
 
+function parseRequestedServings(request, fallback = null) {
+  if (!request || !request.url) return fallback;
+  try {
+    const u = new URL(request.url);
+    const raw = u.searchParams.get("servings");
+    if (raw == null || raw === "") return fallback;
+    const n = Number(raw);
+    if (!Number.isFinite(n) || n < 1 || n > 8) return fallback;
+    return Math.round(n);
+  } catch {
+    return fallback;
+  }
+}
+
 function serializeRecipeForClient(concept, version) {
   return {
     recipe_slug: concept.concept_id,
@@ -1476,6 +1491,9 @@ function serializeRecipeForClient(concept, version) {
     title: concept.title,
     name: concept.name,
     servings: version.servings,
+    base_servings: version.base_servings ?? version.servings,
+    requested_servings: version.requested_servings ?? version.servings,
+    scale_factor: version.scale_factor ?? 1,
     prep_minutes: version.prep_minutes,
     cook_minutes: version.cook_minutes,
     total_minutes: version.prep_minutes + version.cook_minutes,
@@ -1499,21 +1517,25 @@ function serializeRecipeForClient(concept, version) {
   };
 }
 
-async function getRecipeBySlug(_env, slug) {
+async function getRecipeBySlug(_env, slug, request) {
   const concept = getConceptBySlug(slug);
   if (!concept) return err("recipe_not_found", 404);
+  const target = parseRequestedServings(request, concept.current_version.servings);
+  const scaled = scaleRecipeVersion(concept.current_version, target);
   return json({
     ok: true,
-    recipe: serializeRecipeForClient(concept, concept.current_version),
+    recipe: serializeRecipeForClient(concept, scaled),
   });
 }
 
-async function getRecipeByVersionId(_env, versionId) {
+async function getRecipeByVersionId(_env, versionId, request) {
   const loaded = getRecipeVersion(versionId);
   if (!loaded || !loaded.concept) return err("recipe_version_not_found", 404);
+  const target = parseRequestedServings(request, loaded.servings);
+  const scaled = scaleRecipeVersion(loaded, target);
   return json({
     ok: true,
-    recipe: serializeRecipeForClient(loaded.concept, loaded),
+    recipe: serializeRecipeForClient(loaded.concept, scaled),
   });
 }
 
@@ -2042,13 +2064,13 @@ export default {
         {
           const m = matchPath(path, "/api/recipes/:slug");
           if (m && request.method === "GET" && !m.slug.startsWith("version")) {
-            return getRecipeBySlug(env, m.slug);
+            return getRecipeBySlug(env, m.slug, request);
           }
         }
         {
           const m = matchPath(path, "/api/recipes/version/:versionId");
           if (m && request.method === "GET") {
-            return getRecipeByVersionId(env, m.versionId);
+            return getRecipeByVersionId(env, m.versionId, request);
           }
         }
 

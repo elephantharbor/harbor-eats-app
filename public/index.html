@@ -146,7 +146,7 @@
           <button class="back" type="button" data-go="taste">← Back</button>
           <p class="eyebrow">Step 5 of 6</p>
           <h1 class="title display">Invite someone to cook with</h1>
-          <p class="lede">They set their own limits. You’ll both see the same three picks tonight.</p>
+          <p class="lede" id="inviteLede">They set their own limits. Everyone in your household sees the same picks tonight.</p>
           <div class="card soft">
             <div class="card-kicker">Invite code</div>
             <div class="code-block" id="inviteCodeDisplay">—</div>
@@ -257,7 +257,7 @@
           <button class="btn btn-ghost wide" type="button" data-go="meals">Meals &amp; ratings</button>
           <button class="btn btn-ghost wide" type="button" data-go="tasteProfile">Your taste profile</button>
           <button class="btn btn-ghost wide" type="button" data-go="settings">Household settings</button>
-          <button class="btn btn-ghost wide" type="button" data-go="demo">How two profiles work</button>
+          <button class="btn btn-ghost wide" type="button" data-go="demo" id="demoNavLabel">How your household fits together</button>
           <p class="hint" id="installHint" hidden>Add Harbor Eats to your home screen for quick invites and cooking.</p>
         </div>
       </section>
@@ -355,7 +355,7 @@
           <div class="cook-layout">
             <div class="cook-main">
               <p class="cook-step-label" id="cookStepLabel">Step 1</p>
-              <h2 class="cook-step-title" id="cookStepTitle">Press &amp; season tofu</h2>
+              <h2 class="cook-step-title" id="cookStepTitle">Loading recipe…</h2>
               <p class="cook-step-body" id="cookStepBody"></p>
             </div>
             <div class="cook-ings">
@@ -394,7 +394,7 @@
           <h1 class="title display">Rate it 1–10</h1>
           <p class="lede" id="rateLede">Each person scores separately — save partial ratings anytime.</p>
           <div id="raterList" role="group" aria-label="Per-person ratings"></div>
-          <p class="hint" id="rateHint">Submit when both have scored. You can save a partial and finish later.</p>
+          <p class="hint" id="rateHint">Submit when everyone has scored. You can save a partial and finish later.</p>
           <div class="sticky-actions">
             <button class="btn btn-primary wide" type="button" id="btnSubmitRated" disabled>Submit all ratings</button>
             <button class="btn btn-ghost wide" type="button" id="btnSavePartial">Save for later</button>
@@ -436,10 +436,10 @@
             </div>
           </div>
           <div class="card soft">
-            <div class="card-kicker">Both of you can eat these</div>
-            <p style="margin:0;font-size:14px;line-height:1.45">A Tofu tacos · B Miso-ginger salmon · C Chickpea curry — all clear both diets.</p>
+            <div class="card-kicker" id="demoMealKicker">Everyone in your household can eat these</div>
+            <p style="margin:0;font-size:14px;line-height:1.45">Sample A/B/C picks — each clears every hard limit in the household.</p>
           </div>
-          <p class="hint">*Fish is fine when both of you allow it. Soft likes never override hard limits.</p>
+          <p class="hint" id="demoFishHint">*Fish is fine when your household allows it. Soft likes never override hard limits.</p>
         </div>
       </section>
 

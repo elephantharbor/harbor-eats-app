@@ -1,4 +1,4 @@
-# Harbor Eats — Alpha Readiness (Phase 4 RC)
+# Harbor Eats — Alpha Readiness (Phase 4 RC2)
 
 **Recruitment:** CLOSED — no external acquisition campaigns.
 
@@ -11,8 +11,10 @@
 | Catalog breadth (≥20 meals) | ✅ | `catalogCoverageMetrics()` on `GET /api/health?metrics=alpha` |
 | Recipe versioning | ✅ | `meal_concept` + `recipe_version` tables; ratings store `recipe_version_id` |
 | HH001 eligibility | ✅ | `catalog-quality` CI + `eligibility.js` |
-| 2–4 diners | ✅ | UI copy + votes + partial ratings |
+| 2–4 diners | ✅ | Context-aware copy + votes + partial ratings (`docs/MULTI-DINER.md`) |
+| Recipe servings scale | ✅ | `recipe-scaling.js` + `?servings=` on recipe API |
 | Selection / ties | ✅ | `selection-resolution.js` + `POST /api/plans/:id/votes` |
+| Multi-diner regression tests | ✅ | `test/multi-diner-journey.test.js`, `test/recipe-scaling.test.js`, `e2e/specs/multi-diner-household.spec.js` |
 | Completed Meal Loop (CML) | ✅ | See PRODUCT-STATE.md |
 | Funnel events | ✅ | Extended `GET /api/households/:id/funnel` |
 | Ops metrics | ✅ | `GET /api/ops/alpha-metrics`, health alpha block |
