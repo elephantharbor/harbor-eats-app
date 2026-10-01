@@ -23,6 +23,6 @@ test("meal loop: select → cook → rate", async ({ page, context }) => {
   for (let i = 0; i < count; i++) {
     await cards.nth(i).locator(".score-row button.score").first().click();
   }
-  await page.getByRole("button", { name: "Submit both ratings" }).click();
-  await expect(page.getByRole("heading", { name: "Both of you rated dinner" })).toBeVisible();
+  await page.getByRole("button", { name: "Submit all ratings" }).click();
+  await expect(page.getByRole("heading", { name: "Everyone rated dinner" })).toBeVisible();
 });

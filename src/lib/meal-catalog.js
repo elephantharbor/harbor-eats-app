@@ -3,115 +3,11 @@
  * recipe_slug is stable across plans for fatigue / favorites.
  */
 
-/** @typedef {{ recipe_slug: string, name: string, title: string, tags: string[], sparks: string[], exploration: number, minutes: number, effort: string, plate: string, tone: string, chips: string[] }} CatalogMeal */
+import { listCatalogMeals } from "./recipe-store.js";
 
-/** @type {CatalogMeal[]} */
-export const MEAL_CATALOG = [
-  {
-    recipe_slug: "crispy-chipotle-tofu-tacos",
-    name: "Crispy Chipotle Tofu Tacos",
-    title: "Crispy Chipotle Tofu Tacos",
-    tags: ["plant", "tacos", "crispy", "dairy-free"],
-    sparks: ["crispy", "tacos", "bright"],
-    exploration: 0.35,
-    minutes: 40,
-    effort: "Easy",
-    plate: "🌮",
-    tone: "tone-a",
-    chips: ["Plant", "40 min", "Air fry"],
-  },
-  {
-    recipe_slug: "miso-ginger-salmon",
-    name: "Blackstone Miso-Ginger Salmon",
-    title: "Blackstone Miso-Ginger Salmon",
-    tags: ["fish", "finfish", "dairy-free"],
-    sparks: ["fish", "bright"],
-    exploration: 0.55,
-    minutes: 35,
-    effort: "Medium",
-    plate: "🐟",
-    tone: "tone-b",
-    chips: ["Fish", "35 min"],
-  },
-  {
-    recipe_slug: "coconut-chickpea-curry",
-    name: "Coconut Chickpea Spinach Curry",
-    title: "Coconut Chickpea Spinach Curry",
-    tags: ["plant", "curry", "dairy-free"],
-    sparks: ["curry", "bright"],
-    exploration: 0.4,
-    minutes: 40,
-    effort: "Easy",
-    plate: "🍛",
-    tone: "tone-c",
-    chips: ["Plant", "40 min"],
-  },
-  {
-    recipe_slug: "sheet-pan-lemon-herb-chicken",
-    name: "Sheet-Pan Lemon Herb Chicken",
-    title: "Sheet-Pan Lemon Herb Chicken",
-    tags: ["poultry", "meat", "sheet-pan"],
-    sparks: ["sheet", "bright"],
-    exploration: 0.45,
-    minutes: 45,
-    effort: "Easy",
-    plate: "🍗",
-    tone: "tone-a",
-    chips: ["Poultry", "45 min", "Sheet pan"],
-  },
-  {
-    recipe_slug: "cashew-pesto-pasta",
-    name: "Cashew Pesto Pasta",
-    title: "Cashew Pesto Pasta",
-    tags: ["plant", "pasta", "nuts", "cashew"],
-    sparks: ["bright"],
-    exploration: 0.5,
-    minutes: 30,
-    effort: "Easy",
-    plate: "🍝",
-    tone: "tone-b",
-    chips: ["Plant", "30 min"],
-  },
-  {
-    recipe_slug: "shrimp-stir-fry",
-    name: "Garlic Ginger Shrimp Stir-Fry",
-    title: "Garlic Ginger Shrimp Stir-Fry",
-    tags: ["shellfish", "seafood"],
-    sparks: ["bright", "crispy"],
-    exploration: 0.6,
-    minutes: 25,
-    effort: "Medium",
-    plate: "🦐",
-    tone: "tone-c",
-    chips: ["Shellfish", "25 min"],
-  },
-  {
-    recipe_slug: "black-bean-quesadillas",
-    name: "Black Bean Quesadillas",
-    title: "Black Bean Quesadillas",
-    tags: ["plant", "dairy", "tacos"],
-    sparks: ["tacos", "sheet"],
-    exploration: 0.3,
-    minutes: 25,
-    effort: "Easy",
-    plate: "🧀",
-    tone: "tone-a",
-    chips: ["Vegetarian", "25 min"],
-  },
-  {
-    recipe_slug: "teriyaki-tofu-bowls",
-    name: "Teriyaki Tofu Bowls",
-    title: "Teriyaki Tofu Bowls",
-    tags: ["plant", "dairy-free", "bowl"],
-    sparks: ["curry", "sheet"],
-    exploration: 0.42,
-    minutes: 35,
-    effort: "Easy",
-    plate: "🥣",
-    tone: "tone-b",
-    chips: ["Plant", "35 min"],
-  },
-];
+/** @typedef {ReturnType<typeof listCatalogMeals>[number]} CatalogMeal */
+
+export const MEAL_CATALOG = listCatalogMeals();
 
 export function catalogMealToOption(meal, letter, plan_id) {
   return {
@@ -119,6 +15,7 @@ export function catalogMealToOption(meal, letter, plan_id) {
     meal_option_id: `${plan_id}-${letter}`,
     name: meal.name,
     recipe_slug: meal.recipe_slug,
+    recipe_version_id: meal.recipe_version_id,
     title: meal.title,
     tags: meal.tags,
     attributes_json: {
@@ -132,6 +29,10 @@ export function catalogMealToOption(meal, letter, plan_id) {
       minutes: meal.minutes,
       effort: meal.effort,
       recipe_slug: meal.recipe_slug,
+      recipe_version_id: meal.recipe_version_id,
+      cuisine: meal.cuisine,
+      meal_format: meal.meal_format,
+      primary_ingredient: meal.primary_ingredient,
     },
   };
 }

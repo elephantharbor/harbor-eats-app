@@ -42,5 +42,20 @@ describe("deriveHouseholdState", () => {
     });
     expect(s.lifecycle).toBe("Rated");
     expect(s.next_action).toBe("loop_complete");
+    expect(s.cml_complete).toBe(true);
+  });
+
+  it("allows partial ratings without blocking home", () => {
+    const s = deriveHouseholdState({
+      onboarded: true,
+      plan: { plan_id: "p1", status: "Cooked" },
+      selection: { meal_option_id: "m1" },
+      cook: { cook_id: "c1" },
+      ratings: [{ member_id: "a", score: 8 }],
+      active_member_count: 3,
+    });
+    expect(s.rating_state).toBe("partial");
+    expect(s.next_action).toBe("rate_meal");
+    expect(s.cml_complete).toBe(false);
   });
 });
