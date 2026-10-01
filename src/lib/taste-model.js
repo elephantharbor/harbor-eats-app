@@ -2,8 +2,7 @@
  * Taste Model v1 — deterministic, scored, explainable recommendations.
  */
 
-import { filterEligibleOptions } from "./eligibility.js";
-import { MEAL_CATALOG, catalogMealToOption } from "./meal-catalog.js";
+import { MEAL_CATALOG } from "./meal-catalog.js";
 
 const LETTERS = ["A", "B", "C", "D", "E"];
 
@@ -88,30 +87,16 @@ function disagreementIndex(ratings) {
 /**
  * @param {object} input
  */
-export function scoreCatalogMeals(input) {
+export function scoreMealsForHousehold(input) {
   const {
-    constraints = [],
+    meals = MEAL_CATALOG,
     evidence = [],
     ratings = [],
     recent_recipe_slugs = [],
     meal_choice_count = 3,
     prefs = {},
+    active_member_count = 2,
   } = input;
-
-  const catalogOptions = MEAL_CATALOG.map((m) =>
-    catalogMealToOption(m, "X", "catalog")
-  );
-  const eligibleCatalog = filterEligibleOptions(catalogOptions, constraints);
-  const eligibleSlugs = new Set(
-    eligibleCatalog.map((o) => {
-      const attrs =
-        typeof o.attributes_json === "string"
-          ? JSON.parse(o.attributes_json)
-          : o.attributes_json;
-      return attrs && attrs.recipe_slug;
-    })
-  );
-  const meals = MEAL_CATALOG.filter((m) => eligibleSlugs.has(m.recipe_slug));
 
   const ev = tagSetFromEvidence(evidence);
   const disagree = disagreementIndex(ratings);
@@ -166,8 +151,13 @@ export function scoreCatalogMeals(input) {
   return picked.map((row, idx) => ({
     ...row,
     letter: LETTERS[idx],
-    explanation: buildWhy(row, ev, ratings.length),
+    explanation: buildWhy(row, ev, ratings.length, active_member_count),
   }));
+}
+
+/** @deprecated use scoreMealsForHousehold via recommendation-pipeline */
+export function scoreCatalogMeals(input) {
+  return scoreMealsForHousehold({ ...input, meals: MEAL_CATALOG });
 }
 
 function humanTag(tag) {
@@ -183,7 +173,15 @@ function humanTag(tag) {
   return map[tag] || tag.replace(/_/g, " ");
 }
 
-function buildWhy(row, ev, ratingCount) {
+function householdPhrase(activeCount) {
+  if (activeCount >= 4) return "your crew";
+  if (activeCount === 3) return "everyone in your kitchen";
+  if (activeCount === 2) return "your household";
+  return "your kitchen";
+}
+
+function buildWhy(row, ev, ratingCount, activeMemberCount = 2) {
+  const crew = householdPhrase(activeMemberCount);
   const parts = [];
   const meal = row.meal;
   const tags = [...sparkTags(meal), ...mealTags(meal)];
@@ -201,7 +199,7 @@ function buildWhy(row, ev, ratingCount) {
   if (row.factors.fatigue_penalty > 0) {
     parts.push("We'd normally wait — but it's still a strong fit tonight");
   } else if (row.factors.exploration >= 0.55 && row.factors.disagreement_index > 0.35) {
-    parts.push("A small stretch while you two calibrate tastes");
+    parts.push(`A small stretch while ${crew} calibrates tastes`);
   } else if (row.factors.exploration >= 0.55) {
     parts.push("A gentle try-something-new slot");
   }
@@ -213,13 +211,13 @@ function buildWhy(row, ev, ratingCount) {
     if (ratingCount === 0) {
       return {
         label: "Good starting point",
-        line: "Fits your household diet limits. We'll personalize more after you cook and rate.",
+        line: `Still getting to know ${crew} — this one fits your hard limits and gives us something useful to learn.`,
         confidence: row.confidence,
       };
     }
     return {
       label: "Fits your kitchen",
-      line: "Clears everyone's hard limits. Not much history yet — ratings will sharpen this.",
+      line: `Clears ${crew}'s hard limits. Not much history yet — ratings will sharpen this.`,
       confidence: row.confidence,
     };
   }
@@ -261,7 +259,7 @@ export function buildTasteProfile(evidence, ratings) {
   if (avg != null) {
     lines.push({
       kind: "history",
-      text: `Meals you've rated together average ${avg.toFixed(1)}/10 so far.`,
+      text: `Meals your household rated average ${avg.toFixed(1)}/10 so far.`,
     });
   }
   if (!lines.length) {

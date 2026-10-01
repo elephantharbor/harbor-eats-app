@@ -1,6 +1,8 @@
 import { MEAL_CATALOG, catalogMealToOption } from "./meal-catalog.js";
 import { parseHouseholdSettings } from "./household-settings.js";
-import { scoreCatalogMeals, LETTERS } from "./taste-model.js";
+import { LETTERS } from "./taste-model.js";
+import { buildRankedChoiceSet } from "./recommendation-pipeline.js";
+import { getCurrentVersionIdForSlug } from "./recipe-store.js";
 
 /**
  * @param {import('@cloudflare/workers-types').D1Database} db
@@ -38,6 +40,13 @@ export async function loadRecommendationContext(db, household_id) {
     .bind(household_id)
     .all();
 
+  const membersRes = await db
+    .prepare(
+      `SELECT COUNT(*) AS c FROM member WHERE household_id = ? AND status = 'active'`
+    )
+    .bind(household_id)
+    .first();
+
   const recentCooks = await db
     .prepare(
       `SELECT mo.recipe_slug FROM cook c
@@ -71,18 +80,12 @@ export async function loadRecommendationContext(db, household_id) {
     recent_recipe_slugs: (recentCooks.results || [])
       .map((r) => r.recipe_slug)
       .filter(Boolean),
+    active_member_count: membersRes ? Number(membersRes.c) || 2 : 2,
   };
 }
 
 export function rankMealsForHousehold(ctx) {
-  return scoreCatalogMeals({
-    constraints: ctx.constraints,
-    evidence: ctx.evidence,
-    ratings: ctx.ratings,
-    recent_recipe_slugs: ctx.recent_recipe_slugs,
-    meal_choice_count: ctx.settings.meal_choice_count,
-    prefs: ctx.settings.prefs,
-  });
+  return buildRankedChoiceSet(ctx);
 }
 
 /**
@@ -91,8 +94,8 @@ export function rankMealsForHousehold(ctx) {
 export async function loadMealHistory(db, household_id, limit = 20) {
   const rows = await db
     .prepare(
-      `SELECT p.plan_id, p.status, p.updated_at,
-              mo.meal_option_id, mo.name, mo.recipe_slug, mo.letter,
+      `       SELECT p.plan_id, p.status, p.updated_at,
+              mo.meal_option_id, mo.name, mo.recipe_slug, mo.recipe_version, mo.letter,
               sel.created_at AS selected_at,
               ck.cooked_at,
               mo.attributes_json
@@ -135,7 +138,20 @@ export async function loadMealHistory(db, household_id, limit = 20) {
         ? ratings.reduce((a, x) => a + x.score, 0) / ratings.length
         : null;
     let pending_feedback = false;
-    if (r.status === "Cooked" && ratings.length === 0) pending_feedback = true;
+    let rating_state = "none";
+    if (r.status === "Cooked") {
+      if (ratings.length === 0) {
+        pending_feedback = true;
+        rating_state = "awaiting";
+      } else {
+        rating_state = "partial";
+        pending_feedback = true;
+      }
+    }
+    if (r.status === "Rated") {
+      rating_state = "full";
+      pending_feedback = false;
+    }
     if (r.status === "Selected" && !r.cooked_at) pending_feedback = true;
 
     items.push({
@@ -148,6 +164,8 @@ export async function loadMealHistory(db, household_id, limit = 20) {
       ratings,
       avg_score: avg,
       pending_feedback,
+      rating_state,
+      recipe_version_id: r.recipe_version || getCurrentVersionIdForSlug(r.recipe_slug),
       favorite: avg != null && avg >= 8.5,
     });
   }
@@ -170,9 +188,13 @@ export function scoredToPlanOptions(scored, plan_id) {
       confidence: row.explanation.confidence,
       factors: row.explanation.factors,
     };
+    opt.attributes_json.score = row.total;
     opt.score = row.total;
+    opt.recipe_version = row.meal.recipe_version_id || getCurrentVersionIdForSlug(row.meal.recipe_slug);
     return opt;
   });
 }
+
+export { buildRankedChoiceSet };
 
 export { MEAL_CATALOG, LETTERS };

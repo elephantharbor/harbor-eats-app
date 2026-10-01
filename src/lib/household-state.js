@@ -19,14 +19,20 @@ export function deriveHouseholdState(input) {
   const ratings = input.ratings || [];
   const activeCount = input.active_member_count ?? 0;
   const ratedCount = ratings.filter((r) => r.score != null).length;
+  const participating = Math.max(1, activeCount);
 
   let lifecycle = "Unselected";
   if (plan && plan.status) {
     lifecycle = plan.status === "Generated" ? "Unselected" : plan.status;
   }
   if (selection && !cook) lifecycle = "Selected";
-  if (cook && ratedCount < Math.max(1, activeCount)) lifecycle = "Cooked";
+  if (cook && ratedCount < participating) lifecycle = "Cooked";
   if (plan && plan.status === "Rated") lifecycle = "Rated";
+
+  let rating_state = "none";
+  if (cook && ratedCount === 0) rating_state = "awaiting";
+  else if (cook && ratedCount > 0 && ratedCount < participating) rating_state = "partial";
+  else if (ratedCount >= participating && cook) rating_state = "full";
 
   let next_action = "home";
   let next_view = "home";
@@ -42,10 +48,10 @@ export function deriveHouseholdState(input) {
   } else if (!cook) {
     next_action = "cook_meal";
     next_view = "detail";
-  } else if (ratedCount < Math.max(1, activeCount)) {
+  } else if (ratedCount < participating) {
     next_action = "rate_meal";
     next_view = "rate";
-  } else if (lifecycle === "Rated") {
+  } else if (lifecycle === "Rated" || rating_state === "full") {
     next_action = "loop_complete";
     next_view = "home";
   } else {
@@ -61,5 +67,7 @@ export function deriveHouseholdState(input) {
     selected_meal_option_id: selection && selection.meal_option_id,
     rated_count: ratedCount,
     active_member_count: activeCount,
+    rating_state,
+    cml_complete: rating_state === "full" && !!cook,
   };
 }

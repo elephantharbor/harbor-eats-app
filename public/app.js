@@ -19,8 +19,7 @@
   const screenNav = document.getElementById("screenNav");
   const toastEl = document.getElementById("toast");
 
-  const PLAN_ID = "HE-2026-09-23-P01";
-  const MEAL_A = "HE-2026-09-23-P01-A";
+  const PLAN_ID = "local-plan";
 
   function randToken(n) {
     const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -115,6 +114,7 @@
     if (snap.lifecycle) {
       state.lifecycle = snap.lifecycle === "Generated" ? "Unselected" : snap.lifecycle;
     }
+    if (snap.rating_state) state.ratingState = snap.rating_state;
     state.nextAction = snap.next_action || null;
     state.onboarded = snap.next_action !== "onboarding";
     if (snap.session) {
@@ -329,69 +329,8 @@
     { id: "bright", label: "Bright / citrus" },
   ];
 
-  const meals = [
-    {
-      letter: "A",
-      id: MEAL_A,
-      title: "Crispy Chipotle Tofu Tacos",
-      chips: ["Plant", "40 min", "Air fry"],
-      plate: "🌮",
-      tone: "tone-a",
-      time: "40 min",
-      effort: "Easy",
-      pers: { type: "why", label: "Why this", line: "Fits both of you · crispy + taco night" },
-    },
-    {
-      letter: "B",
-      id: PLAN_ID + "-B",
-      title: "Blackstone Miso-Ginger Salmon",
-      chips: ["Fish", "35 min"],
-      plate: "🐟",
-      tone: "tone-b",
-      time: "35 min",
-      effort: "Medium",
-      pers: { type: "new", label: "Trying something new", line: "A little adventure — miso-ginger fish" },
-    },
-    {
-      letter: "C",
-      id: PLAN_ID + "-C",
-      title: "Coconut Chickpea Spinach Curry",
-      chips: ["Plant", "40 min"],
-      plate: "🍛",
-      tone: "tone-c",
-      time: "40 min",
-      effort: "Easy",
-      pers: { type: "favorite", label: "Returning favorite", line: "Familiar flavors both of you liked" },
-    },
-  ];
-
-  const steps = [
-    {
-      title: "Press & season tofu",
-      body: "Press tofu 10–15 min, cube into ¾-inch pieces, and pat dry. Toss with oil, cornstarch, chipotle, paprika, cumin, garlic powder, salt, and pepper until coated.",
-      ings: ["14 oz extra-firm tofu", "1 tbsp oil", "1 tbsp cornstarch", "Chipotle + spices"],
-    },
-    {
-      title: "Air fry until crisp",
-      body: "Air fry at 400°F (200°C) for 14–18 minutes, shaking halfway, until edges are deep golden and crisp. Pan method: medium-high skillet 8–10 min, turning. Finish with juice of ½ lime.",
-      ings: ["Seasoned tofu cubes", "Juice of ½ lime"],
-    },
-    {
-      title: "Make the lime slaw",
-      body: "Toss shredded cabbage, carrot, cilantro, lime juice, oil, optional maple, salt, and pepper. Rest 5 minutes so it softens slightly.",
-      ings: ["3 cups cabbage", "½ cup carrot", "Cilantro", "Lime + oil"],
-    },
-    {
-      title: "Warm tortillas",
-      body: "Warm corn tortillas in a dry skillet 20–30 seconds per side until pliable and lightly toasted.",
-      ings: ["6 small corn tortillas"],
-    },
-    {
-      title: "Build & serve",
-      body: "Build tacos: crispy tofu, lime slaw, avocado slices, lime wedges. Serve immediately. Hot sauce optional (check nut-free).",
-      ings: ["Tofu", "Slaw", "Avocado", "Lime wedges"],
-    },
-  ];
+  /** Fallback only when API plan not loaded (should not drive cook/detail). */
+  const meals = [];
 
   const state = {
     view: "welcome",
@@ -418,7 +357,63 @@
     tasteCorrectionSpark: null,
     settingsChoiceCount: 3,
     settingsCadence: "on_demand",
+    activeRecipe: null,
+    ratingState: "none",
   };
+
+  function activeMemberCount() {
+    const active = state.members.filter(function (m) {
+      return m.status === "Active" || m.status === "active";
+    });
+    return active.length || state.members.length || 1;
+  }
+
+  function householdCopy() {
+    const n = activeMemberCount();
+    if (n >= 4) return "your crew";
+    if (n === 3) return "everyone cooking tonight";
+    if (n >= 2) return "your household";
+    return "your kitchen";
+  }
+
+  function selectedMeal() {
+    if (!state.selectedMealId) return null;
+    return displayMeals().find(function (m) {
+      return m.id === state.selectedMealId;
+    }) || null;
+  }
+
+  async function fetchRecipeForMeal(meal) {
+    if (!meal) return null;
+    const slug = meal.recipe_slug;
+    const versionId = meal.recipe_version_id;
+    let path = null;
+    if (slug) path = "/api/recipes/" + encodeURIComponent(slug);
+    else if (versionId) path = "/api/recipes/version/" + encodeURIComponent(versionId);
+    if (!path) return null;
+    const res = await apiGet(path);
+    if (res && res.ok && res.recipe) return res.recipe;
+    return null;
+  }
+
+  async function ensureRecipeForSelection() {
+    const meal = selectedMeal();
+    if (!meal) return null;
+    if (
+      state.activeRecipe &&
+      (state.activeRecipe.recipe_slug === meal.recipe_slug ||
+        state.activeRecipe.recipe_version_id === meal.recipe_version_id)
+    ) {
+      return state.activeRecipe;
+    }
+    const loaded = await fetchRecipeForMeal(meal);
+    if (loaded) state.activeRecipe = loaded;
+    return state.activeRecipe;
+  }
+
+  function cookSteps() {
+    return (state.activeRecipe && state.activeRecipe.steps) || [];
+  }
   state.ratings = Object.fromEntries(
     state.members.map((m) => [m.id, { score: null, note: "" }])
   );
@@ -541,10 +536,12 @@
         tone: o.tone || tones[letter] || "tone-a",
         time: o.time || "",
         effort: o.effort || "",
+        recipe_slug: o.recipe_slug || null,
+        recipe_version_id: o.recipe_version_id || null,
         pers: pers || {
           type: "why",
           label: "Shared pick",
-          line: "Someone shared these three with you",
+          line: "Someone shared these picks with you",
         },
       };
     });
@@ -706,7 +703,16 @@
         plan_id: PLAN_ID,
       });
     }
-    if (name === "cook") renderCook();
+    if (name === "detail") {
+      ensureRecipeForSelection().then(function () {
+        renderDetail();
+      });
+    }
+    if (name === "cook") {
+      ensureRecipeForSelection().then(function () {
+        renderCook();
+      });
+    }
     if (name === "rate") renderRaters();
     if (name === "loop") renderLoopSummary();
     if (name === "home") updateHome();
@@ -727,20 +733,94 @@
       cook_meal: "What should I do next? · Start cooking",
       rate_meal: "What should I do next? · Rate what you cooked",
       start_choices: "What should I do next? · See your three picks",
-      loop_complete: "Both of you rated",
+      loop_complete: "Everyone rated",
     };
     eye.textContent =
       (state.nextAction && nextHints[state.nextAction])
         ? nextHints[state.nextAction]
         : state.lifecycle === "Rated"
-        ? "Both of you rated"
+        ? "Everyone rated"
         : state.lifecycle === "Cooked"
-          ? "Cooked · waiting on ratings"
+          ? state.ratingState === "partial"
+            ? "Cooked · partial ratings saved"
+            : "Cooked · waiting on ratings"
           : state.lifecycle === "Selected"
             ? "Ready to cook"
             : "Tonight’s picks";
-    const meal = displayMeals().find((m) => m.id === state.selectedMealId) || displayMeals()[0];
-    document.getElementById("homeMealTitle").textContent = meal.title;
+    const meal = selectedMeal() || displayMeals()[0];
+    const homeTitle = document.getElementById("homeMealTitle");
+    const homeMeta = document.getElementById("homeMealMeta");
+    const homeCopy = document.getElementById("homeStatusCopy");
+    const homeLede = document.getElementById("homeLede");
+    if (homeLede) {
+      homeLede.textContent =
+        "Cook, then everyone in " +
+        householdCopy() +
+        " rates — that’s how next dinner gets better.";
+    }
+    if (meal && homeTitle) homeTitle.textContent = meal.title;
+    else if (homeTitle) homeTitle.textContent = "Pick tonight’s meal";
+    if (homeMeta) homeMeta.textContent = meal && meal.time ? meal.time : "—";
+    if (homeCopy) homeCopy.textContent = "Fits " + householdCopy();
+    const strip = document.getElementById("choiceStripText");
+    if (strip) {
+      strip.innerHTML =
+        '<span class="brass-dot"></span> Options that fit ' +
+        householdCopy() +
+        ". Tap one — or send the set.";
+    }
+  }
+
+  function renderDetail() {
+    const meal = selectedMeal();
+    const recipe = state.activeRecipe;
+    const titleEl = document.getElementById("detailTitle");
+    const plateEl = document.getElementById("detailPlate");
+    const whyEl = document.getElementById("detailWhy");
+    const lockEl = document.getElementById("detailLockChip");
+    const ingEl = document.getElementById("detailIngredients");
+    const stepsEl = document.getElementById("detailSteps");
+    const chipsEl = document.getElementById("detailChips");
+    if (!meal || !recipe) {
+      if (titleEl) titleEl.textContent = meal ? meal.title : "Load a pick first";
+      if (whyEl) whyEl.textContent = "Connect to load the full recipe.";
+      return;
+    }
+    if (titleEl) titleEl.textContent = recipe.title || meal.title;
+    if (plateEl) plateEl.textContent = meal.plate || recipe.plate || "🍽️";
+    if (lockEl) lockEl.textContent = "Fits " + householdCopy();
+    if (whyEl) whyEl.textContent = (meal.pers && meal.pers.line) || "Clears your household hard limits.";
+    if (chipsEl) {
+      const chips = (meal.chips || []).slice();
+      chips.unshift("Serves " + (recipe.servings || 4));
+      if (recipe.total_minutes) chips.push("~" + recipe.total_minutes + " min");
+      chipsEl.innerHTML = chips
+        .map(function (c) {
+          return '<span class="chip">' + c + "</span>";
+        })
+        .join("");
+    }
+    if (ingEl) {
+      ingEl.innerHTML = (recipe.ingredients || [])
+        .map(function (i) {
+          const line = (i.quantity ? i.quantity + " " : "") + i.name;
+          return "<li>" + line + "</li>";
+        })
+        .join("");
+    }
+    if (stepsEl) {
+      stepsEl.innerHTML = (recipe.steps || [])
+        .map(function (s, idx) {
+          return '<li data-n="' + (idx + 1) + '">' + s.title + "</li>";
+        })
+        .join("");
+    }
+    track("recipe_opened", {
+      plan_id: API.planId || null,
+      meal_option_id: meal.id,
+      recipe_slug: recipe.recipe_slug,
+      recipe_version_id: recipe.recipe_version_id,
+    });
   }
 
   function isQaMode() {
@@ -781,14 +861,22 @@
   }
 
   function renderCook() {
+    const steps = cookSteps();
     const i = state.cookStep;
+    if (!steps.length) {
+      document.getElementById("cookStepTitle").textContent = "Recipe not loaded";
+      document.getElementById("cookStepBody").textContent =
+        "Go back and open the recipe again when you’re online.";
+      return;
+    }
     const step = steps[i];
     const n = steps.length;
     document.getElementById("cookStepMeta").textContent = `${i + 1} / ${n}`;
     document.getElementById("cookStepLabel").textContent = `Step ${i + 1}`;
     document.getElementById("cookStepTitle").textContent = step.title;
     document.getElementById("cookStepBody").textContent = step.body;
-    document.getElementById("cookIngList").innerHTML = step.ings.map((x) => `<li>${x}</li>`).join("");
+    const ings = step.ingredients || step.ings || [];
+    document.getElementById("cookIngList").innerHTML = ings.map((x) => `<li>${x}</li>`).join("");
     const prog = document.getElementById("cookProgress");
     prog.setAttribute("aria-valuenow", String(i + 1));
     prog.setAttribute("aria-valuemax", String(n));
@@ -816,8 +904,13 @@
 
   function finishCook() {
     state.lifecycle = "Cooked";
-    const mealId = state.selectedMealId || MEAL_A;
-    track("cook_recorded", { plan_id: PLAN_ID, meal_option_id: mealId });
+    state.ratingState = "awaiting";
+    const mealId = state.selectedMealId;
+    if (!mealId) {
+      toast("Pick a meal first");
+      return;
+    }
+    track("cook_recorded", { plan_id: API.planId || PLAN_ID, meal_option_id: mealId });
     (async () => {
       const planId = (await ensurePlan()) || PLAN_ID;
       const hh = API.householdId || state.householdId;
@@ -872,9 +965,16 @@
     syncRateButtons();
   }
 
+  function allActiveRated() {
+    const active = state.members.filter(function (m) {
+      return m.status === "Active" || m.status === "active";
+    });
+    const list = active.length ? active : state.members;
+    if (!list.length) return false;
+    return list.every((m) => state.ratings[m.id]?.score != null);
+  }
   function bothRated() {
-    if (state.members.length < 2) return false;
-    return state.members.every((m) => state.ratings[m.id]?.score != null);
+    return allActiveRated();
   }
   function anyRated() {
     return state.members.some((m) => state.ratings[m.id]?.score != null);
@@ -885,16 +985,17 @@
     const hint = document.getElementById("rateHint");
     submit.disabled = !bothRated();
     if (bothRated()) {
-      hint.textContent = "Both of you rated — tap submit to save.";
+      hint.textContent = "Everyone rated — tap submit to close the loop.";
     } else if (anyRated()) {
       const missing = state.members
         .filter((m) => state.ratings[m.id]?.score == null)
         .map((m) => m.name)
         .join(", ");
-      hint.textContent = `Waiting on ${missing}. You can save and finish later.`;
+      hint.textContent = `Waiting on ${missing}. Save partial anytime — others can keep using the app.`;
+      state.ratingState = "partial";
     } else {
       hint.textContent =
-        "Each of you picks 1–10. Save a partial anytime — we wait for both.";
+        "Each person picks 1–10. Save a partial anytime — we never invent scores.";
     }
     updateDebug();
   }
@@ -1036,23 +1137,45 @@
 
   function selectMeal(id) {
     state.selectedMealId = id;
+    state.activeRecipe = null;
     state.lifecycle = "Selected";
     track("selection_recorded", {
-      plan_id: PLAN_ID,
+      plan_id: API.planId || PLAN_ID,
       meal_option_id: id,
       source: "app",
     });
     (async () => {
       const planId = (await ensurePlan()) || PLAN_ID;
       const hh = API.householdId || state.householdId;
-      if (!hh) return;
-      await apiPost("/api/selections", {
-        plan_id: planId,
-        meal_option_id: id,
-        household_id: hh,
-        source: "app",
-        actor_member_id: state.members[0] && state.members[0].id,
-      });
+      if (!hh || !planId) return;
+      await ensureMemberSession();
+      const memberId =
+        (localStorage.getItem(LS_MEMBER) && state.members.find(function (m) {
+          return m.id === localStorage.getItem(LS_MEMBER);
+        }) &&
+          localStorage.getItem(LS_MEMBER)) ||
+        (state.members[0] && state.members[0].id);
+      if (activeMemberCount() > 1) {
+        const voteRes = await apiPost("/api/plans/" + encodeURIComponent(planId) + "/votes", {
+          meal_option_id: id,
+          auto_resolve: true,
+        });
+        if (voteRes && voteRes.status === "Selected" && voteRes.meal_option_id) {
+          state.selectedMealId = voteRes.meal_option_id;
+        } else if (voteRes && voteRes.waiting_on) {
+          toast("Vote saved — waiting on others");
+          return;
+        }
+      } else {
+        await apiPost("/api/selections", {
+          plan_id: planId,
+          meal_option_id: id,
+          household_id: hh,
+          source: "app",
+          actor_member_id: memberId,
+        });
+      }
+      await ensureRecipeForSelection();
     })();
   }
 
@@ -1441,6 +1564,7 @@
       finishCook();
       return;
     }
+    const steps = cookSteps();
     if (state.cookStep < steps.length - 1) {
       state.cookStep += 1;
       renderCook();
@@ -1454,8 +1578,15 @@
   });
 
   document.getElementById("btnStartCook").addEventListener("click", () => {
-    if (!state.selectedMealId) selectMeal(MEAL_A);
+    if (!state.selectedMealId) {
+      toast("Pick a meal from tonight’s options first");
+      return;
+    }
     state.cookStep = 0;
+    track("cook_started", {
+      plan_id: API.planId || PLAN_ID,
+      meal_option_id: state.selectedMealId,
+    });
   });
 
   app.addEventListener("click", (e) => {
@@ -1465,7 +1596,8 @@
       const score = Number(scoreBtn.dataset.score);
       if (!state.ratings[id]) state.ratings[id] = { score: null, note: "" };
       state.ratings[id].score = score;
-      const mealId = state.selectedMealId || MEAL_A;
+      const mealId = state.selectedMealId;
+      if (!mealId) return;
       track("rating_submitted", {
         person_id: id,
         score,
@@ -1527,7 +1659,7 @@
     track("loop_completed", {
       household_id: "HH-demo",
       plan_id: PLAN_ID,
-      meal_option_id: state.selectedMealId || MEAL_A,
+      meal_option_id: state.selectedMealId,
       attribution_last_touch: state.lastTouch,
       ratings: Object.fromEntries(
         state.members.map((m) => [m.id, state.ratings[m.id].score])

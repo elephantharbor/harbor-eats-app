@@ -61,7 +61,7 @@
         <div class="scroll welcome-pad">
           <div class="welcome-mark" aria-hidden="true"></div>
           <p class="eyebrow">Harbor Eats</p>
-          <h1 class="title hero" data-testid="welcome-title">Dinner you’ll both love</h1>
+          <h1 class="title hero" data-testid="welcome-title">Dinner your household will love</h1>
           <p class="lede">Three solid picks. Cook together. Rate once — next time gets smarter.</p>
           <div class="sticky-actions">
             <button class="btn btn-primary wide" type="button" data-go="create">Get started</button>
@@ -200,7 +200,7 @@
           <div class="progress-dots" data-step="6"></div>
           <p class="eyebrow">Tonight’s picks</p>
           <h1 class="title display">Which should we make?</h1>
-          <p class="why-strip"><span class="brass-dot"></span> Three options that work for both of you. Tap one — or send the set.</p>
+          <p class="why-strip" id="choiceStripText"><span class="brass-dot"></span> Three options that fit your crew. Tap one — or send the set.</p>
           <div id="choiceCards" role="list" aria-label="Tonight’s three picks"></div>
           <div class="card soft" id="shareCard">
             <div class="card-kicker">Send this plan</div>
@@ -237,14 +237,14 @@
         <div class="scroll">
           <p class="eyebrow" id="homeEyebrow">Ready to cook</p>
           <h1 class="title display" data-testid="home-title">Tonight’s plan</h1>
-          <p class="lede">Cook, then both of you rate — that’s how next dinner gets better.</p>
+          <p class="lede" id="homeLede">Cook, then everyone rates — that’s how next dinner gets better.</p>
           <div class="status-card">
             <div class="status-row">
               <span class="pill pill-eats" id="homePill">Selected</span>
-              <span class="meta">~40 min</span>
+              <span class="meta" id="homeMealMeta">—</span>
             </div>
-            <h2 class="card-title" id="homeMealTitle">Crispy Chipotle Tofu Tacos</h2>
-            <p class="status-copy">Works for both of you</p>
+            <h2 class="card-title" id="homeMealTitle">Tonight’s pick</h2>
+            <p class="status-copy" id="homeStatusCopy">Fits your household</p>
             <button class="btn btn-primary" type="button" data-go="detail">Open recipe</button>
           </div>
           <div class="invite">
@@ -317,37 +317,24 @@
       <section class="view" data-view="detail" aria-label="Recipe Detail">
         <div class="scroll">
           <button class="back" type="button" data-go="home">← Home</button>
-          <div class="hero-ph" aria-hidden="true"><span class="food-emoji" aria-hidden="true">🌮</span></div>
+          <div class="hero-ph" aria-hidden="true"><span class="food-emoji" id="detailPlate" aria-hidden="true">🍽️</span></div>
           <p class="eyebrow">Tonight’s pick</p>
-          <h1 class="title display">Crispy Chipotle Tofu Tacos with Lime Slaw</h1>
-          <div class="chips">
-            <span class="chip chip-lock">Fits both of you</span>
-            <span class="chip">~40 min</span>
-            <span class="chip">Serves 2</span>
+          <h1 class="title display" id="detailTitle">Recipe</h1>
+          <div class="chips" id="detailChips">
+            <span class="chip chip-lock" id="detailLockChip">Fits your household</span>
           </div>
           <div class="card soft" style="margin-top:12px">
             <div class="card-kicker">Why this one</div>
-            <p style="margin:0;font-size:14px;line-height:1.45">Crispy tofu + taco night energy — a texture and format both of you can enjoy.</p>
+            <p style="margin:0;font-size:14px;line-height:1.45" id="detailWhy">—</p>
           </div>
           <div class="recipe-split">
             <div class="recipe-panel">
               <h3 class="section-h">Ingredients</h3>
-              <ul class="ing">
-                <li>14 oz extra-firm tofu, pressed &amp; cubed</li>
-                <li>Chipotle powder, smoked paprika, cumin, garlic</li>
-                <li>Cornstarch + oil · green cabbage, carrot, cilantro, lime</li>
-                <li>6 corn tortillas · avocado · lime wedges</li>
-              </ul>
+              <ul class="ing" id="detailIngredients"></ul>
             </div>
             <div class="recipe-panel">
               <h3 class="section-h">Steps overview</h3>
-              <ol class="recipe-steps">
-                <li data-n="1">Press &amp; season tofu</li>
-                <li data-n="2">Air fry until crisp</li>
-                <li data-n="3">Make the lime slaw</li>
-                <li data-n="4">Warm tortillas</li>
-                <li data-n="5">Build &amp; serve</li>
-              </ol>
+              <ol class="recipe-steps" id="detailSteps"></ol>
             </div>
           </div>
           <div class="sticky-actions">
@@ -405,11 +392,11 @@
           <button class="back" type="button" data-go="finished">← Back</button>
           <p class="eyebrow">How was dinner?</p>
           <h1 class="title display">Rate it 1–10</h1>
-          <p class="lede">Each of you scores separately. We wait for both — never invent a score.</p>
+          <p class="lede" id="rateLede">Each person scores separately — save partial ratings anytime.</p>
           <div id="raterList" role="group" aria-label="Per-person ratings"></div>
           <p class="hint" id="rateHint">Submit when both have scored. You can save a partial and finish later.</p>
           <div class="sticky-actions">
-            <button class="btn btn-primary wide" type="button" id="btnSubmitRated" disabled>Submit both ratings</button>
+            <button class="btn btn-primary wide" type="button" id="btnSubmitRated" disabled>Submit all ratings</button>
             <button class="btn btn-ghost wide" type="button" id="btnSavePartial">Save for later</button>
           </div>
         </div>
@@ -421,7 +408,7 @@
           <div class="center-block">
             <div class="confirm-icon" aria-hidden="true">◎</div>
             <p class="eyebrow">Nice work</p>
-            <h1 class="title display">Both of you rated dinner</h1>
+            <h1 class="title display" id="loopTitle">Everyone rated dinner</h1>
             <p class="lede">We’ll remember this — next picks get a little smarter.</p>
             <ul class="loop-check" id="loopSummary"></ul>
             <p class="attr-meta" id="loopAttr" hidden></p>
@@ -435,8 +422,8 @@
         <div class="scroll">
           <button class="back" type="button" data-go="home">← Home</button>
           <p class="eyebrow">How it works</p>
-          <h1 class="title display">Two profiles. One dinner.</h1>
-          <p class="lede">Hard limits always win. Soft likes just nudge the picks.</p>
+          <h1 class="title display">Your crew. One dinner.</h1>
+          <p class="lede">Hard limits always win. Soft likes just nudge the picks (2–4 diners).</p>
           <div class="demo-pair">
             <div class="demo-diner">
               <strong>You</strong>

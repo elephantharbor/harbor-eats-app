@@ -21,6 +21,9 @@ Current chain:
 - `0004_auth_security.sql` — session token hashing, recovery tokens
 - `0005_phase3_household_intel.sql` — household settings, taste evidence, client errors, meal_option letters A–E
 - `0006_session_token_retire.sql` — align legacy session_token column with hash
+- `0007_phase4_recipe_versioning.sql` — `meal_concept`, `recipe_version`, `meal_vote`; `rating.recipe_version_id` (additive)
+
+Runtime catalog content lives in `src/lib/recipe-store.js`; D1 recipe tables are schema-ready for future imported/edited versions.
 
 ### D1 foreign keys when altering referenced tables
 
@@ -36,7 +39,7 @@ Do not `DROP TABLE meal_option` while child tables still exist unless FK enforce
 ### Dry-run before remote apply
 
 1. **Local full chain:** `npm run db:migrate:local` on a clean dev checkout (Playwright `webServer` does this automatically).  
-2. **Re-run check:** `npm run test:migrations` and `npm run test:unit` (includes migration order guard for 0005).  
+2. **Re-run check:** `npm run test:migrations` and `npm run test:unit` (includes migration guards for 0005 and 0007).  
 3. **Remote:** export / snapshot remote D1 from the Cloudflare dashboard, then `npm run db:migrate:remote`. If a migration fails, D1 usually leaves schema unchanged for that file; fix forward in the same numbered file only if it was **never** recorded in `d1_migrations`.
 
 ## Protecting real household data (alpha)
