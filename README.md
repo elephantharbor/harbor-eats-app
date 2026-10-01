@@ -1,70 +1,81 @@
-# Harbor Eats — Consumer Prototype
+# harbor-eats-app (consumer product)
 
-**Owner:** Mira (Product & Experience)  
-**Date:** 2026-09-28 (CDT)  
-**PRD:** [`docs/product/PRD-VERTICAL-SLICE.md`](../../docs/product/PRD-VERTICAL-SLICE.md)  
-**Decisions:** [`docs/product/DECISIONS.md`](../../docs/product/DECISIONS.md)
+Authoritative **Harbor Eats consumer** source: Cloudflare **Pages + Functions + Worker + D1**.
 
-Phone-first static HTML/CSS/JS under **`product/prototype/`** only (no competing tree). No build step. Consumer look — not Operating Desk.
+- **Not** the Operating Desk ([`elephantharbor/harbor-eats`](https://github.com/elephantharbor/harbor-eats) → github.io/harbor-eats/).
+- **Product entrypoint:** `public/` (UI) + `functions/api` (same-origin `/api/*`) + `src/index.js` (Worker).
+- **Legacy static mirror:** `legacy/github-io/` — optional github.io preview only (in-memory fallback). Do not treat as source of truth.
 
-## How to open
+## Live URLs
 
-```bash
-# From repo root:
-python3 -m http.server 8765 --directory product/prototype
-# → http://localhost:8765/
-# or open product/prototype/index.html directly
-```
+| Surface | URL |
+|---------|-----|
+| **Pages (alpha target)** | https://harbor-eats-app.pages.dev |
+| Worker + assets + D1 | https://harbor-eats-app.elephantharbor.workers.dev |
+| Health | `GET /api/health` → `{ ok, d1: "ok" }` |
+| Interim github.io (legacy) | https://elephantharbor.github.io/harbor-eats-app/ |
 
-Use ~375px width. Subtle QA screen-jump sits **outside** the phone frame; primary flow is sequential.
+D1: `harbor-eats-db` (`23aa3db3-1090-471b-8c8a-b6fe71f5c053`).
 
-## Clickable flows
-
-### A. Onboarding (first-class)
-Welcome → Create Household → Add Members → Hard Constraints (per diner) → Taste Seed (≤3, Skip) → Invite S1 (Skip OK) → First N×3
-
-Approved copy: *“Dinner choices both of you can live with…”* · *“Two profiles. One dinner. Eligibility is hard law.”*
-
-### B. Meal loop
-Select → Recipe Detail → Cook → Finish → Dual Rating **1–10** (Tom + Renata) → Loop Closed (“we’ll remember / smarter next time”)
-
-Anchors: **1** hard miss · **5** fine · **10** craving. CML only when both rated. Never invent scores. (Cora: 1–5 revoked. Sage: model aligning to 1–10 — no blockers.)
-
-### C. Personalization chips
-Demo slots on choice cards: Why this / Trying something new / Improved / Returning favorite.
-
-### D. PLG surfaces (Bloom)
-| ID | Surface |
-|----|---------|
-| **S1** | Household invite — `HE-INV-*`, channel chips, Invited→Active; join sets **own** constraints |
-| **S2** | Shareable choice-set — `HE-SHARE-*`, “which should we make tonight?”, minimal account view |
-| **S3** | Read-only dual-constraint demo card |
-| S4/S5 | Stub labels only |
-
-Viral-to-new-HH **OFF**. External acquisition CLOSED.
-
-### Analytics stubs (`window.__HE_ANALYTICS__`)
-`invite_sent`, `invite_accepted`, `share_choice_created`, `share_choice_viewed`, `share_choice_acted`, `selection_recorded`, `cook_recorded`, `rating_submitted`, `loop_completed` (+ `attribution_last_touch`). Namespaces: `HE-INV` / `HE-SHARE` (+ `HE-AFF` future). UTMs stubbed. Dashboards should prefer **loops**, not installs.
-
-## Brand tokens
-
-Ink `#10262C` · Deep Tide `#236B6A` · Signal Brass `#D49A45` · Canvas `#F5F2EA` · Fog `#E8EFED` · Eats `#B85F35`
-
-Kitchen chrome follows `prefers-color-scheme`.
-
-## Publish (product ≠ desk)
+## Quick start
 
 ```bash
-bash product/app/scripts/prepare-github-io.sh
-bash product/app/scripts/publish-github-io.sh
-# → https://elephantharbor.github.io/harbor-eats-app/
-# Desk untouched: https://elephantharbor.github.io/harbor-eats/
+npm ci
+npm run db:migrate:local
+npm run dev
+# → http://127.0.0.1:8787
 ```
 
-Persistence target: Cloudflare Pages + Workers + D1 (`product/app/`). See [`docs/product/PERSISTENCE-PLAN.md`](../../docs/product/PERSISTENCE-PLAN.md).
+## Tests & CI
 
-## Limits
+```bash
+npm test              # migrations + unit + lint
+npm run test:e2e      # Playwright (starts wrangler dev)
+```
 
-- In-memory state only; does not write `plans/` or invent ops metrics.
-- Email/chat pilot paths remain first-class conceptually (mirror SoR).
-- Explainability / personalization demo strings labeled; Sage owns real evidence.
+GitHub Actions runs the same on PRs and `main`. **Branch protection (human):** require CI green before merge to `main` (repo Settings → Branches → rule on `main` → require status check `CI / verify`).
+
+## API (MVO)
+
+| Method | Path | Notes |
+|--------|------|-------|
+| GET | `/api/health` | D1 ping |
+| POST | `/api/households` | Create household |
+| GET | `/api/households/:id` | Household + members + constraints |
+| GET | `/api/households/:id/state` | Lifecycle + next action |
+| POST | `/api/sessions` | Create session (`Set-Cookie: he_session`) |
+| GET | `/api/sessions/me` | Restore returning user |
+| POST | `/api/households/:id/members` | Add member |
+| POST | `/api/members/:id/constraints` | Hard constraints |
+| POST | `/api/plans` | Plan + 3 options |
+| POST | `/api/selections` | Select meal |
+| POST | `/api/cooks` | Mark cooked |
+| POST | `/api/ratings` | Score **1–10** |
+| POST | `/api/eligibility/check` | Filter options by prohibited rules |
+| POST/GET | `/api/shares`, `/api/invites` | PLG durable tokens |
+
+**Alpha auth:** session cookie identifies the member for restore; most write APIs remain open by household id — see `PRODUCT-STATE.md`.
+
+## Deploy
+
+See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md). Log each deploy in [`DEPLOYMENTS.md`](DEPLOYMENTS.md).
+
+```bash
+export CLOUDFLARE_API_TOKEN=...  # never commit
+npm run db:migrate:remote
+npm run deploy
+npm run pages:deploy
+```
+
+## Docs
+
+- [`PRODUCT-STATE.md`](PRODUCT-STATE.md) — flows, invariants, alpha readiness
+- [`docs/DATABASE.md`](docs/DATABASE.md) — migration discipline
+- [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) — environments & rollback
+
+## Interim github.io (optional)
+
+```bash
+bash scripts/prepare-github-io.sh
+# stages public/ → .github-io-stage for manual publish
+```

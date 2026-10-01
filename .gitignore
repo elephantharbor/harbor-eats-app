@@ -1,0 +1,14 @@
+node_modules/
+.wrangler/
+.dev.vars
+.dist/
+*.log
+.env
+.env.*
+!.env.example
+.github-io-stage/
+test-results/
+playwright-report/
+.cf-account-id
+.cf-d1-database-id
+baseline-extract/
