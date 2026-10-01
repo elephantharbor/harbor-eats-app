@@ -1,0 +1,34 @@
+{
+  "name": "harbor-eats-app",
+  "version": "0.2.0-alpha",
+  "private": true,
+  "type": "module",
+  "description": "Harbor Eats consumer product — Cloudflare Pages + Workers + D1",
+  "scripts": {
+    "dev": "wrangler dev --config wrangler.worker.toml",
+    "deploy": "wrangler deploy --config wrangler.worker.toml",
+    "db:list": "wrangler d1 list --config wrangler.worker.toml",
+    "db:create": "wrangler d1 create harbor-eats-db --config wrangler.worker.toml",
+    "db:migrate:local": "wrangler d1 migrations apply harbor-eats-db --local --config wrangler.worker.toml",
+    "db:migrate:remote": "wrangler d1 migrations apply harbor-eats-db --remote --config wrangler.worker.toml",
+    "pages:deploy": "wrangler pages deploy public --project-name=harbor-eats-app",
+    "interim:prepare": "bash scripts/prepare-github-io.sh",
+    "lint": "eslint src public/app.js functions --max-warnings=0",
+    "test:migrations": "bash scripts/check-migrations.sh",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test --config e2e/playwright.config.js",
+    "test": "npm run test:migrations && npm run test:unit && npm run lint",
+    "ci": "npm run test && npm run test:e2e"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@playwright/test": "^1.55.1",
+    "eslint": "^9.39.0",
+    "globals": "^16.4.0",
+    "vitest": "^3.2.4",
+    "wrangler": "^4.142.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

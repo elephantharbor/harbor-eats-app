@@ -1,9 +1,9 @@
-# Harbor Eats — consumer product (interim)
+# Harbor Eats — consumer product site
 
-This GitHub Pages site is the **consumer product prototype**, not the Operating Desk.
+**Authoritative app:** Cloudflare Pages project in this repo (`public/` + `functions/` + D1).
+
+The **legacy** flat github.io prototype lives under [`legacy/github-io/`](legacy/github-io/) for optional static mirroring only. It does not persist to D1.
 
 - Desk (ops): https://elephantharbor.github.io/harbor-eats/
-- Product (this): https://elephantharbor.github.io/harbor-eats-app/
-- Persistence target: Cloudflare Pages + Workers + D1 (`product/app/`)
-
-State in the prototype is in-memory only. Do not invent usage metrics.
+- Product (alpha): https://harbor-eats-app.pages.dev/
+- Legacy mirror: https://elephantharbor.github.io/harbor-eats-app/

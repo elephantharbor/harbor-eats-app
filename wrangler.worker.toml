@@ -1,0 +1,30 @@
+# Harbor Eats consumer product — Cloudflare Pages + Workers + D1
+# Distinct from Operating Desk (elephantharbor.github.io/harbor-eats/).
+# Do NOT put secrets in this file.
+# D1 harbor-eats-db live 2026-09-28 (account 7e9f4dbfec6ef1f101c8088a5f0cacd1).
+
+name = "harbor-eats-app"
+account_id = "7e9f4dbfec6ef1f101c8088a5f0cacd1"
+main = "src/index.js"
+compatibility_date = "2026-09-28"
+workers_dev = true
+
+# Pages project name (when linked): harbor-eats-app
+# Preview URL target: https://harbor-eats-app.pages.dev
+# Workers subdomain already on account: *.elephantharbor.workers.dev
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "harbor-eats-db"
+database_id = "23aa3db3-1090-471b-8c8a-b6fe71f5c053"
+migrations_dir = "migrations"
+
+
+[vars]
+APP_NAME = "harbor-eats-app"
+ENVIRONMENT = "dev"
