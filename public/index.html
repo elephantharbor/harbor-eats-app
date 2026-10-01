@@ -10,6 +10,9 @@
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Harbor Eats" />
+  <link rel="apple-touch-icon" href="./favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -251,7 +254,62 @@
             </div>
             <button class="btn btn-ghost" type="button" data-go="invite">Invite</button>
           </div>
+          <button class="btn btn-ghost wide" type="button" data-go="meals">Meals &amp; ratings</button>
+          <button class="btn btn-ghost wide" type="button" data-go="tasteProfile">Your taste profile</button>
+          <button class="btn btn-ghost wide" type="button" data-go="settings">Household settings</button>
           <button class="btn btn-ghost wide" type="button" data-go="demo">How two profiles work</button>
+          <p class="hint" id="installHint" hidden>Add Harbor Eats to your home screen for quick invites and cooking.</p>
+        </div>
+      </section>
+
+      <section class="view" data-view="settings" aria-label="Household settings">
+        <div class="scroll">
+          <button class="back" type="button" data-go="home">← Home</button>
+          <p class="eyebrow">Settings</p>
+          <h1 class="title display">Your kitchen</h1>
+          <label class="field">
+            <span>Household name</span>
+            <input type="text" id="settingsHhName" maxlength="48" />
+          </label>
+          <label class="field">
+            <span>Picks per round (3–5)</span>
+            <input type="number" id="settingsChoiceCount" min="3" max="5" value="3" />
+          </label>
+          <label class="field">
+            <span>Cadence</span>
+            <select id="settingsCadence">
+              <option value="on_demand">On demand</option>
+              <option value="weekly">Weekly (saved for later)</option>
+              <option value="biweekly">Every two weeks (saved for later)</option>
+            </select>
+          </label>
+          <p class="section-h">Members</p>
+          <div id="settingsMembers"></div>
+          <p class="section-h">Your diet limits</p>
+          <div class="constraint-grid" id="settingsConstraints"></div>
+          <button class="btn btn-primary wide" type="button" id="btnSaveSettings">Save settings</button>
+        </div>
+      </section>
+
+      <section class="view" data-view="meals" aria-label="Meal history">
+        <div class="scroll">
+          <button class="back" type="button" data-go="home">← Home</button>
+          <p class="eyebrow">History</p>
+          <h1 class="title display">Meals you’ve made</h1>
+          <p class="lede">Selected, cooked, and rated — not a dashboard, just your loop.</p>
+          <ul class="meal-history" id="mealHistoryList"></ul>
+        </div>
+      </section>
+
+      <section class="view" data-view="tasteProfile" aria-label="Taste profile">
+        <div class="scroll">
+          <button class="back" type="button" data-go="home">← Home</button>
+          <p class="eyebrow">Taste profile</p>
+          <h1 class="title display">What we think you like</h1>
+          <ul class="taste-lines" id="tasteProfileLines"></ul>
+          <p class="section-h">Fix something?</p>
+          <div class="spark-grid" id="tasteCorrections"></div>
+          <button class="btn btn-secondary wide" type="button" id="btnSaveTasteCorrection">Save correction</button>
         </div>
       </section>
 
@@ -406,5 +464,10 @@
     </div>
   </div>
   <script src="./app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./sw.js").catch(function () {});
+    }
+  </script>
 </body>
 </html>
