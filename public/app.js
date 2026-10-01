@@ -361,19 +361,96 @@
     ratingState: "none",
   };
 
-  function activeMemberCount() {
+  function activeMembers() {
     const active = state.members.filter(function (m) {
       return m.status === "Active" || m.status === "active";
     });
-    return active.length || state.members.length || 1;
+    return active.length ? active : state.members;
   }
 
-  function householdCopy() {
+  function activeMemberCount() {
+    const list = activeMembers();
+    return list.length || 1;
+  }
+
+  /** Context-aware household phrasing (warm for 2, plural for 3–4). */
+  function householdCopy(mode) {
     const n = activeMemberCount();
-    if (n >= 4) return "your crew";
-    if (n === 3) return "everyone cooking tonight";
-    if (n >= 2) return "your household";
+    const m = mode || "default";
+    if (n === 2) {
+      if (m === "both") return "both of you";
+      if (m === "fit") return "both of you";
+      if (m === "rate") return "both of you";
+      if (m === "invite") return "you’ll both";
+      return "your household";
+    }
+    if (n >= 4) {
+      if (m === "fit" || m === "default") return "your crew";
+      if (m === "rate") return "everyone in your crew";
+      return "your crew";
+    }
+    if (n === 3) {
+      if (m === "fit" || m === "default") return "everyone cooking tonight";
+      if (m === "rate") return "everyone in your household";
+      return "your household";
+    }
     return "your kitchen";
+  }
+
+  function servingCountForMeal() {
+    return activeMemberCount();
+  }
+
+  function syncHouseholdChrome() {
+    const inviteLede = document.getElementById("inviteLede");
+    if (inviteLede) {
+      inviteLede.textContent =
+        activeMemberCount() === 2
+          ? "They set their own limits. You’ll both see the same three picks tonight."
+          : "They set their own limits. Everyone in your household sees the same picks tonight.";
+    }
+    const demoBtn = document.getElementById("demoNavLabel");
+    if (demoBtn) {
+      demoBtn.textContent =
+        activeMemberCount() === 2 ? "How two profiles work" : "How your household fits together";
+    }
+    const demoKicker = document.getElementById("demoMealKicker");
+    if (demoKicker) {
+      demoKicker.textContent =
+        activeMemberCount() === 2
+          ? "Both of you can eat these"
+          : "Everyone in your household can eat these";
+    }
+    const demoHint = document.getElementById("demoFishHint");
+    if (demoHint) {
+      demoHint.textContent =
+        activeMemberCount() === 2
+          ? "*Fish is fine when both of you allow it. Soft likes never override hard limits."
+          : "*Fish is fine when your household allows it. Soft likes never override hard limits.";
+    }
+    const rateLede = document.getElementById("rateLede");
+    if (rateLede) {
+      rateLede.textContent =
+        activeMemberCount() === 2
+          ? "Each of you scores separately — save partial ratings anytime."
+          : "Each person scores separately — save partial ratings anytime.";
+    }
+    const rateHintDefault = document.getElementById("rateHint");
+    if (rateHintDefault && !anyRated()) {
+      rateHintDefault.textContent =
+        activeMemberCount() === 2
+          ? "Submit when both have scored. You can save a partial and finish later."
+          : "Submit when everyone has scored. You can save a partial and finish later.";
+    }
+    const loopTitle = document.getElementById("loopTitle");
+    if (loopTitle) {
+      loopTitle.textContent =
+        activeMemberCount() === 2 ? "Both of you rated dinner" : "Everyone rated dinner";
+    }
+    const nextRated =
+      activeMemberCount() === 2 ? "Both of you rated" : "Everyone rated";
+    const eye = document.getElementById("homeEyebrow");
+    if (eye && state.nextAction === "loop_complete") eye.textContent = nextRated;
   }
 
   function selectedMeal() {
@@ -387,9 +464,12 @@
     if (!meal) return null;
     const slug = meal.recipe_slug;
     const versionId = meal.recipe_version_id;
+    const servings = servingCountForMeal();
     let path = null;
-    if (slug) path = "/api/recipes/" + encodeURIComponent(slug);
-    else if (versionId) path = "/api/recipes/version/" + encodeURIComponent(versionId);
+    if (slug) path = "/api/recipes/" + encodeURIComponent(slug) + "?servings=" + servings;
+    else if (versionId) {
+      path = "/api/recipes/version/" + encodeURIComponent(versionId) + "?servings=" + servings;
+    }
     if (!path) return null;
     const res = await apiGet(path);
     if (res && res.ok && res.recipe) return res.recipe;
@@ -716,6 +796,9 @@
     if (name === "rate") renderRaters();
     if (name === "loop") renderLoopSummary();
     if (name === "home") updateHome();
+    if (name === "demo" || name === "invite" || name === "rate" || name === "home") {
+      syncHouseholdChrome();
+    }
     updateDebug();
   }
 
@@ -733,13 +816,13 @@
       cook_meal: "What should I do next? · Start cooking",
       rate_meal: "What should I do next? · Rate what you cooked",
       start_choices: "What should I do next? · See your three picks",
-      loop_complete: "Everyone rated",
+      loop_complete: activeMemberCount() === 2 ? "Both of you rated" : "Everyone rated",
     };
     eye.textContent =
       (state.nextAction && nextHints[state.nextAction])
         ? nextHints[state.nextAction]
         : state.lifecycle === "Rated"
-        ? "Everyone rated"
+        ? activeMemberCount() === 2 ? "Both of you rated" : "Everyone rated"
         : state.lifecycle === "Cooked"
           ? state.ratingState === "partial"
             ? "Cooked · partial ratings saved"
@@ -754,19 +837,23 @@
     const homeLede = document.getElementById("homeLede");
     if (homeLede) {
       homeLede.textContent =
-        "Cook, then everyone in " +
-        householdCopy() +
-        " rates — that’s how next dinner gets better.";
+        activeMemberCount() === 2
+          ? "Cook, then both of you rate — that’s how next dinner gets better."
+          : "Cook, then everyone in " +
+            householdCopy("rate") +
+            " rates — that’s how next dinner gets better.";
     }
     if (meal && homeTitle) homeTitle.textContent = meal.title;
     else if (homeTitle) homeTitle.textContent = "Pick tonight’s meal";
     if (homeMeta) homeMeta.textContent = meal && meal.time ? meal.time : "—";
-    if (homeCopy) homeCopy.textContent = "Fits " + householdCopy();
+    if (homeCopy) homeCopy.textContent = "Fits " + householdCopy("fit");
     const strip = document.getElementById("choiceStripText");
     if (strip) {
+      const fit =
+        activeMemberCount() === 2 ? "both of you" : householdCopy("fit");
       strip.innerHTML =
         '<span class="brass-dot"></span> Options that fit ' +
-        householdCopy() +
+        fit +
         ". Tap one — or send the set.";
     }
   }
@@ -788,11 +875,12 @@
     }
     if (titleEl) titleEl.textContent = recipe.title || meal.title;
     if (plateEl) plateEl.textContent = meal.plate || recipe.plate || "🍽️";
-    if (lockEl) lockEl.textContent = "Fits " + householdCopy();
+    if (lockEl) lockEl.textContent = "Fits " + householdCopy("fit");
     if (whyEl) whyEl.textContent = (meal.pers && meal.pers.line) || "Clears your household hard limits.";
     if (chipsEl) {
       const chips = (meal.chips || []).slice();
-      chips.unshift("Serves " + (recipe.servings || 4));
+      const serves = recipe.requested_servings || recipe.servings || servingCountForMeal();
+      chips.unshift("Serves " + serves);
       if (recipe.total_minutes) chips.push("~" + recipe.total_minutes + " min");
       chipsEl.innerHTML = chips
         .map(function (c) {
@@ -933,7 +1021,7 @@
 
   function renderRaters() {
     const root = document.getElementById("raterList");
-    root.innerHTML = state.members
+    root.innerHTML = activeMembers()
       .map((m) => {
         const r = state.ratings[m.id] || { score: null, note: "" };
         const status = r.score
@@ -977,7 +1065,13 @@
     return allActiveRated();
   }
   function anyRated() {
-    return state.members.some((m) => state.ratings[m.id]?.score != null);
+    return activeMembers().some((m) => state.ratings[m.id]?.score != null);
+  }
+
+  function membersAwaitingRating() {
+    return activeMembers()
+      .filter((m) => state.ratings[m.id]?.score == null)
+      .map((m) => m.name);
   }
 
   function syncRateButtons() {
@@ -985,12 +1079,12 @@
     const hint = document.getElementById("rateHint");
     submit.disabled = !bothRated();
     if (bothRated()) {
-      hint.textContent = "Everyone rated — tap submit to close the loop.";
+      hint.textContent =
+        activeMemberCount() === 2
+          ? "Both of you rated — tap submit to close the loop."
+          : "Everyone rated — tap submit to close the loop.";
     } else if (anyRated()) {
-      const missing = state.members
-        .filter((m) => state.ratings[m.id]?.score == null)
-        .map((m) => m.name)
-        .join(", ");
+      const missing = membersAwaitingRating().join(", ");
       hint.textContent = `Waiting on ${missing}. Save partial anytime — others can keep using the app.`;
       state.ratingState = "partial";
     } else {
@@ -1093,7 +1187,7 @@
     ul.innerHTML = [
       "Picked tonight’s dinner",
       "Cooked it",
-      ...state.members.map((m) => `${m.name} rated ${state.ratings[m.id].score}/10`),
+      ...activeMembers().map((m) => `${m.name} rated ${state.ratings[m.id].score}/10`),
     ]
       .map((t) => `<li><span class="ok">✓</span> ${t}</li>`)
       .join("");
@@ -1289,6 +1383,7 @@
     input.value = "";
     renderMembers();
     syncAvatars();
+    syncHouseholdChrome();
     const hh = API.householdId || state.householdId;
     if (hh) {
       await ensureMemberSession();
@@ -1637,8 +1732,8 @@
     if (bothRated()) {
       state.lifecycle = "Rated";
       track("loop_completed", {
-        household_id: "HH-demo",
-        plan_id: PLAN_ID,
+        household_id: API.householdId || state.householdId,
+        plan_id: API.planId || PLAN_ID,
         attribution_last_touch: state.lastTouch,
       });
       show("loop");
@@ -1647,7 +1742,9 @@
     updateDebug();
     toast(
       anyRated()
-        ? "Saved — waiting on the other rating"
+        ? activeMemberCount() === 2
+          ? "Saved — waiting on the other rating"
+          : `Saved — waiting on ${membersAwaitingRating().join(", ")}`
         : "Pick at least one person’s 1–10"
     );
     if (anyRated()) show("home");
@@ -1657,8 +1754,8 @@
     if (!bothRated()) return;
     state.lifecycle = "Rated";
     track("loop_completed", {
-      household_id: "HH-demo",
-      plan_id: PLAN_ID,
+      household_id: API.householdId || state.householdId,
+      plan_id: API.planId || PLAN_ID,
       meal_option_id: state.selectedMealId,
       attribution_last_touch: state.lastTouch,
       ratings: Object.fromEntries(
@@ -1837,5 +1934,6 @@
       return;
     }
     show("welcome");
+    syncHouseholdChrome();
   })();
 })();

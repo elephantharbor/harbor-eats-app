@@ -24,5 +24,7 @@ test("meal loop: select → cook → rate", async ({ page, context }) => {
     await cards.nth(i).locator(".score-row button.score").first().click();
   }
   await page.getByRole("button", { name: "Submit all ratings" }).click();
-  await expect(page.getByRole("heading", { name: "Everyone rated dinner" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: /(Both of you|Everyone) rated dinner/ })
+  ).toBeVisible();
 });
