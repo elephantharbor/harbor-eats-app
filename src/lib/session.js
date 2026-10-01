@@ -1,8 +1,9 @@
 import { SESSION_COOKIE, parseCookies, sessionSetCookieHeader } from "./cookies.js";
+import { sha256Hex } from "./crypto.js";
 
 const SESSION_DAYS = 90;
 
-function sessionToken() {
+function sessionTokenPlain() {
   const bytes = new Uint8Array(32);
   crypto.getRandomValues(bytes);
   return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
@@ -38,19 +39,21 @@ export async function createMemberSession(db, input, cookieOpts = {}) {
   const ts = new Date();
   const expires = new Date(ts.getTime() + SESSION_DAYS * 86400000);
   const session_id = `sess_${crypto.randomUUID().replace(/-/g, "").slice(0, 12)}`;
-  const token = sessionToken();
+  const plain = sessionTokenPlain();
+  const token_hash = await sha256Hex(plain);
   const created_at = ts.toISOString();
   const expires_at = expires.toISOString();
 
   await db
     .prepare(
       `INSERT INTO member_session
-        (session_id, session_token, household_id, member_id, created_at, expires_at, user_agent, last_seen_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+        (session_id, session_token, session_token_hash, household_id, member_id, created_at, expires_at, user_agent, last_seen_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
     .bind(
       session_id,
-      token,
+      token_hash,
+      token_hash,
       input.household_id,
       input.member_id,
       created_at,
@@ -62,11 +65,11 @@ export async function createMemberSession(db, input, cookieOpts = {}) {
 
   return {
     session_id,
-    session_token: token,
+    session_token: plain,
     household_id: input.household_id,
     member_id: input.member_id,
     expires_at,
-    set_cookie: sessionSetCookieHeader(token, expires_at, {
+    set_cookie: sessionSetCookieHeader(plain, expires_at, {
       secure: cookieOpts.secure !== false,
     }),
   };
@@ -78,13 +81,23 @@ export async function createMemberSession(db, input, cookieOpts = {}) {
  */
 export async function resolveSession(db, token) {
   if (!token) return null;
-  const row = await db
+  const token_hash = await sha256Hex(token);
+  let row = await db
     .prepare(
-      `SELECT session_id, session_token, household_id, member_id, expires_at, revoked_at
-       FROM member_session WHERE session_token = ?`
+      `SELECT session_id, session_token, session_token_hash, household_id, member_id, expires_at, revoked_at
+       FROM member_session WHERE session_token_hash = ?`
     )
-    .bind(token)
+    .bind(token_hash)
     .first();
+  if (!row) {
+    row = await db
+      .prepare(
+        `SELECT session_id, session_token, session_token_hash, household_id, member_id, expires_at, revoked_at
+         FROM member_session WHERE session_token = ?`
+      )
+      .bind(token)
+      .first();
+  }
   if (!row || row.revoked_at) return null;
   if (new Date(row.expires_at).getTime() < Date.now()) return null;
 

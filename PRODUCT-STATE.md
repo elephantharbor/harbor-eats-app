@@ -8,15 +8,17 @@
 |------|----------|
 | New household | Welcome → name kitchen → members → hard constraints → optional taste → invite/skip → three choices |
 | Meal loop | Select option → recipe detail → cook steps → dual 1–10 ratings → loop complete (CML when all active diners rated) |
-| PLG share | `HE-SHARE-*` durable in D1; guest view via `?share=` |
-| PLG invite | `HE-INV-*` durable; join via `?invite=` (does not bind owner session) |
-| **Returning user** | Valid `he_session` cookie (D1 `member_session`) → restore household state → **not** Welcome / Get Started |
+| PLG share | `HE-SHARE-*` durable in D1; guest view via `/share/{token}` (legacy `?share=`) |
+| PLG invite | `HE-INV-*` durable; join via `/invite/{code}` (legacy `?invite=`) |
+| **Returning user** | HttpOnly `he_session` → `GET /api/sessions/me` → server `deriveHouseholdState` → correct next view |
+| **Recovery** | `POST /api/recovery/request` + one-time `/recover/{token}` → session cookie → `dest` preserved |
 
 ## Architecture
 
 - **Edge:** Cloudflare Pages (`harbor-eats-app.pages.dev`) + Worker (`harbor-eats-app.elephantharbor.workers.dev`)
-- **Data:** D1 `harbor-eats-db` — households, members, constraints, plans, selections, cooks, ratings, events, share/invite, **sessions (0003)**
-- **Client:** Static `public/app.js` — same-origin `/api/*`, `credentials: include` for session cookies
+- **Data:** D1 `harbor-eats-db` — households, members, constraints, plans, selections, cooks, ratings, events, share/invite, sessions (**0003**), recovery + token hashing (**0004**)
+- **Client:** Static `public/app.js` — same-origin `/api/*`, `credentials: include` (no localStorage session token)
+- **Deep links:** See `docs/DEEP-LINKS.md`
 - **Legacy:** `legacy/github-io/` — optional static mirror only (in-memory); not authoritative
 
 ## Environments
@@ -34,11 +36,13 @@
 - No invented HH cook/rating metrics in docs or UI copy
 - External recruitment **closed** — no stranger campaigns
 
-## Session / identity (alpha)
+## Session / identity (Phase 2)
 
-- **Hypothesis (verified):** Returning users hit Welcome because boot always called `show("welcome")` with no server session.
-- **Fix:** `POST /api/sessions`, `GET /api/sessions/me`, migration `0003_member_sessions.sql`, client restore + localStorage fallback for household/member re-bind.
-- **Limitation:** API routes beyond session restore are still unauthenticated (household ID knowledge = write access). Alpha documented; not production auth.
+- **Session:** Random token in HttpOnly cookie; **SHA-256 hash at rest** (`0004_auth_security.sql`); 90-day expiry; legacy plain rows still resolve until rotated.
+- **AuthZ:** Protected reads/writes require valid session; `household_id` / `member_id` in body must match session (or omitted and derived). Cross-household → `403 forbidden_cross_household`.
+- **Bootstrap:** First member on empty household or valid `invite_code` may join without session; all other mutations require session.
+- **Recovery:** Passwordless magic-link architecture with `MAIL_TRANSPORT=dev|test` for CI; real email provider is coordinator-only.
+- **Regression:** `e2e/specs/auth-boundary.spec.js` — permanent cross-household contract in CI.
 
 ## Known limitations
 
@@ -51,9 +55,10 @@
 | Area | Score (1–10) | Notes |
 |------|----------------|-------|
 | Persistence (D1) | 8 | Core write paths + share/invite durable |
-| Returning session | 7 | Cookie + regression E2E; needs remote migration 0003 on deploy |
-| CI / regression | 7 | Unit + Playwright on PR |
-| AuthZ | 3 | Session identifies member; APIs mostly open |
+| Returning session | 8 | Cookie + recovery + regression E2E; deploy needs migration **0004** on live D1 |
+| CI / regression | 8 | Unit + Playwright incl. auth boundary |
+| AuthZ | 7 | Server-enforced household boundary; invite/share resolve public by design |
+| Deep links | 7 | Canonical paths + recover `dest`; rating path reserved |
 | Deploy discipline | 6 | Docs + DEPLOYMENTS log; manual CF token |
 
-**Overall alpha hardening candidate:** ~6–7 — suitable for controlled pilot after migration 0003 applied to live D1.
+**Overall alpha hardening candidate:** ~7 — suitable for external alpha after coordinator applies migration **0004** and smoke-tests auth boundary.
