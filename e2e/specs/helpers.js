@@ -42,5 +42,6 @@ export async function apiCreateHousehold(request, name) {
     household_id,
     memberId: member_id,
     sessionToken,
+    cookieHeader,
   };
 }

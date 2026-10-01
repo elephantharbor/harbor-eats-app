@@ -6,26 +6,29 @@
 
 | Flow | Behavior |
 |------|----------|
-| New household | Welcome → name kitchen → members → hard constraints → optional taste → invite/skip → three choices |
+| New household | Welcome → name kitchen → members → hard constraints → optional taste → invite/skip → live recommendations |
 | Meal loop | Select option → recipe detail → cook steps → dual 1–10 ratings → loop complete (CML when all active diners rated) |
 | PLG share | `HE-SHARE-*` durable in D1; guest view via `/share/{token}` (legacy `?share=`) |
-| PLG invite | `HE-INV-*` durable; join via `/invite/{code}` (legacy `?invite=`) |
+| PLG invite | `HE-INV-*` durable; join via `/invite/{code}` → `POST /api/invites/join` → session → recommendations |
 | **Returning user** | HttpOnly `he_session` → `GET /api/sessions/me` → server `deriveHouseholdState` → correct next view |
 | **Recovery** | `POST /api/recovery/request` + one-time `/recover/{token}` → session cookie → `dest` preserved |
+| **Household settings** | Post-onboarding: name, members, constraints, 3–5 picks, cadence (default on demand) via `PATCH /api/households/:id` |
+| **Taste profile** | Human copy from evidence + ratings; corrections → `preference_evidence` |
 
 ## Architecture
 
 - **Edge:** Cloudflare Pages (`harbor-eats-app.pages.dev`) + Worker (`harbor-eats-app.elephantharbor.workers.dev`)
-- **Data:** D1 `harbor-eats-db` — households, members, constraints, plans, selections, cooks, ratings, events, share/invite, sessions (**0003**), recovery + token hashing (**0004**)
-- **Client:** Static `public/app.js` — same-origin `/api/*`, `credentials: include` (no localStorage session token)
+- **Data:** D1 `harbor-eats-db` — households (**0005** settings columns), preference evidence, client errors, plans, ratings, events, share/invite, sessions (**0003–0006**)
+- **Recommendations:** `POST /api/recommendations/plan` — Taste Model v1 (`src/lib/taste-model.js`) + catalog (`src/lib/meal-catalog.js`); eligibility from constraints
+- **Client:** Static `public/app.js` — same-origin `/api/*`, `credentials: include`; network-first SW (`public/sw.js`)
 - **Deep links:** See `docs/DEEP-LINKS.md`
-- **Legacy:** `legacy/github-io/` — optional static mirror only (in-memory); not authoritative
+- **Legacy:** `legacy/github-io/` — optional static mirror only; not authoritative
 
 ## Environments
 
 | Env | URL | Notes |
 |-----|-----|-------|
-| Local | `wrangler dev` :8787 | D1 `--local`; session cookies without `Secure` on HTTP |
+| Local | `wrangler dev` :8787 | D1 `--local`; apply migrations **0001–0006** |
 | Alpha (persistent) | https://harbor-eats-app.pages.dev | D1 remote; apply migrations before deploy |
 | Worker mirror | https://harbor-eats-app.elephantharbor.workers.dev | Same API + assets |
 
@@ -35,30 +38,36 @@
 - Hard diet keys: dairy, meat, poultry, shellfish, nuts (cashew exception path in eligibility helper)
 - No invented HH cook/rating metrics in docs or UI copy
 - External recruitment **closed** — no stranger campaigns
+- “Why” lines come from taste model factors or explicit low-evidence copy — no fabricated personalization
 
-## Session / identity (Phase 2)
+## Session / identity (Phase 2–3)
 
-- **Session:** Random token in HttpOnly cookie; **SHA-256 hash at rest** (`0004_auth_security.sql`); 90-day expiry; legacy plain rows still resolve until rotated.
-- **AuthZ:** Protected reads/writes require valid session; `household_id` / `member_id` in body must match session (or omitted and derived). Cross-household → `403 forbidden_cross_household`.
-- **Bootstrap:** First member on empty household or valid `invite_code` may join without session; all other mutations require session.
-- **Recovery:** Passwordless magic-link architecture with `MAIL_TRANSPORT=dev|test` for CI; real email provider is coordinator-only.
-- **Regression:** `e2e/specs/auth-boundary.spec.js` — permanent cross-household contract in CI.
+- **Session:** Random token in HttpOnly cookie; **SHA-256 hash at rest**; `POST /api/sessions` does **not** echo `session_token` in JSON (**0006** retires legacy plain token column values where hash exists).
+- **AuthZ:** Protected reads/writes require valid session; cross-household → `403 forbidden_cross_household`.
+- **Invite join:** `POST /api/invites/join` (public) — edge cases: expired/invalid, already member, wrong household logged in (`409`).
+- **Observability:** `POST /api/client-errors`; `GET /api/health` includes `client_errors_24h` when D1 bound.
+
+## Analytics (alpha funnel)
+
+- Server-mirrored events in D1 `event` table: `household_created`, `onboarding_completed`, invite/share attribution, `plan_generated`, selection/cook/rating, `loop_completed`.
+- `GET /api/households/:id/funnel` — counts + completed meal loops (no extra PII).
 
 ## Known limitations
 
-- Recommendation eligibility filter is implemented for API check + unit tests; client still uses fixed demo meals for options presentation.
-- Taste sparks are client-only (not persisted to D1 in MVO).
+- Recipe detail/cook steps still anchored on flagship taco demo content in UI; catalog drives **choice set** + why copy.
+- Cadence weekly/biweekly stored only — scheduling automation not built.
 - Single-plan-per-household “latest plan” heuristic for restore routing.
 
 ## Alpha readiness (honest)
 
 | Area | Score (1–10) | Notes |
 |------|----------------|-------|
-| Persistence (D1) | 8 | Core write paths + share/invite durable |
-| Returning session | 8 | Cookie + recovery + regression E2E; deploy needs migration **0004** on live D1 |
-| CI / regression | 8 | Unit + Playwright incl. auth boundary |
-| AuthZ | 7 | Server-enforced household boundary; invite/share resolve public by design |
-| Deep links | 7 | Canonical paths + recover `dest`; rating path reserved |
-| Deploy discipline | 6 | Docs + DEPLOYMENTS log; manual CF token |
+| Persistence (D1) | 8 | Core paths + settings + evidence |
+| Invite → join PLG | 8 | API + UI + E2E |
+| Taste model in prod path | 7 | Deterministic v1; transparent why |
+| Household settings | 7 | PATCH + UI; constraint changes affect next plan |
+| CI / regression | 8 | Unit + Playwright incl. invite join |
+| AuthZ | 7 | Phase 2 boundary preserved |
+| PWA | 6 | Manifest + SW network-first; no offline requirement |
 
-**Overall alpha hardening candidate:** ~7 — suitable for external alpha after coordinator applies migration **0004** and smoke-tests auth boundary.
+**Overall alpha hardening (Phase 3):** ~7–8 — suitable for household validation after coordinator applies migrations **0005–0006** on live D1.

@@ -34,12 +34,15 @@
   function makeShareId() {
     return "HE-SHARE-" + randToken(6).toLowerCase();
   }
-  /** Live product origin for share/invite links (FamilyPlate-class PLG). */
-  const CANONICAL_ORIGIN = "https://harbor-eats-app.elephantharbor.workers.dev";
+  const CANONICAL_ORIGIN = "https://harbor-eats-app.pages.dev";
 
   function appBaseUrl() {
-    // Always absolute to the live consumer product so a pasted link works
-    // from SMS/iMessage — not guest-view-only, not host-relative to github.io.
+    try {
+      const h = location.hostname || "";
+      if (h === "localhost" || h === "127.0.0.1" || h.endsWith(".pages.dev") || h.endsWith(".workers.dev")) {
+        return location.origin.replace(/\/$/, "") + "/";
+      }
+    } catch (_) { /* ignore */ }
     return CANONICAL_ORIGIN.replace(/\/$/, "") + "/";
   }
   function inviteUrl(code) {
@@ -104,6 +107,10 @@
       });
     }
     if (snap.plan_id) API.planId = snap.plan_id;
+    if (Array.isArray(snap.meal_options) && snap.meal_options.length) {
+      const fromApi = optionsFromApi(snap.meal_options);
+      if (fromApi) state.currentMeals = fromApi;
+    }
     if (snap.selected_meal_option_id) state.selectedMealId = snap.selected_meal_option_id;
     if (snap.lifecycle) {
       state.lifecycle = snap.lifecycle === "Generated" ? "Unselected" : snap.lifecycle;
@@ -117,14 +124,22 @@
 
   async function ensureMemberSession() {
     const hh = API.householdId || state.householdId;
-    const primary = state.members[0];
-    if (!hh || !primary) return false;
+    let memberId = null;
+    try {
+      memberId = localStorage.getItem(LS_MEMBER);
+    } catch (_) { /* ignore */ }
+    const member =
+      (memberId && state.members.find(function (m) {
+        return m.id === memberId;
+      })) ||
+      state.members[0];
+    if (!hh || !member) return false;
     const res = await apiPost("/api/sessions", {
       household_id: hh,
-      member_id: primary.id,
+      member_id: member.id,
     });
     if (res && res.ok) {
-      rememberSessionIds(hh, primary.id);
+      rememberSessionIds(hh, member.id);
       return true;
     }
     return false;
@@ -198,6 +213,17 @@
     }
   }
 
+  function reportClientError(surface, code, message, extra) {
+    apiPost("/api/client-errors", {
+      surface,
+      code,
+      message,
+      path: location.pathname + location.search,
+      household_id: API.householdId || state.householdId,
+      ...(extra || {}),
+    }).catch(function () {});
+  }
+
   async function apiPost(path, body) {
     if (!(await apiProbe())) return null;
     try {
@@ -210,11 +236,13 @@
       const j = await r.json().catch(() => null);
       if (!r.ok || (j && j.ok === false)) {
         console.warn("[he-api]", path, r.status, j);
-        return null;
+        reportClientError("api", j && j.error, path + " " + r.status, { response: j });
+        return Object.assign(j || {}, { ok: false, _httpStatus: r.status });
       }
       return j;
     } catch (e) {
       console.warn("[he-api]", path, e);
+      reportClientError("api", "network", String(e && e.message), { path });
       return null;
     }
   }
@@ -229,11 +257,34 @@
       const j = await r.json().catch(() => null);
       if (!r.ok || (j && j.ok === false)) {
         console.warn("[he-api]", path, r.status, j);
-        return null;
+        reportClientError("api", j && j.error, path + " " + r.status, { response: j });
+        return Object.assign(j || {}, { ok: false, _httpStatus: r.status });
       }
       return j;
     } catch (e) {
       console.warn("[he-api]", path, e);
+      reportClientError("api", "network", String(e && e.message), { path });
+      return null;
+    }
+  }
+
+  async function apiPatch(path, body) {
+    if (!(await apiProbe())) return null;
+    try {
+      const r = await fetch(path, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify(body || {}),
+      });
+      const j = await r.json().catch(() => null);
+      if (!r.ok || (j && j.ok === false)) {
+        reportClientError("api", j && j.error, path + " " + r.status, { response: j });
+        return Object.assign(j || {}, { ok: false, _httpStatus: r.status });
+      }
+      return j;
+    } catch (e) {
+      reportClientError("api", "network", String(e && e.message), { path });
       return null;
     }
   }
@@ -363,6 +414,10 @@
     ratings: {},
     onboarded: false,
     nextAction: null,
+    currentMeals: null,
+    tasteCorrectionSpark: null,
+    settingsChoiceCount: 3,
+    settingsCadence: "on_demand",
   };
   state.ratings = Object.fromEntries(
     state.members.map((m) => [m.id, { score: null, note: "" }])
@@ -465,10 +520,18 @@
 
   function optionsFromApi(options) {
     if (!Array.isArray(options) || !options.length) return null;
-    const tones = { A: "tone-a", B: "tone-b", C: "tone-c" };
-    const plates = { A: "🌮", B: "🐟", C: "🍲" };
+    const tones = { A: "tone-a", B: "tone-b", C: "tone-c", D: "tone-a", E: "tone-b" };
+    const plates = { A: "🌮", B: "🐟", C: "🍲", D: "🍗", E: "🥣" };
     return options.map((o) => {
       const letter = o.letter || "A";
+      let pers = o.pers;
+      if (!pers && o.attributes_json) {
+        try {
+          const attrs =
+            typeof o.attributes_json === "string" ? JSON.parse(o.attributes_json) : o.attributes_json;
+          if (attrs && attrs.pers) pers = attrs.pers;
+        } catch (_) { /* ignore */ }
+      }
       return {
         letter,
         id: o.meal_option_id || o.id || (PLAN_ID + "-" + letter),
@@ -476,13 +539,33 @@
         chips: Array.isArray(o.chips) && o.chips.length ? o.chips : ["Shared"],
         plate: o.plate || plates[letter] || "🍽️",
         tone: o.tone || tones[letter] || "tone-a",
-        pers: o.pers || { type: "why", label: "Shared pick", line: "Someone shared these three with you" },
+        time: o.time || "",
+        effort: o.effort || "",
+        pers: pers || {
+          type: "why",
+          label: "Shared pick",
+          line: "Someone shared these three with you",
+        },
       };
     });
   }
 
+  function displayMeals() {
+    if (state.currentMeals && state.currentMeals.length) return state.currentMeals;
+    return meals;
+  }
+
   function guestMeals() {
-    return state.sharedMeals && state.sharedMeals.length ? state.sharedMeals : meals;
+    return state.sharedMeals && state.sharedMeals.length ? state.sharedMeals : displayMeals();
+  }
+
+  function applyMealOptionsFromServer(list) {
+    const mapped = optionsFromApi(list);
+    if (mapped && mapped.length) {
+      state.currentMeals = mapped;
+      return true;
+    }
+    return false;
   }
 
     function mealCardHtml(m, opts) {
@@ -514,7 +597,8 @@
   }
 
   function renderChoices() {
-    document.getElementById("choiceCards").innerHTML = meals
+    const list = displayMeals();
+    document.getElementById("choiceCards").innerHTML = list
       .map((m) => mealCardHtml(m, { selected: state.selectedMealId === m.id, goDetail: true }))
       .join("");
     document.getElementById("shareIdMeta").textContent = "Share link ready";
@@ -591,6 +675,7 @@
       ensureMemberSession().catch(function () {});
     }
     if (name === "taste") renderSparks();
+    if (prev === "taste" && name !== "taste") persistSparksToServer().catch(function () {});
     if (name === "invite") {
       refreshInviteUi();
       document.getElementById("inviteAttrMeta").textContent =
@@ -598,10 +683,21 @@
     }
     if (name === "join") renderConstraintGrid("joinConstraints", state.joinConstraints);
     if (name === "choices") {
-      renderChoices();
+      (async function () {
+        if (!API.planId && (API.householdId || state.householdId)) {
+          await fetchRecommendationsPlan();
+        }
+        renderChoices();
+      })();
       if (state.shareReady) refreshShareUi();
-      if (!state.onboarded) state.onboarded = true;
+      if (!state.onboarded) {
+        state.onboarded = true;
+        track("onboarding_completed", { household_id: API.householdId || state.householdId });
+      }
     }
+    if (name === "settings") renderSettings();
+    if (name === "meals") renderMealHistory();
+    if (name === "tasteProfile") renderTasteProfile();
     if (name === "shareGuest") {
       renderGuestChoices();
       track("share_choice_viewed", {
@@ -643,7 +739,7 @@
           : state.lifecycle === "Selected"
             ? "Ready to cook"
             : "Tonight’s picks";
-    const meal = meals.find((m) => m.id === state.selectedMealId) || meals[0];
+    const meal = displayMeals().find((m) => m.id === state.selectedMealId) || displayMeals()[0];
     document.getElementById("homeMealTitle").textContent = meal.title;
   }
 
@@ -803,6 +899,94 @@
     updateDebug();
   }
 
+  async function persistSparksToServer() {
+    const hh = API.householdId || state.householdId;
+    if (!hh || !state.sparks.length) return;
+    await ensureMemberSession();
+    for (let i = 0; i < state.sparks.length; i++) {
+      await apiPost("/api/preference-evidence", {
+        tag: state.sparks[i],
+        kind: "like",
+        source: "onboarding_spark",
+      });
+    }
+  }
+
+  function renderSettings() {
+    document.getElementById("settingsHhName").value = state.householdName || "";
+    document.getElementById("settingsChoiceCount").value = String(state.settingsChoiceCount || 3);
+    document.getElementById("settingsCadence").value = state.settingsCadence || "on_demand";
+    const root = document.getElementById("settingsMembers");
+    root.innerHTML = state.members
+      .map(function (m) {
+        return `<div class="member-row"><span class="avatar active">${m.initial}</span><div class="grow"><div class="name">${m.name}</div><div class="role">${m.status}</div></div></div>`;
+      })
+      .join("");
+    renderConstraintGrid("settingsConstraints", state.primaryConstraints);
+  }
+
+  async function renderMealHistory() {
+    const ul = document.getElementById("mealHistoryList");
+    ul.innerHTML = "<li class=\"meta\">Loading…</li>";
+    const hh = API.householdId || state.householdId;
+    if (!hh) {
+      ul.innerHTML = "<li>No household yet.</li>";
+      return;
+    }
+    const res = await apiGet("/api/households/" + encodeURIComponent(hh) + "/meals/history");
+    if (!res || !res.ok || !Array.isArray(res.meals)) {
+      ul.innerHTML = "<li>Couldn’t load meals.</li>";
+      return;
+    }
+    if (!res.meals.length) {
+      ul.innerHTML = "<li>No meals cooked yet — pick one tonight.</li>";
+      return;
+    }
+    ul.innerHTML = res.meals
+      .map(function (m) {
+        const rating =
+          m.avg_score != null ? `${m.avg_score.toFixed(1)}/10 avg` : m.pending_feedback ? "Rate pending" : "—";
+        const tag = m.favorite ? " ★" : "";
+        return `<li><strong>${m.meal_name || "Meal"}${tag}</strong><span class="meta">${m.status} · ${rating}</span></li>`;
+      })
+      .join("");
+  }
+
+  async function renderTasteProfile() {
+    const ul = document.getElementById("tasteProfileLines");
+    ul.innerHTML = "<li>Loading…</li>";
+    const hh = API.householdId || state.householdId;
+    if (!hh) {
+      ul.innerHTML = "<li>Join or create a kitchen first.</li>";
+      return;
+    }
+    const res = await apiGet("/api/households/" + encodeURIComponent(hh) + "/taste-profile");
+    if (!res || !res.ok) {
+      ul.innerHTML = "<li>Not enough data yet.</li>";
+      return;
+    }
+    ul.innerHTML = (res.profile.lines || [])
+      .map(function (line) {
+        return `<li>${line.text}</li>`;
+      })
+      .join("");
+    const corr = document.getElementById("tasteCorrections");
+    corr.innerHTML = sparkOptions
+      .map(function (s) {
+        const on = state.tasteCorrectionSpark === s.id;
+        return `<button type="button" class="chip chip-tog${on ? " is-on" : ""}" data-corr="${s.id}">${s.label}</button>`;
+      })
+      .join("");
+    corr.onclick = function (e) {
+      const b = e.target.closest("[data-corr]");
+      if (!b) return;
+      state.tasteCorrectionSpark = b.dataset.corr;
+      corr.querySelectorAll("[data-corr]").forEach(function (el) {
+        el.classList.toggle("is-on", el.dataset.corr === state.tasteCorrectionSpark);
+      });
+    };
+  }
+
   function renderLoopSummary() {
     const ul = document.getElementById("loopSummary");
     ul.innerHTML = [
@@ -816,18 +1000,12 @@
     if (loopAttr) { loopAttr.hidden = true; loopAttr.textContent = ""; }
   }
 
-  async function ensurePlan() {
+  async function fetchRecommendationsPlan() {
     const hh = API.householdId || state.householdId;
     if (!hh) return null;
-    if (API.planId) return API.planId;
-    const res = await apiPost("/api/plans", {
-      plan_id: PLAN_ID,
+    await ensureMemberSession();
+    const res = await apiPost("/api/recommendations/plan", {
       household_id: hh,
-      meal_options: meals.map((m) => ({
-        letter: m.letter,
-        meal_option_id: m.id,
-        name: m.title,
-      })),
       attribution_last_touch: state.lastTouch,
       attribution_kind:
         state.lastTouch && String(state.lastTouch).startsWith("HE-INV")
@@ -838,10 +1016,21 @@
               ? "organic"
               : "unknown",
     });
-    if (res && res.plan_id) {
+    if (res && res.ok && res.plan_id) {
       API.planId = res.plan_id;
+      applyMealOptionsFromServer(res.meal_options);
+      track("plan_generated", { plan_id: res.plan_id, source: "taste_model_v1" });
       return res.plan_id;
     }
+    return null;
+  }
+
+  async function ensurePlan() {
+    const hh = API.householdId || state.householdId;
+    if (!hh) return null;
+    if (API.planId) return API.planId;
+    const rec = await fetchRecommendationsPlan();
+    if (rec) return rec;
     return null;
   }
 
@@ -1041,34 +1230,48 @@
     show("choices");
   });
 
-  document.getElementById("btnAcceptInvite").addEventListener("click", () => {
+  document.getElementById("btnAcceptInvite").addEventListener("click", async () => {
     const code = document.getElementById("joinCode").value.trim() || state.inviteCode;
     const name = document.getElementById("joinName").value.trim() || "Partner";
-    // Second diner sets OWN constraints — never inherit primary
-    let member = state.members.find((m) => m.name.toLowerCase() === name.toLowerCase());
-    if (!member) {
-      member = {
-        id: name.toLowerCase().replace(/\s+/g, "-"),
-        name,
-        initial: name[0].toUpperCase(),
-        status: "Active",
-      };
-      state.members.push(member);
-      state.ratings[member.id] = { score: null, note: "" };
-    } else {
-      member.status = "Active";
+    const keys = state.joinConstraints.filter(function (k) {
+      return k !== "none";
+    });
+    const dest = sessionStorage.getItem("he_join_dest") || location.pathname + location.search;
+    const res = await apiPost("/api/invites/join", {
+      invite_code: code,
+      display_name: name,
+      constraint_keys: keys,
+      channel: "deep_link",
+    });
+    if (res && res.error === "wrong_household_logged_in") {
+      toast("You’re signed into another kitchen — sign out first");
+      reportClientError("invite", res.error, "cross household join blocked");
+      return;
     }
+    if (res && (res.error === "invite_expired" || res.error === "invite_inactive")) {
+      toast("This invite expired — ask for a fresh link");
+      return;
+    }
+    if (!res || !res.ok) {
+      toast("Couldn’t join — check the code and try again");
+      return;
+    }
+    applyServerSnapshot(res);
+    state.householdId = res.household_id;
+    API.householdId = res.household_id;
+    rememberSessionIds(res.household_id, res.member_id);
+    state.lastTouch = code;
     track("invite_accepted", {
-      household_id: "HH-demo",
-      member_id: member.id,
+      household_id: res.household_id,
+      member_id: res.member_id,
       invite_code: code,
       channel: "deep_link",
-      own_constraints: state.joinConstraints.slice(),
-      // Explicit: constraints are per-diner, not copied from primary
-      inherited_primary_constraints: false,
+      already_member: res.already_member,
     });
-    state.lastTouch = code;
-    toast("You’re in — diet limits saved");
+    API.planId = null;
+    await fetchRecommendationsPlan();
+    toast(res.already_member ? "Welcome back" : "You’re in — diet limits saved");
+    if (dest && dest !== location.pathname) history.replaceState(null, "", dest);
     show("choices");
   });
 
@@ -1138,7 +1341,7 @@
         share_object_id: state.shareObjectId,
         created_by_member_id: state.members[0] && state.members[0].id,
         channel: "copy",
-        options: meals.map((m) => ({
+        options: displayMeals().map((m) => ({
           letter: m.letter,
           meal_option_id: m.id,
           name: m.title,
@@ -1348,9 +1551,57 @@
   });
 
 
+  document.getElementById("btnSaveSettings").addEventListener("click", async function () {
+    const hh = API.householdId || state.householdId;
+    if (!hh) return;
+    state.householdName = document.getElementById("settingsHhName").value.trim() || state.householdName;
+    state.settingsChoiceCount = Number(document.getElementById("settingsChoiceCount").value) || 3;
+    state.settingsCadence = document.getElementById("settingsCadence").value || "on_demand";
+    const primary = state.members[0];
+    await ensureMemberSession();
+    await apiPatch("/api/households/" + encodeURIComponent(hh), {
+      display_name: state.householdName,
+      meal_choice_count: state.settingsChoiceCount,
+      scheduling_cadence: state.settingsCadence,
+      constraints: primary
+        ? state.primaryConstraints
+            .filter(function (k) {
+              return k !== "none";
+            })
+            .map(function (rule_key) {
+              return { member_id: primary.id, rule_key, status: "prohibited" };
+            })
+        : [],
+    });
+    toast("Settings saved — picks will reflect new limits");
+    API.planId = null;
+    state.currentMeals = null;
+  });
+
+  document.getElementById("btnSaveTasteCorrection").addEventListener("click", async function () {
+    if (!state.tasteCorrectionSpark) {
+      toast("Tap something you want more or less of");
+      return;
+    }
+    await ensureMemberSession();
+    await apiPost("/api/preference-evidence", {
+      tag: state.tasteCorrectionSpark,
+      kind: "like",
+      source: "taste_correction",
+    });
+    toast("Got it — we’ll factor that into the next picks");
+    state.tasteCorrectionSpark = null;
+    renderTasteProfile();
+  });
+
   apiProbe().then(function (ok) {
     if (ok) console.info("[he-api] D1 live — write paths enabled");
     else console.info("[he-api] offline/unbound — in-memory only");
+    try {
+      if (window.matchMedia("(display-mode: standalone)").matches) return;
+      const hint = document.getElementById("installHint");
+      if (hint && ok) hint.hidden = false;
+    } catch (_) { /* ignore */ }
   });
 
   function deepLinkTokensFromLocation() {
@@ -1420,6 +1671,7 @@
       return;
     }
     if (invite && invite.startsWith("HE-INV")) {
+      sessionStorage.setItem("he_join_dest", location.pathname + location.search);
       state.inviteCode = invite;
       state.lastTouch = invite;
       const jc = document.getElementById("joinCode");

@@ -7,8 +7,9 @@ test("invite deep link opens join, not welcome", async ({ page, request, context
   await page.goto("/");
   await page.evaluate(() => localStorage.clear());
   const base = process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:8787";
-  const { household_id, memberId } = await apiCreateHousehold(request, "Invite HH");
+  const { household_id, memberId, cookieHeader } = await apiCreateHousehold(request, "Invite HH");
   const inv = await request.post(`${base}/api/invites`, {
+    headers: cookieHeader,
     data: { household_id, inviter_member_id: memberId, channel: "copy" },
   });
   expect(inv.ok()).toBeTruthy();

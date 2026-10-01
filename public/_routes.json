@@ -1,5 +1,12 @@
 {
   "version": 1,
-  "include": ["/api/*"],
+  "include": [
+    "/api/*",
+    "/invite/*",
+    "/share/*",
+    "/recover/*",
+    "/rate/*",
+    "/meal/*"
+  ],
   "exclude": []
 }
