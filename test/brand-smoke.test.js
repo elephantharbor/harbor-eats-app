@@ -52,10 +52,11 @@ describe("FlavorWeave brand smoke", () => {
     expect(textOnly).not.toMatch(/FlavorWeave/);
   });
 
-  it("no Plus Jakarta Sans / Inter approximations of the wordmark", () => {
+  it("welcome headline sets the brand name with the wordmark artwork, not live type", () => {
     const html = read("index.html");
-    expect(html).not.toMatch(/Plus Jakarta/i);
-    expect(html).not.toMatch(/class="[^"]*brand-text/);
+    const title = html.match(/<h1[^>]*data-testid="welcome-title"[\s\S]*?<\/h1>/)[0];
+    expect(title).toMatch(/<img[^>]+src="\/brand\/flavorweave-wordmark\.svg"[^>]+alt="FlavorWeave"/);
+    expect(title.replace(/<[^>]+>/g, " ")).not.toMatch(/FlavorWeave/);
   });
 
   it("service worker shell caches the v2 runtime and brand assets", () => {
