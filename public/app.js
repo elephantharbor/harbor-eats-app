@@ -18,8 +18,41 @@
   const debug = document.getElementById("debug");
   const screenNav = document.getElementById("screenNav");
   const toastEl = document.getElementById("toast");
+  const Theme = window.FlavorWeaveTheme || null;
+  const Media = window.FlavorWeaveMedia || { imageFor: function () { return null; } };
 
   const PLAN_ID = "local-plan";
+
+  function escapeHtml(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function icon(name, extraClass) {
+    return `<svg class="icon${extraClass ? " " + extraClass : ""}" aria-hidden="true"><use href="#i-${name}" /></svg>`;
+  }
+
+  /** Recipe-specific photo when the catalog has one; quiet plate fallback otherwise. */
+  function mealMediaHtml(meal, opts) {
+    const o = opts || {};
+    const img = Media.imageFor(meal);
+    const cls = "meal-media" + (o.className ? " " + o.className : "");
+    const fallback = `<span class="meal-media__fallback" aria-hidden="true">${escapeHtml((meal && meal.plate) || "🍽️")}</span>`;
+    if (!img) return `<div class="${cls}">${o.inner || ""}${fallback}</div>`;
+    const alt = o.decorative ? "" : escapeHtml((meal && (meal.title || meal.name)) || img.alt);
+    const loading = o.eager ? 'fetchpriority="high"' : 'loading="lazy"';
+    return `<div class="${cls}"><img src="${img.src}" srcset="${img.srcset}" sizes="${o.sizes || "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 40vw"}" alt="${alt}" width="1200" height="900" decoding="async" ${loading} onerror="this.remove()" />${fallback}${o.inner || ""}</div>`;
+  }
+
+  function mealMinutes(meal, recipe) {
+    if (recipe && recipe.total_minutes) return recipe.total_minutes + " min";
+    if (meal && meal.time && /\d/.test(meal.time)) return meal.time;
+    const chip = meal && (meal.chips || []).find((c) => /min/i.test(c));
+    return chip || "";
+  }
 
   function randToken(n) {
     const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -65,6 +98,7 @@
       if (householdId) localStorage.setItem(LS_HH, householdId);
       if (memberId) localStorage.setItem(LS_MEMBER, memberId);
     } catch (_) { /* private mode */ }
+    if (memberId && Theme) Theme.useMember(memberId);
   }
 
   function applyServerSnapshot(snap) {
@@ -510,10 +544,27 @@
     root.innerHTML = state.members
       .map(
         (m, i) =>
-          `<span class="avatar${i === 0 ? " active" : ""}" title="${m.name} (${m.status})">${m.initial}</span>`
+          `<span class="avatar${i === 0 ? " active" : ""}" title="${escapeHtml(m.name)} (${escapeHtml(m.status)})">${escapeHtml(m.initial)}</span>`
       )
       .join("");
+    root.setAttribute(
+      "aria-label",
+      state.members.length
+        ? "Household diners: " + state.members.map((m) => m.name).join(", ")
+        : "Household diners"
+    );
     document.getElementById("brandSub").textContent = state.householdName || "Your household";
+  }
+
+  function memberRowHtml(m) {
+    const status = m.status === "Active" || m.status === "active" ? "Active" : m.status;
+    const badge = status === "Active" ? "badge--success" : "badge--warning";
+    return `
+      <div class="member-row" role="listitem">
+        <span class="avatar">${escapeHtml(m.initial)}</span>
+        <div class="grow"><div class="name">${escapeHtml(m.name)}</div></div>
+        <span class="badge badge--sm ${badge}">${escapeHtml(status)}</span>
+      </div>`;
   }
 
   function renderProgressDots() {
@@ -530,18 +581,7 @@
 
   function renderMembers() {
     const root = document.getElementById("memberList");
-    root.innerHTML = state.members
-      .map(
-        (m) => `
-      <div class="member-row">
-        <span class="avatar active">${m.initial}</span>
-        <div class="grow">
-          <div class="name">${m.name}</div>
-          <div class="role">${m.status}</div>
-        </div>
-      </div>`
-      )
-      .join("");
+    root.innerHTML = state.members.map(memberRowHtml).join("");
   }
 
   function renderConstraintGrid(rootId, selectedIds, onToggle) {
@@ -549,7 +589,7 @@
     root.innerHTML = constraintOptions
       .map((c) => {
         const on = selectedIds.includes(c.id);
-        return `<label class="${on ? "is-on" : ""}"><input type="checkbox" data-cid="${c.id}" ${on ? "checked" : ""} /> ${c.label}</label>`;
+        return `<label class="check-tile${on ? " is-on" : ""}"><input type="checkbox" data-cid="${c.id}" ${on ? "checked" : ""} /> <span>${c.label}</span></label>`;
       })
       .join("");
     root.onchange = (e) => {
@@ -580,7 +620,7 @@
     root.innerHTML = sparkOptions
       .map((s) => {
         const on = state.sparks.includes(s.id);
-        return `<button type="button" class="chip chip-tog${on ? " is-on" : ""}" data-spark="${s.id}">${s.label}</button>`;
+        return `<button type="button" class="chip-tog${on ? " is-on" : ""}" data-spark="${s.id}" aria-pressed="${on}">${s.label}</button>`;
       })
       .join("");
     document.getElementById("sparkHint").textContent = `${state.sparks.length} of 3 selected`;
@@ -645,31 +685,37 @@
     return false;
   }
 
-    function mealCardHtml(m, opts) {
+  function mealCardHtml(m, opts) {
     const { selected, goDetail } = opts || {};
-    const go = goDetail ? ` data-go="detail" data-select="${m.id}"` : ` data-select="${m.id}"`;
-    const tone = m.tone || "tone-a";
-    const plate = m.plate || "🍽️";
-    const time = m.time || (m.chips || []).find((c) => /min/i.test(c)) || "";
+    const go = goDetail ? ` data-go="detail" data-select="${escapeHtml(m.id)}"` : ` data-select="${escapeHtml(m.id)}"`;
+    const time = mealMinutes(m);
     const effort = m.effort || "";
     const metaBits = [];
-    if (time) metaBits.push(`<span>${time}</span>`);
-    if (effort) metaBits.push(`<span>${effort}</span>`);
+    if (time) metaBits.push(`<span>${icon("clock")}${escapeHtml(time)}</span>`);
+    if (effort) metaBits.push(`<span>${icon("gauge")}${escapeHtml(effort)}</span>`);
+    (m.chips || [])
+      .filter((c) => !/min/i.test(c))
+      .slice(0, 2)
+      .forEach((c) => metaBits.push(`<span class="chip">${escapeHtml(c)}</span>`));
     const meta = metaBits.length
-      ? `<div class="option-meta" aria-label="Time and effort">${metaBits.join("")}</div>`
+      ? `<div class="option-meta" aria-label="Time, effort and style">${metaBits.join("")}</div>`
       : "";
-    const selectedAttr = selected ? ' aria-pressed="true"' : ' aria-pressed="false"';
+    const pers = m.pers || {};
+    const persBadge = pers.label
+      ? `<span class="badge badge--sm ${pers.type === "new" ? "badge--accent" : "badge--match"} pers-chip ${persClass(pers.type)}">${escapeHtml(pers.label)}</span>`
+      : "";
+    const letter = `<span class="option-card__letter" aria-hidden="true">${escapeHtml(m.letter)}</span>`;
     return `
-      <article class="option-card is-pickable${selected ? " selected-mark" : ""}" role="listitem" tabindex="0"${selectedAttr}${go} aria-label="Option ${m.letter}: ${m.title}">
-        <div class="option-plate ${tone}" aria-hidden="true"><span class="letter-mini">${m.letter}</span><span>${plate}</span></div>
-        <div class="option-body">
-          <h2>${m.title}</h2>
-          <div class="chips">${m.chips.map((c) => `<span class="chip">${c}</span>`).join("")}</div>
+      <article class="option-card is-pickable${selected ? " selected-mark" : ""}" role="listitem" tabindex="0" aria-pressed="${selected ? "true" : "false"}"${go} aria-label="Option ${escapeHtml(m.letter)}: ${escapeHtml(m.title)}">
+        ${mealMediaHtml(m, { className: "option-card__media", inner: letter, decorative: true })}
+        <span class="badge badge--sm badge--fit option-card__pick" aria-hidden="true">${icon("check")}Your pick</span>
+        <div class="option-card__body">
+          <h2>${escapeHtml(m.title)}</h2>
+          <div class="badges">${persBadge}</div>
+          ${pers.line ? `<p class="why">${escapeHtml(pers.line)}</p>` : ""}
           ${meta}
-          <span class="pers-chip ${persClass(m.pers.type)}">${m.pers.label}</span>
-          <p class="why">${m.pers.line}</p>
         </div>
-        <span class="chev" aria-hidden="true">›</span>
+        ${goDetail ? `<span class="option-card__cta" aria-hidden="true">View recipe ${icon("arrow-right")}</span>` : ""}
       </article>`;
   }
 
@@ -700,8 +746,17 @@
     }
   }
 
+  /** full: header nav + mobile tabs · focus: header nav only · brand: wordmark only · none: cook */
+  function chromeFor(name) {
+    if (name === "cook") return "none";
+    if (["home", "choices", "meals", "tasteProfile", "settings", "demo"].includes(name)) return "full";
+    if (name === "detail" || name === "rate") return "focus";
+    return "brand";
+  }
+
   function show(name) {
     const prev = state.view;
+    if (name === "detail" && prev !== "detail") state.detailTabFor = null;
     // Persist hard constraints when leaving constraints screen (per primary diner)
     if (prev === "constraints" && name !== "constraints") {
       const hh = API.householdId || state.householdId;
@@ -717,27 +772,17 @@
     app.querySelectorAll(".view").forEach((v) => {
       v.classList.toggle("is-active", v.dataset.view === name);
     });
-    const hideChrome =
-      name === "cook" ||
-      name === "welcome" ||
-      name === "shareGuest" ||
-      name === "join";
-    const hideTabs =
-      hideChrome ||
-      name === "finished" ||
-      name === "loop" ||
-      name === "create" ||
-      name === "members" ||
-      name === "constraints" ||
-      name === "taste" ||
-      name === "invite" ||
-      name === "demo";
-    topbar.classList.toggle("hidden", hideChrome);
-    tabbar.classList.toggle("hidden", hideTabs);
+    app.dataset.chrome = chromeFor(name);
+    topbar.classList.remove("hidden");
+    tabbar.classList.remove("hidden");
 
-    const tabMap = { home: "home", choices: "choices", detail: "home", invite: "invite", rate: "home" };
-    tabbar.querySelectorAll(".tab").forEach((t) => {
-      t.classList.toggle("is-on", t.dataset.go === (tabMap[name] || name));
+    const navMap = { detail: "home", rate: "home", demo: "home", invite: "home" };
+    const navKey = navMap[name] || name;
+    app.querySelectorAll("[data-nav]").forEach((t) => {
+      const on = t.dataset.nav === navKey;
+      t.classList.toggle("is-on", on);
+      if (on) t.setAttribute("aria-current", "page");
+      else t.removeAttribute("aria-current");
     });
     if (screenNav) {
       screenNav.querySelectorAll("button").forEach((b) => {
@@ -745,8 +790,17 @@
       });
     }
 
-    const active = app.querySelector(".view.is-active .scroll");
-    if (active) active.scrollTop = 0;
+    if (prev !== name) {
+      window.scrollTo(0, 0);
+      const focused = document.activeElement;
+      const focusLost =
+        !focused || focused === document.body || !!focused.closest(".view:not(.is-active)");
+      const heading = app.querySelector(".view.is-active h1, .view.is-active h2");
+      if (focusLost && heading) {
+        heading.setAttribute("tabindex", "-1");
+        heading.focus({ preventScroll: true });
+      }
+    }
 
     renderProgressDots();
     syncAvatars();
@@ -809,104 +863,222 @@
     updateDebug();
   }
 
+  function homeStage(meal) {
+    if (!meal) return "pick";
+    if (state.lifecycle === "Rated" || state.nextAction === "loop_complete") return "done";
+    if (state.lifecycle === "Cooked" || state.nextAction === "rate_meal") return "rate";
+    return "cook";
+  }
+
+  function stripCopy() {
+    const strip = document.getElementById("choiceStripText");
+    if (!strip) return;
+    const fit = activeMemberCount() === 2 ? "both of you" : householdCopy("fit");
+    strip.textContent = "Options that fit " + fit + ". Tap one — or send the set.";
+  }
+
   function updateHome() {
     const pill = document.getElementById("homePill");
     const eye = document.getElementById("homeEyebrow");
-    pill.textContent =
-      state.lifecycle === "Unselected" ? "Ready"
-      : state.lifecycle === "Selected" ? "Picked"
-      : state.lifecycle === "Cooked" ? "Cooked"
-      : state.lifecycle === "Rated" ? "Rated"
-      : state.lifecycle;
-    const nextHints = {
-      pick_meal: "What should I do next? · Pick tonight’s meal",
-      cook_meal: "What should I do next? · Start cooking",
-      rate_meal: "What should I do next? · Rate what you cooked",
-      start_choices: "What should I do next? · See your three picks",
-      loop_complete: activeMemberCount() === 2 ? "Both of you rated" : "Everyone rated",
-    };
-    eye.textContent =
-      (state.nextAction && nextHints[state.nextAction])
-        ? nextHints[state.nextAction]
-        : state.lifecycle === "Rated"
-        ? activeMemberCount() === 2 ? "Both of you rated" : "Everyone rated"
-        : state.lifecycle === "Cooked"
-          ? state.ratingState === "partial"
-            ? "Cooked · partial ratings saved"
-            : "Cooked · waiting on ratings"
-          : state.lifecycle === "Selected"
-            ? "Ready to cook"
-            : "Tonight’s picks";
-    const meal = selectedMeal() || displayMeals()[0];
     const homeTitle = document.getElementById("homeMealTitle");
     const homeMeta = document.getElementById("homeMealMeta");
     const homeCopy = document.getElementById("homeStatusCopy");
     const homeLede = document.getElementById("homeLede");
-    if (homeLede) {
-      homeLede.textContent =
-        activeMemberCount() === 2
-          ? "Cook, then both of you rate — that’s how next dinner gets better."
-          : "Cook, then everyone in " +
-            householdCopy("rate") +
-            " rates — that’s how next dinner gets better.";
-    }
-    if (meal && homeTitle) homeTitle.textContent = meal.title;
-    else if (homeTitle) homeTitle.textContent = "Pick tonight’s meal";
-    if (homeMeta) homeMeta.textContent = meal && meal.time ? meal.time : "—";
+    const actions = document.getElementById("homeActions");
+    const media = document.getElementById("homeMedia");
+    const insights = document.getElementById("homeInsights");
+    const meal = selectedMeal();
+    const stage = homeStage(meal);
+    const both = activeMemberCount() === 2;
+
     if (homeCopy) homeCopy.textContent = "Fits " + householdCopy("fit");
-    const strip = document.getElementById("choiceStripText");
-    if (strip) {
-      const fit =
-        activeMemberCount() === 2 ? "both of you" : householdCopy("fit");
-      strip.innerHTML =
-        '<span class="brass-dot"></span> Options that fit ' +
-        fit +
-        ". Tap one — or send the set.";
+
+    if (stage === "pick") {
+      const options = displayMeals();
+      eye.textContent = "Tonight’s picks";
+      homeTitle.textContent = options.length
+        ? options.length + " dinners worth choosing"
+        : "Pick tonight’s meal";
+      homeLede.textContent = options.length
+        ? "Each one clears everyone’s hard limits. Pick one — or send the set so " + householdCopy("both") + " can weigh in."
+        : "We’ll weave a few options that fit everyone at the table.";
+      pill.textContent = "Ready";
+      homeMeta.hidden = true;
+      actions.innerHTML = `<button class="btn btn-primary btn-lg" type="button" data-go="choices">See tonight’s picks ${icon("arrow-right", "icon--forward")}</button>`;
+      media.className = "tonight-hero__media" + (options.length > 1 ? " tonight-hero__media--stack" : "");
+      media.innerHTML = options.length
+        ? options.slice(0, 3).map((m) => mealMediaHtml(m, { decorative: true, eager: true, sizes: "(min-width: 1024px) 18vw, 33vw" })).join("")
+        : mealMediaHtml({ recipe_slug: "miso-ginger-salmon" }, { decorative: true, eager: true });
+      insights.hidden = true;
+      stripCopy();
+      return;
     }
+
+    const pers = meal.pers || {};
+    homeTitle.textContent = meal.title;
+    media.className = "tonight-hero__media";
+    media.innerHTML = mealMediaHtml(meal, { eager: true, sizes: "(min-width: 1024px) 55vw, 100vw" });
+    const minutes = mealMinutes(meal, state.activeRecipe);
+    homeMeta.hidden = !minutes;
+    homeMeta.innerHTML = minutes ? icon("clock") + escapeHtml(minutes) : "";
+
+    if (stage === "cook") {
+      eye.textContent = "Tonight’s pick";
+      homeLede.textContent = pers.line || "Clears everyone’s hard limits. Cook it, then rate it together.";
+      pill.textContent = pers.label || "Picked";
+      actions.innerHTML =
+        `<button class="btn btn-primary btn-lg" type="button" data-action="home-cook">Start cooking ${icon("arrow-right", "icon--forward")}</button>` +
+        `<button class="btn btn-secondary btn-lg" type="button" data-go="detail">View full recipe</button>`;
+    } else if (stage === "rate") {
+      const waiting = membersAwaitingRating();
+      eye.textContent = state.ratingState === "partial" ? "Cooked · partial ratings saved" : "Cooked · waiting on ratings";
+      homeLede.textContent =
+        waiting.length && waiting.length < activeMembers().length
+          ? "Dinner is logged. " + waiting.join(", ") + (waiting.length === 1 ? " still has a rating" : " still have ratings") + " waiting whenever they’re ready."
+          : "Dinner is logged. Rate it while it’s fresh — each of you, 1–10.";
+      pill.textContent = "Cooked";
+      actions.innerHTML =
+        `<button class="btn btn-primary btn-lg" type="button" data-go="rate">Rate dinner</button>` +
+        `<button class="btn btn-secondary btn-lg" type="button" data-go="detail">View recipe</button>`;
+    } else {
+      eye.textContent = both ? "Both of you rated" : "Everyone rated";
+      homeLede.textContent = "Logged and learned. The next picks get a little smarter.";
+      pill.textContent = "Rated";
+      actions.innerHTML =
+        `<button class="btn btn-primary btn-lg" type="button" data-go="meals">See meals &amp; ratings</button>` +
+        `<button class="btn btn-secondary btn-lg" type="button" data-go="tasteProfile">Taste profile</button>`;
+    }
+    stripCopy();
+    fillHomeInsights(meal);
+  }
+
+  function fillHomeInsights(meal) {
+    const insights = document.getElementById("homeInsights");
+    const why = document.getElementById("homeWhy");
+    const ingCount = document.getElementById("homeIngCount");
+    const stepCount = document.getElementById("homeStepCount");
+    why.textContent = (meal.pers && meal.pers.line) || "Clears everyone’s hard limits.";
+    const paint = function (recipe) {
+      if (!recipe || state.view !== "home") return;
+      const ings = (recipe.ingredients || []).length;
+      const steps = (recipe.steps || []).length;
+      ingCount.textContent = ings ? ings + " ingredients · serves " + (recipe.requested_servings || recipe.servings) : "—";
+      stepCount.textContent = steps ? steps + " steps" + (recipe.total_minutes ? " (~" + recipe.total_minutes + " min)" : "") : "—";
+      insights.hidden = false;
+      const homeMeta = document.getElementById("homeMealMeta");
+      if (recipe.total_minutes && homeMeta) {
+        homeMeta.hidden = false;
+        homeMeta.innerHTML = icon("clock") + recipe.total_minutes + " min";
+      }
+    };
+    if (state.activeRecipe) paint(state.activeRecipe);
+    else {
+      insights.hidden = true;
+      ensureRecipeForSelection().then(paint).catch(function () {});
+    }
+  }
+
+  function selectRecipeTab(id, focus) {
+    const tabs = document.querySelectorAll("#detailTabs [role=tab]");
+    tabs.forEach(function (t) {
+      const on = t.id === id;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute("aria-controls"));
+      if (panel) panel.hidden = !on;
+      if (on && focus) t.focus();
+    });
   }
 
   function renderDetail() {
     const meal = selectedMeal();
     const recipe = state.activeRecipe;
     const titleEl = document.getElementById("detailTitle");
-    const plateEl = document.getElementById("detailPlate");
+    const mediaEl = document.getElementById("detailMedia");
     const whyEl = document.getElementById("detailWhy");
-    const lockEl = document.getElementById("detailLockChip");
+    const whyLabel = document.getElementById("detailWhyLabel");
     const ingEl = document.getElementById("detailIngredients");
     const stepsEl = document.getElementById("detailSteps");
     const chipsEl = document.getElementById("detailChips");
+    const statsEl = document.getElementById("detailStats");
+    const notesEl = document.getElementById("detailNotes");
+    const servingsNote = document.getElementById("detailServingsNote");
+    const detailKey = meal ? meal.id : "";
+    if (state.detailTabFor !== detailKey) {
+      state.detailTabFor = detailKey;
+      selectRecipeTab("tab-overview", false);
+    }
+    if (mediaEl) {
+      mediaEl.outerHTML = mealMediaHtml(meal || {}, {
+        className: "recipe__media",
+        eager: true,
+        sizes: "(min-width: 1024px) 50vw, 100vw",
+      }).replace('<div class="', '<div id="detailMedia" class="');
+    }
     if (!meal || !recipe) {
       if (titleEl) titleEl.textContent = meal ? meal.title : "Load a pick first";
-      if (whyEl) whyEl.textContent = "Connect to load the full recipe.";
+      if (whyEl) whyEl.textContent = meal ? "We couldn’t load the full recipe. Check your connection and try again." : "Pick one of tonight’s options to see the recipe.";
+      if (statsEl) statsEl.innerHTML = "";
       return;
     }
+    const pers = meal.pers || {};
     if (titleEl) titleEl.textContent = recipe.title || meal.title;
-    if (plateEl) plateEl.textContent = meal.plate || recipe.plate || "🍽️";
-    if (lockEl) lockEl.textContent = "Fits " + householdCopy("fit");
-    if (whyEl) whyEl.textContent = (meal.pers && meal.pers.line) || "Clears your household hard limits.";
+    if (whyLabel) whyLabel.textContent = pers.label ? "Why this one · " + pers.label : "Why this one";
+    if (whyEl) whyEl.textContent = pers.line || "Clears your household’s hard limits.";
+    const serves = recipe.requested_servings || recipe.servings || servingCountForMeal();
     if (chipsEl) {
-      const chips = (meal.chips || []).slice();
-      const serves = recipe.requested_servings || recipe.servings || servingCountForMeal();
-      chips.unshift("Serves " + serves);
-      if (recipe.total_minutes) chips.push("~" + recipe.total_minutes + " min");
-      chipsEl.innerHTML = chips
-        .map(function (c) {
-          return '<span class="chip">' + c + "</span>";
+      const badges = ['<span class="badge badge--fit" id="detailLockChip">Fits ' + escapeHtml(householdCopy("fit")) + "</span>"];
+      if (pers.label) badges.push('<span class="badge badge--match">' + escapeHtml(pers.label) + "</span>");
+      if (recipe.total_minutes) badges.push('<span class="badge badge--time">' + icon("clock") + recipe.total_minutes + " min</span>");
+      chipsEl.innerHTML = badges.join("");
+    }
+    if (statsEl) {
+      const stats = [
+        ["users", serves + (serves === 1 ? " serving" : " servings"), "Serves"],
+        ["clock", (recipe.total_minutes || "—") + " minutes", "Total time"],
+        ["gauge", recipe.effort || meal.effort || "—", "Effort"],
+      ];
+      statsEl.innerHTML = stats
+        .map(function (s) {
+          return `<div class="stat">${icon(s[0])}<dt>${s[2]}</dt><dd>${escapeHtml(s[1])}</dd></div>`;
         })
         .join("");
+    }
+    if (servingsNote) {
+      servingsNote.textContent =
+        recipe.base_servings && recipe.base_servings !== serves
+          ? "Scaled for " + serves + " (written for " + recipe.base_servings + ")."
+          : "Amounts for " + serves + ".";
     }
     if (ingEl) {
       ingEl.innerHTML = (recipe.ingredients || [])
         .map(function (i) {
-          const line = (i.quantity ? i.quantity + " " : "") + i.name;
-          return "<li>" + line + "</li>";
+          const note = i.note ? ` <span class="ing-note">${escapeHtml(i.note)}</span>` : "";
+          return `<li><span class="qty">${escapeHtml(i.quantity || "")}</span><span>${escapeHtml(i.name)}${note}</span></li>`;
         })
         .join("");
     }
     if (stepsEl) {
       stepsEl.innerHTML = (recipe.steps || [])
         .map(function (s, idx) {
-          return '<li data-n="' + (idx + 1) + '">' + s.title + "</li>";
+          return `<li data-n="${idx + 1}"><div><strong>${escapeHtml(s.title)}</strong>${s.body ? `<p>${escapeHtml(s.body)}</p>` : ""}</div></li>`;
+        })
+        .join("");
+    }
+    if (notesEl) {
+      const humanize = function (x) {
+        return String(x).replace(/[_-]+/g, " ").replace(/^\w/, function (c) { return c.toUpperCase(); });
+      };
+      const notes = [];
+      if (recipe.prep_minutes != null || recipe.cook_minutes != null) {
+        notes.push(["Timing", (recipe.prep_minutes || 0) + " min prep · " + (recipe.cook_minutes || 0) + " min cooking"]);
+      }
+      if (recipe.methods && recipe.methods.length) notes.push(["Method", recipe.methods.map(humanize).join(", ")]);
+      if (recipe.dietary_tags && recipe.dietary_tags.length) notes.push(["Diet notes", recipe.dietary_tags.map(humanize).join(", ")]);
+      notes.push(["Household fit", "Clears every active diner’s hard limits. Soft likes only shape the order."]);
+      notesEl.innerHTML = notes
+        .map(function (n) {
+          return `<div><dt>${escapeHtml(n[0])}</dt><dd>${escapeHtml(n[1])}</dd></div>`;
         })
         .join("");
     }
@@ -938,15 +1110,6 @@
 
   function updateDebug() {
     applyQaChrome();
-  // Keyboard: activate meal cards with Enter/Space
-  app.addEventListener("keydown", (e) => {
-    const card = e.target.closest(".option-card.is-pickable");
-    if (!card) return;
-    if (e.key !== "Enter" && e.key !== " ") return;
-    e.preventDefault();
-    card.click();
-  });
-
     if (!isQaMode() || !debug) return;
     const scores = state.members
       .map((m) => `${m.initial}:${state.ratings[m.id]?.score ?? "—"}`)
@@ -958,6 +1121,11 @@
   function renderCook() {
     const steps = cookSteps();
     const i = state.cookStep;
+    const cookMeal = document.getElementById("cookMealTitle");
+    const meal = selectedMeal();
+    if (cookMeal) {
+      cookMeal.textContent = (state.activeRecipe && state.activeRecipe.title) || (meal && meal.title) || "Kitchen mode";
+    }
     if (!steps.length) {
       document.getElementById("cookStepTitle").textContent = "Recipe not loaded";
       document.getElementById("cookStepBody").textContent =
@@ -971,7 +1139,7 @@
     document.getElementById("cookStepTitle").textContent = step.title;
     document.getElementById("cookStepBody").textContent = step.body;
     const ings = step.ingredients || step.ings || [];
-    document.getElementById("cookIngList").innerHTML = ings.map((x) => `<li>${x}</li>`).join("");
+    document.getElementById("cookIngList").innerHTML = ings.map((x) => `<li>${escapeHtml(x)}</li>`).join("");
     const prog = document.getElementById("cookProgress");
     prog.setAttribute("aria-valuenow", String(i + 1));
     prog.setAttribute("aria-valuemax", String(n));
@@ -988,11 +1156,11 @@
     prev.style.visibility = i === 0 ? "hidden" : "visible";
     if (i >= n - 1) {
       next.textContent = "Finish";
-      next.className = "btn btn-finish";
+      next.className = "btn btn-primary btn-lg btn-finish";
       next.dataset.action = "finish";
     } else {
       next.textContent = "Next";
-      next.className = "btn btn-next";
+      next.className = "btn btn-primary btn-lg btn-next";
       next.dataset.action = "next";
     }
   }
@@ -1028,31 +1196,44 @@
 
   function renderRaters() {
     const root = document.getElementById("raterList");
+    const faceFor = (score) => {
+      if (score == null) return { face: "🍽️", word: "Not rated yet" };
+      if (score <= 2) return { face: "😖", word: "Hard miss" };
+      if (score <= 4) return { face: "😕", word: "Not quite" };
+      if (score <= 6) return { face: "😐", word: "Fine" };
+      if (score <= 8) return { face: "🙂", word: "Good one" };
+      return { face: "😍", word: "Craving it" };
+    };
     root.innerHTML = activeMembers()
       .map((m) => {
         const r = state.ratings[m.id] || { score: null, note: "" };
+        const name = escapeHtml(m.name);
+        const reaction = faceFor(r.score);
         const status = r.score
-          ? `<span class="rater-status done">${r.score}/10</span>`
+          ? `<span class="rater-status done">${r.score}/10 · ${reaction.word}</span>`
           : `<span class="rater-status">Waiting</span>`;
         const row = (from, to) =>
           Array.from({ length: to - from + 1 }, (_, i) => from + i)
             .map(
               (n) =>
-                `<button type="button" class="score${r.score === n ? " is-picked" : ""}" data-person="${m.id}" data-score="${n}" aria-label="${m.name} rates ${n} out of 10" aria-pressed="${r.score === n}">${n}</button>`
+                `<button type="button" class="score${r.score === n ? " is-picked" : ""}" data-person="${escapeHtml(m.id)}" data-score="${n}" aria-label="${name} rates ${n} out of 10" aria-pressed="${r.score === n}">${n}</button>`
             )
             .join("");
         return `
           <div class="rater-card">
             <div class="rater-head">
-              <span class="avatar active">${m.initial}</span>
-              <div><div class="rater-name">${m.name}</div>${status}</div>
+              <span class="avatar">${escapeHtml(m.initial)}</span>
+              <div class="grow"><div class="rater-name">${name}</div>${status}</div>
+              <span class="rater-face${r.score ? " is-set" : ""}" aria-hidden="true">${reaction.face}</span>
             </div>
-            <div class="score-row" role="group" aria-label="${m.name} scores 1 to 5">${row(1, 5)}</div>
-            <div class="score-row" role="group" aria-label="${m.name} scores 6 to 10">${row(6, 10)}</div>
-            <div class="anchors"><span>1 hard miss</span><span>5 fine</span><span>10 craving</span></div>
+            <div class="score-rows">
+              <div class="score-row" role="group" aria-label="${name} scores 1 to 5">${row(1, 5)}</div>
+              <div class="score-row" role="group" aria-label="${name} scores 6 to 10">${row(6, 10)}</div>
+            </div>
+            <div class="anchors" aria-hidden="true"><span>1 hard miss</span><span>5 fine</span><span>10 craving</span></div>
             <label class="field">
-              <span>Note (optional)</span>
-              <input type="text" data-note="${m.id}" placeholder="too spicy, make again…" value="${r.note ? escapeAttr(r.note) : ""}" />
+              <span class="field__label">Note (optional)</span>
+              <input type="text" data-note="${escapeHtml(m.id)}" placeholder="Too spicy? Make again?" value="${r.note ? escapeAttr(r.note) : ""}" />
             </label>
           </div>`;
       })
@@ -1119,64 +1300,143 @@
     document.getElementById("settingsChoiceCount").value = String(state.settingsChoiceCount || 3);
     document.getElementById("settingsCadence").value = state.settingsCadence || "on_demand";
     const root = document.getElementById("settingsMembers");
-    root.innerHTML = state.members
-      .map(function (m) {
-        return `<div class="member-row"><span class="avatar active">${m.initial}</span><div class="grow"><div class="name">${m.name}</div><div class="role">${m.status}</div></div></div>`;
+    root.setAttribute("role", "list");
+    root.innerHTML = state.members.map(memberRowHtml).join("");
+    renderConstraintGrid("settingsConstraints", state.primaryConstraints);
+    renderThemeOptions();
+  }
+
+  function renderThemeOptions() {
+    const root = document.getElementById("themeOptions");
+    if (!root || !Theme) return;
+    const current = Theme.current();
+    root.innerHTML = Theme.themes
+      .map(function (t) {
+        const checked = t.id === current;
+        return `
+          <label class="theme-option" data-theme-option="${t.id}">
+            <span class="theme-swatch" data-theme="${t.id}" aria-hidden="true">
+              <span class="theme-swatch__bar"></span><span class="theme-swatch__dot"></span>
+              <span class="theme-swatch__title"></span><span class="theme-swatch__line"></span>
+              <span class="theme-swatch__cta"></span><span class="theme-swatch__accent"></span>
+            </span>
+            <span><span class="theme-option__name">${escapeHtml(t.name)}${t.id === Theme.defaultTheme ? " <span class=\"badge badge--sm badge--neutral\">Default</span>" : ""}</span><span class="theme-option__note">${escapeHtml(t.note)}</span></span>
+            <input type="radio" name="fw-theme" value="${t.id}" ${checked ? "checked" : ""} aria-describedby="theme-note-${t.id}" />
+            <span class="sr-only" id="theme-note-${t.id}">${escapeHtml(t.note)}</span>
+          </label>`;
       })
       .join("");
-    renderConstraintGrid("settingsConstraints", state.primaryConstraints);
+    root.onchange = function (e) {
+      const input = e.target.closest('input[name="fw-theme"]');
+      if (!input) return;
+      const applied = Theme.set(input.value);
+      const meta = Theme.themes.find(function (t) { return t.id === applied; });
+      toast((meta ? meta.name : "Theme") + " is on");
+      track("theme_changed", { theme: applied });
+    };
+  }
+
+  function emptyStateHtml(iconName, title, body, action) {
+    return `<li class="empty-state">
+        <span class="empty-state__icon">${icon(iconName)}</span>
+        <strong>${title}</strong>
+        <span>${body}</span>
+        ${action || ""}
+      </li>`;
+  }
+
+  function historyStatus(m) {
+    if (m.status === "Rated") return { label: "Rated", cls: "badge--success" };
+    if (m.status === "Cooked") {
+      return { label: m.rating_state === "partial" ? "Partly rated" : "Rating waiting", cls: "badge--warning" };
+    }
+    if (m.status === "Selected") return { label: "Picked", cls: "badge--fit" };
+    return { label: m.status || "Planned", cls: "" };
   }
 
   async function renderMealHistory() {
     const ul = document.getElementById("mealHistoryList");
-    ul.innerHTML = "<li class=\"meta\">Loading…</li>";
+    ul.setAttribute("aria-busy", "true");
+    ul.innerHTML = '<li class="skeleton history-skeleton" aria-hidden="true"></li><li class="skeleton history-skeleton" aria-hidden="true"></li><li class="skeleton history-skeleton" aria-hidden="true"></li>';
     const hh = API.householdId || state.householdId;
+    const done = function (html) {
+      ul.innerHTML = html;
+      ul.removeAttribute("aria-busy");
+    };
     if (!hh) {
-      ul.innerHTML = "<li>No household yet.</li>";
+      done(emptyStateHtml("users", "No kitchen yet", "Create or join a kitchen to start your history."));
       return;
     }
     const res = await apiGet("/api/households/" + encodeURIComponent(hh) + "/meals/history");
     if (!res || !res.ok || !Array.isArray(res.meals)) {
-      ul.innerHTML = "<li>Couldn’t load meals.</li>";
+      done(emptyStateHtml("history", "Couldn’t load meals", "Check your connection and try again.", '<button class="btn btn-secondary btn-sm" type="button" data-go="meals" data-reload="meals">Try again</button>'));
       return;
     }
-    if (!res.meals.length) {
-      ul.innerHTML = "<li>No meals cooked yet — pick one tonight.</li>";
+    const meals = res.meals.filter(function (m) { return m.meal_name; });
+    if (!meals.length) {
+      done(emptyStateHtml("tonight", "Nothing cooked yet", "Pick tonight’s dinner — it’ll show up here once it’s on the table.", '<button class="btn btn-primary btn-sm" type="button" data-go="choices">See tonight’s picks</button>'));
       return;
     }
-    ul.innerHTML = res.meals
-      .map(function (m) {
-        const rating =
-          m.avg_score != null ? `${m.avg_score.toFixed(1)}/10 avg` : m.pending_feedback ? "Rate pending" : "—";
-        const tag = m.favorite ? " ★" : "";
-        return `<li><strong>${m.meal_name || "Meal"}${tag}</strong><span class="meta">${m.status} · ${rating}</span></li>`;
-      })
-      .join("");
+    done(
+      meals
+        .map(function (m) {
+          const status = historyStatus(m);
+          const rating = m.avg_score != null ? `<span class="badge badge--sm badge--time">${m.avg_score.toFixed(1)}/10 avg</span>` : "";
+          const fav = m.favorite ? `<span class="badge badge--sm badge--accent">${icon("heart")}Favorite</span>` : "";
+          return `<li class="history-item">
+              ${mealMediaHtml({ recipe_slug: m.recipe_slug, title: m.meal_name }, { decorative: true, sizes: "(min-width: 1024px) 30vw, 120px" })}
+              <div class="history-item__body">
+                <p class="history-item__title">${escapeHtml(m.meal_name)}</p>
+                <div class="badges"><span class="badge badge--sm ${status.cls}">${escapeHtml(status.label)}</span>${rating}${fav}</div>
+              </div>
+            </li>`;
+        })
+        .join("")
+    );
   }
+
+  const tasteLineIcons = { like: "heart", avoid: "x", history: "history", starter: "spark" };
 
   async function renderTasteProfile() {
     const ul = document.getElementById("tasteProfileLines");
-    ul.innerHTML = "<li>Loading…</li>";
+    const meta = document.getElementById("tasteProfileMeta");
+    ul.setAttribute("aria-busy", "true");
+    ul.innerHTML = '<li class="skeleton" style="height:72px" aria-hidden="true"></li><li class="skeleton" style="height:72px" aria-hidden="true"></li>';
+    if (meta) meta.hidden = true;
     const hh = API.householdId || state.householdId;
+    const done = function (html) {
+      ul.innerHTML = html;
+      ul.removeAttribute("aria-busy");
+    };
     if (!hh) {
-      ul.innerHTML = "<li>Join or create a kitchen first.</li>";
+      done(`<li class="taste-line--starter"><span class="taste-line__icon">${icon("users")}</span><span>Join or create a kitchen first.</span></li>`);
       return;
     }
     const res = await apiGet("/api/households/" + encodeURIComponent(hh) + "/taste-profile");
     if (!res || !res.ok) {
-      ul.innerHTML = "<li>Not enough data yet.</li>";
-      return;
+      done(`<li class="taste-line--starter"><span class="taste-line__icon">${icon("spark")}</span><span>Not enough to go on yet — cook and rate a dinner or two.</span></li>`);
+    } else {
+      done(
+        (res.profile.lines || [])
+          .map(function (line) {
+            const kind = tasteLineIcons[line.kind] ? line.kind : "starter";
+            return `<li class="taste-line--${kind}"><span class="taste-line__icon">${icon(tasteLineIcons[kind])}</span><span>${escapeHtml(line.text)}</span></li>`;
+          })
+          .join("")
+      );
+      const rated = res.profile.meals_rated;
+      if (meta && typeof rated === "number") {
+        meta.hidden = false;
+        meta.textContent = rated
+          ? "Based on " + rated + (rated === 1 ? " rating" : " ratings") + " so far."
+          : "No ratings yet — this fills in as you cook.";
+      }
     }
-    ul.innerHTML = (res.profile.lines || [])
-      .map(function (line) {
-        return `<li>${line.text}</li>`;
-      })
-      .join("");
     const corr = document.getElementById("tasteCorrections");
     corr.innerHTML = sparkOptions
       .map(function (s) {
         const on = state.tasteCorrectionSpark === s.id;
-        return `<button type="button" class="chip chip-tog${on ? " is-on" : ""}" data-corr="${s.id}">${s.label}</button>`;
+        return `<button type="button" class="chip-tog${on ? " is-on" : ""}" data-corr="${s.id}" aria-pressed="${on}">${s.label}</button>`;
       })
       .join("");
     corr.onclick = function (e) {
@@ -1184,7 +1444,9 @@
       if (!b) return;
       state.tasteCorrectionSpark = b.dataset.corr;
       corr.querySelectorAll("[data-corr]").forEach(function (el) {
-        el.classList.toggle("is-on", el.dataset.corr === state.tasteCorrectionSpark);
+        const on = el.dataset.corr === state.tasteCorrectionSpark;
+        el.classList.toggle("is-on", on);
+        el.setAttribute("aria-pressed", String(on));
       });
     };
   }
@@ -1196,7 +1458,7 @@
       "Cooked it",
       ...activeMembers().map((m) => `${m.name} rated ${state.ratings[m.id].score}/10`),
     ]
-      .map((t) => `<li><span class="ok">✓</span> ${t}</li>`)
+      .map((t) => `<li><span class="ok" aria-hidden="true">${icon("check")}</span> ${escapeHtml(t)}</li>`)
       .join("");
     const loopAttr = document.getElementById("loopAttr");
     if (loopAttr) { loopAttr.hidden = true; loopAttr.textContent = ""; }
@@ -1315,11 +1577,46 @@
       return;
     }
 
+    const homeCook = e.target.closest('[data-action="home-cook"]');
+    if (homeCook) {
+      e.preventDefault();
+      startCooking();
+      return;
+    }
+
+    const brandHome = e.target.closest("#brandHome");
+    if (brandHome) {
+      e.preventDefault();
+      show(state.householdId || API.householdId ? "home" : "welcome");
+      return;
+    }
+
+    const tab = e.target.closest('#detailTabs [role="tab"]');
+    if (tab) {
+      selectRecipeTab(tab.id, false);
+      return;
+    }
+
     const go = e.target.closest("[data-go]");
     if (go && !go.disabled && !go.dataset.select) {
       e.preventDefault();
       show(go.dataset.go);
     }
+  });
+
+  const detailTabs = document.getElementById("detailTabs");
+  if (detailTabs) detailTabs.addEventListener("keydown", (e) => {
+    const tabs = Array.from(detailTabs.querySelectorAll('[role="tab"]'));
+    const i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    let next = null;
+    if (e.key === "ArrowRight") next = tabs[(i + 1) % tabs.length];
+    else if (e.key === "ArrowLeft") next = tabs[(i - 1 + tabs.length) % tabs.length];
+    else if (e.key === "Home") next = tabs[0];
+    else if (e.key === "End") next = tabs[tabs.length - 1];
+    if (!next) return;
+    e.preventDefault();
+    selectRecipeTab(next.id, true);
   });
 
   if (screenNav) screenNav.addEventListener("click", (e) => {
@@ -1673,22 +1970,56 @@
     }
   });
 
-  document.getElementById("btnExitCook").addEventListener("click", () => {
-    if (confirm("Exit without finishing? You can come back to cook later.")) {
-      show("detail");
+  /** Themed confirm sheet; falls back to window.confirm where <dialog> is unsupported. */
+  function confirmDialog(opts) {
+    const dlg = document.getElementById("confirmDialog");
+    if (!dlg || typeof dlg.showModal !== "function") {
+      return Promise.resolve(window.confirm(opts.body || opts.title));
     }
+    document.getElementById("confirmTitle").textContent = opts.title;
+    document.getElementById("confirmBody").textContent = opts.body || "";
+    document.getElementById("confirmOk").textContent = opts.ok || "OK";
+    document.getElementById("confirmCancel").textContent = opts.cancel || "Cancel";
+    return new Promise(function (resolve) {
+      dlg.returnValue = "";
+      dlg.addEventListener(
+        "close",
+        function () {
+          resolve(dlg.returnValue === "ok");
+        },
+        { once: true }
+      );
+      dlg.showModal();
+      document.getElementById("confirmCancel").focus();
+    });
+  }
+
+  document.getElementById("btnExitCook").addEventListener("click", async () => {
+    const leave = await confirmDialog({
+      title: "Leave kitchen mode?",
+      body: "Dinner isn’t marked as cooked yet. You can start cooking again from the recipe any time.",
+      ok: "Exit",
+      cancel: "Keep cooking",
+    });
+    if (leave) show("detail");
   });
 
-  document.getElementById("btnStartCook").addEventListener("click", () => {
+  function startCooking(navigate) {
     if (!state.selectedMealId) {
       toast("Pick a meal from tonight’s options first");
-      return;
+      return false;
     }
     state.cookStep = 0;
     track("cook_started", {
       plan_id: API.planId || PLAN_ID,
       meal_option_id: state.selectedMealId,
     });
+    if (navigate !== false) show("cook");
+    return true;
+  }
+
+  document.getElementById("btnStartCook").addEventListener("click", (e) => {
+    if (!startCooking(false)) e.stopImmediatePropagation();
   });
 
   app.addEventListener("click", (e) => {

@@ -1,13 +1,18 @@
 /* FlavorWeave — conservative SW: network-first, versioned, freshness over cache */
-const CACHE_VERSION = "fw-sw-v1";
+const CACHE_VERSION = "fw-sw-v2";
 const SHELL = [
   "/",
   "/index.html",
   "/styles.css",
+  "/theme.js",
+  "/meal-media.js",
   "/app.js",
   "/favicon.svg",
   "/manifest.webmanifest",
   "/brand/flavorweave-emblem.svg",
+  "/brand/flavorweave-wordmark.svg",
+  "/brand/flavorweave-lockup-horizontal.svg",
+  "/brand/flavorweave-lockup-horizontal-reversed.svg",
   "/brand/icon-192.png",
   "/brand/icon-512.png",
 ];
