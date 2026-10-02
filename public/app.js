@@ -756,6 +756,7 @@
 
   function show(name) {
     const prev = state.view;
+    if (name === "detail" && prev !== "detail") state.detailTabFor = null;
     // Persist hard constraints when leaving constraints screen (per primary diner)
     if (prev === "constraints" && name !== "constraints") {
       const hh = API.householdId || state.householdId;
@@ -1002,7 +1003,11 @@
     const statsEl = document.getElementById("detailStats");
     const notesEl = document.getElementById("detailNotes");
     const servingsNote = document.getElementById("detailServingsNote");
-    selectRecipeTab("tab-overview", false);
+    const detailKey = meal ? meal.id : "";
+    if (state.detailTabFor !== detailKey) {
+      state.detailTabFor = detailKey;
+      selectRecipeTab("tab-overview", false);
+    }
     if (mediaEl) {
       mediaEl.outerHTML = mealMediaHtml(meal || {}, {
         className: "recipe__media",
@@ -1105,15 +1110,6 @@
 
   function updateDebug() {
     applyQaChrome();
-  // Keyboard: activate meal cards with Enter/Space
-  app.addEventListener("keydown", (e) => {
-    const card = e.target.closest(".option-card.is-pickable");
-    if (!card) return;
-    if (e.key !== "Enter" && e.key !== " ") return;
-    e.preventDefault();
-    card.click();
-  });
-
     if (!isQaMode() || !debug) return;
     const scores = state.members
       .map((m) => `${m.initial}:${state.ratings[m.id]?.score ?? "—"}`)

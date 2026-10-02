@@ -2072,7 +2072,12 @@ button.link-card:hover {
 /* Recipe detail */
 .recipe {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-6);
+}
+
+.recipe > * {
+  min-width: 0;
 }
 
 .recipe__media {
@@ -2926,6 +2931,10 @@ button.link-card:hover {
 
   .recipe__body {
     padding: 0 var(--page-pad);
+  }
+
+  .tab-btn {
+    padding: 0 var(--space-3);
   }
 
   .recipe-page-back {
