@@ -640,11 +640,12 @@
     return options.map((o) => {
       const letter = o.letter || "A";
       let pers = o.pers;
-      if (!pers && o.attributes_json) {
+      let attrs = null;
+      if (o.attributes_json) {
         try {
-          const attrs =
+          attrs =
             typeof o.attributes_json === "string" ? JSON.parse(o.attributes_json) : o.attributes_json;
-          if (attrs && attrs.pers) pers = attrs.pers;
+          if (attrs && attrs.pers && !pers) pers = attrs.pers;
         } catch (_) { /* ignore */ }
       }
       return {
@@ -656,8 +657,9 @@
         tone: o.tone || tones[letter] || "tone-a",
         time: o.time || "",
         effort: o.effort || "",
-        recipe_slug: o.recipe_slug || null,
-        recipe_version_id: o.recipe_version_id || null,
+        recipe_slug: o.recipe_slug || (attrs && attrs.recipe_slug) || null,
+        recipe_version_id:
+          o.recipe_version_id || o.recipe_version || (attrs && attrs.recipe_version_id) || null,
         pers: pers || {
           type: "why",
           label: "Shared pick",
