@@ -216,15 +216,16 @@ function buildWhy(row, ev, ratingCount, activeMemberCount = 2) {
       };
     }
     return {
-      label: "Fits your kitchen",
+      label: "A strong match",
       line: `Clears ${crew}'s hard limits. Not much history yet — ratings will sharpen this.`,
       confidence: row.confidence,
     };
   }
 
-  let label = "Why this";
+  let label = "A strong match";
   if (row.factors.exploration >= 0.55 && !liked.length) label = "Trying something new";
-  else if (row.factors.experienced_avg != null && row.factors.experienced_avg >= 8) label = "Likely crowd-pleaser";
+  else if (row.factors.experienced_avg != null && row.factors.experienced_avg >= 8) label = "Worth another round";
+  else if (row.factors.fatigue_penalty > 0) label = "Worth another round";
 
   return {
     label,

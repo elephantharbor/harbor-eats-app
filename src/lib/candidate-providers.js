@@ -18,7 +18,7 @@ import { getConceptBySlug } from "./recipe-store.js";
 /** @type {{ id: string, label: string, gather: (ctx: ProviderContext) => StructuredCandidate[] }} */
 export const harborCatalogProvider = {
   id: "harbor_catalog",
-  label: "Harbor Eats first-party catalog",
+  label: "FlavorWeave first-party catalog",
   gather(_ctx) {
     return MEAL_CATALOG.map((meal) => ({
       ...meal,

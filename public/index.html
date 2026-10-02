@@ -4,15 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light dark" />
-  <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#0c1a1e" media="(prefers-color-scheme: dark)" />
-  <title>Harbor Eats</title>
+  <meta name="theme-color" content="#FCFBF9" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#121a1b" media="(prefers-color-scheme: dark)" />
+  <meta name="description" content="FlavorWeave — your tastes, woven together. Three solid dinner picks for your household." />
+  <meta property="og:title" content="FlavorWeave" />
+  <meta property="og:description" content="Your tastes, woven together. Pick, cook, and rate together." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./brand/icon-512.png" />
+  <title>FlavorWeave</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="./brand/favicon.ico" sizes="48x48" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="Harbor Eats" />
-  <link rel="apple-touch-icon" href="./favicon.svg" />
+  <meta name="apple-mobile-web-app-title" content="FlavorWeave" />
+  <link rel="apple-touch-icon" href="./brand/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -20,7 +26,7 @@
 </head>
 <body>
   <div class="stage">
-    <p class="stage-label alpha-hide">Harbor Eats</p>
+    <p class="stage-label alpha-hide">FlavorWeave</p>
     <nav class="screen-nav alpha-hide" id="screenNav" aria-label="Screen jump" hidden>
       <button type="button" data-go="welcome">Welcome</button>
       <button type="button" data-go="create">Household</button>
@@ -49,8 +55,8 @@
         <div class="brand">
           <span class="mark" aria-hidden="true"></span>
           <div>
-            <div class="brand-name">Harbor Eats</div>
-            <div class="brand-sub" id="brandSub">Your kitchen</div>
+            <div class="brand-name">FlavorWeave</div>
+            <div class="brand-sub" id="brandSub">Your household</div>
           </div>
         </div>
         <div class="diners" id="dinerAvatars" aria-label="Household diners"></div>
@@ -60,9 +66,10 @@
       <section class="view" data-view="welcome" aria-label="Welcome">
         <div class="scroll welcome-pad">
           <div class="welcome-mark" aria-hidden="true"></div>
-          <p class="eyebrow">Harbor Eats</p>
-          <h1 class="title hero" data-testid="welcome-title">Dinner your household will love</h1>
-          <p class="lede">Three solid picks. Cook together. Rate once — next time gets smarter.</p>
+          <p class="eyebrow">FlavorWeave</p>
+          <h1 class="title hero" data-testid="welcome-title">Three dinners worth choosing</h1>
+          <p class="welcome-tagline">Your tastes, woven together.</p>
+          <p class="lede">Solid picks for your crew. Cook together — rate once, and next time gets smarter.</p>
           <div class="sticky-actions">
             <button class="btn btn-primary wide" type="button" data-go="create">Get started</button>
             <button class="btn btn-ghost wide" type="button" data-go="join">I have an invite</button>
@@ -201,6 +208,10 @@
           <p class="eyebrow">Tonight’s picks</p>
           <h1 class="title display">Which should we make?</h1>
           <p class="why-strip" id="choiceStripText"><span class="brass-dot"></span> Three options that fit your crew. Tap one — or send the set.</p>
+          <div class="weave-loader" id="choiceLoading" hidden aria-live="polite">
+            <div class="weave-loader__strands" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span>Weaving tonight’s picks…</span>
+          </div>
           <div id="choiceCards" role="list" aria-label="Tonight’s three picks"></div>
           <div class="card soft" id="shareCard">
             <div class="card-kicker">Send this plan</div>
@@ -258,7 +269,7 @@
           <button class="btn btn-ghost wide" type="button" data-go="tasteProfile">Your taste profile</button>
           <button class="btn btn-ghost wide" type="button" data-go="settings">Household settings</button>
           <button class="btn btn-ghost wide" type="button" data-go="demo" id="demoNavLabel">How your household fits together</button>
-          <p class="hint" id="installHint" hidden>Add Harbor Eats to your home screen for quick invites and cooking.</p>
+          <p class="hint" id="installHint" hidden>Add FlavorWeave to your home screen for quick invites and cooking.</p>
         </div>
       </section>
 
@@ -302,10 +313,10 @@
       </section>
 
       <section class="view" data-view="tasteProfile" aria-label="Taste profile">
-        <div class="scroll">
+        <div class="scroll weave-accent">
           <button class="back" type="button" data-go="home">← Home</button>
           <p class="eyebrow">Taste profile</p>
-          <h1 class="title display">What we think you like</h1>
+          <h1 class="title display">What we’ve learned so far</h1>
           <ul class="taste-lines" id="tasteProfileLines"></ul>
           <p class="section-h">Fix something?</p>
           <div class="spark-grid" id="tasteCorrections"></div>
@@ -374,7 +385,7 @@
       <section class="view" data-view="finished" aria-label="Cook Finished">
         <div class="scroll">
           <div class="center-block">
-            <div class="confirm-icon" aria-hidden="true">✓</div>
+            <div class="confirm-icon weave-pop" aria-hidden="true">✓</div>
             <p class="eyebrow">Done cooking</p>
             <h1 class="title display">Looks good</h1>
             <p class="lede">Rate while it’s fresh — each of you, 1–10. Or save and finish later.</p>
@@ -406,7 +417,7 @@
       <section class="view" data-view="loop" aria-label="Both rated">
         <div class="scroll">
           <div class="center-block">
-            <div class="confirm-icon" aria-hidden="true">◎</div>
+            <div class="confirm-icon weave-pop" aria-hidden="true">◎</div>
             <p class="eyebrow">Nice work</p>
             <h1 class="title display" id="loopTitle">Everyone rated dinner</h1>
             <p class="lede">We’ll remember this — next picks get a little smarter.</p>
