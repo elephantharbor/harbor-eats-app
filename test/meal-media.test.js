@@ -36,4 +36,16 @@ describe("FlavorWeave meal imagery", () => {
     const html = readFileSync(join(publicDir, "index.html"), "utf8");
     expect(html).not.toMatch(/<img[^>]+src="https?:\/\//);
   });
+
+  it("resolves legacy Blackstone display title to miso-ginger-salmon", () => {
+    const img = Media.imageFor({ title: "Blackstone Miso-Ginger Salmon" });
+    expect(img).toBeTruthy();
+    expect(img.slug).toBe("miso-ginger-salmon");
+    expect(img.src).toBe("/images/meals/miso-ginger-salmon.webp");
+  });
+
+  it("session restore query includes recipe_slug for meal options", () => {
+    const sessionSrc = readFileSync(join(process.cwd(), "src/lib/session.js"), "utf8");
+    expect(sessionSrc).toMatch(/SELECT meal_option_id, letter, name, recipe_slug, recipe_version/);
+  });
 });

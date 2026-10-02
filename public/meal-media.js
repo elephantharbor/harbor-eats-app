@@ -40,6 +40,21 @@
     byTitle[normalize(CATALOG[slug])] = slug;
   });
 
+  /** Legacy / marketing display titles that differ from catalog names. */
+  var TITLE_ALIASES = {
+    "blackstone miso ginger salmon": "miso-ginger-salmon",
+  };
+
+  function titleHintsSlug(title) {
+    var n = normalize(title);
+    if (TITLE_ALIASES[n]) return TITLE_ALIASES[n];
+    if (byTitle[n]) return byTitle[n];
+    if (n.indexOf("miso") >= 0 && n.indexOf("ginger") >= 0 && n.indexOf("salmon") >= 0) {
+      return "miso-ginger-salmon";
+    }
+    return null;
+  }
+
   function slugFor(meal) {
     if (!meal) return null;
     var slug = meal.recipe_slug || meal.slug;
@@ -48,7 +63,7 @@
     }
     if (slug && CATALOG[slug]) return slug;
     var title = meal.title || meal.name || meal.meal_name;
-    return byTitle[normalize(title)] || null;
+    return titleHintsSlug(title);
   }
 
   function imageFor(meal) {

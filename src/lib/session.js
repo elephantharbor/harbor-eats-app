@@ -171,7 +171,10 @@ export async function loadHouseholdActivity(db, household_id) {
     ratings = rat.results || [];
 
     const mo = await db
-      .prepare(`SELECT meal_option_id, letter, name, attributes_json FROM meal_option WHERE plan_id = ?`)
+      .prepare(
+        `SELECT meal_option_id, letter, name, recipe_slug, recipe_version, attributes_json
+         FROM meal_option WHERE plan_id = ?`
+      )
       .bind(plan.plan_id)
       .all();
     meal_options = mo.results || [];
