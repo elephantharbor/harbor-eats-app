@@ -1,6 +1,16 @@
-/* Harbor Eats — conservative SW: network-first, versioned, freshness over cache */
-const CACHE_VERSION = "he-sw-v3";
-const SHELL = ["/", "/index.html", "/styles.css", "/app.js", "/favicon.svg", "/manifest.webmanifest"];
+/* FlavorWeave — conservative SW: network-first, versioned, freshness over cache */
+const CACHE_VERSION = "fw-sw-v1";
+const SHELL = [
+  "/",
+  "/index.html",
+  "/styles.css",
+  "/app.js",
+  "/favicon.svg",
+  "/manifest.webmanifest",
+  "/brand/flavorweave-emblem.svg",
+  "/brand/icon-192.png",
+  "/brand/icon-512.png",
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

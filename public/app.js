@@ -1,5 +1,5 @@
 /**
- * Harbor Eats consumer prototype (product/prototype only — no competing tree)
+ * FlavorWeave consumer app (Harbor Eats internal venture — product/prototype tree)
  * Sample meal: HE-2026-09-23-P01-A Crispy Chipotle Tofu Tacos
  * Ratings: 1–10 dual per diner (Cora confirmed; 1–5 revoked).
  * Same-origin /api/* when D1 live; graceful in-memory fallback.
@@ -513,7 +513,7 @@
           `<span class="avatar${i === 0 ? " active" : ""}" title="${m.name} (${m.status})">${m.initial}</span>`
       )
       .join("");
-    document.getElementById("brandSub").textContent = state.householdName || "Your kitchen";
+    document.getElementById("brandSub").textContent = state.householdName || "Your household";
   }
 
   function renderProgressDots() {
@@ -673,7 +673,13 @@
       </article>`;
   }
 
+  function setChoiceLoading(on) {
+    const el = document.getElementById("choiceLoading");
+    if (el) el.hidden = !on;
+  }
+
   function renderChoices() {
+    setChoiceLoading(false);
     const list = displayMeals();
     document.getElementById("choiceCards").innerHTML = list
       .map((m) => mealCardHtml(m, { selected: state.selectedMealId === m.id, goDetail: true }))
@@ -762,6 +768,7 @@
     if (name === "choices") {
       (async function () {
         if (!API.planId && (API.householdId || state.householdId)) {
+          setChoiceLoading(true);
           await fetchRecommendationsPlan();
         }
         renderChoices();
