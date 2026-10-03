@@ -34,7 +34,7 @@ Detail: `docs/CYCLE1-INTEGRATION.md`.
 | FW-08 | Images | Accepted | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-catalog` `2303898d`. No PR to `main`. | `acdb92f3794a70adcd89c1c15e73d2670544502b` | `test/meal-image-lookup.test.js` (24 meals: slug, version id, title, title-only) | Not run (no preview deploy) | Composer 2.5 (`composer-2.5`) on `feature/fw-c1-catalog`; integrated by Grok 4.7 (`grok-4.7`) | Lookup is unit-tested. Animated load and fade on a real Tonight grid were not browser-verified in this integration. | None. Notes: `docs/CYCLE1-CATALOG-NOTES.md`. |
 | FW-09 | Explanation copy | Accepted | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-ux` `8b3e2f79`. No PR to `main`. | `acdb92f3794a70adcd89c1c15e73d2670544502b` | `test/explanation-evidence.test.js` (evidence tiers, plant-tag non-similarity, nut-tag non-similarity, dedupe) | Not run (no preview deploy) | Claude Opus 5.5 (`claude-opus-5-5`) on `feature/fw-c1-ux`; integrated by Grok 4.7 (`grok-4.7`) | Stored explanation text on old plans stays until a new round. Synthetic QA households never feed learning, so evidence tiers are unit-tested rather than shown in e2e. | Taste Model v1. Notes: `docs/CYCLE1-UX-NOTES.md`. |
 | FW-10 | Recipe nav/select | Accepted | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-ux` `8b3e2f79`. No PR to `main`. | `acdb92f3794a70adcd89c1c15e73d2670544502b` | `test/nav-context.test.js` (origin, Back, preview-not-select, locked-round parity); `e2e/specs/cycle1-ux.spec.js` (view, choose, history). E2e not re-run on this integration. | Not run (no preview deploy) | Claude Opus 5.5 (`claude-opus-5-5`) on `feature/fw-c1-ux`; integrated by Grok 4.7 (`grok-4.7`) | Back is still an in-app button. D-04 native Back is not built. Reducer copies stay duplicated with FW-01. | FW-01. Notes: `docs/CYCLE1-UX-NOTES.md`. |
-| D-01 | Multi-dinner planning | Implementation complete / awaiting Oversight acceptance | `feature/flavorweave-alpha-remediation`. Children `feature/fw-c3-contract`, `feature/fw-c3-shop`, `feature/fw-c3-ux`, `feature/fw-c3-ui`. No pull request. Not accepted. | Product runtime `ac9e520a442fd460f7e2880ef55ac8ca93d9a4aa`. See the Cycle 3 section. | `test/cycle3-contract.test.js`; `test/migration-0011.test.js`; `test/nav-context.test.js`; `e2e/specs/cycle1-ux.spec.js` (next-dinner hero) | Not run (no preview deploy). Hosted GitHub Actions was not run. | Grok 4.7 (`grok-4.7`) on this integration. Child commits do not name a model. | Carry-forward polish is listed in the Cycle 3 section. Migration 0011 was not applied to any D1 database. | Cycle 2. Contract: `docs/CYCLE3-CONTRACT.md`. UX: `docs/CYCLE3-UX.md`. |
+| D-01 | Multi-dinner planning | In Progress | `feature/flavorweave-alpha-remediation`. Cycle 3 children plus fix branches `feature/fw-c3-shoplines` `c6a8d34a`, `feature/fw-c3-uxfix` `668c1752`. No pull request. Not accepted. | Product runtime `f3f6d0e29bd009c778dfcf5e9d7b78a606927b74`. See the Cycle 3 section. Shopping line ids are plan-scoped (`sl_{dinner_plan_id}_{ingredient}_{unit}`). | `test/cycle3-contract.test.js` (23); `test/migration-0011.test.js`; `test/nav-context.test.js`; `test/brand-smoke.test.js` (`fw-sw-v11`); broad unit/lint/Playwright on this integration | Not run (no preview deploy). No browser re-check of Opus preview findings. Hosted GitHub Actions was not run. | Grok 4.7 (`grok-4.7`) on prior integration; fix branches by Cursor Agent. | Opus integrated preview review rejected the prior preview (line loss, unreachable list, participants, toast HTML, headers, quantity display, delta tags, card actions, title box, new-kitchen entry). Those items are not claimed re-verified here. Migration 0011 was not applied to any D1 database. | Cycle 2. Contract: `docs/CYCLE3-CONTRACT.md`. UX: `docs/CYCLE3-UX.md`. |
 | D-02 | Taste-vocabulary / dietary model expansion | Accepted | `feature/flavorweave-alpha-remediation`. Children `feature/fw-c2-contract` `3f734a5147411cc163db4d4ea4af1556a32ecd37`, `feature/fw-c2-taste` `dd97bc7d762fee9032065b2a13b41ae7b29db017`. No PR. | Cycle 2 integration tip. See the Cycle 2 section. | `test/diner-taste-rank.test.js`; `test/taste-resolver.test.js`; `test/preference-concepts.test.js`; `test/taste-profile.test.js`; `test/taste-ui.test.js`; `test/migration-0010.test.js` | Not run (no preview deploy). Hosted GitHub Actions was not run. | Grok 4.7 (`grok-4.7`) on the children and on this integration | Legacy `dislike` and `neutral` evidence is not rewritten. `recordInferredTaste` is a hook and nothing calls it from a meal rating. Household 001 was not backfilled. | Hard limits stay in `src/lib/eligibility.js`. Contract: `docs/CYCLE2-CONTRACT.md`. |
 | D-03 | Catalog expansion workflow | Accepted | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c2-catalog` `e6a9e8e9986cc3dc83b1a0f237105ca7d021c964`. No PR. | Cycle 2 integration tip. See the Cycle 2 section. | `test/cycle2-catalog.test.js`; `test/recipe-package.test.js`; `test/migration-0010.test.js` | Not run (no preview deploy). Hosted GitHub Actions was not run. | Grok 4.7 (`grok-4.7`) on the child and on this integration | 24 packages are structurally valid. Provenance stays `unknown_unverified`. Image provenance stays `unknown` and rights stay `not_cleared_for_external_release`. `kitchen_tested` stays false. Tonight still uses `recipe-store.js`. | `docs/CYCLE2-CONTRACT.md`. |
 | D-04 | Native-feeling Back | Approved / Not Yet Implemented | — | — | — | — | — | Title source: campaign prompt, not a repo design doc. FW-10 stores plain navigation context and does not build native Back. | — |
@@ -144,9 +144,39 @@ Service worker cache remains `fw-sw-v8`. The profile grid no longer spills one p
 
 ## Cycle 3 integration
 
-FW-01 through FW-10 stay Accepted. D-02 is Accepted. D-03 is Accepted. D-01 is **Implementation complete / awaiting Oversight acceptance**. It is not accepted. D-04, D-05 (AI/LLM Interaction and Cost Architecture), and D-06 (Natural-Language Meal Planning) stay Approved / Not Yet Implemented. The planner seam accepts a structured intent and does not call a model.
+FW-01 through FW-10 stay Accepted. D-02 is Accepted. D-03 is Accepted. D-01 is **In Progress**. It is not accepted. D-04, D-05 (AI/LLM Interaction and Cost Architecture), and D-06 (Natural-Language Meal Planning) stay Approved / Not Yet Implemented. The planner seam accepts a structured intent and does not call a model.
 
 Fast-forward of `feature/fw-c3-ui` onto `feature/flavorweave-alpha-remediation`, from `aa6596a4baa83d1f8d6756da1ac005f2ab2f341f` to `ac9e520a442fd460f7e2880ef55ac8ca93d9a4aa`. No merge commit. No pull request. Not merged to `main`. `main` was not pushed. Pages and the Worker were not deployed. No preview was deployed. Production D1 `23aa3db3-1090-471b-8c8a-b6fe71f5c053` and Household 001 were not written. Migration 0011 was not applied to any remote D1.
+
+**Cycle 3 fix integration** (from prior tip `94a67dd5ccd5162a948324cf85e85bc270c394b2`):
+
+| Order | Branch | Child SHA | How it landed |
+|-------|--------|-----------|---------------|
+| 5 | `feature/fw-c3-shoplines` | `c6a8d34aee5de753b4f1151b8275178b28696e21` | Fast-forward. Plan-scoped shopping line ids; `saveDinnerPlan` line rebuild inside `db.batch`. |
+| 6 | `feature/fw-c3-uxfix` | `668c1752b0771bc3bd698a29356e2df5d32eb823` | Merge commit `f3f6d0e29bd009c778dfcf5e9d7b78a606927b74`. Consumer UI fixes in `public/app.js`, `index.html`, `styles.css`, `sw.js`. |
+
+No merge conflicts. Shopping-started rules, FW-01, and Cycle 2 taste behavior were not changed in conflict resolution.
+
+**Branch tip (integration):** `f3f6d0e29bd009c778dfcf5e9d7b78a606927b74` after the merges above. A later docs-only commit may advance the tip without changing product files.
+
+**Product runtime SHA:** `f3f6d0e29bd009c778dfcf5e9d7b78a606927b74`
+
+**Service worker:** `fw-sw-v11` (`public/sw.js`). `test/brand-smoke.test.js` expects v11.
+
+**Shopping line ids:** `sl_{dinner_plan_id}_{ingredient}_{unit}` (plan-scoped; see `docs/CYCLE3-CONTRACT.md`).
+
+**Opus preview review:** The prior integrated preview was rejected for line loss, unreachable list, participants, toast HTML, headers, quantity display, delta tags, card actions, title box, and new-kitchen entry. This integration does not claim those were re-verified in a browser.
+
+**Node:** v22.14.0, after `npm ci`.
+
+Targeted unit on the product runtime tree: `test/cycle3-contract.test.js` 23 passed; `test/migration-0011.test.js` 4; `test/nav-context.test.js` 21; `test/brand-smoke.test.js` 7 (55 total).
+
+Broad suite on the product runtime tree:
+
+- Migration check: `OK: 11 migration file(s)`.
+- Unit tests: 37 files, 427 passed (`npx vitest run`).
+- Lint: `eslint --max-warnings=0`, clean.
+- Playwright: `CI=true npm run test:e2e`, 26 passed, 1 failed (`e2e/specs/responsive.spec.js` mobile Tonight nav). E2e helpers were updated for Cycle 3 onboarding landing on Home; the responsive spec was re-run and passed (3/3). Full Playwright was not re-run after that e2e-only fix. Hosted GitHub Actions was not run.
 
 The UI branch already contained the contract, the shop slice, and the UX document:
 
@@ -161,7 +191,7 @@ The UI branch already contained the contract, the shop slice, and the UX documen
 
 **Migration:** `migrations/0011_cycle3_dinner_plan.sql` is in the tree. The migration check reports `OK: 11 migration file(s)`, including this file. `test/migration-0011.test.js` still refuses 0011 when 0009 or 0010 has not run. 0011 was not applied to production D1 or any other remote D1.
 
-**Service worker:** `fw-sw-v10` (`public/sw.js`). Cycle 3 bumped the shell from `fw-sw-v8` to `fw-sw-v9`, then to `fw-sw-v10`.
+**Service worker (initial Cycle 3 UI merge):** `fw-sw-v10` (`public/sw.js`). Later bumped to `fw-sw-v11` in the fix integration above.
 
 **Integration model:** Grok 4.7 (`grok-4.7`). Child commits are authored by Cursor Agent and do not name a model.
 
@@ -221,4 +251,4 @@ These were still true after the merge. They are not part of the definition of do
 
 ## Out of scope
 
-D-04, D-05 (AI/LLM Interaction and Cost Architecture), and D-06 (Natural-Language Meal Planning) stay approved and not implemented. D-01 is implemented on this branch and is awaiting Oversight acceptance. It is not accepted. The final Opus 5.5 integrated review is not started. Production deploy, production D1 migrations, production backfill, and any write to Household 001 are out of scope. HH001 hard eligibility was not loosened: no dairy, no shellfish, no meat other than fish, no poultry, and nuts prohibited except an explicit cashew permission that this integration does not turn on.
+D-04, D-05 (AI/LLM Interaction and Cost Architecture), and D-06 (Natural-Language Meal Planning) stay approved and not implemented. D-01 is in progress on this branch and is not accepted. The final Opus 5.5 integrated review is not started. Production deploy, production D1 migrations, production backfill, and any write to Household 001 are out of scope. HH001 hard eligibility was not loosened: no dairy, no shellfish, no meat other than fish, no poultry, and nuts prohibited except an explicit cashew permission that this integration does not turn on.
