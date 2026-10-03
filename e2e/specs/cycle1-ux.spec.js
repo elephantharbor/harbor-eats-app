@@ -209,15 +209,15 @@ test.describe("FW-10 + FW-07 · recipe origin, view vs select, next dinner", () 
 
     const ratedPlan = (await me(page)).plan_id;
     await expect(page.locator('.view[data-view="loop"] [data-action="next-dinner"]')).toBeVisible();
-    await page.locator('.view[data-view="loop"] [data-go="home"]').click();
-    await page.locator('.view[data-view="home"] [data-action="next-dinner"]').first().click();
+    await page.locator('.view[data-view="loop"] [data-action="next-dinner"]').click();
     await expect(page.locator('.view[data-view="home"].is-active')).toHaveCount(1);
     await expect(page.getByTestId("home-title")).toHaveText("What’s for dinner?");
     await expect(page.getByRole("button", { name: "Plan our dinners" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Find a dinner" })).toBeVisible();
     const fresh = await me(page);
     expect(fresh.plan_id).toBe(ratedPlan);
-    expect(fresh.previous_meal && fresh.previous_meal.meal_name).toBe(titleB);
+    // The rated round is still the current plan, so it is not reported as a previous meal.
+    expect(fresh.previous_meal).toBeNull();
 
     await page.locator('#topbar [data-go="meals"]:visible').first().click();
     const firstHistory = page.locator("[data-history-recipe]").first();
