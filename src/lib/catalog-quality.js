@@ -21,6 +21,13 @@ const VALID_DIETARY = new Set([
   "nuts",
   "cashew",
   "peanut",
+  "walnut",
+  "almond",
+  "pecan",
+  "hazelnut",
+  "pistachio",
+  "macadamia",
+  "pine-nut",
   "tacos",
   "pasta",
   "bowl",
@@ -180,6 +187,57 @@ export function validateCatalogScaling(targets = [1, 2, 3, 4]) {
   return { ok: errors.length === 0, errors };
 }
 
+/**
+ * Nut ingredients must be tagged as nuts plus the specific nut.
+ * Cashew is still a nut here; the cashew exception lives only in eligibility.
+ * Coconut, nutmeg, butternut, and nutritional yeast are not nuts.
+ */
+const NUT_INGREDIENT_TAGS = [
+  { tag: "walnut", pattern: /\bwalnuts?\b/i },
+  { tag: "almond", pattern: /\balmonds?\b/i },
+  { tag: "pecan", pattern: /\bpecans?\b/i },
+  { tag: "hazelnut", pattern: /\bhazelnuts?\b/i },
+  { tag: "pistachio", pattern: /\bpistachios?\b/i },
+  { tag: "macadamia", pattern: /\bmacadamias?\b/i },
+  { tag: "pine-nut", pattern: /\bpine[- ]nuts?\b/i },
+  { tag: "peanut", pattern: /\bpeanuts?\b/i },
+  { tag: "cashew", pattern: /\bcashews?\b/i },
+];
+
+function conceptAllergenText(concept) {
+  const version = concept.current_version;
+  return [
+    concept.name,
+    concept.title,
+    ...version.ingredients.map((i) => i.name),
+    ...version.steps.flatMap((s) => [s.title, s.body]),
+  ].join("\n");
+}
+
+/**
+ * FW integration: a nut dish is excluded by its catalog tags, not only by a name scan.
+ * @returns {{ ok: boolean, errors: string[] }}
+ */
+export function validateNutAllergenTags() {
+  /** @type {string[]} */
+  const errors = [];
+  for (const c of MEAL_CONCEPTS) {
+    const text = conceptAllergenText(c);
+    const needed = NUT_INGREDIENT_TAGS.filter((row) => row.pattern.test(text)).map((row) => row.tag);
+    if (!needed.length) continue;
+    const diet = c.current_version.dietary_tags || [];
+    if (!c.tags.includes("nuts") || !diet.includes("nuts")) {
+      errors.push(`${c.concept_id}: nut ingredient requires a nuts tag on tags and dietary_tags`);
+    }
+    for (const tag of needed) {
+      if (!c.tags.includes(tag) || !diet.includes(tag)) {
+        errors.push(`${c.concept_id}: missing ${tag} allergen tag`);
+      }
+    }
+  }
+  return { ok: errors.length === 0, errors };
+}
+
 /** Oct 1 tofu/lime observation — structural lime coverage for chipotle tofu tacos */
 export function validateTofuLimeRegression() {
   const c = MEAL_CONCEPTS.find((row) => row.concept_id === "crispy-chipotle-tofu-tacos");
@@ -310,6 +368,7 @@ export function runAllCatalogQualityChecks() {
     validateRecipeCompleteness(),
     validateCatalogScaling([1, 2, 3, 4]),
     validateTofuLimeRegression(),
+    validateNutAllergenTags(),
     validateDefaultEligibilityFloor(),
   ];
   const errors = parts.flatMap((p) => p.errors);

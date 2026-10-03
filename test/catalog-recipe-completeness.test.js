@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   runAllCatalogQualityChecks,
   validateCatalogScaling,
+  validateNutAllergenTags,
   validateRecipeCompleteness,
   validateTofuLimeRegression,
 } from "../src/lib/catalog-quality.js";
@@ -33,6 +34,19 @@ describe("FW-03 recipe completeness (structural)", () => {
 
   it("Oct 1 tofu/lime regression — PASS on current catalog", () => {
     expect(validateTofuLimeRegression().ok).toBe(true);
+  });
+
+  it("tags nut dishes, including mushroom walnut bolognese, as nuts", () => {
+    const result = validateNutAllergenTags();
+    expect(result.errors).toEqual([]);
+    expect(result.ok).toBe(true);
+    const walnut = getConceptBySlug("mushroom-walnut-bolognese");
+    expect(walnut.tags).toEqual(expect.arrayContaining(["nuts", "walnut"]));
+    expect(walnut.current_version.dietary_tags).toEqual(expect.arrayContaining(["nuts", "walnut"]));
+    const cashew = getConceptBySlug("cashew-pesto-pasta");
+    expect(cashew.tags).toEqual(expect.arrayContaining(["nuts", "cashew"]));
+    const peanut = getConceptBySlug("peanut-noodle-stir-fry");
+    expect(peanut.tags).toEqual(expect.arrayContaining(["nuts", "peanut"]));
   });
 });
 

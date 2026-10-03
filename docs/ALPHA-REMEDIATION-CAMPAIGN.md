@@ -1,42 +1,65 @@
 # FlavorWeave alpha remediation campaign
 
 Long-lived integration branch: `feature/flavorweave-alpha-remediation`.
-Cycle 1 child branch: `feature/fw-c1-identity-metadata`.
-Pull request: not opened. `ManagePullRequest` refused with `must be a collaborator`. The child was fast-forwarded onto the integration branch instead. No pull request targets `main`.
-Production `main` is not a campaign base. This cycle does not merge to `main`, does not deploy Pages or Workers, and does not apply migrations to production D1.
+Cycle 1 children, merged in order:
 
-**Session model:** Grok 4.7 (`grok-4.7`).
+1. `feature/fw-c1-identity-metadata` (already on this branch at `cda0dc75`)
+2. `feature/fw-c1-catalog` at `2303898dbc2f9439d4f39fe0e682b69489f48949`
+3. `feature/fw-c1-ux` at `8b3e2f793a5e39837720306063d2b02c11fbaf38`
 
-**Migration this cycle:** `migrations/0008_evidence_origin.sql` is committed for isolated dev/test databases only. It was **not** applied to production D1. FW-01 and FW-02 do not add a migration.
+Pull request: not opened against `main`. The result is pushed only to `feature/flavorweave-alpha-remediation`.
+Production `main` is not a campaign base. This cycle does not merge to `main`, does not deploy Pages or Workers, and does not apply migrations to any D1 database.
+
+**Integration SHA:** `INTEGRATION_SHA_PENDING`
+**Integration model:** Grok 4.7 (`grok-4.7`).
+Detail: `docs/CYCLE1-INTEGRATION.md`.
+
+**Migration:** `migrations/0008_evidence_origin.sql` is committed. It was **not** applied to production D1, and it was not applied to any other D1 database in this integration. FW-01 and FW-02 do not add a migration.
 
 **Preview validation:** not run. No preview was deployed to Cloudflare Pages or Worker URLs.
-
-**Implementing SHA:** `2376e1c2ce4272e36aea346c8ec1635e752099af` (commit that introduces the FW-01, FW-02, and evidence-isolation code on the child branch).
 
 ## Tracking
 
 | ID | Title | Status | Branch / PR | Implementing SHA | Tests added | Preview validation | Model(s) | Unresolved risk | Dependencies |
 |----|-------|--------|-------------|------------------|-------------|--------------------|----------|-----------------|--------------|
-| FW-01 | Meal/rating identity (P0 release blocker) | Fixed | `feature/fw-c1-identity-metadata` fast-forwarded to `feature/flavorweave-alpha-remediation` (PR refused: must be a collaborator) | `2376e1c2ce4272e36aea346c8ec1635e752099af` | `test/meal-identity.test.js`; `test/household-state.test.js` (Rated survives a status rewrite) | Not run (no preview deploy) | Grok 4.7 (`grok-4.7`) | Client and server reducers are duplicated; parity test covers inspect / cook / exit only. FW-10 recipe nav/select UX stays open. | None. Root cause: `docs/FW-01-ROOT-CAUSE.md`. |
-| FW-02 | Restored recommendation metadata loss | Fixed | `feature/fw-c1-identity-metadata` fast-forwarded to `feature/flavorweave-alpha-remediation` (PR refused: must be a collaborator) | `2376e1c2ce4272e36aea346c8ec1635e752099af` | `test/meal-option-view.test.js` (fresh, restored row, lossy share) | Not run (no preview deploy) | Grok 4.7 (`grok-4.7`) | Catalog hydration uses prep+cook minutes when a share dropped `minutes` (miso-ginger-salmon is 22, not the display chip “35 min”). | FW-01 read path now returns projected options. |
-| EVIDENCE-INTEGRITY | Synthetic QA evidence isolation | Fixed (forward) | `feature/fw-c1-identity-metadata` fast-forwarded to `feature/flavorweave-alpha-remediation` (PR refused: must be a collaborator) | `2376e1c2ce4272e36aea346c8ec1635e752099af` | `test/evidence-origin.test.js` | Not run (no preview deploy) | Grok 4.7 (`grok-4.7`) | October 1 production rows are untagged. Applying 0008 later defaults them to `household`, so they would still count until a reviewed quarantine. This cycle does not query, backfill, or migrate production D1. | Migration `0008` on any non-production database that runs this code. |
-| FW-03 | Catalog completeness | Open / Not Yet Implemented | — | — | — | — | — | — | — |
-| FW-04 | Serving audit | Open / Not Yet Implemented | — | — | — | — | — | — | — |
-| FW-05 | Invite navigation | Open / Not Yet Implemented | — | — | — | — | — | — | — |
-| FW-06 | Dietary copy | Open / Not Yet Implemented | — | — | — | — | — | — | — |
-| FW-07 | Next-dinner CTA | Open / Not Yet Implemented | — | — | — | — | — | — | — |
-| FW-08 | Images | Open / Not Yet Implemented | — | — | — | — | — | — | — |
-| FW-09 | Explanation copy | Open / Not Yet Implemented | — | — | — | — | — | — | — |
-| FW-10 | Recipe nav/select | Open / Not Yet Implemented | — | — | — | — | — | FW-01 stops view-from-selecting and locks outcomes. It does not close the broader recipe navigation item. | FW-01 |
+| FW-01 | Meal/rating identity (P0 release blocker) | Resolved | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-identity-metadata`, prior integration `cda0dc75`. No PR to `main`. | `INTEGRATION_SHA_PENDING` | `test/meal-identity.test.js`; `test/household-state.test.js` (Rated survives a status rewrite) | Not run (no preview deploy) | Grok 4.7 (`grok-4.7`) on the child and on this integration | Client and server reducers are duplicated; parity covers inspect / cook / exit. | None. Root cause: `docs/FW-01-ROOT-CAUSE.md`. |
+| FW-02 | Restored recommendation metadata loss | Resolved | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-identity-metadata`, prior integration `cda0dc75`. No PR to `main`. | `INTEGRATION_SHA_PENDING` | `test/meal-option-view.test.js` (fresh, restored row, lossy share) | Not run (no preview deploy) | Grok 4.7 (`grok-4.7`) on the child and on this integration | Catalog hydration uses prep+cook minutes when a share dropped `minutes` (miso-ginger-salmon is 22, not the display chip “35 min”). | FW-01 read path returns projected options. |
+| EVIDENCE-INTEGRITY | Synthetic QA evidence isolation | Resolved | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-identity-metadata`, prior integration `cda0dc75`. No PR to `main`. | `INTEGRATION_SHA_PENDING` | `test/evidence-origin.test.js` | Not run (no preview deploy) | Grok 4.7 (`grok-4.7`) on the child and on this integration | October 1 production rows are untagged. Applying 0008 later defaults them to `household`, so they would still count until a reviewed quarantine. This cycle does not query, backfill, or migrate production D1. QA mode does not count as Household 001. | Migration `0008` only on a non-production database that later runs this code. Not applied here. |
+| FW-03 | Catalog completeness | Resolved | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-catalog` `2303898d`. No PR to `main`. | `INTEGRATION_SHA_PENDING` | `test/catalog-recipe-completeness.test.js` (FW-03 gate, fish-taco regression, Oct 1 tofu/lime) | Not run (no preview deploy) | Composer 2.5 (`composer-2.5`) on `feature/fw-c1-catalog`; integrated by Grok 4.7 (`grok-4.7`) | Structural checks only. Not kitchen-tested cooking evidence. | None. Notes: `docs/CYCLE1-CATALOG-NOTES.md`. |
+| FW-04 | Serving audit | Resolved | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-catalog` `2303898d`. No PR to `main`. | `INTEGRATION_SHA_PENDING` | `test/catalog-recipe-completeness.test.js` (servings 1–4); `test/recipe-scaling.test.js` (singular cup grammar) | Not run (no preview deploy) | Composer 2.5 (`composer-2.5`) on `feature/fw-c1-catalog`; integrated by Grok 4.7 (`grok-4.7`) | Grammar and plausibility are structural. Servings outside 1–4 are not the alpha audit. | FW-03 recipe quantities. Notes: `docs/CYCLE1-CATALOG-NOTES.md`. |
+| FW-05 | Invite navigation | Resolved | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-ux` `8b3e2f79`. No PR to `main`. | `INTEGRATION_SHA_PENDING` | `test/nav-context.test.js`; `e2e/specs/cycle1-ux.spec.js` (invite household vs onboarding). E2e not re-run on this integration. | Not run (no preview deploy) | Claude Opus 5.5 (`claude-opus-5-5`) on `feature/fw-c1-ux`; integrated by Grok 4.7 (`grok-4.7`) | Reloading mid-onboarding after adding a person still lands on Tonight. That was true before this cycle. The QA screen switcher can still force a step. | None. Notes: `docs/CYCLE1-UX-NOTES.md`. |
+| FW-06 | Dietary copy | Resolved | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-ux` `8b3e2f79`. Walnut tags added on this integration. No PR to `main`. | `INTEGRATION_SHA_PENDING` | `test/dietary-eligibility.test.js` (HH001, cashew exception, name guard, tags-only walnut exclusion); `test/catalog-recipe-completeness.test.js` (`validateNutAllergenTags`) | Not run (no preview deploy) | Claude Opus 5.5 (`claude-opus-5-5`) on `feature/fw-c1-ux`; catalog tags and integration by Grok 4.7 (`grok-4.7`) | Cashews stay blocked until a diner stores an explicit cashew permission. Household 001 was not given that permission. The client keeps its own copy of the key/row map in `app.js`. "No meat" includes poultry. | Catalog allergen tags. Notes: `docs/CYCLE1-UX-NOTES.md`, `docs/CYCLE1-INTEGRATION.md`. |
+| FW-07 | Next-dinner CTA | Resolved | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-ux` `8b3e2f79`. No PR to `main`. | `INTEGRATION_SHA_PENDING` | `test/nav-context.test.js` (`previousCompletedMeal`, locked round); `e2e/specs/cycle1-ux.spec.js` (rate, then next dinner). E2e not re-run on this integration. | Not run (no preview deploy) | Claude Opus 5.5 (`claude-opus-5-5`) on `feature/fw-c1-ux`; integrated by Grok 4.7 (`grok-4.7`) | A partly rated dinner still has no next-dinner action. This is not week planning. | FW-01 locked outcomes. Notes: `docs/CYCLE1-UX-NOTES.md`. |
+| FW-08 | Images | Resolved | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-catalog` `2303898d`. No PR to `main`. | `INTEGRATION_SHA_PENDING` | `test/meal-image-lookup.test.js` (24 meals: slug, version id, title, title-only) | Not run (no preview deploy) | Composer 2.5 (`composer-2.5`) on `feature/fw-c1-catalog`; integrated by Grok 4.7 (`grok-4.7`) | Lookup is unit-tested. Animated load and fade on a real Tonight grid were not browser-verified in this integration. | None. Notes: `docs/CYCLE1-CATALOG-NOTES.md`. |
+| FW-09 | Explanation copy | Resolved | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-ux` `8b3e2f79`. No PR to `main`. | `INTEGRATION_SHA_PENDING` | `test/explanation-evidence.test.js` (evidence tiers, plant-tag non-similarity, nut-tag non-similarity, dedupe) | Not run (no preview deploy) | Claude Opus 5.5 (`claude-opus-5-5`) on `feature/fw-c1-ux`; integrated by Grok 4.7 (`grok-4.7`) | Stored explanation text on old plans stays until a new round. Synthetic QA households never feed learning, so evidence tiers are unit-tested rather than shown in e2e. | Taste Model v1. Notes: `docs/CYCLE1-UX-NOTES.md`. |
+| FW-10 | Recipe nav/select | Resolved | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-ux` `8b3e2f79`. No PR to `main`. | `INTEGRATION_SHA_PENDING` | `test/nav-context.test.js` (origin, Back, preview-not-select, locked-round parity); `e2e/specs/cycle1-ux.spec.js` (view, choose, history). E2e not re-run on this integration. | Not run (no preview deploy) | Claude Opus 5.5 (`claude-opus-5-5`) on `feature/fw-c1-ux`; integrated by Grok 4.7 (`grok-4.7`) | Back is still an in-app button. D-04 native Back is not built. Reducer copies stay duplicated with FW-01. | FW-01. Notes: `docs/CYCLE1-UX-NOTES.md`. |
 | D-01 | Multi-dinner planning | Approved / Not Yet Implemented | — | — | — | — | — | Title source: campaign prompt, not a repo design doc. No Oversight spec names D-01. | — |
-| D-02 | Taste-vocabulary / dietary model expansion | Approved / Not Yet Implemented | — | — | — | — | — | Title source: campaign prompt, not a repo design doc. HH001 eligibility rules were not changed. | — |
+| D-02 | Taste-vocabulary / dietary model expansion | Approved / Not Yet Implemented | — | — | — | — | — | Title source: campaign prompt, not a repo design doc. HH001 eligibility rules were not changed. Cashews were not auto-enabled. | — |
 | D-03 | Catalog expansion workflow | Approved / Not Yet Implemented | — | — | — | — | — | Title source: campaign prompt, not a repo design doc. | — |
-| D-04 | Native-feeling Back | Approved / Not Yet Implemented | — | — | — | — | — | Title source: campaign prompt, not a repo design doc. | — |
+| D-04 | Native-feeling Back | Approved / Not Yet Implemented | — | — | — | — | — | Title source: campaign prompt, not a repo design doc. FW-10 stores plain navigation context and does not build native Back. | — |
 | D-05 | Approved design (title not in repo yet) | Approved / Not Yet Implemented | — | — | — | — | — | No Oversight design doc in the repo. Title not invented. | — |
 | D-06 | Approved design (title not in repo yet) | Approved / Not Yet Implemented | — | — | — | — | — | No Oversight design doc in the repo. Title not invented. | — |
-| GATE-OPUS-55 | Final Opus 5.5 integrated review | Not Started | — | — | — | — | Opus 5.5 (required later) | Mandatory campaign gate before any production release of this remediation. | FW-01, FW-02, EVIDENCE-INTEGRITY, and remaining FW items as scoped later. |
+| GATE-OPUS-55 | Final Opus 5.5 integrated review | Not Started | — | — | — | — | Opus 5.5 (required later) | Mandatory campaign gate before any production release of this remediation. | FW-01 through FW-10 and EVIDENCE-INTEGRITY on this integration. |
 
-## FW-01 (fixed)
+## October 1 retest
+
+Recorded from `docs/CYCLE1-CATALOG-NOTES.md` and `docs/CYCLE1-UX-NOTES.md`. UX checks used a fresh synthetic QA kitchen (`?qa=1`). Writes sent `X-FlavorWeave-Data-Origin: synthetic`. The household stored `data_origin = synthetic` and `acquisition_source = synthetic_qa`. That kitchen does not count as Household 001.
+
+| Check | Result |
+|-------|--------|
+| Tofu/lime (`crispy-chipotle-tofu-tacos` lists 2 limes; lime step refs resolve) | **PASS** |
+| Blank kitchen name | **FAIL** at `cda0dc7` (saved as “Our kitchen”), then **fixed**. Continue stays on step 1, inline error, `aria-invalid`. Whitespace-only is blank. No household is created. |
+| Household name becomes the diner’s name | **FAIL** at `cda0dc7` (“The Parkers” became the first diner), then **fixed**. Step 1 asks for the kitchen name and “Your name” separately. Both are required. |
+| Added member | **PASS** before and after. Sam stayed Invited across reload in the API and in Settings. |
+| Empty first set of picks | **PASS** before and after. Three cards with HH001-style limits. An empty plan shows “Try again” instead of a blank grid. |
+
+## Synthetic isolation
+
+`data_origin` is `household` or `synthetic`. QA mode sends `X-FlavorWeave-Data-Origin: synthetic` on POST and PATCH. A body field `data_origin: synthetic` is also honored. Synthetic rows are excluded from taste evidence, real-household history, Completed Meal Loop counts, funnel traction, and alpha ops. QA mode does not count as Household 001.
+
+`migrations/0008_evidence_origin.sql` is committed and **not** applied to production D1. The new columns default to `household`. Existing October 1 rows would therefore stay `household` if 0008 were applied later, and they would still count until a reviewed quarantine. Do not backfill production. Do not apply 0008 as part of this integration.
+
+## FW-01 (resolved)
 
 Root cause, in short: viewing another recipe was implemented as selecting it. That rewrote which meal was selected and reset the plan to `Selected`. History and Home then attached the earlier rating to whichever meal was last selected, because ratings were stored per person for the whole plan rather than per meal instance and recipe version.
 
@@ -44,13 +67,13 @@ Opening a recipe now only previews it. Choosing a dinner is a separate explicit 
 
 Full write-up: `docs/FW-01-ROOT-CAUSE.md`.
 
-## FW-02 (fixed)
+## FW-02 (resolved)
 
 Fresh cards already had time, effort, and meal style. Restored, shared, and reloaded plans lost them: session restore returned raw rows whose chips lived only inside `attributes_json`, share creation overwrote that JSON with a lossy snapshot, and the client defaulted missing chips to `Shared` / `Shared pick`.
 
 Canonical fields now survive generation, persistence, API retrieval, reload, session restore, share view, and navigation. `projectMealOption` reads stored attributes and fills gaps from the catalog via `recipe_slug`. `mergeCanonicalAttributes` fills missing keys only and will not replace chips or the personalization label with Shared. Share reads live `meal_option` rows first and uses a snapshot only as fallback. Display-only copies are not stored when the option or catalog row can supply the fields.
 
-## EVIDENCE-INTEGRITY (fixed forward)
+## EVIDENCE-INTEGRITY (resolved, forward only)
 
 There was no reliable split between Household 001 learning and QA. `?qa=1` / `localStorage he_qa=1` only toggled debug chrome. Alpha metrics, funnel, taste, and history counted every row. HH001 is a diet profile, not a hardcoded `household_id`. October 1 production smoke wrote ordinary app rows with no origin tag. Those rows cannot be identified from the repository, and this cycle does not read or modify production D1.
 
@@ -63,8 +86,26 @@ Forward mechanism:
 - A synthetic request does not overwrite an existing real rating or real vote.
 - A fully synthetic household can still see its own session history. Its rows do not feed shared learning.
 
-Real Household 001 learning is unchanged by campaign QA that uses this marker. Pre-marker October 1 rows stay an unresolved production-data risk until a separate, reviewed quarantine. Do not apply 0008 to production as part of cycle 1.
+Real Household 001 learning is unchanged by campaign QA that uses this marker. Pre-marker October 1 rows stay an unresolved production-data risk until a separate, reviewed quarantine.
 
-## Out of scope this cycle
+## FW-03, FW-04, FW-08 (resolved)
 
-FW-03 through FW-10 implementation, D-01 through D-06 implementation, production deploy, production D1 migrations, and any change to HH001 hard eligibility (no dairy, no shellfish, no meat other than fish, no poultry; nuts prohibited except cashews).
+Catalog slice from Composer 2.5. Structural QA only.
+
+- FW-03 adds executable recipe checks: quantities, compound-ingredient notes, oil listed when a step uses it, and heat or doneness language. The October fish-taco shape and the October tofu/lime recipe are guarded.
+- FW-04 scales servings 1–4 without `1 cups` unit grammar.
+- FW-08 keeps a stable meal-image shell. A failed image stays in the layout and shows the fallback. Lookup resolves all 24 meals by slug, version id, and title.
+
+## FW-05, FW-06, FW-07, FW-09, FW-10 (resolved)
+
+UX slice from Claude Opus 5.5. Decisions and the October 1 app retest are in `docs/CYCLE1-UX-NOTES.md`.
+
+- FW-05: one invite screen, two navigation contexts (onboarding vs household).
+- FW-06: hard limits are separate from likes. "No nuts" includes cashews unless that diner has an explicit cashew permission. The name scan remains. This integration also puts real `nuts` and `walnut` tags on `mushroom-walnut-bolognese`, and the same allergen rule on any similar catalog dish.
+- FW-07: one "Find our next dinner" action after a fully rated meal. It starts a new plan and leaves the finished plan in History.
+- FW-09: explanation copy is gated on stored evidence. Diet tags, including nut allergens, are not taste similarity.
+- FW-10: opening a recipe does not select it. Back returns to Tonight, History, or Home. FW-01 view-versus-choose stays in place.
+
+## Out of scope
+
+D-01 through D-06 stay approved and not implemented. D-05 and D-06 have no titles in the repo. The final Opus 5.5 integrated review is not started. Production deploy, production D1 migrations, production backfill, and any write to Household 001 are out of scope. HH001 hard eligibility was not loosened: no dairy, no shellfish, no meat other than fish, no poultry, and nuts prohibited except an explicit cashew permission that this integration does not turn on.

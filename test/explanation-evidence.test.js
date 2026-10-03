@@ -35,6 +35,14 @@ describe("low evidence: one rating is a first impression", () => {
     expect(why.line).toMatch(/You gave it 9\/10 last time/);
   });
 
+  it("a nut allergen tag is not taste similarity", () => {
+    const ev = ratingEvidence(
+      { recipe_slug: "other-bowl", tags: ["bowl", "walnut", "nuts"] },
+      [{ recipe_slug: "mushroom-walnut-bolognese", tags: ["pasta", "walnut", "nuts"], score: 9 }]
+    );
+    expect(ev.similar_count).toBe(0);
+  });
+
   it("one plant rating does not make every plant meal 'similar'", () => {
     const ev = ratingEvidence(meal("white-bean-kale-soup"), [rated("crispy-chipotle-tofu-tacos", 9)]);
     expect(ev.similar_count).toBe(0);

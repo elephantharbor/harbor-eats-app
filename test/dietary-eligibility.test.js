@@ -84,6 +84,16 @@ describe("hard dietary eligibility · HH001", () => {
     expect(optionTags({ name: "Peanut butter noodles", tags: ["plant"] })).toEqual(["plant", "peanut"]);
   });
 
+  it("excludes walnut bolognese from No nuts by catalog tags, with the name removed", () => {
+    const walnut = options.find((o) => o.recipe_slug === "mushroom-walnut-bolognese");
+    expect(walnut.tags).toEqual(expect.arrayContaining(["nuts", "walnut"]));
+    const nameless = { name: "Weeknight pasta", tags: walnut.tags };
+    expect(isOptionEligibleForHousehold(nameless, diner("m1", ["nuts"]))).toBe(false);
+    expect(isOptionEligibleForHousehold(nameless, diner("m1", HH001_KEYS))).toBe(false);
+    const untagged = { name: "Mushroom Walnut Bolognese", tags: ["plant", "dairy-free", "pasta"] };
+    expect(isOptionEligibleForHousehold(untagged, diner("m1", ["nuts"]))).toBe(false);
+  });
+
   it("never lets a bare 'nuts' tag through the cashew exception", () => {
     const mystery = { name: "Trail mix bowl", tags: ["plant", "nuts"] };
     expect(isOptionEligibleForHousehold(mystery, diner("m1", HH001_KEYS))).toBe(false);

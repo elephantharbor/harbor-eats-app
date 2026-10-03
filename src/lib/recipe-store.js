@@ -241,7 +241,7 @@ export const MEAL_CONCEPTS = [
     plate: "🍝",
     tone: "tone-b",
     chips: ["Plant", "30 min"],
-    dietary_tags: ["plant", "cashew"],
+    dietary_tags: ["plant", "cashew", "nuts"],
     ingredients: [
       { name: "short pasta", quantity: "12 oz" },
       { name: "raw cashews", quantity: "½ cup soaked" },
@@ -532,7 +532,7 @@ export const MEAL_CONCEPTS = [
     cuisine: "italian-inspired",
     meal_format: "pasta",
     primary_ingredient: "mushrooms",
-    tags: ["plant", "dairy-free", "pasta"],
+    tags: ["plant", "dairy-free", "pasta", "nuts", "walnut"],
     sparks: ["sheet"],
     exploration: 0.41,
     plate: "🍝",

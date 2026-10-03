@@ -59,10 +59,10 @@ describe("FlavorWeave brand smoke", () => {
     expect(title.replace(/<[^>]+>/g, " ")).not.toMatch(/FlavorWeave/);
   });
 
-  it("service worker shell caches the v3 runtime and brand assets", () => {
+  it("service worker shell caches one version newer than both cycle parents", () => {
     const sw = read("sw.js");
-    expect(sw).toMatch(/fw-sw-v5/);
-    for (const asset of ["/theme.js", "/meal-media.js", "/brand/flavorweave-lockup-horizontal.svg"]) {
+    expect(sw).toMatch(/const CACHE_VERSION = "fw-sw-v6"/);
+    for (const asset of ["/theme.js", "/meal-media.js", "/nav-context.js", "/brand/flavorweave-lockup-horizontal.svg"]) {
       expect(sw).toContain(`"${asset}"`);
       expect(existsSync(join(publicDir, asset))).toBe(true);
     }
