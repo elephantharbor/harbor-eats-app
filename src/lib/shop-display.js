@@ -11,6 +11,91 @@ export const SHOP_QTY_FRACS = [
 ];
 
 const QTY_EPS = 1e-6;
+const SHOP_LINE_EPS = 1e-6;
+
+/** @param {object} line */
+export function normalizeShopLineForCompare(line) {
+  if (!line) return null;
+  return {
+    line_id: line.line_id,
+    quantity: Number(line.quantity) || 0,
+    still_needed: !!line.still_needed,
+    list_state: line.list_state || "open",
+  };
+}
+
+function shopCompareMap(lines) {
+  const map = new Map();
+  for (const line of lines || []) {
+    const row = normalizeShopLineForCompare(line);
+    if (!row || !row.line_id) continue;
+    map.set(row.line_id, row);
+  }
+  return map;
+}
+
+/**
+ * Whether shopping lines changed in a way that should surface a list toast.
+ * @param {object[]} beforeLines
+ * @param {object[]} afterLines
+ */
+export function shopListMateriallyChanged(beforeLines, afterLines) {
+  const before = shopCompareMap(beforeLines);
+  const after = shopCompareMap(afterLines);
+  const ids = new Set([...before.keys(), ...after.keys()]);
+  for (const id of ids) {
+    const b = before.get(id);
+    const a = after.get(id);
+    if (!b || !a) return true;
+    if (
+      Math.abs(b.quantity - a.quantity) > SHOP_LINE_EPS ||
+      b.still_needed !== a.still_needed ||
+      b.list_state !== a.list_state
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function neededQty(row) {
+  return row && row.still_needed ? row.quantity : 0;
+}
+
+/**
+ * Counts for the post-shopping list-change toast from a before/after diff only.
+ * @param {object[]} beforeLines
+ * @param {object[]} afterLines
+ */
+export function shopListChangeCounts(beforeLines, afterLines) {
+  const before = shopCompareMap(beforeLines);
+  const after = shopCompareMap(afterLines);
+  const ids = new Set([...before.keys(), ...after.keys()]);
+  let added = 0;
+  let removed = 0;
+  for (const id of ids) {
+    const b = before.get(id);
+    const a = after.get(id);
+    if (!b && a) {
+      if (a.still_needed) added++;
+      continue;
+    }
+    if (b && !a) {
+      if (b.still_needed) removed++;
+      continue;
+    }
+    if (!b || !a) continue;
+    const bNeed = neededQty(b);
+    const aNeed = neededQty(a);
+    if (!b.still_needed && a.still_needed) added++;
+    else if (b.still_needed && !a.still_needed) removed++;
+    else if (b.still_needed && a.still_needed) {
+      if (aNeed > bNeed + SHOP_LINE_EPS) added++;
+      else if (bNeed > aNeed + SHOP_LINE_EPS) removed++;
+    }
+  }
+  return { added, removed };
+}
 
 export function formatShopQuantityAmount(num) {
   const sign = num < 0 ? "-" : "";

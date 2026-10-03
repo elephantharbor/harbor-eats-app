@@ -398,6 +398,44 @@ describe("shopping started", () => {
     expect(mode.plan.shop_lines.every((row) => row.list_state === "open")).toBe(true);
   });
 
+  it("does not rewrite the list or append deltas when set_participants is unchanged", () => {
+    const { created, ctx } = makePlan(
+      [recipeMeal("rv_flour_v1", ["ana", "bo"])],
+      { participant_ids: ["ana", "bo"] }
+    );
+    const started = mutate(created.plan, { op: "start_shopping" }, ctx, "2026-10-04T12:30:00.000Z");
+    const meal = started.plan.meals[0];
+    const deltaCount = (started.plan.shop_deltas || []).length;
+    const noop = mutate(
+      started.plan,
+      {
+        op: "set_participants",
+        meal_id: meal.meal_id,
+        participant_ids: ["bo", "ana"],
+      },
+      ctx,
+      "2026-10-04T12:35:00.000Z"
+    );
+    expect(noop.ok).toBe(true);
+    expect((noop.plan.shop_deltas || []).length).toBe(deltaCount);
+    expect(noop.plan.shop_lines).toEqual(started.plan.shop_lines);
+    const smaller = mutate(
+      noop.plan,
+      {
+        op: "set_participants",
+        meal_id: meal.meal_id,
+        participant_ids: ["ana"],
+      },
+      ctx,
+      "2026-10-04T12:40:00.000Z"
+    );
+    expect(smaller.ok).toBe(true);
+    expect(line(smaller.plan, "flour", "cup").quantity).toBe(1);
+    expect(smaller.plan.shop_deltas.some((d) => d.kind === "no_longer_needed" && d.ingredient_id === "flour")).toBe(
+      true
+    );
+  });
+
   it("keeps purchased and already-have marks when a meal is swapped after shopping started", () => {
     const { created, ctx } = makePlan([
       recipeMeal("rv_flour_v1", ["ana"]),

@@ -2536,9 +2536,123 @@
     return res.plan;
   }
 
+  function shopLinesMateriallyChanged(beforeLines, afterLines) {
+    function row(line) {
+      if (!line) return null;
+      return {
+        line_id: line.line_id,
+        quantity: Number(line.quantity) || 0,
+        still_needed: !!line.still_needed,
+        list_state: line.list_state || "open",
+      };
+    }
+    const before = {};
+    (beforeLines || []).forEach(function (l) {
+      const r = row(l);
+      if (r && r.line_id) before[r.line_id] = r;
+    });
+    const after = {};
+    (afterLines || []).forEach(function (l) {
+      const r = row(l);
+      if (r && r.line_id) after[r.line_id] = r;
+    });
+    const ids = {};
+    Object.keys(before).forEach(function (id) {
+      ids[id] = true;
+    });
+    Object.keys(after).forEach(function (id) {
+      ids[id] = true;
+    });
+    const eps = 1e-6;
+    return Object.keys(ids).some(function (id) {
+      const b = before[id];
+      const a = after[id];
+      if (!b || !a) return true;
+      return (
+        Math.abs(b.quantity - a.quantity) > eps ||
+        b.still_needed !== a.still_needed ||
+        b.list_state !== a.list_state
+      );
+    });
+  }
+
+  function shopListChangeCountsFromDiff(beforeLines, afterLines) {
+    function row(line) {
+      if (!line) return null;
+      return {
+        line_id: line.line_id,
+        quantity: Number(line.quantity) || 0,
+        still_needed: !!line.still_needed,
+        list_state: line.list_state || "open",
+      };
+    }
+    function neededQty(r) {
+      return r && r.still_needed ? r.quantity : 0;
+    }
+    const before = {};
+    (beforeLines || []).forEach(function (l) {
+      const r = row(l);
+      if (r && r.line_id) before[r.line_id] = r;
+    });
+    const after = {};
+    (afterLines || []).forEach(function (l) {
+      const r = row(l);
+      if (r && r.line_id) after[r.line_id] = r;
+    });
+    const ids = {};
+    Object.keys(before).forEach(function (id) {
+      ids[id] = true;
+    });
+    Object.keys(after).forEach(function (id) {
+      ids[id] = true;
+    });
+    let added = 0;
+    let removed = 0;
+    const eps = 1e-6;
+    Object.keys(ids).forEach(function (id) {
+      const b = before[id];
+      const a = after[id];
+      if (!b && a) {
+        if (a.still_needed) added++;
+        return;
+      }
+      if (b && !a) {
+        if (b.still_needed) removed++;
+        return;
+      }
+      if (!b || !a) return;
+      const bNeed = neededQty(b);
+      const aNeed = neededQty(a);
+      if (!b.still_needed && a.still_needed) added++;
+      else if (b.still_needed && !a.still_needed) removed++;
+      else if (b.still_needed && a.still_needed) {
+        if (aNeed > bNeed + eps) added++;
+        else if (bNeed > aNeed + eps) removed++;
+      }
+    });
+    return { added: added, removed: removed };
+  }
+
   async function mutateDinnerPlan(payload) {
     const plan = state.dinnerPlan;
     if (!plan) return null;
+    const shopOps = {
+      set_line_state: true,
+      swap_meal: true,
+      set_participants: true,
+      set_leftovers: true,
+      set_eating_out: true,
+      remove_meal: true,
+      add_meal: true,
+      skip_meal: true,
+      set_count: true,
+      finalize: true,
+    };
+    const affectsList = shopOps[payload.op];
+    const shopLinesBefore =
+      affectsList
+        ? ((state.dinnerShop && state.dinnerShop.lines) || plan.shop_lines || []).slice()
+        : null;
     if (planShoppingStarted() && state.dinnerShop) {
       snapshotShopLinesForTags();
     }
@@ -2557,24 +2671,17 @@
     }
     applyDinnerPlan(res.plan);
     if (state.view === "shopList") await refreshDinnerShopping();
-    const shopOps = {
-      set_line_state: true,
-      swap_meal: true,
-      set_participants: true,
-      set_leftovers: true,
-      set_eating_out: true,
-      remove_meal: true,
-      add_meal: true,
-      skip_meal: true,
-      set_count: true,
-      finalize: true,
-    };
-    const affectsList = shopOps[payload.op];
     if (affectsList) {
-      if (res.plan.shopping_started_at) {
-        toastListChange(res.plan);
-      } else if (!res.plan.shopping_started_at) {
-        toast("List updated.");
+      const shopLinesAfter =
+        (state.dinnerShop && state.dinnerShop.lines) || res.plan.shop_lines || [];
+      const listChanged = shopLinesMateriallyChanged(shopLinesBefore || [], shopLinesAfter);
+      if (listChanged) {
+        if (res.plan.shopping_started_at) {
+          const counts = shopListChangeCountsFromDiff(shopLinesBefore || [], shopLinesAfter);
+          toastListChangeCounts(counts.added, counts.removed);
+        } else {
+          toast("List updated.");
+        }
       }
     }
     return res.plan;
@@ -2591,18 +2698,8 @@
     else toast("We couldn’t reach the kitchen. Try again.");
   }
 
-  function toastListChange(plan) {
-    const deltas = (plan && plan.shop_deltas) || [];
-    if (!deltas.length) {
-      toast("List updated.");
-      return;
-    }
-    let added = 0;
-    let removed = 0;
-    deltas.forEach(function (d) {
-      if (d.kind === "added") added++;
-      if (d.kind === "no_longer_needed") removed++;
-    });
+  function toastListChangeCounts(added, removed) {
+    if (!added && !removed) return;
     let msg = "Your list changed.";
     if (added) msg += " " + added + " added,";
     if (removed) msg += " " + removed + " no longer needed.";

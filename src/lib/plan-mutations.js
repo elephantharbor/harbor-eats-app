@@ -487,11 +487,21 @@ function swapMeal(plan, action, ctx) {
   return { ok: true };
 }
 
+function sameParticipantIds(current, next) {
+  const a = [...(current || [])].sort();
+  const b = [...(next || [])].sort();
+  if (a.length !== b.length) return false;
+  return a.every((id, index) => id === b[index]);
+}
+
 function setParticipants(plan, action, ctx) {
   const meal = findMeal(plan, action.meal_id);
   if (!meal) return fail("meal_not_found", 404);
   const members = assertParticipants(action.participant_ids, ctx.household_member_ids);
   if (!members.ok) return members;
+  if (sameParticipantIds(meal.participant_ids, action.participant_ids)) {
+    return { ok: true, skip_ingredient_sync: true };
+  }
   if (meal.kind === "recipe") {
     const decision = checkEligibility(pinnedEntry(meal), action.participant_ids, ctx);
     if (!decision.eligible) return fail("hard_limit_blocked", 409, { blocked: decision.blocked });
@@ -773,7 +783,7 @@ export function applyPlanMutation(plan, action, ctx = {}) {
   }));
   const applied = dispatch(next, action, ctx);
   if (!applied.ok) return applied;
-  if (effect === "ingredients") syncShopping(next, previousLines, ctx);
+  if (effect === "ingredients" && !applied.skip_ingredient_sync) syncShopping(next, previousLines, ctx);
   scopeShopLineIds(next);
   refreshStatus(next);
   next.updated_at = ctx.now || next.updated_at;

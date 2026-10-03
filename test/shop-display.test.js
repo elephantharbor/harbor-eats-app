@@ -3,6 +3,8 @@ import {
   formatShopQty,
   rebuildShopSnapshotFromDeltas,
   shopLineChangeMeta,
+  shopListChangeCounts,
+  shopListMateriallyChanged,
 } from "../src/lib/shop-display.js";
 
 describe("formatShopQty", () => {
@@ -88,6 +90,56 @@ describe("shopLineChangeMeta", () => {
       }
     );
     expect(meta).toBeNull();
+  });
+
+  it("treats an unchanged shopping list as no material change", () => {
+    const lines = [
+      {
+        line_id: "sl_dp1_flour_cup",
+        ingredient_id: "flour",
+        unit: "cup",
+        quantity: 2,
+        still_needed: true,
+        list_state: "open",
+      },
+      {
+        line_id: "sl_dp1_salt_tsp",
+        ingredient_id: "salt",
+        unit: "tsp",
+        quantity: 1,
+        still_needed: false,
+        list_state: "purchased",
+      },
+    ];
+    expect(shopListMateriallyChanged(lines, lines.slice())).toBe(false);
+    expect(shopListChangeCounts(lines, lines.slice())).toEqual({ added: 0, removed: 0 });
+  });
+
+  it("counts only lines that changed in this diff", () => {
+    const before = [
+      {
+        line_id: "sl_dp1_flour_cup",
+        ingredient_id: "flour",
+        unit: "cup",
+        quantity: 2,
+        still_needed: true,
+        list_state: "open",
+      },
+      {
+        line_id: "sl_dp1_salt_tsp",
+        ingredient_id: "salt",
+        unit: "tsp",
+        quantity: 1,
+        still_needed: true,
+        list_state: "open",
+      },
+    ];
+    const after = [
+      { ...before[0], quantity: 3 },
+      { ...before[1], still_needed: false, list_state: "purchased" },
+    ];
+    expect(shopListMateriallyChanged(before, after)).toBe(true);
+    expect(shopListChangeCounts(before, after)).toEqual({ added: 1, removed: 1 });
   });
 
   it("rebuildSnapshotFromDeltas removes a newly added line from baseline", () => {
