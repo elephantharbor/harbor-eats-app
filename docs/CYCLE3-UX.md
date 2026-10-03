@@ -39,14 +39,12 @@ The bottom tab bar keeps its four tabs: Home, Tonight, History, Profile. Do not 
 
 ### Current plan pointer
 
-No endpoint lists a household’s dinner plans. The client remembers them:
+Household discovery is authoritative on the server (`GET /api/dinner-plans/current`, or `current` on `GET /api/dinner-plans`). Home and Tonight call `/current` on load and when those screens open.
 
-- `fw_dinner_plan:{household_id}` in `localStorage` holds the current `dinner_plan_id`.
-- `fw_dinner_plans:{household_id}` holds up to five recent ids, newest first. Use this so a meal waiting on a rating can still be found after a new plan starts.
-- If the id returns `404` or `403`, drop it silently and show the no-plan state.
-- The share link `/?dinner_plan={dinner_plan_id}` (section 10) sets the pointer on another member’s device.
-
-This is a known gap. Another device does not see the plan until someone opens the share link. Do not add an endpoint. Record it in the Composer report.
+- `fw_dinner_plan:{household_id}` and `fw_dinner_plans:{household_id}` in `localStorage` are cache / last-viewed convenience only. They are updated when a plan is loaded from the API; they are not the only source of truth.
+- If the cached id returns `404` or `403`, drop the pointer and use server `current` (or no-plan when `current` is null).
+- Clearing `localStorage` does not hide an active plan: the next load still finds it via `/current`.
+- The share link `/?dinner_plan={dinner_plan_id}` (section 10) can still open a specific plan; it is not required for another household member to see the household’s current plan.
 
 ### Legacy Tonight round
 

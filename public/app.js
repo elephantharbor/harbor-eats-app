@@ -1403,6 +1403,7 @@
     if (name === "join") renderConstraintGrid("joinConstraints", state.joinConstraints);
     if (name === "choices") {
       (async function () {
+        await loadCurrentDinnerPlan();
         if (
           !hasCurrentDinnerPlan() &&
           legacyRoundActive() &&
@@ -1470,7 +1471,12 @@
       renderTonightPlan();
     }
     if (name === "loop") renderLoopSummary();
-    if (name === "home") updateHome();
+    if (name === "home") {
+      (async function () {
+        await loadCurrentDinnerPlan();
+        updateHome();
+      })();
+    }
     if (name === "demo" || name === "invite" || name === "rate" || name === "home") {
       syncHouseholdChrome();
     }
@@ -2500,13 +2506,22 @@
     setDinnerPlanPointer(plan.dinner_plan_id);
   }
 
+  function dinnerPlanFetchDenied(res) {
+    if (!res) return false;
+    const http = res._httpStatus || res.status;
+    return (
+      res.error === "plan_not_found" ||
+      res.error === "forbidden_cross_household" ||
+      http === 404 ||
+      http === 403
+    );
+  }
+
   async function fetchDinnerPlanById(id) {
     if (!id) return null;
     const res = await apiGet("/api/dinner-plans/" + encodeURIComponent(id));
     if (!res || !res.ok) {
-      if (res && (res.error === "plan_not_found" || res.status === 404)) {
-        clearDinnerPlanPointer();
-      }
+      if (dinnerPlanFetchDenied(res)) clearDinnerPlanPointer();
       return null;
     }
     applyDinnerPlan(res.plan);
@@ -2514,9 +2529,25 @@
   }
 
   async function loadCurrentDinnerPlan() {
-    const id = readDinnerPlanPointer();
-    if (!id) return null;
-    return fetchDinnerPlanById(id);
+    await ensureMemberSession();
+    const hh = API.householdId || state.householdId;
+    if (!hh) return null;
+    const pointerId = readDinnerPlanPointer();
+    const currentRes = await apiGet("/api/dinner-plans/current");
+    if (currentRes && currentRes.ok) {
+      if (currentRes.plan) {
+        applyDinnerPlan(currentRes.plan);
+        return currentRes.plan;
+      }
+      applyDinnerPlan(null);
+      if (pointerId) {
+        const probe = await apiGet("/api/dinner-plans/" + encodeURIComponent(pointerId));
+        if (dinnerPlanFetchDenied(probe)) clearDinnerPlanPointer();
+      }
+      return null;
+    }
+    if (pointerId) return fetchDinnerPlanById(pointerId);
+    return null;
   }
 
   async function createDinnerPlanRequest(opts) {

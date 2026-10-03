@@ -225,7 +225,7 @@ Discovery does not apply the Completed Meal Loop origin filter. The household th
 
 ## Left for later workstreams
 
-- Consumer UI for the three entry points, the list, cooking, and rating. The client still reads `fw_dinner_plan:` until a follow-up calls these discovery routes.
+- Consumer UI for the three entry points, the list, cooking, and rating. Cycle 3B client wiring (`feature/fw-c3b-client`) calls discovery routes from Home and Tonight; `fw_dinner_plan:` remains cache only.
 - D-04 native Back.
 - D-05 model gateway. `planDinners` does not call one.
 - D-06 natural language. The intent parser does not read a sentence.
