@@ -321,6 +321,24 @@ export function dinnerCompletedLoopSql() {
       )`;
 }
 
+/** List row for household discovery. The full plan stays on presentDinnerPlan. */
+export function presentDinnerPlanSummary(row) {
+  if (!row) return null;
+  return {
+    dinner_plan_id: row.dinner_plan_id,
+    household_id: row.household_id,
+    status: row.status,
+    status_label: STATUS_LABELS[row.status] || row.status,
+    meal_count: row.meal_count,
+    entry_point: row.entry_point,
+    shopping_started_at: row.shopping_started_at ?? null,
+    shopping_started: shoppingHasStarted(row),
+    finalized_at: row.finalized_at ?? null,
+    created_at: row.created_at,
+    updated_at: row.updated_at,
+  };
+}
+
 export function presentDinnerPlan(plan) {
   return {
     dinner_plan_id: plan.dinner_plan_id,

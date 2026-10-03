@@ -3,14 +3,21 @@
  * Household membership is checked here. Client eligibility flags are ignored.
  */
 
-import { requireSession } from "./auth.js";
+import { assertSameHousehold, requireSession } from "./auth.js";
 import { planDinners } from "./dinner-planner.js";
 import { applyPlanMutation, createDinnerPlan } from "./plan-mutations.js";
-import { assertParticipants, parsePlanIntent, presentDinnerPlan } from "./plan-contract.js";
 import {
+  assertParticipants,
+  parsePlanIntent,
+  presentDinnerPlan,
+  presentDinnerPlanSummary,
+} from "./plan-contract.js";
+import {
+  findCurrentDinnerPlanId,
   householdConstraints,
   householdMemberIds,
   householdTastes,
+  listHouseholdDinnerPlans,
   loadDinnerPlan,
   saveDinnerPlan,
 } from "./dinner-plan-store.js";
@@ -81,17 +88,19 @@ async function authorizePlan(db, session, dinnerPlanId) {
  * @param {{ DB: any }} env
  * @param {Request} request
  * @param {string} path
- * @param {URL} _url
+ * @param {URL} url
  * @param {{ writeOrigin: Function }} deps
  */
-export async function routeDinnerPlanRequest(env, request, path, _url, deps) {
+export async function routeDinnerPlanRequest(env, request, path, url, deps) {
   const method = request.method;
   const isPreview = path === "/api/dinner-plans/preview" && method === "POST";
   const isCreate = path === "/api/dinner-plans" && method === "POST";
-  const isRead = method === "GET" && /^\/api\/dinner-plans\/[^/]+$/.test(path);
+  const isList = method === "GET" && path === "/api/dinner-plans";
+  const isCurrent = method === "GET" && path === "/api/dinner-plans/current";
+  const isRead = method === "GET" && /^\/api\/dinner-plans\/[^/]+$/.test(path) && !isCurrent;
   const isShop = method === "GET" && /^\/api\/dinner-plans\/[^/]+\/shopping$/.test(path);
   const isMutate = method === "POST" && /^\/api\/dinner-plans\/[^/]+\/mutations$/.test(path);
-  if (!isPreview && !isCreate && !isRead && !isShop && !isMutate) return null;
+  if (!isPreview && !isCreate && !isList && !isCurrent && !isRead && !isShop && !isMutate) return null;
 
   const auth = await requireSession(env.DB, request);
   if (auth.error) return auth.error;
@@ -150,6 +159,23 @@ export async function routeDinnerPlanRequest(env, request, path, _url, deps) {
       },
       201
     );
+  }
+
+  if (isList || isCurrent) {
+    const requestedHousehold = url?.searchParams?.get("household_id");
+    if (assertSameHousehold(session, requestedHousehold)) {
+      return fail("forbidden_cross_household", 403);
+    }
+    const currentId = await findCurrentDinnerPlanId(env.DB, session.household_id);
+    const current = currentId ? await loadDinnerPlan(env.DB, currentId) : null;
+    const presented = current ? presentDinnerPlan(current) : null;
+    if (isCurrent) return respond({ ok: true, plan: presented });
+    const rows = await listHouseholdDinnerPlans(env.DB, session.household_id);
+    return respond({
+      ok: true,
+      current: presented,
+      plans: rows.map(presentDinnerPlanSummary),
+    });
   }
 
   const dinnerPlanId = planIdFrom(path, isShop ? "/shopping" : isMutate ? "/mutations" : "");

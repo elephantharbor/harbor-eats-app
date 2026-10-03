@@ -176,6 +176,10 @@ Every dinner-plan route requires a session.
 | Plan belongs to another household | `403 forbidden_cross_household` |
 | Unknown plan id | `404 plan_not_found` |
 | Participant id is not an active or invited member of that household | `403 forbidden_member` |
+| List or current, no session | `401 unauthorized` |
+| `household_id` query matches the session household | That household only |
+| `household_id` query is any other household | `403 forbidden_cross_household` |
+| Session household has no dinner plans | `200`, `current` / `plan` is null, `plans` is `[]` |
 
 Constraints are loaded from `constraint_rule`. Tastes are loaded from `diner_taste` for ranking only. A body field named `constraints` or `eligible` does not change either decision. `data_origin` on create comes from the existing origin writer, not from a client claim that a synthetic request is household.
 
@@ -185,6 +189,8 @@ Constraints are loaded from `constraint_rule`. Tastes are loaded from `diner_tas
 |-----------------|------|
 | `POST /api/dinner-plans` | Create. `meal_count`, `entry_point`, and either `meals` or `fill: "planner"`. |
 | `POST /api/dinner-plans/preview` | Planner only. Nothing is saved. |
+| `GET /api/dinner-plans` | This household's current plan and up to five summaries. See discovery below. |
+| `GET /api/dinner-plans/current` | The current plan only, or `plan: null`. The path segment `current` is reserved. |
 | `GET /api/dinner-plans/:id` | Plan, history, lines, deltas. |
 | `GET /api/dinner-plans/:id/shopping` | Lines, deltas, `shopping_started_at`. |
 | `POST /api/dinner-plans/:id/mutations` | Body is one mutation `op` from the table above. |
@@ -199,9 +205,27 @@ The first statements insert and delete a sentinel household with `data_origin = 
 
 Do not apply 0008, 0009, 0010, or 0011 to production D1 in this campaign.
 
+## Household discovery (Cycle 3B)
+
+A dinner plan is discoverable from the household's server rows. `localStorage` (`fw_dinner_plan:{household_id}` and `fw_dinner_plans:{household_id}`) is not the authority. This addendum does not wire `public/app.js`. No new migration. The query uses `dinner_plan` from migration 0011. The existing index on `(household_id, status)` is enough.
+
+`GET /api/dinner-plans/current` and the `current` field of `GET /api/dinner-plans` use one rule:
+
+**The current plan is the household's most recently updated plan whose `status` is not `completed`.** Ties break on `created_at` descending, then `dinner_plan_id` descending. A newer `completed` plan does not replace an older open plan. Status rank does not matter: a newer `draft` is current even when an older plan is `shopping` or `active`. If every stored plan is `completed`, or the household has none, `current` is null. That response is HTTP 200 with `ok: true`. It is not 401 or 403.
+
+`GET /api/dinner-plans/current` returns `{ ok: true, plan }`. `plan` is `presentDinnerPlan`, the same shape as `GET /api/dinner-plans/:id`, or null.
+
+`GET /api/dinner-plans` returns `{ ok: true, current, plans }`. `current` is that same full plan, or null. `plans` is at most five summaries for the session household: non-completed rows first, then completed, each group in the same recency order. A summary is `dinner_plan_id`, `household_id`, `status`, `status_label`, `meal_count`, `entry_point`, `shopping_started`, `shopping_started_at`, `finalized_at`, `created_at`, and `updated_at`. It does not include meals or shopping lines.
+
+The path segment `current` is this route. It is not looked up as a plan id.
+
+Both routes require a session. The household is the session household. A `household_id` query that matches is accepted. Any other `household_id` is `403 forbidden_cross_household`, including an unknown household id. The list never includes another household's plans. A guessed plan id is still `404 plan_not_found` for this household and `403 forbidden_cross_household` when the id belongs to another household.
+
+Discovery does not apply the Completed Meal Loop origin filter. The household that owns a synthetic plan can still see it. Those rows stay out of learning counts.
+
 ## Left for later workstreams
 
-- Consumer UI for the three entry points, the list, cooking, and rating.
+- Consumer UI for the three entry points, the list, cooking, and rating. The client still reads `fw_dinner_plan:` until a follow-up calls these discovery routes.
 - D-04 native Back.
 - D-05 model gateway. `planDinners` does not call one.
 - D-06 natural language. The intent parser does not read a sentence.

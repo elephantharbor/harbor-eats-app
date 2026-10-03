@@ -15,7 +15,13 @@ import {
   projectDinnerHistory,
 } from "../src/lib/plan-contract.js";
 import { applyPlanMutation, createDinnerPlan, resolvedRecipe } from "../src/lib/plan-mutations.js";
-import { loadDinnerPlan, saveDinnerPlan } from "../src/lib/dinner-plan-store.js";
+import {
+  DINNER_PLAN_LIST_LIMIT,
+  findCurrentDinnerPlanId,
+  listHouseholdDinnerPlans,
+  loadDinnerPlan,
+  saveDinnerPlan,
+} from "../src/lib/dinner-plan-store.js";
 import { createMemberSession } from "../src/lib/session.js";
 
 function sequencer() {
@@ -1000,6 +1006,237 @@ describe("persistence and authorization", () => {
     });
     expect(foreign.status).toBe(403);
     expect((await foreign.json()).error).toBe("forbidden_member");
+    sqlite.close();
+  });
+});
+
+function insertBareDinnerPlan(sqlite, row) {
+  sqlite.prepare(
+    `INSERT INTO dinner_plan
+      (dinner_plan_id, household_id, status, meal_count, entry_point, intent_json,
+       shopping_started_at, data_origin, created_by_member_id, created_at, updated_at)
+     VALUES (?, ?, ?, 1, 'plan_dinners', '{}', ?, 'synthetic', ?, ?, ?)`
+  ).run(
+    row.dinner_plan_id,
+    row.household_id,
+    row.status,
+    row.shopping_started_at || null,
+    row.member_id,
+    row.created_at,
+    row.updated_at
+  );
+}
+
+describe("household dinner plan discovery", () => {
+  it("picks the newest open plan and lists at most five for that household", async () => {
+    const sqlite = migrate();
+    const db = asD1(sqlite);
+    insertHousehold(sqlite, "hh_cedar", "synthetic");
+    insertHousehold(sqlite, "hh_birch", "synthetic");
+    insertHousehold(sqlite, "hh_tie", "synthetic");
+    insertHousehold(sqlite, "hh_pine", "synthetic");
+    insertMember(sqlite, "hh_cedar", "ana");
+    insertMember(sqlite, "hh_birch", "bo");
+    insertMember(sqlite, "hh_tie", "tia");
+    insertMember(sqlite, "hh_pine", "pin");
+    const cedar = [
+      ["dp_a", "draft", "2026-09-28T00:00:00.000Z"],
+      ["dp_b", "draft", "2026-09-29T00:00:00.000Z"],
+      ["dp_c", "ready", "2026-09-30T00:00:00.000Z"],
+      ["dp_d", "active", "2026-10-01T00:00:00.000Z"],
+      ["dp_shop", "shopping", "2026-10-02T00:00:00.000Z"],
+      ["dp_draft", "draft", "2026-10-04T00:00:00.000Z"],
+      ["dp_done", "completed", "2026-10-09T00:00:00.000Z"],
+    ];
+    for (const [dinner_plan_id, status, updated_at] of cedar) {
+      insertBareDinnerPlan(sqlite, {
+        dinner_plan_id,
+        household_id: "hh_cedar",
+        status,
+        member_id: "ana",
+        shopping_started_at: status === "shopping" ? updated_at : null,
+        created_at: updated_at,
+        updated_at,
+      });
+    }
+    insertBareDinnerPlan(sqlite, {
+      dinner_plan_id: "dp_birch_secret",
+      household_id: "hh_birch",
+      status: "draft",
+      member_id: "bo",
+      created_at: "2026-10-10T00:00:00.000Z",
+      updated_at: "2026-10-10T00:00:00.000Z",
+    });
+    insertBareDinnerPlan(sqlite, {
+      dinner_plan_id: "dp_m",
+      household_id: "hh_tie",
+      status: "draft",
+      member_id: "tia",
+      created_at: "2026-10-03T00:00:00.000Z",
+      updated_at: "2026-10-03T00:00:00.000Z",
+    });
+    insertBareDinnerPlan(sqlite, {
+      dinner_plan_id: "dp_z",
+      household_id: "hh_tie",
+      status: "active",
+      member_id: "tia",
+      created_at: "2026-10-03T00:00:00.000Z",
+      updated_at: "2026-10-03T00:00:00.000Z",
+    });
+
+    expect(await findCurrentDinnerPlanId(db, "hh_cedar")).toBe("dp_draft");
+    const listed = await listHouseholdDinnerPlans(db, "hh_cedar");
+    expect(DINNER_PLAN_LIST_LIMIT).toBe(5);
+    expect(listed.map((row) => row.dinner_plan_id)).toEqual(["dp_draft", "dp_shop", "dp_d", "dp_c", "dp_b"]);
+    expect(listed.every((row) => row.household_id === "hh_cedar")).toBe(true);
+    expect(listed.map((row) => row.dinner_plan_id)).not.toContain("dp_birch_secret");
+    expect(listed.map((row) => row.dinner_plan_id)).not.toContain("dp_done");
+    expect(await findCurrentDinnerPlanId(db, "hh_birch")).toBe("dp_birch_secret");
+    expect(await findCurrentDinnerPlanId(db, "hh_tie")).toBe("dp_z");
+    expect(await findCurrentDinnerPlanId(db, "hh_pine")).toBeNull();
+    expect(await listHouseholdDinnerPlans(db, "hh_pine")).toEqual([]);
+    sqlite.close();
+  });
+
+  it("recovers a stored plan from the household with no client pointer", async () => {
+    const sqlite = migrate();
+    const db = asD1(sqlite);
+    insertHousehold(sqlite, "hh_cedar", "synthetic");
+    insertHousehold(sqlite, "hh_birch", "synthetic");
+    insertHousehold(sqlite, "hh_pine", "synthetic");
+    insertMember(sqlite, "hh_cedar", "ana");
+    insertMember(sqlite, "hh_cedar", "cam");
+    insertMember(sqlite, "hh_birch", "bo");
+    insertMember(sqlite, "hh_pine", "pin");
+    const env = { DB: db };
+    const ana = await createMemberSession(db, { household_id: "hh_cedar", member_id: "ana" });
+    const cam = await createMemberSession(db, { household_id: "hh_cedar", member_id: "cam" });
+    const bo = await createMemberSession(db, { household_id: "hh_birch", member_id: "bo" });
+    const pin = await createMemberSession(db, { household_id: "hh_pine", member_id: "pin" });
+    const writeOrigin = async () => "synthetic";
+    const call = (token, path, method = "GET", query = "") => {
+      const url = new URL(`http://local${path}${query ? `?${query}` : ""}`);
+      return routeDinnerPlanRequest(
+        env,
+        new Request(url, {
+          method,
+          headers: token ? { "X-HE-Session": token } : {},
+        }),
+        path,
+        url,
+        { writeOrigin }
+      );
+    };
+    const ids = sequencer();
+    const older = createDinnerPlan(
+      {
+        dinner_plan_id: "dp_older_shop",
+        household_id: "hh_cedar",
+        meal_count: 1,
+        entry_point: "plan_dinners",
+        participant_ids: ["ana"],
+        meals: [recipeMeal("rv_flour_v1", ["ana"])],
+      },
+      withVersions({
+        id: ids,
+        now: "2026-10-02T00:00:00.000Z",
+        household_member_ids: ["ana", "cam"],
+        actor_member_id: "ana",
+        data_origin: "synthetic",
+      })
+    );
+    older.plan.status = "shopping";
+    older.plan.shopping_started_at = "2026-10-02T00:00:00.000Z";
+    await saveDinnerPlan(db, older.plan);
+    const newer = createDinnerPlan(
+      {
+        dinner_plan_id: "dp_newer_draft",
+        household_id: "hh_cedar",
+        meal_count: 1,
+        entry_point: "tonight",
+        participant_ids: ["ana"],
+        meals: [recipeMeal("rv_oil_v1", ["ana"])],
+      },
+      withVersions({
+        id: ids,
+        now: "2026-10-05T00:00:00.000Z",
+        household_member_ids: ["ana", "cam"],
+        actor_member_id: "ana",
+        data_origin: "synthetic",
+      })
+    );
+    await saveDinnerPlan(db, newer.plan);
+    insertBareDinnerPlan(sqlite, {
+      dinner_plan_id: "dp_birch_secret",
+      household_id: "hh_birch",
+      status: "active",
+      member_id: "bo",
+      created_at: "2026-10-06T00:00:00.000Z",
+      updated_at: "2026-10-06T00:00:00.000Z",
+    });
+
+    expect(await findCurrentDinnerPlanId(db, "hh_cedar")).toBe("dp_newer_draft");
+    const denied = await call(null, "/api/dinner-plans");
+    expect(denied.status).toBe(401);
+    expect((await denied.json()).error).toBe("unauthorized");
+
+    const listed = await call(ana.session_token, "/api/dinner-plans");
+    expect(listed.status).toBe(200);
+    const listedBody = await listed.json();
+    const byId = await call(ana.session_token, "/api/dinner-plans/dp_newer_draft");
+    expect(byId.status).toBe(200);
+    const byIdBody = await byId.json();
+    const current = await call(cam.session_token, "/api/dinner-plans/current");
+    expect(current.status).toBe(200);
+    const currentBody = await current.json();
+    expect(listedBody.ok).toBe(true);
+    expect(listedBody.current).toEqual(byIdBody.plan);
+    expect(currentBody.plan).toEqual(byIdBody.plan);
+    expect(currentBody.plan.dinner_plan_id).toBe("dp_newer_draft");
+    expect(currentBody.plan.meals).toHaveLength(1);
+    expect(currentBody.plan.shop_lines.length).toBeGreaterThan(0);
+    expect(listedBody.plans.map((row) => row.dinner_plan_id)).toEqual(["dp_newer_draft", "dp_older_shop"]);
+    expect(listedBody.plans.every((row) => row.household_id === "hh_cedar")).toBe(true);
+    expect(listedBody.plans[0].shop_lines).toBeUndefined();
+    expect(JSON.stringify(listedBody)).not.toContain("dp_birch_secret");
+
+    const sameHousehold = await call(ana.session_token, "/api/dinner-plans", "GET", "household_id=hh_cedar");
+    expect(sameHousehold.status).toBe(200);
+    const otherList = await call(ana.session_token, "/api/dinner-plans", "GET", "household_id=hh_birch");
+    expect(otherList.status).toBe(403);
+    expect((await otherList.json()).error).toBe("forbidden_cross_household");
+    const otherCurrent = await call(ana.session_token, "/api/dinner-plans/current", "GET", "household_id=hh_no_such");
+    expect(otherCurrent.status).toBe(403);
+    const birchList = await call(bo.session_token, "/api/dinner-plans");
+    const birchBody = await birchList.json();
+    expect(birchBody.current.dinner_plan_id).toBe("dp_birch_secret");
+    expect(birchBody.plans.map((row) => row.dinner_plan_id)).toEqual(["dp_birch_secret"]);
+    expect(JSON.stringify(birchBody)).not.toContain("dp_newer_draft");
+    const guessed = await call(bo.session_token, "/api/dinner-plans/dp_newer_draft");
+    expect(guessed.status).toBe(403);
+    expect((await guessed.json()).error).toBe("forbidden_cross_household");
+    const missing = await call(ana.session_token, "/api/dinner-plans/dp_missing");
+    expect(missing.status).toBe(404);
+    expect((await missing.json()).error).toBe("plan_not_found");
+
+    const emptyList = await call(pin.session_token, "/api/dinner-plans");
+    expect(emptyList.status).toBe(200);
+    expect(await emptyList.json()).toEqual({ ok: true, current: null, plans: [] });
+    const emptyCurrent = await call(pin.session_token, "/api/dinner-plans/current");
+    expect(emptyCurrent.status).toBe(200);
+    expect(await emptyCurrent.json()).toEqual({ ok: true, plan: null });
+
+    sqlite.prepare("UPDATE dinner_plan SET status = 'completed' WHERE dinner_plan_id = 'dp_newer_draft'").run();
+    const afterClose = await call(ana.session_token, "/api/dinner-plans");
+    const afterCloseBody = await afterClose.json();
+    expect(afterCloseBody.current.dinner_plan_id).toBe("dp_older_shop");
+    expect(afterCloseBody.plans.map((row) => row.dinner_plan_id)).toEqual(["dp_older_shop", "dp_newer_draft"]);
+    sqlite.prepare("UPDATE dinner_plan SET status = 'completed' WHERE household_id = 'hh_cedar'").run();
+    const wrapped = await call(ana.session_token, "/api/dinner-plans");
+    expect(wrapped.status).toBe(200);
+    const wrappedBody = await wrapped.json();
+    expect(wrappedBody.current).toBeNull();
+    expect(wrappedBody.plans.map((row) => row.dinner_plan_id)).toEqual(["dp_newer_draft", "dp_older_shop"]);
     sqlite.close();
   });
 });

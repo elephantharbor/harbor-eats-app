@@ -28,6 +28,44 @@ function parse(value, fallback) {
   }
 }
 
+/** Open and recent rows returned by household discovery. Not a client limit. */
+export const DINNER_PLAN_LIST_LIMIT = 5;
+
+/**
+ * Current plan: the most recently updated row for that household whose
+ * status is not completed. Ties break on created_at, then dinner_plan_id,
+ * both descending. A newer completed plan does not replace an older open
+ * one. No open plan means there is no current plan.
+ * The recent list is at most DINNER_PLAN_LIST_LIMIT rows: non-completed
+ * first, then completed, each group in that same order.
+ */
+const DINNER_PLAN_RECENCY = "updated_at DESC, created_at DESC, dinner_plan_id DESC";
+
+export async function findCurrentDinnerPlanId(db, householdId) {
+  const row = await bindGet(
+    db,
+    `SELECT dinner_plan_id FROM dinner_plan
+     WHERE household_id = ? AND status != 'completed'
+     ORDER BY ${DINNER_PLAN_RECENCY}
+     LIMIT 1`,
+    [householdId]
+  );
+  return row?.dinner_plan_id || null;
+}
+
+export async function listHouseholdDinnerPlans(db, householdId) {
+  return bindAll(
+    db,
+    `SELECT dinner_plan_id, household_id, status, meal_count, entry_point,
+            shopping_started_at, finalized_at, created_at, updated_at
+     FROM dinner_plan
+     WHERE household_id = ?
+     ORDER BY CASE WHEN status = 'completed' THEN 1 ELSE 0 END, ${DINNER_PLAN_RECENCY}
+     LIMIT ?`,
+    [householdId, DINNER_PLAN_LIST_LIMIT]
+  );
+}
+
 export async function loadDinnerPlan(db, dinnerPlanId) {
   const plan = await bindGet(
     db,
