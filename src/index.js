@@ -4,7 +4,7 @@
  * Auth: HttpOnly session cookie; household scope enforced server-side (Phase 2).
  */
 
-import { filterEligibleOptions } from "./lib/eligibility.js";
+import { constraintRowsFromKeys, filterEligibleOptions } from "./lib/eligibility.js";
 import { deriveHouseholdState } from "./lib/household-state.js";
 import {
   createMemberSession,
@@ -359,13 +359,12 @@ async function setConstraints(env, member_id, body, session) {
         note: body.note,
       });
     } else if (Array.isArray(body.keys)) {
-      for (const k of body.keys) {
-        if (k === "none") continue;
-        rules.push({ rule_key: k, status: "prohibited" });
-      }
+      rules.push(...constraintRowsFromKeys(body.keys));
     }
   }
-  if (rules.length === 0) return err("constraints_required");
+  // replace: the submitted list is this diner's full set, so an unticked limit is removed.
+  const replace = body.replace === true;
+  if (rules.length === 0 && !replace) return err("constraints_required");
 
   const ts = nowIso();
   const saved = [];
@@ -406,10 +405,21 @@ async function setConstraints(env, member_id, body, session) {
         .run();
       saved.push({ rule_key, status });
     }
+    if (replace) {
+      const keep = saved.map((s) => s.rule_key);
+      const placeholders = keep.map(() => "?").join(",");
+      await env.DB.prepare(
+        `DELETE FROM constraint_rule WHERE household_id = ? AND member_id = ?${
+          keep.length ? ` AND rule_key NOT IN (${placeholders})` : ""
+        }`
+      )
+        .bind(household_id, member_id, ...keep)
+        .run();
+    }
   } catch (e) {
     return err("constraints_save_failed", 500, { detail: String(e.message || e) });
   }
-  return json({ ok: true, member_id, household_id, constraints: saved });
+  return json({ ok: true, member_id, household_id, constraints: saved, replaced: replace });
 }
 
 async function createPlan(env, body, session) {
