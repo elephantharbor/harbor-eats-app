@@ -61,7 +61,7 @@ describe("FlavorWeave brand smoke", () => {
 
   it("service worker shell caches the v3 runtime and brand assets", () => {
     const sw = read("sw.js");
-    expect(sw).toMatch(/fw-sw-v3/);
+    expect(sw).toMatch(/fw-sw-v4/);
     for (const asset of ["/theme.js", "/meal-media.js", "/brand/flavorweave-lockup-horizontal.svg"]) {
       expect(sw).toContain(`"${asset}"`);
       expect(existsSync(join(publicDir, asset))).toBe(true);

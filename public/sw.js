@@ -1,11 +1,12 @@
 /* FlavorWeave — conservative SW: network-first, versioned, freshness over cache */
-const CACHE_VERSION = "fw-sw-v3";
+const CACHE_VERSION = "fw-sw-v4";
 const SHELL = [
   "/",
   "/index.html",
   "/styles.css",
   "/theme.js",
   "/meal-media.js",
+  "/meal-identity.js",
   "/app.js",
   "/favicon.svg",
   "/manifest.webmanifest",

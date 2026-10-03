@@ -9,6 +9,7 @@ import { deriveHouseholdState } from "./lib/household-state.js";
 import {
   createMemberSession,
   loadHouseholdActivity,
+  loadPlanBundle,
   readSessionToken,
   resolveSession,
 } from "./lib/session.js";
@@ -42,11 +43,26 @@ import {
 import { scaleRecipeVersion } from "./lib/recipe-scaling.js";
 import { resolveMealSelection, membersWithoutVote } from "./lib/selection-resolution.js";
 import { runAllCatalogQualityChecks } from "./lib/catalog-quality.js";
+import {
+  originFromRequest,
+  sqlRealHousehold,
+  sqlRealRow,
+  SYNTHETIC_ORIGIN,
+} from "./lib/evidence-origin.js";
+import { mergeCanonicalAttributes, projectMealOption, projectMealOptions } from "./lib/meal-option-view.js";
+import {
+  canonicalRecipeVersion,
+  cookGuard,
+  ratingGuard,
+  selectionGuard,
+  statusAfterCook,
+  statusAfterSelection,
+} from "./lib/meal-identity.js";
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization, X-HE-Session",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization, X-HE-Session, X-FlavorWeave-Data-Origin",
 };
 
 function json(data, status = 200, extraHeaders = {}) {
@@ -157,34 +173,69 @@ async function loadAlphaOpsMetrics(db) {
     const row = await db.prepare(sql).first();
     return row ? row.c : 0;
   };
+  const hh = sqlRealHousehold("h");
   return {
-    households: await q("SELECT COUNT(*) AS c FROM household"),
+    households: await q(`SELECT COUNT(*) AS c FROM household h WHERE ${hh}`),
     active_members: await q(
-      "SELECT COUNT(*) AS c FROM member WHERE status = 'active'"
+      `SELECT COUNT(*) AS c FROM member m
+       JOIN household h ON h.household_id = m.household_id
+       WHERE m.status = 'active' AND ${hh}`
     ),
-    plans: await q("SELECT COUNT(*) AS c FROM plan"),
-    selections: await q("SELECT COUNT(*) AS c FROM selection"),
-    cooks: await q("SELECT COUNT(*) AS c FROM cook"),
-    ratings: await q("SELECT COUNT(*) AS c FROM rating"),
+    plans: await q(
+      `SELECT COUNT(*) AS c FROM plan p
+       JOIN household h ON h.household_id = p.household_id
+       WHERE ${sqlRealRow("p")} AND ${hh}`
+    ),
+    selections: await q(
+      `SELECT COUNT(*) AS c FROM selection s
+       JOIN household h ON h.household_id = s.household_id
+       WHERE ${sqlRealRow("s")} AND ${hh}`
+    ),
+    cooks: await q(
+      `SELECT COUNT(*) AS c FROM cook c
+       JOIN household h ON h.household_id = c.household_id
+       WHERE ${sqlRealRow("c")} AND ${hh}`
+    ),
+    ratings: await q(
+      `SELECT COUNT(*) AS c FROM rating r
+       JOIN household h ON h.household_id = r.household_id
+       WHERE ${sqlRealRow("r")} AND ${hh}`
+    ),
     completed_meal_loops: await q(
-      "SELECT COUNT(*) AS c FROM plan WHERE status = 'Rated'"
+      `SELECT COUNT(*) AS c FROM plan p
+       JOIN household h ON h.household_id = p.household_id
+       WHERE p.status = 'Rated' AND ${sqlRealRow("p")} AND ${hh}`
     ),
     invites_sent: await q(
-      "SELECT COUNT(*) AS c FROM event WHERE event_name = 'invite_sent'"
+      `SELECT COUNT(*) AS c FROM event e
+       JOIN household h ON h.household_id = e.household_id
+       WHERE e.event_name = 'invite_sent' AND ${sqlRealRow("e")} AND ${hh}`
     ),
     invites_accepted: await q(
-      "SELECT COUNT(*) AS c FROM event WHERE event_name = 'invite_accepted'"
+      `SELECT COUNT(*) AS c FROM event e
+       JOIN household h ON h.household_id = e.household_id
+       WHERE e.event_name = 'invite_accepted' AND ${sqlRealRow("e")} AND ${hh}`
     ),
     plan_generated: await q(
-      "SELECT COUNT(*) AS c FROM event WHERE event_name = 'plan_generated'"
+      `SELECT COUNT(*) AS c FROM event e
+       JOIN household h ON h.household_id = e.household_id
+       WHERE e.event_name = 'plan_generated' AND ${sqlRealRow("e")} AND ${hh}`
     ),
     recommendation_failures: await q(
-      "SELECT COUNT(*) AS c FROM event WHERE event_name = 'recommendation_failed'"
+      `SELECT COUNT(*) AS c FROM event e
+       JOIN household h ON h.household_id = e.household_id
+       WHERE e.event_name = 'recommendation_failed' AND ${sqlRealRow("e")} AND ${hh}`
     ),
   };
 }
 
-async function createHousehold(env, body) {
+async function markSynthetic(env, table, idColumn, rowId) {
+  await env.DB.prepare(`UPDATE ${table} SET data_origin = 'synthetic' WHERE ${idColumn} = ?`)
+    .bind(rowId)
+    .run();
+}
+
+async function createHousehold(env, body, request) {
   const display_name = (body.display_name || body.name || "").trim();
   if (!display_name) return err("display_name_required");
   const household_id = body.household_id || id("hh");
@@ -194,12 +245,14 @@ async function createHousehold(env, body) {
   const servings_default = Number.isFinite(body.servings_default)
     ? body.servings_default
     : 2;
-  const acquisition_source = body.acquisition_source || null;
+  const origin = originFromRequest(request, body);
+  const acquisition_source =
+    origin === SYNTHETIC_ORIGIN ? "synthetic_qa" : body.acquisition_source || null;
   try {
     await env.DB.prepare(
       `INSERT INTO household
-        (household_id, display_name, status, timezone, servings_default, acquisition_source, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+        (household_id, display_name, status, timezone, servings_default, acquisition_source, created_at, updated_at, data_origin)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
       .bind(
         household_id,
@@ -209,13 +262,14 @@ async function createHousehold(env, body) {
         servings_default,
         acquisition_source,
         ts,
-        ts
+        ts,
+        origin
       )
       .run();
   } catch (e) {
     return err("household_create_failed", 500, { detail: String(e.message || e) });
   }
-  return json({ ok: true, household_id, display_name, status, created_at: ts }, 201);
+  return json({ ok: true, household_id, display_name, status, created_at: ts, data_origin: origin }, 201);
 }
 
 async function addMember(env, household_id, body, request) {
@@ -433,7 +487,7 @@ async function createPlan(env, body, session) {
   }
 }
 
-async function createSelection(env, body, session) {
+async function createSelection(env, body, session, request) {
   const { plan_id, meal_option_id } = body;
   const household_id = session.household_id;
   if (!plan_id || !meal_option_id) {
@@ -444,16 +498,38 @@ async function createSelection(env, body, session) {
   }
   const planErr = await assertPlanInHousehold(env.DB, plan_id, session);
   if (planErr) return err(planErr, 403);
+  const bundle = await loadPlanBundle(env.DB, plan_id);
+  if (!bundle) return err("plan_not_found", 404);
+  const origin = originFromRequest(request, body);
   const selection_id = body.selection_id || id("sel");
   const ts = nowIso();
   const source = body.source || "app";
+  if (origin !== SYNTHETIC_ORIGIN) {
+    const guard = selectionGuard(bundle, meal_option_id);
+    if (!guard.ok) {
+      return err(guard.error, guard.status || 409, { meal_option_id: guard.meal_option_id });
+    }
+    if (guard.unchanged) {
+      return json({
+        ok: true,
+        plan_id,
+        meal_option_id,
+        status: bundle.plan.status,
+        unchanged: true,
+      });
+    }
+  }
+  const nextStatus =
+    origin === SYNTHETIC_ORIGIN
+      ? bundle.plan.status
+      : statusAfterSelection(bundle.plan.status, { locked: false });
   try {
-    await env.DB.batch([
-      env.DB.prepare(
-        `INSERT INTO selection
-          (selection_id, plan_id, meal_option_id, household_id, source, actor_member_id, share_object_id, created_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
-      ).bind(
+    await env.DB.prepare(
+      `INSERT INTO selection
+        (selection_id, plan_id, meal_option_id, household_id, source, actor_member_id, share_object_id, created_at, data_origin)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    )
+      .bind(
         selection_id,
         plan_id,
         meal_option_id,
@@ -461,22 +537,33 @@ async function createSelection(env, body, session) {
         source,
         body.actor_member_id || session.member_id,
         body.share_object_id || null,
-        ts
-      ),
+        ts,
+        origin
+      )
+      .run();
+    if (origin === SYNTHETIC_ORIGIN) {
+      return json(
+        { ok: true, selection_id, plan_id, meal_option_id, status: bundle.plan.status, synthetic: true },
+        201
+      );
+    }
+    await env.DB.batch([
       env.DB.prepare(
         `UPDATE meal_option SET selected = CASE WHEN meal_option_id = ? THEN 1 ELSE 0 END WHERE plan_id = ?`
       ).bind(meal_option_id, plan_id),
-      env.DB.prepare(
-        `UPDATE plan SET status = 'Selected', updated_at = ? WHERE plan_id = ?`
-      ).bind(ts, plan_id),
+      env.DB.prepare(`UPDATE plan SET status = ?, updated_at = ? WHERE plan_id = ?`).bind(
+        nextStatus,
+        ts,
+        plan_id
+      ),
     ]);
   } catch (e) {
     return err("selection_failed", 500, { detail: String(e.message || e) });
   }
-  return json({ ok: true, selection_id, plan_id, meal_option_id, status: "Selected" }, 201);
+  return json({ ok: true, selection_id, plan_id, meal_option_id, status: nextStatus }, 201);
 }
 
-async function createCook(env, body, session) {
+async function createCook(env, body, session, request) {
   const { plan_id, meal_option_id } = body;
   const household_id = session.household_id;
   if (!plan_id || !meal_option_id) {
@@ -487,17 +574,36 @@ async function createCook(env, body, session) {
   }
   const planErr = await assertPlanInHousehold(env.DB, plan_id, session);
   if (planErr) return err(planErr, 403);
+  const bundle = await loadPlanBundle(env.DB, plan_id);
+  if (!bundle) return err("plan_not_found", 404);
+  const origin = originFromRequest(request, body);
   const cook_id = body.cook_id || id("cook");
   const ts = nowIso();
   const cooked_at = body.cooked_at || ts;
   const source = body.source || "app";
+  if (origin !== SYNTHETIC_ORIGIN) {
+    const guard = cookGuard(bundle, meal_option_id);
+    if (!guard.ok) {
+      return err(guard.error, guard.status || 409, { meal_option_id: guard.meal_option_id });
+    }
+    if (guard.idempotent) {
+      return json({
+        ok: true,
+        cook_id: guard.cook_id,
+        plan_id,
+        meal_option_id,
+        status: bundle.plan.status,
+        unchanged: true,
+      });
+    }
+  }
   try {
-    await env.DB.batch([
-      env.DB.prepare(
-        `INSERT INTO cook
-          (cook_id, plan_id, meal_option_id, household_id, source, actor_member_id, cooked_at, created_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
-      ).bind(
+    await env.DB.prepare(
+      `INSERT INTO cook
+        (cook_id, plan_id, meal_option_id, household_id, source, actor_member_id, cooked_at, created_at, data_origin)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    )
+      .bind(
         cook_id,
         plan_id,
         meal_option_id,
@@ -505,19 +611,27 @@ async function createCook(env, body, session) {
         source,
         body.actor_member_id || session.member_id,
         cooked_at,
-        ts
-      ),
-      env.DB.prepare(
-        `UPDATE plan SET status = 'Cooked', updated_at = ? WHERE plan_id = ?`
-      ).bind(ts, plan_id),
-    ]);
+        ts,
+        origin
+      )
+      .run();
+    if (origin === SYNTHETIC_ORIGIN) {
+      return json(
+        { ok: true, cook_id, plan_id, meal_option_id, status: bundle.plan.status, synthetic: true },
+        201
+      );
+    }
+    const nextStatus = statusAfterCook(bundle.plan.status);
+    await env.DB.prepare(`UPDATE plan SET status = ?, updated_at = ? WHERE plan_id = ?`)
+      .bind(nextStatus, ts, plan_id)
+      .run();
+    return json({ ok: true, cook_id, plan_id, meal_option_id, status: nextStatus }, 201);
   } catch (e) {
     return err("cook_failed", 500, { detail: String(e.message || e) });
   }
-  return json({ ok: true, cook_id, plan_id, meal_option_id, status: "Cooked" }, 201);
 }
 
-async function createRating(env, body, session) {
+async function createRating(env, body, session, request) {
   const { plan_id, meal_option_id } = body;
   const household_id = session.household_id;
   const member_id = session.member_id;
@@ -536,6 +650,15 @@ async function createRating(env, body, session) {
   if (!Number.isInteger(score) || score < 1 || score > 10) {
     return err("score_must_be_integer_1_to_10", 400, { score: body.score });
   }
+  const bundle = await loadPlanBundle(env.DB, plan_id);
+  if (!bundle) return err("plan_not_found", 404);
+  const origin = originFromRequest(request, body);
+  if (origin !== SYNTHETIC_ORIGIN) {
+    const guard = ratingGuard(bundle, meal_option_id);
+    if (!guard.ok) {
+      return err(guard.error, guard.status || 409, { meal_option_id: guard.meal_option_id });
+    }
+  }
   const rating_id = body.rating_id || id("rate");
   const ts = nowIso();
   const source = body.source || "app";
@@ -544,23 +667,40 @@ async function createRating(env, body, session) {
   )
     .bind(meal_option_id)
     .first();
-  const recipe_version_id =
-    body.recipe_version_id ||
-    (moRow && moRow.recipe_version) ||
-    (moRow && moRow.recipe_slug
-      ? `rv_${moRow.recipe_slug}_v1`
-      : null);
+  const existingReal = (bundle.ratings || []).find(
+    (row) =>
+      row.meal_option_id === meal_option_id &&
+      row.member_id === member_id &&
+      row.data_origin !== SYNTHETIC_ORIGIN
+  );
+  const recipe_version_id = canonicalRecipeVersion(
+    moRow,
+    body.recipe_version_id,
+    existingReal && existingReal.recipe_version_id
+  );
+  if (origin === SYNTHETIC_ORIGIN && existingReal) {
+    return json({
+      ok: true,
+      synthetic: true,
+      unchanged: true,
+      skipped: "real_rating_preserved",
+      plan_status: bundle.plan.status,
+      cml_complete: false,
+      recipe_version_id: existingReal.recipe_version_id || recipe_version_id,
+    });
+  }
   try {
     await env.DB.prepare(
       `INSERT INTO rating
-        (rating_id, plan_id, meal_option_id, household_id, member_id, score, note, source, created_at, updated_at, recipe_version_id)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (rating_id, plan_id, meal_option_id, household_id, member_id, score, note, source, created_at, updated_at, recipe_version_id, data_origin)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
        ON CONFLICT(meal_option_id, member_id) DO UPDATE SET
          score = excluded.score,
          note = excluded.note,
          source = excluded.source,
          updated_at = excluded.updated_at,
-         recipe_version_id = COALESCE(excluded.recipe_version_id, rating.recipe_version_id)`
+         recipe_version_id = COALESCE(rating.recipe_version_id, excluded.recipe_version_id),
+         data_origin = excluded.data_origin`
     )
       .bind(
         rating_id,
@@ -573,11 +713,24 @@ async function createRating(env, body, session) {
         source,
         ts,
         ts,
-        recipe_version_id
+        recipe_version_id,
+        origin
       )
       .run();
+    if (origin === SYNTHETIC_ORIGIN) {
+      return json({
+        ok: true,
+        rating_id,
+        member_id,
+        score,
+        plan_status: bundle.plan.status,
+        cml_complete: false,
+        synthetic: true,
+        recipe_version_id,
+      });
+    }
 
-    // Mark Rated only when every active member has a rating for this meal_option
+    // Mark Rated only when every active member has a real rating for this meal_option
     const active = await env.DB.prepare(
       `SELECT member_id FROM member WHERE household_id = ? AND status = 'active'`
     )
@@ -585,10 +738,10 @@ async function createRating(env, body, session) {
       .all();
     const activeIds = (active.results || []).map((r) => r.member_id);
     let bothPresent = false;
-    let planStatus = "Cooked";
+    let planStatus = bundle.plan.status === "Rated" ? "Rated" : "Cooked";
     if (activeIds.length > 0) {
       const rated = await env.DB.prepare(
-        `SELECT member_id FROM rating WHERE meal_option_id = ?`
+        `SELECT member_id FROM rating WHERE meal_option_id = ? AND data_origin = 'household'`
       )
         .bind(meal_option_id)
         .all();
@@ -618,13 +771,14 @@ async function createRating(env, body, session) {
       score,
       plan_status: planStatus,
       cml_complete: bothPresent,
+      recipe_version_id,
     });
   } catch (e) {
     return err("rating_failed", 500, { detail: String(e.message || e) });
   }
 }
 
-async function createEvent(env, body, session) {
+async function createEvent(env, body, session, request) {
   const event_name = body.event_name || body.event;
   if (!event_name) return err("event_name_required");
   if (body.household_id && body.household_id !== session.household_id) {
@@ -698,6 +852,9 @@ async function createEvent(env, body, session) {
   } catch (e) {
     return err("event_failed", 500, { detail: String(e.message || e) });
   }
+  if (originFromRequest(request, body) === SYNTHETIC_ORIGIN) {
+    await markSynthetic(env, "event", "event_id", event_id);
+  }
   return json({ ok: true, event_id, event_name }, 201);
 }
 
@@ -752,23 +909,68 @@ async function ensurePlanWithOptions(env, household_id, plan_id, options, attrib
     if (!["A", "B", "C", "D", "E"].includes(letter)) continue;
     const meal_option_id = opt.meal_option_id || `${plan_id}-${letter}`;
     const name = opt.name || opt.title || `Option ${letter}`;
-    const attrs = {
+    const incoming = {
+      title: opt.title || name,
       chips: opt.chips || null,
       plate: opt.plate || null,
       tone: opt.tone || null,
       pers: opt.pers || null,
-      title: opt.title || name,
+      minutes: opt.minutes || null,
+      effort: opt.effort || null,
+      meal_format: opt.meal_format || null,
+      cuisine: opt.cuisine || null,
+      recipe_slug: opt.recipe_slug || null,
+      recipe_version_id: opt.recipe_version || opt.recipe_version_id || null,
+      tags: opt.tags || null,
+      score: typeof opt.score === "number" ? opt.score : null,
     };
     const existingOpt = await env.DB.prepare(
-      `SELECT meal_option_id FROM meal_option WHERE plan_id = ? AND letter = ?`
+      `SELECT meal_option_id, attributes_json, recipe_slug, recipe_version
+       FROM meal_option WHERE plan_id = ? AND letter = ?`
     )
       .bind(plan_id, letter)
       .first();
+    const merged = mergeCanonicalAttributes(existingOpt && existingOpt.attributes_json, incoming);
+    const projected = projectMealOption({
+      letter,
+      meal_option_id: (existingOpt && existingOpt.meal_option_id) || meal_option_id,
+      name,
+      recipe_slug: (existingOpt && existingOpt.recipe_slug) || opt.recipe_slug || merged.recipe_slug,
+      recipe_version:
+        (existingOpt && existingOpt.recipe_version) ||
+        opt.recipe_version ||
+        opt.recipe_version_id ||
+        merged.recipe_version_id,
+      attributes_json: merged,
+    });
+    const stored = {
+      ...merged,
+      title: projected.title || merged.title,
+      chips: projected.chips,
+      minutes: projected.minutes,
+      effort: projected.effort,
+      meal_format: projected.meal_format,
+      cuisine: projected.cuisine,
+      recipe_slug: projected.recipe_slug,
+      recipe_version_id: projected.recipe_version_id,
+      pers: merged.pers || null,
+    };
     if (existingOpt) {
       await env.DB.prepare(
-        `UPDATE meal_option SET name = ?, attributes_json = ? WHERE plan_id = ? AND letter = ?`
+        `UPDATE meal_option
+         SET name = ?, attributes_json = ?,
+             recipe_slug = COALESCE(recipe_slug, ?),
+             recipe_version = COALESCE(recipe_version, ?)
+         WHERE plan_id = ? AND letter = ?`
       )
-        .bind(name, JSON.stringify(attrs), plan_id, letter)
+        .bind(
+          name,
+          JSON.stringify(stored),
+          projected.recipe_slug,
+          projected.recipe_version_id,
+          plan_id,
+          letter
+        )
         .run();
     } else {
       await env.DB.prepare(
@@ -781,24 +983,15 @@ async function ensurePlanWithOptions(env, household_id, plan_id, options, attrib
           plan_id,
           letter,
           name,
-          opt.recipe_slug || null,
-          opt.recipe_version || null,
+          projected.recipe_slug,
+          projected.recipe_version_id,
           opt.description_short || null,
-          JSON.stringify(attrs),
+          JSON.stringify(stored),
           ts
         )
         .run();
     }
-    created.push({
-      meal_option_id,
-      letter,
-      name,
-      title: attrs.title,
-      chips: attrs.chips,
-      plate: attrs.plate,
-      tone: attrs.tone,
-      pers: attrs.pers,
-    });
+    created.push(projected);
   }
   return created;
 }
@@ -968,31 +1161,15 @@ async function resolveShare(env, token) {
     return err("share_inactive", 410, { status: row.status, token: row.token });
   }
 
-  let options = parseOptionsSnapshot(row.options_snapshot_json);
-  if (!options || !options.length) {
-    const rows = await env.DB.prepare(
-      `SELECT meal_option_id, letter, name, attributes_json FROM meal_option WHERE plan_id = ? ORDER BY letter`
-    )
-      .bind(row.plan_id)
-      .all();
-    options = (rows.results || []).map((r) => {
-      let attrs = {};
-      try {
-        attrs = r.attributes_json ? JSON.parse(r.attributes_json) : {};
-      } catch {
-        attrs = {};
-      }
-      return {
-        meal_option_id: r.meal_option_id,
-        letter: r.letter,
-        name: r.name,
-        title: attrs.title || r.name,
-        chips: attrs.chips || ["Shared"],
-        plate: attrs.plate || "🍽️",
-        tone: attrs.tone || "tone-a",
-        pers: attrs.pers || { type: "why", label: "Shared pick", line: "From your partner" },
-      };
-    });
+  const live = await env.DB.prepare(
+    `SELECT meal_option_id, letter, name, recipe_slug, recipe_version, attributes_json
+     FROM meal_option WHERE plan_id = ? ORDER BY letter`
+  )
+    .bind(row.plan_id)
+    .all();
+  let options = projectMealOptions(live.results || []);
+  if (!options.length) {
+    options = projectMealOptions(parseOptionsSnapshot(row.options_snapshot_json) || []);
   }
 
   // share_choice_viewed (server-side; client also fires)
@@ -1256,7 +1433,7 @@ async function patchHousehold(env, household_id, body, session) {
   return getHousehold(env, household_id);
 }
 
-async function postRecommendationsPlan(env, body, session) {
+async function postRecommendationsPlan(env, body, session, request) {
   const household_id = session.household_id;
   if (body.household_id && body.household_id !== household_id) {
     return err("forbidden_cross_household", 403);
@@ -1284,6 +1461,10 @@ async function postRecommendationsPlan(env, body, session) {
       body.attribution_kind || null
     )
     .run();
+  const planOrigin = originFromRequest(request, body);
+  if (planOrigin === SYNTHETIC_ORIGIN) {
+    await markSynthetic(env, "plan", "plan_id", plan_id);
+  }
 
   for (const opt of options) {
     await env.DB.prepare(
@@ -1318,10 +1499,18 @@ async function postRecommendationsPlan(env, body, session) {
         session.member_id,
         plan_id,
         body.attribution_last_touch || null,
-        JSON.stringify({ source: "taste_model_v2_pipeline", option_count: options.length }),
+        JSON.stringify({ source: "taste_model_v2_pipeline", option_count: options.length, data_origin: planOrigin }),
         ts
       )
       .run();
+    if (planOrigin === SYNTHETIC_ORIGIN) {
+      await env.DB.prepare(
+        `UPDATE event SET data_origin = 'synthetic'
+         WHERE plan_id = ? AND event_name = 'plan_generated' AND data_origin = 'household'`
+      )
+        .bind(plan_id)
+        .run();
+    }
   } catch { /* non-fatal */ }
 
   const clientOptions = options.map((o) => ({
@@ -1365,7 +1554,7 @@ async function getTasteProfileHandler(env, household_id, session) {
   return json({ ok: true, household_id, profile, settings: ctx.settings.prefs });
 }
 
-async function postPreferenceEvidence(env, body, session) {
+async function postPreferenceEvidence(env, body, session, request) {
   const household_id = session.household_id;
   if (body.household_id && body.household_id !== household_id) {
     return err("forbidden_cross_household", 403);
@@ -1393,6 +1582,9 @@ async function postPreferenceEvidence(env, body, session) {
       ts
     )
     .run();
+  if (originFromRequest(request, body) === SYNTHETIC_ORIGIN) {
+    await markSynthetic(env, "preference_evidence", "evidence_id", evidence_id);
+  }
   return json({ ok: true, evidence_id, tag, kind }, 201);
 }
 
@@ -1449,14 +1641,14 @@ async function getFunnelAnalytics(env, household_id, session) {
   const counts = {};
   for (const n of names) {
     const row = await env.DB.prepare(
-      `SELECT COUNT(*) AS c FROM event WHERE household_id = ? AND event_name = ?`
+      `SELECT COUNT(*) AS c FROM event WHERE household_id = ? AND event_name = ? AND data_origin = 'household'`
     )
       .bind(household_id, n)
       .first();
     counts[n] = row ? row.c : 0;
   }
   const loops = await env.DB.prepare(
-    `SELECT COUNT(*) AS c FROM plan WHERE household_id = ? AND status = 'Rated'`
+    `SELECT COUNT(*) AS c FROM plan WHERE household_id = ? AND status = 'Rated' AND data_origin = 'household'`
   )
     .bind(household_id)
     .first();
@@ -1539,7 +1731,7 @@ async function getRecipeByVersionId(_env, versionId, request) {
   });
 }
 
-async function postMealVote(env, plan_id, body, session) {
+async function postMealVote(env, plan_id, body, session, request) {
   const household_id = session.household_id;
   const { meal_option_id } = body;
   if (!meal_option_id) return err("meal_option_id_required");
@@ -1547,6 +1739,17 @@ async function postMealVote(env, plan_id, body, session) {
   if (planErr) return err(planErr, 403);
   const vote_id = body.vote_id || id("vote");
   const ts = nowIso();
+  const voteOrigin = originFromRequest(request, body);
+  if (voteOrigin === SYNTHETIC_ORIGIN) {
+    const existingVote = await env.DB.prepare(
+      `SELECT data_origin FROM meal_vote WHERE plan_id = ? AND member_id = ?`
+    )
+      .bind(plan_id, session.member_id)
+      .first();
+    if (existingVote && existingVote.data_origin !== SYNTHETIC_ORIGIN) {
+      return json({ ok: true, synthetic: true, unchanged: true, status: "real_vote_preserved" });
+    }
+  }
   try {
     await env.DB.prepare(
       `INSERT INTO meal_vote
@@ -1560,6 +1763,27 @@ async function postMealVote(env, plan_id, body, session) {
       .run();
   } catch (e) {
     return err("vote_failed", 500, { detail: String(e.message || e) });
+  }
+
+  if (voteOrigin === SYNTHETIC_ORIGIN) {
+    await env.DB.prepare(
+      `UPDATE meal_vote SET data_origin = 'synthetic' WHERE plan_id = ? AND member_id = ?`
+    )
+      .bind(plan_id, session.member_id)
+      .run();
+    return json({ ok: true, vote_id, meal_option_id, status: "vote_recorded", synthetic: true }, 201);
+  }
+
+  const voteBundle = await loadPlanBundle(env.DB, plan_id);
+  const voteGuard = selectionGuard(voteBundle, meal_option_id);
+  if (!voteGuard.ok) {
+    return json({
+      ok: true,
+      vote_id,
+      meal_option_id: voteGuard.meal_option_id,
+      status: "selection_locked",
+      locked: true,
+    });
   }
 
   try {
@@ -1585,8 +1809,20 @@ async function postMealVote(env, plan_id, body, session) {
 
 async function resolvePlanSelectionFromVotes(env, plan_id, session) {
   const household_id = session.household_id;
+  const bundle = await loadPlanBundle(env.DB, plan_id);
+  if (bundle) {
+    const guard = selectionGuard(bundle, "__not_the_locked_meal__");
+    if (!guard.ok) {
+      return {
+        ok: true,
+        status: "selection_locked",
+        meal_option_id: guard.meal_option_id,
+        locked: true,
+      };
+    }
+  }
   const votesRes = await env.DB.prepare(
-    `SELECT member_id, meal_option_id FROM meal_vote WHERE plan_id = ?`
+    `SELECT member_id, meal_option_id FROM meal_vote WHERE plan_id = ? AND data_origin = 'household'`
   )
     .bind(plan_id)
     .all();
@@ -1624,7 +1860,7 @@ async function resolvePlanSelectionFromVotes(env, plan_id, session) {
   if (!winner) return { ok: false, error: "no_winner" };
 
   const existingSel = await env.DB.prepare(
-    `SELECT selection_id FROM selection WHERE plan_id = ? LIMIT 1`
+    `SELECT selection_id FROM selection WHERE plan_id = ? AND data_origin = 'household' LIMIT 1`
   )
     .bind(plan_id)
     .first();
@@ -1638,14 +1874,19 @@ async function resolvePlanSelectionFromVotes(env, plan_id, session) {
     )
       .bind(selection_id, plan_id, winner.meal_option_id, household_id, session.member_id, ts)
       .run();
+  } else {
+    await env.DB.prepare(`UPDATE selection SET meal_option_id = ? WHERE selection_id = ?`)
+      .bind(winner.meal_option_id, existingSel.selection_id)
+      .run();
   }
+  const nextStatus = statusAfterSelection(bundle && bundle.plan.status, { locked: false });
   await env.DB.batch([
     env.DB.prepare(
       `UPDATE meal_option SET selected = CASE WHEN meal_option_id = ? THEN 1 ELSE 0 END WHERE plan_id = ?`
     ).bind(winner.meal_option_id, plan_id),
     env.DB.prepare(
-      `UPDATE plan SET status = 'Selected', updated_at = ? WHERE plan_id = ?`
-    ).bind(ts, plan_id),
+      `UPDATE plan SET status = ?, updated_at = ? WHERE plan_id = ?`
+    ).bind(nextStatus, ts, plan_id),
   ]);
 
   try {
@@ -1669,7 +1910,7 @@ async function resolvePlanSelectionFromVotes(env, plan_id, session) {
 
   return {
     ok: true,
-    status: "Selected",
+    status: nextStatus,
     meal_option_id: winner.meal_option_id,
     resolution_rule: rule,
     tallies,
@@ -1776,7 +2017,9 @@ async function getHouseholdState(env, household_id) {
     household: activity.household,
     members: activity.members,
     constraints: activity.constraints,
-    meal_options: activity.meal_options,
+    meal_options: projectMealOptions(activity.meal_options),
+    outcome_locked: activity.outcome_locked,
+    locked_meal_option_id: activity.locked_meal_option_id,
     ...state,
   });
 }
@@ -1894,8 +2137,10 @@ async function getSessionMe(env, request, requestUrl) {
     household: activity.household,
     members: activity.members,
     constraints: activity.constraints,
-    meal_options: activity.meal_options,
+    meal_options: projectMealOptions(activity.meal_options),
     ratings: activity.ratings,
+    outcome_locked: activity.outcome_locked,
+    locked_meal_option_id: activity.locked_meal_option_id,
     ...state,
   });
 }
@@ -1952,7 +2197,7 @@ export default {
         if (path === "/api/households" && request.method === "POST") {
           const body = await readBody(request);
           if (body === null) return err("invalid_json");
-          return createHousehold(env, body);
+          return createHousehold(env, body, request);
         }
 
         // GET /api/households/:id/state
@@ -2051,7 +2296,7 @@ export default {
           if (body === null) return err("invalid_json");
           const auth = await requireSession(env.DB, request);
           if (auth.error) return auth.error;
-          return postRecommendationsPlan(env, body, auth.session);
+          return postRecommendationsPlan(env, body, auth.session, request);
         }
 
         if (path === "/api/ops/alpha-metrics" && request.method === "GET") {
@@ -2081,7 +2326,7 @@ export default {
             if (body === null) return err("invalid_json");
             const auth = await requireSession(env.DB, request);
             if (auth.error) return auth.error;
-            return postMealVote(env, m.plan_id, body, auth.session);
+            return postMealVote(env, m.plan_id, body, auth.session, request);
           }
         }
         {
@@ -2099,7 +2344,7 @@ export default {
           if (body === null) return err("invalid_json");
           const auth = await requireSession(env.DB, request);
           if (auth.error) return auth.error;
-          return postPreferenceEvidence(env, body, auth.session);
+          return postPreferenceEvidence(env, body, auth.session, request);
         }
 
         if (path === "/api/client-errors" && request.method === "POST") {
@@ -2162,7 +2407,7 @@ export default {
           if (body === null) return err("invalid_json");
           const auth = await requireSession(env.DB, request);
           if (auth.error) return auth.error;
-          return createSelection(env, body, auth.session);
+          return createSelection(env, body, auth.session, request);
         }
 
         // POST /api/cooks
@@ -2171,7 +2416,7 @@ export default {
           if (body === null) return err("invalid_json");
           const auth = await requireSession(env.DB, request);
           if (auth.error) return auth.error;
-          return createCook(env, body, auth.session);
+          return createCook(env, body, auth.session, request);
         }
 
         // POST /api/ratings
@@ -2180,7 +2425,7 @@ export default {
           if (body === null) return err("invalid_json");
           const auth = await requireSession(env.DB, request);
           if (auth.error) return auth.error;
-          return createRating(env, body, auth.session);
+          return createRating(env, body, auth.session, request);
         }
 
         // POST /api/events
@@ -2189,7 +2434,7 @@ export default {
           if (body === null) return err("invalid_json");
           const auth = await requireSession(env.DB, request);
           if (auth.error) return auth.error;
-          return createEvent(env, body, auth.session);
+          return createEvent(env, body, auth.session, request);
         }
 
 

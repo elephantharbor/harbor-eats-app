@@ -134,9 +134,16 @@
           return c.rule_key;
         });
     }
+    state.ratingsByOption = {};
     if (Array.isArray(snap.ratings)) {
       snap.ratings.forEach(function (r) {
-        if (state.ratings[r.member_id]) state.ratings[r.member_id].score = r.score;
+        if (!r.meal_option_id) return;
+        if (!state.ratingsByOption[r.meal_option_id]) state.ratingsByOption[r.meal_option_id] = {};
+        state.ratingsByOption[r.meal_option_id][r.member_id] = {
+          score: r.score,
+          note: r.note || "",
+          recipe_version_id: r.recipe_version_id || null,
+        };
       });
     }
     if (snap.plan_id) API.planId = snap.plan_id;
@@ -145,6 +152,17 @@
       if (fromApi) state.currentMeals = fromApi;
     }
     if (snap.selected_meal_option_id) state.selectedMealId = snap.selected_meal_option_id;
+    state.outcomeLocked = !!snap.outcome_locked;
+    state.lockedMealOptionId = snap.locked_meal_option_id || (state.outcomeLocked ? state.selectedMealId : null);
+    state.previewMealId = state.selectedMealId;
+    state.cookingMealId = null;
+    if (state.selectedMealId && state.ratingsByOption[state.selectedMealId]) {
+      const bucket = state.ratingsByOption[state.selectedMealId];
+      state.members.forEach(function (m) {
+        const row = bucket[m.id];
+        state.ratings[m.id] = row ? { score: row.score, note: row.note || "" } : { score: null, note: "" };
+      });
+    }
     if (snap.lifecycle) {
       state.lifecycle = snap.lifecycle === "Generated" ? "Unselected" : snap.lifecycle;
     }
@@ -263,7 +281,7 @@
     try {
       const r = await fetch(path, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: apiHeaders(),
         credentials: "same-origin",
         body: JSON.stringify(body || {}),
       });
@@ -307,7 +325,7 @@
     try {
       const r = await fetch(path, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: apiHeaders(),
         credentials: "same-origin",
         body: JSON.stringify(body || {}),
       });
@@ -393,7 +411,50 @@
     settingsCadence: "on_demand",
     activeRecipe: null,
     ratingState: "none",
+    previewMealId: null,
+    cookingMealId: null,
+    outcomeLocked: false,
+    lockedMealOptionId: null,
+    ratingsByOption: {},
   };
+
+  function apiHeaders() {
+    const headers = { "Content-Type": "application/json" };
+    if (isQaMode()) headers["X-FlavorWeave-Data-Origin"] = "synthetic";
+    return headers;
+  }
+
+  function identitySnapshot() {
+    return {
+      previewMealId: state.previewMealId || null,
+      selectedMealId: state.selectedMealId || null,
+      cookingMealId: state.cookingMealId || null,
+      lifecycle: state.lifecycle,
+      outcomeLocked: !!state.outcomeLocked,
+      lockedMealOptionId: state.lockedMealOptionId || null,
+      ratingsByOption: JSON.parse(JSON.stringify(state.ratingsByOption || {})),
+      ratings: JSON.parse(JSON.stringify(state.ratings || {})),
+    };
+  }
+
+  function applyIdentity(next) {
+    if (!next) return;
+    if (Object.prototype.hasOwnProperty.call(next, "previewMealId")) state.previewMealId = next.previewMealId;
+    if (Object.prototype.hasOwnProperty.call(next, "selectedMealId")) state.selectedMealId = next.selectedMealId;
+    if (Object.prototype.hasOwnProperty.call(next, "cookingMealId")) state.cookingMealId = next.cookingMealId;
+    if (next.lifecycle) state.lifecycle = next.lifecycle;
+    if (typeof next.outcomeLocked === "boolean") state.outcomeLocked = next.outcomeLocked;
+    if (Object.prototype.hasOwnProperty.call(next, "lockedMealOptionId")) {
+      state.lockedMealOptionId = next.lockedMealOptionId;
+    }
+    if (next.ratingsByOption) state.ratingsByOption = next.ratingsByOption;
+    if (next.ratings) {
+      activeMembers().forEach(function (m) {
+        const row = next.ratings[m.id];
+        state.ratings[m.id] = row ? { score: row.score, note: row.note || "" } : { score: null, note: "" };
+      });
+    }
+  }
 
   function activeMembers() {
     const active = state.members.filter(function (m) {
@@ -487,11 +548,23 @@
     if (eye && state.nextAction === "loop_complete") eye.textContent = nextRated;
   }
 
-  function selectedMeal() {
-    if (!state.selectedMealId) return null;
+  function mealById(id) {
+    if (!id) return null;
     return displayMeals().find(function (m) {
-      return m.id === state.selectedMealId;
+      return m.id === id;
     }) || null;
+  }
+
+  function selectedMeal() {
+    return mealById(state.selectedMealId);
+  }
+
+  function detailMeal() {
+    return mealById(state.previewMealId || state.selectedMealId);
+  }
+
+  function cookingMeal() {
+    return mealById(state.cookingMealId || state.selectedMealId);
   }
 
   async function fetchRecipeForMeal(meal) {
@@ -510,19 +583,19 @@
     return null;
   }
 
-  async function ensureRecipeForSelection() {
-    const meal = selectedMeal();
+  async function ensureRecipeForMeal(meal) {
     if (!meal) return null;
-    if (
-      state.activeRecipe &&
-      (state.activeRecipe.recipe_slug === meal.recipe_slug ||
-        state.activeRecipe.recipe_version_id === meal.recipe_version_id)
-    ) {
-      return state.activeRecipe;
-    }
+    if (state.activeRecipe && state.activeRecipe._mealId === meal.id) return state.activeRecipe;
     const loaded = await fetchRecipeForMeal(meal);
-    if (loaded) state.activeRecipe = loaded;
-    return state.activeRecipe;
+    if (loaded) {
+      loaded._mealId = meal.id;
+      state.activeRecipe = loaded;
+    }
+    return loaded;
+  }
+
+  async function ensureRecipeForSelection() {
+    return ensureRecipeForMeal(selectedMeal());
   }
 
   function cookSteps() {
@@ -639,32 +712,39 @@
     const plates = { A: "🌮", B: "🐟", C: "🍲", D: "🍗", E: "🥣" };
     return options.map((o) => {
       const letter = o.letter || "A";
-      let pers = o.pers;
-      let attrs = null;
+      let attrs = {};
       if (o.attributes_json) {
         try {
           attrs =
             typeof o.attributes_json === "string" ? JSON.parse(o.attributes_json) : o.attributes_json;
-          if (attrs && attrs.pers && !pers) pers = attrs.pers;
-        } catch (_) { /* ignore */ }
+        } catch (_) { attrs = {}; }
+      }
+      const minutes = o.minutes || attrs.minutes || null;
+      const time = (o.time && /\d/.test(String(o.time)) ? o.time : "") || (minutes ? minutes + " min" : "");
+      const effort = o.effort || attrs.effort || "";
+      const storedChips = (Array.isArray(o.chips) && o.chips.length ? o.chips : null)
+        || (Array.isArray(attrs.chips) && attrs.chips.length ? attrs.chips : null)
+        || [];
+      const mealFormat = o.meal_format || attrs.meal_format || "";
+      const chips = storedChips.filter(function (chip) { return String(chip).toLowerCase() !== "shared"; });
+      if (mealFormat && !chips.some(function (chip) { return String(chip).toLowerCase() === String(mealFormat).toLowerCase(); })) {
+        chips.unshift(mealFormat);
       }
       return {
         letter,
         id: o.meal_option_id || o.id || (PLAN_ID + "-" + letter),
-        title: o.title || o.name || ("Option " + letter),
-        chips: Array.isArray(o.chips) && o.chips.length ? o.chips : ["Shared"],
-        plate: o.plate || plates[letter] || "🍽️",
-        tone: o.tone || tones[letter] || "tone-a",
-        time: o.time || "",
-        effort: o.effort || "",
-        recipe_slug: o.recipe_slug || (attrs && attrs.recipe_slug) || null,
+        title: o.title || attrs.title || o.name || ("Option " + letter),
+        chips,
+        plate: o.plate || attrs.plate || plates[letter] || "🍽️",
+        tone: o.tone || attrs.tone || tones[letter] || "tone-a",
+        time,
+        effort,
+        meal_format: mealFormat,
+        cuisine: o.cuisine || attrs.cuisine || "",
+        recipe_slug: o.recipe_slug || attrs.recipe_slug || null,
         recipe_version_id:
-          o.recipe_version_id || o.recipe_version || (attrs && attrs.recipe_version_id) || null,
-        pers: pers || {
-          type: "why",
-          label: "Shared pick",
-          line: "Someone shared these picks with you",
-        },
+          o.recipe_version_id || o.recipe_version || attrs.recipe_version_id || null,
+        pers: o.pers || attrs.pers || null,
       };
     });
   }
@@ -682,14 +762,25 @@
     const mapped = optionsFromApi(list);
     if (mapped && mapped.length) {
       state.currentMeals = mapped;
+      const ids = {};
+      mapped.forEach(function (m) { ids[m.id] = true; });
+      if (state.selectedMealId && !ids[state.selectedMealId]) {
+        state.members.forEach(function (m) {
+          state.ratings[m.id] = { score: null, note: "" };
+        });
+      }
       return true;
     }
     return false;
   }
 
   function mealCardHtml(m, opts) {
-    const { selected, goDetail } = opts || {};
-    const go = goDetail ? ` data-go="detail" data-select="${escapeHtml(m.id)}"` : ` data-select="${escapeHtml(m.id)}"`;
+    const { selected, goDetail, guest } = opts || {};
+    const go = guest
+      ? ` data-select="${escapeHtml(m.id)}"`
+      : goDetail
+        ? ` data-preview="${escapeHtml(m.id)}"`
+        : "";
     const time = mealMinutes(m);
     const effort = m.effort || "";
     const metaBits = [];
@@ -716,8 +807,11 @@
           <div class="badges">${persBadge}</div>
           ${pers.line ? `<p class="why">${escapeHtml(pers.line)}</p>` : ""}
           ${meta}
+          <div class="option-card__actions">
+            ${guest ? "" : `<button class="btn btn-secondary btn-sm option-card__choose" type="button" data-select="${escapeHtml(m.id)}">Choose this dinner</button>`}
+            ${goDetail ? `<span class="option-card__cta" aria-hidden="true">View recipe ${icon("arrow-right")}</span>` : ""}
+          </div>
         </div>
-        ${goDetail ? `<span class="option-card__cta" aria-hidden="true">View recipe ${icon("arrow-right")}</span>` : ""}
       </article>`;
   }
 
@@ -738,7 +832,7 @@
   function renderGuestChoices() {
     const list = guestMeals();
     document.getElementById("guestChoiceCards").innerHTML = list
-      .map((m) => mealCardHtml(m, { selected: state.guestPick === m.id }))
+      .map((m) => mealCardHtml(m, { selected: state.guestPick === m.id, guest: true }))
       .join("");
     const meta = document.getElementById("guestShareMeta");
     if (meta) {
@@ -847,12 +941,12 @@
       });
     }
     if (name === "detail") {
-      ensureRecipeForSelection().then(function () {
+      ensureRecipeForMeal(detailMeal()).then(function () {
         renderDetail();
       });
     }
     if (name === "cook") {
-      ensureRecipeForSelection().then(function () {
+      ensureRecipeForMeal(cookingMeal()).then(function () {
         renderCook();
       });
     }
@@ -992,8 +1086,32 @@
     });
   }
 
+  function syncDetailActions(meal) {
+    const cookBtn = document.getElementById("btnStartCook");
+    const previewBtn = document.getElementById("btnPreviewSteps");
+    const eyebrow = document.getElementById("detailEyebrow");
+    const chosen = meal && meal.id === state.selectedMealId;
+    if (eyebrow) eyebrow.textContent = chosen ? "Tonight’s pick" : "Recipe";
+    if (cookBtn) {
+      if (!chosen) {
+        cookBtn.dataset.action = "choose";
+        delete cookBtn.dataset.go;
+        cookBtn.textContent = "Choose this dinner";
+      } else if (state.lifecycle === "Cooked" || state.lifecycle === "Rated") {
+        cookBtn.dataset.action = "cook";
+        cookBtn.dataset.go = "cook";
+        cookBtn.innerHTML = "Read the steps " + icon("arrow-right", "icon--forward");
+      } else {
+        cookBtn.dataset.action = "cook";
+        cookBtn.dataset.go = "cook";
+        cookBtn.innerHTML = "Start cooking " + icon("arrow-right", "icon--forward");
+      }
+    }
+    if (previewBtn) previewBtn.hidden = !!chosen;
+  }
+
   function renderDetail() {
-    const meal = selectedMeal();
+    const meal = detailMeal();
     const recipe = state.activeRecipe;
     const titleEl = document.getElementById("detailTitle");
     const mediaEl = document.getElementById("detailMedia");
@@ -1017,6 +1135,7 @@
         sizes: "(min-width: 1024px) 50vw, 100vw",
       }).replace('<div class="', '<div id="detailMedia" class="');
     }
+    syncDetailActions(meal);
     if (!meal || !recipe) {
       if (titleEl) titleEl.textContent = meal ? meal.title : "Load a pick first";
       if (whyEl) whyEl.textContent = meal ? "We couldn’t load the full recipe. Check your connection and try again." : "Pick one of tonight’s options to see the recipe.";
@@ -1124,9 +1243,9 @@
     const steps = cookSteps();
     const i = state.cookStep;
     const cookMeal = document.getElementById("cookMealTitle");
-    const meal = selectedMeal();
+    const meal = cookingMeal();
     if (cookMeal) {
-      cookMeal.textContent = (state.activeRecipe && state.activeRecipe.title) || (meal && meal.title) || "Kitchen mode";
+      cookMeal.textContent = (state.activeRecipe && state.activeRecipe._mealId === (meal && meal.id) && state.activeRecipe.title) || (meal && meal.title) || "Kitchen mode";
     }
     if (!steps.length) {
       document.getElementById("cookStepTitle").textContent = "Recipe not loaded";
@@ -1168,7 +1287,12 @@
   }
 
   function finishCook() {
-    state.lifecycle = "Cooked";
+    const next = window.MealIdentity.reduceMealAction(identitySnapshot(), { type: "finish_cook" });
+    if (!next.committed) {
+      toast(next.error === "already_cooked" ? "This dinner is already logged" : "Choose this dinner before marking it cooked");
+      return;
+    }
+    applyIdentity(next);
     state.ratingState = "awaiting";
     const mealId = state.selectedMealId;
     if (!mealId) {
@@ -1501,9 +1625,14 @@
   }
 
   function selectMeal(id) {
-    state.selectedMealId = id;
+    const prev = identitySnapshot();
+    const next = window.MealIdentity.reduceMealAction(prev, { type: "select", mealOptionId: id });
+    if (next.error) {
+      toast("That dinner is already logged");
+      return;
+    }
+    applyIdentity(next);
     state.activeRecipe = null;
-    state.lifecycle = "Selected";
     track("selection_recorded", {
       plan_id: API.planId || PLAN_ID,
       meal_option_id: id,
@@ -1525,23 +1654,40 @@
           meal_option_id: id,
           auto_resolve: true,
         });
+        if (voteRes && (voteRes.locked || voteRes.error === "selection_locked")) {
+          applyIdentity(prev);
+          toast("That dinner is already logged");
+          return;
+        }
         if (voteRes && voteRes.status === "Selected" && voteRes.meal_option_id) {
           state.selectedMealId = voteRes.meal_option_id;
+          state.previewMealId = voteRes.meal_option_id;
         } else if (voteRes && voteRes.waiting_on) {
           toast("Vote saved — waiting on others");
           return;
         }
       } else {
-        await apiPost("/api/selections", {
+        const sel = await apiPost("/api/selections", {
           plan_id: planId,
           meal_option_id: id,
           household_id: hh,
           source: "app",
           actor_member_id: memberId,
         });
+        if (sel && (sel.error === "selection_locked" || sel.ok === false)) {
+          applyIdentity(prev);
+          toast("That dinner is already logged");
+          return;
+        }
       }
       await ensureRecipeForSelection();
     })();
+  }
+
+  function openPreview(id) {
+    applyIdentity(window.MealIdentity.reduceMealAction(identitySnapshot(), { type: "preview", mealOptionId: id }));
+    state.activeRecipe = null;
+    show("detail");
   }
 
   // —— Navigation ——
@@ -1579,6 +1725,12 @@
       return;
     }
 
+    const preview = e.target.closest("[data-preview]");
+    if (preview && preview.closest('[data-view="choices"]') && !e.target.closest("[data-select]")) {
+      openPreview(preview.dataset.preview);
+      return;
+    }
+
     const homeCook = e.target.closest('[data-action="home-cook"]');
     if (homeCook) {
       e.preventDefault();
@@ -1602,6 +1754,10 @@
     const go = e.target.closest("[data-go]");
     if (go && !go.disabled && !go.dataset.select) {
       e.preventDefault();
+      if (go.dataset.go === "detail") {
+        state.previewMealId = state.selectedMealId;
+        state.activeRecipe = null;
+      }
       show(go.dataset.go);
     }
   });
@@ -1874,6 +2030,14 @@
           plate: m.plate,
           tone: m.tone,
           pers: m.pers,
+          time: m.time,
+          effort: m.effort,
+          minutes: m.time ? parseInt(m.time, 10) : null,
+          meal_format: m.meal_format,
+          cuisine: m.cuisine,
+          recipe_slug: m.recipe_slug,
+          recipe_version: m.recipe_version_id,
+          recipe_version_id: m.recipe_version_id,
         })),
       });
       if (res && res.token) {
@@ -2003,36 +2167,70 @@
       ok: "Exit",
       cancel: "Keep cooking",
     });
-    if (leave) show("detail");
+    if (leave) {
+      applyIdentity(window.MealIdentity.reduceMealAction(identitySnapshot(), { type: "exit_cook" }));
+      state.previewMealId = state.selectedMealId || state.previewMealId;
+      show("detail");
+    }
   });
 
   function startCooking(navigate) {
-    if (!state.selectedMealId) {
-      toast("Pick a meal from tonight’s options first");
+    const meal = detailMeal() || selectedMeal();
+    const mealId = meal && meal.id;
+    if (!mealId) {
+      toast("Choose a dinner from tonight’s options first");
       return false;
     }
+    applyIdentity(window.MealIdentity.reduceMealAction(identitySnapshot(), { type: "begin_cook", mealOptionId: mealId }));
     state.cookStep = 0;
-    track("cook_started", {
-      plan_id: API.planId || PLAN_ID,
-      meal_option_id: state.selectedMealId,
-    });
+    if (mealId === state.selectedMealId) {
+      track("cook_started", {
+        plan_id: API.planId || PLAN_ID,
+        meal_option_id: mealId,
+      });
+    }
     if (navigate !== false) show("cook");
     return true;
   }
 
   document.getElementById("btnStartCook").addEventListener("click", (e) => {
+    if (e.currentTarget.dataset.action === "choose") {
+      e.stopImmediatePropagation();
+      const meal = detailMeal();
+      if (meal) selectMeal(meal.id);
+      renderDetail();
+      return;
+    }
     if (!startCooking(false)) e.stopImmediatePropagation();
   });
+
+  const btnPreviewSteps = document.getElementById("btnPreviewSteps");
+  if (btnPreviewSteps) {
+    btnPreviewSteps.addEventListener("click", function (e) {
+      e.stopImmediatePropagation();
+      startCooking(true);
+    });
+  }
 
   app.addEventListener("click", (e) => {
     const scoreBtn = e.target.closest(".score[data-person]");
     if (scoreBtn) {
       const id = scoreBtn.dataset.person;
       const score = Number(scoreBtn.dataset.score);
-      if (!state.ratings[id]) state.ratings[id] = { score: null, note: "" };
-      state.ratings[id].score = score;
       const mealId = state.selectedMealId;
       if (!mealId) return;
+      const versionId = state.activeRecipe && state.activeRecipe.recipe_version_id;
+      const rated = window.MealIdentity.reduceMealAction(identitySnapshot(), {
+        type: "rate",
+        memberId: id,
+        score: score,
+        recipeVersionId: versionId,
+      });
+      if (rated.error) {
+        toast("Rate the dinner you cooked");
+        return;
+      }
+      applyIdentity(rated);
       track("rating_submitted", {
         person_id: id,
         score,
@@ -2064,6 +2262,16 @@
     if (note) {
       if (!state.ratings[note.dataset.note]) state.ratings[note.dataset.note] = { score: null, note: "" };
       state.ratings[note.dataset.note].note = note.value;
+      const notedMeal = state.selectedMealId;
+      if (notedMeal) {
+        if (!state.ratingsByOption[notedMeal]) state.ratingsByOption[notedMeal] = {};
+        const prior = state.ratingsByOption[notedMeal][note.dataset.note] || {};
+        state.ratingsByOption[notedMeal][note.dataset.note] = {
+          score: state.ratings[note.dataset.note].score,
+          note: note.value,
+          recipe_version_id: prior.recipe_version_id || null,
+        };
+      }
     }
   });
 

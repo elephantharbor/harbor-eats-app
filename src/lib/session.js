@@ -1,5 +1,7 @@
 import { SESSION_COOKIE, parseCookies, sessionSetCookieHeader } from "./cookies.js";
 import { sha256Hex } from "./crypto.js";
+import { householdIsSynthetic } from "./evidence-origin.js";
+import { resolvePlanOutcome } from "./meal-identity.js";
 
 const SESSION_DAYS = 90;
 
@@ -115,7 +117,10 @@ export async function resolveSession(db, token) {
  */
 export async function loadHouseholdActivity(db, household_id) {
   const hh = await db
-    .prepare("SELECT household_id, display_name, status FROM household WHERE household_id = ?")
+    .prepare(
+      `SELECT household_id, display_name, status, acquisition_source, data_origin
+       FROM household WHERE household_id = ?`
+    )
     .bind(household_id)
     .first();
   if (!hh) return null;
@@ -136,48 +141,37 @@ export async function loadHouseholdActivity(db, household_id) {
     .all();
   const constraints = constraintsRes.results || [];
 
-  const plan = await db
-    .prepare(
-      `SELECT plan_id, status, created_at, updated_at FROM plan
+  const planSql = householdIsSynthetic(hh)
+    ? `SELECT plan_id, status, created_at, updated_at, data_origin FROM plan
        WHERE household_id = ? ORDER BY updated_at DESC LIMIT 1`
-    )
-    .bind(household_id)
-    .first();
+    : `SELECT plan_id, status, created_at, updated_at, data_origin FROM plan
+       WHERE household_id = ? AND data_origin = 'household' ORDER BY updated_at DESC LIMIT 1`;
+  const plan = await db.prepare(planSql).bind(household_id).first();
 
   let selection = null;
   let cook = null;
   let ratings = [];
   let meal_options = [];
+  let outcome_locked = false;
+  let locked_meal_option_id = null;
 
   if (plan) {
-    const sel = await db
-      .prepare(
-        `SELECT meal_option_id, plan_id FROM selection WHERE plan_id = ? ORDER BY created_at DESC LIMIT 1`
-      )
-      .bind(plan.plan_id)
-      .first();
-    selection = sel || null;
-
-    const ck = await db
-      .prepare(`SELECT cook_id, meal_option_id FROM cook WHERE plan_id = ? ORDER BY created_at DESC LIMIT 1`)
-      .bind(plan.plan_id)
-      .first();
-    cook = ck || null;
-
-    const rat = await db
-      .prepare(`SELECT member_id, score FROM rating WHERE plan_id = ?`)
-      .bind(plan.plan_id)
-      .all();
-    ratings = rat.results || [];
-
-    const mo = await db
-      .prepare(
-        `SELECT meal_option_id, letter, name, recipe_slug, recipe_version, attributes_json
-         FROM meal_option WHERE plan_id = ?`
-      )
-      .bind(plan.plan_id)
-      .all();
-    meal_options = mo.results || [];
+    const bundle = await loadPlanBundle(db, plan.plan_id);
+    meal_options = bundle.meal_options;
+    const outcome = resolvePlanOutcome({
+      mealOptions: meal_options,
+      selections: bundle.selections,
+      cooks: bundle.cooks,
+      ratings: bundle.ratings,
+      household: hh,
+    });
+    selection = outcome.meal_option_id
+      ? { meal_option_id: outcome.meal_option_id, plan_id: plan.plan_id }
+      : null;
+    cook = outcome.cook;
+    ratings = outcome.ratings;
+    outcome_locked = outcome.outcome_locked;
+    locked_meal_option_id = outcome.outcome_locked ? outcome.meal_option_id : null;
   }
 
   const active_member_count = members.filter((m) => m.status === "active").length;
@@ -196,5 +190,62 @@ export async function loadHouseholdActivity(db, household_id) {
     meal_options,
     active_member_count,
     onboarded,
+    outcome_locked,
+    locked_meal_option_id,
   };
+}
+
+export async function loadPlanBundle(db, plan_id) {
+  const plan = await db
+    .prepare(`SELECT plan_id, household_id, status, data_origin FROM plan WHERE plan_id = ?`)
+    .bind(plan_id)
+    .first();
+  if (!plan) return null;
+  const household = await db
+    .prepare(
+      `SELECT household_id, data_origin, acquisition_source FROM household WHERE household_id = ?`
+    )
+    .bind(plan.household_id)
+    .first();
+  const selections =
+    (
+      await db
+        .prepare(
+          `SELECT selection_id, plan_id, meal_option_id, created_at, data_origin
+           FROM selection WHERE plan_id = ?`
+        )
+        .bind(plan_id)
+        .all()
+    ).results || [];
+  const cooks =
+    (
+      await db
+        .prepare(
+          `SELECT cook_id, plan_id, meal_option_id, cooked_at, created_at, data_origin
+           FROM cook WHERE plan_id = ?`
+        )
+        .bind(plan_id)
+        .all()
+    ).results || [];
+  const ratings =
+    (
+      await db
+        .prepare(
+          `SELECT rating_id, plan_id, meal_option_id, member_id, score, recipe_version_id, data_origin
+           FROM rating WHERE plan_id = ?`
+        )
+        .bind(plan_id)
+        .all()
+    ).results || [];
+  const meal_options =
+    (
+      await db
+        .prepare(
+          `SELECT meal_option_id, letter, name, recipe_slug, recipe_version, attributes_json, plan_id
+           FROM meal_option WHERE plan_id = ?`
+        )
+        .bind(plan_id)
+        .all()
+    ).results || [];
+  return { plan, household, selections, cooks, ratings, meal_options };
 }

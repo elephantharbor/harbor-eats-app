@@ -1903,6 +1903,24 @@ h2[tabindex="-1"]:focus {
   display: none;
 }
 
+.option-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.option-card__actions .option-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-structure);
+}
+
 .share-card {
   display: grid;
   gap: var(--space-5);

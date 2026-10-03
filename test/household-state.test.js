@@ -45,6 +45,23 @@ describe("deriveHouseholdState", () => {
     expect(s.cml_complete).toBe(true);
   });
 
+  it("keeps a fully rated cook as Rated when plan status was rewritten to Selected", () => {
+    const s = deriveHouseholdState({
+      onboarded: true,
+      plan: { plan_id: "p1", status: "Selected" },
+      selection: { meal_option_id: "m-a" },
+      cook: { cook_id: "c1", meal_option_id: "m-a" },
+      ratings: [
+        { member_id: "a", score: 8 },
+        { member_id: "b", score: 7 },
+      ],
+      active_member_count: 2,
+    });
+    expect(s.lifecycle).toBe("Rated");
+    expect(s.next_action).toBe("loop_complete");
+    expect(s.selected_meal_option_id).toBe("m-a");
+  });
+
   it("allows partial ratings without blocking home", () => {
     const s = deriveHouseholdState({
       onboarded: true,

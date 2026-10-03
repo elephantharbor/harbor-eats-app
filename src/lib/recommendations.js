@@ -3,6 +3,8 @@ import { parseHouseholdSettings } from "./household-settings.js";
 import { LETTERS } from "./taste-model.js";
 import { buildRankedChoiceSet } from "./recommendation-pipeline.js";
 import { getCurrentVersionIdForSlug } from "./recipe-store.js";
+import { householdIsSynthetic, learningRows } from "./evidence-origin.js";
+import { historyFromActivity } from "./meal-identity.js";
 
 /**
  * @param {import('@cloudflare/workers-types').D1Database} db
@@ -10,7 +12,8 @@ import { getCurrentVersionIdForSlug } from "./recipe-store.js";
 export async function loadRecommendationContext(db, household_id) {
   const hh = await db
     .prepare(
-      `SELECT household_id, display_name, meal_choice_count, scheduling_cadence, settings_json
+      `SELECT household_id, display_name, meal_choice_count, scheduling_cadence, settings_json,
+              acquisition_source, data_origin
        FROM household WHERE household_id = ?`
     )
     .bind(household_id)
@@ -21,20 +24,23 @@ export async function loadRecommendationContext(db, household_id) {
     .bind(household_id)
     .all();
 
+  const realOnly = hh ? !householdIsSynthetic(hh) : true;
+  const originSql = realOnly ? "AND data_origin = 'household'" : "";
+
   const evidenceRes = await db
     .prepare(
-      `SELECT tag, kind, weight, source, member_id FROM preference_evidence
-       WHERE household_id = ? ORDER BY created_at DESC LIMIT 200`
+      `SELECT tag, kind, weight, source, member_id, data_origin FROM preference_evidence
+       WHERE household_id = ? ${originSql} ORDER BY created_at DESC LIMIT 200`
     )
     .bind(household_id)
     .all();
 
   const ratingsRes = await db
     .prepare(
-      `SELECT r.score, r.member_id, mo.recipe_slug, mo.attributes_json
+      `SELECT r.score, r.member_id, r.data_origin, mo.recipe_slug, mo.attributes_json
        FROM rating r
        JOIN meal_option mo ON mo.meal_option_id = r.meal_option_id
-       WHERE r.household_id = ?
+       WHERE r.household_id = ? ${originSql.replaceAll("data_origin", "r.data_origin")}
        ORDER BY r.updated_at DESC LIMIT 100`
     )
     .bind(household_id)
@@ -51,14 +57,14 @@ export async function loadRecommendationContext(db, household_id) {
     .prepare(
       `SELECT mo.recipe_slug FROM cook c
        JOIN meal_option mo ON mo.meal_option_id = c.meal_option_id
-       WHERE c.household_id = ?
+       WHERE c.household_id = ? ${originSql.replaceAll("data_origin", "c.data_origin")}
        ORDER BY c.cooked_at DESC LIMIT 8`
     )
     .bind(household_id)
     .all();
 
   const settings = parseHouseholdSettings(hh);
-  const ratings = (ratingsRes.results || []).map((r) => {
+  const ratings = learningRows(ratingsRes.results || [], hh).map((r) => {
     let tags = [];
     try {
       const attrs = r.attributes_json ? JSON.parse(r.attributes_json) : null;
@@ -75,7 +81,7 @@ export async function loadRecommendationContext(db, household_id) {
   return {
     settings,
     constraints: constraintsRes.results || [],
-    evidence: evidenceRes.results || [],
+    evidence: learningRows(evidenceRes.results || [], hh),
     ratings,
     recent_recipe_slugs: (recentCooks.results || [])
       .map((r) => r.recipe_slug)
@@ -92,84 +98,69 @@ export function rankMealsForHousehold(ctx) {
  * @param {import('@cloudflare/workers-types').D1Database} db
  */
 export async function loadMealHistory(db, household_id, limit = 20) {
-  const rows = await db
+  const hh = await db
     .prepare(
-      `       SELECT p.plan_id, p.status, p.updated_at,
-              mo.meal_option_id, mo.name, mo.recipe_slug, mo.recipe_version, mo.letter,
-              sel.created_at AS selected_at,
-              ck.cooked_at,
-              mo.attributes_json
-       FROM plan p
-       LEFT JOIN meal_option mo ON mo.plan_id = p.plan_id AND mo.selected = 1
-       LEFT JOIN selection sel ON sel.plan_id = p.plan_id
-       LEFT JOIN cook ck ON ck.plan_id = p.plan_id
-       WHERE p.household_id = ?
-       ORDER BY p.updated_at DESC
-       LIMIT ?`
+      `SELECT household_id, data_origin, acquisition_source FROM household WHERE household_id = ?`
+    )
+    .bind(household_id)
+    .first();
+  const members = await db
+    .prepare(`SELECT COUNT(*) AS c FROM member WHERE household_id = ? AND status = 'active'`)
+    .bind(household_id)
+    .first();
+  const active = members ? Number(members.c) || 1 : 1;
+  const plansRes = await db
+    .prepare(
+      `SELECT plan_id, status, updated_at, data_origin FROM plan
+       WHERE household_id = ? ORDER BY updated_at DESC LIMIT ?`
     )
     .bind(household_id, limit)
     .all();
-
-  const planIds = [...new Set((rows.results || []).map((r) => r.plan_id))];
-  /** @type {Map<string, Array<{member_id: string, score: number}>>} */
-  const ratingsByPlan = new Map();
-  if (planIds.length) {
-    const placeholders = planIds.map(() => "?").join(",");
-    const rat = await db
-      .prepare(
-        `SELECT plan_id, member_id, score FROM rating WHERE plan_id IN (${placeholders})`
-      )
-      .bind(...planIds)
-      .all();
-    for (const r of rat.results || []) {
-      if (!ratingsByPlan.has(r.plan_id)) ratingsByPlan.set(r.plan_id, []);
-      ratingsByPlan.get(r.plan_id).push({ member_id: r.member_id, score: r.score });
-    }
-  }
-
-  const seen = new Set();
-  const items = [];
-  for (const r of rows.results || []) {
-    if (seen.has(r.plan_id)) continue;
-    seen.add(r.plan_id);
-    const ratings = ratingsByPlan.get(r.plan_id) || [];
-    const avg =
-      ratings.length > 0
-        ? ratings.reduce((a, x) => a + x.score, 0) / ratings.length
-        : null;
-    let pending_feedback = false;
-    let rating_state = "none";
-    if (r.status === "Cooked") {
-      if (ratings.length === 0) {
-        pending_feedback = true;
-        rating_state = "awaiting";
-      } else {
-        rating_state = "partial";
-        pending_feedback = true;
-      }
-    }
-    if (r.status === "Rated") {
-      rating_state = "full";
-      pending_feedback = false;
-    }
-    if (r.status === "Selected" && !r.cooked_at) pending_feedback = true;
-
-    items.push({
-      plan_id: r.plan_id,
-      status: r.status,
-      meal_name: r.name,
-      recipe_slug: r.recipe_slug,
-      selected_at: r.selected_at,
-      cooked_at: r.cooked_at,
-      ratings,
-      avg_score: avg,
-      pending_feedback,
-      rating_state,
-      recipe_version_id: r.recipe_version || getCurrentVersionIdForSlug(r.recipe_slug),
-      favorite: avg != null && avg >= 8.5,
-    });
-  }
-  return items;
+  const plans = (plansRes.results || []).map((plan) => ({
+    ...plan,
+    active_member_count: active,
+  }));
+  if (!plans.length) return [];
+  const ids = plans.map((plan) => plan.plan_id);
+  const placeholders = ids.map(() => "?").join(",");
+  const options = await db
+    .prepare(
+      `SELECT plan_id, meal_option_id, letter, name, recipe_slug, recipe_version, attributes_json
+       FROM meal_option WHERE plan_id IN (${placeholders})`
+    )
+    .bind(...ids)
+    .all();
+  const selections = await db
+    .prepare(
+      `SELECT plan_id, meal_option_id, created_at, data_origin FROM selection WHERE plan_id IN (${placeholders})`
+    )
+    .bind(...ids)
+    .all();
+  const cooks = await db
+    .prepare(
+      `SELECT plan_id, cook_id, meal_option_id, cooked_at, created_at, data_origin
+       FROM cook WHERE plan_id IN (${placeholders})`
+    )
+    .bind(...ids)
+    .all();
+  const ratings = await db
+    .prepare(
+      `SELECT plan_id, meal_option_id, member_id, score, recipe_version_id, data_origin
+       FROM rating WHERE plan_id IN (${placeholders})`
+    )
+    .bind(...ids)
+    .all();
+  return historyFromActivity({
+    household: hh,
+    plans,
+    options: options.results || [],
+    selections: selections.results || [],
+    cooks: cooks.results || [],
+    ratings: ratings.results || [],
+  }).map((item) => ({
+    ...item,
+    recipe_version_id: item.recipe_version_id || getCurrentVersionIdForSlug(item.recipe_slug),
+  }));
 }
 
 export function scoredToPlanOptions(scored, plan_id) {

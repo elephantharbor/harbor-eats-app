@@ -27,7 +27,10 @@ export function deriveHouseholdState(input) {
   }
   if (selection && !cook) lifecycle = "Selected";
   if (cook && ratedCount < participating) lifecycle = "Cooked";
-  if (plan && plan.status === "Rated") lifecycle = "Rated";
+  // A later inspect used to rewrite plan.status to Selected. Cook + full ratings still mean Rated.
+  if ((cook && ratedCount >= participating) || (plan && plan.status === "Rated")) {
+    lifecycle = "Rated";
+  }
 
   let rating_state = "none";
   if (cook && ratedCount === 0) rating_state = "awaiting";

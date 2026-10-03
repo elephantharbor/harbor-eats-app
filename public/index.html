@@ -536,7 +536,7 @@
                 <span class="meal-media__fallback" id="detailPlate" aria-hidden="true">🍽️</span>
               </div>
               <div class="recipe__body">
-                <p class="eyebrow">Tonight’s pick</p>
+                <p class="eyebrow" id="detailEyebrow">Tonight’s pick</p>
                 <h1 class="title" id="detailTitle">Recipe</h1>
                 <div class="badges" id="detailChips">
                   <span class="badge badge--fit" id="detailLockChip">Fits your household</span>
@@ -570,6 +570,7 @@
                   </div>
                 </div>
                 <div class="sticky-actions recipe__actions">
+                  <button class="btn btn-secondary btn-lg" type="button" id="btnPreviewSteps" hidden>Preview steps</button>
                   <button class="btn btn-primary btn-lg" type="button" id="btnStartCook" data-go="cook">Start cooking <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg></button>
                 </div>
               </div>
@@ -717,6 +718,7 @@
     </div>
   </div>
   <script src="/meal-media.js"></script>
+  <script src="/meal-identity.js"></script>
   <script src="/app.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
