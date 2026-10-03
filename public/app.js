@@ -381,7 +381,7 @@
     { id: "fish", label: "No fish", hint: "Salmon, cod, and other finfish" },
     { id: "shellfish", label: "No shellfish", hint: "Shrimp, crab, lobster, clams" },
     { id: "nuts", label: "No nuts", hint: "Peanuts and tree nuts, cashews included" },
-    { id: "cashew_ok", label: "Except cashews", hint: "Only tick this if cashews are safe for you", exceptionOf: "nuts" },
+    { id: "cashew_ok", label: "Cashews are OK", hint: "An exception to No nuts. Every other nut stays off.", exceptionOf: "nuts" },
     { id: "none", label: "No limits", hint: "Everything’s on the table" },
   ];
   const EXCEPTION_RULES = { cashew_ok: "cashew" };
@@ -487,6 +487,7 @@
     meId: null,
     savedConstraints: [],
     constraintSave: null,
+    sparkSave: null,
     navContext: {},
     historyItems: [],
     historyMeal: null,
@@ -1099,7 +1100,7 @@
       ensureMemberSession().catch(function () {});
     }
     if (name === "taste") renderSparks();
-    if (prev === "taste" && name !== "taste") persistSparksToServer().catch(function () {});
+    if (prev === "taste" && name !== "taste") state.sparkSave = persistSparksToServer().catch(function () {});
     if (name === "invite") {
       renderInviteMode(ctx);
       refreshInviteUi();
@@ -1867,7 +1868,7 @@
     const hh = API.householdId || state.householdId;
     if (!hh) return null;
     await ensureMemberSession();
-    if (state.constraintSave) await state.constraintSave;
+    await Promise.all([state.constraintSave, state.sparkSave]);
     const res = await apiPost("/api/recommendations/plan", {
       household_id: hh,
       attribution_last_touch: state.lastTouch,

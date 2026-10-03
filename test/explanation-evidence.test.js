@@ -139,13 +139,19 @@ describe("explanation labels within one set of picks", () => {
     expect(out[0].explanation.label).toBe("Good starting point");
   });
 
-  it("never swaps an evidence label for something else", () => {
-    const rows = ["miso-ginger-salmon", "maple-mustard-glazed-salmon"].map((slug) => ({
-      meal: meal(slug),
-      explanation: { kind: "known_preference", label: "Matches your likes", line: "You said you like fish dinners." },
-    }));
-    const out = dedupeExplanations(rows);
-    expect(out.every((r) => r.explanation.label === "Matches your likes")).toBe(true);
+  it("never swaps an evidence label or its reason for an unrelated fact", () => {
+    const ranked = scoreMealsForHousehold({
+      meals: [meal("miso-ginger-salmon"), meal("maple-mustard-glazed-salmon"), meal("white-bean-kale-soup")],
+      evidence: [{ tag: "fish", kind: "like", weight: 1 }],
+      ratings: [],
+      meal_choice_count: 3,
+    });
+    const out = dedupeExplanations(ranked);
+    const fish = out.filter((r) => r.meal.tags.includes("fish"));
+    expect(fish).toHaveLength(2);
+    expect(fish.every((r) => r.explanation.label === "Matches your likes")).toBe(true);
+    expect(fish[0].explanation.line).toBe("You said you like fish dinners.");
+    expect(fish[1].explanation.line).toBe("Same like, different dish: fish dinners.");
   });
 
   it("a fresh HH001-style plan has distinct labels and no 'Why this' prefix", () => {

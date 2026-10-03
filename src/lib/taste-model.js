@@ -307,7 +307,7 @@ export function buildWhy(row, ev, ratingCount, activeMemberCount = 2) {
     const strongest = Math.max(...tags.filter((t) => ev.likes.has(t)).map((t) => ev.likes.get(t)));
     const what = joinPhrases(liked.slice(0, 2));
     const sentence = strongest >= PATTERN_MIN_WEIGHT ? `You keep picking ${what}` : `You said you like ${what}`;
-    return out("known_preference", "Matches your likes", [sentence]);
+    return { ...out("known_preference", "Matches your likes", [sentence]), topic: what };
   }
 
   if (f.similar_count > 0 && f.similar_avg != null && f.similar_avg >= SIMILAR_MIN_AVG) {
@@ -383,8 +383,12 @@ export function dedupeExplanations(rows) {
       }
     }
     if (lines.has(line)) {
-      const alt = factAlternatives(row.meal).find((a) => !lines.has(a.line));
-      if (alt) line = alt.line;
+      if (swappable) {
+        const alt = factAlternatives(row.meal).find((a) => !lines.has(a.line));
+        if (alt) line = alt.line;
+      } else if (row.explanation.topic) {
+        line = `Same like, different dish: ${row.explanation.topic}.`;
+      }
     }
     labels.add(label);
     lines.add(line);

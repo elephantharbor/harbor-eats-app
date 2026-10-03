@@ -1208,8 +1208,8 @@ h2[tabindex="-1"]:focus {
 
 /* An allergy exception sits under its parent limit and only appears when that limit is on. */
 .check-tile--exception {
+  grid-column: 1 / -1;
   border-style: dashed;
-  margin-left: var(--space-4);
 }
 
 .field__error {
