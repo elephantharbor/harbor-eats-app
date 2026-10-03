@@ -345,6 +345,13 @@
               <div class="weave-loader__strands" aria-hidden="true"><span></span><span></span><span></span></div>
               <span>Weaving tonight’s picks…</span>
             </div>
+            <div class="tonight-plan" id="tonightPlanRoot" hidden>
+              <div id="tonightPlanSections"></div>
+              <div class="card tonight-find-more" id="tonightFindMore">
+                <p class="card-kicker">Not feeling any of these?</p>
+                <button class="btn btn-secondary" type="button" data-action="find-something-else">Find something else</button>
+              </div>
+            </div>
             <div class="choice-grid" id="choiceCards" role="list" aria-label="Tonight’s picks"></div>
             <div class="card share-card" id="shareCard">
               <div class="share-card__copy">
@@ -437,7 +444,110 @@
                 <span class="link-card__body"><strong id="demoNavLabel">How your household fits together</strong><span>Hard limits win, likes nudge</span></span>
               </button>
             </div>
+            <div class="card" id="homeRatingWait" hidden>
+              <p class="card-kicker">Waiting on your rating</p>
+              <p class="title title--sm" id="homeRatingWaitTitle"></p>
+              <button class="btn btn-secondary" type="button" id="btnHomeRateWait">Rate it</button>
+              <button class="btn btn-quiet" type="button" id="btnHomeMoreRates" hidden></button>
+            </div>
             <p class="hint install-hint" id="installHint" hidden>Add FlavorWeave to your home screen for quick invites and cooking.</p>
+          </div>
+        </section>
+
+        <!-- DINNER PLAN: COUNT -->
+        <section class="view" data-view="planCount" aria-labelledby="planCountTitle">
+          <div class="page page--medium">
+            <button class="back" type="button" data-go="home" data-back="planCount"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> <span class="back__label">Home</span></button>
+            <header class="page-head">
+              <p class="eyebrow">Plan our dinners</p>
+              <h1 class="title" id="planCountTitle">How many dinners?</h1>
+              <p class="lede">Count the nights you want covered. Leftovers and nights out can take a spot later.</p>
+            </header>
+            <div class="plan-count-layout" id="planCountOptions"></div>
+            <div class="sticky-actions">
+              <button class="btn btn-primary btn-lg" type="button" id="btnPlanCountSubmit" disabled>Choose a number</button>
+            </div>
+            <div class="weave-loader" id="planCountLoading" hidden aria-live="polite">
+              <div class="weave-loader__strands" aria-hidden="true"><span></span><span></span><span></span></div>
+              <span>Weaving your plan…</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- DINNER PLAN: REVIEW -->
+        <section class="view" data-view="planReview" aria-labelledby="planReviewTitle">
+          <div class="page page--wide plan-review-page">
+            <button class="back" type="button" data-back="planReview"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> <span class="back__label">Back</span></button>
+            <header class="page-head plan-review-head">
+              <div>
+                <p class="eyebrow" id="planReviewEyebrow">Your plan</p>
+                <h1 class="title" id="planReviewTitle">Here’s a good plan</h1>
+                <p class="lede" id="planReviewLede">One dinner per night, picked for your table. Swap anything that doesn’t feel right.</p>
+                <p class="meta" id="planReviewStarIntro" hidden></p>
+              </div>
+              <button class="btn btn-quiet btn-sm plan-overflow" type="button" id="btnPlanReviewMenu" aria-label="Plan options" aria-haspopup="menu">⋯</button>
+            </header>
+            <div class="plan-review-layout">
+              <div class="plan-meal-list" id="planMealCards" role="list"></div>
+              <aside class="plan-review-side card" id="planReviewSide" hidden>
+                <p class="card-kicker" id="planReviewSideKicker">Your plan</p>
+                <p class="title title--sm" id="planReviewSideList"></p>
+                <p class="meta" id="planReviewSideShop"></p>
+                <button class="btn btn-primary btn-lg" type="button" id="btnPlanReviewSideOk">Looks good</button>
+                <button class="btn btn-quiet" type="button" data-action="plan-add-days">Add days</button>
+                <button class="btn btn-quiet" type="button" data-action="plan-ask-table">Ask the table</button>
+              </aside>
+            </div>
+            <p class="meta plan-taste-note" id="planTasteNote" hidden></p>
+            <div class="sticky-actions" id="planReviewActions">
+              <button class="btn btn-primary btn-lg" type="button" id="btnPlanLooksGood">Looks good</button>
+              <button class="btn btn-secondary btn-lg" type="button" id="btnPlanBackHome" hidden>Back home</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- DINNER PLAN: CONFIRM -->
+        <section class="view" data-view="planConfirm" aria-labelledby="planConfirmTitle">
+          <div class="page page--medium">
+            <button class="back" type="button" data-go="planReview" data-back="planConfirm"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> <span class="back__label">Back to the plan</span></button>
+            <header class="page-head">
+              <p class="eyebrow">Almost there</p>
+              <h1 class="title" id="planConfirmTitle">Looks like a plan</h1>
+              <p class="lede" id="planConfirmLede"></p>
+            </header>
+            <ul class="plan-confirm-list" id="planConfirmList"></ul>
+            <p class="meta" id="planConfirmOpenSlot" hidden></p>
+            <button class="link-card" type="button" data-action="plan-add-days">
+              <span class="link-card__body"><strong>Add days</strong><span>Optional. Plans work fine without them.</span></span>
+            </button>
+            <button class="link-card" type="button" data-action="plan-ask-table">
+              <span class="link-card__body"><strong>Ask the table</strong><span>Let others star a favorite. No need to wait for them.</span></span>
+            </button>
+            <div class="sticky-actions">
+              <button class="btn btn-primary btn-lg" type="button" id="btnPlanFinalizeShop">Make my shopping list</button>
+              <button class="btn btn-quiet" type="button" id="btnPlanHaveEverything">We have everything</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- DINNER PLAN: SHOP -->
+        <section class="view" data-view="shopList" aria-labelledby="shopListTitle">
+          <div class="page page--medium shop-page">
+            <header class="page-head shop-head">
+              <div>
+                <p class="eyebrow" id="shopEyebrow">For your plan</p>
+                <h1 class="title" id="shopListTitle">Shopping list</h1>
+                <p class="meta" id="shopProgress" aria-live="polite"></p>
+              </div>
+              <button class="btn btn-quiet btn-sm plan-overflow" type="button" id="btnShopMenu" aria-label="List options" aria-haspopup="menu">⋯</button>
+            </header>
+            <div class="card shop-changes-banner" id="shopChangesBanner" hidden>
+              <p class="card-kicker">Your plan changed</p>
+              <div id="shopChangesBody"></div>
+              <button class="btn btn-secondary btn-sm" type="button" id="btnShopChangesGotIt">Got it</button>
+            </div>
+            <div id="shopSections"></div>
+            <button class="btn btn-quiet shop-back-plan" type="button" data-go="choices">Back to your plan</button>
           </div>
         </section>
 
@@ -758,6 +868,69 @@
           </div>
         </form>
       </dialog>
+
+      <dialog class="sheet" id="swapSheet" aria-labelledby="swapSheetTitle">
+        <form method="dialog" class="sheet__inner">
+          <h2 class="card-title" id="swapSheetTitle">Swap dinner</h2>
+          <p class="meta" id="swapSheetNow"></p>
+          <div id="swapAlternatives"></div>
+          <div class="sheet__actions">
+            <button class="btn btn-quiet" type="button" id="btnSwapKeep">Keep this one</button>
+            <button class="btn btn-quiet" type="button" id="btnSwapLeftovers" hidden>Make it leftovers</button>
+            <button class="btn btn-quiet" type="button" id="btnSwapEatingOut" hidden>We’re eating out</button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog class="sheet" id="mealOptionsSheet" aria-labelledby="mealOptionsTitle">
+        <form method="dialog" class="sheet__inner">
+          <h2 class="card-title" id="mealOptionsTitle">Dinner options</h2>
+          <div class="sheet-menu" id="mealOptionsMenu"></div>
+          <button class="btn btn-quiet" type="submit">Close</button>
+        </form>
+      </dialog>
+
+      <dialog class="sheet" id="participantsSheet" aria-labelledby="participantsTitle">
+        <form method="dialog" class="sheet__inner" id="participantsForm">
+          <h2 class="card-title" id="participantsTitle">Who’s eating?</h2>
+          <div class="check-grid" id="participantsTiles"></div>
+          <p class="meta" id="participantsHint" hidden>Someone has to eat it.</p>
+          <div class="sheet__actions">
+            <button class="btn btn-secondary" type="button" id="btnParticipantsCancel">Cancel</button>
+            <button class="btn btn-primary" type="submit" id="btnParticipantsSave">Save</button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog class="sheet" id="askTableSheet" aria-labelledby="askTableTitle">
+        <form method="dialog" class="sheet__inner">
+          <h2 class="card-title" id="askTableTitle">Ask the table</h2>
+          <p class="meta">Send this to people in your kitchen. They can star a favorite. You don’t need to wait for them.</p>
+          <label class="field">
+            <span class="field__label">Share link</span>
+            <input type="text" id="askTableUrl" readonly onclick="this.select()" />
+          </label>
+          <div class="sheet__actions">
+            <button class="btn btn-secondary" type="button" id="btnCopyPlanLink">Copy link</button>
+            <button class="btn btn-primary" type="button" id="btnSharePlanLink">Share</button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog class="sheet" id="newPlanSheet" aria-labelledby="newPlanTitle">
+        <form method="dialog" class="sheet__inner">
+          <h2 class="card-title" id="newPlanTitle">Start a new plan?</h2>
+          <p class="meta">Your current plan stays in your recent dinners. Anything left to rate stays there too.</p>
+          <div class="sheet__actions">
+            <button class="btn btn-primary" value="ok">Start a new plan</button>
+            <button class="btn btn-secondary" value="cancel">Keep this plan</button>
+          </div>
+        </form>
+      </dialog>
+
+      <menu class="context-menu" id="planContextMenu" hidden></menu>
+      <menu class="context-menu" id="tonightContextMenu" hidden></menu>
+      <menu class="context-menu" id="shopContextMenu" hidden></menu>
     </div>
   </div>
   <script src="/meal-media.js"></script>

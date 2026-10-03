@@ -8,6 +8,7 @@
 (function (root) {
   var SECTIONS = ["home", "choices", "meals", "tasteProfile", "settings"];
   var ONBOARDING_STEPS = ["create", "members", "constraints", "taste"];
+  var PLAN_VIEWS = ["planCount", "planReview", "planConfirm", "shopList"];
   var LABELS = {
     home: "Home",
     choices: "Tonight",
@@ -16,12 +17,21 @@
     settings: "Settings",
     finished: "Back",
     taste: "Back",
+    planReview: "Back",
+    planConfirm: "Back",
+    planCount: "Back",
+    shopList: "Back",
+    tonightPlan: "Tonight",
   };
   // Screens that always live under Home, however you reached them.
   var HOME_CHILDREN = ["demo", "finished", "rate", "loop"];
 
   function isSection(view) {
     return SECTIONS.indexOf(view) >= 0;
+  }
+
+  function isPlanView(view) {
+    return PLAN_VIEWS.indexOf(view) >= 0;
   }
 
   function isOnboardingStep(view) {
@@ -31,7 +41,7 @@
   /**
    * @param {string} view target child view
    * @param {string|null} from view the user is leaving
-   * @param {{ established?: boolean, parent?: string, current?: object|null, source?: string }} [opts]
+   * @param {{ established?: boolean, parent?: string, current?: object|null, source?: string, origin?: string, mode?: string }} [opts]
    */
   function contextFor(view, from, opts) {
     var o = opts || {};
@@ -43,17 +53,47 @@
     if (view === "detail") {
       // Returning from kitchen mode keeps the context the recipe was opened with.
       if (o.current && (from === "cook" || from === "detail")) return o.current;
+      if (o.origin === "planReview" || from === "planReview") {
+        return { origin: "planReview", source: o.source || "dinner_plan" };
+      }
+      if (o.origin === "tonightPlan" || (from === "choices" && o.source === "tonight_plan")) {
+        return { origin: "tonightPlan", source: "dinner_plan" };
+      }
       var origin = isSection(from) ? from : o.parent || "home";
       return { origin: origin, source: o.source || (origin === "meals" ? "history" : "round") };
     }
     if (view === "rate") {
       if (from === "finished") return { origin: "finished" };
+      if (o.origin === "tonightPlan" || from === "choices") return { origin: from === "choices" ? "tonightPlan" : o.origin || "home" };
       return { origin: isSection(from) ? from : "home" };
+    }
+    if (view === "planReview") {
+      if (o.current && from === "planReview") return o.current;
+      return { origin: o.origin || from || "home", mode: o.mode || "compose", star: !!o.star };
+    }
+    if (view === "planConfirm") {
+      return { origin: "planReview", mode: "confirm" };
+    }
+    if (view === "planCount") {
+      return { origin: "home", entry: o.entry || "plan_dinners" };
+    }
+    if (view === "shopList") {
+      return { origin: o.origin || from || "planConfirm", mode: "shop" };
     }
     return null;
   }
 
-  function backTarget(_view, ctx) {
+  function backTarget(view, ctx) {
+    if (view === "planCount") return "home";
+    if (view === "planReview") {
+      if (ctx && ctx.mode === "edit") return "choices";
+      if (ctx && ctx.mode === "readonly") return "choices";
+      return "home";
+    }
+    if (view === "planConfirm") return "planReview";
+    if (view === "shopList") return "choices";
+    if (view === "detail" && ctx && ctx.origin === "planReview") return "planReview";
+    if (view === "detail" && ctx && ctx.origin === "tonightPlan") return "choices";
     return (ctx && ctx.origin) || "home";
   }
 
@@ -66,10 +106,13 @@
     if (isSection(view)) return view;
     if (view === "detail" || view === "invite" || view === "rate") {
       var origin = ctx && ctx.origin;
+      if (origin === "tonightPlan") return "choices";
       if (isSection(origin)) return origin;
-      if (origin === "finished") return "home";
+      if (origin === "finished" || origin === "planReview") return "home";
       return view === "invite" ? null : "home";
     }
+    if (view === "planReview" && ctx && ctx.mode === "edit") return "choices";
+    if (view === "shopList") return "choices";
     if (HOME_CHILDREN.indexOf(view) >= 0) return "home";
     return null;
   }
@@ -80,6 +123,9 @@
     if (isSection(view) || view === "demo") return "full";
     if (view === "invite") return ctx && ctx.mode === "household" ? "full" : "brand";
     if (view === "detail" || view === "rate") return "focus";
+    if (view === "planCount" || view === "planConfirm") return "focus";
+    if (view === "planReview") return ctx && (ctx.mode === "edit" || ctx.mode === "readonly") ? "full" : "focus";
+    if (view === "shopList") return "focus";
     return "brand";
   }
 
@@ -92,7 +138,9 @@
   root.FlavorWeaveNav = {
     SECTIONS: SECTIONS,
     ONBOARDING_STEPS: ONBOARDING_STEPS,
+    PLAN_VIEWS: PLAN_VIEWS,
     isSection: isSection,
+    isPlanView: isPlanView,
     isOnboardingStep: isOnboardingStep,
     contextFor: contextFor,
     backTarget: backTarget,

@@ -486,6 +486,19 @@
     historyMeal: null,
     previousMeal: null,
     roundBusy: false,
+    dinnerPlan: null,
+    dinnerShop: null,
+    dinnerUnfilled: [],
+    dinnerDetailMeal: null,
+    dinnerCookMealId: null,
+    planCountGroup: null,
+    planCountValue: null,
+    planReviewMode: "multi",
+    planSingleMode: false,
+    planAddElse: false,
+    swapMealId: null,
+    swappedMealIds: {},
+    findDinnerEntry: "find_dinner",
   };
 
   /** The diner using this device. Settings and "Your diet limits" belong to them, not to members[0]. */
@@ -633,25 +646,8 @@
     if (eye && state.nextAction === "loop_complete") eye.textContent = nextRated;
   }
 
-  function mealById(id) {
-    if (!id) return null;
-    return displayMeals().find(function (m) {
-      return m.id === id;
-    }) || null;
-  }
-
   function selectedMeal() {
     return mealById(state.selectedMealId);
-  }
-
-  function detailMeal() {
-    const ctx = state.navContext.detail;
-    if (ctx && ctx.source === "history") return state.historyMeal;
-    return mealById(state.previewMealId || state.selectedMealId);
-  }
-
-  function cookingMeal() {
-    return mealById(state.cookingMealId || state.selectedMealId);
   }
 
   async function fetchRecipeForMeal(meal) {
@@ -1246,6 +1242,10 @@
   }
 
   function renderChoices() {
+    if (hasCurrentDinnerPlan()) {
+      renderTonightPlan();
+      return;
+    }
     setChoiceLoading(false);
     const list = displayMeals();
     renderChoicesHead();
@@ -1310,6 +1310,18 @@
           if (res && res.ok) state.savedConstraints = keys;
         })
         .catch(function () {});
+    }
+    if (name === "planReview" || name === "planConfirm" || name === "planCount" || name === "shopList") {
+      state.navContext[name] =
+        o.context ||
+        Nav.contextFor(name, prev, {
+          established: householdEstablished(),
+          parent: o.parent,
+          source: o.source,
+          origin: o.origin,
+          mode: o.mode,
+          current: state.navContext[name] || null,
+        });
     }
     if (name === "detail" || name === "invite" || name === "rate") {
       state.navContext[name] =
@@ -1377,7 +1389,7 @@
     if (name === "join") renderConstraintGrid("joinConstraints", state.joinConstraints);
     if (name === "choices") {
       (async function () {
-        if (!API.planId && (API.householdId || state.householdId)) {
+        if (!hasCurrentDinnerPlan() && !API.planId && (API.householdId || state.householdId)) {
           setChoiceLoading(true);
           await fetchRecommendationsPlan();
         }
@@ -1426,6 +1438,17 @@
         });
       }
     }
+    if (name === "planCount") renderPlanCount();
+    if (name === "planReview") renderPlanReview();
+    if (name === "planConfirm") renderPlanConfirm();
+    if (name === "shopList") {
+      refreshDinnerShopping().then(function () {
+        renderShopList();
+      });
+    }
+    if (name === "choices" && hasCurrentDinnerPlan()) {
+      renderTonightPlan();
+    }
     if (name === "loop") renderLoopSummary();
     if (name === "home") updateHome();
     if (name === "demo" || name === "invite" || name === "rate" || name === "home") {
@@ -1451,6 +1474,15 @@
   }
 
   function updateHome() {
+    const ratingCard = document.getElementById("homeRatingWait");
+    if (hasCurrentDinnerPlan()) {
+      renderHomePlanHero();
+      return;
+    }
+    if (!legacyRoundActive()) {
+      renderHomeNoPlanHero();
+      return;
+    }
     const pill = document.getElementById("homePill");
     const eye = document.getElementById("homeEyebrow");
     const homeTitle = document.getElementById("homeMealTitle");
@@ -1464,7 +1496,11 @@
     const stage = homeStage(meal);
     const both = activeMemberCount() === 2;
 
-    if (homeCopy) homeCopy.textContent = "Fits " + householdCopy("fit");
+    if (homeCopy) {
+      homeCopy.hidden = false;
+      homeCopy.textContent = "Fits " + householdCopy("fit");
+    }
+    if (pill) pill.hidden = false;
 
     if (stage === "pick") {
       const options = displayMeals();
@@ -2127,38 +2163,8 @@
       return;
     }
     state.roundBusy = true;
-    const finished = selectedMeal();
-    const finishedId = state.selectedMealId;
-    state.previousMeal = finished
-      ? {
-          plan_id: API.planId || null,
-          meal_option_id: finishedId,
-          meal_name: finished.title,
-          recipe_slug: finished.recipe_slug || null,
-          avg_score: averageRating(state.ratingsByOption[finishedId]),
-          status: "Rated",
-        }
-      : state.previousMeal;
-    applyIdentity({
-      previewMealId: null,
-      selectedMealId: null,
-      cookingMealId: null,
-      lifecycle: "Unselected",
-      outcomeLocked: false,
-      lockedMealOptionId: null,
-    });
-    state.members.forEach(function (m) {
-      state.ratings[m.id] = { score: null, note: "" };
-    });
-    state.ratingState = "none";
-    state.nextAction = "pick_meal";
-    state.activeRecipe = null;
-    state.shareReady = false;
-    state.currentMeals = null;
-    API.planId = null;
-    track("next_dinner_requested", { previous_meal_option_id: finishedId || null });
     try {
-      show("choices");
+      goHomeNoPlan();
     } finally {
       state.roundBusy = false;
     }
@@ -2255,6 +2261,1194 @@
     applyIdentity(window.MealIdentity.reduceMealAction(identitySnapshot(), { type: "preview", mealOptionId: id }));
     state.activeRecipe = null;
     show("detail");
+  }
+
+  // —— Cycle 3 dinner plans ——
+  const LS_DINNER_PLAN = "fw_dinner_plan:";
+  const LS_DINNER_PLANS = "fw_dinner_plans:";
+  const LS_SHOP_SEEN = "fw_shop_seen:";
+
+  function dinnerPlanPointerKey(hh) {
+    return LS_DINNER_PLAN + hh;
+  }
+  function dinnerPlansRecentKey(hh) {
+    return LS_DINNER_PLANS + hh;
+  }
+  function shopSeenKey(planId) {
+    return LS_SHOP_SEEN + planId;
+  }
+
+  function activeMemberIds() {
+    return activeMembers().map(function (m) {
+      return m.id;
+    });
+  }
+
+  function readDinnerPlanPointer() {
+    const hh = API.householdId || state.householdId;
+    if (!hh) return null;
+    try {
+      return localStorage.getItem(dinnerPlanPointerKey(hh));
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function setDinnerPlanPointer(planId) {
+    const hh = API.householdId || state.householdId;
+    if (!hh || !planId) return;
+    try {
+      localStorage.setItem(dinnerPlanPointerKey(hh), planId);
+      const key = dinnerPlansRecentKey(hh);
+      let list = [];
+      try {
+        list = JSON.parse(localStorage.getItem(key) || "[]");
+      } catch (_) {
+        list = [];
+      }
+      list = [planId].concat(list.filter(function (id) {
+        return id !== planId;
+      })).slice(0, 5);
+      localStorage.setItem(key, JSON.stringify(list));
+    } catch (_) { /* ignore */ }
+  }
+
+  function clearDinnerPlanPointer() {
+    const hh = API.householdId || state.householdId;
+    if (!hh) return;
+    try {
+      localStorage.removeItem(dinnerPlanPointerKey(hh));
+    } catch (_) { /* ignore */ }
+  }
+
+  function hasCurrentDinnerPlan() {
+    return !!(state.dinnerPlan && state.dinnerPlan.dinner_plan_id);
+  }
+
+  function legacyRoundActive() {
+    if (hasCurrentDinnerPlan()) return false;
+    if (state.outcomeLocked && state.lifecycle === "Rated") return false;
+    if (state.selectedMealId || state.cookingMealId) return true;
+    if (state.lifecycle === "Cooked" || state.lifecycle === "Rated") return true;
+    if (state.lifecycle === "Selected") return true;
+    const meals = displayMeals();
+    return !!(meals && meals.length && API.planId);
+  }
+
+  function planMealClosed(meal) {
+    if (!meal) return true;
+    const s = meal.state;
+    return (
+      s === "fully_rated" ||
+      s === "fulfilled" ||
+      s === "skipped" ||
+      s === "abandoned"
+    );
+  }
+
+  function planIsClosed(plan) {
+    if (!plan) return true;
+    const openSlots = emptySlotCount(plan);
+    if (openSlots > 0) return false;
+    return (plan.meals || []).every(planMealClosed);
+  }
+
+  function emptySlotCount(plan) {
+    if (!plan) return 0;
+    const unfilled = state.dinnerUnfilled || [];
+    if (unfilled.length) return unfilled.length;
+    const mc = plan.meal_count || 0;
+    const meals = plan.meals || [];
+    return Math.max(0, mc - meals.length);
+  }
+
+  function emptySlots(plan) {
+    const slots = [];
+    const meals = (plan && plan.meals) || [];
+    const positions = {};
+    meals.forEach(function (m) {
+      positions[m.position] = m;
+    });
+    const unfilled = state.dinnerUnfilled || [];
+    unfilled.forEach(function (u) {
+      slots.push({ position: u.position, reason: u.reason || "no_eligible_meal", empty: true });
+    });
+    const known = unfilled.length;
+    const extra = Math.max(0, (plan.meal_count || 0) - meals.length - known);
+    let nextPos = meals.length + known + 1;
+    for (let i = 0; i < extra; i++) {
+      slots.push({
+        position: nextPos++,
+        reason: meals.length ? "no_unused_eligible_meal" : "no_eligible_meal",
+        empty: true,
+      });
+    }
+    return slots;
+  }
+
+  function applyDinnerPlan(plan, unfilled) {
+    if (!plan) {
+      state.dinnerPlan = null;
+      state.dinnerShop = null;
+      state.dinnerUnfilled = [];
+      return;
+    }
+    state.dinnerPlan = plan;
+    state.dinnerUnfilled = Array.isArray(unfilled) ? unfilled : state.dinnerUnfilled || [];
+    if (plan.shop_lines) {
+      state.dinnerShop = {
+        lines: plan.shop_lines,
+        deltas: plan.shop_deltas || [],
+        shopping_started: !!plan.shopping_started,
+        shopping_started_at: plan.shopping_started_at,
+      };
+    }
+    setDinnerPlanPointer(plan.dinner_plan_id);
+  }
+
+  async function fetchDinnerPlanById(id) {
+    if (!id) return null;
+    const res = await apiGet("/api/dinner-plans/" + encodeURIComponent(id));
+    if (!res || !res.ok) {
+      if (res && (res.error === "plan_not_found" || res.status === 404)) {
+        clearDinnerPlanPointer();
+      }
+      return null;
+    }
+    applyDinnerPlan(res.plan);
+    return res.plan;
+  }
+
+  async function loadCurrentDinnerPlan() {
+    const id = readDinnerPlanPointer();
+    if (!id) return null;
+    return fetchDinnerPlanById(id);
+  }
+
+  async function createDinnerPlanRequest(opts) {
+    await ensureMemberSession();
+    const body = {
+      meal_count: opts.meal_count,
+      entry_point: opts.entry_point,
+      participant_ids: opts.participant_ids || activeMemberIds(),
+      fill: "planner",
+    };
+    const res = await apiPost("/api/dinner-plans", body);
+    if (!res || !res.ok) {
+      dinnerPlanErrorToast(res);
+      return null;
+    }
+    applyDinnerPlan(res.plan, res.unfilled);
+    return res.plan;
+  }
+
+  async function mutateDinnerPlan(payload) {
+    const plan = state.dinnerPlan;
+    if (!plan) return null;
+    await ensureMemberSession();
+    const res = await apiPost(
+      "/api/dinner-plans/" + encodeURIComponent(plan.dinner_plan_id) + "/mutations",
+      payload
+    );
+    if (!res || !res.ok) {
+      dinnerPlanErrorToast(res);
+      if (res && (res.error === "outcome_locked" || res.error === "version_locked" || res.error === "illegal_transition")) {
+        await loadCurrentDinnerPlan();
+        renderActiveDinnerSurfaces();
+      }
+      return null;
+    }
+    applyDinnerPlan(res.plan);
+    if (state.view === "shopList") await refreshDinnerShopping();
+    if (plan.shopping_started_at && res.plan.shopping_started_at) {
+      toastListChange(res.plan);
+    } else if (!res.plan.shopping_started_at) {
+      toast("List updated.");
+    }
+    return res.plan;
+  }
+
+  function dinnerPlanErrorToast(res) {
+    const code = res && res.error;
+    if (code === "hard_limit_blocked") toast("That one doesn’t work for everyone at this dinner. Pick another.");
+    else if (code === "plan_full") toast("Your plan is full. Add a night first.");
+    else if (code === "meal_count_too_small") toast("Remove a dinner first, then lower the number.");
+    else if (code === "forbidden_cross_household" || code === "plan_not_found") toast("This plan isn’t in your kitchen.");
+    else toast("We couldn’t reach the kitchen. Try again.");
+  }
+
+  function toastListChange(plan) {
+    const deltas = (plan && plan.shop_deltas) || [];
+    if (!deltas.length) {
+      toast("List updated.");
+      return;
+    }
+    let added = 0;
+    let removed = 0;
+    deltas.forEach(function (d) {
+      if (d.kind === "added") added++;
+      if (d.kind === "no_longer_needed") removed++;
+    });
+    let msg = "Your list changed.";
+    if (added) msg += " " + added + " added,";
+    if (removed) msg += " " + removed + " no longer needed.";
+    toast(msg.replace(/,$/, "") + ' <button type="button" class="btn btn-quiet btn-sm" data-go="shopList">See list</button>');
+  }
+
+  async function refreshDinnerShopping() {
+    const plan = state.dinnerPlan;
+    if (!plan) return;
+    const res = await apiGet("/api/dinner-plans/" + encodeURIComponent(plan.dinner_plan_id) + "/shopping");
+    if (res && res.ok) {
+      state.dinnerShop = {
+        lines: res.lines || [],
+        deltas: res.deltas || [],
+        shopping_started: !!res.shopping_started,
+        shopping_started_at: res.shopping_started_at,
+      };
+    }
+  }
+
+  async function previewDinnerAlternatives(participantIds, plan) {
+    const p = plan || state.dinnerPlan;
+    const dinner_count = Math.min(14, ((p && p.meals && p.meals.length) || 0) + 3);
+    const body = {
+      dinner_count: dinner_count || 3,
+      entry_point: (p && p.entry_point) || "plan_dinners",
+      participant_ids: participantIds || activeMemberIds(),
+    };
+    if (p && p.intent) {
+      if (p.intent.meal_styles) body.meal_styles = p.intent.meal_styles;
+      if (p.intent.practical_hints) body.practical_hints = p.intent.practical_hints;
+      if (p.intent.max_cook_minutes) body.max_cook_minutes = p.intent.max_cook_minutes;
+    }
+    const res = await apiPost("/api/dinner-plans/preview", body);
+    if (!res || !res.ok || !res.preview) return [];
+    const used = {};
+    (p && p.meals || []).forEach(function (m) {
+      if (m.recipe_slug) used[m.recipe_slug] = true;
+    });
+    return (res.preview.slots || [])
+      .filter(function (slot) {
+        return slot.result === "recommended" && slot.recipe_version_id && !used[slot.recipe_slug];
+      })
+      .slice(0, 3);
+  }
+
+  function planMealTitle(meal) {
+    if (!meal) return "";
+    if (meal.kind === "leftovers") return "Leftovers";
+    if (meal.kind === "eating_out") return "Eating out";
+    return meal.title || meal.recipe_slug || "Dinner";
+  }
+
+  function planMealLabel(meal, position) {
+    if (meal && meal.scheduled_date) {
+      try {
+        const d = new Date(meal.scheduled_date + "T12:00:00");
+        return d.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" });
+      } catch (_) { /* ignore */ }
+    }
+    return "Dinner " + (meal && meal.position != null ? meal.position : position);
+  }
+
+  function uiMealFromPlanMeal(meal) {
+    if (!meal) return null;
+    return {
+      id: meal.meal_id,
+      meal_id: meal.meal_id,
+      title: planMealTitle(meal),
+      recipe_slug: meal.recipe_slug,
+      recipe_version_id: meal.recipe_version_id,
+      kind: meal.kind,
+      state: meal.state,
+      position: meal.position,
+      scheduled_date: meal.scheduled_date,
+      participant_ids: meal.participant_ids || [],
+      pinned_ingredients: meal.pinned_ingredients,
+      pinned_steps: meal.pinned_steps,
+      dinner_plan: true,
+      plate: meal.kind === "leftovers" ? "🥡" : meal.kind === "eating_out" ? "🍽️" : "🍽️",
+    };
+  }
+
+  function mealById(id) {
+    if (!id) return null;
+    if (state.dinnerPlan && state.dinnerPlan.meals) {
+      const dm = state.dinnerPlan.meals.find(function (m) {
+        return m.meal_id === id;
+      });
+      if (dm) return uiMealFromPlanMeal(dm);
+    }
+    if (state.dinnerDetailMeal && state.dinnerDetailMeal.id === id) return state.dinnerDetailMeal;
+    return displayMeals().find(function (m) {
+      return m.id === id;
+    }) || null;
+  }
+
+  function detailMeal() {
+    const ctx = state.navContext.detail;
+    if (ctx && ctx.source === "history") return state.historyMeal;
+    if (state.dinnerDetailMeal) return state.dinnerDetailMeal;
+    return mealById(state.previewMealId || state.selectedMealId);
+  }
+
+  function cookingMeal() {
+    if (state.dinnerCookMealId) return mealById(state.dinnerCookMealId);
+    return mealById(state.cookingMealId || state.selectedMealId);
+  }
+
+  function openPlanMealDetail(mealId, origin) {
+    const meal = mealById(mealId);
+    if (!meal || meal.kind === "leftovers" || meal.kind === "eating_out") return;
+    state.dinnerDetailMeal = meal;
+    state.previewMealId = mealId;
+    state.activeRecipe = null;
+    show("detail", {
+      context: Nav.contextFor("detail", origin || "planReview", {
+        established: householdEstablished(),
+        origin: origin || "planReview",
+        source: "dinner_plan",
+      }),
+    });
+  }
+
+  function stillNeedCount(plan) {
+    const lines = (state.dinnerShop && state.dinnerShop.lines) || (plan && plan.shop_lines) || [];
+    return lines.filter(function (l) {
+      return l.still_needed && l.list_state === "open";
+    }).length;
+  }
+
+  function renderHomeNoPlanHero() {
+    const eye = document.getElementById("homeEyebrow");
+    const homeTitle = document.getElementById("homeMealTitle");
+    const homeLede = document.getElementById("homeLede");
+    const actions = document.getElementById("homeActions");
+    const media = document.getElementById("homeMedia");
+    const insights = document.getElementById("homeInsights");
+    const pill = document.getElementById("homePill");
+    const homeMeta = document.getElementById("homeMealMeta");
+    const homeCopy = document.getElementById("homeStatusCopy");
+    if (homeCopy) homeCopy.hidden = true;
+    if (pill) pill.hidden = true;
+    if (homeMeta) homeMeta.hidden = true;
+    eye.textContent = "Dinner, sorted";
+    homeTitle.textContent = "What’s for dinner?";
+    homeLede.textContent = "Plan a few nights at once, or just find one for tonight.";
+    actions.innerHTML =
+      '<button class="btn btn-primary btn-lg" type="button" data-action="plan-dinners">Plan our dinners</button>' +
+      '<button class="btn btn-secondary btn-lg" type="button" data-action="find-dinner">Find a dinner</button>';
+    media.className = "tonight-hero__media";
+    media.innerHTML = mealMediaHtml({ recipe_slug: "miso-ginger-salmon" }, { decorative: true, eager: true });
+    insights.hidden = true;
+    renderHomeRatingWait();
+  }
+
+  function renderHomePlanHero() {
+    const plan = state.dinnerPlan;
+    const eye = document.getElementById("homeEyebrow");
+    const homeTitle = document.getElementById("homeMealTitle");
+    const homeLede = document.getElementById("homeLede");
+    const actions = document.getElementById("homeActions");
+    const media = document.getElementById("homeMedia");
+    const insights = document.getElementById("homeInsights");
+    const pill = document.getElementById("homePill");
+    const homeCopy = document.getElementById("homeStatusCopy");
+    if (homeCopy) homeCopy.hidden = true;
+    if (pill) pill.hidden = true;
+    const n = plan.meal_count;
+    const meals = plan.meals || [];
+    const cooking = meals.find(function (m) {
+      return m.state === "cooking";
+    });
+    const selected = meals.find(function (m) {
+      return m.state === "selected";
+    });
+    const k = stillNeedCount(plan);
+    let primary = "";
+    let secondary = "";
+    if (!plan.finalized_at && !meals.some(function (m) {
+      return m.state !== "planned" && m.kind === "recipe";
+    })) {
+      eye.textContent = "Your plan";
+      homeTitle.textContent = "Your plan is almost ready";
+      homeLede.textContent = n + (n === 1 ? " dinner picked" : " dinners picked") + ". Have a look and make it yours.";
+      primary = '<button class="btn btn-primary btn-lg" type="button" data-go="planReview">Finish the plan</button>';
+    } else if (planIsClosed(plan)) {
+      eye.textContent = "Your plan";
+      homeTitle.textContent = "That plan’s a wrap";
+      homeLede.textContent = "Every dinner is cooked, rated, or set aside.";
+      primary = '<button class="btn btn-primary btn-lg" type="button" data-action="plan-dinners">Plan our next dinners</button>';
+      secondary = '<button class="btn btn-secondary btn-lg" type="button" data-action="find-dinner">Find a dinner</button>';
+    } else if (cooking) {
+      eye.textContent = "Your plan";
+      homeTitle.textContent = planMealTitle(cooking) + " is cooking";
+      homeLede.textContent = "Pick up where you left off.";
+      primary = '<button class="btn btn-primary btn-lg" type="button" data-action="dp-back-kitchen">Back to the kitchen</button>';
+      secondary = '<button class="btn btn-secondary btn-lg" type="button" data-go="shopList">Shopping list</button>';
+      media.innerHTML = mealMediaHtml(uiMealFromPlanMeal(cooking), { eager: true });
+    } else if (selected) {
+      eye.textContent = "Tonight";
+      homeTitle.textContent = planMealTitle(selected);
+      homeLede.textContent = "Tonight’s pick. Cook it whenever you’re ready.";
+      primary = '<button class="btn btn-primary btn-lg" type="button" data-action="dp-start-cook">Start cooking</button>';
+      secondary = '<button class="btn btn-secondary btn-lg" type="button" data-go="choices">See other dinners</button>';
+      media.innerHTML = mealMediaHtml(uiMealFromPlanMeal(selected), { eager: true });
+    } else if (!plan.shopping_started_at) {
+      eye.textContent = "Your plan";
+      homeTitle.textContent = n === 1 ? "1 dinner planned" : n + " dinners planned";
+      homeLede.textContent = "Your list is ready when you are.";
+      primary = '<button class="btn btn-primary btn-lg" type="button" data-go="shopList">Shopping list</button>';
+      secondary = '<button class="btn btn-secondary btn-lg" type="button" data-go="choices">What are we cooking tonight?</button>';
+    } else {
+      eye.textContent = "Your plan";
+      homeTitle.textContent = n === 1 ? "1 dinner planned" : n + " dinners planned";
+      homeLede.textContent = k === 0 ? "You’ve got everything." : k + " things left to get.";
+      primary = '<button class="btn btn-primary btn-lg" type="button" data-go="shopList">Shopping list</button>';
+      secondary = '<button class="btn btn-secondary btn-lg" type="button" data-go="choices">What are we cooking tonight?</button>';
+    }
+    if (!cooking && !selected) {
+      media.className = "tonight-hero__media tonight-hero__media--stack";
+      media.innerHTML = meals
+        .slice(0, 3)
+        .map(function (m) {
+          return mealMediaHtml(uiMealFromPlanMeal(m), { decorative: true });
+        })
+        .join("");
+    }
+    actions.innerHTML = primary + secondary;
+    insights.hidden = true;
+    renderHomeRatingWait();
+  }
+
+  function mealsAwaitingMyRating() {
+    const out = [];
+    const me = meMember();
+    if (!me || !state.dinnerPlan) return out;
+    (state.dinnerPlan.meals || []).forEach(function (m) {
+      if (m.kind !== "recipe") return;
+      if (m.state !== "cooked" && m.state !== "partially_rated") return;
+      const parts = m.participant_ids || [];
+      if (parts.indexOf(me.id) < 0) return;
+      const rated = (m.ratings || []).some(function (r) {
+        return r.member_id === me.id;
+      });
+      if (!rated) out.push(m);
+    });
+    return out;
+  }
+
+  function renderHomeRatingWait() {
+    const card = document.getElementById("homeRatingWait");
+    if (!card) return;
+    const waiting = mealsAwaitingMyRating();
+    if (!waiting.length) {
+      card.hidden = true;
+      return;
+    }
+    card.hidden = false;
+    document.getElementById("homeRatingWaitTitle").textContent = planMealTitle(waiting[0]);
+    const more = document.getElementById("btnHomeMoreRates");
+    if (waiting.length > 1) {
+      more.hidden = false;
+      more.textContent = waiting.length - 1 + " more to rate";
+    } else more.hidden = true;
+  }
+
+  function renderPlanCount() {
+    const root = document.getElementById("planCountOptions");
+    const groups = [
+      { id: "few", label: "Next few days", sub: "2 to 4 dinners", chips: [2, 3, 4] },
+      { id: "week", label: "This week", sub: "You choose how many", chips: [3, 4, 5, 6, 7], hint: "Most weeks have a night or two off." },
+      { id: "custom", label: "Custom", sub: "Up to 14", chips: Array.from({ length: 14 }, function (_, i) {
+        return i + 1;
+      }) },
+    ];
+    root.innerHTML = groups
+      .map(function (g) {
+        return (
+          '<div class="plan-count-option" data-plan-group="' +
+          g.id +
+          '"><strong>' +
+          escapeHtml(g.label) +
+          "</strong><p class=\"meta\">" +
+          escapeHtml(g.sub) +
+          '</p><div class="plan-count-chips" hidden role="radiogroup" aria-label="' +
+          escapeHtml(g.label) +
+          '">' +
+          g.chips
+            .map(function (n) {
+              return (
+                '<button type="button" class="chip-tog" data-plan-count="' +
+                n +
+                '" role="radio" aria-checked="false">' +
+                n +
+                "</button>"
+              );
+            })
+            .join("") +
+          "</div>" +
+          (g.hint ? '<p class="meta plan-count-hint" hidden>' + escapeHtml(g.hint) + "</p>" : "") +
+          "</div>"
+        );
+      })
+      .join("");
+    state.planCountGroup = null;
+    state.planCountValue = null;
+    syncPlanCountSubmit();
+  }
+
+  function syncPlanCountSubmit() {
+    const btn = document.getElementById("btnPlanCountSubmit");
+    if (!btn) return;
+    if (!state.planCountValue) {
+      btn.disabled = true;
+      btn.textContent = "Choose a number";
+    } else {
+      btn.disabled = false;
+      btn.textContent =
+        state.planCountValue === 1 ? "Plan 1 dinner" : "Plan " + state.planCountValue + " dinners";
+    }
+  }
+
+  async function submitPlanCount() {
+    if (!state.planCountValue) return;
+    const loading = document.getElementById("planCountLoading");
+    if (loading) loading.hidden = false;
+    const plan = await createDinnerPlanRequest({
+      meal_count: state.planCountValue,
+      entry_point: "plan_dinners",
+    });
+    if (loading) loading.hidden = true;
+    if (!plan) return;
+    state.planReviewMode = "multi";
+    state.planSingleMode = false;
+    show("planReview", { context: Nav.contextFor("planReview", "planCount", { established: true, mode: "compose" }) });
+    renderPlanReview();
+  }
+
+  async function startFindDinner(entry) {
+    const loading = document.getElementById("planCountLoading");
+    if (loading) loading.hidden = false;
+    const plan = await createDinnerPlanRequest({
+      meal_count: 1,
+      entry_point: entry || "find_dinner",
+    });
+    if (loading) loading.hidden = true;
+    if (!plan) return;
+    state.planReviewMode = "single";
+    state.planSingleMode = true;
+    state.findDinnerEntry = entry || "find_dinner";
+    show("planReview", { context: Nav.contextFor("planReview", "home", { established: true, mode: "compose" }) });
+    renderPlanReview();
+  }
+
+  function planReviewCopy() {
+    const plan = state.dinnerPlan;
+    if (!plan) return;
+    const eyebrow = document.getElementById("planReviewEyebrow");
+    const title = document.getElementById("planReviewTitle");
+    const lede = document.getElementById("planReviewLede");
+    const ctx = state.navContext.planReview || {};
+    if (state.planAddElse) {
+      eyebrow.textContent = "Find a dinner";
+      title.textContent = "Here’s something else";
+      lede.textContent = "It joins your plan for tonight. Everything else stays put.";
+      return;
+    }
+    if (state.planSingleMode || plan.meal_count === 1) {
+      eyebrow.textContent = "Find a dinner";
+      title.textContent = "Here’s a good one";
+      lede.textContent = "Picked for your table. Swap it if it’s not the night for it.";
+      return;
+    }
+    if (ctx.mode === "edit") {
+      eyebrow.textContent = "Your plan · " + plan.meal_count + " dinners";
+      title.textContent = "Your plan";
+      lede.textContent = "Swap, move, or set aside any dinner that hasn’t been cooked.";
+      return;
+    }
+    const allEmpty = (plan.meals || []).length === 0 && emptySlotCount(plan) === plan.meal_count;
+    if (allEmpty) {
+      title.textContent = "We couldn’t fill this plan";
+      lede.textContent = "Your table’s limits rule out every dinner we have right now.";
+      return;
+    }
+    eyebrow.textContent = "Your plan · " + plan.meal_count + " dinners";
+    title.textContent = "Here’s a good plan";
+    lede.textContent = "One dinner per night, picked for your table. Swap anything that doesn’t feel right.";
+  }
+
+  function renderPlanMealCard(meal, slot) {
+    if (slot && slot.empty) {
+      const reason = slot.reason || "no_eligible_meal";
+      const isNoUnused = reason === "no_unused_eligible_meal";
+      return (
+        '<div class="plan-meal-card empty-state" role="listitem" data-empty-position="' +
+        slot.position +
+        '"><strong>' +
+        (isNoUnused ? "That’s every dinner that fits" : "Nothing on the menu fits this table yet") +
+        "</strong><p class=\"meta\">" +
+        (isNoUnused
+          ? "Your plan already has all of them. Repeat one you love, or take the night off from cooking."
+          : "Between everyone’s limits, none of our dinners work here. Try a different table, or take the night off from cooking.") +
+        '</p><div class="plan-meal-card__actions">' +
+        '<button type="button" class="btn btn-secondary btn-sm" data-action="empty-participants">Change who’s eating</button>' +
+        '<button type="button" class="btn btn-quiet btn-sm" data-action="empty-leftovers">Make it leftovers</button>' +
+        '<button type="button" class="btn btn-quiet btn-sm" data-action="empty-out">We’re eating out</button>' +
+        "</div></div>"
+      );
+    }
+    if (!meal) return "";
+    const ui = uiMealFromPlanMeal(meal);
+    const swapped = state.swappedMealIds && state.swappedMealIds[meal.meal_id];
+    if (meal.kind === "leftovers" || meal.kind === "eating_out") {
+      return (
+        '<article class="plan-meal-card plan-meal-card--quiet" role="listitem" data-meal-id="' +
+        escapeHtml(meal.meal_id) +
+        '"><p class="eyebrow">' +
+        escapeHtml(planMealLabel(meal)) +
+        "</p><h2>" +
+        escapeHtml(planMealTitle(meal)) +
+        '</h2><p class="meta">Nothing to shop for.</p><button type="button" class="btn btn-quiet btn-sm" data-action="meal-more" data-meal-id="' +
+        escapeHtml(meal.meal_id) +
+        '" aria-label="More for ' +
+        escapeHtml(planMealLabel(meal)) +
+        '">⋯</button></article>'
+      );
+    }
+    const canSwap = meal.state === "planned" || meal.state === "selected";
+    return (
+      '<article class="plan-meal-card" role="listitem" data-meal-id="' +
+      escapeHtml(meal.meal_id) +
+      '">' +
+      mealMediaHtml(ui, { className: "plan-meal-card__media", decorative: true }) +
+      '<div class="plan-meal-card__body"><p class="eyebrow">' +
+      escapeHtml(planMealLabel(meal)) +
+      "</p><h2><button type=\"button\" class=\"btn-quiet plan-meal-title\" data-action=\"open-plan-meal\" data-meal-id=\"" +
+      escapeHtml(meal.meal_id) +
+      '">' +
+      escapeHtml(planMealTitle(meal)) +
+      "</button></h2>" +
+      (swapped ? '<span class="badge badge--match">Swapped in</span> ' : "") +
+      '<p class="card-kicker">Why this one</p><p class="meta">Fits everyone’s limits</p>' +
+      '<div class="plan-meal-card__actions">' +
+      (canSwap
+        ? '<button type="button" class="btn btn-secondary btn-sm" data-action="swap-meal" data-meal-id="' +
+          escapeHtml(meal.meal_id) +
+          '" aria-label="Swap ' +
+          escapeHtml(planMealLabel(meal)) +
+          ", " +
+          escapeHtml(planMealTitle(meal)) +
+          '">Swap</button>'
+        : "") +
+      '<button type="button" class="btn btn-quiet btn-sm" data-action="meal-more" data-meal-id="' +
+      escapeHtml(meal.meal_id) +
+      '" aria-label="More for ' +
+      escapeHtml(planMealLabel(meal)) +
+      '">⋯</button></div></div></article>'
+    );
+  }
+
+  function renderPlanReview() {
+    const plan = state.dinnerPlan;
+    if (!plan) return;
+    planReviewCopy();
+    const list = document.getElementById("planMealCards");
+    const meals = (plan.meals || []).slice().sort(function (a, b) {
+      return a.position - b.position;
+    });
+    const slots = emptySlots(plan);
+    let html = meals.map(function (m) {
+      return renderPlanMealCard(m);
+    }).join("");
+    html += slots
+      .map(function (s) {
+        return renderPlanMealCard(null, s);
+      })
+      .join("");
+    list.innerHTML = html;
+    const ctx = state.navContext.planReview || {};
+    const btnGood = document.getElementById("btnPlanLooksGood");
+    const btnBack = document.getElementById("btnPlanBackHome");
+    const allEmpty = meals.length === 0 && slots.length === plan.meal_count;
+    if (allEmpty) {
+      btnGood.hidden = true;
+      btnBack.hidden = false;
+    } else if (state.planSingleMode) {
+      btnGood.hidden = true;
+      btnBack.hidden = true;
+      document.getElementById("planReviewActions").innerHTML =
+        '<button class="btn btn-primary btn-lg" type="button" data-action="single-make">Let’s make this</button>' +
+        '<button class="btn btn-secondary btn-lg" type="button" data-action="single-shop">Add to my shopping list</button>';
+    } else if (ctx.mode === "edit") {
+      btnGood.textContent = "Done";
+      btnGood.hidden = false;
+      btnBack.hidden = true;
+    } else {
+      btnGood.textContent = "Looks good";
+      btnGood.hidden = false;
+      btnBack.hidden = true;
+    }
+    const k = stillNeedCount(plan);
+    const side = document.getElementById("planReviewSide");
+    if (window.matchMedia("(min-width: 1024px)").matches && !state.planSingleMode) {
+      side.hidden = false;
+      document.getElementById("planReviewSideKicker").textContent = "Your plan · " + plan.meal_count + " dinners";
+      document.getElementById("planReviewSideShop").textContent =
+        k === 0 ? "Nothing to shop for." : k + " things on your list";
+    } else side.hidden = true;
+  }
+
+  function renderPlanConfirm() {
+    const plan = state.dinnerPlan;
+    if (!plan) return;
+    const meals = plan.meals || [];
+    let leftovers = 0;
+    let out = 0;
+    meals.forEach(function (m) {
+      if (m.kind === "leftovers") leftovers++;
+      if (m.kind === "eating_out") out++;
+    });
+    const recipeCount = meals.filter(function (m) {
+      return m.kind === "recipe";
+    }).length;
+    const k = stillNeedCount(plan);
+    let lede = recipeCount + (recipeCount === 1 ? " dinner" : " dinners");
+    if (leftovers) lede += ", 1 leftovers night";
+    if (out) lede += ", 1 night out";
+    lede += " · " + (k === 0 ? "Nothing to shop for." : k + " things on your list");
+    document.getElementById("planConfirmLede").textContent = lede;
+    document.getElementById("planConfirmList").innerHTML = meals
+      .map(function (m) {
+        return "<li>" + escapeHtml(planMealLabel(m)) + " · " + escapeHtml(planMealTitle(m)) + "</li>";
+      })
+      .join("");
+    const open = emptySlots(plan);
+    const openEl = document.getElementById("planConfirmOpenSlot");
+    if (open.length) {
+      openEl.hidden = false;
+      openEl.textContent = "Dinner " + open[0].position + " is still open. You can fill it later.";
+    } else openEl.hidden = true;
+  }
+
+  function formatShopQty(line) {
+    if (line.quantity == null || line.quantity === "") return "";
+    if (line.unit) return line.quantity + " " + line.unit;
+    return String(line.quantity);
+  }
+
+  function renderShopList() {
+    const plan = state.dinnerPlan;
+    const shop = state.dinnerShop;
+    if (!plan || !shop) return;
+    const eyebrow = document.getElementById("shopEyebrow");
+    if (plan.meal_count === 1 && plan.meals && plan.meals[0]) {
+      eyebrow.textContent = "For " + planMealTitle(plan.meals[0]);
+    } else {
+      eyebrow.textContent = "For " + plan.meal_count + " dinners";
+    }
+    const lines = shop.lines || [];
+    const need = lines.filter(function (l) {
+      return l.still_needed && l.list_state === "open";
+    });
+    const bought = lines.filter(function (l) {
+      return l.still_needed && l.list_state === "purchased";
+    });
+    const have = lines.filter(function (l) {
+      return l.still_needed && l.list_state === "already_have";
+    });
+    const dropped = lines.filter(function (l) {
+      return !l.still_needed;
+    });
+    document.getElementById("shopProgress").textContent =
+      need.length === 0
+        ? "All set. Enjoy dinner."
+        : need.length + " to get · " + bought.length + " bought · " + have.length + " already have";
+    const sections = document.getElementById("shopSections");
+    function rowHtml(l, section) {
+      const checked = l.list_state === "purchased";
+      const isHave = l.list_state === "already_have";
+      const name = (l.display_name || "").replace(/^\w/, function (c) {
+        return c.toUpperCase();
+      });
+      return (
+        '<div class="shop-row" data-line-id="' +
+        escapeHtml(l.line_id) +
+        '"><button type="button" class="shop-row__toggle" role="checkbox" aria-checked="' +
+        (checked || isHave ? "true" : "false") +
+        '" aria-label="' +
+        escapeHtml(name) +
+        ", " +
+        escapeHtml(formatShopQty(l)) +
+        '" data-shop-toggle="' +
+        escapeHtml(l.line_id) +
+        '"><span class="shop-row__check' +
+        (checked ? " is-on" : "") +
+        '"></span><span><span class="shop-row__name">' +
+        escapeHtml(name) +
+        '</span><br /><span class="shop-row__qty">' +
+        escapeHtml(formatShopQty(l)) +
+        "</span></span></button></div>"
+      );
+    }
+    let html = "<h2 class=\"section-title\">Still need (" + need.length + ")</h2>";
+    html += need.map(function (l) {
+      return rowHtml(l, "need");
+    }).join("");
+    html += "<h2 class=\"section-title\">Bought (" + bought.length + ")</h2>";
+    html += bought.map(function (l) {
+      return rowHtml(l, "bought");
+    }).join("");
+    if (have.length) {
+      html +=
+        '<h2 class="section-title">' +
+        have.length +
+        ' already have · <button type="button" class="btn btn-quiet btn-sm" data-action="shop-show-have">Show</button></h2>';
+      html += '<div id="shopHaveRows" hidden>';
+      html += have
+        .map(function (l) {
+          return rowHtml(l, "have");
+        })
+        .join("");
+      html += "</div>";
+    }
+    if (dropped.length) {
+      html += '<h2 class="section-title">No longer needed (' + dropped.length + ")</h2>";
+      html += dropped
+        .map(function (l) {
+          return rowHtml(l, "dropped");
+        })
+        .join("");
+    }
+    if (!lines.length) {
+      html =
+        '<div class="empty-state"><strong>Nothing to shop for</strong><p class="meta">Leftovers and nights out don’t need a list.</p><button class="btn btn-primary" type="button" data-go="choices">What are we cooking tonight?</button></div>';
+    }
+    sections.innerHTML = html;
+    renderShopChangesBanner();
+  }
+
+  function renderShopChangesBanner() {
+    const plan = state.dinnerPlan;
+    const shop = state.dinnerShop;
+    const banner = document.getElementById("shopChangesBanner");
+    if (!banner || !plan || !shop || !shop.shopping_started_at) {
+      banner.hidden = true;
+      return;
+    }
+    let seen = 0;
+    try {
+      seen = Number(localStorage.getItem(shopSeenKey(plan.dinner_plan_id)) || 0);
+    } catch (_) { /* ignore */ }
+    const deltas = shop.deltas || [];
+    const fresh = deltas.filter(function (d) {
+      return new Date(d.created_at).getTime() > seen;
+    });
+    if (!fresh.length) {
+      banner.hidden = true;
+      return;
+    }
+    banner.hidden = false;
+    document.getElementById("shopChangesBody").innerHTML = fresh
+      .slice(0, 5)
+      .map(function (d) {
+        const label = d.kind === "added" ? "Added" : "No longer needed";
+        return "<p>" + label + ": " + escapeHtml(formatShopQty(d)) + " " + escapeHtml(d.display_name || "") + "</p>";
+      })
+      .join("");
+  }
+
+  function renderTonightPlan() {
+    const plan = state.dinnerPlan;
+    const root = document.getElementById("tonightPlanRoot");
+    const legacy = document.getElementById("choiceCards");
+    const shareCard = document.getElementById("shareCard");
+    if (!plan || planIsClosed(plan)) {
+      root.hidden = true;
+      legacy.hidden = false;
+      if (shareCard) shareCard.hidden = false;
+      renderTonightNoPlan();
+      return;
+    }
+    root.hidden = false;
+    legacy.hidden = true;
+    if (shareCard) shareCard.hidden = true;
+    document.getElementById("choicesEyebrow").textContent = "From your plan";
+    document.getElementById("choicesTitle").textContent = "What are we cooking tonight?";
+    const meals = plan.meals || [];
+    const cooking = meals.filter(function (m) {
+      return m.state === "cooking";
+    });
+    const selected = meals.filter(function (m) {
+      return m.state === "selected";
+    });
+    const ready = meals.filter(function (m) {
+      return m.state === "planned";
+    });
+    const rate = meals.filter(function (m) {
+      return m.state === "cooked" || m.state === "partially_rated";
+    });
+    const done = meals.filter(function (m) {
+      return planMealClosed(m);
+    });
+    let lede = "Cook any of these, in any order.";
+    if (cooking.length) lede = planMealTitle(cooking[0]) + " is cooking. Pick up where you left off.";
+    else if (selected.length) lede = "Tonight’s pick is " + planMealTitle(selected[0]) + ". Or cook any other one.";
+    document.getElementById("choiceStripText").textContent = lede;
+    let html = "";
+    if (cooking.length) {
+      html += "<h2 class=\"section-title\">In the kitchen</h2>";
+      html += cooking
+        .map(function (m) {
+          return renderPlanMealCard(m) + '<button class="btn btn-primary" data-action="dp-back-kitchen" data-meal-id="' + m.meal_id + '">Back to the kitchen</button>';
+        })
+        .join("");
+    }
+    const readyList = selected.concat(ready.filter(function (m) {
+      return m.kind === "recipe" || m.kind === "leftovers" || m.kind === "eating_out";
+    }));
+    if (readyList.length) {
+      html += '<h2 class="section-title">Ready to cook</h2>';
+      html += readyList.map(function (m) {
+        return renderPlanMealCard(m);
+      }).join("");
+    }
+    if (rate.length) {
+      html += '<h2 class="section-title">Rate when you’re ready</h2>';
+      html += rate.map(function (m) {
+        return renderPlanMealCard(m);
+      }).join("");
+    }
+    if (done.length) {
+      html += "<p class=\"meta\">" + done.length + " done · Show</p>";
+    }
+    document.getElementById("tonightPlanSections").innerHTML = html;
+    document.getElementById("tonightFindMore").hidden = planIsClosed(plan);
+  }
+
+  function renderTonightNoPlan() {
+    if (hasCurrentDinnerPlan()) return;
+    if (legacyRoundActive()) {
+      renderChoicesHead();
+      return;
+    }
+    document.getElementById("choicesEyebrow").textContent = "Tonight";
+    document.getElementById("choicesTitle").textContent = "What are we cooking tonight?";
+    document.getElementById("choiceStripText").textContent = "We’ll pick one that works for everyone eating.";
+    document.getElementById("choicesActions").hidden = false;
+    document.getElementById("choicesActions").innerHTML =
+      '<button class="btn btn-primary btn-lg" type="button" data-action="find-dinner-tonight">Find a dinner</button>' +
+      '<button class="btn btn-secondary btn-lg" type="button" data-action="plan-dinners">Plan a few dinners</button>';
+    document.getElementById("choiceCards").innerHTML = "";
+    document.getElementById("shareCard").hidden = true;
+  }
+
+  function renderActiveDinnerSurfaces() {
+    if (state.view === "home") updateHome();
+    if (state.view === "choices") renderTonightPlan();
+    if (state.view === "planReview") renderPlanReview();
+    if (state.view === "planConfirm") renderPlanConfirm();
+    if (state.view === "shopList") renderShopList();
+  }
+
+  async function openSwapSheet(mealId) {
+    const plan = state.dinnerPlan;
+    const meal = (plan.meals || []).find(function (m) {
+      return m.meal_id === mealId;
+    });
+    if (!meal) return;
+    state.swapMealId = mealId;
+    document.getElementById("swapSheetTitle").textContent =
+      plan.meal_count === 1 ? "Swap tonight’s dinner" : "Swap Dinner " + meal.position;
+    document.getElementById("swapSheetNow").textContent = "Now: " + planMealTitle(meal);
+    const alts = await previewDinnerAlternatives(meal.participant_ids, plan);
+    const box = document.getElementById("swapAlternatives");
+    if (!alts.length) {
+      box.innerHTML = "<p class=\"meta\">That’s every dinner that fits your table right now.</p>";
+    } else {
+      box.innerHTML = alts
+        .map(function (slot) {
+          return (
+            '<div class="swap-alt"><div class="swap-alt__thumb">' +
+            mealMediaHtml({ recipe_slug: slot.recipe_slug, title: slot.title }, { decorative: true }) +
+            "</div><div><strong>" +
+            escapeHtml(slot.title || slot.recipe_slug) +
+            '</strong><p class="meta">About ' +
+            (slot.total_minutes || "—") +
+            ' min</p><button type="button" class="btn btn-secondary btn-sm" data-action="swap-use" data-version="' +
+            escapeHtml(slot.recipe_version_id) +
+            '">Use this</button></div></div>'
+          );
+        })
+        .join("");
+    }
+    document.getElementById("swapSheet").showModal();
+  }
+
+  async function handleDinnerPlanClick(e) {
+    const planBtn = e.target.closest("[data-action='plan-dinners']");
+    if (planBtn) {
+      e.preventDefault();
+      show("planCount", { context: Nav.contextFor("planCount", state.view, { established: true }) });
+      renderPlanCount();
+      return true;
+    }
+    const findBtn = e.target.closest("[data-action='find-dinner'], [data-action='find-dinner-tonight']");
+    if (findBtn) {
+      e.preventDefault();
+      const entry = findBtn.dataset.action === "find-dinner-tonight" ? "tonight" : "find_dinner";
+      startFindDinner(entry);
+      return true;
+    }
+    const swap = e.target.closest("[data-action='swap-meal']");
+    if (swap) {
+      e.preventDefault();
+      openSwapSheet(swap.dataset.mealId);
+      return true;
+    }
+    const swapUse = e.target.closest("[data-action='swap-use']");
+    if (swapUse) {
+      e.preventDefault();
+      const res = await mutateDinnerPlan({
+        op: "swap_meal",
+        meal_id: state.swapMealId,
+        recipe_version_id: swapUse.dataset.version,
+      });
+      if (res) {
+        state.swappedMealIds = state.swappedMealIds || {};
+        state.swappedMealIds[state.swapMealId] = true;
+        document.getElementById("swapSheet").close();
+        renderPlanReview();
+      }
+      return true;
+    }
+    const openMeal = e.target.closest("[data-action='open-plan-meal']");
+    if (openMeal) {
+      e.preventDefault();
+      const origin = state.view === "choices" ? "tonightPlan" : "planReview";
+      openPlanMealDetail(openMeal.dataset.mealId, origin);
+      return true;
+    }
+    const shopToggle = e.target.closest("[data-shop-toggle]");
+    if (shopToggle) {
+      e.preventDefault();
+      const lineId = shopToggle.dataset.shopToggle;
+      const line = (state.dinnerShop.lines || []).find(function (l) {
+        return l.line_id === lineId;
+      });
+      if (!line) return true;
+      const next = line.list_state === "open" ? "purchased" : "open";
+      await mutateDinnerPlan({ op: "set_line_state", line_id: lineId, list_state: next });
+      renderShopList();
+      return true;
+    }
+    const good = e.target.closest("#btnPlanLooksGood, #btnPlanReviewSideOk");
+    if (good) {
+      e.preventDefault();
+      const ctx = state.navContext.planReview;
+      if (ctx && ctx.mode === "edit") {
+        show("choices");
+        return true;
+      }
+      show("planConfirm", { context: Nav.contextFor("planConfirm", "planReview", { established: true }) });
+      renderPlanConfirm();
+      return true;
+    }
+    const finShop = e.target.closest("#btnPlanFinalizeShop");
+    if (finShop) {
+      e.preventDefault();
+      await mutateDinnerPlan({ op: "finalize" });
+      await refreshDinnerShopping();
+      show("shopList", { context: Nav.contextFor("shopList", "planConfirm", { established: true }) });
+      renderShopList();
+      return true;
+    }
+    const haveAll = e.target.closest("#btnPlanHaveEverything");
+    if (haveAll) {
+      e.preventDefault();
+      await mutateDinnerPlan({ op: "finalize" });
+      show("choices");
+      renderTonightPlan();
+      return true;
+    }
+    const singleMake = e.target.closest("[data-action='single-make']");
+    if (singleMake) {
+      e.preventDefault();
+      const meal = state.dinnerPlan.meals[0];
+      await mutateDinnerPlan({ op: "finalize" });
+      await mutateDinnerPlan({ op: "select_meal", meal_id: meal.meal_id });
+      openPlanMealDetail(meal.meal_id, "planReview");
+      return true;
+    }
+    const singleShop = e.target.closest("[data-action='single-shop']");
+    if (singleShop) {
+      e.preventDefault();
+      await mutateDinnerPlan({ op: "finalize" });
+      await refreshDinnerShopping();
+      show("shopList");
+      renderShopList();
+      return true;
+    }
+    const dpCook = e.target.closest("[data-action='dp-start-cook']");
+    if (dpCook) {
+      e.preventDefault();
+      const sel = (state.dinnerPlan.meals || []).find(function (m) {
+        return m.state === "selected";
+      }) || (state.dinnerPlan.meals || []).find(function (m) {
+        return m.state === "planned" && m.kind === "recipe";
+      });
+      if (sel) openPlanMealDetail(sel.meal_id, "tonightPlan");
+      return true;
+    }
+    const dpKitchen = e.target.closest("[data-action='dp-back-kitchen']");
+    if (dpKitchen) {
+      e.preventDefault();
+      const id = dpKitchen.dataset.mealId;
+      const meal = (state.dinnerPlan.meals || []).find(function (m) {
+        return m.state === "cooking" || m.meal_id === id;
+      });
+      if (meal) {
+        state.dinnerCookMealId = meal.meal_id;
+        state.dinnerDetailMeal = uiMealFromPlanMeal(meal);
+        show("cook");
+      }
+      return true;
+    }
+    const gotIt = e.target.closest("#btnShopChangesGotIt");
+    if (gotIt) {
+      e.preventDefault();
+      try {
+        localStorage.setItem(shopSeenKey(state.dinnerPlan.dinner_plan_id), String(Date.now()));
+      } catch (_) { /* ignore */ }
+      document.getElementById("shopChangesBanner").hidden = true;
+      return true;
+    }
+    const ask = e.target.closest("[data-action='plan-ask-table']");
+    if (ask) {
+      e.preventDefault();
+      const url = appBaseUrl().replace(/\/$/, "") + "/?dinner_plan=" + encodeURIComponent(state.dinnerPlan.dinner_plan_id);
+      document.getElementById("askTableUrl").value = url;
+      document.getElementById("askTableSheet").showModal();
+      return true;
+    }
+    const copyPlan = e.target.closest("#btnCopyPlanLink");
+    if (copyPlan) {
+      e.preventDefault();
+      const input = document.getElementById("askTableUrl");
+      input.select();
+      navigator.clipboard.writeText(input.value).then(function () {
+        toast("Link copied");
+      });
+      return true;
+    }
+    return false;
+  }
+
+  function goHomeNoPlan() {
+    show("home");
+    updateHome();
   }
 
   // —— Navigation ——
@@ -2912,6 +4106,16 @@
       toast("Choose a dinner from tonight’s options first");
       return false;
     }
+    if (meal.dinner_plan && state.dinnerPlan) {
+      state.dinnerCookMealId = mealId;
+      mutateDinnerPlan({ op: "begin_cook", meal_id: mealId }).then(function (plan) {
+        if (plan) {
+          state.cookStep = 0;
+          if (navigate !== false) show("cook");
+        }
+      });
+      return true;
+    }
     applyIdentity(window.MealIdentity.reduceMealAction(identitySnapshot(), { type: "begin_cook", mealOptionId: mealId }));
     state.cookStep = 0;
     if (mealId === state.selectedMealId) {
@@ -3209,12 +4413,31 @@
       }
       return;
     }
+    const qPlan = new URLSearchParams(location.search).get("dinner_plan");
+    if (qPlan) {
+      const restoredPlan = await restoreSession();
+      if (restoredPlan) {
+        const plan = await fetchDinnerPlanById(qPlan);
+        if (plan) {
+          history.replaceState(null, "", location.pathname);
+          show("planReview", {
+            context: Nav.contextFor("planReview", null, { established: true, mode: "compose", star: true }),
+          });
+          renderPlanReview();
+          return;
+        }
+        toast("This plan isn’t in your kitchen.");
+        show("home");
+        return;
+      }
+    }
     const restored = await restoreSession();
     if (restored) {
       const target =
         restored.next_action === "onboarding"
           ? onboardingResumeView(restored)
           : restored.next_view || "home";
+      await loadCurrentDinnerPlan();
       show(target);
       return;
     }

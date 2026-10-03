@@ -128,6 +128,27 @@ describe("rate screen origin", () => {
   });
 });
 
+describe("Cycle 3 dinner plan navigation", () => {
+  it("plan review opened from Tonight returns to Tonight", () => {
+    const r = open("detail", "choices", { source: "tonight_plan", origin: "tonightPlan" });
+    expect(r.back).toBe("choices");
+    expect(r.nav).toBe("choices");
+    expect(r.ctx.origin).toBe("tonightPlan");
+  });
+
+  it("plan review and shop list use focus chrome while composing", () => {
+    expect(Nav.chrome("planCount", Nav.contextFor("planCount", "home", { established: true }))).toBe("focus");
+    expect(Nav.chrome("planReview", Nav.contextFor("planReview", "planCount", { established: true }))).toBe("focus");
+    expect(Nav.chrome("shopList", Nav.contextFor("shopList", "planConfirm", { established: true }))).toBe("focus");
+  });
+
+  it("edit plan review keeps Tonight lit", () => {
+    const ctx = Nav.contextFor("planReview", "choices", { established: true, mode: "edit" });
+    expect(Nav.navSection("planReview", ctx)).toBe("choices");
+    expect(Nav.chrome("planReview", ctx)).toBe("full");
+  });
+});
+
 describe("FW-01 · viewing is not selecting", () => {
   it("opening a recipe from History never changes tonight's selection", () => {
     const state = {

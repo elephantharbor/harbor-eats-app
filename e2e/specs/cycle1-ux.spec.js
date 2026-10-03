@@ -211,13 +211,12 @@ test.describe("FW-10 + FW-07 · recipe origin, view vs select, next dinner", () 
     await expect(page.locator('.view[data-view="loop"] [data-action="next-dinner"]')).toBeVisible();
     await page.locator('.view[data-view="loop"] [data-go="home"]').click();
     await page.locator('.view[data-view="home"] [data-action="next-dinner"]').first().click();
-    await expect(page.locator('.view[data-view="choices"].is-active')).toHaveCount(1);
-    await expect(page.locator("#choicesEyebrow")).toContainText("new round");
-    await expect(page.locator("#choicesRoundNote")).toContainText(titleB);
-    await expect(cards).toHaveCount(3, { timeout: 15000 });
-    await expect(page.locator(".option-card.selected-mark")).toHaveCount(0);
+    await expect(page.locator('.view[data-view="home"].is-active')).toHaveCount(1);
+    await expect(page.getByTestId("home-title")).toHaveText("What’s for dinner?");
+    await expect(page.getByRole("button", { name: "Plan our dinners" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Find a dinner" })).toBeVisible();
     const fresh = await me(page);
-    expect(fresh.plan_id).not.toBe(ratedPlan);
+    expect(fresh.plan_id).toBe(ratedPlan);
     expect(fresh.previous_meal && fresh.previous_meal.meal_name).toBe(titleB);
 
     await page.locator('#topbar [data-go="meals"]:visible').first().click();
