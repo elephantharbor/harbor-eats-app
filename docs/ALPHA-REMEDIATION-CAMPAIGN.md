@@ -123,15 +123,24 @@ No pull request. Not merged to `main`. `main` was not pushed. Pages and the Work
 
 **Migration:** `migrations/0010_cycle2_taste_contract.sql` is in the tree. The migration check includes it, and `test/migration-0010.test.js` still refuses to apply 0010 to a database stopped after 0008. 0010 was not applied to production D1.
 
-**Integration SHA:** recorded after the clean-tree suite on this branch tip.
+**Integration SHA:** `23b78f0a4d98fae463744f9e0c317c3287473ebb`
+
+Clean-tree suite on that SHA, from `npm ci` with `node_modules` removed first:
+
+- Migration check: `OK: 10 migration file(s)`, including `migrations/0010_cycle2_taste_contract.sql`. `test/migration-0010.test.js` still refuses 0010 when the database stopped after 0008.
+- Unit tests: 35 files, 397 passed (`npx vitest run`).
+- Lint: `eslint --max-warnings=0`, clean.
+- Playwright: `CI=true npm run test:e2e`, 27 passed. The desktop recipe-tab check passed on the first try.
 
 **Hosted GitHub Actions:** not run.
+
+The commit that writes this paragraph does not change product code. Product behavior matches `23b78f0a4d98fae463744f9e0c317c3287473ebb`.
 
 Tonight still lists meals from `recipe-store.js`. Ranking reads `diner_taste` for that household and matches Cycle 2 vocabulary tags on the same dishes. Love and Like raise a matching meal. Less often lowers it and does not ban it, write a hard limit, or override eligibility. Hard limits still win in `eligibility.js` on the server. Tastes stay per diner. A slug with no package match does not count as a match. Synthetic and unproven rows stay out of ranking, taste learning, Completed Meal Loop counts, funnel, alpha ops, and traction. A meal rating does not mark every ingredient as liked. An inferred row does not replace an explicit one. Nothing in the recommender writes inferred rows.
 
 Unwired on purpose: `recordInferredTaste` has no caller in the meal loop. Legacy `dislike` and `neutral` rows stay in `preference_evidence`. Practical hints have no planner UI. The 24 packages are not the live menu. Unpublished, draft, invalid, and household-only packages are not recommended. No package was marked kitchen-tested, and no provenance or image right was invented.
 
-Service worker cache remains `fw-sw-v8`. The profile grid no longer spills one pixel past a 375px phone. The settings taste check looks for Tacos, the vocabulary name, instead of the old spark line "taco night".
+Service worker cache remains `fw-sw-v8`. The profile grid no longer spills one pixel past a 375px phone. The settings taste check looks for Tacos, the vocabulary name, instead of the old spark line "taco night". Opening a recipe pins that meal's tab before the recipe request returns, so a keyboard move is not snapped back to Overview when the recipe arrives.
 
 ## Out of scope
 
