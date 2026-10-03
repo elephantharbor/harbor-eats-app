@@ -1,0 +1,123 @@
+{
+  "generated_at": "2026-10-03",
+  "meal_count": 24,
+  "cuisine": {
+    "mexican": 4,
+    "japanese": 3,
+    "indian": 1,
+    "italian": 3,
+    "mediterranean": 2,
+    "american": 3,
+    "chinese": 1,
+    "middle-eastern": 1,
+    "north-african": 1,
+    "scandinavian": 1,
+    "thai": 1,
+    "moroccan": 1,
+    "californian": 1
+  },
+  "meal_style": {
+    "tacos": 4,
+    "grilled": 1,
+    "bowls": 6,
+    "curries": 5,
+    "pasta": 3,
+    "stews": 1,
+    "soups": 1,
+    "stir-fries": 2
+  },
+  "plant_eligible": 17,
+  "fish_eligible": 5,
+  "flavors": {
+    "citrusy": 16,
+    "smoky": 1,
+    "umami": 1,
+    "herbaceous": 1
+  },
+  "textures": {
+    "crispy": 4,
+    "tender": 1,
+    "creamy": 2
+  },
+  "cook_time_bands": {
+    "under_30": 2,
+    "30_to_45": 22,
+    "over_45": 0,
+    "unknown": 0
+  },
+  "vocabulary_raw": {
+    "citrusy": 16,
+    "crispy": 4,
+    "mexican": 4,
+    "smoky": 1,
+    "tacos": 4,
+    "tofu": 2,
+    "grilled": 1,
+    "japanese": 3,
+    "salmon": 2,
+    "tender": 1,
+    "umami": 1,
+    "bowls": 6,
+    "chickpeas": 2,
+    "creamy": 2,
+    "curries": 5,
+    "indian": 1,
+    "herbaceous": 1,
+    "italian": 3,
+    "pasta": 3,
+    "mediterranean": 2,
+    "shrimp": 1,
+    "american": 3,
+    "chicken": 1,
+    "lentils": 1,
+    "stews": 1,
+    "chinese": 1,
+    "cod": 2,
+    "cauliflower": 1,
+    "middle-eastern": 1,
+    "soba": 1,
+    "carrots": 1,
+    "north-african": 1,
+    "soups": 1,
+    "mushrooms": 1,
+    "arctic-char": 1,
+    "scandinavian": 1,
+    "eggplant": 1,
+    "stir-fries": 2,
+    "thai": 1,
+    "polenta": 1,
+    "rice-noodles": 1,
+    "moroccan": 1,
+    "californian": 1,
+    "peaches": 1
+  },
+  "cook_time_band_definitions": [
+    {
+      "id": "under_30",
+      "label": "Under 30 minutes",
+      "max": 29
+    },
+    {
+      "id": "30_to_45",
+      "label": "30–45 minutes",
+      "min": 30,
+      "max": 45
+    },
+    {
+      "id": "over_45",
+      "label": "Over 45 minutes",
+      "min": 46
+    }
+  ],
+  "zero_coverage_starter_terms": [
+    "korean",
+    "savory",
+    "spicy",
+    "tangy",
+    "rich",
+    "fresh",
+    "crunchy",
+    "sandwiches",
+    "swordfish"
+  ]
+}
