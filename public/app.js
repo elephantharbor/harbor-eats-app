@@ -823,8 +823,9 @@
     const host = hostId && document.getElementById(hostId);
     const view = app.querySelector(".view.is-active");
     const target = (host && host.querySelector(selector)) || (view && view.querySelector(selector));
+    const backup = typeof fallback === "function" ? fallback() : fallback;
     if (target) target.focus({ preventScroll: true });
-    else if (fallback) fallback.focus({ preventScroll: true });
+    else if (backup) backup.focus({ preventScroll: true });
   }
 
   function tasteSearchOpts(scope) {
@@ -2277,11 +2278,16 @@
     const removeTaste = e.target.closest("[data-taste-remove]");
     if (removeTaste) {
       const item = removeTaste.closest(".taste-item");
+      const list = item && item.parentElement;
       const next = item && (item.nextElementSibling || item.previousElementSibling);
-      const nextBtn = next && next.querySelector("[data-taste-remove]");
-      const heading = document.getElementById("profileToldTitle");
-      if (!nextBtn) heading.setAttribute("tabindex", "-1");
-      changeTaste(removeTaste.dataset.tasteRemove, "remove", nextBtn || heading);
+      const nextSlug = next && next.dataset.tasteItem;
+      const heading = document.getElementById(list && list.id === "tasteLearningList" ? "profileLearningTitle" : "profileToldTitle");
+      changeTaste(removeTaste.dataset.tasteRemove, "remove", function () {
+        const btn = nextSlug && document.querySelector(`[data-taste-remove="${nextSlug}"]`);
+        if (btn) return btn;
+        heading.setAttribute("tabindex", "-1");
+        return heading;
+      });
       return;
     }
 
@@ -2518,14 +2524,15 @@
     show("invite");
   });
 
+  const tasteSearchTimers = {};
   app.addEventListener("submit", (e) => {
     const form = e.target.closest("form[data-taste-search]");
     if (!form) return;
     e.preventDefault();
+    clearTimeout(tasteSearchTimers[form.dataset.tasteSearch]);
     runTasteSearch(form.dataset.tasteSearch, true);
   });
 
-  const tasteSearchTimers = {};
   app.addEventListener("input", (e) => {
     const form = e.target.closest("form[data-taste-search]");
     if (!form || e.target.type !== "search") return;
