@@ -24,6 +24,7 @@ Current chain:
 - `0007_phase4_recipe_versioning.sql` — `meal_concept`, `recipe_version`, `meal_vote`; `rating.recipe_version_id` (additive)
 - `0008_evidence_origin.sql` — `data_origin` on household learning tables, default `household` (do not apply alone)
 - `0009_evidence_origin_unproven.sql` — reclassify unproven legacy rows; default becomes `unproven`. Apply with 0008. See `docs/CYCLE1B-ORIGIN.md`
+- `0010_cycle2_taste_contract.sql` — taste vocabulary, diner tastes, planning hints, recipe packages, shopped ingredient snapshots, targeted feedback. Apply only after 0009. Not applied to production D1. See `docs/CYCLE2-CONTRACT.md`
 
 Runtime catalog content lives in `src/lib/recipe-store.js`; D1 recipe tables are schema-ready for future imported/edited versions.
 
