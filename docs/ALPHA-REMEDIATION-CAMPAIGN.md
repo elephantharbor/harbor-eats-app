@@ -7,11 +7,11 @@ Cycle 1 children, merged in order:
 2. `feature/fw-c1-catalog` at `2303898dbc2f9439d4f39fe0e682b69489f48949`
 3. `feature/fw-c1-ux` at `8b3e2f793a5e39837720306063d2b02c11fbaf38`
 
-Pull request: not opened against `main`. The result is pushed only to `feature/flavorweave-alpha-remediation`.
+Pull request: not opened. `ManagePullRequest` refused because the branch does not start with `cursor/`. The integration stays on `feature/flavorweave-alpha-remediation` and was not retargeted to `main`.
 Production `main` is not a campaign base. This cycle does not merge to `main`, does not deploy Pages or Workers, and does not apply migrations to any D1 database.
 
 **Integration SHA:** `acdb92f3794a70adcd89c1c15e73d2670544502b`
-That commit holds the merged tree, the walnut tags, and `fw-sw-v6`. The branch tip only writes this SHA into the docs. Product code matches at both commits.
+That commit holds the merged tree, the walnut tags, and `fw-sw-v6`. Later commits only write this SHA into the docs and record that no pull request was opened. Product code matches this commit.
 **Integration model:** Grok 4.7 (`grok-4.7`).
 Detail: `docs/CYCLE1-INTEGRATION.md`.
 
