@@ -333,13 +333,14 @@
         <section class="view" data-view="choices" aria-labelledby="choicesTitle">
           <div class="page page--wide">
             <header class="page-head">
-              <div>
+              <div class="page-head__copy">
                 <p class="eyebrow" id="choicesEyebrow">Tonight’s picks</p>
                 <h1 class="title" id="choicesTitle">Which should we make?</h1>
                 <p class="lede" id="choiceStripText">Options that fit your crew. Tap one — or send the set.</p>
                 <p class="round-note" id="choicesRoundNote" hidden></p>
                 <div class="actions" id="choicesActions" hidden></div>
               </div>
+              <button class="btn btn-quiet btn-sm plan-overflow" type="button" id="btnTonightMenu" aria-label="Tonight options" aria-haspopup="menu" hidden>⋯</button>
             </header>
             <div class="weave-loader" id="choiceLoading" hidden aria-live="polite">
               <div class="weave-loader__strands" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -459,9 +460,11 @@
           <div class="page page--medium">
             <button class="back" type="button" data-go="home" data-back="planCount"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> <span class="back__label">Home</span></button>
             <header class="page-head">
-              <p class="eyebrow">Plan our dinners</p>
-              <h1 class="title" id="planCountTitle">How many dinners?</h1>
-              <p class="lede">Count the nights you want covered. Leftovers and nights out can take a spot later.</p>
+              <div class="page-head__copy">
+                <p class="eyebrow">Plan our dinners</p>
+                <h1 class="title" id="planCountTitle">How many dinners?</h1>
+                <p class="lede">Count the nights you want covered. Leftovers and nights out can take a spot later.</p>
+              </div>
             </header>
             <div class="plan-count-layout" id="planCountOptions"></div>
             <div class="sticky-actions">
@@ -511,9 +514,11 @@
           <div class="page page--medium">
             <button class="back" type="button" data-go="planReview" data-back="planConfirm"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> <span class="back__label">Back to the plan</span></button>
             <header class="page-head">
-              <p class="eyebrow">Almost there</p>
-              <h1 class="title" id="planConfirmTitle">Looks like a plan</h1>
-              <p class="lede" id="planConfirmLede"></p>
+              <div class="page-head__copy">
+                <p class="eyebrow">Almost there</p>
+                <h1 class="title" id="planConfirmTitle">Looks like a plan</h1>
+                <p class="lede" id="planConfirmLede"></p>
+              </div>
             </header>
             <ul class="plan-confirm-list" id="planConfirmList"></ul>
             <p class="meta" id="planConfirmOpenSlot" hidden></p>

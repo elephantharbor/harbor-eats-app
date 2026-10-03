@@ -254,9 +254,12 @@
 
   function onboardingResumeView(snap) {
     if (snap.next_view && snap.next_view !== "create") return snap.next_view;
-    if (snap.next_action === "start_choices" || snap.next_action === "pick_meal") return "choices";
+    if (snap.next_action === "start_choices" || snap.next_action === "pick_meal") {
+      if (!snap.plan_id && !snap.selected_meal_option_id) return "home";
+      return "choices";
+    }
     if (!state.members.length) return "members";
-    if (state.members.length >= 2) return "choices";
+    if (state.members.length >= 2 && (snap.plan_id || snap.selected_meal_option_id)) return "choices";
     const hasConstraints = state.primaryConstraints.length > 0;
     if (!hasConstraints && !snap.plan_id) return "constraints";
     return snap.next_view || "home";
@@ -704,8 +707,10 @@
     state.members.map((m) => [m.id, { score: null, note: "" }])
   );
 
-  function toast(msg) {
-    toastEl.textContent = msg;
+  function toast(msg, opts) {
+    const html = opts && opts.html;
+    if (html) toastEl.innerHTML = msg;
+    else toastEl.textContent = msg;
     toastEl.classList.add("show");
     clearTimeout(toast._t);
     toast._t = setTimeout(() => toastEl.classList.remove("show"), 2200);
@@ -1398,7 +1403,12 @@
     if (name === "join") renderConstraintGrid("joinConstraints", state.joinConstraints);
     if (name === "choices") {
       (async function () {
-        if (!hasCurrentDinnerPlan() && !API.planId && (API.householdId || state.householdId)) {
+        if (
+          !hasCurrentDinnerPlan() &&
+          legacyRoundActive() &&
+          !displayMeals().length &&
+          (API.householdId || state.householdId)
+        ) {
           setChoiceLoading(true);
           await fetchRecommendationsPlan();
         }
@@ -2400,8 +2410,7 @@
     if (state.selectedMealId || state.cookingMealId) return true;
     if (state.lifecycle === "Cooked" || state.lifecycle === "Rated") return true;
     if (state.lifecycle === "Selected") return true;
-    const meals = displayMeals();
-    return !!(meals && meals.length && API.planId);
+    return false;
   }
 
   function planMealClosed(meal) {
@@ -2514,6 +2523,9 @@
   async function mutateDinnerPlan(payload) {
     const plan = state.dinnerPlan;
     if (!plan) return null;
+    if (planShoppingStarted() && state.dinnerShop) {
+      snapshotShopLinesForTags();
+    }
     await ensureMemberSession();
     const res = await apiPost(
       "/api/dinner-plans/" + encodeURIComponent(plan.dinner_plan_id) + "/mutations",
@@ -2529,10 +2541,25 @@
     }
     applyDinnerPlan(res.plan);
     if (state.view === "shopList") await refreshDinnerShopping();
-    if (plan.shopping_started_at && res.plan.shopping_started_at) {
-      toastListChange(res.plan);
-    } else if (!res.plan.shopping_started_at) {
-      toast("List updated.");
+    const shopOps = {
+      set_line_state: true,
+      swap_meal: true,
+      set_participants: true,
+      set_leftovers: true,
+      set_eating_out: true,
+      remove_meal: true,
+      add_meal: true,
+      skip_meal: true,
+      set_count: true,
+      finalize: true,
+    };
+    const affectsList = shopOps[payload.op];
+    if (affectsList) {
+      if (res.plan.shopping_started_at) {
+        toastListChange(res.plan);
+      } else if (!res.plan.shopping_started_at) {
+        toast("List updated.");
+      }
     }
     return res.plan;
   }
@@ -2561,7 +2588,11 @@
     let msg = "Your list changed.";
     if (added) msg += " " + added + " added,";
     if (removed) msg += " " + removed + " no longer needed.";
-    toast(msg.replace(/,$/, "") + ' <button type="button" class="btn btn-quiet btn-sm" data-go="shopList">See list</button>');
+    toast(
+      msg.replace(/,$/, "") +
+        ' <button type="button" class="btn btn-quiet btn-sm" data-go="shopList">See list</button>',
+      { html: true }
+    );
   }
 
   async function refreshDinnerShopping() {
@@ -2816,7 +2847,9 @@
       homeTitle.textContent = planMealTitle(selected);
       homeLede.textContent = "Tonight’s pick. Cook it whenever you’re ready.";
       primary = '<button class="btn btn-primary btn-lg" type="button" data-action="dp-start-cook">Start cooking</button>';
-      secondary = '<button class="btn btn-secondary btn-lg" type="button" data-go="choices">See other dinners</button>';
+      secondary =
+        '<button class="btn btn-secondary btn-lg" type="button" data-go="choices">See other dinners</button>' +
+        '<button class="btn btn-quiet btn-lg" type="button" data-go="shopList">Shopping list</button>';
       media.innerHTML = mealMediaHtml(uiMealFromPlanMeal(selected), { eager: true });
     } else if (!plan.shopping_started_at) {
       eye.textContent = "Your plan";
@@ -3183,10 +3216,45 @@
     } else openEl.hidden = true;
   }
 
+  const SHOP_QTY_FRACS = [
+    [1 / 8, "1/8"],
+    [1 / 4, "1/4"],
+    [1 / 3, "1/3"],
+    [1 / 2, "1/2"],
+    [2 / 3, "2/3"],
+    [3 / 4, "3/4"],
+  ];
+
+  function formatShopQuantityAmount(num) {
+    const sign = num < 0 ? "-" : "";
+    const abs = Math.abs(num);
+    const whole = Math.floor(abs);
+    const fracPart = abs - whole;
+    if (fracPart < 1e-6) return sign + String(whole);
+    for (let i = 0; i < SHOP_QTY_FRACS.length; i++) {
+      const pair = SHOP_QTY_FRACS[i];
+      if (Math.abs(fracPart - pair[0]) < 1e-6) {
+        return whole > 0 ? sign + whole + " " + pair[1] : sign + pair[1];
+      }
+    }
+    const trimmed = String(abs);
+    const short = trimmed.indexOf(".") >= 0 ? trimmed.replace(/\.?0+$/, "") : trimmed;
+    return sign + short;
+  }
+
   function formatShopQty(line) {
     if (line.quantity == null || line.quantity === "") return "";
-    if (line.unit) return line.quantity + " " + line.unit;
-    return String(line.quantity);
+    const raw = line.quantity;
+    const num = typeof raw === "number" ? raw : Number(raw);
+    let amount;
+    if (!Number.isNaN(num) && String(raw).trim() !== "") {
+      amount = formatShopQuantityAmount(num);
+    } else {
+      amount = String(raw);
+    }
+    const unit = line.unit;
+    if (!unit || unit === "count") return amount;
+    return amount + " " + unit;
   }
 
   function renderShopList() {
@@ -3402,12 +3470,16 @@
       root.hidden = true;
       legacy.hidden = false;
       if (shareCard) shareCard.hidden = false;
+      const tonightMenu = document.getElementById("btnTonightMenu");
+      if (tonightMenu) tonightMenu.hidden = true;
       renderTonightNoPlan();
       return;
     }
     root.hidden = false;
     legacy.hidden = true;
     if (shareCard) shareCard.hidden = true;
+    const tonightMenu = document.getElementById("btnTonightMenu");
+    if (tonightMenu) tonightMenu.hidden = false;
     document.getElementById("choicesEyebrow").textContent = "From your plan";
     document.getElementById("choicesTitle").textContent = "What are we cooking tonight?";
     const meals = plan.meals || [];
@@ -3435,7 +3507,13 @@
       html += "<h2 class=\"section-title\">In the kitchen</h2>";
       html += cooking
         .map(function (m) {
-          return renderPlanMealCard(m) + '<button class="btn btn-primary" data-action="dp-back-kitchen" data-meal-id="' + m.meal_id + '">Back to the kitchen</button>';
+          return (
+            '<div class="tonight-plan-meal">' +
+            renderPlanMealCard(m) +
+            '<button class="btn btn-primary" data-action="dp-back-kitchen" data-meal-id="' +
+            escapeHtml(m.meal_id) +
+            '">Back to the kitchen</button></div>'
+          );
         })
         .join("");
     }
@@ -3471,7 +3549,7 @@
               escapeHtml(m.meal_id) +
               '">We ate out</button>';
           }
-          return renderPlanMealCard(m, null, true) + actions;
+          return '<div class="tonight-plan-meal">' + renderPlanMealCard(m, null, true) + actions + "</div>";
         })
         .join("");
     }
@@ -3491,7 +3569,7 @@
               escapeHtml(m.meal_id) +
               '">Rate it</button>'
             : "";
-          return renderPlanMealCard(m, null, true) + rateBtn;
+          return '<div class="tonight-plan-meal">' + renderPlanMealCard(m, null, true) + rateBtn + "</div>";
         })
         .join("");
     }
@@ -3500,6 +3578,12 @@
     }
     document.getElementById("tonightPlanSections").innerHTML = html;
     document.getElementById("tonightFindMore").hidden = planIsClosed(plan);
+    const actionsEl = document.getElementById("choicesActions");
+    if (actionsEl) {
+      actionsEl.hidden = false;
+      actionsEl.innerHTML =
+        '<button class="btn btn-secondary btn-sm" type="button" data-go="shopList">Shopping list</button>';
+    }
   }
 
   function renderTonightNoPlan() {
@@ -3565,33 +3649,39 @@
   }
 
   function shopLineChangeMeta(line) {
-    if (!shopTagsVisible() || !line) return null;
+    if (!shopTagsVisible() || !line || !line.still_needed) return null;
     const key = line.ingredient_id + "\0" + (line.unit || "");
     const deltas = deltasSinceShopSeen().filter(function (d) {
       return d.ingredient_id + "\0" + (d.unit || "") === key;
     });
     const snap = state.shopLineSnapshot[key];
-    if (line.surplus_quantity > 0) {
-      const was = Number(line.quantity) + Number(line.surplus_quantity);
+    const newQty = Number(line.quantity) || 0;
+    const oldQty = snap ? Number(snap.quantity) || 0 : null;
+    if (line.surplus_quantity > 0 && newQty > 1e-6) {
+      const was = newQty + Number(line.surplus_quantity);
       return {
         tag: "Less needed",
         tagClass: "badge--sm",
-        qtyLine: formatShopQty({ quantity: line.quantity, unit: line.unit }) + " now · was " + formatShopQty({ quantity: was, unit: line.unit }),
+        qtyLine:
+          formatShopQty(line) + " now · was " + formatShopQty({ quantity: was, unit: line.unit }),
       };
     }
     const added = deltas.filter(function (d) {
       return d.kind === "added";
     });
-    if (added.length && snap == null && line.still_needed && line.list_state === "open") {
+    if (added.length && snap == null) {
       return { tag: "Added", tagClass: "badge--accent badge--sm", qtyLine: null };
     }
-    if (added.length && snap != null) {
+    if (added.length && oldQty != null && newQty > oldQty + 1e-6) {
       const extra = added.reduce(function (sum, d) {
         return sum + (Number(d.quantity) || 0);
       }, 0);
       if (line.list_state === "purchased" || line.list_state === "already_have") {
+        const extraLabel = extra
+          ? formatShopQty({ quantity: extra, unit: line.unit })
+          : "more";
         return {
-          tag: extra ? "Get " + extra + " more" : "Get more",
+          tag: extra ? "Get " + extraLabel + " more" : "Get more",
           tagClass: "badge--warning badge--sm",
           qtyLine:
             formatShopQty(line) +
@@ -3680,12 +3770,7 @@
     document.getElementById("mealOptionsSheet").showModal();
   }
 
-  function openParticipantsSheet(mealId) {
-    const meal = planMealById(mealId);
-    if (!meal) return;
-    state.participantsMealId = mealId;
-    state.participantsDraft = (meal.participant_ids || activeMemberIds()).slice();
-    document.getElementById("participantsTitle").textContent = "Who’s eating Dinner " + meal.position + "?";
+  function renderParticipantsTiles() {
     const me = meMember();
     document.getElementById("participantsTiles").innerHTML = activeMembers()
       .map(function (m) {
@@ -3707,6 +3792,15 @@
       })
       .join("");
     syncParticipantsSave();
+  }
+
+  function openParticipantsSheet(mealId) {
+    const meal = planMealById(mealId);
+    if (!meal) return;
+    state.participantsMealId = mealId;
+    state.participantsDraft = (meal.participant_ids || activeMemberIds()).slice();
+    document.getElementById("participantsTitle").textContent = "Who’s eating Dinner " + meal.position + "?";
+    renderParticipantsTiles();
     document.getElementById("participantsSheet").showModal();
   }
 
@@ -4247,7 +4341,7 @@
       const i = state.participantsDraft.indexOf(id);
       if (i >= 0) state.participantsDraft.splice(i, 1);
       else state.participantsDraft.push(id);
-      openParticipantsSheet(state.participantsMealId);
+      renderParticipantsTiles();
       return true;
     }
     const openMeal = e.target.closest("[data-action='open-plan-meal']");
@@ -4854,7 +4948,8 @@
     }
     if (partner) toast("Invite ready for " + partner.name);
     else toast("Invite sent");
-    show("choices");
+    show("home");
+    updateHome();
   });
 
   document.getElementById("btnSkipInvite").addEventListener("click", async () => {
@@ -4901,10 +4996,10 @@
       already_member: res.already_member,
     });
     API.planId = null;
-    await fetchRecommendationsPlan();
     toast(res.already_member ? "Welcome back" : "You’re in — diet limits saved");
     if (dest && dest !== location.pathname) history.replaceState(null, "", dest);
-    show("choices");
+    show("home");
+    updateHome();
   });
 
   function refreshShareUi() {
@@ -4956,7 +5051,8 @@
       show(Nav.backTarget("invite", ctx));
       return;
     }
-    show("choices");
+    show("home");
+    updateHome();
   }
 
   function refreshInviteUi() {
@@ -5477,15 +5573,31 @@
       ]);
       return;
     }
+    const tonightMenuBtn = e.target.closest("#btnTonightMenu");
+    if (tonightMenuBtn) {
+      e.preventDefault();
+      openContextMenu(document.getElementById("tonightContextMenu"), tonightMenuBtn, [
+        { action: "tonight-edit-plan", label: "Edit plan" },
+        { action: "tonight-shop", label: "Shopping list" },
+        { action: "tonight-new-plan", label: "Start a new plan" },
+      ]);
+      return;
+    }
     const menuAct = e.target.closest("[data-menu-action]");
     if (menuAct) {
       document.getElementById("planContextMenu").hidden = true;
       document.getElementById("shopContextMenu").hidden = true;
+      document.getElementById("tonightContextMenu").hidden = true;
       const act = menuAct.dataset.menuAction;
       if (act === "plan-start-over") show("planCount", { context: Nav.contextFor("planCount", "planReview", { established: true }) });
-      else if (act === "plan-edit") {
+      else if (act === "plan-edit" || act === "tonight-edit-plan") {
         show("planReview", { context: Nav.contextFor("planReview", state.view, { established: true, mode: "edit" }) });
         renderPlanReview();
+      } else if (act === "tonight-shop") {
+        show("shopList", { context: Nav.contextFor("shopList", "choices", { established: true }) });
+      } else if (act === "tonight-new-plan") {
+        const dlg = document.getElementById("newPlanSheet");
+        if (dlg && typeof dlg.showModal === "function") dlg.showModal();
       } else if (act === "plan-change-count") openChangeCountSheet();
       else if (act === "plan-ask-table") {
         const url = appBaseUrl().replace(/\/$/, "") + "/?dinner_plan=" + encodeURIComponent(state.dinnerPlan.dinner_plan_id);
@@ -5497,7 +5609,21 @@
     if (!e.target.closest(".context-menu")) {
       document.getElementById("planContextMenu").hidden = true;
       document.getElementById("shopContextMenu").hidden = true;
+      document.getElementById("tonightContextMenu").hidden = true;
     }
+  });
+
+  document.getElementById("newPlanSheet").addEventListener("close", function () {
+    if (document.getElementById("newPlanSheet").returnValue === "ok") {
+      show("planCount", { context: Nav.contextFor("planCount", "choices", { established: true }) });
+    }
+  });
+
+  toastEl.addEventListener("click", function (e) {
+    const go = e.target.closest("[data-go]");
+    if (!go) return;
+    e.preventDefault();
+    show(go.dataset.go);
   });
 
   document.getElementById("planDatesForm").addEventListener("submit", function (e) {

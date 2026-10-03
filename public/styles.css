@@ -923,6 +923,11 @@ h2[tabindex="-1"]:focus {
   margin-bottom: var(--space-7);
 }
 
+.page-head__copy {
+  flex: 1;
+  min-width: 0;
+}
+
 .page-head--center {
   justify-content: center;
   text-align: center;
@@ -3965,6 +3970,34 @@ button.link-card:hover {
 .plan-meal-card__body h2 {
   margin: 0 0 var(--space-2);
   font-size: var(--text-lg);
+}
+
+button.plan-meal-title {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.tonight-plan-meal {
+  margin-bottom: var(--space-5);
+}
+
+.tonight-plan-meal .plan-meal-card {
+  margin-bottom: var(--space-3);
+}
+
+.tonight-plan-meal > .btn,
+.tonight-plan-meal > .plan-meal-card__actions {
+  margin-top: 0;
 }
 
 .plan-meal-card__actions {
