@@ -2,6 +2,7 @@
 // Cycle 1 UX retest. Every household here is created in QA mode, so it is
 // stored as data_origin=synthetic and never counts as Household 001 evidence.
 import { test, expect } from "@playwright/test";
+import { reachTonightChoices } from "./helpers.js";
 
 /** @param {import('@playwright/test').Page} page */
 async function freshQaKitchen(page) {
@@ -43,8 +44,7 @@ async function onboard(page, { kitchen = "The Parkers", owner = "Jordan", partne
   await page.locator('#tastePicks [data-taste-pick="tacos"]').click();
   await page.locator('.view[data-view="taste"] .flow__actions .btn-primary').click();
   await page.getByRole("button", { name: "Skip — show tonight’s picks" }).click();
-  await page.getByRole("heading", { name: "Which should we make?" }).waitFor();
-  await expect(page.locator(".option-card[data-preview]").first()).toBeVisible({ timeout: 15000 });
+  await reachTonightChoices(page);
 }
 
 test.describe("October 1 retest (synthetic QA kitchen)", () => {

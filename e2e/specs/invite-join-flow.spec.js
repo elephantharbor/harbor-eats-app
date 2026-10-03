@@ -1,6 +1,6 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
-import { apiCreateHousehold } from "./helpers.js";
+import { apiCreateHousehold, reachTonightChoices } from "./helpers.js";
 
 test.describe("production invite → join", () => {
   test("recipient joins via API and receives session cookie", async ({ request }) => {
@@ -41,9 +41,7 @@ test.describe("production invite → join", () => {
     await page.goto(`/invite/${encodeURIComponent(invite_code)}`);
     await page.locator("#joinName").fill("Partner");
     await page.getByRole("button", { name: "Join kitchen" }).click();
-    await expect(page.getByRole("heading", { name: "Which should we make?" })).toBeVisible({
-      timeout: 20000,
-    });
+    await reachTonightChoices(page);
   });
 
 });

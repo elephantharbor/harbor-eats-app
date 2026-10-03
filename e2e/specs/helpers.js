@@ -1,3 +1,22 @@
+/** Cycle 3 onboarding ends on Home; legacy picks live under Tonight. */
+/** @param {import('@playwright/test').Page} page */
+export async function reachTonightChoices(page) {
+  const heading = page.getByRole("heading", { name: "Which should we make?" });
+  if (!(await heading.isVisible().catch(() => false))) {
+    await page
+      .locator('[data-go="choices"][data-nav="choices"]')
+      .filter({ visible: true })
+      .first()
+      .click();
+  }
+  await heading.waitFor({ timeout: 30000 });
+  const retry = page.getByRole("button", { name: "Try again" });
+  if (await retry.isVisible({ timeout: 3000 }).catch(() => false)) {
+    await retry.click();
+  }
+  await page.locator(".option-card[data-preview]").first().waitFor({ timeout: 30000 });
+}
+
 /** @param {import('@playwright/test').Page} page */
 export async function skipToChoices(page) {
   await page.getByRole("button", { name: "Get started" }).click();
@@ -11,7 +30,7 @@ export async function skipToChoices(page) {
   await page.getByRole("button", { name: "Continue" }).click();
   await page.getByRole("button", { name: "Skip for now" }).click();
   await page.getByRole("button", { name: "Skip — show tonight’s picks" }).click();
-  await page.getByRole("heading", { name: "Which should we make?" }).waitFor();
+  await reachTonightChoices(page);
 }
 
 /** @param {import('@playwright/test').APIRequestContext} request */
