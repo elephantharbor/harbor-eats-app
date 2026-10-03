@@ -22,6 +22,8 @@ Current chain:
 - `0005_phase3_household_intel.sql` — household settings, taste evidence, client errors, meal_option letters A–E
 - `0006_session_token_retire.sql` — align legacy session_token column with hash
 - `0007_phase4_recipe_versioning.sql` — `meal_concept`, `recipe_version`, `meal_vote`; `rating.recipe_version_id` (additive)
+- `0008_evidence_origin.sql` — `data_origin` on household learning tables, default `household` (do not apply alone)
+- `0009_evidence_origin_unproven.sql` — reclassify unproven legacy rows; default becomes `unproven`. Apply with 0008. See `docs/CYCLE1B-ORIGIN.md`
 
 Runtime catalog content lives in `src/lib/recipe-store.js`; D1 recipe tables are schema-ready for future imported/edited versions.
 

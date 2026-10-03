@@ -303,6 +303,5 @@ export function historyFromActivity({ plans = [], options = [], selections = [],
 
 function includePlan(plan, household) {
   if (householdIsSynthetic(household)) return true;
-  if (plan && plan.data_origin === "synthetic") return false;
-  return true;
+  return !!(plan && plan.data_origin === "household");
 }

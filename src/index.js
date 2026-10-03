@@ -44,10 +44,14 @@ import { scaleRecipeVersion } from "./lib/recipe-scaling.js";
 import { resolveMealSelection, membersWithoutVote } from "./lib/selection-resolution.js";
 import { runAllCatalogQualityChecks } from "./lib/catalog-quality.js";
 import {
+  alphaOpsQueries,
+  completedMealLoopSql,
+  funnelEventCountSql,
+  householdIsSynthetic,
   originFromRequest,
-  sqlRealHousehold,
-  sqlRealRow,
+  REAL_ORIGIN,
   SYNTHETIC_ORIGIN,
+  UNPROVEN_ORIGIN,
 } from "./lib/evidence-origin.js";
 import { mergeCanonicalAttributes, projectMealOption, projectMealOptions } from "./lib/meal-option-view.js";
 import {
@@ -173,66 +177,40 @@ async function loadAlphaOpsMetrics(db) {
     const row = await db.prepare(sql).first();
     return row ? row.c : 0;
   };
-  const hh = sqlRealHousehold("h");
-  return {
-    households: await q(`SELECT COUNT(*) AS c FROM household h WHERE ${hh}`),
-    active_members: await q(
-      `SELECT COUNT(*) AS c FROM member m
-       JOIN household h ON h.household_id = m.household_id
-       WHERE m.status = 'active' AND ${hh}`
-    ),
-    plans: await q(
-      `SELECT COUNT(*) AS c FROM plan p
-       JOIN household h ON h.household_id = p.household_id
-       WHERE ${sqlRealRow("p")} AND ${hh}`
-    ),
-    selections: await q(
-      `SELECT COUNT(*) AS c FROM selection s
-       JOIN household h ON h.household_id = s.household_id
-       WHERE ${sqlRealRow("s")} AND ${hh}`
-    ),
-    cooks: await q(
-      `SELECT COUNT(*) AS c FROM cook c
-       JOIN household h ON h.household_id = c.household_id
-       WHERE ${sqlRealRow("c")} AND ${hh}`
-    ),
-    ratings: await q(
-      `SELECT COUNT(*) AS c FROM rating r
-       JOIN household h ON h.household_id = r.household_id
-       WHERE ${sqlRealRow("r")} AND ${hh}`
-    ),
-    completed_meal_loops: await q(
-      `SELECT COUNT(*) AS c FROM plan p
-       JOIN household h ON h.household_id = p.household_id
-       WHERE p.status = 'Rated' AND ${sqlRealRow("p")} AND ${hh}`
-    ),
-    invites_sent: await q(
-      `SELECT COUNT(*) AS c FROM event e
-       JOIN household h ON h.household_id = e.household_id
-       WHERE e.event_name = 'invite_sent' AND ${sqlRealRow("e")} AND ${hh}`
-    ),
-    invites_accepted: await q(
-      `SELECT COUNT(*) AS c FROM event e
-       JOIN household h ON h.household_id = e.household_id
-       WHERE e.event_name = 'invite_accepted' AND ${sqlRealRow("e")} AND ${hh}`
-    ),
-    plan_generated: await q(
-      `SELECT COUNT(*) AS c FROM event e
-       JOIN household h ON h.household_id = e.household_id
-       WHERE e.event_name = 'plan_generated' AND ${sqlRealRow("e")} AND ${hh}`
-    ),
-    recommendation_failures: await q(
-      `SELECT COUNT(*) AS c FROM event e
-       JOIN household h ON h.household_id = e.household_id
-       WHERE e.event_name = 'recommendation_failed' AND ${sqlRealRow("e")} AND ${hh}`
-    ),
-  };
+  const queries = alphaOpsQueries();
+  const metrics = {};
+  for (const [name, sql] of Object.entries(queries)) {
+    metrics[name] = await q(sql);
+  }
+  return metrics;
 }
 
-async function markSynthetic(env, table, idColumn, rowId) {
-  await env.DB.prepare(`UPDATE ${table} SET data_origin = 'synthetic' WHERE ${idColumn} = ?`)
-    .bind(rowId)
-    .run();
+/**
+ * Origin stamped on a new row.
+ * Synthetic header, body, or household wins. A live request otherwise
+ * stamps household explicitly. With no request, only an already-proven
+ * household stamps household; everything else stays unproven.
+ */
+async function writeOrigin(env, householdId, request, body) {
+  if (originFromRequest(request, body) === SYNTHETIC_ORIGIN) return SYNTHETIC_ORIGIN;
+  if (householdId) {
+    const hh = await env.DB
+      .prepare(
+        `SELECT data_origin, acquisition_source FROM household WHERE household_id = ?`
+      )
+      .bind(householdId)
+      .first();
+    if (householdIsSynthetic(hh)) return SYNTHETIC_ORIGIN;
+    if (!request && hh && hh.data_origin === REAL_ORIGIN) return REAL_ORIGIN;
+  }
+  if (request) return REAL_ORIGIN;
+  return UNPROVEN_ORIGIN;
+}
+
+function inheritOrigin(parentOrigin) {
+  if (parentOrigin === SYNTHETIC_ORIGIN) return SYNTHETIC_ORIGIN;
+  if (parentOrigin === REAL_ORIGIN) return REAL_ORIGIN;
+  return UNPROVEN_ORIGIN;
 }
 
 async function createHousehold(env, body, request) {
@@ -245,7 +223,7 @@ async function createHousehold(env, body, request) {
   const servings_default = Number.isFinite(body.servings_default)
     ? body.servings_default
     : 2;
-  const origin = originFromRequest(request, body);
+  const origin = await writeOrigin(env, household_id, request, body);
   const acquisition_source =
     origin === SYNTHETIC_ORIGIN ? "synthetic_qa" : body.acquisition_source || null;
   try {
@@ -422,7 +400,7 @@ async function setConstraints(env, member_id, body, session) {
   return json({ ok: true, member_id, household_id, constraints: saved, replaced: replace });
 }
 
-async function createPlan(env, body, session) {
+async function createPlan(env, body, session, request) {
   const household_id = session.household_id;
   if (body.household_id && body.household_id !== household_id) {
     return err("forbidden_cross_household", 403);
@@ -436,6 +414,7 @@ async function createPlan(env, body, session) {
 
   const plan_id = body.plan_id || id("plan");
   const ts = nowIso();
+  const dataOrigin = await writeOrigin(env, household_id, request, body);
   const options = Array.isArray(body.meal_options) && body.meal_options.length
     ? body.meal_options
     : [
@@ -448,8 +427,8 @@ async function createPlan(env, body, session) {
   try {
     await env.DB.prepare(
       `INSERT INTO plan
-        (plan_id, household_id, batch_id, status, created_at, updated_at, attribution_last_touch, attribution_kind)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+        (plan_id, household_id, batch_id, status, created_at, updated_at, attribution_last_touch, attribution_kind, data_origin)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
       .bind(
         plan_id,
@@ -459,7 +438,8 @@ async function createPlan(env, body, session) {
         ts,
         ts,
         body.attribution_last_touch || null,
-        body.attribution_kind || null
+        body.attribution_kind || null,
+        dataOrigin
       )
       .run();
 
@@ -510,7 +490,7 @@ async function createSelection(env, body, session, request) {
   if (planErr) return err(planErr, 403);
   const bundle = await loadPlanBundle(env.DB, plan_id);
   if (!bundle) return err("plan_not_found", 404);
-  const origin = originFromRequest(request, body);
+  const origin = await writeOrigin(env, household_id, request, body);
   const selection_id = body.selection_id || id("sel");
   const ts = nowIso();
   const source = body.source || "app";
@@ -586,7 +566,7 @@ async function createCook(env, body, session, request) {
   if (planErr) return err(planErr, 403);
   const bundle = await loadPlanBundle(env.DB, plan_id);
   if (!bundle) return err("plan_not_found", 404);
-  const origin = originFromRequest(request, body);
+  const origin = await writeOrigin(env, household_id, request, body);
   const cook_id = body.cook_id || id("cook");
   const ts = nowIso();
   const cooked_at = body.cooked_at || ts;
@@ -662,7 +642,7 @@ async function createRating(env, body, session, request) {
   }
   const bundle = await loadPlanBundle(env.DB, plan_id);
   if (!bundle) return err("plan_not_found", 404);
-  const origin = originFromRequest(request, body);
+  const origin = await writeOrigin(env, household_id, request, body);
   if (origin !== SYNTHETIC_ORIGIN) {
     const guard = ratingGuard(bundle, meal_option_id);
     if (!guard.ok) {
@@ -823,12 +803,14 @@ async function createEvent(env, body, session, request) {
   delete props.channel;
   delete props.attribution_last_touch;
   delete props.created_at;
+  delete props.data_origin;
+  const dataOrigin = await writeOrigin(env, session.household_id, request, body);
   try {
     await env.DB.prepare(
       `INSERT INTO event
         (event_id, event_name, household_id, member_id, plan_id, meal_option_id,
-         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at, data_origin)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
       .bind(
         event_id,
@@ -842,7 +824,8 @@ async function createEvent(env, body, session, request) {
         body.channel || null,
         body.attribution_last_touch || null,
         Object.keys(props).length ? JSON.stringify(props) : null,
-        ts
+        ts,
+        dataOrigin
       )
       .run();
 
@@ -862,10 +845,7 @@ async function createEvent(env, body, session, request) {
   } catch (e) {
     return err("event_failed", 500, { detail: String(e.message || e) });
   }
-  if (originFromRequest(request, body) === SYNTHETIC_ORIGIN) {
-    await markSynthetic(env, "event", "event_id", event_id);
-  }
-  return json({ ok: true, event_id, event_name }, 201);
+  return json({ ok: true, event_id, event_name, data_origin: dataOrigin }, 201);
 }
 
 
@@ -892,7 +872,7 @@ function parseOptionsSnapshot(raw) {
   return null;
 }
 
-async function ensurePlanWithOptions(env, household_id, plan_id, options, attribution) {
+async function ensurePlanWithOptions(env, household_id, plan_id, options, attribution, dataOrigin) {
   const existing = await env.DB.prepare("SELECT plan_id FROM plan WHERE plan_id = ?")
     .bind(plan_id)
     .first();
@@ -900,8 +880,8 @@ async function ensurePlanWithOptions(env, household_id, plan_id, options, attrib
   if (!existing) {
     await env.DB.prepare(
       `INSERT INTO plan
-        (plan_id, household_id, batch_id, status, created_at, updated_at, attribution_last_touch, attribution_kind)
-       VALUES (?, ?, NULL, 'Generated', ?, ?, ?, ?)`
+        (plan_id, household_id, batch_id, status, created_at, updated_at, attribution_last_touch, attribution_kind, data_origin)
+       VALUES (?, ?, NULL, 'Generated', ?, ?, ?, ?, ?)`
     )
       .bind(
         plan_id,
@@ -909,7 +889,8 @@ async function ensurePlanWithOptions(env, household_id, plan_id, options, attrib
         ts,
         ts,
         attribution?.attribution_last_touch || null,
-        attribution?.attribution_kind || null
+        attribution?.attribution_kind || null,
+        dataOrigin || UNPROVEN_ORIGIN
       )
       .run();
   }
@@ -1006,7 +987,7 @@ async function ensurePlanWithOptions(env, household_id, plan_id, options, attrib
   return created;
 }
 
-async function createShare(env, body, requestUrl, session) {
+async function createShare(env, body, requestUrl, session, request) {
   const household_id = session.household_id;
   if (body.household_id && body.household_id !== household_id) {
     return err("forbidden_cross_household", 403);
@@ -1050,12 +1031,13 @@ async function createShare(env, body, requestUrl, session) {
   if (!options || options.length === 0) return err("options_required");
 
   const plan_id = body.plan_id || id("plan");
+  const dataOrigin = await writeOrigin(env, household_id, request, body);
   let snapshotOptions;
   try {
     snapshotOptions = await ensurePlanWithOptions(env, household_id, plan_id, options, {
       attribution_last_touch: body.attribution_last_touch || null,
       attribution_kind: body.attribution_kind || "share_object_id",
-    });
+    }, dataOrigin);
   } catch (e) {
     return err("plan_ensure_failed", 500, { detail: String(e.message || e) });
   }
@@ -1113,8 +1095,8 @@ async function createShare(env, body, requestUrl, session) {
     await env.DB.prepare(
       `INSERT INTO event
         (event_id, event_name, household_id, member_id, plan_id, meal_option_id,
-         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at)
-       VALUES (?, 'share_choice_created', ?, ?, ?, NULL, NULL, ?, ?, ?, ?, ?)`
+         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at, data_origin)
+       VALUES (?, 'share_choice_created', ?, ?, ?, NULL, NULL, ?, ?, ?, ?, ?, ?)`
     )
       .bind(
         id("evt"),
@@ -1125,7 +1107,8 @@ async function createShare(env, body, requestUrl, session) {
         channel,
         token,
         JSON.stringify({ token, option_letters }),
-        ts
+        ts,
+        dataOrigin
       )
       .run();
   } catch {
@@ -1182,13 +1165,16 @@ async function resolveShare(env, token) {
     options = projectMealOptions(parseOptionsSnapshot(row.options_snapshot_json) || []);
   }
 
-  // share_choice_viewed (server-side; client also fires)
+  // share_choice_viewed (server-side; client also fires).
+  // No live household session on this read, so the stamp follows the
+  // stored household. An unproven household does not gain traction here.
+  const viewOrigin = await writeOrigin(env, row.household_id, null, null);
   try {
     await env.DB.prepare(
       `INSERT INTO event
         (event_id, event_name, household_id, member_id, plan_id, meal_option_id,
-         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at)
-       VALUES (?, 'share_choice_viewed', ?, NULL, ?, NULL, NULL, ?, ?, ?, NULL, ?)`
+         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at, data_origin)
+       VALUES (?, 'share_choice_viewed', ?, NULL, ?, NULL, NULL, ?, ?, ?, NULL, ?, ?)`
     )
       .bind(
         id("evt"),
@@ -1197,7 +1183,8 @@ async function resolveShare(env, token) {
         row.share_object_id,
         row.channel || null,
         row.token,
-        nowIso()
+        nowIso(),
+        viewOrigin
       )
       .run();
   } catch {
@@ -1218,7 +1205,7 @@ async function resolveShare(env, token) {
   });
 }
 
-async function createInvite(env, body, requestUrl, session) {
+async function createInvite(env, body, requestUrl, session, request) {
   const household_id = session.household_id;
   if (body.household_id && body.household_id !== household_id) {
     return err("forbidden_cross_household", 403);
@@ -1274,12 +1261,13 @@ async function createInvite(env, body, requestUrl, session) {
     return err("invite_create_failed", 500, { detail: String(e.message || e) });
   }
 
+  const inviteOrigin = await writeOrigin(env, household_id, request, body);
   try {
     await env.DB.prepare(
       `INSERT INTO event
         (event_id, event_name, household_id, member_id, plan_id, meal_option_id,
-         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at)
-       VALUES (?, 'invite_sent', ?, ?, NULL, NULL, ?, NULL, ?, ?, NULL, ?)`
+         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at, data_origin)
+       VALUES (?, 'invite_sent', ?, ?, NULL, NULL, ?, NULL, ?, ?, NULL, ?, ?)`
     )
       .bind(
         id("evt"),
@@ -1288,7 +1276,8 @@ async function createInvite(env, body, requestUrl, session) {
         invite_code,
         channel,
         invite_code,
-        ts
+        ts,
+        inviteOrigin
       )
       .run();
   } catch {
@@ -1456,10 +1445,11 @@ async function postRecommendationsPlan(env, body, session, request) {
   const ts = nowIso();
   const options = scoredToPlanOptions(ranked, plan_id);
 
+  const planOrigin = await writeOrigin(env, household_id, request, body);
   await env.DB.prepare(
     `INSERT INTO plan
-      (plan_id, household_id, batch_id, status, created_at, updated_at, attribution_last_touch, attribution_kind)
-     VALUES (?, ?, ?, 'Generated', ?, ?, ?, ?)`
+      (plan_id, household_id, batch_id, status, created_at, updated_at, attribution_last_touch, attribution_kind, data_origin)
+     VALUES (?, ?, ?, 'Generated', ?, ?, ?, ?, ?)`
   )
     .bind(
       plan_id,
@@ -1468,13 +1458,10 @@ async function postRecommendationsPlan(env, body, session, request) {
       ts,
       ts,
       body.attribution_last_touch || null,
-      body.attribution_kind || null
+      body.attribution_kind || null,
+      planOrigin
     )
     .run();
-  const planOrigin = originFromRequest(request, body);
-  if (planOrigin === SYNTHETIC_ORIGIN) {
-    await markSynthetic(env, "plan", "plan_id", plan_id);
-  }
 
   for (const opt of options) {
     await env.DB.prepare(
@@ -1500,8 +1487,8 @@ async function postRecommendationsPlan(env, body, session, request) {
     await env.DB.prepare(
       `INSERT INTO event
         (event_id, event_name, household_id, member_id, plan_id, meal_option_id,
-         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at)
-       VALUES (?, 'plan_generated', ?, ?, ?, NULL, NULL, NULL, 'app', ?, ?, ?)`
+         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at, data_origin)
+       VALUES (?, 'plan_generated', ?, ?, ?, NULL, NULL, NULL, 'app', ?, ?, ?, ?)`
     )
       .bind(
         id("evt"),
@@ -1510,17 +1497,10 @@ async function postRecommendationsPlan(env, body, session, request) {
         plan_id,
         body.attribution_last_touch || null,
         JSON.stringify({ source: "taste_model_v2_pipeline", option_count: options.length, data_origin: planOrigin }),
-        ts
+        ts,
+        planOrigin
       )
       .run();
-    if (planOrigin === SYNTHETIC_ORIGIN) {
-      await env.DB.prepare(
-        `UPDATE event SET data_origin = 'synthetic'
-         WHERE plan_id = ? AND event_name = 'plan_generated' AND data_origin = 'household'`
-      )
-        .bind(plan_id)
-        .run();
-    }
   } catch { /* non-fatal */ }
 
   const clientOptions = options.map((o) => ({
@@ -1575,10 +1555,11 @@ async function postPreferenceEvidence(env, body, session, request) {
   if (!["like", "dislike", "neutral"].includes(kind)) return err("invalid_kind");
   const evidence_id = body.evidence_id || id("pe");
   const ts = nowIso();
+  const evidenceOrigin = await writeOrigin(env, household_id, request, body);
   await env.DB.prepare(
     `INSERT INTO preference_evidence
-      (evidence_id, household_id, member_id, source, kind, tag, weight, note, created_at)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      (evidence_id, household_id, member_id, source, kind, tag, weight, note, created_at, data_origin)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   )
     .bind(
       evidence_id,
@@ -1589,13 +1570,11 @@ async function postPreferenceEvidence(env, body, session, request) {
       tag,
       Number(body.weight) || 1,
       body.note || null,
-      ts
+      ts,
+      evidenceOrigin
     )
     .run();
-  if (originFromRequest(request, body) === SYNTHETIC_ORIGIN) {
-    await markSynthetic(env, "preference_evidence", "evidence_id", evidence_id);
-  }
-  return json({ ok: true, evidence_id, tag, kind }, 201);
+  return json({ ok: true, evidence_id, tag, kind, data_origin: evidenceOrigin }, 201);
 }
 
 async function postClientError(env, body, session) {
@@ -1650,16 +1629,12 @@ async function getFunnelAnalytics(env, household_id, session) {
   ];
   const counts = {};
   for (const n of names) {
-    const row = await env.DB.prepare(
-      `SELECT COUNT(*) AS c FROM event WHERE household_id = ? AND event_name = ? AND data_origin = 'household'`
-    )
+    const row = await env.DB.prepare(funnelEventCountSql())
       .bind(household_id, n)
       .first();
     counts[n] = row ? row.c : 0;
   }
-  const loops = await env.DB.prepare(
-    `SELECT COUNT(*) AS c FROM plan WHERE household_id = ? AND status = 'Rated' AND data_origin = 'household'`
-  )
+  const loops = await env.DB.prepare(completedMealLoopSql())
     .bind(household_id)
     .first();
   return json({
@@ -1749,7 +1724,7 @@ async function postMealVote(env, plan_id, body, session, request) {
   if (planErr) return err(planErr, 403);
   const vote_id = body.vote_id || id("vote");
   const ts = nowIso();
-  const voteOrigin = originFromRequest(request, body);
+  const voteOrigin = await writeOrigin(env, household_id, request, body);
   if (voteOrigin === SYNTHETIC_ORIGIN) {
     const existingVote = await env.DB.prepare(
       `SELECT data_origin FROM meal_vote WHERE plan_id = ? AND member_id = ?`
@@ -1763,24 +1738,20 @@ async function postMealVote(env, plan_id, body, session, request) {
   try {
     await env.DB.prepare(
       `INSERT INTO meal_vote
-        (vote_id, plan_id, meal_option_id, household_id, member_id, created_at)
-       VALUES (?, ?, ?, ?, ?, ?)
+        (vote_id, plan_id, meal_option_id, household_id, member_id, created_at, data_origin)
+       VALUES (?, ?, ?, ?, ?, ?, ?)
        ON CONFLICT(plan_id, member_id) DO UPDATE SET
          meal_option_id = excluded.meal_option_id,
-         created_at = excluded.created_at`
+         created_at = excluded.created_at,
+         data_origin = excluded.data_origin`
     )
-      .bind(vote_id, plan_id, meal_option_id, household_id, session.member_id, ts)
+      .bind(vote_id, plan_id, meal_option_id, household_id, session.member_id, ts, voteOrigin)
       .run();
   } catch (e) {
     return err("vote_failed", 500, { detail: String(e.message || e) });
   }
 
   if (voteOrigin === SYNTHETIC_ORIGIN) {
-    await env.DB.prepare(
-      `UPDATE meal_vote SET data_origin = 'synthetic' WHERE plan_id = ? AND member_id = ?`
-    )
-      .bind(plan_id, session.member_id)
-      .run();
     return json({ ok: true, vote_id, meal_option_id, status: "vote_recorded", synthetic: true }, 201);
   }
 
@@ -1800,10 +1771,10 @@ async function postMealVote(env, plan_id, body, session, request) {
     await env.DB.prepare(
       `INSERT INTO event
         (event_id, event_name, household_id, member_id, plan_id, meal_option_id,
-         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at)
-       VALUES (?, 'meal_vote_recorded', ?, ?, ?, ?, NULL, NULL, 'app', NULL, NULL, ?)`
+         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at, data_origin)
+       VALUES (?, 'meal_vote_recorded', ?, ?, ?, ?, NULL, NULL, 'app', NULL, NULL, ?, ?)`
     )
-      .bind(id("evt"), household_id, session.member_id, plan_id, meal_option_id, ts)
+      .bind(id("evt"), household_id, session.member_id, plan_id, meal_option_id, ts, voteOrigin)
       .run();
   } catch { /* non-fatal */ }
 
@@ -1869,6 +1840,7 @@ async function resolvePlanSelectionFromVotes(env, plan_id, session) {
   const { winner, rule, tallies } = resolveMealSelection(votes, options);
   if (!winner) return { ok: false, error: "no_winner" };
 
+  const selectionOrigin = inheritOrigin(bundle && bundle.plan && bundle.plan.data_origin);
   const existingSel = await env.DB.prepare(
     `SELECT selection_id FROM selection WHERE plan_id = ? AND data_origin = 'household' LIMIT 1`
   )
@@ -1879,10 +1851,10 @@ async function resolvePlanSelectionFromVotes(env, plan_id, session) {
     const selection_id = id("sel");
     await env.DB.prepare(
       `INSERT INTO selection
-        (selection_id, plan_id, meal_option_id, household_id, source, actor_member_id, share_object_id, created_at)
-       VALUES (?, ?, ?, ?, 'app', ?, NULL, ?)`
+        (selection_id, plan_id, meal_option_id, household_id, source, actor_member_id, share_object_id, created_at, data_origin)
+       VALUES (?, ?, ?, ?, 'app', ?, NULL, ?, ?)`
     )
-      .bind(selection_id, plan_id, winner.meal_option_id, household_id, session.member_id, ts)
+      .bind(selection_id, plan_id, winner.meal_option_id, household_id, session.member_id, ts, selectionOrigin)
       .run();
   } else {
     await env.DB.prepare(`UPDATE selection SET meal_option_id = ? WHERE selection_id = ?`)
@@ -1903,8 +1875,8 @@ async function resolvePlanSelectionFromVotes(env, plan_id, session) {
     await env.DB.prepare(
       `INSERT INTO event
         (event_id, event_name, household_id, member_id, plan_id, meal_option_id,
-         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at)
-       VALUES (?, 'selection_resolved', ?, ?, ?, ?, NULL, NULL, 'app', NULL, ?, ?)`
+         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at, data_origin)
+       VALUES (?, 'selection_resolved', ?, ?, ?, ?, NULL, NULL, 'app', NULL, ?, ?, ?)`
     )
       .bind(
         id("evt"),
@@ -1913,7 +1885,8 @@ async function resolvePlanSelectionFromVotes(env, plan_id, session) {
         plan_id,
         winner.meal_option_id,
         JSON.stringify({ rule, tallies }),
-        ts
+        ts,
+        selectionOrigin
       )
       .run();
   } catch { /* non-fatal */ }
@@ -1953,12 +1926,13 @@ async function postInviteJoin(env, body, request, requestUrl) {
   }
 
   const ts = nowIso();
+  const joinOrigin = await writeOrigin(env, result.household_id, request, body);
   try {
     await env.DB.prepare(
       `INSERT INTO event
         (event_id, event_name, household_id, member_id, plan_id, meal_option_id,
-         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at)
-       VALUES (?, 'invite_accepted', ?, ?, NULL, NULL, ?, NULL, ?, ?, ?, ?)`
+         invite_code, share_object_id, channel, attribution_last_touch, props_json, created_at, data_origin)
+       VALUES (?, 'invite_accepted', ?, ?, NULL, NULL, ?, NULL, ?, ?, ?, ?, ?)`
     )
       .bind(
         id("evt"),
@@ -1968,7 +1942,8 @@ async function postInviteJoin(env, body, request, requestUrl) {
         body.channel || "deep_link",
         result.invite_code,
         JSON.stringify({ already_member: result.already_member }),
-        ts
+        ts,
+        joinOrigin
       )
       .run();
   } catch { /* non-fatal */ }
@@ -1977,10 +1952,10 @@ async function postInviteJoin(env, body, request, requestUrl) {
     for (const tag of body.sparks.slice(0, 3)) {
       await env.DB.prepare(
         `INSERT INTO preference_evidence
-          (evidence_id, household_id, member_id, source, kind, tag, weight, note, created_at)
-         VALUES (?, ?, ?, 'onboarding_spark', 'like', ?, 1, NULL, ?)`
+          (evidence_id, household_id, member_id, source, kind, tag, weight, note, created_at, data_origin)
+         VALUES (?, ?, ?, 'onboarding_spark', 'like', ?, 1, NULL, ?, ?)`
       )
-        .bind(id("pe"), result.household_id, result.member_id, tag, ts)
+        .bind(id("pe"), result.household_id, result.member_id, tag, ts, joinOrigin)
         .run();
     }
   }
@@ -2413,7 +2388,7 @@ export default {
           if (body === null) return err("invalid_json");
           const auth = await requireSession(env.DB, request);
           if (auth.error) return auth.error;
-          return createPlan(env, body, auth.session);
+          return createPlan(env, body, auth.session, request);
         }
 
         // POST /api/selections
@@ -2459,7 +2434,7 @@ export default {
           if (body === null) return err("invalid_json");
           const auth = await requireSession(env.DB, request);
           if (auth.error) return auth.error;
-          return createShare(env, body, url, auth.session);
+          return createShare(env, body, url, auth.session, request);
         }
 
         // GET /api/shares/:token  or  GET /api/shares?token=
@@ -2481,7 +2456,7 @@ export default {
           if (body === null) return err("invalid_json");
           const auth = await requireSession(env.DB, request);
           if (auth.error) return auth.error;
-          return createInvite(env, body, url, auth.session);
+          return createInvite(env, body, url, auth.session, request);
         }
 
         // GET /api/invites/:code  or  GET /api/invites?code=

@@ -3,7 +3,7 @@ import { parseHouseholdSettings } from "./household-settings.js";
 import { LETTERS } from "./taste-model.js";
 import { buildRankedChoiceSet } from "./recommendation-pipeline.js";
 import { getCurrentVersionIdForSlug } from "./recipe-store.js";
-import { householdIsSynthetic, learningRows } from "./evidence-origin.js";
+import { householdIsSynthetic, learningRows, sqlRealRow } from "./evidence-origin.js";
 import { historyFromActivity } from "./meal-identity.js";
 
 /**
@@ -25,12 +25,14 @@ export async function loadRecommendationContext(db, household_id) {
     .all();
 
   const realOnly = hh ? !householdIsSynthetic(hh) : true;
-  const originSql = realOnly ? "AND data_origin = 'household'" : "";
+  const evidenceOriginSql = realOnly ? `AND ${sqlRealRow("preference_evidence")}` : "";
+  const ratingOriginSql = realOnly ? `AND ${sqlRealRow("r")}` : "";
+  const cookOriginSql = realOnly ? `AND ${sqlRealRow("c")}` : "";
 
   const evidenceRes = await db
     .prepare(
       `SELECT tag, kind, weight, source, member_id, data_origin FROM preference_evidence
-       WHERE household_id = ? ${originSql} ORDER BY created_at DESC LIMIT 200`
+       WHERE household_id = ? ${evidenceOriginSql} ORDER BY created_at DESC LIMIT 200`
     )
     .bind(household_id)
     .all();
@@ -40,7 +42,7 @@ export async function loadRecommendationContext(db, household_id) {
       `SELECT r.score, r.member_id, r.data_origin, mo.recipe_slug, mo.attributes_json
        FROM rating r
        JOIN meal_option mo ON mo.meal_option_id = r.meal_option_id
-       WHERE r.household_id = ? ${originSql.replaceAll("data_origin", "r.data_origin")}
+       WHERE r.household_id = ? ${ratingOriginSql}
        ORDER BY r.updated_at DESC LIMIT 100`
     )
     .bind(household_id)
@@ -57,7 +59,7 @@ export async function loadRecommendationContext(db, household_id) {
     .prepare(
       `SELECT mo.recipe_slug FROM cook c
        JOIN meal_option mo ON mo.meal_option_id = c.meal_option_id
-       WHERE c.household_id = ? ${originSql.replaceAll("data_origin", "c.data_origin")}
+       WHERE c.household_id = ? ${cookOriginSql}
        ORDER BY c.cooked_at DESC LIMIT 8`
     )
     .bind(household_id)

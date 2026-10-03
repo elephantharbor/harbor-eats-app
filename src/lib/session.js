@@ -1,6 +1,6 @@
 import { SESSION_COOKIE, parseCookies, sessionSetCookieHeader } from "./cookies.js";
 import { sha256Hex } from "./crypto.js";
-import { householdIsSynthetic } from "./evidence-origin.js";
+import { householdIsSynthetic, sqlRealRow } from "./evidence-origin.js";
 import { resolvePlanOutcome } from "./meal-identity.js";
 
 const SESSION_DAYS = 90;
@@ -145,7 +145,7 @@ export async function loadHouseholdActivity(db, household_id) {
     ? `SELECT plan_id, status, created_at, updated_at, data_origin FROM plan
        WHERE household_id = ? ORDER BY updated_at DESC LIMIT 1`
     : `SELECT plan_id, status, created_at, updated_at, data_origin FROM plan
-       WHERE household_id = ? AND data_origin = 'household' ORDER BY updated_at DESC LIMIT 1`;
+       WHERE household_id = ? AND ${sqlRealRow("plan")} ORDER BY updated_at DESC LIMIT 1`;
   const plan = await db.prepare(planSql).bind(household_id).first();
 
   let selection = null;

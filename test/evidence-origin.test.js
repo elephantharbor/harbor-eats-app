@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { buildTasteProfile } from "../src/lib/taste-model.js";
+import { deriveHouseholdState } from "../src/lib/household-state.js";
 import {
   countsTowardOps,
   householdIsSynthetic,
   learningRows,
+  normalizeOrigin,
   originFromRequest,
 } from "../src/lib/evidence-origin.js";
 import { historyFromActivity } from "../src/lib/meal-identity.js";
@@ -62,5 +64,86 @@ describe("synthetic evidence isolation", () => {
       [{ score: 8, data_origin: "synthetic" }],
       { data_origin: "synthetic", acquisition_source: "e2e" }
     )).toEqual([]);
+  });
+});
+
+function activity(origin) {
+  return {
+    household: hh001,
+    plans: [{ plan_id: "p", status: "Rated", active_member_count: 1, data_origin: origin }],
+    options: [{ plan_id: "p", meal_option_id: "a", name: "Miso salmon", recipe_slug: "miso-ginger-salmon" }],
+    selections: [{ plan_id: "p", meal_option_id: "a", created_at: "2026-10-01T00:00:00Z", data_origin: origin }],
+    cooks: [{ plan_id: "p", meal_option_id: "a", cooked_at: "2026-10-01T01:00:00Z", data_origin: origin }],
+    ratings: [{
+      plan_id: "p",
+      meal_option_id: "a",
+      member_id: "m1",
+      score: 8,
+      recipe_slug: "miso-ginger-salmon",
+      tags: ["fish"],
+      data_origin: origin,
+    }],
+  };
+}
+
+function tasteAndLoop(origin) {
+  const rows = activity(origin);
+  const learning = learningRows(rows.ratings, rows.household);
+  const profile = buildTasteProfile([], learning);
+  const history = historyFromActivity(rows);
+  const state = history.length
+    ? deriveHouseholdState({
+        plan: { plan_id: "p", status: "Rated" },
+        selection: { meal_option_id: history[0].meal_option_id },
+        cook: { cooked_at: "2026-10-01T01:00:00Z" },
+        ratings: history[0].ratings,
+        active_member_count: 1,
+        onboarded: true,
+      })
+    : { cml_complete: false };
+  return {
+    meals_rated: profile.meals_rated,
+    history: history.map((row) => row.plan_id),
+    cml_complete: state.cml_complete,
+    ops: countsTowardOps(rows.household, rows.ratings[0]),
+  };
+}
+
+describe("unproven legacy origin", () => {
+  it("does not treat an unknown value as household", () => {
+    expect(normalizeOrigin(undefined)).toBe("unproven");
+    expect(normalizeOrigin(null)).toBe("unproven");
+    expect(normalizeOrigin("unknown")).toBe("unproven");
+    expect(normalizeOrigin("household")).toBe("household");
+    expect(normalizeOrigin("synthetic")).toBe("synthetic");
+  });
+
+  it("excludes unknown and unproven rows from taste learning and the completed meal loop", () => {
+    for (const origin of ["unproven", undefined, null, "unknown"]) {
+      expect(tasteAndLoop(origin)).toEqual({
+        meals_rated: 0,
+        history: [],
+        cml_complete: false,
+        ops: false,
+      });
+    }
+  });
+
+  it("keeps a row that is explicitly marked household", () => {
+    expect(tasteAndLoop("household")).toEqual({
+      meals_rated: 1,
+      history: ["p"],
+      cml_complete: true,
+      ops: true,
+    });
+  });
+
+  it("keeps a row that is explicitly marked synthetic out of learning and the loop", () => {
+    expect(tasteAndLoop("synthetic")).toEqual({
+      meals_rated: 0,
+      history: [],
+      cml_complete: false,
+      ops: false,
+    });
   });
 });
