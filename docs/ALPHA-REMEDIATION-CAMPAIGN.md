@@ -264,7 +264,7 @@ Broad suite on the tested runtime tree:
 - Lint: `eslint --max-warnings=0`, clean.
 - Playwright: `CI=true npm run test:e2e` (with `PLAYWRIGHT_SKIP_WEBSERVER=1` and local `wrangler dev` on Node 22), 27 passed. `e2e/specs/helpers.js` seeds a legacy `/api/recommendations/plan` round when Cycle 3B no-plan Tonight does not auto-fetch picks. Hosted GitHub Actions was not run.
 
-**Branch tip (integration):** `db528ee9f036c2b149c5980b84db3e549e20b7c0`
+**Branch tip (integration):** `c726db6391f5f1b5263e45be326838f7c4beeaa9` (product files match `3bf261f`).
 
 **Product runtime SHA:** `3bf261fa97015479e192a0ad451d48add600fe0e`
 
