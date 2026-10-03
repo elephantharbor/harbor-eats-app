@@ -49,4 +49,9 @@ describe("recipe scaling", () => {
     expect(scaleIngredientQuantity("½ tsp", 2, "salt")).toBe("1 tsp");
     expect(scaleIngredientQuantity("1 tbsp", 0.5, "oil")).toBe("½ tbsp");
   });
+
+  it("uses singular cup when scaled to 1", () => {
+    expect(scaleIngredientQuantity("4 cups", 0.25, "broth")).toBe("1 cup");
+    expect(scaleIngredientQuantity("2 cups", 0.5, "rice")).toBe("1 cup");
+  });
 });

@@ -1483,6 +1483,16 @@ h2[tabindex="-1"]:focus {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.meal-media--ready .meal-media__img {
+  opacity: 1;
+}
+
+.meal-media--error .meal-media__img {
+  display: none;
 }
 
 .meal-media__fallback {
@@ -1497,7 +1507,15 @@ h2[tabindex="-1"]:focus {
 }
 
 .meal-media img + .meal-media__fallback {
+  display: grid;
+}
+
+.meal-media--ready img + .meal-media__fallback {
   display: none;
+}
+
+.meal-media--error .meal-media__fallback {
+  display: grid;
 }
 
 /* Dialog / sheet */
