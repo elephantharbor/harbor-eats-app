@@ -1,7 +1,7 @@
-/** Cycle 3 onboarding ends on Home; legacy picks live under Tonight. */
+/** Cycle 3 onboarding ends on Home; legacy three-pick rounds are seeded for e2e when Tonight has no plan. */
 /** @param {import('@playwright/test').Page} page */
-export async function reachTonightChoices(page) {
-  const heading = page.getByRole("heading", { name: "Which should we make?" });
+export async function openTonightTab(page) {
+  const heading = page.getByRole("heading", { name: /Which should we make\?|What are we cooking tonight\?/ });
   if (!(await heading.isVisible().catch(() => false))) {
     await page
       .locator('[data-go="choices"][data-nav="choices"]')
@@ -10,10 +10,58 @@ export async function reachTonightChoices(page) {
       .click();
   }
   await heading.waitFor({ timeout: 30000 });
+}
+
+/** Legacy /api/recommendations/plan picks for e2e (Cycle 3B no-plan Tonight does not auto-fetch). */
+/** @param {import('@playwright/test').Page} page */
+export async function ensureLegacyTonightPicks(page) {
+  const hasCards = await page
+    .locator(".option-card[data-preview]")
+    .first()
+    .isVisible()
+    .catch(() => false);
+  if (hasCards) return;
+
   const retry = page.getByRole("button", { name: "Try again" });
-  if (await retry.isVisible({ timeout: 3000 }).catch(() => false)) {
-    await retry.click();
+  if (await retry.isVisible({ timeout: 2000 }).catch(() => false)) {
+    await Promise.all([
+      page.waitForResponse(
+        (res) => res.url().includes("/api/recommendations/plan") && res.ok(),
+        { timeout: 60000 }
+      ),
+      retry.click(),
+    ]);
+    return;
   }
+
+  await page.evaluate(async () => {
+    const me = await fetch("/api/sessions/me", { credentials: "same-origin" }).then((r) => r.json());
+    const hh = me.session?.household_id || me.household_id;
+    if (!hh) throw new Error("no household for legacy plan seed");
+    const res = await fetch("/api/recommendations/plan", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        household_id: hh,
+        attribution_kind: "organic",
+        attribution_last_touch: "organic",
+      }),
+    });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok || !body.ok) {
+      throw new Error("recommendations/plan failed: " + JSON.stringify(body));
+    }
+  });
+  await page.goto("/");
+  await page.locator(".view.is-active").first().waitFor({ timeout: 30000 });
+  await openTonightTab(page);
+}
+
+/** @param {import('@playwright/test').Page} page */
+export async function reachTonightChoices(page) {
+  await openTonightTab(page);
+  await ensureLegacyTonightPicks(page);
   await page.locator(".option-card[data-preview]").first().waitFor({ timeout: 30000 });
 }
 
