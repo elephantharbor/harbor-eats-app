@@ -51,7 +51,7 @@ Worker teardown logged a benign `workerd` broken-pipe message after the last spe
 
 **Goal:** Open a pull request **base** `feature/flavorweave-alpha-remediation` (not `main`) **head** `cursor/fw-c1b-ci` (verification docs commit; product tree matches `bb6b414f`).
 
-**Result:** recorded after `ManagePullRequest` attempt below.
+**Result:** **Refused.** `ManagePullRequest` (`create_pr`, base `feature/flavorweave-alpha-remediation`, head `cursor/fw-c1b-ci` at `592bd64`) returned GitHub validation error: `must be a collaborator`. Remote branch `cursor/fw-c1b-ci` was pushed successfully after one transient `remote rejected` (missing objects); `feature/fw-c1b-verify` pushed on first attempt. No GitHub Actions run was triggered from this PR (PR not created). Workflow `ci.yml` only runs on `pull_request` and `push` to `main`.
 
 ## Scope exclusions (honored)
 
