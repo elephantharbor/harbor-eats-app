@@ -1401,7 +1401,15 @@
       });
     }
     if (name === "detail") {
-      ensureRecipeForMeal(detailMeal()).then(function () {
+      // Pin the meal before the recipe request returns. A later render must not
+      // snap the tabs back to Overview after a keypress already moved them.
+      const openingMeal = detailMeal();
+      const openingKey = openingMeal ? openingMeal.id : "";
+      if (state.detailTabFor !== openingKey) {
+        state.detailTabFor = openingKey;
+        selectRecipeTab("tab-overview", false);
+      }
+      ensureRecipeForMeal(openingMeal).then(function () {
         renderDetail();
       });
     }
@@ -2389,7 +2397,11 @@
   const detailTabs = document.getElementById("detailTabs");
   if (detailTabs) detailTabs.addEventListener("keydown", (e) => {
     const tabs = Array.from(detailTabs.querySelectorAll('[role="tab"]'));
-    const i = tabs.indexOf(document.activeElement);
+    const fromTarget = e.target && e.target.closest ? e.target.closest('[role="tab"]') : null;
+    let i = tabs.indexOf(fromTarget || document.activeElement);
+    if (i < 0 && detailTabs.contains(document.activeElement)) {
+      i = tabs.findIndex((t) => t.getAttribute("aria-selected") === "true");
+    }
     if (i < 0) return;
     let next = null;
     if (e.key === "ArrowRight") next = tabs[(i + 1) % tabs.length];
