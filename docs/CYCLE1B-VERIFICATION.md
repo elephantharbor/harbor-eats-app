@@ -1,61 +1,45 @@
 # Cycle 1B automated verification
 
-**Verified integration SHA:** `bb6b414f38e4e6a1242cb36e1d32b072e3cb3e1e`  
-**Branch under test:** `feature/flavorweave-alpha-remediation` (clean `git reset --hard` to the SHA above; integration branch not pushed).  
-**Verification branch (docs):** `feature/fw-c1b-verify`  
-**Agent model:** Composer 2.5 (`composer-2.5`)  
-**Product code changes:** none (all suites passed on the integration tip).
+**Verified integration SHA:** `c7b7a069253e36d69efc632c9090f5ccabdaa06d`  
+**Prior Cycle 1 tip on branch:** `bb6b414f38e4e6a1242cb36e1d32b072e3cb3e1e`  
+**Branch under test:** `feature/flavorweave-alpha-remediation`  
+**Agent model:** Composer 2.5 (`composer-2.5`)
+
+## Cycle 1B merges (order)
+
+| # | Branch | SHA | Notes |
+|---|--------|-----|-------|
+| 1 | `feature/fw-c1b-origin` | `9543a882551754e58f2f768c43d22fd487ff7b15` | `migrations/0009_evidence_origin_unproven.sql`, `docs/CYCLE1B-ORIGIN.md` |
+| 2 | `feature/fw-c1b-verify` | `179008f5a59416e2b65387f2635e814ea06500b5` | Verification doc, manifest titles (FW awaiting Oversight; D-05/D-06 titles) |
+| 3 | `feature/fw-c1b-layout` | `f0b693d66e5fb72c451316593ec1c843759059e7` | Header overflow fix, service worker `fw-sw-v7` |
+
+`main` was **not** merged or pushed. `main` remains `97952206ef03363be726f22e0df6152251c0b931`.
 
 ## Commands (local CI parity)
 
-Environment: Node `v22.14.0` (`engines.node` is `>=22`). Working directory: repository root.
+Environment: Node `v22.14.0` (`engines.node` is `>=22`). Working directory: repository root. D1: **local only** (no `--remote`; production database id `23aa3db3-1090-471b-8c8a-b6fe71f5c053` not used).
 
 | Step | Command | Result |
 |------|---------|--------|
 | Install | `npm ci` | **PASS** (174 packages) |
-| Migrations | `npm run test:migrations` | **PASS** — `OK: 8 migration file(s)` |
-| Unit | `npm run test:unit` | **PASS** — 26 files, **274** tests |
+| Migrations | `npm run test:migrations` | **PASS** — `OK: 9 migration file(s)` |
+| Unit | `npm run test:unit` | **PASS** — 27 files, **281** tests |
 | Lint | `npm run lint` | **PASS** (`--max-warnings=0`) |
 | Playwright browser | `npx playwright install chromium --with-deps` | **PASS** |
-| E2E | `CI=true npm run test:e2e` | **PASS** — **26** tests (~1.4m, 1 worker) |
+| E2E | `CI=true npm run test:e2e` | **PASS** — **27** tests (~1.5m, 1 worker) |
 
-### Not in `package.json` (skipped)
+Matches `.github/workflows/ci.yml` step order and `CI=true` for e2e.
 
-- No `typecheck`, `build`, or standalone `test:a11y` script. GitHub Actions `.github/workflows/ci.yml` does not run them either.
+## Behavior coverage on this SHA
 
-### Covered via `npm run test:unit` (not separate CI steps)
-
-- **Catalog validation:** `test/catalog-recipe-completeness.test.js`, `test/catalog-quality.test.js` (part of the 274 unit tests).
-- **Accessibility-related checks:** `test/theme-contrast.test.js` (117 contrast tests; no named accessibility npm script in the repo).
-- **`npm test`:** `test:migrations` + `test:unit` + `lint` (not run as a single alias here; steps above match `ci.yml`).
-
-## Playwright on integrated tree
-
-**Yes.** E2E ran at `bb6b414f` after Cycle 1 children were already merged on `feature/flavorweave-alpha-remediation`. Config: `e2e/playwright.config.js`. Local D1 migrations only (no `--remote`; production database id `23aa3db3-1090-471b-8c8a-b6fe71f5c053` not used).
-
-Worker teardown logged a benign `workerd` broken-pipe message after the last specs; all 26 tests passed.
-
-## Differences vs GitHub-hosted CI
-
-| Aspect | GitHub `ci.yml` | This run |
-|--------|-----------------|----------|
-| OS | `ubuntu-latest` | Cloud Agent VM (Ubuntu 24.04 noble) |
-| Node | 22 | 22.14.0 |
-| Steps | Same ordered steps as table above | Matched |
-| `CI` env for e2e | `CI=true` | `CI=true` |
-| Secrets | None required in workflow | None used |
-| Browsers | Chromium via Playwright install | Same |
-| Remote D1 | Not used in workflow | Not used |
-
-## GitHub Actions CI attempt
-
-**Goal:** Open a pull request **base** `feature/flavorweave-alpha-remediation` (not `main`) **head** `cursor/fw-c1b-ci` (verification docs commit; product tree matches `bb6b414f`).
-
-**Result:** **Refused.** `ManagePullRequest` (`create_pr`, base `feature/flavorweave-alpha-remediation`, head `cursor/fw-c1b-ci` at `592bd64`) returned GitHub validation error: `must be a collaborator`. Remote branch `cursor/fw-c1b-ci` was pushed successfully after one transient `remote rejected` (missing objects); `feature/fw-c1b-verify` pushed on first attempt. No GitHub Actions run was triggered from this PR (PR not created). Workflow `ci.yml` only runs on `pull_request` and `push` to `main`.
+| Requirement | Automated evidence |
+|-------------|-------------------|
+| **FW-01:** Rate meal A, inspect B, enter/leave cook without completing, reload — A keeps rating, B unrated | `test/meal-identity.test.js` — `acceptance: rate A, inspect B, cook enter/exit without complete, reload keeps A rated and B unrated`; related reducer/reload tests in the same file |
+| Synthetic rows excluded from taste learning, completed meal loop, funnel, alpha ops, traction | `test/evidence-origin.test.js`; `test/migration-0009.test.js` (SQL + post-0009 counts) |
+| Unproven legacy rows excluded the same way | `test/evidence-origin.test.js` (`unproven legacy origin`); `test/migration-0009.test.js` |
+| Explicit `household` rows still count | `test/evidence-origin.test.js` — `keeps a row that is explicitly marked household`; `test/migration-0009.test.js` — `hh_live` / `hh_real` counts |
 
 ## Scope exclusions (honored)
 
-- Did not touch `feature/fw-c1b-origin` (migration 0009 work elsewhere).
-- Did not push `feature/flavorweave-alpha-remediation`.
 - Did not merge to `main`, deploy, or apply migrations to remote/production D1.
-- Did not implement D-01–D-06.
+- Did not implement D-01–D-06 or write Household 001.

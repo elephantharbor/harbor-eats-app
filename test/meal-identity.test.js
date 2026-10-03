@@ -141,6 +141,41 @@ describe("FW-01 meal identity", () => {
     )).toBe("rv_miso-ginger-salmon_v1");
   });
 
+  it("acceptance: rate A, inspect B, cook enter/exit without complete, reload keeps A rated and B unrated", () => {
+    let state = ratedState();
+    for (const action of [
+      { type: "preview", mealOptionId: "plan-B" },
+      { type: "begin_cook", mealOptionId: "plan-B" },
+      { type: "exit_cook" },
+    ]) {
+      state = reduceMealAction(state, action);
+    }
+    expect(state.selectedMealId).toBe("plan-A");
+    expect(state.ratingsByOption["plan-A"].m1.score).toBe(8);
+    expect(state.ratingsByOption["plan-B"]).toBeUndefined();
+
+    const outcome = resolvePlanOutcome({
+      household,
+      mealOptions: [
+        { plan_id: "p1", meal_option_id: "plan-A", name: "Miso salmon", recipe_slug: "miso-ginger-salmon", recipe_version: "rv_miso-ginger-salmon_v1" },
+        { plan_id: "p1", meal_option_id: "plan-B", name: "Tofu tacos", recipe_slug: "crispy-tofu-tacos", recipe_version: "rv_crispy-tofu-tacos_v1" },
+      ],
+      selections: [
+        { plan_id: "p1", meal_option_id: "plan-A", created_at: "2026-10-02T00:00:00Z", data_origin: "household" },
+      ],
+      cooks: [
+        { plan_id: "p1", cook_id: "c1", meal_option_id: "plan-A", cooked_at: "2026-10-02T00:30:00Z", data_origin: "household" },
+      ],
+      ratings: [
+        { plan_id: "p1", meal_option_id: "plan-A", member_id: "m1", score: 8, recipe_version_id: "rv_miso-ginger-salmon_v1", data_origin: "household" },
+      ],
+    });
+    expect(outcome.meal_option_id).toBe("plan-A");
+    expect(outcome.ratings).toHaveLength(1);
+    expect(outcome.ratings[0].meal_option_id).toBe("plan-A");
+    expect(outcome.ratings.find((row) => row.meal_option_id === "plan-B")).toBeUndefined();
+  });
+
   it("reload outcome still shows A rated and B unrated after a stray selection", () => {
     const outcome = resolvePlanOutcome({
       household,
