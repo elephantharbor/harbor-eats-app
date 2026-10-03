@@ -19,12 +19,13 @@ test("mobile: no horizontal overflow and bottom nav replaces top nav", async ({ 
   await expect(page.locator("#tabbar")).toBeVisible();
   await expect(page.locator("#topNav")).toBeHidden();
 
-  await page.locator(".option-card[data-select]").first().click();
+  await page.locator(".option-card[data-preview]").first().click();
   await page.locator("#detailTitle").waitFor();
   expect(await overflow(page)).toBeLessThanOrEqual(0);
   await expect(page.getByRole("tab", { name: "Notes" })).toBeInViewport();
   await expect(page.locator("#tabbar")).toBeHidden();
-  await page.locator('[data-view="detail"] [data-go="home"]:visible').first().click();
+  await page.locator('[data-view="detail"] [data-back="detail"]').click();
+  await expect(page.locator('.view[data-view="choices"].is-active')).toHaveCount(1);
 
   for (const view of ["home", "meals", "tasteProfile", "settings"]) {
     await page.locator(`#tabbar [data-go="${view}"]:visible, #topbar [data-go="${view}"]:visible`).first().click();
@@ -43,7 +44,7 @@ test("desktop: top nav, no tab bar, recipe tabs are keyboard operable", async ({
   await expect(page.locator("#topNav")).toBeVisible();
   await expect(page.locator("#tabbar")).toBeHidden();
 
-  await page.locator(".option-card[data-select]").first().click();
+  await page.locator(".option-card[data-preview]").first().click();
   await page.locator("#detailTitle").waitFor();
   await page.getByRole("tab", { name: "Overview" }).focus();
   await page.keyboard.press("ArrowRight");

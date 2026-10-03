@@ -5,7 +5,7 @@
  */
 
 import { constraintRowsFromKeys, filterEligibleOptions } from "./lib/eligibility.js";
-import { deriveHouseholdState } from "./lib/household-state.js";
+import { deriveHouseholdState, previousCompletedMeal } from "./lib/household-state.js";
 import {
   createMemberSession,
   loadHouseholdActivity,
@@ -2137,8 +2137,13 @@ async function getSessionMe(env, request, requestUrl) {
     active_member_count: activity.active_member_count,
     onboarded: activity.onboarded,
   });
+  let previous_meal = null;
+  try {
+    previous_meal = previousCompletedMeal(await loadMealHistory(env.DB, row.household_id, 6), state.plan_id);
+  } catch { /* history is a nicety here; restore must not fail on it */ }
   return json({
     ok: true,
+    previous_meal,
     session: {
       household_id: row.household_id,
       member_id: row.member_id,

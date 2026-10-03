@@ -3,6 +3,28 @@
  */
 
 /**
+ * Most recent cooked dinner from an earlier round. The current round never counts,
+ * so a fresh set of picks can point back to the meal that came before it.
+ * @param {{ plan_id: string, status: string, meal_option_id?: string|null, meal_name?: string|null, recipe_slug?: string|null, avg_score?: number|null }[]} history newest first
+ * @param {string|null|undefined} currentPlanId
+ */
+export function previousCompletedMeal(history, currentPlanId) {
+  const row = (history || []).find(
+    (h) => h.plan_id !== currentPlanId && h.meal_name && (h.status === "Rated" || h.status === "Cooked")
+  );
+  if (!row) return null;
+  return {
+    plan_id: row.plan_id,
+    meal_option_id: row.meal_option_id || null,
+    meal_name: row.meal_name,
+    recipe_slug: row.recipe_slug || null,
+    recipe_version_id: row.recipe_version_id || null,
+    avg_score: row.avg_score == null ? null : row.avg_score,
+    status: row.status,
+  };
+}
+
+/**
  * @param {{
  *   plan?: { plan_id?: string, status?: string }|null,
  *   selection?: { meal_option_id?: string }|null,

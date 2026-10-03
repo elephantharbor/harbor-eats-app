@@ -7,6 +7,7 @@ const SHELL = [
   "/theme.js",
   "/meal-media.js",
   "/meal-identity.js",
+  "/nav-context.js",
   "/app.js",
   "/favicon.svg",
   "/manifest.webmanifest",

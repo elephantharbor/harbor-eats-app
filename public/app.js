@@ -20,6 +20,7 @@
   const toastEl = document.getElementById("toast");
   const Theme = window.FlavorWeaveTheme || null;
   const Media = window.FlavorWeaveMedia || { imageFor: function () { return null; } };
+  const Nav = window.FlavorWeaveNav;
 
   const PLAN_ID = "local-plan";
 
@@ -98,6 +99,7 @@
       if (householdId) localStorage.setItem(LS_HH, householdId);
       if (memberId) localStorage.setItem(LS_MEMBER, memberId);
     } catch (_) { /* private mode */ }
+    if (memberId) state.meId = memberId;
     if (memberId && Theme) Theme.useMember(memberId);
   }
 
@@ -124,15 +126,19 @@
         })
       );
     }
-    if (Array.isArray(snap.constraints) && state.members[0]) {
-      const primaryId = state.members[0].id;
-      state.primaryConstraints = snap.constraints
-        .filter(function (c) {
-          return c.member_id === primaryId && c.status === "prohibited";
+    const sessionMember = snap.session && snap.session.member_id;
+    if (sessionMember) state.meId = sessionMember;
+    if (Array.isArray(snap.constraints) && state.members.length) {
+      const me = meMember();
+      state.primaryConstraints = keysFromConstraintRows(
+        snap.constraints.filter(function (c) {
+          return me && c.member_id === me.id;
         })
-        .map(function (c) {
-          return c.rule_key;
-        });
+      );
+      state.savedConstraints = state.primaryConstraints.slice();
+    }
+    if (Object.prototype.hasOwnProperty.call(snap, "previous_meal")) {
+      state.previousMeal = snap.previous_meal || null;
     }
     state.ratingsByOption = {};
     if (Array.isArray(snap.ratings)) {
@@ -363,23 +369,85 @@
     return row;
   }
 
+  /**
+   * Hard limits only. Each label names its scope so "meat", "poultry" and "fish"
+   * never overlap by guesswork. An exception tile appears only under its parent
+   * and must be ticked on purpose; it maps to a { cashew: permitted } row.
+   */
   const constraintOptions = [
-    { id: "dairy", label: "Dairy-free" },
-    { id: "meat", label: "No meat*" },
-    { id: "poultry", label: "No poultry" },
-    { id: "shellfish", label: "No shellfish" },
-    { id: "nuts", label: "Nuts except cashew" },
-    { id: "none", label: "None" },
+    { id: "dairy", label: "No dairy", hint: "Milk, cheese, butter, yogurt" },
+    { id: "meat", label: "No meat", hint: "Beef, pork, lamb — and poultry too" },
+    { id: "poultry", label: "No poultry", hint: "Chicken, turkey, duck" },
+    { id: "fish", label: "No fish", hint: "Salmon, cod, and other finfish" },
+    { id: "shellfish", label: "No shellfish", hint: "Shrimp, crab, lobster, clams" },
+    { id: "nuts", label: "No nuts", hint: "Peanuts and tree nuts, cashews included" },
+    { id: "cashew_ok", label: "Except cashews", hint: "Only tick this if cashews are safe for you", exceptionOf: "nuts" },
+    { id: "none", label: "No limits", hint: "Everything’s on the table" },
   ];
+  const EXCEPTION_RULES = { cashew_ok: "cashew" };
 
+  /** Likes, not permissions. Whether fish is allowed lives in diet limits. */
   const sparkOptions = [
     { id: "crispy", label: "Crispy textures" },
     { id: "tacos", label: "Taco night" },
     { id: "curry", label: "Curry bowls" },
-    { id: "fish", label: "Finfish OK" },
+    { id: "fish", label: "Fish dinners", hiddenWhen: "fish" },
     { id: "sheet", label: "Sheet-pan easy" },
     { id: "bright", label: "Bright / citrus" },
   ];
+
+  function visibleSparks() {
+    return sparkOptions.filter(function (s) {
+      return !s.hiddenWhen || !state.primaryConstraints.includes(s.hiddenWhen);
+    });
+  }
+
+  /** Client keys → constraint rows. An exception without its parent is dropped. */
+  function constraintRowsFromKeys(keys) {
+    const list = (keys || []).filter(function (k) { return k && k !== "none"; });
+    const rows = [];
+    list.forEach(function (k) {
+      const exception = EXCEPTION_RULES[k];
+      if (exception) {
+        const parent = constraintOptions.find(function (c) { return c.id === k; }).exceptionOf;
+        if (list.includes(parent)) rows.push({ rule_key: exception, status: "permitted" });
+        return;
+      }
+      rows.push({ rule_key: k, status: "prohibited" });
+    });
+    return rows;
+  }
+
+  function keysFromConstraintRows(rows) {
+    const keys = [];
+    (rows || []).forEach(function (r) {
+      if (r.rule_key && r.rule_key !== "none" && (r.status || "prohibited") === "prohibited") keys.push(r.rule_key);
+    });
+    (rows || []).forEach(function (r) {
+      if (r.status !== "permitted") return;
+      const clientKey = Object.keys(EXCEPTION_RULES).find(function (k) { return EXCEPTION_RULES[k] === r.rule_key; });
+      const opt = clientKey && constraintOptions.find(function (c) { return c.id === clientKey; });
+      if (opt && keys.includes(opt.exceptionOf)) keys.push(clientKey);
+    });
+    return keys;
+  }
+
+  function sameKeys(a, b) {
+    const x = (a || []).filter(function (k) { return k !== "none"; }).slice().sort();
+    const y = (b || []).filter(function (k) { return k !== "none"; }).slice().sort();
+    return x.length === y.length && x.every(function (k, i) { return k === y[i]; });
+  }
+
+  async function saveMyConstraints() {
+    const hh = API.householdId || state.householdId;
+    const me = meMember();
+    if (!hh || !me) return null;
+    return apiPost(`/api/members/${encodeURIComponent(me.id)}/constraints`, {
+      household_id: hh,
+      constraints: constraintRowsFromKeys(state.primaryConstraints),
+      replace: true,
+    });
+  }
 
   /** Fallback only when API plan not loaded (should not drive cook/detail). */
   const meals = [];
@@ -416,7 +484,30 @@
     outcomeLocked: false,
     lockedMealOptionId: null,
     ratingsByOption: {},
+    meId: null,
+    savedConstraints: [],
+    constraintSave: null,
+    navContext: {},
+    historyItems: [],
+    historyMeal: null,
+    previousMeal: null,
+    roundBusy: false,
   };
+
+  /** The diner using this device. Settings and "Your diet limits" belong to them, not to members[0]. */
+  function meMember() {
+    let id = state.meId;
+    if (!id) {
+      try {
+        id = localStorage.getItem(LS_MEMBER);
+      } catch (_) { /* ignore */ }
+    }
+    return (id && state.members.find(function (m) { return m.id === id; })) || state.members[0] || null;
+  }
+
+  function householdEstablished() {
+    return !!(state.householdId || API.householdId) && !!state.onboarded;
+  }
 
   function apiHeaders() {
     const headers = { "Content-Type": "application/json" };
@@ -520,8 +611,8 @@
     if (demoHint) {
       demoHint.textContent =
         activeMemberCount() === 2
-          ? "*Fish is fine when both of you allow it. Soft likes never override hard limits."
-          : "*Fish is fine when your household allows it. Soft likes never override hard limits.";
+          ? "Fish stays on the menu unless one of you switches on No fish. Likes reorder the picks; they never override a hard limit."
+          : "Fish stays on the menu unless someone switches on No fish. Likes reorder the picks; they never override a hard limit.";
     }
     const rateLede = document.getElementById("rateLede");
     if (rateLede) {
@@ -560,6 +651,8 @@
   }
 
   function detailMeal() {
+    const ctx = state.navContext.detail;
+    if (ctx && ctx.source === "history") return state.historyMeal;
     return mealById(state.previewMealId || state.selectedMealId);
   }
 
@@ -573,7 +666,9 @@
     const versionId = meal.recipe_version_id;
     const servings = servingCountForMeal();
     let path = null;
-    if (slug) path = "/api/recipes/" + encodeURIComponent(slug) + "?servings=" + servings;
+    if (meal.historical && versionId) {
+      path = "/api/recipes/version/" + encodeURIComponent(versionId) + "?servings=" + servings;
+    } else if (slug) path = "/api/recipes/" + encodeURIComponent(slug) + "?servings=" + servings;
     else if (versionId) {
       path = "/api/recipes/version/" + encodeURIComponent(versionId) + "?servings=" + servings;
     }
@@ -596,6 +691,11 @@
 
   async function ensureRecipeForSelection() {
     return ensureRecipeForMeal(selectedMeal());
+  }
+
+  /** The loaded recipe only if it belongs to this meal; a previewed recipe never paints another meal. */
+  function recipeLoadedFor(meal) {
+    return meal && state.activeRecipe && state.activeRecipe._mealId === meal.id ? state.activeRecipe : null;
   }
 
   function cookSteps() {
@@ -660,27 +760,33 @@
   function renderConstraintGrid(rootId, selectedIds, onToggle) {
     const root = document.getElementById(rootId);
     root.innerHTML = constraintOptions
+      .filter((c) => !c.exceptionOf || selectedIds.includes(c.exceptionOf))
       .map((c) => {
         const on = selectedIds.includes(c.id);
-        return `<label class="check-tile${on ? " is-on" : ""}"><input type="checkbox" data-cid="${c.id}" ${on ? "checked" : ""} /> <span>${c.label}</span></label>`;
+        const cls = "check-tile" + (on ? " is-on" : "") + (c.exceptionOf ? " check-tile--exception" : "");
+        return `<label class="${cls}"><input type="checkbox" data-cid="${c.id}" ${on ? "checked" : ""} /> <span class="check-tile__text"><span>${escapeHtml(c.label)}</span><small class="check-tile__hint">${escapeHtml(c.hint)}</small></span></label>`;
       })
       .join("");
     root.onchange = (e) => {
       const input = e.target.closest("input[data-cid]");
       if (!input) return;
       const id = input.dataset.cid;
-      const label = input.closest("label");
+      const remove = function (key) {
+        const j = selectedIds.indexOf(key);
+        if (j >= 0) selectedIds.splice(j, 1);
+      };
       if (id === "none") {
         selectedIds.length = 0;
         if (input.checked) selectedIds.push("none");
       } else {
-        const i = selectedIds.indexOf("none");
-        if (i >= 0) selectedIds.splice(i, 1);
+        remove("none");
         if (input.checked) {
           if (!selectedIds.includes(id)) selectedIds.push(id);
         } else {
-          const j = selectedIds.indexOf(id);
-          if (j >= 0) selectedIds.splice(j, 1);
+          remove(id);
+          constraintOptions
+            .filter((c) => c.exceptionOf === id)
+            .forEach((c) => remove(c.id));
         }
       }
       if (onToggle) onToggle();
@@ -690,7 +796,9 @@
 
   function renderSparks() {
     const root = document.getElementById("tasteSparks");
-    root.innerHTML = sparkOptions
+    const visible = visibleSparks();
+    state.sparks = state.sparks.filter((id) => visible.some((s) => s.id === id));
+    root.innerHTML = visible
       .map((s) => {
         const on = state.sparks.includes(s.id);
         return `<button type="button" class="chip-tog${on ? " is-on" : ""}" data-spark="${s.id}" aria-pressed="${on}">${s.label}</button>`;
@@ -775,7 +883,7 @@
   }
 
   function mealCardHtml(m, opts) {
-    const { selected, goDetail, guest } = opts || {};
+    const { selected, goDetail, guest, locked } = opts || {};
     const go = guest
       ? ` data-select="${escapeHtml(m.id)}"`
       : goDetail
@@ -794,12 +902,14 @@
       ? `<div class="option-meta" aria-label="Time, effort and style">${metaBits.join("")}</div>`
       : "";
     const pers = m.pers || {};
-    const persBadge = pers.label
-      ? `<span class="badge badge--sm ${pers.type === "new" ? "badge--accent" : "badge--match"} pers-chip ${persClass(pers.type)}">${escapeHtml(pers.label)}</span>`
+    const label = persLabel(pers);
+    const persBadge = label
+      ? `<span class="badge badge--sm ${pers.type === "new" ? "badge--accent" : "badge--match"} pers-chip ${persClass(pers.type)}">${escapeHtml(label)}</span>`
       : "";
+    const canChoose = !guest && !locked && !selected;
     const letter = `<span class="option-card__letter" aria-hidden="true">${escapeHtml(m.letter)}</span>`;
     return `
-      <article class="option-card is-pickable${selected ? " selected-mark" : ""}" role="listitem" tabindex="0" aria-pressed="${selected ? "true" : "false"}"${go} aria-label="Option ${escapeHtml(m.letter)}: ${escapeHtml(m.title)}">
+      <article class="option-card is-pickable${selected ? " selected-mark" : ""}${locked && !selected ? " is-past-round" : ""}" role="listitem" tabindex="0" aria-pressed="${selected ? "true" : "false"}"${go} aria-label="Option ${escapeHtml(m.letter)}: ${escapeHtml(m.title)}">
         ${mealMediaHtml(m, { className: "option-card__media", inner: letter, decorative: true })}
         <span class="badge badge--sm badge--fit option-card__pick" aria-hidden="true">${icon("check")}Your pick</span>
         <div class="option-card__body">
@@ -808,7 +918,7 @@
           ${pers.line ? `<p class="why">${escapeHtml(pers.line)}</p>` : ""}
           ${meta}
           <div class="option-card__actions">
-            ${guest ? "" : `<button class="btn btn-secondary btn-sm option-card__choose" type="button" data-select="${escapeHtml(m.id)}">Choose this dinner</button>`}
+            ${canChoose ? `<button class="btn btn-secondary btn-sm option-card__choose" type="button" data-select="${escapeHtml(m.id)}">${chooseLabel()}</button>` : ""}
             ${goDetail ? `<span class="option-card__cta" aria-hidden="true">View recipe ${icon("arrow-right")}</span>` : ""}
           </div>
         </div>
@@ -820,11 +930,75 @@
     if (el) el.hidden = !on;
   }
 
+  function roundNoteHtml(prevMeal) {
+    if (!prevMeal || !prevMeal.meal_name) return "";
+    const score = prevMeal.avg_score != null ? " (" + Number(prevMeal.avg_score).toFixed(1) + "/10)" : "";
+    return "Last round: <strong>" + escapeHtml(prevMeal.meal_name) + "</strong>" + escapeHtml(score) + ". It’s saved in History.";
+  }
+
+  /** Tonight shows one round. A finished round reads as finished, never as fresh picks. */
+  function renderChoicesHead() {
+    const eyebrow = document.getElementById("choicesEyebrow");
+    const title = document.getElementById("choicesTitle");
+    const lede = document.getElementById("choiceStripText");
+    const note = document.getElementById("choicesRoundNote");
+    const actions = document.getElementById("choicesActions");
+    const shareCard = document.getElementById("shareCard");
+    const picked = selectedMeal();
+    const lockedTitle = picked ? picked.title : "Tonight’s dinner";
+    note.hidden = true;
+    actions.hidden = true;
+    actions.innerHTML = "";
+    if (shareCard) shareCard.hidden = false;
+    if (state.outcomeLocked && state.lifecycle === "Rated") {
+      eyebrow.textContent = "Last round";
+      title.textContent = "That round’s a wrap";
+      lede.textContent = "You made " + lockedTitle + " and everyone rated it. These picks stay put for reference.";
+      actions.hidden = false;
+      actions.innerHTML = `<button class="btn btn-primary btn-lg" type="button" data-action="next-dinner">Find our next dinner ${icon("arrow-right", "icon--forward")}</button>`;
+      if (shareCard) shareCard.hidden = true;
+      return;
+    }
+    if (state.outcomeLocked) {
+      eyebrow.textContent = "Tonight’s picks";
+      title.textContent = "Dinner’s cooked";
+      lede.textContent = lockedTitle + " is logged. Rate it to wrap this round.";
+      actions.hidden = false;
+      actions.innerHTML = '<button class="btn btn-primary btn-lg" type="button" data-go="rate">Rate dinner</button>';
+      if (shareCard) shareCard.hidden = true;
+      return;
+    }
+    eyebrow.textContent = state.previousMeal ? "Fresh picks · new round" : "Tonight’s picks";
+    title.textContent = "Which should we make?";
+    stripCopy();
+    if (state.previousMeal) {
+      note.innerHTML = roundNoteHtml(state.previousMeal);
+      note.hidden = false;
+    }
+  }
+
   function renderChoices() {
     setChoiceLoading(false);
     const list = displayMeals();
-    document.getElementById("choiceCards").innerHTML = list
-      .map((m) => mealCardHtml(m, { selected: state.selectedMealId === m.id, goDetail: true }))
+    renderChoicesHead();
+    const cards = document.getElementById("choiceCards");
+    if (!list.length) {
+      cards.innerHTML = `<div class="empty-state" role="listitem">
+          <span class="empty-state__icon">${icon("tonight")}</span>
+          <strong>No picks on the table yet</strong>
+          <span>We couldn’t weave tonight’s options just now. Give it another go.</span>
+          <button class="btn btn-primary btn-sm" type="button" data-action="retry-choices">Try again</button>
+        </div>`;
+      return;
+    }
+    cards.innerHTML = list
+      .map((m) =>
+        mealCardHtml(m, {
+          selected: state.selectedMealId === m.id,
+          goDetail: true,
+          locked: !!state.outcomeLocked,
+        })
+      )
       .join("");
     document.getElementById("shareIdMeta").textContent = "Share link ready";
   }
@@ -842,40 +1016,56 @@
     }
   }
 
-  /** full: header nav + mobile tabs · focus: header nav only · brand: wordmark only · none: cook */
-  function chromeFor(name) {
-    if (name === "cook") return "none";
-    if (["home", "choices", "meals", "tasteProfile", "settings", "demo"].includes(name)) return "full";
-    if (name === "detail" || name === "rate") return "focus";
-    return "brand";
+  function syncBackButton(name, ctx) {
+    const back = app.querySelector(`.view[data-view="${name}"] .back[data-back]`);
+    if (!back) return;
+    const target = Nav.backTarget(name, ctx);
+    back.dataset.go = target;
+    const label = back.querySelector(".back__label");
+    if (label) label.textContent = Nav.backLabel(target);
+    back.setAttribute("aria-label", target === "finished" || target === "taste" ? "Back" : "Back to " + Nav.backLabel(target));
   }
 
-  function show(name) {
+  /**
+   * @param {string} requested view name
+   * @param {{ context?: object, parent?: string, source?: string, force?: boolean }} [opts]
+   */
+  function show(requested, opts) {
+    const o = opts || {};
     const prev = state.view;
+    const name = o.force ? requested : Nav.guardView(requested, householdEstablished());
     if (name === "detail" && prev !== "detail") state.detailTabFor = null;
-    // Persist hard constraints when leaving constraints screen (per primary diner)
     if (prev === "constraints" && name !== "constraints") {
-      const hh = API.householdId || state.householdId;
-      const primary = state.members[0];
-      if (hh && primary) {
-        apiPost(`/api/members/${encodeURIComponent(primary.id)}/constraints`, {
-          household_id: hh,
-          keys: state.primaryConstraints.slice(),
-        }).catch(function () {});
-      }
+      const keys = state.primaryConstraints.slice();
+      state.constraintSave = saveMyConstraints()
+        .then(function (res) {
+          if (res && res.ok) state.savedConstraints = keys;
+        })
+        .catch(function () {});
     }
+    if (name === "detail" || name === "invite" || name === "rate") {
+      state.navContext[name] =
+        o.context ||
+        Nav.contextFor(name, prev, {
+          established: householdEstablished(),
+          parent: o.parent,
+          source: o.source,
+          current: state.navContext[name] || null,
+        });
+    }
+    const ctx = state.navContext[name] || null;
     state.view = name;
     app.querySelectorAll(".view").forEach((v) => {
       v.classList.toggle("is-active", v.dataset.view === name);
     });
-    app.dataset.chrome = chromeFor(name);
+    app.dataset.chrome = Nav.chrome(name, ctx);
     topbar.classList.remove("hidden");
     tabbar.classList.remove("hidden");
+    syncBackButton(name, ctx);
 
-    const navMap = { detail: "home", rate: "home", demo: "home", invite: "home" };
-    const navKey = navMap[name] || name;
+    const navKey = Nav.navSection(name, ctx);
     app.querySelectorAll("[data-nav]").forEach((t) => {
-      const on = t.dataset.nav === navKey;
+      const on = !!navKey && t.dataset.nav === navKey;
       t.classList.toggle("is-on", on);
       if (on) t.setAttribute("aria-current", "page");
       else t.removeAttribute("aria-current");
@@ -903,13 +1093,15 @@
 
     if (name === "members") renderMembers();
     if (name === "constraints") {
-      document.getElementById("constraintFor").textContent = state.members[0]?.name || "Your";
+      const me = meMember();
+      document.getElementById("constraintFor").textContent = me ? me.name + "’s" : "Your";
       renderConstraintGrid("constraints", state.primaryConstraints);
       ensureMemberSession().catch(function () {});
     }
     if (name === "taste") renderSparks();
     if (prev === "taste" && name !== "taste") persistSparksToServer().catch(function () {});
     if (name === "invite") {
+      renderInviteMode(ctx);
       refreshInviteUi();
       document.getElementById("inviteAttrMeta").textContent =
         "For your kitchen only · ready to share";
@@ -970,7 +1162,9 @@
     const strip = document.getElementById("choiceStripText");
     if (!strip) return;
     const fit = activeMemberCount() === 2 ? "both of you" : householdCopy("fit");
-    strip.textContent = "Options that fit " + fit + ". Tap one — or send the set.";
+    strip.textContent =
+      "Options that fit " + fit + ". Peek at any recipe — nothing’s chosen until you " +
+      (activeMemberCount() > 1 ? "vote" : "choose") + ".";
   }
 
   function updateHome() {
@@ -991,13 +1185,17 @@
 
     if (stage === "pick") {
       const options = displayMeals();
-      eye.textContent = "Tonight’s picks";
+      eye.textContent = state.previousMeal ? "Fresh picks · new round" : "Tonight’s picks";
       homeTitle.textContent = options.length
         ? options.length + " dinners worth choosing"
         : "Pick tonight’s meal";
-      homeLede.textContent = options.length
-        ? "Each one clears everyone’s hard limits. Pick one — or send the set so " + householdCopy("both") + " can weigh in."
-        : "We’ll weave a few options that fit everyone at the table.";
+      homeLede.textContent =
+        (options.length
+          ? "Each one clears everyone’s hard limits. Pick one — or send the set so " + householdCopy("both") + " can weigh in."
+          : "We’ll weave a few options that fit everyone at the table.") +
+        (state.previousMeal && state.previousMeal.meal_name
+          ? " Last round’s " + state.previousMeal.meal_name + " is saved in History."
+          : "");
       pill.textContent = "Ready";
       homeMeta.hidden = true;
       actions.innerHTML = `<button class="btn btn-primary btn-lg" type="button" data-go="choices">See tonight’s picks ${icon("arrow-right", "icon--forward")}</button>`;
@@ -1014,14 +1212,14 @@
     homeTitle.textContent = meal.title;
     media.className = "tonight-hero__media";
     media.innerHTML = mealMediaHtml(meal, { eager: true, sizes: "(min-width: 1024px) 55vw, 100vw" });
-    const minutes = mealMinutes(meal, state.activeRecipe);
+    const minutes = mealMinutes(meal, recipeLoadedFor(meal));
     homeMeta.hidden = !minutes;
     homeMeta.innerHTML = minutes ? icon("clock") + escapeHtml(minutes) : "";
 
     if (stage === "cook") {
       eye.textContent = "Tonight’s pick";
       homeLede.textContent = pers.line || "Clears everyone’s hard limits. Cook it, then rate it together.";
-      pill.textContent = pers.label || "Picked";
+      pill.textContent = persLabel(pers) || "Picked";
       actions.innerHTML =
         `<button class="btn btn-primary btn-lg" type="button" data-action="home-cook">Start cooking ${icon("arrow-right", "icon--forward")}</button>` +
         `<button class="btn btn-secondary btn-lg" type="button" data-go="detail">View full recipe</button>`;
@@ -1038,11 +1236,11 @@
         `<button class="btn btn-secondary btn-lg" type="button" data-go="detail">View recipe</button>`;
     } else {
       eye.textContent = both ? "Both of you rated" : "Everyone rated";
-      homeLede.textContent = "Logged and learned. The next picks get a little smarter.";
+      homeLede.textContent = "Saved to History. Those ratings now shape your next round of picks.";
       pill.textContent = "Rated";
       actions.innerHTML =
-        `<button class="btn btn-primary btn-lg" type="button" data-go="meals">See meals &amp; ratings</button>` +
-        `<button class="btn btn-secondary btn-lg" type="button" data-go="tasteProfile">Taste profile</button>`;
+        `<button class="btn btn-primary btn-lg" type="button" data-action="next-dinner">Find our next dinner ${icon("arrow-right", "icon--forward")}</button>` +
+        `<button class="btn btn-secondary btn-lg" type="button" data-go="meals">See meals &amp; ratings</button>`;
     }
     stripCopy();
     fillHomeInsights(meal);
@@ -1067,7 +1265,8 @@
         homeMeta.innerHTML = icon("clock") + recipe.total_minutes + " min";
       }
     };
-    if (state.activeRecipe) paint(state.activeRecipe);
+    const loaded = recipeLoadedFor(meal);
+    if (loaded) paint(loaded);
     else {
       insights.hidden = true;
       ensureRecipeForSelection().then(paint).catch(function () {});
@@ -1086,17 +1285,67 @@
     });
   }
 
+  /** Card and detail wording for an explicit pick: a vote when more than one active diner decides. */
+  function chooseLabel() {
+    return activeMemberCount() > 1 ? "Vote for this one" : "Choose this dinner";
+  }
+
+  /** Legacy plans stored "Why this" as the label; it only repeats the kicker. */
+  function persLabel(pers) {
+    const label = pers && pers.label ? String(pers.label).trim() : "";
+    if (!label || /^why this/i.test(label)) return "";
+    return label;
+  }
+
+  function detailPickState(meal) {
+    if (!meal) return { text: "", chosen: false, action: "none" };
+    if (meal.historical) {
+      const bits = ["From a past round"];
+      if (meal.avg_score != null) bits.push("rated " + Number(meal.avg_score).toFixed(1) + "/10");
+      return { text: bits.join(" · ") + ". Viewing it doesn’t add it to tonight.", chosen: false, action: "none" };
+    }
+    if (meal.id === state.selectedMealId) {
+      const logged = state.lifecycle === "Cooked" || state.lifecycle === "Rated";
+      return { text: logged ? "Tonight’s pick · cooked and logged" : "Tonight’s pick", chosen: true, action: "cook" };
+    }
+    if (state.outcomeLocked) {
+      return {
+        text: "Just looking. This round’s dinner is already logged, so this one stays on the shelf.",
+        chosen: false,
+        action: "none",
+      };
+    }
+    if (activeMemberCount() > 1) {
+      return { text: "Just looking — your vote only counts when you tap Vote for this one.", chosen: false, action: "choose" };
+    }
+    return { text: "Just looking — nothing’s chosen until you tap Choose this dinner.", chosen: false, action: "choose" };
+  }
+
   function syncDetailActions(meal) {
     const cookBtn = document.getElementById("btnStartCook");
     const previewBtn = document.getElementById("btnPreviewSteps");
     const eyebrow = document.getElementById("detailEyebrow");
-    const chosen = meal && meal.id === state.selectedMealId;
-    if (eyebrow) eyebrow.textContent = chosen ? "Tonight’s pick" : "Recipe";
+    const pickEl = document.getElementById("detailPickState");
+    const pick = detailPickState(meal);
+    if (eyebrow) {
+      eyebrow.textContent = pick.chosen
+        ? "Tonight’s pick"
+        : meal && meal.historical
+          ? "From your history"
+          : meal && meal.letter
+            ? "Option " + meal.letter
+            : "Recipe";
+    }
+    if (pickEl) {
+      pickEl.textContent = pick.text;
+      pickEl.classList.toggle("pick-state--chosen", pick.chosen);
+    }
     if (cookBtn) {
-      if (!chosen) {
+      cookBtn.hidden = pick.action === "none";
+      if (pick.action === "choose") {
         cookBtn.dataset.action = "choose";
         delete cookBtn.dataset.go;
-        cookBtn.textContent = "Choose this dinner";
+        cookBtn.textContent = chooseLabel();
       } else if (state.lifecycle === "Cooked" || state.lifecycle === "Rated") {
         cookBtn.dataset.action = "cook";
         cookBtn.dataset.go = "cook";
@@ -1107,7 +1356,7 @@
         cookBtn.innerHTML = "Start cooking " + icon("arrow-right", "icon--forward");
       }
     }
-    if (previewBtn) previewBtn.hidden = !!chosen;
+    if (previewBtn) previewBtn.hidden = pick.action !== "choose";
   }
 
   function renderDetail() {
@@ -1144,12 +1393,21 @@
     }
     const pers = meal.pers || {};
     if (titleEl) titleEl.textContent = recipe.title || meal.title;
-    if (whyLabel) whyLabel.textContent = pers.label ? "Why this one · " + pers.label : "Why this one";
-    if (whyEl) whyEl.textContent = pers.line || "Clears your household’s hard limits.";
+    if (whyLabel) whyLabel.textContent = meal.historical ? "Last time" : "Why this one";
+    if (whyEl) {
+      whyEl.textContent = meal.historical
+        ? (meal.avg_score != null ? "Your table rated it " + Number(meal.avg_score).toFixed(1) + "/10." : "Cooked here before.")
+        : pers.line || "Clears your household’s hard limits.";
+    }
     const serves = recipe.requested_servings || recipe.servings || servingCountForMeal();
     if (chipsEl) {
-      const badges = ['<span class="badge badge--fit" id="detailLockChip">Fits ' + escapeHtml(householdCopy("fit")) + "</span>"];
-      if (pers.label) badges.push('<span class="badge badge--match">' + escapeHtml(pers.label) + "</span>");
+      const badges = [
+        meal.historical
+          ? '<span class="badge badge--success" id="detailLockChip">' + icon("history") + "Cooked before</span>"
+          : '<span class="badge badge--fit" id="detailLockChip">Fits ' + escapeHtml(householdCopy("fit")) + "</span>",
+      ];
+      const label = meal.historical ? "" : persLabel(pers);
+      if (label) badges.push('<span class="badge badge--match">' + escapeHtml(label) + "</span>");
       if (recipe.total_minutes) badges.push('<span class="badge badge--time">' + icon("clock") + recipe.total_minutes + " min</span>");
       chipsEl.innerHTML = badges.join("");
     }
@@ -1196,7 +1454,9 @@
       }
       if (recipe.methods && recipe.methods.length) notes.push(["Method", recipe.methods.map(humanize).join(", ")]);
       if (recipe.dietary_tags && recipe.dietary_tags.length) notes.push(["Diet notes", recipe.dietary_tags.map(humanize).join(", ")]);
-      notes.push(["Household fit", "Clears every active diner’s hard limits. Soft likes only shape the order."]);
+      if (!meal.historical) {
+        notes.push(["Household fit", "Clears every active diner’s hard limits. Likes only shape the order."]);
+      }
       notesEl.innerHTML = notes
         .map(function (n) {
           return `<div><dt>${escapeHtml(n[0])}</dt><dd>${escapeHtml(n[1])}</dd></div>`;
@@ -1204,7 +1464,7 @@
         .join("");
     }
     track("recipe_opened", {
-      plan_id: API.planId || null,
+      plan_id: meal.historical ? meal.plan_id || null : API.planId || null,
       meal_option_id: meal.id,
       recipe_slug: recipe.recipe_slug,
       recipe_version_id: recipe.recipe_version_id,
@@ -1503,9 +1763,10 @@
       done(emptyStateHtml("tonight", "Nothing cooked yet", "Pick tonight’s dinner — it’ll show up here once it’s on the table.", '<button class="btn btn-primary btn-sm" type="button" data-go="choices">See tonight’s picks</button>'));
       return;
     }
+    state.historyItems = meals;
     done(
       meals
-        .map(function (m) {
+        .map(function (m, idx) {
           const status = historyStatus(m);
           const rating = m.avg_score != null ? `<span class="badge badge--sm badge--time">${m.avg_score.toFixed(1)}/10 avg</span>` : "";
           const fav = m.favorite ? `<span class="badge badge--sm badge--accent">${icon("heart")}Favorite</span>` : "";
@@ -1514,6 +1775,7 @@
               <div class="history-item__body">
                 <p class="history-item__title">${escapeHtml(m.meal_name)}</p>
                 <div class="badges"><span class="badge badge--sm ${status.cls}">${escapeHtml(status.label)}</span>${rating}${fav}</div>
+                ${m.recipe_slug || m.recipe_version_id ? `<div class="history-item__actions"><button class="btn btn-quiet btn-sm" type="button" data-history-recipe="${idx}">View recipe ${icon("arrow-right", "icon--forward")}</button></div>` : ""}
               </div>
             </li>`;
         })
@@ -1559,7 +1821,7 @@
       }
     }
     const corr = document.getElementById("tasteCorrections");
-    corr.innerHTML = sparkOptions
+    corr.innerHTML = visibleSparks()
       .map(function (s) {
         const on = state.tasteCorrectionSpark === s.id;
         return `<button type="button" class="chip-tog${on ? " is-on" : ""}" data-corr="${s.id}" aria-pressed="${on}">${s.label}</button>`;
@@ -1590,10 +1852,22 @@
     if (loopAttr) { loopAttr.hidden = true; loopAttr.textContent = ""; }
   }
 
-  async function fetchRecommendationsPlan() {
+  let planInFlight = null;
+
+  /** One plan request at a time, so a double tap never creates two rounds. */
+  function fetchRecommendationsPlan() {
+    if (planInFlight) return planInFlight;
+    planInFlight = requestRecommendationsPlan().finally(function () {
+      planInFlight = null;
+    });
+    return planInFlight;
+  }
+
+  async function requestRecommendationsPlan() {
     const hh = API.householdId || state.householdId;
     if (!hh) return null;
     await ensureMemberSession();
+    if (state.constraintSave) await state.constraintSave;
     const res = await apiPost("/api/recommendations/plan", {
       household_id: hh,
       attribution_last_touch: state.lastTouch,
@@ -1613,6 +1887,62 @@
       return res.plan_id;
     }
     return null;
+  }
+
+  function averageRating(bucket) {
+    const scores = Object.keys(bucket || {})
+      .map(function (k) { return bucket[k] && bucket[k].score; })
+      .filter(function (v) { return v != null; });
+    if (!scores.length) return null;
+    return scores.reduce(function (a, b) { return a + Number(b); }, 0) / scores.length;
+  }
+
+  /**
+   * Close the finished round on this device and ask the server for a brand-new plan.
+   * The old plan, its cook, and its ratings are untouched; they stay in History.
+   */
+  async function startNextRound() {
+    if (state.roundBusy) return;
+    if (!(state.outcomeLocked && state.lifecycle === "Rated")) {
+      if (state.view !== "choices") toast("Rate tonight’s dinner first — then we’ll line up the next one");
+      return;
+    }
+    state.roundBusy = true;
+    const finished = selectedMeal();
+    const finishedId = state.selectedMealId;
+    state.previousMeal = finished
+      ? {
+          plan_id: API.planId || null,
+          meal_option_id: finishedId,
+          meal_name: finished.title,
+          recipe_slug: finished.recipe_slug || null,
+          avg_score: averageRating(state.ratingsByOption[finishedId]),
+          status: "Rated",
+        }
+      : state.previousMeal;
+    applyIdentity({
+      previewMealId: null,
+      selectedMealId: null,
+      cookingMealId: null,
+      lifecycle: "Unselected",
+      outcomeLocked: false,
+      lockedMealOptionId: null,
+    });
+    state.members.forEach(function (m) {
+      state.ratings[m.id] = { score: null, note: "" };
+    });
+    state.ratingState = "none";
+    state.nextAction = "pick_meal";
+    state.activeRecipe = null;
+    state.shareReady = false;
+    state.currentMeals = null;
+    API.planId = null;
+    track("next_dinner_requested", { previous_meal_option_id: finishedId || null });
+    try {
+      show("choices");
+    } finally {
+      state.roundBusy = false;
+    }
   }
 
   async function ensurePlan() {
@@ -1684,6 +2014,24 @@
     })();
   }
 
+  /** A past round's meal opens read-only: no choose, no cook, no change to tonight. */
+  function openHistoryRecipe(item) {
+    if (!item) return;
+    state.historyMeal = {
+      id: item.meal_option_id,
+      plan_id: item.plan_id,
+      title: item.meal_name,
+      recipe_slug: item.recipe_slug,
+      recipe_version_id: item.recipe_version_id,
+      avg_score: item.avg_score,
+      status: item.status,
+      historical: true,
+      pers: null,
+    };
+    state.activeRecipe = null;
+    show("detail", { context: { origin: "meals", source: "history" } });
+  }
+
   function openPreview(id) {
     applyIdentity(window.MealIdentity.reduceMealAction(identitySnapshot(), { type: "preview", mealOptionId: id }));
     state.activeRecipe = null;
@@ -1722,6 +2070,27 @@
       } else {
         renderChoices();
       }
+      return;
+    }
+
+    const historyBtn = e.target.closest("[data-history-recipe]");
+    if (historyBtn) {
+      openHistoryRecipe(state.historyItems[Number(historyBtn.dataset.historyRecipe)]);
+      return;
+    }
+
+    const nextDinner = e.target.closest('[data-action="next-dinner"]');
+    if (nextDinner) {
+      e.preventDefault();
+      startNextRound();
+      return;
+    }
+
+    const retryChoices = e.target.closest('[data-action="retry-choices"]');
+    if (retryChoices) {
+      e.preventDefault();
+      setChoiceLoading(true);
+      fetchRecommendationsPlan().then(renderChoices);
       return;
     }
 
@@ -1779,19 +2148,56 @@
 
   if (screenNav) screenNav.addEventListener("click", (e) => {
     const go = e.target.closest("[data-go]");
-    if (go) show(go.dataset.go);
+    if (go) show(go.dataset.go, { force: true });
+  });
+
+  function setFieldError(inputId, errorId, invalid) {
+    const input = document.getElementById(inputId);
+    const error = document.getElementById(errorId);
+    if (input) input.setAttribute("aria-invalid", invalid ? "true" : "false");
+    if (error) error.hidden = !invalid;
+  }
+
+  ["hhName", "ownerName"].forEach((fieldId) => {
+    const input = document.getElementById(fieldId);
+    if (!input) return;
+    input.addEventListener("input", () => {
+      if (input.value.trim()) setFieldError(fieldId, fieldId + "Error", false);
+    });
   });
 
   document.getElementById("btnCreateHh").addEventListener("click", async () => {
-    state.householdName = document.getElementById("hhName").value.trim() || "Our kitchen";
+    const kitchenName = document.getElementById("hhName").value.trim();
+    const ownerName = document.getElementById("ownerName").value.trim();
+    setFieldError("hhName", "hhNameError", !kitchenName);
+    setFieldError("ownerName", "ownerNameError", !ownerName);
+    if (!kitchenName || !ownerName) {
+      const first = document.getElementById(!kitchenName ? "hhName" : "ownerName");
+      if (first) first.focus();
+      return;
+    }
+    state.householdName = kitchenName;
+    const existingHh = API.householdId || state.householdId;
+    if (existingHh && state.members.length) {
+      const owner = meMember() || state.members[0];
+      owner.name = ownerName;
+      owner.initial = ownerName[0].toUpperCase();
+      await apiPatch(`/api/households/${encodeURIComponent(existingHh)}`, {
+        display_name: kitchenName,
+        members: [{ member_id: owner.id, display_name: ownerName }],
+      });
+      syncAvatars();
+      syncHouseholdChrome();
+      show("members");
+      return;
+    }
     state.inviteCode = makeInviteCode();
     if (!state.members.length) {
-      const label = state.householdName.split(/[&+,]/)[0].trim() || "You";
       const mid = "owner-" + randToken(4).toLowerCase();
       state.members.push({
         id: mid,
-        name: label,
-        initial: label[0].toUpperCase(),
+        name: ownerName,
+        initial: ownerName[0].toUpperCase(),
         status: "Active",
       });
       state.ratings[mid] = { score: null, note: "" };
@@ -1876,10 +2282,11 @@
 
   document.getElementById("btnSendInvite").addEventListener("click", async () => {
     const hh = API.householdId || state.householdId;
+    const inviter = meMember();
     if (hh && (await apiProbe())) {
       const res = await apiPost("/api/invites", {
         household_id: hh,
-        inviter_member_id: state.members[0] && state.members[0].id,
+        inviter_member_id: inviter && inviter.id,
         channel: state.inviteChannel || "copy",
         invite_code: state.inviteCode,
       });
@@ -1890,7 +2297,7 @@
     }
     track("invite_sent", {
       household_id: hh || state.householdId || "HH-demo",
-      inviter_id: state.members[0]?.id,
+      inviter_id: inviter && inviter.id,
       channel: state.inviteChannel,
       invite_code: state.inviteCode,
       utm_source: "share",
@@ -1899,15 +2306,21 @@
     });
     state.lastTouch = state.inviteCode;
     const partner = state.members.find((m) => m.status === "Invited");
+    await ensureMemberSession();
+    const ctx = state.navContext.invite;
+    if (ctx && ctx.mode === "household") {
+      const ok = await copyText(inviteUrl(state.inviteCode));
+      toast(ok ? "Invite link copied — send it their way" : "Invite ready — copy the link below");
+      return;
+    }
     if (partner) toast("Invite ready for " + partner.name);
     else toast("Invite sent");
-    await ensureMemberSession();
     show("choices");
   });
 
   document.getElementById("btnSkipInvite").addEventListener("click", async () => {
     await ensureMemberSession();
-    show("choices");
+    leaveInvite();
   });
 
   document.getElementById("btnAcceptInvite").addEventListener("click", async () => {
@@ -1978,6 +2391,33 @@
     if (createBtn) createBtn.textContent = "Make a new link";
     const guestMeta = document.getElementById("guestShareMeta");
     if (guestMeta) guestMeta.textContent = "Shared picks for tonight";
+  }
+
+  /** Same invite card in both places; only the frame around it changes. */
+  function renderInviteMode(ctx) {
+    const household = !!(ctx && ctx.mode === "household");
+    const eyebrow = document.getElementById("inviteEyebrow");
+    const title = document.getElementById("inviteTitle");
+    const progress = document.getElementById("inviteProgress");
+    const skip = document.getElementById("btnSkipInvite");
+    const keeps = document.getElementById("inviteKeepsNote");
+    if (eyebrow) eyebrow.textContent = household ? "Invite" : "Step 5 of 6";
+    if (title) title.textContent = household ? "Pull up another chair" : "Invite someone to cook with";
+    if (progress) progress.hidden = household;
+    if (keeps) keeps.hidden = !household;
+    if (skip) {
+      skip.textContent = household ? "Done" : "Skip — show tonight’s picks";
+      skip.dataset.mode = household ? "household" : "onboarding";
+    }
+  }
+
+  function leaveInvite() {
+    const ctx = state.navContext.invite;
+    if (ctx && ctx.mode === "household") {
+      show(Nav.backTarget("invite", ctx));
+      return;
+    }
+    show("choices");
   }
 
   function refreshInviteUi() {
@@ -2168,8 +2608,9 @@
       cancel: "Keep cooking",
     });
     if (leave) {
+      const wasCooking = state.cookingMealId;
       applyIdentity(window.MealIdentity.reduceMealAction(identitySnapshot(), { type: "exit_cook" }));
-      state.previewMealId = state.selectedMealId || state.previewMealId;
+      state.previewMealId = wasCooking || state.selectedMealId || state.previewMealId;
       show("detail");
     }
   });
@@ -2219,7 +2660,8 @@
       const score = Number(scoreBtn.dataset.score);
       const mealId = state.selectedMealId;
       if (!mealId) return;
-      const versionId = state.activeRecipe && state.activeRecipe.recipe_version_id;
+      const ratedRecipe = recipeLoadedFor(selectedMeal());
+      const versionId = ratedRecipe && ratedRecipe.recipe_version_id;
       const rated = window.MealIdentity.reduceMealAction(identitySnapshot(), {
         type: "rate",
         memberId: id,
@@ -2331,28 +2773,49 @@
   document.getElementById("btnSaveSettings").addEventListener("click", async function () {
     const hh = API.householdId || state.householdId;
     if (!hh) return;
-    state.householdName = document.getElementById("settingsHhName").value.trim() || state.householdName;
+    const nameInput = document.getElementById("settingsHhName");
+    const typedName = nameInput.value.trim();
+    if (!typedName) {
+      nameInput.value = state.householdName || "";
+      toast("Your kitchen needs a name — kept “" + (state.householdName || "your kitchen") + "”");
+    } else {
+      state.householdName = typedName;
+    }
     state.settingsChoiceCount = Number(document.getElementById("settingsChoiceCount").value) || 3;
     state.settingsCadence = document.getElementById("settingsCadence").value || "on_demand";
-    const primary = state.members[0];
     await ensureMemberSession();
     await apiPatch("/api/households/" + encodeURIComponent(hh), {
       display_name: state.householdName,
       meal_choice_count: state.settingsChoiceCount,
       scheduling_cadence: state.settingsCadence,
-      constraints: primary
-        ? state.primaryConstraints
-            .filter(function (k) {
-              return k !== "none";
-            })
-            .map(function (rule_key) {
-              return { member_id: primary.id, rule_key, status: "prohibited" };
-            })
-        : [],
     });
-    toast("Settings saved — picks will reflect new limits");
+    syncHouseholdChrome();
+    if (sameKeys(state.primaryConstraints, state.savedConstraints || [])) {
+      toast("Settings saved");
+      return;
+    }
+    const res = await saveMyConstraints();
+    if (!res || !res.ok) {
+      toast("Couldn’t save your limits — try again");
+      return;
+    }
+    state.savedConstraints = state.primaryConstraints.slice();
+    if (state.outcomeLocked) {
+      toast("Saved — your next round of picks will follow these limits");
+      return;
+    }
+    applyIdentity({
+      previewMealId: null,
+      selectedMealId: null,
+      cookingMealId: null,
+      lifecycle: "Unselected",
+      outcomeLocked: false,
+      lockedMealOptionId: null,
+    });
     API.planId = null;
     state.currentMeals = null;
+    state.activeRecipe = null;
+    toast("Saved — tonight’s picks will refresh to match");
   });
 
   document.getElementById("btnSaveTasteCorrection").addEventListener("click", async function () {
