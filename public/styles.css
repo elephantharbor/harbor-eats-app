@@ -635,6 +635,7 @@ h2[tabindex="-1"]:focus {
   height: var(--header-h);
   margin: 0 auto;
   padding: 0 var(--page-pad);
+  min-width: 0;
 }
 
 .brand-link {
@@ -670,6 +671,8 @@ h2[tabindex="-1"]:focus {
   align-items: stretch;
   gap: var(--space-2);
   height: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .top-nav__link {
@@ -2634,6 +2637,7 @@ button.link-card:hover {
 .settings-layout {
   display: grid;
   gap: var(--space-5);
+  min-width: 0;
 }
 
 .settings-stack {
@@ -2684,7 +2688,7 @@ button.link-card:hover {
 .theme-option {
   position: relative;
   display: grid;
-  grid-template-columns: 64px 1fr auto;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
   align-items: center;
   gap: var(--space-4);
   padding: var(--space-3);
@@ -2728,6 +2732,10 @@ button.link-card:hover {
 
 .theme-option input:focus-visible {
   outline: none;
+}
+
+.theme-option > span:not(.theme-swatch):not(.sr-only) {
+  min-width: 0;
 }
 
 .theme-option__name {
@@ -3048,10 +3056,6 @@ button.link-card:hover {
     bottom: var(--space-7);
   }
 
-  .household-name {
-    display: block;
-  }
-
   .page {
     padding-top: var(--space-8);
   }
@@ -3160,7 +3164,11 @@ button.link-card:hover {
   }
 
   .theme-options {
-    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 170px), 1fr));
+  }
+
+  .top-nav__link {
+    padding: 0 var(--space-2);
   }
 
   .theme-option {
@@ -3224,6 +3232,16 @@ button.link-card:hover {
 
   .cook-nav .btn {
     min-width: 200px;
+  }
+}
+
+@media (min-width: 960px) {
+  .household-name {
+    display: block;
+  }
+
+  .top-nav__link {
+    padding: 0 var(--space-4);
   }
 }
 

@@ -34,6 +34,28 @@ test("mobile: no horizontal overflow and bottom nav replaces top nav", async ({ 
   }
 });
 
+test("settings: no horizontal overflow at phone and tablet widths (all themes)", async ({ page, context }) => {
+  await context.clearCookies();
+  await page.goto("/");
+  await page.evaluate(() => localStorage.clear());
+  await page.reload();
+  await skipToChoices(page);
+
+  for (const theme of ["signature", "dark", "citrus-berry"]) {
+    await page.evaluate((t) => localStorage.setItem("fw_theme", t), theme);
+    await page.reload();
+    await page.locator('.view[data-view="choices"].is-active, #detailTitle').first().waitFor();
+
+    for (const width of [390, 768]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.locator('#topbar [data-go="settings"]:visible, #tabbar [data-go="settings"]:visible').first().click();
+      await expect(page.locator('.view[data-view="settings"].is-active')).toHaveCount(1);
+      await page.locator("#themeOptions .theme-option").first().waitFor();
+      expect(await overflow(page), `${theme}@${width}px`).toBeLessThanOrEqual(0);
+    }
+  }
+});
+
 test("desktop: top nav, no tab bar, recipe tabs are keyboard operable", async ({ page, context }) => {
   await context.clearCookies();
   await page.setViewportSize({ width: 1440, height: 900 });
