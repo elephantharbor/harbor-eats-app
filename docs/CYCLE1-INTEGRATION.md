@@ -5,9 +5,9 @@ Integration model: Grok 4.7 (`grok-4.7`).
 
 This commit merges Campaign Cycle 1 onto that branch, tags walnut dishes as nuts in the catalog, and keeps a single service-worker cache newer than both parents. It does not merge to `main`, deploy Pages or a Worker, or apply a D1 migration.
 
-**Integration SHA:** `INTEGRATION_SHA_PENDING`
+**Integration SHA:** `acdb92f3794a70adcd89c1c15e73d2670544502b`
 
-That SHA is the commit that contains the merged tree, the walnut allergen tags, `fw-sw-v6`, and this file. `git rev-parse HEAD` on `feature/flavorweave-alpha-remediation` is the branch tip.
+That commit contains the merged tree, the walnut allergen tags, `fw-sw-v6`, and the first copy of this file. The branch tip is the following commit, which only replaces the placeholder with this SHA. Product code is identical at both. `git rev-parse HEAD` on `feature/flavorweave-alpha-remediation` is the tip.
 
 ## Parents
 
