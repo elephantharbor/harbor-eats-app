@@ -1,6 +1,6 @@
 # Cycle 1B automated verification
 
-**Verified integration SHA:** `ee80470165a3ca0f00c271f382f0cd8d93d8b028`  
+**Verified integration SHA:** `71dd196770a127f168980655d3a35d115bcd0db5`  
 **Prior Cycle 1 tip on branch:** `bb6b414f38e4e6a1242cb36e1d32b072e3cb3e1e`  
 **Branch under test:** `feature/flavorweave-alpha-remediation`  
 **Agent model:** Composer 2.5 (`composer-2.5`)
