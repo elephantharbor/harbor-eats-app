@@ -36,6 +36,7 @@ import {
 } from "./lib/recommendations.js";
 import { buildTasteProfile } from "./lib/taste-model.js";
 import { routeTasteRequest } from "./lib/taste-profile.js";
+import { routeDinnerPlanRequest } from "./lib/dinner-plan-routes.js";
 import {
   getConceptBySlug,
   getRecipeVersion,
@@ -2336,6 +2337,12 @@ export default {
         {
           const tasteRes = await routeTasteRequest(env, request, path, url, { writeOrigin });
           if (tasteRes) return tasteRes;
+        }
+
+        // Cycle 3 dinner plans. The existing /api/plans loop is unchanged.
+        {
+          const dinnerRes = await routeDinnerPlanRequest(env, request, path, url, { writeOrigin });
+          if (dinnerRes) return dinnerRes;
         }
 
         if (path === "/api/preference-evidence" && request.method === "POST") {
