@@ -34,9 +34,36 @@ function lineKey(ingredientId, unit) {
   return `${ingredientId}\u0000${unit}`;
 }
 
-function lineIdFor(ingredientId, unit) {
-  const safe = (value) => String(value || "x").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-  return `sl_${safe(ingredientId)}_${safe(unit)}`;
+function safeToken(value) {
+  return String(value || "x").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+/**
+ * Primary key for dinner_shop_line. The plan id is part of the key because
+ * line_id is unique across the whole database, not per plan.
+ */
+export function shopLineId(dinnerPlanId, ingredientId, unit) {
+  const plan = dinnerPlanId == null || dinnerPlanId === "" ? "x" : String(dinnerPlanId);
+  return `sl_${plan}_${safeToken(ingredientId)}_${safeToken(unit)}`;
+}
+
+function legacyShopLineId(ingredientId, unit) {
+  return `sl_${safeToken(ingredientId)}_${safeToken(unit)}`;
+}
+
+export function scopeShopLineIds(plan) {
+  if (!plan || !Array.isArray(plan.shop_lines)) return plan;
+  for (const line of plan.shop_lines) {
+    line.line_id = shopLineId(plan.dinner_plan_id, line.ingredient_id, line.unit);
+  }
+  return plan;
+}
+
+function sameShopLine(plan, line, lineId) {
+  if (!line || lineId == null) return false;
+  if (line.line_id === lineId) return true;
+  if (shopLineId(plan.dinner_plan_id, line.ingredient_id, line.unit) === lineId) return true;
+  return legacyShopLineId(line.ingredient_id, line.unit) === lineId;
 }
 
 export function resolveVersion(recipeVersionId, ctx = {}) {
@@ -262,6 +289,7 @@ export function createDinnerPlan(input, ctx = {}) {
     }
   }
   syncShopping(plan, [], ctx);
+  scopeShopLineIds(plan);
   return { ok: true, plan, unfilled, votes_required: false };
 }
 
@@ -300,7 +328,7 @@ function syncShopping(plan, previousLines, ctx) {
   const needed = neededLines(plan.meals);
   if (!shoppingHasStarted(plan)) {
     plan.shop_lines = needed.map((item) => ({
-      line_id: lineIdFor(item.ingredient_id, item.unit),
+      line_id: shopLineId(plan.dinner_plan_id, item.ingredient_id, item.unit),
       ingredient_id: item.ingredient_id,
       display_name: item.display_name,
       preparation: item.preparation,
@@ -341,7 +369,7 @@ function syncShopping(plan, previousLines, ctx) {
     const existing = prior.get(key);
     if (!existing) {
       lines.push({
-        line_id: lineIdFor(item.ingredient_id, item.unit),
+        line_id: shopLineId(plan.dinner_plan_id, item.ingredient_id, item.unit),
         ingredient_id: item.ingredient_id,
         display_name: item.display_name,
         preparation: item.preparation,
@@ -365,6 +393,7 @@ function syncShopping(plan, previousLines, ctx) {
     }
     lines.push({
       ...existing,
+      line_id: shopLineId(plan.dinner_plan_id, item.ingredient_id, item.unit),
       display_name: existing.display_name || item.display_name,
       preparation: item.preparation,
       quantity: item.quantity,
@@ -382,6 +411,7 @@ function syncShopping(plan, previousLines, ctx) {
     if (priorNeeded > EPS) pushDelta("no_longer_needed", existing, priorNeeded);
     lines.push({
       ...existing,
+      line_id: shopLineId(plan.dinner_plan_id, existing.ingredient_id, existing.unit),
       still_needed: false,
       surplus_quantity: priorNeeded,
       list_state: existing.list_state,
@@ -391,6 +421,7 @@ function syncShopping(plan, previousLines, ctx) {
   lines.sort((a, b) => a.ingredient_id.localeCompare(b.ingredient_id) || String(a.unit).localeCompare(String(b.unit)));
   plan.shop_lines = lines;
   plan.shop_deltas = [...(plan.shop_deltas || []), ...deltas];
+  scopeShopLineIds(plan);
 }
 
 function addMeal(plan, action, ctx) {
@@ -665,7 +696,7 @@ function setCount(plan, action) {
 }
 
 function setLineState(plan, action, ctx) {
-  const line = (plan.shop_lines || []).find((row) => row.line_id === action.line_id);
+  const line = (plan.shop_lines || []).find((row) => sameShopLine(plan, row, action.line_id));
   if (!line) return fail("line_not_found", 404);
   const state = action.list_state === "checked" ? "purchased" : action.list_state;
   if (!["open", "already_have", "purchased"].includes(state)) return fail("list_state_invalid");
@@ -743,6 +774,7 @@ export function applyPlanMutation(plan, action, ctx = {}) {
   const applied = dispatch(next, action, ctx);
   if (!applied.ok) return applied;
   if (effect === "ingredients") syncShopping(next, previousLines, ctx);
+  scopeShopLineIds(next);
   refreshStatus(next);
   next.updated_at = ctx.now || next.updated_at;
   next.votes_required = false;

@@ -79,6 +79,11 @@ const VERSIONS = {
   rv_salt_v1: version("rv_salt_v1", [
     { name: "salt", quantity: 4, unit: "tsp" },
   ], { slug: "salt-dish", recipe_id: "rcp_salt", title: "Salt dish" }),
+  rv_pasta_v1: version("rv_pasta_v1", [
+    { name: "pasta", quantity: 8, unit: "oz" },
+    { name: "olive oil", quantity: 2, unit: "tbsp" },
+    { name: "milk", quantity: 0.5, unit: "cup" },
+  ], { slug: "pasta-dinner", recipe_id: "rcp_pasta", title: "Pasta dinner" }),
 };
 
 function withVersions(extra = {}) {
@@ -582,15 +587,22 @@ describe("FW-01", () => {
   });
 });
 
-function asD1(sqlite) {
+function asD1(sqlite, options = {}) {
+  let lineInserts = 0;
   return {
     prepare(sql) {
       return {
         bind(...params) {
           return {
             async run() {
+              if (String(sql).includes("INSERT INTO dinner_shop_line")) {
+                lineInserts += 1;
+                if (options.failLineInsertAt && lineInserts === options.failLineInsertAt) {
+                  throw new Error("forced_line_insert_failure");
+                }
+              }
               sqlite.prepare(sql).run(...params);
-              return { success: true };
+              return { success: true, meta: { changes: 1 } };
             },
             async first() {
               return sqlite.prepare(sql).get(...params) ?? null;
@@ -601,6 +613,20 @@ function asD1(sqlite) {
           };
         },
       };
+    },
+    async batch(statements) {
+      sqlite.exec("BEGIN IMMEDIATE");
+      try {
+        const results = [];
+        for (const statement of statements) {
+          results.push(await statement.run());
+        }
+        sqlite.exec("COMMIT");
+        return results;
+      } catch (error) {
+        sqlite.exec("ROLLBACK");
+        throw error;
+      }
     },
   };
 }
@@ -632,6 +658,204 @@ function insertMember(sqlite, householdId, memberId) {
      VALUES (?, ?, ?, 'owner', 'active', '2026-10-04T00:00:00Z', '2026-10-04T00:00:00Z')`
   ).run(memberId, householdId, memberId);
 }
+
+function legacyLineId(ingredientId, unit) {
+  const safe = (value) => String(value || "x").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return `sl_${safe(ingredientId)}_${safe(unit)}`;
+}
+
+function lineIdentity(row) {
+  return `${row.ingredient_id}\u0000${row.unit}`;
+}
+
+describe("shopping line identity", () => {
+  it("puts the dinner plan id in the line id and rejects the old global id", () => {
+    const id = sequencer();
+    const ctx = withVersions({
+      id,
+      household_member_ids: ["ana"],
+      actor_member_id: "ana",
+      data_origin: "synthetic",
+    });
+    const pasta = createDinnerPlan(
+      {
+        dinner_plan_id: "dp_pasta_night",
+        household_id: "hh_fw_c3_shop",
+        meal_count: 1,
+        entry_point: "plan_dinners",
+        participant_ids: ["ana"],
+        meals: [recipeMeal("rv_pasta_v1", ["ana"])],
+      },
+      ctx
+    );
+    const other = createDinnerPlan(
+      {
+        dinner_plan_id: "dp_second_night",
+        household_id: "hh_fw_c3_shop",
+        meal_count: 1,
+        entry_point: "tonight",
+        participant_ids: ["ana"],
+        meals: [recipeMeal("rv_oil_v1", ["ana"])],
+      },
+      ctx
+    );
+    expect(pasta.ok).toBe(true);
+    expect(other.ok).toBe(true);
+    const pastaOil = line(pasta.plan, "olive-oil", "tbsp");
+    const otherOil = line(other.plan, "olive-oil", "tbsp");
+    const pastaLine = line(pasta.plan, "pasta", "oz");
+    expect(pastaOil.line_id).toBe("sl_dp_pasta_night_olive-oil_tbsp");
+    expect(otherOil.line_id).toBe("sl_dp_second_night_olive-oil_tbsp");
+    expect(pastaOil.line_id).not.toBe(legacyLineId("olive-oil", "tbsp"));
+    expect(otherOil.line_id).not.toBe(pastaOil.line_id);
+    expect(pastaLine.line_id).toBe("sl_dp_pasta_night_pasta_oz");
+    expect(line(pasta.plan, "milk", "cup").quantity).toBe(0.125);
+    const stored = pasta.plan.shop_lines.find((row) => row.line_id === legacyLineId("pasta", "oz"));
+    expect(stored).toBeUndefined();
+  });
+
+  it("keeps both full lists when a synthetic household checks, marks already-have, and swaps", async () => {
+    const sqlite = migrate();
+    const db = asD1(sqlite);
+    insertHousehold(sqlite, "hh_fw_c3_shop", "synthetic");
+    sqlite.prepare(
+      `UPDATE household SET acquisition_source = 'synthetic_qa' WHERE household_id = 'hh_fw_c3_shop'`
+    ).run();
+    insertMember(sqlite, "hh_fw_c3_shop", "ana");
+    const id = sequencer();
+    const ctx = withVersions({
+      id,
+      household_member_ids: ["ana"],
+      actor_member_id: "ana",
+      data_origin: "synthetic",
+    });
+    const pasta = createDinnerPlan(
+      {
+        dinner_plan_id: "dp_pasta_night",
+        household_id: "hh_fw_c3_shop",
+        meal_count: 2,
+        entry_point: "plan_dinners",
+        participant_ids: ["ana"],
+        meals: [
+          recipeMeal("rv_pasta_v1", ["ana"]),
+          recipeMeal("rv_flour_v1", ["ana"]),
+        ],
+      },
+      ctx
+    );
+    const second = createDinnerPlan(
+      {
+        dinner_plan_id: "dp_second_night",
+        household_id: "hh_fw_c3_shop",
+        meal_count: 1,
+        entry_point: "tonight",
+        participant_ids: ["ana"],
+        meals: [recipeMeal("rv_oil_v1", ["ana"])],
+      },
+      ctx
+    );
+    expect(pasta.ok).toBe(true);
+    expect(second.ok).toBe(true);
+    await saveDinnerPlan(db, pasta.plan);
+    await saveDinnerPlan(db, second.plan);
+    let loadedPasta = await loadDinnerPlan(db, "dp_pasta_night");
+    let loadedSecond = await loadDinnerPlan(db, "dp_second_night");
+    const pastaIds = loadedPasta.shop_lines.map(lineIdentity).sort();
+    const secondIds = loadedSecond.shop_lines.map(lineIdentity).sort();
+    expect(pastaIds).toEqual(["flour\u0000cup", "milk\u0000cup", "olive-oil\u0000tbsp", "pasta\u0000oz"]);
+    expect(secondIds).toEqual(["olive-oil\u0000tbsp", "stock\u0000cup"]);
+    expect(line(loadedPasta, "milk", "cup").quantity).toBe(0.125);
+    expect(loadedPasta.shop_lines.every((row) => row.line_id.startsWith("sl_dp_pasta_night_"))).toBe(true);
+    expect(loadedSecond.shop_lines.every((row) => row.line_id.startsWith("sl_dp_second_night_"))).toBe(true);
+    expect(line(loadedPasta, "olive-oil", "tbsp").line_id).not.toBe(line(loadedSecond, "olive-oil", "tbsp").line_id);
+
+    const checked = mutate(loadedPasta, {
+      op: "set_line_state",
+      line_id: line(loadedPasta, "flour", "cup").line_id,
+      list_state: "purchased",
+    }, ctx);
+    await saveDinnerPlan(db, checked.plan);
+    const have = mutate(await loadDinnerPlan(db, "dp_pasta_night"), {
+      op: "set_line_state",
+      line_id: legacyLineId("pasta", "oz"),
+      list_state: "already_have",
+    }, ctx, "2026-10-04T13:10:00.000Z");
+    expect(have.ok).toBe(true);
+    await saveDinnerPlan(db, have.plan);
+    loadedPasta = await loadDinnerPlan(db, "dp_pasta_night");
+    loadedSecond = await loadDinnerPlan(db, "dp_second_night");
+    expect(loadedPasta.shop_lines.map(lineIdentity).sort()).toEqual(pastaIds);
+    expect(loadedSecond.shop_lines.map(lineIdentity).sort()).toEqual(secondIds);
+    expect(line(loadedPasta, "flour", "cup").list_state).toBe("purchased");
+    expect(line(loadedPasta, "pasta", "oz").list_state).toBe("already_have");
+    expect(line(loadedPasta, "pasta", "oz").line_id).toBe("sl_dp_pasta_night_pasta_oz");
+    expect(line(loadedPasta, "milk", "cup").quantity).toBe(0.125);
+    expect(line(loadedSecond, "stock", "cup").list_state).toBe("open");
+
+    const swapped = mutate(loadedPasta, {
+      op: "swap_meal",
+      meal_id: loadedPasta.meals.find((meal) => meal.recipe_version_id === "rv_flour_v1").meal_id,
+      recipe_version_id: "rv_salt_v1",
+    }, ctx, "2026-10-04T13:20:00.000Z");
+    expect(swapped.ok).toBe(true);
+    await saveDinnerPlan(db, swapped.plan);
+    loadedPasta = await loadDinnerPlan(db, "dp_pasta_night");
+    loadedSecond = await loadDinnerPlan(db, "dp_second_night");
+    expect(line(loadedPasta, "pasta", "oz").list_state).toBe("already_have");
+    expect(line(loadedPasta, "pasta", "oz").still_needed).toBe(true);
+    expect(line(loadedPasta, "flour", "cup").list_state).toBe("purchased");
+    expect(line(loadedPasta, "flour", "cup").still_needed).toBe(false);
+    expect(line(loadedPasta, "salt", "tsp").still_needed).toBe(true);
+    expect(line(loadedPasta, "milk", "cup").quantity).toBe(0.125);
+    expect(line(loadedPasta, "olive-oil", "tbsp")).toBeTruthy();
+    expect(loadedSecond.shop_lines.map(lineIdentity).sort()).toEqual(secondIds);
+    expect(sqlite.prepare("SELECT COUNT(*) AS c FROM dinner_shop_line").get().c).toBe(
+      loadedPasta.shop_lines.length + loadedSecond.shop_lines.length
+    );
+    sqlite.close();
+  });
+
+  it("rolls back a failed line rebuild and leaves the stored list whole", async () => {
+    const sqlite = migrate();
+    const db = asD1(sqlite);
+    insertHousehold(sqlite, "hh_fw_c3_shop", "synthetic");
+    insertMember(sqlite, "hh_fw_c3_shop", "ana");
+    const ctx = withVersions({
+      household_member_ids: ["ana"],
+      actor_member_id: "ana",
+      data_origin: "synthetic",
+    });
+    const created = createDinnerPlan(
+      {
+        dinner_plan_id: "dp_pasta_night",
+        household_id: "hh_fw_c3_shop",
+        meal_count: 1,
+        entry_point: "plan_dinners",
+        participant_ids: ["ana"],
+        meals: [recipeMeal("rv_pasta_v1", ["ana"])],
+      },
+      ctx
+    );
+    await saveDinnerPlan(db, created.plan);
+    const before = sqlite.prepare(
+      `SELECT line_id, ingredient_id, unit, quantity, list_state FROM dinner_shop_line
+       WHERE dinner_plan_id = 'dp_pasta_night' ORDER BY ingredient_id, unit`
+    ).all();
+    expect(before.map((row) => row.ingredient_id)).toEqual(["milk", "olive-oil", "pasta"]);
+    const loaded = await loadDinnerPlan(db, "dp_pasta_night");
+    loaded.meals[0].title = "Truncated pasta";
+    loaded.shop_lines = loaded.shop_lines.map((row) => ({ ...row, list_state: "purchased" }));
+    const failing = asD1(sqlite, { failLineInsertAt: 1 });
+    await expect(saveDinnerPlan(failing, loaded)).rejects.toThrow("forced_line_insert_failure");
+    const after = sqlite.prepare(
+      `SELECT line_id, ingredient_id, unit, quantity, list_state FROM dinner_shop_line
+       WHERE dinner_plan_id = 'dp_pasta_night' ORDER BY ingredient_id, unit`
+    ).all();
+    expect(after).toEqual(before);
+    expect(sqlite.prepare("SELECT title FROM dinner_plan_meal WHERE dinner_plan_id = 'dp_pasta_night'").get().title).toBe("Pasta dinner");
+    sqlite.close();
+  });
+});
 
 describe("persistence and authorization", () => {
   it("round-trips purchased and already-have lines", async () => {

@@ -1,11 +1,10 @@
 /**
  * Persist a dinner plan. The document from plan-mutations is the authority.
  * Child rows are replaced from that document. Legacy `plan` rows are not used.
+ * The whole write is one D1 batch, which commits as a single transaction.
  */
 
-function bindRun(db, sql, params) {
-  return db.prepare(sql).bind(...params).run();
-}
+import { scopeShopLineIds } from "./plan-mutations.js";
 
 function bindGet(db, sql, params) {
   return db.prepare(sql).bind(...params).first();
@@ -161,11 +160,19 @@ export async function loadDinnerPlan(db, dinnerPlanId) {
 }
 
 export async function saveDinnerPlan(db, plan) {
+  scopeShopLineIds(plan);
   const existing = await bindGet(
     db,
     "SELECT dinner_plan_id FROM dinner_plan WHERE dinner_plan_id = ?",
     [plan.dinner_plan_id]
   );
+  if (typeof db.batch !== "function") {
+    throw new Error("dinner_plan_save_requires_transaction");
+  }
+  const statements = [];
+  const add = (sql, params) => {
+    statements.push(db.prepare(sql).bind(...params));
+  };
   const parent = [
     plan.status,
     plan.meal_count,
@@ -179,8 +186,7 @@ export async function saveDinnerPlan(db, plan) {
     plan.dinner_plan_id,
   ];
   if (!existing) {
-    await bindRun(
-      db,
+    add(
       `INSERT INTO dinner_plan
         (dinner_plan_id, household_id, status, meal_count, entry_point, intent_json,
          shopping_started_at, data_origin, created_by_member_id, finalized_by_member_id,
@@ -203,8 +209,7 @@ export async function saveDinnerPlan(db, plan) {
       ]
     );
   } else {
-    await bindRun(
-      db,
+    add(
       `UPDATE dinner_plan
        SET status = ?, meal_count = ?, entry_point = ?, intent_json = ?, shopping_started_at = ?,
            data_origin = ?, finalized_by_member_id = ?, finalized_at = ?, updated_at = ?
@@ -212,13 +217,12 @@ export async function saveDinnerPlan(db, plan) {
       parent
     );
   }
-  await bindRun(db, "DELETE FROM dinner_shop_delta WHERE dinner_plan_id = ?", [plan.dinner_plan_id]);
-  await bindRun(db, "DELETE FROM dinner_shop_line WHERE dinner_plan_id = ?", [plan.dinner_plan_id]);
-  await bindRun(db, "DELETE FROM dinner_plan_vote WHERE dinner_plan_id = ?", [plan.dinner_plan_id]);
-  await bindRun(db, "DELETE FROM dinner_plan_meal WHERE dinner_plan_id = ?", [plan.dinner_plan_id]);
+  add("DELETE FROM dinner_shop_delta WHERE dinner_plan_id = ?", [plan.dinner_plan_id]);
+  add("DELETE FROM dinner_shop_line WHERE dinner_plan_id = ?", [plan.dinner_plan_id]);
+  add("DELETE FROM dinner_plan_vote WHERE dinner_plan_id = ?", [plan.dinner_plan_id]);
+  add("DELETE FROM dinner_plan_meal WHERE dinner_plan_id = ?", [plan.dinner_plan_id]);
   for (const meal of plan.meals || []) {
-    await bindRun(
-      db,
+    add(
       `INSERT INTO dinner_plan_meal
         (meal_id, dinner_plan_id, position, kind, state, scheduled_date, recipe_slug, recipe_id,
          recipe_version_id, version_number, cooked_recipe_version_id, title, base_servings,
@@ -250,16 +254,14 @@ export async function saveDinnerPlan(db, plan) {
       ]
     );
     for (const memberId of meal.participant_ids || []) {
-      await bindRun(
-        db,
+      add(
         `INSERT INTO dinner_plan_participant (meal_id, member_id, household_id, active)
          VALUES (?, ?, ?, 1)`,
         [meal.meal_id, memberId, plan.household_id]
       );
     }
     for (const rating of meal.ratings || []) {
-      await bindRun(
-        db,
+      add(
         `INSERT INTO dinner_plan_rating
           (rating_id, meal_id, dinner_plan_id, household_id, member_id, recipe_version_id, score,
            data_origin, created_at, updated_at)
@@ -280,8 +282,7 @@ export async function saveDinnerPlan(db, plan) {
     }
   }
   for (const line of plan.shop_lines || []) {
-    await bindRun(
-      db,
+    add(
       `INSERT INTO dinner_shop_line
         (line_id, dinner_plan_id, ingredient_id, display_name, preparation, unit, quantity,
          list_state, still_needed, surplus_quantity, meal_ids_json, created_at, updated_at)
@@ -304,8 +305,7 @@ export async function saveDinnerPlan(db, plan) {
     );
   }
   for (const delta of plan.shop_deltas || []) {
-    await bindRun(
-      db,
+    add(
       `INSERT INTO dinner_shop_delta
         (delta_id, dinner_plan_id, kind, ingredient_id, display_name, unit, quantity, meal_id, created_at)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -323,8 +323,7 @@ export async function saveDinnerPlan(db, plan) {
     );
   }
   for (const vote of plan.votes || []) {
-    await bindRun(
-      db,
+    add(
       `INSERT INTO dinner_plan_vote
         (vote_id, dinner_plan_id, meal_id, household_id, member_id, data_origin, created_at)
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
@@ -339,6 +338,7 @@ export async function saveDinnerPlan(db, plan) {
       ]
     );
   }
+  await db.batch(statements);
 }
 
 export async function householdMemberIds(db, householdId) {

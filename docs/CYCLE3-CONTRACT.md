@@ -62,6 +62,14 @@ After that timestamp, the same mutations must not silently rewrite the list. The
 
 Already-have and purchased are list states. There is no pantry table, no Instacart link, no price, and no aisle lookup. Current recipe metadata has no honest grocery area, so the list is ordered by ingredient id and unit.
 
+### Line identity and saving
+
+A shopping line id is `sl_`, the dinner plan id, the ingredient id, and the unit, joined by underscores. The ingredient id and the unit are lowercased, and any character outside `a-z` and `0-9` becomes a hyphen. The dinner plan id is stored as it is. The same ingredient and unit on two plans are two different ids. `dinner_shop_line.line_id` is the primary key of that table for the whole database, so an id built only from the ingredient and the unit is not issued.
+
+`set_line_state` still finds a line saved under that older id. The save that follows writes the plan-scoped id.
+
+`saveDinnerPlan` replaces a plan's lines inside one `db.batch` with the rest of that save. D1 runs a batch as one transaction. A failed insert leaves the previous lines in place. Checking a line, marking already-have, or swapping a meal after shopping has started keeps every line that still belongs on that plan. A second dinner plan in the same household saves its own full list.
+
 ### Mutations
 
 All of these go through `applyPlanMutation`. Nothing else writes the list.
