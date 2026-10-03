@@ -133,7 +133,18 @@ Votes use `dinner_plan_vote`. `votes_required` is always false. `finalize` recor
 
 ## Ingredients
 
-`canonicalIngredient` lowercases the name, strips a leading or trailing prep word (diced, chopped, minced, sliced, grated, shredded, crushed, julienned, halved, quartered), and slugs the rest. The prep words and the recipe note are `preparation`. They are not part of the id. This is not a grocery ontology: "yellow onion" and "onion" stay different.
+`canonicalIngredient` lowercases the name, strips a leading or trailing prep word (diced, chopped, minced, sliced, grated, shredded, crushed, julienned, halved, quartered), and slugs the rest. The prep words and the recipe note are `preparation`. They are not part of the id.
+
+### Shopping ingredient aliases
+
+Obvious forms of the same purchasable item aggregate on one shopping id. Prep still becomes `preparation`; it does not fork the line. This is a small explicit map in `SHOPPING_INGREDIENT_ALIASES`, not an ontology. Pairs are added only when the current 24-recipe catalog actually uses both strings for the same buy.
+
+| Recipe strings (after prep strip) | Shopping `ingredient_id` |
+|-----------------------------------|--------------------------|
+| `yellow onion` | `onion` |
+| `diced onion`, `onion` | `onion` (prep strip only) |
+
+Not aliased (different products or only one catalog string): `pickled red onion`, `green onions`, `olive oil` vs `neutral oil`, `sesame oil`, `garlic powder` vs `garlic`, `soy sauce` vs `fish sauce`, `lime` vs `lemon`.
 
 Lines aggregate only when the canonical id and the normalized unit match. `tablespoon` and `tbsp` match. `cup` and `cups` match. `tbsp` and `cup` do not. Counts match counts. Unparsed quantities are not added together into a fake number.
 

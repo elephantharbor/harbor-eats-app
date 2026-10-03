@@ -61,6 +61,14 @@ const UNIT_ALIASES = {
   serving: "serving",
 };
 
+/**
+ * Same purchasable item, different recipe strings in the 24-meal catalog.
+ * Not a grocery ontology — do not alias distinct products (oils, sauces, citrus).
+ */
+export const SHOPPING_INGREDIENT_ALIASES = {
+  "yellow-onion": "onion",
+};
+
 export function roundQuantity(value) {
   return Math.round(Number(value) * 1000) / 1000;
 }
@@ -94,13 +102,14 @@ export function canonicalIngredient(name, note = null) {
   while (words.length > 1 && PREP_WORDS.has(words[0])) preps.push(words.shift());
   while (words.length > 1 && PREP_WORDS.has(words[words.length - 1])) preps.push(words.pop());
   const display = words.join(" ");
-  const ingredient_id = display
+  const slugged = display
     .normalize("NFKD")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+  const ingredient_id = SHOPPING_INGREDIENT_ALIASES[slugged] || slugged || "unknown";
   const preparation = [...new Set(preps.filter(Boolean))].sort().join(", ") || null;
   return {
-    ingredient_id: ingredient_id || "unknown",
+    ingredient_id,
     display_name: display || String(name || ""),
     preparation,
   };

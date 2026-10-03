@@ -267,6 +267,8 @@ describe("participants, limits, and versions", () => {
     expect(scaleForDiners(pin, 4, 2).map((item) => item.quantity)).toEqual([2, 2]);
     expect(scaleForDiners(pin, 4, 3).map((item) => item.quantity)).toEqual([3, 3]);
     expect(scaleForDiners(pin, 4, 4).map((item) => item.quantity)).toEqual([4, 4]);
+    const quarterCup = scaleForDiners([{ name: "milk", quantity: 1, unit: "cup" }], 4, 3);
+    expect(quarterCup[0].quantity).toBe(0.75);
     const { created } = makePlan([
       recipeMeal("rv_flour_v1", ["ana"]),
       recipeMeal("rv_flour_v1", ["ana", "bo"]),
@@ -289,15 +291,18 @@ describe("participants, limits, and versions", () => {
       { name: "olive oil", quantity: 1, unit: "cup", meal_id: "m3" },
       { name: "diced onion", quantity: 1, unit: "count", note: null, meal_id: "m4" },
       { name: "onion", quantity: 2, unit: "count", note: "sliced", meal_id: "m5" },
+      { name: "yellow onion", quantity: 1, unit: "count", note: "diced", meal_id: "m6" },
     ]);
     const oilSpoons = rows.find((row) => row.ingredient_id === "olive-oil" && row.unit === "tbsp");
     const oilCups = rows.find((row) => row.ingredient_id === "olive-oil" && row.unit === "cup");
     const onion = rows.find((row) => row.ingredient_id === "onion");
     expect(oilSpoons.quantity).toBe(3);
     expect(oilCups.quantity).toBe(1);
-    expect(onion.quantity).toBe(3);
+    expect(onion.quantity).toBe(4);
     expect(onion.preparation).toContain("sliced");
+    expect(onion.preparation).toContain("diced");
     expect(canonicalIngredient("diced onion").ingredient_id).toBe("onion");
+    expect(canonicalIngredient("yellow onion", "diced").ingredient_id).toBe("onion");
     expect(rows.every((row) => row.grocery_area == null)).toBe(true);
   });
 
@@ -386,6 +391,33 @@ describe("shopping started", () => {
     const mode = mutate(restored.created.plan, { op: "start_shopping" }, restored.ctx, "2026-10-04T12:30:00.000Z");
     expect(mode.plan.shopping_started_at).toBe("2026-10-04T12:30:00.000Z");
     expect(mode.plan.shop_lines.every((row) => row.list_state === "open")).toBe(true);
+  });
+
+  it("keeps purchased and already-have marks when a meal is swapped after shopping started", () => {
+    const { created, ctx } = makePlan([
+      recipeMeal("rv_flour_v1", ["ana"]),
+      recipeMeal("rv_oil_v1", ["ana"]),
+    ], { participant_ids: ["ana"] });
+    const plan = created.plan;
+    const flourLine = line(plan, "flour", "cup");
+    const stockLine = line(plan, "stock", "cup");
+    const started = mutate(plan, { op: "set_line_state", line_id: flourLine.line_id, list_state: "purchased" }, ctx);
+    const marked = mutate(started.plan, {
+      op: "set_line_state",
+      line_id: stockLine.line_id,
+      list_state: "already_have",
+    }, ctx, "2026-10-04T13:05:00.000Z");
+    const swapped = mutate(marked.plan, {
+      op: "swap_meal",
+      meal_id: plan.meals[1].meal_id,
+      recipe_version_id: "rv_salt_v1",
+    }, ctx, "2026-10-04T13:10:00.000Z");
+    expect(swapped.ok).toBe(true);
+    expect(line(swapped.plan, "flour", "cup").list_state).toBe("purchased");
+    expect(line(swapped.plan, "stock", "cup").list_state).toBe("already_have");
+    expect(line(swapped.plan, "stock", "cup").still_needed).toBe(false);
+    expect(swapped.plan.shop_deltas.some((delta) => delta.kind === "no_longer_needed" && delta.ingredient_id === "stock")).toBe(true);
+    expect(swapped.plan.shop_deltas.some((delta) => delta.kind === "added" && delta.ingredient_id === "salt")).toBe(true);
   });
 });
 
