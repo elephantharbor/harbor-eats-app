@@ -147,7 +147,13 @@
               <p class="lede">Usually a couple or small crew — just the people who eat together.</p>
               <label class="field">
                 <span class="field__label">Kitchen name</span>
-                <input type="text" id="hhName" value="" placeholder="e.g. Alex &amp; Jordan" maxlength="48" autocomplete="off" />
+                <input type="text" id="hhName" value="" placeholder="e.g. The Parker Table" maxlength="48" autocomplete="off" aria-describedby="hhNameError" />
+                <span class="field__error" id="hhNameError" hidden>Give your kitchen a name — “Casa Parker” works, so does “Taco Tuesday HQ.”</span>
+              </label>
+              <label class="field">
+                <span class="field__label">Your name</span>
+                <input type="text" id="ownerName" value="" placeholder="What your table calls you" maxlength="32" autocomplete="given-name" aria-describedby="ownerNameError" />
+                <span class="field__error" id="ownerNameError" hidden>Add your name so your ratings land with you, not the kitchen.</span>
               </label>
               <div class="flow__actions">
                 <button class="btn btn-primary btn-lg wide" type="button" id="btnCreateHh">Continue</button>
@@ -203,7 +209,7 @@
               <h1 class="title" id="constraintsTitle">Diet limits</h1>
               <p class="lede">Allergies and absolute no’s. Yours alone — never copied onto anyone else.</p>
               <div class="check-grid" id="constraints" role="group" aria-labelledby="constraintsTitle"></div>
-              <p class="hint">Hard limits always win. Soft likes come next (optional).</p>
+              <p class="hint">Hard limits always win — a like can never sneak something back in. Fish stays on the menu unless you switch on No fish.</p>
               <div class="flow__actions">
                 <button class="btn btn-primary btn-lg wide" type="button" data-go="taste">Continue</button>
               </div>
@@ -225,7 +231,7 @@
               </div>
               <p class="eyebrow">Step 4 of 6 · optional</p>
               <h1 class="title" id="tasteTitle">A few sparks?</h1>
-              <p class="lede">Pick up to 3 vibes — or skip. We learn the rest after you cook and rate.</p>
+              <p class="lede">Pick up to 3 vibes — or skip. These are likes, not limits. We learn the rest after you cook and rate.</p>
               <div class="chip-grid" id="tasteSparks" role="group" aria-labelledby="tasteTitle"></div>
               <p class="hint" id="sparkHint" aria-live="polite">0 of 3 selected</p>
               <div class="flow__actions">
@@ -245,10 +251,10 @@
           <div class="flow page page--wide">
             <div class="flow__main">
               <div class="flow__top">
-                <button class="back" type="button" data-go="taste"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> Back</button>
-                <div class="progress-dots" data-step="5" aria-hidden="true"></div>
+                <button class="back" type="button" data-go="taste" data-back="invite"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> <span class="back__label">Back</span></button>
+                <div class="progress-dots" data-step="5" aria-hidden="true" id="inviteProgress"></div>
               </div>
-              <p class="eyebrow">Step 5 of 6</p>
+              <p class="eyebrow" id="inviteEyebrow">Step 5 of 6</p>
               <h1 class="title" id="inviteTitle">Invite someone to cook with</h1>
               <p class="lede" id="inviteLede">They set their own limits. Everyone in your household sees the same picks tonight.</p>
               <div class="card card--quiet invite-code-card">
@@ -272,6 +278,7 @@
                 <button class="btn btn-primary btn-lg wide" type="button" id="btnSendInvite">Send invite</button>
                 <button class="btn btn-quiet wide" type="button" id="btnSkipInvite">Skip — show tonight’s picks</button>
               </div>
+              <p class="hint" id="inviteKeepsNote" hidden>Your kitchen, limits, and likes stay exactly as they are. Inviting just adds a seat at the table.</p>
             </div>
             <aside class="flow__aside" aria-hidden="true">
               <img src="/images/meals/peanut-noodle-stir-fry.webp" alt="" width="1200" height="900" loading="lazy" />
@@ -317,9 +324,11 @@
           <div class="page page--wide">
             <header class="page-head">
               <div>
-                <p class="eyebrow">Tonight’s picks</p>
+                <p class="eyebrow" id="choicesEyebrow">Tonight’s picks</p>
                 <h1 class="title" id="choicesTitle">Which should we make?</h1>
                 <p class="lede" id="choiceStripText">Options that fit your crew. Tap one — or send the set.</p>
+                <p class="round-note" id="choicesRoundNote" hidden></p>
+                <div class="actions" id="choicesActions" hidden></div>
               </div>
             </header>
             <div class="weave-loader" id="choiceLoading" hidden aria-live="polite">
@@ -530,7 +539,7 @@
         <!-- RECIPE DETAIL -->
         <section class="view" data-view="detail" aria-labelledby="detailTitle">
           <div class="page page--wide">
-            <button class="back" type="button" data-go="home"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> Home</button>
+            <button class="back" type="button" data-go="home" data-back="detail"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> <span class="back__label">Home</span></button>
             <div class="recipe">
               <div class="recipe__media meal-media" id="detailMedia">
                 <span class="meal-media__fallback" id="detailPlate" aria-hidden="true">🍽️</span>
@@ -541,6 +550,7 @@
                 <div class="badges" id="detailChips">
                   <span class="badge badge--fit" id="detailLockChip">Fits your household</span>
                 </div>
+                <p class="pick-state" id="detailPickState" aria-live="polite"></p>
                 <div class="tabs" id="detailTabs">
                   <div class="tab-list" role="tablist" aria-label="Recipe sections">
                     <button type="button" class="tab-btn" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true">Overview</button>
@@ -624,7 +634,7 @@
         <!-- RATINGS 1–10 PER DINER -->
         <section class="view" data-view="rate" aria-labelledby="rateTitle">
           <div class="page page--medium">
-            <button class="back" type="button" data-go="finished"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> Back</button>
+            <button class="back" type="button" data-go="finished" data-back="rate"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> <span class="back__label">Back</span></button>
             <header class="page-head page-head--center">
               <div>
                 <p class="eyebrow">How was dinner?</p>
@@ -653,8 +663,10 @@
             <ul class="loop-check" id="loopSummary"></ul>
             <p class="meta" id="loopAttr" hidden></p>
             <div class="actions actions--center">
-              <button class="btn btn-primary btn-lg" type="button" data-go="home">Back home</button>
+              <button class="btn btn-primary btn-lg" type="button" data-action="next-dinner">Find our next dinner <svg class="icon icon--forward" aria-hidden="true"><use href="#i-arrow-right" /></svg></button>
+              <button class="btn btn-secondary btn-lg" type="button" data-go="home">Back home</button>
             </div>
+            <p class="hint">Tonight’s dinner and its ratings stay in History. The next round starts fresh.</p>
           </div>
         </section>
 
@@ -674,15 +686,20 @@
                 <span class="avatar avatar--lg">Y</span>
                 <div>
                   <strong>You</strong>
-                  <div class="chip-row"><span class="chip">Dairy-free</span><span class="chip">No meat*</span><span class="chip">Nuts except cashew</span></div>
+                  <p class="demo-diner__kind">Hard limits</p>
+                  <div class="chip-row"><span class="chip">No dairy</span><span class="chip">No meat or poultry</span><span class="chip">No nuts · cashews OK</span></div>
+                  <p class="demo-diner__kind">Likes</p>
+                  <div class="chip-row"><span class="chip chip--soft">Fish dinners</span></div>
                 </div>
               </div>
               <div class="card demo-diner">
                 <span class="avatar avatar--lg avatar--alt">S</span>
                 <div>
                   <strong>Someone else</strong>
-                  <div class="chip-row"><span class="chip">No shellfish</span><span class="chip chip--soft">Low spice preferred†</span></div>
-                  <p class="meta">† Soft preference — not a hard limit.</p>
+                  <p class="demo-diner__kind">Hard limits</p>
+                  <div class="chip-row"><span class="chip">No shellfish</span></div>
+                  <p class="demo-diner__kind">Likes</p>
+                  <div class="chip-row"><span class="chip chip--soft">Gentle heat</span></div>
                 </div>
               </div>
               <div class="card card--accent demo-result">
@@ -693,7 +710,7 @@
                 </div>
               </div>
             </div>
-            <p class="hint" id="demoFishHint">*Fish is fine when your household allows it. Soft likes never override hard limits.</p>
+            <p class="hint" id="demoFishHint">Fish stays on the menu unless someone switches on No fish. Likes reorder the picks; they never override a hard limit.</p>
           </div>
         </section>
       </main>
@@ -719,6 +736,7 @@
   </div>
   <script src="/meal-media.js"></script>
   <script src="/meal-identity.js"></script>
+  <script src="/nav-context.js"></script>
   <script src="/app.js"></script>
   <script>
     if ("serviceWorker" in navigator) {

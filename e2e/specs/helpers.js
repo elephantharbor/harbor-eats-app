@@ -2,6 +2,7 @@
 export async function skipToChoices(page) {
   await page.getByRole("button", { name: "Get started" }).click();
   await page.locator("#hhName").fill("E2E Kitchen");
+  await page.locator("#ownerName").fill("Alex");
   await page.locator("#btnCreateHh").click();
   await page.locator("#newMemberName").fill("Partner");
   await page.getByRole("button", { name: "Add person" }).click();

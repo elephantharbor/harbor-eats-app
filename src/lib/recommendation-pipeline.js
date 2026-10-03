@@ -4,7 +4,7 @@
 
 import { filterEligibleOptions } from "./eligibility.js";
 import { gatherCandidates, catalogMealToOption } from "./candidate-providers.js";
-import { scoreMealsForHousehold } from "./taste-model.js";
+import { dedupeExplanations, scoreMealsForHousehold } from "./taste-model.js";
 import { validateChoiceSetDiversity } from "./catalog-quality.js";
 
 /**
@@ -42,7 +42,7 @@ export function buildRankedChoiceSet(rec) {
   const count = Math.min(5, Math.max(3, rec.settings.meal_choice_count || 3));
   scored = applyChoiceSetDiversity(scored, count, rec.recent_recipe_slugs);
 
-  return scored;
+  return dedupeExplanations(scored);
 }
 
 /**

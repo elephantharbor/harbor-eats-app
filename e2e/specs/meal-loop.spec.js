@@ -7,7 +7,8 @@ test("meal loop: select → cook → rate", async ({ page, context }) => {
   await page.goto("/");
   await page.evaluate(() => localStorage.clear());
   await skipToChoices(page);
-  await page.locator(".option-card[data-select]").first().click();
+  await page.locator(".option-card[data-preview]").first().click();
+  await page.locator("#btnStartCook").click();
   await page.getByRole("button", { name: "Start cooking" }).click();
   for (let i = 0; i < 5; i++) {
     const finish = page.getByRole("button", { name: "Finish" });

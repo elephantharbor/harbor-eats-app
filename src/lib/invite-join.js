@@ -5,6 +5,7 @@
 import { validateInviteForHousehold } from "./auth.js";
 import { createMemberSession } from "./session.js";
 import { sessionClearCookieHeader } from "./cookies.js";
+import { constraintRowsFromKeys } from "./eligibility.js";
 
 function slugMemberId(display_name) {
   const base =
@@ -107,18 +108,17 @@ export async function joinHouseholdViaInvite(db, input, opts = {}) {
   }
 
   if (Array.isArray(input.constraint_keys) && input.constraint_keys.length) {
-    for (const key of input.constraint_keys) {
-      if (!key || key === "none") continue;
+    for (const row of constraintRowsFromKeys(input.constraint_keys)) {
       const constraint_id = `cr_${crypto.randomUUID().replace(/-/g, "").slice(0, 12)}`;
       await db
         .prepare(
           `INSERT INTO constraint_rule
             (constraint_id, household_id, member_id, rule_key, status, includes_json, note, created_at, updated_at)
-           VALUES (?, ?, ?, ?, 'prohibited', NULL, NULL, ?, ?)
+           VALUES (?, ?, ?, ?, ?, NULL, NULL, ?, ?)
            ON CONFLICT(household_id, member_id, rule_key) DO UPDATE SET
-             status = 'prohibited', updated_at = excluded.updated_at`
+             status = excluded.status, updated_at = excluded.updated_at`
         )
-        .bind(constraint_id, inv.household_id, member_id, key, ts, ts)
+        .bind(constraint_id, inv.household_id, member_id, row.rule_key, row.status, ts, ts)
         .run();
     }
   }

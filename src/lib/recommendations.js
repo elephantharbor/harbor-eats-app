@@ -166,14 +166,16 @@ export async function loadMealHistory(db, household_id, limit = 20) {
 export function scoredToPlanOptions(scored, plan_id) {
   return scored.map((row) => {
     const opt = catalogMealToOption(row.meal, row.letter, plan_id);
+    const kind = row.explanation.kind || null;
     const persType =
-      row.explanation.label === "Trying something new"
+      kind === "exploration" || row.explanation.label === "Something new"
         ? "new"
-        : row.explanation.label === "Likely crowd-pleaser"
+        : kind === "repeat_success"
           ? "favorite"
           : "why";
     opt.attributes_json.pers = {
       type: persType,
+      kind,
       label: row.explanation.label,
       line: row.explanation.line,
       confidence: row.explanation.confidence,
