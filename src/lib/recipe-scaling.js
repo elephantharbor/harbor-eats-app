@@ -73,6 +73,31 @@ function formatAmount(n, unitHint = "") {
   return v.toFixed(1).replace(/\.0$/, "");
 }
 
+const PLURAL_TO_SINGULAR = {
+  cups: "cup",
+  tablespoons: "tablespoon",
+  teaspoons: "teaspoon",
+  cloves: "clove",
+  cans: "can",
+};
+
+/**
+ * @param {string} amountFormatted
+ * @param {string} rest
+ */
+function applyUnitGrammar(amountFormatted, rest) {
+  if (!rest) return rest;
+  const num = parseAmount(amountFormatted);
+  if (num !== 1) return rest;
+  const parts = rest.trim().split(/\s+/);
+  const unitKey = parts[0].toLowerCase();
+  if (PLURAL_TO_SINGULAR[unitKey]) {
+    parts[0] = PLURAL_TO_SINGULAR[unitKey];
+    return parts.join(" ");
+  }
+  return rest;
+}
+
 /**
  * @param {string|undefined} quantity
  * @param {number} ratio
@@ -97,7 +122,8 @@ export function scaleIngredientQuantity(quantity, ratio, ingredientName = "") {
   if (base == null) return q;
   const scaled = base * ratio;
   const formatted = formatAmount(scaled, `${rest} ${ingredientName}`);
-  return rest ? `${formatted} ${rest}` : formatted;
+  const unitRest = rest ? applyUnitGrammar(formatted, rest) : rest;
+  return unitRest ? `${formatted} ${unitRest}` : formatted;
 }
 
 /**

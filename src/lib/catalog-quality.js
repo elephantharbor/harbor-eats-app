@@ -1,10 +1,12 @@
 /**
  * Automated recipe / catalog quality checks — CI fails on violations.
+ * Structural validation only; not kitchen-tested cooking evidence.
  */
 
 import { MEAL_CONCEPTS } from "./recipe-store.js";
 import { MEAL_CATALOG } from "./meal-catalog.js";
 import { filterEligibleOptions } from "./eligibility.js";
+import { scaleRecipeVersion } from "./recipe-scaling.js";
 
 const VALID_DIETARY = new Set([
   "plant",
@@ -32,8 +34,169 @@ const ALLERGEN_CONFLICTS = [
   { tag: "plant", forbiddenIngredient: /chicken|salmon|shrimp|cod|char|fish fillet|arctic char/i },
 ];
 
+const PANTRY_OK_WITHOUT_QTY = /^(salt|pepper|black pepper|water)$/i;
+
+const HEAT_TIME =
+  /(\d+\s*°\s*[FC]|medium[- ]?high|medium[- ]?low|high heat|low heat|simmer|boil|broil|bake at|air fry|grill|roast at|pan-fry|sear|sauté|saute)/i;
+
+const TIME_OR_DONE =
+  /(\d+\s*[–-]\s*\d+\s*min|\d+\s*min|until [a-z]|until golden|until crisp|until tender|until pink|until opaque|until thickened|until al dente|until wilted|until soft|165°F|flakes easily|al dente)/i;
+
+const DONENESS_PROTEIN = /(tofu|salmon|shrimp|chicken|cod|char|fish fillet|arctic char|white fish)/i;
+
+const COMPOUND_NAME =
+  /(crema|pesto|slaw mix|pickled|preserved|salsa|harissa paste|chipotle in adobo|shawarma spice|adobo|spice blend)/i;
+
+const COMPOUND_OK_NOTE = /(store-bought|prepared|pre-shredded|package|bottled|blend|whisk|mix|make|or \d)/i;
+
+const NON_COOKING_STEP =
+  /^(serve|assemble|plate|rest|top|build tacos|cut into|layer|spoon|open carefully|toss & serve|toss pasta|finish & serve)$/i;
+
+const OIL_IN_STEP = /\bin oil\b|with oil|oiled skillet|oiled pan|drizzle of oil/i;
+
+const BAD_UNIT_GRAMMAR = /^1 (cups|tablespoons|teaspoons|cloves|cans|ozs)\b/i;
+
 function ingredientNames(concept) {
   return concept.current_version.ingredients.map((i) => i.name.toLowerCase());
+}
+
+function refMatchesIngredient(names, ref) {
+  const r = ref.toLowerCase().trim();
+  if (!r) return true;
+  return names.some((n) => n.includes(r) || r.includes(n.split(/\s+/)[0]));
+}
+
+function stepNeedsCookingGuidance(step) {
+  const title = (step.title || "").trim();
+  if (NON_COOKING_STEP.test(title)) return false;
+  if (/^(finish|dress|make sauce|fill|glaze|warm|mash|season|spice|pack|blend|press|marinate)$/i.test(title)) {
+    return /cook|roast|simmer|sauté|saute|bake|grill|fry|sear|boil|steam|whisk polenta|brown|crisp|pan-fry|air fry/i.test(
+      step.body || ""
+    );
+  }
+  return /cook|roast|simmer|sauté|saute|bake|grill|fry|sear|boil|steam|brown|crisp|pan-fry|air fry|stir-fry|dredge|marinate|grill|steam bake/i.test(
+    `${title} ${step.body || ""}`
+  );
+}
+
+function stepNeedsDoneness(step, ingredientRefs) {
+  const refs = (ingredientRefs || []).join(" ");
+  if (!DONENESS_PROTEIN.test(refs) && !DONENESS_PROTEIN.test(step.body || "")) return false;
+  return !/(until|opaque|pink|golden|crisp|flakes|165°F|al dente|tender-crisp|deep golden|done)/i.test(step.body || "");
+}
+
+/**
+ * FW-03 executable recipe completeness (structural).
+ * @returns {{ ok: boolean, errors: string[] }}
+ */
+export function validateRecipeCompleteness() {
+  /** @type {string[]} */
+  const errors = [];
+
+  for (const c of MEAL_CONCEPTS) {
+    const v = c.current_version;
+    const slug = c.concept_id;
+    const names = ingredientNames(c);
+
+    for (const ing of v.ingredients) {
+      const q = (ing.quantity || "").trim();
+      if (!q && !PANTRY_OK_WITHOUT_QTY.test(ing.name)) {
+        errors.push(`${slug}: ingredient "${ing.name}" missing quantity`);
+      } else if (q && !/for serving/i.test(q) && !/^[\d½¼¾⅓⅔⅛(]/.test(q)) {
+        if (!PANTRY_OK_WITHOUT_QTY.test(ing.name)) {
+          errors.push(`${slug}: ingredient "${ing.name}" needs numeric quantity (got "${q}")`);
+        }
+      }
+      if (COMPOUND_NAME.test(ing.name)) {
+        const note = ing.note || "";
+        const explainedInSteps = (v.steps || []).some(
+          (s) =>
+            COMPOUND_OK_NOTE.test(s.body || "") &&
+            (s.body || "").toLowerCase().includes(ing.name.split(/\s+/)[0].toLowerCase())
+        );
+        if (!COMPOUND_OK_NOTE.test(note) && !explainedInSteps) {
+          errors.push(
+            `${slug}: compound ingredient "${ing.name}" needs store-bought/prep note or step guidance`
+          );
+        }
+      }
+    }
+
+    for (const step of v.steps) {
+      for (const ref of step.ingredient_refs || []) {
+        if (!refMatchesIngredient(names, ref)) {
+          errors.push(`${slug}: step "${step.title}" references missing ingredient "${ref}"`);
+        }
+      }
+      if (OIL_IN_STEP.test(step.body || "")) {
+        const hasOil = v.ingredients.some((i) => /oil/i.test(i.name));
+        if (!hasOil) errors.push(`${slug}: step "${step.title}" uses oil but oil is not listed`);
+      }
+      if (stepNeedsCookingGuidance(step)) {
+        if (!HEAT_TIME.test(step.body || "") && !TIME_OR_DONE.test(step.body || "")) {
+          errors.push(`${slug}: step "${step.title}" missing heat or time/doneness guidance`);
+        }
+        if (stepNeedsDoneness(step, step.ingredient_refs)) {
+          errors.push(`${slug}: step "${step.title}" missing doneness guidance for protein`);
+        }
+      }
+    }
+  }
+
+  return { ok: errors.length === 0, errors };
+}
+
+/**
+ * FW-04 scaled quantity grammar and plausibility for servings 1–4.
+ * @param {number[]} targets
+ */
+export function validateCatalogScaling(targets = [1, 2, 3, 4]) {
+  /** @type {string[]} */
+  const errors = [];
+
+  for (const c of MEAL_CONCEPTS) {
+    const base = c.current_version.servings || 4;
+    for (const n of targets) {
+      if (n < 1 || n > 4) continue;
+      const scaled = scaleRecipeVersion(c.current_version, n);
+      if (scaled.base_servings !== base) {
+        errors.push(`${c.concept_id}@${n}: wrong base_servings`);
+      }
+      if (scaled.requested_servings !== n) {
+        errors.push(`${c.concept_id}@${n}: wrong requested_servings`);
+      }
+      for (const ing of scaled.ingredients || []) {
+        const q = ing.quantity || "";
+        if (BAD_UNIT_GRAMMAR.test(q)) {
+          errors.push(`${c.concept_id}@${n}: bad unit grammar "${q}"`);
+        }
+        if (/^0\s/.test(q) || /^0$/.test(q.trim())) {
+          errors.push(`${c.concept_id}@${n}: zero quantity for ${ing.name}`);
+        }
+      }
+    }
+  }
+
+  return { ok: errors.length === 0, errors };
+}
+
+/** Oct 1 tofu/lime observation — structural lime coverage for chipotle tofu tacos */
+export function validateTofuLimeRegression() {
+  const c = MEAL_CONCEPTS.find((row) => row.concept_id === "crispy-chipotle-tofu-tacos");
+  if (!c) return { ok: false, errors: ["crispy-chipotle-tofu-tacos: missing from catalog"] };
+  const lime = c.current_version.ingredients.find((i) => /^lime$/i.test(i.name));
+  if (!lime || !/^2\b/.test(String(lime.quantity || "").trim())) {
+    return { ok: false, errors: ["crispy-chipotle-tofu-tacos: expected 2 limes in ingredients"] };
+  }
+  const names = ingredientNames(c);
+  for (const step of c.current_version.steps) {
+    for (const ref of step.ingredient_refs || []) {
+      if (/lime/i.test(ref) && !refMatchesIngredient(names, ref)) {
+        return { ok: false, errors: [`crispy-chipotle-tofu-tacos: lime ref broken in "${step.title}"`] };
+      }
+    }
+  }
+  return { ok: true, errors: [] };
 }
 
 /**
@@ -60,8 +223,7 @@ export function validateCatalogQuality() {
     const names = ingredientNames(c);
     for (const step of v.steps) {
       for (const ref of step.ingredient_refs || []) {
-        const found = names.some((n) => n.includes(ref.toLowerCase()));
-        if (!found && ref.length > 2) {
+        if (!refMatchesIngredient(names, ref) && ref.length > 2) {
           errors.push(`${slug}: step "${step.title}" references missing ingredient "${ref}"`);
         }
       }
@@ -143,7 +305,13 @@ export function validateDefaultEligibilityFloor() {
 }
 
 export function runAllCatalogQualityChecks() {
-  const parts = [validateCatalogQuality(), validateDefaultEligibilityFloor()];
+  const parts = [
+    validateCatalogQuality(),
+    validateRecipeCompleteness(),
+    validateCatalogScaling([1, 2, 3, 4]),
+    validateTofuLimeRegression(),
+    validateDefaultEligibilityFloor(),
+  ];
   const errors = parts.flatMap((p) => p.errors);
   return { ok: errors.length === 0, errors };
 }

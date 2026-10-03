@@ -44,7 +44,11 @@
     if (!img) return `<div class="${cls}">${o.inner || ""}${fallback}</div>`;
     const alt = o.decorative ? "" : escapeHtml((meal && (meal.title || meal.name)) || img.alt);
     const loading = o.eager ? 'fetchpriority="high"' : 'loading="lazy"';
-    return `<div class="${cls}"><img src="${img.src}" srcset="${img.srcset}" sizes="${o.sizes || "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 40vw"}" alt="${alt}" width="1200" height="900" decoding="async" ${loading} onerror="this.remove()" />${fallback}${o.inner || ""}</div>`;
+    const imgTag =
+      `<img class="meal-media__img" src="${img.src}" srcset="${img.srcset}" sizes="${o.sizes || "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 40vw"}" alt="${alt}" width="1200" height="900" decoding="async" ${loading} ` +
+      `onload="this.closest('.meal-media').classList.add('meal-media--ready')" ` +
+      `onerror="this.closest('.meal-media').classList.add('meal-media--error')" />`;
+    return `<div class="${cls}">${imgTag}${fallback}${o.inner || ""}</div>`;
   }
 
   function mealMinutes(meal, recipe) {
