@@ -229,19 +229,29 @@
                 <button class="back" type="button" data-go="constraints"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> Back</button>
                 <div class="progress-dots" data-step="4" aria-hidden="true"></div>
               </div>
-              <p class="eyebrow">Step 4 of 6 · optional</p>
-              <h1 class="title" id="tasteTitle">A few sparks?</h1>
-              <p class="lede">Pick up to 3 vibes — or skip. These are likes, not limits. We learn the rest after you cook and rate.</p>
-              <div class="chip-grid" id="tasteSparks" role="group" aria-labelledby="tasteTitle"></div>
-              <p class="hint" id="sparkHint" aria-live="polite">0 of 3 selected</p>
+              <p class="eyebrow">Step 4 of 6 · <span id="tasteFor">Your</span> tastes · optional</p>
+              <h1 class="title" id="tasteTitle">What do you love eating?</h1>
+              <p class="lede">Tap your favorites — dishes, flavors, a cuisine, that one ingredient. They nudge your picks and are yours alone. Diet limits stay in charge.</p>
+              <div class="chip-grid taste-picks" id="tastePicks" role="group" aria-labelledby="tasteTitle"></div>
+              <p class="hint" id="tastePickHint" aria-live="polite"></p>
+              <form class="taste-search" id="tasteSearchForm" role="search" data-taste-search="onboarding" novalidate>
+                <label class="field__label" for="tasteSearch">Looking for something specific?</label>
+                <div class="taste-search__row">
+                  <input type="search" id="tasteSearch" autocomplete="off" enterkeyhint="search" placeholder="Try curry, BBQ, or salmon" />
+                  <button class="btn btn-secondary btn-sm" type="submit">Find</button>
+                </div>
+                <div class="taste-search__result" id="tasteSearchResult" aria-live="polite"></div>
+              </form>
+              <button class="btn btn-quiet btn-sm taste-browse-toggle" type="button" id="btnTasteBrowse" aria-expanded="false" aria-controls="tasteBrowse">Browse more</button>
+              <div class="taste-browse" id="tasteBrowse" hidden></div>
               <div class="flow__actions">
-                <button class="btn btn-primary btn-lg wide" type="button" data-go="invite">Continue</button>
+                <button class="btn btn-primary btn-lg wide" type="button" data-go="invite" id="btnTasteContinue">Continue</button>
                 <button class="btn btn-quiet wide" type="button" id="btnSkipTaste">Skip for now</button>
               </div>
             </div>
             <aside class="flow__aside" aria-hidden="true">
               <img src="/images/meals/thai-basil-eggplant-stir-fry.webp" alt="" width="1200" height="900" loading="lazy" />
-              <p class="flow__note">Sparks are a starting nudge, not a rule.</p>
+              <p class="flow__note">A nudge, never a rule. Change it anytime in your profile.</p>
             </aside>
           </div>
         </section>
@@ -515,22 +525,38 @@
           <div class="page page--wide">
             <header class="page-head">
               <div>
-                <p class="eyebrow">Taste profile</p>
-                <h1 class="title" id="tasteProfileTitle">What we’ve learned so far</h1>
-                <p class="lede">A blend of everyone’s ratings and likes. It gets sharper every time you cook.</p>
+                <p class="eyebrow"><span id="tasteProfileFor">Your</span> taste profile</p>
+                <h1 class="title" id="tasteProfileTitle">Fine-tune your tastes</h1>
+                <p class="lede">Just yours. Everyone at your table keeps their own, and we never blend them into one.</p>
               </div>
             </header>
             <div class="profile-layout">
-              <section class="card profile-card weave-accent" aria-labelledby="profileLinesTitle">
-                <h2 class="card-title" id="profileLinesTitle">Your kitchen’s tastes</h2>
-                <ul class="taste-lines" id="tasteProfileLines"></ul>
-                <p class="meta" id="tasteProfileMeta" hidden></p>
+              <section class="card profile-card weave-accent" aria-labelledby="profileToldTitle">
+                <h2 class="card-title" id="profileToldTitle">You told us</h2>
+                <p class="meta">Love it, like it, or want it less often. Less often just means fewer — it never takes anything off the table.</p>
+                <ul class="taste-list" id="tasteToldList" aria-labelledby="profileToldTitle"></ul>
+                <h2 class="card-title taste-section-title" id="profileLearningTitle">We’re learning</h2>
+                <p class="meta">Hunches from how you cook and rate. Confirm the right ones, toss the rest.</p>
+                <ul class="taste-list" id="tasteLearningList" aria-labelledby="profileLearningTitle"></ul>
+                <p class="hint" id="tasteProfileStatus" aria-live="polite"></p>
               </section>
-              <section class="card profile-card" aria-labelledby="profileFixTitle">
-                <h2 class="card-title" id="profileFixTitle">Fix something?</h2>
-                <p class="meta">Tap something you want more of. We’ll factor it into the next picks.</p>
-                <div class="chip-grid" id="tasteCorrections" role="group" aria-labelledby="profileFixTitle"></div>
-                <button class="btn btn-secondary wide" type="button" id="btnSaveTasteCorrection">Save correction</button>
+              <section class="card profile-card" aria-labelledby="profileAddTitle">
+                <h2 class="card-title" id="profileAddTitle">Add a taste</h2>
+                <form class="taste-search" id="tasteProfileSearchForm" role="search" data-taste-search="profile" novalidate>
+                  <label class="field__label" for="tasteProfileSearch">Search tastes</label>
+                  <div class="taste-search__row">
+                    <input type="search" id="tasteProfileSearch" autocomplete="off" enterkeyhint="search" placeholder="Try tacos, smoky, or tofu" />
+                    <button class="btn btn-secondary btn-sm" type="submit">Find</button>
+                  </div>
+                  <div class="taste-search__result" id="tasteProfileSearchResult" aria-live="polite"></div>
+                </form>
+                <button class="btn btn-quiet btn-sm taste-browse-toggle" type="button" id="btnTasteProfileBrowse" aria-expanded="false" aria-controls="tasteProfileBrowse">Browse more</button>
+                <div class="taste-browse" id="tasteProfileBrowse" hidden></div>
+              </section>
+              <section class="card profile-card profile-card--limits" aria-labelledby="profileLimitsTitle">
+                <h2 class="card-title" id="profileLimitsTitle">Diet limits</h2>
+                <p class="meta">Allergies and hard no’s live on their own, away from tastes. They decide what’s safe; tastes only decide what comes first.</p>
+                <button class="btn btn-secondary btn-sm" type="button" data-go="settings">Review diet limits</button>
               </section>
             </div>
           </div>
@@ -737,6 +763,7 @@
   <script src="/meal-media.js"></script>
   <script src="/meal-identity.js"></script>
   <script src="/nav-context.js"></script>
+  <script src="/taste-ui.js"></script>
   <script src="/app.js"></script>
   <script>
     if ("serviceWorker" in navigator) {

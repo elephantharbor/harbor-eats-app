@@ -55,7 +55,8 @@ describe("legacy preference audit", () => {
     };
     const ids = (source) => [...source.matchAll(/id:\s*"([^"]+)"/g)].map((match) => match[1]);
     expect(ids(slice("constraintOptions"))).toEqual(LEGACY_CONSTRAINT_IDS);
-    expect(ids(slice("sparkOptions"))).toEqual(LEGACY_SPARK_IDS);
+    // Spark chips were replaced by the shared vocabulary. Stored spark rows still need the audit.
+    expect(app).not.toContain("const sparkOptions");
 
     const audit = auditKnownClientPreferences();
     for (const id of [...LEGACY_CONSTRAINT_IDS, ...LEGACY_SPARK_IDS, ...LEGACY_EVIDENCE_KINDS]) {

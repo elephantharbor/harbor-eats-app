@@ -35,6 +35,7 @@ import {
   scoredToPlanOptions,
 } from "./lib/recommendations.js";
 import { buildTasteProfile } from "./lib/taste-model.js";
+import { routeTasteRequest } from "./lib/taste-profile.js";
 import {
   getConceptBySlug,
   getRecipeVersion,
@@ -2327,6 +2328,12 @@ export default {
             const resolution = await resolvePlanSelectionFromVotes(env, m.plan_id, auth.session);
             return json(resolution && resolution.ok ? { ok: true, ...resolution } : err("unresolved", 409, resolution || {}));
           }
+        }
+
+        // Diner tastes: /api/tastes/*, /api/members/:id/tastes, /api/members/:id/taste-feedback
+        {
+          const tasteRes = await routeTasteRequest(env, request, path, url, { writeOrigin });
+          if (tasteRes) return tasteRes;
         }
 
         if (path === "/api/preference-evidence" && request.method === "POST") {

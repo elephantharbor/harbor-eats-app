@@ -21,6 +21,7 @@
   const Theme = window.FlavorWeaveTheme || null;
   const Media = window.FlavorWeaveMedia || { imageFor: function () { return null; } };
   const Nav = window.FlavorWeaveNav;
+  const Taste = window.FlavorWeaveTaste;
 
   const PLAN_ID = "local-plan";
 
@@ -390,22 +391,6 @@
   ];
   const EXCEPTION_RULES = { cashew_ok: "cashew" };
 
-  /** Likes, not permissions. Whether fish is allowed lives in diet limits. */
-  const sparkOptions = [
-    { id: "crispy", label: "Crispy textures" },
-    { id: "tacos", label: "Taco night" },
-    { id: "curry", label: "Curry bowls" },
-    { id: "fish", label: "Fish dinners", hiddenWhen: "fish" },
-    { id: "sheet", label: "Sheet-pan easy" },
-    { id: "bright", label: "Bright / citrus" },
-  ];
-
-  function visibleSparks() {
-    return sparkOptions.filter(function (s) {
-      return !s.hiddenWhen || !state.primaryConstraints.includes(s.hiddenWhen);
-    });
-  }
-
   /** Client keys → constraint rows. An exception without its parent is dropped. */
   function constraintRowsFromKeys(keys) {
     const list = (keys || []).filter(function (k) { return k && k !== "none"; });
@@ -465,7 +450,13 @@
     members: [],
     primaryConstraints: [],
     joinConstraints: [],
-    sparks: [],
+    tastePicks: [],
+    tasteSaved: [],
+    tasteSave: null,
+    tasteCatalog: null,
+    tasteProfile: null,
+    tasteSearch: { onboarding: null, profile: null },
+    feedbackSent: {},
     inviteChannel: "share_sheet",
     inviteCode: makeInviteCode(),
     shareObjectId: makeShareId(),
@@ -478,7 +469,6 @@
     onboarded: false,
     nextAction: null,
     currentMeals: null,
-    tasteCorrectionSpark: null,
     settingsChoiceCount: 3,
     settingsCadence: "on_demand",
     activeRecipe: null,
@@ -491,7 +481,6 @@
     meId: null,
     savedConstraints: [],
     constraintSave: null,
-    sparkSave: null,
     navContext: {},
     historyItems: [],
     historyMeal: null,
@@ -799,17 +788,291 @@
     };
   }
 
-  function renderSparks() {
-    const root = document.getElementById("tasteSparks");
-    const visible = visibleSparks();
-    state.sparks = state.sparks.filter((id) => visible.some((s) => s.id === id));
-    root.innerHTML = visible
-      .map((s) => {
-        const on = state.sparks.includes(s.id);
-        return `<button type="button" class="chip-tog${on ? " is-on" : ""}" data-spark="${s.id}" aria-pressed="${on}">${s.label}</button>`;
-      })
-      .join("");
-    document.getElementById("sparkHint").textContent = `${state.sparks.length} of 3 selected`;
+  // —— Tastes (per diner; Love / Like / Less often; never a hard limit) ——
+
+  async function loadTasteCatalog() {
+    if (state.tasteCatalog) return state.tasteCatalog;
+    const res = await apiGet("/api/tastes/catalog");
+    if (res && res.ok) state.tasteCatalog = res;
+    return state.tasteCatalog;
+  }
+
+  function tasteRanks() {
+    return (state.tasteCatalog && state.tasteCatalog.ranks) || Taste.FALLBACK_RANKS;
+  }
+
+  const FOCUS_KEYS = ["data-taste-pick", "data-taste-add", "data-taste-rank", "data-taste-remove", "data-feedback-code"];
+
+  /** Re-render without dropping a keyboard user's place. */
+  function withFocusKept(paint, fallback) {
+    const active = document.activeElement;
+    let selector = null;
+    let hostId = null;
+    if (active && active !== document.body) {
+      const key = FOCUS_KEYS.find(function (k) { return active.hasAttribute(k); });
+      if (key) {
+        selector = `[${key}="${active.getAttribute(key)}"]`;
+        if (key === "data-taste-add") selector += `[data-rank="${active.getAttribute("data-rank")}"]`;
+        if (key === "data-taste-rank") selector += `[value="${active.value}"]`;
+        const host = active.closest("[id]");
+        hostId = host ? host.id : null;
+      }
+    }
+    paint();
+    if (!selector) return;
+    const host = hostId && document.getElementById(hostId);
+    const view = app.querySelector(".view.is-active");
+    const target = (host && host.querySelector(selector)) || (view && view.querySelector(selector));
+    const backup = typeof fallback === "function" ? fallback() : fallback;
+    if (target) target.focus({ preventScroll: true });
+    else if (backup) backup.focus({ preventScroll: true });
+  }
+
+  function tasteSearchOpts(scope) {
+    const result = state.tasteSearch[scope];
+    if (scope === "profile") {
+      return {
+        mode: "add",
+        ranksBySlug: Taste.ranksBySlug(state.tasteProfile),
+        ranks: tasteRanks(),
+        explicit: !!(result && result.explicit),
+      };
+    }
+    return { mode: "pick", picked: state.tastePicks, explicit: !!(result && result.explicit) };
+  }
+
+  function paintTasteSearch(scope) {
+    const el = document.getElementById(scope === "profile" ? "tasteProfileSearchResult" : "tasteSearchResult");
+    if (el) el.innerHTML = Taste.searchResultHtml(state.tasteSearch[scope], tasteSearchOpts(scope));
+  }
+
+  function paintTasteBrowse(scope) {
+    const el = document.getElementById(scope === "profile" ? "tasteProfileBrowse" : "tasteBrowse");
+    if (!el || el.hidden || !state.tasteCatalog) return;
+    const opts = scope === "profile"
+      ? { mode: "add", ranksBySlug: Taste.ranksBySlug(state.tasteProfile), ranks: tasteRanks(), idPrefix: el.id }
+      : { mode: "pick", picked: state.tastePicks, idPrefix: el.id };
+    el.innerHTML = Taste.browseHtml(state.tasteCatalog.groups, opts);
+  }
+
+  function paintTasteOnboarding(lastSlug) {
+    const cat = state.tasteCatalog;
+    if (!cat) return;
+    const starters = cat.starters || [];
+    const extras = state.tastePicks
+      .filter(function (slug) { return !starters.some(function (t) { return t.slug === slug; }); })
+      .map(function (slug) { return Taste.findTerm(cat, slug); })
+      .filter(Boolean);
+    document.getElementById("tastePicks").innerHTML = Taste.chipGridHtml(starters.concat(extras), state.tastePicks);
+    paintTasteBrowse("onboarding");
+    paintTasteSearch("onboarding");
+    let hint = Taste.encouragement(state.tastePicks.length);
+    const term = lastSlug && state.tastePicks.includes(lastSlug) ? Taste.findTerm(cat, lastSlug) : null;
+    if (term && !term.on_menu) hint = `${term.name} is noted. Nothing on the menu has it yet — we’ll keep it in mind.`;
+    document.getElementById("tastePickHint").textContent = hint;
+    document.getElementById("btnSkipTaste").hidden = state.tastePicks.length > 0;
+    document.getElementById("btnTasteContinue").textContent = state.tastePicks.length ? "Save and continue" : "Continue";
+  }
+
+  async function renderTasteOnboarding() {
+    const me = meMember();
+    document.getElementById("tasteFor").textContent = me ? me.name + "’s" : "Your";
+    const root = document.getElementById("tastePicks");
+    const extras = [document.getElementById("tasteSearchForm"), document.getElementById("btnTasteBrowse")];
+    if (!state.tasteCatalog) {
+      root.setAttribute("aria-busy", "true");
+      root.innerHTML = '<span class="skeleton taste-skeleton" aria-hidden="true"></span>'.repeat(6);
+      await loadTasteCatalog();
+      root.removeAttribute("aria-busy");
+    }
+    if (!state.tasteCatalog) {
+      root.innerHTML = '<p class="taste-offline">We can’t load tastes right now. Skip for now — you can add them anytime from your profile.</p>';
+      extras.forEach(function (el) { if (el) el.hidden = true; });
+      document.getElementById("tastePickHint").textContent = "";
+      document.getElementById("btnSkipTaste").hidden = false;
+      return;
+    }
+    extras.forEach(function (el) { if (el) el.hidden = false; });
+    paintTasteOnboarding();
+  }
+
+  /** New picks become Love for the signed-in diner; un-picked ones are removed. */
+  async function persistOnboardingTastes() {
+    const hh = API.householdId || state.householdId;
+    if (!hh || !Taste.onboardingChanges(state.tastePicks, state.tasteSaved).length) return;
+    await ensureMemberSession();
+    const me = meMember();
+    if (!me) return;
+    const picked = state.tastePicks.slice();
+    const res = await apiPost(`/api/members/${encodeURIComponent(me.id)}/tastes`, {
+      household_id: hh,
+      changes: Taste.onboardingChanges(picked, state.tasteSaved),
+    });
+    if (res && res.ok) {
+      state.tasteSaved = picked;
+      if (res.profile) state.tasteProfile = res.profile;
+    }
+  }
+
+  const tasteSearchSeq = { onboarding: 0, profile: 0 };
+
+  async function runTasteSearch(scope, explicit) {
+    const input = document.getElementById(scope === "profile" ? "tasteProfileSearch" : "tasteSearch");
+    const q = input ? input.value.trim() : "";
+    const seq = ++tasteSearchSeq[scope];
+    if (!q) {
+      state.tasteSearch[scope] = null;
+      paintTasteSearch(scope);
+      return;
+    }
+    const res = await apiGet("/api/tastes/search?q=" + encodeURIComponent(q));
+    if (seq !== tasteSearchSeq[scope]) return;
+    if (res && res.ok) {
+      state.tasteSearch[scope] = Object.assign({}, res, { explicit: !!explicit });
+    } else {
+      state.tasteSearch[scope] = explicit
+        ? { status: "error", query: q, match: null, message: "Search isn’t available right now. Try Browse more.", explicit: true }
+        : null;
+    }
+    paintTasteSearch(scope);
+    if (explicit) {
+      const host = document.getElementById(scope === "profile" ? "tasteProfileSearchResult" : "tasteSearchResult");
+      const first = host && host.querySelector("button");
+      if (first) first.focus();
+    }
+  }
+
+  function toggleTasteBrowse(scope) {
+    const btn = document.getElementById(scope === "profile" ? "btnTasteProfileBrowse" : "btnTasteBrowse");
+    const panel = document.getElementById(btn.getAttribute("aria-controls"));
+    const open = panel.hidden;
+    panel.hidden = !open;
+    btn.setAttribute("aria-expanded", String(open));
+    btn.textContent = open ? "Show fewer" : "Browse more";
+    if (open) paintTasteBrowse(scope);
+  }
+
+  function profileForMe() {
+    const me = meMember();
+    if (state.tasteProfile && me && state.tasteProfile.member_id && state.tasteProfile.member_id !== me.id) {
+      state.tasteProfile = null;
+    }
+    return state.tasteProfile;
+  }
+
+  function paintTasteProfile() {
+    const p = profileForMe() || { told: [], learning: [] };
+    document.getElementById("tasteToldList").innerHTML = Taste.profileListHtml(
+      p.told,
+      tasteRanks(),
+      "Nothing yet. Add a few below — tacos, smoky, salmon, whatever makes you hungry."
+    );
+    document.getElementById("tasteLearningList").innerHTML = Taste.profileListHtml(
+      p.learning,
+      tasteRanks(),
+      "Nothing yet. As you cook and rate, hunches show up here for you to confirm or toss."
+    );
+    paintTasteSearch("profile");
+    paintTasteBrowse("profile");
+  }
+
+  function tasteTermFor(slug) {
+    const fromCatalog = Taste.findTerm(state.tasteCatalog, slug);
+    if (fromCatalog) return fromCatalog;
+    const p = state.tasteProfile;
+    return p ? (p.told || []).concat(p.learning || []).find(function (i) { return i.slug === slug; }) || null : null;
+  }
+
+  function tasteAnnouncement(name, rank) {
+    if (rank === "remove") return `Removed ${name}. It’s still on the menu.`;
+    if (rank === "less_often") return `${name}: Less often. You’ll see it less, and it stays on the menu.`;
+    return `${name}: ${Taste.rankLabelFor(tasteRanks(), rank)}.`;
+  }
+
+  async function changeTaste(slug, rank, fallbackFocus) {
+    const hh = API.householdId || state.householdId;
+    const status = document.getElementById("tasteProfileStatus");
+    const term = tasteTermFor(slug);
+    if (!hh || !term) return;
+    const before = profileForMe();
+    state.tasteProfile = Object.assign(Taste.applyLocal(before, slug, rank, term, tasteRanks()), {
+      member_id: (before && before.member_id) || (meMember() && meMember().id),
+    });
+    withFocusKept(paintTasteProfile, fallbackFocus);
+    await ensureMemberSession();
+    const me = meMember();
+    const res = me
+      ? await apiPost(`/api/members/${encodeURIComponent(me.id)}/tastes`, {
+          household_id: hh,
+          changes: [{ vocabulary_slug: slug, rank }],
+        })
+      : null;
+    if (res && res.ok && res.profile) {
+      state.tasteProfile = res.profile;
+      withFocusKept(paintTasteProfile, fallbackFocus);
+      status.textContent = tasteAnnouncement(term.name, rank);
+    } else {
+      state.tasteProfile = before;
+      withFocusKept(paintTasteProfile, fallbackFocus);
+      status.textContent = "Couldn’t save that just now. Check your connection and try again.";
+    }
+  }
+
+  async function renderTasteProfile() {
+    const me = meMember();
+    document.getElementById("tasteProfileFor").textContent = me ? me.name + "’s" : "Your";
+    const told = document.getElementById("tasteToldList");
+    const status = document.getElementById("tasteProfileStatus");
+    status.textContent = "";
+    const hh = API.householdId || state.householdId;
+    if (!hh || !me) {
+      told.innerHTML = '<li class="taste-empty">Join or create a kitchen first.</li>';
+      document.getElementById("tasteLearningList").innerHTML = "";
+      return;
+    }
+    if (!profileForMe()) {
+      told.setAttribute("aria-busy", "true");
+      told.innerHTML = '<li class="skeleton taste-item-skeleton" aria-hidden="true"></li><li class="skeleton taste-item-skeleton" aria-hidden="true"></li>';
+    }
+    await ensureMemberSession();
+    const meNow = meMember();
+    const [, res] = await Promise.all([
+      loadTasteCatalog(),
+      apiGet(`/api/members/${encodeURIComponent(meNow.id)}/tastes`),
+    ]);
+    told.removeAttribute("aria-busy");
+    if (res && res.ok && res.profile) state.tasteProfile = res.profile;
+    else if (!profileForMe()) status.textContent = "We couldn’t load your tastes just now. Try again in a moment.";
+    paintTasteProfile();
+  }
+
+  function feedbackKey(mealId, memberId) {
+    return mealId + ":" + memberId;
+  }
+
+  async function sendTasteFeedback(code) {
+    const me = meMember();
+    const mealId = state.selectedMealId;
+    const hh = API.householdId || state.householdId;
+    if (!me || !mealId) return;
+    const key = feedbackKey(mealId, me.id);
+    const sent = state.feedbackSent[key] || [];
+    if (sent.includes(code)) {
+      toast("Already noted. Thanks!");
+      return;
+    }
+    state.feedbackSent[key] = sent.concat(code);
+    withFocusKept(renderRaters);
+    toast("Noted. Thanks!");
+    if (!hh || !API.planId) return;
+    await ensureMemberSession();
+    const meal = selectedMeal();
+    apiPost(`/api/members/${encodeURIComponent(me.id)}/taste-feedback`, {
+      household_id: hh,
+      meal_option_id: mealId,
+      recipe_version_id: (meal && meal.recipe_version_id) || null,
+      code,
+    }).catch(function () {});
   }
 
   function persClass(type) {
@@ -1103,8 +1366,8 @@
       renderConstraintGrid("constraints", state.primaryConstraints);
       ensureMemberSession().catch(function () {});
     }
-    if (name === "taste") renderSparks();
-    if (prev === "taste" && name !== "taste") state.sparkSave = persistSparksToServer().catch(function () {});
+    if (name === "taste") renderTasteOnboarding();
+    if (prev === "taste" && name !== "taste") state.tasteSave = persistOnboardingTastes().catch(function () {});
     if (name === "invite") {
       renderInviteMode(ctx);
       refreshInviteUi();
@@ -1147,7 +1410,14 @@
         renderCook();
       });
     }
-    if (name === "rate") renderRaters();
+    if (name === "rate") {
+      renderRaters();
+      if (!state.tasteCatalog) {
+        loadTasteCatalog().then(function () {
+          if (state.view === "rate" && state.tasteCatalog) renderRaters();
+        });
+      }
+    }
     if (name === "loop") renderLoopSummary();
     if (name === "home") updateHome();
     if (name === "demo" || name === "invite" || name === "rate" || name === "home") {
@@ -1587,6 +1857,8 @@
 
   function renderRaters() {
     const root = document.getElementById("raterList");
+    const me = meMember();
+    const feedback = (state.tasteCatalog && state.tasteCatalog.feedback) || [];
     const faceFor = (score) => {
       if (score == null) return { face: "🍽️", word: "Not rated yet" };
       if (score <= 2) return { face: "😖", word: "Hard miss" };
@@ -1622,6 +1894,9 @@
               <div class="score-row" role="group" aria-label="${name} scores 6 to 10">${row(6, 10)}</div>
             </div>
             <div class="anchors" aria-hidden="true"><span>1 hard miss</span><span>5 fine</span><span>10 craving</span></div>
+            ${me && me.id === m.id && r.score && state.selectedMealId
+              ? Taste.feedbackHtml(feedback, state.feedbackSent[feedbackKey(state.selectedMealId, m.id)] || [], m.id)
+              : ""}
             <label class="field">
               <span class="field__label">Note (optional)</span>
               <input type="text" data-note="${escapeHtml(m.id)}" placeholder="Too spicy? Make again?" value="${r.note ? escapeAttr(r.note) : ""}" />
@@ -1671,19 +1946,6 @@
         "Each person picks 1–10. Save a partial anytime — we never invent scores.";
     }
     updateDebug();
-  }
-
-  async function persistSparksToServer() {
-    const hh = API.householdId || state.householdId;
-    if (!hh || !state.sparks.length) return;
-    await ensureMemberSession();
-    for (let i = 0; i < state.sparks.length; i++) {
-      await apiPost("/api/preference-evidence", {
-        tag: state.sparks[i],
-        kind: "like",
-        source: "onboarding_spark",
-      });
-    }
   }
 
   function renderSettings() {
@@ -1788,62 +2050,6 @@
     );
   }
 
-  const tasteLineIcons = { like: "heart", avoid: "x", history: "history", starter: "spark" };
-
-  async function renderTasteProfile() {
-    const ul = document.getElementById("tasteProfileLines");
-    const meta = document.getElementById("tasteProfileMeta");
-    ul.setAttribute("aria-busy", "true");
-    ul.innerHTML = '<li class="skeleton" style="height:72px" aria-hidden="true"></li><li class="skeleton" style="height:72px" aria-hidden="true"></li>';
-    if (meta) meta.hidden = true;
-    const hh = API.householdId || state.householdId;
-    const done = function (html) {
-      ul.innerHTML = html;
-      ul.removeAttribute("aria-busy");
-    };
-    if (!hh) {
-      done(`<li class="taste-line--starter"><span class="taste-line__icon">${icon("users")}</span><span>Join or create a kitchen first.</span></li>`);
-      return;
-    }
-    const res = await apiGet("/api/households/" + encodeURIComponent(hh) + "/taste-profile");
-    if (!res || !res.ok) {
-      done(`<li class="taste-line--starter"><span class="taste-line__icon">${icon("spark")}</span><span>Not enough to go on yet — cook and rate a dinner or two.</span></li>`);
-    } else {
-      done(
-        (res.profile.lines || [])
-          .map(function (line) {
-            const kind = tasteLineIcons[line.kind] ? line.kind : "starter";
-            return `<li class="taste-line--${kind}"><span class="taste-line__icon">${icon(tasteLineIcons[kind])}</span><span>${escapeHtml(line.text)}</span></li>`;
-          })
-          .join("")
-      );
-      const rated = res.profile.meals_rated;
-      if (meta && typeof rated === "number") {
-        meta.hidden = false;
-        meta.textContent = rated
-          ? "Based on " + rated + (rated === 1 ? " rating" : " ratings") + " so far."
-          : "No ratings yet — this fills in as you cook.";
-      }
-    }
-    const corr = document.getElementById("tasteCorrections");
-    corr.innerHTML = visibleSparks()
-      .map(function (s) {
-        const on = state.tasteCorrectionSpark === s.id;
-        return `<button type="button" class="chip-tog${on ? " is-on" : ""}" data-corr="${s.id}" aria-pressed="${on}">${s.label}</button>`;
-      })
-      .join("");
-    corr.onclick = function (e) {
-      const b = e.target.closest("[data-corr]");
-      if (!b) return;
-      state.tasteCorrectionSpark = b.dataset.corr;
-      corr.querySelectorAll("[data-corr]").forEach(function (el) {
-        const on = el.dataset.corr === state.tasteCorrectionSpark;
-        el.classList.toggle("is-on", on);
-        el.setAttribute("aria-pressed", String(on));
-      });
-    };
-  }
-
   function renderLoopSummary() {
     const ul = document.getElementById("loopSummary");
     ul.innerHTML = [
@@ -1872,7 +2078,7 @@
     const hh = API.householdId || state.householdId;
     if (!hh) return null;
     await ensureMemberSession();
-    await Promise.all([state.constraintSave, state.sparkSave]);
+    await Promise.all([state.constraintSave, state.tasteSave]);
     const res = await apiPost("/api/recommendations/plan", {
       household_id: hh,
       attribution_last_touch: state.lastTouch,
@@ -2045,14 +2251,58 @@
 
   // —— Navigation ——
   app.addEventListener("click", (e) => {
-    const spark = e.target.closest("[data-spark]");
-    if (spark) {
-      const id = spark.dataset.spark;
-      const i = state.sparks.indexOf(id);
-      if (i >= 0) state.sparks.splice(i, 1);
-      else if (state.sparks.length < 3) state.sparks.push(id);
-      else toast("Pick up to 3 — tap one off to swap");
-      renderSparks();
+    const pick = e.target.closest("[data-taste-pick]");
+    if (pick) {
+      const slug = pick.dataset.tastePick;
+      state.tastePicks = Taste.togglePick(state.tastePicks, slug);
+      withFocusKept(function () { paintTasteOnboarding(slug); });
+      return;
+    }
+
+    const add = e.target.closest("[data-taste-add]");
+    if (add) {
+      const slug = add.dataset.tasteAdd;
+      const rank = add.dataset.rank || "like";
+      const current = Taste.ranksBySlug(profileForMe())[slug];
+      const fromSearch = !!add.closest("#tasteProfileSearchResult");
+      if (current && !fromSearch) {
+        document.getElementById("tasteProfileStatus").textContent =
+          "That’s already in your tastes. Change it in your list above.";
+        return;
+      }
+      if (current === rank) return;
+      changeTaste(slug, rank);
+      return;
+    }
+
+    const removeTaste = e.target.closest("[data-taste-remove]");
+    if (removeTaste) {
+      const item = removeTaste.closest(".taste-item");
+      const list = item && item.parentElement;
+      const next = item && (item.nextElementSibling || item.previousElementSibling);
+      const nextSlug = next && next.dataset.tasteItem;
+      const heading = document.getElementById(list && list.id === "tasteLearningList" ? "profileLearningTitle" : "profileToldTitle");
+      changeTaste(removeTaste.dataset.tasteRemove, "remove", function () {
+        const btn = nextSlug && document.querySelector(`[data-taste-remove="${nextSlug}"]`);
+        if (btn) return btn;
+        heading.setAttribute("tabindex", "-1");
+        return heading;
+      });
+      return;
+    }
+
+    const fb = e.target.closest("[data-feedback-code]");
+    if (fb) {
+      sendTasteFeedback(fb.dataset.feedbackCode);
+      return;
+    }
+
+    if (e.target.closest("#btnTasteBrowse")) {
+      toggleTasteBrowse("onboarding");
+      return;
+    }
+    if (e.target.closest("#btnTasteProfileBrowse")) {
+      toggleTasteBrowse("profile");
       return;
     }
 
@@ -2270,8 +2520,31 @@
   });
 
   document.getElementById("btnSkipTaste").addEventListener("click", () => {
-    state.sparks = [];
+    state.tastePicks = [];
     show("invite");
+  });
+
+  const tasteSearchTimers = {};
+  app.addEventListener("submit", (e) => {
+    const form = e.target.closest("form[data-taste-search]");
+    if (!form) return;
+    e.preventDefault();
+    clearTimeout(tasteSearchTimers[form.dataset.tasteSearch]);
+    runTasteSearch(form.dataset.tasteSearch, true);
+  });
+
+  app.addEventListener("input", (e) => {
+    const form = e.target.closest("form[data-taste-search]");
+    if (!form || e.target.type !== "search") return;
+    const scope = form.dataset.tasteSearch;
+    clearTimeout(tasteSearchTimers[scope]);
+    tasteSearchTimers[scope] = setTimeout(function () { runTasteSearch(scope, false); }, 250);
+  });
+
+  app.addEventListener("change", (e) => {
+    const radio = e.target.closest("input[data-taste-rank]");
+    if (!radio || !radio.checked) return;
+    changeTaste(radio.dataset.tasteRank, radio.value);
   });
 
   document.getElementById("inviteChannels").addEventListener("click", (e) => {
@@ -2821,22 +3094,6 @@
     state.currentMeals = null;
     state.activeRecipe = null;
     toast("Saved — tonight’s picks will refresh to match");
-  });
-
-  document.getElementById("btnSaveTasteCorrection").addEventListener("click", async function () {
-    if (!state.tasteCorrectionSpark) {
-      toast("Tap something you want more or less of");
-      return;
-    }
-    await ensureMemberSession();
-    await apiPost("/api/preference-evidence", {
-      tag: state.tasteCorrectionSpark,
-      kind: "like",
-      source: "taste_correction",
-    });
-    toast("Got it — we’ll factor that into the next picks");
-    state.tasteCorrectionSpark = null;
-    renderTasteProfile();
   });
 
   apiProbe().then(function (ok) {
