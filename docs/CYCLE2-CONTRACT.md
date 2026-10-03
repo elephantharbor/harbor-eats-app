@@ -2,7 +2,7 @@
 
 Shared taste vocabulary and recipe package for FlavorWeave Campaign Cycle 2 (D-02 and D-03). Later workstreams implement taste UX and catalog content against this document and the modules below. This workstream does not build those surfaces.
 
-Branch: `feature/fw-c2-contract`. No pull request. Not merged to `main`. Not deployed. Production D1 `23aa3db3-1090-471b-8c8a-b6fe71f5c053` and Household 001 were not written.
+Branch: `feature/fw-c2-contract`. Contract commit: `92cc015eabce7c1eedc7da2aff5b18d263c3d280`. No pull request. Not merged to `main`. Not deployed. Production D1 `23aa3db3-1090-471b-8c8a-b6fe71f5c053` and Household 001 were not written.
 
 ## Ownership
 
