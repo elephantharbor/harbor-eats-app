@@ -264,11 +264,11 @@ Broad suite on the tested runtime tree:
 - Lint: `eslint --max-warnings=0`, clean.
 - Playwright: `CI=true npm run test:e2e` (with `PLAYWRIGHT_SKIP_WEBSERVER=1` and local `wrangler dev` on Node 22), 27 passed. `e2e/specs/helpers.js` seeds a legacy `/api/recommendations/plan` round when Cycle 3B no-plan Tonight does not auto-fetch picks. Hosted GitHub Actions was not run.
 
-**Branch tip (integration):** `439f232953efd594be500c0a64899d2bf5e54468`
+**Branch tip (integration):** `db528ee9f036c2b149c5980b84db3e549e20b7c0`
 
 **Product runtime SHA:** `3bf261fa97015479e192a0ad451d48add600fe0e`
 
-**Tested runtime SHA:** `439f232953efd594be500c0a64899d2bf5e54468` (product files match `3bf261f`; this commit adds `e2e/specs/helpers.js` and this doc section only).
+**Tested runtime SHA:** `db528ee9f036c2b149c5980b84db3e549e20b7c0` (product files match `3bf261f`; this commit adds `e2e/specs/helpers.js` and this doc section only).
 
 ### Definition of done
 
