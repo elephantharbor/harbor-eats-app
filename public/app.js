@@ -499,6 +499,15 @@
     swapMealId: null,
     swappedMealIds: {},
     findDinnerEntry: "find_dinner",
+    mealOptionsMealId: null,
+    participantsMealId: null,
+    participantsDraft: null,
+    swapReplacePosition: null,
+    changeCountValue: null,
+    changeCountRemoveMealId: null,
+    dinnerRateMealId: null,
+    shopLineMenuId: null,
+    shopLineSnapshot: {},
   };
 
   /** The diner using this device. Settings and "Your diet limits" belong to them, not to members[0]. */
@@ -1431,6 +1440,7 @@
       });
     }
     if (name === "rate") {
+      if (state.dinnerRateMealId) initPlanRatingsForMeal(state.dinnerRateMealId);
       renderRaters();
       if (!state.tasteCatalog) {
         loadTasteCatalog().then(function () {
@@ -1618,6 +1628,20 @@
 
   function detailPickState(meal) {
     if (!meal) return { text: "", chosen: false, action: "none" };
+    if (meal.dinner_plan && state.dinnerPlan) {
+      const raw = planMealById(meal.id);
+      const ctx = state.navContext.detail || {};
+      if (!raw) return { text: "", chosen: false, action: "none" };
+      if (raw.state === "selected") return { text: "Tonight’s pick", chosen: true, action: "cook" };
+      if (raw.state === "cooking") return { text: "Pick up where you left off.", chosen: true, action: "cook" };
+      if (raw.state === "cooked" || raw.state === "partially_rated" || raw.state === "fully_rated") {
+        return { text: "", chosen: false, action: "none" };
+      }
+      if (ctx.origin === "planReview") {
+        return { text: "Just looking. Nothing changes until you start cooking.", chosen: false, action: "cook" };
+      }
+      return { text: "", chosen: false, action: "cook" };
+    }
     if (meal.historical) {
       const bits = ["From a past round"];
       if (meal.avg_score != null) bits.push("rated " + Number(meal.avg_score).toFixed(1) + "/10");
@@ -1646,14 +1670,19 @@
     const eyebrow = document.getElementById("detailEyebrow");
     const pickEl = document.getElementById("detailPickState");
     const pick = detailPickState(meal);
+    const rawPlan = meal && meal.dinner_plan ? planMealById(meal.id) : null;
     if (eyebrow) {
-      eyebrow.textContent = pick.chosen
-        ? "Tonight’s pick"
-        : meal && meal.historical
-          ? "From your history"
-          : meal && meal.letter
-            ? "Option " + meal.letter
-            : "Recipe";
+      if (rawPlan) {
+        eyebrow.textContent = "On your plan · " + planMealLabel(rawPlan);
+      } else {
+        eyebrow.textContent = pick.chosen
+          ? "Tonight’s pick"
+          : meal && meal.historical
+            ? "From your history"
+            : meal && meal.letter
+              ? "Option " + meal.letter
+              : "Recipe";
+      }
     }
     if (pickEl) {
       pickEl.textContent = pick.text;
@@ -1661,7 +1690,11 @@
     }
     if (cookBtn) {
       cookBtn.hidden = pick.action === "none";
-      if (pick.action === "choose") {
+      if (rawPlan && rawPlan.state === "cooking") {
+        cookBtn.dataset.action = "cook";
+        cookBtn.dataset.go = "cook";
+        cookBtn.innerHTML = "Back to the kitchen " + icon("arrow-right", "icon--forward");
+      } else if (pick.action === "choose") {
         cookBtn.dataset.action = "choose";
         delete cookBtn.dataset.go;
         cookBtn.textContent = chooseLabel();
@@ -1675,7 +1708,20 @@
         cookBtn.innerHTML = "Start cooking " + icon("arrow-right", "icon--forward");
       }
     }
-    if (previewBtn) previewBtn.hidden = pick.action !== "choose";
+    if (previewBtn) {
+      if (rawPlan && rawPlan.state === "planned") {
+        previewBtn.hidden = false;
+        previewBtn.className = "btn btn-secondary btn-lg";
+        previewBtn.textContent = "Pick for tonight";
+        previewBtn.dataset.action = "pick-for-tonight-detail";
+        previewBtn.dataset.mealId = meal.id;
+        delete previewBtn.dataset.go;
+      } else {
+        previewBtn.hidden = pick.action !== "choose";
+        delete previewBtn.dataset.action;
+        delete previewBtn.dataset.mealId;
+      }
+    }
   }
 
   function renderDetail() {
@@ -1866,6 +1912,18 @@
   }
 
   function finishCook() {
+    const cooking = cookingMeal();
+    if (cooking && cooking.dinner_plan && state.dinnerPlan) {
+      mutateDinnerPlan({ op: "finish_cook", meal_id: cooking.id }).then(function (plan) {
+        if (plan) {
+          state.dinnerRateMealId = cooking.id;
+          state.dinnerCookMealId = null;
+          initPlanRatingsForMeal(cooking.id);
+          show("rate");
+        }
+      });
+      return;
+    }
     const next = window.MealIdentity.reduceMealAction(identitySnapshot(), { type: "finish_cook" });
     if (!next.committed) {
       toast(next.error === "already_cooked" ? "This dinner is already logged" : "Choose this dinner before marking it cooked");
@@ -1911,7 +1969,15 @@
       if (score <= 8) return { face: "🙂", word: "Good one" };
       return { face: "😍", word: "Craving it" };
     };
-    root.innerHTML = activeMembers()
+    const rateIds = state.dinnerRateMealId
+      ? (planMealById(state.dinnerRateMealId) && planMealById(state.dinnerRateMealId).participant_ids) || []
+      : null;
+    const raters = rateIds
+      ? activeMembers().filter(function (m) {
+          return rateIds.indexOf(m.id) >= 0;
+        })
+      : activeMembers();
+    root.innerHTML = raters
       .map((m) => {
         const r = state.ratings[m.id] || { score: null, note: "" };
         const name = escapeHtml(m.name);
@@ -1975,7 +2041,10 @@
   function syncRateButtons() {
     const submit = document.getElementById("btnSubmitRated");
     const hint = document.getElementById("rateHint");
-    submit.disabled = !bothRated();
+    if (state.dinnerRateMealId) {
+      const pm = planMealById(state.dinnerRateMealId);
+      submit.disabled = !(pm && pm.state === "fully_rated");
+    } else submit.disabled = !bothRated();
     if (bothRated()) {
       hint.textContent =
         activeMemberCount() === 2
@@ -2395,9 +2464,9 @@
     }
     state.dinnerPlan = plan;
     state.dinnerUnfilled = Array.isArray(unfilled) ? unfilled : state.dinnerUnfilled || [];
-    if (plan.shop_lines) {
+    if (plan.shop_lines || plan.shop_deltas) {
       state.dinnerShop = {
-        lines: plan.shop_lines,
+        lines: plan.shop_lines || [],
         deltas: plan.shop_deltas || [],
         shopping_started: !!plan.shopping_started,
         shopping_started_at: plan.shopping_started_at,
@@ -2549,7 +2618,13 @@
       if (s === "selected") return '<span class="badge badge--match">Tonight’s pick</span> ';
       if (s === "cooking") return '<span class="badge badge--accent">Cooking now</span> ';
       if (s === "cooked") return '<span class="badge badge--warning">Ready to rate</span> ';
-      if (s === "partially_rated") return '<span class="badge badge--warning">Waiting on ratings</span> ';
+      if (s === "partially_rated") {
+      return (
+        '<span class="badge badge--warning">Waiting on ' +
+        escapeHtml(planRatingWaitingNames(meal)) +
+        "</span> "
+      );
+    }
       if (s === "fully_rated") return '<span class="badge badge--success">Everyone rated</span> ';
       if (s === "skipped") return '<span class="badge badge--sm">Skipped</span> ';
       if (s === "abandoned") return '<span class="badge badge--sm">Didn’t happen</span> ';
@@ -3009,16 +3084,37 @@
       return a.position - b.position;
     });
     const slots = emptySlots(plan);
-    let html = meals.map(function (m) {
-      return renderPlanMealCard(m);
-    }).join("");
+    const ctx = state.navContext.planReview || {};
+    let html = meals
+      .map(function (m) {
+        let card = renderPlanMealCard(m);
+        if (ctx.star && m.kind === "recipe") {
+          const me = meMember();
+          const myVote = (state.dinnerPlan.votes || []).find(function (v) {
+            return v.member_id === (me && me.id);
+          });
+          const starred = myVote && myVote.meal_id === m.meal_id;
+          const starNames = voteNamesForMeal(m.meal_id);
+          card +=
+            '<button type="button" class="btn btn-secondary btn-sm" data-action="plan-star" data-meal-id="' +
+            escapeHtml(m.meal_id) +
+            '" aria-pressed="' +
+            (starred ? "true" : "false") +
+            '">Star it</button>' +
+            (starNames.length
+              ? '<p class="meta">Starred by ' + escapeHtml(starNames.join(", ")) + "</p>"
+              : "");
+        }
+        return card;
+      })
+      .join("");
     html += slots
       .map(function (s) {
         return renderPlanMealCard(null, s);
       })
       .join("");
     list.innerHTML = html;
-    const ctx = state.navContext.planReview || {};
+    renderPlanStarIntro();
     const btnGood = document.getElementById("btnPlanLooksGood");
     const btnBack = document.getElementById("btnPlanBackHome");
     const allEmpty = meals.length === 0 && slots.length === plan.meal_count;
@@ -3097,6 +3193,9 @@
     const plan = state.dinnerPlan;
     const shop = state.dinnerShop;
     if (!plan || !shop) return;
+    if (planShoppingStarted() && !Object.keys(state.shopLineSnapshot).length) {
+      snapshotShopLinesForTags();
+    }
     const eyebrow = document.getElementById("shopEyebrow");
     if (plan.meal_count === 1 && plan.meals && plan.meals[0]) {
       eyebrow.textContent = "For " + planMealTitle(plan.meals[0]);
@@ -3120,15 +3219,29 @@
       need.length === 0
         ? "All set. Enjoy dinner."
         : need.length + " to get · " + bought.length + " bought · " + have.length + " already have";
-    const sections = document.getElementById("shopSections");
+    const colLeft = document.getElementById("shopColLeft");
+    const colRight = document.getElementById("shopColRight");
     function rowHtml(l, section) {
       const checked = l.list_state === "purchased";
       const isHave = l.list_state === "already_have";
       const name = (l.display_name || "").replace(/^\w/, function (c) {
         return c.toUpperCase();
       });
+      const meta = shopLineChangeMeta(l);
+      const tag = meta && meta.tag
+        ? '<span class="badge ' + (meta.tagClass || "badge--sm") + '">' + escapeHtml(meta.tag) + "</span> "
+        : "";
+      let qtyLine = meta && meta.qtyLine ? meta.qtyLine : formatShopQty(l);
+      let statusNote = "";
+      if (section === "dropped") {
+        if (l.list_state === "purchased") statusNote = "Bought";
+        else if (l.list_state === "already_have") statusNote = "Already have";
+        else statusNote = "Skip it";
+      }
       return (
-        '<div class="shop-row" data-line-id="' +
+        '<div class="shop-row shop-row--' +
+        section +
+        '" data-line-id="' +
         escapeHtml(l.line_id) +
         '"><button type="button" class="shop-row__toggle" role="checkbox" aria-checked="' +
         (checked || isHave ? "true" : "false") +
@@ -3140,48 +3253,114 @@
         escapeHtml(l.line_id) +
         '"><span class="shop-row__check' +
         (checked ? " is-on" : "") +
+        (isHave ? " shop-row__check--have" : "") +
         '"></span><span><span class="shop-row__name">' +
         escapeHtml(name) +
-        '</span><br /><span class="shop-row__qty">' +
-        escapeHtml(formatShopQty(l)) +
-        "</span></span></button></div>"
+        "</span> " +
+        tag +
+        '<br /><span class="shop-row__qty">' +
+        escapeHtml(qtyLine) +
+        "</span></span></button>" +
+        (section !== "dropped"
+          ? '<button type="button" class="shop-row__more" data-shop-more="' +
+            escapeHtml(l.line_id) +
+            '" aria-label="More for ' +
+            escapeHtml(name) +
+            '">⋯</button>'
+          : '<span class="shop-row__status">' + escapeHtml(statusNote) + "</span>") +
+        "</div>"
       );
     }
-    let html = "<h2 class=\"section-title\">Still need (" + need.length + ")</h2>";
-    html += need.map(function (l) {
-      return rowHtml(l, "need");
-    }).join("");
-    html += "<h2 class=\"section-title\">Bought (" + bought.length + ")</h2>";
-    html += bought.map(function (l) {
-      return rowHtml(l, "bought");
-    }).join("");
-    if (have.length) {
-      html +=
-        '<h2 class="section-title">' +
-        have.length +
-        ' already have · <button type="button" class="btn btn-quiet btn-sm" data-action="shop-show-have">Show</button></h2>';
-      html += '<div id="shopHaveRows" hidden>';
-      html += have
-        .map(function (l) {
-          return rowHtml(l, "have");
-        })
-        .join("");
-      html += "</div>";
+    function sectionBlock(title, inner) {
+      return "<h2 class=\"section-title\">" + title + "</h2>" + inner;
     }
+    let leftHtml = sectionBlock(
+      "Still need (" + need.length + ")",
+      need.map(function (l) {
+        return rowHtml(l, "need");
+      }).join("")
+    );
+    let rightHtml = "";
     if (dropped.length) {
-      html += '<h2 class="section-title">No longer needed (' + dropped.length + ")</h2>";
-      html += dropped
+      rightHtml +=
+        sectionBlock(
+          "No longer needed (" + dropped.length + ")",
+          '<p class="meta">Your plan changed. These stay so your checks aren’t lost.</p>' +
+            dropped
+              .map(function (l) {
+                return rowHtml(l, "dropped");
+              })
+              .join("")
+        );
+    }
+    rightHtml += sectionBlock(
+      "Bought (" + bought.length + ")",
+      bought
         .map(function (l) {
-          return rowHtml(l, "dropped");
+          return rowHtml(l, "bought");
         })
-        .join("");
+        .join("")
+    );
+    if (have.length) {
+      rightHtml +=
+        sectionBlock(
+          have.length + " already have · Show",
+          '<div id="shopHaveRows" hidden>' +
+            have
+              .map(function (l) {
+                return rowHtml(l, "have");
+              })
+              .join("") +
+            "</div>" +
+            '<button type="button" class="btn btn-quiet btn-sm" data-action="shop-show-have">Show</button>'
+        );
     }
     if (!lines.length) {
-      html =
+      leftHtml =
         '<div class="empty-state"><strong>Nothing to shop for</strong><p class="meta">Leftovers and nights out don’t need a list.</p><button class="btn btn-primary" type="button" data-go="choices">What are we cooking tonight?</button></div>';
+      rightHtml = "";
     }
-    sections.innerHTML = html;
+    colLeft.innerHTML = leftHtml;
+    colRight.innerHTML = rightHtml;
     renderShopChangesBanner();
+  }
+
+  function openShopLineSheet(lineId) {
+    const line = (state.dinnerShop.lines || []).find(function (l) {
+      return l.line_id === lineId;
+    });
+    if (!line) return;
+    state.shopLineMenuId = lineId;
+    const name = (line.display_name || "").replace(/^\w/, function (c) {
+      return c.toUpperCase();
+    });
+    document.getElementById("shopLineTitle").textContent = name;
+    const mealTitles = (line.meal_ids || [])
+      .map(function (id) {
+        const m = planMealById(id);
+        return m ? planMealTitle(m) : "";
+      })
+      .filter(Boolean);
+    let mealCopy = mealTitles.slice(0, 3).join(", ");
+    if (mealTitles.length > 3) mealCopy += " and " + (mealTitles.length - 3) + " more";
+    document.getElementById("shopLineMeals").textContent = mealCopy ? "For " + mealCopy : "";
+    const prepEl = document.getElementById("shopLinePrep");
+    if (line.preparation) {
+      prepEl.hidden = false;
+      prepEl.textContent = line.preparation;
+    } else prepEl.hidden = true;
+    const actions = [];
+    if (line.list_state !== "already_have") {
+      actions.push('<button type="button" class="sheet-menu__btn" data-action="shop-set" data-state="already_have">Already have it</button>');
+    }
+    if (line.list_state !== "purchased") {
+      actions.push('<button type="button" class="sheet-menu__btn" data-action="shop-set" data-state="purchased">Mark bought</button>');
+    }
+    if (line.list_state !== "open") {
+      actions.push('<button type="button" class="sheet-menu__btn" data-action="shop-set" data-state="open">Still need it</button>');
+    }
+    document.getElementById("shopLineActions").innerHTML = actions.join("");
+    document.getElementById("shopLineSheet").showModal();
   }
 
   function renderShopChangesBanner() {
@@ -3348,6 +3527,485 @@
     if (state.view === "shopList") renderShopList();
   }
 
+  function planMealById(mealId) {
+    const plan = state.dinnerPlan;
+    if (!plan || !mealId) return null;
+    return (plan.meals || []).find(function (m) {
+      return m.meal_id === mealId;
+    });
+  }
+
+  function planShoppingStarted() {
+    const shop = state.dinnerShop;
+    const plan = state.dinnerPlan;
+    return !!(shop && shop.shopping_started_at) || !!(plan && plan.shopping_started_at);
+  }
+
+  function getShopSeenTs() {
+    const plan = state.dinnerPlan;
+    if (!plan) return 0;
+    try {
+      return Number(localStorage.getItem(shopSeenKey(plan.dinner_plan_id)) || 0);
+    } catch (_) {
+      return 0;
+    }
+  }
+
+  function deltasSinceShopSeen() {
+    const shop = state.dinnerShop;
+    if (!shop || !planShoppingStarted()) return [];
+    const seen = getShopSeenTs();
+    return (shop.deltas || []).filter(function (d) {
+      return new Date(d.created_at).getTime() > seen;
+    });
+  }
+
+  function shopTagsVisible() {
+    return planShoppingStarted() && deltasSinceShopSeen().length > 0;
+  }
+
+  function shopLineChangeMeta(line) {
+    if (!shopTagsVisible() || !line) return null;
+    const key = line.ingredient_id + "\0" + (line.unit || "");
+    const deltas = deltasSinceShopSeen().filter(function (d) {
+      return d.ingredient_id + "\0" + (d.unit || "") === key;
+    });
+    const snap = state.shopLineSnapshot[key];
+    if (line.surplus_quantity > 0) {
+      const was = Number(line.quantity) + Number(line.surplus_quantity);
+      return {
+        tag: "Less needed",
+        tagClass: "badge--sm",
+        qtyLine: formatShopQty({ quantity: line.quantity, unit: line.unit }) + " now · was " + formatShopQty({ quantity: was, unit: line.unit }),
+      };
+    }
+    const added = deltas.filter(function (d) {
+      return d.kind === "added";
+    });
+    if (added.length && snap == null && line.still_needed && line.list_state === "open") {
+      return { tag: "Added", tagClass: "badge--accent badge--sm", qtyLine: null };
+    }
+    if (added.length && snap != null) {
+      const extra = added.reduce(function (sum, d) {
+        return sum + (Number(d.quantity) || 0);
+      }, 0);
+      if (line.list_state === "purchased" || line.list_state === "already_have") {
+        return {
+          tag: extra ? "Get " + extra + " more" : "Get more",
+          tagClass: "badge--warning badge--sm",
+          qtyLine:
+            formatShopQty(line) +
+            " now · you have " +
+            formatShopQty({ quantity: snap.quantity, unit: line.unit }),
+        };
+      }
+      return {
+        tag: "More needed",
+        tagClass: "badge--sm",
+        qtyLine: formatShopQty(line) + " now · was " + formatShopQty({ quantity: snap.quantity, unit: line.unit }),
+      };
+    }
+    return null;
+  }
+
+  function snapshotShopLinesForTags() {
+    const shop = state.dinnerShop;
+    if (!shop) return;
+    const snap = {};
+    (shop.lines || []).forEach(function (l) {
+      snap[l.ingredient_id + "\0" + (l.unit || "")] = { quantity: l.quantity, list_state: l.list_state };
+    });
+    state.shopLineSnapshot = snap;
+  }
+
+  function mealOptionsAllowed(meal) {
+    if (!meal) return {};
+    if (state.planSingleMode && !state.planAddElse) {
+      const closed = planMealClosed(meal);
+      return { who: !closed, date: false, leftovers: false, eatingOut: false, planDinner: false, move: false, skip: false, remove: false };
+    }
+    const closed = planMealClosed(meal);
+    const recipePlanned = meal.kind === "recipe" && (meal.state === "planned" || meal.state === "selected");
+    const nonRecipePlanned = (meal.kind === "leftovers" || meal.kind === "eating_out") && meal.state === "planned";
+    const plan = state.dinnerPlan;
+    const multi = plan && plan.meal_count > 1;
+    const meals = (plan && plan.meals) || [];
+    const idx = meals.findIndex(function (m) {
+      return m.meal_id === meal.meal_id;
+    });
+    return {
+      who: !closed,
+      date: !closed,
+      leftovers: recipePlanned || (meal.kind === "eating_out" && meal.state === "planned"),
+      eatingOut: recipePlanned || (meal.kind === "leftovers" && meal.state === "planned"),
+      planDinner: nonRecipePlanned,
+      move: !closed && meals.length > 1,
+      skip: recipePlanned || nonRecipePlanned || meal.state === "selected" || meal.state === "cooking",
+      remove: meal.state === "planned" && multi && state.view === "planReview",
+    };
+  }
+
+  function openMealOptionsSheet(mealId) {
+    const meal = planMealById(mealId);
+    if (!meal) return;
+    state.mealOptionsMealId = mealId;
+    const allow = mealOptionsAllowed(meal);
+    const title = document.getElementById("mealOptionsTitle");
+    title.textContent = "Dinner " + meal.position + ": " + planMealTitle(meal);
+    const rows = [];
+    if (allow.who) {
+      rows.push('<button type="button" class="sheet-menu__btn" data-action="mo-participants">Who’s eating</button>');
+    }
+    if (allow.date) {
+      rows.push(
+        '<button type="button" class="sheet-menu__btn" data-action="mo-date">' +
+          (meal.scheduled_date ? "Change the day" : "Set a day") +
+          "</button>"
+      );
+    }
+    if (allow.leftovers) rows.push('<button type="button" class="sheet-menu__btn" data-action="mo-leftovers">Make it leftovers</button>');
+    if (allow.eatingOut) rows.push('<button type="button" class="sheet-menu__btn" data-action="mo-eating-out">We’re eating out</button>');
+    if (allow.planDinner) {
+      rows.push('<button type="button" class="sheet-menu__btn" data-action="mo-plan-dinner">Plan a dinner here instead</button>');
+    }
+    if (allow.move && meal.position > 1) {
+      rows.push('<button type="button" class="sheet-menu__btn" data-action="mo-up">Move up</button>');
+    }
+    if (allow.move && meal.position < (state.dinnerPlan.meals || []).length) {
+      rows.push('<button type="button" class="sheet-menu__btn" data-action="mo-down">Move down</button>');
+    }
+    if (allow.skip) rows.push('<button type="button" class="sheet-menu__btn" data-action="mo-skip">Skip this one</button>');
+    if (allow.remove) rows.push('<button type="button" class="sheet-menu__btn" data-action="mo-remove">Remove this night</button>');
+    document.getElementById("mealOptionsMenu").innerHTML = rows.join("");
+    document.getElementById("mealOptionsSheet").showModal();
+  }
+
+  function openParticipantsSheet(mealId) {
+    const meal = planMealById(mealId);
+    if (!meal) return;
+    state.participantsMealId = mealId;
+    state.participantsDraft = (meal.participant_ids || activeMemberIds()).slice();
+    document.getElementById("participantsTitle").textContent = "Who’s eating Dinner " + meal.position + "?";
+    const me = meMember();
+    document.getElementById("participantsTiles").innerHTML = activeMembers()
+      .map(function (m) {
+        const on = state.participantsDraft.indexOf(m.id) >= 0;
+        const label = me && m.id === me.id ? "You" : m.name;
+        return (
+          '<button type="button" class="check-tile' +
+          (on ? " is-on" : "") +
+          '" data-participant-id="' +
+          escapeHtml(m.id) +
+          '" aria-pressed="' +
+          (on ? "true" : "false") +
+          '"><span class="avatar">' +
+          escapeHtml(m.initial) +
+          "</span><span>" +
+          escapeHtml(label) +
+          "</span></button>"
+        );
+      })
+      .join("");
+    syncParticipantsSave();
+    document.getElementById("participantsSheet").showModal();
+  }
+
+  function syncParticipantsSave() {
+    const hint = document.getElementById("participantsHint");
+    const btn = document.getElementById("btnParticipantsSave");
+    const ok = state.participantsDraft && state.participantsDraft.length > 0;
+    if (hint) hint.hidden = ok;
+    if (btn) btn.disabled = !ok;
+  }
+
+  async function saveParticipantsSheet() {
+    const mealId = state.participantsMealId;
+    if (!mealId || !state.participantsDraft || !state.participantsDraft.length) return;
+    const res = await mutateDinnerPlan({
+      op: "set_participants",
+      meal_id: mealId,
+      participant_ids: state.participantsDraft,
+    });
+    if (res) {
+      document.getElementById("participantsSheet").close();
+      renderActiveDinnerSurfaces();
+    }
+  }
+
+  function openPlanDatesSheet() {
+    const plan = state.dinnerPlan;
+    if (!plan) return;
+    const meals = (plan.meals || []).slice().sort(function (a, b) {
+      return a.position - b.position;
+    });
+    document.getElementById("planDatesFields").innerHTML = meals
+      .map(function (m) {
+        return (
+          '<label class="field"><span class="field__label">' +
+          escapeHtml(planMealLabel(m)) +
+          " · " +
+          escapeHtml(planMealTitle(m)) +
+          '</span><input type="date" data-date-meal="' +
+          escapeHtml(m.meal_id) +
+          '" value="' +
+          escapeHtml(m.scheduled_date || "") +
+          '" /><button type="button" class="btn btn-quiet btn-sm" data-action="date-clear" data-meal-id="' +
+          escapeHtml(m.meal_id) +
+          '">Clear</button></label>'
+        );
+      })
+      .join("");
+    document.getElementById("planDatesSheet").showModal();
+  }
+
+  async function savePlanDates() {
+    const plan = state.dinnerPlan;
+    if (!plan) return;
+    const inputs = document.querySelectorAll("#planDatesFields [data-date-meal]");
+    for (let i = 0; i < inputs.length; i++) {
+      const input = inputs[i];
+      const meal = planMealById(input.dataset.dateMeal);
+      const val = input.value || null;
+      const was = meal ? meal.scheduled_date : null;
+      if ((was || "") !== (val || "")) {
+        await mutateDinnerPlan({ op: "set_date", meal_id: input.dataset.dateMeal, date: val });
+      }
+    }
+    document.getElementById("planDatesSheet").close();
+    renderActiveDinnerSurfaces();
+  }
+
+  function openChangeCountSheet() {
+    const plan = state.dinnerPlan;
+    if (!plan) return;
+    state.changeCountValue = plan.meal_count;
+    state.changeCountRemoveMealId = null;
+    const chips = document.getElementById("changeCountChips");
+    chips.innerHTML = Array.from({ length: 14 }, function (_, i) {
+      const n = i + 1;
+      return (
+        '<button type="button" class="chip-tog' +
+        (n === plan.meal_count ? " is-on" : "") +
+        '" data-change-count="' +
+        n +
+        '" role="radio" aria-checked="' +
+        (n === plan.meal_count ? "true" : "false") +
+        '">' +
+        n +
+        "</button>"
+      );
+    }).join("");
+    document.getElementById("changeCountRemove").hidden = true;
+    document.getElementById("btnChangeCountApply").disabled = true;
+    document.getElementById("changeCountSheet").showModal();
+  }
+
+  function minAllowedMealCount() {
+    const plan = state.dinnerPlan;
+    if (!plan) return 1;
+    return (plan.meals || []).filter(function (m) {
+      return m.state !== "planned" && m.state !== "selected";
+    }).length;
+  }
+
+  async function fillNewSlotsFromPreview(count) {
+    const plan = state.dinnerPlan;
+    let added = 0;
+    while ((plan.meals || []).length < count) {
+      const alts = await previewDinnerAlternatives(activeMemberIds(), state.dinnerPlan);
+      if (!alts.length) break;
+      const slot = alts[0];
+      const res = await mutateDinnerPlan({
+        op: "add_meal",
+        kind: "recipe",
+        recipe_version_id: slot.recipe_version_id,
+        participant_ids: activeMemberIds(),
+      });
+      if (!res) break;
+      added++;
+    }
+    return added;
+  }
+
+  async function applyChangeCount() {
+    const plan = state.dinnerPlan;
+    const target = state.changeCountValue;
+    if (!plan || !target) return;
+    if (target < minAllowedMealCount()) {
+      toast("Remove a dinner first, then lower the number.");
+      return;
+    }
+    if (target < plan.meal_count && state.changeCountRemoveMealId) {
+      await mutateDinnerPlan({ op: "remove_meal", meal_id: state.changeCountRemoveMealId });
+    }
+    if (target !== plan.meal_count) {
+      await mutateDinnerPlan({ op: "set_count", meal_count: target });
+    }
+    await fillNewSlotsFromPreview(target);
+    document.getElementById("changeCountSheet").close();
+    renderActiveDinnerSurfaces();
+  }
+
+  async function reorderMeal(mealId, direction) {
+    const plan = state.dinnerPlan;
+    const meals = (plan.meals || []).slice().sort(function (a, b) {
+      return a.position - b.position;
+    });
+    const i = meals.findIndex(function (m) {
+      return m.meal_id === mealId;
+    });
+    if (i < 0) return;
+    const j = direction === "up" ? i - 1 : i + 1;
+    if (j < 0 || j >= meals.length) return;
+    const tmp = meals[i];
+    meals[i] = meals[j];
+    meals[j] = tmp;
+    await mutateDinnerPlan({ op: "reorder", meal_ids: meals.map(function (m) {
+      return m.meal_id;
+    }) });
+    renderActiveDinnerSurfaces();
+  }
+
+  async function replaceSlotWithRecipe(mealId, recipeVersionId) {
+    const meal = planMealById(mealId);
+    if (!meal) return;
+    const position = meal.position;
+    const participants = meal.participant_ids || activeMemberIds();
+    const date = meal.scheduled_date;
+    const removed = await mutateDinnerPlan({ op: "remove_meal", meal_id: mealId });
+    if (!removed) return;
+    const added = await mutateDinnerPlan({
+      op: "add_meal",
+      kind: "recipe",
+      recipe_version_id: recipeVersionId,
+      participant_ids: participants,
+      scheduled_date: date,
+    });
+    if (!added) {
+      await loadCurrentDinnerPlan();
+      toast("That didn’t work. Your plan is unchanged.");
+      return;
+    }
+    const newMeal = (state.dinnerPlan.meals || []).slice().sort(function (a, b) {
+      return b.position - a.position;
+    })[0];
+    if (!newMeal) return;
+    const ordered = (state.dinnerPlan.meals || [])
+      .slice()
+      .sort(function (a, b) {
+        return a.position - b.position;
+      })
+      .filter(function (m) {
+        return m.meal_id !== newMeal.meal_id;
+      });
+    ordered.splice(position - 1, 0, newMeal);
+    await mutateDinnerPlan({
+      op: "reorder",
+      meal_ids: ordered.map(function (m) {
+        return m.meal_id;
+      }),
+    });
+    renderActiveDinnerSurfaces();
+    return true;
+  }
+
+  function initPlanRatingsForMeal(mealId) {
+    const meal = planMealById(mealId);
+    if (!meal) return;
+    const parts = meal.participant_ids || [];
+    state.ratings = {};
+    parts.forEach(function (pid) {
+      const row = (meal.ratings || []).find(function (r) {
+        return r.member_id === pid;
+      });
+      state.ratings[pid] = { score: row && row.score != null ? row.score : null, note: "" };
+    });
+  }
+
+  function planRatingComplete(mealId) {
+    const meal = planMealById(mealId);
+    if (!meal) return false;
+    return meal.state === "fully_rated";
+  }
+
+  function planRatingWaitingNames(meal) {
+    const me = meMember();
+    const parts = meal.participant_ids || [];
+    const rated = new Set(
+      (meal.ratings || [])
+        .filter(function (r) {
+          return r.score != null;
+        })
+        .map(function (r) {
+          return r.member_id;
+        })
+    );
+    const waiting = parts.filter(function (id) {
+      return !rated.has(id);
+    });
+    const names = waiting.map(function (id) {
+      if (me && id === me.id) return "you";
+      const m = state.members.find(function (x) {
+        return x.id === id;
+      });
+      return m ? m.name : id;
+    });
+    if (names.length <= 2) return names.join(" and ");
+    return names.slice(0, 2).join(", ") + " and " + (names.length - 2) + " more";
+  }
+
+  function renderPlanStarIntro() {
+    const ctx = state.navContext.planReview || {};
+    const intro = document.getElementById("planReviewStarIntro");
+    if (!ctx.star || !intro) {
+      if (intro) intro.hidden = true;
+      return;
+    }
+    const plan = state.dinnerPlan;
+    const planner = state.members.find(function (m) {
+      return m.id === plan.created_by_member_id;
+    });
+    const name = planner ? planner.name : "Someone";
+    intro.hidden = false;
+    intro.textContent =
+      name + " planned " + plan.meal_count + " dinners. Star the one you’re most excited about.";
+  }
+
+  function voteNamesForMeal(mealId) {
+    const votes = (state.dinnerPlan && state.dinnerPlan.votes) || [];
+    const names = votes
+      .filter(function (v) {
+        return v.meal_id === mealId;
+      })
+      .map(function (v) {
+        const m = state.members.find(function (x) {
+          return x.id === v.member_id;
+        });
+        return m ? m.name : "";
+      })
+      .filter(Boolean);
+    return names;
+  }
+
+  function showPlanLoop(mealId) {
+    const meal = planMealById(mealId);
+    const title = planMealTitle(meal);
+    document.getElementById("loopTitle").textContent = "Everyone rated " + title;
+    const plan = state.dinnerPlan;
+    const open = !planIsClosed(plan);
+    const actions = document.querySelector('.view[data-view="loop"] .actions');
+    if (actions) {
+      actions.innerHTML =
+        (open
+          ? '<button class="btn btn-primary btn-lg" type="button" data-go="choices">Back to tonight’s options</button>'
+          : '<button class="btn btn-primary btn-lg" type="button" data-action="plan-dinners">Plan our next dinners</button>') +
+        '<button class="btn btn-secondary btn-lg" type="button" data-go="home">Back home</button>';
+    }
+    state.dinnerRateMealId = null;
+    show("loop");
+    renderLoopSummary();
+  }
+
   async function openSwapSheet(mealId) {
     const plan = state.dinnerPlan;
     const meal = (plan.meals || []).find(function (m) {
@@ -3406,17 +4064,190 @@
     const swapUse = e.target.closest("[data-action='swap-use']");
     if (swapUse) {
       e.preventDefault();
-      const res = await mutateDinnerPlan({
-        op: "swap_meal",
-        meal_id: state.swapMealId,
-        recipe_version_id: swapUse.dataset.version,
-      });
+      let res = null;
+      if (state.swapReplacePosition) {
+        res = await replaceSlotWithRecipe(state.swapMealId, swapUse.dataset.version);
+        state.swapReplacePosition = null;
+      } else {
+        res = await mutateDinnerPlan({
+          op: "swap_meal",
+          meal_id: state.swapMealId,
+          recipe_version_id: swapUse.dataset.version,
+        });
+      }
       if (res) {
         state.swappedMealIds = state.swappedMealIds || {};
         state.swappedMealIds[state.swapMealId] = true;
         document.getElementById("swapSheet").close();
         renderPlanReview();
       }
+      return true;
+    }
+    const mealMore = e.target.closest("[data-action='meal-more']");
+    if (mealMore) {
+      e.preventDefault();
+      openMealOptionsSheet(mealMore.dataset.mealId);
+      return true;
+    }
+    const mo = e.target.closest("[data-action^='mo-']");
+    if (mo) {
+      e.preventDefault();
+      const mealId = state.mealOptionsMealId;
+      const meal = planMealById(mealId);
+      document.getElementById("mealOptionsSheet").close();
+      const act = mo.dataset.action;
+      if (act === "mo-participants") openParticipantsSheet(mealId);
+      else if (act === "mo-date") {
+        document.getElementById("planDatesFields").innerHTML =
+          '<label class="field"><span class="field__label">' +
+          escapeHtml(planMealTitle(meal)) +
+          '</span><input type="date" data-date-meal="' +
+          escapeHtml(mealId) +
+          '" value="' +
+          escapeHtml(meal.scheduled_date || "") +
+          '" /><button type="button" class="btn btn-quiet btn-sm" data-action="date-clear" data-meal-id="' +
+          escapeHtml(mealId) +
+          '">No day</button></label>';
+        document.getElementById("planDatesTitle").textContent = meal.scheduled_date ? "Change the day" : "Set a day";
+        document.getElementById("planDatesSheet").showModal();
+      } else if (act === "mo-leftovers") {
+        await mutateDinnerPlan({ op: "set_leftovers", meal_id: mealId });
+        renderActiveDinnerSurfaces();
+      } else if (act === "mo-eating-out") {
+        await mutateDinnerPlan({ op: "set_eating_out", meal_id: mealId });
+        renderActiveDinnerSurfaces();
+      } else if (act === "mo-plan-dinner") {
+        state.swapMealId = mealId;
+        state.swapReplacePosition = true;
+        openSwapSheet(mealId);
+      } else if (act === "mo-up") reorderMeal(mealId, "up");
+      else if (act === "mo-down") reorderMeal(mealId, "down");
+      else if (act === "mo-skip") {
+        const ok = await confirmDialog({
+          title: "Skip " + planMealTitle(meal) + "?",
+          body: planShoppingStarted()
+            ? "Anything only it needed moves to No longer needed. Your checks stay."
+            : "Its ingredients come off your list.",
+          ok: "Skip it",
+          cancel: "Keep it",
+        });
+        if (ok) {
+          await mutateDinnerPlan({ op: "skip_meal", meal_id: mealId });
+          renderActiveDinnerSurfaces();
+        }
+      } else if (act === "mo-remove") {
+        await mutateDinnerPlan({ op: "remove_meal", meal_id: mealId });
+        await mutateDinnerPlan({ op: "set_count", meal_count: state.dinnerPlan.meal_count - 1 });
+        renderActiveDinnerSurfaces();
+      }
+      return true;
+    }
+    const planStar = e.target.closest("[data-action='plan-star']");
+    if (planStar) {
+      e.preventDefault();
+      const me = meMember();
+      const mid = me && me.id;
+      const mealId = planStar.dataset.mealId;
+      const myVote = (state.dinnerPlan.votes || []).find(function (v) {
+        return v.member_id === mid;
+      });
+      const nextId = myVote && myVote.meal_id === mealId ? null : mealId;
+      await mutateDinnerPlan({ op: "vote", meal_id: nextId, member_id: mid });
+      renderPlanReview();
+      return true;
+    }
+    const planAddDays = e.target.closest("[data-action='plan-add-days']");
+    if (planAddDays) {
+      e.preventDefault();
+      openPlanDatesSheet();
+      return true;
+    }
+    const changeCountOpen = e.target.closest("[data-action='plan-change-count']");
+    if (changeCountOpen) {
+      e.preventDefault();
+      openChangeCountSheet();
+      return true;
+    }
+    const changeChip = e.target.closest("[data-change-count]");
+    if (changeChip) {
+      e.preventDefault();
+      const n = Number(changeChip.dataset.changeCount);
+      state.changeCountValue = n;
+      document.querySelectorAll("[data-change-count]").forEach(function (b) {
+        b.classList.toggle("is-on", b === changeChip);
+      });
+      const plan = state.dinnerPlan;
+      const removeBox = document.getElementById("changeCountRemove");
+      const applyBtn = document.getElementById("btnChangeCountApply");
+      if (n < plan.meal_count) {
+        const removable = (plan.meals || []).filter(function (m) {
+          return m.state === "planned";
+        });
+        removeBox.hidden = false;
+        removeBox.innerHTML =
+          "<p class=\"meta\">Which dinner should go?</p>" +
+          removable
+            .map(function (m) {
+              return (
+                '<label class="check-tile"><input type="radio" name="removeMeal" value="' +
+                escapeHtml(m.meal_id) +
+                '" /> ' +
+                escapeHtml(planMealLabel(m)) +
+                " · " +
+                escapeHtml(planMealTitle(m)) +
+                "</label>"
+              );
+            })
+            .join("") +
+          '<label class="check-tile"><input type="radio" name="removeMeal" value="" /> Empty slot</label>';
+        applyBtn.disabled = true;
+      } else {
+        removeBox.hidden = true;
+        state.changeCountRemoveMealId = null;
+        applyBtn.disabled = n === plan.meal_count;
+      }
+      if (n > plan.meal_count) applyBtn.disabled = false;
+      return true;
+    }
+    const applyCount = e.target.closest("#btnChangeCountApply");
+    if (applyCount) {
+      e.preventDefault();
+      await applyChangeCount();
+      return true;
+    }
+    const shopMore = e.target.closest("[data-shop-more]");
+    if (shopMore) {
+      e.preventDefault();
+      openShopLineSheet(shopMore.dataset.shopMore);
+      return true;
+    }
+    const shopSet = e.target.closest("[data-action='shop-set']");
+    if (shopSet) {
+      e.preventDefault();
+      await mutateDinnerPlan({
+        op: "set_line_state",
+        line_id: state.shopLineMenuId,
+        list_state: shopSet.dataset.state,
+      });
+      document.getElementById("shopLineSheet").close();
+      renderShopList();
+      return true;
+    }
+    const dateClear = e.target.closest("[data-action='date-clear']");
+    if (dateClear) {
+      e.preventDefault();
+      const input = document.querySelector('[data-date-meal="' + dateClear.dataset.mealId + '"]');
+      if (input) input.value = "";
+      return true;
+    }
+    const participantTile = e.target.closest("[data-participant-id]");
+    if (participantTile && participantTile.closest("#participantsTiles")) {
+      e.preventDefault();
+      const id = participantTile.dataset.participantId;
+      const i = state.participantsDraft.indexOf(id);
+      if (i >= 0) state.participantsDraft.splice(i, 1);
+      else state.participantsDraft.push(id);
+      openParticipantsSheet(state.participantsMealId);
       return true;
     }
     const openMeal = e.target.closest("[data-action='open-plan-meal']");
@@ -3434,7 +4265,9 @@
         return l.line_id === lineId;
       });
       if (!line) return true;
-      const next = line.list_state === "open" ? "purchased" : "open";
+      let next = "open";
+      if (line.list_state === "open") next = "purchased";
+      else if (line.list_state === "purchased" || line.list_state === "already_have") next = "open";
       await mutateDinnerPlan({ op: "set_line_state", line_id: lineId, list_state: next });
       renderShopList();
       return true;
@@ -3518,6 +4351,8 @@
         localStorage.setItem(shopSeenKey(state.dinnerPlan.dinner_plan_id), String(Date.now()));
       } catch (_) { /* ignore */ }
       document.getElementById("shopChangesBanner").hidden = true;
+      state.shopLineSnapshot = {};
+      renderShopList();
       return true;
     }
     const ask = e.target.closest("[data-action='plan-ask-table']");
@@ -3586,11 +4421,12 @@
       await startFindSomethingElse();
       return true;
     }
-    const pickTonight = e.target.closest("[data-action='pick-for-tonight']");
+    const pickTonight = e.target.closest("[data-action='pick-for-tonight'], [data-action='pick-for-tonight-detail']");
     if (pickTonight) {
       e.preventDefault();
       await mutateDinnerPlan({ op: "select_meal", meal_id: pickTonight.dataset.mealId });
       renderTonightPlan();
+      renderDetail();
       return true;
     }
     const fulfill = e.target.closest("[data-action='fulfill-meal']");
@@ -4304,6 +5140,23 @@
   }
 
   document.getElementById("btnExitCook").addEventListener("click", async () => {
+    const cooking = cookingMeal();
+    if (cooking && cooking.dinner_plan && state.dinnerPlan) {
+      const raw = planMealById(cooking.id);
+      const leave = await confirmDialog({
+        title: "Leave the kitchen?",
+        body: planMealTitle(raw) + " goes back on your plan. Nothing is marked cooked.",
+        ok: "Leave",
+        cancel: "Keep cooking",
+      });
+      if (leave) {
+        await mutateDinnerPlan({ op: "exit_cook", meal_id: cooking.id });
+        state.dinnerCookMealId = null;
+        show("choices");
+        renderTonightPlan();
+      }
+      return;
+    }
     const leave = await confirmDialog({
       title: "Leave kitchen mode?",
       body: "Dinner isn’t marked as cooked yet. You can start cooking again from the recipe any time.",
@@ -4371,6 +5224,20 @@
     if (scoreBtn) {
       const id = scoreBtn.dataset.person;
       const score = Number(scoreBtn.dataset.score);
+      if (state.dinnerRateMealId && state.dinnerPlan) {
+        state.ratings[id] = state.ratings[id] || { score: null, note: "" };
+        state.ratings[id].score = score;
+        mutateDinnerPlan({
+          op: "rate_meal",
+          meal_id: state.dinnerRateMealId,
+          member_id: id,
+          score: score,
+        }).then(function (plan) {
+          if (plan) initPlanRatingsForMeal(state.dinnerRateMealId);
+          renderRaters();
+        });
+        return;
+      }
       const mealId = state.selectedMealId;
       if (!mealId) return;
       const ratedRecipe = recipeLoadedFor(selectedMeal());
@@ -4431,6 +5298,12 @@
   });
 
   document.getElementById("btnSavePartial").addEventListener("click", () => {
+    if (state.dinnerRateMealId) {
+      show("choices");
+      renderTonightPlan();
+      toast("Saved — rate when you’re ready");
+      return;
+    }
     if (state.lifecycle === "Selected" || state.lifecycle === "Unselected") state.lifecycle = "Cooked";
     if (bothRated()) {
       state.lifecycle = "Rated";
@@ -4454,6 +5327,15 @@
   });
 
   document.getElementById("btnSubmitRated").addEventListener("click", () => {
+    if (state.dinnerRateMealId) {
+      const meal = planMealById(state.dinnerRateMealId);
+      if (!meal || meal.state !== "fully_rated") {
+        toast("Submit when everyone has scored");
+        return;
+      }
+      showPlanLoop(state.dinnerRateMealId);
+      return;
+    }
     if (!bothRated()) return;
     state.lifecycle = "Rated";
     track("loop_completed", {
@@ -4556,6 +5438,91 @@
     }
     return { share, invite };
   }
+
+  function openContextMenu(menuEl, anchor, items) {
+    menuEl.innerHTML = items
+      .map(function (item) {
+        return (
+          '<li><button type="button" data-menu-action="' +
+          escapeHtml(item.action) +
+          '">' +
+          escapeHtml(item.label) +
+          "</button></li>"
+        );
+      })
+      .join("");
+    const rect = anchor.getBoundingClientRect();
+    menuEl.style.top = rect.bottom + 4 + "px";
+    menuEl.style.left = Math.min(rect.left, window.innerWidth - 200) + "px";
+    menuEl.hidden = false;
+  }
+
+  document.addEventListener("click", function (e) {
+    const planMenuBtn = e.target.closest("#btnPlanReviewMenu");
+    if (planMenuBtn) {
+      e.preventDefault();
+      openContextMenu(document.getElementById("planContextMenu"), planMenuBtn, [
+        { action: "plan-change-count", label: "Change the number of dinners" },
+        { action: "plan-ask-table", label: "Ask the table" },
+        { action: "plan-start-over", label: "Start over" },
+      ]);
+      return;
+    }
+    const shopMenuBtn = e.target.closest("#btnShopMenu");
+    if (shopMenuBtn) {
+      e.preventDefault();
+      openContextMenu(document.getElementById("shopContextMenu"), shopMenuBtn, [
+        { action: "plan-edit", label: "Edit plan" },
+        { action: "plan-ask-table", label: "Ask the table" },
+      ]);
+      return;
+    }
+    const menuAct = e.target.closest("[data-menu-action]");
+    if (menuAct) {
+      document.getElementById("planContextMenu").hidden = true;
+      document.getElementById("shopContextMenu").hidden = true;
+      const act = menuAct.dataset.menuAction;
+      if (act === "plan-start-over") show("planCount", { context: Nav.contextFor("planCount", "planReview", { established: true }) });
+      else if (act === "plan-edit") {
+        show("planReview", { context: Nav.contextFor("planReview", state.view, { established: true, mode: "edit" }) });
+        renderPlanReview();
+      } else if (act === "plan-change-count") openChangeCountSheet();
+      else if (act === "plan-ask-table") {
+        const url = appBaseUrl().replace(/\/$/, "") + "/?dinner_plan=" + encodeURIComponent(state.dinnerPlan.dinner_plan_id);
+        document.getElementById("askTableUrl").value = url;
+        document.getElementById("askTableSheet").showModal();
+      }
+      return;
+    }
+    if (!e.target.closest(".context-menu")) {
+      document.getElementById("planContextMenu").hidden = true;
+      document.getElementById("shopContextMenu").hidden = true;
+    }
+  });
+
+  document.getElementById("planDatesForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    savePlanDates();
+  });
+  document.getElementById("btnPlanDatesCancel").addEventListener("click", function () {
+    document.getElementById("planDatesSheet").close();
+  });
+  document.getElementById("participantsForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    saveParticipantsSheet();
+  });
+  document.getElementById("btnParticipantsCancel").addEventListener("click", function () {
+    document.getElementById("participantsSheet").close();
+  });
+  document.getElementById("btnChangeCountCancel").addEventListener("click", function () {
+    document.getElementById("changeCountSheet").close();
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.name === "removeMeal") {
+      state.changeCountRemoveMealId = e.target.value || null;
+      document.getElementById("btnChangeCountApply").disabled = false;
+    }
+  });
 
   // Deep links: /share/* · /invite/* · /recover/* (+ legacy ?query)
   (async function bootFromQuery() {

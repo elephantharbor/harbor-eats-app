@@ -546,7 +546,11 @@
               <div id="shopChangesBody"></div>
               <button class="btn btn-secondary btn-sm" type="button" id="btnShopChangesGotIt">Got it</button>
             </div>
-            <div id="shopSections"></div>
+            <div class="shop-page__columns" id="shopColumns">
+              <div id="shopColLeft"></div>
+              <div id="shopColRight"></div>
+            </div>
+            <div id="shopSections" hidden></div>
             <button class="btn btn-quiet shop-back-plan" type="button" data-go="choices">Back to your plan</button>
           </div>
         </section>
@@ -914,6 +918,41 @@
             <button class="btn btn-secondary" type="button" id="btnCopyPlanLink">Copy link</button>
             <button class="btn btn-primary" type="button" id="btnSharePlanLink">Share</button>
           </div>
+        </form>
+      </dialog>
+
+      <dialog class="sheet" id="planDatesSheet" aria-labelledby="planDatesTitle">
+        <form method="dialog" class="sheet__inner" id="planDatesForm">
+          <h2 class="card-title" id="planDatesTitle">Add days</h2>
+          <p class="meta">Optional. Plans work fine without them.</p>
+          <div id="planDatesFields"></div>
+          <div class="sheet__actions">
+            <button class="btn btn-secondary" type="button" id="btnPlanDatesCancel">Cancel</button>
+            <button class="btn btn-primary" type="submit" id="btnPlanDatesSave">Save</button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog class="sheet" id="changeCountSheet" aria-labelledby="changeCountTitle">
+        <form method="dialog" class="sheet__inner" id="changeCountForm">
+          <h2 class="card-title" id="changeCountTitle">Change the number of dinners</h2>
+          <div class="plan-count-chips change-count-chips" id="changeCountChips" role="radiogroup" aria-label="Number of dinners"></div>
+          <p class="meta" id="changeCountHint" hidden></p>
+          <div id="changeCountRemove" hidden></div>
+          <div class="sheet__actions">
+            <button class="btn btn-secondary" type="button" id="btnChangeCountCancel">Cancel</button>
+            <button class="btn btn-primary" type="button" id="btnChangeCountApply" disabled>Save</button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog class="sheet" id="shopLineSheet" aria-labelledby="shopLineTitle">
+        <form method="dialog" class="sheet__inner">
+          <h2 class="card-title" id="shopLineTitle">Ingredient</h2>
+          <p class="meta" id="shopLineMeals"></p>
+          <p class="meta" id="shopLinePrep" hidden></p>
+          <div class="sheet-menu" id="shopLineActions"></div>
+          <button class="btn btn-quiet" type="submit">Close</button>
         </form>
       </dialog>
 
