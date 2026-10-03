@@ -34,7 +34,7 @@ Detail: `docs/CYCLE1-INTEGRATION.md`.
 | FW-08 | Images | Accepted | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-catalog` `2303898d`. No PR to `main`. | `acdb92f3794a70adcd89c1c15e73d2670544502b` | `test/meal-image-lookup.test.js` (24 meals: slug, version id, title, title-only) | Not run (no preview deploy) | Composer 2.5 (`composer-2.5`) on `feature/fw-c1-catalog`; integrated by Grok 4.7 (`grok-4.7`) | Lookup is unit-tested. Animated load and fade on a real Tonight grid were not browser-verified in this integration. | None. Notes: `docs/CYCLE1-CATALOG-NOTES.md`. |
 | FW-09 | Explanation copy | Accepted | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-ux` `8b3e2f79`. No PR to `main`. | `acdb92f3794a70adcd89c1c15e73d2670544502b` | `test/explanation-evidence.test.js` (evidence tiers, plant-tag non-similarity, nut-tag non-similarity, dedupe) | Not run (no preview deploy) | Claude Opus 5.5 (`claude-opus-5-5`) on `feature/fw-c1-ux`; integrated by Grok 4.7 (`grok-4.7`) | Stored explanation text on old plans stays until a new round. Synthetic QA households never feed learning, so evidence tiers are unit-tested rather than shown in e2e. | Taste Model v1. Notes: `docs/CYCLE1-UX-NOTES.md`. |
 | FW-10 | Recipe nav/select | Accepted | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-ux` `8b3e2f79`. No PR to `main`. | `acdb92f3794a70adcd89c1c15e73d2670544502b` | `test/nav-context.test.js` (origin, Back, preview-not-select, locked-round parity); `e2e/specs/cycle1-ux.spec.js` (view, choose, history). E2e not re-run on this integration. | Not run (no preview deploy) | Claude Opus 5.5 (`claude-opus-5-5`) on `feature/fw-c1-ux`; integrated by Grok 4.7 (`grok-4.7`) | Back is still an in-app button. D-04 native Back is not built. Reducer copies stay duplicated with FW-01. | FW-01. Notes: `docs/CYCLE1-UX-NOTES.md`. |
-| D-01 | Multi-dinner planning | In Progress | `feature/flavorweave-alpha-remediation`. Cycle 3 children plus fix branches `feature/fw-c3-shoplines` `c6a8d34a`, `feature/fw-c3-uxfix` `668c1752`. No pull request. Not accepted. | Product runtime `f3f6d0e29bd009c778dfcf5e9d7b78a606927b74`. See the Cycle 3 section. Shopping line ids are plan-scoped (`sl_{dinner_plan_id}_{ingredient}_{unit}`). | `test/cycle3-contract.test.js` (23); `test/migration-0011.test.js`; `test/nav-context.test.js`; `test/brand-smoke.test.js` (`fw-sw-v11`); broad unit/lint/Playwright on this integration | Not run (no preview deploy). No browser re-check of Opus preview findings. Hosted GitHub Actions was not run. | Grok 4.7 (`grok-4.7`) on prior integration; fix branches by Cursor Agent. | Opus integrated preview review rejected the prior preview (line loss, unreachable list, participants, toast HTML, headers, quantity display, delta tags, card actions, title box, new-kitchen entry). Those items are not claimed re-verified here. Migration 0011 was not applied to any D1 database. | Cycle 2. Contract: `docs/CYCLE3-CONTRACT.md`. UX: `docs/CYCLE3-UX.md`. |
+| D-01 | Multi-dinner planning | In Progress | `feature/flavorweave-alpha-remediation`. Cycle 3 children plus fix branches `feature/fw-c3-shoplines` `c6a8d34a`, `feature/fw-c3-uxfix` `668c1752`, `feature/fw-c3-fix2` `e7fcb849`. No pull request. Not accepted. | Product runtime `e7fcb849fd848dfd9bd131ff9a544f783c95952a`. See the Cycle 3 section. Shopping line ids are plan-scoped (`sl_{dinner_plan_id}_{ingredient}_{unit}`). | `test/shop-display.test.js` (7); `test/cycle3-contract.test.js` (23); `test/nav-context.test.js` (21); `test/brand-smoke.test.js` (`fw-sw-v12`); broad unit/lint/Playwright on this integration | No new preview deploy. A preview recheck of the prior build failed quantity fractions, Added tags, and Who's eating. No browser re-check of this integration. Hosted GitHub Actions was not run. | Grok 4.7 (`grok-4.7`) on prior integration; fix branches by Cursor Agent. | Opus integrated preview review rejected the earlier preview (line loss, unreachable list, participants, toast HTML, headers, card actions, title box, new-kitchen entry). Quantity display, delta tags, and participant sheet were addressed in `feature/fw-c3-fix2` but are not claimed re-verified in a browser here. Migration 0011 was not applied to any D1 database. | Cycle 2. Contract: `docs/CYCLE3-CONTRACT.md`. UX: `docs/CYCLE3-UX.md`. |
 | D-02 | Taste-vocabulary / dietary model expansion | Accepted | `feature/flavorweave-alpha-remediation`. Children `feature/fw-c2-contract` `3f734a5147411cc163db4d4ea4af1556a32ecd37`, `feature/fw-c2-taste` `dd97bc7d762fee9032065b2a13b41ae7b29db017`. No PR. | Cycle 2 integration tip. See the Cycle 2 section. | `test/diner-taste-rank.test.js`; `test/taste-resolver.test.js`; `test/preference-concepts.test.js`; `test/taste-profile.test.js`; `test/taste-ui.test.js`; `test/migration-0010.test.js` | Not run (no preview deploy). Hosted GitHub Actions was not run. | Grok 4.7 (`grok-4.7`) on the children and on this integration | Legacy `dislike` and `neutral` evidence is not rewritten. `recordInferredTaste` is a hook and nothing calls it from a meal rating. Household 001 was not backfilled. | Hard limits stay in `src/lib/eligibility.js`. Contract: `docs/CYCLE2-CONTRACT.md`. |
 | D-03 | Catalog expansion workflow | Accepted | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c2-catalog` `e6a9e8e9986cc3dc83b1a0f237105ca7d021c964`. No PR. | Cycle 2 integration tip. See the Cycle 2 section. | `test/cycle2-catalog.test.js`; `test/recipe-package.test.js`; `test/migration-0010.test.js` | Not run (no preview deploy). Hosted GitHub Actions was not run. | Grok 4.7 (`grok-4.7`) on the child and on this integration | 24 packages are structurally valid. Provenance stays `unknown_unverified`. Image provenance stays `unknown` and rights stay `not_cleared_for_external_release`. `kitchen_tested` stays false. Tonight still uses `recipe-store.js`. | `docs/CYCLE2-CONTRACT.md`. |
 | D-04 | Native-feeling Back | Approved / Not Yet Implemented | — | — | — | — | — | Title source: campaign prompt, not a repo design doc. FW-10 stores plain navigation context and does not build native Back. | — |
@@ -177,6 +177,33 @@ Broad suite on the product runtime tree:
 - Unit tests: 37 files, 427 passed (`npx vitest run`).
 - Lint: `eslint --max-warnings=0`, clean.
 - Playwright: `CI=true npm run test:e2e`, 26 passed, 1 failed (`e2e/specs/responsive.spec.js` mobile Tonight nav). E2e helpers were updated for Cycle 3 onboarding landing on Home; the responsive spec was re-run and passed (3/3). Full Playwright was not re-run after that e2e-only fix. Hosted GitHub Actions was not run.
+
+**Cycle 3 fix2 integration** (from prior tip `b1c566464d51afbdb0037cbce13a5cb46a4146a9`):
+
+| Order | Branch | Child SHA | How it landed |
+|-------|--------|-----------|---------------|
+| 7 | `feature/fw-c3-fix2` | `e7fcb849fd848dfd9bd131ff9a544f783c95952a` | Fast-forward. Shop quantity display (`src/lib/shop-display.js`), shopping delta Added tags, participant (“Who's eating”) sheet, PATCH to activate invited members, service worker `fw-sw-v12`. |
+
+No merge conflicts. Shopping-started rules, FW-01, and Cycle 2 taste behavior were not changed.
+
+**Branch tip (integration):** `e7fcb849fd848dfd9bd131ff9a544f783c95952a` after the fast-forward above. A later docs-only commit may advance the tip without changing product files.
+
+**Product runtime SHA:** `e7fcb849fd848dfd9bd131ff9a544f783c95952a`
+
+**Service worker:** `fw-sw-v12` (`public/sw.js`). `test/brand-smoke.test.js` expects v12.
+
+**Preview recheck (prior build):** Quantity fractions, Added tags, and Who's eating failed on the build before this fix. This integration does not claim a new browser re-check.
+
+**Node:** v22.14.0, after `npm ci`.
+
+Targeted unit on the product runtime tree: `test/shop-display.test.js` 7 passed; `test/cycle3-contract.test.js` 23; `test/nav-context.test.js` 21; `test/brand-smoke.test.js` 7 (58 total).
+
+Broad suite on the product runtime tree:
+
+- Migration check: `OK: 11 migration file(s)`.
+- Unit tests: 38 files, 434 passed (`npx vitest run`).
+- Lint: `eslint --max-warnings=0`, clean.
+- Playwright: `CI=true npm run test:e2e`, 27 passed. Hosted GitHub Actions was not run.
 
 The UI branch already contained the contract, the shop slice, and the UX document:
 
