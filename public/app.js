@@ -2542,6 +2542,24 @@
     return meal.title || meal.recipe_slug || "Dinner";
   }
 
+  function planMealStateBadge(meal) {
+    if (!meal) return "";
+    const s = meal.state;
+    if (meal.kind === "recipe") {
+      if (s === "selected") return '<span class="badge badge--match">Tonight’s pick</span> ';
+      if (s === "cooking") return '<span class="badge badge--accent">Cooking now</span> ';
+      if (s === "cooked") return '<span class="badge badge--warning">Ready to rate</span> ';
+      if (s === "partially_rated") return '<span class="badge badge--warning">Waiting on ratings</span> ';
+      if (s === "fully_rated") return '<span class="badge badge--success">Everyone rated</span> ';
+      if (s === "skipped") return '<span class="badge badge--sm">Skipped</span> ';
+      if (s === "abandoned") return '<span class="badge badge--sm">Didn’t happen</span> ';
+    }
+    if (meal.kind === "leftovers" && s === "planned") return '<span class="badge badge--sm">Leftovers night</span> ';
+    if (meal.kind === "eating_out" && s === "planned") return '<span class="badge badge--sm">Eating out</span> ';
+    if (s === "fulfilled") return '<span class="badge badge--success">Done</span> ';
+    return "";
+  }
+
   function planMealLabel(meal, position) {
     if (meal && meal.scheduled_date) {
       try {
@@ -2604,13 +2622,43 @@
     state.dinnerDetailMeal = meal;
     state.previewMealId = mealId;
     state.activeRecipe = null;
+    const from = origin === "tonightPlan" ? "choices" : origin || "planReview";
     show("detail", {
-      context: Nav.contextFor("detail", origin || "planReview", {
+      context: Nav.contextFor("detail", from, {
         established: householdEstablished(),
         origin: origin || "planReview",
-        source: "dinner_plan",
+        source: origin === "tonightPlan" ? "tonight_plan" : "dinner_plan",
       }),
     });
+  }
+
+  async function startFindSomethingElse() {
+    const plan = state.dinnerPlan;
+    if (!plan) return;
+    if (plan.meal_count >= 14) {
+      toast("Your plan is full. Skip or remove a dinner first.");
+      return;
+    }
+    const alts = await previewDinnerAlternatives(activeMemberIds(), plan);
+    if (!alts.length) {
+      toast("That’s every dinner that fits your table right now.");
+      return;
+    }
+    const slot = alts[0];
+    const afterCount = await mutateDinnerPlan({ op: "set_count", meal_count: plan.meal_count + 1 });
+    if (!afterCount) return;
+    await mutateDinnerPlan({
+      op: "add_meal",
+      kind: "recipe",
+      recipe_version_id: slot.recipe_version_id,
+      participant_ids: activeMemberIds(),
+    });
+    state.planAddElse = true;
+    state.planSingleMode = true;
+    show("planReview", {
+      context: Nav.contextFor("planReview", "choices", { established: true, mode: "compose" }),
+    });
+    renderPlanReview();
   }
 
   function stillNeedCount(plan) {
@@ -2880,7 +2928,7 @@
     lede.textContent = "One dinner per night, picked for your table. Swap anything that doesn’t feel right.";
   }
 
-  function renderPlanMealCard(meal, slot) {
+  function renderPlanMealCard(meal, slot, showStateBadge) {
     if (slot && slot.empty) {
       const reason = slot.reason || "no_eligible_meal";
       const isNoUnused = reason === "no_unused_eligible_meal";
@@ -2932,6 +2980,7 @@
       escapeHtml(planMealTitle(meal)) +
       "</button></h2>" +
       (swapped ? '<span class="badge badge--match">Swapped in</span> ' : "") +
+      (showStateBadge ? planMealStateBadge(meal) : "") +
       '<p class="card-kicker">Why this one</p><p class="meta">Fits everyone’s limits</p>' +
       '<div class="plan-meal-card__actions">' +
       (canSwap
@@ -2979,9 +3028,14 @@
     } else if (state.planSingleMode) {
       btnGood.hidden = true;
       btnBack.hidden = true;
-      document.getElementById("planReviewActions").innerHTML =
-        '<button class="btn btn-primary btn-lg" type="button" data-action="single-make">Let’s make this</button>' +
-        '<button class="btn btn-secondary btn-lg" type="button" data-action="single-shop">Add to my shopping list</button>';
+      if (state.planAddElse) {
+        document.getElementById("planReviewActions").innerHTML =
+          '<button class="btn btn-primary btn-lg" type="button" data-action="cook-this-tonight">Cook this tonight</button>';
+      } else {
+        document.getElementById("planReviewActions").innerHTML =
+          '<button class="btn btn-primary btn-lg" type="button" data-action="single-make">Let’s make this</button>' +
+          '<button class="btn btn-secondary btn-lg" type="button" data-action="single-shop">Add to my shopping list</button>';
+      }
     } else if (ctx.mode === "edit") {
       btnGood.textContent = "Done";
       btnGood.hidden = false;
@@ -3211,15 +3265,56 @@
     }));
     if (readyList.length) {
       html += '<h2 class="section-title">Ready to cook</h2>';
-      html += readyList.map(function (m) {
-        return renderPlanMealCard(m);
-      }).join("");
+      html += readyList
+        .map(function (m) {
+          let actions = "";
+          if (m.kind === "recipe") {
+            actions =
+              '<div class="plan-meal-card__actions">' +
+              '<button type="button" class="btn btn-primary btn-sm" data-action="cook-plan-meal" data-meal-id="' +
+              escapeHtml(m.meal_id) +
+              '">Cook this</button>';
+            if (m.state === "planned") {
+              actions +=
+                '<button type="button" class="btn btn-secondary btn-sm" data-action="pick-for-tonight" data-meal-id="' +
+                escapeHtml(m.meal_id) +
+                '">Pick for tonight</button>';
+            }
+            actions += "</div>";
+          } else if (m.kind === "leftovers") {
+            actions =
+              '<button type="button" class="btn btn-primary btn-sm" data-action="fulfill-meal" data-meal-id="' +
+              escapeHtml(m.meal_id) +
+              '">We had leftovers</button>';
+          } else if (m.kind === "eating_out") {
+            actions =
+              '<button type="button" class="btn btn-secondary btn-sm" data-action="fulfill-meal" data-meal-id="' +
+              escapeHtml(m.meal_id) +
+              '">We ate out</button>';
+          }
+          return renderPlanMealCard(m, null, true) + actions;
+        })
+        .join("");
     }
     if (rate.length) {
       html += '<h2 class="section-title">Rate when you’re ready</h2>';
-      html += rate.map(function (m) {
-        return renderPlanMealCard(m);
-      }).join("");
+      html += rate
+        .map(function (m) {
+          const me = meMember();
+          const owes =
+            me &&
+            (m.participant_ids || []).indexOf(me.id) >= 0 &&
+            !(m.ratings || []).some(function (r) {
+              return r.member_id === me.id && r.score != null;
+            });
+          const rateBtn = owes
+            ? '<button type="button" class="btn btn-primary btn-sm" data-action="rate-plan-meal" data-meal-id="' +
+              escapeHtml(m.meal_id) +
+              '">Rate it</button>'
+            : "";
+          return renderPlanMealCard(m, null, true) + rateBtn;
+        })
+        .join("");
     }
     if (done.length) {
       html += "<p class=\"meta\">" + done.length + " done · Show</p>";
@@ -3443,6 +3538,128 @@
       });
       return true;
     }
+    const countSubmit = e.target.closest("#btnPlanCountSubmit");
+    if (countSubmit) {
+      e.preventDefault();
+      await submitPlanCount();
+      return true;
+    }
+    const countChip = e.target.closest("[data-plan-count]");
+    if (countChip) {
+      e.preventDefault();
+      state.planCountValue = Number(countChip.dataset.planCount);
+      document.querySelectorAll("[data-plan-count]").forEach(function (b) {
+        const on = b === countChip;
+        b.classList.toggle("is-on", on);
+        b.setAttribute("aria-checked", on ? "true" : "false");
+      });
+      syncPlanCountSubmit();
+      return true;
+    }
+    const groupPick = e.target.closest(".plan-count-option");
+    if (groupPick && !e.target.closest("[data-plan-count]")) {
+      e.preventDefault();
+      document.querySelectorAll(".plan-count-option").forEach(function (el) {
+        const on = el === groupPick;
+        el.classList.toggle("is-selected", on);
+        const chips = el.querySelector(".plan-count-chips");
+        const hint = el.querySelector(".plan-count-hint");
+        if (chips) chips.hidden = !on;
+        if (hint) hint.hidden = !on;
+      });
+      const nums = Array.from(groupPick.querySelectorAll("[data-plan-count]")).map(function (b) {
+        return Number(b.dataset.planCount);
+      });
+      if (state.planCountValue && nums.indexOf(state.planCountValue) < 0) {
+        state.planCountValue = null;
+        document.querySelectorAll("[data-plan-count]").forEach(function (b) {
+          b.classList.remove("is-on");
+          b.setAttribute("aria-checked", "false");
+        });
+      }
+      syncPlanCountSubmit();
+      return true;
+    }
+    const findElse = e.target.closest("[data-action='find-something-else']");
+    if (findElse) {
+      e.preventDefault();
+      await startFindSomethingElse();
+      return true;
+    }
+    const pickTonight = e.target.closest("[data-action='pick-for-tonight']");
+    if (pickTonight) {
+      e.preventDefault();
+      await mutateDinnerPlan({ op: "select_meal", meal_id: pickTonight.dataset.mealId });
+      renderTonightPlan();
+      return true;
+    }
+    const fulfill = e.target.closest("[data-action='fulfill-meal']");
+    if (fulfill) {
+      e.preventDefault();
+      await mutateDinnerPlan({ op: "fulfill_meal", meal_id: fulfill.dataset.mealId });
+      renderTonightPlan();
+      return true;
+    }
+    const emptyLo = e.target.closest("[data-action='empty-leftovers']");
+    if (emptyLo) {
+      e.preventDefault();
+      const slotEl = e.target.closest("[data-empty-position]");
+      const pos = slotEl ? Number(slotEl.dataset.emptyPosition) : 0;
+      await mutateDinnerPlan({
+        op: "add_meal",
+        kind: "leftovers",
+        participant_ids: activeMemberIds(),
+        position: pos || undefined,
+      });
+      renderPlanReview();
+      return true;
+    }
+    const emptyOut = e.target.closest("[data-action='empty-out']");
+    if (emptyOut) {
+      e.preventDefault();
+      const slotEl2 = e.target.closest("[data-empty-position]");
+      const pos2 = slotEl2 ? Number(slotEl2.dataset.emptyPosition) : 0;
+      await mutateDinnerPlan({
+        op: "add_meal",
+        kind: "eating_out",
+        participant_ids: activeMemberIds(),
+        position: pos2 || undefined,
+      });
+      renderPlanReview();
+      return true;
+    }
+    const shopShowHave = e.target.closest("[data-action='shop-show-have']");
+    if (shopShowHave) {
+      e.preventDefault();
+      const rows = document.getElementById("shopHaveRows");
+      if (rows) rows.hidden = false;
+      shopShowHave.hidden = true;
+      return true;
+    }
+    const cookTonight = e.target.closest("[data-action='cook-plan-meal']");
+    if (cookTonight) {
+      e.preventDefault();
+      openPlanMealDetail(cookTonight.dataset.mealId, "tonightPlan");
+      return true;
+    }
+    const ratePlan = e.target.closest("[data-action='rate-plan-meal']");
+    if (ratePlan) {
+      e.preventDefault();
+      state.dinnerRateMealId = ratePlan.dataset.mealId;
+      state.dinnerDetailMeal = mealById(ratePlan.dataset.mealId);
+      show("rate", { context: Nav.contextFor("rate", "choices", { established: true, origin: "tonightPlan" }) });
+      return true;
+    }
+    const cookElse = e.target.closest("[data-action='cook-this-tonight']");
+    if (cookElse) {
+      e.preventDefault();
+      const meal = (state.dinnerPlan.meals || []).slice(-1)[0];
+      if (!meal) return true;
+      await mutateDinnerPlan({ op: "select_meal", meal_id: meal.meal_id });
+      openPlanMealDetail(meal.meal_id, "tonightPlan");
+      state.planAddElse = false;
+      return true;
+    }
     return false;
   }
 
@@ -3452,7 +3669,9 @@
   }
 
   // —— Navigation ——
-  app.addEventListener("click", (e) => {
+  app.addEventListener("click", async (e) => {
+    if (await handleDinnerPlanClick(e)) return;
+
     const pick = e.target.closest("[data-taste-pick]");
     if (pick) {
       const slug = pick.dataset.tastePick;
