@@ -1397,12 +1397,29 @@ async function patchHousehold(env, household_id, body, session) {
 
   if (Array.isArray(body.members)) {
     for (const m of body.members) {
-      if (!m.member_id || !m.display_name) continue;
-      await env.DB.prepare(
-        `UPDATE member SET display_name = ?, updated_at = ? WHERE member_id = ? AND household_id = ?`
-      )
-        .bind(String(m.display_name).trim(), ts, m.member_id, household_id)
-        .run();
+      if (!m.member_id) continue;
+      if (m.display_name) {
+        await env.DB.prepare(
+          `UPDATE member SET display_name = ?, updated_at = ? WHERE member_id = ? AND household_id = ?`
+        )
+          .bind(String(m.display_name).trim(), ts, m.member_id, household_id)
+          .run();
+      }
+      const nextStatus = m.status === "active" || m.status === "invited" ? m.status : null;
+      if (nextStatus === "active") {
+        await env.DB.prepare(
+          `UPDATE member SET status = 'active', accepted_at = COALESCE(accepted_at, ?), updated_at = ?
+           WHERE member_id = ? AND household_id = ?`
+        )
+          .bind(ts, ts, m.member_id, household_id)
+          .run();
+      } else if (nextStatus === "invited") {
+        await env.DB.prepare(
+          `UPDATE member SET status = 'invited', updated_at = ? WHERE member_id = ? AND household_id = ?`
+        )
+          .bind(ts, m.member_id, household_id)
+          .run();
+      }
     }
   }
 

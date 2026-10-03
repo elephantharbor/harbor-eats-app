@@ -345,7 +345,7 @@ export async function householdMemberIds(db, householdId) {
   const rows = await bindAll(
     db,
     `SELECT member_id FROM member
-     WHERE household_id = ? AND status IN ('active', 'invited')`,
+     WHERE household_id = ? AND status = 'active'`,
     [householdId]
   );
   return rows.map((row) => row.member_id);

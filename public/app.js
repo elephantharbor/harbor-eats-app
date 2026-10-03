@@ -2356,6 +2356,22 @@
   function shopSeenKey(planId) {
     return LS_SHOP_SEEN + planId;
   }
+  function shopSnapKey(planId) {
+    return "he_shop_snap_" + planId;
+  }
+
+  async function refreshMembersFromServer() {
+    const snap = await apiGet("/api/sessions/me");
+    if (snap && snap.ok) applyServerSnapshot(snap);
+    return snap;
+  }
+
+  function invitedMembers() {
+    return state.members.filter(function (m) {
+      const s = m.status === "Active" ? "active" : String(m.status || "").toLowerCase();
+      return s === "invited";
+    });
+  }
 
   function activeMemberIds() {
     return activeMembers().map(function (m) {
@@ -2567,6 +2583,8 @@
   function dinnerPlanErrorToast(res) {
     const code = res && res.error;
     if (code === "hard_limit_blocked") toast("That one doesn’t work for everyone at this dinner. Pick another.");
+    else if (code === "forbidden_member")
+      toast("Only diners who’ve joined your kitchen can eat this one. Mark them active in Settings or use “They’re at the table”.");
     else if (code === "plan_full") toast("Your plan is full. Add a night first.");
     else if (code === "meal_count_too_small") toast("Remove a dinner first, then lower the number.");
     else if (code === "forbidden_cross_household" || code === "plan_not_found") toast("This plan isn’t in your kitchen.");
@@ -3219,27 +3237,93 @@
   const SHOP_QTY_FRACS = [
     [1 / 8, "1/8"],
     [1 / 4, "1/4"],
+    [3 / 8, "3/8"],
     [1 / 3, "1/3"],
     [1 / 2, "1/2"],
     [2 / 3, "2/3"],
     [3 / 4, "3/4"],
   ];
+  const SHOP_QTY_EPS = 1e-6;
 
   function formatShopQuantityAmount(num) {
     const sign = num < 0 ? "-" : "";
     const abs = Math.abs(num);
-    const whole = Math.floor(abs);
+    const whole = Math.floor(abs + SHOP_QTY_EPS);
     const fracPart = abs - whole;
-    if (fracPart < 1e-6) return sign + String(whole);
+    if (fracPart < SHOP_QTY_EPS) return sign + String(whole);
     for (let i = 0; i < SHOP_QTY_FRACS.length; i++) {
       const pair = SHOP_QTY_FRACS[i];
-      if (Math.abs(fracPart - pair[0]) < 1e-6) {
+      if (Math.abs(fracPart - pair[0]) < SHOP_QTY_EPS) {
         return whole > 0 ? sign + whole + " " + pair[1] : sign + pair[1];
       }
     }
     const trimmed = String(abs);
     const short = trimmed.indexOf(".") >= 0 ? trimmed.replace(/\.?0+$/, "") : trimmed;
     return sign + short;
+  }
+
+  function shopLineKey(ingredientId, unit) {
+    return ingredientId + "\0" + (unit || "");
+  }
+
+  function persistShopLineSnapshot() {
+    const plan = state.dinnerPlan;
+    if (!plan) return;
+    try {
+      localStorage.setItem(shopSnapKey(plan.dinner_plan_id), JSON.stringify(state.shopLineSnapshot));
+    } catch (_) { /* ignore */ }
+  }
+
+  function loadShopLineSnapshotFromStorage() {
+    const plan = state.dinnerPlan;
+    if (!plan || Object.keys(state.shopLineSnapshot).length) return;
+    try {
+      const raw = localStorage.getItem(shopSnapKey(plan.dinner_plan_id));
+      if (raw) state.shopLineSnapshot = JSON.parse(raw);
+    } catch (_) { /* ignore */ }
+  }
+
+  function rebuildShopSnapshotFromDeltas(lines, unseenDeltas) {
+    const snap = {};
+    (lines || []).forEach(function (l) {
+      if (!l.still_needed) return;
+      snap[shopLineKey(l.ingredient_id, l.unit)] = { quantity: l.quantity, list_state: l.list_state };
+    });
+    const sorted = (unseenDeltas || [])
+      .slice()
+      .sort(function (a, b) {
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+      });
+    sorted.forEach(function (d) {
+      const key = shopLineKey(d.ingredient_id, d.unit);
+      const qty = Number(d.quantity) || 0;
+      if (d.kind === "added") {
+        if (!snap[key]) return;
+        const cur = Number(snap[key].quantity) || 0;
+        const next = cur - qty;
+        if (next <= SHOP_QTY_EPS) delete snap[key];
+        else snap[key].quantity = next;
+      } else if (d.kind === "no_longer_needed") {
+        if (snap[key]) snap[key].quantity = (Number(snap[key].quantity) || 0) + qty;
+        else snap[key] = { quantity: qty, list_state: "open" };
+      }
+    });
+    return snap;
+  }
+
+  function ensureShopLineSnapshotForTags() {
+    const plan = state.dinnerPlan;
+    const shop = state.dinnerShop;
+    if (!plan || !shop || !planShoppingStarted()) return;
+    loadShopLineSnapshotFromStorage();
+    if (Object.keys(state.shopLineSnapshot).length) return;
+    const unseen = deltasSinceShopSeen();
+    if (unseen.length) {
+      state.shopLineSnapshot = rebuildShopSnapshotFromDeltas(shop.lines || [], unseen);
+      persistShopLineSnapshot();
+      return;
+    }
+    snapshotShopLinesForTags();
   }
 
   function formatShopQty(line) {
@@ -3261,9 +3345,7 @@
     const plan = state.dinnerPlan;
     const shop = state.dinnerShop;
     if (!plan || !shop) return;
-    if (planShoppingStarted() && !Object.keys(state.shopLineSnapshot).length) {
-      snapshotShopLinesForTags();
-    }
+    if (planShoppingStarted()) ensureShopLineSnapshotForTags();
     const eyebrow = document.getElementById("shopEyebrow");
     if (plan.meal_count === 1 && plan.meals && plan.meals[0]) {
       eyebrow.textContent = "For " + planMealTitle(plan.meals[0]);
@@ -3650,36 +3732,24 @@
 
   function shopLineChangeMeta(line) {
     if (!shopTagsVisible() || !line || !line.still_needed) return null;
-    const key = line.ingredient_id + "\0" + (line.unit || "");
+    const key = shopLineKey(line.ingredient_id, line.unit);
     const deltas = deltasSinceShopSeen().filter(function (d) {
-      return d.ingredient_id + "\0" + (d.unit || "") === key;
+      return shopLineKey(d.ingredient_id, d.unit) === key;
     });
     const snap = state.shopLineSnapshot[key];
     const newQty = Number(line.quantity) || 0;
     const oldQty = snap ? Number(snap.quantity) || 0 : null;
-    if (line.surplus_quantity > 0 && newQty > 1e-6) {
-      const was = newQty + Number(line.surplus_quantity);
-      return {
-        tag: "Less needed",
-        tagClass: "badge--sm",
-        qtyLine:
-          formatShopQty(line) + " now · was " + formatShopQty({ quantity: was, unit: line.unit }),
-      };
-    }
-    const added = deltas.filter(function (d) {
+    const wasOnSnapshot = snap != null;
+    const addedDeltas = deltas.filter(function (d) {
       return d.kind === "added";
     });
-    if (added.length && snap == null) {
+    if (!wasOnSnapshot && addedDeltas.length) {
       return { tag: "Added", tagClass: "badge--accent badge--sm", qtyLine: null };
     }
-    if (added.length && oldQty != null && newQty > oldQty + 1e-6) {
-      const extra = added.reduce(function (sum, d) {
-        return sum + (Number(d.quantity) || 0);
-      }, 0);
+    if (wasOnSnapshot && oldQty != null && newQty > oldQty + SHOP_QTY_EPS) {
       if (line.list_state === "purchased" || line.list_state === "already_have") {
-        const extraLabel = extra
-          ? formatShopQty({ quantity: extra, unit: line.unit })
-          : "more";
+        const extra = newQty - oldQty;
+        const extraLabel = extra ? formatShopQty({ quantity: extra, unit: line.unit }) : "more";
         return {
           tag: extra ? "Get " + extraLabel + " more" : "Get more",
           tagClass: "badge--warning badge--sm",
@@ -3695,6 +3765,15 @@
         qtyLine: formatShopQty(line) + " now · was " + formatShopQty({ quantity: snap.quantity, unit: line.unit }),
       };
     }
+    if (line.surplus_quantity > 0 && newQty > SHOP_QTY_EPS) {
+      const was = newQty + Number(line.surplus_quantity);
+      return {
+        tag: "Less needed",
+        tagClass: "badge--sm",
+        qtyLine:
+          formatShopQty(line) + " now · was " + formatShopQty({ quantity: was, unit: line.unit }),
+      };
+    }
     return null;
   }
 
@@ -3703,9 +3782,10 @@
     if (!shop) return;
     const snap = {};
     (shop.lines || []).forEach(function (l) {
-      snap[l.ingredient_id + "\0" + (l.unit || "")] = { quantity: l.quantity, list_state: l.list_state };
+      snap[shopLineKey(l.ingredient_id, l.unit)] = { quantity: l.quantity, list_state: l.list_state };
     });
     state.shopLineSnapshot = snap;
+    persistShopLineSnapshot();
   }
 
   function mealOptionsAllowed(meal) {
@@ -3791,12 +3871,67 @@
         );
       })
       .join("");
+    const invited = invitedMembers();
+    const invitedEl = document.getElementById("participantsInvited");
+    if (invitedEl) {
+      if (invited.length) {
+        invitedEl.hidden = false;
+        invitedEl.innerHTML =
+          invited
+            .map(function (m) {
+              return (
+                '<span class="member-row member-row--compact">' +
+                escapeHtml(m.name) +
+                ' · waiting to join · <button type="button" class="btn btn-quiet btn-sm" data-action="participant-activate" data-member-id="' +
+                escapeHtml(m.id) +
+                '">They’re at the table</button></span>'
+              );
+            })
+            .join(" ") +
+          " Only active diners can be saved to this dinner.";
+      } else {
+        invitedEl.hidden = true;
+        invitedEl.textContent = "";
+      }
+    }
     syncParticipantsSave();
   }
 
-  function openParticipantsSheet(mealId) {
+  async function activateMemberForParticipants(memberId) {
+    const hh = API.householdId || state.householdId;
+    const member = state.members.find(function (m) {
+      return m.id === memberId;
+    });
+    if (!hh || !member) return;
+    await ensureMemberSession();
+    const res = await apiPatch("/api/households/" + encodeURIComponent(hh), {
+      members: [{ member_id: memberId, display_name: member.name, status: "active" }],
+    });
+    if (!res || !res.ok) {
+      toast("Couldn’t add them yet — they may still need to accept your invite.");
+      return;
+    }
+    if (Array.isArray(res.members)) {
+      state.members = res.members.map(function (m) {
+        const name = m.display_name || m.member_id;
+        return {
+          id: m.member_id,
+          name,
+          initial: (name[0] || "?").toUpperCase(),
+          status: m.status === "active" ? "Active" : m.status === "invited" ? "Invited" : m.status,
+        };
+      });
+      syncAvatars();
+    }
+    if (state.participantsDraft.indexOf(memberId) < 0) state.participantsDraft.push(memberId);
+    renderParticipantsTiles();
+    toast(member.name + " can join this dinner now.");
+  }
+
+  async function openParticipantsSheet(mealId) {
     const meal = planMealById(mealId);
     if (!meal) return;
+    await refreshMembersFromServer();
     state.participantsMealId = mealId;
     state.participantsDraft = (meal.participant_ids || activeMemberIds()).slice();
     document.getElementById("participantsTitle").textContent = "Who’s eating Dinner " + meal.position + "?";
@@ -4334,6 +4469,12 @@
       if (input) input.value = "";
       return true;
     }
+    const activateParticipant = e.target.closest("[data-action='participant-activate']");
+    if (activateParticipant && activateParticipant.closest("#participantsSheet")) {
+      e.preventDefault();
+      await activateMemberForParticipants(activateParticipant.dataset.memberId);
+      return true;
+    }
     const participantTile = e.target.closest("[data-participant-id]");
     if (participantTile && participantTile.closest("#participantsTiles")) {
       e.preventDefault();
@@ -4445,7 +4586,7 @@
         localStorage.setItem(shopSeenKey(state.dinnerPlan.dinner_plan_id), String(Date.now()));
       } catch (_) { /* ignore */ }
       document.getElementById("shopChangesBanner").hidden = true;
-      state.shopLineSnapshot = {};
+      snapshotShopLinesForTags();
       renderShopList();
       return true;
     }
