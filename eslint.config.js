@@ -15,7 +15,7 @@ export default [
     },
   },
   {
-    files: ["public/app.js", "public/theme.js", "public/meal-media.js"],
+    files: ["public/app.js", "public/theme.js", "public/meal-media.js", "public/taste-ui.js"],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "script",

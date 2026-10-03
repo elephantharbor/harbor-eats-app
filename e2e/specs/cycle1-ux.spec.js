@@ -40,7 +40,7 @@ async function onboard(page, { kitchen = "The Parkers", owner = "Jordan", partne
   }
   await page.locator('#constraints input[data-cid="cashew_ok"]').check();
   await page.locator('.view[data-view="constraints"] .flow__actions .btn-primary').click();
-  await page.locator('#tasteSparks [data-spark="tacos"]').click();
+  await page.locator('#tastePicks [data-taste-pick="tacos"]').click();
   await page.locator('.view[data-view="taste"] .flow__actions .btn-primary').click();
   await page.getByRole("button", { name: "Skip — show tonight’s picks" }).click();
   await page.getByRole("heading", { name: "Which should we make?" }).waitFor();
@@ -167,7 +167,8 @@ test.describe("FW-06 · diet controls", () => {
     await expect(grid.locator('input[data-cid="cashew_ok"]')).toHaveCount(0);
     await grid.locator('input[data-cid="fish"]').check();
     await page.locator('.view[data-view="constraints"] .flow__actions .btn-primary').click();
-    await expect(page.locator('#tasteSparks [data-spark="fish"]')).toHaveCount(0);
+    await expect(page.locator('#tastePicks [data-taste-pick="tacos"]')).toBeVisible();
+    await expect(page.locator('[data-taste-pick="fish"]')).toHaveCount(0);
   });
 });
 
