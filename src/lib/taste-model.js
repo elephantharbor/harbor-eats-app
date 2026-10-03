@@ -8,6 +8,7 @@
  * - exploration / starter: no taste claim at all
  */
 
+import { scoreDinerTastes, tasteHitSentences } from "./diner-taste-rank.js";
 import { MEAL_CATALOG } from "./meal-catalog.js";
 
 const LETTERS = ["A", "B", "C", "D", "E"];
@@ -162,6 +163,7 @@ export function scoreMealsForHousehold(input) {
     meal_choice_count = 3,
     prefs = {},
     active_member_count = 2,
+    diner_tastes = [],
   } = input;
 
   const ev = tagSetFromEvidence(evidence);
@@ -171,8 +173,9 @@ export function scoreMealsForHousehold(input) {
   /** @type {Array<{ meal: import('./meal-catalog.js').CatalogMeal, total: number, factors: Record<string, any>, confidence: string }>} */
   const scored = meals.map((meal) => {
     const pref = prefScore(meal, ev);
+    const taste = scoreDinerTastes(meal, diner_tastes);
     const exp = ratingEvidence(meal, ratings, recent_recipe_slugs);
-    let total = 5 + pref.score * 0.8;
+    let total = 5 + pref.score * 0.8 + taste.score;
     if (exp.exact_avg != null) total += (exp.exact_avg - 5.5) * 0.6;
     if (exp.similar_avg != null) {
       // Shrink toward neutral: one similar rating moves the score a quarter as far as an exact one.
@@ -183,7 +186,7 @@ export function scoreMealsForHousehold(input) {
     total += meal.exploration * (0.5 + disagree * 0.4 + explorationBoost);
     if (isRepeatSuccess(exp)) total += 0.8;
 
-    const evidenceCount = pref.hits + exp.exact_count * 2 + exp.similar_count;
+    const evidenceCount = pref.hits + exp.exact_count * 2 + exp.similar_count + taste.hits.length;
     let confidence = "low";
     if (evidenceCount >= 6) confidence = "high";
     else if (evidenceCount >= 2) confidence = "medium";
@@ -203,6 +206,10 @@ export function scoreMealsForHousehold(input) {
         exploration: meal.exploration,
         disagreement_index: disagree,
         eligible: true,
+        diner_taste_nudge: taste.score,
+        diner_taste_hits: taste.hits,
+        diner_taste_excludes: false,
+        diner_taste_averaged: false,
       },
       confidence,
     };
@@ -315,6 +322,15 @@ export function buildWhy(row, ev, ratingCount, activeMemberCount = 2) {
     const what = joinPhrases(liked.slice(0, 2));
     const sentence = strongest >= PATTERN_MIN_WEIGHT ? `You keep picking ${what}` : `You said you like ${what}`;
     return { ...out("known_preference", "Matches your likes", [sentence]), topic: what };
+  }
+
+  const tasteSentences = tasteHitSentences(f.diner_taste_hits);
+  const positiveTaste = tasteSentences.filter((line) => !/sorts lower/.test(line));
+  if (positiveTaste.length) {
+    return {
+      ...out("diner_taste", "Matches what you told us", tasteSentences.slice(0, 2)),
+      topic: positiveTaste[0],
+    };
   }
 
   if (f.similar_count > 0 && f.similar_avg != null && f.similar_avg >= SIMILAR_MIN_AVG) {

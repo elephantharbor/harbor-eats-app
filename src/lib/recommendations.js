@@ -4,6 +4,7 @@ import { LETTERS } from "./taste-model.js";
 import { buildRankedChoiceSet } from "./recommendation-pipeline.js";
 import { getCurrentVersionIdForSlug } from "./recipe-store.js";
 import { householdIsSynthetic, learningRows, sqlRealRow } from "./evidence-origin.js";
+import { learningTasteRows } from "./preference-concepts.js";
 import { historyFromActivity } from "./meal-identity.js";
 
 /**
@@ -66,6 +67,7 @@ export async function loadRecommendationContext(db, household_id) {
     .all();
 
   const settings = parseHouseholdSettings(hh);
+  const dinerTastes = await loadDinerTastes(db, household_id, hh);
   const ratings = learningRows(ratingsRes.results || [], hh).map((r) => {
     let tags = [];
     try {
@@ -89,7 +91,41 @@ export async function loadRecommendationContext(db, household_id) {
       .map((r) => r.recipe_slug)
       .filter(Boolean),
     active_member_count: membersRes ? Number(membersRes.c) || 2 : 2,
+    diner_tastes: dinerTastes,
   };
+}
+
+/**
+ * Standing tastes for ranking. Read from diner_taste only.
+ * Synthetic and unproven rows stay out, matching the Cycle 1 learning gate.
+ * A missing 0010 table leaves Tonight on the recipe-store menu with no nudges.
+ * @param {import('@cloudflare/workers-types').D1Database} db
+ * @param {string} householdId
+ * @param {{ data_origin?: string, acquisition_source?: string|null }|null} household
+ */
+async function loadDinerTastes(db, householdId, household) {
+  try {
+    const originSql =
+      household && !householdIsSynthetic(household) ? `AND ${sqlRealRow("diner_taste")}` : "";
+    const res = await db
+      .prepare(
+        `SELECT member_id, vocabulary_slug, rank, stance, confidence, data_origin
+           FROM diner_taste
+          WHERE household_id = ? ${originSql}`
+      )
+      .bind(householdId)
+      .all();
+    return learningTasteRows(res.results || [], household).map((row) => ({
+      member_id: row.member_id,
+      vocabulary_slug: row.vocabulary_slug,
+      rank: row.rank,
+      stance: row.stance,
+      data_origin: row.data_origin,
+    }));
+  } catch (e) {
+    if (/no such table/i.test(String((e && e.message) || e))) return [];
+    throw e;
+  }
 }
 
 export function rankMealsForHousehold(ctx) {

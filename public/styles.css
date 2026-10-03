@@ -2866,6 +2866,12 @@ button.link-card:hover {
   align-items: start;
 }
 
+/* Grid items default to min-width: auto, so a search field's min-content
+   stretched these cards past the phone width. */
+.profile-layout > * {
+  min-width: 0;
+}
+
 .taste-lines {
   display: grid;
   gap: var(--space-3);
@@ -2952,6 +2958,7 @@ button.link-card:hover {
   display: flex;
   gap: var(--space-2);
   align-items: stretch;
+  min-width: 0;
 }
 
 .taste-search__row input {

@@ -4,6 +4,7 @@
 
 import { filterEligibleOptions } from "./eligibility.js";
 import { gatherCandidates, catalogMealToOption } from "./candidate-providers.js";
+import { keepLiveMenuMeals } from "./diner-taste-rank.js";
 import { dedupeExplanations, scoreMealsForHousehold } from "./taste-model.js";
 import { validateChoiceSetDiversity } from "./catalog-quality.js";
 
@@ -12,7 +13,9 @@ import { validateChoiceSetDiversity } from "./catalog-quality.js";
  */
 export function buildRankedChoiceSet(rec) {
   const ctx = { rec };
-  const candidates = gatherCandidates(ctx);
+  // Recipe-store meals stay. Unpublished, draft, invalid, and household-only
+  // packages are dropped if a provider ever emits them.
+  const candidates = keepLiveMenuMeals(gatherCandidates(ctx));
   const catalogOptions = candidates.map((m) =>
     catalogMealToOption(m, "X", "pipeline")
   );
@@ -37,6 +40,7 @@ export function buildRankedChoiceSet(rec) {
     meal_choice_count: rec.settings.meal_choice_count,
     prefs: rec.settings.prefs,
     active_member_count: rec.active_member_count,
+    diner_tastes: rec.diner_tastes,
   });
 
   const count = Math.min(5, Math.max(3, rec.settings.meal_choice_count || 3));

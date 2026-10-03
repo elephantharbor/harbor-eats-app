@@ -1438,6 +1438,8 @@ async function postRecommendationsPlan(env, body, session, request) {
   if (body.household_id && body.household_id !== household_id) {
     return err("forbidden_cross_household", 403);
   }
+  // Ranks, bans, and eligibility on the request body are ignored.
+  // diner_taste is loaded server-side; hard limits stay in the eligibility checker.
   const ctx = await loadRecommendationContext(env.DB, household_id);
   const ranked = rankMealsForHousehold(ctx);
   if (ranked.length < 3) return err("not_enough_eligible_meals", 422);

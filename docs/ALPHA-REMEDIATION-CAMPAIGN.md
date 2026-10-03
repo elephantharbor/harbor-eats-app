@@ -35,8 +35,8 @@ Detail: `docs/CYCLE1-INTEGRATION.md`.
 | FW-09 | Explanation copy | Accepted by Oversight | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-ux` `8b3e2f79`. No PR to `main`. | `acdb92f3794a70adcd89c1c15e73d2670544502b` | `test/explanation-evidence.test.js` (evidence tiers, plant-tag non-similarity, nut-tag non-similarity, dedupe) | Not run (no preview deploy) | Claude Opus 5.5 (`claude-opus-5-5`) on `feature/fw-c1-ux`; integrated by Grok 4.7 (`grok-4.7`) | Stored explanation text on old plans stays until a new round. Synthetic QA households never feed learning, so evidence tiers are unit-tested rather than shown in e2e. | Taste Model v1. Notes: `docs/CYCLE1-UX-NOTES.md`. |
 | FW-10 | Recipe nav/select | Accepted by Oversight | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-ux` `8b3e2f79`. No PR to `main`. | `acdb92f3794a70adcd89c1c15e73d2670544502b` | `test/nav-context.test.js` (origin, Back, preview-not-select, locked-round parity); `e2e/specs/cycle1-ux.spec.js` (view, choose, history). E2e not re-run on this integration. | Not run (no preview deploy) | Claude Opus 5.5 (`claude-opus-5-5`) on `feature/fw-c1-ux`; integrated by Grok 4.7 (`grok-4.7`) | Back is still an in-app button. D-04 native Back is not built. Reducer copies stay duplicated with FW-01. | FW-01. Notes: `docs/CYCLE1-UX-NOTES.md`. |
 | D-01 | Multi-dinner planning | Approved / Not Yet Implemented | — | — | — | — | — | Title source: campaign prompt, not a repo design doc. No Oversight spec names D-01. | — |
-| D-02 | Taste-vocabulary / dietary model expansion | In Progress | `feature/fw-c2-contract`. No PR. | `92cc015eabce7c1eedc7da2aff5b18d263c3d280` | `test/taste-resolver.test.js`; `test/preference-concepts.test.js`; `test/migration-0010.test.js` | Not run (no preview deploy) | Grok 4.7 (`grok-4.7`) | Contract only. Onboarding UI is not built. Household 001 was not backfilled. | `docs/CYCLE2-CONTRACT.md` |
-| D-03 | Catalog expansion workflow | In Progress | `feature/fw-c2-contract`. No PR. | `92cc015eabce7c1eedc7da2aff5b18d263c3d280` | `test/recipe-package.test.js`; `test/migration-0010.test.js` | Not run (no preview deploy) | Grok 4.7 (`grok-4.7`) | Recipe package contract only. The 24 meal bodies were not rewritten. Provenance stays unknown. | `docs/CYCLE2-CONTRACT.md` |
+| D-02 | Taste-vocabulary / dietary model expansion | Implementation complete / awaiting Oversight acceptance | `feature/flavorweave-alpha-remediation`. Children `feature/fw-c2-contract` `3f734a5147411cc163db4d4ea4af1556a32ecd37`, `feature/fw-c2-taste` `dd97bc7d762fee9032065b2a13b41ae7b29db017`. No PR. | Cycle 2 integration tip. See the Cycle 2 section. | `test/diner-taste-rank.test.js`; `test/taste-resolver.test.js`; `test/preference-concepts.test.js`; `test/taste-profile.test.js`; `test/taste-ui.test.js`; `test/migration-0010.test.js` | Not run (no preview deploy). Hosted GitHub Actions was not run. | Grok 4.7 (`grok-4.7`) on the children and on this integration | Legacy `dislike` and `neutral` evidence is not rewritten. `recordInferredTaste` is a hook and nothing calls it from a meal rating. Household 001 was not backfilled. | Hard limits stay in `src/lib/eligibility.js`. Contract: `docs/CYCLE2-CONTRACT.md`. |
+| D-03 | Catalog expansion workflow | Implementation complete / awaiting Oversight acceptance | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c2-catalog` `e6a9e8e9986cc3dc83b1a0f237105ca7d021c964`. No PR. | Cycle 2 integration tip. See the Cycle 2 section. | `test/cycle2-catalog.test.js`; `test/recipe-package.test.js`; `test/migration-0010.test.js` | Not run (no preview deploy). Hosted GitHub Actions was not run. | Grok 4.7 (`grok-4.7`) on the child and on this integration | 24 packages are structurally valid. Provenance stays `unknown_unverified`. Image provenance stays `unknown` and rights stay `not_cleared_for_external_release`. `kitchen_tested` stays false. Tonight still uses `recipe-store.js`. | `docs/CYCLE2-CONTRACT.md`. |
 | D-04 | Native-feeling Back | Approved / Not Yet Implemented | — | — | — | — | — | Title source: campaign prompt, not a repo design doc. FW-10 stores plain navigation context and does not build native Back. | — |
 | D-05 | AI/LLM Interaction and Cost Architecture | Approved / Not Yet Implemented | — | — | — | — | — | No Oversight design doc in the repo. Title not invented. | — |
 | D-06 | Natural-Language Meal Planning | Approved / Not Yet Implemented | — | — | — | — | — | No Oversight design doc in the repo. Title not invented. | — |
@@ -107,9 +107,31 @@ UX slice from Claude Opus 5.5. Decisions and the October 1 app retest are in `do
 - FW-09: explanation copy is gated on stored evidence. Diet tags, including nut allergens, are not taste similarity.
 - FW-10: opening a recipe does not select it. Back returns to Tonight, History, or Home. FW-01 view-versus-choose stays in place.
 
-## Cycle 2 contract
+## Cycle 2 integration
 
-D-02 and D-03 are in progress on `feature/fw-c2-contract`. The shared vocabulary, the three preference types, and the recipe package are in `docs/CYCLE2-CONTRACT.md`. Taste UX, the 24 recipe bodies, and catalog publishing are not in this slice. Migration `0010_cycle2_taste_contract.sql` is local-only and was not applied to production D1.
+FW-01 through FW-10 stay Accepted by Oversight. D-01, D-04, D-05 (AI/LLM Interaction and Cost Architecture), and D-06 (Natural-Language Meal Planning) stay Approved / Not Yet Implemented.
+
+Merged onto `feature/flavorweave-alpha-remediation` in order, starting from `35b19159643c017ed407bcda4ac5c2f72b2f09ba`:
+
+| Order | Branch | Child SHA | Merge commit |
+|-------|--------|-----------|--------------|
+| 1 | `feature/fw-c2-contract` | `3f734a5147411cc163db4d4ea4af1556a32ecd37` | `f5eed16c50785fb3dbf841f438acdef68853e49c` |
+| 2 | `feature/fw-c2-catalog` | `e6a9e8e9986cc3dc83b1a0f237105ca7d021c964` | `f03e30a2047e6b84a050759d1a043050e73fe66b` |
+| 3 | `feature/fw-c2-taste` | `dd97bc7d762fee9032065b2a13b41ae7b29db017` | `c48fba5348c2e5cbf78e83c0a7e6b335a1859f63` |
+
+No pull request. Not merged to `main`. `main` was not pushed. Pages and the Worker were not deployed. Production D1 `23aa3db3-1090-471b-8c8a-b6fe71f5c053` and Household 001 were not written.
+
+**Migration:** `migrations/0010_cycle2_taste_contract.sql` is in the tree. The migration check includes it, and `test/migration-0010.test.js` still refuses to apply 0010 to a database stopped after 0008. 0010 was not applied to production D1.
+
+**Integration SHA:** recorded after the clean-tree suite on this branch tip.
+
+**Hosted GitHub Actions:** not run.
+
+Tonight still lists meals from `recipe-store.js`. Ranking reads `diner_taste` for that household and matches Cycle 2 vocabulary tags on the same dishes. Love and Like raise a matching meal. Less often lowers it and does not ban it, write a hard limit, or override eligibility. Hard limits still win in `eligibility.js` on the server. Tastes stay per diner. A slug with no package match does not count as a match. Synthetic and unproven rows stay out of ranking, taste learning, Completed Meal Loop counts, funnel, alpha ops, and traction. A meal rating does not mark every ingredient as liked. An inferred row does not replace an explicit one. Nothing in the recommender writes inferred rows.
+
+Unwired on purpose: `recordInferredTaste` has no caller in the meal loop. Legacy `dislike` and `neutral` rows stay in `preference_evidence`. Practical hints have no planner UI. The 24 packages are not the live menu. Unpublished, draft, invalid, and household-only packages are not recommended. No package was marked kitchen-tested, and no provenance or image right was invented.
+
+Service worker cache remains `fw-sw-v8`. The profile grid no longer spills one pixel past a 375px phone. The settings taste check looks for Tacos, the vocabulary name, instead of the old spark line "taco night".
 
 ## Out of scope
 

@@ -21,7 +21,7 @@ async function me(page) {
 }
 
 /**
- * Onboard through every step. Ticks HH001-style limits and one taste spark.
+ * Onboard through every step. Ticks HH001-style limits and one taste.
  * @param {import('@playwright/test').Page} page
  */
 async function onboard(page, { kitchen = "The Parkers", owner = "Jordan", partner = "Sam" } = {}) {
@@ -131,7 +131,7 @@ test.describe("FW-05 · invite from Settings", () => {
     await expect(page.locator('.view[data-view="settings"].is-active')).toHaveCount(1);
 
     await page.locator('#topbar [data-go="tasteProfile"]:visible').first().click();
-    await expect(page.locator('.view[data-view="tasteProfile"]')).toContainText(/taco night/i);
+    await expect(page.locator('.view[data-view="tasteProfile"]')).toContainText(/Tacos/);
   });
 
   test("an onboarded kitchen never sees a stale onboarding step", async ({ page }) => {

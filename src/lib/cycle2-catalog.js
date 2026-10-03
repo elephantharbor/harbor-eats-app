@@ -155,7 +155,10 @@ export function catalogPublicationInventory(packages = buildCycle2Catalog()) {
 }
 
 function stripCatalogSeams(pkg) {
-  const { _catalog_blockers, _compound_warnings, _duplicate_warnings, ...rest } = pkg;
+  const rest = { ...pkg };
+  delete rest._catalog_blockers;
+  delete rest._compound_warnings;
+  delete rest._duplicate_warnings;
   return rest;
 }
 
@@ -182,7 +185,6 @@ function cookTimeBand(totalMinutes) {
  * @param {object[]} [packages]
  */
 export function buildCoverageReport(packages = buildCycle2Catalog()) {
-  const vocabBySlug = new Map(listVocabulary().map((row) => [row.slug, row]));
   const cuisineSlugs = new Set(
     listVocabulary().filter((t) => t.category === "cuisine").map((t) => t.slug)
   );
