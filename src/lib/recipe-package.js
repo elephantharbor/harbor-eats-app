@@ -100,8 +100,13 @@ function roundQuantity(value) {
  * @param {string|undefined} raw
  */
 export function parseLegacyQuantity(raw) {
-  const text = String(raw ?? "").trim();
+  let text = String(raw ?? "").trim();
   if (!text) return { quantity: null, unit: null, note: null, raw: text };
+  if (/^for serving$/i.test(text)) {
+    return { quantity: 1, unit: "serving", note: "for serving", raw: text };
+  }
+  // Whole number glued to a vulgar fraction, e.g. 1½ cups.
+  text = text.replace(/^(\d+)([¼½¾⅓⅔⅛])/, "$1 $2");
   const match = text.match(
     /^(?:(\d+)\s+)?([¼½¾⅓⅔⅛]|\d+\/\d+|\d+(?:\.\d+)?)(?:\s+([a-zA-Z]+))?(?:\s+(.+))?$/
   );
