@@ -1,0 +1,533 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for Dry Run #1. Nested Dish \u2192 Recipe \u2192 Recipe Version \u2192 Image. Not imported to recipe-store. Not published.",
+  "batch_id": "dry-run-1",
+  "mode": "dry_run",
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot, Catalog Factory Dry Run #1, for Cora",
+  "auditor": null,
+  "certification": {
+    "final_state": "PASS",
+    "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+    "audit_round": 2,
+    "kitchen_tested": false,
+    "publication": "Draft \u2014 dry run only, not published"
+  },
+  "dish": {
+    "dish_id": "gochujang-grilled-flank-steak",
+    "slug": "gochujang-grilled-flank-steak",
+    "title": "Gochujang Grilled Flank Steak",
+    "description": "Thin-sliced grilled flank steak in a short gochujang marinade, with a sharp cucumber and scallion salad.",
+    "cuisine": "korean",
+    "meal_format": "grilled",
+    "primary_ingredient": "beef flank steak",
+    "vocabulary_tag_ids": [
+      "korean",
+      "grilled",
+      "spicy",
+      "smoky",
+      "savory",
+      "umami",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_gochujang-grilled-flank-steak",
+    "current_version_id": "rv_gochujang-grilled-flank-steak_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_gochujang-grilled-flank-steak",
+    "dish_id": "gochujang-grilled-flank-steak",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-04",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory Dry Run #1, Grok Bot only",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_gochujang-grilled-flank-steak_v1",
+    "recipe_id": "rcp_gochujang-grilled-flank-steak",
+    "dish_id": "gochujang-grilled-flank-steak",
+    "version_number": 1,
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Any material change after that history needs v2. This dry run does not rewrite a prior version.",
+    "title": "Gochujang Grilled Flank Steak",
+    "description": "Thin-sliced grilled flank steak in a short gochujang marinade, with a sharp cucumber and scallion salad.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "flank-steak",
+        "name": "flank steak",
+        "display_name": "flank steak",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "about 3/4 inch thick",
+        "preparation": "pat dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "gochujang",
+        "name": "gochujang",
+        "display_name": "gochujang",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "store-bought Korean fermented chili paste",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "rice-vinegar",
+        "name": "rice vinegar",
+        "display_name": "rice vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "divided: 1 tbsp marinade, 1 tbsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "toasted-sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 4,
+        "unit": "tsp",
+        "note": "divided: 3 tsp marinade, 1 tsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "brown sugar",
+        "display_name": "brown sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": "divided: 2 minced into the marinade, 2 sliced for the salad",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "cucumber",
+        "display_name": "cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "for the salad only; do not salt the steak separately",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sesame-seeds",
+        "name": "sesame seeds",
+        "display_name": "sesame seeds",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "canola-oil",
+        "name": "canola oil",
+        "display_name": "canola oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the grill grates",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Mix the marinade",
+        "body": "In a bowl, stir the gochujang, soy sauce, 1 tbsp of the rice vinegar, 3 tsp of the toasted sesame oil, brown sugar, garlic, fresh ginger, and black pepper into a thick paste. Mince 2 of the scallions and stir them in. This marinade cooks on the meat. Do not serve any of it raw.",
+        "ingredient_refs": [
+          "gochujang",
+          "soy-sauce",
+          "rice-vinegar",
+          "toasted-sesame-oil",
+          "brown-sugar",
+          "garlic",
+          "fresh-ginger",
+          "black-pepper",
+          "scallions"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Marinate the steak",
+        "body": "Pat the flank steak dry and coat both sides with all of the marinade. Leave it at room temperature for 15 minutes. Do not add kosher salt to the steak; the soy sauce is already salty.",
+        "ingredient_refs": [
+          "flank-steak"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Make the salad",
+        "body": "While the steak marinates, thinly slice the cucumber and slice the remaining 2 scallions. Toss them with the remaining 1 tbsp rice vinegar, the remaining 1 tsp toasted sesame oil, the kosher salt, and the sesame seeds.",
+        "ingredient_refs": [
+          "cucumber",
+          "scallions",
+          "rice-vinegar",
+          "toasted-sesame-oil",
+          "kosher-salt",
+          "sesame-seeds"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Heat the grill",
+        "body": "After the 15 minutes, heat a gas or charcoal grill for direct high heat, about 450\u2013500\u00b0F. Give it about 10 minutes. When the grates are hot, brush them with the canola oil. This timed method does not overlap preheat with the marinade.",
+        "ingredient_refs": [
+          "canola-oil"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Grill",
+        "body": "Lay the flank steak on the oiled grates. Close the lid on a gas grill, or grill over direct coals with the vents open. Cook 4 to 5 minutes per side. It is done at 130\u2013135\u00b0F in the thickest center for medium-rare. Do not press the steak. If the piece is thicker than 1 inch, add about 1 minute per side and trust the thermometer.",
+        "ingredient_refs": [
+          "flank-steak"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Rest and slice",
+        "body": "Move the flank steak to a board and rest it for 5 minutes. Slice it thin, against the grain: cut across the long muscle lines, not parallel to them. Discard any marinade left in the bowl.",
+        "ingredient_refs": [
+          "flank-steak"
+        ]
+      },
+      {
+        "step_number": 7,
+        "title": "Plate",
+        "body": "Serve the slices with the cucumber and scallions beside them. This plate has no rice and no extra sauce.",
+        "ingredient_refs": [
+          "cucumber",
+          "scallions"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "gochujang-marinade",
+        "name": "gochujang marinade",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "gochujang",
+          "soy sauce",
+          "rice vinegar",
+          "toasted sesame oil",
+          "brown sugar",
+          "garlic",
+          "fresh ginger",
+          "black pepper",
+          "scallions"
+        ]
+      },
+      {
+        "component_id": "scallion-cucumber-salad",
+        "name": "scallion cucumber salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cucumber",
+          "scallions",
+          "rice vinegar",
+          "toasted sesame oil",
+          "kosher salt",
+          "sesame seeds"
+        ]
+      }
+    ],
+    "equipment": [
+      "gas or charcoal grill",
+      "tongs",
+      "instant-read thermometer",
+      "mixing bowl",
+      "cutting board",
+      "knife"
+    ],
+    "prep_time_minutes": 25,
+    "cook_time_minutes": 25,
+    "total_time_minutes": 50,
+    "prep_minutes": 25,
+    "cook_minutes": 25,
+    "total_minutes": 50,
+    "heat": "Direct grill heat, about 450\u2013500\u00b0F.",
+    "doneness": "130\u2013135\u00b0F in the center for medium-rare, then a 5-minute rest. Slice against the grain.",
+    "effort": "moderate",
+    "complexity": "moderate",
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "allergens": [
+      "meat",
+      "soy",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Contains meat (flank steak), soy (soy sauce), and sesame (toasted sesame oil and sesame seeds). All three are on the structured allergens array.",
+      "Live enum gap: PACKAGE_ALLERGEN_IDS includes meat and does not include soy or sesame. Soy and sesame stay on the array. The note does not replace the field."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Beef is meat other than fish. HH001 does not eat this. It is a global catalog candidate.",
+    "vocabulary_tag_ids": [
+      "korean",
+      "grilled",
+      "spicy",
+      "smoky",
+      "savory",
+      "umami",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "revision_r1_applied_pending_r2",
+    "culinary_audit_state": "r1_fail_returned_revision_applied_pending_r2",
+    "kitchen_tested": false,
+    "validation_kind": "structural_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted, as specified for this dry run. The live Cycle 2 RECIPE_PROVENANCE enum has ai_assisted and does not list original_ai_assisted. Do not silently remap in a later implement pass without Cora confirming the mapping.",
+      "publication_state": "Factory value is Draft. The live PUBLICATION_STATUSES enum uses lowercase draft. publication_status is included as that lowercase alias and is not published.",
+      "data_origin": "data_origin synthetic matches the live enum for authored-not-household data. It does not mean the recipe was cooked.",
+      "allergens": "Structured allergens now list the real allergens, including tokens outside live PACKAGE_ALLERGEN_IDS (dairy, nuts, cashew, walnut, peanut, almond, pecan, hazelnut, pistachio, macadamia, pine_nut, shellfish, finfish, poultry, meat). Soy, sesame, egg, and wheat are not in that enum. They stay on the allergens array anyway. A note is not a substitute for the field, and the enum is not a reason to drop a real allergen. allergen_notes keeps the nuance. Do not strip these tokens in a later implement pass to force an enum match.",
+      "vocabulary": "No D-02 ingredient slug exists for beef, mussels, or sandwich rolls. primary_ingredient carries that identity. Tags were not invented."
+    }
+  },
+  "image": {
+    "image_id": "img_gochujang-grilled-flank-steak_v1",
+    "dish_id": "gochujang-grilled-flank-steak",
+    "recipe_version_id": "rv_gochujang-grilled-flank-steak_v1",
+    "asset_generated": true,
+    "master_ref": "gochujang-grilled-flank-steak.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "gochujang-grilled-flank-steak.webp",
+        "spec_catalog_path": "/images/meals/gochujang-grilled-flank-steak.webp",
+        "status": "generated_in_package_not_published"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "gochujang-grilled-flank-steak-640.webp",
+        "spec_catalog_path": "/images/meals/gochujang-grilled-flank-steak-640.webp",
+        "status": "generated_in_package_not_published"
+      }
+    ],
+    "dimensions_basis": "Live reference public/images/meals/miso-ginger-salmon.webp is WebP 1200\u00d7900; miso-ginger-salmon-640.webp is WebP 640\u00d7480. Package files use those dimensions and the spec basenames. They were not copied into the app public/images/meals/ tree (not published).",
+    "generation": {
+      "method": "format_size_conversion_of_existing_ai_jpeg",
+      "method_detail": "Existing 1280\u00d7720 AI JPEG center-cropped to 4:3 (960\u00d7720) and LANCZOS-resized with Pillow to WebP master 1200\u00d7900 and derivative 640\u00d7480. Not a new generative redraw. Not a web, stock, restaurant, or recipe-site image. No external image API was called for this export.",
+      "model": "unknown",
+      "model_note": "Model slug is unknown. It is not in v1.json history, image-prompt.md, or JPEG EXIF. The source JPEG C2PA manifest names softwareAgent 'Grok Imagine' and an organization string 'SpaceXAI'. That is a generator label in the file, not a versioned model id, so it is recorded and not expanded into an invented model slug.",
+      "c2pa_software_agent": "Grok Imagine",
+      "c2pa_organization_string": "SpaceXAI",
+      "generator_identity": "Source JPEG C2PA softwareAgent: Grok Imagine. Curator process: Juniper via Grok Bot Dry Run #1. Model slug unknown.",
+      "prompt_authored_on": "2026-10-04",
+      "generation_date": "2026-10-04",
+      "generation_date_note": "generation_date 2026-10-04 is the WebP export date in America/Chicago. The original generative timestamp is not in the package markdown or EXIF and is not invented.",
+      "export_date": "2026-10-04",
+      "export_tool": "Pillow (LANCZOS). ImageMagick identify was not installed; dimensions checked with Pillow and file.",
+      "prompt_file": "image-prompt.md",
+      "source_jpeg": "img_v1.jpg",
+      "external_image_api_called": false,
+      "external_image_api_note": "No external image API call in this revision. WebP files are a format and size conversion of the existing AI JPEG named in source_jpeg."
+    },
+    "qa_state": "certified_r2_pass",
+    "recipe_fidelity_state": "pass_r2",
+    "recipe_fidelity_notes": "Sliced medium-rare flank with dark glaze and grill marks beside cucumber, scallion, and sesame. Vale r1 passed that JPEG on Gate K. This WebP is a center crop and resize of img_v1.jpg, not a new drawing. Content is not re-certified here.",
+    "rights": "original_ai",
+    "rights_note": "Original AI pixels already on disk, converted to the catalog WebP pair. No stock, restaurant, or recipe-site photograph. Model slug unknown. Rights are not cleared for external release. Not published.",
+    "provenance": "ai_illustration",
+    "provenance_note": "Live IMAGE_PROVENANCE token ai_illustration. The r1 token ai_illustration_intended described a missing binary. The audit asset now exists as a conversion of an on-disk original AI JPEG. This is not a third-party license and it does not clear rights. Model slug remains unknown."
+  },
+  "catalog_confidence": {
+    "structural_validation": "PASS",
+    "culinary_audit": "PASS",
+    "dietary_audit": "PASS",
+    "image_fidelity": "PASS",
+    "provenance": "KNOWN",
+    "image_rights_provenance": "KNOWN_ORIGINAL_AI_MODEL_SLUG_UNKNOWN",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "KNOWN"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient name appears in a step. No finish item is introduced only in the method."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "The cooking fat is a named ingredient with a quantity and is used in the method: toasted sesame oil, canola oil."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "The marinade and the cucumber-scallion salad are built in the steps from listed ingredients. Gochujang is store-bought and labeled that way. No crema, pesto, or unnamed spice blend."
+    },
+    {
+      "check": "times",
+      "result": "pass",
+      "detail": "prep 25 + cook 25 = total 50. Step durations are written to match that sum without hiding a required wait."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Base is 4 servings. Quantities scale by 0.25 / 0.5 / 1. See scaling_notes for cloves, eggs, wine, and time that must not be scaled blindly."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "dietary_labels stay dairy_free. Structured allergens are meat, soy, and sesame, matching the ingredient list. Soy and sesame are outside the live enum and are still on the array. allergen_notes records that gap. This revision is not a Vale pass."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "vocabulary_tag_ids are existing D-02 slugs only. No invented beef/mussels/pork tag."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. Not published. Not recommendation-eligible."
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "1": "Buy about 6 oz flank steak, not a tiny scrap that will fall through the grates. Round the marinade down but keep enough to coat: about 2 tsp gochujang, 1 1/2 tsp soy sauce, 3/4 tsp rice vinegar in the marinade and 3/4 tsp in the salad, 3/4 tsp toasted sesame oil in the marinade and 1/4 tsp in the salad, 3/4 tsp brown sugar, 1 garlic clove, 1 tsp grated fresh ginger. Use 1/4 of the cucumber and 1 scallion. Grill temperature stays 450\u2013500\u00b0F. A smaller piece of the same thickness may finish about 1 minute sooner per side; use the thermometer.",
+    "2": "Halve every quantity. Two garlic cloves is the practical round of 1.5. Grill temperature and target doneness do not change. A half-width steak still needs the 5-minute rest.",
+    "4": "As written. 1.5 lb is about 6 oz raw per person.",
+    "do_not_scale": [
+      "grill temperature",
+      "internal temperature",
+      "rest time"
+    ]
+  },
+  "coverage_contribution": "Fills Korean (absent), grilled as a real technique (absent), and beef (absent) in one plate. Adds the only moderate-effort cook and the only 45+ total. Not a bowl.",
+  "near_duplicate_review": "No Korean meal and no beef meal in the live 24. Grilled Peach Burrito Bowl is a plant bowl, not a grill cook. Not a sauce-swap on Sheet-Pan Lemon Herb Chicken.",
+  "recommendation_eligible": false,
+  "revision_r1": {
+    "applied_on": "2026-10-04",
+    "applied_by": "Juniper (Harbor Eats - Catalog Curator)",
+    "source_audits": "audits/gochujang-grilled-flank-steak-audit-r1.md",
+    "addresses": [
+      "G",
+      "L",
+      "M"
+    ],
+    "certification": null,
+    "published": false
+  }
+}

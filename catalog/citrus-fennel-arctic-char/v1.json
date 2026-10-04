@@ -1,0 +1,190 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "citrus-fennel-arctic-char",
+    "slug": "citrus-fennel-arctic-char",
+    "title": "Citrus Fennel Arctic Char",
+    "name": "Citrus Fennel Arctic Char",
+    "description": null,
+    "cuisine": "scandinavian-inspired",
+    "meal_format": "fillet",
+    "primary_ingredient": "arctic char",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.62,
+    "plate": "🐟",
+    "tone": "tone-c",
+    "tags": [
+      "fish",
+      "finfish",
+      "dairy-free"
+    ],
+    "sparks": [
+      "fish",
+      "bright"
+    ],
+    "chips": [
+      "Fish",
+      "30 min"
+    ],
+    "current_recipe_id": "rcp_citrus-fennel-arctic-char",
+    "current_version_id": "rv_citrus-fennel-arctic-char_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_citrus-fennel-arctic-char",
+    "dish_id": "citrus-fennel-arctic-char",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_citrus-fennel-arctic-char_v1",
+    "recipe_id": "rcp_citrus-fennel-arctic-char",
+    "dish_id": "citrus-fennel-arctic-char",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Citrus Fennel Arctic Char",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "fish",
+      "finfish",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "arctic char fillets",
+        "quantity": "4",
+        "note": null
+      },
+      {
+        "name": "fennel bulb",
+        "quantity": "1 sliced",
+        "note": null
+      },
+      {
+        "name": "orange",
+        "quantity": "1 zested and juiced",
+        "note": null
+      },
+      {
+        "name": "dill",
+        "quantity": "2 tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Roast fennel",
+        "body": "Roast fennel with orange juice 15 min at 400°F.",
+        "ingredient_refs": [
+          "fennel bulb",
+          "orange"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Cook char",
+        "body": "Nestle char on pan; roast 10–12 min more until just opaque in the thickest part.",
+        "ingredient_refs": [
+          "arctic char fillets"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Finish",
+        "body": "Top with dill and zest.",
+        "ingredient_refs": [
+          "dill"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "arctic-char",
+      "citrusy",
+      "scandinavian"
+    ],
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "allergens": [
+      "finfish"
+    ],
+    "equipment": [],
+    "parsed_ingredients": [
+      {
+        "name": "arctic char fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "4"
+      },
+      {
+        "name": "fennel bulb",
+        "quantity": 1,
+        "unit": "count",
+        "note": "sliced",
+        "raw_quantity": "1 sliced"
+      },
+      {
+        "name": "orange",
+        "quantity": 1,
+        "unit": "count",
+        "note": "zested and juiced",
+        "raw_quantity": "1 zested and juiced"
+      },
+      {
+        "name": "dill",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/citrus-fennel-arctic-char.webp",
+    "card_ref": "/images/meals/citrus-fennel-arctic-char-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

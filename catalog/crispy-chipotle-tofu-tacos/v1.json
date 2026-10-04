@@ -1,0 +1,324 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "crispy-chipotle-tofu-tacos",
+    "slug": "crispy-chipotle-tofu-tacos",
+    "title": "Crispy Chipotle Tofu Tacos",
+    "name": "Crispy Chipotle Tofu Tacos",
+    "description": null,
+    "cuisine": "mexican",
+    "meal_format": "tacos",
+    "primary_ingredient": "tofu",
+    "texture": "crispy",
+    "flavor_profile": "smoky-bright",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.35,
+    "plate": "🌮",
+    "tone": "tone-a",
+    "tags": [
+      "plant",
+      "tacos",
+      "crispy",
+      "dairy-free"
+    ],
+    "sparks": [
+      "crispy",
+      "tacos",
+      "bright"
+    ],
+    "chips": [
+      "Plant",
+      "40 min",
+      "Air fry"
+    ],
+    "current_recipe_id": "rcp_crispy-chipotle-tofu-tacos",
+    "current_version_id": "rv_crispy-chipotle-tofu-tacos_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_crispy-chipotle-tofu-tacos",
+    "dish_id": "crispy-chipotle-tofu-tacos",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_crispy-chipotle-tofu-tacos_v1",
+    "recipe_id": "rcp_crispy-chipotle-tofu-tacos",
+    "dish_id": "crispy-chipotle-tofu-tacos",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Crispy Chipotle Tofu Tacos",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "air_fry",
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "tacos",
+      "crispy",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "extra-firm tofu",
+        "quantity": "14 oz",
+        "note": null
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "cornstarch",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "chipotle powder",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "ground cumin",
+        "quantity": "½ tsp",
+        "note": null
+      },
+      {
+        "name": "garlic powder",
+        "quantity": "½ tsp",
+        "note": null
+      },
+      {
+        "name": "green cabbage",
+        "quantity": "3 cups shredded",
+        "note": null
+      },
+      {
+        "name": "carrot",
+        "quantity": "½ cup grated",
+        "note": null
+      },
+      {
+        "name": "cilantro",
+        "quantity": "¼ cup",
+        "note": null
+      },
+      {
+        "name": "lime",
+        "quantity": "2",
+        "note": null
+      },
+      {
+        "name": "corn tortillas",
+        "quantity": "8 small",
+        "note": null
+      },
+      {
+        "name": "avocado",
+        "quantity": "1",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Press & season tofu",
+        "body": "Press tofu 10–15 min, cube into ¾-inch pieces, and pat dry. Toss with oil, cornstarch, chipotle, paprika, cumin, garlic powder, salt, and pepper until coated.",
+        "ingredient_refs": [
+          "extra-firm tofu",
+          "neutral oil",
+          "cornstarch",
+          "chipotle powder"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Crisp the tofu",
+        "body": "Air fry at 400°F for 14–18 minutes, shaking halfway, until deep golden. Skillet option: medium-high 8–10 min, turning. Finish with juice of ½ lime.",
+        "ingredient_refs": [
+          "extra-firm tofu",
+          "lime"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Make lime slaw",
+        "body": "Toss cabbage, carrot, cilantro, juice of 1 lime, a drizzle of oil, salt, and pepper. Rest 5 minutes.",
+        "ingredient_refs": [
+          "green cabbage",
+          "carrot",
+          "cilantro",
+          "lime"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Warm tortillas & build",
+        "body": "Warm tortillas in a dry skillet 20–30 sec per side. Build tacos with tofu, slaw, and avocado. Serve with lime wedges.",
+        "ingredient_refs": [
+          "corn tortillas",
+          "avocado",
+          "lime"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "citrusy",
+      "crispy",
+      "mexican",
+      "smoky",
+      "tacos",
+      "tofu"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [],
+    "equipment": [
+      "air-fryer",
+      "stovetop"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "extra-firm tofu",
+        "quantity": 14,
+        "unit": "oz",
+        "note": null,
+        "raw_quantity": "14 oz"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "cornstarch",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "chipotle powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "ground cumin",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "½ tsp"
+      },
+      {
+        "name": "garlic powder",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "½ tsp"
+      },
+      {
+        "name": "green cabbage",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "shredded",
+        "raw_quantity": "3 cups shredded"
+      },
+      {
+        "name": "carrot",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "grated",
+        "raw_quantity": "½ cup grated"
+      },
+      {
+        "name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "¼ cup"
+      },
+      {
+        "name": "lime",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "2"
+      },
+      {
+        "name": "corn tortillas",
+        "quantity": 8,
+        "unit": "count",
+        "note": "small",
+        "raw_quantity": "8 small"
+      },
+      {
+        "name": "avocado",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "1"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/crispy-chipotle-tofu-tacos.webp",
+    "card_ref": "/images/meals/crispy-chipotle-tofu-tacos-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

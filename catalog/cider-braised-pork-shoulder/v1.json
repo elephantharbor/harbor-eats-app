@@ -1,0 +1,539 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for Dry Run #2. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are frozen for re-audit, not imported, not published.",
+  "batch_id": "dry-run-2",
+  "mode": "dry_run",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot, Catalog Factory Dry Run #2, for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "cider-braised-pork-shoulder",
+    "slug": "cider-braised-pork-shoulder",
+    "title": "Cider-Braised Pork Shoulder with Mustard Cabbage",
+    "description": "A long cider braise of pork shoulder, reduced to a spoon-coating sauce with apple, served with skillet mustard cabbage.",
+    "cuisine": "american",
+    "meal_format": "braise",
+    "primary_ingredient": "pork shoulder",
+    "vocabulary_tag_ids": [
+      "american",
+      "savory",
+      "rich",
+      "tender",
+      "tangy"
+    ],
+    "current_recipe_id": "rcp_cider-braised-pork-shoulder",
+    "current_version_id": "rv_cider-braised-pork-shoulder_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_cider-braised-pork-shoulder",
+    "dish_id": "cider-braised-pork-shoulder",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-04",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory Dry Run #2, Grok Bot only",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_cider-braised-pork-shoulder_v1",
+    "recipe_id": "rcp_cider-braised-pork-shoulder",
+    "dish_id": "cider-braised-pork-shoulder",
+    "version_number": 1,
+    "package_revision": "r0",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. A Vale revise before any of that history bumps package_revision and does not mint household history.",
+    "title": "Cider-Braised Pork Shoulder with Mustard Cabbage",
+    "description": "A long cider braise of pork shoulder, reduced to a spoon-coating sauce with apple, served with skillet mustard cabbage.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "boneless-pork-shoulder",
+        "name": "boneless pork shoulder",
+        "display_name": "boneless pork shoulder",
+        "quantity": 3,
+        "unit": "lb",
+        "note": "one piece, not pre-shredded and not sliced pork",
+        "preparation": "pat dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "divided: 2 tsp on the pork, 1/2 tsp on the cabbage",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "on the pork only",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "divided: 1 tbsp to sear the pork, 1 tbsp for the cabbage",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "apple",
+        "name": "apple",
+        "display_name": "apple",
+        "quantity": 2,
+        "unit": "count",
+        "note": "firm apples, not pie filling",
+        "preparation": "cored and cut into 8 wedges each",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "smashed",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-thyme",
+        "name": "fresh thyme",
+        "display_name": "fresh thyme",
+        "quantity": 4,
+        "unit": "sprig",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "apple-cider",
+        "name": "apple cider",
+        "display_name": "apple cider",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "pasteurized apple cider, not apple cider vinegar and not hard cider",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "divided: 1/2 cup in the braise, 1/4 cup in the cabbage skillet",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "dijon-mustard",
+        "name": "dijon mustard",
+        "display_name": "dijon mustard",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "store-bought; divided: 2 tbsp in the braise, 1 tbsp on the cabbage",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "green-cabbage",
+        "name": "green cabbage",
+        "display_name": "green cabbage",
+        "quantity": 1,
+        "unit": "count",
+        "note": "1 small head, cut into 8 wedges through the core so the wedges hold",
+        "preparation": "cut into 8 wedges",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "apple-cider-vinegar",
+        "name": "apple cider vinegar",
+        "display_name": "apple cider vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "cabbage only",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-parsley",
+        "name": "fresh parsley",
+        "display_name": "fresh parsley",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the oven and season",
+        "body": "Heat the oven to 325 F. Pat the boneless pork shoulder dry. Season it on all sides with 2 tsp of the kosher salt and the black pepper. If the piece flaps into two thin tails, tie it with cotton kitchen twine. If it is already one compact piece, do not tie it. The twine is equipment, not an ingredient.",
+        "ingredient_refs": [
+          "boneless-pork-shoulder",
+          "kosher-salt",
+          "black-pepper"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Sear",
+        "body": "Set a Dutch oven over medium-high heat. Add 1 tbsp of the olive oil. Sear the boneless pork shoulder on all sides until deeply browned, about 8 minutes. Move the pork to a plate. Do not wipe out the fond.",
+        "ingredient_refs": [
+          "olive-oil",
+          "boneless-pork-shoulder"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Build the braise",
+        "body": "Add the yellow onion, the apple wedges, the garlic, and the fresh thyme to the pot. Stir 4 minutes, until the onion softens. Add the apple cider, 1/2 cup of the water, and 2 tbsp of the dijon mustard. Return the pork. The liquid should come about halfway up the meat. If the pot is so wide that the liquid sits below one-third of the height, move to a smaller pot. Do not pour in a second carton of cider.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "apple",
+          "garlic",
+          "fresh-thyme",
+          "apple-cider",
+          "water",
+          "dijon-mustard",
+          "boneless-pork-shoulder"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Braise",
+        "body": "Cover and put the pot in the 325 F oven. Start checking at 2 hours 30 minutes. It is done at 2 hours 30 minutes to 2 hours 45 minutes, when the center is 195-203 F and a fork slides in with little resistance. The published cook time uses the long end, 2 hours 45 minutes. A shoulder that is tender at 2 hours 30 minutes finishes 15 minutes sooner. 145 F is not the target for this cut.",
+        "ingredient_refs": [
+          "boneless-pork-shoulder"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Rest and reduce",
+        "body": "Move the boneless pork shoulder to a board and rest it 15 minutes. Discard the fresh thyme sprigs. While it rests, boil the pot liquid over medium-high until it coats a spoon, about 8 to 10 minutes. You want about 1 cup. Mash the soft apple into the sauce. Do not add flour. If a thick cap of fat is on the surface, skim it. This reduction shares the rest window with the cabbage and needs a second burner.",
+        "ingredient_refs": [
+          "apple",
+          "fresh-thyme",
+          "boneless-pork-shoulder"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Cook the cabbage",
+        "body": "During that same rest, heat a 12-inch skillet over medium. Add the remaining 1 tbsp olive oil. Lay in the 8 green cabbage wedges, cut side down, for 3 minutes, until the cut face browns. Turn them. Add the remaining 1/4 cup water, the apple cider vinegar, the remaining 1 tbsp dijon mustard, and the remaining 1/2 tsp kosher salt. Cover 4 minutes, until the core is tender to a knife. Uncover if the skillet is watery. One burner instead of two adds about 10 minutes after the sauce; the published total is the two-burner clock.",
+        "ingredient_refs": [
+          "green-cabbage",
+          "olive-oil",
+          "water",
+          "apple-cider-vinegar",
+          "dijon-mustard",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 7,
+        "title": "Slice and serve",
+        "body": "Remove any twine. If the boneless pork shoulder holds, cut 1/2-inch slices against the grain. If it collapses, pull large chunks. Do not puree it and do not shred it into a fine pile. Spoon the cider sauce and the soft apple over the pork. Sprinkle the fresh parsley. Serve the green cabbage wedges beside the meat. No bread and no potatoes.",
+        "ingredient_refs": [
+          "boneless-pork-shoulder",
+          "apple",
+          "fresh-parsley",
+          "green-cabbage"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "cider-mustard-sauce",
+        "name": "cider-mustard sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "apple cider",
+          "water",
+          "dijon mustard",
+          "yellow onion",
+          "apple",
+          "garlic",
+          "fresh thyme"
+        ]
+      },
+      {
+        "component_id": "mustard-cabbage",
+        "name": "mustard cabbage",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "green cabbage",
+          "olive oil",
+          "water",
+          "apple cider vinegar",
+          "dijon mustard",
+          "kosher salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "Dutch oven with lid",
+      "tongs",
+      "instant-read thermometer",
+      "12-inch skillet with lid",
+      "knife",
+      "cutting board",
+      "oven"
+    ],
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 192,
+    "total_time_minutes": 212,
+    "prep_minutes": 20,
+    "cook_minutes": 192,
+    "total_minutes": 212,
+    "heat": "Sear on the stove over medium-high, then a covered oven braise at 325 F. Sauce reduces at a boil. Cabbage skillet is medium.",
+    "doneness": "Pork shoulder at 195-203 F in the center and fork-tender. 145 F is not done for this cut. Rest 15 minutes. Slice 1/2 inch against the grain if it holds; pull large chunks if it collapses. Do not puree it.",
+    "effort": "long",
+    "complexity": "involved",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Pork is meat other than fish. HH001 does not eat this. No poultry stock is used. Global catalog candidate."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional. No milk, butter, cheese, cream, or mayonnaise. The sauce is reduced cider, not a roux and not cream. Dijon mustard is not a dairy ingredient.",
+    "allergens": [],
+    "allergen_notes": [
+      "No egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, or finfish. The allergens array is empty on purpose.",
+      "Dijon mustard is in the recipe. Mustard is not one of the allergen tokens this package records. The note does not invent a mustard token and does not put meat on the allergen array.",
+      "contains_meat is true on dietary_eligibility. Meat is not an allergen token."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Pork is meat other than fish. HH001 does not eat this. Global catalog candidate.",
+    "vocabulary_tag_ids": [
+      "american",
+      "savory",
+      "rich",
+      "tender",
+      "tangy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_images_present_awaiting_reaudit",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergens are allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish). Meat and poultry are dietary_eligibility classes, not allergen tokens. An empty array means none of those tokens are in the ingredients. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional dairy_free claim. dairy_free is used only when no ingredient is a dairy food and none is a check-the-label dairy carrier such as mayonnaise.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs only. meal_format may name a format with no D-02 slug. primary_ingredient may name a food with no D-02 slug. Neither is copied into tags.",
+      "meal_format": "meal_format braise is not a D-02 meal_style slug and is not in vocabulary_tag_ids."
+    }
+  },
+  "image": {
+    "image_id": "img_cider-braised-pork-shoulder_v1",
+    "dish_id": "cider-braised-pork-shoulder",
+    "recipe_version_id": "rv_cider-braised-pork-shoulder_v1",
+    "asset_generated": true,
+    "master_ref": "cider-braised-pork-shoulder.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "cider-braised-pork-shoulder.webp",
+        "spec_catalog_path": "/images/meals/cider-braised-pork-shoulder.webp",
+        "status": "frozen"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "cider-braised-pork-shoulder-640.webp",
+        "spec_catalog_path": "/images/meals/cider-braised-pork-shoulder-640.webp",
+        "status": "frozen"
+      }
+    ],
+    "dimensions_basis": "Existing AI JPEG center-cropped to 4:3 (960x720) and resized with Pillow LANCZOS.",
+    "generation": {
+      "method": "format_size_conversion_of_existing_ai_jpeg",
+      "method_detail": "Center-crop the existing AI JPEG to 4:3, then resize with Pillow LANCZOS and export WebP master and card.",
+      "generator": "Grok Imagine / Juniper via Grok Bot Dry Run #2",
+      "model": "unknown",
+      "model_note": "Model unknown; no model slug invented.",
+      "prompt_authored_on": "2026-10-04",
+      "generation_date": "2026-10-04",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "frozen_for_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Existing AI-generated JPEG supplied for this dry-run freeze; rights not cleared for external release.",
+    "package_revision": "freeze-r2",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720,
+      "aspect": "16:9"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient name is used. Water is split 1/2 cup braise and 1/4 cup cabbage. Dijon is split 2 tbsp and 1 tbsp. Apple stays in the sauce. Thyme is discarded after the braise."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "Olive oil is 2 tbsp, 1 tbsp for the sear and 1 tbsp for the cabbage. The sauce is not finished with butter."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Cider-mustard sauce is built and reduced from cider, water, store-bought dijon mustard, onion, apple, garlic, and thyme. No flour thickener and no unnamed spice blend. Mustard cabbage is the second component."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 20 + cook 192 = 212. Cook is 8 sear + 4 aromatics + 165 oven (the long end) + 15 rest. Reduction and cabbage run inside that rest on two burners. One burner adds about 10 minutes and is not the published total."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Liquid, apple, thyme, and cabbage wedges do not quarter cleanly. Doneness and oven temperature do not scale."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat true. contains_poultry false (no chicken stock). contains_dairy false. allergens is empty. dairy_free is unconditional. HH001 is false because of pork."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "vocabulary_tag_ids are existing D-02 slugs only."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published."
+    },
+    {
+      "check": "image",
+      "result": "present_frozen_for_reaudit",
+      "detail": "Master WebP 1200x900 and card WebP 640x480 are present. asset_generated is true and qa_state is frozen_for_audit; not imported or published."
+    }
+  ],
+  "scaling_notes": {
+    "1": "Buy about 1 lb boneless pork shoulder in one chunk, not thin cutlets. Braising liquid has a floor: 1 cup apple cider and 1/4 cup water in the pot, even though a strict quarter of the written liquid is less. Below that the pot scorches. Cabbage water: 1 tbsp. Use 1 small apple, not a quarter of an apple. Two thyme sprigs, not a fraction of a sprig. Two cabbage wedges from a small head; the rest of the head is not part of this scaled recipe. Dijon: 2 tsp in the pot and 1 tsp on the cabbage. Oven stays 325 F. Target stays 195-203 F. Time does not quarter: plan about 1 hour 45 minutes to 2 hours in the oven for a 1 lb piece of similar thickness.",
+    "2": "1.5 lb in one piece. Liquid floor: 1 1/4 cups apple cider and 1/3 cup water in the pot, not a strict half, if the Dutch oven is wide. Cabbage water: 2 tbsp. One apple. Two thyme sprigs. Four cabbage wedges. Halve the salt, pepper, oil, and dijon (1 tbsp in the pot, 1 1/2 tsp on the cabbage). Oven 325 F and 195-203 F do not change. Oven time is about 2 hours 15 minutes, not half of 2 hours 45 minutes.",
+    "4": "As written. 3 lb is about 12 oz raw per person before the braise shrinks it. Liquid is 2 cups cider plus 1/2 cup water in the pot and 1/4 cup water in the skillet.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "oven temperature",
+      "195-203 F doneness",
+      "the rule that the liquid must reach about halfway up the meat",
+      "rest time"
+    ]
+  },
+  "coverage_contribution": "First real braise. Pork is absent from the live 24 and from the three DR1 drafts (beef, chicken, mussels). The reduced cider-mustard sauce and the mustard cabbage are compounds. The liquid floor, the one-piece shoulder, counted wedges and apples, and divided mustard, oil, salt, and water are the scaling stress. Not HH001.",
+  "near_duplicate_review": "Not Gochujang Grilled Flank Steak: pork, Dutch oven, 195 F, cider sauce, cabbage, hours rather than a grill. Not Sheet-Pan Lemon Herb Chicken and not the chicken sandwiches. Smoky Lentil Sweet Potato Stew is a plant stew, not a meat braise. No short rib, because beef is already the flank draft.",
+  "batch_challenges": [
+    "B",
+    "C",
+    "D"
+  ],
+  "recommendation_eligible": false
+}

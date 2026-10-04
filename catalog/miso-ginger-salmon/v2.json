@@ -1,0 +1,301 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "miso-ginger-salmon",
+    "slug": "miso-ginger-salmon",
+    "title": "Miso-Ginger Salmon",
+    "name": "Miso-Ginger Salmon",
+    "description": null,
+    "cuisine": "japanese",
+    "meal_format": "fillet",
+    "primary_ingredient": "salmon",
+    "texture": "tender",
+    "flavor_profile": "umami-bright",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.55,
+    "plate": "🐟",
+    "tone": "tone-b",
+    "tags": [
+      "fish",
+      "dairy-free"
+    ],
+    "sparks": [
+      "fish",
+      "bright"
+    ],
+    "chips": [
+      "Fish",
+      "35 min"
+    ],
+    "current_recipe_id": "rcp_miso-ginger-salmon",
+    "current_version_id": "rv_miso-ginger-salmon_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_miso-ginger-salmon",
+    "dish_id": "miso-ginger-salmon",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "created_on": null,
+      "curator": null,
+      "process": "Legacy v1 corrected in draft only. Original authorship is not in the repo.",
+      "copied_from_third_party": null,
+      "note": "legacy_unknown. kitchen_tested is false. No cook count is known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_miso-ginger-salmon_v2",
+    "recipe_id": "rcp_miso-ginger-salmon",
+    "dish_id": "miso-ginger-salmon",
+    "version_number": 2,
+    "immutable": true,
+    "title": "Miso-Ginger Salmon",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 20,
+    "cook_minutes": 15,
+    "total_minutes": 35,
+    "effort": "Medium",
+    "methods": [
+      "skillet"
+    ],
+    "dietary_tags": [
+      "fish",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": "Center of the fillet just opaque, about 145°F if checked. Not translucent, not dry and chalky.",
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "salmon fillets",
+        "quantity": "4 (5–6 oz each)",
+        "note": "skin on"
+      },
+      {
+        "name": "white miso",
+        "quantity": "2 tbsp",
+        "note": "rice-koji white miso; soy and rice, not barley miso"
+      },
+      {
+        "name": "fresh ginger",
+        "quantity": "1 tbsp grated",
+        "note": null
+      },
+      {
+        "name": "rice vinegar",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "sesame oil",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "water",
+        "quantity": "1 tbsp",
+        "note": "in the marinade"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tsp",
+        "note": "for the skillet"
+      },
+      {
+        "name": "green onions",
+        "quantity": "2",
+        "note": "sliced"
+      },
+      {
+        "name": "steamed rice",
+        "quantity": "4 cups cooked",
+        "note": "about 1 cup cooked per serving; cook during the marinade rest"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Marinate",
+        "body": "Whisk the white miso, ginger, rice vinegar, sesame oil, and 1 tbsp water. Coat the skin-on salmon and rest 15 minutes. A longer fridge rest, up to 30 minutes, is optional and is not part of this 35-minute clock. The 15-minute rest is the bulk of the 20-minute prep.",
+        "ingredient_refs": [
+          "salmon fillets",
+          "white miso",
+          "fresh ginger",
+          "rice vinegar",
+          "sesame oil",
+          "water"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the salmon",
+        "body": "Heat 1 tsp neutral oil in a skillet over medium-high. Cook the salmon skin-side down 4–5 minutes, flip, and cook 3–4 minutes more. Pull when the center is just opaque, about 145°F if checked.",
+        "ingredient_refs": [
+          "salmon fillets",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Serve",
+        "body": "Top with the green onions and serve over the steamed rice. There is no lime in this dish.",
+        "ingredient_refs": [
+          "green onions",
+          "steamed rice"
+        ]
+      }
+    ],
+    "supersedes_version_id": "rv_miso-ginger-salmon_v1"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "japanese",
+      "salmon",
+      "tender",
+      "umami"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "allergens": [
+      "finfish",
+      "sesame",
+      "soy"
+    ],
+    "equipment": [
+      "skillet"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "salmon fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "skin on, 5–6 oz each",
+        "raw_quantity": "4 (5–6 oz each)"
+      },
+      {
+        "name": "white miso",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "rice-koji",
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "grated",
+        "raw_quantity": "1 tbsp grated"
+      },
+      {
+        "name": "rice vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "sesame oil",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "water",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "marinade",
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "skillet",
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "green onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": "sliced",
+        "raw_quantity": "2"
+      },
+      {
+        "name": "steamed rice",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "cooked",
+        "raw_quantity": "4 cups cooked"
+      }
+    ],
+    "allergen_note": "Finfish is the salmon. Soy is the miso. Sesame is the sesame oil. Wheat is not claimed because the miso is specified as rice-koji, not barley. Fish is a dietary label; finfish is the allergen. They are not the same field."
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "miso-ginger-salmon.webp",
+    "card_ref": "miso-ginger-salmon-640.webp",
+    "master_filename": "miso-ginger-salmon.webp",
+    "card_filename": "miso-ginger-salmon-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "unreviewed_revision_draft",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_read_and_corrected_in_draft",
+    "evidence_note": "Draft recipe correction only. This object is not a certification result. kitchen_tested is false. Household cook count and rating count are unknown, not zero. Recipe provenance is legacy_unknown.",
+    "auditor": null
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Local draft for Cora. Not imported. Not published. v1 remains the published legacy version."
+  },
+  "catalog_contract_note": "Curator correction draft for Cora. Not an audit and not a certification. v1.json in this folder is the unchanged legacy package.",
+  "revision": {
+    "disposition": "CREATE_V2",
+    "from_version_id": "rv_miso-ginger-salmon_v1",
+    "to_version_id": "rv_miso-ginger-salmon_v2",
+    "reason_summary": "A 15-minute rest does not fit the 22-minute total, the serve step calls for lime that is not an ingredient, and soy and sesame are unlisted allergens.",
+    "authored_for": "Cora",
+    "authored_role": "catalog draft, not the auditor",
+    "authored_on": "2026-10-04",
+    "authored_timezone": "America/Chicago",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_generated": true
+  },
+  "package_revision": "legacy-audit-r1"
+}

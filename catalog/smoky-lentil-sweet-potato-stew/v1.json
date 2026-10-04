@@ -1,0 +1,202 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "smoky-lentil-sweet-potato-stew",
+    "slug": "smoky-lentil-sweet-potato-stew",
+    "title": "Smoky Lentil Sweet Potato Stew",
+    "name": "Smoky Lentil Sweet Potato Stew",
+    "description": null,
+    "cuisine": "american",
+    "meal_format": "stew",
+    "primary_ingredient": "lentils",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.38,
+    "plate": "🍲",
+    "tone": "tone-c",
+    "tags": [
+      "plant",
+      "dairy-free",
+      "stew"
+    ],
+    "sparks": [
+      "curry",
+      "sheet"
+    ],
+    "chips": [
+      "Plant",
+      "45 min"
+    ],
+    "current_recipe_id": "rcp_smoky-lentil-sweet-potato-stew",
+    "current_version_id": "rv_smoky-lentil-sweet-potato-stew_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_smoky-lentil-sweet-potato-stew",
+    "dish_id": "smoky-lentil-sweet-potato-stew",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_smoky-lentil-sweet-potato-stew_v1",
+    "recipe_id": "rcp_smoky-lentil-sweet-potato-stew",
+    "dish_id": "smoky-lentil-sweet-potato-stew",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Smoky Lentil Sweet Potato Stew",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free",
+      "stew"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "red lentils",
+        "quantity": "1 cup",
+        "note": null
+      },
+      {
+        "name": "sweet potato",
+        "quantity": "2 cubed",
+        "note": null
+      },
+      {
+        "name": "diced tomatoes",
+        "quantity": "1 can",
+        "note": null
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": "4 cups",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Simmer base",
+        "body": "Simmer lentils, sweet potato, tomatoes, paprika, and broth 25 min.",
+        "ingredient_refs": [
+          "red lentils",
+          "sweet potato"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Mash slightly",
+        "body": "Partially mash to thicken; season.",
+        "ingredient_refs": [
+          "diced tomatoes"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Serve",
+        "body": "Serve with crusty bread if desired.",
+        "ingredient_refs": []
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "american",
+      "curries",
+      "lentils",
+      "stews"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [],
+    "equipment": [
+      "sheet-pan"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "red lentils",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "sweet potato",
+        "quantity": 2,
+        "unit": "count",
+        "note": "cubed",
+        "raw_quantity": "2 cubed"
+      },
+      {
+        "name": "diced tomatoes",
+        "quantity": 1,
+        "unit": "can",
+        "note": null,
+        "raw_quantity": "1 can"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": 4,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "4 cups"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/smoky-lentil-sweet-potato-stew.webp",
+    "card_ref": "/images/meals/smoky-lentil-sweet-potato-stew-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

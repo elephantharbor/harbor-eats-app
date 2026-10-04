@@ -1,0 +1,272 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "smoky-lentil-sweet-potato-stew",
+    "slug": "smoky-lentil-sweet-potato-stew",
+    "title": "Smoky Lentil Sweet Potato Stew",
+    "name": "Smoky Lentil Sweet Potato Stew",
+    "description": null,
+    "cuisine": "american",
+    "meal_format": "stew",
+    "primary_ingredient": "lentils",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.38,
+    "plate": "\ud83c\udf72",
+    "tone": "tone-c",
+    "tags": [
+      "plant",
+      "dairy-free",
+      "stew"
+    ],
+    "sparks": [
+      "stew",
+      "smoky"
+    ],
+    "chips": [
+      "Plant",
+      "40 min"
+    ],
+    "current_recipe_id": "rcp_smoky-lentil-sweet-potato-stew",
+    "current_version_id": "rv_smoky-lentil-sweet-potato-stew_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_smoky-lentil-sweet-potato-stew",
+    "dish_id": "smoky-lentil-sweet-potato-stew",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "created_on": null,
+      "curator": null,
+      "process": "Legacy v1 corrected in draft only. Original authorship is not in the repo.",
+      "copied_from_third_party": null,
+      "note": "legacy_unknown. kitchen_tested is false. No cook count is known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_smoky-lentil-sweet-potato-stew_v2",
+    "recipe_id": "rcp_smoky-lentil-sweet-potato-stew",
+    "dish_id": "smoky-lentil-sweet-potato-stew",
+    "version_number": 2,
+    "immutable": true,
+    "title": "Smoky Lentil Sweet Potato Stew",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": "Sweet potato cubes tender when pierced. Red lentils broken down. Stew thick enough to mound slightly after a partial mash, not a thin broth.",
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "red lentils",
+        "quantity": "1 cup",
+        "note": "dry, rinsed"
+      },
+      {
+        "name": "sweet potato",
+        "quantity": "2 medium",
+        "note": "about 8 oz each, cut into 3/4-inch cubes"
+      },
+      {
+        "name": "diced tomatoes",
+        "quantity": "1 can (14.5 oz)",
+        "note": "with their juice"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": "4 cups",
+        "note": null
+      },
+      {
+        "name": "kosher salt",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "black pepper",
+        "quantity": "1/4 tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Simmer",
+        "body": "Put the rinsed red lentils, sweet potato cubes, diced tomatoes with their juice, smoked paprika, vegetable broth, kosher salt, and black pepper in a pot. Bring to a simmer, then simmer 25 minutes, until the sweet potato is tender and the lentils have broken down.",
+        "ingredient_refs": [
+          "red lentils",
+          "sweet potato",
+          "diced tomatoes",
+          "smoked paprika",
+          "vegetable broth",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Mash slightly",
+        "body": "Mash a portion of the stew against the side of the pot until it thickens. Leave some sweet potato cubes visible.",
+        "ingredient_refs": [
+          "sweet potato",
+          "red lentils"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Serve",
+        "body": "Serve the stew as it is. Bread is not part of this dish.",
+        "ingredient_refs": []
+      }
+    ],
+    "supersedes_version_id": "rv_smoky-lentil-sweet-potato-stew_v1"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "american",
+      "lentils",
+      "stews"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [],
+    "equipment": [
+      "stovetop",
+      "pot"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "red lentils",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "dry, rinsed",
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "sweet potato",
+        "quantity": 2,
+        "unit": "count",
+        "note": "medium, about 8 oz each, 3/4-inch cubes",
+        "raw_quantity": "2 medium"
+      },
+      {
+        "name": "diced tomatoes",
+        "quantity": 1,
+        "unit": "can",
+        "note": "14.5 oz, with juice",
+        "raw_quantity": "1 can (14.5 oz)"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": 4,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "4 cups"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1/4 tsp"
+      }
+    ],
+    "allergen_note": "No allergen tokens. The optional crusty bread in v1 is not in v2, so wheat is not an allergen of this stew. Dietary labels are dairy_free and plant, kept separate from allergens."
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "smoky-lentil-sweet-potato-stew.webp",
+    "card_ref": "smoky-lentil-sweet-potato-stew-640.webp",
+    "master_filename": "smoky-lentil-sweet-potato-stew.webp",
+    "card_filename": "smoky-lentil-sweet-potato-stew-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "unreviewed_revision_draft",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_read_and_corrected_in_draft",
+    "evidence_note": "Draft recipe correction only. This object is not a certification result. kitchen_tested is false. Household cook count and rating count are unknown, not zero. Recipe provenance is legacy_unknown.",
+    "auditor": null
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Local draft for Cora. Not imported. Not published. v1 remains the published legacy version."
+  },
+  "catalog_contract_note": "Curator correction draft for Cora. Not an audit and not a certification. v1.json in this folder is the unchanged legacy package.",
+  "revision": {
+    "disposition": "CREATE_V2",
+    "from_version_id": "rv_smoky-lentil-sweet-potato-stew_v1",
+    "to_version_id": "rv_smoky-lentil-sweet-potato-stew_v2",
+    "reason_summary": "Sweet potato size and the tomato can size are unspecified, seasoning has no measured salt, and the package lists a sheet pan for a stovetop simmer.",
+    "authored_for": "Cora",
+    "authored_role": "catalog draft, not the auditor",
+    "authored_on": "2026-10-04",
+    "authored_timezone": "America/Chicago",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_generated": true
+  },
+  "package_revision": "legacy-audit-r1"
+}

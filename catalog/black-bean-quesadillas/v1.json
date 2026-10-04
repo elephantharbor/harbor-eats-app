@@ -1,0 +1,216 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "black-bean-quesadillas",
+    "slug": "black-bean-quesadillas",
+    "title": "Black Bean Quesadillas",
+    "name": "Black Bean Quesadillas",
+    "description": null,
+    "cuisine": "mexican",
+    "meal_format": "handheld",
+    "primary_ingredient": "beans",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.3,
+    "plate": "🧀",
+    "tone": "tone-a",
+    "tags": [
+      "plant",
+      "dairy",
+      "tacos"
+    ],
+    "sparks": [
+      "tacos",
+      "sheet"
+    ],
+    "chips": [
+      "Vegetarian",
+      "25 min"
+    ],
+    "current_recipe_id": "rcp_black-bean-quesadillas",
+    "current_version_id": "rv_black-bean-quesadillas_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_black-bean-quesadillas",
+    "dish_id": "black-bean-quesadillas",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_black-bean-quesadillas_v1",
+    "recipe_id": "rcp_black-bean-quesadillas",
+    "dish_id": "black-bean-quesadillas",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Black Bean Quesadillas",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy",
+      "tacos"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "black beans",
+        "quantity": "1 can, mashed lightly",
+        "note": null
+      },
+      {
+        "name": "shredded cheese",
+        "quantity": "1½ cups",
+        "note": null
+      },
+      {
+        "name": "flour tortillas",
+        "quantity": "4 large",
+        "note": null
+      },
+      {
+        "name": "salsa",
+        "quantity": "½ cup",
+        "note": "store-bought, for serving"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "cumin",
+        "quantity": "1 tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Fill",
+        "body": "Mix beans, cumin, half the cheese. Spread on tortillas, top with cheese, fold.",
+        "ingredient_refs": [
+          "black beans",
+          "shredded cheese"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Crisp",
+        "body": "Cook quesadillas in oiled skillet over medium heat 2–3 min per side until golden.",
+        "ingredient_refs": [
+          "flour tortillas",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Serve",
+        "body": "Cut into wedges; serve with salsa.",
+        "ingredient_refs": [
+          "salsa"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "mexican",
+      "tacos"
+    ],
+    "dietary_labels": [
+      "plant"
+    ],
+    "allergens": [
+      "dairy"
+    ],
+    "equipment": [
+      "sheet-pan"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "black beans",
+        "quantity": 1,
+        "unit": "count",
+        "note": "can, mashed lightly",
+        "raw_quantity": "1 can, mashed lightly"
+      },
+      {
+        "name": "shredded cheese",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "1 ½ cups"
+      },
+      {
+        "name": "flour tortillas",
+        "quantity": 4,
+        "unit": "count",
+        "note": "large",
+        "raw_quantity": "4 large"
+      },
+      {
+        "name": "salsa",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "store-bought, for serving",
+        "raw_quantity": "½ cup"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/black-bean-quesadillas.webp",
+    "card_ref": "/images/meals/black-bean-quesadillas-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

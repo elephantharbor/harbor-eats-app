@@ -1,0 +1,216 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "sheet-pan-lemon-herb-chicken",
+    "slug": "sheet-pan-lemon-herb-chicken",
+    "title": "Sheet-Pan Lemon Herb Chicken",
+    "name": "Sheet-Pan Lemon Herb Chicken",
+    "description": null,
+    "cuisine": "american",
+    "meal_format": "sheet-pan",
+    "primary_ingredient": "chicken",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.45,
+    "plate": "🍗",
+    "tone": "tone-a",
+    "tags": [
+      "poultry",
+      "meat",
+      "sheet-pan"
+    ],
+    "sparks": [
+      "sheet",
+      "bright"
+    ],
+    "chips": [
+      "Poultry",
+      "45 min"
+    ],
+    "current_recipe_id": "rcp_sheet-pan-lemon-herb-chicken",
+    "current_version_id": "rv_sheet-pan-lemon-herb-chicken_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_sheet-pan-lemon-herb-chicken",
+    "dish_id": "sheet-pan-lemon-herb-chicken",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_sheet-pan-lemon-herb-chicken_v1",
+    "recipe_id": "rcp_sheet-pan-lemon-herb-chicken",
+    "dish_id": "sheet-pan-lemon-herb-chicken",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Sheet-Pan Lemon Herb Chicken",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "poultry",
+      "meat",
+      "sheet-pan"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "chicken thighs",
+        "quantity": "6 bone-in",
+        "note": null
+      },
+      {
+        "name": "potatoes",
+        "quantity": "1 lb cubed",
+        "note": null
+      },
+      {
+        "name": "green beans",
+        "quantity": "12 oz",
+        "note": null
+      },
+      {
+        "name": "lemon",
+        "quantity": "2",
+        "note": null
+      },
+      {
+        "name": "dried oregano",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "2 tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Season & arrange",
+        "body": "Toss chicken, potatoes, beans with oil, lemon, oregano, salt, pepper on one pan.",
+        "ingredient_refs": [
+          "chicken thighs",
+          "potatoes",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Roast",
+        "body": "Roast at 425°F 35–40 min until chicken hits 165°F.",
+        "ingredient_refs": [
+          "chicken thighs"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Rest",
+        "body": "Rest 5 min; squeeze remaining lemon over top.",
+        "ingredient_refs": [
+          "lemon"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "american",
+      "chicken",
+      "citrusy"
+    ],
+    "dietary_labels": [],
+    "allergens": [
+      "meat",
+      "poultry"
+    ],
+    "equipment": [
+      "sheet-pan"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "chicken thighs",
+        "quantity": 6,
+        "unit": "count",
+        "note": "bone-in",
+        "raw_quantity": "6 bone-in"
+      },
+      {
+        "name": "potatoes",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "cubed",
+        "raw_quantity": "1 lb cubed"
+      },
+      {
+        "name": "green beans",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "raw_quantity": "12 oz"
+      },
+      {
+        "name": "lemon",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "2"
+      },
+      {
+        "name": "dried oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/sheet-pan-lemon-herb-chicken.webp",
+    "card_ref": "/images/meals/sheet-pan-lemon-herb-chicken-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

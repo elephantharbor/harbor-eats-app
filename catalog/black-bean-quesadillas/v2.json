@@ -1,0 +1,240 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "black-bean-quesadillas",
+    "slug": "black-bean-quesadillas",
+    "title": "Black Bean Quesadillas",
+    "name": "Black Bean Quesadillas",
+    "description": null,
+    "cuisine": "mexican",
+    "meal_format": "handheld",
+    "primary_ingredient": "beans",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.3,
+    "plate": "🧀",
+    "tone": "tone-a",
+    "tags": [
+      "dairy"
+    ],
+    "sparks": [
+      "tacos"
+    ],
+    "chips": [
+      "Vegetarian",
+      "35 min"
+    ],
+    "current_recipe_id": "rcp_black-bean-quesadillas",
+    "current_version_id": "rv_black-bean-quesadillas_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_black-bean-quesadillas",
+    "dish_id": "black-bean-quesadillas",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_black-bean-quesadillas_v2",
+    "recipe_id": "rcp_black-bean-quesadillas",
+    "dish_id": "black-bean-quesadillas",
+    "version_number": 2,
+    "immutable": true,
+    "title": "Black Bean Quesadillas",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 20,
+    "total_minutes": 35,
+    "effort": "Easy",
+    "methods": [
+      "skillet"
+    ],
+    "dietary_tags": [
+      "dairy"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "black beans",
+        "quantity": "one 15 oz can, mashed lightly",
+        "note": null
+      },
+      {
+        "name": "shredded cheese",
+        "quantity": "1½ cups",
+        "note": null
+      },
+      {
+        "name": "flour tortillas",
+        "quantity": "4 large",
+        "note": null
+      },
+      {
+        "name": "salsa",
+        "quantity": "½ cup",
+        "note": "store-bought, for serving"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "cumin",
+        "quantity": "1 tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Fill",
+        "body": "Mix beans, cumin, half the cheese. Spread on tortillas, top with cheese, fold.",
+        "ingredient_refs": [
+          "black beans",
+          "cumin",
+          "shredded cheese",
+          "flour tortillas"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Crisp",
+        "body": "Cook quesadillas in oiled skillet over medium heat 2–3 min per side until golden.",
+        "ingredient_refs": [
+          "flour tortillas",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Serve",
+        "body": "Cut into wedges; serve with salsa.",
+        "ingredient_refs": [
+          "salsa"
+        ]
+      }
+    ],
+    "corrects_version_id": "rv_black-bean-quesadillas_v1"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "mexican",
+      "tacos"
+    ],
+    "dietary_labels": [],
+    "allergens": [
+      "dairy",
+      "wheat"
+    ],
+    "equipment": [
+      "skillet"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "black beans",
+        "quantity": 1,
+        "unit": "can",
+        "note": "15 oz, mashed lightly",
+        "raw_quantity": "one 15 oz can, mashed lightly"
+      },
+      {
+        "name": "shredded cheese",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "1 ½ cups"
+      },
+      {
+        "name": "flour tortillas",
+        "quantity": 4,
+        "unit": "count",
+        "note": "large",
+        "raw_quantity": "4 large"
+      },
+      {
+        "name": "salsa",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "store-bought, for serving",
+        "raw_quantity": "½ cup"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "black-bean-quesadillas.webp",
+    "card_ref": "black-bean-quesadillas-640.webp",
+    "master_filename": "black-bean-quesadillas.webp",
+    "card_filename": "black-bean-quesadillas-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "legacy_draft_correction",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_draft_correction",
+    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Removes the false sheet-pan spark. plant is not a dietary label because of the cheese; tacos is not a diet; dairy stays an allergen; wheat is an allergen because of the flour tortillas. No dairy-free claim. kitchen_tested is false. Recipe provenance is legacy_unknown."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Proposed correction for Cora. Not published. Not a certification. v1.json was not edited."
+  },
+  "draft": {
+    "for": "Cora",
+    "role": "legacy_audit_drafter",
+    "is_auditor": false,
+    "disposition": "CREATE_V2",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_this_pass": false,
+    "v1_left_unchanged": true,
+    "reason": "Spark sheet projected sheet-pan equipment onto a skillet quesadilla."
+  },
+  "package_revision": "legacy-audit-r1"
+}

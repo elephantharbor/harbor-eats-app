@@ -1,0 +1,237 @@
+{
+  "catalog_contract": "flavorweave-legacy-audit-draft",
+  "catalog_contract_note": "Draft v2 for Cora. Not an audit. Not a certification. v1.json is the untouched GitHub download.",
+  "draft_for": "Cora",
+  "auditor": null,
+  "certification": null,
+  "not_a_certification": true,
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "kitchen_tested": false,
+  "provenance": "legacy_unknown",
+  "source_v1": {
+    "repo": "elephantharbor/harbor-eats-app",
+    "ref": "cursor/catalog-architecture-fa5e",
+    "path": "catalog/sesame-soba-noodle-bowl/v1.json",
+    "raw_url": "https://raw.githubusercontent.com/elephantharbor/harbor-eats-app/cursor/catalog-architecture-fa5e/catalog/sesame-soba-noodle-bowl/v1.json",
+    "git_blob_sha": "97a41e9e0722cc68cee727d44ea9cb7550750ade",
+    "sha256": "fd35b3caadbec2d34cd76a43944f7a702422b665eb10e517de9801243a3e35be",
+    "edited": false
+  },
+  "dish": {
+    "dish_id": "sesame-soba-noodle-bowl",
+    "slug": "sesame-soba-noodle-bowl",
+    "title": "Sesame Soba Noodle Bowl",
+    "name": "Sesame Soba Noodle Bowl",
+    "description": "Cold rinsed soba tossed with sesame oil, rice vinegar, and soy, topped with julienned carrot, edamame, and sesame seeds.",
+    "cuisine": "japanese",
+    "meal_format": "bowl",
+    "primary_ingredient": "soba",
+    "chips": [
+      "Plant",
+      "25 min"
+    ],
+    "sparks": [
+      "bright"
+    ],
+    "current_recipe_id": "rcp_sesame-soba-noodle-bowl",
+    "current_version_id": "rv_sesame-soba-noodle-bowl_v2",
+    "live_catalog_still_points_at": "rv_sesame-soba-noodle-bowl_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_sesame-soba-noodle-bowl",
+    "dish_id": "sesame-soba-noodle-bowl",
+    "visibility": "draft",
+    "household_id": null,
+    "provenance": "legacy_unknown",
+    "provenance_note": "Legacy menu text of unknown origin. This draft reconciles that text. It does not claim a kitchen test."
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_sesame-soba-noodle-bowl_v2",
+    "replaces_recipe_version_id": "rv_sesame-soba-noodle-bowl_v1",
+    "version_number": 2,
+    "immutable": false,
+    "draft": true,
+    "title": "Sesame Soba Noodle Bowl",
+    "description": "Cold rinsed soba tossed with sesame oil, rice vinegar, and soy, topped with julienned carrot, edamame, and sesame seeds.",
+    "base_servings": 4,
+    "serving_basis_note": "Quantities are for 4 servings. One- and two-serving floors are not in this draft.",
+    "prep_minutes": 15,
+    "cook_minutes": 10,
+    "total_minutes": 25,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "heat": "Boiling water for the soba. The dressing is not cooked.",
+    "doneness": "Soba is done when tender but not mushy, 4 to 5 minutes, then rinsed cold. Edamame is already cooked and only thawed.",
+    "ingredients": [
+      {
+        "name": "soba noodles",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "Dry. Assume ordinary wheat-and-buckwheat soba, not 100 percent buckwheat and not egg soba. Egg soba would add egg and would drop the plant claim.",
+        "preparation": null,
+        "role": "starch",
+        "drafter_quantity": false
+      },
+      {
+        "name": "sesame oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "Same amount as v1.",
+        "preparation": null,
+        "role": "fat",
+        "drafter_quantity": false
+      },
+      {
+        "name": "rice vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "Same amount as v1. This is not citrus.",
+        "preparation": null,
+        "role": "acid",
+        "drafter_quantity": false
+      },
+      {
+        "name": "soy sauce",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "Regular soy sauce. Wheat and soy. Not a gluten-free substitute.",
+        "preparation": null,
+        "role": "seasoning",
+        "drafter_quantity": false
+      },
+      {
+        "name": "carrot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "julienned",
+        "role": "vegetable",
+        "drafter_quantity": false
+      },
+      {
+        "name": "edamame",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "Shelled. Thawed if frozen. Soy. Same amount as v1.",
+        "preparation": "shelled",
+        "role": "vegetable",
+        "drafter_quantity": false
+      },
+      {
+        "name": "sesame seeds",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "v1 tops the bowl with sesame seeds and does not list them. Drafter amount. Not toasted, because v1 does not say toasted.",
+        "preparation": null,
+        "role": "finish",
+        "drafter_quantity": true
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Cook the noodles",
+        "body": "Boil the soba 4 to 5 minutes, until tender but not mushy. Drain and rinse under cold water until cool. This is not a 25-minute boil and it is not a broth soup.",
+        "ingredient_refs": [
+          "soba noodles"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Dress",
+        "body": "Toss the cooled noodles with the sesame oil, rice vinegar, soy sauce, and julienned carrot.",
+        "ingredient_refs": [
+          "sesame oil",
+          "rice vinegar",
+          "soy sauce",
+          "carrot"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Top",
+        "body": "Top with the edamame and the sesame seeds. Do not add lime, cilantro, peanut, or another vegetable.",
+        "ingredient_refs": [
+          "edamame",
+          "sesame seeds"
+        ]
+      }
+    ],
+    "equipment": [
+      "saucepan",
+      "colander"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "dietary_label_note": "Plant and dairy-free for wheat-and-buckwheat soba with no egg. Egg soba would void plant and add egg. Not gluten-free. The legacy dietary tag bowl is a format, not a diet.",
+    "allergens": [
+      "wheat",
+      "soy",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Wheat from ordinary soba and from soy sauce. Soy from soy sauce and edamame. Sesame from sesame oil and sesame seeds.",
+      "No egg, milk, peanut, tree_nut, shellfish, or finfish when the soba is the egg-free kind named above.",
+      "v1 allergens were an empty array."
+    ],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "Sesame is not a nut. No peanut.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant ingredients. Wheat is allowed for HH001. No dairy, meat, poultry, finfish, shellfish, or nuts. Not kitchen-tested."
+    },
+    "vocabulary_tag_ids": [
+      "japanese",
+      "bowls",
+      "soba"
+    ],
+    "kitchen_tested": false,
+    "provenance": "legacy_unknown",
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "changes_from_v1": [
+      "Sesame seeds are in the last step and in the title, and they were not an ingredient. v2 lists 1 tbsp, a drafter amount, untoasted.",
+      "Cook clock was 25 minutes inside a 40-minute total, and the chip said 25. A 25-minute boil would ruin soba. v2 boils 4 to 5 minutes. Prep 15 plus cook 10 equals 25.",
+      "Allergens were empty. Content has wheat, soy, and sesame.",
+      "vocabulary citrusy was dropped. There is no citrus. Rice vinegar is not citrus. No lime was added.",
+      "Doneness was null. v2 states tender but not mushy, then rinsed cold."
+    ],
+    "unchanged_from_v1": [
+      "Title, Japanese cuisine, bowl format, 12 oz soba, 1 cup shelled edamame, 1 julienned carrot, 2 tbsp sesame oil, 2 tbsp rice vinegar, 1 tbsp soy sauce, stovetop boil, cold rinse, and the toss-and-top order."
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "sesame-soba-noodle-bowl.webp",
+    "card_ref": "sesame-soba-noodle-bowl-640.webp",
+    "master_filename": "sesame-soba-noodle-bowl.webp",
+    "card_filename": "sesame-soba-noodle-bowl-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "package_revision": "legacy-audit-r0"
+}

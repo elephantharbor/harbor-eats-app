@@ -1,0 +1,339 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "coconut-chickpea-curry",
+    "slug": "coconut-chickpea-curry",
+    "title": "Coconut Chickpea Spinach Curry",
+    "name": "Coconut Chickpea Spinach Curry",
+    "description": null,
+    "cuisine": "indian-inspired",
+    "meal_format": "bowl",
+    "primary_ingredient": "chickpeas",
+    "texture": "creamy",
+    "flavor_profile": "warm-spiced",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.4,
+    "plate": "🍛",
+    "tone": "tone-c",
+    "tags": [
+      "plant",
+      "curry",
+      "dairy-free"
+    ],
+    "sparks": [
+      "curry",
+      "bright"
+    ],
+    "chips": [
+      "Plant",
+      "40 min"
+    ],
+    "current_recipe_id": "rcp_coconut-chickpea-curry",
+    "current_version_id": "rv_coconut-chickpea-curry_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_coconut-chickpea-curry",
+    "dish_id": "coconut-chickpea-curry",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "created_on": null,
+      "curator": null,
+      "process": "Legacy v1 corrected in draft only. Original authorship is not in the repo.",
+      "copied_from_third_party": null,
+      "note": "legacy_unknown. kitchen_tested is false. No cook count is known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_coconut-chickpea-curry_v2",
+    "recipe_id": "rcp_coconut-chickpea-curry",
+    "dish_id": "coconut-chickpea-curry",
+    "version_number": 2,
+    "immutable": true,
+    "title": "Coconut Chickpea Spinach Curry",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": "Sauce thickened enough to coat the chickpeas; spinach wilted, not raw.",
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "canned chickpeas",
+        "quantity": "2 (15 oz), drained",
+        "note": null
+      },
+      {
+        "name": "coconut milk",
+        "quantity": "1 can (13.5 oz)",
+        "note": null
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "baby spinach",
+        "quantity": "4 cups",
+        "note": null
+      },
+      {
+        "name": "yellow onion",
+        "quantity": "1",
+        "note": "diced"
+      },
+      {
+        "name": "garlic",
+        "quantity": "3 cloves",
+        "note": "minced"
+      },
+      {
+        "name": "curry powder",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "tomato paste",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "water",
+        "quantity": "1/2 cup",
+        "note": null
+      },
+      {
+        "name": "kosher salt",
+        "quantity": "1 tsp",
+        "note": "divided: 1/2 tsp with the onion, 1/2 tsp at the end"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "1/4 tsp",
+        "note": null
+      },
+      {
+        "name": "basmati rice",
+        "quantity": "4 cups cooked",
+        "note": "about 1 cup cooked per serving; cook during the simmer"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sweat the aromatics",
+        "body": "Sauté the onion in the oil with 1/2 tsp kosher salt until soft, about 7 minutes. Add the garlic and curry powder and cook 1 minute.",
+        "ingredient_refs": [
+          "yellow onion",
+          "neutral oil",
+          "kosher salt",
+          "garlic",
+          "curry powder"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Simmer the curry",
+        "body": "Stir in the tomato paste, chickpeas, coconut milk, and 1/2 cup water. Simmer 15 minutes until the sauce coats the chickpeas. Cook the basmati during this simmer.",
+        "ingredient_refs": [
+          "tomato paste",
+          "canned chickpeas",
+          "coconut milk",
+          "water",
+          "basmati rice"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Finish and serve",
+        "body": "Fold in the spinach until wilted. Season with the remaining 1/2 tsp kosher salt and the black pepper. Serve over the rice.",
+        "ingredient_refs": [
+          "baby spinach",
+          "kosher salt",
+          "black pepper",
+          "basmati rice"
+        ]
+      }
+    ],
+    "supersedes_version_id": "rv_coconut-chickpea-curry_v1"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "bowls",
+      "chickpeas",
+      "creamy",
+      "curries",
+      "indian"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [],
+    "equipment": [
+      "stovetop"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "canned chickpeas",
+        "quantity": 2,
+        "unit": "can",
+        "note": "15 oz each, drained",
+        "raw_quantity": "2 (15 oz), drained"
+      },
+      {
+        "name": "coconut milk",
+        "quantity": 1,
+        "unit": "can",
+        "note": "13.5 oz",
+        "raw_quantity": "1 can (13.5 oz)"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "baby spinach",
+        "quantity": 4,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "4 cups"
+      },
+      {
+        "name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "diced",
+        "raw_quantity": "1"
+      },
+      {
+        "name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": "minced",
+        "raw_quantity": "3 cloves"
+      },
+      {
+        "name": "curry powder",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "tomato paste",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "1/2 cup"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "divided",
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1/4 tsp"
+      },
+      {
+        "name": "basmati rice",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "cooked",
+        "raw_quantity": "4 cups cooked"
+      }
+    ],
+    "allergen_note": "No major-allergen token applies under this catalog. Coconut milk is in the dish and is not classified as nuts here. Dietary labels are dairy_free and plant only. Coconut is not moved into the allergen array."
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "coconut-chickpea-curry.webp",
+    "card_ref": "coconut-chickpea-curry-640.webp",
+    "master_filename": "coconut-chickpea-curry.webp",
+    "card_filename": "coconut-chickpea-curry-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "unreviewed_revision_draft",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_read_and_corrected_in_draft",
+    "evidence_note": "Draft recipe correction only. This object is not a certification result. kitchen_tested is false. Household cook count and rating count are unknown, not zero. Recipe provenance is legacy_unknown.",
+    "auditor": null
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Local draft for Cora. Not imported. Not published. v1 remains the published legacy version."
+  },
+  "catalog_contract_note": "Curator correction draft for Cora. Not an audit and not a certification. v1.json in this folder is the unchanged legacy package.",
+  "revision": {
+    "disposition": "CREATE_V2",
+    "from_version_id": "rv_coconut-chickpea-curry_v1",
+    "to_version_id": "rv_coconut-chickpea-curry_v2",
+    "reason_summary": "The simmer uses 1/2 cup water and a final seasoning that were not ingredients, and the rice had no amount.",
+    "authored_for": "Cora",
+    "authored_role": "catalog draft, not the auditor",
+    "authored_on": "2026-10-04",
+    "authored_timezone": "America/Chicago",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_generated": false
+  },
+  "package_revision": "legacy-audit-r0"
+}

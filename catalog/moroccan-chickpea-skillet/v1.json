@@ -1,0 +1,216 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "moroccan-chickpea-skillet",
+    "slug": "moroccan-chickpea-skillet",
+    "title": "Moroccan Chickpea Skillet",
+    "name": "Moroccan Chickpea Skillet",
+    "description": null,
+    "cuisine": "moroccan",
+    "meal_format": "skillet",
+    "primary_ingredient": "chickpeas",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.47,
+    "plate": "🍲",
+    "tone": "tone-c",
+    "tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "sparks": [
+      "curry",
+      "bright"
+    ],
+    "chips": [
+      "Plant",
+      "35 min"
+    ],
+    "current_recipe_id": "rcp_moroccan-chickpea-skillet",
+    "current_version_id": "rv_moroccan-chickpea-skillet_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_moroccan-chickpea-skillet",
+    "dish_id": "moroccan-chickpea-skillet",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_moroccan-chickpea-skillet_v1",
+    "recipe_id": "rcp_moroccan-chickpea-skillet",
+    "dish_id": "moroccan-chickpea-skillet",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Moroccan Chickpea Skillet",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "chickpeas",
+        "quantity": "2 cans",
+        "note": null
+      },
+      {
+        "name": "preserved lemon",
+        "quantity": "2 tbsp chopped",
+        "note": "store-bought jarred preserved lemon"
+      },
+      {
+        "name": "ras el hanout",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "spinach",
+        "quantity": "3 cups",
+        "note": null
+      },
+      {
+        "name": "couscous",
+        "quantity": "for serving",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Spice chickpeas",
+        "body": "Sauté spices in oil over medium heat 1 min; add chickpeas and splash of water; cook 5 min until glossy.",
+        "ingredient_refs": [
+          "chickpeas",
+          "ras el hanout",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Finish",
+        "body": "Stir in preserved lemon and spinach.",
+        "ingredient_refs": [
+          "spinach",
+          "preserved lemon"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Serve",
+        "body": "Serve over couscous.",
+        "ingredient_refs": [
+          "couscous"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "chickpeas",
+      "citrusy",
+      "curries",
+      "moroccan"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [],
+    "equipment": [
+      "skillet"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "chickpeas",
+        "quantity": 2,
+        "unit": "can",
+        "note": null,
+        "raw_quantity": "2 cans"
+      },
+      {
+        "name": "preserved lemon",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "store-bought jarred preserved lemon",
+        "raw_quantity": "2 tbsp chopped"
+      },
+      {
+        "name": "ras el hanout",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "spinach",
+        "quantity": 3,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "3 cups"
+      },
+      {
+        "name": "couscous",
+        "quantity": 1,
+        "unit": "serving",
+        "note": "for serving",
+        "raw_quantity": "for serving"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/moroccan-chickpea-skillet.webp",
+    "card_ref": "/images/meals/moroccan-chickpea-skillet-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

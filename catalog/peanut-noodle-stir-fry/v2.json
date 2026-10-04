@@ -1,0 +1,270 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "peanut-noodle-stir-fry",
+    "slug": "peanut-noodle-stir-fry",
+    "title": "Peanut Noodle Stir-Fry",
+    "name": "Peanut Noodle Stir-Fry",
+    "description": null,
+    "cuisine": "asian-fusion",
+    "meal_format": "stir-fry",
+    "primary_ingredient": "rice noodles",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.59,
+    "plate": "🥜",
+    "tone": "tone-b",
+    "tags": [
+      "plant",
+      "nuts",
+      "peanut"
+    ],
+    "sparks": [],
+    "chips": [
+      "Plant",
+      "25 min"
+    ],
+    "current_recipe_id": "rcp_peanut-noodle-stir-fry",
+    "current_version_id": "rv_peanut-noodle-stir-fry_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_peanut-noodle-stir-fry",
+    "dish_id": "peanut-noodle-stir-fry",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_peanut-noodle-stir-fry_v2",
+    "recipe_id": "rcp_peanut-noodle-stir-fry",
+    "dish_id": "peanut-noodle-stir-fry",
+    "version_number": 2,
+    "immutable": true,
+    "title": "Peanut Noodle Stir-Fry",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 10,
+    "total_minutes": 25,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "nuts",
+      "peanut"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "rice noodles",
+        "quantity": "8 oz",
+        "note": null
+      },
+      {
+        "name": "peanut butter",
+        "quantity": "3 tbsp",
+        "note": null
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "lime",
+        "quantity": "1",
+        "note": null
+      },
+      {
+        "name": "bell pepper",
+        "quantity": "2 sliced",
+        "note": null
+      },
+      {
+        "name": "snap peas",
+        "quantity": "1 cup",
+        "note": null
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "water",
+        "quantity": "3 tbsp",
+        "note": "warm, for the sauce"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Cook noodles",
+        "body": "Soak the noodles in hot water 8–10 minutes until tender, then drain.",
+        "ingredient_refs": [
+          "rice noodles"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Sauce",
+        "body": "Whisk the peanut butter, soy sauce, juice of ½ lime, and 3 tbsp warm water until smooth.",
+        "ingredient_refs": [
+          "peanut butter",
+          "soy sauce",
+          "lime",
+          "water"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Stir-fry",
+        "body": "Sear the peppers and snap peas in the oil over high heat 3–4 minutes. Toss with the noodles and sauce until coated.",
+        "ingredient_refs": [
+          "bell pepper",
+          "snap peas",
+          "neutral oil",
+          "rice noodles"
+        ]
+      }
+    ],
+    "corrects_version_id": "rv_peanut-noodle-stir-fry_v1"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "rice-noodles",
+      "stir-fries"
+    ],
+    "dietary_labels": [
+      "plant"
+    ],
+    "allergens": [
+      "nuts",
+      "peanut",
+      "soy",
+      "wheat"
+    ],
+    "equipment": [],
+    "parsed_ingredients": [
+      {
+        "name": "rice noodles",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "raw_quantity": "8 oz"
+      },
+      {
+        "name": "peanut butter",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "3 tbsp"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "1"
+      },
+      {
+        "name": "bell pepper",
+        "quantity": 2,
+        "unit": "count",
+        "note": "sliced",
+        "raw_quantity": "2 sliced"
+      },
+      {
+        "name": "snap peas",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "water",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "warm, for the sauce",
+        "raw_quantity": "3 tbsp"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "peanut-noodle-stir-fry.webp",
+    "card_ref": "peanut-noodle-stir-fry-640.webp",
+    "master_filename": "peanut-noodle-stir-fry.webp",
+    "card_filename": "peanut-noodle-stir-fry-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "legacy_draft_correction",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_draft_correction",
+    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Drops the curry spark and lists the 3 tbsp warm water the sauce step already uses. plant stays the dietary label. nuts and peanut stay allergens. Regular soy sauce adds soy and wheat. No dairy-free claim. kitchen_tested is false. Recipe provenance is legacy_unknown."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Proposed correction for Cora. Not published. Not a certification. v1.json was not edited."
+  },
+  "draft": {
+    "for": "Cora",
+    "role": "legacy_audit_drafter",
+    "is_auditor": false,
+    "disposition": "CREATE_V2",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_this_pass": false,
+    "v1_left_unchanged": true,
+    "reason": "Spark curry projected this stir-fry as a curry, and the sauce step used water that was not listed."
+  },
+  "package_revision": "legacy-audit-r1"
+}

@@ -1,0 +1,307 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_curator_draft",
+  "draft_role": "Curator draft for Cora. Not an auditor. This file records no certification decision.",
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "source_v1": "https://raw.githubusercontent.com/elephantharbor/harbor-eats-app/cursor/catalog-architecture-fa5e/catalog/grilled-peach-burrito-bowl/v1.json",
+  "v1_sha256": "c84250d8c2f5120e750eecd9ecedb6358479998b2881e93cbbad53ede8778035",
+  "revision_reason": "Grill step filed as stovetop, lime rice never gets lime, can size and salt and grill oil are missing.",
+  "material_deltas": [
+    "Methods set to grill and stovetop. v1 said only stovetop while step 1 grills the peaches.",
+    "The single lime is fully used: zest and juice of 1/2 on the rice, juice of 1/2 in the beans.",
+    "Added 1 tsp neutral oil so the peaches can grill, and 1/2 tsp kosher salt split between beans and rice.",
+    "Black beans specified as 1 (15 oz) can, drained and rinsed. Not increased.",
+    "Pickled red onion locked to store-bought. v1's quick-pickle option had no brine.",
+    "dietary_tags reduced to plant and dairy-free. Removed bowl from dietary tags. Allergens stay empty.",
+    "Clock set to prep 15, cook 10, total 25, and it does not include cooking rice from raw.",
+    "No avocado, corn, chipotle, or crema was added."
+  ],
+  "dish": {
+    "dish_id": "grilled-peach-burrito-bowl",
+    "slug": "grilled-peach-burrito-bowl",
+    "title": "Grilled Peach Burrito Bowl",
+    "name": "Grilled Peach Burrito Bowl",
+    "description": "Grilled peach slices over lime-seasoned rice and cumin black beans, with pickled red onion and cilantro.",
+    "cuisine": "californian",
+    "meal_format": "bowl",
+    "primary_ingredient": "peaches",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.61,
+    "plate": "🍑",
+    "tone": "tone-a",
+    "tags": [
+      "plant",
+      "dairy-free",
+      "bowl"
+    ],
+    "sparks": [
+      "bright"
+    ],
+    "chips": [
+      "Plant",
+      "30 min"
+    ],
+    "current_recipe_id": "rcp_grilled-peach-burrito-bowl",
+    "current_version_id": "rv_grilled-peach-burrito-bowl_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_grilled-peach-burrito-bowl",
+    "dish_id": "grilled-peach-burrito-bowl",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "copied_from_third_party": false,
+      "note": "Corrective draft against legacy v1. Authorship of the legacy text is not known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_grilled-peach-burrito-bowl_v2",
+    "recipe_id": "rcp_grilled-peach-burrito-bowl",
+    "dish_id": "grilled-peach-burrito-bowl",
+    "version_number": 2,
+    "supersedes": "rv_grilled-peach-burrito-bowl_v1",
+    "immutable": false,
+    "immutability_note": "Draft for audit. v1.json was not edited. Not kitchen-tested and not published.",
+    "title": "Grilled Peach Burrito Bowl",
+    "description": "Grilled peach slices over lime-seasoned rice and cumin black beans, with pickled red onion and cilantro.",
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 10,
+    "total_minutes": 25,
+    "effort": "Easy",
+    "methods": [
+      "grill",
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": "none",
+    "doneness": "Peach slices charred at the edges and still holding their shape, not collapsed. Beans heated through. Rice warm.",
+    "substitutions": {
+      "pickled red onion": "Use store-bought. A quick pickle is not specified here because v1 gave no brine.",
+      "rice": "Start from 3 cups cooked rice. Cooking rice from raw is extra time and is not inside the 25 minutes."
+    },
+    "ingredients": [
+      {
+        "name": "peaches",
+        "quantity": "3",
+        "note": "ripe but firm; pitted and cut into 1/2-inch slices"
+      },
+      {
+        "name": "black beans",
+        "quantity": "1 (15 oz) can",
+        "note": "drained and rinsed, about 1 1/2 cups. Not increased. Peaches are the primary ingredient."
+      },
+      {
+        "name": "cooked long-grain rice",
+        "quantity": "3 cups",
+        "note": "warm. About 1 cup dry, cooked ahead. The 25-minute clock does not include cooking rice from raw."
+      },
+      {
+        "name": "pickled red onion",
+        "quantity": "1/2 cup",
+        "note": "store-bought. v1 also allowed quick-pickled onion but gave no brine, so this version does not invent one."
+      },
+      {
+        "name": "cilantro",
+        "quantity": "1/4 cup",
+        "note": "chopped leaves"
+      },
+      {
+        "name": "cumin",
+        "quantity": "1/2 tsp",
+        "note": null
+      },
+      {
+        "name": "lime",
+        "quantity": "1",
+        "note": "zest plus juice, split: zest and juice of 1/2 lime on the rice, juice of the remaining 1/2 lime in the beans"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tsp",
+        "note": "tossed with the peach slices so they can grill without tearing"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": "1/2 tsp",
+        "note": "1/4 tsp in the beans, 1/4 tsp tossed with the rice. Diamond Crystal. If Morton, use half."
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Grill the peaches",
+        "body": "Heat a grill to medium-high. Toss the peach slices with the neutral oil. Grill 2 minutes per side, until the edges are charred and the slices still hold their shape. This is a grill, not a stovetop. v1's method list said only stovetop.",
+        "ingredient_refs": [
+          "peaches",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Warm the beans",
+        "body": "Warm the drained black beans with the cumin, the juice of 1/2 lime, and 1/4 tsp kosher salt over medium heat for 5 minutes, until heated through.",
+        "ingredient_refs": [
+          "black beans",
+          "cumin",
+          "lime",
+          "kosher salt"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Season the rice",
+        "body": "Toss the warm cooked long-grain rice with the zest of the lime, the juice of the remaining 1/2 lime, and the remaining 1/4 tsp kosher salt. v1 named the rice lime rice but never put lime on it, and it used only half of the lime in the beans.",
+        "ingredient_refs": [
+          "cooked long-grain rice",
+          "lime",
+          "kosher salt"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Assemble the bowls",
+        "body": "Layer rice, beans, grilled peaches, pickled red onion, and cilantro in bowls. The peaches stay on top, in slices. Four servings.",
+        "ingredient_refs": [
+          "cooked long-grain rice",
+          "black beans",
+          "peaches",
+          "pickled red onion",
+          "cilantro"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "bowls",
+      "californian",
+      "citrusy",
+      "peaches"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [],
+    "allergen_note": "No major allergen in this ingredient list. Dietary eligibility is separate: plant and dairy-free. Bowl is a format, not a diet and not an allergen.",
+    "equipment": [
+      "grill",
+      "small skillet"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "peaches",
+        "quantity": 3,
+        "unit": "count",
+        "note": "ripe but firm; 1/2-inch slices",
+        "raw_quantity": "3"
+      },
+      {
+        "name": "black beans",
+        "quantity": 15,
+        "unit": "oz",
+        "note": "one can, drained and rinsed",
+        "raw_quantity": "1 (15 oz) can"
+      },
+      {
+        "name": "cooked long-grain rice",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "warm; cooked ahead",
+        "raw_quantity": "3 cups"
+      },
+      {
+        "name": "pickled red onion",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "store-bought",
+        "raw_quantity": "1/2 cup"
+      },
+      {
+        "name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped leaves",
+        "raw_quantity": "1/4 cup"
+      },
+      {
+        "name": "cumin",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1/2 tsp"
+      },
+      {
+        "name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": "zest and juice split between rice and beans",
+        "raw_quantity": "1"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "on the peaches",
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "1/4 tsp beans, 1/4 tsp rice",
+        "raw_quantity": "1/2 tsp"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "grilled-peach-burrito-bowl.webp",
+    "card_ref": "grilled-peach-burrito-bowl-640.webp",
+    "master_filename": "grilled-peach-burrito-bowl.webp",
+    "card_filename": "grilled-peach-burrito-bowl-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": null,
+    "factory_certified": false,
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "decision": null,
+    "note": "Curator correction draft only. No certification decision is recorded. kitchen_tested is false."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "unpublished_curator_draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Not published. Does not replace live v1 and does not touch production, D1, or the app repo."
+  },
+  "package_revision": "legacy-audit-r0"
+}

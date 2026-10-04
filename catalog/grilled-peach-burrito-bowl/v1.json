@@ -1,0 +1,226 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "grilled-peach-burrito-bowl",
+    "slug": "grilled-peach-burrito-bowl",
+    "title": "Grilled Peach Burrito Bowl",
+    "name": "Grilled Peach Burrito Bowl",
+    "description": null,
+    "cuisine": "californian",
+    "meal_format": "bowl",
+    "primary_ingredient": "peaches",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.61,
+    "plate": "🍑",
+    "tone": "tone-a",
+    "tags": [
+      "plant",
+      "dairy-free",
+      "bowl"
+    ],
+    "sparks": [
+      "bright"
+    ],
+    "chips": [
+      "Plant",
+      "30 min"
+    ],
+    "current_recipe_id": "rcp_grilled-peach-burrito-bowl",
+    "current_version_id": "rv_grilled-peach-burrito-bowl_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_grilled-peach-burrito-bowl",
+    "dish_id": "grilled-peach-burrito-bowl",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_grilled-peach-burrito-bowl_v1",
+    "recipe_id": "rcp_grilled-peach-burrito-bowl",
+    "dish_id": "grilled-peach-burrito-bowl",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Grilled Peach Burrito Bowl",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free",
+      "bowl"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "peaches",
+        "quantity": "3 sliced",
+        "note": null
+      },
+      {
+        "name": "black beans",
+        "quantity": "1 can",
+        "note": null
+      },
+      {
+        "name": "lime rice",
+        "quantity": "3 cups cooked",
+        "note": null
+      },
+      {
+        "name": "pickled red onion",
+        "quantity": "½ cup",
+        "note": "store-bought or quick-pickled red onion"
+      },
+      {
+        "name": "cilantro",
+        "quantity": "¼ cup",
+        "note": null
+      },
+      {
+        "name": "cumin",
+        "quantity": "½ tsp",
+        "note": null
+      },
+      {
+        "name": "lime",
+        "quantity": "1",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Grill peaches",
+        "body": "Grill peach slices over medium-high heat 2 min per side until charred.",
+        "ingredient_refs": [
+          "peaches"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Warm beans",
+        "body": "Warm black beans with cumin and juice of ½ lime over medium heat 5 min.",
+        "ingredient_refs": [
+          "black beans",
+          "cumin",
+          "lime"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Assemble bowls",
+        "body": "Layer rice, beans, peaches, onion, cilantro.",
+        "ingredient_refs": [
+          "lime rice"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "bowls",
+      "californian",
+      "citrusy",
+      "peaches"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [],
+    "equipment": [],
+    "parsed_ingredients": [
+      {
+        "name": "peaches",
+        "quantity": 3,
+        "unit": "count",
+        "note": "sliced",
+        "raw_quantity": "3 sliced"
+      },
+      {
+        "name": "black beans",
+        "quantity": 1,
+        "unit": "can",
+        "note": null,
+        "raw_quantity": "1 can"
+      },
+      {
+        "name": "lime rice",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "cooked",
+        "raw_quantity": "3 cups cooked"
+      },
+      {
+        "name": "pickled red onion",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "store-bought or quick-pickled red onion",
+        "raw_quantity": "½ cup"
+      },
+      {
+        "name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "¼ cup"
+      },
+      {
+        "name": "cumin",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "½ tsp"
+      },
+      {
+        "name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "1"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/grilled-peach-burrito-bowl.webp",
+    "card_ref": "/images/meals/grilled-peach-burrito-bowl-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

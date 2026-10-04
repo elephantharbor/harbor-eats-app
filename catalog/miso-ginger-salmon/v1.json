@@ -1,0 +1,235 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "miso-ginger-salmon",
+    "slug": "miso-ginger-salmon",
+    "title": "Miso-Ginger Salmon",
+    "name": "Miso-Ginger Salmon",
+    "description": null,
+    "cuisine": "japanese",
+    "meal_format": "fillet",
+    "primary_ingredient": "salmon",
+    "texture": "tender",
+    "flavor_profile": "umami-bright",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.55,
+    "plate": "🐟",
+    "tone": "tone-b",
+    "tags": [
+      "fish",
+      "finfish",
+      "dairy-free"
+    ],
+    "sparks": [
+      "fish",
+      "bright"
+    ],
+    "chips": [
+      "Fish",
+      "35 min"
+    ],
+    "current_recipe_id": "rcp_miso-ginger-salmon",
+    "current_version_id": "rv_miso-ginger-salmon_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_miso-ginger-salmon",
+    "dish_id": "miso-ginger-salmon",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_miso-ginger-salmon_v1",
+    "recipe_id": "rcp_miso-ginger-salmon",
+    "dish_id": "miso-ginger-salmon",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Miso-Ginger Salmon",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 10,
+    "cook_minutes": 12,
+    "total_minutes": 22,
+    "effort": "Medium",
+    "methods": [
+      "grill",
+      "skillet"
+    ],
+    "dietary_tags": [
+      "fish",
+      "finfish",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "salmon fillets",
+        "quantity": "4 (5–6 oz each)",
+        "note": null
+      },
+      {
+        "name": "white miso",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "fresh ginger",
+        "quantity": "1 tbsp grated",
+        "note": null
+      },
+      {
+        "name": "rice vinegar",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "sesame oil",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "green onions",
+        "quantity": "2 sliced",
+        "note": null
+      },
+      {
+        "name": "steamed rice",
+        "quantity": "for serving",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Marinate",
+        "body": "Whisk miso, ginger, vinegar, sesame oil, and 1 tbsp water. Coat salmon and rest 15 min (or up to 30 in fridge).",
+        "ingredient_refs": [
+          "salmon fillets",
+          "white miso",
+          "fresh ginger"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Cook salmon",
+        "body": "Cook skin-side down on medium-high oiled skillet or griddle 4–5 min, flip, cook 3–4 min until just opaque in center.",
+        "ingredient_refs": [
+          "salmon fillets"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Serve",
+        "body": "Top with green onions and serve over rice with extra lime if desired.",
+        "ingredient_refs": [
+          "green onions",
+          "steamed rice"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "citrusy",
+      "grilled",
+      "japanese",
+      "salmon",
+      "tender",
+      "umami"
+    ],
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "allergens": [
+      "finfish"
+    ],
+    "equipment": [
+      "grill",
+      "skillet"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "salmon fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "(5–6 oz each)",
+        "raw_quantity": "4 (5–6 oz each)"
+      },
+      {
+        "name": "white miso",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "grated",
+        "raw_quantity": "1 tbsp grated"
+      },
+      {
+        "name": "rice vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "sesame oil",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "green onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": "sliced",
+        "raw_quantity": "2 sliced"
+      },
+      {
+        "name": "steamed rice",
+        "quantity": 1,
+        "unit": "serving",
+        "note": "for serving",
+        "raw_quantity": "for serving"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/miso-ginger-salmon.webp",
+    "card_ref": "/images/meals/miso-ginger-salmon-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

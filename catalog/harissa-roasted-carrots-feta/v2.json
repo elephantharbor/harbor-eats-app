@@ -1,0 +1,256 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "harissa-roasted-carrots-feta",
+    "slug": "harissa-roasted-carrots-feta",
+    "title": "Harissa Roasted Carrots with Feta",
+    "name": "Harissa Roasted Carrots with Feta",
+    "description": null,
+    "cuisine": "north-african",
+    "meal_format": "side-main",
+    "primary_ingredient": "carrots",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.5,
+    "plate": "🥕",
+    "tone": "tone-b",
+    "tags": [
+      "dairy"
+    ],
+    "sparks": [
+      "bright",
+      "sheet"
+    ],
+    "chips": [
+      "Vegetarian",
+      "45 min"
+    ],
+    "current_recipe_id": "rcp_harissa-roasted-carrots-feta",
+    "current_version_id": "rv_harissa-roasted-carrots-feta_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_harissa-roasted-carrots-feta",
+    "dish_id": "harissa-roasted-carrots-feta",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_harissa-roasted-carrots-feta_v2",
+    "recipe_id": "rcp_harissa-roasted-carrots-feta",
+    "dish_id": "harissa-roasted-carrots-feta",
+    "version_number": 2,
+    "immutable": true,
+    "title": "Harissa Roasted Carrots with Feta",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "total_minutes": 45,
+    "effort": "Easy",
+    "methods": [
+      "oven",
+      "roast"
+    ],
+    "dietary_tags": [
+      "dairy"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "carrots",
+        "quantity": "2 lb whole",
+        "note": null
+      },
+      {
+        "name": "harissa paste",
+        "quantity": "2 tbsp",
+        "note": "store-bought paste"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "feta",
+        "quantity": "4 oz crumbled",
+        "note": null
+      },
+      {
+        "name": "mint",
+        "quantity": "¼ cup",
+        "note": null
+      },
+      {
+        "name": "couscous",
+        "quantity": "1 cup",
+        "note": "dry"
+      },
+      {
+        "name": "water",
+        "quantity": "1 cup",
+        "note": "for the couscous"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Roast",
+        "body": "Preheat the oven to 425 F. While it heats, coat the carrots with harissa and oil. Roast 30 minutes in the hot oven.",
+        "ingredient_refs": [
+          "carrots",
+          "harissa paste",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Couscous",
+        "body": "While the carrots finish, stir the couscous into 1 cup boiling water. Cover 5 minutes off the heat, then fluff.",
+        "ingredient_refs": [
+          "couscous",
+          "water"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Finish",
+        "body": "Top the carrots with feta and mint. Serve over the couscous.",
+        "ingredient_refs": [
+          "feta",
+          "mint",
+          "couscous"
+        ]
+      }
+    ],
+    "corrects_version_id": "rv_harissa-roasted-carrots-feta_v1"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "carrots",
+      "citrusy",
+      "north-african"
+    ],
+    "dietary_labels": [],
+    "allergens": [
+      "dairy",
+      "wheat"
+    ],
+    "equipment": [
+      "sheet-pan"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "carrots",
+        "quantity": 2,
+        "unit": "lb",
+        "note": "whole",
+        "raw_quantity": "2 lb whole"
+      },
+      {
+        "name": "harissa paste",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "store-bought paste",
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "feta",
+        "quantity": 4,
+        "unit": "oz",
+        "note": "crumbled",
+        "raw_quantity": "4 oz crumbled"
+      },
+      {
+        "name": "mint",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "¼ cup"
+      },
+      {
+        "name": "couscous",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "dry",
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "for the couscous",
+        "raw_quantity": "1 cup"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "harissa-roasted-carrots-feta.webp",
+    "card_ref": "harissa-roasted-carrots-feta-640.webp",
+    "master_filename": "harissa-roasted-carrots-feta.webp",
+    "card_filename": "harissa-roasted-carrots-feta-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "legacy_draft_correction",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_draft_correction",
+    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Adds 2 tbsp oil the roast step already required, sets cook time to the written 30 minute roast, and gives couscous 1 cup dry plus 1 cup water. Those amounts are draft, not a kitchen test. plant is not eligible because of the feta; dairy stays the allergen; wheat is an allergen because of the couscous. No dairy-free-if claim. kitchen_tested is false. Recipe provenance is legacy_unknown."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Proposed correction for Cora. Not published. Not a certification. v1.json was not edited."
+  },
+  "draft": {
+    "for": "Cora",
+    "role": "legacy_audit_drafter",
+    "is_auditor": false,
+    "disposition": "CREATE_V2",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_this_pass": false,
+    "v1_left_unchanged": true,
+    "reason": "The roast step uses oil that v1 does not list, the header undercuts a 30 minute roast, and couscous has no amount or method."
+  },
+  "package_revision": "legacy-audit-r1"
+}

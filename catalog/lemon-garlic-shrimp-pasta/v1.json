@@ -1,0 +1,213 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "lemon-garlic-shrimp-pasta",
+    "slug": "lemon-garlic-shrimp-pasta",
+    "title": "Lemon Garlic Shrimp Pasta",
+    "name": "Lemon Garlic Shrimp Pasta",
+    "description": null,
+    "cuisine": "mediterranean",
+    "meal_format": "pasta",
+    "primary_ingredient": "shrimp",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.58,
+    "plate": "🦐",
+    "tone": "tone-c",
+    "tags": [
+      "shellfish",
+      "seafood",
+      "pasta"
+    ],
+    "sparks": [
+      "bright"
+    ],
+    "chips": [
+      "Shellfish",
+      "30 min"
+    ],
+    "current_recipe_id": "rcp_lemon-garlic-shrimp-pasta",
+    "current_version_id": "rv_lemon-garlic-shrimp-pasta_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_lemon-garlic-shrimp-pasta",
+    "dish_id": "lemon-garlic-shrimp-pasta",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_lemon-garlic-shrimp-pasta_v1",
+    "recipe_id": "rcp_lemon-garlic-shrimp-pasta",
+    "dish_id": "lemon-garlic-shrimp-pasta",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Lemon Garlic Shrimp Pasta",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "shellfish",
+      "seafood",
+      "pasta"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "linguine",
+        "quantity": "12 oz",
+        "note": null
+      },
+      {
+        "name": "large shrimp",
+        "quantity": "1 lb peeled",
+        "note": null
+      },
+      {
+        "name": "garlic",
+        "quantity": "4 cloves",
+        "note": null
+      },
+      {
+        "name": "lemon",
+        "quantity": "2",
+        "note": null
+      },
+      {
+        "name": "parsley",
+        "quantity": "¼ cup",
+        "note": null
+      },
+      {
+        "name": "olive oil",
+        "quantity": "3 tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Cook pasta",
+        "body": "Boil linguine; reserve water.",
+        "ingredient_refs": [
+          "linguine"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Sauté shrimp",
+        "body": "Sear shrimp with garlic in oil 2 min per side until pink.",
+        "ingredient_refs": [
+          "large shrimp",
+          "garlic"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Finish",
+        "body": "Toss pasta, shrimp, lemon zest/juice, parsley, and splash of pasta water.",
+        "ingredient_refs": [
+          "lemon",
+          "parsley"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "citrusy",
+      "mediterranean",
+      "pasta",
+      "shrimp"
+    ],
+    "dietary_labels": [],
+    "allergens": [
+      "shellfish"
+    ],
+    "equipment": [],
+    "parsed_ingredients": [
+      {
+        "name": "linguine",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "raw_quantity": "12 oz"
+      },
+      {
+        "name": "large shrimp",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "peeled",
+        "raw_quantity": "1 lb peeled"
+      },
+      {
+        "name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "raw_quantity": "4 cloves"
+      },
+      {
+        "name": "lemon",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "2"
+      },
+      {
+        "name": "parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "¼ cup"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "3 tbsp"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/lemon-garlic-shrimp-pasta.webp",
+    "card_ref": "/images/meals/lemon-garlic-shrimp-pasta-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

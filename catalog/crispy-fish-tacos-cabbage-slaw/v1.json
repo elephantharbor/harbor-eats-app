@@ -1,0 +1,281 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "crispy-fish-tacos-cabbage-slaw",
+    "slug": "crispy-fish-tacos-cabbage-slaw",
+    "title": "Crispy Fish Tacos with Cabbage Slaw",
+    "name": "Crispy Fish Tacos with Cabbage Slaw",
+    "description": null,
+    "cuisine": "mexican",
+    "meal_format": "tacos",
+    "primary_ingredient": "cod",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.57,
+    "plate": "🌮",
+    "tone": "tone-a",
+    "tags": [
+      "fish",
+      "finfish",
+      "tacos",
+      "dairy-free"
+    ],
+    "sparks": [
+      "tacos",
+      "crispy",
+      "fish"
+    ],
+    "chips": [
+      "Fish",
+      "35 min"
+    ],
+    "current_recipe_id": "rcp_crispy-fish-tacos-cabbage-slaw",
+    "current_version_id": "rv_crispy-fish-tacos-cabbage-slaw_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_crispy-fish-tacos-cabbage-slaw",
+    "dish_id": "crispy-fish-tacos-cabbage-slaw",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_crispy-fish-tacos-cabbage-slaw_v1",
+    "recipe_id": "rcp_crispy-fish-tacos-cabbage-slaw",
+    "dish_id": "crispy-fish-tacos-cabbage-slaw",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Crispy Fish Tacos with Cabbage Slaw",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 20,
+    "total_minutes": 35,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "fish",
+      "finfish",
+      "tacos",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "cod fillets",
+        "quantity": "1 lb",
+        "note": "cut into strips"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "3 tbsp",
+        "note": null
+      },
+      {
+        "name": "cornmeal",
+        "quantity": "½ cup",
+        "note": null
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "green cabbage",
+        "quantity": "3 cups shredded",
+        "note": null
+      },
+      {
+        "name": "carrot",
+        "quantity": "½ cup grated",
+        "note": null
+      },
+      {
+        "name": "lime",
+        "quantity": "2",
+        "note": null
+      },
+      {
+        "name": "cilantro",
+        "quantity": "¼ cup",
+        "note": null
+      },
+      {
+        "name": "dairy-free crema",
+        "quantity": "½ cup",
+        "note": "store-bought, or whisk ½ cup vegan mayo with juice of ½ lime"
+      },
+      {
+        "name": "corn tortillas",
+        "quantity": "8 small",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep slaw",
+        "body": "Toss cabbage, carrot, cilantro, juice of 1 lime, salt, and pepper. Rest 5 min.",
+        "ingredient_refs": [
+          "green cabbage",
+          "carrot",
+          "cilantro",
+          "lime"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Coat & crisp fish",
+        "body": "Pat cod dry; dredge in cornmeal, paprika, salt, and pepper. Pan-fry in 2 tbsp oil over medium-high 3–4 min per side until golden and flakes easily.",
+        "ingredient_refs": [
+          "cod fillets",
+          "cornmeal",
+          "smoked paprika",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Warm tortillas",
+        "body": "Warm tortillas in a dry skillet 20–30 sec per side over medium heat.",
+        "ingredient_refs": [
+          "corn tortillas"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Build tacos",
+        "body": "Fill tortillas with fish, slaw, and crema. Serve with lime wedges.",
+        "ingredient_refs": [
+          "corn tortillas",
+          "dairy-free crema",
+          "lime"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "cod",
+      "crispy",
+      "mexican",
+      "tacos"
+    ],
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "allergens": [
+      "finfish"
+    ],
+    "equipment": [],
+    "parsed_ingredients": [
+      {
+        "name": "cod fillets",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "cut into strips",
+        "raw_quantity": "1 lb"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "3 tbsp"
+      },
+      {
+        "name": "cornmeal",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "½ cup"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "green cabbage",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "shredded",
+        "raw_quantity": "3 cups shredded"
+      },
+      {
+        "name": "carrot",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "grated",
+        "raw_quantity": "½ cup grated"
+      },
+      {
+        "name": "lime",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "2"
+      },
+      {
+        "name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "¼ cup"
+      },
+      {
+        "name": "dairy-free crema",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "store-bought, or whisk ½ cup vegan mayo with juice of ½ lime",
+        "raw_quantity": "½ cup"
+      },
+      {
+        "name": "corn tortillas",
+        "quantity": 8,
+        "unit": "count",
+        "note": "small",
+        "raw_quantity": "8 small"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/crispy-fish-tacos-cabbage-slaw.webp",
+    "card_ref": "/images/meals/crispy-fish-tacos-cabbage-slaw-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}
