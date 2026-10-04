@@ -34,7 +34,7 @@ Detail: `docs/CYCLE1-INTEGRATION.md`.
 | FW-08 | Images | Accepted | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-catalog` `2303898d`. No PR to `main`. | `acdb92f3794a70adcd89c1c15e73d2670544502b` | `test/meal-image-lookup.test.js` (24 meals: slug, version id, title, title-only) | Not run (no preview deploy) | Composer 2.5 (`composer-2.5`) on `feature/fw-c1-catalog`; integrated by Grok 4.7 (`grok-4.7`) | Lookup is unit-tested. Animated load and fade on a real Tonight grid were not browser-verified in this integration. | None. Notes: `docs/CYCLE1-CATALOG-NOTES.md`. |
 | FW-09 | Explanation copy | Accepted | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-ux` `8b3e2f79`. No PR to `main`. | `acdb92f3794a70adcd89c1c15e73d2670544502b` | `test/explanation-evidence.test.js` (evidence tiers, plant-tag non-similarity, nut-tag non-similarity, dedupe) | Not run (no preview deploy) | Claude Opus 5.5 (`claude-opus-5-5`) on `feature/fw-c1-ux`; integrated by Grok 4.7 (`grok-4.7`) | Stored explanation text on old plans stays until a new round. Synthetic QA households never feed learning, so evidence tiers are unit-tested rather than shown in e2e. | Taste Model v1. Notes: `docs/CYCLE1-UX-NOTES.md`. |
 | FW-10 | Recipe nav/select | Accepted | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c1-ux` `8b3e2f79`. No PR to `main`. | `acdb92f3794a70adcd89c1c15e73d2670544502b` | `test/nav-context.test.js` (origin, Back, preview-not-select, locked-round parity); `e2e/specs/cycle1-ux.spec.js` (view, choose, history). E2e not re-run on this integration. | Not run (no preview deploy) | Claude Opus 5.5 (`claude-opus-5-5`) on `feature/fw-c1-ux`; integrated by Grok 4.7 (`grok-4.7`) | Back is still an in-app button. D-04 native Back is not built. Reducer copies stay duplicated with FW-01. | FW-01. Notes: `docs/CYCLE1-UX-NOTES.md`. |
-| D-01 | Multi-dinner planning | In Progress | `feature/flavorweave-alpha-remediation`. Through Cycle 3B remediation `feature/fw-c3b-authority-fix` `93eb037`. No pull request. **Cycle 3B remediation merged — not accepted.** | Product runtime: see Cycle 3B remediation integration (tested runtime SHA in that section). Shopping line ids are plan-scoped (`sl_{dinner_plan_id}_{ingredient}_{unit}`). Discovery: `GET /api/dinner-plans`, `GET /api/dinner-plans/current`. | `test/cycle3b-remediation.test.js` (4); `test/cycle3-contract.test.js` (26); `test/dinner-plan-discovery-client.test.js` (2); `test/taste-profile.test.js` (31); `test/brand-smoke.test.js` (`fw-sw-v15`); broad unit/lint/Playwright on this integration | No new preview deploy. Does **not** claim the hosted golden path or golden **PASS**. Hosted golden recheck still pending. Hosted GitHub Actions was not run. | Cursor Agent on Cycle 3B remediation. | D-01 stays In Progress until hosted golden recheck and remaining Opus preview gaps. Migration 0011 was not applied to any D1 database. | Cycle 2. Contract: `docs/CYCLE3-CONTRACT.md`. UX: `docs/CYCLE3-UX.md`. |
+| D-01 | Multi-dinner planning | In Progress | `feature/flavorweave-alpha-remediation`. Through Cycle 3B toast-noop `feature/fw-c3b-toast-noop` `991db9e`. No pull request. **Cycle 3B remediation and toast-noop merged — not accepted.** | Product runtime: see Cycle 3B toast-noop integration (tested runtime SHA in that section). Shopping line ids are plan-scoped (`sl_{dinner_plan_id}_{ingredient}_{unit}`). Discovery: `GET /api/dinner-plans`, `GET /api/dinner-plans/current`. | `test/cycle3b-remediation.test.js` (5); `test/shop-display.test.js` (10); `test/brand-smoke.test.js` (`fw-sw-v16`); broad unit/lint/Playwright on this integration | No new preview deploy. Does **not** claim the hosted golden path, hosted toast recheck, or History recheck. Hosted GitHub Actions was not run. | Cursor Agent on Cycle 3B toast-noop merge. | D-01 stays In Progress until hosted toast + History recheck and remaining Opus preview gaps. Migration 0011 was not applied to any D1 database. | Cycle 2. Contract: `docs/CYCLE3-CONTRACT.md`. UX: `docs/CYCLE3-UX.md`. |
 | D-02 | Taste-vocabulary / dietary model expansion | Accepted | `feature/flavorweave-alpha-remediation`. Children `feature/fw-c2-contract` `3f734a5147411cc163db4d4ea4af1556a32ecd37`, `feature/fw-c2-taste` `dd97bc7d762fee9032065b2a13b41ae7b29db017`. No PR. | Cycle 2 integration tip. See the Cycle 2 section. | `test/diner-taste-rank.test.js`; `test/taste-resolver.test.js`; `test/preference-concepts.test.js`; `test/taste-profile.test.js`; `test/taste-ui.test.js`; `test/migration-0010.test.js` | Not run (no preview deploy). Hosted GitHub Actions was not run. | Grok 4.7 (`grok-4.7`) on the children and on this integration | Legacy `dislike` and `neutral` evidence is not rewritten. `recordInferredTaste` is a hook and nothing calls it from a meal rating. Household 001 was not backfilled. | Hard limits stay in `src/lib/eligibility.js`. Contract: `docs/CYCLE2-CONTRACT.md`. |
 | D-03 | Catalog expansion workflow | Accepted | `feature/flavorweave-alpha-remediation`. Child `feature/fw-c2-catalog` `e6a9e8e9986cc3dc83b1a0f237105ca7d021c964`. No PR. | Cycle 2 integration tip. See the Cycle 2 section. | `test/cycle2-catalog.test.js`; `test/recipe-package.test.js`; `test/migration-0010.test.js` | Not run (no preview deploy). Hosted GitHub Actions was not run. | Grok 4.7 (`grok-4.7`) on the child and on this integration | 24 packages are structurally valid. Provenance stays `unknown_unverified`. Image provenance stays `unknown` and rights stay `not_cleared_for_external_release`. `kitchen_tested` stays false. Tonight still uses `recipe-store.js`. | `docs/CYCLE2-CONTRACT.md`. |
 | D-04 | Native-feeling Back | Approved / Not Yet Implemented | — | — | — | — | — | Title source: campaign prompt, not a repo design doc. FW-10 stores plain navigation context and does not build native Back. | — |
@@ -300,6 +300,37 @@ Broad suite on the tested runtime tree:
 **Tested runtime SHA:** `93eb03738995181f48c6cd2519faf495343104ea` (no follow-up runtime commits before the suite).
 
 **Branch tip (integration):** `337c696c46a45ec7bdc509619ef18c240b4e27dc`.
+
+**Cycle 3B toast-noop integration** (from tip `8f245238a8e590bfb1f52b98b23ffee2353dc65a`):
+
+| Order | Branch | Child SHA | How it landed |
+|-------|--------|-----------|---------------|
+| 12 | `feature/fw-c3b-toast-noop` | `991db9e4770df6b460d3f9594ce29a114101c33e` | Fast-forward. Suppresses the shopping-list toast when a participant (“Who’s eating”) save is a no-op after shopping has started; `planMutationChanged` helper; service worker `fw-sw-v16`. |
+
+No merge commit. No pull request. `main` was not pushed. Nothing was deployed. Production D1 was not written.
+
+**Toast-noop child SHA:** `991db9e4770df6b460d3f9594ce29a114101c33e`
+
+**Service worker:** `fw-sw-v16` (`public/sw.js`). `test/brand-smoke.test.js` expects v16.
+
+D-01 stays **In Progress**. Cycle 3B toast-noop is merged and is **not** accepted. This integration does **not** claim the hosted golden path, a hosted toast recheck, or a History recheck.
+
+**Node:** v22.14.0, after `npm ci`.
+
+Targeted unit on the tested runtime tree: `test/shop-display.test.js` 10; `test/cycle3b-remediation.test.js` 5; `test/brand-smoke.test.js` 7 (22 total).
+
+Broad suite on the tested runtime tree:
+
+- Migration check: `OK: 11 migration file(s)`.
+- Unit tests: 40 files, 447 passed (`npx vitest run`).
+- Lint: `eslint --max-warnings=0`, clean.
+- Playwright: `npm run test:e2e`, 27 passed (Chromium installed in this environment after a missing-browser launch failure; not a product defect). Hosted GitHub Actions was not run.
+
+**Product runtime SHA:** `991db9e4770df6b460d3f9594ce29a114101c33e`
+
+**Tested runtime SHA:** `991db9e4770df6b460d3f9594ce29a114101c33e` (no follow-up runtime commits before the suite).
+
+**Branch tip (integration):** `da2a8a4214484e4aaea154a05ef2f312251ab4fb` (product files match `991db9e`).
 
 ### Definition of done
 
