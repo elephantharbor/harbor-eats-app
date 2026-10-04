@@ -242,6 +242,10 @@ describe("catalog import", () => {
       .prepare(`SELECT publication_status FROM catalog_version WHERE recipe_version_id = 'rv_miso-ginger-salmon_v1'`)
       .get();
     expect(misoV1.publication_status).toBe("retired");
+    const mushroomTags = JSON.parse(
+      database.prepare(`SELECT tags_json FROM catalog_dish WHERE dish_id = 'mushroom-walnut-bolognese'`).get().tags_json
+    );
+    expect(mushroomTags).toEqual(["plant", "dairy-free"]);
 
     const storeMeals = MEAL_CONCEPTS.map((concept) => {
       const version = concept.current_version;

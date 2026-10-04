@@ -206,10 +206,31 @@ async function upsertDish(db, record, importedAt) {
     await run(
       db,
       `UPDATE catalog_dish
-          SET current_recipe_id = ?, current_version_id = ?
+          SET current_recipe_id = ?, current_version_id = ?,
+              slug = ?, title = ?, name = ?, description = ?, cuisine = ?, meal_format = ?,
+              primary_ingredient = ?, texture = ?, flavor_profile = ?, effort_band = ?,
+              weeknight = ?, exploration = ?, plate = ?, tone = ?,
+              tags_json = ?, sparks_json = ?, chips_json = ?
         WHERE dish_id = ?`,
       record.recipe_id,
       record.recipe_version_id,
+      record.slug,
+      record.title,
+      record.name,
+      record.description,
+      record.cuisine,
+      record.meal_format,
+      record.primary_ingredient,
+      record.texture,
+      record.flavor_profile,
+      record.effort_band,
+      record.weeknight,
+      record.exploration,
+      record.plate,
+      record.tone,
+      json(record.tags),
+      json(record.sparks),
+      json(record.chips),
       record.dish_id
     );
   }
