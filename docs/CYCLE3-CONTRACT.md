@@ -4,7 +4,7 @@ Shared planning domain for FlavorWeave Campaign Cycle 3 (D-01 Plan → Shop → 
 
 Branch: `feature/fw-c3-contract`. Workstream A. No pull request. Not merged to `main`. Not deployed. Production D1 `23aa3db3-1090-471b-8c8a-b6fe71f5c053` and Household 001 were not written. Migration 0011 was not applied to any D1 database.
 
-D-01 is **In Progress**. This contract is not an acceptance.
+D-01 is **implementation complete / awaiting Oversight acceptance**. Cycle 3B implementation verification closed on preview https://harbor-eats-cycle1-preview.pages.dev (`fw-sw-v16`). This contract is not an Oversight acceptance.
 
 ## Ownership
 
@@ -231,4 +231,4 @@ Discovery does not apply the Completed Meal Loop origin filter. The household th
 - D-06 natural language. The intent parser does not read a sentence.
 - Publishing the 24 packages. The planner reads the current catalog projection. Unpublished is not treated as permission to invent meals.
 - Replacing the Tonight `/api/plans` loop. It still runs.
-- Acceptance of D-01. This branch does not claim it.
+- Oversight acceptance of D-01. Implementation verification is recorded in `docs/ALPHA-REMEDIATION-CAMPAIGN.md` (Cycle 3B closure). Oversight has not accepted D-01.

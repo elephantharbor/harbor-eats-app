@@ -6,7 +6,7 @@ Branch: `feature/fw-c3-ux`, cut from `feature/fw-c3-contract` at `d605032c0cb954
 
 `docs/CYCLE3-CONTRACT.md` is binding. This document does not change the domain, the API, migration 0011, or the shopping-started rules. Where the contract and this document seem to disagree, the contract wins and Composer reports the gap rather than working around it.
 
-D-01 stays **In Progress**.
+D-01 is **implementation complete / awaiting Oversight acceptance**. Cycle 3B hosted verification on the Cycle 1 preview is closed; Oversight has not accepted D-01.
 
 ---
 
