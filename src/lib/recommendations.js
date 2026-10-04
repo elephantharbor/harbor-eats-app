@@ -3,7 +3,7 @@ import { parseHouseholdSettings } from "./household-settings.js";
 import { LETTERS } from "./taste-model.js";
 import { buildRankedChoiceSet } from "./recommendation-pipeline.js";
 import { getCurrentVersionIdForSlug } from "./recipe-store.js";
-import { householdIsSynthetic, learningRows, sqlRealRow } from "./evidence-origin.js";
+import { householdIsSynthetic, learningRows, productRows, sqlRealRow } from "./evidence-origin.js";
 import { learningTasteRows } from "./preference-concepts.js";
 import { historyFromActivity } from "./meal-identity.js";
 
@@ -158,47 +158,133 @@ export async function loadMealHistory(db, household_id, limit = 20) {
     ...plan,
     active_member_count: active,
   }));
-  if (!plans.length) return [];
-  const ids = plans.map((plan) => plan.plan_id);
-  const placeholders = ids.map(() => "?").join(",");
-  const options = await db
+  let legacy = [];
+  if (plans.length) {
+    const ids = plans.map((plan) => plan.plan_id);
+    const placeholders = ids.map(() => "?").join(",");
+    const options = await db
+      .prepare(
+        `SELECT plan_id, meal_option_id, letter, name, recipe_slug, recipe_version, attributes_json
+         FROM meal_option WHERE plan_id IN (${placeholders})`
+      )
+      .bind(...ids)
+      .all();
+    const selections = await db
+      .prepare(
+        `SELECT plan_id, meal_option_id, created_at, data_origin FROM selection WHERE plan_id IN (${placeholders})`
+      )
+      .bind(...ids)
+      .all();
+    const cooks = await db
+      .prepare(
+        `SELECT plan_id, cook_id, meal_option_id, cooked_at, created_at, data_origin
+         FROM cook WHERE plan_id IN (${placeholders})`
+      )
+      .bind(...ids)
+      .all();
+    const ratings = await db
+      .prepare(
+        `SELECT plan_id, meal_option_id, member_id, score, recipe_version_id, data_origin
+         FROM rating WHERE plan_id IN (${placeholders})`
+      )
+      .bind(...ids)
+      .all();
+    legacy = historyFromActivity({
+      household: hh,
+      plans,
+      options: options.results || [],
+      selections: selections.results || [],
+      cooks: cooks.results || [],
+      ratings: ratings.results || [],
+    });
+  }
+  const dinner = await loadDinnerPlanMealHistory(db, hh);
+  return [...legacy, ...dinner]
+    .map((item) => ({
+      ...item,
+      recipe_version_id: item.recipe_version_id || getCurrentVersionIdForSlug(item.recipe_slug),
+    }))
+    .sort((a, b) => String(b.cooked_at || "").localeCompare(String(a.cooked_at || "")))
+    .slice(0, limit);
+}
+
+/**
+ * History for dinner-plan meals that were cooked and fully rated.
+ * Visibility follows the household's own product rows. Completed Meal Loop
+ * counts stay on countsTowardCompletedMealLoop / dinnerCompletedLoopSql.
+ * @param {import('@cloudflare/workers-types').D1Database} db
+ * @param {{ household_id?: string, data_origin?: string, acquisition_source?: string|null }|null} household
+ */
+async function loadDinnerPlanMealHistory(db, household) {
+  if (!household || !household.household_id) return [];
+  let mealRes;
+  try {
+    mealRes = await db
+      .prepare(
+        `SELECT m.meal_id, m.title, m.recipe_slug, m.recipe_version_id, m.cooked_recipe_version_id,
+                m.state, m.updated_at, m.data_origin AS meal_origin,
+                p.dinner_plan_id, p.data_origin AS plan_origin, p.updated_at AS plan_updated_at
+         FROM dinner_plan_meal m
+         JOIN dinner_plan p ON p.dinner_plan_id = m.dinner_plan_id
+         WHERE p.household_id = ? AND m.kind = 'recipe' AND m.state = 'fully_rated'
+         ORDER BY m.updated_at DESC`
+      )
+      .bind(household.household_id)
+      .all();
+  } catch (e) {
+    if (/no such table/i.test(String((e && e.message) || e))) return [];
+    throw e;
+  }
+  const visible = productRows(
+    (mealRes.results || []).map((row) => ({ ...row, data_origin: row.plan_origin })),
+    household
+  );
+  if (!visible.length) return [];
+  const mealIds = visible.map((row) => row.meal_id);
+  const placeholders = mealIds.map(() => "?").join(",");
+  const ratingRes = await db
     .prepare(
-      `SELECT plan_id, meal_option_id, letter, name, recipe_slug, recipe_version, attributes_json
-       FROM meal_option WHERE plan_id IN (${placeholders})`
+      `SELECT meal_id, member_id, score, recipe_version_id, data_origin
+       FROM dinner_plan_rating WHERE household_id = ? AND meal_id IN (${placeholders})`
     )
-    .bind(...ids)
+    .bind(household.household_id, ...mealIds)
     .all();
-  const selections = await db
-    .prepare(
-      `SELECT plan_id, meal_option_id, created_at, data_origin FROM selection WHERE plan_id IN (${placeholders})`
-    )
-    .bind(...ids)
-    .all();
-  const cooks = await db
-    .prepare(
-      `SELECT plan_id, cook_id, meal_option_id, cooked_at, created_at, data_origin
-       FROM cook WHERE plan_id IN (${placeholders})`
-    )
-    .bind(...ids)
-    .all();
-  const ratings = await db
-    .prepare(
-      `SELECT plan_id, meal_option_id, member_id, score, recipe_version_id, data_origin
-       FROM rating WHERE plan_id IN (${placeholders})`
-    )
-    .bind(...ids)
-    .all();
-  return historyFromActivity({
-    household: hh,
-    plans,
-    options: options.results || [],
-    selections: selections.results || [],
-    cooks: cooks.results || [],
-    ratings: ratings.results || [],
-  }).map((item) => ({
-    ...item,
-    recipe_version_id: item.recipe_version_id || getCurrentVersionIdForSlug(item.recipe_slug),
-  }));
+  const ratingsByMeal = new Map();
+  for (const row of productRows(ratingRes.results || [], household)) {
+    const list = ratingsByMeal.get(row.meal_id) || [];
+    list.push(row);
+    ratingsByMeal.set(row.meal_id, list);
+  }
+  return visible.map((row) => {
+    const ratings = ratingsByMeal.get(row.meal_id) || [];
+    const avg =
+      ratings.length > 0
+        ? ratings.reduce((sum, item) => sum + Number(item.score), 0) / ratings.length
+        : null;
+    const pinned = row.cooked_recipe_version_id || row.recipe_version_id || null;
+    return {
+      plan_id: row.dinner_plan_id,
+      dinner_plan_id: row.dinner_plan_id,
+      meal_id: row.meal_id,
+      status: "Rated",
+      meal_option_id: row.meal_id,
+      meal_name: row.title || null,
+      recipe_slug: row.recipe_slug || null,
+      recipe_version_id: pinned,
+      ratings: ratings.map((item) => ({
+        member_id: item.member_id,
+        score: item.score,
+        meal_option_id: row.meal_id,
+        recipe_version_id: item.recipe_version_id || pinned,
+      })),
+      avg_score: avg,
+      pending_feedback: false,
+      rating_state: "full",
+      favorite: avg != null && avg >= 8.5,
+      cooked_at: row.updated_at || row.plan_updated_at || null,
+      source: "dinner_plan",
+    };
+  });
 }
 
 export function scoredToPlanOptions(scored, plan_id) {

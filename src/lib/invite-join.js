@@ -18,6 +18,32 @@ function slugMemberId(display_name) {
 }
 
 /**
+ * An invite is how a second device becomes an existing diner.
+ * Match the name they type to the household member already on the plan.
+ * @param {import('@cloudflare/workers-types').D1Database} db
+ */
+async function findMemberByDisplayName(db, household_id, display_name) {
+  const name = String(display_name || "").trim().toLowerCase();
+  if (!name) return null;
+  const res = await db
+    .prepare(
+      `SELECT member_id, display_name, status, created_at FROM member
+       WHERE household_id = ? AND lower(trim(display_name)) = ?`
+    )
+    .bind(household_id, name)
+    .all();
+  const rows = (res && res.results) || [];
+  const rank = (status) => (status === "active" ? 0 : status === "invited" ? 1 : 9);
+  const usable = rows.filter((row) => rank(String(row.status || "").toLowerCase()) < 9);
+  usable.sort(
+    (a, b) =>
+      rank(String(a.status || "").toLowerCase()) - rank(String(b.status || "").toLowerCase()) ||
+      String(a.created_at || "").localeCompare(String(b.created_at || ""))
+  );
+  return usable[0] || null;
+}
+
+/**
  * @param {import('@cloudflare/workers-types').D1Database} db
  */
 export async function joinHouseholdViaInvite(db, input, opts = {}) {
@@ -50,21 +76,27 @@ export async function joinHouseholdViaInvite(db, input, opts = {}) {
     };
   }
 
-  let member_id = input.member_id || slugMemberId(display_name);
-  const existing = await db
+  const named = await findMemberByDisplayName(db, inv.household_id, display_name);
+  let member_id = input.member_id || (named && named.member_id) || slugMemberId(display_name);
+  let existing = await db
     .prepare(
       "SELECT member_id, status FROM member WHERE household_id = ? AND member_id = ?"
     )
     .bind(inv.household_id, member_id)
     .first();
+  if (!existing && named) {
+    existing = named;
+    member_id = named.member_id;
+  }
 
   const ts = new Date().toISOString();
   let already_member = false;
 
-  if (existing && existing.status === "active") {
+  const existingStatus = String((existing && existing.status) || "").toLowerCase();
+  if (existing && existingStatus === "active") {
     already_member = true;
     member_id = existing.member_id;
-  } else if (existing && existing.status === "invited") {
+  } else if (existing && existingStatus === "invited") {
     await db
       .prepare(
         `UPDATE member SET display_name = ?, status = 'active', accepted_at = ?, updated_at = ?,

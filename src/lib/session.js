@@ -30,11 +30,15 @@ export function readSessionToken(request) {
  * @param {{ household_id: string, member_id: string, user_agent?: string }} input
  */
 export async function createMemberSession(db, input, cookieOpts = {}) {
+  const household_id = String(input.household_id || "").trim();
+  const member_id = String(input.member_id || "").trim();
+  if (!household_id || !member_id) return { error: "member_not_found", status: 404 };
   const member = await db
     .prepare(
-      "SELECT member_id, household_id FROM member WHERE member_id = ? AND household_id = ? AND status = 'active'"
+      `SELECT member_id, household_id FROM member
+       WHERE member_id = ? AND household_id = ? AND lower(status) = 'active'`
     )
-    .bind(input.member_id, input.household_id)
+    .bind(member_id, household_id)
     .first();
   if (!member) return { error: "member_not_found", status: 404 };
 
@@ -56,8 +60,8 @@ export async function createMemberSession(db, input, cookieOpts = {}) {
       session_id,
       token_hash,
       token_hash,
-      input.household_id,
-      input.member_id,
+      member.household_id,
+      member.member_id,
       created_at,
       expires_at,
       input.user_agent || null,
@@ -68,8 +72,8 @@ export async function createMemberSession(db, input, cookieOpts = {}) {
   return {
     session_id,
     session_token: plain,
-    household_id: input.household_id,
-    member_id: input.member_id,
+    household_id: member.household_id,
+    member_id: member.member_id,
     expires_at,
     set_cookie: sessionSetCookieHeader(plain, expires_at, {
       secure: cookieOpts.secure !== false,

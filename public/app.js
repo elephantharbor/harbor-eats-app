@@ -1399,6 +1399,7 @@
       refreshInviteUi();
       document.getElementById("inviteAttrMeta").textContent =
         "For your kitchen only · ready to share";
+      publishInviteCode();
     }
     if (name === "join") renderConstraintGrid("joinConstraints", state.joinConstraints);
     if (name === "choices") {
@@ -5185,18 +5186,7 @@
   document.getElementById("btnSendInvite").addEventListener("click", async () => {
     const hh = API.householdId || state.householdId;
     const inviter = meMember();
-    if (hh && (await apiProbe())) {
-      const res = await apiPost("/api/invites", {
-        household_id: hh,
-        inviter_member_id: inviter && inviter.id,
-        channel: state.inviteChannel || "copy",
-        invite_code: state.inviteCode,
-      });
-      if (res && res.invite_code) {
-        state.inviteCode = res.invite_code;
-        refreshInviteUi();
-      }
-    }
+    await publishInviteCode();
     track("invite_sent", {
       household_id: hh || state.householdId || "HH-demo",
       inviter_id: inviter && inviter.id,
@@ -5333,6 +5323,31 @@
       field.hidden = false;
       input.value = inviteUrl(state.inviteCode);
     }
+  }
+
+  /**
+   * The code on the invite screen has to exist in D1 before anyone can join.
+   * The server binds the inviter to the signed-in member.
+   */
+  async function publishInviteCode() {
+    const hh = API.householdId || state.householdId;
+    if (!hh || !(await apiProbe())) return null;
+    await ensureMemberSession();
+    const res = await apiPost("/api/invites", {
+      household_id: hh,
+      channel: state.inviteChannel || "copy",
+      invite_code: state.inviteCode,
+    });
+    if (res && res.invite_code) {
+      state.inviteCode = res.invite_code;
+      refreshInviteUi();
+      return res.invite_code;
+    }
+    const codeEl = document.getElementById("inviteCodeDisplay");
+    if (codeEl) codeEl.textContent = "—";
+    const input = document.getElementById("inviteUrlInput");
+    if (input) input.value = "";
+    return null;
   }
 
   async function copyText(text) {
