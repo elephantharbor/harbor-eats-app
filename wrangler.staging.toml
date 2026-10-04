@@ -1,0 +1,27 @@
+# Isolated catalog staging. Do not point this file at production D1
+# 23aa3db3-1090-471b-8c8a-b6fe71f5c053.
+#
+# database_id must be the existing non-production D1 before a remote apply.
+# The placeholder below is not a real database.
+
+name = "harbor-eats-app-staging"
+account_id = "7e9f4dbfec6ef1f101c8088a5f0cacd1"
+main = "src/index.js"
+compatibility_date = "2026-09-28"
+workers_dev = true
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*", "/invite/*", "/share/*", "/recover/*", "/rate/*", "/meal/*"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "harbor-eats-catalog-staging"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[vars]
+APP_NAME = "harbor-eats-app"
+ENVIRONMENT = "staging"
+CATALOG_SOURCE = "d1"

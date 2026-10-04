@@ -1,0 +1,195 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "chipotle-lime-black-bean-bowls",
+    "slug": "chipotle-lime-black-bean-bowls",
+    "title": "Chipotle Lime Black Bean Bowls",
+    "name": "Chipotle Lime Black Bean Bowls",
+    "description": null,
+    "cuisine": "mexican",
+    "meal_format": "bowl",
+    "primary_ingredient": "beans",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.36,
+    "plate": "🥣",
+    "tone": "tone-a",
+    "tags": [
+      "plant",
+      "dairy-free",
+      "bowl"
+    ],
+    "sparks": [
+      "tacos",
+      "bright"
+    ],
+    "chips": [
+      "Plant",
+      "30 min"
+    ],
+    "current_recipe_id": "rcp_chipotle-lime-black-bean-bowls",
+    "current_version_id": "rv_chipotle-lime-black-bean-bowls_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_chipotle-lime-black-bean-bowls",
+    "dish_id": "chipotle-lime-black-bean-bowls",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_chipotle-lime-black-bean-bowls_v1",
+    "recipe_id": "rcp_chipotle-lime-black-bean-bowls",
+    "dish_id": "chipotle-lime-black-bean-bowls",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Chipotle Lime Black Bean Bowls",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free",
+      "bowl"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "black beans",
+        "quantity": "2 cans",
+        "note": null
+      },
+      {
+        "name": "corn",
+        "quantity": "1 cup",
+        "note": null
+      },
+      {
+        "name": "chipotle in adobo",
+        "quantity": "1 tsp minced",
+        "note": "store-bought canned chipotle in adobo"
+      },
+      {
+        "name": "lime",
+        "quantity": "2",
+        "note": null
+      },
+      {
+        "name": "quinoa",
+        "quantity": "2 cups cooked",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Warm beans",
+        "body": "Simmer beans with chipotle and lime juice.",
+        "ingredient_refs": [
+          "black beans",
+          "chipotle in adobo"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Assemble",
+        "body": "Layer quinoa, beans, corn, and toppings.",
+        "ingredient_refs": [
+          "quinoa",
+          "corn"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "bowls",
+      "citrusy",
+      "mexican",
+      "tacos"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [],
+    "equipment": [],
+    "parsed_ingredients": [
+      {
+        "name": "black beans",
+        "quantity": 2,
+        "unit": "can",
+        "note": null,
+        "raw_quantity": "2 cans"
+      },
+      {
+        "name": "corn",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "chipotle in adobo",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "store-bought canned chipotle in adobo",
+        "raw_quantity": "1 tsp minced"
+      },
+      {
+        "name": "lime",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "2"
+      },
+      {
+        "name": "quinoa",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "cooked",
+        "raw_quantity": "2 cups cooked"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/chipotle-lime-black-bean-bowls.webp",
+    "card_ref": "/images/meals/chipotle-lime-black-bean-bowls-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

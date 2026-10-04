@@ -1,0 +1,200 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "ginger-scallion-fish-packets",
+    "slug": "ginger-scallion-fish-packets",
+    "title": "Ginger Scallion Fish Packets",
+    "name": "Ginger Scallion Fish Packets",
+    "description": null,
+    "cuisine": "chinese-inspired",
+    "meal_format": "packet",
+    "primary_ingredient": "cod",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.48,
+    "plate": "🐟",
+    "tone": "tone-b",
+    "tags": [
+      "fish",
+      "finfish",
+      "dairy-free"
+    ],
+    "sparks": [
+      "fish",
+      "bright"
+    ],
+    "chips": [
+      "Fish",
+      "30 min"
+    ],
+    "current_recipe_id": "rcp_ginger-scallion-fish-packets",
+    "current_version_id": "rv_ginger-scallion-fish-packets_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_ginger-scallion-fish-packets",
+    "dish_id": "ginger-scallion-fish-packets",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_ginger-scallion-fish-packets_v1",
+    "recipe_id": "rcp_ginger-scallion-fish-packets",
+    "dish_id": "ginger-scallion-fish-packets",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Ginger Scallion Fish Packets",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "fish",
+      "finfish",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "white fish fillets",
+        "quantity": "4",
+        "note": null
+      },
+      {
+        "name": "ginger",
+        "quantity": "2 tbsp sliced",
+        "note": null
+      },
+      {
+        "name": "scallions",
+        "quantity": "4 sliced",
+        "note": null
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "bok choy",
+        "quantity": "2 heads halved",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Pack packets",
+        "body": "Place fish and bok choy on foil; top with ginger, scallions, soy, and a splash of water.",
+        "ingredient_refs": [
+          "white fish fillets",
+          "bok choy"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Steam bake",
+        "body": "Seal packets; bake at 400°F 18–20 min until fish flakes easily.",
+        "ingredient_refs": [
+          "white fish fillets"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Serve",
+        "body": "Open carefully; serve with rice.",
+        "ingredient_refs": []
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "chinese",
+      "citrusy",
+      "cod"
+    ],
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "allergens": [
+      "finfish"
+    ],
+    "equipment": [],
+    "parsed_ingredients": [
+      {
+        "name": "white fish fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "4"
+      },
+      {
+        "name": "ginger",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "sliced",
+        "raw_quantity": "2 tbsp sliced"
+      },
+      {
+        "name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": "sliced",
+        "raw_quantity": "4 sliced"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "bok choy",
+        "quantity": 2,
+        "unit": "head",
+        "note": "halved",
+        "raw_quantity": "2 heads halved"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/ginger-scallion-fish-packets.webp",
+    "card_ref": "/images/meals/ginger-scallion-fish-packets-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

@@ -203,7 +203,10 @@ function usedFromSlots(slots, catalogBySlug) {
 
 function scoreFeature(feature, participantIds, tastes, intent) {
   const taste = scoreDinerTastes(
-    { recipe_slug: feature.slug },
+    {
+      recipe_slug: feature.slug,
+      vocabulary_tag_ids: feature.entry?.pkg?.vocabulary_tag_ids || [],
+    },
     (tastes || []).filter((row) => participantIds.includes(row.member_id))
   );
   const hints = hintBoost(feature, intent);

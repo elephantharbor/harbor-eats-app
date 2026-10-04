@@ -1,0 +1,558 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for Dry Run #2. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are frozen for re-audit, not imported, not published.",
+  "batch_id": "dry-run-2",
+  "mode": "dry_run",
+  "package_revision": "freeze-r3",
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot, Catalog Factory Dry Run #2, for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "lentil-stuffed-cabbage",
+    "slug": "lentil-stuffed-cabbage",
+    "title": "Lentil-Stuffed Cabbage with Tomato Sauce",
+    "description": "Cabbage leaves rolled around brown lentils and parcooked rice, baked in a tomato sauce made from crushed tomatoes.",
+    "cuisine": "american",
+    "meal_format": "stuffed-bake",
+    "primary_ingredient": "green cabbage",
+    "vocabulary_tag_ids": [
+      "american",
+      "lentils",
+      "savory",
+      "tender",
+      "herbaceous",
+      "tangy"
+    ],
+    "current_recipe_id": "rcp_lentil-stuffed-cabbage",
+    "current_version_id": "rv_lentil-stuffed-cabbage_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_lentil-stuffed-cabbage",
+    "dish_id": "lentil-stuffed-cabbage",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-04",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory Dry Run #2, Grok Bot only",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_lentil-stuffed-cabbage_v1",
+    "recipe_id": "rcp_lentil-stuffed-cabbage",
+    "dish_id": "lentil-stuffed-cabbage",
+    "version_number": 1,
+    "package_revision": "r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. A Vale revise before any of that history bumps package_revision and does not mint household history.",
+    "title": "Lentil-Stuffed Cabbage with Tomato Sauce",
+    "description": "Cabbage leaves rolled around brown lentils and parcooked rice, baked in a tomato sauce made from crushed tomatoes.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "green-cabbage",
+        "name": "green cabbage",
+        "display_name": "green cabbage",
+        "quantity": 1,
+        "unit": "count",
+        "note": "1 large head, about 3 lb; 8 large outer leaves for rolls; chop the leftover inner head into the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "brown-lentils",
+        "name": "brown lentils",
+        "display_name": "brown lentils",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "dry brown lentils, not canned and not red lentils",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "long-grain-white-rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "dry; parcooked, then finished in the oven",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 2,
+        "unit": "count",
+        "note": "divided: 1 diced for the filling, 1 diced for the sauce",
+        "preparation": "diced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": "divided: 2 cloves in the filling, 2 cloves in the sauce",
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "divided: 1 tbsp for the filling onion, 2 tbsp for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 3.5,
+        "unit": "tsp",
+        "note": "divided: 1.5 tsp in the filling, 1 tsp in the sauce, 1 tsp in the blanch water (drained, not eaten)",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": "in the filling",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sweet-paprika",
+        "name": "sweet paprika",
+        "display_name": "sweet paprika",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "single spice, not a spice blend",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "crushed-tomatoes",
+        "name": "crushed tomatoes",
+        "display_name": "crushed tomatoes",
+        "quantity": 28,
+        "unit": "oz",
+        "note": "one can, store-bought crushed tomatoes, not a prepared pasta sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "divided: 4 cups to simmer the lentils, of which 1/2 cup is reserved into the sauce and the rest drained; 2 cups to parcook the rice, then drained and discarded",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "red-wine-vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "in the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "brown sugar",
+        "display_name": "brown sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "in the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-parsley",
+        "name": "fresh parsley",
+        "display_name": "fresh parsley",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "divided: 2 tbsp in the filling, 1 tbsp on top at the end",
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Blanch the cabbage",
+        "body": "Bring a large pot of tap water to a boil with 1 tsp of the kosher salt. This blanch pot is not the measured water ingredient; that measured water is only for the lentils and the rice. The teaspoon of kosher salt is drained away and is not eaten. Do not drop it below 1 tsp when scaling. Core the green cabbage, lower the head in, and boil about 8 minutes, until 8 large outer leaves peel off without tearing. Rinse the leaves in cold water, pat them dry, and shave the thick part of each rib flat. Chop the leftover inner head. You need 8 leaves, not 12.",
+        "ingredient_refs": [
+          "green-cabbage",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Simmer the lentils",
+        "body": "Rinse the brown lentils. Simmer them in 4 cups of the water for 18 minutes, until tender with a bite in the center. If they are mush now, the rolls split later. Drain, and reserve 1/2 cup of that cooking water for the sauce. Discard the rest of the lentil water.",
+        "ingredient_refs": [
+          "brown-lentils",
+          "water"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Parcook the rice",
+        "body": "In a separate pot, simmer the long-grain white rice in the remaining 2 cups of water for 8 minutes. It should be half-cooked, with a white core. Drain and discard that water. The rice finishes in the oven.",
+        "ingredient_refs": [
+          "long-grain-white-rice",
+          "water"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Mix the filling",
+        "body": "Heat a skillet over medium. Add 1 tbsp of the olive oil and 1 diced yellow onion. Cook 5 minutes. Add 2 cloves of the garlic, the sweet paprika, 1.5 tsp of the kosher salt, and the black pepper. Stir 1 minute. Take the pan off the heat. Stir in the brown lentils, the long-grain white rice, and 2 tbsp of the fresh parsley. The filling should be moist, not soupy. If it is wet enough to pour, the rolls will burst.",
+        "ingredient_refs": [
+          "olive-oil",
+          "yellow-onion",
+          "garlic",
+          "sweet-paprika",
+          "kosher-salt",
+          "black-pepper",
+          "brown-lentils",
+          "long-grain-white-rice",
+          "fresh-parsley"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Make the sauce",
+        "body": "In a saucepan over medium, heat the remaining 2 tbsp olive oil. Add the second diced yellow onion and cook 6 minutes. Add the remaining 2 cloves of garlic, the crushed tomatoes, the reserved 1/2 cup lentil water, the red wine vinegar, the brown sugar, the remaining 1 tsp kosher salt, and the chopped inner green cabbage. Simmer 10 minutes. The sauce should pour. If it is a paste, do not add new water; you have lost the reserved lentil water and this batch is off the recipe.",
+        "ingredient_refs": [
+          "olive-oil",
+          "yellow-onion",
+          "garlic",
+          "crushed-tomatoes",
+          "water",
+          "red-wine-vinegar",
+          "brown-sugar",
+          "kosher-salt",
+          "green-cabbage"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Roll",
+        "body": "Heat the oven to 375 F now so it reaches temperature while you roll. Lay one green cabbage leaf flat. Spoon about 1/2 cup of filling on the rib end. Fold the sides in and roll it closed. Repeat for all 8 leaves. Pack them seam side down in a baking dish. Pour the sauce over them, including the crushed tomatoes. Cover. The oven preheat overlaps this rolling; do not add a separate cold-start wait after the tray is packed.",
+        "ingredient_refs": [
+          "green-cabbage",
+          "brown-lentils",
+          "long-grain-white-rice",
+          "crushed-tomatoes"
+        ]
+      },
+      {
+        "step_number": 7,
+        "title": "Bake",
+        "body": "When the oven is at 375 F, bake 40 minutes covered, then 10 minutes uncovered, until a green cabbage leaf edge shows browned spots and the center of a roll is hot and steaming. The published cook clock stays sequential for stove and bake heat only: blanch 8 + lentils 18 + rice 8 + filling about 6 + sauce about 16 + bake 50 = about 106 minutes. Oven preheat is started in the roll step and is not a second cold start here. No sour cream, no cheese, and no bread.",
+        "ingredient_refs": [
+          "green-cabbage"
+        ]
+      },
+      {
+        "step_number": 8,
+        "title": "Serve",
+        "body": "Serve two rolls per person with sauce. Sprinkle the remaining 1 tbsp fresh parsley. Do not add a dairy finish.",
+        "ingredient_refs": [
+          "fresh-parsley"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "lentil-rice-filling",
+        "name": "lentil-rice filling",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "brown lentils",
+          "long-grain white rice",
+          "yellow onion",
+          "garlic",
+          "olive oil",
+          "kosher salt",
+          "black pepper",
+          "sweet paprika",
+          "fresh parsley"
+        ]
+      },
+      {
+        "component_id": "tomato-sauce",
+        "name": "tomato sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "crushed tomatoes",
+          "yellow onion",
+          "garlic",
+          "olive oil",
+          "water",
+          "red wine vinegar",
+          "brown sugar",
+          "kosher salt",
+          "green cabbage"
+        ]
+      }
+    ],
+    "equipment": [
+      "large pot",
+      "saucepan",
+      "skillet",
+      "baking dish with a lid or foil",
+      "oven",
+      "knife",
+      "cutting board"
+    ],
+    "prep_time_minutes": 35,
+    "cook_time_minutes": 106,
+    "total_time_minutes": 141,
+    "prep_minutes": 35,
+    "cook_minutes": 106,
+    "total_minutes": 141,
+    "heat": "Stove for the lentils, rice, filling, and sauce. Oven 375 F for the covered bake, then uncovered.",
+    "doneness": "Lentils are simmered only until tender with a bite, then finish in the oven. Rolls bake 40 minutes covered and 10 minutes uncovered at 375 F until the center filling is hot and steaming and the leaf edges show browned spots.",
+    "effort": "long",
+    "complexity": "moderate",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. No breadcrumb binder.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant ingredients only. No dairy, no meat, no poultry, no finfish, no shellfish, and no nuts. HH001 can eat this."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional. No milk, butter, cheese, cream, yogurt, or mayonnaise, and the serve step forbids a dairy finish.",
+    "allergens": [],
+    "allergen_notes": [
+      "No egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, or finfish. The array is empty on purpose. Rice and lentils are not wheat. The recipe does not make a separate gluten-free claim.",
+      "Sweet paprika and red wine vinegar are not recorded allergen tokens.",
+      "Crushed tomatoes are store-bought tomatoes, not a cheese-containing pasta sauce."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant ingredients only. No dairy, no meat, no poultry, no finfish, no shellfish, and no nuts.",
+    "vocabulary_tag_ids": [
+      "american",
+      "lentils",
+      "savory",
+      "tender",
+      "herbaceous",
+      "tangy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r3_images_present_awaiting_reaudit",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergens are allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish). Meat and poultry are dietary_eligibility classes, not allergen tokens. An empty array means none of those tokens are in the ingredients. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional dairy_free claim. dairy_free is used only when no ingredient is a dairy food and none is a check-the-label dairy carrier such as mayonnaise.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs only. meal_format may name a format with no D-02 slug. primary_ingredient may name a food with no D-02 slug. Neither is copied into tags.",
+      "meal_format": "meal_format stuffed-bake is not a D-02 meal_style slug and is not in vocabulary_tag_ids."
+    },
+    "time_clock_note": "Sequential stove+bake cook = 106. Prep 35 includes rolling. Oven is started at the roll step so preheat overlaps rolling; bake step assumes 375 F already reached. No cold-start preheat after packing."
+  },
+  "image": {
+    "image_id": "img_lentil-stuffed-cabbage_v1",
+    "dish_id": "lentil-stuffed-cabbage",
+    "recipe_version_id": "rv_lentil-stuffed-cabbage_v1",
+    "asset_generated": true,
+    "master_ref": "lentil-stuffed-cabbage.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "lentil-stuffed-cabbage.webp",
+        "spec_catalog_path": "/images/meals/lentil-stuffed-cabbage.webp",
+        "status": "frozen"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "lentil-stuffed-cabbage-640.webp",
+        "spec_catalog_path": "/images/meals/lentil-stuffed-cabbage-640.webp",
+        "status": "frozen"
+      }
+    ],
+    "dimensions_basis": "Existing AI JPEG center-cropped to 4:3 (960x720) and resized with Pillow LANCZOS.",
+    "generation": {
+      "method": "format_size_conversion_of_existing_ai_jpeg",
+      "method_detail": "Center-crop the existing AI JPEG to 4:3, then resize with Pillow LANCZOS and export WebP master and card.",
+      "generator": "Grok Imagine / Juniper via Grok Bot Dry Run #2",
+      "model": "unknown",
+      "model_note": "Model unknown; no model slug invented.",
+      "prompt_authored_on": "2026-10-04",
+      "generation_date": "2026-10-04",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "frozen_for_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Existing AI-generated JPEG supplied for this dry-run freeze; rights not cleared for external release.",
+    "package_revision": "freeze-r3",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720,
+      "aspect": "16:9"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Cabbage is both the leaves and the chopped heart in the sauce. Water is split between lentils (reserve 1/2 cup) and rice (discarded). Onions, garlic, oil, salt, and parsley are divided in the steps. No sour cream in the method."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "Olive oil is 3 tbsp: 1 tbsp filling, 2 tbsp sauce."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Tomato sauce is made in step 5. Crushed tomatoes are labeled store-bought. The sauce is not a jar of pasta sauce. Lentil-rice filling is the other component. Paprika is a single spice, not a blend."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 35 + cook 106 = 141. Sequential cook-side clock is blanch 8 + lentils 18 + rice 8 + filling about 6 + sauce about 16 + bake 50 = about 106. The clock is sequential and does not take a second-burner overlap."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Leaves are counted. Sauce has a floor. Blanch salt does not scale below 1 tsp."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "plant_based_compatible and vegetarian_compatible are true. Allergen array is empty. dairy_free is unconditional. HH001 true."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "vocabulary_tag_ids are existing D-02 slugs only."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published. Recipe text timing revision is r1."
+    },
+    {
+      "check": "image",
+      "result": "present_frozen_for_reaudit",
+      "detail": "Master WebP 1200x900 and card WebP 640x480 are present. asset_generated is true and qa_state is frozen_for_audit; not imported or published."
+    }
+  ],
+  "scaling_notes": {
+    "1": "Two large leaves, not a fraction of a leaf. Buy a small head; the unused leaves are not a second recipe. Filling: 1/4 cup dry brown lentils and 2 tbsp dry long-grain white rice. Sauce floor: 3/4 cup crushed tomatoes, not a strict quarter of the 28 oz can, or the dish bakes dry. Use 1 small yellow onion, half diced in the filling and half in the sauce. One garlic clove in the filling and one in the sauce. Blanch salt stays 1 tsp even for two leaves. Oven stays 375 F. Bake time stays about 40 minutes covered and 10 uncovered. Two rolls do not finish in 15 minutes.",
+    "2": "Four leaves. Half the lentils (1/2 cup) and rice (1/4 cup). Use half the can of crushed tomatoes, 14 oz, in a smaller dish, not a quarter can. One yellow onion split between filling and sauce. Halve the oil, paprika, pepper, parsley, vinegar, and sugar. Food salt halves; blanch salt stays 1 tsp. Same oven and the same lentil texture rule.",
+    "4": "As written. Eight leaves, two rolls per person, one 28 oz can, 1 cup dry lentils, 1/2 cup dry rice.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "oven temperature",
+      "blanch-water salt below 1 tsp",
+      "the rule to stop the lentils while they still have a bite",
+      "covered-then-uncovered bake order"
+    ]
+  },
+  "coverage_contribution": "Stuffed bake is a format the live 24 and the three DR1 drafts do not have. It is not a bowl, taco, curry, or the existing lentil stew. The tomato sauce is cooked from store-bought crushed tomatoes. Counted leaves, a sauce floor, a can that does not quarter, and blanch salt that does not scale are the shopping stress. HH001 plant meal with an empty allergen array.",
+  "near_duplicate_review": "Smoky Lentil Sweet Potato Stew is the lentil meal in the 24: a stew, no cabbage rolls, no rice, no baked sauce. White Bean Kale Soup is beans, not stuffed leaves. This is not a rename of Herbed Polenta with Tomato Stew. No cheese, so it is not a gratin.",
+  "batch_challenges": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "recommendation_eligible": false
+}

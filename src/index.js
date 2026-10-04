@@ -5,6 +5,12 @@
  */
 
 import { constraintRowsFromKeys, filterEligibleOptions } from "./lib/eligibility.js";
+import {
+  catalogReadsFromD1,
+  coverageFromMeals,
+  loadPublishedCatalog,
+  recipeShapeFromEntry,
+} from "./lib/catalog-runtime.js";
 import { deriveHouseholdState, previousCompletedMeal } from "./lib/household-state.js";
 import {
   createMemberSession,
@@ -161,6 +167,17 @@ async function handleHealth(env, url) {
     }
   }
   const catalog = runAllCatalogQualityChecks();
+  let catalog_source = "recipe-store";
+  let catalog_coverage = catalogCoverageMetrics();
+  let catalog_runtime_meals = null;
+  if (catalogReadsFromD1(env) && env.DB && d1 === "ok") {
+    const loaded = await loadPublishedCatalog(env.DB);
+    catalog_source = loaded.ok ? "d1" : "d1_unavailable";
+    if (loaded.ok) {
+      catalog_runtime_meals = loaded.count;
+      catalog_coverage = coverageFromMeals(loaded.meals);
+    }
+  }
   return json({
     ok: true,
     app: env.APP_NAME || "harbor-eats-app",
@@ -168,7 +185,9 @@ async function handleHealth(env, url) {
     d1,
     client_errors_24h: recent_errors,
     catalog_quality_ok: catalog.ok,
-    catalog_coverage: catalogCoverageMetrics(),
+    catalog_source,
+    catalog_runtime_meals,
+    catalog_coverage,
     alpha_metrics,
     ts: nowIso(),
   });
@@ -1459,6 +1478,11 @@ async function postRecommendationsPlan(env, body, session, request) {
   // Ranks, bans, and eligibility on the request body are ignored.
   // diner_taste is loaded server-side; hard limits stay in the eligibility checker.
   const ctx = await loadRecommendationContext(env.DB, household_id);
+  if (catalogReadsFromD1(env)) {
+    const loaded = await publishedCatalog(env);
+    if (loaded?.error) return loaded.error;
+    ctx.catalog_meals = loaded.meals;
+  }
   const ranked = rankMealsForHousehold(ctx);
   if (ranked.length < 3) return err("not_enough_eligible_meals", 422);
 
@@ -1705,9 +1729,12 @@ function serializeRecipeForClient(concept, version) {
       title: s.title,
       body: s.body,
       ingredients: (s.ingredient_refs || []).map((ref) => {
-        const match = version.ingredients.find((i) =>
-          i.name.toLowerCase().includes(ref.toLowerCase())
-        );
+        const needle = String(ref || "").toLowerCase();
+        const match = version.ingredients.find((item) => {
+          const name = String(item.name || "").toLowerCase();
+          const id = String(item.ingredient_id || "").toLowerCase();
+          return name.includes(needle) || (id && id === needle);
+        });
         return match ? `${match.quantity ? match.quantity + " " : ""}${match.name}` : ref;
       }),
     })),
@@ -1715,7 +1742,30 @@ function serializeRecipeForClient(concept, version) {
   };
 }
 
-async function getRecipeBySlug(_env, slug, request) {
+async function publishedCatalog(env) {
+  if (!catalogReadsFromD1(env)) return null;
+  const loaded = await loadPublishedCatalog(env.DB);
+  if (!loaded.ok) return { error: err(loaded.error || "catalog_unavailable", 503, { detail: loaded.detail || null }) };
+  return loaded;
+}
+
+function respondRecipe(shape, request) {
+  const target = parseRequestedServings(request, shape.version.servings);
+  const scaled = scaleRecipeVersion(shape.version, target);
+  return json({
+    ok: true,
+    recipe: serializeRecipeForClient(shape.concept, scaled),
+  });
+}
+
+async function getRecipeBySlug(env, slug, request) {
+  if (catalogReadsFromD1(env)) {
+    const loaded = await publishedCatalog(env);
+    if (loaded?.error) return loaded.error;
+    const entry = loaded.planner.find((row) => row.concept.concept_id === slug);
+    if (!entry) return err("recipe_not_found", 404);
+    return respondRecipe(recipeShapeFromEntry(entry), request);
+  }
   const concept = getConceptBySlug(slug);
   if (!concept) return err("recipe_not_found", 404);
   const target = parseRequestedServings(request, concept.current_version.servings);
@@ -1726,7 +1776,14 @@ async function getRecipeBySlug(_env, slug, request) {
   });
 }
 
-async function getRecipeByVersionId(_env, versionId, request) {
+async function getRecipeByVersionId(env, versionId, request) {
+  if (catalogReadsFromD1(env)) {
+    const loaded = await publishedCatalog(env);
+    if (loaded?.error) return loaded.error;
+    const entry = loaded.versionsById[versionId];
+    if (!entry) return err("recipe_version_not_found", 404);
+    return respondRecipe(recipeShapeFromEntry(entry), request);
+  }
   const loaded = getRecipeVersion(versionId);
   if (!loaded || !loaded.concept) return err("recipe_version_not_found", 404);
   const target = parseRequestedServings(request, loaded.servings);
@@ -2314,7 +2371,13 @@ export default {
           const auth = await requireSession(env.DB, request);
           if (auth.error) return auth.error;
           const metrics = await loadAlphaOpsMetrics(env.DB);
-          return json({ ok: true, metrics, catalog_coverage: catalogCoverageMetrics() });
+          let catalog_coverage = catalogCoverageMetrics();
+          if (catalogReadsFromD1(env)) {
+            const loaded = await publishedCatalog(env);
+            if (loaded?.error) return loaded.error;
+            catalog_coverage = coverageFromMeals(loaded.meals);
+          }
+          return json({ ok: true, metrics, catalog_coverage, catalog_source: catalogReadsFromD1(env) ? "d1" : "recipe-store" });
         }
 
         {

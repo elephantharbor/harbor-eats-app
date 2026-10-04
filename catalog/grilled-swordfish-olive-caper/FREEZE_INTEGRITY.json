@@ -1,0 +1,127 @@
+{
+  "FREEZE_INTEGRITY": "PASS",
+  "candidate_dir": "/workspace/flavorweave-catalog-factory/dry-run-2/candidates/grilled-swordfish-olive-caper",
+  "fail_count": 0,
+  "checks": [
+    {
+      "id": "package_file",
+      "result": "PASS",
+      "detail": "v1.json parses"
+    },
+    {
+      "id": "identity_present",
+      "result": "PASS",
+      "detail": "grilled-swordfish-olive-caper freeze-r2"
+    },
+    {
+      "id": "identity_agree",
+      "result": "PASS",
+      "detail": "slug matches dish_id"
+    },
+    {
+      "id": "recipe_id",
+      "result": "PASS",
+      "detail": "rcp_grilled-swordfish-olive-caper"
+    },
+    {
+      "id": "version_id",
+      "result": "PASS",
+      "detail": "rv_grilled-swordfish-olive-caper_v1"
+    },
+    {
+      "id": "field_ingredients",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "field_steps",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "field_dietary_eligibility",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "field_allergens",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "field_taste_tags",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "field_base_servings",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "eligibility_object",
+      "result": "PASS",
+      "detail": "dietary_eligibility is an object"
+    },
+    {
+      "id": "allergens_list",
+      "result": "PASS",
+      "detail": "1 tokens"
+    },
+    {
+      "id": "no_denial_strings",
+      "result": "PASS",
+      "detail": "no stale missing-image denials"
+    },
+    {
+      "id": "provenance_method",
+      "result": "PASS",
+      "detail": "ai_generation_then_webp_export"
+    },
+    {
+      "id": "provenance_generation_date",
+      "result": "PASS",
+      "detail": "2026-10-04"
+    },
+    {
+      "id": "provenance_generator",
+      "result": "PASS",
+      "detail": "Grok Bot image generation, Harbor Eats image re-certification"
+    },
+    {
+      "id": "provenance_model",
+      "result": "PASS",
+      "detail": "unknown"
+    },
+    {
+      "id": "active_not_rejected",
+      "result": "PASS",
+      "detail": "active refs do not mention rejected/"
+    },
+    {
+      "id": "image_format_master",
+      "result": "PASS",
+      "detail": "grilled-swordfish-olive-caper.webp webp"
+    },
+    {
+      "id": "image_dims_master",
+      "result": "PASS",
+      "detail": "1200x900"
+    },
+    {
+      "id": "image_format_card",
+      "result": "PASS",
+      "detail": "grilled-swordfish-olive-caper-640.webp webp"
+    },
+    {
+      "id": "image_dims_card",
+      "result": "PASS",
+      "detail": "640x480"
+    },
+    {
+      "id": "rejected_not_active_name",
+      "result": "PASS",
+      "detail": "rejected files do not reuse active filenames"
+    }
+  ]
+}

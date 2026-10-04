@@ -1,0 +1,214 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "thai-basil-eggplant-stir-fry",
+    "slug": "thai-basil-eggplant-stir-fry",
+    "title": "Thai Basil Eggplant Stir-Fry",
+    "name": "Thai Basil Eggplant Stir-Fry",
+    "description": null,
+    "cuisine": "thai-inspired",
+    "meal_format": "stir-fry",
+    "primary_ingredient": "eggplant",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.54,
+    "plate": "🍆",
+    "tone": "tone-b",
+    "tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "sparks": [
+      "crispy",
+      "curry"
+    ],
+    "chips": [
+      "Plant",
+      "35 min"
+    ],
+    "current_recipe_id": "rcp_thai-basil-eggplant-stir-fry",
+    "current_version_id": "rv_thai-basil-eggplant-stir-fry_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_thai-basil-eggplant-stir-fry",
+    "dish_id": "thai-basil-eggplant-stir-fry",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_thai-basil-eggplant-stir-fry_v1",
+    "recipe_id": "rcp_thai-basil-eggplant-stir-fry",
+    "dish_id": "thai-basil-eggplant-stir-fry",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Thai Basil Eggplant Stir-Fry",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "Japanese eggplant",
+        "quantity": "2 sliced",
+        "note": null
+      },
+      {
+        "name": "Thai basil",
+        "quantity": "1 cup",
+        "note": null
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "garlic",
+        "quantity": "3 cloves",
+        "note": null
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "jasmine rice",
+        "quantity": "for serving",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Stir-fry eggplant",
+        "body": "High heat with 1 tbsp oil until browned and tender, 6–8 min.",
+        "ingredient_refs": [
+          "Japanese eggplant",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Season",
+        "body": "Add garlic, soy, basil off heat.",
+        "ingredient_refs": [
+          "Thai basil",
+          "garlic"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Serve",
+        "body": "Serve over rice.",
+        "ingredient_refs": [
+          "jasmine rice"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "crispy",
+      "curries",
+      "eggplant",
+      "stir-fries",
+      "thai"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [],
+    "equipment": [],
+    "parsed_ingredients": [
+      {
+        "name": "Japanese eggplant",
+        "quantity": 2,
+        "unit": "count",
+        "note": "sliced",
+        "raw_quantity": "2 sliced"
+      },
+      {
+        "name": "Thai basil",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "raw_quantity": "3 cloves"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "jasmine rice",
+        "quantity": 1,
+        "unit": "serving",
+        "note": "for serving",
+        "raw_quantity": "for serving"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/thai-basil-eggplant-stir-fry.webp",
+    "card_ref": "/images/meals/thai-basil-eggplant-stir-fry-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

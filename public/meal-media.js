@@ -61,7 +61,7 @@
     if (!slug && meal.recipe_version_id) {
       slug = String(meal.recipe_version_id).replace(/^rv_/, "").replace(/_v\d+$/, "");
     }
-    if (slug && CATALOG[slug]) return slug;
+    if (slug && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return slug;
     var title = meal.title || meal.name || meal.meal_name;
     return titleHintsSlug(title);
   }
@@ -74,7 +74,7 @@
       slug: slug,
       src: base + ".webp",
       srcset: base + "-640.webp 640w, " + base + ".webp 1200w",
-      alt: CATALOG[slug],
+      alt: CATALOG[slug] || slug,
     };
   }
 

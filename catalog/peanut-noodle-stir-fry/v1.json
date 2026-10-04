@@ -1,0 +1,229 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "peanut-noodle-stir-fry",
+    "slug": "peanut-noodle-stir-fry",
+    "title": "Peanut Noodle Stir-Fry",
+    "name": "Peanut Noodle Stir-Fry",
+    "description": null,
+    "cuisine": "asian-fusion",
+    "meal_format": "stir-fry",
+    "primary_ingredient": "rice noodles",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.59,
+    "plate": "🥜",
+    "tone": "tone-b",
+    "tags": [
+      "plant",
+      "nuts",
+      "peanut"
+    ],
+    "sparks": [
+      "curry"
+    ],
+    "chips": [
+      "Plant",
+      "30 min"
+    ],
+    "current_recipe_id": "rcp_peanut-noodle-stir-fry",
+    "current_version_id": "rv_peanut-noodle-stir-fry_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_peanut-noodle-stir-fry",
+    "dish_id": "peanut-noodle-stir-fry",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_peanut-noodle-stir-fry_v1",
+    "recipe_id": "rcp_peanut-noodle-stir-fry",
+    "dish_id": "peanut-noodle-stir-fry",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Peanut Noodle Stir-Fry",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "nuts",
+      "peanut"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "rice noodles",
+        "quantity": "8 oz",
+        "note": null
+      },
+      {
+        "name": "peanut butter",
+        "quantity": "3 tbsp",
+        "note": null
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "lime",
+        "quantity": "1",
+        "note": null
+      },
+      {
+        "name": "bell pepper",
+        "quantity": "2 sliced",
+        "note": null
+      },
+      {
+        "name": "snap peas",
+        "quantity": "1 cup",
+        "note": null
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Cook noodles",
+        "body": "Soak noodles in hot water 8–10 min until tender; drain.",
+        "ingredient_refs": [
+          "rice noodles"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Sauce",
+        "body": "Whisk peanut butter, soy, juice of ½ lime, and 3 tbsp warm water until smooth.",
+        "ingredient_refs": [
+          "peanut butter",
+          "soy sauce",
+          "lime"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Stir-fry",
+        "body": "Sear peppers and peas in oil over high heat 3–4 min; toss with noodles and sauce until coated.",
+        "ingredient_refs": [
+          "bell pepper",
+          "snap peas",
+          "neutral oil"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "curries",
+      "rice-noodles",
+      "stir-fries"
+    ],
+    "dietary_labels": [
+      "plant"
+    ],
+    "allergens": [
+      "nuts",
+      "peanut"
+    ],
+    "equipment": [],
+    "parsed_ingredients": [
+      {
+        "name": "rice noodles",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "raw_quantity": "8 oz"
+      },
+      {
+        "name": "peanut butter",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "3 tbsp"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "1"
+      },
+      {
+        "name": "bell pepper",
+        "quantity": 2,
+        "unit": "count",
+        "note": "sliced",
+        "raw_quantity": "2 sliced"
+      },
+      {
+        "name": "snap peas",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/peanut-noodle-stir-fry.webp",
+    "card_ref": "/images/meals/peanut-noodle-stir-fry-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

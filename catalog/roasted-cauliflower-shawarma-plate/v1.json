@@ -1,0 +1,227 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "roasted-cauliflower-shawarma-plate",
+    "slug": "roasted-cauliflower-shawarma-plate",
+    "title": "Roasted Cauliflower Shawarma Plate",
+    "name": "Roasted Cauliflower Shawarma Plate",
+    "description": null,
+    "cuisine": "middle-eastern",
+    "meal_format": "plate",
+    "primary_ingredient": "cauliflower",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.52,
+    "plate": "🥙",
+    "tone": "tone-a",
+    "tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "sparks": [
+      "crispy",
+      "bright"
+    ],
+    "chips": [
+      "Plant",
+      "40 min"
+    ],
+    "current_recipe_id": "rcp_roasted-cauliflower-shawarma-plate",
+    "current_version_id": "rv_roasted-cauliflower-shawarma-plate_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_roasted-cauliflower-shawarma-plate",
+    "dish_id": "roasted-cauliflower-shawarma-plate",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_roasted-cauliflower-shawarma-plate_v1",
+    "recipe_id": "rcp_roasted-cauliflower-shawarma-plate",
+    "dish_id": "roasted-cauliflower-shawarma-plate",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Roasted Cauliflower Shawarma Plate",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "cauliflower florets",
+        "quantity": "1 large head",
+        "note": null
+      },
+      {
+        "name": "shawarma spice blend",
+        "quantity": "2 tbsp",
+        "note": "store-bought blend"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "tahini",
+        "quantity": "3 tbsp",
+        "note": null
+      },
+      {
+        "name": "lemon",
+        "quantity": "1",
+        "note": null
+      },
+      {
+        "name": "cucumber",
+        "quantity": "1 diced",
+        "note": null
+      },
+      {
+        "name": "pita",
+        "quantity": "4 rounds",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Roast cauliflower",
+        "body": "Toss cauliflower with oil and spices; roast at 425°F 25 min until charred at edges.",
+        "ingredient_refs": [
+          "cauliflower florets",
+          "neutral oil",
+          "shawarma spice blend"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Make sauce",
+        "body": "Whisk tahini with juice of ½ lemon and water to drizzle.",
+        "ingredient_refs": [
+          "tahini",
+          "lemon"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Plate",
+        "body": "Serve cauliflower with cucumber, sauce, and warm pita.",
+        "ingredient_refs": [
+          "pita",
+          "cucumber"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "cauliflower",
+      "citrusy",
+      "crispy",
+      "middle-eastern"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [],
+    "equipment": [],
+    "parsed_ingredients": [
+      {
+        "name": "cauliflower florets",
+        "quantity": 1,
+        "unit": "count",
+        "note": "large head",
+        "raw_quantity": "1 large head"
+      },
+      {
+        "name": "shawarma spice blend",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "store-bought blend",
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "tahini",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "3 tbsp"
+      },
+      {
+        "name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "1"
+      },
+      {
+        "name": "cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": "diced",
+        "raw_quantity": "1 diced"
+      },
+      {
+        "name": "pita",
+        "quantity": 4,
+        "unit": "count",
+        "note": "rounds",
+        "raw_quantity": "4 rounds"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/roasted-cauliflower-shawarma-plate.webp",
+    "card_ref": "/images/meals/roasted-cauliflower-shawarma-plate-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

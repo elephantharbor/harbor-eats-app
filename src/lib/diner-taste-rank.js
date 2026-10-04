@@ -84,7 +84,11 @@ export function keepLiveMenuMeals(meals) {
  * @param {object[]|null|undefined} tastes
  */
 export function scoreDinerTastes(meal, tastes) {
-  const tags = new Set(vocabularyTagsForSlug(meal?.recipe_slug || meal?.dish_id || ""));
+  const tags = new Set(
+    meal && Object.prototype.hasOwnProperty.call(meal, "vocabulary_tag_ids")
+      ? meal.vocabulary_tag_ids || []
+      : vocabularyTagsForSlug(meal?.recipe_slug || meal?.dish_id || "")
+  );
   /** @type {Map<string, object>} */
   const chosen = new Map();
   for (const row of tastes || []) {
