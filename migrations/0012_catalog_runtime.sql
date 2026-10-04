@@ -2,8 +2,9 @@
 -- only creates tables. It does not insert meals and it does not mark any
 -- recipe kitchen-tested or factory-certified.
 --
--- Apply on isolated staging or local D1 only. Do not apply to production D1
--- 23aa3db3-1090-471b-8c8a-b6fe71f5c053. Do not write Household 001.
+-- Was gated until Oversight authorized the production catalog cutover (2026-10-04).
+-- Production application to D1 23aa3db3-1090-471b-8c8a-b6fe71f5c053 is now authorized;
+-- apply via controlled migrate + catalog import only. Do not write Household 001.
 --
 -- Publication: draft, qa_failed, certified, published, retired.
 -- unpublished and invalid remain so a bad package can be refused.
