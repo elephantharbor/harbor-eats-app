@@ -1,8 +1,8 @@
 # Isolated catalog staging. Do not point this file at production D1
 # 23aa3db3-1090-471b-8c8a-b6fe71f5c053.
 #
-# database_id must be the existing non-production D1 before a remote apply.
-# The placeholder below is not a real database.
+# Non-production preview D1 (harbor-eats-cycle1-preview). Not production
+# 23aa3db3-1090-471b-8c8a-b6fe71f5c053.
 
 name = "harbor-eats-app-staging"
 account_id = "7e9f4dbfec6ef1f101c8088a5f0cacd1"
@@ -17,8 +17,8 @@ run_worker_first = ["/api/*", "/invite/*", "/share/*", "/recover/*", "/rate/*", 
 
 [[d1_databases]]
 binding = "DB"
-database_name = "harbor-eats-catalog-staging"
-database_id = "00000000-0000-0000-0000-000000000000"
+database_name = "harbor-eats-cycle1-preview"
+database_id = "65bc636d-7048-4e58-900b-9066edf6509f"
 migrations_dir = "migrations"
 
 [vars]
