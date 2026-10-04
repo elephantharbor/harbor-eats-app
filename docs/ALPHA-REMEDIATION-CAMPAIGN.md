@@ -330,7 +330,7 @@ Broad suite on the tested runtime tree:
 
 **Tested runtime SHA:** `991db9e4770df6b460d3f9594ce29a114101c33e` (no follow-up runtime commits before the suite).
 
-**Branch tip (integration):** `91ed533` (full SHA in Cycle 3B closure below). Product files match `991db9e`. The closure entry is docs-only.
+**Branch tip (integration):** see Cycle 3B closure below. Product files match `991db9e`. Toast-noop docs alignment was `782ad3f93575609bd0d2b704bbc101a3d12d808e` before closure.
 
 **Cycle 3B closure (implementation verification)** — recorded after toast-noop integration; no new product deploy in this step; Playwright was not re-run for this closure.
 
@@ -363,7 +363,7 @@ No merge commit. No pull request. `main` was not pushed. Production D1 `23aa3db3
 
 **D-01 status after closure:** **Implementation complete / awaiting Oversight acceptance.** Not accepted by Oversight. GATE-OPUS-55 remains not started.
 
-**Branch tip after closure docs commit:** `91ed5337` — run `git rev-parse HEAD` on `feature/flavorweave-alpha-remediation` for the full SHA.
+**Branch tip after closure docs commit:** `91ed533ef4bc1e808c71fa72c4e8bdb3f594ae9b`
 
 ### Definition of done
 
