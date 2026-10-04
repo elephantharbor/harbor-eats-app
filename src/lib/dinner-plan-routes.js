@@ -5,6 +5,7 @@
 
 import { assertSameHousehold, requireSession } from "./auth.js";
 import { planDinners } from "./dinner-planner.js";
+import { catalogReadsFromD1, loadPublishedCatalog } from "./catalog-runtime.js";
 import { applyPlanMutation, createDinnerPlan } from "./plan-mutations.js";
 import {
   assertParticipants,
@@ -114,6 +115,12 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
   const origin = await deps.writeOrigin(env, session.household_id, request, body);
   const now = new Date().toISOString();
   const ctx = await contextFor(env.DB, session, origin, now);
+  if (catalogReadsFromD1(env) && (isPreview || isCreate || isMutate)) {
+    const loaded = await loadPublishedCatalog(env.DB);
+    if (!loaded.ok) return fail(loaded.error || "catalog_unavailable", 503, { detail: loaded.detail || null });
+    ctx.catalog = loaded.planner;
+    ctx.versions = loaded.versionsById;
+  }
 
   if (isPreview) {
     const parsed = parsePlanIntent({

@@ -2,7 +2,7 @@
 // Cycle 1 UX retest. Every household here is created in QA mode, so it is
 // stored as data_origin=synthetic and never counts as Household 001 evidence.
 import { test, expect } from "@playwright/test";
-import { reachTonightChoices } from "./helpers.js";
+import { advanceCookToRate, reachTonightChoices } from "./helpers.js";
 
 /** @param {import('@playwright/test').Page} page */
 async function freshQaKitchen(page) {
@@ -190,15 +190,7 @@ test.describe("FW-10 + FW-07 · recipe origin, view vs select, next dinner", () 
     await page.locator("#btnStartCook").click();
     await expect(page.locator("#detailPickState")).toContainText("Tonight’s pick");
     await page.locator("#btnStartCook").click();
-    for (let i = 0; i < 8; i++) {
-      const finish = page.getByRole("button", { name: "Finish" });
-      if (await finish.isVisible()) {
-        await finish.click();
-        break;
-      }
-      await page.getByRole("button", { name: "Next" }).click();
-    }
-    await page.getByRole("button", { name: "Rate now" }).click();
+    await advanceCookToRate(page);
     const raters = page.locator(".rater-card");
     const n = await raters.count();
     for (let i = 0; i < n; i++) {

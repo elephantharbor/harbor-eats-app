@@ -1,0 +1,499 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for Dry Run #2. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are frozen for re-audit, not imported, not published.",
+  "batch_id": "dry-run-2",
+  "mode": "dry_run",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot, Catalog Factory Dry Run #2, for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "grilled-swordfish-olive-caper",
+    "slug": "grilled-swordfish-olive-caper",
+    "title": "Grilled Swordfish with Olive-Caper Relish",
+    "description": "Thick grilled swordfish steaks and grilled fennel, with a chopped olive, caper, and anchovy relish.",
+    "cuisine": "mediterranean",
+    "meal_format": "grilled",
+    "primary_ingredient": "swordfish",
+    "vocabulary_tag_ids": [
+      "mediterranean",
+      "grilled",
+      "swordfish",
+      "fresh",
+      "citrusy",
+      "herbaceous",
+      "savory",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_grilled-swordfish-olive-caper",
+    "current_version_id": "rv_grilled-swordfish-olive-caper_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_grilled-swordfish-olive-caper",
+    "dish_id": "grilled-swordfish-olive-caper",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-04",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory Dry Run #2, Grok Bot only",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_grilled-swordfish-olive-caper_v1",
+    "recipe_id": "rcp_grilled-swordfish-olive-caper",
+    "dish_id": "grilled-swordfish-olive-caper",
+    "version_number": 1,
+    "package_revision": "r0",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. A Vale revise before any of that history bumps package_revision and does not mint household history.",
+    "title": "Grilled Swordfish with Olive-Caper Relish",
+    "description": "Thick grilled swordfish steaks and grilled fennel, with a chopped olive, caper, and anchovy relish.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "swordfish-steak",
+        "name": "swordfish steak",
+        "display_name": "swordfish steak",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "4 steaks, about 6 oz each, about 1 inch thick",
+        "preparation": "pat dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.25,
+        "unit": "tsp",
+        "note": "divided: 3/4 tsp on the swordfish, 1/4 tsp on the fennel, 1/4 tsp in the relish",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "on the swordfish only",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 5,
+        "unit": "tbsp",
+        "note": "divided: 1 tbsp for the grill grates, 1 tbsp on the fennel, 3 tbsp in the relish",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "fennel-bulb",
+        "name": "fennel bulb",
+        "display_name": "fennel bulb",
+        "quantity": 2,
+        "unit": "count",
+        "note": "about 1 lb total",
+        "preparation": "trimmed and cut into 1/2-inch wedges",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "pitted-green-olives",
+        "name": "pitted green olives",
+        "display_name": "pitted green olives",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "capers",
+        "name": "capers",
+        "display_name": "capers",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "brined",
+        "preparation": "rinsed and drained",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "anchovy-fillets",
+        "name": "anchovy fillets",
+        "display_name": "anchovy fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "oil-packed, drained",
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "zest and all of the juice, about 2 tbsp juice, all of it in the relish",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-parsley",
+        "name": "fresh parsley",
+        "display_name": "fresh parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "red-pepper-flakes",
+        "name": "red pepper flakes",
+        "display_name": "red pepper flakes",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Mix the relish",
+        "body": "Chop the pitted green olives. Rinse and drain the capers. Mince the anchovy fillets and the garlic. Zest the lemon and squeeze in all of the juice. Chop the fresh parsley. Stir them with 3 tbsp of the olive oil, 1/4 tsp of the kosher salt, and the red pepper flakes. This olive-caper relish is the only sauce. It is not cooked, and it is not a marinade rubbed on the fish before the grill.",
+        "ingredient_refs": [
+          "pitted-green-olives",
+          "capers",
+          "anchovy-fillets",
+          "garlic",
+          "lemon",
+          "fresh-parsley",
+          "olive-oil",
+          "kosher-salt",
+          "red-pepper-flakes"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Heat the grill",
+        "body": "Heat a gas or charcoal grill for direct high heat, about 450-500 F, for about 10 minutes. Brush the grates with 1 tbsp of the olive oil. This clock does not overlap the preheat with the relish.",
+        "ingredient_refs": [
+          "olive-oil"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Season",
+        "body": "Pat the swordfish steak dry. Season both sides with 3/4 tsp of the kosher salt and the black pepper. Toss the fennel bulb wedges with 1 tbsp of the olive oil and the remaining 1/4 tsp kosher salt.",
+        "ingredient_refs": [
+          "swordfish-steak",
+          "kosher-salt",
+          "black-pepper",
+          "fennel-bulb",
+          "olive-oil"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Grill the fennel",
+        "body": "Lay the fennel bulb wedges on the oiled grates. Grill about 3 minutes per side, until the cut faces are browned and a knife meets slight resistance. Move them to a plate.",
+        "ingredient_refs": [
+          "fennel-bulb"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Grill the swordfish",
+        "body": "Lay the swordfish steak on the grates. Cook 4 minutes on the first side without moving it, then flip. Cook 3 to 4 minutes on the second side. Pull it at 130-135 F in the center. Do not press the fish. If a steak is thicker than 1 1/4 inches, add about 1 minute per side and trust the thermometer. For 145 F, add about 1 minute per side and expect a drier steak.",
+        "ingredient_refs": [
+          "swordfish-steak"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Rest and plate",
+        "body": "Rest the swordfish steak 3 minutes. Serve each steak with fennel bulb wedges and spoon the relish on the fish. No rice, no extra lemon wedge, and no second sauce.",
+        "ingredient_refs": [
+          "swordfish-steak",
+          "fennel-bulb",
+          "pitted-green-olives",
+          "capers"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "olive-caper-relish",
+        "name": "olive-caper relish",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "pitted green olives",
+          "capers",
+          "anchovy fillets",
+          "garlic",
+          "lemon",
+          "fresh parsley",
+          "olive oil",
+          "kosher salt",
+          "red pepper flakes"
+        ]
+      }
+    ],
+    "equipment": [
+      "gas or charcoal grill",
+      "tongs",
+      "instant-read thermometer",
+      "mixing bowl",
+      "knife",
+      "cutting board"
+    ],
+    "prep_time_minutes": 18,
+    "cook_time_minutes": 28,
+    "total_time_minutes": 46,
+    "prep_minutes": 18,
+    "cook_minutes": 28,
+    "total_minutes": 46,
+    "heat": "Direct grill heat, about 450-500 F.",
+    "doneness": "Pull swordfish at 130-135 F in the center, then rest 3 minutes. The edge should be opaque and the very center just losing its translucence, flaking under pressure, not chalky. 145 F is the more conservative seafood temperature and will be drier; add about 1 minute per side for that target. The written target is 130-135 F. kitchen_tested is false.",
+    "effort": "moderate",
+    "complexity": "moderate",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. The HH001 cashew exception is not used.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish only (swordfish and anchovy). No dairy, no shellfish, no poultry, no meat other than fish, and no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional. No milk, butter, cheese, cream, or mayonnaise. Olive oil is the fat.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish covers the swordfish steak and the anchovy fillets. Both are on the allergens array.",
+      "No egg, milk, soy, wheat, sesame, peanut, tree_nut, or shellfish.",
+      "Finfish is an allergen token and is also a dietary_eligibility class. Those fields are separate. Meat and poultry are not on this array."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish only (swordfish and anchovy). No dairy, no shellfish, no poultry, no meat other than fish, and no nuts.",
+    "vocabulary_tag_ids": [
+      "mediterranean",
+      "grilled",
+      "swordfish",
+      "fresh",
+      "citrusy",
+      "herbaceous",
+      "savory",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_images_present_awaiting_reaudit",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergens are allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish). Meat and poultry are dietary_eligibility classes, not allergen tokens. An empty array means none of those tokens are in the ingredients. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional dairy_free claim. dairy_free is used only when no ingredient is a dairy food and none is a check-the-label dairy carrier such as mayonnaise.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs only. meal_format may name a format with no D-02 slug. primary_ingredient may name a food with no D-02 slug. Neither is copied into tags."
+    }
+  },
+  "image": {
+    "image_id": "img_grilled-swordfish-olive-caper_v1",
+    "dish_id": "grilled-swordfish-olive-caper",
+    "recipe_version_id": "rv_grilled-swordfish-olive-caper_v1",
+    "asset_generated": true,
+    "master_ref": "grilled-swordfish-olive-caper.webp",
+    "active_source_jpeg": "img_v2_l2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "grilled-swordfish-olive-caper.webp",
+        "spec_catalog_path": "/images/meals/grilled-swordfish-olive-caper.webp",
+        "status": "frozen"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "grilled-swordfish-olive-caper-640.webp",
+        "spec_catalog_path": "/images/meals/grilled-swordfish-olive-caper-640.webp",
+        "status": "frozen"
+      }
+    ],
+    "dimensions_basis": "L2 regeneration 2026-10-04. New AI image center-fit to 4:3 and resized with Pillow LANCZOS to 1200x900 and 640x480 WebP. Prior active WebPs moved to rejected/ for sparse plating and weak color.",
+    "generation": {
+      "method": "ai_generation_then_webp_export",
+      "method_detail": "Generated a new AI hero against the diagnosed L2 failure (sparse plate, pale fish, drawn grill marks, pale fennel), then Pillow LANCZOS WebP master 1200x900 and card 640x480.",
+      "generator": "Grok Bot image generation, Harbor Eats image re-certification",
+      "model": "unknown",
+      "model_note": "Model unknown; no model slug invented.",
+      "prompt_authored_on": "2026-10-04",
+      "generation_date": "2026-10-04",
+      "prompt_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "replaces": "rejected/grilled-swordfish-olive-caper_rejected_l2_sparse_pale.webp"
+    },
+    "qa_state": "frozen_for_reaudit",
+    "recipe_fidelity_state": "frozen_for_reaudit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Regenerated AI image for L2 hero appeal. Rights not cleared for external release. Prior assets retained under rejected/.",
+    "package_revision": "image-recert-r2",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720,
+      "aspect": "1280:720"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient name is used in a step. No lemon wedge is plated, because the lemon is zest and juice in the relish only."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "Olive oil is 5 tbsp, divided 1 tbsp grates, 1 tbsp fennel, 3 tbsp relish, and each part is in the steps."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Olive-caper relish is mixed in step 1 from listed ingredients. It is not store-bought tapenade."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 18 (relish and cutting) + cook 28 (10 preheat + about 6 fennel + about 8 fish + 3 rest) = 46. Preheat is not hidden inside prep."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Base 4. One serving keeps a whole anchovy, half a lemon, and a whole small garlic clove. See scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "dietary_eligibility is separate from allergens. contains_finfish true. contains_shellfish, meat, poultry, and dairy are false. nut_policy none. allergens is finfish only. dairy_free is unconditional."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "vocabulary_tag_ids are existing D-02 slugs only."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published."
+    },
+    {
+      "check": "image",
+      "result": "present_frozen_for_reaudit",
+      "detail": "Master WebP 1200x900 and card WebP 640x480 are present. asset_generated is true and qa_state is frozen_for_audit; not imported or published."
+    }
+  ],
+  "scaling_notes": {
+    "1": "One 6 oz swordfish steak, about 1 inch thick, not a thin tail scrap. Half a fennel bulb. Anchovy does not scale to a quarter fillet: use 1 anchovy fillet. Lemon does not scale to a quarter lemon: use 1/2 lemon, zest and juice, so the relish stays wet. Oil: about 1 tsp on the grates, 1 tsp on the fennel, 2 tsp in the relish. Olives: 2 tbsp chopped. Capers: 1 1/2 tsp rinsed. Garlic: 1 small clove, not a quarter clove. Salt: a scant 1/4 tsp on the fish, a pinch on the fennel, a pinch in the relish. Grill temperature stays 450-500 F. Same thickness uses the same minutes; use the thermometer.",
+    "2": "Two steaks and 1 fennel bulb. Two anchovy fillets. Use 1 small lemon, not half a lemon. Halve the olives, capers, oil, and salt. Keep 1 garlic clove. Same grill temperature and the same 130-135 F target.",
+    "4": "As written. 1.5 lb is four steaks, about 6 oz raw each.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "grill temperature",
+      "internal temperature target",
+      "rest time",
+      "steak thickness of about 1 inch"
+    ]
+  },
+  "coverage_contribution": "Puts the unused D-02 swordfish ingredient on a grilled plate HH001 can eat. The olive-caper relish is a built compound. Divided oil and salt, counted steaks and anchovies, and a lemon floor that must not be quartered are the shopping stress. Grill as a tool already exists on the unimplemented flank steak; this slot is the fish, not a second beef grill.",
+  "near_duplicate_review": "Compared with Gochujang Grilled Flank Steak (DR1, not implemented): same grill, different species, a relish instead of a cooked marinade, fennel instead of cucumber, fish doneness instead of beef. Compared with Miso-Ginger Salmon, Maple Mustard Glazed Salmon, Citrus Fennel Arctic Char, Ginger Scallion Fish Packets, and Crispy Fish Tacos: those are salmon, arctic char, or cod, and none are grilled swordfish. Fennel also sits with arctic char; here the fennel is grilled wedges and the sauce is olive, caper, and anchovy.",
+  "batch_challenges": [
+    "A",
+    "B",
+    "C"
+  ],
+  "recommendation_eligible": false
+}

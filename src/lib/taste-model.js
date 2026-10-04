@@ -176,6 +176,7 @@ export function scoreMealsForHousehold(input) {
     const taste = scoreDinerTastes(meal, diner_tastes);
     const exp = ratingEvidence(meal, ratings, recent_recipe_slugs);
     let total = 5 + pref.score * 0.8 + taste.score;
+    const exploration = Number.isFinite(meal.exploration) ? meal.exploration : 0;
     if (exp.exact_avg != null) total += (exp.exact_avg - 5.5) * 0.6;
     if (exp.similar_avg != null) {
       // Shrink toward neutral: one similar rating moves the score a quarter as far as an exact one.
@@ -183,7 +184,7 @@ export function scoreMealsForHousehold(input) {
       total += (exp.similar_avg - 5.5) * 0.6 * weight;
     }
     total -= exp.fatigue;
-    total += meal.exploration * (0.5 + disagree * 0.4 + explorationBoost);
+    total += exploration * (0.5 + disagree * 0.4 + explorationBoost);
     if (isRepeatSuccess(exp)) total += 0.8;
 
     const evidenceCount = pref.hits + exp.exact_count * 2 + exp.similar_count + taste.hits.length;

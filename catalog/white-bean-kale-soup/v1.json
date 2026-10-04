@@ -1,0 +1,212 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "white-bean-kale-soup",
+    "slug": "white-bean-kale-soup",
+    "title": "White Bean Kale Soup",
+    "name": "White Bean Kale Soup",
+    "description": null,
+    "cuisine": "mediterranean",
+    "meal_format": "soup",
+    "primary_ingredient": "beans",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.32,
+    "plate": "🥣",
+    "tone": "tone-c",
+    "tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "sparks": [
+      "sheet"
+    ],
+    "chips": [
+      "Plant",
+      "35 min"
+    ],
+    "current_recipe_id": "rcp_white-bean-kale-soup",
+    "current_version_id": "rv_white-bean-kale-soup_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_white-bean-kale-soup",
+    "dish_id": "white-bean-kale-soup",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_white-bean-kale-soup_v1",
+    "recipe_id": "rcp_white-bean-kale-soup",
+    "dish_id": "white-bean-kale-soup",
+    "version_number": 1,
+    "immutable": true,
+    "title": "White Bean Kale Soup",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "cannellini beans",
+        "quantity": "2 cans",
+        "note": null
+      },
+      {
+        "name": "kale",
+        "quantity": "4 cups chopped",
+        "note": null
+      },
+      {
+        "name": "fennel",
+        "quantity": "1 bulb sliced",
+        "note": null
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": "6 cups",
+        "note": null
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "tomatoes",
+        "quantity": "1 can diced",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sauté fennel",
+        "body": "Soften fennel in oil over medium heat 5 min.",
+        "ingredient_refs": [
+          "fennel",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Simmer",
+        "body": "Add beans, broth, tomatoes; simmer 20 min.",
+        "ingredient_refs": [
+          "cannellini beans",
+          "vegetable broth"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Wilt kale",
+        "body": "Stir in kale until tender; season.",
+        "ingredient_refs": [
+          "kale"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "mediterranean",
+      "soups"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [],
+    "equipment": [
+      "sheet-pan"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "cannellini beans",
+        "quantity": 2,
+        "unit": "can",
+        "note": null,
+        "raw_quantity": "2 cans"
+      },
+      {
+        "name": "kale",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "chopped",
+        "raw_quantity": "4 cups chopped"
+      },
+      {
+        "name": "fennel",
+        "quantity": 1,
+        "unit": "count",
+        "note": "bulb sliced",
+        "raw_quantity": "1 bulb sliced"
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": 6,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "6 cups"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "tomatoes",
+        "quantity": 1,
+        "unit": "can",
+        "note": "diced",
+        "raw_quantity": "1 can diced"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/white-bean-kale-soup.webp",
+    "card_ref": "/images/meals/white-bean-kale-soup-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

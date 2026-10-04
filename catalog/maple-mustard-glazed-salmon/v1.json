@@ -1,0 +1,184 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "maple-mustard-glazed-salmon",
+    "slug": "maple-mustard-glazed-salmon",
+    "title": "Maple Mustard Glazed Salmon",
+    "name": "Maple Mustard Glazed Salmon",
+    "description": null,
+    "cuisine": "american",
+    "meal_format": "fillet",
+    "primary_ingredient": "salmon",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.46,
+    "plate": "🐟",
+    "tone": "tone-a",
+    "tags": [
+      "fish",
+      "finfish",
+      "dairy-free"
+    ],
+    "sparks": [
+      "fish",
+      "sheet"
+    ],
+    "chips": [
+      "Fish",
+      "25 min"
+    ],
+    "current_recipe_id": "rcp_maple-mustard-glazed-salmon",
+    "current_version_id": "rv_maple-mustard-glazed-salmon_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_maple-mustard-glazed-salmon",
+    "dish_id": "maple-mustard-glazed-salmon",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_maple-mustard-glazed-salmon_v1",
+    "recipe_id": "rcp_maple-mustard-glazed-salmon",
+    "dish_id": "maple-mustard-glazed-salmon",
+    "version_number": 1,
+    "immutable": true,
+    "title": "Maple Mustard Glazed Salmon",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "fish",
+      "finfish",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "salmon fillets",
+        "quantity": "4",
+        "note": null
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "maple syrup",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "asparagus",
+        "quantity": "1 bunch",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Glaze",
+        "body": "Mix mustard and maple; brush salmon and asparagus.",
+        "ingredient_refs": [
+          "salmon fillets",
+          "Dijon mustard"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Roast",
+        "body": "Roast at 400°F 12–15 min until salmon is opaque at center and asparagus is tender.",
+        "ingredient_refs": [
+          "salmon fillets",
+          "asparagus"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "american",
+      "salmon"
+    ],
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "allergens": [
+      "finfish"
+    ],
+    "equipment": [
+      "sheet-pan"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "salmon fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "4"
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "maple syrup",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "asparagus",
+        "quantity": 1,
+        "unit": "bunch",
+        "note": null,
+        "raw_quantity": "1 bunch"
+      }
+    ]
+  },
+  "image": {
+    "master_ref": "/images/meals/maple-mustard-glazed-salmon.webp",
+    "card_ref": "/images/meals/maple-mustard-glazed-salmon-640.webp",
+    "provenance": "unknown",
+    "rights": "unverified"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  }
+}

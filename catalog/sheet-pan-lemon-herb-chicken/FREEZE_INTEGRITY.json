@@ -1,0 +1,142 @@
+{
+  "FREEZE_INTEGRITY": "PASS",
+  "candidate_dir": "/workspace/flavorweave-catalog-factory/legacy-24/sheet-pan-lemon-herb-chicken",
+  "fail_count": 0,
+  "checks": [
+    {
+      "id": "v1_retained",
+      "result": "PASS",
+      "detail": "v1.json exists and parses; current image is not required on v1"
+    },
+    {
+      "id": "package_file",
+      "result": "PASS",
+      "detail": "v2.json parses"
+    },
+    {
+      "id": "identity_present",
+      "result": "PASS",
+      "detail": "sheet-pan-lemon-herb-chicken legacy-audit-r3"
+    },
+    {
+      "id": "identity_agree",
+      "result": "PASS",
+      "detail": "slug matches dish_id"
+    },
+    {
+      "id": "recipe_id",
+      "result": "PASS",
+      "detail": "rcp_sheet-pan-lemon-herb-chicken"
+    },
+    {
+      "id": "version_id",
+      "result": "PASS",
+      "detail": "rv_sheet-pan-lemon-herb-chicken_v2"
+    },
+    {
+      "id": "field_ingredients",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "field_steps",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "field_taste_tags",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "field_base_servings",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "field_dietary_eligibility",
+      "result": "PASS",
+      "detail": "present as projection.dietary_labels"
+    },
+    {
+      "id": "eligibility_object",
+      "result": "PASS",
+      "detail": "projection.dietary_labels list recorded; object not required"
+    },
+    {
+      "id": "field_allergens",
+      "result": "PASS",
+      "detail": "present at projection.allergens"
+    },
+    {
+      "id": "allergens_list",
+      "result": "PASS",
+      "detail": "1 tokens"
+    },
+    {
+      "id": "no_denial_strings",
+      "result": "PASS",
+      "detail": "no stale missing-image denials"
+    },
+    {
+      "id": "provenance_method",
+      "result": "PASS",
+      "detail": "original_ai_generation"
+    },
+    {
+      "id": "provenance_generation_date",
+      "result": "PASS",
+      "detail": "2026-10-04"
+    },
+    {
+      "id": "provenance_generator",
+      "result": "PASS",
+      "detail": "Grok Imagine via Harbor Eats Grok Bot"
+    },
+    {
+      "id": "provenance_model",
+      "result": "PASS",
+      "detail": "unknown"
+    },
+    {
+      "id": "active_not_rejected",
+      "result": "PASS",
+      "detail": "active refs do not mention rejected/"
+    },
+    {
+      "id": "image_format_master",
+      "result": "PASS",
+      "detail": "sheet-pan-lemon-herb-chicken.webp webp"
+    },
+    {
+      "id": "image_dims_master",
+      "result": "PASS",
+      "detail": "1200x900"
+    },
+    {
+      "id": "image_format_card",
+      "result": "PASS",
+      "detail": "sheet-pan-lemon-herb-chicken-640.webp webp"
+    },
+    {
+      "id": "image_dims_card",
+      "result": "PASS",
+      "detail": "640x480"
+    },
+    {
+      "id": "declared_master_dims",
+      "result": "PASS",
+      "detail": "declared master matches spec"
+    },
+    {
+      "id": "declared_card_dims",
+      "result": "PASS",
+      "detail": "declared card matches spec"
+    },
+    {
+      "id": "rejected_not_active_name",
+      "result": "PASS",
+      "detail": "no rejected dir"
+    }
+  ]
+}

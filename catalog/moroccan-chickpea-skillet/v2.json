@@ -1,0 +1,292 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_curator_draft",
+  "draft_role": "Curator draft for Cora. Not an auditor. This file records no certification decision.",
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "source_v1": "https://raw.githubusercontent.com/elephantharbor/harbor-eats-app/cursor/catalog-architecture-fa5e/catalog/moroccan-chickpea-skillet/v1.json",
+  "v1_sha256": "8d2d3c28314ce2baa7bbd22d6809a54b8231217ebcaf4b7b3466d29ac1ae2d79",
+  "revision_reason": "Couscous has no amount and its wheat allergen is missing; cans, water, and preserved lemon are unspecified.",
+  "material_deltas": [
+    "Couscous set to 1 1/2 cups dry plus 1 1/2 cups boiling water and 1/2 tsp kosher salt. v1 said for serving.",
+    "Allergens set to wheat because of the couscous. Dietary tags stay plant and dairy-free. Gluten-free is not claimed.",
+    "Chickpeas specified as 2 (15 oz) cans, drained and rinsed. Count not increased.",
+    "Skillet water set to 1/4 cup. v1 said a splash.",
+    "Preserved lemon specified as rinsed rind with the pulp discarded, still 2 tbsp chopped.",
+    "Spinach specified as 3 cups packed baby spinach (about 3 oz). Amount not increased.",
+    "Salt is only in the couscous. The skillet is salted by the preserved lemon.",
+    "Clock set to prep 10, cook 15, total 25 from the written steps. v1 15/25/40 was the default.",
+    "Did not turn it into a curry and did not add fresh lemon wedges."
+  ],
+  "dish": {
+    "dish_id": "moroccan-chickpea-skillet",
+    "slug": "moroccan-chickpea-skillet",
+    "title": "Moroccan Chickpea Skillet",
+    "name": "Moroccan Chickpea Skillet",
+    "description": "Chickpeas with ras el hanout, preserved-lemon rind, and spinach, served over couscous.",
+    "cuisine": "moroccan",
+    "meal_format": "skillet",
+    "primary_ingredient": "chickpeas",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.47,
+    "plate": "🍲",
+    "tone": "tone-c",
+    "tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "sparks": [
+      "bright"
+    ],
+    "chips": [
+      "Plant",
+      "35 min"
+    ],
+    "current_recipe_id": "rcp_moroccan-chickpea-skillet",
+    "current_version_id": "rv_moroccan-chickpea-skillet_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_moroccan-chickpea-skillet",
+    "dish_id": "moroccan-chickpea-skillet",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "copied_from_third_party": false,
+      "note": "Corrective draft against legacy v1. Authorship of the legacy text is not known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_moroccan-chickpea-skillet_v2",
+    "recipe_id": "rcp_moroccan-chickpea-skillet",
+    "dish_id": "moroccan-chickpea-skillet",
+    "version_number": 2,
+    "supersedes": "rv_moroccan-chickpea-skillet_v1",
+    "immutable": false,
+    "immutability_note": "Draft for audit. v1.json was not edited. Not kitchen-tested and not published.",
+    "title": "Moroccan Chickpea Skillet",
+    "description": "Chickpeas with ras el hanout, preserved-lemon rind, and spinach, served over couscous.",
+    "base_servings": 4,
+    "prep_minutes": 10,
+    "cook_minutes": 15,
+    "total_minutes": 25,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": "mild",
+    "doneness": "Chickpeas glossy, skillet not soupy. Spinach just wilted. Couscous tender and separate, not mush.",
+    "substitutions": {
+      "couscous": "This version uses wheat couscous. A gluten-free stand-in would change the allergen list and is not this version.",
+      "preserved lemon": "Rind only. Do not chop in the salty pulp, and do not swap in fresh lemon wedges."
+    },
+    "ingredients": [
+      {
+        "name": "chickpeas",
+        "quantity": "2 (15 oz) cans",
+        "note": "drained and rinsed, about 3 cups"
+      },
+      {
+        "name": "preserved lemon",
+        "quantity": "2 tbsp",
+        "note": "chopped rind only; rinse and discard the pulp. Store-bought jarred preserved lemon."
+      },
+      {
+        "name": "ras el hanout",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "spinach",
+        "quantity": "3 cups",
+        "note": "packed baby spinach, about 3 oz"
+      },
+      {
+        "name": "couscous",
+        "quantity": "1 1/2 cups",
+        "note": "dry wheat couscous, not a gluten-free substitute"
+      },
+      {
+        "name": "water",
+        "quantity": "1 3/4 cups",
+        "note": "divided: 1 1/2 cups boiling water for the couscous, 1/4 cup in the skillet. v1 said only a splash."
+      },
+      {
+        "name": "kosher salt",
+        "quantity": "1/2 tsp",
+        "note": "in the couscous only. Diamond Crystal. If Morton, use 1/4 tsp. Do not salt the skillet; the preserved lemon is already salty."
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Steam the couscous",
+        "body": "Put the dry couscous and the kosher salt in a bowl. Pour over 1 1/2 cups boiling water. Cover and let stand 5 minutes. Fluff with a fork. This is wheat couscous for all 4 servings. v1 said only for serving.",
+        "ingredient_refs": [
+          "couscous",
+          "water",
+          "kosher salt"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Spice the chickpeas",
+        "body": "Warm the neutral oil in a skillet over medium heat. Stir in the ras el hanout and cook 1 minute. Add the drained chickpeas and 1/4 cup water. Cook 5 minutes, until the chickpeas are glossy and the water is mostly gone.",
+        "ingredient_refs": [
+          "neutral oil",
+          "ras el hanout",
+          "chickpeas",
+          "water"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Finish",
+        "body": "Stir in the preserved-lemon rind and the spinach. Cook 1-2 minutes, until the spinach is just wilted and the skillet is not soupy. Do not add more salt.",
+        "ingredient_refs": [
+          "preserved lemon",
+          "spinach"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Serve",
+        "body": "Serve the skillet over the couscous. Four servings.",
+        "ingredient_refs": [
+          "couscous"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "chickpeas",
+      "citrusy",
+      "moroccan"
+    ],
+    "vocabulary_note": "Dropped v1 tag curries. This is a skillet with a splash of water, not a curry. Kept citrusy because preserved lemon is in the dish.",
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [
+      "wheat"
+    ],
+    "allergen_note": "Wheat comes from the couscous. It is an allergen, not a dietary tag. Dietary eligibility stays plant and dairy-free. Gluten-free is not claimed.",
+    "equipment": [
+      "skillet",
+      "bowl"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "chickpeas",
+        "quantity": 30,
+        "unit": "oz",
+        "note": "two 15 oz cans, drained and rinsed, about 3 cups",
+        "raw_quantity": "2 (15 oz) cans"
+      },
+      {
+        "name": "preserved lemon",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "chopped rind; pulp discarded",
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "ras el hanout",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "spinach",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "packed baby spinach, about 3 oz",
+        "raw_quantity": "3 cups"
+      },
+      {
+        "name": "couscous",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "dry wheat couscous",
+        "raw_quantity": "1 1/2 cups"
+      },
+      {
+        "name": "water",
+        "quantity": 1.75,
+        "unit": "cup",
+        "note": "1 1/2 cups boiling for couscous, 1/4 cup in the skillet",
+        "raw_quantity": "1 3/4 cups"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "couscous only",
+        "raw_quantity": "1/2 tsp"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "moroccan-chickpea-skillet.webp",
+    "card_ref": "moroccan-chickpea-skillet-640.webp",
+    "master_filename": "moroccan-chickpea-skillet.webp",
+    "card_filename": "moroccan-chickpea-skillet-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": null,
+    "factory_certified": false,
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "decision": null,
+    "note": "Curator correction draft only. No certification decision is recorded. kitchen_tested is false."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "unpublished_curator_draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Not published. Does not replace live v1 and does not touch production, D1, or the app repo."
+  },
+  "package_revision": "legacy-audit-r1"
+}

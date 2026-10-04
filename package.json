@@ -11,6 +11,8 @@
     "db:create": "wrangler d1 create harbor-eats-db --config wrangler.worker.toml",
     "db:migrate:local": "wrangler d1 migrations apply harbor-eats-db --local --config wrangler.worker.toml",
     "db:migrate:remote": "wrangler d1 migrations apply harbor-eats-db --remote --config wrangler.worker.toml",
+    "catalog:export-legacy": "node scripts/export-legacy-catalog.mjs",
+    "catalog:import:staging": "node scripts/import-catalog.mjs --target staging --sqlite .wrangler/catalog-staging.sqlite",
     "pages:deploy": "wrangler pages deploy public --project-name=harbor-eats-app",
     "interim:prepare": "bash scripts/prepare-github-io.sh",
     "lint": "eslint src public/app.js public/theme.js public/meal-media.js public/taste-ui.js functions --max-warnings=0",

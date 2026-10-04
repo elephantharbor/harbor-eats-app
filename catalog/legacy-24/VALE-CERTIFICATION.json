@@ -1,0 +1,945 @@
+{
+  "record_type": "flavorweave_catalog_certification",
+  "record_id": "vale-legacy-24-2026-10-04",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-04",
+  "batch": "legacy-24",
+  "result": "CERTIFIED",
+  "scope": "gate_result_only",
+  "publication": "not_published",
+  "production": "not_released",
+  "kitchen_tested": false,
+  "packages_mutated": false,
+  "withheld": [],
+  "meal_count": 24,
+  "gate_order": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "L1",
+    "L2",
+    "M",
+    "N",
+    "O"
+  ],
+  "statement": "All 24 current legacy packages and their active images pass gates A through O, including K, L1, and L2. This record certifies those gate results only. It is not publication, not a production release, and not a cook test. kitchen_tested stays false. Package JSON was not edited, so factory_certified inside a package is not this certification.",
+  "meals": [
+    {
+      "slug": "black-bean-quesadillas",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r1",
+      "recipe_version_id": "rv_black-bean-quesadillas_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "black-bean-quesadillas.webp",
+      "active_card": "black-bean-quesadillas-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        },
+        {
+          "source": "draft",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/black-bean-quesadillas/VALE-AUDIT.json"
+    },
+    {
+      "slug": "cashew-pesto-pasta",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r0",
+      "recipe_version_id": "rv_cashew-pesto-pasta_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "cashew-pesto-pasta.webp",
+      "active_card": "cashew-pesto-pasta-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/cashew-pesto-pasta/VALE-AUDIT.json"
+    },
+    {
+      "slug": "chipotle-lime-black-bean-bowls",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r1",
+      "recipe_version_id": "rv_chipotle-lime-black-bean-bowls_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "chipotle-lime-black-bean-bowls.webp",
+      "active_card": "chipotle-lime-black-bean-bowls-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "recipe_version",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/chipotle-lime-black-bean-bowls/VALE-AUDIT.json"
+    },
+    {
+      "slug": "citrus-fennel-arctic-char",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r1",
+      "recipe_version_id": "rv_citrus-fennel-arctic-char_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "citrus-fennel-arctic-char.webp",
+      "active_card": "citrus-fennel-arctic-char-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/citrus-fennel-arctic-char/VALE-AUDIT.json"
+    },
+    {
+      "slug": "coconut-chickpea-curry",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r0",
+      "recipe_version_id": "rv_coconut-chickpea-curry_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "coconut-chickpea-curry.webp",
+      "active_card": "coconut-chickpea-curry-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/coconut-chickpea-curry/VALE-AUDIT.json"
+    },
+    {
+      "slug": "crispy-chipotle-tofu-tacos",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r0",
+      "recipe_version_id": "rv_crispy-chipotle-tofu-tacos_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "crispy-chipotle-tofu-tacos.webp",
+      "active_card": "crispy-chipotle-tofu-tacos-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/crispy-chipotle-tofu-tacos/VALE-AUDIT.json"
+    },
+    {
+      "slug": "crispy-fish-tacos-cabbage-slaw",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r0",
+      "recipe_version_id": "rv_crispy-fish-tacos-cabbage-slaw_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "crispy-fish-tacos-cabbage-slaw.webp",
+      "active_card": "crispy-fish-tacos-cabbage-slaw-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/crispy-fish-tacos-cabbage-slaw/VALE-AUDIT.json"
+    },
+    {
+      "slug": "ginger-scallion-fish-packets",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r0",
+      "recipe_version_id": "rv_ginger-scallion-fish-packets_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "ginger-scallion-fish-packets.webp",
+      "active_card": "ginger-scallion-fish-packets-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "recipe_version",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/ginger-scallion-fish-packets/VALE-AUDIT.json"
+    },
+    {
+      "slug": "grilled-peach-burrito-bowl",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r0",
+      "recipe_version_id": "rv_grilled-peach-burrito-bowl_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "grilled-peach-burrito-bowl.webp",
+      "active_card": "grilled-peach-burrito-bowl-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/grilled-peach-burrito-bowl/VALE-AUDIT.json"
+    },
+    {
+      "slug": "harissa-roasted-carrots-feta",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r1",
+      "recipe_version_id": "rv_harissa-roasted-carrots-feta_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "harissa-roasted-carrots-feta.webp",
+      "active_card": "harissa-roasted-carrots-feta-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        },
+        {
+          "source": "draft",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/harissa-roasted-carrots-feta/VALE-AUDIT.json"
+    },
+    {
+      "slug": "herbed-polenta-tomato-stew",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r1",
+      "recipe_version_id": "rv_herbed-polenta-tomato-stew_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "herbed-polenta-tomato-stew.webp",
+      "active_card": "herbed-polenta-tomato-stew-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/herbed-polenta-tomato-stew/VALE-AUDIT.json"
+    },
+    {
+      "slug": "lemon-garlic-shrimp-pasta",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r1",
+      "recipe_version_id": "rv_lemon-garlic-shrimp-pasta_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "lemon-garlic-shrimp-pasta.webp",
+      "active_card": "lemon-garlic-shrimp-pasta-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/lemon-garlic-shrimp-pasta/VALE-AUDIT.json"
+    },
+    {
+      "slug": "maple-mustard-glazed-salmon",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r0",
+      "recipe_version_id": "rv_maple-mustard-glazed-salmon_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "maple-mustard-glazed-salmon.webp",
+      "active_card": "maple-mustard-glazed-salmon-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "recipe_version",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/maple-mustard-glazed-salmon/VALE-AUDIT.json"
+    },
+    {
+      "slug": "miso-ginger-salmon",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r1",
+      "recipe_version_id": "rv_miso-ginger-salmon_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "miso-ginger-salmon.webp",
+      "active_card": "miso-ginger-salmon-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/miso-ginger-salmon/VALE-AUDIT.json"
+    },
+    {
+      "slug": "moroccan-chickpea-skillet",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r1",
+      "recipe_version_id": "rv_moroccan-chickpea-skillet_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "moroccan-chickpea-skillet.webp",
+      "active_card": "moroccan-chickpea-skillet-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/moroccan-chickpea-skillet/VALE-AUDIT.json"
+    },
+    {
+      "slug": "mushroom-walnut-bolognese",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r3",
+      "recipe_version_id": "rv_mushroom-walnut-bolognese_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "mushroom-walnut-bolognese.webp",
+      "active_card": "mushroom-walnut-bolognese-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        },
+        {
+          "source": "draft",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/mushroom-walnut-bolognese/VALE-AUDIT.json"
+    },
+    {
+      "slug": "peanut-noodle-stir-fry",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r1",
+      "recipe_version_id": "rv_peanut-noodle-stir-fry_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "peanut-noodle-stir-fry.webp",
+      "active_card": "peanut-noodle-stir-fry-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        },
+        {
+          "source": "draft",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/peanut-noodle-stir-fry/VALE-AUDIT.json"
+    },
+    {
+      "slug": "roasted-cauliflower-shawarma-plate",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r2",
+      "recipe_version_id": "rv_roasted-cauliflower-shawarma-plate_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "roasted-cauliflower-shawarma-plate.webp",
+      "active_card": "roasted-cauliflower-shawarma-plate-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "recipe_version",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/roasted-cauliflower-shawarma-plate/VALE-AUDIT.json"
+    },
+    {
+      "slug": "sesame-soba-noodle-bowl",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r0",
+      "recipe_version_id": "rv_sesame-soba-noodle-bowl_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "sesame-soba-noodle-bowl.webp",
+      "active_card": "sesame-soba-noodle-bowl-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "recipe_version",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/sesame-soba-noodle-bowl/VALE-AUDIT.json"
+    },
+    {
+      "slug": "sheet-pan-lemon-herb-chicken",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r3",
+      "recipe_version_id": "rv_sheet-pan-lemon-herb-chicken_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "sheet-pan-lemon-herb-chicken.webp",
+      "active_card": "sheet-pan-lemon-herb-chicken-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        },
+        {
+          "source": "draft",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/sheet-pan-lemon-herb-chicken/VALE-AUDIT.json"
+    },
+    {
+      "slug": "smoky-lentil-sweet-potato-stew",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r1",
+      "recipe_version_id": "rv_smoky-lentil-sweet-potato-stew_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "smoky-lentil-sweet-potato-stew.webp",
+      "active_card": "smoky-lentil-sweet-potato-stew-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/smoky-lentil-sweet-potato-stew/VALE-AUDIT.json"
+    },
+    {
+      "slug": "teriyaki-tofu-bowls",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r0",
+      "recipe_version_id": "rv_teriyaki-tofu-bowls_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "teriyaki-tofu-bowls.webp",
+      "active_card": "teriyaki-tofu-bowls-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/teriyaki-tofu-bowls/VALE-AUDIT.json"
+    },
+    {
+      "slug": "thai-basil-eggplant-stir-fry",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r1",
+      "recipe_version_id": "rv_thai-basil-eggplant-stir-fry_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "thai-basil-eggplant-stir-fry.webp",
+      "active_card": "thai-basil-eggplant-stir-fry-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "certification",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/thai-basil-eggplant-stir-fry/VALE-AUDIT.json"
+    },
+    {
+      "slug": "white-bean-kale-soup",
+      "package_file": "v2.json",
+      "package_revision": "legacy-audit-r0",
+      "recipe_version_id": "rv_white-bean-kale-soup_v2",
+      "version_number": 2,
+      "freeze_integrity": "PASS",
+      "overall": "PASS",
+      "gates": {
+        "A": "PASS",
+        "B": "PASS",
+        "C": "PASS",
+        "D": "PASS",
+        "E": "PASS",
+        "F": "PASS",
+        "G": "PASS",
+        "H": "PASS",
+        "I": "PASS",
+        "J": "PASS",
+        "K": "PASS",
+        "L": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "M": "PASS",
+        "N": "PASS",
+        "O": "PASS"
+      },
+      "active_master": "white-bean-kale-soup.webp",
+      "active_card": "white-bean-kale-soup-640.webp",
+      "kitchen_tested_fields": [
+        {
+          "source": "recipe_version",
+          "value": false
+        }
+      ],
+      "audit_file": "legacy-24/white-bean-kale-soup/VALE-AUDIT.json"
+    }
+  ]
+}

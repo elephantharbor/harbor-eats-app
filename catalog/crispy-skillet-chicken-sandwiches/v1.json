@@ -1,0 +1,537 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for Dry Run #1. Nested Dish \u2192 Recipe \u2192 Recipe Version \u2192 Image. Not imported to recipe-store. Not published.",
+  "batch_id": "dry-run-1",
+  "mode": "dry_run",
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot, Catalog Factory Dry Run #1, for Cora",
+  "auditor": null,
+  "certification": {
+    "final_state": "PASS",
+    "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+    "audit_round": 2,
+    "kitchen_tested": false,
+    "publication": "Draft \u2014 dry run only, not published"
+  },
+  "dish": {
+    "dish_id": "crispy-skillet-chicken-sandwiches",
+    "slug": "crispy-skillet-chicken-sandwiches",
+    "title": "Crispy Skillet Chicken Sandwiches",
+    "description": "Pound-thin chicken cutlets seared in a skillet and stacked on rolls with lemon-dijon mayonnaise, lettuce, and tomato.",
+    "cuisine": "american",
+    "meal_format": "sandwiches",
+    "primary_ingredient": "chicken",
+    "vocabulary_tag_ids": [
+      "american",
+      "sandwiches",
+      "chicken",
+      "crispy",
+      "tender",
+      "citrusy",
+      "savory",
+      "herbaceous"
+    ],
+    "current_recipe_id": "rcp_crispy-skillet-chicken-sandwiches",
+    "current_version_id": "rv_crispy-skillet-chicken-sandwiches_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_crispy-skillet-chicken-sandwiches",
+    "dish_id": "crispy-skillet-chicken-sandwiches",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-04",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory Dry Run #1, Grok Bot only",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_crispy-skillet-chicken-sandwiches_v1",
+    "recipe_id": "rcp_crispy-skillet-chicken-sandwiches",
+    "dish_id": "crispy-skillet-chicken-sandwiches",
+    "version_number": 1,
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Any material change after that history needs v2. This dry run does not rewrite a prior version.",
+    "title": "Crispy Skillet Chicken Sandwiches",
+    "description": "Pound-thin chicken cutlets seared in a skillet and stacked on rolls with lemon-dijon mayonnaise, lettuce, and tomato.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "boneless-skinless-chicken-breast",
+        "name": "boneless skinless chicken breast",
+        "display_name": "boneless skinless chicken breast",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "2 breasts, butterflied into 4 pieces",
+        "preparation": "pounded to 1/4 inch",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "divided: 3/4 tsp on the chicken, 1/4 tsp in the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic-powder",
+        "name": "garlic powder",
+        "display_name": "garlic powder",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "all-purpose-flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "eggs",
+        "display_name": "eggs",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "beaten",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "canola-oil",
+        "name": "canola oil",
+        "display_name": "canola oil",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "divided: about 2 tbsp for each skillet batch",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "mayonnaise",
+        "name": "mayonnaise",
+        "display_name": "mayonnaise",
+        "quantity": 8,
+        "unit": "tbsp",
+        "note": "store-bought; egg and oil style, dairy-free \u2014 check the label",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "dijon-mustard",
+        "name": "dijon mustard",
+        "display_name": "dijon mustard",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "store-bought",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "zest plus juice",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-parsley",
+        "name": "fresh parsley",
+        "display_name": "fresh parsley",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sandwich-rolls",
+        "name": "sandwich rolls",
+        "display_name": "sandwich rolls",
+        "quantity": 4,
+        "unit": "count",
+        "note": "soft rolls, split",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato",
+        "name": "tomato",
+        "display_name": "tomato",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "romaine-lettuce",
+        "name": "romaine lettuce",
+        "display_name": "romaine lettuce",
+        "quantity": 1,
+        "unit": "count",
+        "note": "4 large leaves",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Pound and season",
+        "body": "Butterfly the boneless skinless chicken breast into 4 pieces and pound each to about 1/4 inch. Pat dry. Season both sides with 3/4 tsp of the kosher salt, the black pepper, and the garlic powder.",
+        "ingredient_refs": [
+          "boneless-skinless-chicken-breast",
+          "kosher-salt",
+          "black-pepper",
+          "garlic-powder"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Mix the sauce",
+        "body": "Stir the mayonnaise, dijon mustard, the zest and juice of the lemon, the fresh parsley, the garlic, and the remaining 1/4 tsp kosher salt. The mayonnaise is store-bought. This lemon-dijon mayonnaise is the only sauce. Use a dairy-free mayonnaise or the dairy-free label does not hold.",
+        "ingredient_refs": [
+          "mayonnaise",
+          "dijon-mustard",
+          "lemon",
+          "fresh-parsley",
+          "garlic",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Dredge",
+        "body": "Beat the eggs in a shallow bowl. Spread the all-purpose flour on a plate. Dip each piece in flour, then in egg, and set them on a clean plate. Let the excess egg drip off.",
+        "ingredient_refs": [
+          "eggs",
+          "all-purpose-flour",
+          "boneless-skinless-chicken-breast"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Sear",
+        "body": "Heat a 12-inch skillet over medium-high. Add 2 tbsp of the canola oil. When it shimmers, add 2 pieces. Cook about 2 1/2 to 3 minutes per side, until the crust is deep golden and the center is 165\u00b0F. Repeat with the remaining 2 tbsp canola oil and the remaining pieces. If the crust darkens before 165\u00b0F, lower the heat to medium for the last minute. Do not crowd the pan.",
+        "ingredient_refs": [
+          "canola-oil",
+          "boneless-skinless-chicken-breast"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Toast the rolls",
+        "body": "Wipe out loose browned bits if they will scorch. Toast the sandwich rolls, cut side down, in the skillet over medium heat for about 45 to 60 seconds.",
+        "ingredient_refs": [
+          "sandwich-rolls"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Assemble",
+        "body": "Spread the lemon-dijon mayonnaise on the rolls. Add romaine lettuce, tomato, and a chicken cutlet. Serve right away. No fries and no pickles are part of this recipe.",
+        "ingredient_refs": [
+          "mayonnaise",
+          "romaine-lettuce",
+          "tomato",
+          "boneless-skinless-chicken-breast",
+          "sandwich-rolls"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "lemon-dijon-mayonnaise",
+        "name": "lemon-dijon mayonnaise",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "built_from_store_bought": [
+          "mayonnaise",
+          "dijon mustard"
+        ],
+        "ingredients": [
+          "mayonnaise",
+          "dijon mustard",
+          "lemon",
+          "fresh parsley",
+          "garlic",
+          "kosher salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "tongs",
+      "instant-read thermometer",
+      "meat mallet or heavy pan",
+      "two shallow bowls or a bowl and a plate",
+      "knife"
+    ],
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 16,
+    "total_time_minutes": 28,
+    "prep_minutes": 12,
+    "cook_minutes": 16,
+    "total_minutes": 28,
+    "heat": "Skillet over medium-high; lower to medium only if the crust darkens before the center is done.",
+    "doneness": "165\u00b0F in the center of each cutlet. Color is not the doneness test.",
+    "effort": "weeknight",
+    "complexity": "straightforward",
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "allergens": [
+      "poultry",
+      "egg",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Contains poultry (chicken), egg (eggs, and egg in the mayonnaise), and wheat (all-purpose flour and sandwich rolls). All three are on the structured allergens array.",
+      "Live enum gap: PACKAGE_ALLERGEN_IDS includes poultry and does not include egg or wheat. Egg and wheat stay on the array. The note does not replace the field.",
+      "Dairy-free assumes a dairy-free egg-and-oil mayonnaise. Check the label. Yogurt-based or cheese-added mayo would fail the dairy_free label. That assumption is not an allergen omission."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Poultry is banned for HH001. Global catalog candidate. It is the second chicken technique, not a second sheet-pan.",
+    "vocabulary_tag_ids": [
+      "american",
+      "sandwiches",
+      "chicken",
+      "crispy",
+      "tender",
+      "citrusy",
+      "savory",
+      "herbaceous"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "revision_r1_applied_pending_r2",
+    "culinary_audit_state": "r1_fail_returned_revision_applied_pending_r2",
+    "kitchen_tested": false,
+    "validation_kind": "structural_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted, as specified for this dry run. The live Cycle 2 RECIPE_PROVENANCE enum has ai_assisted and does not list original_ai_assisted. Do not silently remap in a later implement pass without Cora confirming the mapping.",
+      "publication_state": "Factory value is Draft. The live PUBLICATION_STATUSES enum uses lowercase draft. publication_status is included as that lowercase alias and is not published.",
+      "data_origin": "data_origin synthetic matches the live enum for authored-not-household data. It does not mean the recipe was cooked.",
+      "allergens": "Structured allergens now list the real allergens, including tokens outside live PACKAGE_ALLERGEN_IDS (dairy, nuts, cashew, walnut, peanut, almond, pecan, hazelnut, pistachio, macadamia, pine_nut, shellfish, finfish, poultry, meat). Soy, sesame, egg, and wheat are not in that enum. They stay on the allergens array anyway. A note is not a substitute for the field, and the enum is not a reason to drop a real allergen. allergen_notes keeps the nuance. Do not strip these tokens in a later implement pass to force an enum match.",
+      "vocabulary": "No D-02 ingredient slug exists for beef, mussels, or sandwich rolls. primary_ingredient carries that identity. Tags were not invented."
+    }
+  },
+  "image": {
+    "image_id": "img_crispy-skillet-chicken-sandwiches_v2",
+    "dish_id": "crispy-skillet-chicken-sandwiches",
+    "recipe_version_id": "rv_crispy-skillet-chicken-sandwiches_v1",
+    "asset_generated": true,
+    "master_ref": "crispy-skillet-chicken-sandwiches.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "crispy-skillet-chicken-sandwiches.webp",
+        "spec_catalog_path": "/images/meals/crispy-skillet-chicken-sandwiches.webp",
+        "status": "generated_in_package_not_published"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "crispy-skillet-chicken-sandwiches-640.webp",
+        "spec_catalog_path": "/images/meals/crispy-skillet-chicken-sandwiches-640.webp",
+        "status": "generated_in_package_not_published"
+      }
+    ],
+    "dimensions_basis": "Live reference public/images/meals/miso-ginger-salmon.webp is WebP 1200\u00d7900; miso-ginger-salmon-640.webp is WebP 640\u00d7480. Package files use those dimensions and the spec basenames. They were not copied into the app public/images/meals/ tree (not published).",
+    "generation": {
+      "method": "format_size_conversion_of_existing_ai_jpeg",
+      "method_detail": "Existing 1280\u00d7720 AI JPEG center-cropped to 4:3 (960\u00d7720) and LANCZOS-resized with Pillow to WebP master 1200\u00d7900 and derivative 640\u00d7480. Not a new generative redraw. Not a web, stock, restaurant, or recipe-site image. No external image API was called for this export.",
+      "model": "unknown",
+      "model_note": "Model slug is unknown. It is not in v1.json history, image-prompt.md, or JPEG EXIF. The source JPEG C2PA manifest names softwareAgent 'Grok Imagine' and an organization string 'SpaceXAI'. That is a generator label in the file, not a versioned model id, so it is recorded and not expanded into an invented model slug.",
+      "c2pa_software_agent": "Grok Imagine",
+      "c2pa_organization_string": "SpaceXAI",
+      "generator_identity": "Source JPEG C2PA softwareAgent: Grok Imagine. Curator process: Juniper via Grok Bot Dry Run #1. Model slug unknown.",
+      "prompt_authored_on": "2026-10-04",
+      "generation_date": "2026-10-04",
+      "generation_date_note": "generation_date 2026-10-04 is the WebP export date in America/Chicago. The original generative timestamp is not in the package markdown or EXIF and is not invented.",
+      "export_date": "2026-10-04",
+      "export_tool": "Pillow (LANCZOS). ImageMagick identify was not installed; dimensions checked with Pillow and file.",
+      "prompt_file": "image-prompt.md",
+      "source_jpeg": "img_v2.jpg",
+      "external_image_api_called": false,
+      "external_image_api_note": "No external image API call in this revision. WebP files are a format and size conversion of the existing AI JPEG named in source_jpeg."
+    },
+    "qa_state": "certified_r2_pass",
+    "recipe_fidelity_state": "pass_r2",
+    "recipe_fidelity_notes": "Audit asset is the WebP derived from img_v2.jpg only: thin flour-and-egg cutlet, soft roll, tomato, romaine, herb mayonnaise. img_v1.jpg remains on disk and is not the source. Gate K is not granted by this revision.",
+    "rights": "original_ai",
+    "rights_note": "Original AI pixels already on disk, converted to the catalog WebP pair. No stock, restaurant, or recipe-site photograph. Model slug unknown. Rights are not cleared for external release. Not published.",
+    "provenance": "ai_illustration",
+    "provenance_note": "Live IMAGE_PROVENANCE token ai_illustration. The r1 token ai_illustration_intended described a missing binary. The audit asset now exists as a conversion of an on-disk original AI JPEG. This is not a third-party license and it does not clear rights. Model slug remains unknown.",
+    "supersedes_image_id": "img_crispy-skillet-chicken-sandwiches_v1",
+    "rejected_assets": [
+      {
+        "file": "img_v1.jpg",
+        "gate": "K",
+        "reason": "Vale r1 opened img_v1.jpg and saw a thick cutlet with a coarse breadcrumb crust and a full-thickness white interior. The recipe pounds to about 1/4 inch and dredges flour then egg only. There are no breadcrumbs.",
+        "disposition": "Left on disk as img_v1.jpg. Not the audit asset and not the WebP source. Canonical audit image is the v2-derived WebP."
+      }
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "PASS",
+    "culinary_audit": "PASS",
+    "dietary_audit": "PASS",
+    "image_fidelity": "PASS",
+    "provenance": "KNOWN",
+    "image_rights_provenance": "KNOWN_ORIGINAL_AI_MODEL_SLUG_UNKNOWN",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "KNOWN"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient name appears in a step. No finish item is introduced only in the method."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "The cooking fat is a named ingredient with a quantity and is used in the method: canola oil."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Lemon-dijon mayonnaise is mixed in step 2 from store-bought mayonnaise, store-bought dijon mustard, lemon, parsley, garlic, and salt. Mayonnaise and dijon are labeled store-bought. No unnamed sauce."
+    },
+    {
+      "check": "times",
+      "result": "pass",
+      "detail": "prep 12 + cook 16 = total 28. Step durations are written to match that sum without hiding a required wait."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Base is 4 servings. Quantities scale by 0.25 / 0.5 / 1. See scaling_notes for cloves, eggs, wine, and time that must not be scaled blindly."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "dietary_labels stay dairy_free only if the mayonnaise is dairy-free egg-and-oil mayonnaise. Structured allergens are poultry, egg, and wheat, matching chicken, eggs, mayonnaise, flour, and rolls. Egg and wheat are outside the live enum and are still on the array. This revision is not a Vale pass."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "vocabulary_tag_ids are existing D-02 slugs only. No invented beef/mussels/pork tag."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. Not published. Not recommendation-eligible."
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "1": "One 4 oz cutlet, 1 roll, 2 slices of tomato, 1 lettuce leaf. Keep 1 egg even though the scaled amount is half an egg; a smaller egg wash still has to coat. Use about 2 tbsp flour, 1 tbsp canola oil, and 2 tbsp mayonnaise with 3/4 tsp dijon. One small garlic clove is enough. Cook in one batch, still to 165\u00b0F, about 3 minutes per side.",
+    "2": "Two cutlets in one batch. One egg is still enough. Halve the flour, oil, sauce, lemon (use half a lemon), parsley, and salt. Same skillet temperature and 165\u00b0F target.",
+    "4": "As written. Two skillet batches so the pan is not crowded. Oil is split, 2 tbsp then 2 tbsp.",
+    "do_not_scale": [
+      "skillet temperature",
+      "165\u00b0F doneness",
+      "pounding to 1/4 inch"
+    ]
+  },
+  "coverage_contribution": "Fills sandwiches (absent), a sub-30 non-bowl, and a second chicken method that is not the one sheet-pan roast.",
+  "near_duplicate_review": "Not a rename of Sheet-Pan Lemon Herb Chicken: breast cutlets, skillet dredge, rolls, no potatoes or green beans. Not a taco or a bowl.",
+  "recommendation_eligible": false,
+  "revision_r1": {
+    "applied_on": "2026-10-04",
+    "applied_by": "Juniper (Harbor Eats - Catalog Curator)",
+    "source_audits": "audits/crispy-skillet-chicken-sandwiches-audit-r1.md",
+    "addresses": [
+      "G",
+      "K",
+      "L",
+      "M"
+    ],
+    "certification": null,
+    "published": false
+  }
+}

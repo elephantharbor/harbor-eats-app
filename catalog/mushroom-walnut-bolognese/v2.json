@@ -1,0 +1,274 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "mushroom-walnut-bolognese",
+    "slug": "mushroom-walnut-bolognese",
+    "title": "Mushroom Walnut Bolognese",
+    "name": "Mushroom Walnut Bolognese",
+    "description": null,
+    "cuisine": "italian-inspired",
+    "meal_format": "pasta",
+    "primary_ingredient": "mushrooms",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.41,
+    "plate": "\ud83c\udf5d",
+    "tone": "tone-b",
+    "tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "sparks": [],
+    "chips": [
+      "Plant",
+      "45 min"
+    ],
+    "current_recipe_id": "rcp_mushroom-walnut-bolognese",
+    "current_version_id": "rv_mushroom-walnut-bolognese_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_mushroom-walnut-bolognese",
+    "dish_id": "mushroom-walnut-bolognese",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_mushroom-walnut-bolognese_v2",
+    "recipe_id": "rcp_mushroom-walnut-bolognese",
+    "dish_id": "mushroom-walnut-bolognese",
+    "version_number": 2,
+    "immutable": true,
+    "title": "Mushroom Walnut Bolognese",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "total_minutes": 45,
+    "effort": "Easy",
+    "methods": [
+      "skillet"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "cremini mushrooms",
+        "quantity": "1 lb cut into small cubes",
+        "note": null
+      },
+      {
+        "name": "walnuts",
+        "quantity": "\u00bd cup chopped",
+        "note": null
+      },
+      {
+        "name": "crushed tomatoes",
+        "quantity": "28 oz",
+        "note": "one can"
+      },
+      {
+        "name": "spaghetti",
+        "quantity": "12 oz",
+        "note": null
+      },
+      {
+        "name": "garlic",
+        "quantity": "3 cloves",
+        "note": null
+      },
+      {
+        "name": "olive oil",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "kosher salt",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "black pepper",
+        "quantity": "\u00bc tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Brown",
+        "body": "Cook the mushrooms and walnuts in the olive oil until deeply browned, in batches if the pan is crowded.",
+        "ingredient_refs": [
+          "cremini mushrooms",
+          "walnuts",
+          "olive oil"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Simmer sauce",
+        "body": "Add the garlic and tomatoes. Simmer 20 minutes. While that simmers, boil the spaghetti until tender and reserve \u00bd cup pasta water, so the boil shares the simmer instead of a separate block. The 30-minute cook is the browning plus this simmer. Season with the salt and pepper.",
+        "ingredient_refs": [
+          "garlic",
+          "crushed tomatoes",
+          "kosher salt",
+          "black pepper",
+          "spaghetti"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Toss pasta",
+        "body": "Serve the sauce over the spaghetti, loosening it with pasta water if needed.",
+        "ingredient_refs": [
+          "spaghetti"
+        ]
+      }
+    ],
+    "corrects_version_id": "rv_mushroom-walnut-bolognese_v1"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "italian",
+      "mushrooms",
+      "pasta"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [
+      "nuts",
+      "walnut",
+      "wheat"
+    ],
+    "equipment": [
+      "skillet"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "cremini mushrooms",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "cut into small cubes",
+        "raw_quantity": "1 lb cut into small cubes"
+      },
+      {
+        "name": "walnuts",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "chopped",
+        "raw_quantity": "\u00bd cup chopped"
+      },
+      {
+        "name": "crushed tomatoes",
+        "quantity": 28,
+        "unit": "oz",
+        "note": "one can",
+        "raw_quantity": "28 oz"
+      },
+      {
+        "name": "spaghetti",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "raw_quantity": "12 oz"
+      },
+      {
+        "name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "raw_quantity": "3 cloves"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "\u00bc tsp"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "mushroom-walnut-bolognese.webp",
+    "card_ref": "mushroom-walnut-bolognese-640.webp",
+    "master_filename": "mushroom-walnut-bolognese.webp",
+    "card_filename": "mushroom-walnut-bolognese-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04",
+      "round": "r9",
+      "note": "Active photo is small mushroom cubes tossed through the sauce with walnut pieces. Finer mince rendered as ground meat or grated cheese and was not installed."
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "legacy_draft_correction",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_draft_correction",
+    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Adds a boil step, 2 tbsp olive oil so the mushrooms can brown, and treats 1 can as 28 oz. dairy_free and plant stay unconditional dietary labels. nuts and walnut stay allergens, and wheat is added for the spaghetti. Pasta is not a diet. No cheese and no dairy-free-if wording. kitchen_tested is false. Recipe provenance is legacy_unknown."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Proposed correction for Cora. Not published. Not a certification. v1.json was not edited."
+  },
+  "draft": {
+    "for": "Cora",
+    "role": "legacy_audit_drafter",
+    "is_auditor": false,
+    "disposition": "CREATE_V2",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_this_pass": false,
+    "v1_left_unchanged": true,
+    "reason": "Spaghetti is never cooked, the browning step has no fat, and spark sheet is a false sheet pan.",
+    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Adds a boil step, 2 tbsp olive oil so the mushrooms can brown, and treats 1 can as 28 oz. dairy_free and plant stay unconditional dietary labels. nuts and walnut are allergens, not diets, and wheat is an allergen for the spaghetti. Pasta is not a diet. No cheese and no dairy-free-if wording. kitchen_tested is false. Recipe provenance is legacy_unknown. The written mushroom cut is small cubes, matching the active photo. A finer mince was not used because those images read as meat or cheese."
+  },
+  "package_revision": "legacy-audit-r3"
+}

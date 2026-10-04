@@ -1,0 +1,288 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_curator_draft",
+  "draft_role": "Curator draft for Cora. Not an auditor. This file records no certification decision.",
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "source_v1": "https://raw.githubusercontent.com/elephantharbor/harbor-eats-app/cursor/catalog-architecture-fa5e/catalog/thai-basil-eggplant-stir-fry/v1.json",
+  "v1_sha256": "8b91e38c720faf8318f23c8dd49e145ee8afe0485c4748e83b5379742925d1e8",
+  "revision_reason": "Serving basis, unused oil, garlic added off heat, unmeasured rice, and missing soy and wheat allergens.",
+  "material_deltas": [
+    "Eggplant 2 to 4 medium (about 1.25 lb) so base_servings 4 is a meal over rice.",
+    "Jasmine rice set to 1.5 cups dry, 2.25 cups water, 0.5 tsp kosher salt. v1 said only for serving.",
+    "Neutral oil 2 tbsp to 3 tbsp: 2 tbsp to brown the eggplant, 1 tbsp to bloom the garlic. v1 listed 2 and the step used 1.",
+    "Garlic cooks 30 seconds in oil. v1 added garlic off the heat.",
+    "Soy sauce stays 2 tbsp and is specified as wheat-containing, not tamari and not fish sauce.",
+    "Allergens set to soy and wheat. Dietary tags stay plant and dairy-free. Gluten-free is not claimed.",
+    "Clock stays prep 15, cook 25, total 40. The rice simmers 15 minutes and rests 5 while the eggplant browns, including a second batch, so those blocks share the cook clock. No chili was added."
+  ],
+  "dish": {
+    "dish_id": "thai-basil-eggplant-stir-fry",
+    "slug": "thai-basil-eggplant-stir-fry",
+    "title": "Thai Basil Eggplant Stir-Fry",
+    "name": "Thai Basil Eggplant Stir-Fry",
+    "description": "Browned Japanese eggplant and wilted Thai basil over jasmine rice, seasoned with soy sauce and garlic.",
+    "cuisine": "thai-inspired",
+    "meal_format": "stir-fry",
+    "primary_ingredient": "eggplant",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.54,
+    "plate": "🍆",
+    "tone": "tone-b",
+    "tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "sparks": [],
+    "chips": [
+      "Plant",
+      "35 min"
+    ],
+    "current_recipe_id": "rcp_thai-basil-eggplant-stir-fry",
+    "current_version_id": "rv_thai-basil-eggplant-stir-fry_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_thai-basil-eggplant-stir-fry",
+    "dish_id": "thai-basil-eggplant-stir-fry",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "copied_from_third_party": false,
+      "note": "Corrective draft against legacy v1. Authorship of the legacy text is not known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_thai-basil-eggplant-stir-fry_v2",
+    "recipe_id": "rcp_thai-basil-eggplant-stir-fry",
+    "dish_id": "thai-basil-eggplant-stir-fry",
+    "version_number": 2,
+    "supersedes": "rv_thai-basil-eggplant-stir-fry_v1",
+    "immutable": false,
+    "immutability_note": "Draft for audit. v1.json was not edited. Not kitchen-tested and not published.",
+    "title": "Thai Basil Eggplant Stir-Fry",
+    "description": "Browned Japanese eggplant and wilted Thai basil over jasmine rice, seasoned with soy sauce and garlic.",
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": "none",
+    "doneness": "Eggplant browned and tender, center creamy with no raw white spongy core. Basil wilted, not blackened. Rice tender.",
+    "substitutions": {
+      "soy sauce": "Keep wheat-containing soy sauce. Wheat-free tamari would drop the wheat allergen and is not this version.",
+      "fish sauce": "Do not substitute fish sauce. It would drop the plant claim and add finfish."
+    },
+    "ingredients": [
+      {
+        "name": "Japanese eggplant",
+        "quantity": "4 medium (about 1 1/4 lb)",
+        "note": "sliced 1/2 inch thick on the diagonal"
+      },
+      {
+        "name": "Thai basil",
+        "quantity": "1 cup",
+        "note": "packed leaves"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "2 tbsp",
+        "note": "standard wheat-containing soy sauce, not tamari and not fish sauce"
+      },
+      {
+        "name": "garlic",
+        "quantity": "3 cloves",
+        "note": "minced"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "3 tbsp",
+        "note": "grapeseed or canola, not sesame oil; 2 tbsp to brown the eggplant, 1 tbsp to bloom the garlic"
+      },
+      {
+        "name": "jasmine rice",
+        "quantity": "1 1/2 cups",
+        "note": "dry"
+      },
+      {
+        "name": "water",
+        "quantity": "2 1/4 cups",
+        "note": "for the rice"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": "1/2 tsp",
+        "note": "in the rice only; Diamond Crystal. If Morton, use 1/4 tsp. The stir-fry is salted by the soy sauce."
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Cook the rice",
+        "body": "Rinse the jasmine rice. Bring it to a boil with the water and the kosher salt. Cover, turn the heat to low, and simmer 15 minutes. Rest it covered off the heat 5 minutes, then fluff. The eggplant browns while this rice simmers and rests, including a second batch if the pan is crowded, so the rice does not have to finish before the skillet starts. This is the starch for all 4 servings. v1 said only for serving.",
+        "ingredient_refs": [
+          "jasmine rice",
+          "water",
+          "kosher salt"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the eggplant",
+        "body": "While the rice simmers and rests, heat a wide skillet over high heat with 2 tbsp of the neutral oil. Add the Japanese eggplant in a single layer, in two batches if it would crowd. Stir-fry until browned and tender, 6-8 minutes per batch. The center of a piece should be creamy, with no raw white spongy core. Crowding will steam it instead of browning it.",
+        "ingredient_refs": [
+          "Japanese eggplant",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Season",
+        "body": "Add the remaining 1 tbsp neutral oil. Add the garlic and cook 30 seconds, until fragrant. Do not add the garlic off the heat; v1 did, and it stays harsh. Add the soy sauce and toss to coat. Take the pan off the heat and stir in the Thai basil until just wilted. There is no chili, no curry paste, and no fish sauce in this version.",
+        "ingredient_refs": [
+          "garlic",
+          "soy sauce",
+          "Thai basil",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Serve",
+        "body": "Serve the eggplant and basil over the rice. Four servings.",
+        "ingredient_refs": [
+          "jasmine rice"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "eggplant",
+      "stir-fries",
+      "thai"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [
+      "soy",
+      "wheat"
+    ],
+    "allergen_note": "Soy and wheat come from standard soy sauce. Dietary eligibility is separate: plant and dairy-free. Gluten-free is not claimed.",
+    "equipment": [
+      "wide skillet",
+      "saucepan with lid"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "Japanese eggplant",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 1.25 lb; sliced 1/2 inch",
+        "raw_quantity": "4 medium (about 1 1/4 lb)"
+      },
+      {
+        "name": "Thai basil",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "packed leaves",
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "wheat-containing",
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": "minced",
+        "raw_quantity": "3 cloves"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "not sesame; 2 tbsp eggplant, 1 tbsp garlic",
+        "raw_quantity": "3 tbsp"
+      },
+      {
+        "name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "dry",
+        "raw_quantity": "1 1/2 cups"
+      },
+      {
+        "name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "raw_quantity": "2 1/4 cups"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "rice only",
+        "raw_quantity": "1/2 tsp"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "thai-basil-eggplant-stir-fry.webp",
+    "card_ref": "thai-basil-eggplant-stir-fry-640.webp",
+    "master_filename": "thai-basil-eggplant-stir-fry.webp",
+    "card_filename": "thai-basil-eggplant-stir-fry-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": null,
+    "factory_certified": false,
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "decision": null,
+    "note": "Curator correction draft only. No certification decision is recorded. kitchen_tested is false."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "unpublished_curator_draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Not published. Does not replace live v1 and does not touch production, D1, or the app repo."
+  },
+  "package_revision": "legacy-audit-r1"
+}
