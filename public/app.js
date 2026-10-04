@@ -2568,11 +2568,24 @@
     return res.plan;
   }
 
+  function shopLineCompareKey(line) {
+    if (!line || !line.ingredient_id) return null;
+    return String(line.ingredient_id) + "\0" + String(line.unit || "");
+  }
+
+  function sameParticipantIdsForListToast(current, next) {
+    const a = (current || []).slice().sort();
+    const b = (next || []).slice().sort();
+    if (a.length !== b.length) return false;
+    return a.every(function (id, index) {
+      return id === b[index];
+    });
+  }
+
   function shopLinesMateriallyChanged(beforeLines, afterLines) {
     function row(line) {
       if (!line) return null;
       return {
-        line_id: line.line_id,
         quantity: Number(line.quantity) || 0,
         still_needed: !!line.still_needed,
         list_state: line.list_state || "open",
@@ -2580,13 +2593,15 @@
     }
     const before = {};
     (beforeLines || []).forEach(function (l) {
+      const key = shopLineCompareKey(l);
       const r = row(l);
-      if (r && r.line_id) before[r.line_id] = r;
+      if (key && r) before[key] = r;
     });
     const after = {};
     (afterLines || []).forEach(function (l) {
+      const key = shopLineCompareKey(l);
       const r = row(l);
-      if (r && r.line_id) after[r.line_id] = r;
+      if (key && r) after[key] = r;
     });
     const ids = {};
     Object.keys(before).forEach(function (id) {
@@ -2612,7 +2627,6 @@
     function row(line) {
       if (!line) return null;
       return {
-        line_id: line.line_id,
         quantity: Number(line.quantity) || 0,
         still_needed: !!line.still_needed,
         list_state: line.list_state || "open",
@@ -2623,13 +2637,15 @@
     }
     const before = {};
     (beforeLines || []).forEach(function (l) {
+      const key = shopLineCompareKey(l);
       const r = row(l);
-      if (r && r.line_id) before[r.line_id] = r;
+      if (key && r) before[key] = r;
     });
     const after = {};
     (afterLines || []).forEach(function (l) {
+      const key = shopLineCompareKey(l);
       const r = row(l);
-      if (r && r.line_id) after[r.line_id] = r;
+      if (key && r) after[key] = r;
     });
     const ids = {};
     Object.keys(before).forEach(function (id) {
@@ -2704,15 +2720,28 @@
     applyDinnerPlan(res.plan);
     if (state.view === "shopList") await refreshDinnerShopping();
     if (affectsList) {
-      const shopLinesAfter =
-        (state.dinnerShop && state.dinnerShop.lines) || res.plan.shop_lines || [];
-      const listChanged = shopLinesMateriallyChanged(shopLinesBefore || [], shopLinesAfter);
-      if (listChanged) {
-        if (res.plan.shopping_started_at) {
-          const counts = shopListChangeCountsFromDiff(shopLinesBefore || [], shopLinesAfter);
-          toastListChangeCounts(counts.added, counts.removed);
-        } else {
-          toast("List updated.");
+      const participantNoop =
+        payload.op === "set_participants" &&
+        (function () {
+          const meal = (plan.meals || []).find(function (m) {
+            return m.meal_id === payload.meal_id;
+          });
+          return meal && sameParticipantIdsForListToast(meal.participant_ids, payload.participant_ids);
+        })();
+      if (!participantNoop) {
+        const shopLinesAfter =
+          (state.dinnerShop && state.dinnerShop.lines) || res.plan.shop_lines || [];
+        const listChanged = shopLinesMateriallyChanged(shopLinesBefore || [], shopLinesAfter);
+        if (listChanged) {
+          const shoppingStarted =
+            !!(res.plan && res.plan.shopping_started_at) ||
+            planShoppingStarted();
+          if (shoppingStarted) {
+            const counts = shopListChangeCountsFromDiff(shopLinesBefore || [], shopLinesAfter);
+            toastListChangeCounts(counts.added, counts.removed);
+          } else {
+            toast("List updated.");
+          }
         }
       }
     }

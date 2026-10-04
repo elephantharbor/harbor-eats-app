@@ -162,7 +162,7 @@ export async function loadDinnerPlan(db, dinnerPlanId) {
       updated_at: row.updated_at,
     });
   }
-  return {
+  const document = {
     dinner_plan_id: plan.dinner_plan_id,
     household_id: plan.household_id,
     status: plan.status,
@@ -195,6 +195,8 @@ export async function loadDinnerPlan(db, dinnerPlanId) {
     shop_deltas: deltas,
     votes,
   };
+  scopeShopLineIds(document);
+  return document;
 }
 
 export async function saveDinnerPlan(db, plan) {

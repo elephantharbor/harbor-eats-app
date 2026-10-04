@@ -92,6 +92,31 @@ describe("shopLineChangeMeta", () => {
     expect(meta).toBeNull();
   });
 
+  it("ignores line_id rescoping when ingredient rows are unchanged", () => {
+    const before = [
+      {
+        line_id: "sl_legacy_flour_cup",
+        ingredient_id: "flour",
+        unit: "cup",
+        quantity: 2,
+        still_needed: true,
+        list_state: "open",
+      },
+    ];
+    const after = [
+      {
+        line_id: "sl_dp_test_flour_cup",
+        ingredient_id: "flour",
+        unit: "cup",
+        quantity: 2,
+        still_needed: true,
+        list_state: "open",
+      },
+    ];
+    expect(shopListMateriallyChanged(before, after)).toBe(false);
+    expect(shopListChangeCounts(before, after)).toEqual({ added: 0, removed: 0 });
+  });
+
   it("treats an unchanged shopping list as no material change", () => {
     const lines = [
       {

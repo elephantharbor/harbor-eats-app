@@ -523,4 +523,15 @@ describe("Cycle 3B client invite publish and list-change toast", () => {
     expect(mutate.slice(0, gate)).not.toMatch(/toast\(/);
     expect(mutate.slice(0, gate)).not.toContain("toastListChangeCounts");
   });
+
+  it("skips list toasts when set_participants leaves the diner set unchanged", () => {
+    const mutate = app.slice(
+      app.indexOf("async function mutateDinnerPlan"),
+      app.indexOf("function dinnerPlanErrorToast")
+    );
+    expect(mutate).toContain('payload.op === "set_participants"');
+    expect(mutate).toContain("participantNoop");
+    expect(mutate).toContain("sameParticipantIdsForListToast");
+    expect(app).toContain("function shopLineCompareKey");
+  });
 });

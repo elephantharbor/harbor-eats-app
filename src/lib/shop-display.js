@@ -24,12 +24,18 @@ export function normalizeShopLineForCompare(line) {
   };
 }
 
+function shopLineCompareKey(line) {
+  if (!line || !line.ingredient_id) return null;
+  return String(line.ingredient_id) + "\0" + String(line.unit || "");
+}
+
 function shopCompareMap(lines) {
   const map = new Map();
   for (const line of lines || []) {
+    const key = shopLineCompareKey(line);
     const row = normalizeShopLineForCompare(line);
-    if (!row || !row.line_id) continue;
-    map.set(row.line_id, row);
+    if (!key || !row) continue;
+    map.set(key, row);
   }
   return map;
 }
