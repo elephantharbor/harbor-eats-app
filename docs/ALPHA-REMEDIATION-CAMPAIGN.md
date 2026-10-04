@@ -363,7 +363,7 @@ No merge commit. No pull request. `main` was not pushed. Production D1 `23aa3db3
 
 **D-01 status after closure:** **Implementation complete / awaiting Oversight acceptance.** Not accepted by Oversight. GATE-OPUS-55 remains not started.
 
-**Branch tip after closure docs commit:** `91ed533ef4bc1e808c71fa72c4e8bdb3f594ae9b`
+**Branch tip after closure docs commit:** `4f880ca6d2d3dc68543155de91c7abb1062fbc7f`
 
 ### Definition of done
 
