@@ -330,7 +330,7 @@ Broad suite on the tested runtime tree:
 
 **Tested runtime SHA:** `991db9e4770df6b460d3f9594ce29a114101c33e` (no follow-up runtime commits before the suite).
 
-**Branch tip (integration):** `da2a8a4214484e4aaea154a05ef2f312251ab4fb` (product files match `991db9e`).
+**Branch tip (integration):** `0e3dd32e2e2c2ab1c29655b475a96abc782835bf` (product files match `991db9e`).
 
 ### Definition of done
 
