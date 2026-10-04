@@ -1,0 +1,200 @@
+{
+  "catalog_contract": "flavorweave-legacy-audit-draft",
+  "catalog_contract_note": "Draft v2 for Cora. Not an audit. Not a certification. v1.json is the untouched GitHub download.",
+  "draft_for": "Cora",
+  "auditor": null,
+  "certification": null,
+  "not_a_certification": true,
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "kitchen_tested": false,
+  "provenance": "legacy_unknown",
+  "source_v1": {
+    "repo": "elephantharbor/harbor-eats-app",
+    "ref": "cursor/catalog-architecture-fa5e",
+    "path": "catalog/maple-mustard-glazed-salmon/v1.json",
+    "raw_url": "https://raw.githubusercontent.com/elephantharbor/harbor-eats-app/cursor/catalog-architecture-fa5e/catalog/maple-mustard-glazed-salmon/v1.json",
+    "git_blob_sha": "1931c29d886b3493cfb504199b94f4999e102c80",
+    "sha256": "2487330a2e9b20de6ab5b6d05a6438a833cd05c6ee015d842f9b562493e80dbf",
+    "edited": false
+  },
+  "dish": {
+    "dish_id": "maple-mustard-glazed-salmon",
+    "slug": "maple-mustard-glazed-salmon",
+    "title": "Maple Mustard Glazed Salmon",
+    "name": "Maple Mustard Glazed Salmon",
+    "description": "Salmon fillets and asparagus brushed with Dijon and maple syrup and roasted until the salmon is opaque at the center.",
+    "cuisine": "american",
+    "meal_format": "fillet",
+    "primary_ingredient": "salmon",
+    "chips": [
+      "Fish",
+      "25 min"
+    ],
+    "sparks": [
+      "fish",
+      "sheet"
+    ],
+    "current_recipe_id": "rcp_maple-mustard-glazed-salmon",
+    "current_version_id": "rv_maple-mustard-glazed-salmon_v2",
+    "live_catalog_still_points_at": "rv_maple-mustard-glazed-salmon_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_maple-mustard-glazed-salmon",
+    "dish_id": "maple-mustard-glazed-salmon",
+    "visibility": "draft",
+    "household_id": null,
+    "provenance": "legacy_unknown",
+    "provenance_note": "Legacy menu text of unknown origin. This draft reconciles that text. It does not claim a kitchen test."
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_maple-mustard-glazed-salmon_v2",
+    "replaces_recipe_version_id": "rv_maple-mustard-glazed-salmon_v1",
+    "version_number": 2,
+    "immutable": false,
+    "draft": true,
+    "title": "Maple Mustard Glazed Salmon",
+    "description": "Salmon fillets and asparagus brushed with Dijon and maple syrup and roasted until the salmon is opaque at the center.",
+    "base_servings": 4,
+    "serving_basis_note": "Quantities are for 4 servings. One- and two-serving floors are not in this draft.",
+    "prep_minutes": 10,
+    "cook_minutes": 15,
+    "total_minutes": 25,
+    "effort": "Easy",
+    "methods": [
+      "oven"
+    ],
+    "heat": "Oven 400 F on a sheet pan.",
+    "doneness": "Salmon is done when opaque at the center, 12 to 15 minutes at 400 F. That is cooked through, not rare and not a medium-rare center. Asparagus is tender at the same time.",
+    "ingredients": [
+      {
+        "name": "salmon fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "About 6 oz each, 1.5 lb total. Drafter weight. v1 said only 4. Skin-on or skinless as sold. Not a steak and not a whole side.",
+        "preparation": null,
+        "role": "protein",
+        "drafter_quantity": true
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "Store-bought. Not a dairy food and not an allergen token in this catalog.",
+        "preparation": null,
+        "role": "glaze",
+        "drafter_quantity": false
+      },
+      {
+        "name": "maple syrup",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "Maple syrup, not pancake syrup. v1 mixes it into the glaze. The glaze step refs omitted it.",
+        "preparation": null,
+        "role": "glaze",
+        "drafter_quantity": false
+      },
+      {
+        "name": "asparagus",
+        "quantity": 1,
+        "unit": "bunch",
+        "note": "About 1 lb. Drafter weight. v1 said 1 bunch.",
+        "preparation": null,
+        "role": "vegetable",
+        "drafter_quantity": true
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Glaze",
+        "body": "Heat the oven to 400 F. Mix the Dijon and the maple syrup. Brush it on the salmon and the asparagus. No oil is listed, and none is added.",
+        "ingredient_refs": [
+          "Dijon mustard",
+          "maple syrup",
+          "salmon fillets",
+          "asparagus"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Roast",
+        "body": "Roast on a sheet pan at 400 F for 12 to 15 minutes, until the salmon is opaque at the center and the asparagus is tender. Opaque at the center means cooked through, not rare.",
+        "ingredient_refs": [
+          "salmon fillets",
+          "asparagus"
+        ]
+      }
+    ],
+    "equipment": [
+      "sheet pan",
+      "small bowl",
+      "spoon",
+      "oven"
+    ],
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Dairy-free. Dijon and maple syrup are not dairy. Not plant and not vegetarian. fish and finfish are not dietary labels. No wheat ingredient is listed. Gluten-free is not claimed.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish from salmon.",
+      "Dijon is not an allergen token here and it is not dairy.",
+      "No egg, milk, soy, wheat, sesame, peanut, tree_nut, or shellfish in the named foods."
+    ],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "hh001_eligible": false,
+      "hh001_reason": "Finfish. Not an HH001 plant meal."
+    },
+    "vocabulary_tag_ids": [
+      "american",
+      "salmon"
+    ],
+    "kitchen_tested": false,
+    "provenance": "legacy_unknown",
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "changes_from_v1": [
+      "Methods were stovetop. The cook is a 400 F roast, and the equipment already said sheet pan. v2 method is oven.",
+      "Clock was prep 15 plus cook 25 equals 40. The roast is 12 to 15 minutes and the chip said 25. v2 is prep 10 plus cook 15 equals 25.",
+      "Four fillets had no weight. v2 says about 6 oz each. One bunch of asparagus had no weight. v2 says about 1 lb. Both are drafter amounts.",
+      "Maple syrup was in the glaze sentence and missing from the glaze step ingredient refs.",
+      "Doneness was null. v2 keeps the v1 criterion, opaque at the center, and states that this is cooked through."
+    ],
+    "unchanged_from_v1": [
+      "Title, American cuisine, fillet format, 4 salmon fillets, 2 tbsp Dijon, 2 tbsp maple syrup, 1 bunch asparagus, 400 F, 12 to 15 minutes, glaze brushed on both fish and asparagus. No oil, salt, pepper, lemon, or garlic added."
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "maple-mustard-glazed-salmon.webp",
+    "card_ref": "maple-mustard-glazed-salmon-640.webp",
+    "master_filename": "maple-mustard-glazed-salmon.webp",
+    "card_filename": "maple-mustard-glazed-salmon-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "package_revision": "legacy-audit-r0"
+}

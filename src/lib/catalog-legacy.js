@@ -8,6 +8,7 @@ import { projectLegacyConcept } from "./recipe-package.js";
 import { MEAL_CONCEPTS } from "./recipe-store.js";
 
 export const LEGACY_CONTRACT = "flavorweave-legacy-catalog-package";
+export const LEGACY_AUDIT_DRAFT_CONTRACT = "flavorweave-legacy-audit-draft";
 
 export const LEGACY_EVIDENCE_NOTE =
   "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero.";

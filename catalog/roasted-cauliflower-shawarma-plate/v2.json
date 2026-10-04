@@ -1,0 +1,251 @@
+{
+  "catalog_contract": "flavorweave-legacy-audit-draft",
+  "catalog_contract_note": "Draft v2 for Cora. Not an audit. Not a certification. v1.json is the untouched GitHub download.",
+  "draft_for": "Cora",
+  "auditor": null,
+  "certification": null,
+  "not_a_certification": true,
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "kitchen_tested": false,
+  "provenance": "legacy_unknown",
+  "source_v1": {
+    "repo": "elephantharbor/harbor-eats-app",
+    "ref": "cursor/catalog-architecture-fa5e",
+    "path": "catalog/roasted-cauliflower-shawarma-plate/v1.json",
+    "raw_url": "https://raw.githubusercontent.com/elephantharbor/harbor-eats-app/cursor/catalog-architecture-fa5e/catalog/roasted-cauliflower-shawarma-plate/v1.json",
+    "git_blob_sha": "ec6a864eabf641313992f58e365b66b46245c031",
+    "sha256": "a52ec4328eab8f6b3e110a0779cf8318d2a609418834c298d71089529578293f",
+    "edited": false
+  },
+  "dish": {
+    "dish_id": "roasted-cauliflower-shawarma-plate",
+    "slug": "roasted-cauliflower-shawarma-plate",
+    "title": "Roasted Cauliflower Shawarma Plate",
+    "name": "Roasted Cauliflower Shawarma Plate",
+    "description": "Oven-roasted cauliflower with store-bought shawarma spice, tahini and lemon drizzle, diced cucumber, and warm pita.",
+    "cuisine": "middle-eastern",
+    "meal_format": "plate",
+    "primary_ingredient": "cauliflower",
+    "chips": [
+      "Plant",
+      "40 min"
+    ],
+    "sparks": [
+      "crispy",
+      "bright"
+    ],
+    "current_recipe_id": "rcp_roasted-cauliflower-shawarma-plate",
+    "current_version_id": "rv_roasted-cauliflower-shawarma-plate_v2",
+    "live_catalog_still_points_at": "rv_roasted-cauliflower-shawarma-plate_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_roasted-cauliflower-shawarma-plate",
+    "dish_id": "roasted-cauliflower-shawarma-plate",
+    "visibility": "draft",
+    "household_id": null,
+    "provenance": "legacy_unknown",
+    "provenance_note": "Legacy menu text of unknown origin. This draft reconciles that text. It does not claim a kitchen test."
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_roasted-cauliflower-shawarma-plate_v2",
+    "replaces_recipe_version_id": "rv_roasted-cauliflower-shawarma-plate_v1",
+    "version_number": 2,
+    "immutable": false,
+    "draft": true,
+    "title": "Roasted Cauliflower Shawarma Plate",
+    "description": "Oven-roasted cauliflower with store-bought shawarma spice, tahini and lemon drizzle, diced cucumber, and warm pita.",
+    "base_servings": 4,
+    "serving_basis_note": "Quantities are for 4 servings. One- and two-serving floors are not in this draft.",
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "oven"
+    ],
+    "heat": "Oven 425 F. The sauce is not cooked.",
+    "doneness": "Cauliflower is done when the edges are charred and a stem is tender, about 25 minutes at 425 F.",
+    "ingredients": [
+      {
+        "name": "cauliflower",
+        "quantity": 1,
+        "unit": "head",
+        "note": "One large head. v1 named florets and quantified a head.",
+        "preparation": "cut into florets",
+        "role": "main",
+        "drafter_quantity": false
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "For tossing the cauliflower. Same amount as v1.",
+        "preparation": null,
+        "role": "fat",
+        "drafter_quantity": false
+      },
+      {
+        "name": "shawarma spice blend",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "Store-bought blend, same as v1. Milk, honey, nuts, wheat, and sesame in the blend are not contracted, so this package does not claim dairy-free.",
+        "preparation": null,
+        "role": "seasoning",
+        "drafter_quantity": false
+      },
+      {
+        "name": "tahini",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "Sesame paste. Same amount as v1.",
+        "preparation": null,
+        "role": "sauce",
+        "drafter_quantity": false
+      },
+      {
+        "name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "Juice of 1/2 lemon in the sauce. The other half is not served and is not a plated wedge.",
+        "preparation": null,
+        "role": "acid",
+        "drafter_quantity": false
+      },
+      {
+        "name": "water",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "v1 said water to drizzle and did not list it. Drafter amount to thin 3 tbsp tahini into a drizzle.",
+        "preparation": null,
+        "role": "liquid",
+        "drafter_quantity": true
+      },
+      {
+        "name": "cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "role": "vegetable",
+        "drafter_quantity": false
+      },
+      {
+        "name": "pita",
+        "quantity": 4,
+        "unit": "count",
+        "note": "Rounds. Wheat. Warmed, not fried and not filled.",
+        "preparation": null,
+        "role": "starch",
+        "drafter_quantity": false
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Roast the cauliflower",
+        "body": "Preheat the oven to 425 F. While it heats, toss the florets with the oil and the shawarma spice and spread them in one layer on a sheet pan. Roast 25 minutes in the hot oven, until the edges are charred and a stem is tender.",
+        "ingredient_refs": [
+          "cauliflower",
+          "neutral oil",
+          "shawarma spice blend"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Make the sauce",
+        "body": "Whisk the tahini with the juice of 1/2 lemon and the 3 tbsp water until it drizzles off the spoon. Do not add garlic. The remaining lemon half is not served.",
+        "ingredient_refs": [
+          "tahini",
+          "lemon",
+          "water"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Warm the pita and plate",
+        "body": "Dice the cucumber. For the last 3 minutes of the roast, warm the pita wrapped in foil in the same oven. Serve the cauliflower, cucumber, sauce, and pita on a plate. Do not wrap it, do not put it in a bowl, and do not add feta, herbs, hummus, or tomato.",
+        "ingredient_refs": [
+          "cucumber",
+          "pita",
+          "cauliflower"
+        ]
+      }
+    ],
+    "equipment": [
+      "sheet pan",
+      "mixing bowl",
+      "whisk",
+      "foil",
+      "oven"
+    ],
+    "dietary_labels": [
+      "plant"
+    ],
+    "dietary_label_note": "Named foods have no meat, poultry, or fish, so plant stays. The store-bought shawarma blend is not contracted against milk, so dairy_free is not claimed. Not gluten-free. Not a nut-free blend.",
+    "allergens": [
+      "sesame",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Sesame from tahini. Wheat from pita.",
+      "No egg, milk, soy, peanut, tree_nut, shellfish, or finfish in the named foods.",
+      "v1 allergens were an empty array."
+    ],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": null,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "Tahini is sesame, not a nut. The spice blend is not contracted as nut-free.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001-eligible. The shawarma spice blend is not contracted. Not kitchen-tested.",
+      "dairy_note": "Dairy in the shawarma blend is not contracted, so this package does not claim dairy-free."
+    },
+    "vocabulary_tag_ids": [
+      "middle-eastern",
+      "cauliflower",
+      "crispy"
+    ],
+    "kitchen_tested": false,
+    "provenance": "legacy_unknown",
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "changes_from_v1": [
+      "Methods were stovetop. The cook is a 425 F roast. v2 method is oven. Pita is warmed in that oven, which v1 left as the word warm.",
+      "Water in the tahini sauce was not an ingredient. v2 lists 3 tbsp, a drafter amount.",
+      "Allergens were empty. Tahini is sesame and pita is wheat.",
+      "Lemon use is the juice of half. v1 bought 1 lemon. The other half is explicitly not served.",
+      "Doneness was null. The step already said charred at the edges. v2 records that."
+    ],
+    "unchanged_from_v1": [
+      "Title, cuisine, plate format, 1 large head of cauliflower, 2 tbsp shawarma blend, 2 tbsp oil, 3 tbsp tahini, 1 lemon, 1 cucumber, 4 pita rounds, 425 F, 25 minutes. Clock stays prep 15 plus cook 25 equals 40, which matches the chip. No salt and no garlic were added, because v1 did not use them."
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "roasted-cauliflower-shawarma-plate.webp",
+    "card_ref": "roasted-cauliflower-shawarma-plate-640.webp",
+    "master_filename": "roasted-cauliflower-shawarma-plate.webp",
+    "card_filename": "roasted-cauliflower-shawarma-plate-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "package_revision": "legacy-audit-r2"
+}

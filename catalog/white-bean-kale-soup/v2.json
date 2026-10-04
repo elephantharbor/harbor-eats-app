@@ -1,0 +1,242 @@
+{
+  "catalog_contract": "flavorweave-legacy-audit-draft",
+  "catalog_contract_note": "Draft v2 for Cora. Not an audit. Not a certification. v1.json is the untouched GitHub download.",
+  "draft_for": "Cora",
+  "auditor": null,
+  "certification": null,
+  "not_a_certification": true,
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "kitchen_tested": false,
+  "provenance": "legacy_unknown",
+  "source_v1": {
+    "repo": "elephantharbor/harbor-eats-app",
+    "ref": "cursor/catalog-architecture-fa5e",
+    "path": "catalog/white-bean-kale-soup/v1.json",
+    "raw_url": "https://raw.githubusercontent.com/elephantharbor/harbor-eats-app/cursor/catalog-architecture-fa5e/catalog/white-bean-kale-soup/v1.json",
+    "git_blob_sha": "1144f79e427c5388478a46757783396df504247c",
+    "sha256": "483911d5bf263be3e9db0eeea6ee3c18368d1a1a303d4538833c9d98cf73f63c",
+    "edited": false
+  },
+  "dish": {
+    "dish_id": "white-bean-kale-soup",
+    "slug": "white-bean-kale-soup",
+    "title": "White Bean Kale Soup",
+    "name": "White Bean Kale Soup",
+    "description": "Stovetop soup of cannellini beans, fennel, diced tomato, and kale in vegetable broth.",
+    "cuisine": "mediterranean",
+    "meal_format": "soup",
+    "primary_ingredient": "beans",
+    "chips": [
+      "Plant",
+      "45 min"
+    ],
+    "sparks": [],
+    "current_recipe_id": "rcp_white-bean-kale-soup",
+    "current_version_id": "rv_white-bean-kale-soup_v2",
+    "live_catalog_still_points_at": "rv_white-bean-kale-soup_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_white-bean-kale-soup",
+    "dish_id": "white-bean-kale-soup",
+    "visibility": "draft",
+    "household_id": null,
+    "provenance": "legacy_unknown",
+    "provenance_note": "Legacy menu text of unknown origin. This draft reconciles that text. It does not claim a kitchen test."
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_white-bean-kale-soup_v2",
+    "replaces_recipe_version_id": "rv_white-bean-kale-soup_v1",
+    "version_number": 2,
+    "immutable": false,
+    "draft": true,
+    "title": "White Bean Kale Soup",
+    "description": "Stovetop soup of cannellini beans, fennel, diced tomato, and kale in vegetable broth.",
+    "base_servings": 4,
+    "serving_basis_note": "Quantities are for 4 servings. One- and two-serving floors are not in this draft.",
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "total_minutes": 45,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "heat": "Medium heat to soften the fennel, then a simmer. No oven.",
+    "doneness": "Fennel is softened at 5 minutes. The soup simmers 20 minutes. Kale is tender at about 5 minutes more. Canned beans are already cooked.",
+    "ingredients": [
+      {
+        "name": "fennel",
+        "quantity": 1,
+        "unit": "bulb",
+        "note": null,
+        "preparation": "sliced",
+        "role": "vegetable",
+        "drafter_quantity": false
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "Same amount as v1.",
+        "preparation": null,
+        "role": "fat",
+        "drafter_quantity": false
+      },
+      {
+        "name": "cannellini beans",
+        "quantity": 2,
+        "unit": "can",
+        "note": "15 oz cans. Drained and rinsed. v1 said 2 cans and did not name the size or draining. Draining is a drafter decision so the 6 cups of broth stay the liquid.",
+        "preparation": "drained and rinsed",
+        "role": "main",
+        "drafter_quantity": true
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "Plain vegetable broth. Check the carton. Wheat or soy on the label would be an allergen v1 did not record.",
+        "preparation": null,
+        "role": "liquid",
+        "drafter_quantity": false
+      },
+      {
+        "name": "diced tomatoes",
+        "quantity": 1,
+        "unit": "can",
+        "note": "14.5 oz, with their liquid. v1 said 1 can diced and the simmer step uses them.",
+        "preparation": null,
+        "role": "vegetable",
+        "drafter_quantity": true
+      },
+      {
+        "name": "kale",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "Chopped. Same amount as v1.",
+        "preparation": "chopped",
+        "role": "vegetable",
+        "drafter_quantity": false
+      },
+      {
+        "name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "v1 said season and listed no salt. Drafter amount, added once at the end. Not kitchen-tested.",
+        "preparation": null,
+        "role": "seasoning",
+        "drafter_quantity": true
+      },
+      {
+        "name": "black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "v1 said season and listed no pepper. Drafter amount.",
+        "preparation": null,
+        "role": "seasoning",
+        "drafter_quantity": true
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Saute the fennel",
+        "body": "Soften the sliced fennel in the oil over medium heat for 5 minutes. This is a pot on the stove, not a sheet pan.",
+        "ingredient_refs": [
+          "fennel",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Simmer",
+        "body": "Add the drained beans, broth, and diced tomatoes with their liquid. Simmer 20 minutes.",
+        "ingredient_refs": [
+          "cannellini beans",
+          "vegetable broth",
+          "diced tomatoes"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Wilt the kale and season",
+        "body": "Stir in the kale and cook about 5 minutes, until tender. Stir in the kosher salt and black pepper. Do not add cheese, sausage, cream, or bread.",
+        "ingredient_refs": [
+          "kale",
+          "kosher salt",
+          "black pepper"
+        ]
+      }
+    ],
+    "equipment": [
+      "large pot",
+      "knife",
+      "cutting board"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "dietary_label_note": "Plant and dairy-free. No cheese, cream, sausage, or bread. Not a gluten-free claim, because the broth carton was not checked.",
+    "allergens": [],
+    "allergen_notes": [
+      "No egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, or finfish in the named foods.",
+      "Empty means those tokens are not in the named ingredients. It does not mean a flavored broth was checked. If the carton lists wheat or soy, add that token.",
+      "v1 also had an empty allergen array. The empty array is kept on purpose."
+    ],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant ingredients. No dairy, meat, poultry, finfish, shellfish, or nuts. Broth label was not checked. Not kitchen-tested."
+    },
+    "vocabulary_tag_ids": [
+      "mediterranean",
+      "soups"
+    ],
+    "kitchen_tested": false,
+    "provenance": "legacy_unknown",
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "changes_from_v1": [
+      "Equipment listed a sheet pan and the spark was sheet. No step uses a sheet pan. v2 equipment is a pot. Spark sheet is not carried.",
+      "Chip said 35 min. Metadata said prep 15 plus cook 25 equals 40. Steps are 5 plus 20 plus an untimed kale wilt. v2 cook is 30 and total is 45.",
+      "Season had no salt or pepper. v2 adds 1/2 tsp kosher salt and 1/4 tsp black pepper, drafter amounts.",
+      "Can sizes were unnamed. v2 uses 15 oz beans and a 14.5 oz can of diced tomatoes.",
+      "Beans are drained and rinsed. v1 did not say. That keeps the 6 cups of broth as the liquid.",
+      "Tomatoes were in the simmer sentence and missing from ingredient_refs. v2 refs include them.",
+      "Doneness was null. v2 records softened fennel, a 20-minute simmer, and tender kale."
+    ],
+    "unchanged_from_v1": [
+      "Title, Mediterranean cuisine, soup format, cannellini, kale, fennel, 6 cups broth, 1 tbsp oil, diced tomatoes, stovetop, 5-minute fennel soften, 20-minute simmer, kale stirred in at the end. No garlic, onion, cheese, or sausage added."
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "white-bean-kale-soup.webp",
+    "card_ref": "white-bean-kale-soup-640.webp",
+    "master_filename": "white-bean-kale-soup.webp",
+    "card_filename": "white-bean-kale-soup-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "package_revision": "legacy-audit-r0"
+}

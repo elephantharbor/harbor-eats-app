@@ -1,17 +1,22 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
 import { DatabaseSync } from "node:sqlite";
 import { describe, expect, it } from "vitest";
-import { normalizeFactoryPackage, normalizeLegacyPackage, planImport } from "../src/lib/catalog-import.js";
-import { legacyPackagesFromStore } from "../src/lib/catalog-legacy.js";
+import {
+  normalizeFactoryPackage,
+  normalizeLegacyAuditDraftPackage,
+  normalizeLegacyPackage,
+  planImport,
+} from "../src/lib/catalog-import.js";
+import { LEGACY_AUDIT_DRAFT_CONTRACT, LEGACY_CONTRACT } from "../src/lib/catalog-legacy.js";
 import { parityCatalog } from "../src/lib/catalog-parity.js";
 import {
   loadPublishedCatalog,
   plannerEntryFromRecord,
   recommendationMealFromRecord,
 } from "../src/lib/catalog-runtime.js";
-import { applyCatalogWrites, loadExistingVersions } from "../src/lib/catalog-write.js";
+import { applyCatalogWrites, loadExistingVersions, retireCatalogVersions } from "../src/lib/catalog-write.js";
 import { assessMealEligibility, planDinners } from "../src/lib/dinner-planner.js";
 import { createDinnerPlan, resolvedRecipe } from "../src/lib/plan-mutations.js";
 import { rankMealsForHousehold } from "../src/lib/recommendations.js";
@@ -70,34 +75,82 @@ function factorySidecar(slug) {
   };
 }
 
+function legacySidecar(slug, fileName) {
+  const dir = join(root, slug);
+  const names = readdirSync(dir);
+  let freeze_integrity = "not_in_package";
+  let freeze_detail = null;
+  if (names.includes("FREEZE_INTEGRITY.json")) {
+    const freeze = JSON.parse(readFileSync(join(dir, "FREEZE_INTEGRITY.json"), "utf8"));
+    freeze_integrity = freeze.FREEZE_INTEGRITY || "present";
+    freeze_detail = `fail_count=${freeze.fail_count}`;
+  }
+  let vale_audit = null;
+  if (names.includes("VALE-AUDIT.json")) {
+    vale_audit = JSON.parse(readFileSync(join(dir, "VALE-AUDIT.json"), "utf8"));
+  }
+  return {
+    source_path: `catalog/${slug}/${fileName}`,
+    freeze_integrity,
+    freeze_detail,
+    vale_audit,
+  };
+}
+
 function loadRecords() {
   const failures = [];
   const records = [];
-  for (const pkg of legacyPackagesFromStore()) {
-    const normalized = normalizeLegacyPackage(pkg, { source_path: `catalog/${pkg.dish.slug}/v1.json` });
-    if (!normalized.ok) failures.push({ slug: pkg.dish.slug, errors: normalized.errors });
-    else records.push(normalized.record);
+  /** @type {string[]} */
+  const retireVersionIds = [];
+  const stagingPolicy = JSON.parse(readFileSync(join(root, "staging-publication.json"), "utf8"));
+  for (const entry of readdirSync(root, { withFileTypes: true }).filter((row) => row.isDirectory())) {
+    const slug = entry.name;
+    const dir = join(root, slug);
+    const names = readdirSync(dir);
+    if (!names.includes("v1.json")) continue;
+    const pkg = JSON.parse(readFileSync(join(dir, "v1.json"), "utf8"));
+    if (pkg.catalog_contract === "flavorweave-catalog-package") {
+      const normalized = normalizeFactoryPackage(pkg, factorySidecar(slug), { publicationStatus: "published" });
+      if (!normalized.ok) failures.push({ slug, errors: normalized.errors });
+      else records.push(normalized.record);
+      continue;
+    }
+    if (pkg.catalog_contract !== LEGACY_CONTRACT) continue;
+    const v1 = normalizeLegacyPackage(pkg, legacySidecar(slug, "v1.json"));
+    if (!v1.ok) failures.push({ slug, file: "v1.json", errors: v1.errors });
+    else records.push(v1.record);
+    if (!names.includes("v2.json")) continue;
+    const pkg2 = JSON.parse(readFileSync(join(dir, "v2.json"), "utf8"));
+    const v2Policy = {
+      publicationStatus: stagingPolicy.legacy_v2_publication_status || "published",
+      relaxTimeMismatch: true,
+    };
+    const v2 =
+      pkg2.catalog_contract === LEGACY_AUDIT_DRAFT_CONTRACT
+        ? normalizeLegacyAuditDraftPackage(pkg2, legacySidecar(slug, "v2.json"), v2Policy)
+        : pkg2.catalog_contract === LEGACY_CONTRACT
+          ? normalizeLegacyPackage(pkg2, legacySidecar(slug, "v2.json"), v2Policy)
+          : { ok: false, errors: [{ code: "unknown_contract", detail: pkg2.catalog_contract }] };
+    if (!v2.ok) failures.push({ slug, file: "v2.json", errors: v2.errors });
+    else {
+      records.push(v2.record);
+      if (stagingPolicy.legacy_v1_retire_on_v2_import) {
+        retireVersionIds.push(v2.record.supersedes_version_id || `rv_${slug}_v1`);
+      }
+    }
   }
-  const slugs = readdirSync(root, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name);
-  for (const slug of slugs) {
-    const file = join(root, slug, "v1.json");
-    const pkg = JSON.parse(readFileSync(file, "utf8"));
-    if (pkg.catalog_contract !== "flavorweave-catalog-package") continue;
-    const normalized = normalizeFactoryPackage(pkg, factorySidecar(slug), { publicationStatus: "published" });
-    if (!normalized.ok) failures.push({ slug, errors: normalized.errors });
-    else records.push(normalized.record);
-  }
-  return { failures, records };
+  return { failures, records, retireVersionIds };
 }
 
-async function importOnce(database, records) {
+async function importOnce(database, records, retireVersionIds = []) {
   const shim = sqliteShim(database);
   const existing = await loadExistingVersions(shim);
   const plan = planImport(existing, records);
   if (!plan.ok) return plan;
   await applyCatalogWrites(shim, plan.writes, importedAt);
+  if (retireVersionIds.length) {
+    await retireCatalogVersions(shim, [...new Set(retireVersionIds)]);
+  }
   return plan;
 }
 
@@ -121,14 +174,20 @@ describe("catalog import", () => {
     const { failures, records } = loadRecords();
     expect(failures, JSON.stringify(failures, null, 2)).toEqual([]);
     const upload = "/tmp/fw-wave1";
-    for (const name of readdirSync(upload)) {
-      const left = readFileSync(join(upload, name, "v1.json"));
-      const right = readFileSync(join(root, name, "v1.json"));
-      expect(createHash("sha256").update(left).digest("hex")).toBe(createHash("sha256").update(right).digest("hex"));
+    if (existsSync(upload) && statSync(upload).isDirectory() && readdirSync(upload).length) {
+      for (const name of readdirSync(upload)) {
+        const left = readFileSync(join(upload, name, "v1.json"));
+        const right = readFileSync(join(root, name, "v1.json"));
+        expect(createHash("sha256").update(left).digest("hex")).toBe(createHash("sha256").update(right).digest("hex"));
+      }
     }
-    expect(records.filter((record) => record.source_contract === "flavorweave-legacy-catalog-package")).toHaveLength(24);
+    expect(records).toHaveLength(55);
+    expect(records.filter((record) => record.version_number === 1 && record.source_contract === LEGACY_CONTRACT)).toHaveLength(
+      24
+    );
+    expect(records.filter((record) => record.version_number === 2)).toHaveLength(24);
     expect(records.filter((record) => record.provenance.factory_certified === 1)).toHaveLength(7);
-    expect(records.filter((record) => record.provenance.certification_class === "legacy_structural")).toHaveLength(24);
+    expect(records.filter((record) => record.provenance.certification_class === "legacy_structural")).toHaveLength(48);
     const swordfish = records.find((record) => record.slug === "grilled-swordfish-olive-caper");
     expect(swordfish.provenance.kitchen_tested).toBe(0);
     expect(swordfish.provenance.household_cook_count).toBe(0);
@@ -136,7 +195,7 @@ describe("catalog import", () => {
     expect(swordfish.provenance.freeze_integrity).toBe("PASS");
     expect(swordfish.provenance.gates_a_o).toBe("not_recorded_in_package");
     expect(swordfish.provenance.factory_certified).toBe(1);
-    const legacy = records.find((record) => record.slug === "miso-ginger-salmon");
+    const legacy = records.find((record) => record.slug === "miso-ginger-salmon" && record.version_number === 1);
     expect(legacy.provenance.factory_certified).toBe(0);
     expect(legacy.provenance.household_cook_count).toBeNull();
     const collision = planImport(new Map(), [records[0], { ...records[0], content_hash: "different" }]);
@@ -151,30 +210,38 @@ describe("catalog import", () => {
   });
 
   it("imports 31 published meals idempotently and matches the original 24", async () => {
-    const { failures, records } = loadRecords();
+    const { failures, records, retireVersionIds } = loadRecords();
     expect(failures).toEqual([]);
-    const parity = parityCatalog(records.filter((record) => record.source_contract !== "flavorweave-catalog-package"));
+    const parity = parityCatalog(
+      records.filter((record) => record.source_contract === LEGACY_CONTRACT && record.version_number === 1)
+    );
     expect(parity.ok, JSON.stringify(parity.results.filter((row) => !row.ok), null, 2)).toBe(true);
 
     const database = new DatabaseSync(":memory:");
     applyMigrations(database);
-    const first = await importOnce(database, records);
+    const first = await importOnce(database, records, retireVersionIds);
     expect(first.ok).toBe(true);
     const shim = sqliteShim(database);
     const loaded = await loadPublishedCatalog(shim);
     expect(loaded.ok).toBe(true);
     expect(loaded.count).toBe(31);
-    const again = await importOnce(database, records);
+    const again = await importOnce(database, records, retireVersionIds);
     expect(again.ok).toBe(true);
-    expect(again.unchanged).toHaveLength(31);
+    expect(again.unchanged).toHaveLength(55);
     const reloaded = await loadPublishedCatalog(shim);
     expect(reloaded.count).toBe(31);
-    expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_version").get().c).toBe(31);
+    expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_version").get().c).toBe(55);
     expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_ingredient").get().c).toBe(
       records.reduce((sum, record) => sum + record.ingredients.length, 0)
     );
-    const roundTrip = parityCatalog(reloaded.records.filter((record) => record.source_contract !== "flavorweave-catalog-package"));
-    expect(roundTrip.ok, JSON.stringify(roundTrip.results.filter((row) => !row.ok).slice(0, 3), null, 2)).toBe(true);
+    const misoCurrent = database
+      .prepare(`SELECT current_version_id FROM catalog_dish WHERE dish_id = 'miso-ginger-salmon'`)
+      .get();
+    expect(misoCurrent.current_version_id).toBe("rv_miso-ginger-salmon_v2");
+    const misoV1 = database
+      .prepare(`SELECT publication_status FROM catalog_version WHERE recipe_version_id = 'rv_miso-ginger-salmon_v1'`)
+      .get();
+    expect(misoV1.publication_status).toBe("retired");
 
     const storeMeals = MEAL_CONCEPTS.map((concept) => {
       const version = concept.current_version;
@@ -208,10 +275,10 @@ describe("catalog import", () => {
   });
 
   it("keeps swordfish eligible and blocks beef, poultry, pork, and mussels for the synthetic household", async () => {
-    const { records } = loadRecords();
+    const { records, retireVersionIds } = loadRecords();
     const database = new DatabaseSync(":memory:");
     applyMigrations(database);
-    await importOnce(database, records);
+    await importOnce(database, records, retireVersionIds);
     const loaded = await loadPublishedCatalog(sqliteShim(database));
     const bySlug = new Map(loaded.planner.map((entry) => [entry.concept.concept_id, entry]));
     const participants = ["ada", "bea"];

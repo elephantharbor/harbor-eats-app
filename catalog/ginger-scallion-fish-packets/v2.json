@@ -1,0 +1,260 @@
+{
+  "catalog_contract": "flavorweave-legacy-audit-draft",
+  "catalog_contract_note": "Draft v2 for Cora. Not an audit. Not a certification. v1.json is the untouched GitHub download.",
+  "draft_for": "Cora",
+  "auditor": null,
+  "certification": null,
+  "not_a_certification": true,
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "kitchen_tested": false,
+  "provenance": "legacy_unknown",
+  "source_v1": {
+    "repo": "elephantharbor/harbor-eats-app",
+    "ref": "cursor/catalog-architecture-fa5e",
+    "path": "catalog/ginger-scallion-fish-packets/v1.json",
+    "raw_url": "https://raw.githubusercontent.com/elephantharbor/harbor-eats-app/cursor/catalog-architecture-fa5e/catalog/ginger-scallion-fish-packets/v1.json",
+    "git_blob_sha": "f3b257e77f60af1817bf4cb346e476d43c6085e5",
+    "sha256": "dde783e0b2c25a61255dabcfbc0a150b6fe4bc92f99f63ccc17384613ab35b24",
+    "edited": false
+  },
+  "dish": {
+    "dish_id": "ginger-scallion-fish-packets",
+    "slug": "ginger-scallion-fish-packets",
+    "title": "Ginger Scallion Fish Packets",
+    "name": "Ginger Scallion Fish Packets",
+    "description": "Foil packets of white fish and halved bok choy with ginger, scallion, and soy, baked until the fish flakes, served with rice.",
+    "cuisine": "chinese-inspired",
+    "meal_format": "packet",
+    "primary_ingredient": "white fish",
+    "chips": [
+      "Fish",
+      "35 min"
+    ],
+    "sparks": [
+      "fish",
+      "bright"
+    ],
+    "current_recipe_id": "rcp_ginger-scallion-fish-packets",
+    "current_version_id": "rv_ginger-scallion-fish-packets_v2",
+    "live_catalog_still_points_at": "rv_ginger-scallion-fish-packets_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_ginger-scallion-fish-packets",
+    "dish_id": "ginger-scallion-fish-packets",
+    "visibility": "draft",
+    "household_id": null,
+    "provenance": "legacy_unknown",
+    "provenance_note": "Legacy menu text of unknown origin. This draft reconciles that text. It does not claim a kitchen test."
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_ginger-scallion-fish-packets_v2",
+    "replaces_recipe_version_id": "rv_ginger-scallion-fish-packets_v1",
+    "recipe_id": "rcp_ginger-scallion-fish-packets",
+    "dish_id": "ginger-scallion-fish-packets",
+    "version_number": 2,
+    "immutable": false,
+    "draft": true,
+    "title": "Ginger Scallion Fish Packets",
+    "description": "Foil packets of white fish and halved bok choy with ginger, scallion, and soy, baked until the fish flakes, served with rice.",
+    "base_servings": 4,
+    "serving_basis_note": "Quantities are for 4 servings. One- and two-serving floors are not in this draft.",
+    "prep_minutes": 15,
+    "cook_minutes": 20,
+    "total_minutes": 35,
+    "effort": "Easy",
+    "methods": [
+      "oven",
+      "stovetop"
+    ],
+    "heat": "Oven 400 F for the packets. Rice simmers, covered, on the stove and overlaps the bake.",
+    "doneness": "Fish flakes easily and is opaque in the center, 18 to 20 minutes at 400 F. Bok choy is tender. Rice is tender and the water is absorbed. Not a rare fillet and not a sear.",
+    "ingredients": [
+      {
+        "name": "long-grain white rice",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "Dry. v1 said serve with rice and did not list it. Drafter amount for 4 servings.",
+        "preparation": null,
+        "role": "starch",
+        "drafter_quantity": true
+      },
+      {
+        "name": "water",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "For the rice only.",
+        "preparation": null,
+        "role": "liquid",
+        "drafter_quantity": true
+      },
+      {
+        "name": "water for packets",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "The v1 splash, which was not an ingredient. About 1/2 tbsp in each packet. Drafter amount.",
+        "preparation": null,
+        "role": "liquid",
+        "drafter_quantity": true
+      },
+      {
+        "name": "white fish fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "About 6 oz each, 1.5 lb total. Drafter weight. v1 said only 4. Not locked to cod. v1 primary_ingredient was cod, but the ingredient line is white fish.",
+        "preparation": null,
+        "role": "protein",
+        "drafter_quantity": true
+      },
+      {
+        "name": "bok choy",
+        "quantity": 2,
+        "unit": "head",
+        "note": "Halved, one half per packet.",
+        "preparation": "halved",
+        "role": "vegetable",
+        "drafter_quantity": false
+      },
+      {
+        "name": "ginger",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "sliced",
+        "role": "aromatic",
+        "drafter_quantity": false
+      },
+      {
+        "name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "role": "aromatic",
+        "drafter_quantity": false
+      },
+      {
+        "name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "Regular soy sauce. Wheat and soy. Not tamari and not a gluten-free substitute.",
+        "preparation": null,
+        "role": "seasoning",
+        "drafter_quantity": false
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Start the rice",
+        "body": "Rinse the rice. Combine it with the 3 cups water in a saucepan. Bring to a boil, cover, and simmer 18 minutes, until the rice is tender and the water is absorbed. Rest covered, off heat, while the packets are opened. Do not salt the rice. Start this when the packets go into the oven. Do not add the 18 minutes on top of the bake.",
+        "ingredient_refs": [
+          "long-grain white rice",
+          "water"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Pack the packets",
+        "body": "Heat the oven to 400 F. On each of 4 foil sheets, put 1 fish fillet and half a head of bok choy. Divide the ginger, scallions, soy sauce, and the 2 tbsp packet water across the four packets. Seal the foil.",
+        "ingredient_refs": [
+          "white fish fillets",
+          "bok choy",
+          "ginger",
+          "scallions",
+          "soy sauce",
+          "water for packets"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Bake",
+        "body": "Bake at 400 F for 18 to 20 minutes, until the fish flakes easily and is opaque in the center and the bok choy is tender.",
+        "ingredient_refs": [
+          "white fish fillets",
+          "bok choy"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Serve",
+        "body": "Open the foil carefully. Serve each packet with the rice. Do not add a sauce that was not in the packet.",
+        "ingredient_refs": [
+          "long-grain white rice"
+        ]
+      }
+    ],
+    "equipment": [
+      "foil",
+      "sheet pan",
+      "saucepan",
+      "oven"
+    ],
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Dairy-free only. No milk, butter, cheese, or cream. Not plant and not vegetarian, because of the fish. Not gluten-free, because the soy sauce is wheat. fish and finfish are not dietary labels.",
+    "allergens": [
+      "finfish",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Finfish from the white fish. Soy and wheat from regular soy sauce.",
+      "Rice, ginger, scallion, bok choy, and water add none of egg, milk, sesame, peanut, tree_nut, or shellfish.",
+      "Do not swap in tamari or gluten-free soy sauce. That would be a different recipe."
+    ],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "hh001_eligible": false,
+      "hh001_reason": "Finfish. Not an HH001 plant meal."
+    },
+    "vocabulary_tag_ids": [
+      "chinese"
+    ],
+    "kitchen_tested": false,
+    "provenance": "legacy_unknown",
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "changes_from_v1": [
+      "Methods were stovetop. The cook step bakes at 400 F. v2 methods are oven and stovetop.",
+      "Clock was prep 15 plus cook 25 equals 40, and the chip said 30 min. The bake is 18 to 20 minutes. v2 is prep 15 plus cook 20 equals 35, with the rice inside the bake.",
+      "Doneness was null. The step already said flakes easily. v2 records opaque in the center as well.",
+      "Packet water was a splash and not listed. Rice was served and not listed. Both are now ingredients, with drafter amounts.",
+      "Soy sauce was missing from allergens, which listed only finfish. Dietary tags carried fish and finfish. Those are not diet labels.",
+      "primary_ingredient cod does not match the ingredient white fish fillets. v2 does not narrow the fish to cod."
+    ],
+    "unchanged_from_v1": [
+      "Title, cuisine, packet format, 4 fillets, 2 tbsp sliced ginger, 4 scallions, 2 tbsp soy sauce, 2 heads bok choy, 400 F, 18 to 20 minutes, flake doneness, and serving the packet with rice."
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "ginger-scallion-fish-packets.webp",
+    "card_ref": "ginger-scallion-fish-packets-640.webp",
+    "master_filename": "ginger-scallion-fish-packets.webp",
+    "card_filename": "ginger-scallion-fish-packets-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "package_revision": "legacy-audit-r0"
+}

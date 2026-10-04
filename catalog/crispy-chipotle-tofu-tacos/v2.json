@@ -1,0 +1,408 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "crispy-chipotle-tofu-tacos",
+    "slug": "crispy-chipotle-tofu-tacos",
+    "title": "Crispy Chipotle Tofu Tacos",
+    "name": "Crispy Chipotle Tofu Tacos",
+    "description": null,
+    "cuisine": "mexican",
+    "meal_format": "tacos",
+    "primary_ingredient": "tofu",
+    "texture": "crispy",
+    "flavor_profile": "smoky-bright",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.35,
+    "plate": "🌮",
+    "tone": "tone-a",
+    "tags": [
+      "plant",
+      "tacos",
+      "crispy",
+      "dairy-free"
+    ],
+    "sparks": [
+      "crispy",
+      "tacos",
+      "bright"
+    ],
+    "chips": [
+      "Plant",
+      "40 min",
+      "Air fry"
+    ],
+    "current_recipe_id": "rcp_crispy-chipotle-tofu-tacos",
+    "current_version_id": "rv_crispy-chipotle-tofu-tacos_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_crispy-chipotle-tofu-tacos",
+    "dish_id": "crispy-chipotle-tofu-tacos",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "created_on": null,
+      "curator": null,
+      "process": "Legacy v1 corrected in draft only. Original authorship is not in the repo.",
+      "copied_from_third_party": null,
+      "note": "legacy_unknown. kitchen_tested is false. No cook count is known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_crispy-chipotle-tofu-tacos_v2",
+    "recipe_id": "rcp_crispy-chipotle-tofu-tacos",
+    "dish_id": "crispy-chipotle-tofu-tacos",
+    "version_number": 2,
+    "immutable": true,
+    "title": "Crispy Chipotle Tofu Tacos",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "air_fry",
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": "Tofu cubes deep golden with a dry seasoned surface, not pale or steaming.",
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "extra-firm tofu",
+        "quantity": "14 oz",
+        "note": "pressed, cut into 3/4-inch cubes"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tbsp plus 2 tsp",
+        "note": "divided: 1 tbsp with the tofu, 2 tsp in the slaw"
+      },
+      {
+        "name": "cornstarch",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "chipotle powder",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "ground cumin",
+        "quantity": "1/2 tsp",
+        "note": null
+      },
+      {
+        "name": "garlic powder",
+        "quantity": "1/2 tsp",
+        "note": null
+      },
+      {
+        "name": "kosher salt",
+        "quantity": "3/4 tsp",
+        "note": "divided: 1/2 tsp on the tofu, 1/4 tsp in the slaw"
+      },
+      {
+        "name": "black pepper",
+        "quantity": "1/2 tsp",
+        "note": "divided: 1/4 tsp on the tofu, 1/4 tsp in the slaw"
+      },
+      {
+        "name": "green cabbage",
+        "quantity": "3 cups shredded",
+        "note": null
+      },
+      {
+        "name": "carrot",
+        "quantity": "1/2 cup grated",
+        "note": null
+      },
+      {
+        "name": "cilantro",
+        "quantity": "1/4 cup",
+        "note": "chopped leaves"
+      },
+      {
+        "name": "lime",
+        "quantity": "2",
+        "note": "1/2 lime juiced on the tofu, 1 lime juiced into the slaw, remaining 1/2 lime cut into wedges"
+      },
+      {
+        "name": "corn tortillas",
+        "quantity": "8 small",
+        "note": null
+      },
+      {
+        "name": "avocado",
+        "quantity": "1",
+        "note": "sliced"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Press and prep",
+        "body": "Press the tofu for 15 minutes. That press is the prep window: shred the cabbage, grate the carrot, chop the cilantro, and juice the limes while it presses. Cut the tofu into 3/4-inch cubes and pat dry.",
+        "ingredient_refs": [
+          "extra-firm tofu",
+          "green cabbage",
+          "carrot",
+          "cilantro",
+          "lime"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Season the tofu",
+        "body": "Toss the cubes with 1 tbsp neutral oil, the cornstarch, chipotle powder, smoked paprika, cumin, garlic powder, 1/2 tsp kosher salt, and 1/4 tsp black pepper until coated.",
+        "ingredient_refs": [
+          "neutral oil",
+          "cornstarch",
+          "chipotle powder",
+          "smoked paprika",
+          "ground cumin",
+          "garlic powder",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Crisp the tofu",
+        "body": "Air fry at 400°F for 14–18 minutes, shaking halfway, until deep golden. Skillet option: medium-high heat 8–10 minutes, turning. Finish with the juice of 1/2 lime.",
+        "ingredient_refs": [
+          "extra-firm tofu",
+          "lime"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Make the lime slaw",
+        "body": "Toss the cabbage, carrot, and cilantro with the juice of 1 lime, the remaining 2 tsp neutral oil, 1/4 tsp kosher salt, and 1/4 tsp black pepper. Rest 5 minutes. Do this during the end of the air fry so it stays inside the cook time.",
+        "ingredient_refs": [
+          "green cabbage",
+          "carrot",
+          "cilantro",
+          "lime",
+          "neutral oil",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Warm tortillas and build",
+        "body": "Warm the tortillas in a dry skillet 20–30 seconds per side. Build each taco with tofu, slaw, and avocado. Serve with the remaining 1/2 lime cut into wedges.",
+        "ingredient_refs": [
+          "corn tortillas",
+          "avocado",
+          "lime"
+        ]
+      }
+    ],
+    "supersedes_version_id": "rv_crispy-chipotle-tofu-tacos_v1"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "citrusy",
+      "crispy",
+      "mexican",
+      "smoky",
+      "tacos",
+      "tofu"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [
+      "soy"
+    ],
+    "equipment": [
+      "air-fryer",
+      "stovetop"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "extra-firm tofu",
+        "quantity": 14,
+        "unit": "oz",
+        "note": "pressed, 3/4-inch cubes",
+        "raw_quantity": "14 oz"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 5,
+        "unit": "tsp",
+        "note": "divided: 1 tbsp tofu, 2 tsp slaw",
+        "raw_quantity": "1 tbsp plus 2 tsp"
+      },
+      {
+        "name": "cornstarch",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "chipotle powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "ground cumin",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1/2 tsp"
+      },
+      {
+        "name": "garlic powder",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1/2 tsp"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": "divided",
+        "raw_quantity": "3/4 tsp"
+      },
+      {
+        "name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "divided",
+        "raw_quantity": "1/2 tsp"
+      },
+      {
+        "name": "green cabbage",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "shredded",
+        "raw_quantity": "3 cups shredded"
+      },
+      {
+        "name": "carrot",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "grated",
+        "raw_quantity": "1/2 cup grated"
+      },
+      {
+        "name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped leaves",
+        "raw_quantity": "1/4 cup"
+      },
+      {
+        "name": "lime",
+        "quantity": 2,
+        "unit": "count",
+        "note": "juice and wedges, fully allocated",
+        "raw_quantity": "2"
+      },
+      {
+        "name": "corn tortillas",
+        "quantity": 8,
+        "unit": "count",
+        "note": "small",
+        "raw_quantity": "8 small"
+      },
+      {
+        "name": "avocado",
+        "quantity": 1,
+        "unit": "count",
+        "note": "sliced",
+        "raw_quantity": "1"
+      }
+    ],
+    "allergen_note": "Soy is from the tofu. It is an allergen, not a dietary label. Corn tortillas are not recorded as wheat. Dietary labels stay dairy_free and plant."
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "crispy-chipotle-tofu-tacos.webp",
+    "card_ref": "crispy-chipotle-tofu-tacos-640.webp",
+    "master_filename": "crispy-chipotle-tofu-tacos.webp",
+    "card_filename": "crispy-chipotle-tofu-tacos-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "unreviewed_revision_draft",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_read_and_corrected_in_draft",
+    "evidence_note": "Draft recipe correction only. This object is not a certification result. kitchen_tested is false. Household cook count and rating count are unknown, not zero. Recipe provenance is legacy_unknown.",
+    "auditor": null
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Local draft for Cora. Not imported. Not published. v1 remains the published legacy version."
+  },
+  "catalog_contract_note": "Curator correction draft for Cora. Not an audit and not a certification. v1.json in this folder is the unchanged legacy package.",
+  "revision": {
+    "disposition": "CREATE_V2",
+    "from_version_id": "rv_crispy-chipotle-tofu-tacos_v1",
+    "to_version_id": "rv_crispy-chipotle-tofu-tacos_v2",
+    "reason_summary": "Steps called for salt, pepper, and a slaw oil drizzle that were not ingredients, and tofu was not recorded as soy.",
+    "authored_for": "Cora",
+    "authored_role": "catalog draft, not the auditor",
+    "authored_on": "2026-10-04",
+    "authored_timezone": "America/Chicago",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_generated": false
+  },
+  "package_revision": "legacy-audit-r0"
+}

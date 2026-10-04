@@ -7,7 +7,7 @@
 import { createHash } from "node:crypto";
 import { getTasteTerm } from "./taste-vocabulary.js";
 import { CATALOG_PUBLICATION_STATES } from "./catalog-publish.js";
-import { LEGACY_CONTRACT } from "./catalog-legacy.js";
+import { LEGACY_AUDIT_DRAFT_CONTRACT, LEGACY_CONTRACT } from "./catalog-legacy.js";
 
 export const FACTORY_CONTRACT = "flavorweave-catalog-package";
 
@@ -163,11 +163,33 @@ function checkSteps(steps, errors) {
   });
 }
 
+function legacyImageRefs(image, slug) {
+  function normalizeRef(ref, role) {
+    if (!ref) {
+      return role === "master" ? `/images/meals/${slug}.webp` : `/images/meals/${slug}-640.webp`;
+    }
+    if (String(ref).startsWith("/")) return String(ref);
+    return `/images/meals/${ref}`;
+  }
+  return {
+    master_ref: normalizeRef(image.master_ref, "master"),
+    card_ref: normalizeRef(image.card_ref, "card"),
+    provenance: image.provenance || "unknown",
+    rights: image.rights || image.image_rights || "unverified",
+  };
+}
+
 /**
  * @param {object} pkg
- * @param {{ source_path: string }} source
+ * @param {{
+ *   source_path: string,
+ *   freeze_integrity?: string|null,
+ *   freeze_detail?: string|null,
+ *   vale_audit?: object|null,
+ * }} source
+ * @param {{ publicationStatus?: string }} [policy]
  */
-export function normalizeLegacyPackage(pkg, source) {
+export function normalizeLegacyPackage(pkg, source, policy = {}) {
   /** @type {ReturnType<typeof error>[]} */
   const errors = [];
   if (!pkg || pkg.catalog_contract !== LEGACY_CONTRACT) {
@@ -178,27 +200,33 @@ export function normalizeLegacyPackage(pkg, source) {
   const version = pkg.recipe_version || {};
   const certification = pkg.certification || {};
   const publication = pkg.publication || {};
-  const image = pkg.image || {};
+  const image = legacyImageRefs(pkg.image || {}, dish.slug || dish.dish_id);
   const projection = pkg.projection || {};
+  const versionNumber = version.version_number;
   if (certification.factory_certified !== false) {
     errors.push(error("legacy_marked_factory_certified", "certification.factory_certified"));
   }
   if (certification.kitchen_tested !== false) {
     errors.push(error("legacy_kitchen_tested", "certification.kitchen_tested"));
   }
-  if (certification.certification_class !== "legacy_structural") {
+  if (versionNumber === 1 && certification.certification_class !== "legacy_structural") {
     errors.push(error("bad_certification_class", "certification.certification_class"));
   }
   if (!dish.dish_id || dish.dish_id !== dish.slug) errors.push(error("dish_identity", "dish.dish_id"));
   if (recipe.recipe_id !== `rcp_${dish.dish_id}`) errors.push(error("recipe_identity", "recipe.recipe_id"));
-  if (version.recipe_version_id !== `rv_${dish.dish_id}_v1`) {
+  const expectedVersionId = `rv_${dish.dish_id}_v${versionNumber}`;
+  if (version.recipe_version_id !== expectedVersionId) {
     errors.push(error("version_identity", "recipe_version.recipe_version_id"));
   }
-  if (version.version_number !== 1) errors.push(error("bad_version_number", "recipe_version.version_number"));
+  if (!Number.isInteger(versionNumber) || versionNumber < 1) {
+    errors.push(error("bad_version_number", "recipe_version.version_number"));
+  }
   if (!Number.isInteger(version.base_servings) || version.base_servings < 1) {
     errors.push(error("bad_servings", "recipe_version.base_servings"));
   }
-  checkTimes(version.prep_minutes, version.cook_minutes, version.total_minutes, errors);
+  if (!policy.relaxTimeMismatch) {
+    checkTimes(version.prep_minutes, version.cook_minutes, version.total_minutes, errors);
+  }
   if (!Array.isArray(version.ingredients) || !version.ingredients.length) {
     errors.push(error("missing_ingredients", "recipe_version.ingredients"));
   }
@@ -231,6 +259,20 @@ export function normalizeLegacyPackage(pkg, source) {
       role: null,
     };
   });
+  const publicationStatus = policy.publicationStatus || publication.status;
+  const provenanceCert = {
+    ...certification,
+    certification_class: "legacy_structural",
+    text_provenance: certification.text_provenance || "legacy_unknown",
+    text_provenance_raw: certification.text_provenance_raw ?? null,
+    image_provenance: certification.image_provenance || image.provenance || "unknown",
+    image_rights: certification.image_rights || image.rights || "unverified",
+    evidence_basis: certification.evidence_basis || "legacy_structural",
+    evidence_note: certification.evidence_note || certification.note || "Legacy catalog package.",
+    freeze_integrity: source.freeze_integrity || certification.freeze_integrity || null,
+    gates_a_o: certification.gates_a_o || (source.vale_audit?.overall === "PASS" ? "PASS" : null),
+    image_gates: certification.image_gates || (source.vale_audit?.gates?.K === "PASS" ? "PASS" : null),
+  };
   const record = baseRecord({
     dish,
     recipe,
@@ -241,21 +283,156 @@ export function normalizeLegacyPackage(pkg, source) {
     allergens: asArray(projection.allergens),
     equipment: asArray(projection.equipment),
     eligibilityTags: asArray(dish.tags),
-    publicationStatus: publication.status,
+    publicationStatus,
     artifactPublicationStatus: publication.artifact_status || publication.status,
-    certification,
+    certification: provenanceCert,
     image,
     components: [],
     source,
     contract: LEGACY_CONTRACT,
     selfReport: {
+      evidence_class: pkg.evidence_class || "legacy_structural",
+      kitchen_tested: false,
+      household_cook_count: certification.household_cook_count ?? null,
+      rating_count: certification.rating_count ?? null,
+      package_revision: pkg.package_revision || null,
+      artifact_certification_class: certification.certification_class || null,
+      vale_audit: source.vale_audit || null,
+      supersedes_version_id: version.supersedes_version_id || null,
+    },
+  });
+  record.content_hash = contentHash(hashPayload(record));
+  record.supersedes_version_id = version.supersedes_version_id || version.replaces_recipe_version_id || null;
+  return { ok: errors.length === 0, errors, record: errors.length ? null : record };
+}
+
+/**
+ * Certified legacy audit drafts use a separate on-disk contract. Bytes are not rewritten.
+ * @param {object} pkg
+ * @param {ReturnType<typeof legacySidecar>} source
+ * @param {{ publicationStatus?: string, relaxTimeMismatch?: boolean }} [policy]
+ */
+export function normalizeLegacyAuditDraftPackage(pkg, source, policy = {}) {
+  /** @type {ReturnType<typeof error>[]} */
+  const errors = [];
+  if (!pkg || pkg.catalog_contract !== LEGACY_AUDIT_DRAFT_CONTRACT) {
+    return { ok: false, errors: [error("bad_contract", "catalog_contract")], record: null };
+  }
+  if (pkg.kitchen_tested !== false) {
+    errors.push(error("legacy_kitchen_tested", "kitchen_tested"));
+  }
+  const dish = pkg.dish || {};
+  const recipe = pkg.recipe || {};
+  const version = pkg.recipe_version || {};
+  const image = legacyImageRefs(pkg.image || {}, dish.slug || dish.dish_id);
+  if (!dish.dish_id || dish.dish_id !== dish.slug) errors.push(error("dish_identity", "dish.dish_id"));
+  if (recipe.recipe_id !== `rcp_${dish.dish_id}`) errors.push(error("recipe_identity", "recipe.recipe_id"));
+  const versionNumber = version.version_number;
+  const expectedVersionId = `rv_${dish.dish_id}_v${versionNumber}`;
+  if (version.recipe_version_id !== expectedVersionId) {
+    errors.push(error("version_identity", "recipe_version.recipe_version_id"));
+  }
+  if (versionNumber !== 2) errors.push(error("bad_version_number", "recipe_version.version_number"));
+  if (version.kitchen_tested !== false) errors.push(error("legacy_kitchen_tested", "recipe_version.kitchen_tested"));
+  if (!Number.isInteger(version.base_servings) || version.base_servings < 1) {
+    errors.push(error("bad_servings", "recipe_version.base_servings"));
+  }
+  if (!policy.relaxTimeMismatch) {
+    checkTimes(version.prep_minutes, version.cook_minutes, version.total_minutes, errors);
+  }
+  if (!Array.isArray(version.ingredients) || !version.ingredients.length) {
+    errors.push(error("missing_ingredients", "recipe_version.ingredients"));
+  }
+  checkSteps(version.steps, errors);
+  const taste = requireTasteTags(version.vocabulary_tag_ids, errors);
+  const ingredients = asArray(version.ingredients).map((item, index) => {
+    if (!item?.name) errors.push(error("ingredient_name", `ingredients[${index}].name`));
+    const raw =
+      item.raw_quantity ||
+      (typeof item.quantity === "number" && item.unit ? `${item.quantity} ${item.unit}` : item.quantity) ||
+      null;
+    return {
+      position: index,
+      ingredient_id: null,
+      name: item.name,
+      display_name: item.name,
+      quantity: typeof item.quantity === "number" ? item.quantity : null,
+      unit: item.unit || null,
+      raw_quantity: raw,
+      note: item.note || null,
+      preparation: item.preparation || null,
+      optional: 0,
+      role: item.role || null,
+    };
+  });
+  const eligibility = version.dietary_eligibility || {};
+  const eligibilityTags = sortedUnique([
+    ...asArray(dish.tags),
+    ...(eligibility.contains_meat === true ? ["meat"] : []),
+    ...(eligibility.contains_poultry === true ? ["poultry"] : []),
+    ...(eligibility.contains_finfish === true ? ["finfish"] : []),
+    ...(eligibility.contains_shellfish === true ? ["shellfish"] : []),
+    ...(eligibility.contains_dairy === true ? ["dairy"] : []),
+    ...asArray(version.allergens),
+  ]);
+  const certification = pkg.certification || {
+    certification_class: "unreviewed_revision_draft",
+    factory_certified: false,
+    text_provenance: version.provenance || pkg.provenance || "legacy_unknown",
+    image_provenance: image.provenance,
+    image_rights: "unverified",
+    kitchen_tested: false,
+    household_cook_count: null,
+    rating_count: null,
+    evidence_basis: "legacy_v1_read_and_corrected_in_draft",
+    evidence_note: pkg.catalog_contract_note || certification.evidence_note || certification.note || "Legacy catalog audit draft.",
+  };
+  const publicationStatus = policy.publicationStatus || version.publication_status || "draft";
+  if (!CATALOG_PUBLICATION_STATES.includes(publicationStatus)) {
+    errors.push(error("bad_publication", "publication_status", String(publicationStatus)));
+  }
+  const record = baseRecord({
+    dish: {
+      ...dish,
+      tags: eligibilityTags.length ? eligibilityTags : asArray(dish.tags),
+    },
+    recipe: { ...recipe, visibility: "global", household_id: null },
+    version,
+    ingredients,
+    taste,
+    dietary: asArray(version.dietary_labels),
+    allergens: asArray(version.allergens).map((item) => String(item)),
+    equipment: asArray(version.equipment).map((item) => String(item)),
+    eligibilityTags: eligibilityTags.length ? eligibilityTags : asArray(dish.tags),
+    publicationStatus,
+    artifactPublicationStatus: version.publication_status || version.publication_state || "draft",
+    certification: {
+      ...certification,
+      certification_class: "legacy_structural",
+      factory_certified: false,
+      kitchen_tested: false,
+      freeze_integrity: source.freeze_integrity || null,
+      gates_a_o: source.vale_audit?.overall === "PASS" ? "PASS" : null,
+      image_gates: source.vale_audit?.gates?.K === "PASS" ? "PASS" : null,
+    },
+    image,
+    components: [],
+    source,
+    contract: LEGACY_AUDIT_DRAFT_CONTRACT,
+    selfReport: {
       evidence_class: "legacy_structural",
       kitchen_tested: false,
       household_cook_count: null,
       rating_count: null,
+      package_revision: pkg.package_revision || null,
+      vale_audit: source.vale_audit || null,
+      supersedes_version_id: version.replaces_recipe_version_id || version.supersedes_version_id || null,
+      source_v1: pkg.source_v1 || null,
+      artifact_certification_class: certification.certification_class || null,
     },
   });
   record.content_hash = contentHash(hashPayload(record));
+  record.supersedes_version_id = version.replaces_recipe_version_id || version.supersedes_version_id || null;
   return { ok: errors.length === 0, errors, record: errors.length ? null : record };
 }
 

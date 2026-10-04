@@ -1,0 +1,281 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_curator_draft",
+  "draft_role": "Curator draft for Cora. Not an auditor. This file records no certification decision.",
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "source_v1": "https://raw.githubusercontent.com/elephantharbor/harbor-eats-app/cursor/catalog-architecture-fa5e/catalog/herbed-polenta-tomato-stew/v1.json",
+  "v1_sha256": "54f55634ea9577168095562fe5e33d4a680f1fe7c1ffb80c7e7569c40cc6581d",
+  "revision_reason": "No salt or fat, can size and rosemary form unspecified, clock was a default, equipment said sheet-pan.",
+  "material_deltas": [
+    "Added 1 tsp kosher salt, divided, and 1/4 tsp black pepper. v1 had no salt.",
+    "Added 1 tbsp olive oil so the tomatoes can burst. Did not add butter or cheese.",
+    "White beans specified as 1 (15 oz) can, drained and rinsed. v1 said 1 can.",
+    "Rosemary specified as 1 tbsp chopped fresh, kept in the stew where v1 put it.",
+    "Polenta specified as coarse or medium-grind, not instant, because the step is 20 minutes.",
+    "Broth constrained to low-sodium with no milk, wheat, or soy.",
+    "Clock set to prep 10, cook 22, total 32 from the 20-minute polenta with the stew overlapping.",
+    "Equipment changed from sheet-pan to saucepan and skillet. The steps are stovetop.",
+    "Removed unsupported vocabulary tag citrusy. Did not add citrus."
+  ],
+  "dish": {
+    "dish_id": "herbed-polenta-tomato-stew",
+    "slug": "herbed-polenta-tomato-stew",
+    "title": "Herbed Polenta with Tomato Stew",
+    "name": "Herbed Polenta with Tomato Stew",
+    "description": "Soft stovetop polenta with a burst cherry-tomato and white-bean stew finished with fresh rosemary.",
+    "cuisine": "italian-inspired",
+    "meal_format": "bowl",
+    "primary_ingredient": "polenta",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.43,
+    "plate": "🍅",
+    "tone": "tone-c",
+    "tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "sparks": [
+      "bright"
+    ],
+    "chips": [
+      "Plant",
+      "45 min"
+    ],
+    "current_recipe_id": "rcp_herbed-polenta-tomato-stew",
+    "current_version_id": "rv_herbed-polenta-tomato-stew_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_herbed-polenta-tomato-stew",
+    "dish_id": "herbed-polenta-tomato-stew",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "copied_from_third_party": false,
+      "note": "Corrective draft against legacy v1. Authorship of the legacy text is not known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_herbed-polenta-tomato-stew_v2",
+    "recipe_id": "rcp_herbed-polenta-tomato-stew",
+    "dish_id": "herbed-polenta-tomato-stew",
+    "version_number": 2,
+    "supersedes": "rv_herbed-polenta-tomato-stew_v1",
+    "immutable": false,
+    "immutability_note": "Draft for audit. v1.json was not edited. Not kitchen-tested and not published.",
+    "title": "Herbed Polenta with Tomato Stew",
+    "description": "Soft stovetop polenta with a burst cherry-tomato and white-bean stew finished with fresh rosemary.",
+    "base_servings": 4,
+    "prep_minutes": 10,
+    "cook_minutes": 22,
+    "total_minutes": 32,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": "none",
+    "doneness": "Polenta thick and soft, pulling from the side of the pan. Tomatoes burst; stew spoonable, not watery.",
+    "substitutions": {
+      "butter or cheese": "Do not add butter or cheese. Either one would drop the dairy-free claim.",
+      "rosemary": "Use fresh. Do not use 1 tbsp dried rosemary."
+    },
+    "ingredients": [
+      {
+        "name": "polenta",
+        "quantity": "1 cup",
+        "note": "coarse or medium-grind corn polenta, not instant"
+      },
+      {
+        "name": "cherry tomatoes",
+        "quantity": "2 cups",
+        "note": null
+      },
+      {
+        "name": "white beans",
+        "quantity": "1 (15 oz) can",
+        "note": "drained and rinsed, about 1 1/2 cups"
+      },
+      {
+        "name": "fresh rosemary",
+        "quantity": "1 tbsp",
+        "note": "chopped leaves, not dried. The herb stays in the stew, which is where v1 put it."
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": "4 cups",
+        "note": "low-sodium, with no milk, wheat, or soy in the ingredient list"
+      },
+      {
+        "name": "olive oil",
+        "quantity": "1 tbsp",
+        "note": "to burst the tomatoes. Not butter."
+      },
+      {
+        "name": "kosher salt",
+        "quantity": "1 tsp",
+        "note": "divided: 3/4 tsp in the broth, 1/4 tsp in the stew. Diamond Crystal. If Morton, use half. Assumes low-sodium broth; if the broth is already salty, use half of each portion."
+      },
+      {
+        "name": "black pepper",
+        "quantity": "1/4 tsp",
+        "note": "in the stew"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Cook the polenta",
+        "body": "Bring the vegetable broth and 3/4 tsp of the kosher salt to a simmer in a heavy saucepan. Whisk in the polenta. Cook over low heat, stirring often, 20 minutes, until the polenta is thick and soft and pulls from the side of the pan. This is stovetop. There is no sheet pan.",
+        "ingredient_refs": [
+          "polenta",
+          "vegetable broth",
+          "kosher salt"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Stew the tomatoes",
+        "body": "While the polenta cooks, warm the olive oil in a skillet over medium heat. Add the cherry tomatoes, fresh rosemary, the remaining 1/4 tsp kosher salt, and the black pepper. Cook until the tomatoes burst, about 8 minutes. Stir in the drained white beans and cook 2 minutes more, until the stew is spoonable rather than watery.",
+        "ingredient_refs": [
+          "olive oil",
+          "cherry tomatoes",
+          "fresh rosemary",
+          "kosher salt",
+          "black pepper",
+          "white beans"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Serve",
+        "body": "Spoon the stew over the soft polenta. Four servings. Do not add cheese or butter.",
+        "ingredient_refs": []
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "bowls",
+      "italian",
+      "polenta"
+    ],
+    "vocabulary_note": "Dropped v1 tag citrusy. There is no citrus in the recipe. Did not add lemon to justify the tag.",
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [],
+    "allergen_note": "No major allergen if the broth contains no milk, wheat, or soy. Dietary eligibility is separate: plant and dairy-free.",
+    "equipment": [
+      "heavy saucepan",
+      "skillet"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "polenta",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "coarse or medium-grind; not instant",
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "cherry tomatoes",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "2 cups"
+      },
+      {
+        "name": "white beans",
+        "quantity": 15,
+        "unit": "oz",
+        "note": "one can, drained and rinsed",
+        "raw_quantity": "1 (15 oz) can"
+      },
+      {
+        "name": "fresh rosemary",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "chopped leaves",
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "low-sodium; no milk, wheat, or soy",
+        "raw_quantity": "4 cups"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "not butter",
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "3/4 tsp broth, 1/4 tsp stew",
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "in the stew",
+        "raw_quantity": "1/4 tsp"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "herbed-polenta-tomato-stew.webp",
+    "card_ref": "herbed-polenta-tomato-stew-640.webp",
+    "master_filename": "herbed-polenta-tomato-stew.webp",
+    "card_filename": "herbed-polenta-tomato-stew-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": null,
+    "factory_certified": false,
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "decision": null,
+    "note": "Curator correction draft only. No certification decision is recorded. kitchen_tested is false."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "unpublished_curator_draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Not published. Does not replace live v1 and does not touch production, D1, or the app repo."
+  },
+  "package_revision": "legacy-audit-r1"
+}

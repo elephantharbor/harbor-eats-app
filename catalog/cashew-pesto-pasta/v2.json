@@ -1,0 +1,304 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "cashew-pesto-pasta",
+    "slug": "cashew-pesto-pasta",
+    "title": "Cashew Pesto Pasta",
+    "name": "Cashew Pesto Pasta",
+    "description": null,
+    "cuisine": "italian-inspired",
+    "meal_format": "pasta",
+    "primary_ingredient": "pasta",
+    "texture": "creamy",
+    "flavor_profile": "herbaceous",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.5,
+    "plate": "🍝",
+    "tone": "tone-b",
+    "tags": [
+      "plant",
+      "pasta",
+      "dairy-free"
+    ],
+    "sparks": [
+      "bright"
+    ],
+    "chips": [
+      "Plant",
+      "30 min"
+    ],
+    "current_recipe_id": "rcp_cashew-pesto-pasta",
+    "current_version_id": "rv_cashew-pesto-pasta_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_cashew-pesto-pasta",
+    "dish_id": "cashew-pesto-pasta",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "created_on": null,
+      "curator": null,
+      "process": "Legacy v1 corrected in draft only. Original authorship is not in the repo.",
+      "copied_from_third_party": null,
+      "note": "legacy_unknown. kitchen_tested is false. No cook count is known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_cashew-pesto-pasta_v2",
+    "recipe_id": "rcp_cashew-pesto-pasta",
+    "dish_id": "cashew-pesto-pasta",
+    "version_number": 2,
+    "immutable": true,
+    "title": "Cashew Pesto Pasta",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 25,
+    "cook_minutes": 15,
+    "total_minutes": 30,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": "Pasta al dente. Pesto smooth and clinging, not watery.",
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "short pasta",
+        "quantity": "12 oz",
+        "note": "durum wheat, such as penne or fusilli"
+      },
+      {
+        "name": "raw cashews",
+        "quantity": "1/2 cup",
+        "note": "soaked 20 minutes in boiling water, then drained"
+      },
+      {
+        "name": "basil",
+        "quantity": "2 cups",
+        "note": "packed leaves"
+      },
+      {
+        "name": "garlic",
+        "quantity": "2 cloves",
+        "note": null
+      },
+      {
+        "name": "lemon juice",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "nutritional yeast",
+        "quantity": "3 tbsp",
+        "note": null
+      },
+      {
+        "name": "kosher salt",
+        "quantity": "1/2 tsp",
+        "note": "in the pesto"
+      },
+      {
+        "name": "water",
+        "quantity": "1/4 cup",
+        "note": "for blending, plus water to boil the pasta"
+      },
+      {
+        "name": "cherry tomatoes",
+        "quantity": "1 cup",
+        "note": "halved"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Soak and blend the pesto",
+        "body": "Cover the cashews with boiling water and soak 20 minutes, then drain. Blend the drained cashews with the basil, garlic, lemon juice, nutritional yeast, kosher salt, and 1/4 cup fresh water until smooth. No oil and no cheese.",
+        "ingredient_refs": [
+          "raw cashews",
+          "basil",
+          "garlic",
+          "lemon juice",
+          "nutritional yeast",
+          "kosher salt",
+          "water"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the pasta",
+        "body": "Boil the durum wheat pasta until al dente. Reserve 1/2 cup pasta water, then drain.",
+        "ingredient_refs": [
+          "short pasta"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Toss and serve",
+        "body": "Toss the pasta with the pesto, splashes of the reserved pasta water, and the halved cherry tomatoes.",
+        "ingredient_refs": [
+          "cherry tomatoes",
+          "short pasta"
+        ]
+      }
+    ],
+    "supersedes_version_id": "rv_cashew-pesto-pasta_v1",
+    "time_note": "Prep is 25 minutes because the cashews soak 20. Start heating the pasta water when the soak has about 10 minutes left. That overlap is why total is 30, not 40."
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "citrusy",
+      "creamy",
+      "herbaceous",
+      "italian",
+      "pasta"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [
+      "cashew",
+      "nuts",
+      "wheat"
+    ],
+    "equipment": [
+      "stovetop",
+      "blender"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "short pasta",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "durum wheat",
+        "raw_quantity": "12 oz"
+      },
+      {
+        "name": "raw cashews",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "soaked 20 minutes, drained",
+        "raw_quantity": "1/2 cup"
+      },
+      {
+        "name": "basil",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "packed leaves",
+        "raw_quantity": "2 cups"
+      },
+      {
+        "name": "garlic",
+        "quantity": 2,
+        "unit": "clove",
+        "note": null,
+        "raw_quantity": "2 cloves"
+      },
+      {
+        "name": "lemon juice",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "nutritional yeast",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "3 tbsp"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "in the pesto",
+        "raw_quantity": "1/2 tsp"
+      },
+      {
+        "name": "water",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "for blending",
+        "raw_quantity": "1/4 cup"
+      },
+      {
+        "name": "cherry tomatoes",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "halved",
+        "raw_quantity": "1 cup"
+      }
+    ],
+    "allergen_note": "Cashew and nuts are allergens, not dietary labels. Wheat is the durum pasta. Dietary labels are dairy_free and plant. Nutritional yeast is not dairy. Wheat is recorded even though the legacy allergen enum has no wheat id."
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "cashew-pesto-pasta.webp",
+    "card_ref": "cashew-pesto-pasta-640.webp",
+    "master_filename": "cashew-pesto-pasta.webp",
+    "card_filename": "cashew-pesto-pasta-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "unreviewed_revision_draft",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_read_and_corrected_in_draft",
+    "evidence_note": "Draft recipe correction only. This object is not a certification result. kitchen_tested is false. Household cook count and rating count are unknown, not zero. Recipe provenance is legacy_unknown.",
+    "auditor": null
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Local draft for Cora. Not imported. Not published. v1 remains the published legacy version."
+  },
+  "catalog_contract_note": "Curator correction draft for Cora. Not an audit and not a certification. v1.json in this folder is the unchanged legacy package.",
+  "revision": {
+    "disposition": "CREATE_V2",
+    "from_version_id": "rv_cashew-pesto-pasta_v1",
+    "to_version_id": "rv_cashew-pesto-pasta_v2",
+    "reason_summary": "The pesto calls for salt and blend water that were not ingredients, the cashew soak has no time inside a 25-minute total, and wheat is missing from the allergens.",
+    "authored_for": "Cora",
+    "authored_role": "catalog draft, not the auditor",
+    "authored_on": "2026-10-04",
+    "authored_timezone": "America/Chicago",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_generated": false
+  },
+  "package_revision": "legacy-audit-r0"
+}

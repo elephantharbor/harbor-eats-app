@@ -1,0 +1,337 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "teriyaki-tofu-bowls",
+    "slug": "teriyaki-tofu-bowls",
+    "title": "Teriyaki Tofu Bowls",
+    "name": "Teriyaki Tofu Bowls",
+    "description": null,
+    "cuisine": "japanese-inspired",
+    "meal_format": "bowl",
+    "primary_ingredient": "tofu",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.42,
+    "plate": "🥣",
+    "tone": "tone-b",
+    "tags": [
+      "plant",
+      "dairy-free",
+      "bowl"
+    ],
+    "sparks": [
+      "sheet",
+      "savory"
+    ],
+    "chips": [
+      "Plant",
+      "40 min"
+    ],
+    "current_recipe_id": "rcp_teriyaki-tofu-bowls",
+    "current_version_id": "rv_teriyaki-tofu-bowls_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_teriyaki-tofu-bowls",
+    "dish_id": "teriyaki-tofu-bowls",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "created_on": null,
+      "curator": null,
+      "process": "Legacy v1 corrected in draft only. Original authorship is not in the repo.",
+      "copied_from_third_party": null,
+      "note": "legacy_unknown. kitchen_tested is false. No cook count is known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_teriyaki-tofu-bowls_v2",
+    "recipe_id": "rcp_teriyaki-tofu-bowls",
+    "dish_id": "teriyaki-tofu-bowls",
+    "version_number": 2,
+    "immutable": true,
+    "title": "Teriyaki Tofu Bowls",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort": "Easy",
+    "methods": [
+      "bake",
+      "steam"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": null,
+    "doneness": "Tofu edges browned and the exterior set. Broccoli tender-crisp. Reserved glaze coats a spoon.",
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "extra-firm tofu",
+        "quantity": "14 oz",
+        "note": "pressed, cut into cubes"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "3 tbsp",
+        "note": "wheat-containing soy sauce, not tamari"
+      },
+      {
+        "name": "maple syrup",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "rice vinegar",
+        "quantity": "1 tbsp",
+        "note": null
+      },
+      {
+        "name": "cornstarch",
+        "quantity": "1 tsp",
+        "note": "stirred into the reserved half of the glaze"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tbsp",
+        "note": "tossed with the tofu"
+      },
+      {
+        "name": "broccoli florets",
+        "quantity": "3 cups",
+        "note": null
+      },
+      {
+        "name": "kosher salt",
+        "quantity": "1/4 tsp",
+        "note": "on the broccoli"
+      },
+      {
+        "name": "jasmine rice",
+        "quantity": "4 cups cooked",
+        "note": "corrected from 2 cups cooked so each of 4 servings gets about 1 cup; cook during the bake"
+      },
+      {
+        "name": "sesame seeds",
+        "quantity": "1 tbsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the oven and mix the glaze",
+        "body": "Heat the oven to 425°F at the start of prep so the preheat overlaps the press. Press the tofu 15 minutes, cube it, and pat it dry. Whisk the soy sauce, maple syrup, and rice vinegar. That is the teriyaki glaze. Divide it in half. Stir the cornstarch into the reserved half. Toss the tofu with the oil and the other half.",
+        "ingredient_refs": [
+          "extra-firm tofu",
+          "soy sauce",
+          "maple syrup",
+          "rice vinegar",
+          "cornstarch",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Bake the tofu",
+        "body": "Spread the tofu in one layer on a sheet pan. Bake at 425°F for 20 minutes, turning once, until the edges are browned and the exterior is set.",
+        "ingredient_refs": [
+          "extra-firm tofu"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Steam the broccoli",
+        "body": "While the tofu bakes, steam the broccoli with 1/4 tsp kosher salt until tender-crisp, about 4 minutes. Do not roast it.",
+        "ingredient_refs": [
+          "broccoli florets",
+          "kosher salt"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Thicken the reserved glaze",
+        "body": "Simmer the reserved cornstarch half for about 1 minute, until it coats a spoon.",
+        "ingredient_refs": [
+          "soy sauce",
+          "maple syrup",
+          "rice vinegar",
+          "cornstarch"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Assemble the bowls",
+        "body": "Cook the jasmine rice during the bake. Serve rice, tofu, broccoli, the thickened glaze, and the sesame seeds.",
+        "ingredient_refs": [
+          "jasmine rice",
+          "sesame seeds",
+          "broccoli florets",
+          "extra-firm tofu"
+        ]
+      }
+    ],
+    "supersedes_version_id": "rv_teriyaki-tofu-bowls_v1"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "bowls",
+      "japanese",
+      "tofu"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [
+      "sesame",
+      "soy",
+      "wheat"
+    ],
+    "equipment": [
+      "oven",
+      "sheet-pan",
+      "stovetop"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "extra-firm tofu",
+        "quantity": 14,
+        "unit": "oz",
+        "note": "pressed, cubed",
+        "raw_quantity": "14 oz"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "wheat-containing, not tamari",
+        "raw_quantity": "3 tbsp"
+      },
+      {
+        "name": "maple syrup",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "rice vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "cornstarch",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "reserved glaze",
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "with the tofu",
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "broccoli florets",
+        "quantity": 3,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "3 cups"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "broccoli",
+        "raw_quantity": "1/4 tsp"
+      },
+      {
+        "name": "jasmine rice",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "cooked",
+        "raw_quantity": "4 cups cooked"
+      },
+      {
+        "name": "sesame seeds",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "1 tbsp"
+      }
+    ],
+    "allergen_note": "Soy is the tofu and the soy sauce. Wheat is the specified soy sauce, not a gluten-free tamari. Sesame is the sesame seeds. Those are allergens. Dietary labels are only dairy_free and plant. Bowl is a format, not a diet."
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "teriyaki-tofu-bowls.webp",
+    "card_ref": "teriyaki-tofu-bowls-640.webp",
+    "master_filename": "teriyaki-tofu-bowls.webp",
+    "card_filename": "teriyaki-tofu-bowls-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "unreviewed_revision_draft",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_read_and_corrected_in_draft",
+    "evidence_note": "Draft recipe correction only. This object is not a certification result. kitchen_tested is false. Household cook count and rating count are unknown, not zero. Recipe provenance is legacy_unknown.",
+    "auditor": null
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Local draft for Cora. Not imported. Not published. v1 remains the published legacy version."
+  },
+  "catalog_contract_note": "Curator correction draft for Cora. Not an audit and not a certification. v1.json in this folder is the unchanged legacy package.",
+  "revision": {
+    "disposition": "CREATE_V2",
+    "from_version_id": "rv_teriyaki-tofu-bowls_v1",
+    "to_version_id": "rv_teriyaki-tofu-bowls_v2",
+    "reason_summary": "The glaze is never mixed, the method says stovetop while the step bakes, broccoli is steam-or-roast with no time, soy wheat and sesame are missing, and 2 cups cooked rice is only 1/2 cup per person.",
+    "authored_for": "Cora",
+    "authored_role": "catalog draft, not the auditor",
+    "authored_on": "2026-10-04",
+    "authored_timezone": "America/Chicago",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_generated": false
+  },
+  "package_revision": "legacy-audit-r0"
+}

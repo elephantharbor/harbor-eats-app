@@ -142,19 +142,19 @@ async function replaceChildren(db, record) {
     id,
     provenance.certification_class,
     provenance.factory_certified ? 1 : 0,
-    provenance.text_provenance,
-    provenance.text_provenance_raw,
-    provenance.image_provenance,
-    provenance.image_rights,
+    provenance.text_provenance ?? null,
+    provenance.text_provenance_raw ?? null,
+    provenance.image_provenance ?? null,
+    provenance.image_rights ?? null,
     provenance.kitchen_tested ? 1 : 0,
-    provenance.household_cook_count,
-    provenance.rating_count,
-    provenance.freeze_integrity,
-    provenance.gates_a_o,
-    provenance.image_gates,
-    provenance.evidence_basis,
+    provenance.household_cook_count ?? null,
+    provenance.rating_count ?? null,
+    provenance.freeze_integrity ?? null,
+    provenance.gates_a_o ?? null,
+    provenance.image_gates ?? null,
+    provenance.evidence_basis ?? null,
     json(provenance.package_self_report || {}),
-    provenance.evidence_note
+    provenance.evidence_note ?? null
   );
 }
 
@@ -220,6 +220,22 @@ async function upsertDish(db, record, importedAt) {
  * @param {object[]} records records already accepted by planImport
  * @param {string} importedAt
  */
+/**
+ * Staging policy: a published v2 retires the superseded v1 row without deleting it.
+ * @param {object} db
+ * @param {string[]} versionIds
+ */
+export async function retireCatalogVersions(db, versionIds) {
+  for (const versionId of versionIds) {
+    if (!versionId) continue;
+    await run(
+      db,
+      `UPDATE catalog_version SET publication_status = 'retired' WHERE recipe_version_id = ?`,
+      versionId
+    );
+  }
+}
+
 export async function applyCatalogWrites(db, records, importedAt) {
   await run(db, "BEGIN");
   try {

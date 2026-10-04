@@ -1,0 +1,345 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_curator_draft",
+  "draft_role": "Curator draft for Cora. Not an auditor. This file records no certification decision.",
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "source_v1": "https://raw.githubusercontent.com/elephantharbor/harbor-eats-app/cursor/catalog-architecture-fa5e/catalog/crispy-fish-tacos-cabbage-slaw/v1.json",
+  "v1_sha256": "78163b94597efca8d213f4b8569bc37368348ed1c7542421e6c07c4d13fdce5f",
+  "revision_reason": "Salt and pepper are used but unlisted, one tablespoon of oil is unaccounted, the two limes are double-booked, and finfish is stored as a dietary tag.",
+  "material_deltas": [
+    "Added 1 tsp kosher salt and 1/2 tsp black pepper because both steps say salt and pepper and the ingredient list had neither.",
+    "Accounted for all 3 tbsp oil: 2 tbsp for the fry, up to 1 tbsp more for a dry second batch.",
+    "Split the two limes so the slaw, the optional homemade crema, and the wedges cannot each claim an extra lime.",
+    "Doneness now includes 145 F in the center of a strip, plus golden crust and flakes easily.",
+    "dietary_tags reduced to dairy-free. Finfish stays an allergen. fish, finfish, and tacos were removed from dietary_tags.",
+    "Clock left at prep 15, cook 20, total 35. Time was not the defect.",
+    "No egg was added to the dredge."
+  ],
+  "dish": {
+    "dish_id": "crispy-fish-tacos-cabbage-slaw",
+    "slug": "crispy-fish-tacos-cabbage-slaw",
+    "title": "Crispy Fish Tacos with Cabbage Slaw",
+    "name": "Crispy Fish Tacos with Cabbage Slaw",
+    "description": "Cornmeal-crusted pan-fried cod in corn tortillas with a cabbage-carrot slaw and dairy-free crema.",
+    "cuisine": "mexican",
+    "meal_format": "tacos",
+    "primary_ingredient": "cod",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.57,
+    "plate": "🌮",
+    "tone": "tone-a",
+    "tags": [
+      "fish",
+      "finfish",
+      "tacos",
+      "dairy-free"
+    ],
+    "sparks": [
+      "tacos",
+      "crispy",
+      "fish"
+    ],
+    "chips": [
+      "Fish",
+      "35 min"
+    ],
+    "current_recipe_id": "rcp_crispy-fish-tacos-cabbage-slaw",
+    "current_version_id": "rv_crispy-fish-tacos-cabbage-slaw_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_crispy-fish-tacos-cabbage-slaw",
+    "dish_id": "crispy-fish-tacos-cabbage-slaw",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "copied_from_third_party": false,
+      "note": "Corrective draft against legacy v1. Authorship of the legacy text is not known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_crispy-fish-tacos-cabbage-slaw_v2",
+    "recipe_id": "rcp_crispy-fish-tacos-cabbage-slaw",
+    "dish_id": "crispy-fish-tacos-cabbage-slaw",
+    "version_number": 2,
+    "supersedes": "rv_crispy-fish-tacos-cabbage-slaw_v1",
+    "immutable": false,
+    "immutability_note": "Draft for audit. v1.json was not edited. Not kitchen-tested and not published.",
+    "title": "Crispy Fish Tacos with Cabbage Slaw",
+    "description": "Cornmeal-crusted pan-fried cod in corn tortillas with a cabbage-carrot slaw and dairy-free crema.",
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 20,
+    "total_minutes": 35,
+    "effort": "Easy",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "dairy-free"
+    ],
+    "heat": "none",
+    "doneness": "Crust golden. Cod opaque, flakes easily, 145 F in the center of a strip. Not chalky.",
+    "substitutions": {
+      "crema": "Store-bought dairy-free crema, or 1/2 cup vegan mayo plus the juice of 1/2 lime. Do not use sour cream or yogurt.",
+      "soy": "Some vegan mayos and dairy-free cremas contain soy. Soy is not a confirmed allergen until the brand is known."
+    },
+    "ingredients": [
+      {
+        "name": "cod fillets",
+        "quantity": "1 lb",
+        "note": "cut into 8 strips"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "3 tbsp",
+        "note": "2 tbsp for the first fry; up to 1 tbsp more if a second batch looks dry"
+      },
+      {
+        "name": "cornmeal",
+        "quantity": "1/2 cup",
+        "note": null
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "green cabbage",
+        "quantity": "3 cups",
+        "note": "shredded"
+      },
+      {
+        "name": "carrot",
+        "quantity": "1/2 cup",
+        "note": "grated"
+      },
+      {
+        "name": "lime",
+        "quantity": "2",
+        "note": "juice of 1 in the slaw; the second lime is wedges, or juice of 1/2 of it in homemade crema and the remaining half as wedges"
+      },
+      {
+        "name": "cilantro",
+        "quantity": "1/4 cup",
+        "note": "chopped leaves"
+      },
+      {
+        "name": "dairy-free crema",
+        "quantity": "1/2 cup",
+        "note": "store-bought, or whisk 1/2 cup vegan mayo with the juice of 1/2 lime. Either path must be dairy-free."
+      },
+      {
+        "name": "corn tortillas",
+        "quantity": "8 small",
+        "note": null
+      },
+      {
+        "name": "kosher salt",
+        "quantity": "1 tsp",
+        "note": "1/2 tsp in the slaw, 1/2 tsp in the cornmeal. Diamond Crystal. If Morton, use half. v1 told the cook to add salt and never listed it."
+      },
+      {
+        "name": "black pepper",
+        "quantity": "1/2 tsp",
+        "note": "1/4 tsp in the slaw, 1/4 tsp in the cornmeal. v1 called for pepper and never listed it."
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep the slaw",
+        "body": "Toss the green cabbage, carrot, cilantro, the juice of 1 lime, 1/2 tsp of the kosher salt, and 1/4 tsp of the black pepper. Rest 5 minutes.",
+        "ingredient_refs": [
+          "green cabbage",
+          "carrot",
+          "cilantro",
+          "lime",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Coat and crisp the fish",
+        "body": "Pat the cod dry. Dredge the strips in the cornmeal, smoked paprika, the remaining 1/2 tsp kosher salt, and the remaining 1/4 tsp black pepper. Pan-fry in 2 tbsp neutral oil over medium-high heat, 3-4 minutes per side, until the crust is golden and the center of a strip is opaque, flakes easily, and reaches 145 F. Add up to 1 tbsp more oil if a second batch looks dry. No egg and no wheat flour in the dredge.",
+        "ingredient_refs": [
+          "cod fillets",
+          "cornmeal",
+          "smoked paprika",
+          "kosher salt",
+          "black pepper",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Warm the tortillas",
+        "body": "Warm the corn tortillas in a dry skillet 20-30 seconds per side over medium heat.",
+        "ingredient_refs": [
+          "corn tortillas"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Build the tacos",
+        "body": "If using store-bought dairy-free crema, cut the second lime into wedges. If making the crema, whisk 1/2 cup vegan mayo with the juice of 1/2 of the second lime and cut the remaining half into wedges. Fill the tortillas with the fish, slaw, and crema. Serve with the lime wedges. Four servings, two tacos each.",
+        "ingredient_refs": [
+          "corn tortillas",
+          "dairy-free crema",
+          "lime"
+        ]
+      }
+    ]
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "cod",
+      "crispy",
+      "mexican",
+      "tacos"
+    ],
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_note": "Finfish is an allergen, from the cod. It is not a dietary tag. Tacos are a format, not a diet. Dairy-free is the dietary claim. Soy may occur in a chosen crema and is not listed as a confirmed allergen.",
+    "equipment": [
+      "skillet"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "cod fillets",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "8 strips",
+        "raw_quantity": "1 lb"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "2 tbsp to fry; up to 1 tbsp more for a second batch",
+        "raw_quantity": "3 tbsp"
+      },
+      {
+        "name": "cornmeal",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "1/2 cup"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "green cabbage",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "shredded",
+        "raw_quantity": "3 cups"
+      },
+      {
+        "name": "carrot",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "grated",
+        "raw_quantity": "1/2 cup"
+      },
+      {
+        "name": "lime",
+        "quantity": 2,
+        "unit": "count",
+        "note": "1 juiced for the slaw; the second is wedges or half in homemade crema",
+        "raw_quantity": "2"
+      },
+      {
+        "name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "chopped leaves",
+        "raw_quantity": "1/4 cup"
+      },
+      {
+        "name": "dairy-free crema",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "store-bought or vegan mayo plus juice of 1/2 lime",
+        "raw_quantity": "1/2 cup"
+      },
+      {
+        "name": "corn tortillas",
+        "quantity": 8,
+        "unit": "count",
+        "note": "small",
+        "raw_quantity": "8 small"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "1/2 tsp slaw, 1/2 tsp dredge",
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "1/4 tsp slaw, 1/4 tsp dredge",
+        "raw_quantity": "1/2 tsp"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "crispy-fish-tacos-cabbage-slaw.webp",
+    "card_ref": "crispy-fish-tacos-cabbage-slaw-640.webp",
+    "master_filename": "crispy-fish-tacos-cabbage-slaw.webp",
+    "card_filename": "crispy-fish-tacos-cabbage-slaw-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": null,
+    "factory_certified": false,
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "decision": null,
+    "note": "Curator correction draft only. No certification decision is recorded. kitchen_tested is false."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "unpublished_curator_draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Not published. Does not replace live v1 and does not touch production, D1, or the app repo."
+  },
+  "package_revision": "legacy-audit-r0"
+}

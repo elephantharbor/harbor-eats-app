@@ -1,0 +1,269 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "sheet-pan-lemon-herb-chicken",
+    "slug": "sheet-pan-lemon-herb-chicken",
+    "title": "Sheet-Pan Lemon Herb Chicken",
+    "name": "Sheet-Pan Lemon Herb Chicken",
+    "description": null,
+    "cuisine": "american",
+    "meal_format": "sheet-pan",
+    "primary_ingredient": "chicken",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "effort_band": "easy",
+    "weeknight": true,
+    "exploration": 0.45,
+    "plate": "\ud83c\udf57",
+    "tone": "tone-a",
+    "tags": [
+      "poultry",
+      "meat"
+    ],
+    "sparks": [
+      "sheet",
+      "bright"
+    ],
+    "chips": [
+      "Poultry",
+      "60 min"
+    ],
+    "current_recipe_id": "rcp_sheet-pan-lemon-herb-chicken",
+    "current_version_id": "rv_sheet-pan-lemon-herb-chicken_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_sheet-pan-lemon-herb-chicken",
+    "dish_id": "sheet-pan-lemon-herb-chicken",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_sheet-pan-lemon-herb-chicken_v2",
+    "recipe_id": "rcp_sheet-pan-lemon-herb-chicken",
+    "dish_id": "sheet-pan-lemon-herb-chicken",
+    "version_number": 2,
+    "immutable": true,
+    "title": "Sheet-Pan Lemon Herb Chicken",
+    "description": null,
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 45,
+    "total_minutes": 60,
+    "effort": "Easy",
+    "methods": [
+      "oven",
+      "sheet-pan"
+    ],
+    "dietary_tags": [],
+    "heat": null,
+    "doneness": null,
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "chicken thighs",
+        "quantity": "6 bone-in",
+        "note": null
+      },
+      {
+        "name": "potatoes",
+        "quantity": "1 lb cubed",
+        "note": null
+      },
+      {
+        "name": "green beans",
+        "quantity": "12 oz",
+        "note": null
+      },
+      {
+        "name": "lemon",
+        "quantity": "2",
+        "note": null
+      },
+      {
+        "name": "dried oregano",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "kosher salt",
+        "quantity": "1\u00bd tsp",
+        "note": null
+      },
+      {
+        "name": "black pepper",
+        "quantity": "\u00bd tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Season and arrange",
+        "body": "Preheat the oven to 425 F. While it heats, toss the chicken and potatoes with the oil, half the lemon, oregano, salt, and pepper on one sheet pan. Leave the green beans off for now.",
+        "ingredient_refs": [
+          "chicken thighs",
+          "potatoes",
+          "neutral oil",
+          "lemon",
+          "dried oregano",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Roast",
+        "body": "Roast in that hot oven at 425\u00b0F until the chicken reaches 165\u00b0F, 35\u201340 minutes. Add the green beans for about the last 12 minutes.",
+        "ingredient_refs": [
+          "chicken thighs",
+          "green beans"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Rest",
+        "body": "Rest 5 minutes, then squeeze the remaining lemon over the top.",
+        "ingredient_refs": [
+          "lemon"
+        ]
+      }
+    ],
+    "corrects_version_id": "rv_sheet-pan-lemon-herb-chicken_v1"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "american",
+      "chicken",
+      "citrusy"
+    ],
+    "dietary_labels": [],
+    "allergens": [
+      "poultry"
+    ],
+    "equipment": [
+      "sheet-pan"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "chicken thighs",
+        "quantity": 6,
+        "unit": "count",
+        "note": "bone-in",
+        "raw_quantity": "6 bone-in"
+      },
+      {
+        "name": "potatoes",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "cubed",
+        "raw_quantity": "1 lb cubed"
+      },
+      {
+        "name": "green beans",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "raw_quantity": "12 oz"
+      },
+      {
+        "name": "lemon",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "raw_quantity": "2"
+      },
+      {
+        "name": "dried oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1\u00bd tsp"
+      },
+      {
+        "name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "\u00bd tsp"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "sheet-pan-lemon-herb-chicken.webp",
+    "card_ref": "sheet-pan-lemon-herb-chicken-640.webp",
+    "master_filename": "sheet-pan-lemon-herb-chicken.webp",
+    "card_filename": "sheet-pan-lemon-herb-chicken-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "legacy_draft_correction",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_draft_correction",
+    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Cook time now covers the 35\u201340 minute roast plus a 5 minute rest. Green beans go on for about the last 12 minutes, a draft timing, not a kitchen test. Salt and pepper were used in v1 and unlisted. Poultry is the allergen for the chicken thighs. Meat is not added. Poultry and meat are not diets, so they are not dietary labels. sheet-pan is not a diet and not an allergen. No dairy-free claim. kitchen_tested is false. Recipe provenance is legacy_unknown."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Proposed correction for Cora. Not published. Not a certification. v1.json was not edited."
+  },
+  "draft": {
+    "for": "Cora",
+    "role": "legacy_audit_drafter",
+    "is_auditor": false,
+    "disposition": "CREATE_V2",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_this_pass": false,
+    "v1_left_unchanged": true,
+    "reason": "Header cook time undercuts the 165\u00b0F roast, and green beans cannot take the full roast.",
+    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Cook time now covers the 35\u201340 minute roast plus a 5 minute rest. Green beans go on for about the last 12 minutes, a draft timing, not a kitchen test. Salt and pepper were used in v1 and unlisted. Poultry is the allergen for the chicken thighs. Meat is not added. Poultry and meat are not diets, so they are not dietary labels. sheet-pan is not a diet and not an allergen. No dairy-free claim. kitchen_tested is false. Recipe provenance is legacy_unknown."
+  },
+  "package_revision": "legacy-audit-r3"
+}

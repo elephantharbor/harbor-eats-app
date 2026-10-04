@@ -1,5 +1,7 @@
 {
   "scope": "isolated_staging",
   "publication_status": "published",
-  "note": "scripts/import-catalog.mjs --target staging publishes every valid catalog v1 into the staging database. It does not edit v1.json and it refuses the production D1 id 23aa3db3-1090-471b-8c8a-b6fe71f5c053."
+  "legacy_v2_publication_status": "published",
+  "legacy_v1_retire_on_v2_import": true,
+  "note": "scripts/import-catalog.mjs --target staging publishes every valid catalog v1 into the staging database, imports certified v2.json when present, retires superseded v1 rows, and points catalog_dish.current_version_id at the highest imported version. It does not edit v1.json bytes and it refuses the production D1 id 23aa3db3-1090-471b-8c8a-b6fe71f5c053."
 }
