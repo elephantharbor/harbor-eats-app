@@ -1,3 +1,5 @@
+import { expect } from "@playwright/test";
+
 /** Cycle 3 onboarding ends on Home; legacy three-pick rounds are seeded for e2e when Tonight has no plan. */
 /** @param {import('@playwright/test').Page} page */
 export async function openTonightTab(page) {
@@ -63,6 +65,53 @@ export async function reachTonightChoices(page) {
   await openTonightTab(page);
   await ensureLegacyTonightPicks(page);
   await page.locator(".option-card[data-preview]").first().waitFor({ timeout: 30000 });
+}
+
+/**
+ * Advance cook steps through Finish, then reach the rating UI.
+ * Dinner-plan finish goes straight to rate; legacy path shows finished + Rate now.
+ * @param {import('@playwright/test').Page} page
+ */
+export async function advanceCookToRate(page) {
+  const startCooking = page.getByRole("button", { name: "Start cooking" });
+  if (await startCooking.isVisible().catch(() => false)) {
+    await startCooking.click();
+  }
+  const loadingRecipe = page.getByRole("heading", { name: "Loading recipe…" });
+  if (await loadingRecipe.isVisible().catch(() => false)) {
+    await expect(loadingRecipe).not.toBeVisible({ timeout: 60000 });
+  }
+
+  const maxSteps = 20;
+  const finish = page.getByRole("button", { name: "Finish" });
+  const next = page.getByRole("button", { name: "Next" });
+  for (let step = 0; step < maxSteps; step++) {
+    if (await finish.isVisible().catch(() => false)) break;
+    if (!(await next.isVisible().catch(() => false))) {
+      throw new Error(`advanceCookToRate: Finish not visible and Next missing after ${step} step(s)`);
+    }
+    await next.click();
+  }
+  if (!(await finish.isVisible().catch(() => false))) {
+    throw new Error(`advanceCookToRate: Finish not visible after ${maxSteps} Next click(s)`);
+  }
+  await finish.click();
+
+  const rateNow = page.getByRole("button", { name: "Rate now" });
+  const raterCard = page.locator(".rater-card").first();
+  const submitAll = page.getByRole("button", { name: "Submit all ratings" });
+
+  await expect(async () => {
+    if (await rateNow.isVisible().catch(() => false)) return;
+    if (await raterCard.isVisible().catch(() => false)) return;
+    if (await submitAll.isVisible().catch(() => false)) return;
+    throw new Error("rating surface not ready");
+  }).toPass({ timeout: 30000 });
+
+  if (await rateNow.isVisible().catch(() => false)) {
+    await rateNow.click();
+  }
+  await raterCard.waitFor({ state: "visible", timeout: 15000 });
 }
 
 /** @param {import('@playwright/test').Page} page */

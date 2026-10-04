@@ -1,6 +1,6 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
-import { skipToChoices } from "./helpers.js";
+import { advanceCookToRate, skipToChoices } from "./helpers.js";
 
 test("meal loop: select → cook → rate", async ({ page, context }) => {
   await context.clearCookies();
@@ -10,15 +10,7 @@ test("meal loop: select → cook → rate", async ({ page, context }) => {
   await page.locator(".option-card[data-preview]").first().click();
   await page.locator("#btnStartCook").click();
   await page.getByRole("button", { name: "Start cooking" }).click();
-  for (let i = 0; i < 5; i++) {
-    const finish = page.getByRole("button", { name: "Finish" });
-    if (await finish.isVisible()) {
-      await finish.click();
-      break;
-    }
-    await page.getByRole("button", { name: "Next" }).click();
-  }
-  await page.getByRole("button", { name: "Rate now" }).click();
+  await advanceCookToRate(page);
   const cards = page.locator(".rater-card");
   const count = await cards.count();
   for (let i = 0; i < count; i++) {
