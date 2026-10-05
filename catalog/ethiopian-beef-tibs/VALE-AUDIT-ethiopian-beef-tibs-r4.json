@@ -1,0 +1,92 @@
+{
+  "slug": "ethiopian-beef-tibs",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-05",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r3",
+  "freeze_integrity": "PASS",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "kitchen_tested": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null
+    }
+  },
+  "dietary_eligibility": "Meat true (beef); dairy/poultry/finfish/shellfish false; plant_based and vegetarian false; dairy_free unconditional; HH001 false.",
+  "allergens": "meat listed for beef; no egg/milk/soy/wheat/sesame/nut/shellfish/finfish.",
+  "hh001": "Not claimed; correctly false (beef).",
+  "image_observation": "Berbere-coated beef cubes with onion/tomato cling over white rice; green herb finish. Sauce still reads somewhat wet for dry skillet tibs (borderline, not a fail). L1 dims/style OK; L2 appetizing plated protein.",
+  "fails_needing_revision": [],
+  "rescore": {
+    "round": "freeze-r4",
+    "scope": "not_reopened",
+    "prior_overall": "PASS",
+    "note": "Batch A left at freeze-r3 PASS; no new defect."
+  }
+}

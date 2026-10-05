@@ -1,0 +1,95 @@
+{
+  "slug": "pan-fried-pork-dumplings",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-05",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r4",
+  "freeze_integrity": "PASS",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "kitchen_tested": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null
+    }
+  },
+  "dietary_eligibility": "Meat true (ground pork); dairy false; plant_based/vegetarian false; dairy_free unconditional; HH001 false.",
+  "allergens": "meat, wheat, soy, sesame (wrappers, soy sauce, toasted sesame oil).",
+  "hh001": "Not claimed; correctly false (pork).",
+  "image_observation": "Skillet potstickers crisp golden bottoms + pleated tops; one broken open showing pork/cabbage filling; soy-vinegar dip and chopsticks. L1 OK; L2 excellent hero appeal.",
+  "fails_needing_revision": [],
+  "rescore": {
+    "round": "freeze-r4",
+    "prior_overall": "FAIL",
+    "prior_audit": "wave-11/audits/VALE-AUDIT-pan-fried-pork-dumplings-r3.json",
+    "cleared_from_r3": [
+      "README Image status now Hero assets present on disk",
+      "README preflight checklist image/publication/freeze_integrity match present WebPs and FREEZE_INTEGRITY PASS"
+    ]
+  }
+}

@@ -1,0 +1,534 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-11-2026-10-05. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r3; not imported, not published.",
+  "batch_id": "wave-11-2026-10-05",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r3",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-11 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "ethiopian-beef-tibs",
+    "slug": "ethiopian-beef-tibs",
+    "title": "Ethiopian Berbere Beef Tibs",
+    "description": "Cubed beef quickly saut\u00e9ed with onion, garlic, ginger, and berbere until deeply spiced and browned, finished with tomato and herbs. Served with rice or greens (injera optional if available).",
+    "cuisine": "ethiopian",
+    "meal_format": "skillet-saute",
+    "primary_ingredient": "beef",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "savory",
+      "smoky",
+      "tender",
+      "umami",
+      "herbaceous"
+    ],
+    "current_recipe_id": "rcp_ethiopian-beef-tibs",
+    "current_version_id": "rv_ethiopian-beef-tibs_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_ethiopian-beef-tibs",
+    "dish_id": "ethiopian-beef-tibs",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-11-2026-10-05, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_ethiopian-beef-tibs_v1",
+    "recipe_id": "rcp_ethiopian-beef-tibs",
+    "dish_id": "ethiopian-beef-tibs",
+    "version_number": 1,
+    "package_revision": "freeze-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r3. Not certified. Not published. kitchen_tested is false.",
+    "title": "Ethiopian Berbere Beef Tibs",
+    "description": "Cubed beef quickly saut\u00e9ed with onion, garlic, ginger, and berbere until deeply spiced and browned, finished with tomato and herbs. Served with rice or greens (injera optional if available).",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "beef-sirloin",
+        "name": "beef sirloin",
+        "display_name": "beef sirloin or top sirloin",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "trimmed; cut into 3/4-inch cubes. Meat allergen.",
+        "preparation": "cut into 3/4-inch cubes, patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 2,
+        "unit": "count",
+        "note": "about 1 lb total",
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "peeled and minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "berbere",
+        "name": "berbere",
+        "display_name": "berbere spice blend",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "HARD SPICE CONTRACT. Ethiopian berbere blend (chili, fenugreek, coriander, cardamom, etc.). Not chili powder alone and not garam masala. Reduce to 1 tbsp for milder.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "smoked-paprika",
+        "name": "smoked paprika",
+        "display_name": "smoked paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "supports color if berbere is mild; still use berbere as primary",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-cardamom",
+        "name": "ground cardamom",
+        "display_name": "ground cardamom",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "optional boost if berbere is light on cardamom; still count berbere as the lead spice",
+        "preparation": null,
+        "optional": true,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tomato",
+        "name": "tomato",
+        "display_name": "ripe tomato",
+        "quantity": 1,
+        "unit": "count",
+        "note": "about 6 oz; or 1/2 cup diced canned tomato, drained",
+        "preparation": "diced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral high-heat oil (canola or grapeseed)",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "divided: 2 tbsp to sear beef, 1 tbsp for onion",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.25,
+        "unit": "tsp",
+        "note": "3/4 tsp on beef, 1/2 tsp with onions",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fresh-cilantro",
+        "name": "fresh cilantro",
+        "display_name": "fresh cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "packed; parsley may substitute",
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lime",
+        "name": "lime",
+        "display_name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": "juice to finish",
+        "preparation": "juiced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cooked-rice-or-greens",
+        "name": "cooked rice or saut\u00e9ed greens",
+        "display_name": "cooked rice or saut\u00e9ed greens, for serving",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "about 1 cup cooked rice or wilted greens per person. Injera is optional if available locally \u2014 not required by this package and not listed as a shopping dependency.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Cube and season the beef",
+        "body": "Pat the beef dry. Cut into 3/4-inch cubes. Toss with 3/4 tsp kosher salt, black pepper, and 1 tbsp of the berbere. Rest 10 minutes at room temperature while you slice the onions and mince garlic and ginger. Dice the tomato. Chop the cilantro. Juice the lime. Confirm berbere is an Ethiopian blend, not plain chili powder.",
+        "ingredient_refs": [
+          "beef-sirloin",
+          "kosher-salt",
+          "black-pepper",
+          "berbere",
+          "yellow-onion",
+          "garlic",
+          "fresh-ginger",
+          "tomato",
+          "fresh-cilantro",
+          "lime"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Sear the beef",
+        "body": "Heat 2 tbsp of the neutral oil in a 12-inch skillet over medium-high until shimmering. Add the beef in a single layer (two batches if needed). Sear undisturbed until deeply browned on the first side, about 2 to 3 minutes. Toss and sear until browned on most sides but still pink inside, about 2 minutes more. Transfer beef to a plate. Do not cook through yet.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "beef-sirloin"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the onion berbere base",
+        "body": "Add the remaining 1 tbsp oil to the same skillet over medium heat. Add the sliced onions and 1/2 tsp kosher salt. Cook, stirring, until onions soften and pick up browned bits, about 6 to 8 minutes. Add garlic, ginger, remaining 1 tbsp berbere, smoked paprika, and optional cardamom. Cook until fragrant and brick-red, about 1 minute. Stir in the diced tomato. Cook until the tomato softens into the onions, about 2 to 3 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "yellow-onion",
+          "kosher-salt",
+          "garlic",
+          "fresh-ginger",
+          "berbere",
+          "smoked-paprika",
+          "ground-cardamom",
+          "tomato"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Finish tibs and plate",
+        "body": "Return the seared beef and any plate juices to the skillet. Toss over medium-high heat until the beef is coated and cooked to medium (about 135\u2013140 F for cubes), about 2 to 3 minutes. Do not stew into a long braise \u2014 tibs stay skillet-quick. Off heat, stir in lime juice and cilantro. Serve over cooked rice or saut\u00e9ed greens. Injera on the side is optional if you have it; it is not required. No yogurt sauce. No nuts. kitchen_tested is false.",
+        "ingredient_refs": [
+          "beef-sirloin",
+          "lime",
+          "fresh-cilantro",
+          "cooked-rice-or-greens"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "berbere-beef",
+        "name": "berbere-seasoned beef cubes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "beef sirloin",
+          "berbere",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "onion-berbere-base",
+        "name": "onion berbere base",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "yellow onion",
+          "garlic",
+          "fresh ginger",
+          "berbere",
+          "smoked paprika",
+          "tomato",
+          "neutral oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "tongs",
+      "knife",
+      "cutting board",
+      "mixing bowl",
+      "measuring spoons",
+      "instant-read thermometer (optional)"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 25,
+    "total_time_minutes": 40,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "heat": "Medium-high to sear beef; medium for onion base; medium-high to finish. No oven. No grill required.",
+    "doneness": "Beef cubes browned outside, medium inside (~135\u2013140 F). Onions soft and brick-red with berbere. Tomato melted into the base. Not a long braise. kitchen_tested is false.",
+    "effort": "moderate",
+    "complexity": "standard",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Cardamom/fenugreek in berbere are spices, not tree-nut allergens.",
+      "hh001_eligible": false,
+      "hh001_reason": "Beef is meat other than fish. HH001 does not eat this. Global catalog candidate."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. No milk, butter, cheese, cream, yogurt, or mayo. Berbere and beef are not dairy.",
+    "allergens": [
+      "meat"
+    ],
+    "allergen_notes": [
+      "Meat covers beef sirloin cubes.",
+      "No egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, or finfish in the written ingredients.",
+      "Berbere spices are not major allergen tokens in this factory set."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Beef is meat other than fish. HH001 does not eat this. Global catalog candidate.",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "savory",
+      "smoky",
+      "tender",
+      "umami",
+      "herbaceous"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r3_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish, meat, poultry). Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js or already used in prior factory packages. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "package_revision": "package_revision is freeze-r3. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r3. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "cuisine_gap": "ethiopian is the dish.cuisine coverage label and is not a D-02 cuisine slug. Do not invent ethiopian as a vocabulary tag.",
+      "meal_format": "skillet-saute is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "beef \u2014 no dedicated D-02 ingredient slug required in tags.",
+      "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes meat. List meat when beef is present."
+    }
+  },
+  "image": {
+    "image_id": "img_ethiopian-beef-tibs_v1",
+    "dish_id": "ethiopian-beef-tibs",
+    "recipe_version_id": "rv_ethiopian-beef-tibs_v1",
+    "asset_generated": true,
+    "master_ref": "ethiopian-beef-tibs.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "ethiopian-beef-tibs.webp",
+        "spec_catalog_path": "/images/meals/ethiopian-beef-tibs.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "ethiopian-beef-tibs-640.webp",
+        "spec_catalog_path": "/images/meals/ethiopian-beef-tibs-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from AI JPEG to 4:3, then resize to 1200x900 master and 640x480 card WebPs after Cora GenerateImage.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 with house-quality reference; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-11 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r2.",
+    "package_revision": "freeze-r3",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "ethiopian-beef-tibs-640.webp",
+    "master_filename": "ethiopian-beef-tibs.webp",
+    "card_filename": "ethiopian-beef-tibs-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Beef seasoned then seared; onion-berbere base built; beef returned to finish. Lime and cilantro finish. Rice/greens for serving. Optional cardamom noted."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "3 tbsp neutral oil: 2 tbsp sear, 1 tbsp onions. Fully accounted."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Berbere coating and onion-tomato base made in recipe. Not a bottled Ethiopian sauce. Not misir wot lentils."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 (cube, season, slice, mince; includes 10-minute rest overlap) + cook 25 (sear ~5\u20138 with batches + onion 8 + spices/tomato 4 + finish 3) = 40."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Keep cubes in a single layer; use a smaller skillet at 1\u20132. Berbere heat judgment does not quarter linearly \u2014 start with 1\u20131.5 tsp for 1 serving."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat true. contains_dairy false. allergens ['meat']. HH001 false. No yogurt. dairy_free unconditional."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "spicy, savory, smoky, tender, umami, herbaceous are D-02. ethiopian and skillet-saute are cuisine/format labels only."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r3. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r3."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "pass",
+      "detail": "freeze_integrity.py PASS at freeze-r3. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+    }
+  ],
+  "scaling_notes": {
+    "1": "6 oz beef, 1/2 onion, 1\u20131.5 tsp berbere, small skillet, 1 cup rice or greens.",
+    "2": "Half ingredients. Same method; one sear batch.",
+    "4": "As written. Likely two sear batches in a 12-inch skillet.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "skillet-quick finish (not a braise)",
+      "berbere as primary spice",
+      "no yogurt sauce",
+      "injera optional not required"
+    ]
+  },
+  "coverage_contribution": "Opens Ethiopian cuisine (empty). Berbere spice system unused. Beef only existed as grilled flank \u2014 this is a skillet saut\u00e9 shape. Avoids misir wot lentil collision.",
+  "near_duplicate_review": "Compared with Gochujang Grilled Flank Steak: same animal family, different cut, spice system (berbere vs gochujang), and skillet-saut\u00e9 vs grill. Compared with Spiced Lamb Meatballs: different animal and Mediterranean tomato simmer. Compared with Smoky Lentil Sweet Potato Stew / Lentil Stuffed Cabbage: deliberately not misir wot. Compared with Doro wat style chicken: chicken overload avoided. Not a yogurt-heavy plate. Not a live-catalog duplicate.",
+  "batch_challenges": "A",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r3_images_present_awaiting_preflight"
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "herb-vegetable-pot-pie",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-05",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r4",
+  "freeze_integrity": "PASS",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "kitchen_tested": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null
+    }
+  },
+  "dietary_eligibility": "Vegetarian dairy bake; contains_dairy true; meat/poultry/finfish/shellfish false; plant_based false; no dairy_free label; HH001 false.",
+  "allergens": "milk, wheat, egg (butter/cream/all-butter puff + egg wash).",
+  "hh001": "Not claimed; correctly false (dairy).",
+  "image_observation": "Square dish with deep-golden flaky puff lid, vents, cutaway showing creamy root veg+peas gravy; portion plate and thyme sprig. L1 OK; L2 strong comfort-bake craveability.",
+  "fails_needing_revision": [],
+  "rescore": {
+    "round": "freeze-r4",
+    "prior_overall": "FAIL",
+    "prior_audit": "wave-11/audits/VALE-AUDIT-herb-vegetable-pot-pie-r3.json",
+    "cleared_from_r3": [
+      "README Image status now Hero assets present on disk",
+      "README preflight checklist image/publication/freeze_integrity match present WebPs and FREEZE_INTEGRITY PASS"
+    ]
+  }
+}
