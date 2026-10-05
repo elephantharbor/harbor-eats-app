@@ -1,0 +1,578 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-10-2026-10-05 certified_batch mode. Dish, Recipe, Recipe Version, Image metadata. dietary_eligibility is separate from allergens. Publication remains Draft. Not imported, not published, not Vale-certified. Images blocked pending GenerateImage; package_revision is freeze-r2.",
+  "batch_id": "wave-10-2026-10-05",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-10 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "spiced-lamb-meatballs",
+    "slug": "spiced-lamb-meatballs",
+    "title": "Spiced Lamb Meatballs with Tomato-Herb Sauce",
+    "description": "Lamb meatballs seasoned with cumin, coriander, mint, and parsley, browned and simmered in a skillet tomato-herb sauce.",
+    "cuisine": "mediterranean",
+    "meal_format": "meatballs",
+    "primary_ingredient": "lamb",
+    "vocabulary_tag_ids": [
+      "mediterranean",
+      "savory",
+      "herbaceous",
+      "rich",
+      "tender",
+      "umami"
+    ],
+    "current_recipe_id": "rcp_spiced-lamb-meatballs",
+    "current_version_id": "rv_spiced-lamb-meatballs_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_spiced-lamb-meatballs",
+    "dish_id": "spiced-lamb-meatballs",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-10, Grok Bot for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_spiced-lamb-meatballs_v1",
+    "recipe_id": "rcp_spiced-lamb-meatballs",
+    "dish_id": "spiced-lamb-meatballs",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 text package is complete for preflight. Master and card WebPs are present and frozen for preflight/audit. A later image add bumps package_revision to freeze-r1. Not planned, shopped, cooked, or rated. Not Vale-certified.",
+    "title": "Spiced Lamb Meatballs with Tomato-Herb Sauce",
+    "description": "Lamb meatballs seasoned with cumin, coriander, mint, and parsley, browned and simmered in a skillet tomato-herb sauce.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "ground-lamb",
+        "name": "ground lamb",
+        "display_name": "ground lamb",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "not lean beef; lamb is required",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "egg",
+        "name": "egg",
+        "display_name": "large egg",
+        "quantity": 1,
+        "unit": "count",
+        "note": "binder; allergen egg",
+        "preparation": "lightly beaten",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "panko",
+        "name": "panko breadcrumbs",
+        "display_name": "panko breadcrumbs",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "wheat allergen",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "about 8 oz; half grated into meatballs, half diced for sauce",
+        "preparation": "half grated; half diced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 5,
+        "unit": "clove",
+        "note": "3 minced for meatballs, 2 minced for sauce",
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-parsley",
+        "name": "fresh parsley",
+        "display_name": "fresh parsley",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "packed; divided meatballs and finish",
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-mint",
+        "name": "fresh mint",
+        "display_name": "fresh mint",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "packed",
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "ground-cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-coriander",
+        "name": "ground coriander",
+        "display_name": "ground coriander",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sweet-paprika",
+        "name": "sweet paprika",
+        "display_name": "sweet paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "red-pepper-flakes",
+        "name": "red pepper flakes",
+        "display_name": "red pepper flakes",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.75,
+        "unit": "tsp",
+        "note": "1.25 tsp in meatballs, 0.5 tsp in sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "2 tbsp to brown meatballs, 1 tbsp for sauce aromatics",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "crushed-tomatoes",
+        "name": "canned crushed tomatoes",
+        "display_name": "canned crushed tomatoes",
+        "quantity": 28,
+        "unit": "oz",
+        "note": "one 28 oz can; sauce base",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "loosens the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Mix the meatballs",
+        "body": "In a large bowl, combine the ground lamb, beaten egg, panko, grated half onion, 3 cloves minced garlic, half the parsley (1/4 cup), all the mint, cumin, coriander, paprika, red pepper flakes, 1.25 tsp kosher salt, and black pepper. Mix with a fork or clean hands just until combined. Do not overwork. Shape into 16 meatballs, about 1.5 inches each.",
+        "ingredient_refs": [
+          "ground-lamb",
+          "egg",
+          "panko",
+          "yellow-onion",
+          "garlic",
+          "fresh-parsley",
+          "fresh-mint",
+          "ground-cumin",
+          "ground-coriander",
+          "sweet-paprika",
+          "red-pepper-flakes",
+          "kosher-salt",
+          "black-pepper"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the meatballs",
+        "body": "Heat 2 tbsp olive oil in a 12-inch skillet over medium-high. Add the meatballs in a single layer, working in two batches if needed. Brown on two sides until a crust forms, about 2 to 3 minutes per side. They will not be cooked through. Transfer to a plate.",
+        "ingredient_refs": [
+          "olive-oil",
+          "ground-lamb"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Build the tomato-herb sauce",
+        "body": "Reduce heat to medium. Add the remaining 1 tbsp olive oil and the diced onion half. Cook until soft, about 4 minutes. Add the remaining 2 cloves minced garlic and the tomato paste. Stir 1 minute. Pour in the crushed tomatoes and water. Add the remaining 0.5 tsp kosher salt. Simmer 3 minutes, scraping browned bits.",
+        "ingredient_refs": [
+          "olive-oil",
+          "yellow-onion",
+          "garlic",
+          "tomato-paste",
+          "crushed-tomatoes",
+          "water",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer meatballs in sauce",
+        "body": "Nestle the browned meatballs into the sauce. Simmer uncovered over medium-low, turning once, until the centers read 160 F and the sauce has thickened slightly, about 12 to 14 minutes.",
+        "ingredient_refs": [
+          "ground-lamb",
+          "crushed-tomatoes"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Finish with herbs",
+        "body": "Take the skillet off the heat. Scatter the remaining 1/4 cup parsley over the meatballs and sauce. Serve from the skillet: 4 meatballs with sauce per person. No yogurt, no cheese, no pasta required. kitchen_tested is false.",
+        "ingredient_refs": [
+          "fresh-parsley",
+          "ground-lamb",
+          "crushed-tomatoes"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "spiced-lamb-meatballs",
+        "name": "spiced lamb meatballs",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ground lamb",
+          "egg",
+          "panko breadcrumbs",
+          "yellow onion",
+          "garlic",
+          "fresh parsley",
+          "fresh mint",
+          "ground cumin",
+          "ground coriander",
+          "sweet paprika",
+          "red pepper flakes",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "tomato-herb-sauce",
+        "name": "tomato-herb sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "olive oil",
+          "yellow onion",
+          "garlic",
+          "tomato paste",
+          "canned crushed tomatoes",
+          "water",
+          "kosher salt",
+          "fresh parsley"
+        ]
+      }
+    ],
+    "equipment": [
+      "large mixing bowl",
+      "12-inch skillet",
+      "tongs or spoon",
+      "instant-read thermometer",
+      "knife",
+      "cutting board",
+      "measuring spoons"
+    ],
+    "prep_time_minutes": 18,
+    "cook_time_minutes": 28,
+    "total_time_minutes": 46,
+    "prep_minutes": 18,
+    "cook_minutes": 28,
+    "total_minutes": 46,
+    "heat": "Medium-high to brown. Medium for sauce aromatics. Medium-low simmer for meatballs in sauce. No oven.",
+    "doneness": "Meatball centers 160 F. Sauce slightly thickened, spoon-coating. Herbs fresh at the finish. kitchen_tested is false.",
+    "effort": "moderate",
+    "complexity": "standard",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Lamb is meat other than fish. HH001 does not eat this. Global catalog candidate."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional. No milk, butter, cheese, cream, or yogurt. The finish is parsley, not dairy.",
+    "allergens": [
+      "meat",
+      "egg",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Egg and wheat (panko) are on the allergens array.",
+      "No milk, soy, sesame, peanut, tree_nut, shellfish, or finfish.",
+      "Meat is dietary_eligibility, not an allergen token."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Lamb is meat other than fish. HH001 does not eat this. Global catalog candidate.",
+    "vocabulary_tag_ids": [
+      "mediterranean",
+      "savory",
+      "herbaceous",
+      "rich",
+      "tender",
+      "umami"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergens are allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish). Meat and poultry are dietary_eligibility classes, not allergen tokens. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js or already used in Dry Run packages. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "meal_format": "meatballs is not a D-02 meal_style slug and is not in vocabulary_tag_ids.",
+      "primary_ingredient": "lamb has no D-02 ingredient slug; not copied into tags.",
+      "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes meat and poultry as supported tokens (see dry-run-1 packages). List them when present; do not omit because USDA Big-8 lists differ."
+    }
+  },
+  "image": {
+    "image_id": "img_spiced-lamb-meatballs_v1",
+    "dish_id": "spiced-lamb-meatballs",
+    "recipe_version_id": "rv_spiced-lamb-meatballs_v1",
+    "asset_generated": true,
+    "master_ref": "spiced-lamb-meatballs.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "spiced-lamb-meatballs.webp",
+        "spec_catalog_path": "/images/meals/spiced-lamb-meatballs.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "spiced-lamb-meatballs-640.webp",
+        "spec_catalog_path": "/images/meals/spiced-lamb-meatballs-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-cropped from AI JPEG to 4:3, then resized to 1200x900 master and 640x480 card WebPs.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 with house-quality reference; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-10 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit.",
+    "package_revision": "freeze-r2",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "spiced-lamb-meatballs-640.webp",
+    "master_filename": "spiced-lamb-meatballs.webp",
+    "card_filename": "spiced-lamb-meatballs-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_IMAGE_PENDING",
+    "image_rights_provenance": "AWAITING_AI_ASSET",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Onion and garlic and parsley are split across meatballs and sauce. Egg and panko only in meatballs. All spices used."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "3 tbsp olive oil: 2 brown, 1 sauce."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Tomato-herb sauce built from crushed tomatoes, paste, onion, garlic \u2014 not a jar of meatball sauce."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 18 (mix and shape) + cook 28 (6 brown + 4 onion + 1 paste + 3 simmer + 13 meatballs in sauce + finish) = 46."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Egg does not quarter; for 1 serving mix a half-egg by weight or make 4 meatballs from a half batch and freeze rest. 160 F does not scale."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat true. contains_dairy false (no yogurt/cheese). allergens egg and wheat. HH001 false. Allergens include ['meat', 'egg', 'wheat']."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "mediterranean plus flavor/texture D-02 slugs only. meatballs format is not a D-02 meal_style slug."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r2."
+    }
+  ],
+  "scaling_notes": {
+    "1": "6 oz lamb, half egg by whisking and measuring half, 2 tbsp panko, 4 meatballs, ~7 oz tomatoes.",
+    "2": "12 oz lamb, 1 egg still OK or beat and use half carefully, 8 meatballs, half can tomatoes.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "160 F center doneness",
+      "medium-high then medium-low heat"
+    ]
+  },
+  "coverage_contribution": "Opens lamb (empty live) and meatballs format (empty). Mediterranean meat beyond plant shawarma and mussel pot. Built tomato-herb sauce, not jar dump. Dairy-free finish.",
+  "near_duplicate_review": "Compared with Mushroom Walnut Bolognese: saucy, but plant pasta and nuts. Compared with Roasted Cauliflower Shawarma Plate: Middle Eastern/Med adjacency without lamb meatballs. Compared with Garlic Tomato Mussels: tomato skillet seafood, not lamb. Not beef flank. Not a yogurt-heavy plate as the slot spend. Not a live-31 duplicate.",
+  "batch_challenges": "A,B,C",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_images_present_awaiting_preflight"
+}

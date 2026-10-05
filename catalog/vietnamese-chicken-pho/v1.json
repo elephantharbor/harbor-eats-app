@@ -1,0 +1,566 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-10-2026-10-05 certified_batch mode. Dish, Recipe, Recipe Version, Image metadata. dietary_eligibility is separate from allergens. Publication remains Draft. Not imported, not published, not Vale-certified. Images blocked pending GenerateImage; package_revision is freeze-r2.",
+  "batch_id": "wave-10-2026-10-05",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-10 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "vietnamese-chicken-pho",
+    "slug": "vietnamese-chicken-pho",
+    "title": "Vietnamese Chicken Pho",
+    "description": "Chicken simmered with charred onion, ginger, and whole spices into a clear broth, served over flat rice noodles with herbs and lime.",
+    "cuisine": "vietnamese",
+    "meal_format": "noodle-soup",
+    "primary_ingredient": "chicken",
+    "vocabulary_tag_ids": [
+      "soups",
+      "chicken",
+      "savory",
+      "umami",
+      "herbaceous",
+      "fresh"
+    ],
+    "current_recipe_id": "rcp_vietnamese-chicken-pho",
+    "current_version_id": "rv_vietnamese-chicken-pho_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_vietnamese-chicken-pho",
+    "dish_id": "vietnamese-chicken-pho",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-10, Grok Bot for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_vietnamese-chicken-pho_v1",
+    "recipe_id": "rcp_vietnamese-chicken-pho",
+    "dish_id": "vietnamese-chicken-pho",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 text package is complete for preflight. Master and card WebPs are present and frozen for preflight/audit. A later image add bumps package_revision to freeze-r1. Not planned, shopped, cooked, or rated. Not Vale-certified.",
+    "title": "Vietnamese Chicken Pho",
+    "description": "Chicken simmered with charred onion, ginger, and whole spices into a clear broth, served over flat rice noodles with herbs and lime.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "bone-in-chicken-thighs",
+        "name": "bone-in chicken thighs",
+        "display_name": "bone-in, skin-on chicken thighs",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "about 6\u20138 thighs; bones build the stock",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 2,
+        "unit": "count",
+        "note": "about 1 lb total; 1 charred for stock, 1 thinly sliced for bowls",
+        "preparation": "1 halved unpeeled for charring; 1 peeled and thinly sliced for serving",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 3,
+        "unit": "oz",
+        "note": "a thick 3-inch knob",
+        "preparation": "halved lengthwise, unpeeled for charring",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "star-anise",
+        "name": "star anise",
+        "display_name": "whole star anise",
+        "quantity": 3,
+        "unit": "count",
+        "note": "whole pods, not ground",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cinnamon-stick",
+        "name": "cinnamon stick",
+        "display_name": "cinnamon stick",
+        "quantity": 1,
+        "unit": "count",
+        "note": "about 3 inches",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "whole-cloves",
+        "name": "whole cloves",
+        "display_name": "whole cloves",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "coriander-seeds",
+        "name": "coriander seeds",
+        "display_name": "coriander seeds",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "whole seeds",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 12,
+        "unit": "cup",
+        "note": "for the stock pot",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fish-sauce",
+        "name": "fish sauce",
+        "display_name": "fish sauce",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "anchovy-based fish sauce; allergen finfish. All of it seasons the broth.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "plus more to taste at the end",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "balances the broth",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dried-rice-noodles",
+        "name": "dried flat rice noodles",
+        "display_name": "dried flat rice noodles (banh pho)",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "medium width; rice only, not wheat egg noodles",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-cilantro",
+        "name": "fresh cilantro",
+        "display_name": "fresh cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "loosely packed leaves and tender stems",
+        "preparation": "roughly chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-thai-basil",
+        "name": "fresh Thai basil",
+        "display_name": "fresh Thai basil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "leaves only; listed garnish",
+        "preparation": "leaves picked",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lime",
+        "name": "lime",
+        "display_name": "limes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-jalapeno",
+        "name": "jalape\u00f1o",
+        "display_name": "jalape\u00f1o",
+        "quantity": 1,
+        "unit": "count",
+        "note": "optional heat at the table; still listed so it may appear",
+        "preparation": "thinly sliced",
+        "optional": true,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Char onion and ginger",
+        "body": "Heat a dry 12-inch skillet over medium-high. Place the halved unpeeled yellow onion cut-side down and the halved ginger cut-side down. Char until blackened in spots and fragrant, about 5 minutes per side for the onion and 4 minutes for the ginger, turning once. Transfer to a plate. Do not add oil.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "fresh-ginger"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Toast spices and start the stock",
+        "body": "In a large stockpot over medium heat, toast the star anise, cinnamon stick, whole cloves, and coriander seeds until fragrant, about 1 minute. Add the 12 cups water, the bone-in chicken thighs, the charred onion, and the charred ginger. Bring to a boil over high heat, then reduce to a gentle simmer. Skim foam. Simmer uncovered until the chicken is cooked through and the broth tastes of chicken and spice, about 35 minutes. The thickest thigh should read 175 F near the bone.",
+        "ingredient_refs": [
+          "star-anise",
+          "cinnamon-stick",
+          "whole-cloves",
+          "coriander-seeds",
+          "water",
+          "bone-in-chicken-thighs",
+          "yellow-onion",
+          "fresh-ginger"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Pull chicken and season broth",
+        "body": "Lift the chicken to a board. Strain the broth into a clean pot; discard the solids. Return the clear broth to a simmer. Stir in the fish sauce, kosher salt, and sugar. Taste; the broth should be savory and lightly sweet, not salty-flat. Keep at a bare simmer. When the chicken is cool enough to handle, discard skin and bones. Shred the meat into bite-size strips.",
+        "ingredient_refs": [
+          "bone-in-chicken-thighs",
+          "fish-sauce",
+          "kosher-salt",
+          "sugar"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Soak and soften the rice noodles",
+        "body": "Place the dried flat rice noodles in a large bowl. Cover with very hot tap water and soak until pliable but not mushy, about 8 to 12 minutes depending on brand. Drain. Do not boil them in the pho broth.",
+        "ingredient_refs": [
+          "dried-rice-noodles"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Assemble bowls",
+        "body": "Divide the drained noodles among 4 deep bowls. Top with shredded chicken and the thinly sliced raw yellow onion. Ladle about 2 cups of very hot broth over each bowl so the noodles finish softening and the chicken warms through, about 1 minute in the bowl. The broth must be steaming hot when served.",
+        "ingredient_refs": [
+          "dried-rice-noodles",
+          "bone-in-chicken-thighs",
+          "yellow-onion",
+          "water"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Finish with herbs and lime",
+        "body": "Scatter the sliced scallions, chopped cilantro, and Thai basil leaves over each bowl. Serve with lime wedges and optional jalape\u00f1o slices on the side. Each serving is noodles, chicken, hot broth, and herbs. No bean sprouts are required. kitchen_tested is false.",
+        "ingredient_refs": [
+          "scallions",
+          "fresh-cilantro",
+          "fresh-thai-basil",
+          "lime",
+          "fresh-jalapeno"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "pho-chicken-broth",
+        "name": "pho chicken broth",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "bone-in chicken thighs",
+          "yellow onion",
+          "fresh ginger",
+          "star anise",
+          "cinnamon stick",
+          "whole cloves",
+          "coriander seeds",
+          "water",
+          "fish sauce",
+          "kosher salt",
+          "sugar"
+        ]
+      }
+    ],
+    "equipment": [
+      "large stockpot",
+      "12-inch dry skillet",
+      "fine-mesh strainer",
+      "tongs",
+      "knife",
+      "cutting board",
+      "4 deep soup bowls",
+      "instant-read thermometer"
+    ],
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 55,
+    "total_time_minutes": 75,
+    "prep_minutes": 20,
+    "cook_minutes": 55,
+    "total_minutes": 75,
+    "heat": "Dry medium-high skillet for charring. Stockpot: high to boil, then gentle simmer. No oven.",
+    "doneness": "Chicken thighs 175 F near the bone before shredding. Broth clear, savory, lightly sweet. Rice noodles pliable, not mushy. Broth steaming hot in the bowl. kitchen_tested is false.",
+    "effort": "moderate",
+    "complexity": "standard",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Star anise and coriander are spices, not nuts.",
+      "hh001_eligible": false,
+      "hh001_reason": "Poultry (chicken) and finfish (fish sauce). HH001 does not eat poultry. Global catalog candidate."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional. No milk, butter, cheese, cream, or yogurt. Fish sauce is not dairy.",
+    "allergens": [
+      "poultry",
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish is on the allergens array because fish sauce is anchovy-based.",
+      "No egg, milk, soy, wheat, sesame, peanut, tree_nut, or shellfish. Rice noodles are rice, not wheat.",
+      "Poultry is dietary_eligibility, not an allergen token."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Poultry (chicken) and finfish (fish sauce). HH001 does not eat poultry. Global catalog candidate.",
+    "vocabulary_tag_ids": [
+      "soups",
+      "chicken",
+      "savory",
+      "umami",
+      "herbaceous",
+      "fresh"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergens are allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish). Meat and poultry are dietary_eligibility classes, not allergen tokens. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js or already used in Dry Run packages. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "cuisine_gap": "vietnamese is the dish.cuisine coverage label and is not a D-02 taste vocabulary cuisine slug. Do not invent a vietnamese tag.",
+      "meal_format": "noodle-soup is not a D-02 meal_style slug; soups is the D-02 meal_style used in tags.",
+      "primary_ingredient": "chicken is both primary_ingredient and a D-02 ingredient slug.",
+      "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes meat and poultry as supported tokens (see dry-run-1 packages). List them when present; do not omit because USDA Big-8 lists differ."
+    }
+  },
+  "image": {
+    "image_id": "img_vietnamese-chicken-pho_v1",
+    "dish_id": "vietnamese-chicken-pho",
+    "recipe_version_id": "rv_vietnamese-chicken-pho_v1",
+    "asset_generated": true,
+    "master_ref": "vietnamese-chicken-pho.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "vietnamese-chicken-pho.webp",
+        "spec_catalog_path": "/images/meals/vietnamese-chicken-pho.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "vietnamese-chicken-pho-640.webp",
+        "spec_catalog_path": "/images/meals/vietnamese-chicken-pho-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-cropped from AI JPEG to 4:3, then resized to 1200x900 master and 640x480 card WebPs.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 with house-quality reference; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-10 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit.",
+    "package_revision": "freeze-r2",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "vietnamese-chicken-pho-640.webp",
+    "master_filename": "vietnamese-chicken-pho.webp",
+    "card_filename": "vietnamese-chicken-pho-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_IMAGE_PENDING",
+    "image_rights_provenance": "AWAITING_AI_ASSET",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient is used. Second onion is raw in bowls. Jalape\u00f1o is optional garnish. Noodles soak in hot water, not the stockpot."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "No cooking oil. Onion and ginger are dry-charred."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Pho broth is built from chicken, charred aromatics, toasted whole spices, water, fish sauce, salt, and sugar. Not a carton of stock with spice dust."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 20 (halve aromatics, measure spices, slice garnish onion/herbs/lime while stock runs after start) + cook 55 (10 char + 1 toast + 35 simmer + 1 season/shred overlap + 8 noodle soak overlapping end of simmer) = 75. Clock uses sequential char+toast+simmer 46 plus noodle soak 8 after chicken is out plus assemble 1 = cook 55 with prep 20 for cutting that cannot fully overlap the first char. Published total 75."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Whole spices do not quarter cleanly. Keep at least 1 star anise and 1 cinnamon stick for 1\u20132 servings. See scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_poultry true. contains_finfish true because of fish sauce. contains_dairy false. allergens list finfish. HH001 false. Allergens include ['poultry', 'finfish']."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "Tags are D-02 slugs: soups, chicken, savory, umami, herbaceous, fresh. vietnamese is dish.cuisine only \u2014 not a D-02 cuisine slug."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r2."
+    }
+  ],
+  "scaling_notes": {
+    "1": "About 10 oz chicken thighs, 3 cups water, 1 tbsp fish sauce, 3 oz rice noodles, half aromatics, keep 1 star anise and half cinnamon stick. Same simmer target 175 F.",
+    "2": "1.25 lb thighs, 6 cups water, half spices rounded up to whole cloves still countable, 6 oz noodles.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "175 F thigh doneness",
+      "gentle simmer not a hard boil",
+      "rice noodles soaked not boiled in broth"
+    ]
+  },
+  "coverage_contribution": "Opens Vietnamese cuisine (empty live) and noodle-soup format (empty). Chicken\u2019s third method after sheet-pan thighs and crispy sandwich \u2014 broth-forward, not grilled or breaded.",
+  "near_duplicate_review": "Compared with White Bean Kale Soup: soup, but bean-and-kale, not pho. Compared with Sheet-Pan Lemon Herb Chicken and Crispy Skillet Chicken Sandwiches: same animal, different format and cuisine. Compared with Sesame Soba / Peanut Noodle / Teriyaki Tofu bowls: noodle-adjacent but not Vietnamese chicken broth. Not a plant coconut \u201cpho-inspired\u201d dodge. Not a duplicate of dry-run or live 31.",
+  "batch_challenges": "A,B,C",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_images_present_awaiting_preflight"
+}

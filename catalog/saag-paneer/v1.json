@@ -1,0 +1,609 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-10-2026-10-05. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r4; not imported, not published.",
+  "batch_id": "wave-10-2026-10-05",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r4",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-10 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "saag-paneer",
+    "slug": "saag-paneer",
+    "title": "Saag Paneer",
+    "description": "Browned paneer cubes simmered in a spiced spinach (saag) skillet sauce finished with cream and butter.",
+    "cuisine": "indian-inspired",
+    "meal_format": "skillet",
+    "primary_ingredient": "paneer",
+    "vocabulary_tag_ids": [
+      "indian",
+      "savory",
+      "rich",
+      "creamy",
+      "herbaceous",
+      "tender",
+      "spicy"
+    ],
+    "current_recipe_id": "rcp_saag-paneer",
+    "current_version_id": "rv_saag-paneer_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_saag-paneer",
+    "dish_id": "saag-paneer",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-10-2026-10-05, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_saag-paneer_v1",
+    "recipe_id": "rcp_saag-paneer",
+    "dish_id": "saag-paneer",
+    "version_number": 1,
+    "package_revision": "freeze-r4",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r4. Not certified. Not published. kitchen_tested is false.",
+    "title": "Saag Paneer",
+    "description": "Browned paneer cubes simmered in a spiced spinach (saag) skillet sauce finished with cream and butter.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "paneer",
+        "name": "paneer",
+        "display_name": "paneer",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "required dairy. Block paneer, not pre-crumbled. Milk allergen.",
+        "preparation": "cut into 3/4-inch cubes and patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "baby-spinach",
+        "name": "baby spinach",
+        "display_name": "baby spinach",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "fresh. The saag greens. Frozen spinach (10 oz thawed and squeezed dry) may substitute in shopping but fresh is the written path.",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "about 8 oz",
+        "preparation": "diced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "jalapeno",
+        "name": "jalape\u00f1o",
+        "display_name": "jalape\u00f1o",
+        "quantity": 1,
+        "unit": "count",
+        "note": "seeded for medium heat; keep some seeds for hotter",
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "canned-diced-tomatoes",
+        "name": "canned diced tomatoes",
+        "display_name": "canned diced tomatoes",
+        "quantity": 14.5,
+        "unit": "oz",
+        "note": "one 14.5 oz can, drained of excess watery liquid but keep the tomato flesh",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "heavy-cream",
+        "name": "heavy cream",
+        "display_name": "heavy cream",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "required dairy. Finish only. Do not skip for a HH001 claim \u2014 this meal is not HH001.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "unsalted-butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "required dairy. Mounted into the saag at the end with the cream.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil (canola or grapeseed)",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "divided: 2 tbsp to brown the paneer, 1 tbsp for the onion base",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "ground-cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-coriander",
+        "name": "ground coriander",
+        "display_name": "ground coriander",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garam-masala",
+        "name": "garam masala",
+        "display_name": "garam masala",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "divided: 1/2 tsp with the tomato base, 1/2 tsp at the end",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cayenne-pepper",
+        "name": "cayenne pepper",
+        "display_name": "cayenne pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "optional heat beyond the jalape\u00f1o; omit for milder",
+        "preparation": null,
+        "optional": true,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.25,
+        "unit": "tsp",
+        "note": "divided: 1/4 tsp on browning paneer, 1 tsp in the saag",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "to loosen the spinach puree as it simmers; add only as needed up to 1/2 cup",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-cilantro",
+        "name": "fresh cilantro",
+        "display_name": "fresh cilantro",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lemon-juice",
+        "name": "lemon juice",
+        "display_name": "fresh lemon juice",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "bright finish off heat",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep spinach and paneer",
+        "body": "Bring a large pot of water to a boil. Add the baby spinach and cook just until collapsed, about 1 minute. Drain and rinse under cold water. Squeeze out excess water firmly. Chop the spinach roughly, or pulse a few times in a food processor to a coarse puree (not a baby-food slick). Cut the paneer into 3/4-inch cubes and pat dry. Dice the onion. Mince the garlic, ginger, and jalape\u00f1o. Measure the spices, cream, butter, oil, tomatoes, salt, cilantro, and lemon juice.",
+        "ingredient_refs": [
+          "baby-spinach",
+          "paneer",
+          "yellow-onion",
+          "garlic",
+          "fresh-ginger",
+          "jalapeno",
+          "ground-cumin",
+          "ground-coriander",
+          "ground-turmeric",
+          "garam-masala",
+          "cayenne-pepper",
+          "heavy-cream",
+          "unsalted-butter",
+          "neutral-oil",
+          "canned-diced-tomatoes",
+          "kosher-salt",
+          "fresh-cilantro",
+          "lemon-juice",
+          "water"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the paneer",
+        "body": "Heat 2 tbsp of the neutral oil in a 12-inch skillet over medium-high heat. Add the paneer cubes and 1/4 tsp of the kosher salt. Cook, turning, until golden on several sides, about 5 to 6 minutes. Transfer the paneer to a plate. Do not add meat. Do not substitute tofu in this package and still call it saag paneer.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "paneer",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Build the onion-spice base",
+        "body": "Reduce heat to medium. Add the remaining 1 tbsp neutral oil. Add the yellow onion and cook until soft and lightly golden, about 6 minutes. Add the garlic, ginger, and jalape\u00f1o. Cook 1 minute. Stir in the ground cumin, ground coriander, ground turmeric, 1/2 tsp of the garam masala, and the optional cayenne. Stir 30 to 60 seconds until fragrant.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "yellow-onion",
+          "garlic",
+          "fresh-ginger",
+          "jalapeno",
+          "ground-cumin",
+          "ground-coriander",
+          "ground-turmeric",
+          "garam-masala",
+          "cayenne-pepper"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer tomatoes and spinach",
+        "body": "Add the canned diced tomatoes and 1 tsp of the kosher salt. Cook, stirring, until the tomatoes look jammy and most free liquid has cooked down, about 5 minutes. Stir in the chopped spinach and up to 1/2 cup water as needed so the saag is saucy but not watery. Simmer about 5 minutes. This spinach-tomato saag is made in the skillet, not a jarred spinach sauce.",
+        "ingredient_refs": [
+          "canned-diced-tomatoes",
+          "kosher-salt",
+          "baby-spinach",
+          "water"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Return paneer and finish with dairy",
+        "body": "Return the browned paneer to the skillet. Simmer 3 minutes so the cubes heat through. Stir in the heavy cream, unsalted butter, and the remaining 1/2 tsp garam masala. Warm through 1 minute without a hard boil. Take off the heat. Stir in the lemon juice and cilantro. Serve as a skillet saag with paneer cubes visible. No chicken. No lamb. kitchen_tested is false.",
+        "ingredient_refs": [
+          "paneer",
+          "heavy-cream",
+          "unsalted-butter",
+          "garam-masala",
+          "lemon-juice",
+          "fresh-cilantro"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "spinach-saag",
+        "name": "spinach saag",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "neutral oil",
+          "yellow onion",
+          "garlic",
+          "fresh ginger",
+          "jalape\u00f1o",
+          "ground cumin",
+          "ground coriander",
+          "ground turmeric",
+          "garam masala",
+          "cayenne pepper",
+          "canned diced tomatoes",
+          "baby spinach",
+          "water",
+          "kosher salt",
+          "heavy cream",
+          "unsalted butter",
+          "lemon juice",
+          "fresh cilantro"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "large pot for blanching",
+      "colander",
+      "knife",
+      "cutting board",
+      "measuring spoons",
+      "optional food processor"
+    ],
+    "prep_time_minutes": 18,
+    "cook_time_minutes": 28,
+    "total_time_minutes": 46,
+    "prep_minutes": 18,
+    "cook_minutes": 28,
+    "total_minutes": 46,
+    "heat": "Boil for spinach blanch (inside prep). Skillet medium-high for paneer, then medium for the saag base and simmer. Finish cream on low/off-hard-boil.",
+    "doneness": "Paneer golden on several faces, soft inside, not rubbery-dry. Saag thick enough to coat a spoon, spinach cooked and green-olive rather than raw. Cream stirred smooth. kitchen_tested is false.",
+    "effort": "moderate",
+    "complexity": "moderate",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Garam masala is ground spices, not nuts.",
+      "hh001_eligible": false,
+      "hh001_reason": "Paneer, heavy cream, and butter are dairy. HH001 does not eat dairy. No meat is present; dairy alone makes it ineligible."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dairy_free label. Paneer, cream, and butter are required. Vegetarian is true (no meat, poultry, fish; paneer is milk cheese). Not plant-based. Not a tofu-saag billed as paneer.",
+    "allergens": [
+      "milk"
+    ],
+    "allergen_notes": [
+      "Milk covers paneer, heavy cream, and unsalted butter. All three are required.",
+      "No egg, soy, wheat, sesame, peanut, tree_nut, shellfish, or finfish.",
+      "contains_dairy is true. The allergen token is milk. Meat and poultry are not on this array."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Paneer, heavy cream, and butter are dairy. HH001 does not eat dairy. No meat is present; dairy alone makes it ineligible.",
+    "vocabulary_tag_ids": [
+      "indian",
+      "savory",
+      "rich",
+      "creamy",
+      "herbaceous",
+      "tender",
+      "spicy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r4_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "original_ai_assisted vs live ai_assisted.",
+      "publication_state": "Draft / draft. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "milk token. Do not silently remap to dairy.",
+      "dietary_eligibility": "contains_dairy true. vegetarian_compatible true. plant_based false. hh001 false.",
+      "vocabulary": "indian is the D-02 cuisine slug (dish.cuisine is indian-inspired). savory, rich, creamy, herbaceous, tender, spicy are active. skillet is meal_format, not copied into tags. paneer has no D-02 ingredient slug.",
+      "meal_format": "skillet \u2014 format metadata only.",
+      "primary_ingredient": "paneer \u2014 not a D-02 slug.",
+      "package_revision": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true."
+    }
+  },
+  "image": {
+    "image_id": "img_saag-paneer_v1",
+    "dish_id": "saag-paneer",
+    "recipe_version_id": "rv_saag-paneer_v1",
+    "asset_generated": true,
+    "master_ref": "saag-paneer.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "saag-paneer.webp",
+        "spec_catalog_path": "/images/meals/saag-paneer.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "saag-paneer-640.webp",
+        "spec_catalog_path": "/images/meals/saag-paneer-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-cropped from AI JPEG to 4:3, then resized to 1200x900 master and 640x480 card WebPs.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage r2 revision targeting Vale K FAIL; WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-10 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit.",
+    "package_revision": "freeze-r4",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "saag-paneer-640.webp",
+    "master_filename": "saag-paneer.webp",
+    "card_filename": "saag-paneer-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Paneer browned then returned. Spinach blanched and simmered. Cream/butter/garam at end. Oil split 2+1 tbsp."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "3 tbsp neutral oil (2 paneer, 1 onion) plus 1 tbsp butter finish. Cream is dairy finish, not a stand-in for oil."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Spinach saag built from onion, spices, tomatoes, blanched spinach, cream, butter. Not a jarred saag sauce."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 18 includes spinach blanch (~1 min boil + squeeze + chop) and paneer cube. Cook 28 (6 paneer + 6 onion + 1 aromatics + 1 spices + 5 tomato + 5 spinach simmer + 3 paneer return + 1 cream) = 46. Blanch water heat is inside prep, not a second cook block."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Base 4. Paneer and spinach scale with skillet size notes. See scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_dairy true. vegetarian true. hh001 false. allergens milk. No meat."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "indian + verified flavor/texture slugs."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested false. Not Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r4. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r4."
+    }
+  ],
+  "scaling_notes": {
+    "1": "3 oz paneer, 4 oz spinach, 1/4 onion, 1 garlic clove, 1 tsp ginger, small jalape\u00f1o pinch, ~1/3 of a 14.5 oz tomato can (about 1/2 cup drained), 1 tbsp cream, 1 tsp butter, 2 tsp oil total. Small skillet. Same browning and simmer logic; shorten onion time slightly.",
+    "2": "6 oz paneer, 8 oz spinach, half aromatics and spices, half can tomatoes, 2 tbsp cream, half butter and oil. 10-inch skillet.",
+    "4": "As written. 12 oz paneer, 1 lb spinach, 12-inch skillet, 46-minute clock.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "do not replace paneer with tofu in this package",
+      "cream and butter remain required",
+      "vegetarian claim stays meat-free",
+      "paneer browning before saag"
+    ]
+  },
+  "coverage_contribution": "Second indian-inspired meal without touching chickpeas (coconut chickpea curry remains the only chickpea Indian). Paneer-as-protein is empty live. Dairy vegetarian skillet that is not quesadillas, feta carrots, or potato-leek gratin.",
+  "near_duplicate_review": "Compared with Coconut Chickpea Curry: same broad indian-inspired lane, but chickpea coconut curry vs paneer spinach saag \u2014 different protein, fat system, and texture. Compared with Moroccan Chickpea Skillet: chickpea cluster closed; this has no chickpeas. Compared with Potato-Leek Gratin / Lemon Pea Risotto: other dairy mains, different formats (bake / risotto vs spinach skillet). Compared with Black Bean Quesadillas / Harissa Carrots with Feta: dairy elsewhere, not saag. Deliberately not butter chicken (poultry + dairy would waste the Indian slot on chicken while pho/souvlaki already add poultry).",
+  "batch_challenges": [
+    "B",
+    "C",
+    "D"
+  ],
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r4_images_present_awaiting_preflight"
+}

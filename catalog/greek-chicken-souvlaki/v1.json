@@ -1,0 +1,508 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-10-2026-10-05 certified_batch mode. Dish, Recipe, Recipe Version, Image metadata. dietary_eligibility is separate from allergens. Publication remains Draft. Not imported, not published, not Vale-certified. Images blocked pending GenerateImage; package_revision is freeze-r2.",
+  "batch_id": "wave-10-2026-10-05",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-10 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "greek-chicken-souvlaki",
+    "slug": "greek-chicken-souvlaki",
+    "title": "Greek Chicken Souvlaki with Cucumber Salad",
+    "description": "Lemon-oregano marinated chicken thigh skewers grilled or broiled, served with a dairy-free cucumber-tomato-dill salad.",
+    "cuisine": "greek",
+    "meal_format": "skewers",
+    "primary_ingredient": "chicken",
+    "vocabulary_tag_ids": [
+      "mediterranean",
+      "grilled",
+      "chicken",
+      "citrusy",
+      "herbaceous",
+      "savory",
+      "fresh"
+    ],
+    "current_recipe_id": "rcp_greek-chicken-souvlaki",
+    "current_version_id": "rv_greek-chicken-souvlaki_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_greek-chicken-souvlaki",
+    "dish_id": "greek-chicken-souvlaki",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-10, Grok Bot for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_greek-chicken-souvlaki_v1",
+    "recipe_id": "rcp_greek-chicken-souvlaki",
+    "dish_id": "greek-chicken-souvlaki",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 text package is complete for preflight. Master and card WebPs are present and frozen for preflight/audit. A later image add bumps package_revision to freeze-r1. Not planned, shopped, cooked, or rated. Not Vale-certified.",
+    "title": "Greek Chicken Souvlaki with Cucumber Salad",
+    "description": "Lemon-oregano marinated chicken thigh skewers grilled or broiled, served with a dairy-free cucumber-tomato-dill salad.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "boneless-chicken-thighs",
+        "name": "boneless skinless chicken thighs",
+        "display_name": "boneless skinless chicken thighs",
+        "quantity": 1.75,
+        "unit": "lb",
+        "note": "about 8 thighs; trim excess fat",
+        "preparation": "cut into 1.5-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "3 tbsp marinade, 1 tbsp for the cucumber salad",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "lemon-juice",
+        "name": "lemon juice",
+        "display_name": "fresh lemon juice",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "from about 2 lemons; divided marinade and salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "dried-oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "Greek oregano preferred",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1.25 tsp marinade, 1/4 tsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "english-cucumber",
+        "name": "English cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": "about 12 oz",
+        "preparation": "halved lengthwise, seeded if watery, and sliced 1/4 inch",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cherry-tomatoes",
+        "name": "cherry tomatoes",
+        "display_name": "cherry tomatoes",
+        "quantity": 1,
+        "unit": "pint",
+        "note": "about 10 oz",
+        "preparation": "halved",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 0.25,
+        "unit": "count",
+        "note": "about 2 oz",
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-dill",
+        "name": "fresh dill",
+        "display_name": "fresh dill",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "chopped; salad finish \u2014 not yogurt tzatziki",
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lemon-wedges",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "cut into wedges for serving",
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Marinate the chicken",
+        "body": "In a bowl, whisk 3 tbsp olive oil, 3 tbsp of the lemon juice, the minced garlic, dried oregano, 1.25 tsp kosher salt, and black pepper. Add the chicken pieces and toss to coat. Marinate 20 minutes at room temperature (or up to 2 hours refrigerated). Meanwhile, soak 8 bamboo skewers in water if using wood.",
+        "ingredient_refs": [
+          "olive-oil",
+          "lemon-juice",
+          "garlic",
+          "dried-oregano",
+          "kosher-salt",
+          "black-pepper",
+          "boneless-chicken-thighs"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Make the cucumber salad",
+        "body": "In a serving bowl, combine the sliced cucumber, halved cherry tomatoes, sliced red onion, chopped dill, the remaining 1 tbsp lemon juice, the remaining 1 tbsp olive oil, and the remaining 1/4 tsp kosher salt. Toss. No yogurt, no feta, no olives required. Hold while the chicken cooks.",
+        "ingredient_refs": [
+          "english-cucumber",
+          "cherry-tomatoes",
+          "red-onion",
+          "fresh-dill",
+          "lemon-juice",
+          "olive-oil",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Thread the skewers",
+        "body": "Thread the marinated chicken onto 8 skewers, packing pieces snugly but not crushed. Discard leftover marinade that touched raw chicken; do not brush it on after cooking.",
+        "ingredient_refs": [
+          "boneless-chicken-thighs"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Grill or broil the souvlaki",
+        "body": "Heat a grill or grill pan to medium-high, or set an oven broiler to high with a rack 6 inches from the element (broiler path: preheat 5 minutes overlaps skewer threading). Cook the skewers, turning every 2 to 3 minutes, until chicken is browned in spots and the thickest piece reads 165 F, about 10 to 12 minutes total. Do not serve pink chicken.",
+        "ingredient_refs": [
+          "boneless-chicken-thighs"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Plate",
+        "body": "Rest skewers 3 minutes. Serve 2 skewers per person with cucumber salad and lemon wedges. No pita, no tzatziki, no fries. kitchen_tested is false.",
+        "ingredient_refs": [
+          "boneless-chicken-thighs",
+          "english-cucumber",
+          "lemon-wedges"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "lemon-oregano-marinade",
+        "name": "lemon-oregano marinade",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "olive oil",
+          "lemon juice",
+          "garlic",
+          "dried oregano",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "cucumber-tomato-salad",
+        "name": "cucumber tomato salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "English cucumber",
+          "cherry tomatoes",
+          "red onion",
+          "fresh dill",
+          "lemon juice",
+          "olive oil",
+          "kosher salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "mixing bowls",
+      "8 bamboo or metal skewers",
+      "grill, grill pan, or oven broiler",
+      "tongs",
+      "instant-read thermometer",
+      "knife",
+      "cutting board"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 35,
+    "total_time_minutes": 50,
+    "prep_minutes": 15,
+    "cook_minutes": 35,
+    "total_minutes": 50,
+    "heat": "Grill or grill pan medium-high, or oven broiler on high 6 inches from element. Broiler preheat 5 minutes overlaps skewer threading.",
+    "doneness": "Chicken 165 F in the thickest piece, browned in spots. Salad crisp, not watery. kitchen_tested is false.",
+    "effort": "moderate",
+    "complexity": "standard",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Poultry (chicken). HH001 does not eat poultry. Global catalog candidate."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional. No yogurt, feta, milk, butter, cream, or cheese. The salad is oil-lemon, not tzatziki.",
+    "allergens": [
+      "poultry"
+    ],
+    "allergen_notes": [
+      "Allergens array is empty on purpose. No egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, or finfish.",
+      "Poultry is dietary_eligibility, not an allergen token.",
+      "No pita means no wheat from bread."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Poultry (chicken). HH001 does not eat poultry. Global catalog candidate.",
+    "vocabulary_tag_ids": [
+      "mediterranean",
+      "grilled",
+      "chicken",
+      "citrusy",
+      "herbaceous",
+      "savory",
+      "fresh"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergens are allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish). Meat and poultry are dietary_eligibility classes, not allergen tokens. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js or already used in Dry Run packages. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "cuisine_gap": "greek is the dish.cuisine coverage label and is not a D-02 cuisine slug. mediterranean is the D-02 cuisine tag used.",
+      "meal_format": "skewers is not a D-02 meal_style slug; grilled is the D-02 meal_style used.",
+      "primary_ingredient": "chicken is both primary_ingredient and a D-02 ingredient slug.",
+      "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes meat and poultry as supported tokens (see dry-run-1 packages). List them when present; do not omit because USDA Big-8 lists differ."
+    }
+  },
+  "image": {
+    "image_id": "img_greek-chicken-souvlaki_v1",
+    "dish_id": "greek-chicken-souvlaki",
+    "recipe_version_id": "rv_greek-chicken-souvlaki_v1",
+    "asset_generated": true,
+    "master_ref": "greek-chicken-souvlaki.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "greek-chicken-souvlaki.webp",
+        "spec_catalog_path": "/images/meals/greek-chicken-souvlaki.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "greek-chicken-souvlaki-640.webp",
+        "spec_catalog_path": "/images/meals/greek-chicken-souvlaki-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-cropped from AI JPEG to 4:3, then resized to 1200x900 master and 640x480 card WebPs.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 with house-quality reference; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-10 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit.",
+    "package_revision": "freeze-r2",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "greek-chicken-souvlaki-640.webp",
+    "master_filename": "greek-chicken-souvlaki.webp",
+    "card_filename": "greek-chicken-souvlaki-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_IMAGE_PENDING",
+    "image_rights_provenance": "AWAITING_AI_ASSET",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Oil and lemon juice split marinade/salad. Dill only in salad. Lemon wedges for serving. No yogurt introduced."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "1/4 cup olive oil fully split 3 tbsp + 1 tbsp."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Marinade and cucumber salad are built. No bottled Greek dressing. No tzatziki."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 (cut chicken, whisk marinade, cut salad veg) + cook 35 (20 marinate with salad overlap + 12 grill + 3 rest). If broiling, 5-minute preheat overlaps threading and is inside cook. Total 50."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Skewer count scales. 165 F does not scale. Cucumber halves awkwardly at 1."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_poultry true. contains_dairy false unconditionally (no yogurt/feta). allergens empty. HH001 false. Allergens include ['poultry']."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "mediterranean, grilled, chicken, citrusy, herbaceous, savory, fresh are D-02. greek is dish.cuisine coverage only \u2014 not invented as a D-02 cuisine tag."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r2."
+    }
+  ],
+  "scaling_notes": {
+    "1": "about 7 oz chicken, 2 skewers, quarter salad.",
+    "2": "14 oz chicken, 4 skewers, half salad.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "165 F chicken doneness",
+      "medium-high grill / broiler distance"
+    ]
+  },
+  "coverage_contribution": "Opens Greek cuisine label and skewers/kebabs format (both empty). Chicken\u2019s third live-adjacent slot earned by cuisine+format move \u2014 lemon-oregano skewers + cucumber salad, not sheet-pan or sandwich.",
+  "near_duplicate_review": "Compared with Sheet-Pan Lemon Herb Chicken: lemon-herb chicken adjacency, but sheet-pan thighs vs skewers and no Greek cucumber salad. Compared with Crispy Skillet Chicken Sandwiches: different format entirely. Compared with Roasted Cauliflower Shawarma: skewered/spiced plate without poultry. Not gyro flatbread. Not a Greek salad with no cook. Not a live-31 duplicate.",
+  "batch_challenges": "A,B,C",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_images_present_awaiting_preflight"
+}

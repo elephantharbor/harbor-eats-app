@@ -1,0 +1,611 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-10-2026-10-05 certified_batch mode. Dish, Recipe, Recipe Version, Image metadata. dietary_eligibility is separate from allergens. Publication remains Draft. Not imported, not published, not Vale-certified. Images blocked pending GenerateImage; package_revision is freeze-r2.",
+  "batch_id": "wave-10-2026-10-05",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-10 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "jamaican-jerk-pork-chops",
+    "slug": "jamaican-jerk-pork-chops",
+    "title": "Jamaican Jerk Pork Chops with Pineapple Slaw",
+    "description": "Bone-in pork chops coated in a blended Scotch-bonnet jerk paste, skillet-seared, served with crunchy pineapple-cabbage slaw.",
+    "cuisine": "caribbean",
+    "meal_format": "skillet-chops",
+    "primary_ingredient": "pork chops",
+    "vocabulary_tag_ids": [
+      "savory",
+      "spicy",
+      "smoky",
+      "tangy",
+      "crunchy",
+      "fresh"
+    ],
+    "current_recipe_id": "rcp_jamaican-jerk-pork-chops",
+    "current_version_id": "rv_jamaican-jerk-pork-chops_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_jamaican-jerk-pork-chops",
+    "dish_id": "jamaican-jerk-pork-chops",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-10, Grok Bot for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_jamaican-jerk-pork-chops_v1",
+    "recipe_id": "rcp_jamaican-jerk-pork-chops",
+    "dish_id": "jamaican-jerk-pork-chops",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 text package is complete for preflight. Master and card WebPs are present and frozen for preflight/audit. A later image add bumps package_revision to freeze-r1. Not planned, shopped, cooked, or rated. Not Vale-certified.",
+    "title": "Jamaican Jerk Pork Chops with Pineapple Slaw",
+    "description": "Bone-in pork chops coated in a blended Scotch-bonnet jerk paste, skillet-seared, served with crunchy pineapple-cabbage slaw.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "bone-in-pork-chops",
+        "name": "bone-in pork chops",
+        "display_name": "bone-in pork loin chops",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 8 oz each, 3/4 to 1 inch thick",
+        "preparation": "patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": "for the jerk paste",
+        "preparation": "roughly chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-thyme",
+        "name": "fresh thyme",
+        "display_name": "fresh thyme",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "leaves stripped",
+        "preparation": "leaves stripped from stems",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "peeled",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "peeled and sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "scotch-bonnet",
+        "name": "Scotch bonnet pepper",
+        "display_name": "Scotch bonnet pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": "seeded for hot-but-not-nuclear; leave seeds for hotter. Wear gloves.",
+        "preparation": "stemmed and seeded",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-allspice",
+        "name": "ground allspice",
+        "display_name": "ground allspice",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "required jerk spice; not pumpkin-pie blend",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-cinnamon",
+        "name": "ground cinnamon",
+        "display_name": "ground cinnamon",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-nutmeg",
+        "name": "ground nutmeg",
+        "display_name": "ground nutmeg",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "brown sugar",
+        "display_name": "light brown sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "packed",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tamari",
+        "name": "tamari",
+        "display_name": "tamari (gluten-free soy sauce)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "soy allergen. Tamari so wheat is not introduced. All of it goes into the jerk paste.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lime-juice",
+        "name": "lime juice",
+        "display_name": "fresh lime juice",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "from about 1 lime; more lime for the slaw listed separately",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "2 tbsp in the paste, 1 tbsp for the skillet",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.25,
+        "unit": "tsp",
+        "note": "1 tsp in the paste, 1/4 tsp on the slaw",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "green-cabbage",
+        "name": "green cabbage",
+        "display_name": "green cabbage",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": "about 12 oz shredded",
+        "preparation": "cored and thinly shredded",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-pineapple",
+        "name": "fresh pineapple",
+        "display_name": "fresh pineapple",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "cored fruit only",
+        "preparation": "small dice",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "red-bell-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": "about 4 oz",
+        "preparation": "stemmed, seeded, and thin julienne",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "fresh cilantro",
+        "display_name": "fresh cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "packed",
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lime-slaw",
+        "name": "lime",
+        "display_name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": "juice for the slaw (about 2 tbsp); zest optional fine grate into slaw",
+        "preparation": "juiced",
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Make the jerk paste",
+        "body": "In a blender or mini food processor, combine the scallions, thyme leaves, garlic, ginger, Scotch bonnet, ground allspice, cinnamon, nutmeg, brown sugar, tamari, 2 tbsp lime juice, 2 tbsp olive oil, 1 tsp kosher salt, and black pepper. Blend to a thick, spoonable paste, about 30 to 60 seconds, scraping once. Wear gloves when handling the Scotch bonnet.",
+        "ingredient_refs": [
+          "scallions",
+          "fresh-thyme",
+          "garlic",
+          "fresh-ginger",
+          "scotch-bonnet",
+          "ground-allspice",
+          "ground-cinnamon",
+          "ground-nutmeg",
+          "brown-sugar",
+          "tamari",
+          "lime-juice",
+          "olive-oil",
+          "kosher-salt",
+          "black-pepper"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Coat the chops",
+        "body": "Pat the pork chops dry. Rub all of the jerk paste over both sides of the 4 chops. Rest at room temperature 15 minutes while you make the slaw. Do not rinse the paste off.",
+        "ingredient_refs": [
+          "bone-in-pork-chops"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Make the pineapple slaw",
+        "body": "In a large bowl, toss the shredded green cabbage, diced pineapple, julienned red bell pepper, chopped cilantro, juice of 1 lime (about 2 tbsp), and the remaining 1/4 tsp kosher salt. Taste; the slaw should be bright and crunchy, not watery. Hold at room temperature while the chops cook.",
+        "ingredient_refs": [
+          "green-cabbage",
+          "fresh-pineapple",
+          "red-bell-pepper",
+          "cilantro",
+          "lime-slaw",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Sear the jerk chops",
+        "body": "Heat the remaining 1 tbsp olive oil in a 12-inch skillet over medium heat. Add the chops in a single layer. Cook until the first side is deep brown with spice crust, about 5 to 6 minutes. Flip. Cook the second side until an instant-read thermometer in the thickest part away from bone reads 145 F, about 5 to 7 minutes more. If the paste darkens too fast, lower to medium-low. Do not char to bitter black.",
+        "ingredient_refs": [
+          "olive-oil",
+          "bone-in-pork-chops"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Rest and plate",
+        "body": "Transfer chops to a plate. Rest 5 minutes. Plate one chop per person with a mound of pineapple slaw beside it. Spoon any skillet juices over the pork. No second sauce. kitchen_tested is false.",
+        "ingredient_refs": [
+          "bone-in-pork-chops",
+          "green-cabbage",
+          "fresh-pineapple"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "jerk-paste",
+        "name": "jerk paste",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "scallions",
+          "fresh thyme",
+          "garlic",
+          "fresh ginger",
+          "Scotch bonnet pepper",
+          "ground allspice",
+          "ground cinnamon",
+          "ground nutmeg",
+          "light brown sugar",
+          "tamari",
+          "lime juice",
+          "olive oil",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "pineapple-slaw",
+        "name": "pineapple slaw",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "green cabbage",
+          "fresh pineapple",
+          "red bell pepper",
+          "fresh cilantro",
+          "lime",
+          "kosher salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "blender or mini food processor",
+      "12-inch skillet",
+      "tongs",
+      "instant-read thermometer",
+      "large mixing bowl",
+      "knife",
+      "cutting board",
+      "gloves for chile"
+    ],
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 32,
+    "total_time_minutes": 52,
+    "prep_minutes": 20,
+    "cook_minutes": 32,
+    "total_minutes": 52,
+    "heat": "Medium skillet for the chops; lower to medium-low if the paste threatens to burn. No oven.",
+    "doneness": "Pork chops 145 F in the thickest part away from bone, then 5-minute rest. Paste deep brown, not bitter black. Slaw crunchy. kitchen_tested is false.",
+    "effort": "moderate",
+    "complexity": "standard",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Nutmeg is a seed spice, not a tree nut allergen token in this package.",
+      "hh001_eligible": false,
+      "hh001_reason": "Pork is meat other than fish. HH001 does not eat this. Global catalog candidate."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional. No milk, butter, cheese, cream, yogurt, or mayonnaise. Tamari is soy, not dairy.",
+    "allergens": [
+      "meat",
+      "soy"
+    ],
+    "allergen_notes": [
+      "Soy is on the allergens array because of tamari.",
+      "No egg, milk, wheat, sesame, peanut, tree_nut, shellfish, or finfish. Tamari is specified gluten-free so wheat is not claimed.",
+      "Meat is dietary_eligibility, not an allergen token. Nutmeg is not listed as tree_nut."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Pork is meat other than fish. HH001 does not eat this. Global catalog candidate.",
+    "vocabulary_tag_ids": [
+      "savory",
+      "spicy",
+      "smoky",
+      "tangy",
+      "crunchy",
+      "fresh"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergens are allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish). Meat and poultry are dietary_eligibility classes, not allergen tokens. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js or already used in Dry Run packages. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "cuisine_gap": "caribbean is the dish.cuisine coverage label and is not a D-02 cuisine slug. Do not invent caribbean or jamaican tags.",
+      "meal_format": "skillet-chops is not a D-02 meal_style slug and is not in vocabulary_tag_ids.",
+      "primary_ingredient": "pork chops has no D-02 ingredient slug; not copied into tags.",
+      "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes meat and poultry as supported tokens (see dry-run-1 packages). List them when present; do not omit because USDA Big-8 lists differ."
+    }
+  },
+  "image": {
+    "image_id": "img_jamaican-jerk-pork-chops_v1",
+    "dish_id": "jamaican-jerk-pork-chops",
+    "recipe_version_id": "rv_jamaican-jerk-pork-chops_v1",
+    "asset_generated": true,
+    "master_ref": "jamaican-jerk-pork-chops.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "jamaican-jerk-pork-chops.webp",
+        "spec_catalog_path": "/images/meals/jamaican-jerk-pork-chops.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "jamaican-jerk-pork-chops-640.webp",
+        "spec_catalog_path": "/images/meals/jamaican-jerk-pork-chops-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-cropped from AI JPEG to 4:3, then resized to 1200x900 master and 640x480 card WebPs.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 with house-quality reference; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-10 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit.",
+    "package_revision": "freeze-r2",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "jamaican-jerk-pork-chops-640.webp",
+    "master_filename": "jamaican-jerk-pork-chops.webp",
+    "card_filename": "jamaican-jerk-pork-chops-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_IMAGE_PENDING",
+    "image_rights_provenance": "AWAITING_AI_ASSET",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "All paste ingredients blend in step 1. Oil split 2 tbsp paste / 1 tbsp skillet. Salt split 1 tsp paste / 1/4 tsp slaw. Two lime uses: 2 tbsp in paste and 1 lime juiced for slaw."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "3 tbsp olive oil total, fully accounted."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Jerk paste is blended from listed aromatics and spices, not a bottled jerk sauce. Pineapple slaw is built in the bowl."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 20 (paste + shred slaw veg) + cook 32 (15 rest with paste on while slaw finishes + 12 sear + 5 rest) = 52. Slaw work overlaps the 15-minute paste rest."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Scotch bonnet does not quarter; use a small piece for 1\u20132. Thermometer target 145 F does not scale."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat true. contains_dairy false. allergens is soy from tamari. dairy_free unconditional. HH001 false. Allergens include ['meat', 'soy']."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "Tags are D-02 only. caribbean/jamaican are dish.cuisine coverage labels, not invented D-02 cuisine tags."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r2."
+    }
+  ],
+  "scaling_notes": {
+    "1": "1 chop, half paste batch or blend full and freeze half, 1/4 slaw. Keep Scotch bonnet as a small piece.",
+    "2": "2 chops, half paste and slaw.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "145 F pork doneness",
+      "medium skillet heat",
+      "Scotch bonnet whole-count judgment"
+    ]
+  },
+  "coverage_contribution": "Opens Caribbean/Jamaican cuisine (empty) and weeknight pork-chop format. Live pork is only a long cider braise \u2014 this is a skillet chop with allspice\u2013Scotch bonnet jerk and pineapple slaw.",
+  "near_duplicate_review": "Compared with Cider-Braised Pork Shoulder: same animal, different cut, clock, and spice system. Compared with Crispy Fish Tacos cabbage slaw: slaw idea only; protein and cuisine differ. Compared with Gochujang Grilled Flank: different animal and Korean heat. Not pulled-pork bowl. Not a live-31 duplicate.",
+  "batch_challenges": "A,B,C",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_images_present_awaiting_preflight"
+}

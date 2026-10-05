@@ -1,0 +1,607 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-10-2026-10-05. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r4; not imported, not published.",
+  "batch_id": "wave-10-2026-10-05",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r4",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-10 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "cajun-blackened-catfish",
+    "slug": "cajun-blackened-catfish",
+    "title": "Cajun Blackened Catfish with Herb Remoulade",
+    "description": "Catfish fillets coated in Cajun blackening spices and seared hard in a hot skillet, served with a dairy-free herb remoulade.",
+    "cuisine": "cajun",
+    "meal_format": "fillet",
+    "primary_ingredient": "catfish",
+    "vocabulary_tag_ids": [
+      "american",
+      "spicy",
+      "smoky",
+      "savory",
+      "herbaceous",
+      "crispy",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_cajun-blackened-catfish",
+    "current_version_id": "rv_cajun-blackened-catfish_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_cajun-blackened-catfish",
+    "dish_id": "cajun-blackened-catfish",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-10-2026-10-05, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_cajun-blackened-catfish_v1",
+    "recipe_id": "rcp_cajun-blackened-catfish",
+    "dish_id": "cajun-blackened-catfish",
+    "version_number": 1,
+    "package_revision": "freeze-r4",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r4. Not certified. Not published. kitchen_tested is false.",
+    "title": "Cajun Blackened Catfish with Herb Remoulade",
+    "description": "Catfish fillets coated in Cajun blackening spices and seared hard in a hot skillet, served with a dairy-free herb remoulade.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "catfish-fillets",
+        "name": "catfish fillets",
+        "display_name": "catfish fillets",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "4 fillets, about 6 oz each, skinless. Pat dry. Finfish.",
+        "preparation": "patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sweet-paprika",
+        "name": "sweet paprika",
+        "display_name": "sweet paprika",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": "for the blackening rub",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cayenne-pepper",
+        "name": "cayenne pepper",
+        "display_name": "cayenne pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "heat in the rub; reduce to 1/2 tsp for milder",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic-powder",
+        "name": "garlic powder",
+        "display_name": "garlic powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "onion-powder",
+        "name": "onion powder",
+        "display_name": "onion powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dried-thyme",
+        "name": "dried thyme",
+        "display_name": "dried thyme",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dried-oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.25,
+        "unit": "tsp",
+        "note": "divided: 1 tsp in the rub, 1/4 tsp in the remoulade",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": "divided: 1/2 tsp in the rub, 1/4 tsp in the remoulade",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral high-heat oil (canola or grapeseed)",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "divided: 2 tbsp for blackening the fish (may need a second spoon if cooking in two batches), 1 tbsp whisked into the remoulade base with the mayo",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "egg-mayonnaise",
+        "name": "egg mayonnaise",
+        "display_name": "egg mayonnaise (dairy-free)",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "HARD DAIRY-FREE CONTRACT. Use classic egg mayonnaise made from oil and egg (or a labeled dairy-free mayo). Do not use buttermilk, yogurt, sour cream, or any mayo that lists milk. No dairy mayo ambiguity.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "dijon-mustard",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": "for the remoulade. Typical Dijon is mustard seed and vinegar without wheat; confirm label. Not honey mustard.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lemon-juice",
+        "name": "lemon juice",
+        "display_name": "fresh lemon juice",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": "for the remoulade",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "dill-pickle-relish",
+        "name": "dill pickle relish",
+        "display_name": "dill pickle relish",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "drained. Or finely chopped dill pickle. Built remoulade component, not a bottled remoulade.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "capers",
+        "name": "capers",
+        "display_name": "capers",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "drained and chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-parsley",
+        "name": "fresh parsley",
+        "display_name": "fresh parsley",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-chives",
+        "name": "fresh chives",
+        "display_name": "fresh chives",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "finely sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced to a paste",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "hot-sauce",
+        "name": "hot sauce",
+        "display_name": "Louisiana-style hot sauce",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "vinegar-pepper sauce such as a classic cayenne hot sauce. No butter-based hot sauce.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Mix the blackening rub and make the remoulade",
+        "body": "Stir together the sweet paprika, cayenne, garlic powder, onion powder, dried thyme, dried oregano, 1 tsp of the kosher salt, and 1/2 tsp of the black pepper. In a separate bowl, whisk the egg mayonnaise with the Dijon mustard, lemon juice, 1 tbsp of the neutral oil, dill pickle relish, chopped capers, parsley, chives, garlic paste, hot sauce, the remaining 1/4 tsp kosher salt, and the remaining 1/4 tsp black pepper. This herb remoulade is made here. It is not a bottled remoulade. Confirm the mayonnaise has no milk, buttermilk, or cream. Chill the remoulade while the fish cooks. Pat the catfish fillets dry.",
+        "ingredient_refs": [
+          "sweet-paprika",
+          "cayenne-pepper",
+          "garlic-powder",
+          "onion-powder",
+          "dried-thyme",
+          "dried-oregano",
+          "kosher-salt",
+          "black-pepper",
+          "egg-mayonnaise",
+          "dijon-mustard",
+          "lemon-juice",
+          "neutral-oil",
+          "dill-pickle-relish",
+          "capers",
+          "fresh-parsley",
+          "fresh-chives",
+          "garlic",
+          "hot-sauce",
+          "catfish-fillets"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Coat the catfish",
+        "body": "Press both sides of each catfish fillet into the blackening rub so the spices adhere in an even coat. Shake off only the loosest excess. Do not flour the fish. Do not egg-wash it. Do not bread it.",
+        "ingredient_refs": [
+          "catfish-fillets",
+          "sweet-paprika",
+          "cayenne-pepper",
+          "garlic-powder",
+          "onion-powder",
+          "dried-thyme",
+          "dried-oregano",
+          "kosher-salt",
+          "black-pepper"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Blacken in a hot skillet",
+        "body": "Heat a 12-inch cast-iron or heavy stainless skillet over medium-high until it is very hot, about 3 minutes. Add 2 tbsp of the neutral oil and swirl. Lay in as many fillets as fit without crowding (often 2). Cook undisturbed until the spice crust is darkened and fragrant and the edges look opaque, about 3 to 4 minutes. Flip once. Cook the second side about 3 to 4 minutes more, until the thickest part flakes and is opaque (about 145 F if checked). Move cooked fillets to a warm plate. Add a thin film of the remaining oil if the pan is dry and cook the remaining fillets the same way. The written clock uses one 3-minute preheat plus two batches of about 7 minutes each (14) overlapping the plate-hold; cook_minutes below uses 17 for preheat + batch work. Do not deep-fry. Do not bake. kitchen_tested is false.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "catfish-fillets"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Plate with remoulade",
+        "body": "Serve each blackened catfish fillet with a spoonful of the dairy-free herb remoulade on the side or a stripe on the plate. No butter basting. No buttermilk soak. No nuts. No breaded coating.",
+        "ingredient_refs": [
+          "catfish-fillets",
+          "egg-mayonnaise",
+          "dijon-mustard",
+          "fresh-parsley"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "cajun-blackening-rub",
+        "name": "Cajun blackening rub",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "sweet paprika",
+          "cayenne pepper",
+          "garlic powder",
+          "onion powder",
+          "dried thyme",
+          "dried oregano",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "herb-remoulade",
+        "name": "dairy-free herb remoulade",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "egg mayonnaise",
+          "Dijon mustard",
+          "lemon juice",
+          "neutral oil",
+          "dill pickle relish",
+          "capers",
+          "fresh parsley",
+          "fresh chives",
+          "garlic",
+          "hot sauce",
+          "kosher salt",
+          "black pepper"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch cast-iron or heavy stainless skillet",
+      "tongs or thin spatula",
+      "mixing bowls",
+      "knife",
+      "cutting board",
+      "measuring spoons"
+    ],
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 17,
+    "total_time_minutes": 29,
+    "prep_minutes": 12,
+    "cook_minutes": 17,
+    "total_minutes": 29,
+    "heat": "Skillet preheated over medium-high until very hot. Blacken over medium-high. No oven. No grill required.",
+    "doneness": "Spice crust darkened (blackened) and fragrant, not raw-spice pale and not incinerated ash. Fish opaque and flakes at the thickest point, about 145 F. Remoulade cold and spoonable. kitchen_tested is false.",
+    "effort": "easy",
+    "complexity": "simple",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Capers and spices are not nuts.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish (catfish) is allowed for HH001. Remoulade is hard-contracted dairy-free (egg mayo, no buttermilk). No shellfish, no meat other than fish, no poultry, no nuts. Egg mayo is allowed; eggs are permitted for HH001."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. The remoulade uses egg mayonnaise with no milk, buttermilk, yogurt, sour cream, or cream. This is not a skip-the-butter version of a dairy remoulade. Finfish is present, so this is not plant-based or vegetarian.",
+    "allergens": [
+      "finfish",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Finfish covers the catfish fillets.",
+      "Egg covers the egg mayonnaise in the remoulade. If a cook used a labeled egg-free dairy-free mayo instead, egg would drop; this written package uses egg mayonnaise and lists egg.",
+      "Dijon mustard is not a major allergen token in this factory token set. Typical Dijon has no wheat; confirm the bottle. No soy, wheat, sesame, peanut, tree_nut, shellfish, or milk in the written ingredients.",
+      "contains_dairy is false on dietary_eligibility. Milk is not on the allergens array. Meat and poultry are not allergen tokens."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish (catfish) is allowed for HH001. Remoulade is hard-contracted dairy-free (egg mayo, no buttermilk). No shellfish, no meat other than fish, no poultry, no nuts. Egg mayo is allowed; eggs are permitted for HH001.",
+    "vocabulary_tag_ids": [
+      "american",
+      "spicy",
+      "smoky",
+      "savory",
+      "herbaceous",
+      "crispy",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r4_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergen tokens only. Finfish and egg listed. Meat/poultry are eligibility classes.",
+      "dietary_eligibility": "contains_finfish true. contains_dairy false. hh001 true. dairy_free label unconditional via egg-mayo remoulade contract.",
+      "vocabulary": "cajun is the cuisine field but is not a D-02 cuisine slug; american is used in vocabulary_tag_ids (same pattern as potato-leek-gratin using american when french was absent). spicy, smoky, savory, herbaceous, crispy, tender are active slugs. meal_format fillet is not a D-02 meal_style slug and is not copied into tags. catfish has no D-02 ingredient slug.",
+      "meal_format": "fillet is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "catfish \u2014 no D-02 ingredient slug; not copied into tags.",
+      "package_revision": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true."
+    }
+  },
+  "image": {
+    "image_id": "img_cajun-blackened-catfish_v1",
+    "dish_id": "cajun-blackened-catfish",
+    "recipe_version_id": "rv_cajun-blackened-catfish_v1",
+    "asset_generated": true,
+    "master_ref": "cajun-blackened-catfish.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "cajun-blackened-catfish.webp",
+        "spec_catalog_path": "/images/meals/cajun-blackened-catfish.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "cajun-blackened-catfish-640.webp",
+        "spec_catalog_path": "/images/meals/cajun-blackened-catfish-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-cropped from AI JPEG to 4:3, then resized to 1200x900 master and 640x480 card WebPs.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 with house-quality reference; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-10 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit.",
+    "package_revision": "freeze-r4",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "cajun-blackened-catfish-640.webp",
+    "master_filename": "cajun-blackened-catfish.webp",
+    "card_filename": "cajun-blackened-catfish-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Rub spices coat the fish. Remoulade ingredients are whisked in step 1 and served in step 4. Oil split between remoulade and skillet."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "3 tbsp neutral oil: 1 tbsp in remoulade, 2 tbsp for blackening (batch top-up allowed from that allotment)."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Blackening rub and herb remoulade are both made in recipe. Remoulade is not bottled. Dairy-free mayo contract is explicit."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 12 (rub + remoulade + pat dry) + cook 17 (3 preheat + two batches ~7 each) = 29. Remoulade is inside prep, not a second cook block."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Base 4 fillets. Batch count shrinks at 1\u20132. See scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_finfish true. contains_dairy false. hh001 true. allergens finfish + egg. No nuts. No buttermilk."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "american + flavor/texture slugs from taste-vocabulary.js. cajun cuisine label is dish.cuisine only."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r4. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r4."
+    }
+  ],
+  "scaling_notes": {
+    "1": "One 6 oz catfish fillet. Rub: about 1.5 tsp total spice mix (still enough cayenne for a true blacken). Remoulade floor: 2 tbsp egg mayo, 1 tsp Dijon, 1 tsp lemon, 1 tsp relish, 1 tsp herbs, pinch salt \u2014 do not quarter into a smear that disappears. Oil: 2 tsp in the skillet. Same hot-skillet method; no batching.",
+    "2": "Two fillets (about 12 oz). Half the rub and remoulade. One batch in the skillet. Halve the oil.",
+    "4": "As written. Four fillets, likely two batches in a 12-inch skillet.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "skillet must be very hot",
+      "no flour/egg breading",
+      "dairy-free remoulade contract",
+      "doneness ~145 F / opaque flake"
+    ]
+  },
+  "coverage_contribution": "Opens Cajun/Southern cuisine (0 live). Catfish is an unused finfish species in a salmon/cod-heavy catalog. Blackened spice crust is a different texture from battered fish tacos or lemon-herb fillets. Dairy-free remoulade keeps HH001 eligibility.",
+  "near_duplicate_review": "Compared with Crispy Fish Tacos: both are finfish, but tacos are battered/fried-style with cabbage slaw and Mexican format; this is blackened catfish with remoulade, plated fillet, Cajun spice. Compared with Maple-Mustard Glazed Salmon and Miso-Ginger Salmon: different species and glaze vs blackened crust. Compared with Ginger-Scallion Fish Packets and Citrus-Fennel Arctic Char: packet/steam and Scandinavian roast, not Cajun skillet. Compared with Grilled Swordfish Olive Caper: grilled Mediterranean, not blackened Cajun. Compared with Garlic-Tomato Mussels / Lemon-Garlic Shrimp Pasta: shellfish \u2014 deliberately avoided. Not shrimp and grits.",
+  "batch_challenges": [
+    "A",
+    "B",
+    "C"
+  ],
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r4_images_present_awaiting_preflight"
+}

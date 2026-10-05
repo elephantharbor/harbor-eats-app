@@ -1,0 +1,538 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for Dry Run #3. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are frozen for preflight/audit; not imported, not published.",
+  "batch_id": "dry-run-3",
+  "mode": "dry_run",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot, Catalog Factory Dry Run #3, for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "skillet-shakshuka",
+    "slug": "skillet-shakshuka",
+    "title": "Skillet Shakshuka",
+    "description": "Eggs set in a skillet of tomato and red pepper sauce made from crushed tomatoes, peppers, onion, and ground spices.",
+    "cuisine": "north-african",
+    "meal_format": "skillet",
+    "primary_ingredient": "eggs",
+    "vocabulary_tag_ids": [
+      "north-african",
+      "savory",
+      "tangy",
+      "herbaceous",
+      "tender",
+      "fresh"
+    ],
+    "current_recipe_id": "rcp_skillet-shakshuka",
+    "current_version_id": "rv_skillet-shakshuka_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_skillet-shakshuka",
+    "dish_id": "skillet-shakshuka",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-04",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory Dry Run #3, Grok Bot only",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_skillet-shakshuka_v1",
+    "recipe_id": "rcp_skillet-shakshuka",
+    "dish_id": "skillet-shakshuka",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. A Vale revise before any of that history bumps package_revision and does not mint household history. Master and card WebPs are frozen for preflight/audit; not imported, not published.",
+    "title": "Skillet Shakshuka",
+    "description": "Eggs set in a skillet of tomato and red pepper sauce made from crushed tomatoes, peppers, onion, and ground spices.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "eggs",
+        "name": "eggs",
+        "display_name": "large eggs",
+        "quantity": 8,
+        "unit": "count",
+        "note": "8 large eggs, 2 per serving. Counted whole eggs only.",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "all of it for the onion and peppers",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "about 8 oz",
+        "preparation": "diced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "red-bell-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 2,
+        "unit": "count",
+        "note": "about 12 oz total",
+        "preparation": "stemmed, seeded, and sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sweet-paprika",
+        "name": "sweet paprika",
+        "display_name": "sweet paprika",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "ground, not a sauce jar",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-coriander",
+        "name": "ground coriander",
+        "display_name": "ground coriander",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "crushed-tomatoes",
+        "name": "canned crushed tomatoes",
+        "display_name": "canned crushed tomatoes",
+        "quantity": 28,
+        "unit": "oz",
+        "note": "one 28 oz can. Store-bought crushed tomatoes. Not a jar of shakshuka sauce.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "all of it goes into the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "balances the tomatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.25,
+        "unit": "tsp",
+        "note": "divided: 1/4 tsp with the onion and peppers, 3/4 tsp in the sauce, 1/4 tsp on the eggs",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "all of it in the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fresh-parsley",
+        "name": "fresh parsley",
+        "display_name": "fresh parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "packed",
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Dice the yellow onion. Stem, seed, and slice the red bell pepper. Mince the garlic. Chop the fresh parsley. Measure the sweet paprika, ground cumin, ground coriander, sugar, kosher salt, and black pepper. Leave the eggs whole until the sauce can hold a well.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "red-bell-pepper",
+          "garlic",
+          "fresh-parsley",
+          "sweet-paprika",
+          "ground-cumin",
+          "ground-coriander",
+          "sugar",
+          "kosher-salt",
+          "black-pepper",
+          "eggs"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Soften the onion and peppers",
+        "body": "Heat the olive oil in a 12-inch skillet over medium heat. Add the yellow onion, the red bell pepper, and 1/4 tsp of the kosher salt. Cook, stirring, until the onion is soft and the pepper has slumped, about 8 minutes. Do not char them.",
+        "ingredient_refs": [
+          "olive-oil",
+          "yellow-onion",
+          "red-bell-pepper",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Bloom the spices",
+        "body": "Add the garlic, sweet paprika, ground cumin, and ground coriander. Stir for 1 minute, until fragrant. These are ground spices, not a jar of shakshuka sauce and not a paste.",
+        "ingredient_refs": [
+          "garlic",
+          "sweet-paprika",
+          "ground-cumin",
+          "ground-coriander"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer the tomato-pepper sauce",
+        "body": "Pour in the canned crushed tomatoes and the water. Add the sugar, 3/4 tsp of the kosher salt, and the black pepper. Stir. Simmer uncovered over medium heat until the sauce thickens enough that a spoon leaves a well, about 10 minutes. This tomato-pepper sauce is the only sauce, and it is made in this skillet. Do not add cheese, yogurt, butter, cream, or bread.",
+        "ingredient_refs": [
+          "crushed-tomatoes",
+          "water",
+          "sugar",
+          "kosher-salt",
+          "black-pepper"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Set the eggs",
+        "body": "Make 8 wells in the sauce. Crack 1 egg into each well, 8 eggs total, 2 per serving. Sprinkle the remaining 1/4 tsp kosher salt over the eggs. Cover the skillet. Cook over medium-low for 6 to 8 minutes. The whites must be fully set, with no liquid white at the edge. The yolks stay soft and glossy. Do not flip the eggs. For firm yolks, cover about 2 minutes more. The written target is soft yolks. kitchen_tested is false.",
+        "ingredient_refs": [
+          "eggs",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Finish in the skillet",
+        "body": "Take the skillet off the heat. Scatter the fresh parsley over the sauce and eggs. Serve from the skillet. Each serving is 2 eggs with tomato-pepper sauce. No cheese, no yogurt, no bread, and no second sauce.",
+        "ingredient_refs": [
+          "fresh-parsley",
+          "eggs",
+          "crushed-tomatoes"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "tomato-pepper-sauce",
+        "name": "tomato-pepper sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "olive oil",
+          "yellow onion",
+          "red bell pepper",
+          "garlic",
+          "sweet paprika",
+          "ground cumin",
+          "ground coriander",
+          "canned crushed tomatoes",
+          "water",
+          "sugar",
+          "kosher salt",
+          "black pepper"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet with lid",
+      "wooden spoon",
+      "knife",
+      "cutting board",
+      "measuring spoons"
+    ],
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 26,
+    "total_time_minutes": 38,
+    "prep_minutes": 12,
+    "cook_minutes": 26,
+    "total_minutes": 38,
+    "heat": "Medium for the onion, peppers, and sauce. Medium-low, covered, for the eggs. No oven.",
+    "doneness": "Sauce holds a well after about 10 minutes of simmering. Eggs: whites fully set, no liquid white, yolks soft and glossy. Do not flip them. Firm yolks need about 2 extra covered minutes and are not the written target. kitchen_tested is false.",
+    "effort": "easy",
+    "complexity": "simple",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Paprika, cumin, and coriander are ground spices, not nuts.",
+      "hh001_eligible": true,
+      "hh001_reason": "Eggs are the protein, and HH001 can eat eggs. No meat, no poultry, no dairy, no shellfish, and no nuts. Plant-based is false because of the eggs."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional. The ingredient list has no milk, butter, cheese, cream, yogurt, or other dairy. Olive oil is the fat. This is not a skip-the-cheese version of a dairy recipe.",
+    "allergens": [
+      "egg"
+    ],
+    "allergen_notes": [
+      "Egg is the only allergen token. All 8 eggs are on the allergens array.",
+      "No milk, soy, wheat, sesame, peanut, tree_nut, shellfish, or finfish.",
+      "Egg is an allergen token and is also why plant_based_compatible is false. Those fields are separate. Meat and poultry are not on this array."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Eggs are the protein, and HH001 can eat eggs. No meat, no poultry, no dairy, no shellfish, and no nuts. Plant-based is false because of the eggs.",
+    "vocabulary_tag_ids": [
+      "north-african",
+      "savory",
+      "tangy",
+      "herbaceous",
+      "tender",
+      "fresh"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergens are allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish). Meat and poultry are dietary_eligibility classes, not allergen tokens. Notes do not replace the array.",
+      "allergens_egg_token": "Live PACKAGE_ALLERGEN_IDS has no egg token (it lists dairy, nuts, named nuts, shellfish, finfish, poultry, and meat). This package lists egg because the dinner is eggs. Do not drop egg to force an enum match, and do not remap egg to a different token.",
+      "dietary_eligibility": "Separate from allergens. dairy_free is unconditional because no ingredient is a dairy food. There is no cheese to skip. plant_based_compatible is false because of the eggs. vegetarian_compatible is true.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js or already used in a Dry Run #2 v1.json. meal_format may name a format with no D-02 slug. primary_ingredient may name a food with no D-02 slug. Neither is copied into tags.",
+      "meal_format": "meal_format skillet is not a D-02 meal_style slug and is not in vocabulary_tag_ids. north-african is an existing cuisine slug. The gap is eggs and the skillet format, not a new cuisine.",
+      "primary_ingredient": "There is no D-02 ingredient slug for eggs. primary_ingredient is eggs. It is not copied into vocabulary_tag_ids."
+    }
+  },
+  "image": {
+    "image_id": "img_skillet-shakshuka_v1",
+    "dish_id": "skillet-shakshuka",
+    "recipe_version_id": "rv_skillet-shakshuka_v1",
+    "asset_generated": true,
+    "master_ref": "skillet-shakshuka.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "skillet-shakshuka.webp",
+        "spec_catalog_path": "/images/meals/skillet-shakshuka.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "skillet-shakshuka-640.webp",
+        "spec_catalog_path": "/images/meals/skillet-shakshuka-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-cropped from the existing AI JPEG to 4:3, then resized to the frozen 1200x900 master and 640x480 card WebPs for preflight/audit.",
+    "generation": {
+      "method": "format_size_conversion_of_existing_ai_jpeg",
+      "method_detail": "Center-crop to 4:3 and LANCZOS resize of the existing AI JPEG into RGB WebP master and card derivatives; frozen for preflight/audit.",
+      "generator": "Grok Imagine / Juniper via Grok Bot Dry Run #3",
+      "model": "unknown",
+      "model_note": "Existing AI JPEG source; model slug unknown.",
+      "prompt_authored_on": "2026-10-04",
+      "generation_date": "2026-10-04",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "AI illustration converted from the existing JPEG source; master and card WebPs are frozen for preflight/audit. Rights are not cleared for external release.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "skillet-shakshuka-640.webp",
+    "master_filename": "skillet-shakshuka.webp",
+    "card_filename": "skillet-shakshuka-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient is used in a step. Parsley is scattered at the end. No cheese, bread, or yogurt is introduced in the method."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "Olive oil is 2 tbsp and it is all used to soften the onion and peppers."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "The tomato-pepper sauce is simmered in the skillet from canned crushed tomatoes, red bell pepper, onion, garlic, paprika, cumin, coriander, water, sugar, salt, and pepper. It is not a jar of shakshuka sauce."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 12 (cutting and measuring) + cook 26 (8 onion and pepper + 1 spices + 10 sauce + 7 eggs) = 38. No oven preheat. The egg range is 6 to 8 minutes; the clock uses 7."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Base 4. Eggs scale as whole eggs: 2, 4, and 8. A 28 oz can does not quarter by shopping unit. See scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_dairy false. vegetarian_compatible true. plant_based_compatible false because of eggs. allergens is egg only. dairy_free is unconditional. HH001 eligible because eggs are allowed and meat, poultry, dairy, shellfish, and nuts are absent."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "vocabulary_tag_ids are north-african plus flavor and texture slugs verified in the local taste vocabulary or already used in Dry Run #2. No invented egg or skillet tag."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. Not imported, not published."
+    }
+  ],
+  "scaling_notes": {
+    "1": "Two large eggs, not a fraction of an egg. Use an 8-inch skillet so the sauce is deep enough for wells. Tomato floor: 7 oz canned crushed tomatoes (about 3/4 cup), not an empty quarter of a can with no sauce left. Onion floor: 1/2 small yellow onion, not a few dice. Pepper: 1/2 red bell pepper. Garlic: 1 clove, not a quarter clove. Oil: 2 tsp. Water: 2 tbsp. Spices: 1/2 tsp sweet paprika, 1/4 tsp ground cumin, 1/4 tsp ground coriander. Sugar: 1/4 tsp. Salt: a pinch on the vegetables, 1/4 tsp in the sauce, a pinch on the eggs. Parsley: 1 tbsp chopped. Simmer the sauce at least 6 minutes so it can hold a well. Egg time stays 6 to 8 minutes covered. Same medium then medium-low heat.",
+    "2": "Four large eggs in a 10-inch skillet. Half the can of crushed tomatoes (14 oz). One red bell pepper, 1/2 yellow onion, 2 garlic cloves. Halve the oil, water, sugar, salt, parsley, and spices. Same heat and the same 6 to 8 minute egg target.",
+    "4": "As written. Eight large eggs, two per person, in a 12-inch skillet. One 28 oz can of crushed tomatoes.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "medium and medium-low heat",
+      "egg doneness (set whites, soft yolks)",
+      "a fraction of an egg",
+      "skillet size must shrink with the batch so the wells stay in sauce"
+    ]
+  },
+  "coverage_contribution": "Puts eggs on the dinner plate as the protein, in a skillet of sauce, which the live 24 and the seven certified drafts do not do. HH001 can eat eggs. The tomato-pepper sauce is built in the pan. North African is already a live cuisine label; the new cell is eggs plus this skillet format.",
+  "near_duplicate_review": "Compared with Moroccan Chickpea Skillet: both are saucy skillets, but that meal is chickpeas under a different cuisine slug and has no eggs. Compared with Harissa Roasted Carrots with Feta: same north-african label already in the live catalog, but that one is roasted carrots and dairy. This skillet has no dairy. Compared with the Dry Run #1 chicken sandwich draft: that draft uses egg as a coating for poultry and bread, which HH001 cannot eat. These eggs are the dinner, with no bread and no poultry. Not a bowl, taco, or pasta.",
+  "batch_challenges": [
+    "A",
+    "B",
+    "C"
+  ],
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}
