@@ -1,0 +1,649 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-11-2026-10-05. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r4; not imported, not published.",
+  "batch_id": "wave-11-2026-10-05",
+  "batch_label": "B",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r4",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-11 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "herb-vegetable-pot-pie",
+    "slug": "herb-vegetable-pot-pie",
+    "title": "Herb Vegetable Pot Pie",
+    "description": "Carrots, parsnips, and Yukon Gold potatoes in a thyme-rosemary butter-and-cream gravy, baked under an egg-washed all-butter puff pastry lid until golden and flaky.",
+    "cuisine": "american",
+    "meal_format": "pot-pie",
+    "primary_ingredient": "root vegetables",
+    "vocabulary_tag_ids": [
+      "american",
+      "savory",
+      "herbaceous",
+      "rich",
+      "creamy",
+      "crispy"
+    ],
+    "current_recipe_id": "rcp_herb-vegetable-pot-pie",
+    "current_version_id": "rv_herb-vegetable-pot-pie_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_herb-vegetable-pot-pie",
+    "dish_id": "herb-vegetable-pot-pie",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-11-2026-10-05, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_herb-vegetable-pot-pie_v1",
+    "recipe_id": "rcp_herb-vegetable-pot-pie",
+    "dish_id": "herb-vegetable-pot-pie",
+    "version_number": 1,
+    "package_revision": "freeze-r4",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r4. Not certified. Not published. kitchen_tested is false.",
+    "title": "Herb Vegetable Pot Pie",
+    "description": "Carrots, parsnips, and Yukon Gold potatoes in a thyme-rosemary butter-and-cream gravy, baked under an egg-washed all-butter puff pastry lid until golden and flaky.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 8,
+        "unit": "oz",
+        "note": "about 3 medium. Root vegetable.",
+        "preparation": "peeled and cut into 1/2-inch dice",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsnips",
+        "name": "parsnips",
+        "display_name": "parsnips",
+        "quantity": 8,
+        "unit": "oz",
+        "note": "about 2 medium. Root vegetable. Quarter lengthwise and cut out any woody core on thick tops before dicing.",
+        "preparation": "peeled and cut into 1/2-inch dice",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yukon-gold-potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "about 2 medium. Root vegetable. Small dice, not slices \u2014 this is a pot-pie filling, not a gratin.",
+        "preparation": "peeled and cut into 1/2-inch dice",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "about 8 oz",
+        "preparation": "diced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "celery",
+        "name": "celery",
+        "display_name": "celery",
+        "quantity": 2,
+        "unit": "rib",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "frozen-peas",
+        "name": "frozen peas",
+        "display_name": "frozen peas",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "stirred in frozen off the heat; no thaw needed",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "unsalted-butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "REQUIRED DAIRY. Fat for the vegetables and the roux. Milk allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "all-purpose-flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour (1/3 cup, for the roux)",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "divided: 1/3 cup (about 5 tbsp) for the roux, plus about 1 tbsp more for dusting the counter when rolling the pastry (listed separately as flour-for-dusting). Wheat.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "flour-for-dusting",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour (for dusting)",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for dusting the counter and pin when rolling the pastry. Wheat.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "vegetable-stock",
+        "name": "vegetable stock",
+        "display_name": "vegetable stock",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "HARD CONTRACT: vegetable stock, not chicken stock, so the meal stays meat- and poultry-free. Choose a stock with no milk listed. Low-sodium preferred; salt quantities assume low-sodium.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "heavy-cream",
+        "name": "heavy cream",
+        "display_name": "heavy cream",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "REQUIRED DAIRY. Enriches the gravy. Not optional and not swapped for plant milk in this package. Milk allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-thyme",
+        "name": "fresh thyme",
+        "display_name": "fresh thyme",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "leaves only",
+        "preparation": "stripped from stems",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fresh-rosemary",
+        "name": "fresh rosemary",
+        "display_name": "fresh rosemary",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": "finely minced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fresh-parsley",
+        "name": "fresh parsley",
+        "display_name": "fresh parsley",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.25,
+        "unit": "tsp",
+        "note": "divided: 1 tsp with the root vegetables, 1/4 tsp to finish the gravy",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "freshly ground",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "all-butter-puff-pastry",
+        "name": "all-butter puff pastry",
+        "display_name": "all-butter puff pastry",
+        "quantity": 1,
+        "unit": "sheet",
+        "note": "HARD CONTRACT: one frozen all-butter puff pastry sheet, about 8.5\u20139 oz (half of a 17.3 oz two-sheet box, or one sheet of a single-sheet all-butter box), about 9.5 to 10 inches square. Label must list wheat flour and butter (milk). Not a shortening/oil puff pastry, not a biscuit topping, not a refrigerated pie dough. The lid is a dairy + gluten pastry by contract.",
+        "preparation": "thawed on the counter, still folded, while the filling is made",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "egg",
+        "name": "egg",
+        "display_name": "egg",
+        "quantity": 1,
+        "unit": "count",
+        "note": "large. Egg wash for the pastry lid. Egg allergen. Required in this package: the lid is egg-washed.",
+        "preparation": "beaten with the water",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the egg wash",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the oven, start the pastry thaw, and prep the vegetables",
+        "body": "Heat the oven to 400 F with a rack in the center. Take the all-butter puff pastry sheet out of the freezer and leave it folded in its wrapper on the counter to thaw; it needs about 40 minutes and will be ready when the filling is done. Peel the carrots, parsnips, and Yukon Gold potatoes and cut each into 1/2-inch dice (quarter thick parsnip tops and cut out any woody core first). Dice the onion, thinly slice the celery, and mince the garlic. Strip the thyme leaves, finely mince the rosemary, and chop the parsley. Measure the butter, 1/3 cup flour, vegetable stock, cream, peas, salt, and pepper. About 20 minutes; this is the whole prep block.",
+        "ingredient_refs": [
+          "all-butter-puff-pastry",
+          "carrots",
+          "parsnips",
+          "yukon-gold-potatoes",
+          "yellow-onion",
+          "celery",
+          "garlic",
+          "fresh-thyme",
+          "fresh-rosemary",
+          "fresh-parsley"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Soften the aromatics and root vegetables in butter",
+        "body": "Melt the 4 tbsp unsalted butter in a 5-quart Dutch oven or deep 12-inch skillet over medium heat. Add the onion and celery and cook, stirring, until soft and translucent, about 5 minutes. Add the carrots, parsnips, potatoes, and 1 tsp of the kosher salt. Cook, stirring often, until the vegetables are glossy and just beginning to soften at the edges, about 6 minutes. Add the garlic, thyme, and rosemary and cook 1 minute until fragrant. About 12 minutes.",
+        "ingredient_refs": [
+          "unsalted-butter",
+          "yellow-onion",
+          "celery",
+          "carrots",
+          "parsnips",
+          "yukon-gold-potatoes",
+          "kosher-salt",
+          "garlic",
+          "fresh-thyme",
+          "fresh-rosemary"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Build the herb gravy",
+        "body": "Sprinkle the 1/3 cup all-purpose flour over the vegetables and stir constantly for 2 minutes so the flour coats everything and loses its raw smell. Pour in the vegetable stock slowly while stirring, scraping the bottom so no flour sticks, then stir in the heavy cream. Bring to a simmer, reduce to medium-low, and simmer, stirring often, until the gravy is thick enough to coat a spoon and a potato cube pierces with slight resistance, about 8 minutes (the vegetables finish in the oven). Take off the heat. Stir in the frozen peas, parsley, black pepper, and the remaining 1/4 tsp kosher salt. Pour the filling into an 8-inch square (2-quart) baking dish and set the dish on a rimmed sheet pan. This gravy is built from a butter-flour roux; it is not a canned cream soup. About 10 minutes.",
+        "ingredient_refs": [
+          "all-purpose-flour",
+          "vegetable-stock",
+          "heavy-cream",
+          "frozen-peas",
+          "fresh-parsley",
+          "black-pepper",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Lid with puff pastry and egg wash",
+        "body": "Lightly dust the counter and rolling pin with the 1 tbsp flour for dusting. Unfold the thawed puff pastry and roll it just enough to make a 10-inch square. Drape it over the filling, let the overhang fall onto the rim of the dish, and press it against the rim so it seals. Cut four 1-inch vents in the center. Beat the egg with the 1 tbsp water and brush a thin, even coat over the pastry top (skip the vents so they stay open). Discard the leftover egg wash. About 5 minutes.",
+        "ingredient_refs": [
+          "flour-for-dusting",
+          "all-butter-puff-pastry",
+          "egg",
+          "water"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Bake until the lid is deep golden",
+        "body": "Bake the pot pie on the rimmed sheet pan in the 400 F oven until the pastry is puffed, flaky, and deep golden-brown and the gravy bubbles up through the vents, about 30 minutes. If the corners darken before the center is golden, lay a strip of foil loosely over the corners for the last few minutes. About 30 minutes.",
+        "ingredient_refs": [
+          "all-butter-puff-pastry"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Rest and serve",
+        "body": "Let the pot pie rest 10 minutes so the gravy sets and does not run. Cut through the lid and spoon out portions with a shard of pastry on each. No chicken. No biscuit dump. No cheese on top. kitchen_tested is false. About 10 minutes.",
+        "ingredient_refs": [
+          "all-butter-puff-pastry",
+          "carrots",
+          "parsnips",
+          "yukon-gold-potatoes",
+          "frozen-peas"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "herb-root-vegetable-gravy-filling",
+        "name": "herb root-vegetable gravy filling",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "unsalted butter",
+          "yellow onion",
+          "celery",
+          "carrots",
+          "parsnips",
+          "Yukon Gold potatoes",
+          "garlic",
+          "fresh thyme",
+          "fresh rosemary",
+          "all-purpose flour",
+          "vegetable stock",
+          "heavy cream",
+          "frozen peas",
+          "fresh parsley",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "puff-pastry-lid",
+        "name": "egg-washed all-butter puff pastry lid",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "contract": "Store-bought frozen all-butter puff pastry (wheat + butter). Egg wash made in recipe.",
+        "ingredients": [
+          "all-butter puff pastry",
+          "egg",
+          "water",
+          "all-purpose flour (for dusting)"
+        ]
+      }
+    ],
+    "equipment": [
+      "5-quart Dutch oven or deep 12-inch skillet",
+      "8-inch square (2-quart) baking dish",
+      "rimmed sheet pan",
+      "rolling pin",
+      "pastry brush",
+      "small bowl and fork for egg wash",
+      "wooden spoon",
+      "knife",
+      "cutting board",
+      "vegetable peeler",
+      "measuring cups and spoons"
+    ],
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 67,
+    "total_time_minutes": 87,
+    "prep_minutes": 20,
+    "cook_minutes": 67,
+    "total_minutes": 87,
+    "time_clock": "Prep 20 (oven preheat starts, pastry thaw starts, all dicing and measuring). Cook 67 = 12 butter-soften roots + 10 roux gravy + 5 pastry lid and egg wash + 30 bake at 400 F + 10 rest. Pastry counter-thaw (~40 min) runs inside the clock: it starts at minute 0 and is ready by the lid step at minute 42. Oven preheat overlaps prep and the stovetop work.",
+    "heat": "Oven 400 F, rack in center, preheated during prep. Stovetop medium for butter and vegetables; medium-low simmer for the gravy. Bake on a rimmed sheet pan to catch bubbling.",
+    "doneness": "Pastry puffed, flaky, and deep golden-brown (not pale, not scorched at the corners). Gravy bubbling through the vents and thick enough to coat a spoon after the 10-minute rest. Potato, carrot, and parsnip cubes fork-tender. kitchen_tested is false.",
+    "effort": "moderate",
+    "complexity": "standard",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Herbs and root vegetables are not nuts.",
+      "hh001_eligible": false,
+      "hh001_reason": "Butter, heavy cream, and the all-butter puff pastry are dairy. HH001 does not eat dairy. No meat, poultry, or shellfish is present; dairy alone makes it ineligible. Egg wash is allowed for HH001 but does not change the result."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dairy_free label: butter, heavy cream, and all-butter puff pastry are required. vegetarian_compatible is true by hard contract \u2014 vegetable stock (not chicken stock), no meat, poultry, fish, or gelatin, and no cheese (so no rennet question). Not plant-based (dairy and egg). Following the wave-10 dairy-main precedent (saag-paneer, lemon-pea-risotto), the vegetarian claim lives in dietary_eligibility and no vegetarian label is stamped.",
+    "allergens": [
+      "milk",
+      "wheat",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Milk covers unsalted butter, heavy cream, and the all-butter puff pastry. All three are required.",
+      "Wheat covers the roux flour, the dusting flour, and the puff pastry.",
+      "Egg covers the egg wash on the pastry lid. The egg wash is a required step in this package, so egg is listed unconditionally.",
+      "No soy, sesame, peanut, tree_nut, shellfish, or finfish in the written ingredients. Vegetable stock is contracted with no milk listed; confirm the carton.",
+      "contains_dairy is true on dietary_eligibility. The allergen token is milk, not dairy. Wheat is the token, not gluten. Meat and poultry are not present."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Butter, heavy cream, and the all-butter puff pastry are dairy. HH001 does not eat dairy. No meat, poultry, or shellfish is present; dairy alone makes it ineligible. Egg wash is allowed for HH001 but does not change the result.",
+    "vocabulary_tag_ids": [
+      "american",
+      "savory",
+      "herbaceous",
+      "rich",
+      "creamy",
+      "crispy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r4_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims; every claim rests on a hard ingredient contract.",
+      "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes meat and poultry as supported tokens (see dry-run-1 packages). List them when present; do not omit because USDA Big-8 lists differ.",
+      "package_revision": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "allergens": "Tokens are milk, wheat, egg. selection.json expected_allergens said dairy/gluten/egg; those are remapped to the package tokens milk and wheat on purpose (runtime_enum_gaps contract: milk not dairy, wheat not gluten). Live PACKAGE_ALLERGEN_IDS may say dairy; do not silently remap milk to dairy.",
+      "vocabulary": "american is the D-02 cuisine slug. savory, herbaceous, rich, creamy, crispy are active flavor/texture slugs in taste-vocabulary.js. crispy stands for the flaky puff lid. carrots is a D-02 ingredient slug but the lead is a root-vegetable mix, so it is not copied into tags.",
+      "meal_format": "pot-pie is not a D-02 meal_style slug and is not in vocabulary_tag_ids.",
+      "primary_ingredient": "root vegetables (carrot, parsnip, Yukon Gold) has no D-02 ingredient slug; not copied into tags.",
+      "dietary_labels": "Empty by dairy-main precedent; vegetarian_compatible true carried in dietary_eligibility."
+    }
+  },
+  "image": {
+    "image_id": "img_herb-vegetable-pot-pie_v1",
+    "dish_id": "herb-vegetable-pot-pie",
+    "recipe_version_id": "rv_herb-vegetable-pot-pie_v1",
+    "asset_generated": true,
+    "master_ref": "herb-vegetable-pot-pie.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "active_source_jpeg_note": "Reserved filename for the GenerateImage source JPEG; written by Cora at generation.",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "herb-vegetable-pot-pie.webp",
+        "spec_catalog_path": "/images/meals/herb-vegetable-pot-pie.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "herb-vegetable-pot-pie-640.webp",
+        "spec_catalog_path": "/images/meals/herb-vegetable-pot-pie-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Planned: center-crop AI JPEG to 4:3, then resize to 1200x900 master and 640x480 card WebPs via export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 with house-quality reference; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-11 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "generation_date_note": "Set by Cora on the day GenerateImage runs.",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r2.",
+    "package_revision": "freeze-r4",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "source_dimensions_note": "Recorded from the GenerateImage JPEG at generation.",
+    "card_ref": "herb-vegetable-pot-pie-640.webp",
+    "master_filename": "herb-vegetable-pot-pie.webp",
+    "card_filename": "herb-vegetable-pot-pie-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient is used: roots + aromatics + herbs in step 2, roux flour/stock/cream in step 3, peas/parsley/pepper/finish salt off heat in step 3, dusting flour + pastry + egg + water in step 4. Salt split 1 tsp + 1/4 tsp. Flour split 1/3 cup roux + 1 tbsp dusting (two ingredient rows)."
+    },
+    {
+      "check": "fat",
+      "result": "pass",
+      "detail": "4 tbsp butter is the only cooking fat; fully used in step 2 and carries the roux. No oil."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Gravy is a built butter-flour roux with stock and cream, not canned soup. Puff pastry is a declared store-bought component with a hard all-butter contract. Egg wash made in recipe."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 20 + cook 67 (12 + 10 + 5 + 30 + 10) = 87. Pastry thaw (~40 min) starts at minute 0 and completes before the lid step at minute 42, so no hidden thaw time."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Pastry sheet and egg do not quarter; see scaling_notes for dish sizes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_dairy true. vegetarian_compatible true via vegetable-stock contract and no cheese. plant_based false. hh001 false. Allergens ['milk', 'wheat', 'egg']."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "Tags are D-02 active slugs only. pot-pie and root vegetables are metadata, not tags."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r4. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r4."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "pass",
+      "detail": "freeze_integrity.py PASS at freeze-r4. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+    }
+  ],
+  "scaling_notes": {
+    "1": "Bake in a 12\u201316 oz ramekin: about 2 oz each carrot and parsnip, 3 oz potato, 1/4 onion, a few celery slices, 1 garlic clove, 1/4 cup peas, 1 tbsp butter, 4 tsp flour, 1/2 cup stock, 2 tbsp cream, pinch of each herb. Cut a pastry square to cover the ramekin with 1/2-inch overhang; wrap and refreeze the rest of the sheet. Beat the whole egg and use a little. Bake about 22\u201325 minutes at 400 F on a sheet pan.",
+    "2": "Half the filling in a 1-quart baking dish or two ramekins. Use about half the pastry sheet. Whole egg beaten, use part. Bake about 25 minutes.",
+    "4": "As written: 8-inch square (2-quart) dish, one pastry sheet, 30-minute bake, 87-minute clock.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "400 F oven",
+      "pastry lid must be all-butter puff pastry (dairy + wheat contract)",
+      "egg wash on the lid",
+      "vegetable stock, never chicken stock",
+      "10-minute rest before cutting"
+    ]
+  },
+  "coverage_contribution": "Opens the pot-pie / savory-pastry format (0 in the 43-meal base). Oven comfort bake with a shattering pastry lid \u2014 a texture the catalog does not have. Root-vegetable lead (carrot, parsnip, Yukon Gold) keeps chicken at four and gives household planners a vegetarian dairy bake for cold-weather rotation.",
+  "near_duplicate_review": "Compared with Potato and Leek Gratin: both american dairy oven bakes, but the gratin is thin-sliced potato baked in cream with no pastry; this is diced mixed roots in a roux gravy under a puff-pastry lid, and potatoes are one of three roots. Compared with Lentil-Stuffed Cabbage with Tomato Sauce: stuffed vegetable bake in tomato sauce, legume protein, no pastry, no dairy gravy. Compared with Smoky Lentil Sweet Potato Stew / White Bean Kale Soup: stovetop pot meals with no crust and no dairy roux. Compared with Sheet-Pan Lemon Herb Chicken: herb-forward american oven meal but chicken and roasting, not pastry. Compared with Roasted Butternut Plate with Farro: roasted veg plate, no gravy or crust. Deliberately not chicken pot pie (chicken load), not a biscuit-dump cobbler top, not a cheese-crusted gratin cousin.",
+  "selection_alignment": "Matches selection.json: american \u00b7 pot-pie \u00b7 root vegetables \u00b7 hh001_like false. Allergen tokens milk/wheat/egg (selection dairy/gluten/egg remapped to package tokens). Egg retained because the egg wash is a written required step. Rough band 45+; written clock 87.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r4_images_present_awaiting_preflight"
+}

@@ -1,0 +1,469 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-10-2026-10-05. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r4; not imported, not published.",
+  "batch_id": "wave-10-2026-10-05",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r4",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-10 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "air-fryer-honey-mustard-pork",
+    "slug": "air-fryer-honey-mustard-pork",
+    "title": "Air-Fryer Honey-Mustard Pork Tenderloin",
+    "description": "Pork tenderloin brushed with a honey-Dijon glaze and roasted in the air fryer until browned outside and juicy at 145 F.",
+    "cuisine": "american",
+    "meal_format": "air-fry",
+    "primary_ingredient": "pork tenderloin",
+    "vocabulary_tag_ids": [
+      "american",
+      "savory",
+      "tangy",
+      "tender",
+      "rich",
+      "fresh"
+    ],
+    "current_recipe_id": "rcp_air-fryer-honey-mustard-pork",
+    "current_version_id": "rv_air-fryer-honey-mustard-pork_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_air-fryer-honey-mustard-pork",
+    "dish_id": "air-fryer-honey-mustard-pork",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-10-2026-10-05, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_air-fryer-honey-mustard-pork_v1",
+    "recipe_id": "rcp_air-fryer-honey-mustard-pork",
+    "dish_id": "air-fryer-honey-mustard-pork",
+    "version_number": 1,
+    "package_revision": "freeze-r4",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r4. Not certified. Not published. kitchen_tested is false.",
+    "title": "Air-Fryer Honey-Mustard Pork Tenderloin",
+    "description": "Pork tenderloin brushed with a honey-Dijon glaze and roasted in the air fryer until browned outside and juicy at 145 F.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "pork-tenderloin",
+        "name": "pork tenderloin",
+        "display_name": "pork tenderloin",
+        "quantity": 1.25,
+        "unit": "lb",
+        "note": "one whole tenderloin, silver skin trimmed. About 1 to 1.5 lb is fine; clock assumes ~1.25 lb. Pork / meat.",
+        "preparation": "trimmed of silver skin and patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dijon-mustard",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "All of it in the glaze. Typical Dijon is mustard seed, water, vinegar, salt \u2014 no wheat and no soy on standard labels; confirm the bottle you buy. This package does not add soy sauce or Worcestershire.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "honey",
+        "name": "honey",
+        "display_name": "honey",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "all of it in the glaze",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "apple-cider-vinegar",
+        "name": "apple cider vinegar",
+        "display_name": "apple cider vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "brightens the glaze; not buttermilk",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 2,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "divided: 1 tsp brushed on the pork before the first air-fry stretch, remainder whisked into the glaze",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "divided: 3/4 tsp on the pork, 1/4 tsp in the glaze",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "divided: 1/4 tsp on the pork, 1/4 tsp in the glaze",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "smoked-paprika",
+        "name": "smoked paprika",
+        "display_name": "smoked paprika",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "in the glaze for light color; not a barbecue sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fresh-parsley",
+        "name": "fresh parsley",
+        "display_name": "fresh parsley",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "optional finish after slicing",
+        "preparation": "chopped",
+        "optional": true,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat the air fryer and make the glaze",
+        "body": "Set the air fryer to 400 F and let it preheat about 3 minutes. Those 3 minutes are inside the cook time. Meanwhile, whisk the Dijon mustard, honey, apple cider vinegar, minced garlic, most of the olive oil (reserve 1 tsp), 1/4 tsp of the kosher salt, 1/4 tsp of the black pepper, and the smoked paprika into a smooth honey-mustard glaze. This glaze is made here. It is not a bottled honey-mustard salad dressing and not a soy-based teriyaki. Trim silver skin from the pork tenderloin and pat it dry. Rub with the remaining 1 tsp olive oil, then season with the remaining 3/4 tsp kosher salt and 1/4 tsp black pepper.",
+        "ingredient_refs": [
+          "dijon-mustard",
+          "honey",
+          "apple-cider-vinegar",
+          "garlic",
+          "olive-oil",
+          "kosher-salt",
+          "black-pepper",
+          "smoked-paprika",
+          "pork-tenderloin"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Air-fry the first stretch",
+        "body": "Place the seasoned pork tenderloin in the air-fryer basket. Air-fry at 400 F for 10 minutes. The air fryer is the primary equipment; do not move this cook to a sheet pan unless you are abandoning this package method.",
+        "ingredient_refs": [
+          "pork-tenderloin"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Glaze and finish",
+        "body": "Brush about two-thirds of the honey-mustard glaze over the pork. Air-fry 6 to 8 minutes more at 400 F, until an instant-read thermometer in the thickest center reads 145 F and the glaze looks sticky and browned in patches. If the tenderloin is thick and still under 145 F at 8 minutes, continue in 2-minute checks; extra time beyond the written window is not inside the 35-minute total. Brush with the remaining glaze in the last 2 minutes if it looks dry. kitchen_tested is false.",
+        "ingredient_refs": [
+          "pork-tenderloin",
+          "dijon-mustard",
+          "honey"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Rest and slice",
+        "body": "Transfer the pork to a cutting board. Rest 5 minutes (inside cook time). Slice into 1/2-inch medallions. Spoon any glaze from the board over the slices. Scatter optional parsley if using. No flour dredge. No egg wash. No breadcrumbs.",
+        "ingredient_refs": [
+          "pork-tenderloin",
+          "fresh-parsley"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "honey-mustard-glaze",
+        "name": "honey-mustard glaze",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "Dijon mustard",
+          "honey",
+          "apple cider vinegar",
+          "garlic",
+          "olive oil",
+          "kosher salt",
+          "black pepper",
+          "smoked paprika"
+        ]
+      }
+    ],
+    "equipment": [
+      "air fryer",
+      "instant-read thermometer",
+      "pastry brush or spoon",
+      "mixing bowl",
+      "knife",
+      "cutting board",
+      "tongs"
+    ],
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 25,
+    "total_time_minutes": 35,
+    "prep_minutes": 10,
+    "cook_minutes": 25,
+    "total_minutes": 35,
+    "heat": "Air fryer 400 F. Preheat about 3 minutes (inside cook). First stretch 10 minutes, glazed finish 6 to 8 minutes, rest 5 minutes.",
+    "doneness": "Center 145 F, juices not raw-pink watery. Glaze sticky and patch-browned, not burnt sugar. Rest 5 minutes before slicing. kitchen_tested is false.",
+    "effort": "easy",
+    "complexity": "simple",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Pork tenderloin is meat other than fish. HH001 does not eat pork. Glaze is dairy-free but that does not make the meal HH001-eligible."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: no milk, butter, cheese, cream, or yogurt. Meat meal \u2014 not vegetarian or plant-based. dairy_free is not a claim that the meal fits HH001.",
+    "allergens": [
+      "meat"
+    ],
+    "allergen_notes": [
+      "No major allergen tokens from the factory set (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish) appear in the written ingredients.",
+      "Dijon mustard is not a factory allergen token. Standard Dijon typically contains no wheat and no soy; this package does not add soy sauce, Worcestershire, or wheat flour. If a specific Dijon bottle lists wheat, that bottle would add wheat \u2014 the written package assumes a wheat-free Dijon and leaves allergens empty rather than inventing wheat.",
+      "Honey is not an allergen token here. Pork/meat is a dietary_eligibility class, not an allergen token.",
+      "Empty allergens list is intentional and honest for this glaze path."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Pork tenderloin is meat other than fish. HH001 does not eat pork. Glaze is dairy-free but that does not make the meal HH001-eligible.",
+    "vocabulary_tag_ids": [
+      "american",
+      "savory",
+      "tangy",
+      "tender",
+      "rich",
+      "fresh"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r4_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "original_ai_assisted vs live ai_assisted.",
+      "publication_state": "Draft / draft. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Empty list is valid when no factory allergen tokens are present. Meat is not an allergen token.",
+      "dietary_eligibility": "contains_meat true. contains_dairy false. dairy_free label ok. hh001 false because pork.",
+      "vocabulary": "american, savory, tangy, tender, rich, fresh are active. air-fry is meal_format, not a D-02 meal_style slug \u2014 not copied into tags. pork tenderloin has no D-02 ingredient slug.",
+      "meal_format": "air-fry \u2014 primary equipment claim; not a vocabulary tag.",
+      "primary_ingredient": "pork tenderloin \u2014 not copied into tags.",
+      "package_revision": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true.",
+      "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes meat and poultry as supported tokens (see dry-run-1 packages). List them when present; do not omit because USDA Big-8 lists differ.",
+      "images": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true."
+    }
+  },
+  "image": {
+    "image_id": "img_air-fryer-honey-mustard-pork_v1",
+    "dish_id": "air-fryer-honey-mustard-pork",
+    "recipe_version_id": "rv_air-fryer-honey-mustard-pork_v1",
+    "asset_generated": true,
+    "master_ref": "air-fryer-honey-mustard-pork.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "air-fryer-honey-mustard-pork.webp",
+        "spec_catalog_path": "/images/meals/air-fryer-honey-mustard-pork.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "air-fryer-honey-mustard-pork-640.webp",
+        "spec_catalog_path": "/images/meals/air-fryer-honey-mustard-pork-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-cropped from AI JPEG to 4:3, then resized to 1200x900 master and 640x480 card WebPs.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 with house-quality reference; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-10 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit.",
+    "package_revision": "freeze-r4",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "air-fryer-honey-mustard-pork-640.webp",
+    "master_filename": "air-fryer-honey-mustard-pork.webp",
+    "card_filename": "air-fryer-honey-mustard-pork-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Glaze ingredients used in step 1 and brushed in step 3\u20134. Oil split. Optional parsley only at the end."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "1 tbsp olive oil total: 1 tsp on pork, remainder in glaze."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Honey-mustard glaze whisked from Dijon, honey, vinegar, garlic, oil, salt, pepper, smoked paprika. Not bottled dressing. No soy sauce."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 10 + cook 25 (3 preheat overlapping glaze mix already counted in prep; 10 first stretch + 7 glazed midpoint + 5 rest) = 35. Preheat is inside cook; glaze mixing during preheat is prep that may overlap \u2014 clock keeps prep 10 and cook 25 without double-counting the 3-minute preheat into prep."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Base one ~1.25 lb tenderloin for 4. Smaller loins for 1\u20132. See scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat true. dairy false. hh001 false. allergens empty with honest Dijon wheat/soy note. Allergens include ['meat']."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "american + verified flavor/texture slugs."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested false. Not Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r4. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r4."
+    }
+  ],
+  "scaling_notes": {
+    "1": "About 5 oz trimmed tenderloin (a short piece). Glaze floor: 2 tsp Dijon, 1.5 tsp honey, 1 tsp vinegar, small garlic pinch, 1 tsp oil total. Air fryer 400 F; start checking at about 12 minutes total cook after preheat. Still 145 F center. Do not invent a second sauce.",
+    "2": "About 10\u201312 oz tenderloin. Half glaze. Same 400 F; check around 14\u201316 minutes glazed total depending on thickness.",
+    "4": "As written. ~1.25 lb whole tenderloin, 35-minute clock with 5-minute rest.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "air fryer 400 F",
+      "145 F center doneness",
+      "5-minute rest",
+      "no flour/egg breading",
+      "air fryer remains primary equipment"
+    ]
+  },
+  "coverage_contribution": "Makes air fryer the primary cook method (live catalog only advertises air_fry optionally on chipotle tofu tacos). Pork tenderloin is a different cut and clock from cider-braised shoulder and from Caribbean jerk chops. Honey-mustard glaze is not maple-mustard salmon.",
+  "near_duplicate_review": "Compared with Cider-Braised Pork Shoulder: both pork, but that is a 3+ hour braise; this is a ~35-minute air-fry tenderloin. Compared with Jamaican Jerk Pork Chops (same wave): different cuisine, cut, spice system, and skillet vs air fryer. Compared with Maple-Mustard Glazed Salmon: mustard-honey adjacent wording, but salmon fillet oven/stovetop glaze vs pork air-fry \u2014 different protein and equipment. Compared with Sheet-Pan Lemon Herb Chicken: oven sheet-pan poultry, not air-fry pork. Not a flour-egg crispy cutlet redo of the chicken sandwich lesson.",
+  "batch_challenges": [
+    "B",
+    "C",
+    "D"
+  ],
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r4_images_present_awaiting_preflight"
+}

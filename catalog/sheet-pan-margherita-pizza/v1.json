@@ -1,0 +1,478 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-11-2026-10-05. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r4; not imported, not published.",
+  "batch_id": "wave-11-2026-10-05",
+  "batch_label": "B",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r4",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-11 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "sheet-pan-margherita-pizza",
+    "slug": "sheet-pan-margherita-pizza",
+    "title": "Sheet-Pan Margherita Pizza",
+    "description": "Store-bought pizza dough pressed into an olive-oiled sheet pan, topped with a simple crushed-tomato sauce and torn fresh mozzarella, baked hot until crisp underneath, and finished with fresh basil.",
+    "cuisine": "italian-inspired",
+    "meal_format": "pizza",
+    "primary_ingredient": "mozzarella",
+    "vocabulary_tag_ids": [
+      "italian",
+      "savory",
+      "fresh",
+      "herbaceous",
+      "tangy",
+      "crispy"
+    ],
+    "current_recipe_id": "rcp_sheet-pan-margherita-pizza",
+    "current_version_id": "rv_sheet-pan-margherita-pizza_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_sheet-pan-margherita-pizza",
+    "dish_id": "sheet-pan-margherita-pizza",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-11-2026-10-05, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_sheet-pan-margherita-pizza_v1",
+    "recipe_id": "rcp_sheet-pan-margherita-pizza",
+    "dish_id": "sheet-pan-margherita-pizza",
+    "version_number": 1,
+    "package_revision": "freeze-r4",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r4. Not certified. Not published. kitchen_tested is false.",
+    "title": "Sheet-Pan Margherita Pizza",
+    "description": "Store-bought pizza dough pressed into an olive-oiled sheet pan, topped with a simple crushed-tomato sauce and torn fresh mozzarella, baked hot until crisp underneath, and finished with fresh basil.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "pizza-dough",
+        "name": "raw pizza dough",
+        "display_name": "store-bought raw pizza dough",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "HARD CONTRACT: 24 oz store-bought raw (unbaked) pizza dough ball(s) from the refrigerated or bakery case. Ingredients limited to wheat flour, water, yeast, salt, oil, and optionally sugar \u2014 no milk, egg, cheese, or soy flour in the dough. Not a prebaked crust, not a canned tube dough, not a frozen pizza. Wheat.",
+        "preparation": "straight from the refrigerator into the oiled pan",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "extra-virgin-olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "divided: 2 tbsp to oil the sheet pan (this fries the crust bottom crisp), 1 tbsp stirred into the tomato sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "crushed-tomatoes",
+        "name": "canned crushed tomatoes",
+        "display_name": "canned crushed tomatoes",
+        "quantity": 1.25,
+        "unit": "cup",
+        "note": "from one 14\u201315 oz can; plain crushed tomatoes, not a seasoned pizza or marinara sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": null,
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fresh-mozzarella",
+        "name": "fresh mozzarella",
+        "display_name": "fresh mozzarella",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "REQUIRED DAIRY. HARD CONTRACT: fresh mozzarella balls (packed in water or whey) made with microbial or vegetable rennet \u2014 label says vegetarian, microbial enzymes, or non-animal rennet. Not low-moisture shredded mozzarella, not burrata, not vegan cheese. Milk allergen.",
+        "preparation": "torn into 1-inch pieces and blotted dry on paper towels",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "fresh-basil",
+        "name": "fresh basil",
+        "display_name": "fresh basil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "loosely packed leaves (about 20 leaves); added after baking so it stays green",
+        "preparation": "leaves picked; large leaves torn",
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the oven and oil the pan with the dough",
+        "body": "Set a rack in the lower third of the oven and heat the oven to 475 F (it needs about 20 minutes and will be ready before the pizza goes in). Pour 2 tbsp of the extra-virgin olive oil onto a 13x18-inch rimmed half-sheet pan and spread it to the corners. Set the cold store-bought dough in the pan, turn it once to coat with oil, and press it into a rough rectangle with your fingertips. Cover loosely with a clean towel and let it rest 20 minutes so the gluten relaxes. About 5 minutes of work; the 20-minute rest begins now.",
+        "ingredient_refs": [
+          "pizza-dough",
+          "extra-virgin-olive-oil"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Make the sauce and prep the mozzarella during the rest",
+        "body": "Stir together the crushed tomatoes, grated garlic, 1 tbsp of the extra-virgin olive oil, and the 1/2 tsp kosher salt. This sauce is not cooked ahead; it reduces on the pizza. Drain the fresh mozzarella, tear it into 1-inch pieces, spread them on paper towels, and press more towels on top to blot surface water so the pizza does not puddle. Pick the basil leaves and tear any large ones. About 10 minutes, inside the dough rest.",
+        "ingredient_refs": [
+          "crushed-tomatoes",
+          "garlic",
+          "extra-virgin-olive-oil",
+          "kosher-salt",
+          "fresh-mozzarella",
+          "fresh-basil"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Press the dough to the corners",
+        "body": "When the dough has rested the full 20 minutes (about 10 minutes after the sauce is done), press it outward with oiled fingertips toward the corners and edges, dimpling as you go, about 3 minutes. It will spring back. Rest 5 minutes more, then press again until it fills the pan to the corners in an even layer, about 2 minutes. About 20 minutes including the remaining rest time.",
+        "ingredient_refs": [
+          "pizza-dough"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Sauce and first bake",
+        "body": "Spread the tomato sauce evenly over the dough, leaving a 1/2-inch border. Bake on the lower rack at 475 F until the edges are set and lightly golden and the underside is starting to brown, about 12 minutes. Baking the sauced crust first keeps the fresh mozzarella from weeping before the base sets. About 12 minutes.",
+        "ingredient_refs": [
+          "crushed-tomatoes",
+          "pizza-dough"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Add mozzarella and finish the bake",
+        "body": "Pull the pan out and scatter the blotted fresh mozzarella pieces evenly over the sauce. Return to the lower rack and bake until the cheese is melted, bubbling, and lightly spotted golden and the crust underneath is deep golden and crisp when you lift a corner with a spatula, about 9 minutes. About 9 minutes.",
+        "ingredient_refs": [
+          "fresh-mozzarella",
+          "pizza-dough"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Rest, add basil, and cut",
+        "body": "Let the pizza rest in the pan 3 minutes so the cheese sets. Scatter the fresh basil leaves over the top, then slide the pizza onto a board (or cut in the pan with a pizza wheel) and cut into 12 squares. No pepperoni, no prosciutto, no Parmesan shower. kitchen_tested is false. About 3 minutes.",
+        "ingredient_refs": [
+          "fresh-basil",
+          "fresh-mozzarella",
+          "pizza-dough"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "sheet-pan-dough",
+        "name": "store-bought pizza dough base",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "contract": "Store-bought raw pizza dough limited to wheat flour, water, yeast, salt, oil, optional sugar; no milk/egg/cheese/soy flour.",
+        "ingredients": [
+          "store-bought raw pizza dough",
+          "extra-virgin olive oil"
+        ]
+      },
+      {
+        "component_id": "crushed-tomato-sauce",
+        "name": "uncooked crushed-tomato sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "canned crushed tomatoes",
+          "garlic",
+          "extra-virgin olive oil",
+          "kosher salt"
+        ]
+      },
+      {
+        "component_id": "margherita-topping",
+        "name": "fresh mozzarella and basil topping",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "fresh mozzarella",
+          "fresh basil"
+        ]
+      }
+    ],
+    "equipment": [
+      "13x18-inch rimmed half-sheet pan (heavy-gauge)",
+      "oven",
+      "small mixing bowl",
+      "paper towels",
+      "clean kitchen towel",
+      "thin metal spatula",
+      "pizza wheel or large knife",
+      "cutting board",
+      "microplane or grater",
+      "measuring cups and spoons"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 44,
+    "total_time_minutes": 59,
+    "prep_minutes": 15,
+    "cook_minutes": 44,
+    "total_minutes": 59,
+    "time_clock": "Prep 15 = 5 oil pan + set dough (oven preheat starts) + 10 sauce / tear and blot mozzarella / pick basil (inside the 20-minute dough rest). Cook 44 = 10 remaining dough rest + 3 first press + 5 rest + 2 second press + 12 sauced first bake + 9 mozzarella bake + 3 rest and basil. Total 59. Oven preheat (~20 min) is done by minute 20; the pizza goes in at minute 35.",
+    "heat": "Oven 475 F, rack in the lower third, preheated about 20 minutes. Oiled heavy sheet pan directly on the rack \u2014 no pizza stone, no broiler, no grill.",
+    "doneness": "Underside deep golden and crisp when a corner is lifted (not pale or doughy); edges golden and puffed. Fresh mozzarella melted, bubbling, lightly spotted \u2014 not separated into oil and not browned to rubber. Sauce reduced and jammy, not watery. Basil bright green, added after baking. kitchen_tested is false.",
+    "effort": "easy",
+    "complexity": "simple",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. No pesto. Basil is a fresh herb leaf, not a nut sauce.",
+      "hh001_eligible": false,
+      "hh001_reason": "Fresh mozzarella is dairy. HH001 does not eat dairy. No meat, poultry, or shellfish; dairy alone makes it ineligible."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dairy_free label: fresh mozzarella is required. vegetarian_compatible is true by hard contract \u2014 the mozzarella must be made with microbial or vegetable rennet, and the dough contract excludes animal fats. Not plant-based. Following the wave-10 dairy-main precedent (lemon-pea-risotto microbial-rennet Parmesan), the vegetarian claim lives in dietary_eligibility and no vegetarian label is stamped.",
+    "allergens": [
+      "milk",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Milk covers the fresh mozzarella. It is required.",
+      "Wheat covers the store-bought pizza dough.",
+      "No egg, soy, sesame, peanut, tree_nut, shellfish, or finfish: the dough contract excludes milk, egg, cheese, and soy flour; the sauce is plain crushed tomatoes, garlic, olive oil, and salt.",
+      "contains_dairy is true on dietary_eligibility. The allergen token is milk, not dairy. Wheat is the token, not gluten."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Fresh mozzarella is dairy. HH001 does not eat dairy. No meat, poultry, or shellfish; dairy alone makes it ineligible.",
+    "vocabulary_tag_ids": [
+      "italian",
+      "savory",
+      "fresh",
+      "herbaceous",
+      "tangy",
+      "crispy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r4_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims; every claim rests on a hard ingredient contract.",
+      "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes meat and poultry as supported tokens (see dry-run-1 packages). List them when present; do not omit because USDA Big-8 lists differ.",
+      "package_revision": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "allergens": "Tokens are milk, wheat. selection.json expected_allergens said dairy/gluten; remapped to the package tokens milk and wheat on purpose. Live PACKAGE_ALLERGEN_IDS may say dairy; do not silently remap milk to dairy.",
+      "vocabulary": "italian is the D-02 cuisine slug (synonym 'italian inspired'; dish.cuisine is italian-inspired). savory, fresh, herbaceous, tangy, crispy are active flavor/texture slugs. tangy stands for the uncooked crushed-tomato sauce; crispy for the oil-fried pan crust.",
+      "meal_format": "pizza is not a D-02 meal_style slug and is not in vocabulary_tag_ids.",
+      "primary_ingredient": "mozzarella has no D-02 ingredient slug; not copied into tags.",
+      "dietary_labels": "Empty by dairy-main precedent; vegetarian_compatible true carried in dietary_eligibility via microbial-rennet mozzarella contract."
+    }
+  },
+  "image": {
+    "image_id": "img_sheet-pan-margherita-pizza_v1",
+    "dish_id": "sheet-pan-margherita-pizza",
+    "recipe_version_id": "rv_sheet-pan-margherita-pizza_v1",
+    "asset_generated": true,
+    "master_ref": "sheet-pan-margherita-pizza.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "active_source_jpeg_note": "Reserved filename for the GenerateImage source JPEG; written by Cora at generation.",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "sheet-pan-margherita-pizza.webp",
+        "spec_catalog_path": "/images/meals/sheet-pan-margherita-pizza.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "sheet-pan-margherita-pizza-640.webp",
+        "spec_catalog_path": "/images/meals/sheet-pan-margherita-pizza-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Planned: center-crop AI JPEG to 4:3, then resize to 1200x900 master and 640x480 card WebPs via export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 with house-quality reference; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-11 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "generation_date_note": "Set by Cora on the day GenerateImage runs.",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r2.",
+    "package_revision": "freeze-r4",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "source_dimensions_note": "Recorded from the GenerateImage JPEG at generation.",
+    "card_ref": "sheet-pan-margherita-pizza-640.webp",
+    "master_filename": "sheet-pan-margherita-pizza.webp",
+    "card_filename": "sheet-pan-margherita-pizza-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Dough + 2 tbsp oil in step 1; sauce (tomatoes, garlic, 1 tbsp oil, salt) and mozzarella/basil prep in step 2; sauce baked step 4; mozzarella step 5; basil step 6. All used."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "3 tbsp extra-virgin olive oil: 2 tbsp pan, 1 tbsp sauce."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Dough is a declared store-bought component with a hard ingredient contract. Sauce is built from plain crushed tomatoes, not jarred pizza sauce. Topping is fresh mozzarella + basil only."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 + cook 44 (10 + 3 + 5 + 2 + 12 + 9 + 3) = 59. Dough rest is inside the clock; oven preheat overlaps."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Pan size changes with dough weight; bake times shift slightly. See scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_dairy true. vegetarian_compatible true via microbial-rennet contract. plant_based false. hh001 false. Allergens ['milk', 'wheat']."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "Tags are D-02 active slugs only. pizza / mozzarella are metadata, not tags."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r4. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r4."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "pass",
+      "detail": "freeze_integrity.py PASS at freeze-r4. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+    }
+  ],
+  "scaling_notes": {
+    "1": "6 oz dough in a quarter-sheet pan (9x13) or 8-inch square pan with 2 tsp oil; about 1/3 cup sauce (1 tsp oil, pinch salt, small garlic grate); 3 oz mozzarella; 5\u20136 basil leaves. Same 475 F lower rack; first bake about 10 minutes, cheese bake about 7\u20138.",
+    "2": "12 oz dough in a 9x13 quarter-sheet pan with 1 tbsp oil; half the sauce, mozzarella, and basil. First bake about 11 minutes, cheese bake about 8.",
+    "4": "As written: 1 1/2 lb dough, 13x18 half-sheet pan, 59-minute clock, 12 squares.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "475 F lower-third rack",
+      "sauce-first bake, mozzarella second",
+      "blot fresh mozzarella",
+      "basil after baking",
+      "dough rest before pressing"
+    ]
+  },
+  "coverage_contribution": "Opens the pizza / flatbread format (0 in the 43-meal base) \u2014 one of the highest-value household meal-planning staples. A dairy main that is not quesadilla, paneer, risotto, or gratin. Sheet-pan method keeps equipment realistic (no stone or peel). Clean Margherita establishes the format before any topping-loaded pizza.",
+  "near_duplicate_review": "Compared with Cashew Pesto Pasta / Mushroom Walnut Bolognese / Herbed Polenta with Tomato Stew: italian-inspired, but pasta/polenta with nut or stew sauces vs. a baked yeasted crust; no nuts here. Compared with Lemon Pea Risotto: italian dairy main, but stirred Arborio rice vs. pizza. Compared with Potato and Leek Gratin: dairy oven bake, but sliced potato in cream vs. tomato-mozzarella pizza. Compared with Black Bean Quesadillas: dairy + wheat handheld, but Mexican tortilla and beans vs. Italian yeasted pan pizza. Compared with Garlic Tomato Mussels with Grilled Bread: tomato + bread, but shellfish pot. Compared with Sheet-Pan Lemon Herb Chicken: shares only the sheet pan as equipment. Deliberately not pepperoni/prosciutto, not focaccia toast, not a pasta twin.",
+  "selection_alignment": "Matches selection.json: italian-inspired \u00b7 pizza \u00b7 mozzarella \u00b7 hh001_like false. Allergen tokens milk/wheat (selection dairy/gluten remapped). Store-bought dough is the single written path with a hard contract (no from-scratch branch). Selection band 30\u201345 plus dough rest; written clock with rest is 59.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r4_images_present_awaiting_preflight"
+}

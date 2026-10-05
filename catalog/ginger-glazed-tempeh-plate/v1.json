@@ -1,0 +1,531 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-11-2026-10-05. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r3; not imported, not published.",
+  "batch_id": "wave-11-2026-10-05",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r3",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-11 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "ginger-glazed-tempeh-plate",
+    "slug": "ginger-glazed-tempeh-plate",
+    "title": "Ginger-Glazed Tempeh with Broccolini",
+    "description": "Sliced tempeh pan-seared then glazed with ginger, garlic, tamari, and maple, plated with blistered broccolini and rice. No peanut.",
+    "cuisine": "asian-fusion",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "tempeh",
+    "vocabulary_tag_ids": [
+      "savory",
+      "umami",
+      "tender",
+      "fresh",
+      "crispy"
+    ],
+    "current_recipe_id": "rcp_ginger-glazed-tempeh-plate",
+    "current_version_id": "rv_ginger-glazed-tempeh-plate_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_ginger-glazed-tempeh-plate",
+    "dish_id": "ginger-glazed-tempeh-plate",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-11-2026-10-05, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_ginger-glazed-tempeh-plate_v1",
+    "recipe_id": "rcp_ginger-glazed-tempeh-plate",
+    "dish_id": "ginger-glazed-tempeh-plate",
+    "version_number": 1,
+    "package_revision": "freeze-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r3. Not certified. Not published. kitchen_tested is false.",
+    "title": "Ginger-Glazed Tempeh with Broccolini",
+    "description": "Sliced tempeh pan-seared then glazed with ginger, garlic, tamari, and maple, plated with blistered broccolini and rice. No peanut.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "tempeh",
+        "name": "tempeh",
+        "display_name": "tempeh",
+        "quantity": 16,
+        "unit": "oz",
+        "note": "two 8-oz blocks. Soy allergen. Slice into 1/2-inch slabs after steaming optional step.",
+        "preparation": "sliced into 1/2-inch slabs",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tamari",
+        "name": "tamari",
+        "display_name": "tamari (gluten-free soy sauce)",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "HARD SOY CONTRACT for glaze. Tamari so wheat is not introduced. All of it goes into the glaze. Soy allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "maple-syrup",
+        "name": "maple syrup",
+        "display_name": "pure maple syrup",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "for the glaze. Not pancake syrup with butter flavoring.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fresh-ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "peeled and finely grated",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rice-vinegar",
+        "name": "rice vinegar",
+        "display_name": "rice vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "unseasoned. Confirm no wheat if labeled seasoned.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "toasted-sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "OPTIONAL finish only. If used, sesame becomes an allergen \u2014 this written package omits sesame from the required list by leaving this optional and defaulting off for HH001 simplicity. Prefer skipping unless household wants sesame.",
+        "preparation": null,
+        "optional": true,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral high-heat oil (canola or grapeseed)",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "divided: 2 tbsp for tempeh, 1 tbsp for broccolini",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "broccolini",
+        "name": "broccolini",
+        "display_name": "broccolini",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "trimmed. Broccoli florets may substitute.",
+        "preparation": "ends trimmed; thick stems halved lengthwise",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cooked-rice",
+        "name": "cooked rice",
+        "display_name": "cooked white or brown rice",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "about 3/4 cup cooked rice per serving; cook separately while tempeh glazes",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "for broccolini",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "to loosen the glaze in the pan",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep tempeh, glaze, and vegetables",
+        "body": "Slice the tempeh into 1/2-inch slabs. Optional but helpful: steam the slabs 8 minutes to mellow bitterness, then pat dry \u2014 if you steam, that time is inside prep. Whisk the tamari, maple syrup, grated ginger, minced garlic, rice vinegar, and 2 tbsp water into a glaze. Trim the broccolini. Slice the scallions. Confirm cooked rice is ready or start it now. HARD PEANUT CONTRACT: do not add peanut butter, peanut oil, or crushed peanuts.",
+        "ingredient_refs": [
+          "tempeh",
+          "tamari",
+          "maple-syrup",
+          "fresh-ginger",
+          "garlic",
+          "rice-vinegar",
+          "water",
+          "broccolini",
+          "scallions",
+          "cooked-rice"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Sear the tempeh",
+        "body": "Heat 2 tbsp neutral oil in a 12-inch skillet over medium heat. Add tempeh slabs in a single layer. Cook until deep golden on the first side, about 3 to 4 minutes. Flip. Cook the second side until golden, about 3 minutes more. Transfer tempeh to a plate.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "tempeh"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Blister the broccolini",
+        "body": "Add the remaining 1 tbsp oil to the same skillet over medium-high heat. Add broccolini, kosher salt, and black pepper. Cook, tossing, until stems are tender-crisp and florets blister in spots, about 5 to 6 minutes. Transfer broccolini to the plate with tempeh (or a warm platter).",
+        "ingredient_refs": [
+          "neutral-oil",
+          "broccolini",
+          "kosher-salt",
+          "black-pepper"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Glaze and plate",
+        "body": "Reduce heat to medium. Pour the glaze into the skillet. Simmer until slightly syrupy, about 1 to 2 minutes. Return tempeh to the pan and turn to coat, about 1 minute. Optional: drizzle 1 tsp toasted sesame oil off heat only if the household wants sesame \u2014 default is skip so sesame stays off the allergen array. Plate rice, broccolini, and glazed tempeh. Scatter scallions. No peanut garnish. kitchen_tested is false.",
+        "ingredient_refs": [
+          "tamari",
+          "maple-syrup",
+          "fresh-ginger",
+          "garlic",
+          "tempeh",
+          "toasted-sesame-oil",
+          "cooked-rice",
+          "broccolini",
+          "scallions"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "ginger-maple-tamari-glaze",
+        "name": "ginger-maple tamari glaze",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tamari",
+          "maple syrup",
+          "fresh ginger",
+          "garlic",
+          "rice vinegar",
+          "water"
+        ]
+      },
+      {
+        "component_id": "seared-tempeh",
+        "name": "seared glazed tempeh",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tempeh",
+          "ginger-maple tamari glaze",
+          "neutral oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "tongs",
+      "mixing bowl or measuring cup for glaze",
+      "knife",
+      "cutting board",
+      "optional steamer basket"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 20,
+    "total_time_minutes": 35,
+    "prep_minutes": 15,
+    "cook_minutes": 20,
+    "total_minutes": 35,
+    "heat": "Medium for tempeh sear; medium-high for broccolini; medium for glaze. No oven required.",
+    "doneness": "Tempeh deep golden and coated in syrupy ginger-maple glaze. Broccolini tender-crisp with blistered tips. Rice hot. kitchen_tested is false.",
+    "effort": "easy",
+    "complexity": "simple",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. HARD peanut-free contract. Optional sesame oil is sesame (not a tree nut) and is defaulted off.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant tempeh plate. No dairy, no shellfish, no meat, no poultry, no eggs, no peanuts/tree nuts. Soy from tempeh and tamari is allowed for HH001. Sesame oil is optional and defaulted off so sesame is not required."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free, vegetarian, and plant_based. No milk, egg, meat, poultry, finfish, or shellfish. Tamari and tempeh are soy. Maple is plant. No peanut. Optional sesame oil is not part of the default required path.",
+    "allergens": [
+      "soy"
+    ],
+    "allergen_notes": [
+      "Soy covers tempeh and tamari.",
+      "Wheat is not listed: tamari is specified gluten-free. Unseasoned rice vinegar assumed wheat-free; confirm label.",
+      "Sesame is not listed because toasted sesame oil is optional and defaulted off. If a cook adds it, sesame would join the array \u2014 that is a different household execution, not this written package.",
+      "No peanut, tree_nut, egg, milk, shellfish, or finfish. HARD peanut-free contract."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant tempeh plate. No dairy, no shellfish, no meat, no poultry, no eggs, no peanuts/tree nuts. Soy from tempeh and tamari is allowed for HH001. Sesame oil is optional and defaulted off so sesame is not required.",
+    "vocabulary_tag_ids": [
+      "savory",
+      "umami",
+      "tender",
+      "fresh",
+      "crispy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r3_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish, meat, poultry). Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js or already used in prior factory packages. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "package_revision": "package_revision is freeze-r3. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r3. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "cuisine_gap": "asian-fusion is the dish.cuisine coverage label and is not a D-02 cuisine slug. Do not invent asian-fusion or japanese tags.",
+      "meal_format": "composed-plate is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "tempeh \u2014 no D-02 ingredient slug; not copied into tags (tofu slug is not used as a substitute).",
+      "hh001_contract": "plant_based_compatible true; peanut-free hard contract; tamari keeps wheat off allergens; optional sesame defaulted off."
+    }
+  },
+  "image": {
+    "image_id": "img_ginger-glazed-tempeh-plate_v1",
+    "dish_id": "ginger-glazed-tempeh-plate",
+    "recipe_version_id": "rv_ginger-glazed-tempeh-plate_v1",
+    "asset_generated": true,
+    "master_ref": "ginger-glazed-tempeh-plate.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "ginger-glazed-tempeh-plate.webp",
+        "spec_catalog_path": "/images/meals/ginger-glazed-tempeh-plate.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "ginger-glazed-tempeh-plate-640.webp",
+        "spec_catalog_path": "/images/meals/ginger-glazed-tempeh-plate-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from AI JPEG to 4:3, then resize to 1200x900 master and 640x480 card WebPs after Cora GenerateImage.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 with house-quality reference; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-11 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r2.",
+    "package_revision": "freeze-r3",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "ginger-glazed-tempeh-plate-640.webp",
+    "master_filename": "ginger-glazed-tempeh-plate.webp",
+    "card_filename": "ginger-glazed-tempeh-plate-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Tempeh seared, broccolini blistered, glaze simmered and coats tempeh. Rice and scallions plate. Optional sesame oil defaulted off."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "3 tbsp neutral oil split 2/1 tempeh/broccolini. Optional 1 tsp sesame oil not required."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Ginger-maple tamari glaze whisked in recipe. Not a bottled teriyaki. Not peanut sauce."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 (slice, whisk glaze, trim; optional steam folded into prep) + cook 20 (7 sear + 6 broccolini + 3 glaze/coat) = 35. Rice cooking overlaps if started in prep."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Half tempeh and glaze at 2. Keep single-layer sear."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "plant_based and vegetarian true. contains_dairy false. allergens ['soy']. HH001 true. No peanut. Tamari avoids wheat. Sesame optional/default off."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "savory, umami, tender, fresh, crispy are D-02. asian-fusion and composed-plate are cuisine/format labels only \u2014 not invented tags."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r3. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r3."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "pass",
+      "detail": "freeze_integrity.py PASS at freeze-r3. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+    }
+  ],
+  "scaling_notes": {
+    "1": "4 oz tempeh, half glaze batch or make full and save half, 4 oz broccolini, 3/4 cup rice.",
+    "2": "Half ingredients. One skillet batch.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "no peanut additions",
+      "tamari not regular soy if wheat must stay off",
+      "glaze should coat not drown"
+    ]
+  },
+  "coverage_contribution": "Tempeh protein empty while tofu is already at four meals. Composed glazed plant plate that is not a bowl, taco, or chickpea skillet. HH001-capable.",
+  "near_duplicate_review": "Compared with Teriyaki Tofu Bowls / Crispy Chipotle Tofu Tacos / Korean Soft Tofu Stew / Thai Red Curry Kabocha: all tofu-forward; this introduces tempeh on a composed plate. Compared with peanut noodle cousins: peanut deliberately forbidden. Compared with Ginger-Scallion Fish Packets: ginger adjacency only; protein and format differ. Not a fifth tofu. Not a live-catalog duplicate.",
+  "batch_challenges": "A",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r3_images_present_awaiting_preflight"
+}

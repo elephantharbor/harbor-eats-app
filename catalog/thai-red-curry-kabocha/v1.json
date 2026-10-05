@@ -1,0 +1,541 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-10-2026-10-05 certified_batch mode. Dish, Recipe, Recipe Version, Image metadata. dietary_eligibility is separate from allergens. Publication remains Draft. Not imported, not published, not Vale-certified. Images blocked pending GenerateImage; package_revision is freeze-r2.",
+  "batch_id": "wave-10-2026-10-05",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-10 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "thai-red-curry-kabocha",
+    "slug": "thai-red-curry-kabocha",
+    "title": "Thai Red Curry with Kabocha and Tofu",
+    "description": "Kabocha squash and browned tofu simmered in a coconut red curry built from vegetarian Thai red curry paste \u2014 no fish sauce, no dairy.",
+    "cuisine": "thai-inspired",
+    "meal_format": "curry",
+    "primary_ingredient": "tofu",
+    "vocabulary_tag_ids": [
+      "thai",
+      "curries",
+      "tofu",
+      "savory",
+      "spicy",
+      "rich",
+      "creamy"
+    ],
+    "current_recipe_id": "rcp_thai-red-curry-kabocha",
+    "current_version_id": "rv_thai-red-curry-kabocha_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_thai-red-curry-kabocha",
+    "dish_id": "thai-red-curry-kabocha",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-10, Grok Bot for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_thai-red-curry-kabocha_v1",
+    "recipe_id": "rcp_thai-red-curry-kabocha",
+    "dish_id": "thai-red-curry-kabocha",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 text package is complete for preflight. Master and card WebPs are present and frozen for preflight/audit. A later image add bumps package_revision to freeze-r1. Not planned, shopped, cooked, or rated. Not Vale-certified.",
+    "title": "Thai Red Curry with Kabocha and Tofu",
+    "description": "Kabocha squash and browned tofu simmered in a coconut red curry built from vegetarian Thai red curry paste \u2014 no fish sauce, no dairy.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "extra-firm-tofu",
+        "name": "extra-firm tofu",
+        "display_name": "extra-firm tofu",
+        "quantity": 14,
+        "unit": "oz",
+        "note": "one block; soy allergen. Pressed 10 minutes.",
+        "preparation": "drained, pressed, and cut into 3/4-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kabocha-squash",
+        "name": "kabocha squash",
+        "display_name": "kabocha squash",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "about half a medium kabocha; peel optional if tender-skinned",
+        "preparation": "seeded and cut into 1-inch wedges/chunks",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "coconut-oil",
+        "name": "coconut oil",
+        "display_name": "coconut oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "for browning tofu and starting the paste",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "vegetarian-red-curry-paste",
+        "name": "vegetarian Thai red curry paste",
+        "display_name": "vegetarian/vegan Thai red curry paste",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "REQUIRED vegetarian/vegan paste (no shrimp paste, no fish sauce in the jar). Brand must list plant ingredients only. Unconditional \u2014 not a swap.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "full-fat-coconut-milk",
+        "name": "full-fat coconut milk",
+        "display_name": "full-fat coconut milk",
+        "quantity": 13.5,
+        "unit": "oz",
+        "note": "one 13.5 oz can. Coconut milk is not dairy.",
+        "preparation": "shaken",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "thins the curry slightly",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "brown sugar",
+        "display_name": "light brown sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": "season tofu lightly and finish curry; no fish sauce in this recipe",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lime-juice",
+        "name": "lime juice",
+        "display_name": "fresh lime juice",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "red-bell-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": "about 8 oz",
+        "preparation": "stemmed, seeded, and sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "baby-spinach",
+        "name": "baby spinach",
+        "display_name": "baby spinach",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "loosely packed; wilts into curry",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-thai-basil",
+        "name": "fresh Thai basil",
+        "display_name": "fresh Thai basil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "leaves; finish",
+        "preparation": "leaves picked",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "uncooked jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "cooked separately for serving",
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lime-wedges",
+        "name": "lime",
+        "display_name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": "wedges for serving",
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Cook the rice",
+        "body": "Rinse the jasmine rice. Cook with water per package directions (typically 1.5 cups rice to about 2.25 cups water), covered, until tender, about 15 minutes, then rest 5 minutes off heat. Start this before or while the curry so rice is ready at plating.",
+        "ingredient_refs": [
+          "jasmine-rice"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Press and brown the tofu",
+        "body": "Press the tofu 10 minutes under a plate. Cut into 3/4-inch cubes. Pat dry and season with 1/4 tsp of the kosher salt. Heat 1 tbsp coconut oil in a wide pot or deep skillet over medium-high. Brown the tofu on two sides until golden, about 6 minutes total. Transfer to a plate.",
+        "ingredient_refs": [
+          "extra-firm-tofu",
+          "kosher-salt",
+          "coconut-oil"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Bloom the vegetarian curry paste",
+        "body": "Reduce heat to medium. Add the remaining 1 tbsp coconut oil. Add the vegetarian/vegan Thai red curry paste. Cook, stirring, until fragrant and the oil takes on red color, about 1 to 2 minutes. Do not use a paste that lists shrimp paste or fish sauce.",
+        "ingredient_refs": [
+          "coconut-oil",
+          "vegetarian-red-curry-paste"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer kabocha in coconut curry",
+        "body": "Stir in the coconut milk, water, brown sugar, and remaining 1/2 tsp kosher salt. Add the kabocha chunks. Bring to a simmer. Cover and cook until kabocha is tender when pierced, about 12 to 15 minutes. No fish sauce at any point.",
+        "ingredient_refs": [
+          "full-fat-coconut-milk",
+          "water",
+          "brown-sugar",
+          "kosher-salt",
+          "kabocha-squash"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Add pepper, tofu, spinach",
+        "body": "Stir in the red bell pepper and the browned tofu. Simmer uncovered 3 to 4 minutes until the pepper softens slightly but stays bright. Fold in the baby spinach until wilted, about 1 minute. Stir in the lime juice. Taste for salt \u2014 adjust with salt only, never fish sauce.",
+        "ingredient_refs": [
+          "red-bell-pepper",
+          "extra-firm-tofu",
+          "baby-spinach",
+          "lime-juice",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Finish and serve",
+        "body": "Take off the heat. Fold in most of the Thai basil leaves. Serve the curry over jasmine rice. Garnish with remaining basil and lime wedges. Each serving is curry with tofu and kabocha over rice. kitchen_tested is false.",
+        "ingredient_refs": [
+          "fresh-thai-basil",
+          "jasmine-rice",
+          "lime-wedges",
+          "extra-firm-tofu",
+          "kabocha-squash"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "thai-red-coconut-curry",
+        "name": "Thai red coconut curry",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "coconut oil",
+          "vegetarian/vegan Thai red curry paste",
+          "full-fat coconut milk",
+          "water",
+          "light brown sugar",
+          "kosher salt",
+          "kabocha squash",
+          "red bell pepper",
+          "extra-firm tofu",
+          "baby spinach",
+          "lime juice",
+          "fresh Thai basil"
+        ]
+      },
+      {
+        "component_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "uncooked jasmine rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "wide pot or deep skillet with lid",
+      "tofu press or plate+weight",
+      "rice pot with lid",
+      "wooden spoon",
+      "knife",
+      "cutting board"
+    ],
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 35,
+    "total_time_minutes": 55,
+    "prep_minutes": 20,
+    "cook_minutes": 35,
+    "total_minutes": 55,
+    "heat": "Medium-high to brown tofu. Medium to bloom paste and simmer curry. Rice: covered simmer then rest. No oven.",
+    "doneness": "Kabocha tender when pierced. Tofu golden on edges. Spinach wilted. Curry cohesive, coconut-red, not broken. Rice fluffy. kitchen_tested is false.",
+    "effort": "moderate",
+    "complexity": "standard",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Coconut is not a tree nut for this package policy.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based: tofu and kabocha. No dairy, no shellfish, no meat, no poultry. No fish sauce. Vegetarian/vegan curry paste is required unconditionally. Nuts absent (cashew exception unused). Coconut milk OK."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional. Coconut milk is not dairy. Vegetarian/vegan red curry paste is required (no shrimp paste). No fish sauce. No milk, butter, cheese, cream, or yogurt.",
+    "allergens": [
+      "soy"
+    ],
+    "allergen_notes": [
+      "Soy is on the allergens array because of tofu.",
+      "No egg, milk, wheat, sesame, peanut, tree_nut, shellfish, or finfish. Sesame is not used.",
+      "Fish sauce is forbidden in this package; finfish/shellfish eligibility flags stay false."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based: tofu and kabocha. No dairy, no shellfish, no meat, no poultry. No fish sauce. Vegetarian/vegan curry paste is required unconditionally. Nuts absent (cashew exception unused). Coconut milk OK.",
+    "vocabulary_tag_ids": [
+      "thai",
+      "curries",
+      "tofu",
+      "savory",
+      "spicy",
+      "rich",
+      "creamy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergens are allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish). Meat and poultry are dietary_eligibility classes, not allergen tokens. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js or already used in Dry Run packages. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "meal_format": "curry format pairs with D-02 meal_style curries in tags.",
+      "primary_ingredient": "tofu is both primary_ingredient and a D-02 ingredient slug.",
+      "hh001_contract": "plant_based_compatible true requires no animal products; vegetarian paste path is unconditional."
+    }
+  },
+  "image": {
+    "image_id": "img_thai-red-curry-kabocha_v1",
+    "dish_id": "thai-red-curry-kabocha",
+    "recipe_version_id": "rv_thai-red-curry-kabocha_v1",
+    "asset_generated": true,
+    "master_ref": "thai-red-curry-kabocha.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "thai-red-curry-kabocha.webp",
+        "spec_catalog_path": "/images/meals/thai-red-curry-kabocha.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "thai-red-curry-kabocha-640.webp",
+        "spec_catalog_path": "/images/meals/thai-red-curry-kabocha-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-cropped from AI JPEG to 4:3, then resized to 1200x900 master and 640x480 card WebPs.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 with house-quality reference; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-10 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit.",
+    "package_revision": "freeze-r2",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "thai-red-curry-kabocha-640.webp",
+    "master_filename": "thai-red-curry-kabocha.webp",
+    "card_filename": "thai-red-curry-kabocha-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_IMAGE_PENDING",
+    "image_rights_provenance": "AWAITING_AI_ASSET",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Tofu browned then returned. Curry paste bloomed. Kabocha simmered. Spinach and basil at the end. Rice cooked as serving base. No fish sauce line anywhere."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "2 tbsp coconut oil: 1 tofu, 1 paste."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Curry built from vegetarian red curry paste + coconut milk. Paste is an ingredient with vegetarian/vegan contract, not a mystery jar with shrimp paste."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 20 (press tofu overlaps mise en place; cut kabocha/pepper/herbs) + cook 35 (10 press counted in prep end / brown 6 + paste 2 + kabocha 14 + pepper-tofu 4 + spinach 1; rice 20 overlaps curry). Published cook 35 with rice overlap stated. Total 55."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "14 oz tofu block and 13.5 oz coconut milk can do not quarter by shopping unit. See scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "plant_based_compatible true. vegetarian_compatible true. contains_dairy false. contains_finfish/shellfish false \u2014 no fish sauce. allergens soy from tofu. HH001 true."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "thai, curries, tofu, savory, spicy, rich, creamy are D-02. dish.cuisine thai-inspired aligns with thai slug."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r2."
+    }
+  ],
+  "scaling_notes": {
+    "1": "About 4 oz tofu, 6 oz kabocha, 1 tbsp paste, ~1/3 can coconut milk, 1/3 cup rice dry.",
+    "2": "Half block tofu, 12 oz kabocha, half can coconut milk, half paste and veg.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "vegetarian/vegan paste requirement",
+      "no fish sauce rule",
+      "kabocha tenderness pierce test"
+    ]
+  },
+  "coverage_contribution": "Opens Thai curry beyond Thai Basil Eggplant Stir-Fry and away from the coconut chickpea curry cluster. HH001-capable plant meal with kabocha + tofu.",
+  "near_duplicate_review": "Compared with Coconut Chickpea Spinach Curry: coconut curry adjacency but Indian-inspired chickpeas vs Thai red + kabocha + tofu. Compared with Thai Basil Eggplant Stir-Fry: Thai label but stir-fry eggplant vs curry. Compared with Teriyaki Tofu Bowls / Crispy Chipotle Tofu Tacos: tofu protein, different cuisine and format. Not peanut noodle. Not a chickpea rename. Not a live-31 duplicate.",
+  "batch_challenges": "A,B,C",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_images_present_awaiting_preflight"
+}

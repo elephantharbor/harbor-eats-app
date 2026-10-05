@@ -1,0 +1,92 @@
+{
+  "slug": "kimchi-fried-rice",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-05",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r3",
+  "freeze_integrity": "PASS",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "kitchen_tested": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null
+    }
+  },
+  "dietary_eligibility": "Plant-based and vegetarian true; dairy/meat/poultry/finfish/shellfish false; dairy_free+vegetarian+plant_based; plant-kimchi/no-egg hard contract; HH001 true.",
+  "allergens": "soy, sesame, wheat (soy sauce/gochujang/sesame oil+seeds).",
+  "hh001": "Claimed true; plant kimchi fried rice without egg/seafood.",
+  "image_observation": "Cast-iron kimchi fried rice with visible kimchi pieces, sesame seeds, bias scallions; no egg. L1 OK; L2 vibrant skillet hero.",
+  "fails_needing_revision": [],
+  "rescore": {
+    "round": "freeze-r4",
+    "scope": "not_reopened",
+    "prior_overall": "PASS",
+    "note": "Batch A left at freeze-r3 PASS; no new defect."
+  }
+}

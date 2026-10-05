@@ -1,0 +1,477 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for Dry Run #3. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are frozen for preflight/audit; not imported, not published.",
+  "batch_id": "dry-run-3",
+  "mode": "dry_run",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot, Catalog Factory Dry Run #3, for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "potato-leek-gratin",
+    "slug": "potato-leek-gratin",
+    "title": "Potato and Leek Gratin",
+    "description": "Thinly sliced potatoes and leeks baked in a cream and cheese custard until the center is tender and the top is browned.",
+    "cuisine": "american",
+    "meal_format": "gratin",
+    "primary_ingredient": "potatoes",
+    "vocabulary_tag_ids": [
+      "american",
+      "rich",
+      "savory",
+      "tender",
+      "herbaceous",
+      "creamy"
+    ],
+    "current_recipe_id": "rcp_potato-leek-gratin",
+    "current_version_id": "rv_potato-leek-gratin_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_potato-leek-gratin",
+    "dish_id": "potato-leek-gratin",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-04",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory Dry Run #3, Grok Bot only",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_potato-leek-gratin_v1",
+    "recipe_id": "rcp_potato-leek-gratin",
+    "dish_id": "potato-leek-gratin",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. A Vale revise before any of that history bumps package_revision and does not mint household history. Master and card WebPs are frozen for preflight/audit; not imported, not published.",
+    "title": "Potato and Leek Gratin",
+    "description": "Thinly sliced potatoes and leeks baked in a cream and cheese custard until the center is tender and the top is browned.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "yukon-gold-potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 2,
+        "unit": "lb",
+        "note": "as purchased, then peeled. About 4 medium potatoes.",
+        "preparation": "peeled and sliced 1/8 inch thick",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "leeks",
+        "name": "leeks",
+        "display_name": "leeks",
+        "quantity": 2,
+        "unit": "count",
+        "note": "about 1 lb untrimmed. White and pale green only.",
+        "preparation": "halved, rinsed, and sliced 1/4 inch thick",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "heavy-cream",
+        "name": "heavy cream",
+        "display_name": "heavy cream",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "required dairy. All of it goes into the custard.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "vegetarian-gruyere",
+        "name": "vegetarian Gruyère",
+        "display_name": "vegetarian Gruyère (microbial rennet)",
+        "quantity": 4,
+        "unit": "oz",
+        "note": "required dairy. A block, grated by the cook, not a pre-shredded blend. Divided: 2 oz whisked into the cream, 2 oz on top. Microbial rennet so the vegetarian claim does not depend on a swap.",
+        "preparation": "grated",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "unsalted-butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "required dairy. Divided: 1 tbsp to cook the leeks, 1 tbsp to grease the dish.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 2,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.25,
+        "unit": "tsp",
+        "note": "divided: 1/4 tsp on the leeks, 1 tsp in the custard",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "all of it in the custard",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-nutmeg",
+        "name": "ground nutmeg",
+        "display_name": "ground nutmeg",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "spice seed. Not a peanut and not a tree nut.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fresh-thyme",
+        "name": "fresh thyme",
+        "display_name": "fresh thyme",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "leaves",
+        "preparation": "stripped",
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Slice and grate",
+        "body": "Peel the Yukon Gold potatoes and slice them 1/8 inch thick. Hold the slices in cold water so they do not discolor. Trim the leeks to the white and pale green, halve them lengthwise, rinse out the grit, and slice them 1/4 inch thick. Grate the vegetarian Gruyère. Mince the garlic. Strip the fresh thyme leaves. This prep finishes before the oven is turned on.",
+        "ingredient_refs": [
+          "yukon-gold-potatoes",
+          "leeks",
+          "vegetarian-gruyere",
+          "garlic",
+          "fresh-thyme"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Heat the oven and soften the leeks",
+        "body": "Heat the oven to 400 F. The preheat takes about 10 minutes, and those 10 minutes are inside the cook time. During that same 10 minutes, melt 1 tbsp of the unsalted butter in a skillet over medium heat. Add the leeks and 1/4 tsp of the kosher salt. Cook until soft, about 8 minutes. Do not let them go dark brown. The leek cooking is inside the preheat and is not a second block of time.",
+        "ingredient_refs": [
+          "unsalted-butter",
+          "leeks",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Mix the cream-cheese custard",
+        "body": "Whisk the heavy cream with 2 oz of the vegetarian Gruyère, the garlic, 1 tsp of the kosher salt, the black pepper, the ground nutmeg, and the fresh thyme. This cream-cheese custard is defined here from those ingredients. It is not a bottled sauce. There is no egg and no flour in it. The remaining 2 oz of cheese is for the top.",
+        "ingredient_refs": [
+          "heavy-cream",
+          "vegetarian-gruyere",
+          "garlic",
+          "kosher-salt",
+          "black-pepper",
+          "ground-nutmeg",
+          "fresh-thyme"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Layer the dish",
+        "body": "Use the remaining 1 tbsp unsalted butter to grease a 2-quart baking dish. Drain the Yukon Gold potatoes and pat them dry. Layer the potatoes with the softened leeks, pouring the cream-cheese custard over the layers as you go. Press the slices down so the cream comes nearly to the top. Do not add milk, stock, or water that is not in the ingredient list. Scatter the remaining 2 oz vegetarian Gruyère over the top. Do not add breadcrumbs.",
+        "ingredient_refs": [
+          "unsalted-butter",
+          "yukon-gold-potatoes",
+          "leeks",
+          "heavy-cream",
+          "vegetarian-gruyere"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Bake and rest",
+        "body": "Bake on the middle rack at 400 F for 40 minutes. A knife should meet little resistance in a center potato slice, the cream should be bubbling at the edges and look thickened, and the cheese on top should be browned in patches. If the top colors deeply before the 40 minutes are up, lay a loose piece of foil over the dish for the rest of that 40 minutes. Rest 5 minutes before serving. The 40-minute bake and the 5-minute rest come after the 10-minute preheat and are inside the cook time. There is no breadcrumb crust. kitchen_tested is false: 40 minutes is the expected bake for 1/8-inch slices, not a tested promise. If the center is still firm at 40 minutes, keep baking and check every 5 minutes; that extra time is not inside the 70-minute total.",
+        "ingredient_refs": [
+          "yukon-gold-potatoes",
+          "heavy-cream",
+          "vegetarian-gruyere"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "cream-cheese-custard",
+        "name": "cream-cheese custard",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "heavy cream",
+          "vegetarian Gruyère",
+          "garlic",
+          "kosher salt",
+          "black pepper",
+          "ground nutmeg",
+          "fresh thyme"
+        ]
+      }
+    ],
+    "equipment": [
+      "oven",
+      "2-quart baking dish",
+      "skillet",
+      "whisk",
+      "knife",
+      "cutting board",
+      "grater"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 55,
+    "total_time_minutes": 70,
+    "prep_minutes": 15,
+    "cook_minutes": 55,
+    "total_minutes": 70,
+    "heat": "Oven 400 F. Leeks sauté over medium during the preheat. Bake on the middle rack.",
+    "doneness": "Center potato slice takes a knife with little resistance. Cream is bubbling at the edges and thickened, not watery. Cheese on top is browned in patches. No breadcrumb crust. Rest 5 minutes. Written bake is 40 minutes at 400 F for 1/8-inch slices. kitchen_tested is false. Extra time beyond 40 minutes, if the center is still firm, is not included in the 70-minute total.",
+    "effort": "moderate",
+    "complexity": "moderate",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Ground nutmeg is a spice seed, not a tree nut.",
+      "hh001_eligible": false,
+      "hh001_reason": "Heavy cream, vegetarian Gruyère, and butter are dairy. HH001 does not eat dairy. No meat, poultry, finfish, shellfish, or nuts are in the dish. The dairy alone makes it ineligible."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dairy_free label. Heavy cream, vegetarian Gruyère, and butter are required. No plant label. Vegetarian is a dietary_eligibility field, not a dairy_free claim. The cheese is specified as microbial-rennet Gruyère so the vegetarian claim is not a swap.",
+    "allergens": [
+      "milk"
+    ],
+    "allergen_notes": [
+      "Milk covers the heavy cream, the vegetarian Gruyère, and the unsalted butter. All three are required.",
+      "No egg, soy, wheat, sesame, peanut, tree_nut, shellfish, or finfish. There is no flour and no breadcrumbs, so wheat is not on the array.",
+      "contains_dairy is true on dietary_eligibility. The allergen token is milk. Meat and poultry are not on this array."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Heavy cream, vegetarian Gruyère, and butter are dairy. HH001 does not eat dairy. No meat, poultry, finfish, shellfish, or nuts are in the dish. The dairy alone makes it ineligible.",
+    "vocabulary_tag_ids": [
+      "american",
+      "rich",
+      "savory",
+      "tender",
+      "herbaceous",
+      "creamy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergens are allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish). Meat and poultry are dietary_eligibility classes, not allergen tokens. Notes do not replace the array.",
+      "allergens_milk_token": "Live PACKAGE_ALLERGEN_IDS uses dairy and has no milk token. This package lists milk because cream, cheese, and butter are in the dish. Do not drop milk, and do not silently remap milk to dairy.",
+      "dietary_eligibility": "Separate from allergens. contains_dairy is true. dairy_free is not used. vegetarian_compatible is true because the Gruyère is specified as microbial rennet. plant_based_compatible is false. HH001 is false because of the dairy.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs. creamy is in the local taste vocabulary (texture). american, rich, savory, tender, and herbaceous already appear in Dry Run #2 packages. meal_format gratin is not a D-02 meal_style slug and is not copied into tags. primary_ingredient potatoes has no D-02 slug and is not copied into tags.",
+      "meal_format": "meal_format gratin is not a D-02 meal_style slug and is not in vocabulary_tag_ids. There is no french cuisine slug in the local vocabulary, so cuisine is american, an existing label. This does not claim a new cuisine. The gap is the gratin format and a required dairy main.",
+      "primary_ingredient": "There is no D-02 ingredient slug for potatoes. primary_ingredient is potatoes. It is not copied into vocabulary_tag_ids."
+    }
+  },
+  "image": {
+    "image_id": "img_potato-leek-gratin_v1",
+    "dish_id": "potato-leek-gratin",
+    "recipe_version_id": "rv_potato-leek-gratin_v1",
+    "asset_generated": true,
+    "master_ref": "potato-leek-gratin.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "potato-leek-gratin.webp",
+        "spec_catalog_path": "/images/meals/potato-leek-gratin.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "potato-leek-gratin-640.webp",
+        "spec_catalog_path": "/images/meals/potato-leek-gratin-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-cropped from the existing AI JPEG to 4:3, then resized to the frozen 1200x900 master and 640x480 card WebPs for preflight/audit.",
+    "generation": {
+      "method": "format_size_conversion_of_existing_ai_jpeg",
+      "method_detail": "Center-crop to 4:3 and LANCZOS resize of the existing AI JPEG into RGB WebP master and card derivatives; frozen for preflight/audit.",
+      "generator": "Grok Imagine / Juniper via Grok Bot Dry Run #3",
+      "model": "unknown",
+      "model_note": "Existing AI JPEG source; model slug unknown.",
+      "prompt_authored_on": "2026-10-04",
+      "generation_date": "2026-10-04",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "AI illustration converted from the existing JPEG source; master and card WebPs are frozen for preflight/audit. Rights are not cleared for external release.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "potato-leek-gratin-640.webp",
+    "master_filename": "potato-leek-gratin.webp",
+    "card_filename": "potato-leek-gratin-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient is used in a step. Cheese is split 2 oz in the custard and 2 oz on top. Butter is split 1 tbsp for the leeks and 1 tbsp for the dish. No breadcrumb is introduced in the method."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "There is no oil. The fat is unsalted butter, 2 tbsp, divided and both parts used. Heavy cream is an ingredient in the custard, not a stand-in for the butter."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "The cream-cheese custard is whisked from heavy cream, half the Gruyère, garlic, salt, pepper, nutmeg, and thyme. It is not a jar. No flour and no egg."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 is slicing, rinsing, and grating, finished before the oven is on. Cook 55 is 10 minutes of preheat, 40 minutes of baking, and 5 minutes of rest. The leek sauté (about 8 minutes) runs inside the 10-minute preheat and is not added again. 15 + 55 = 70. An untested extra bake, if the center is still firm, is disclosed and is not inside the 70."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Base 4. Cream, cheese, and potatoes scale, with a cream floor and a smaller dish at 1 serving so the potatoes are not baked dry. Oven temperature does not scale. See scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_dairy true. vegetarian_compatible true via microbial-rennet Gruyère. plant_based_compatible false. hh001_eligible false because of dairy. allergens is milk only. No flour, so no wheat."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "american, rich, savory, tender, and herbaceous are Dry Run #2 tags. creamy is an active texture slug in the local taste vocabulary. gratin and potatoes are not tags."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. Not imported, not published."
+    }
+  ],
+  "scaling_notes": {
+    "1": "One serving is 8 oz Yukon Gold potatoes (about 1 medium potato), sliced 1/8 inch, not a handful of ends. Leek: the white and pale green of 1/2 leek. Cream floor: 1/2 cup heavy cream, which is the true quarter and is enough only in a small 2-cup baking dish; do not spread it across the 2-quart dish. Cheese: 1 oz vegetarian Gruyère, half whisked into the cream and half on top, not a dusting. Butter: 1 tsp total, half to soften the leek and half to grease the small dish. Garlic: 1 small clove, not a quarter clove. Salt: a pinch on the leek and 1/4 tsp in the custard. Pepper, nutmeg, and thyme: a quarter of the written amount (a scant pinch of nutmeg). Oven stays 400 F. Start checking at 30 minutes. The doneness test is the same: a tender center slice and thickened cream. Do not change the temperature to speed it up.",
+    "2": "1 lb potatoes, 1 leek, 1 cup heavy cream, 2 oz vegetarian Gruyère (1 oz in the custard, 1 oz on top), 1 tbsp butter, 1 garlic clove. Use a 1-quart dish so the cream still comes nearly to the top of the slices. Halve the salt, pepper, nutmeg, and thyme. Same 400 F. Check at about 35 minutes; the written 40 minutes is for the full dish.",
+    "4": "As written. 2 lb potatoes, 2 cups heavy cream, 4 oz cheese, a 2-quart dish, 40 minutes at 400 F after a 10-minute preheat.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "oven temperature of 400 F",
+      "slice thickness of 1/8 inch",
+      "the doneness test",
+      "the 5-minute rest",
+      "dish size must shrink with the batch"
+    ]
+  },
+  "coverage_contribution": "Fills the empty casserole/gratin format and adds a dairy main that is not the live quesadillas or the live harissa carrots with feta. Heavy cream and cheese are both required. HH001 cannot eat it. The clock is about 70 minutes, a different length and a different format from the planned pork braise and the planned stuffed cabbage.",
+  "near_duplicate_review": "Compared with Black Bean Quesadillas: both use cheese, but that meal is a Mexican skillet handheld, not a layered potato bake. Compared with Harissa Roasted Carrots with Feta: both are dairy, and that one is the live north-african roast with feta on carrots. This is potatoes and leeks in a cream custard, with no feta and no harissa. Compared with Lentil-Stuffed Cabbage (DR2, certified, unimplemented): both go in a baking dish, but that one is rolls in tomato sauce with no dairy. Compared with Cider-Braised Pork Shoulder (DR2): both run longer than the live 40-minute cluster, but that one is a meat braise. This is a vegetarian gratin.",
+  "batch_challenges": [
+    "B",
+    "C",
+    "D"
+  ],
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

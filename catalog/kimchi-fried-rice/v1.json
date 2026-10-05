@@ -1,0 +1,529 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-11-2026-10-05. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r3; not imported, not published.",
+  "batch_id": "wave-11-2026-10-05",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r3",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-11 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "kimchi-fried-rice",
+    "slug": "kimchi-fried-rice",
+    "title": "Kimchi Fried Rice",
+    "description": "Day-old rice stir-fried with chopped plant kimchi, kimchi brine, scallions, gochujang, and sesame oil. Vegan kimchi contracted; no egg, no bacon.",
+    "cuisine": "korean",
+    "meal_format": "fried-rice",
+    "primary_ingredient": "kimchi",
+    "vocabulary_tag_ids": [
+      "korean",
+      "spicy",
+      "savory",
+      "umami",
+      "tangy",
+      "smoky"
+    ],
+    "current_recipe_id": "rcp_kimchi-fried-rice",
+    "current_version_id": "rv_kimchi-fried-rice_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_kimchi-fried-rice",
+    "dish_id": "kimchi-fried-rice",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-11-2026-10-05, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_kimchi-fried-rice_v1",
+    "recipe_id": "rcp_kimchi-fried-rice",
+    "dish_id": "kimchi-fried-rice",
+    "version_number": 1,
+    "package_revision": "freeze-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r3. Not certified. Not published. kitchen_tested is false.",
+    "title": "Kimchi Fried Rice",
+    "description": "Day-old rice stir-fried with chopped plant kimchi, kimchi brine, scallions, gochujang, and sesame oil. Vegan kimchi contracted; no egg, no bacon.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "day-old-rice",
+        "name": "cooked rice",
+        "display_name": "day-old cooked rice",
+        "quantity": 5,
+        "unit": "cup",
+        "note": "cold, preferably refrigerated overnight. Fresh hot rice fries poorly. About 1 2/3 cups uncooked rice yield.",
+        "preparation": "cold, grains separated with wet fingers",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "plant-kimchi",
+        "name": "plant kimchi",
+        "display_name": "plant kimchi (no fish sauce, no shrimp)",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "REQUIRED vegan/seafood-free contract. Buy kimchi labeled vegan/plant, or homemade without fish sauce, shrimp paste, oysters, or anchovy. Chopped. Reserve 3 tbsp brine from the jar. Do not use seafood kimchi.",
+        "preparation": "roughly chopped; brine reserved",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kimchi-brine",
+        "name": "kimchi brine",
+        "display_name": "plant kimchi brine",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "from the same vegan kimchi jar. Part of the seafood-free contract.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "about 6 oz",
+        "preparation": "diced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "gochujang",
+        "name": "gochujang",
+        "display_name": "gochujang (Korean fermented chili paste)",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "store-bought paste. Typical commercial gochujang contains soy and wheat. Do not add a seafood-based stew concentrate.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "regular soy sauce. Soy and wheat allergens.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "toasted-sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 tsp in the cook, 1 tsp to finish. Sesame allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral high-heat oil (canola or grapeseed)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "for the skillet",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": "whites for the pan, greens for finish",
+        "preparation": "thinly sliced, whites and greens separated",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "balances kimchi acidity",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "only if needed after tasting soy and kimchi",
+        "preparation": null,
+        "optional": true,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "toasted-sesame-seeds",
+        "name": "toasted sesame seeds",
+        "display_name": "toasted sesame seeds",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "sesame allergen; garnish",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep kimchi and rice",
+        "body": "Confirm the kimchi label is plant/vegan with no fish sauce, shrimp paste, oysters, or anchovy. Roughly chop 2 cups kimchi; reserve 3 tbsp brine. Dice the onion. Mince the garlic. Slice scallions, keeping whites and greens separate. Break cold day-old rice into separate grains with wet fingers. Measure gochujang, soy sauce, toasted sesame oil, neutral oil, sugar, and sesame seeds. HARD CONTRACT: no egg, no bacon, no spam, no seafood kimchi.",
+        "ingredient_refs": [
+          "plant-kimchi",
+          "kimchi-brine",
+          "yellow-onion",
+          "garlic",
+          "scallions",
+          "day-old-rice",
+          "gochujang",
+          "soy-sauce",
+          "toasted-sesame-oil",
+          "neutral-oil",
+          "sugar",
+          "toasted-sesame-seeds"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Saut\u00e9 aromatics and kimchi",
+        "body": "Heat the neutral oil and 1 tsp toasted sesame oil in a 12-inch skillet or wok over medium-high heat. Add onion and scallion whites. Cook, stirring, until onion softens, about 2 to 3 minutes. Add garlic; cook 30 seconds. Add chopped plant kimchi. Cook until edges look slightly jammy and the pan smells sharp and spicy, about 3 to 4 minutes. Stir in gochujang, kimchi brine, soy sauce, and sugar until the paste loosens into the kimchi.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "toasted-sesame-oil",
+          "yellow-onion",
+          "scallions",
+          "garlic",
+          "plant-kimchi",
+          "gochujang",
+          "kimchi-brine",
+          "soy-sauce",
+          "sugar"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Fry the rice",
+        "body": "Add the cold rice. Press and fold to coat every grain in the red kimchi mixture. Spread into a thin layer. Let sit undisturbed 1 to 2 minutes so grains toast, then fold again. Repeat until rice is hot, stained red, and lightly toasted in spots, about 5 to 7 minutes total. Do not scramble an egg into the pan. Do not add bacon.",
+        "ingredient_refs": [
+          "day-old-rice",
+          "plant-kimchi"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Finish and serve",
+        "body": "Off heat, stir in the remaining 1 tsp toasted sesame oil and most of the scallion greens. Taste; add optional salt only if soy and kimchi have not already seasoned it. Serve in bowls. Scatter sesame seeds and remaining scallion greens. No fried egg on top. No bacon bits. kitchen_tested is false.",
+        "ingredient_refs": [
+          "toasted-sesame-oil",
+          "scallions",
+          "toasted-sesame-seeds",
+          "kosher-salt",
+          "day-old-rice"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "kimchi-gochujang-base",
+        "name": "kimchi gochujang skillet base",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "plant kimchi",
+          "kimchi brine",
+          "gochujang",
+          "soy sauce",
+          "garlic",
+          "onion",
+          "sugar"
+        ]
+      },
+      {
+        "component_id": "kimchi-fried-rice",
+        "name": "kimchi fried rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "day-old rice",
+          "kimchi gochujang skillet base",
+          "toasted sesame oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet or wok",
+      "spatula",
+      "knife",
+      "cutting board",
+      "measuring spoons"
+    ],
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 15,
+    "total_time_minutes": 25,
+    "prep_minutes": 10,
+    "cook_minutes": 15,
+    "total_minutes": 25,
+    "heat": "Medium-high skillet or wok throughout. No oven.",
+    "doneness": "Rice hot, red from kimchi, lightly toasted in spots. Kimchi jammy at edges. No raw onion crunch left in the base. kitchen_tested is false.",
+    "effort": "easy",
+    "complexity": "simple",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Sesame oil and seeds are sesame allergen tokens, not tree nuts.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant kimchi fried rice. No dairy, no shellfish, no meat, no poultry, no egg, no bacon. Plant kimchi is contracted seafood-free. Soy, sesame, and wheat are present as allergens but HH001 allows soy/sesame/wheat. Nuts absent."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free, vegetarian, and plant_based. Plant kimchi must stay seafood-free; that is a hard shopping contract. No egg, no bacon, no milk, no meat, no poultry, no finfish, no shellfish.",
+    "allergens": [
+      "soy",
+      "sesame",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Soy covers gochujang and soy sauce (and may be present in some kimchi seasonings).",
+      "Sesame covers toasted sesame oil and sesame seeds.",
+      "Wheat covers regular soy sauce and typical commercial gochujang. If a cook substitutes certified gluten-free tamari and wheat-free gochujang, that is a different package; this written package lists wheat.",
+      "No egg, milk, peanut, tree_nut, shellfish, or finfish. Vegan kimchi contract excludes fish sauce and shrimp. No egg garnish; no bacon."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant kimchi fried rice. No dairy, no shellfish, no meat, no poultry, no egg, no bacon. Plant kimchi is contracted seafood-free. Soy, sesame, and wheat are present as allergens but HH001 allows soy/sesame/wheat. Nuts absent.",
+    "vocabulary_tag_ids": [
+      "korean",
+      "spicy",
+      "savory",
+      "umami",
+      "tangy",
+      "smoky"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r3_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish, meat, poultry). Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js or already used in prior factory packages. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "package_revision": "package_revision is freeze-r3. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r3. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "cuisine_gap": "korean is an active D-02 cuisine slug and is in vocabulary_tag_ids.",
+      "meal_format": "fried-rice is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "kimchi \u2014 no D-02 ingredient slug; not copied into tags.",
+      "hh001_contract": "plant_based_compatible true requires vegan kimchi (no fish sauce/shrimp) and no egg/bacon. Unconditional \u2014 not a skip-the-egg note."
+    }
+  },
+  "image": {
+    "image_id": "img_kimchi-fried-rice_v1",
+    "dish_id": "kimchi-fried-rice",
+    "recipe_version_id": "rv_kimchi-fried-rice_v1",
+    "asset_generated": true,
+    "master_ref": "kimchi-fried-rice.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "kimchi-fried-rice.webp",
+        "spec_catalog_path": "/images/meals/kimchi-fried-rice.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "kimchi-fried-rice-640.webp",
+        "spec_catalog_path": "/images/meals/kimchi-fried-rice-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from AI JPEG to 4:3, then resize to 1200x900 master and 640x480 card WebPs after Cora GenerateImage.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 with house-quality reference; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-11 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "prompt_file": "image-prompt.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r2.",
+    "package_revision": "freeze-r3",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "kimchi-fried-rice-640.webp",
+    "master_filename": "kimchi-fried-rice.webp",
+    "card_filename": "kimchi-fried-rice-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Kimchi and aromatics cook first; rice fries in; sesame oil split start/finish; sesame seeds garnish. No egg, no bacon."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "2 tbsp neutral oil + 2 tsp toasted sesame oil (1 tsp start, 1 tsp finish). Fully accounted."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Kimchi-gochujang base built in skillet. Not a frozen fried-rice entr\u00e9e. Vegan kimchi is a hard shopping contract."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 10 (chop, measure, break rice) + cook 15 (3 aromatics + 4 kimchi + 7 rice + finish) = 25."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Use a wide skillet so rice can toast; overcrowding steams. Half at 2 servings."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "plant_based and vegetarian true. contains_dairy/shellfish/meat false. allergens soy, sesame, wheat. HH001 true. Vegan kimchi + no egg/bacon contracts stated."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "korean, spicy, savory, umami, tangy, smoky are D-02. fried-rice is format metadata only."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r3. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r3."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "pass",
+      "detail": "freeze_integrity.py PASS at freeze-r3. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+    }
+  ],
+  "scaling_notes": {
+    "1": "About 1.25 cups rice, 1/2 cup kimchi, small skillet, half seasonings.",
+    "2": "Half ingredients. Wide skillet still preferred.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "vegan kimchi contract",
+      "no egg garnish",
+      "no bacon",
+      "cold day-old rice"
+    ]
+  },
+  "coverage_contribution": "Fried-rice format empty. Korean third meal that is neither grilled beef nor soft-tofu stew. Kimchi funk with HH001-capable vegan kimchi + no egg/bacon contracts.",
+  "near_duplicate_review": "Compared with Korean Soft Tofu Stew: same cuisine and plant-kimchi contract, different format (stew vs fried rice) and primary (tofu vs kimchi/rice). Compared with Gochujang Grilled Flank: Korean heat but beef grill vs plant fried rice. Compared with skillet shakshuka: egg-dinner claim left with shakshuka \u2014 this meal omits egg. Compared with bacon fried rice tropes: bacon deliberately forbidden. Not a live-catalog duplicate.",
+  "batch_challenges": "A",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r3_images_present_awaiting_preflight"
+}

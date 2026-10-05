@@ -1,0 +1,600 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-11-2026-10-05. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r4; not imported, not published.",
+  "batch_id": "wave-11-2026-10-05",
+  "batch_label": "B",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r4",
+  "authored_on": "2026-10-05",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-11 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "pan-fried-pork-dumplings",
+    "slug": "pan-fried-pork-dumplings",
+    "title": "Pan-Fried Pork and Cabbage Dumplings",
+    "description": "Ground pork and napa cabbage dumplings, pleated by hand and pan-fried to a crisp golden bottom with a short covered steam, served with a simple soy-vinegar dipping sauce.",
+    "cuisine": "chinese-inspired",
+    "meal_format": "dumplings",
+    "primary_ingredient": "ground pork",
+    "vocabulary_tag_ids": [
+      "chinese",
+      "savory",
+      "umami",
+      "tangy",
+      "crispy",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_pan-fried-pork-dumplings",
+    "current_version_id": "rv_pan-fried-pork-dumplings_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_pan-fried-pork-dumplings",
+    "dish_id": "pan-fried-pork-dumplings",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-05",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-11-2026-10-05, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_pan-fried-pork-dumplings_v1",
+    "recipe_id": "rcp_pan-fried-pork-dumplings",
+    "dish_id": "pan-fried-pork-dumplings",
+    "version_number": 1,
+    "package_revision": "freeze-r4",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r4. Not certified. Not published. kitchen_tested is false.",
+    "title": "Pan-Fried Pork and Cabbage Dumplings",
+    "description": "Ground pork and napa cabbage dumplings, pleated by hand and pan-fried to a crisp golden bottom with a short covered steam, served with a simple soy-vinegar dipping sauce.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "ground-pork",
+        "name": "ground pork",
+        "display_name": "ground pork",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "Plain ground pork (about 80/20), not lean tenderloin grind and not seasoned sausage. Not chops, tenderloin, or braised shoulder. Meat.",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "napa-cabbage",
+        "name": "napa cabbage",
+        "display_name": "napa cabbage",
+        "quantity": 8,
+        "unit": "oz",
+        "note": "about 3 packed cups once chopped (roughly 1/3 of a medium head)",
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "round-dumpling-wrappers",
+        "name": "round dumpling wrappers",
+        "display_name": "round dumpling wrappers",
+        "quantity": 32,
+        "unit": "count",
+        "note": "HARD CONTRACT: store-bought round dumpling (jiaozi / gyoza-style) wrappers about 3 1/4 to 3 1/2 inches across, made from wheat flour and water (salt allowed). Egg-free: do not use yellow wonton or egg-roll wrappers. Buy a 12\u201316 oz pack with at least 32; keep extras wrapped. Wheat.",
+        "preparation": "kept covered with a damp towel while folding",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": "divided: 3 for the filling (white and light-green parts plus some green), 1 green top thinly sliced for the dip",
+        "preparation": "finely minced (3) and thinly sliced (1 green top)",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 2,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 4.5,
+        "unit": "tbsp",
+        "note": "HARD CONTRACT: regular brewed soy sauce (soybeans + wheat). divided: 1 1/2 tbsp in the filling, 3 tbsp in the dipping sauce. Soy and wheat.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "toasted-sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "divided: 2 tsp in the filling, 1 tsp in the dipping sauce. Sesame.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "unseasoned-rice-vinegar",
+        "name": "unseasoned rice vinegar",
+        "display_name": "unseasoned rice vinegar",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "for the dipping sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "granulated sugar",
+        "display_name": "granulated sugar",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "in the filling",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "white-pepper",
+        "name": "ground white pepper",
+        "display_name": "ground white pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "in the filling",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "divided: 1/2 tsp to draw water from the cabbage, 1/2 tsp in the filling",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cornstarch",
+        "name": "cornstarch",
+        "display_name": "cornstarch",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "divided: 1 tsp in the filling, 2 tsp dusted on the tray so folded dumplings do not stick",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil (canola or grapeseed)",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "canola or grapeseed; not peanut oil. divided: 1 1/2 tbsp per pan-fry batch",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "divided: 2 tbsp mixed into the filling, about 1/4 cup in a small bowl for sealing wrappers, 1/2 cup per batch for the covered steam (2 batches)",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Salt the cabbage, prep aromatics, and make the dip",
+        "body": "Toss the finely chopped napa cabbage with 1/2 tsp of the kosher salt in a bowl and let it stand 10 minutes to release water. Meanwhile, finely mince 3 of the scallions, thinly slice the green top of the fourth for the dip, grate the ginger, and mince the garlic. Stir together the dipping sauce in a small bowl: 3 tbsp of the soy sauce, the 3 tbsp unseasoned rice vinegar, 1 tsp of the toasted sesame oil, and the sliced scallion green. Gather the cabbage in a clean kitchen towel by handfuls and squeeze hard until no more liquid runs out; discard the liquid. About 10 minutes.",
+        "ingredient_refs": [
+          "napa-cabbage",
+          "kosher-salt",
+          "scallions",
+          "fresh-ginger",
+          "garlic",
+          "soy-sauce",
+          "unseasoned-rice-vinegar",
+          "toasted-sesame-oil"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Mix the pork filling",
+        "body": "In a large bowl combine the ground pork, squeezed cabbage, minced scallions, ginger, garlic, the remaining 1 1/2 tbsp soy sauce, the remaining 2 tsp toasted sesame oil, sugar, white pepper, the remaining 1/2 tsp kosher salt, 1 tsp of the cornstarch, and 2 tbsp of the water. Stir firmly in one direction with chopsticks or a spatula for about 1 minute until the filling turns sticky and holds together. About 4 minutes.",
+        "ingredient_refs": [
+          "ground-pork",
+          "napa-cabbage",
+          "scallions",
+          "fresh-ginger",
+          "garlic",
+          "soy-sauce",
+          "toasted-sesame-oil",
+          "sugar",
+          "white-pepper",
+          "kosher-salt",
+          "cornstarch",
+          "water"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Fill and pleat the dumplings",
+        "body": "Dust a sheet pan with the remaining 2 tsp cornstarch. Pour about 1/4 cup of the water into a small bowl. Keep the wrappers under a damp towel. Hold a wrapper in your palm, place a level 1 tbsp of filling in the center, and wet the outer edge halfway around with a fingertip of water. Fold into a half-moon, pinch the top center closed, then make 3 or 4 small pleats on the front edge on each side, pressing each pleat against the flat back edge to seal. Set the dumpling on the tray seam up so it sits on a flat bottom. Repeat to make 32 dumplings, keeping finished ones covered. Honest home-cook folding pace is about 45 seconds each, so allow about 25 minutes. About 25 minutes.",
+        "ingredient_refs": [
+          "round-dumpling-wrappers",
+          "ground-pork",
+          "cornstarch",
+          "water"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Pan-fry and steam the first batch",
+        "body": "Heat 1 1/2 tbsp of the neutral oil in a 12-inch nonstick skillet with a tight lid over medium-high heat for about 1 minute. Arrange 16 dumplings flat-side down in snug rings, just touching. Fry undisturbed until the bottoms are golden, about 2 minutes. Carefully pour in 1/2 cup of the water (it will sputter), cover immediately, and lower the heat to medium. Steam 7 minutes, until the wrappers turn translucent and the filling is firm and cooked through (160 F if checked). Uncover and cook about 2 minutes more until the water is gone and the bottoms re-crisp and release. Slide onto a platter crisp-side up. About 12 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "round-dumpling-wrappers",
+          "water"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Cook the second batch",
+        "body": "Wipe the skillet if any bits scorched. Repeat with the remaining 1 1/2 tbsp neutral oil, the remaining 16 dumplings, and the remaining 1/2 cup water: 1 minute preheat, 2 minutes fry, 7 minutes covered steam, 2 minutes uncovered re-crisp. About 12 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "round-dumpling-wrappers",
+          "water"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Serve with the soy-vinegar dip",
+        "body": "Serve the dumplings crisp-side up with the soy-vinegar dipping sauce on the side. Not deep-fried. Not boiled. No shrimp, no chicken. kitchen_tested is false.",
+        "ingredient_refs": [
+          "round-dumpling-wrappers",
+          "soy-sauce",
+          "unseasoned-rice-vinegar",
+          "scallions"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "pork-cabbage-filling",
+        "name": "pork and napa cabbage filling",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ground pork",
+          "napa cabbage",
+          "scallions",
+          "fresh ginger",
+          "garlic",
+          "soy sauce",
+          "toasted sesame oil",
+          "granulated sugar",
+          "ground white pepper",
+          "kosher salt",
+          "cornstarch",
+          "water"
+        ]
+      },
+      {
+        "component_id": "dumpling-wrappers",
+        "name": "round dumpling wrappers",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "contract": "Store-bought wheat-and-water round dumpling wrappers; egg-free (no yellow wonton/egg-roll wrappers).",
+        "ingredients": [
+          "round dumpling wrappers"
+        ]
+      },
+      {
+        "component_id": "soy-vinegar-dip",
+        "name": "soy-vinegar dipping sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "soy sauce",
+          "unseasoned rice vinegar",
+          "toasted sesame oil",
+          "scallion green"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch nonstick skillet with a tight-fitting lid",
+      "sheet pan or tray",
+      "large mixing bowl",
+      "small bowls (dip, sealing water)",
+      "clean kitchen towel for squeezing cabbage",
+      "damp towel to cover wrappers",
+      "chopsticks or sturdy spatula",
+      "thin spatula",
+      "knife",
+      "cutting board",
+      "microplane or grater",
+      "measuring spoons and cups",
+      "instant-read thermometer (optional check)"
+    ],
+    "prep_time_minutes": 39,
+    "cook_time_minutes": 24,
+    "total_time_minutes": 63,
+    "prep_minutes": 39,
+    "cook_minutes": 24,
+    "total_minutes": 63,
+    "time_clock": "Prep 39 = 10 salt cabbage / aromatics / dip / squeeze + 4 mix filling + 25 fold 32 dumplings (about 45 seconds each). Cook 24 = two pan-fry batches of 12 (1 preheat + 2 fry + 7 covered steam + 2 uncovered re-crisp). Total 63. The 30\u201345 band in selection was rough; this clock includes honest fold time.",
+    "heat": "Medium-high to preheat the oil and fry the bottoms; medium for the covered steam; medium uncovered to evaporate water and re-crisp. Stovetop only. No deep-fry, no boil, no oven.",
+    "doneness": "Bottoms deep golden and crisp; tops tender and translucent, not gummy-white. Filling firm, juicy, no pink, 160 F if checked. Water fully evaporated before plating so bottoms stay crisp. kitchen_tested is false.",
+    "effort": "moderate",
+    "complexity": "standard",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Sesame is an allergen token (toasted sesame oil), not a tree nut. Frying oil is contracted as canola or grapeseed, not peanut oil.",
+      "hh001_eligible": false,
+      "hh001_reason": "Ground pork is meat other than fish. HH001 does not eat pork. The filling and dip are dairy-free, but that does not make the meal HH001-eligible."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. No milk, butter, cheese, cream, or yogurt anywhere; wrappers are wheat and water. Pork is present, so not vegetarian or plant-based.",
+    "allergens": [
+      "meat",
+      "wheat",
+      "soy",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Meat covers the ground pork (FlavorWeave package token; also contains_meat true on dietary_eligibility).",
+      "Wheat covers the dumpling wrappers and the wheat in regular brewed soy sauce.",
+      "Soy covers soy sauce in the filling and the dip.",
+      "Sesame covers toasted sesame oil in the filling and the dip.",
+      "No egg: wrappers are hard-contracted egg-free (no yellow wonton or egg-roll wrappers) and the filling has no egg binder. No milk, peanut, tree_nut, shellfish, or finfish in the written ingredients."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Ground pork is meat other than fish. HH001 does not eat pork. The filling and dip are dairy-free, but that does not make the meal HH001-eligible.",
+    "vocabulary_tag_ids": [
+      "chinese",
+      "savory",
+      "umami",
+      "tangy",
+      "crispy",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r4_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims; every claim rests on a hard ingredient contract.",
+      "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes meat and poultry as supported tokens (see dry-run-1 packages). List them when present; do not omit because USDA Big-8 lists differ.",
+      "package_revision": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "allergens": "Tokens are meat, wheat, soy, sesame. selection.json expected_allergens said gluten/soy/sesame; gluten remapped to wheat on purpose and meat added because ground pork is present (package token set includes meat).",
+      "vocabulary": "chinese is the D-02 cuisine slug (synonym 'chinese inspired'; dish.cuisine is chinese-inspired). savory, umami, tangy, crispy, tender are active flavor/texture slugs. tangy stands for the soy-vinegar dip; crispy for the pan-fried bottoms.",
+      "meal_format": "dumplings is not a D-02 meal_style slug and is not in vocabulary_tag_ids.",
+      "primary_ingredient": "ground pork has no D-02 ingredient slug; not copied into tags."
+    }
+  },
+  "image": {
+    "image_id": "img_pan-fried-pork-dumplings_v1",
+    "dish_id": "pan-fried-pork-dumplings",
+    "recipe_version_id": "rv_pan-fried-pork-dumplings_v1",
+    "asset_generated": true,
+    "master_ref": "pan-fried-pork-dumplings.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "active_source_jpeg_note": "Reserved filename for the GenerateImage source JPEG; written by Cora at generation.",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "pan-fried-pork-dumplings.webp",
+        "spec_catalog_path": "/images/meals/pan-fried-pork-dumplings.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "pan-fried-pork-dumplings-640.webp",
+        "spec_catalog_path": "/images/meals/pan-fried-pork-dumplings-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Planned: center-crop AI JPEG to 4:3, then resize to 1200x900 master and 640x480 card WebPs via export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 with house-quality reference; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-11 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-05",
+      "generation_date": "2026-10-05",
+      "generation_date_note": "Set by Cora on the day GenerateImage runs.",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r2.",
+    "package_revision": "freeze-r4",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "source_dimensions_note": "Recorded from the GenerateImage JPEG at generation.",
+    "card_ref": "pan-fried-pork-dumplings-640.webp",
+    "master_filename": "pan-fried-pork-dumplings.webp",
+    "card_filename": "pan-fried-pork-dumplings-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Soy 1 1/2 tbsp filling + 3 tbsp dip = 4 1/2. Sesame oil 2 tsp + 1 tsp = 1 tbsp. Salt 1/2 + 1/2. Cornstarch 1 tsp + 2 tsp. Scallions 3 + 1 green. Water 2 tbsp filling + ~1/4 cup sealing + 1/2 cup x2 steam = 1 1/2 cups allotment. All used."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "3 tbsp neutral oil: 1 1/2 tbsp per batch, two batches."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Filling and dip are built in recipe. Wrappers are a declared store-bought component with a wheat-and-water, egg-free contract. No bottled dumpling sauce."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 39 (10 + 4 + 25 honest fold) + cook 24 (two batches x 12) = 63."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Per-batch oil/water does not scale linearly; a batch is a batch. See scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat true. contains_dairy false. dairy_free unconditional. hh001 false. Allergens ['meat', 'wheat', 'soy', 'sesame']. Egg absent by wrapper contract."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "Tags are D-02 active slugs only. dumplings / ground pork are metadata, not tags."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. This preflight is not a kitchen test and not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r4. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r4."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "pass",
+      "detail": "freeze_integrity.py PASS at freeze-r4. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+    }
+  ],
+  "scaling_notes": {
+    "1": "8 dumplings: 4 oz ground pork, 2 oz cabbage (1/8 tsp salt to sweat), 1 scallion, 1 tsp ginger, 1/2 garlic clove, 1 tsp soy + 1/2 tsp sesame oil in filling, pinch sugar/white pepper/salt, 1/4 tsp cornstarch, 1/2 tbsp water. Dip floor: 1 tbsp soy, 1 tbsp rice vinegar, a few drops sesame oil. One batch in an 8\u201310-inch nonstick skillet with lid: 2 tsp oil and 1/4 cup water; same 2 / 7 / 2 minute timing.",
+    "2": "16 dumplings: half the filling and dip. One batch in the 12-inch skillet with 1 1/2 tbsp oil and 1/2 cup water. Cook block drops to 12 minutes; fold block to about 12 minutes.",
+    "4": "As written: 32 dumplings, two batches, 63-minute clock.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "per-batch water for the steam (1/2 cup in a 12-inch skillet; 1/4 cup in a small skillet)",
+      "7-minute covered steam for raw pork filling",
+      "160 F filling doneness",
+      "egg-free wheat wrappers",
+      "do not crowd: 16 dumplings max per 12-inch batch"
+    ]
+  },
+  "coverage_contribution": "Opens the dumpling format (0 in the base). Deepens chinese-inspired beyond ginger-scallion fish packets. Ground pork is a new pork shape (live pork is cider braise, jerk chops, and air-fryer tenderloin). Adds the crisp-bottom pan-fry + steam technique \u2014 a texture story the catalog lacks.",
+  "near_duplicate_review": "Compared with Ginger Scallion Fish Packets: shares chinese-inspired ginger/scallion aromatics, but steamed fish in parchment vs. pleated pork dumplings pan-fried then steamed. Compared with Jamaican Jerk Pork Chops / Air-Fryer Honey-Mustard Pork Tenderloin / Cider-Braised Pork Shoulder: same animal, but ground pork in wrappers vs. chops, tenderloin, and braise. Compared with Spiced Lamb Meatballs: ground-meat shaping, but lamb in Mediterranean tomato sauce. Compared with Peanut Noodle Stir-Fry / Sesame Soba Noodle Bowl: soy-sesame flavors, but noodles and plant protein. Deliberately not chicken potstickers (chicken load), not shrimp dumplings (shellfish), not a stir-fry.",
+  "selection_alignment": "Matches selection.json: chinese-inspired \u00b7 dumplings \u00b7 ground pork \u00b7 hh001_like false. Allergen tokens meat/wheat/soy/sesame (selection gluten\u2192wheat; meat added for pork). Selection band 30\u201345 was rough; honest written clock with fold time is 63.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r4_images_present_awaiting_preflight"
+}
