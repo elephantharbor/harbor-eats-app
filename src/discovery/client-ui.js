@@ -12,7 +12,7 @@ export const DISCOVERY_SHELVES = [
   { id: "easy", title: "Easy", subtitle: "Short on steps, light on fuss", query: { criteria: { effort_levels: ["easy"] } } },
   { id: "quick", title: "Under 30 minutes", subtitle: "On the table in half an hour", query: { criteria: { quick: true } } },
   { id: "simple", title: "Simple ingredients", subtitle: "Familiar ingredients, nothing hard to find", query: { criteria: { ingredient_complexities: ["simple"] } } },
-  { id: "seafood", title: "Fish & seafood", subtitle: "From the sea, not land meat", query: { criteria: { protein_groups: ["seafood"] } } },
+  { id: "seafood", title: "Fish & seafood", subtitle: "Fish and shellfish dinners", query: { criteria: { protein_groups: ["seafood"] } } },
   { id: "plant", title: "Plant-forward", subtitle: "Vegetarian-friendly dinners", query: { criteria: { diet: ["plant"] } } },
   { id: "different", title: "Something different", subtitle: "Ones you haven’t cooked lately", query: { criteria: { different: true } } },
 ];
@@ -80,15 +80,80 @@ export function browserDiscoverySearch(query, ctx) {
   params.delete("limit");
   params.delete("offset");
   if (ctx) {
-    if (ctx.mode) params.set("mode", ctx.mode);
+    const mode = ctx.mode || "standalone";
+    if (mode !== "standalone") params.set("mode", mode);
     if (ctx.dinner_plan_id) params.set("dinner_plan_id", ctx.dinner_plan_id);
     if (ctx.meal_id) params.set("meal_id", ctx.meal_id);
-    if (ctx.position != null) params.set("position", String(ctx.position));
-    for (const id of ctx.participant_ids || []) {
-      params.append("participant_id", id);
+    if (mode === "choose_for_plan" && ctx.position != null) {
+      params.set("position", String(ctx.position));
+    }
+    if (mode === "standalone") {
+      for (const id of ctx.participant_ids || []) {
+        params.append("participant_id", id);
+      }
     }
   }
   return params;
+}
+
+/**
+ * Strip replace-mode fields and unsupported diet tokens from a /find URL (D-07 closure §1, §3).
+ * @param {URLSearchParams} params
+ */
+export function repairFindBrowserParams(params) {
+  const mode = params.get("mode") || "standalone";
+  if (mode === "replace_plan_meal") {
+    params.delete("position");
+    while (params.has("participant_id")) params.delete("participant_id");
+  }
+  if (params.has("diet")) {
+    const kept = params
+      .get("diet")
+      .split(",")
+      .map((s) => s.trim())
+      .filter((t) => t === "plant");
+    if (kept.length) params.set("diet", [...new Set(kept)].join(","));
+    else params.delete("diet");
+  }
+  return params;
+}
+
+/**
+ * @param {object} row discovery result row
+ * @param {(id: string) => string|null} memberName
+ * @param {{ total_minutes?: number, effort_level?: string, ingredient_complexity?: string }} [recipeFallback]
+ */
+export function discoveryWhyLines(row, memberName, recipeFallback) {
+  const lines = [];
+  if (row) {
+    const taste = tasteReasonLine(row, memberName);
+    if (taste) lines.push(taste);
+    if ((row.reasons || []).includes("explicit_different")) {
+      lines.push("You haven’t made this one lately");
+    }
+    const minutes = row.total_minutes;
+    if (minutes != null && minutes <= 30) {
+      lines.push("On the table in " + minutes + " minutes");
+    }
+    if (row.effort_level === "easy") {
+      lines.push("Easy: short on steps, light on fuss");
+    }
+    if (row.ingredient_complexity === "simple") {
+      lines.push("Familiar ingredients, nothing hard to find");
+    }
+  } else if (recipeFallback) {
+    const minutes = recipeFallback.total_minutes;
+    if (minutes != null && minutes <= 30) {
+      lines.push("On the table in " + minutes + " minutes");
+    }
+    if (recipeFallback.effort_level === "easy") {
+      lines.push("Easy: short on steps, light on fuss");
+    }
+    if (recipeFallback.ingredient_complexity === "simple") {
+      lines.push("Familiar ingredients, nothing hard to find");
+    }
+  }
+  return lines.slice(0, 3);
 }
 
 /**

@@ -11,7 +11,7 @@
     { id: "easy", title: "Easy", subtitle: "Short on steps, light on fuss", query: { criteria: { effort_levels: ["easy"] } } },
     { id: "quick", title: "Under 30 minutes", subtitle: "On the table in half an hour", query: { criteria: { quick: true } } },
     { id: "simple", title: "Simple ingredients", subtitle: "Familiar ingredients, nothing hard to find", query: { criteria: { ingredient_complexities: ["simple"] } } },
-    { id: "seafood", title: "Fish & seafood", subtitle: "From the sea, not land meat", query: { criteria: { protein_groups: ["seafood"] } } },
+    { id: "seafood", title: "Fish & seafood", subtitle: "Fish and shellfish dinners", query: { criteria: { protein_groups: ["seafood"] } } },
     { id: "plant", title: "Plant-forward", subtitle: "Vegetarian-friendly dinners", query: { criteria: { diet: ["plant"] } } },
     { id: "different", title: "Something different", subtitle: "Ones you haven’t cooked lately", query: { criteria: { different: true } } },
   ];
@@ -38,12 +38,11 @@
   };
 
   const INSPIRED_CUISINES = { indian: 1, thai: 1, japanese: 1, italian: 1, chinese: 1, scandinavian: 1 };
-  const DIET_OPTIONS = [
+  const PLATE_OPTIONS = [
+    { slug: "anything", label: "Anything" },
+    { slug: "seafood", label: "Fish & seafood" },
     { slug: "plant", label: "Plant-forward" },
-    { slug: "vegetarian", label: "Vegetarian" },
-    { slug: "dairy_free", label: "Dairy-free" },
   ];
-  const PROTEIN_OPTIONS = [{ slug: "seafood", label: "Fish & seafood" }];
   const TEXTURE_OPTIONS = [
     { slug: "crispy", label: "Crispy" },
     { slug: "creamy", label: "Creamy" },
@@ -190,8 +189,72 @@
       delete c.dinner_plan_id;
       delete c.meal_id;
       delete c.position;
+      delete c.participant_ids;
+    }
+    if (state.mode === "replace_plan_meal") {
+      delete c.position;
+      delete c.participant_ids;
     }
     return c;
+  }
+
+  function repairFindParams(params) {
+    const mode = params.get("mode") || "standalone";
+    if (mode === "replace_plan_meal") {
+      params.delete("position");
+      while (params.has("participant_id")) params.delete("participant_id");
+    }
+    if (params.has("diet")) {
+      const kept = params
+        .get("diet")
+        .split(",")
+        .map(function (s) {
+          return s.trim();
+        })
+        .filter(function (t) {
+          return t === "plant";
+        });
+      if (kept.length) params.set("diet", kept.join(","));
+      else params.delete("diet");
+    }
+    return params;
+  }
+
+  function replaceContextMeal() {
+    const mealId = state.urlContext && state.urlContext.meal_id;
+    if (!mealId || !d().planMealById) return null;
+    return d().planMealById(mealId);
+  }
+
+  function planIsSingleDinner() {
+    const plan = d().getDinnerPlan ? d().getDinnerPlan() : null;
+    return !!(plan && plan.meal_count === 1);
+  }
+
+  function replaceHeaderCopy() {
+    const meal = replaceContextMeal();
+    const single = planIsSingleDinner();
+    const position =
+      (state.response && state.response.context && state.response.context.position) ||
+      (meal && meal.position) ||
+      null;
+    const eyebrow = single ? "Swap tonight’s dinner" : "Swap Dinner " + (position || "—");
+    const currentTitle = meal && d().planMealTitle ? d().planMealTitle(meal) : "";
+    return {
+      eyebrow,
+      lede: currentTitle ? "Now: " + currentTitle : "",
+      position,
+      single,
+    };
+  }
+
+  function paintReplaceHeader() {
+    if (state.mode !== "replace_plan_meal") return;
+    const copy = replaceHeaderCopy();
+    const eyebrowEl = document.getElementById("discEyebrow");
+    const ledeEl = document.getElementById("discLede");
+    if (eyebrowEl) eyebrowEl.textContent = copy.eyebrow;
+    if (ledeEl) ledeEl.textContent = copy.lede;
   }
 
   function serializeDiscoveryQuery(query, limit) {
@@ -234,13 +297,16 @@
     params.delete("schema");
     params.delete("limit");
     params.delete("offset");
-    if (ctx && ctx.mode && ctx.mode !== "standalone") params.set("mode", ctx.mode);
+    const mode = (ctx && ctx.mode) || "standalone";
+    if (mode !== "standalone") params.set("mode", mode);
     if (ctx && ctx.dinner_plan_id) params.set("dinner_plan_id", ctx.dinner_plan_id);
     if (ctx && ctx.meal_id) params.set("meal_id", ctx.meal_id);
-    if (ctx && ctx.position != null) params.set("position", String(ctx.position));
-    (ctx && ctx.participant_ids || []).forEach(function (id) {
-      params.append("participant_id", id);
-    });
+    if (mode === "choose_for_plan" && ctx && ctx.position != null) params.set("position", String(ctx.position));
+    if (mode === "standalone" && ctx && ctx.participant_ids) {
+      ctx.participant_ids.forEach(function (id) {
+        params.append("participant_id", id);
+      });
+    }
     const qs = params.toString();
     return qs ? "/find?" + qs : "/find";
   }
@@ -273,13 +339,16 @@
   function buildApiUrl(query, limit) {
     const params = new URLSearchParams();
     const ctx = urlContextForApi();
-    if (ctx.mode && ctx.mode !== "standalone") params.set("mode", ctx.mode);
+    const mode = ctx.mode || "standalone";
+    if (mode !== "standalone") params.set("mode", mode);
     if (ctx.dinner_plan_id) params.set("dinner_plan_id", ctx.dinner_plan_id);
     if (ctx.meal_id) params.set("meal_id", ctx.meal_id);
-    if (ctx.position != null) params.set("position", String(ctx.position));
-    (ctx.participant_ids || []).forEach(function (id) {
-      params.append("participant_id", id);
-    });
+    if (mode === "choose_for_plan" && ctx.position != null) params.set("position", String(ctx.position));
+    if (mode !== "replace_plan_meal" && ctx.participant_ids) {
+      ctx.participant_ids.forEach(function (id) {
+        params.append("participant_id", id);
+      });
+    }
     const qs = serializeDiscoveryQuery(query, limit);
     new URLSearchParams(qs).forEach(function (v, k) {
       params.set(k, v);
@@ -355,6 +424,7 @@
       writeCache(findPathFromState(res.data.query, urlContextForApi()), res.data);
     } catch (_) { /* ignore */ }
     paint();
+    paintReplaceHeader();
     track("discovery_query_changed", {
       mode: state.mode,
       total: res.data.total,
@@ -488,13 +558,22 @@
         : "";
     const reasonLine = reason ? '<p class="disc-reason meta">' + esc(reason) + "</p>" : "";
     const meta = metaRowHtml(row, implied);
+    const replaceCopy = state.mode === "replace_plan_meal" ? replaceHeaderCopy() : null;
+    const useAria =
+      replaceCopy && replaceCopy.single
+        ? "Use " + row.title + " for tonight"
+        : replaceCopy
+          ? "Use " + row.title + " for Dinner " + (replaceCopy.position || "—")
+          : "";
     const modeCta =
       state.mode === "replace_plan_meal"
         ? '<button type="button" class="btn btn-secondary btn-sm disc-card-cta" data-disc-action="use" data-version="' +
           esc(row.recipe_version_id) +
           '" data-slug="' +
           esc(slug) +
-          '">Use this</button>'
+          '"' +
+          (useAria ? ' aria-label="' + esc(useAria) + '"' : "") +
+          ">Use this</button>"
         : state.mode === "choose_for_plan"
           ? '<button type="button" class="btn btn-secondary btn-sm disc-card-cta" data-disc-action="add" data-version="' +
             esc(row.recipe_version_id) +
@@ -578,6 +657,7 @@
       paintChips();
       paintMain();
       paintTableNote();
+      paintReplaceHeader();
       return;
     }
     rootEl.dataset.discMode = mode;
@@ -587,19 +667,25 @@
         : mode === "choose_for_plan"
           ? "Pick a dinner"
           : "Find a dinner";
+    const replaceCopy = mode === "replace_plan_meal" ? replaceHeaderCopy() : null;
     const lede =
       mode === "standalone"
         ? "Everything here fits your table. Have a look around."
-        : "Every option fits everyone at this dinner.";
+        : mode === "replace_plan_meal"
+          ? replaceCopy.lede
+          : "Every option fits everyone at this dinner.";
     let html = '<header class="page-head disc-head"><div class="page-head__copy">';
     if (mode !== "standalone") {
       html += '<button type="button" class="back disc-back" data-disc-back><span class="back__label">Back</span></button>';
+    }
+    if (mode === "replace_plan_meal") {
+      html += '<p class="eyebrow" id="discEyebrow">' + esc(replaceCopy.eyebrow) + "</p>";
     }
     html += '<div class="disc-head__title-row"><h1 class="title">' + esc(title) + "</h1>";
     if (mode === "standalone") {
       html += '<button type="button" class="btn btn-secondary btn-sm disc-pick-one" data-action="pick-one">Pick one for us</button>';
     }
-    html += "</div><p class=\"lede\">" + esc(lede) + '</p>';
+    html += '</div><p class="lede" id="discLede">' + esc(lede) + '</p>';
     html += '<p class="disc-table meta" id="discTableNote"></p></div></header>';
     html += '<div class="disc-search-row" role="search" aria-label="Find dinners"><label class="sr-only" for="discSearch">Search dinners</label>';
     html += '<svg class="icon disc-search-icon" aria-hidden="true"><use href="#i-search" /></svg>';
@@ -633,6 +719,22 @@
     if (!el || !state.response) return;
     const ids = (state.response.context && state.response.context.participant_ids) || [];
     const members = d().activeMembers ? d().activeMembers() : [];
+    const position = state.response.context && state.response.context.position;
+    if (state.mode === "replace_plan_meal") {
+      const single = planIsSingleDinner();
+      const prefix = single ? "For tonight" : "For Dinner " + (position || "—");
+      if (!ids.length || ids.length === members.length) {
+        el.textContent = prefix + ": everyone";
+        return;
+      }
+      const names = ids
+        .map(function (id) {
+          return d().memberName ? d().memberName(id) : id;
+        })
+        .filter(Boolean);
+      el.textContent = prefix + ": " + names.join(", ");
+      return;
+    }
     if (!ids.length || ids.length === members.length) {
       el.textContent = "For everyone · Fits everyone’s limits";
       return;
@@ -659,12 +761,16 @@
       (easyOn ? "true" : "false") +
       '">Easy</button>';
     const timeOn = timeChipIsOn(c);
-    const timeLabel = c.quick ? "Under 30 min" : c.max_minutes ? "Under " + c.max_minutes + " min" : "Under 30 min ▾";
+    const timeBase = c.quick ? "Under 30 min" : c.max_minutes ? "Under " + c.max_minutes + " min" : "Under 30 min";
+    const timeLabel = timeOn ? timeBase + " ×" : timeBase;
+    const timeAria = timeOn ? "Remove " + timeBase : timeBase;
     html +=
       '<button type="button" class="chip-tog' +
       (timeOn ? " is-on" : "") +
-      '" data-disc-chip="time" aria-haspopup="menu" aria-pressed="' +
+      '" data-disc-chip="time" aria-pressed="' +
       (timeOn ? "true" : "false") +
+      '" aria-label="' +
+      esc(timeAria) +
       '">' +
       esc(timeLabel) +
       "</button>";
@@ -1017,31 +1123,26 @@
         })
         .join("")
     );
+    const plateOn = function (slug) {
+      if (slug === "anything") {
+        return !draft.criteria.diet.length && !draft.criteria.protein_groups.length;
+      }
+      if (slug === "seafood") {
+        return draft.criteria.protein_groups.indexOf("seafood") >= 0;
+      }
+      if (slug === "plant") {
+        return draft.criteria.diet.indexOf("plant") >= 0;
+      }
+      return false;
+    };
     html += renderRefineGroup(
-      "Diet",
-      "",
-      DIET_OPTIONS.map(function (opt) {
-        const on = draft.criteria.diet.indexOf(opt.slug) >= 0;
+      "On the plate",
+      "Everyone’s limits are already covered.",
+      PLATE_OPTIONS.map(function (opt) {
         return (
           '<button type="button" class="chip-tog' +
-          (on ? " is-on" : "") +
-          '" data-disc-diet="' +
-          esc(opt.slug) +
-          '">' +
-          esc(opt.label) +
-          "</button>"
-        );
-      }).join("")
-    );
-    html += renderRefineGroup(
-      "Protein",
-      "",
-      PROTEIN_OPTIONS.map(function (opt) {
-        const on = draft.criteria.protein_groups.indexOf(opt.slug) >= 0;
-        return (
-          '<button type="button" class="chip-tog' +
-          (on ? " is-on" : "") +
-          '" data-disc-protein="' +
+          (plateOn(opt.slug) ? " is-on" : "") +
+          '" data-disc-plate="' +
           esc(opt.slug) +
           '">' +
           esc(opt.label) +
@@ -1125,6 +1226,7 @@
       position: o.position,
       participant_ids: o.participant_ids,
     };
+    state.backEntry = o.entry || "nav";
     state.entry = o.entry || "nav";
     state.softTouched = false;
     state.forceResults = false;
@@ -1143,8 +1245,8 @@
       },
     });
     if (!o.skipHistory) {
-      const path = o.path || "/find";
-      history.pushState({ find: {} }, "", path);
+      const path = o.path || findPathFromState(currentQuery(), urlContextForApi());
+      history.pushState({ find: captureState() }, "", path);
     }
     loadMain();
   }
@@ -1152,7 +1254,12 @@
   function openFromLocation() {
     const parts = location.pathname.replace(/\/+$/, "").split("/").filter(Boolean);
     if (parts[0] !== "find") return false;
-    const params = new URLSearchParams(location.search);
+    const params = repairFindParams(new URLSearchParams(location.search));
+    const repaired = params.toString();
+    const path = repaired ? "/find?" + repaired : "/find";
+    if (path !== location.pathname + location.search) {
+      history.replaceState(null, "", path);
+    }
     const mode = params.get("mode") || "standalone";
     open({
       mode,
@@ -1160,7 +1267,7 @@
       meal_id: params.get("meal_id"),
       position: params.get("position") ? Number(params.get("position")) : undefined,
       entry: "deep_link",
-      path: location.pathname + location.search,
+      path,
       skipHistory: true,
     });
     return true;
@@ -1185,9 +1292,13 @@
     const back = e.target.closest("[data-disc-back]");
     if (back) {
       e.preventDefault();
-      const ctx = d().navContext ? d().navContext() : {};
-      const target = ctx.origin || "home";
-      d().showView(target);
+      if (window.history.length > 1) {
+        history.back();
+      } else {
+        const ctx = d().navContext ? d().navContext() : {};
+        const target = ctx.origin || "home";
+        d().showView(target);
+      }
       return;
     }
     const openRecipe = e.target.closest("[data-disc-open]");
@@ -1208,7 +1319,7 @@
       e.preventDefault();
       const version = use.dataset.version;
       const action = use.dataset.discAction === "use" ? "use_this" : "add_this";
-      d().discoveryPick(version, action);
+      void Promise.resolve(d().discoveryPick(version, action));
       return;
     }
     const chip = e.target.closest("[data-disc-chip]");
@@ -1359,15 +1470,19 @@
         renderRefineBody();
         return;
       }
-      const diet = e.target.closest("[data-disc-diet]");
-      if (diet) {
-        draft.criteria.diet = toggleSlugList(draft.criteria.diet, diet.dataset.discDiet);
-        renderRefineBody();
-        return;
-      }
-      const protein = e.target.closest("[data-disc-protein]");
-      if (protein) {
-        draft.criteria.protein_groups = toggleSlugList(draft.criteria.protein_groups, protein.dataset.discProtein);
+      const plate = e.target.closest("[data-disc-plate]");
+      if (plate) {
+        const slug = plate.dataset.discPlate;
+        if (slug === "anything") {
+          draft.criteria.diet = [];
+          draft.criteria.protein_groups = [];
+        } else if (slug === "seafood") {
+          draft.criteria.diet = [];
+          draft.criteria.protein_groups = ["seafood"];
+        } else if (slug === "plant") {
+          draft.criteria.diet = ["plant"];
+          draft.criteria.protein_groups = [];
+        }
         renderRefineBody();
         return;
       }

@@ -42,8 +42,9 @@ describe("D-07 MealDiscovery app wiring", () => {
     expect(html).toContain("discovery-relax-bridge.js");
   });
 
-  it("passes participant_ids into replace_plan_meal discovery open", () => {
-    expect(app).toMatch(/openDiscoveryReplace[\s\S]{0,500}participant_ids/);
+  it("opens replace_plan_meal with only dinner_plan_id and meal_id", () => {
+    expect(app).toMatch(/openDiscoveryReplace[\s\S]{0,400}meal_id: mealId/);
+    expect(app).not.toMatch(/openDiscoveryReplace[\s\S]{0,500}participant_ids/);
   });
 
   it("uses slot participant_ids for choose_for_plan and add-to-plan sheet for multiple open rows", () => {
