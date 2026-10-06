@@ -3808,7 +3808,7 @@
       }) || discoveryResultRow(state.dinnerDetailMeal && state.dinnerDetailMeal.recipe_slug);
     const pickedTitle = (row && row.title) || (state.dinnerDetailMeal && state.dinnerDetailMeal.title) || "dinner";
     const plan = await mutateDinnerPlan(payload, { suppressToast: true });
-    if (!plan) return;
+    if (!plan || plan.failed) return;
     if (action === "use_this" && sel.meal_id) {
       state.swappedMealIds = state.swappedMealIds || {};
       state.swappedMealIds[sel.meal_id] = true;
@@ -3818,12 +3818,8 @@
     else if (action === "use_this") toast("Swapped in " + pickedTitle + ".");
     else toast("Added to your plan.");
     const origin = (state.navContext.find && state.navContext.find.origin) || "planReview";
-    const steps = fromDetail ? 2 : 1;
-    if (window.history.length > steps) {
-      history.go(-steps);
-    } else {
-      show(origin === "choices" ? "choices" : origin === "home" ? "home" : "planReview");
-    }
+    const exitView = origin === "choices" ? "choices" : origin === "home" ? "home" : "planReview";
+    show(exitView);
     renderActiveDinnerSurfaces();
   }
 
@@ -5809,9 +5805,19 @@
         state.previewMealId = state.selectedMealId;
         state.activeRecipe = null;
       }
-      if (go.dataset.go === "find" && Discovery) {
-        Discovery.openStandaloneFromNav();
-        return;
+      if (go.dataset.go === "find") {
+        if (
+          state.view === "detail" &&
+          state.navContext.detail &&
+          state.navContext.detail.origin === "find"
+        ) {
+          history.back();
+          return;
+        }
+        if (Discovery) {
+          Discovery.openStandaloneFromNav();
+          return;
+        }
       }
       show(go.dataset.go);
     }

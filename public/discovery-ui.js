@@ -1319,7 +1319,7 @@
       e.preventDefault();
       const version = use.dataset.version;
       const action = use.dataset.discAction === "use" ? "use_this" : "add_this";
-      d().discoveryPick(version, action);
+      void Promise.resolve(d().discoveryPick(version, action));
       return;
     }
     const chip = e.target.closest("[data-disc-chip]");

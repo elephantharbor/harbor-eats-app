@@ -21,8 +21,7 @@ export default defineConfig({
   webServer: process.env.PLAYWRIGHT_SKIP_WEBSERVER
     ? undefined
     : {
-        command:
-          "npm run db:migrate:local && CATALOG_SOURCE=d1 npx wrangler dev --config wrangler.worker.toml --port 8787 --ip 127.0.0.1",
+        command: "bash scripts/e2e-web-server.sh",
         cwd: repoRoot,
         url: "http://127.0.0.1:8787/api/health",
         reuseExistingServer: !process.env.CI,
