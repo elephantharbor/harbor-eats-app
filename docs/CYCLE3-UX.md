@@ -23,7 +23,7 @@ D-01 stays **In Progress**.
 
 ## 1. Where things live
 
-The bottom tab bar keeps its four tabs: Home, Tonight, History, Profile. Do not add a fifth tab. The shopping list is reached from the plan surfaces described below, and from Home in one tap.
+The bottom tab bar keeps its four tabs: Home, Tonight, History, Profile. Do not add a fifth tab. (Superseded by D-07: Find becomes the fifth tab. See `docs/D07-NAV-DECISION.md`. D-07 also replaces §11.4 and changes the Home and Tonight “Find a dinner” actions; see `docs/D07-UX.md` §3.) The shopping list is reached from the plan surfaces described below, and from Home in one tap.
 
 | Surface | Purpose | Chrome |
 |---------|---------|--------|

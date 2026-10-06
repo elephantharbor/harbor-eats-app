@@ -8,6 +8,8 @@ Harbor Eats uses stable path routes so links survive auth boundaries and PWA ins
 | `/share/{HE-SHARE-*}` | Guest choice set | Public resolve |
 | `/recover/{token}?dest=…` | Passwordless session restore | Consumes one-time token → HttpOnly cookie → redirect `dest` |
 | `/rate/{plan_id}` | Pending rating (future) | Session or recover → rate view |
+| `/find?{query}` | Find a dinner (D-07, planned). Parameters are the `GET /api/discovery/search` names from `docs/D07-QUERY-CONTRACT.md`, minus paging. See `docs/D07-UX.md` §9 | Session or recover → `find` view |
+| `/meal/{recipe_slug}?from=find` | Recipe opened from Find a dinner (D-07, planned; route already served) | Session or recover → `detail` view |
 
 Legacy query params `?invite=` and `?share=` remain supported in the client boot script.
 
@@ -25,4 +27,4 @@ Legacy query params `?invite=` and `?share=` remain supported in the client boot
 - Shares: `POST /api/shares` → `share_url` like `…/share/HE-SHARE-…`
 - Recovery: `POST /api/recovery/request` → `dev_recovery_url` (test) or mail transport
 
-Worker serves `index.html` for `/invite/*`, `/share/*`, `/recover/*`, `/rate/*`, `/meal/*` so refreshes work on the same routes.
+Worker serves `index.html` for `/invite/*`, `/share/*`, `/recover/*`, `/rate/*`, `/meal/*` so refreshes work on the same routes. D-07 adds `/find` to the worker SPA paths and `public/_routes.json`.
