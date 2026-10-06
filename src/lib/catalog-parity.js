@@ -44,7 +44,6 @@ export function parityConcept(concept, record) {
   check("prep_minutes", record.prep_minutes, version.prep_minutes);
   check("cook_minutes", record.cook_minutes, version.cook_minutes);
   check("total_minutes", record.total_minutes, version.prep_minutes + version.cook_minutes);
-  check("effort", record.effort, version.effort);
   check("methods", record.methods, version.methods);
   check("cuisine", record.cuisine, concept.cuisine);
   check("meal_format", record.meal_format, concept.meal_format);

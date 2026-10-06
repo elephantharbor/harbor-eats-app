@@ -116,7 +116,12 @@ function loadRecords() {
       continue;
     }
     if (pkg.catalog_contract !== LEGACY_CONTRACT) continue;
-    const v1 = normalizeLegacyPackage(pkg, legacySidecar(slug, "v1.json"));
+    const retireV1 = names.includes("v2.json") && stagingPolicy.legacy_v1_retire_on_v2_import;
+    const v1 = normalizeLegacyPackage(
+      pkg,
+      legacySidecar(slug, "v1.json"),
+      retireV1 ? { publicationStatus: "retired" } : {}
+    );
     if (!v1.ok) failures.push({ slug, file: "v1.json", errors: v1.errors });
     else records.push(v1.record);
     if (!names.includes("v2.json")) continue;

@@ -23,7 +23,7 @@ async function all(db, sql, ...params) {
 export async function loadExistingVersions(db) {
   const rows = await all(
     db,
-    `SELECT recipe_version_id, content_hash, version_number, dish_id FROM catalog_version`
+    `SELECT recipe_version_id, content_hash, version_number, dish_id, effort_level, ingredient_complexity, classification_hash FROM catalog_version`
   );
   return new Map(rows.map((row) => [row.recipe_version_id, row]));
 }
@@ -168,9 +168,9 @@ async function upsertDish(db, record, importedAt) {
       db,
       `INSERT INTO catalog_dish
         (dish_id, slug, title, name, description, cuisine, meal_format, primary_ingredient,
-         texture, flavor_profile, effort_band, weeknight, exploration, plate, tone,
+         texture, flavor_profile, weeknight, exploration, plate, tone,
          tags_json, sparks_json, chips_json, current_recipe_id, current_version_id, created_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       record.dish_id,
       record.slug,
       record.title,
@@ -181,7 +181,6 @@ async function upsertDish(db, record, importedAt) {
       record.primary_ingredient,
       record.texture,
       record.flavor_profile,
-      record.effort_band,
       record.weeknight,
       record.exploration,
       record.plate,
@@ -208,7 +207,7 @@ async function upsertDish(db, record, importedAt) {
       `UPDATE catalog_dish
           SET current_recipe_id = ?, current_version_id = ?,
               slug = ?, title = ?, name = ?, description = ?, cuisine = ?, meal_format = ?,
-              primary_ingredient = ?, texture = ?, flavor_profile = ?, effort_band = ?,
+              primary_ingredient = ?, texture = ?, flavor_profile = ?,
               weeknight = ?, exploration = ?, plate = ?, tone = ?,
               tags_json = ?, sparks_json = ?, chips_json = ?
         WHERE dish_id = ?`,
@@ -223,7 +222,6 @@ async function upsertDish(db, record, importedAt) {
       record.primary_ingredient,
       record.texture,
       record.flavor_profile,
-      record.effort_band,
       record.weeknight,
       record.exploration,
       record.plate,
@@ -257,12 +255,43 @@ export async function retireCatalogVersions(db, versionIds) {
   }
 }
 
+function historyId(record) {
+  const reason = record.classification_reason || "classification";
+  return `clh_${reason}_${record.recipe_version_id}`.replace(/[^a-zA-Z0-9_-]+/g, "_");
+}
+
+async function rememberClassification(db, record, prior, importedAt) {
+  if (!record.effort_level || !record.ingredient_complexity) return;
+  const priorEffort = prior?.effort_level || null;
+  const priorComplexity = prior?.ingredient_complexity || null;
+  if (prior && priorEffort === record.effort_level && priorComplexity === record.ingredient_complexity) return;
+  await run(
+    db,
+    `INSERT OR IGNORE INTO catalog_classification_history
+      (history_id, recipe_version_id, prior_effort_level, prior_ingredient_complexity,
+       new_effort_level, new_ingredient_complexity, source, reason, created_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    historyId(record),
+    record.recipe_version_id,
+    priorEffort,
+    priorComplexity,
+    record.effort_level,
+    record.ingredient_complexity,
+    record.classification_source || "juniper",
+    record.classification_reason || null,
+    importedAt
+  );
+}
+
 export async function applyCatalogWrites(db, records, importedAt) {
   await run(db, "BEGIN");
   try {
     for (const record of records) {
       const existing = await db
-        .prepare(`SELECT recipe_version_id, content_hash FROM catalog_version WHERE recipe_version_id = ?`)
+        .prepare(
+          `SELECT recipe_version_id, content_hash, effort_level, ingredient_complexity
+           FROM catalog_version WHERE recipe_version_id = ?`
+        )
         .bind(record.recipe_version_id)
         .first();
       if (existing && existing.content_hash !== record.content_hash) {
@@ -282,11 +311,12 @@ export async function applyCatalogWrites(db, records, importedAt) {
           db,
           `INSERT INTO catalog_version
             (recipe_version_id, recipe_id, dish_id, version_number, title, description, base_servings,
-             prep_minutes, cook_minutes, total_minutes, effort, heat, doneness, methods_json,
+             prep_minutes, cook_minutes, total_minutes, effort_level, ingredient_complexity,
+             classification_hash, heat, doneness, methods_json,
              dietary_tags_json, substitutions_json, components_json, publication_status,
              artifact_publication_status, visibility, household_id, content_hash, source_contract,
              source_path, created_at)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'global', NULL, ?, ?, ?, ?)`,
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'global', NULL, ?, ?, ?, ?)`,
           record.recipe_version_id,
           record.recipe_id,
           record.dish_id,
@@ -297,7 +327,9 @@ export async function applyCatalogWrites(db, records, importedAt) {
           record.prep_minutes,
           record.cook_minutes,
           record.total_minutes,
-          record.effort,
+          record.effort_level,
+          record.ingredient_complexity,
+          record.classification_hash,
           record.heat,
           record.doneness,
           json(record.methods),
@@ -311,6 +343,23 @@ export async function applyCatalogWrites(db, records, importedAt) {
           record.source_path,
           importedAt
         );
+        await rememberClassification(db, record, null, importedAt);
+      } else if (
+        existing.effort_level !== record.effort_level ||
+        existing.ingredient_complexity !== record.ingredient_complexity
+      ) {
+        await run(
+          db,
+          `UPDATE catalog_version
+              SET effort_level = ?, ingredient_complexity = ?, classification_hash = ?
+            WHERE recipe_version_id = ? AND content_hash = ?`,
+          record.effort_level,
+          record.ingredient_complexity,
+          record.classification_hash,
+          record.recipe_version_id,
+          record.content_hash
+        );
+        await rememberClassification(db, record, existing, importedAt);
       }
       await upsertDish(db, record, importedAt);
       await replaceChildren(db, record);

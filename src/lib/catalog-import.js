@@ -8,6 +8,13 @@ import { createHash } from "node:crypto";
 import { getTasteTerm } from "./taste-vocabulary.js";
 import { CATALOG_PUBLICATION_STATES } from "./catalog-publish.js";
 import { LEGACY_AUDIT_DRAFT_CONTRACT, LEGACY_CONTRACT } from "./catalog-legacy.js";
+import {
+  CLASSIFICATION_ACTOR,
+  CLASSIFICATION_BATCH_ID,
+  classificationPayload,
+  isEffortLevel,
+  isIngredientComplexity,
+} from "./classification.js";
 
 export const FACTORY_CONTRACT = "flavorweave-catalog-package";
 
@@ -60,6 +67,43 @@ export function contentHash(payload) {
   return createHash("sha256").update(canonicalJson(payload)).digest("hex");
 }
 
+function stampHashes(record) {
+  record.content_hash = contentHash(hashPayload(record));
+  record.classification_hash =
+    record.effort_level && record.ingredient_complexity
+      ? contentHash(classificationPayload(record.effort_level, record.ingredient_complexity))
+      : null;
+  return record;
+}
+
+/**
+ * Culinary hash input. Classification enums, the classification hash, and the
+ * removed legacy effort / effort_band / complexity strings are not included.
+ * Changing only effort_level or ingredient_complexity must not change this payload.
+ */
+export function culinaryHashPayload(record) {
+  return hashPayload(record);
+}
+
+function requirePublishedClassification(dish, version, publicationStatus, errors) {
+  if (publicationStatus !== "published") return;
+  if (Object.prototype.hasOwnProperty.call(version, "effort")) {
+    errors.push(error("obsolete_effort", "recipe_version.effort"));
+  }
+  if (Object.prototype.hasOwnProperty.call(version, "complexity")) {
+    errors.push(error("obsolete_complexity", "recipe_version.complexity"));
+  }
+  if (Object.prototype.hasOwnProperty.call(dish, "effort_band")) {
+    errors.push(error("obsolete_effort_band", "dish.effort_band"));
+  }
+  if (!isEffortLevel(version.effort_level)) {
+    errors.push(error("bad_effort_level", "recipe_version.effort_level", String(version.effort_level ?? "")));
+  }
+  if (!isIngredientComplexity(version.ingredient_complexity)) {
+    errors.push(error("bad_ingredient_complexity", "recipe_version.ingredient_complexity", String(version.ingredient_complexity ?? "")));
+  }
+}
+
 function asArray(value) {
   return Array.isArray(value) ? value : [];
 }
@@ -105,7 +149,6 @@ function hashPayload(record) {
     prep_minutes: record.prep_minutes,
     cook_minutes: record.cook_minutes,
     total_minutes: record.total_minutes,
-    effort: record.effort,
     heat: record.heat,
     doneness: record.doneness,
     methods: record.methods,
@@ -260,6 +303,7 @@ export function normalizeLegacyPackage(pkg, source, policy = {}) {
     };
   });
   const publicationStatus = policy.publicationStatus || publication.status;
+  requirePublishedClassification(dish, version, publicationStatus, errors);
   const provenanceCert = {
     ...certification,
     certification_class: "legacy_structural",
@@ -301,7 +345,7 @@ export function normalizeLegacyPackage(pkg, source, policy = {}) {
       supersedes_version_id: version.supersedes_version_id || null,
     },
   });
-  record.content_hash = contentHash(hashPayload(record));
+  stampHashes(record);
   record.supersedes_version_id = version.supersedes_version_id || version.replaces_recipe_version_id || null;
   return { ok: errors.length === 0, errors, record: errors.length ? null : record };
 }
@@ -391,6 +435,7 @@ export function normalizeLegacyAuditDraftPackage(pkg, source, policy = {}) {
   if (!CATALOG_PUBLICATION_STATES.includes(publicationStatus)) {
     errors.push(error("bad_publication", "publication_status", String(publicationStatus)));
   }
+  requirePublishedClassification(dish, version, publicationStatus, errors);
   const record = baseRecord({
     dish: {
       ...dish,
@@ -431,7 +476,7 @@ export function normalizeLegacyAuditDraftPackage(pkg, source, policy = {}) {
       artifact_certification_class: certification.certification_class || null,
     },
   });
-  record.content_hash = contentHash(hashPayload(record));
+  stampHashes(record);
   record.supersedes_version_id = version.replaces_recipe_version_id || version.supersedes_version_id || null;
   return { ok: errors.length === 0, errors, record: errors.length ? null : record };
 }
@@ -492,6 +537,7 @@ export function normalizeFactoryPackage(pkg, source, policy = {}) {
   if (confidence.household_completed_ratings !== 0) {
     errors.push(error("rating_count", "catalog_confidence.household_completed_ratings"));
   }
+  requirePublishedClassification(dish, version, publicationStatus, errors);
   const master = imagePath(image, "master", dish.slug);
   const card = imagePath(image, "card", dish.slug);
   if (!master || !card) errors.push(error("missing_image", "image"));
@@ -531,7 +577,6 @@ export function normalizeFactoryPackage(pkg, source, policy = {}) {
       name: dish.title,
       texture: null,
       flavor_profile: null,
-      effort_band: version.effort || null,
       weeknight: null,
       exploration: null,
       plate: null,
@@ -577,7 +622,7 @@ export function normalizeFactoryPackage(pkg, source, policy = {}) {
     contract: FACTORY_CONTRACT,
     selfReport,
   });
-  record.content_hash = contentHash(hashPayload(record));
+  stampHashes(record);
   return { ok: errors.length === 0, errors, record: errors.length ? null : record };
 }
 
@@ -622,7 +667,6 @@ function baseRecord(input) {
     primary_ingredient: dish.primary_ingredient ?? null,
     texture: dish.texture ?? null,
     flavor_profile: dish.flavor_profile ?? null,
-    effort_band: dish.effort_band ?? null,
     weeknight: dish.weeknight == null ? null : dish.weeknight ? 1 : 0,
     exploration: dish.exploration ?? null,
     plate: dish.plate ?? null,
@@ -641,7 +685,10 @@ function baseRecord(input) {
     prep_minutes: version.prep_minutes,
     cook_minutes: version.cook_minutes,
     total_minutes: version.total_minutes,
-    effort: version.effort ?? null,
+    effort_level: isEffortLevel(version.effort_level) ? version.effort_level : null,
+    ingredient_complexity: isIngredientComplexity(version.ingredient_complexity) ? version.ingredient_complexity : null,
+    classification_source: isEffortLevel(version.effort_level) ? CLASSIFICATION_ACTOR : null,
+    classification_reason: isEffortLevel(version.effort_level) ? CLASSIFICATION_BATCH_ID : null,
     heat: version.heat ?? null,
     doneness: version.doneness ?? null,
     methods: asArray(version.methods),

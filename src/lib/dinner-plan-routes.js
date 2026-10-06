@@ -125,7 +125,11 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
   if (isPreview) {
     const parsed = parsePlanIntent({
       ...body,
+      ...(body.intent || {}),
+      dinner_count: body.dinner_count ?? body.intent?.dinner_count,
       participant_ids: body.participant_ids || body.intent?.participant_ids || ctx.household_member_ids,
+      keep_it_easy: body.keep_it_easy ?? body.intent?.keep_it_easy,
+      keep_ingredients_simple: body.keep_ingredients_simple ?? body.intent?.keep_ingredients_simple,
     });
     if (!parsed.ok) return fail(parsed.error, parsed.status || 400);
     const mentioned = [
@@ -135,9 +139,10 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
     const members = assertParticipants([...new Set(mentioned)], ctx.household_member_ids);
     if (!members.ok) return fail(members.error, members.status || 403, { member_ids: members.member_ids });
     const preview = planDinners(parsed.intent, {
+      catalog: ctx.catalog,
       constraints: ctx.constraints,
       tastes: ctx.tastes,
-      recent_slugs: [],
+      recent_slugs: Array.isArray(body.recent_slugs) ? body.recent_slugs : [],
     });
     return respond({ ok: true, preview, votes_required: false });
   }

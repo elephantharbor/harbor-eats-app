@@ -376,7 +376,7 @@ function factAlternatives(meal) {
   if (Number(meal.minutes) > 0 && Number(meal.minutes) <= 30) {
     alts.push({ label: "Weeknight quick", line: `On the table in about ${meal.minutes} minutes.` });
   }
-  if (String(meal.effort || "").toLowerCase() === "easy") {
+  if (meal.effort_level === "easy" || String(meal.effort || "").toLowerCase() === "easy") {
     alts.push({ label: "Easy win", line: "Low effort, and it clears everyone's hard limits." });
   }
   if (Number(meal.exploration) >= 0.5) {

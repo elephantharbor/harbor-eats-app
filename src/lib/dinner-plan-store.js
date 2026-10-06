@@ -81,7 +81,7 @@ export async function loadDinnerPlan(db, dinnerPlanId) {
     `SELECT meal_id, dinner_plan_id, position, kind, state, scheduled_date, recipe_slug,
             recipe_id, recipe_version_id, version_number, cooked_recipe_version_id, title,
             base_servings, pinned_ingredients_json, pinned_steps_json, allergens_json,
-            vocabulary_json, tags_json, data_origin
+            vocabulary_json, tags_json, effort_level, ingredient_complexity, data_origin
      FROM dinner_plan_meal WHERE dinner_plan_id = ? ORDER BY position`,
     [dinnerPlanId]
   );
@@ -140,6 +140,8 @@ export async function loadDinnerPlan(db, dinnerPlanId) {
       allergens: parse(meal.allergens_json, []),
       vocabulary_tag_ids: parse(meal.vocabulary_json, []),
       tags: parse(meal.tags_json, []),
+      effort_level: meal.effort_level || null,
+      ingredient_complexity: meal.ingredient_complexity || null,
       participant_ids: [],
       ratings: [],
     });
@@ -267,8 +269,8 @@ export async function saveDinnerPlan(db, plan) {
         (meal_id, dinner_plan_id, position, kind, state, scheduled_date, recipe_slug, recipe_id,
          recipe_version_id, version_number, cooked_recipe_version_id, title, base_servings,
          pinned_ingredients_json, pinned_steps_json, allergens_json, vocabulary_json, tags_json,
-         data_origin, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+         effort_level, ingredient_complexity, data_origin, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         meal.meal_id,
         plan.dinner_plan_id,
@@ -288,6 +290,8 @@ export async function saveDinnerPlan(db, plan) {
         json(meal.allergens || []),
         json(meal.vocabulary_tag_ids || []),
         json(meal.tags || []),
+        meal.effort_level || null,
+        meal.ingredient_complexity || null,
         plan.data_origin,
         plan.updated_at,
         plan.updated_at,

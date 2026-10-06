@@ -60,7 +60,7 @@
         "display_name": "bone-in, skin-on chicken thighs",
         "quantity": 2.5,
         "unit": "lb",
-        "note": "about 6\u20138 thighs; bones build the stock",
+        "note": "about 6–8 thighs; bones build the stock",
         "preparation": null,
         "optional": false,
         "role": "main"
@@ -232,8 +232,8 @@
       },
       {
         "ingredient_id": "fresh-jalapeno",
-        "name": "jalape\u00f1o",
-        "display_name": "jalape\u00f1o",
+        "name": "jalapeño",
+        "display_name": "jalapeño",
         "quantity": 1,
         "unit": "count",
         "note": "optional heat at the table; still listed so it may appear",
@@ -300,7 +300,7 @@
       {
         "step_number": 6,
         "title": "Finish with herbs and lime",
-        "body": "Scatter the sliced scallions, chopped cilantro, and Thai basil leaves over each bowl. Serve with lime wedges and optional jalape\u00f1o slices on the side. Each serving is noodles, chicken, hot broth, and herbs. No bean sprouts are required. kitchen_tested is false.",
+        "body": "Scatter the sliced scallions, chopped cilantro, and Thai basil leaves over each bowl. Serve with lime wedges and optional jalapeño slices on the side. Each serving is noodles, chicken, hot broth, and herbs. No bean sprouts are required. kitchen_tested is false.",
         "ingredient_refs": [
           "scallions",
           "fresh-cilantro",
@@ -349,8 +349,8 @@
     "total_minutes": 75,
     "heat": "Dry medium-high skillet for charring. Stockpot: high to boil, then gentle simmer. No oven.",
     "doneness": "Chicken thighs 175 F near the bone before shredding. Broth clear, savory, lightly sweet. Rice noodles pliable, not mushy. Broth steaming hot in the bowl. kitchen_tested is false.",
-    "effort": "moderate",
-    "complexity": "standard",
+    "effort_level": "involved",
+    "ingredient_complexity": "adventurous",
     "dietary_eligibility": {
       "contains_meat": false,
       "contains_poultry": true,
@@ -494,7 +494,7 @@
     {
       "check": "ingredient_instruction_reconciliation",
       "result": "pass",
-      "detail": "Every listed ingredient is used. Second onion is raw in bowls. Jalape\u00f1o is optional garnish. Noodles soak in hot water, not the stockpot."
+      "detail": "Every listed ingredient is used. Second onion is raw in bowls. Jalapeño is optional garnish. Noodles soak in hot water, not the stockpot."
     },
     {
       "check": "oil",
@@ -514,7 +514,7 @@
     {
       "check": "scaling_1_2_4",
       "result": "pass_with_rounding_notes",
-      "detail": "Whole spices do not quarter cleanly. Keep at least 1 star anise and 1 cinnamon stick for 1\u20132 servings. See scaling_notes."
+      "detail": "Whole spices do not quarter cleanly. Keep at least 1 star anise and 1 cinnamon stick for 1–2 servings. See scaling_notes."
     },
     {
       "check": "dietary_vs_ingredients",
@@ -524,7 +524,7 @@
     {
       "check": "taste_vocabulary",
       "result": "pass",
-      "detail": "Tags are D-02 slugs: soups, chicken, savory, umami, herbaceous, fresh. vietnamese is dish.cuisine only \u2014 not a D-02 cuisine slug."
+      "detail": "Tags are D-02 slugs: soups, chicken, savory, umami, herbaceous, fresh. vietnamese is dish.cuisine only — not a D-02 cuisine slug."
     },
     {
       "check": "kitchen_tested",
@@ -558,8 +558,8 @@
       "rice noodles soaked not boiled in broth"
     ]
   },
-  "coverage_contribution": "Opens Vietnamese cuisine (empty live) and noodle-soup format (empty). Chicken\u2019s third method after sheet-pan thighs and crispy sandwich \u2014 broth-forward, not grilled or breaded.",
-  "near_duplicate_review": "Compared with White Bean Kale Soup: soup, but bean-and-kale, not pho. Compared with Sheet-Pan Lemon Herb Chicken and Crispy Skillet Chicken Sandwiches: same animal, different format and cuisine. Compared with Sesame Soba / Peanut Noodle / Teriyaki Tofu bowls: noodle-adjacent but not Vietnamese chicken broth. Not a plant coconut \u201cpho-inspired\u201d dodge. Not a duplicate of dry-run or live 31.",
+  "coverage_contribution": "Opens Vietnamese cuisine (empty live) and noodle-soup format (empty). Chicken’s third method after sheet-pan thighs and crispy sandwich — broth-forward, not grilled or breaded.",
+  "near_duplicate_review": "Compared with White Bean Kale Soup: soup, but bean-and-kale, not pho. Compared with Sheet-Pan Lemon Herb Chicken and Crispy Skillet Chicken Sandwiches: same animal, different format and cuisine. Compared with Sesame Soba / Peanut Noodle / Teriyaki Tofu bowls: noodle-adjacent but not Vietnamese chicken broth. Not a plant coconut “pho-inspired” dodge. Not a duplicate of dry-run or live 31.",
   "batch_challenges": "A,B,C",
   "recommendation_eligible": false,
   "structural_qa_state": "freeze_r2_images_present_awaiting_preflight"

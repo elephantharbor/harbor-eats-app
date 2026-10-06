@@ -215,6 +215,8 @@ export function projectLegacyConcept(concept) {
     prep_minutes: version.prep_minutes,
     cook_minutes: version.cook_minutes,
     total_minutes: version.prep_minutes + version.cook_minutes,
+    effort_level: version.effort_level || null,
+    ingredient_complexity: version.ingredient_complexity || null,
     steps: (version.steps || []).map((step, index) => ({
       step_number: index + 1,
       title: step.title,

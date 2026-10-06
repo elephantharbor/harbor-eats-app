@@ -1,6 +1,6 @@
 {
   "catalog_contract": "flavorweave-catalog-package",
-  "catalog_contract_note": "Factory package for Dry Run #1. Nested Dish \u2192 Recipe \u2192 Recipe Version \u2192 Image. Not imported to recipe-store. Not published.",
+  "catalog_contract_note": "Factory package for Dry Run #1. Nested Dish → Recipe → Recipe Version → Image. Not imported to recipe-store. Not published.",
   "batch_id": "dry-run-1",
   "mode": "dry_run",
   "authored_on": "2026-10-04",
@@ -13,7 +13,7 @@
     "auditor": "Vale (Harbor Eats - Catalog Auditor)",
     "audit_round": 2,
     "kitchen_tested": false,
-    "publication": "Draft \u2014 dry run only, not published"
+    "publication": "Draft — dry run only, not published"
   },
   "dish": {
     "dish_id": "gochujang-grilled-flank-steak",
@@ -255,7 +255,7 @@
       {
         "step_number": 4,
         "title": "Heat the grill",
-        "body": "After the 15 minutes, heat a gas or charcoal grill for direct high heat, about 450\u2013500\u00b0F. Give it about 10 minutes. When the grates are hot, brush them with the canola oil. This timed method does not overlap preheat with the marinade.",
+        "body": "After the 15 minutes, heat a gas or charcoal grill for direct high heat, about 450–500°F. Give it about 10 minutes. When the grates are hot, brush them with the canola oil. This timed method does not overlap preheat with the marinade.",
         "ingredient_refs": [
           "canola-oil"
         ]
@@ -263,7 +263,7 @@
       {
         "step_number": 5,
         "title": "Grill",
-        "body": "Lay the flank steak on the oiled grates. Close the lid on a gas grill, or grill over direct coals with the vents open. Cook 4 to 5 minutes per side. It is done at 130\u2013135\u00b0F in the thickest center for medium-rare. Do not press the steak. If the piece is thicker than 1 inch, add about 1 minute per side and trust the thermometer.",
+        "body": "Lay the flank steak on the oiled grates. Close the lid on a gas grill, or grill over direct coals with the vents open. Cook 4 to 5 minutes per side. It is done at 130–135°F in the thickest center for medium-rare. Do not press the steak. If the piece is thicker than 1 inch, add about 1 minute per side and trust the thermometer.",
         "ingredient_refs": [
           "flank-steak"
         ]
@@ -333,10 +333,10 @@
     "prep_minutes": 25,
     "cook_minutes": 25,
     "total_minutes": 50,
-    "heat": "Direct grill heat, about 450\u2013500\u00b0F.",
-    "doneness": "130\u2013135\u00b0F in the center for medium-rare, then a 5-minute rest. Slice against the grain.",
-    "effort": "moderate",
-    "complexity": "moderate",
+    "heat": "Direct grill heat, about 450–500°F.",
+    "doneness": "130–135°F in the center for medium-rare, then a 5-minute rest. Slice against the grain.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
     "dietary_labels": [
       "dairy_free"
     ],
@@ -413,10 +413,10 @@
         "status": "generated_in_package_not_published"
       }
     ],
-    "dimensions_basis": "Live reference public/images/meals/miso-ginger-salmon.webp is WebP 1200\u00d7900; miso-ginger-salmon-640.webp is WebP 640\u00d7480. Package files use those dimensions and the spec basenames. They were not copied into the app public/images/meals/ tree (not published).",
+    "dimensions_basis": "Live reference public/images/meals/miso-ginger-salmon.webp is WebP 1200×900; miso-ginger-salmon-640.webp is WebP 640×480. Package files use those dimensions and the spec basenames. They were not copied into the app public/images/meals/ tree (not published).",
     "generation": {
       "method": "format_size_conversion_of_existing_ai_jpeg",
-      "method_detail": "Existing 1280\u00d7720 AI JPEG center-cropped to 4:3 (960\u00d7720) and LANCZOS-resized with Pillow to WebP master 1200\u00d7900 and derivative 640\u00d7480. Not a new generative redraw. Not a web, stock, restaurant, or recipe-site image. No external image API was called for this export.",
+      "method_detail": "Existing 1280×720 AI JPEG center-cropped to 4:3 (960×720) and LANCZOS-resized with Pillow to WebP master 1200×900 and derivative 640×480. Not a new generative redraw. Not a web, stock, restaurant, or recipe-site image. No external image API was called for this export.",
       "model": "unknown",
       "model_note": "Model slug is unknown. It is not in v1.json history, image-prompt.md, or JPEG EXIF. The source JPEG C2PA manifest names softwareAgent 'Grok Imagine' and an organization string 'SpaceXAI'. That is a generator label in the file, not a versioned model id, so it is recorded and not expanded into an invented model slug.",
       "c2pa_software_agent": "Grok Imagine",
@@ -500,15 +500,15 @@
     }
   ],
   "scaling_notes": {
+    "1": "Buy about 6 oz flank steak, not a tiny scrap that will fall through the grates. Round the marinade down but keep enough to coat: about 2 tsp gochujang, 1 1/2 tsp soy sauce, 3/4 tsp rice vinegar in the marinade and 3/4 tsp in the salad, 3/4 tsp toasted sesame oil in the marinade and 1/4 tsp in the salad, 3/4 tsp brown sugar, 1 garlic clove, 1 tsp grated fresh ginger. Use 1/4 of the cucumber and 1 scallion. Grill temperature stays 450–500°F. A smaller piece of the same thickness may finish about 1 minute sooner per side; use the thermometer.",
+    "2": "Halve every quantity. Two garlic cloves is the practical round of 1.5. Grill temperature and target doneness do not change. A half-width steak still needs the 5-minute rest.",
+    "4": "As written. 1.5 lb is about 6 oz raw per person.",
     "base_servings": 4,
     "ratio": {
       "1": 0.25,
       "2": 0.5,
       "4": 1
     },
-    "1": "Buy about 6 oz flank steak, not a tiny scrap that will fall through the grates. Round the marinade down but keep enough to coat: about 2 tsp gochujang, 1 1/2 tsp soy sauce, 3/4 tsp rice vinegar in the marinade and 3/4 tsp in the salad, 3/4 tsp toasted sesame oil in the marinade and 1/4 tsp in the salad, 3/4 tsp brown sugar, 1 garlic clove, 1 tsp grated fresh ginger. Use 1/4 of the cucumber and 1 scallion. Grill temperature stays 450\u2013500\u00b0F. A smaller piece of the same thickness may finish about 1 minute sooner per side; use the thermometer.",
-    "2": "Halve every quantity. Two garlic cloves is the practical round of 1.5. Grill temperature and target doneness do not change. A half-width steak still needs the 5-minute rest.",
-    "4": "As written. 1.5 lb is about 6 oz raw per person.",
     "do_not_scale": [
       "grill temperature",
       "internal temperature",

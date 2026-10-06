@@ -171,7 +171,7 @@
         "display_name": "fresh dill",
         "quantity": 2,
         "unit": "tbsp",
-        "note": "chopped; salad finish \u2014 not yogurt tzatziki",
+        "note": "chopped; salad finish — not yogurt tzatziki",
         "preparation": "chopped",
         "optional": false,
         "role": "component"
@@ -292,8 +292,8 @@
     "total_minutes": 50,
     "heat": "Grill or grill pan medium-high, or oven broiler on high 6 inches from element. Broiler preheat 5 minutes overlaps skewer threading.",
     "doneness": "Chicken 165 F in the thickest piece, browned in spots. Salad crisp, not watery. kitchen_tested is false.",
-    "effort": "moderate",
-    "complexity": "standard",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
     "dietary_eligibility": {
       "contains_meat": false,
       "contains_poultry": true,
@@ -467,7 +467,7 @@
     {
       "check": "taste_vocabulary",
       "result": "pass",
-      "detail": "mediterranean, grilled, chicken, citrusy, herbaceous, savory, fresh are D-02. greek is dish.cuisine coverage only \u2014 not invented as a D-02 cuisine tag."
+      "detail": "mediterranean, grilled, chicken, citrusy, herbaceous, savory, fresh are D-02. greek is dish.cuisine coverage only — not invented as a D-02 cuisine tag."
     },
     {
       "check": "kitchen_tested",
@@ -500,7 +500,7 @@
       "medium-high grill / broiler distance"
     ]
   },
-  "coverage_contribution": "Opens Greek cuisine label and skewers/kebabs format (both empty). Chicken\u2019s third live-adjacent slot earned by cuisine+format move \u2014 lemon-oregano skewers + cucumber salad, not sheet-pan or sandwich.",
+  "coverage_contribution": "Opens Greek cuisine label and skewers/kebabs format (both empty). Chicken’s third live-adjacent slot earned by cuisine+format move — lemon-oregano skewers + cucumber salad, not sheet-pan or sandwich.",
   "near_duplicate_review": "Compared with Sheet-Pan Lemon Herb Chicken: lemon-herb chicken adjacency, but sheet-pan thighs vs skewers and no Greek cucumber salad. Compared with Crispy Skillet Chicken Sandwiches: different format entirely. Compared with Roasted Cauliflower Shawarma: skewered/spiced plate without poultry. Not gyro flatbread. Not a Greek salad with no cook. Not a live-31 duplicate.",
   "batch_challenges": "A,B,C",
   "recommendation_eligible": false,

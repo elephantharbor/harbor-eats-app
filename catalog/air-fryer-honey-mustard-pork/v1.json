@@ -71,7 +71,7 @@
         "display_name": "Dijon mustard",
         "quantity": 3,
         "unit": "tbsp",
-        "note": "All of it in the glaze. Typical Dijon is mustard seed, water, vinegar, salt \u2014 no wheat and no soy on standard labels; confirm the bottle you buy. This package does not add soy sauce or Worcestershire.",
+        "note": "All of it in the glaze. Typical Dijon is mustard seed, water, vinegar, salt — no wheat and no soy on standard labels; confirm the bottle you buy. This package does not add soy sauce or Worcestershire.",
         "preparation": null,
         "optional": false,
         "role": "seasoning"
@@ -245,8 +245,8 @@
     "total_minutes": 35,
     "heat": "Air fryer 400 F. Preheat about 3 minutes (inside cook). First stretch 10 minutes, glazed finish 6 to 8 minutes, rest 5 minutes.",
     "doneness": "Center 145 F, juices not raw-pink watery. Glaze sticky and patch-browned, not burnt sugar. Rest 5 minutes before slicing. kitchen_tested is false.",
-    "effort": "easy",
-    "complexity": "simple",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
     "dietary_eligibility": {
       "contains_meat": true,
       "contains_poultry": false,
@@ -263,13 +263,13 @@
     "dietary_labels": [
       "dairy_free"
     ],
-    "dietary_label_note": "Unconditional dairy_free: no milk, butter, cheese, cream, or yogurt. Meat meal \u2014 not vegetarian or plant-based. dairy_free is not a claim that the meal fits HH001.",
+    "dietary_label_note": "Unconditional dairy_free: no milk, butter, cheese, cream, or yogurt. Meat meal — not vegetarian or plant-based. dairy_free is not a claim that the meal fits HH001.",
     "allergens": [
       "meat"
     ],
     "allergen_notes": [
       "No major allergen tokens from the factory set (egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, finfish) appear in the written ingredients.",
-      "Dijon mustard is not a factory allergen token. Standard Dijon typically contains no wheat and no soy; this package does not add soy sauce, Worcestershire, or wheat flour. If a specific Dijon bottle lists wheat, that bottle would add wheat \u2014 the written package assumes a wheat-free Dijon and leaves allergens empty rather than inventing wheat.",
+      "Dijon mustard is not a factory allergen token. Standard Dijon typically contains no wheat and no soy; this package does not add soy sauce, Worcestershire, or wheat flour. If a specific Dijon bottle lists wheat, that bottle would add wheat — the written package assumes a wheat-free Dijon and leaves allergens empty rather than inventing wheat.",
       "Honey is not an allergen token here. Pork/meat is a dietary_eligibility class, not an allergen token.",
       "Empty allergens list is intentional and honest for this glaze path."
     ],
@@ -300,9 +300,9 @@
       "data_origin": "synthetic means authored, not cooked.",
       "allergens": "Empty list is valid when no factory allergen tokens are present. Meat is not an allergen token.",
       "dietary_eligibility": "contains_meat true. contains_dairy false. dairy_free label ok. hh001 false because pork.",
-      "vocabulary": "american, savory, tangy, tender, rich, fresh are active. air-fry is meal_format, not a D-02 meal_style slug \u2014 not copied into tags. pork tenderloin has no D-02 ingredient slug.",
-      "meal_format": "air-fry \u2014 primary equipment claim; not a vocabulary tag.",
-      "primary_ingredient": "pork tenderloin \u2014 not copied into tags.",
+      "vocabulary": "american, savory, tangy, tender, rich, fresh are active. air-fry is meal_format, not a D-02 meal_style slug — not copied into tags. pork tenderloin has no D-02 ingredient slug.",
+      "meal_format": "air-fry — primary equipment claim; not a vocabulary tag.",
+      "primary_ingredient": "pork tenderloin — not copied into tags.",
       "package_revision": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true.",
       "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes meat and poultry as supported tokens (see dry-run-1 packages). List them when present; do not omit because USDA Big-8 lists differ.",
       "images": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true."
@@ -391,7 +391,7 @@
     {
       "check": "ingredient_instruction_reconciliation",
       "result": "pass",
-      "detail": "Glaze ingredients used in step 1 and brushed in step 3\u20134. Oil split. Optional parsley only at the end."
+      "detail": "Glaze ingredients used in step 1 and brushed in step 3–4. Oil split. Optional parsley only at the end."
     },
     {
       "check": "oil",
@@ -406,12 +406,12 @@
     {
       "check": "times",
       "result": "pass_with_stated_clock",
-      "detail": "Prep 10 + cook 25 (3 preheat overlapping glaze mix already counted in prep; 10 first stretch + 7 glazed midpoint + 5 rest) = 35. Preheat is inside cook; glaze mixing during preheat is prep that may overlap \u2014 clock keeps prep 10 and cook 25 without double-counting the 3-minute preheat into prep."
+      "detail": "Prep 10 + cook 25 (3 preheat overlapping glaze mix already counted in prep; 10 first stretch + 7 glazed midpoint + 5 rest) = 35. Preheat is inside cook; glaze mixing during preheat is prep that may overlap — clock keeps prep 10 and cook 25 without double-counting the 3-minute preheat into prep."
     },
     {
       "check": "scaling_1_2_4",
       "result": "pass_with_rounding_notes",
-      "detail": "Base one ~1.25 lb tenderloin for 4. Smaller loins for 1\u20132. See scaling_notes."
+      "detail": "Base one ~1.25 lb tenderloin for 4. Smaller loins for 1–2. See scaling_notes."
     },
     {
       "check": "dietary_vs_ingredients",
@@ -441,7 +441,7 @@
   ],
   "scaling_notes": {
     "1": "About 5 oz trimmed tenderloin (a short piece). Glaze floor: 2 tsp Dijon, 1.5 tsp honey, 1 tsp vinegar, small garlic pinch, 1 tsp oil total. Air fryer 400 F; start checking at about 12 minutes total cook after preheat. Still 145 F center. Do not invent a second sauce.",
-    "2": "About 10\u201312 oz tenderloin. Half glaze. Same 400 F; check around 14\u201316 minutes glazed total depending on thickness.",
+    "2": "About 10–12 oz tenderloin. Half glaze. Same 400 F; check around 14–16 minutes glazed total depending on thickness.",
     "4": "As written. ~1.25 lb whole tenderloin, 35-minute clock with 5-minute rest.",
     "base_servings": 4,
     "ratio": {
@@ -458,7 +458,7 @@
     ]
   },
   "coverage_contribution": "Makes air fryer the primary cook method (live catalog only advertises air_fry optionally on chipotle tofu tacos). Pork tenderloin is a different cut and clock from cider-braised shoulder and from Caribbean jerk chops. Honey-mustard glaze is not maple-mustard salmon.",
-  "near_duplicate_review": "Compared with Cider-Braised Pork Shoulder: both pork, but that is a 3+ hour braise; this is a ~35-minute air-fry tenderloin. Compared with Jamaican Jerk Pork Chops (same wave): different cuisine, cut, spice system, and skillet vs air fryer. Compared with Maple-Mustard Glazed Salmon: mustard-honey adjacent wording, but salmon fillet oven/stovetop glaze vs pork air-fry \u2014 different protein and equipment. Compared with Sheet-Pan Lemon Herb Chicken: oven sheet-pan poultry, not air-fry pork. Not a flour-egg crispy cutlet redo of the chicken sandwich lesson.",
+  "near_duplicate_review": "Compared with Cider-Braised Pork Shoulder: both pork, but that is a 3+ hour braise; this is a ~35-minute air-fry tenderloin. Compared with Jamaican Jerk Pork Chops (same wave): different cuisine, cut, spice system, and skillet vs air fryer. Compared with Maple-Mustard Glazed Salmon: mustard-honey adjacent wording, but salmon fillet oven/stovetop glaze vs pork air-fry — different protein and equipment. Compared with Sheet-Pan Lemon Herb Chicken: oven sheet-pan poultry, not air-fry pork. Not a flour-egg crispy cutlet redo of the chicken sandwich lesson.",
   "batch_challenges": [
     "B",
     "C",

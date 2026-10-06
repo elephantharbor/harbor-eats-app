@@ -125,7 +125,7 @@
         "display_name": "toasted sesame oil",
         "quantity": 1,
         "unit": "tsp",
-        "note": "OPTIONAL finish only. If used, sesame becomes an allergen \u2014 this written package omits sesame from the required list by leaving this optional and defaulting off for HH001 simplicity. Prefer skipping unless household wants sesame.",
+        "note": "OPTIONAL finish only. If used, sesame becomes an allergen — this written package omits sesame from the required list by leaving this optional and defaulting off for HH001 simplicity. Prefer skipping unless household wants sesame.",
         "preparation": null,
         "optional": true,
         "role": "fat"
@@ -212,7 +212,7 @@
       {
         "step_number": 1,
         "title": "Prep tempeh, glaze, and vegetables",
-        "body": "Slice the tempeh into 1/2-inch slabs. Optional but helpful: steam the slabs 8 minutes to mellow bitterness, then pat dry \u2014 if you steam, that time is inside prep. Whisk the tamari, maple syrup, grated ginger, minced garlic, rice vinegar, and 2 tbsp water into a glaze. Trim the broccolini. Slice the scallions. Confirm cooked rice is ready or start it now. HARD PEANUT CONTRACT: do not add peanut butter, peanut oil, or crushed peanuts.",
+        "body": "Slice the tempeh into 1/2-inch slabs. Optional but helpful: steam the slabs 8 minutes to mellow bitterness, then pat dry — if you steam, that time is inside prep. Whisk the tamari, maple syrup, grated ginger, minced garlic, rice vinegar, and 2 tbsp water into a glaze. Trim the broccolini. Slice the scallions. Confirm cooked rice is ready or start it now. HARD PEANUT CONTRACT: do not add peanut butter, peanut oil, or crushed peanuts.",
         "ingredient_refs": [
           "tempeh",
           "tamari",
@@ -249,7 +249,7 @@
       {
         "step_number": 4,
         "title": "Glaze and plate",
-        "body": "Reduce heat to medium. Pour the glaze into the skillet. Simmer until slightly syrupy, about 1 to 2 minutes. Return tempeh to the pan and turn to coat, about 1 minute. Optional: drizzle 1 tsp toasted sesame oil off heat only if the household wants sesame \u2014 default is skip so sesame stays off the allergen array. Plate rice, broccolini, and glazed tempeh. Scatter scallions. No peanut garnish. kitchen_tested is false.",
+        "body": "Reduce heat to medium. Pour the glaze into the skillet. Simmer until slightly syrupy, about 1 to 2 minutes. Return tempeh to the pan and turn to coat, about 1 minute. Optional: drizzle 1 tsp toasted sesame oil off heat only if the household wants sesame — default is skip so sesame stays off the allergen array. Plate rice, broccolini, and glazed tempeh. Scatter scallions. No peanut garnish. kitchen_tested is false.",
         "ingredient_refs": [
           "tamari",
           "maple-syrup",
@@ -306,8 +306,8 @@
     "total_minutes": 35,
     "heat": "Medium for tempeh sear; medium-high for broccolini; medium for glaze. No oven required.",
     "doneness": "Tempeh deep golden and coated in syrupy ginger-maple glaze. Broccolini tender-crisp with blistered tips. Rice hot. kitchen_tested is false.",
-    "effort": "easy",
-    "complexity": "simple",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
     "dietary_eligibility": {
       "contains_meat": false,
       "contains_poultry": false,
@@ -333,7 +333,7 @@
     "allergen_notes": [
       "Soy covers tempeh and tamari.",
       "Wheat is not listed: tamari is specified gluten-free. Unseasoned rice vinegar assumed wheat-free; confirm label.",
-      "Sesame is not listed because toasted sesame oil is optional and defaulted off. If a cook adds it, sesame would join the array \u2014 that is a different household execution, not this written package.",
+      "Sesame is not listed because toasted sesame oil is optional and defaulted off. If a cook adds it, sesame would join the array — that is a different household execution, not this written package.",
       "No peanut, tree_nut, egg, milk, shellfish, or finfish. HARD peanut-free contract."
     ],
     "hh001_eligible": true,
@@ -367,7 +367,7 @@
       "images": "package_revision is freeze-r3. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
       "cuisine_gap": "asian-fusion is the dish.cuisine coverage label and is not a D-02 cuisine slug. Do not invent asian-fusion or japanese tags.",
       "meal_format": "composed-plate is format metadata, not a vocabulary tag.",
-      "primary_ingredient": "tempeh \u2014 no D-02 ingredient slug; not copied into tags (tofu slug is not used as a substitute).",
+      "primary_ingredient": "tempeh — no D-02 ingredient slug; not copied into tags (tofu slug is not used as a substitute).",
       "hh001_contract": "plant_based_compatible true; peanut-free hard contract; tamari keeps wheat off allergens; optional sesame defaulted off."
     }
   },
@@ -484,7 +484,7 @@
     {
       "check": "taste_vocabulary",
       "result": "pass",
-      "detail": "savory, umami, tender, fresh, crispy are D-02. asian-fusion and composed-plate are cuisine/format labels only \u2014 not invented tags."
+      "detail": "savory, umami, tender, fresh, crispy are D-02. asian-fusion and composed-plate are cuisine/format labels only — not invented tags."
     },
     {
       "check": "kitchen_tested",

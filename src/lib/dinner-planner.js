@@ -5,6 +5,7 @@
  * to vary cuisine. No model call. No meal outside the supplied catalog.
  */
 
+import { planningPreferences, preferencesActive, preferenceTier, requirementTier } from "./classification.js";
 import { isOptionEligibleForHousehold } from "./eligibility.js";
 import { rulesFromLegacyKeys } from "./legacy-preference-audit.js";
 import { decideEligibility } from "./preference-concepts.js";
@@ -60,6 +61,8 @@ function featuresOf(entry) {
     flavors,
     ingredient: ingredients[0] || entry.concept.primary_ingredient,
     minutes: entry.pkg.total_minutes,
+    effort_level: entry.pkg.effort_level || null,
+    ingredient_complexity: entry.pkg.ingredient_complexity || null,
     equipment: entry.pkg.equipment || [],
     methods: entry.concept.current_version?.methods || [],
     entry,
@@ -218,14 +221,57 @@ function catalogCount(features, slug) {
   return features.filter((feature) => matchesRequest(feature, slug)).length;
 }
 
-function pickFeature(ranked, used, recent) {
+function rankEligible(eligible, participantIds, tastes, intent) {
+  const active = preferencesActive(intent);
+  const prefs = planningPreferences(intent);
+  const ranked = eligible
+    .map((feature) => {
+      const score = scoreFeature(feature, participantIds, tastes, intent);
+      return {
+        feature,
+        total: score.total,
+        unscored: score.unscored,
+        requirement: active ? requirementTier(feature, intent, matchesRequest) : 0,
+        preference: active ? preferenceTier(feature.effort_level, feature.ingredient_complexity, prefs) : 0,
+      };
+    })
+    .sort((a, b) => {
+      if (active) {
+        if (a.requirement !== b.requirement) return a.requirement - b.requirement;
+        if (a.preference !== b.preference) return a.preference - b.preference;
+      }
+      return b.total - a.total || a.feature.slug.localeCompare(b.feature.slug);
+    });
+  return { ranked, active };
+}
+
+function pickFeature(ranked, used, recent, tiered) {
   const unused = ranked.filter((row) => !used.slugs.has(row.feature.slug));
-  if (!unused.length) return { feature: null, reason: used.slugs.size ? "no_unused_eligible_meal" : "no_eligible_meal" };
-  const best = unused[0].total;
-  const band = unused.filter((row) => row.total >= best - TASTE_BAND);
+  if (!unused.length) {
+    return {
+      feature: null,
+      reason: used.slugs.size ? "no_unused_eligible_meal" : "no_eligible_meal",
+      preference_tier: 0,
+      preference_relaxed: false,
+    };
+  }
+  let pool = unused;
+  if (tiered) {
+    const bestRequirement = unused[0].requirement;
+    const bestPreference = unused[0].preference;
+    pool = unused.filter((row) => row.requirement === bestRequirement && row.preference === bestPreference);
+  }
+  const best = pool[0].total;
+  const band = pool.filter((row) => row.total >= best - TASTE_BAND);
   const diverse = band.find((row) => !conflicts(row.feature, used) && !recent.has(row.feature.slug))
     || band.find((row) => !conflicts(row.feature, used));
-  return { feature: (diverse || unused[0]).feature, reason: null };
+  const chosen = diverse || pool[0];
+  return {
+    feature: chosen.feature,
+    reason: null,
+    preference_tier: chosen.preference || 0,
+    preference_relaxed: (chosen.preference || 0) > 0,
+  };
 }
 
 function publicSlot(position, participantIds, picked) {
@@ -239,6 +285,11 @@ function publicSlot(position, participantIds, picked) {
       recipe_id: null,
       version_number: null,
       title: null,
+      total_minutes: null,
+      effort_level: null,
+      ingredient_complexity: null,
+      preference_tier: 0,
+      preference_relaxed: false,
       participant_ids: participantIds,
     };
   }
@@ -252,6 +303,11 @@ function publicSlot(position, participantIds, picked) {
     recipe_id: feature.recipe_id,
     version_number: feature.version_number,
     title: feature.title,
+    total_minutes: feature.minutes ?? null,
+    effort_level: feature.effort_level || null,
+    ingredient_complexity: feature.ingredient_complexity || null,
+    preference_tier: picked.preference_tier || 0,
+    preference_relaxed: picked.preference_relaxed === true,
     participant_ids: participantIds,
   };
 }
@@ -283,6 +339,7 @@ export function planDinners(intent, context = {}) {
   }
   const used = emptyUsed();
   const slots = [];
+  const preference_relaxations = [];
   for (let index = 0; index < intent.dinner_count; index += 1) {
     const participant_ids = intent.slots?.[index]?.participant_ids?.length
       ? intent.slots[index].participant_ids
@@ -290,18 +347,23 @@ export function planDinners(intent, context = {}) {
     const eligible = features.filter((feature) =>
       assessMealEligibility(feature.entry, participant_ids, context.constraints || [], context.tastes || []).eligible
     );
-    const ranked = eligible
-      .map((feature) => {
-        const score = scoreFeature(feature, participant_ids, context.tastes || [], intent);
-        score.unscored.forEach((key) => unscored.add(key));
-        return { feature, total: score.total };
-      })
-      .sort((a, b) => b.total - a.total || a.feature.slug.localeCompare(b.feature.slug));
+    const pool = rankEligible(eligible, participant_ids, context.tastes || [], intent);
+    pool.ranked.forEach((row) => row.unscored?.forEach((key) => unscored.add(key)));
     const picked = eligible.length
-      ? pickFeature(ranked, used, recent)
-      : { feature: null, reason: "no_eligible_meal" };
+      ? pickFeature(pool.ranked, used, recent, pool.active)
+      : { feature: null, reason: "no_eligible_meal", preference_tier: 0, preference_relaxed: false };
     if (picked.feature) remember(used, picked.feature);
-    slots.push(publicSlot(index + 1, participant_ids, picked));
+    const slot = publicSlot(index + 1, participant_ids, picked);
+    if (slot.preference_relaxed) {
+      preference_relaxations.push({
+        position: slot.position,
+        recipe_slug: slot.recipe_slug,
+        preference_tier: slot.preference_tier,
+        effort_level: slot.effort_level,
+        ingredient_complexity: slot.ingredient_complexity,
+      });
+    }
+    slots.push(slot);
   }
   return {
     ok: true,
@@ -311,6 +373,7 @@ export function planDinners(intent, context = {}) {
     intent,
     constrained_requests,
     unscored_hints: [...unscored],
+    preference_relaxations,
     slots,
   };
 }
@@ -340,16 +403,11 @@ export function swapSlot(slots, index, context = {}) {
     feature.slug !== current.recipe_slug &&
     assessMealEligibility(feature.entry, participant_ids, context.constraints || [], context.tastes || []).eligible
   );
-  const ranked = eligible
-    .map((feature) => ({
-      feature,
-      total: scoreFeature(feature, participant_ids, context.tastes || [], intent).total,
-    }))
-    .sort((a, b) => b.total - a.total || a.feature.slug.localeCompare(b.feature.slug));
+  const pool = rankEligible(eligible, participant_ids, context.tastes || [], intent);
   const recent = new Set(context.recent_slugs || []);
   const picked = eligible.length
-    ? pickFeature(ranked, used, recent)
-    : { feature: null, reason: "no_eligible_meal" };
+    ? pickFeature(pool.ranked, used, recent, pool.active)
+    : { feature: null, reason: "no_eligible_meal", preference_tier: 0, preference_relaxed: false };
   if (!picked.feature) {
     return {
       ok: false,

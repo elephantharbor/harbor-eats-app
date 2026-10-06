@@ -83,7 +83,7 @@
         "display_name": "round dumpling wrappers",
         "quantity": 32,
         "unit": "count",
-        "note": "HARD CONTRACT: store-bought round dumpling (jiaozi / gyoza-style) wrappers about 3 1/4 to 3 1/2 inches across, made from wheat flour and water (salt allowed). Egg-free: do not use yellow wonton or egg-roll wrappers. Buy a 12\u201316 oz pack with at least 32; keep extras wrapped. Wheat.",
+        "note": "HARD CONTRACT: store-bought round dumpling (jiaozi / gyoza-style) wrappers about 3 1/4 to 3 1/2 inches across, made from wheat flour and water (salt allowed). Egg-free: do not use yellow wonton or egg-roll wrappers. Buy a 12–16 oz pack with at least 32; keep extras wrapped. Wheat.",
         "preparation": "kept covered with a damp towel while folding",
         "optional": false,
         "role": "main"
@@ -364,11 +364,11 @@
     "prep_minutes": 39,
     "cook_minutes": 24,
     "total_minutes": 63,
-    "time_clock": "Prep 39 = 10 salt cabbage / aromatics / dip / squeeze + 4 mix filling + 25 fold 32 dumplings (about 45 seconds each). Cook 24 = two pan-fry batches of 12 (1 preheat + 2 fry + 7 covered steam + 2 uncovered re-crisp). Total 63. The 30\u201345 band in selection was rough; this clock includes honest fold time.",
+    "time_clock": "Prep 39 = 10 salt cabbage / aromatics / dip / squeeze + 4 mix filling + 25 fold 32 dumplings (about 45 seconds each). Cook 24 = two pan-fry batches of 12 (1 preheat + 2 fry + 7 covered steam + 2 uncovered re-crisp). Total 63. The 30–45 band in selection was rough; this clock includes honest fold time.",
     "heat": "Medium-high to preheat the oil and fry the bottoms; medium for the covered steam; medium uncovered to evaporate water and re-crisp. Stovetop only. No deep-fry, no boil, no oven.",
     "doneness": "Bottoms deep golden and crisp; tops tender and translucent, not gummy-white. Filling firm, juicy, no pink, 160 F if checked. Water fully evaporated before plating so bottoms stay crisp. kitchen_tested is false.",
-    "effort": "moderate",
-    "complexity": "standard",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
     "dietary_eligibility": {
       "contains_meat": true,
       "contains_poultry": false,
@@ -575,7 +575,7 @@
     }
   ],
   "scaling_notes": {
-    "1": "8 dumplings: 4 oz ground pork, 2 oz cabbage (1/8 tsp salt to sweat), 1 scallion, 1 tsp ginger, 1/2 garlic clove, 1 tsp soy + 1/2 tsp sesame oil in filling, pinch sugar/white pepper/salt, 1/4 tsp cornstarch, 1/2 tbsp water. Dip floor: 1 tbsp soy, 1 tbsp rice vinegar, a few drops sesame oil. One batch in an 8\u201310-inch nonstick skillet with lid: 2 tsp oil and 1/4 cup water; same 2 / 7 / 2 minute timing.",
+    "1": "8 dumplings: 4 oz ground pork, 2 oz cabbage (1/8 tsp salt to sweat), 1 scallion, 1 tsp ginger, 1/2 garlic clove, 1 tsp soy + 1/2 tsp sesame oil in filling, pinch sugar/white pepper/salt, 1/4 tsp cornstarch, 1/2 tbsp water. Dip floor: 1 tbsp soy, 1 tbsp rice vinegar, a few drops sesame oil. One batch in an 8–10-inch nonstick skillet with lid: 2 tsp oil and 1/4 cup water; same 2 / 7 / 2 minute timing.",
     "2": "16 dumplings: half the filling and dip. One batch in the 12-inch skillet with 1 1/2 tbsp oil and 1/2 cup water. Cook block drops to 12 minutes; fold block to about 12 minutes.",
     "4": "As written: 32 dumplings, two batches, 63-minute clock.",
     "base_servings": 4,
@@ -592,9 +592,9 @@
       "do not crowd: 16 dumplings max per 12-inch batch"
     ]
   },
-  "coverage_contribution": "Opens the dumpling format (0 in the base). Deepens chinese-inspired beyond ginger-scallion fish packets. Ground pork is a new pork shape (live pork is cider braise, jerk chops, and air-fryer tenderloin). Adds the crisp-bottom pan-fry + steam technique \u2014 a texture story the catalog lacks.",
+  "coverage_contribution": "Opens the dumpling format (0 in the base). Deepens chinese-inspired beyond ginger-scallion fish packets. Ground pork is a new pork shape (live pork is cider braise, jerk chops, and air-fryer tenderloin). Adds the crisp-bottom pan-fry + steam technique — a texture story the catalog lacks.",
   "near_duplicate_review": "Compared with Ginger Scallion Fish Packets: shares chinese-inspired ginger/scallion aromatics, but steamed fish in parchment vs. pleated pork dumplings pan-fried then steamed. Compared with Jamaican Jerk Pork Chops / Air-Fryer Honey-Mustard Pork Tenderloin / Cider-Braised Pork Shoulder: same animal, but ground pork in wrappers vs. chops, tenderloin, and braise. Compared with Spiced Lamb Meatballs: ground-meat shaping, but lamb in Mediterranean tomato sauce. Compared with Peanut Noodle Stir-Fry / Sesame Soba Noodle Bowl: soy-sesame flavors, but noodles and plant protein. Deliberately not chicken potstickers (chicken load), not shrimp dumplings (shellfish), not a stir-fry.",
-  "selection_alignment": "Matches selection.json: chinese-inspired \u00b7 dumplings \u00b7 ground pork \u00b7 hh001_like false. Allergen tokens meat/wheat/soy/sesame (selection gluten\u2192wheat; meat added for pork). Selection band 30\u201345 was rough; honest written clock with fold time is 63.",
+  "selection_alignment": "Matches selection.json: chinese-inspired · dumplings · ground pork · hh001_like false. Allergen tokens meat/wheat/soy/sesame (selection gluten→wheat; meat added for pork). Selection band 30–45 was rough; honest written clock with fold time is 63.",
   "recommendation_eligible": false,
   "structural_qa_state": "freeze_r4_images_present_awaiting_preflight"
 }

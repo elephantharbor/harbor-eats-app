@@ -14,7 +14,7 @@
     "dish_id": "ethiopian-beef-tibs",
     "slug": "ethiopian-beef-tibs",
     "title": "Ethiopian Berbere Beef Tibs",
-    "description": "Cubed beef quickly saut\u00e9ed with onion, garlic, ginger, and berbere until deeply spiced and browned, finished with tomato and herbs. Served with rice or greens (injera optional if available).",
+    "description": "Cubed beef quickly sautéed with onion, garlic, ginger, and berbere until deeply spiced and browned, finished with tomato and herbs. Served with rice or greens (injera optional if available).",
     "cuisine": "ethiopian",
     "meal_format": "skillet-saute",
     "primary_ingredient": "beef",
@@ -51,7 +51,7 @@
     "immutable": true,
     "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r3. Not certified. Not published. kitchen_tested is false.",
     "title": "Ethiopian Berbere Beef Tibs",
-    "description": "Cubed beef quickly saut\u00e9ed with onion, garlic, ginger, and berbere until deeply spiced and browned, finished with tomato and herbs. Served with rice or greens (injera optional if available).",
+    "description": "Cubed beef quickly sautéed with onion, garlic, ginger, and berbere until deeply spiced and browned, finished with tomato and herbs. Served with rice or greens (injera optional if available).",
     "base_servings": 4,
     "ingredients": [
       {
@@ -199,11 +199,11 @@
       },
       {
         "ingredient_id": "cooked-rice-or-greens",
-        "name": "cooked rice or saut\u00e9ed greens",
-        "display_name": "cooked rice or saut\u00e9ed greens, for serving",
+        "name": "cooked rice or sautéed greens",
+        "display_name": "cooked rice or sautéed greens, for serving",
         "quantity": 4,
         "unit": "cup",
-        "note": "about 1 cup cooked rice or wilted greens per person. Injera is optional if available locally \u2014 not required by this package and not listed as a shopping dependency.",
+        "note": "about 1 cup cooked rice or wilted greens per person. Injera is optional if available locally — not required by this package and not listed as a shopping dependency.",
         "preparation": null,
         "optional": false,
         "role": "component"
@@ -255,7 +255,7 @@
       {
         "step_number": 4,
         "title": "Finish tibs and plate",
-        "body": "Return the seared beef and any plate juices to the skillet. Toss over medium-high heat until the beef is coated and cooked to medium (about 135\u2013140 F for cubes), about 2 to 3 minutes. Do not stew into a long braise \u2014 tibs stay skillet-quick. Off heat, stir in lime juice and cilantro. Serve over cooked rice or saut\u00e9ed greens. Injera on the side is optional if you have it; it is not required. No yogurt sauce. No nuts. kitchen_tested is false.",
+        "body": "Return the seared beef and any plate juices to the skillet. Toss over medium-high heat until the beef is coated and cooked to medium (about 135–140 F for cubes), about 2 to 3 minutes. Do not stew into a long braise — tibs stay skillet-quick. Off heat, stir in lime juice and cilantro. Serve over cooked rice or sautéed greens. Injera on the side is optional if you have it; it is not required. No yogurt sauce. No nuts. kitchen_tested is false.",
         "ingredient_refs": [
           "beef-sirloin",
           "lime",
@@ -309,9 +309,9 @@
     "cook_minutes": 25,
     "total_minutes": 40,
     "heat": "Medium-high to sear beef; medium for onion base; medium-high to finish. No oven. No grill required.",
-    "doneness": "Beef cubes browned outside, medium inside (~135\u2013140 F). Onions soft and brick-red with berbere. Tomato melted into the base. Not a long braise. kitchen_tested is false.",
-    "effort": "moderate",
-    "complexity": "standard",
+    "doneness": "Beef cubes browned outside, medium inside (~135–140 F). Onions soft and brick-red with berbere. Tomato melted into the base. Not a long braise. kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
     "dietary_eligibility": {
       "contains_meat": true,
       "contains_poultry": false,
@@ -369,7 +369,7 @@
       "images": "package_revision is freeze-r3. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
       "cuisine_gap": "ethiopian is the dish.cuisine coverage label and is not a D-02 cuisine slug. Do not invent ethiopian as a vocabulary tag.",
       "meal_format": "skillet-saute is format metadata, not a vocabulary tag.",
-      "primary_ingredient": "beef \u2014 no dedicated D-02 ingredient slug required in tags.",
+      "primary_ingredient": "beef — no dedicated D-02 ingredient slug required in tags.",
       "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes meat. List meat when beef is present."
     }
   },
@@ -471,12 +471,12 @@
     {
       "check": "times",
       "result": "pass_with_stated_clock",
-      "detail": "Prep 15 (cube, season, slice, mince; includes 10-minute rest overlap) + cook 25 (sear ~5\u20138 with batches + onion 8 + spices/tomato 4 + finish 3) = 40."
+      "detail": "Prep 15 (cube, season, slice, mince; includes 10-minute rest overlap) + cook 25 (sear ~5–8 with batches + onion 8 + spices/tomato 4 + finish 3) = 40."
     },
     {
       "check": "scaling_1_2_4",
       "result": "pass_with_rounding_notes",
-      "detail": "Keep cubes in a single layer; use a smaller skillet at 1\u20132. Berbere heat judgment does not quarter linearly \u2014 start with 1\u20131.5 tsp for 1 serving."
+      "detail": "Keep cubes in a single layer; use a smaller skillet at 1–2. Berbere heat judgment does not quarter linearly — start with 1–1.5 tsp for 1 serving."
     },
     {
       "check": "dietary_vs_ingredients",
@@ -510,7 +510,7 @@
     }
   ],
   "scaling_notes": {
-    "1": "6 oz beef, 1/2 onion, 1\u20131.5 tsp berbere, small skillet, 1 cup rice or greens.",
+    "1": "6 oz beef, 1/2 onion, 1–1.5 tsp berbere, small skillet, 1 cup rice or greens.",
     "2": "Half ingredients. Same method; one sear batch.",
     "4": "As written. Likely two sear batches in a 12-inch skillet.",
     "base_servings": 4,
@@ -526,8 +526,8 @@
       "injera optional not required"
     ]
   },
-  "coverage_contribution": "Opens Ethiopian cuisine (empty). Berbere spice system unused. Beef only existed as grilled flank \u2014 this is a skillet saut\u00e9 shape. Avoids misir wot lentil collision.",
-  "near_duplicate_review": "Compared with Gochujang Grilled Flank Steak: same animal family, different cut, spice system (berbere vs gochujang), and skillet-saut\u00e9 vs grill. Compared with Spiced Lamb Meatballs: different animal and Mediterranean tomato simmer. Compared with Smoky Lentil Sweet Potato Stew / Lentil Stuffed Cabbage: deliberately not misir wot. Compared with Doro wat style chicken: chicken overload avoided. Not a yogurt-heavy plate. Not a live-catalog duplicate.",
+  "coverage_contribution": "Opens Ethiopian cuisine (empty). Berbere spice system unused. Beef only existed as grilled flank — this is a skillet sauté shape. Avoids misir wot lentil collision.",
+  "near_duplicate_review": "Compared with Gochujang Grilled Flank Steak: same animal family, different cut, spice system (berbere vs gochujang), and skillet-sauté vs grill. Compared with Spiced Lamb Meatballs: different animal and Mediterranean tomato simmer. Compared with Smoky Lentil Sweet Potato Stew / Lentil Stuffed Cabbage: deliberately not misir wot. Compared with Doro wat style chicken: chicken overload avoided. Not a yogurt-heavy plate. Not a live-catalog duplicate.",
   "batch_challenges": "A",
   "recommendation_eligible": false,
   "structural_qa_state": "freeze_r3_images_present_awaiting_preflight"

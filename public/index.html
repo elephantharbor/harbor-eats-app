@@ -347,6 +347,7 @@
               <span>Weaving tonight’s picks…</span>
             </div>
             <div class="tonight-plan" id="tonightPlanRoot" hidden>
+              <div id="tonightPlanPrefs"></div>
               <div id="tonightPlanSections"></div>
               <div class="card tonight-find-more" id="tonightFindMore">
                 <p class="card-kicker">Not feeling any of these?</p>
@@ -464,6 +465,7 @@
                 <p class="eyebrow">Plan our dinners</p>
                 <h1 class="title" id="planCountTitle">How many dinners?</h1>
                 <p class="lede">Count the nights you want covered. Leftovers and nights out can take a spot later.</p>
+                <div id="planCountPrefs"></div>
               </div>
             </header>
             <div class="plan-count-layout" id="planCountOptions"></div>
@@ -486,6 +488,7 @@
                 <p class="eyebrow" id="planReviewEyebrow">Your plan</p>
                 <h1 class="title" id="planReviewTitle">Here’s a good plan</h1>
                 <p class="lede" id="planReviewLede">One dinner per night, picked for your table. Swap anything that doesn’t feel right.</p>
+                <div id="planReviewPrefs"></div>
                 <p class="meta" id="planReviewStarIntro" hidden></p>
               </div>
               <button class="btn btn-quiet btn-sm plan-overflow" type="button" id="btnPlanReviewMenu" aria-label="Plan options" aria-haspopup="menu">⋯</button>
@@ -882,9 +885,10 @@
         <form method="dialog" class="sheet__inner">
           <h2 class="card-title" id="swapSheetTitle">Swap dinner</h2>
           <p class="meta" id="swapSheetNow"></p>
+          <p class="sheet-error" id="swapSheetError" hidden></p>
           <div id="swapAlternatives"></div>
           <div class="sheet__actions">
-            <button class="btn btn-quiet" type="button" id="btnSwapKeep">Keep this one</button>
+            <button class="btn btn-quiet" type="button" id="btnSwapKeep" data-action="swap-keep">Keep this one</button>
             <button class="btn btn-quiet" type="button" id="btnSwapLeftovers" hidden>Make it leftovers</button>
             <button class="btn btn-quiet" type="button" id="btnSwapEatingOut" hidden>We’re eating out</button>
           </div>
@@ -982,6 +986,7 @@
   <script src="/meal-identity.js"></script>
   <script src="/nav-context.js"></script>
   <script src="/taste-ui.js"></script>
+  <script src="/planning-ui.js"></script>
   <script src="/app.js"></script>
   <script>
     if ("serviceWorker" in navigator) {

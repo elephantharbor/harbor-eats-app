@@ -13,10 +13,9 @@
     "primary_ingredient": "chicken",
     "texture": "mixed",
     "flavor_profile": "savory",
-    "effort_band": "easy",
     "weeknight": true,
     "exploration": 0.45,
-    "plate": "\ud83c\udf57",
+    "plate": "🍗",
     "tone": "tone-a",
     "tags": [
       "poultry",
@@ -51,7 +50,8 @@
     "prep_minutes": 15,
     "cook_minutes": 45,
     "total_minutes": 60,
-    "effort": "Easy",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
     "methods": [
       "oven",
       "sheet-pan"
@@ -93,12 +93,12 @@
       },
       {
         "name": "kosher salt",
-        "quantity": "1\u00bd tsp",
+        "quantity": "1½ tsp",
         "note": null
       },
       {
         "name": "black pepper",
-        "quantity": "\u00bd tsp",
+        "quantity": "½ tsp",
         "note": null
       }
     ],
@@ -120,7 +120,7 @@
       {
         "step_number": 2,
         "title": "Roast",
-        "body": "Roast in that hot oven at 425\u00b0F until the chicken reaches 165\u00b0F, 35\u201340 minutes. Add the green beans for about the last 12 minutes.",
+        "body": "Roast in that hot oven at 425°F until the chicken reaches 165°F, 35–40 minutes. Add the green beans for about the last 12 minutes.",
         "ingredient_refs": [
           "chicken thighs",
           "green beans"
@@ -198,14 +198,14 @@
         "quantity": 1.5,
         "unit": "tsp",
         "note": null,
-        "raw_quantity": "1\u00bd tsp"
+        "raw_quantity": "1½ tsp"
       },
       {
         "name": "black pepper",
         "quantity": 0.5,
         "unit": "tsp",
         "note": null,
-        "raw_quantity": "\u00bd tsp"
+        "raw_quantity": "½ tsp"
       }
     ]
   },
@@ -244,7 +244,7 @@
     "gates_a_o": null,
     "image_gates": null,
     "evidence_basis": "legacy_v1_draft_correction",
-    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Cook time now covers the 35\u201340 minute roast plus a 5 minute rest. Green beans go on for about the last 12 minutes, a draft timing, not a kitchen test. Salt and pepper were used in v1 and unlisted. Poultry is the allergen for the chicken thighs. Meat is not added. Poultry and meat are not diets, so they are not dietary labels. sheet-pan is not a diet and not an allergen. No dairy-free claim. kitchen_tested is false. Recipe provenance is legacy_unknown."
+    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Cook time now covers the 35–40 minute roast plus a 5 minute rest. Green beans go on for about the last 12 minutes, a draft timing, not a kitchen test. Salt and pepper were used in v1 and unlisted. Poultry is the allergen for the chicken thighs. Meat is not added. Poultry and meat are not diets, so they are not dietary labels. sheet-pan is not a diet and not an allergen. No dairy-free claim. kitchen_tested is false. Recipe provenance is legacy_unknown."
   },
   "publication": {
     "status": "draft",
@@ -262,8 +262,8 @@
     "recipe_provenance": "legacy_unknown",
     "images_this_pass": false,
     "v1_left_unchanged": true,
-    "reason": "Header cook time undercuts the 165\u00b0F roast, and green beans cannot take the full roast.",
-    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Cook time now covers the 35\u201340 minute roast plus a 5 minute rest. Green beans go on for about the last 12 minutes, a draft timing, not a kitchen test. Salt and pepper were used in v1 and unlisted. Poultry is the allergen for the chicken thighs. Meat is not added. Poultry and meat are not diets, so they are not dietary labels. sheet-pan is not a diet and not an allergen. No dairy-free claim. kitchen_tested is false. Recipe provenance is legacy_unknown."
+    "reason": "Header cook time undercuts the 165°F roast, and green beans cannot take the full roast.",
+    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Cook time now covers the 35–40 minute roast plus a 5 minute rest. Green beans go on for about the last 12 minutes, a draft timing, not a kitchen test. Salt and pepper were used in v1 and unlisted. Poultry is the allergen for the chicken thighs. Meat is not added. Poultry and meat are not diets, so they are not dietary labels. sheet-pan is not a diet and not an allergen. No dairy-free claim. kitchen_tested is false. Recipe provenance is legacy_unknown."
   },
   "package_revision": "legacy-audit-r3"
 }

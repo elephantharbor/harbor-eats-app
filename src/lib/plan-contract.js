@@ -74,6 +74,7 @@ export const MUTATION_EFFECTS = Object.freeze({
   vote: "none",
   finalize: "none",
   set_count: "none",
+  set_planning_preferences: "none",
   start_shopping: "start",
   set_line_state: "line",
 });
@@ -128,6 +129,12 @@ function normalizeHints(value) {
   return { ok: true, hints };
 }
 
+function optionalFlag(value, name) {
+  if (value == null) return { ok: true, value: false };
+  if (typeof value !== "boolean") return { ok: false, error: `${name}_invalid` };
+  return { ok: true, value };
+}
+
 /**
  * Structured planner intent. Later natural-language work can fill this
  * object. This function does not parse a sentence and does not call a model.
@@ -146,6 +153,10 @@ export function parsePlanIntent(input = {}) {
   if (participant_ids == null) return { ok: false, error: "participant_ids_invalid", status: 400 };
   const hints = normalizeHints(input.practical_hints);
   if (!hints.ok) return { ok: false, error: hints.error, status: 400 };
+  const keepEasy = optionalFlag(input.keep_it_easy, "keep_it_easy");
+  if (!keepEasy.ok) return { ok: false, error: keepEasy.error, status: 400 };
+  const keepSimple = optionalFlag(input.keep_ingredients_simple, "keep_ingredients_simple");
+  if (!keepSimple.ok) return { ok: false, error: keepSimple.error, status: 400 };
   let max_cook_minutes = null;
   if (input.max_cook_minutes != null) {
     if (typeof input.max_cook_minutes !== "number" || input.max_cook_minutes < 0) {
@@ -194,6 +205,8 @@ export function parsePlanIntent(input = {}) {
       meal_styles,
       participant_ids,
       practical_hints: hints.hints,
+      keep_it_easy: keepEasy.value,
+      keep_ingredients_simple: keepSimple.value,
       slots,
       scheduled_dates,
     },
@@ -362,5 +375,6 @@ export function presentDinnerPlan(plan) {
     shop_deltas: plan.shop_deltas,
     votes: plan.votes,
     history: projectDinnerHistory(plan),
+    planner: plan.planner || null,
   };
 }
