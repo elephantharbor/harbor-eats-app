@@ -38,6 +38,29 @@
     return `<svg class="icon${extraClass ? " " + extraClass : ""}" aria-hidden="true"><use href="#i-${name}" /></svg>`;
   }
 
+  /** Mark cached/already-complete meal images visible (onload may not replay). */
+  function hydrateMealMedia(root) {
+    const scope = root && root.querySelectorAll ? root : document;
+    scope.querySelectorAll(".meal-media:not(.meal-media--ready):not(.meal-media--error) .meal-media__img").forEach((img) => {
+      if (img.complete && img.naturalWidth > 0) {
+        const shell = img.closest(".meal-media");
+        if (shell) shell.classList.add("meal-media--ready");
+      }
+    });
+  }
+
+  app.addEventListener(
+    "load",
+    (event) => {
+      const img = event.target;
+      if (img && img.classList && img.classList.contains("meal-media__img")) {
+        const shell = img.closest(".meal-media");
+        if (shell) shell.classList.add("meal-media--ready");
+      }
+    },
+    true
+  );
+
   /** Recipe-specific photo when the catalog has one; quiet plate fallback otherwise. */
   function mealMediaHtml(meal, opts) {
     const o = opts || {};
@@ -6604,6 +6627,7 @@
       track: track,
       escapeHtml: escapeHtml,
       mealMediaHtml: mealMediaHtml,
+      hydrateMealMedia: hydrateMealMedia,
       showView: function (name, opts) {
         show(name, opts || {});
       },

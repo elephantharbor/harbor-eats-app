@@ -85,7 +85,7 @@ These are under Settings → Appearance. `public/theme.js` runs synchronously in
 - Every catalog meal has recipe-specific photography bundled under `public/images/meals/<recipe_slug>.webp` (1200×900) and `-640.webp`.
 - The style is a consistent 4:3 crop: bright, food-forward overhead or three-quarter shots.
 - Nothing is hotlinked.
-- `public/meal-media.js` resolves images by `recipe_slug`, then `recipe_version_id`, then title.
+- `public/meal-media-manifest.js` (generated from catalog) supplies titles; `public/meal-media.js` resolves images by `recipe_slug`, then `recipe_version_id`, then title.
 - Unknown meals render a quiet placeholder instead of a gradient.
 - New catalog meals need both files, and `test/meal-media.test.js` fails until they exist.
 

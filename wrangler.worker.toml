@@ -7,7 +7,8 @@ name = "harbor-eats-app"
 account_id = "7e9f4dbfec6ef1f101c8088a5f0cacd1"
 main = "src/index.js"
 compatibility_date = "2026-09-28"
-workers_dev = true
+# Retired public mirror — authoritative surface is harbor-eats-app.pages.dev (see docs/DEPLOYMENT.md).
+workers_dev = false
 
 # Pages project name (when linked): harbor-eats-app
 # Preview URL target: https://harbor-eats-app.pages.dev

@@ -561,6 +561,10 @@
     );
   }
 
+  function hydrateMedia(root) {
+    if (d().hydrateMealMedia) d().hydrateMealMedia(root || document);
+  }
+
   function paint() {
     const rootEl = document.getElementById("findRoot");
     if (!rootEl) return;
@@ -756,6 +760,7 @@
       html += "</div></section>";
     });
     main.innerHTML = html;
+    hydrateMedia(main);
   }
 
   function paintResults(main, resp) {
@@ -808,6 +813,7 @@
       body += "</div>";
     }
     main.innerHTML = header + body;
+    hydrateMedia(main);
   }
 
   async function applyQueryPatch(patch, opts) {

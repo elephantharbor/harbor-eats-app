@@ -2243,10 +2243,41 @@ async function postEligibilityCheck(env, body, session) {
   });
 }
 
+const WORKERS_DEV_RETIRED_BODY = JSON.stringify({
+  ok: false,
+  error: "workers_dev_retired",
+  message:
+    "harbor-eats-app.elephantharbor.workers.dev is retired. Use https://harbor-eats-app.pages.dev as the supported product surface.",
+  canonical: "https://harbor-eats-app.pages.dev",
+});
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const path = url.pathname.replace(/\/+$/, "") || "/";
+
+    if (url.hostname.endsWith(".workers.dev")) {
+      if (path === "/api/health" && request.method === "GET") {
+        return json(
+          {
+            ok: false,
+            retired: true,
+            canonical: "https://harbor-eats-app.pages.dev",
+            detail: "workers_dev mirror retired; deploy with workers_dev disabled after ops cutover",
+          },
+          410
+        );
+      }
+      return new Response(WORKERS_DEV_RETIRED_BODY, {
+        status: 410,
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "Cache-Control": "no-store",
+          Link: '<https://harbor-eats-app.pages.dev>; rel="canonical"',
+          ...CORS,
+        },
+      });
+    }
 
     if (request.method === "OPTIONS") {
       return new Response(null, { status: 204, headers: CORS });
