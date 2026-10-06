@@ -44,6 +44,7 @@ import {
 import { buildTasteProfile } from "./lib/taste-model.js";
 import { routeTasteRequest } from "./lib/taste-profile.js";
 import { routeDinnerPlanRequest } from "./lib/dinner-plan-routes.js";
+import { routeDiscoveryRequest } from "./discovery/http.js";
 import {
   getConceptBySlug,
   getRecipeVersion,
@@ -2426,6 +2427,12 @@ export default {
         {
           const dinnerRes = await routeDinnerPlanRequest(env, request, path, url, { writeOrigin });
           if (dinnerRes) return dinnerRes;
+        }
+
+        // D-07 catalog discovery. Read-only search. Plan writes stay on dinner-plan mutations.
+        {
+          const discoveryRes = await routeDiscoveryRequest(env, request, path, url);
+          if (discoveryRes) return discoveryRes;
         }
 
         if (path === "/api/preference-evidence" && request.method === "POST") {
