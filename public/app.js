@@ -1833,8 +1833,10 @@
       whyLabel.hidden = !whyLines.length;
     }
     if (whyEl) {
-      if (whyLines.length) whyEl.textContent = whyLines.join("\n");
-      else {
+      if (whyLines.length) {
+        whyEl.textContent = whyLines.join("\n");
+        whyEl.hidden = false;
+      } else {
         whyEl.textContent = "";
         whyEl.hidden = true;
       }
