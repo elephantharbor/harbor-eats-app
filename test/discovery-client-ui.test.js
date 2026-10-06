@@ -5,10 +5,24 @@ import {
   findPathFromState,
   queryHasActiveCriteria,
   relaxRemoveChips,
+  timeChipIsOn,
+  timeChipTogglePatch,
 } from "../src/discovery/client-ui.js";
 import { emptyQuery, normalizeQuery, parseQuery, serializeQueryString } from "../src/discovery/query.js";
 
 describe("discovery client-ui", () => {
+  it("toggles the Under 30 min chip off when already applied", () => {
+    const on = normalizeQuery({ criteria: { quick: true } }).query.criteria;
+    expect(timeChipIsOn(on)).toBe(true);
+    expect(timeChipTogglePatch(on)).toEqual({ quick: false, max_minutes: null });
+    const off = normalizeQuery({ criteria: { quick: false } }).query.criteria;
+    expect(timeChipIsOn(off)).toBe(false);
+    expect(timeChipTogglePatch(off)).toEqual({ quick: true, max_minutes: null });
+    const max = normalizeQuery({ criteria: { max_minutes: 45, quick: false } }).query.criteria;
+    expect(timeChipIsOn(max)).toBe(true);
+    expect(timeChipTogglePatch(max)).toEqual({ quick: false, max_minutes: null });
+  });
+
   it("treats Easy, Quick, and Simple as independent query fields", () => {
     const easy = normalizeQuery({ criteria: { effort_levels: ["easy"] } }).query;
     const quick = normalizeQuery({ criteria: { quick: true } }).query;
