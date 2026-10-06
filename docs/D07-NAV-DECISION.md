@@ -13,9 +13,9 @@ Mode names are the contract’s (`DISCOVERY_MODES` in `src/discovery/constants.j
 | Find tab (phone), Find in the top nav (tablet, desktop) | `standalone` | `full` | Find |
 | Home hero “Find a dinner” | `standalone` | `full` | Find |
 | Tonight “Find a dinner” (no plan), Tonight “See all dinners” (with a plan) | `standalone` | `full` | Find |
-| Swap sheet “See all options” | `replace_plan_meal` | `focus` | The section that opened the sheet (Home or Tonight) |
-| Plan meal “More” → “Find something else” | `replace_plan_meal` | `focus` | Same as above |
-| Empty slot “Pick one yourself” | `choose_for_plan` | `focus` | Same as above |
+| Swap sheet “See all options” | `replace_plan_meal` | `focus` | None (Back returns to Home or Tonight) |
+| Plan meal “More” → “Find something else” | `replace_plan_meal` | `focus` | None |
+| Empty slot “Pick one yourself” | `choose_for_plan` | `focus` | None |
 
 Leftovers and eating-out rows are not search targets in the contract, so “Plan a dinner here instead” keeps the Cycle 3 §6.4 swap-sheet flow and does not open Discovery in V1.
 
