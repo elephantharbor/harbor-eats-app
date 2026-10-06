@@ -383,8 +383,8 @@
     "total_minutes": 29,
     "heat": "Skillet preheated over medium-high until very hot. Blacken over medium-high. No oven. No grill required.",
     "doneness": "Spice crust darkened (blackened) and fragrant, not raw-spice pale and not incinerated ash. Fish opaque and flakes at the thickest point, about 145 F. Remoulade cold and spoonable. kitchen_tested is false.",
-    "effort": "easy",
-    "complexity": "simple",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
     "dietary_eligibility": {
       "contains_meat": false,
       "contains_poultry": false,
@@ -442,7 +442,7 @@
       "dietary_eligibility": "contains_finfish true. contains_dairy false. hh001 true. dairy_free label unconditional via egg-mayo remoulade contract.",
       "vocabulary": "cajun is the cuisine field but is not a D-02 cuisine slug; american is used in vocabulary_tag_ids (same pattern as potato-leek-gratin using american when french was absent). spicy, smoky, savory, herbaceous, crispy, tender are active slugs. meal_format fillet is not a D-02 meal_style slug and is not copied into tags. catfish has no D-02 ingredient slug.",
       "meal_format": "fillet is format metadata, not a vocabulary tag.",
-      "primary_ingredient": "catfish \u2014 no D-02 ingredient slug; not copied into tags.",
+      "primary_ingredient": "catfish — no D-02 ingredient slug; not copied into tags.",
       "package_revision": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true.",
       "images": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true."
     }
@@ -550,7 +550,7 @@
     {
       "check": "scaling_1_2_4",
       "result": "pass_with_rounding_notes",
-      "detail": "Base 4 fillets. Batch count shrinks at 1\u20132. See scaling_notes."
+      "detail": "Base 4 fillets. Batch count shrinks at 1–2. See scaling_notes."
     },
     {
       "check": "dietary_vs_ingredients",
@@ -579,7 +579,7 @@
     }
   ],
   "scaling_notes": {
-    "1": "One 6 oz catfish fillet. Rub: about 1.5 tsp total spice mix (still enough cayenne for a true blacken). Remoulade floor: 2 tbsp egg mayo, 1 tsp Dijon, 1 tsp lemon, 1 tsp relish, 1 tsp herbs, pinch salt \u2014 do not quarter into a smear that disappears. Oil: 2 tsp in the skillet. Same hot-skillet method; no batching.",
+    "1": "One 6 oz catfish fillet. Rub: about 1.5 tsp total spice mix (still enough cayenne for a true blacken). Remoulade floor: 2 tbsp egg mayo, 1 tsp Dijon, 1 tsp lemon, 1 tsp relish, 1 tsp herbs, pinch salt — do not quarter into a smear that disappears. Oil: 2 tsp in the skillet. Same hot-skillet method; no batching.",
     "2": "Two fillets (about 12 oz). Half the rub and remoulade. One batch in the skillet. Halve the oil.",
     "4": "As written. Four fillets, likely two batches in a 12-inch skillet.",
     "base_servings": 4,
@@ -596,7 +596,7 @@
     ]
   },
   "coverage_contribution": "Opens Cajun/Southern cuisine (0 live). Catfish is an unused finfish species in a salmon/cod-heavy catalog. Blackened spice crust is a different texture from battered fish tacos or lemon-herb fillets. Dairy-free remoulade keeps HH001 eligibility.",
-  "near_duplicate_review": "Compared with Crispy Fish Tacos: both are finfish, but tacos are battered/fried-style with cabbage slaw and Mexican format; this is blackened catfish with remoulade, plated fillet, Cajun spice. Compared with Maple-Mustard Glazed Salmon and Miso-Ginger Salmon: different species and glaze vs blackened crust. Compared with Ginger-Scallion Fish Packets and Citrus-Fennel Arctic Char: packet/steam and Scandinavian roast, not Cajun skillet. Compared with Grilled Swordfish Olive Caper: grilled Mediterranean, not blackened Cajun. Compared with Garlic-Tomato Mussels / Lemon-Garlic Shrimp Pasta: shellfish \u2014 deliberately avoided. Not shrimp and grits.",
+  "near_duplicate_review": "Compared with Crispy Fish Tacos: both are finfish, but tacos are battered/fried-style with cabbage slaw and Mexican format; this is blackened catfish with remoulade, plated fillet, Cajun spice. Compared with Maple-Mustard Glazed Salmon and Miso-Ginger Salmon: different species and glaze vs blackened crust. Compared with Ginger-Scallion Fish Packets and Citrus-Fennel Arctic Char: packet/steam and Scandinavian roast, not Cajun skillet. Compared with Grilled Swordfish Olive Caper: grilled Mediterranean, not blackened Cajun. Compared with Garlic-Tomato Mussels / Lemon-Garlic Shrimp Pasta: shellfish — deliberately avoided. Not shrimp and grits.",
   "batch_challenges": [
     "A",
     "B",

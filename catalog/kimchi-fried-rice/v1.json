@@ -220,7 +220,7 @@
       },
       {
         "step_number": 2,
-        "title": "Saut\u00e9 aromatics and kimchi",
+        "title": "Sauté aromatics and kimchi",
         "body": "Heat the neutral oil and 1 tsp toasted sesame oil in a 12-inch skillet or wok over medium-high heat. Add onion and scallion whites. Cook, stirring, until onion softens, about 2 to 3 minutes. Add garlic; cook 30 seconds. Add chopped plant kimchi. Cook until edges look slightly jammy and the pan smells sharp and spicy, about 3 to 4 minutes. Stir in gochujang, kimchi brine, soy sauce, and sugar until the paste loosens into the kimchi.",
         "ingredient_refs": [
           "neutral-oil",
@@ -300,8 +300,8 @@
     "total_minutes": 25,
     "heat": "Medium-high skillet or wok throughout. No oven.",
     "doneness": "Rice hot, red from kimchi, lightly toasted in spots. Kimchi jammy at edges. No raw onion crunch left in the base. kitchen_tested is false.",
-    "effort": "easy",
-    "complexity": "simple",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
     "dietary_eligibility": {
       "contains_meat": false,
       "contains_poultry": false,
@@ -364,8 +364,8 @@
       "images": "package_revision is freeze-r3. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
       "cuisine_gap": "korean is an active D-02 cuisine slug and is in vocabulary_tag_ids.",
       "meal_format": "fried-rice is format metadata, not a vocabulary tag.",
-      "primary_ingredient": "kimchi \u2014 no D-02 ingredient slug; not copied into tags.",
-      "hh001_contract": "plant_based_compatible true requires vegan kimchi (no fish sauce/shrimp) and no egg/bacon. Unconditional \u2014 not a skip-the-egg note."
+      "primary_ingredient": "kimchi — no D-02 ingredient slug; not copied into tags.",
+      "hh001_contract": "plant_based_compatible true requires vegan kimchi (no fish sauce/shrimp) and no egg/bacon. Unconditional — not a skip-the-egg note."
     }
   },
   "image": {
@@ -461,7 +461,7 @@
     {
       "check": "compounds",
       "result": "pass",
-      "detail": "Kimchi-gochujang base built in skillet. Not a frozen fried-rice entr\u00e9e. Vegan kimchi is a hard shopping contract."
+      "detail": "Kimchi-gochujang base built in skillet. Not a frozen fried-rice entrée. Vegan kimchi is a hard shopping contract."
     },
     {
       "check": "times",
@@ -522,7 +522,7 @@
     ]
   },
   "coverage_contribution": "Fried-rice format empty. Korean third meal that is neither grilled beef nor soft-tofu stew. Kimchi funk with HH001-capable vegan kimchi + no egg/bacon contracts.",
-  "near_duplicate_review": "Compared with Korean Soft Tofu Stew: same cuisine and plant-kimchi contract, different format (stew vs fried rice) and primary (tofu vs kimchi/rice). Compared with Gochujang Grilled Flank: Korean heat but beef grill vs plant fried rice. Compared with skillet shakshuka: egg-dinner claim left with shakshuka \u2014 this meal omits egg. Compared with bacon fried rice tropes: bacon deliberately forbidden. Not a live-catalog duplicate.",
+  "near_duplicate_review": "Compared with Korean Soft Tofu Stew: same cuisine and plant-kimchi contract, different format (stew vs fried rice) and primary (tofu vs kimchi/rice). Compared with Gochujang Grilled Flank: Korean heat but beef grill vs plant fried rice. Compared with skillet shakshuka: egg-dinner claim left with shakshuka — this meal omits egg. Compared with bacon fried rice tropes: bacon deliberately forbidden. Not a live-catalog duplicate.",
   "batch_challenges": "A",
   "recommendation_eligible": false,
   "structural_qa_state": "freeze_r3_images_present_awaiting_preflight"

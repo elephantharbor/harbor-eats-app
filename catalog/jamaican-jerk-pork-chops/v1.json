@@ -394,8 +394,8 @@
     "total_minutes": 52,
     "heat": "Medium skillet for the chops; lower to medium-low if the paste threatens to burn. No oven.",
     "doneness": "Pork chops 145 F in the thickest part away from bone, then 5-minute rest. Paste deep brown, not bitter black. Slaw crunchy. kitchen_tested is false.",
-    "effort": "moderate",
-    "complexity": "standard",
+    "effort_level": "moderate",
+    "ingredient_complexity": "adventurous",
     "dietary_eligibility": {
       "contains_meat": true,
       "contains_poultry": false,
@@ -559,7 +559,7 @@
     {
       "check": "scaling_1_2_4",
       "result": "pass_with_rounding_notes",
-      "detail": "Scotch bonnet does not quarter; use a small piece for 1\u20132. Thermometer target 145 F does not scale."
+      "detail": "Scotch bonnet does not quarter; use a small piece for 1–2. Thermometer target 145 F does not scale."
     },
     {
       "check": "dietary_vs_ingredients",
@@ -603,7 +603,7 @@
       "Scotch bonnet whole-count judgment"
     ]
   },
-  "coverage_contribution": "Opens Caribbean/Jamaican cuisine (empty) and weeknight pork-chop format. Live pork is only a long cider braise \u2014 this is a skillet chop with allspice\u2013Scotch bonnet jerk and pineapple slaw.",
+  "coverage_contribution": "Opens Caribbean/Jamaican cuisine (empty) and weeknight pork-chop format. Live pork is only a long cider braise — this is a skillet chop with allspice–Scotch bonnet jerk and pineapple slaw.",
   "near_duplicate_review": "Compared with Cider-Braised Pork Shoulder: same animal, different cut, clock, and spice system. Compared with Crispy Fish Tacos cabbage slaw: slaw idea only; protein and cuisine differ. Compared with Gochujang Grilled Flank: different animal and Korean heat. Not pulled-pork bowl. Not a live-31 duplicate.",
   "batch_challenges": "A,B,C",
   "recommendation_eligible": false,

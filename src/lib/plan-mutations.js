@@ -104,6 +104,8 @@ function applyPin(meal, entry) {
   meal.allergens = [...(pkg.allergens || [])];
   meal.vocabulary_tag_ids = [...(pkg.vocabulary_tag_ids || [])];
   meal.tags = [...(concept.tags || [])];
+  meal.effort_level = pkg.effort_level || null;
+  meal.ingredient_complexity = pkg.ingredient_complexity || null;
 }
 
 function clearRecipe(meal, kind) {
@@ -121,6 +123,8 @@ function clearRecipe(meal, kind) {
   meal.allergens = [];
   meal.vocabulary_tag_ids = [];
   meal.tags = [];
+  meal.effort_level = null;
+  meal.ingredient_complexity = null;
   meal.ratings = [];
 }
 
@@ -143,6 +147,8 @@ function blankMeal(ctx, position, kind) {
     allergens: [],
     vocabulary_tag_ids: [],
     tags: [],
+    effort_level: null,
+    ingredient_complexity: null,
     participant_ids: [],
     ratings: [],
   };
@@ -242,6 +248,8 @@ export function createDinnerPlan(input, ctx = {}) {
     dinner_count: input.intent?.dinner_count ?? input.meal_count,
     entry_point: input.entry_point,
     participant_ids: input.intent?.participant_ids || participant_ids,
+    keep_it_easy: input.keep_it_easy ?? input.intent?.keep_it_easy,
+    keep_ingredients_simple: input.keep_ingredients_simple ?? input.intent?.keep_ingredients_simple,
   });
   if (!parsed.ok) return parsed;
   if (parsed.intent.dinner_count !== counted.dinner_count) {
@@ -277,6 +285,7 @@ export function createDinnerPlan(input, ctx = {}) {
       constrained_requests: planned.constrained_requests,
       unscored_hints: planned.unscored_hints,
       catalog_size: planned.catalog_size,
+      preference_relaxations: planned.preference_relaxations || [],
     };
   } else {
     if (!Array.isArray(input.meals) || input.meals.length !== counted.dinner_count) {
@@ -696,6 +705,18 @@ function finalize(plan, ctx) {
   return { ok: true, votes_cast: (plan.votes || []).length, votes_required: false };
 }
 
+function setPlanningPreferences(plan, action) {
+  if (typeof action.keep_it_easy !== "boolean" || typeof action.keep_ingredients_simple !== "boolean") {
+    return fail("planning_preferences_invalid");
+  }
+  plan.intent = {
+    ...(plan.intent || {}),
+    keep_it_easy: action.keep_it_easy,
+    keep_ingredients_simple: action.keep_ingredients_simple,
+  };
+  return { ok: true };
+}
+
 function setCount(plan, action) {
   const counted = assertDinnerCount(action.meal_count);
   if (!counted.ok) return counted;
@@ -758,6 +779,8 @@ function dispatch(plan, action, ctx) {
       return finalize(plan, ctx);
     case "set_count":
       return setCount(plan, action);
+    case "set_planning_preferences":
+      return setPlanningPreferences(plan, action);
     case "start_shopping":
       markStarted(plan, ctx.now);
       return { ok: true };

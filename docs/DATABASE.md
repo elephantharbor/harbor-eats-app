@@ -26,9 +26,10 @@ Current chain:
 - `0009_evidence_origin_unproven.sql` — reclassify unproven legacy rows; default becomes `unproven`. Apply with 0008. See `docs/CYCLE1B-ORIGIN.md`
 - `0010_cycle2_taste_contract.sql` — taste vocabulary, diner tastes, planning hints, recipe packages, shopped ingredient snapshots, targeted feedback. Apply only after 0009. Not applied to production D1. See `docs/CYCLE2-CONTRACT.md`
 - `0011_cycle3_dinner_plan.sql` — household dinner plans, per-meal participants, pinned recipe versions, consolidated shopping list. Apply only after 0010. Not applied to production D1. See `docs/CYCLE3-CONTRACT.md`
-- `0012_catalog_runtime.sql` — normalized catalog dishes, versions, ingredients, steps, taste, dietary, allergens, images, provenance. Staging and local only. Do not apply to production D1.
+- `0012_catalog_runtime.sql` — normalized catalog dishes, versions, ingredients, steps, taste, dietary, allergens, images, provenance. Applied on preview and production. See `DEPLOYMENTS.md`.
+- `0013_classification.sql` — `effort_level`, `ingredient_complexity`, `classification_hash`, classification history, and the same two enums on `dinner_plan_meal`. Drops legacy `catalog_version.effort` and `catalog_dish.effort_band`. Not applied until the D-03 import in `docs/D03-D01-RELEASE.md`.
 
-Production runtime catalog content still lives in `src/lib/recipe-store.js` unless `CATALOG_SOURCE=d1`. Staging reads imported rows in the `catalog_*` tables from `0012`. Those rows come only from `catalog/<slug>/v1.json` through `scripts/import-catalog.mjs`. D1 is not a hand-edited CMS. The older `recipe_package_version` tables stay schema-ready and are not the staging menu.
+Published catalog rows are read from D1 when `CATALOG_SOURCE=d1` (preview and production). `src/lib/recipe-store.js` remains the in-memory fallback. Import packages with `scripts/import-catalog.mjs`. Existing preview and production databases take `data/d03-classification-import.sql` after `0013`, not a full replay of `data/staging-catalog-import.sql`. D1 is not a hand-edited CMS. The older `recipe_package_version` tables stay schema-ready and are not the menu.
 
 ### D1 foreign keys when altering referenced tables
 

@@ -314,8 +314,8 @@
     "total_minutes": 40,
     "heat": "Stock held at a bare simmer. Risotto pot over medium for shallot and toast, then medium to medium-low while ladling. Finish off heat.",
     "doneness": "Rice al dente with creamy starch suspension. Peas hot and bright. Spreads slowly on a plate. Lemon bright, not bitter from too much pith. kitchen_tested is false.",
-    "effort": "moderate",
-    "complexity": "moderate",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
     "dietary_eligibility": {
       "contains_meat": false,
       "contains_poultry": false,
@@ -330,7 +330,7 @@
       "hh001_reason": "Butter and vegetarian Parmesan are dairy. HH001 does not eat dairy. Vegetable stock and peas do not rescue eligibility."
     },
     "dietary_labels": [],
-    "dietary_label_note": "No dairy_free label. Butter and Parmesan are required. Vegetarian is dietary_eligibility via microbial-rennet Parmesan and vegetable stock \u2014 stated honestly, not a swap. Not plant-based.",
+    "dietary_label_note": "No dairy_free label. Butter and Parmesan are required. Vegetarian is dietary_eligibility via microbial-rennet Parmesan and vegetable stock — stated honestly, not a swap. Not plant-based.",
     "allergens": [
       "milk"
     ],
@@ -367,9 +367,9 @@
       "data_origin": "synthetic means authored, not cooked.",
       "allergens": "milk token for butter and Parmesan. Live PACKAGE_ALLERGEN_IDS may say dairy; do not silently remap milk to dairy.",
       "dietary_eligibility": "contains_dairy true. vegetarian_compatible true via microbial-rennet Parmesan + vegetable stock. hh001 false. No dairy_free label.",
-      "vocabulary": "italian is the D-02 cuisine slug (dish.cuisine is italian-inspired). savory, citrusy, creamy, rich, tender, fresh are active. risotto is meal_format, not a D-02 meal_style slug \u2014 not copied into tags. peas has no D-02 ingredient slug.",
-      "meal_format": "risotto \u2014 format metadata only.",
-      "primary_ingredient": "peas \u2014 not a D-02 slug; arborio is the starch vehicle.",
+      "vocabulary": "italian is the D-02 cuisine slug (dish.cuisine is italian-inspired). savory, citrusy, creamy, rich, tender, fresh are active. risotto is meal_format, not a D-02 meal_style slug — not copied into tags. peas has no D-02 ingredient slug.",
+      "meal_format": "risotto — format metadata only.",
+      "primary_ingredient": "peas — not a D-02 slug; arborio is the starch vehicle.",
       "package_revision": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true.",
       "images": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true."
     }
@@ -524,7 +524,7 @@
     ]
   },
   "coverage_contribution": "Opens risotto as a technique/format (0 live). Italian-inspired dairy main that is not pesto pasta, mushroom walnut bolognese, polenta stew, or potato-leek gratin. Peas keep the lead ingredient out of the mushroom-bolognese cluster.",
-  "near_duplicate_review": "Compared with Cashew Pesto Pasta / Mushroom Walnut Bolognese / Herbed Polenta Tomato Stew: all italian-inspired, but pasta/bolognese/polenta \u2014 not stirred Arborio risotto; those nut sauces are deliberately avoided here. Compared with Potato-Leek Gratin: both dairy, but gratin is baked potato custard; this is stovetop risotto with peas and lemon. Compared with Black Bean Quesadillas / Harissa Carrots with Feta: dairy elsewhere, different formats. Not a dairy-free cashew risotto.",
+  "near_duplicate_review": "Compared with Cashew Pesto Pasta / Mushroom Walnut Bolognese / Herbed Polenta Tomato Stew: all italian-inspired, but pasta/bolognese/polenta — not stirred Arborio risotto; those nut sauces are deliberately avoided here. Compared with Potato-Leek Gratin: both dairy, but gratin is baked potato custard; this is stovetop risotto with peas and lemon. Compared with Black Bean Quesadillas / Harissa Carrots with Feta: dairy elsewhere, different formats. Not a dairy-free cashew risotto.",
   "batch_challenges": [
     "B",
     "C",

@@ -14,7 +14,7 @@
     "dish_id": "thai-red-curry-kabocha",
     "slug": "thai-red-curry-kabocha",
     "title": "Thai Red Curry with Kabocha and Tofu",
-    "description": "Kabocha squash and browned tofu simmered in a coconut red curry built from vegetarian Thai red curry paste \u2014 no fish sauce, no dairy.",
+    "description": "Kabocha squash and browned tofu simmered in a coconut red curry built from vegetarian Thai red curry paste — no fish sauce, no dairy.",
     "cuisine": "thai-inspired",
     "meal_format": "curry",
     "primary_ingredient": "tofu",
@@ -52,7 +52,7 @@
     "immutable": true,
     "immutability_note": "v1 text package is complete for preflight. Master and card WebPs are present and frozen for preflight/audit. A later image add bumps package_revision to freeze-r1. Not planned, shopped, cooked, or rated. Not Vale-certified.",
     "title": "Thai Red Curry with Kabocha and Tofu",
-    "description": "Kabocha squash and browned tofu simmered in a coconut red curry built from vegetarian Thai red curry paste \u2014 no fish sauce, no dairy.",
+    "description": "Kabocha squash and browned tofu simmered in a coconut red curry built from vegetarian Thai red curry paste — no fish sauce, no dairy.",
     "base_servings": 4,
     "ingredients": [
       {
@@ -94,7 +94,7 @@
         "display_name": "vegetarian/vegan Thai red curry paste",
         "quantity": 3,
         "unit": "tbsp",
-        "note": "REQUIRED vegetarian/vegan paste (no shrimp paste, no fish sauce in the jar). Brand must list plant ingredients only. Unconditional \u2014 not a swap.",
+        "note": "REQUIRED vegetarian/vegan paste (no shrimp paste, no fish sauce in the jar). Brand must list plant ingredients only. Unconditional — not a swap.",
         "preparation": null,
         "optional": false,
         "role": "seasoning"
@@ -253,7 +253,7 @@
       {
         "step_number": 5,
         "title": "Add pepper, tofu, spinach",
-        "body": "Stir in the red bell pepper and the browned tofu. Simmer uncovered 3 to 4 minutes until the pepper softens slightly but stays bright. Fold in the baby spinach until wilted, about 1 minute. Stir in the lime juice. Taste for salt \u2014 adjust with salt only, never fish sauce.",
+        "body": "Stir in the red bell pepper and the browned tofu. Simmer uncovered 3 to 4 minutes until the pepper softens slightly but stays bright. Fold in the baby spinach until wilted, about 1 minute. Stir in the lime juice. Taste for salt — adjust with salt only, never fish sauce.",
         "ingredient_refs": [
           "red-bell-pepper",
           "extra-firm-tofu",
@@ -323,8 +323,8 @@
     "total_minutes": 55,
     "heat": "Medium-high to brown tofu. Medium to bloom paste and simmer curry. Rice: covered simmer then rest. No oven.",
     "doneness": "Kabocha tender when pierced. Tofu golden on edges. Spinach wilted. Curry cohesive, coconut-red, not broken. Rice fluffy. kitchen_tested is false.",
-    "effort": "moderate",
-    "complexity": "standard",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
     "dietary_eligibility": {
       "contains_meat": false,
       "contains_poultry": false,
@@ -494,7 +494,7 @@
     {
       "check": "dietary_vs_ingredients",
       "result": "pass",
-      "detail": "plant_based_compatible true. vegetarian_compatible true. contains_dairy false. contains_finfish/shellfish false \u2014 no fish sauce. allergens soy from tofu. HH001 true."
+      "detail": "plant_based_compatible true. vegetarian_compatible true. contains_dairy false. contains_finfish/shellfish false — no fish sauce. allergens soy from tofu. HH001 true."
     },
     {
       "check": "taste_vocabulary",

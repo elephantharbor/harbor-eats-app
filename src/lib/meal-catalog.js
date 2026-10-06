@@ -28,6 +28,8 @@ export function catalogMealToOption(meal, letter, plan_id) {
       tone: meal.tone,
       minutes: meal.minutes,
       effort: meal.effort,
+      effort_level: meal.effort_level || null,
+      ingredient_complexity: meal.ingredient_complexity || null,
       recipe_slug: meal.recipe_slug,
       recipe_version_id: meal.recipe_version_id,
       cuisine: meal.cuisine,

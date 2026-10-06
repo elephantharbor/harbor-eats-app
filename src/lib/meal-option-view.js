@@ -42,6 +42,8 @@ export function mergeCanonicalAttributes(existingRaw, incoming) {
     "tone",
     "minutes",
     "effort",
+    "effort_level",
+    "ingredient_complexity",
     "recipe_slug",
     "recipe_version_id",
     "cuisine",
@@ -81,6 +83,8 @@ function catalogForSlug(slug) {
     tone: concept.tone || null,
     minutes: prep + cook || null,
     effort: version.effort || null,
+    effort_level: version.effort_level || null,
+    ingredient_complexity: version.ingredient_complexity || null,
     cuisine: concept.cuisine || null,
     meal_format: concept.meal_format || null,
     tags: concept.tags || [],
@@ -104,6 +108,9 @@ export function projectMealOption(row) {
     (source.time && /\d/.test(String(source.time)) ? source.time : "") ||
     (minutes ? `${minutes} min` : "");
   const effort = source.effort || attrs.effort || (catalog && catalog.effort) || "";
+  const effortLevel = source.effort_level || attrs.effort_level || (catalog && catalog.effort_level) || null;
+  const ingredientComplexity =
+    source.ingredient_complexity || attrs.ingredient_complexity || (catalog && catalog.ingredient_complexity) || null;
   const storedChips = Array.isArray(source.chips) && source.chips.length
     ? source.chips
     : Array.isArray(attrs.chips) && attrs.chips.length
@@ -136,6 +143,8 @@ export function projectMealOption(row) {
     time,
     minutes: minutes || null,
     effort,
+    effort_level: effortLevel,
+    ingredient_complexity: ingredientComplexity,
     meal_format: mealFormat,
     cuisine: source.cuisine || attrs.cuisine || (catalog && catalog.cuisine) || "",
     pers: source.pers || attrs.pers || null,

@@ -3,6 +3,8 @@
  * Source of truth for structured recipes; IDs sync to D1 meal_option.recipe_version.
  */
 
+import { classificationForSlug } from "./classification-backfill.js";
+
 /** @typedef {{ name: string, quantity?: string, note?: string }} RecipeIngredient */
 /** @typedef {{ title: string, body: string, ingredient_refs?: string[] }} RecipeStep */
 
@@ -81,6 +83,11 @@ function concept(slug, def) {
       substitutions: def.substitutions,
     },
   };
+  const labels = classificationForSlug(slug);
+  if (labels) {
+    row.current_version.effort_level = labels.effort_level;
+    row.current_version.ingredient_complexity = labels.ingredient_complexity;
+  }
   return row;
 }
 
@@ -814,6 +821,8 @@ export function listCatalogMeals() {
       exploration: c.exploration,
       minutes: v.prep_minutes + v.cook_minutes,
       effort: v.effort,
+      effort_level: v.effort_level || null,
+      ingredient_complexity: v.ingredient_complexity || null,
       plate: c.plate,
       tone: c.tone,
       chips: c.chips,

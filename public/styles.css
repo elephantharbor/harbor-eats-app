@@ -4174,3 +4174,18 @@ button.plan-meal-title {
   font-size: var(--text-lg);
   font-weight: 700;
 }
+
+.plan-prefs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.sheet-error {
+  margin: var(--space-3) 0;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--color-warning-text);
+  background: var(--color-warning-soft);
+}

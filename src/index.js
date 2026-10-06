@@ -4,6 +4,7 @@
  * Auth: HttpOnly session cookie; household scope enforced server-side (Phase 2).
  */
 
+import { effortLabel } from "./lib/classification.js";
 import { constraintRowsFromKeys, filterEligibleOptions } from "./lib/eligibility.js";
 import {
   catalogReadsFromD1,
@@ -1719,7 +1720,9 @@ function serializeRecipeForClient(concept, version) {
     prep_minutes: version.prep_minutes,
     cook_minutes: version.cook_minutes,
     total_minutes: version.prep_minutes + version.cook_minutes,
-    effort: version.effort,
+    effort_level: version.effort_level || null,
+    ingredient_complexity: version.ingredient_complexity || null,
+    effort_label: effortLabel(version.effort_level),
     methods: version.methods,
     dietary_tags: version.dietary_tags,
     plate: concept.plate,

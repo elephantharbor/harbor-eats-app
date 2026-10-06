@@ -490,6 +490,10 @@
     previousMeal: null,
     roundBusy: false,
     dinnerPlan: null,
+    draftPlanPrefs: { keep_it_easy: false, keep_ingredients_simple: false },
+    swapOpener: null,
+    swapInFlight: false,
+    pendingDinnerToast: null,
     dinnerShop: null,
     dinnerUnfilled: [],
     dinnerDetailMeal: null,
@@ -1797,7 +1801,7 @@
       const stats = [
         ["users", serves + (serves === 1 ? " serving" : " servings"), "Serves"],
         ["clock", (recipe.total_minutes || "—") + " minutes", "Total time"],
-        ["gauge", recipe.effort || meal.effort || "—", "Effort"],
+        ["gauge", recipe.effort_label || recipe.effort || meal.effort || "—", "Effort"],
       ];
       statsEl.innerHTML = stats
         .map(function (s) {
@@ -2551,19 +2555,58 @@
     return null;
   }
 
+  function planningApi() {
+    return window.FlavorWeavePlanning;
+  }
+
+  function draftPrefs() {
+    if (!state.draftPlanPrefs) {
+      state.draftPlanPrefs = { keep_it_easy: false, keep_ingredients_simple: false };
+    }
+    return state.draftPlanPrefs;
+  }
+
+  function resetDraftPrefs() {
+    state.draftPlanPrefs = { keep_it_easy: false, keep_ingredients_simple: false };
+  }
+
+  function fillPrefSlot(id, prefs, scope) {
+    const el = document.getElementById(id);
+    const api = planningApi();
+    if (!el || !api) return;
+    el.innerHTML = api.chipHtml(prefs, scope);
+  }
+
+  function classificationBadges(meal) {
+    const api = planningApi();
+    if (!api || !meal) return "";
+    const html = api.badgeHtml(meal);
+    return html ? html + " " : "";
+  }
+
   async function createDinnerPlanRequest(opts) {
     await ensureMemberSession();
+    const prefs = (opts && opts.prefs) || draftPrefs();
     const body = {
       meal_count: opts.meal_count,
       entry_point: opts.entry_point,
       participant_ids: opts.participant_ids || activeMemberIds(),
       fill: "planner",
+      keep_it_easy: prefs.keep_it_easy === true,
+      keep_ingredients_simple: prefs.keep_ingredients_simple === true,
     };
     const res = await apiPost("/api/dinner-plans", body);
     if (!res || !res.ok) {
       dinnerPlanErrorToast(res);
       return null;
     }
+    track("recommendation_generated", {
+      meal_count: body.meal_count,
+      keep_it_easy: body.keep_it_easy,
+      keep_ingredients_simple: body.keep_ingredients_simple,
+    });
+    const relaxed = res.plan && res.plan.planner && res.plan.planner.preference_relaxations;
+    if (relaxed && relaxed.length) track("preference_relaxed", { count: relaxed.length });
     applyDinnerPlan(res.plan, res.unfilled);
     return res.plan;
   }
@@ -2681,7 +2724,14 @@
     return { added: added, removed: removed };
   }
 
-  async function mutateDinnerPlan(payload) {
+  function flushDinnerToast() {
+    if (!state.pendingDinnerToast) return;
+    const message = state.pendingDinnerToast;
+    state.pendingDinnerToast = null;
+    toast(message.text, message.opts);
+  }
+
+  async function mutateDinnerPlan(payload, options) {
     const plan = state.dinnerPlan;
     if (!plan) return null;
     const shopOps = {
@@ -2710,11 +2760,12 @@
       payload
     );
     if (!res || !res.ok) {
-      dinnerPlanErrorToast(res);
+      if (!(options && options.suppressToast)) dinnerPlanErrorToast(res);
       if (res && (res.error === "outcome_locked" || res.error === "version_locked" || res.error === "illegal_transition")) {
         await loadCurrentDinnerPlan();
         renderActiveDinnerSurfaces();
       }
+      if (options && options.suppressToast) return { failed: true, error: res && res.error };
       return null;
     }
     applyDinnerPlan(res.plan);
@@ -2738,7 +2789,19 @@
             planShoppingStarted();
           if (shoppingStarted) {
             const counts = shopListChangeCountsFromDiff(shopLinesBefore || [], shopLinesAfter);
-            toastListChangeCounts(counts.added, counts.removed);
+            if (options && options.suppressToast) {
+              const text = listChangeMessage(counts.added, counts.removed);
+              if (text) {
+                state.pendingDinnerToast = {
+                  text: text + ' <button type="button" class="btn btn-quiet btn-sm" data-go="shopList">See list</button>',
+                  opts: { html: true },
+                };
+              }
+            } else {
+              toastListChangeCounts(counts.added, counts.removed);
+            }
+          } else if (options && options.suppressToast) {
+            state.pendingDinnerToast = { text: "List updated.", opts: null };
           } else {
             toast("List updated.");
           }
@@ -2756,17 +2819,36 @@
     else if (code === "plan_full") toast("Your plan is full. Add a night first.");
     else if (code === "meal_count_too_small") toast("Remove a dinner first, then lower the number.");
     else if (code === "forbidden_cross_household" || code === "plan_not_found") toast("This plan isn’t in your kitchen.");
+    else if (code === "unknown_recipe") toast("That dinner isn’t on the menu anymore. Pick another.");
     else toast("We couldn’t reach the kitchen. Try again.");
   }
 
-  function toastListChangeCounts(added, removed) {
-    if (!added && !removed) return;
+  function swapFailureCopy(code) {
+    if (code === "hard_limit_blocked") return "That one doesn’t work for everyone at this dinner. Pick another.";
+    if (code === "unknown_recipe") return "That dinner isn’t on the menu anymore. Pick another.";
+    return "Couldn’t swap that dinner. Try another.";
+  }
+
+  function showSwapError(message) {
+    const err = document.getElementById("swapSheetError");
+    if (!err) return;
+    err.hidden = !message;
+    err.textContent = message || "";
+  }
+
+  function listChangeMessage(added, removed) {
+    if (!added && !removed) return "";
     let msg = "Your list changed.";
     if (added) msg += " " + added + " added,";
     if (removed) msg += " " + removed + " no longer needed.";
+    return msg.replace(/,$/, "");
+  }
+
+  function toastListChangeCounts(added, removed) {
+    const msg = listChangeMessage(added, removed);
+    if (!msg) return;
     toast(
-      msg.replace(/,$/, "") +
-        ' <button type="button" class="btn btn-quiet btn-sm" data-go="shopList">See list</button>',
+      msg + ' <button type="button" class="btn btn-quiet btn-sm" data-go="shopList">See list</button>',
       { html: true }
     );
   }
@@ -2797,6 +2879,8 @@
       if (p.intent.meal_styles) body.meal_styles = p.intent.meal_styles;
       if (p.intent.practical_hints) body.practical_hints = p.intent.practical_hints;
       if (p.intent.max_cook_minutes) body.max_cook_minutes = p.intent.max_cook_minutes;
+      body.keep_it_easy = p.intent.keep_it_easy === true;
+      body.keep_ingredients_simple = p.intent.keep_ingredients_simple === true;
     }
     const res = await apiPost("/api/dinner-plans/preview", body);
     if (!res || !res.ok || !res.preview) return [];
@@ -2804,11 +2888,15 @@
     (p && p.meals || []).forEach(function (m) {
       if (m.recipe_slug) used[m.recipe_slug] = true;
     });
-    return (res.preview.slots || [])
+    const alts = (res.preview.slots || [])
       .filter(function (slot) {
         return slot.result === "recommended" && slot.recipe_version_id && !used[slot.recipe_slug];
       })
       .slice(0, 3);
+    if (alts.some(function (slot) { return slot.preference_relaxed; })) {
+      track("preference_relaxed", { surface: "swap" });
+    }
+    return alts;
   }
 
   function planMealTitle(meal) {
@@ -2867,6 +2955,8 @@
       participant_ids: meal.participant_ids || [],
       pinned_ingredients: meal.pinned_ingredients,
       pinned_steps: meal.pinned_steps,
+      effort_level: meal.effort_level || null,
+      ingredient_complexity: meal.ingredient_complexity || null,
       dinner_plan: true,
       plate: meal.kind === "leftovers" ? "🥡" : meal.kind === "eating_out" ? "🍽️" : "🍽️",
     };
@@ -2968,7 +3058,8 @@
     homeLede.textContent = "Plan a few nights at once, or just find one for tonight.";
     actions.innerHTML =
       '<button class="btn btn-primary btn-lg" type="button" data-action="plan-dinners">Plan our dinners</button>' +
-      '<button class="btn btn-secondary btn-lg" type="button" data-action="find-dinner">Find a dinner</button>';
+      '<button class="btn btn-secondary btn-lg" type="button" data-action="find-dinner">Find a dinner</button>' +
+      (planningApi() ? planningApi().chipHtml(draftPrefs(), "draft") : "");
     media.className = "tonight-hero__media";
     media.innerHTML = mealMediaHtml({ recipe_slug: "miso-ginger-salmon" }, { decorative: true, eager: true });
     insights.hidden = true;
@@ -3128,6 +3219,7 @@
       .join("");
     state.planCountGroup = null;
     state.planCountValue = null;
+    fillPrefSlot("planCountPrefs", draftPrefs(), "draft");
     syncPlanCountSubmit();
   }
 
@@ -3264,6 +3356,7 @@
       escapeHtml(planMealTitle(meal)) +
       "</button></h2>" +
       (swapped ? '<span class="badge badge--match">Swapped in</span> ' : "") +
+      classificationBadges(meal) +
       (showStateBadge ? planMealStateBadge(meal) : "") +
       '<p class="card-kicker">Why this one</p><p class="meta">Fits everyone’s limits</p>' +
       '<div class="plan-meal-card__actions">' +
@@ -3323,6 +3416,7 @@
       })
       .join("");
     list.innerHTML = html;
+    fillPrefSlot("planReviewPrefs", plan.intent, "active");
     renderPlanStarIntro();
     const btnGood = document.getElementById("btnPlanLooksGood");
     const btnBack = document.getElementById("btnPlanBackHome");
@@ -3742,6 +3836,7 @@
     if (cooking.length) lede = planMealTitle(cooking[0]) + " is cooking. Pick up where you left off.";
     else if (selected.length) lede = "Tonight’s pick is " + planMealTitle(selected[0]) + ". Or cook any other one.";
     document.getElementById("choiceStripText").textContent = lede;
+    fillPrefSlot("tonightPlanPrefs", plan.intent, "active");
     let html = "";
     if (cooking.length) {
       html += "<h2 class=\"section-title\">In the kitchen</h2>";
@@ -4253,25 +4348,26 @@
     renderActiveDinnerSurfaces();
   }
 
-  async function replaceSlotWithRecipe(mealId, recipeVersionId) {
+  async function replaceSlotWithRecipe(mealId, recipeVersionId, options) {
     const meal = planMealById(mealId);
-    if (!meal) return;
+    if (!meal) return null;
+    const quiet = options && options.suppressToast ? { suppressToast: true } : null;
     const position = meal.position;
     const participants = meal.participant_ids || activeMemberIds();
     const date = meal.scheduled_date;
-    const removed = await mutateDinnerPlan({ op: "remove_meal", meal_id: mealId });
-    if (!removed) return;
+    const removed = await mutateDinnerPlan({ op: "remove_meal", meal_id: mealId }, quiet);
+    if (!removed || removed.failed) return removed && removed.failed ? removed : null;
     const added = await mutateDinnerPlan({
       op: "add_meal",
       kind: "recipe",
       recipe_version_id: recipeVersionId,
       participant_ids: participants,
       scheduled_date: date,
-    });
-    if (!added) {
+    }, quiet);
+    if (!added || added.failed) {
       await loadCurrentDinnerPlan();
-      toast("That didn’t work. Your plan is unchanged.");
-      return;
+      if (!(options && options.suppressToast)) toast("That didn’t work. Your plan is unchanged.");
+      return added && added.failed ? added : { failed: true, error: "swap_failed" };
     }
     const newMeal = (state.dinnerPlan.meals || []).slice().sort(function (a, b) {
       return b.position - a.position;
@@ -4291,7 +4387,7 @@
       meal_ids: ordered.map(function (m) {
         return m.meal_id;
       }),
-    });
+    }, quiet);
     renderActiveDinnerSurfaces();
     return true;
   }
@@ -4417,22 +4513,61 @@
             escapeHtml(slot.title || slot.recipe_slug) +
             '</strong><p class="meta">About ' +
             (slot.total_minutes || "—") +
-            ' min</p><button type="button" class="btn btn-secondary btn-sm" data-action="swap-use" data-version="' +
+            " min</p>" +
+            classificationBadges(slot) +
+            '<button type="button" class="btn btn-secondary btn-sm" data-action="swap-use" data-version="' +
             escapeHtml(slot.recipe_version_id) +
             '">Use this</button></div></div>'
           );
         })
         .join("");
     }
+    showSwapError("");
+    state.swapInFlight = false;
+    state.swapOpener = document.activeElement;
+    track("swap_requested", { meal_id: mealId, position: meal.position });
     document.getElementById("swapSheet").showModal();
+  }
+
+  function closeSwapSheet() {
+    const sheet = document.getElementById("swapSheet");
+    if (sheet && sheet.open) sheet.close();
+    showSwapError("");
+    state.swapInFlight = false;
   }
 
   async function handleDinnerPlanClick(e) {
     const planBtn = e.target.closest("[data-action='plan-dinners']");
     if (planBtn) {
       e.preventDefault();
+      resetDraftPrefs();
       show("planCount", { context: Nav.contextFor("planCount", state.view, { established: true }) });
       renderPlanCount();
+      return true;
+    }
+    const prefBtn = e.target.closest("[data-plan-pref]");
+    if (prefBtn) {
+      e.preventDefault();
+      const key = prefBtn.getAttribute("data-plan-pref");
+      const api = planningApi();
+      if (!api) return true;
+      const active = prefBtn.closest("[data-plan-prefs='active']");
+      if (active && state.dinnerPlan) {
+        const next = api.togglePref(state.dinnerPlan.intent, key);
+        track("planning_preference_selected", next);
+        const saved = await mutateDinnerPlan({
+          op: "set_planning_preferences",
+          keep_it_easy: next.keep_it_easy,
+          keep_ingredients_simple: next.keep_ingredients_simple,
+        });
+        if (saved) renderActiveDinnerSurfaces();
+        return true;
+      }
+      state.draftPlanPrefs = api.togglePref(draftPrefs(), key);
+      track("planning_preference_selected", state.draftPlanPrefs);
+      const on = state.draftPlanPrefs[key] === true;
+      prefBtn.classList.toggle("is-on", on);
+      prefBtn.setAttribute("aria-pressed", on ? "true" : "false");
       return true;
     }
     const findBtn = e.target.closest("[data-action='find-dinner'], [data-action='find-dinner-tonight']");
@@ -4448,25 +4583,51 @@
       openSwapSheet(swap.dataset.mealId);
       return true;
     }
+    const swapKeep = e.target.closest("[data-action='swap-keep']");
+    if (swapKeep) {
+      e.preventDefault();
+      closeSwapSheet();
+      return true;
+    }
     const swapUse = e.target.closest("[data-action='swap-use']");
     if (swapUse) {
       e.preventDefault();
+      if (state.swapInFlight) return true;
+      state.swapInFlight = true;
+      swapUse.disabled = true;
+      showSwapError("");
+      const mealId = state.swapMealId;
       let res = null;
       if (state.swapReplacePosition) {
-        res = await replaceSlotWithRecipe(state.swapMealId, swapUse.dataset.version);
+        res = await replaceSlotWithRecipe(mealId, swapUse.dataset.version, { suppressToast: true });
         state.swapReplacePosition = null;
       } else {
-        res = await mutateDinnerPlan({
-          op: "swap_meal",
-          meal_id: state.swapMealId,
-          recipe_version_id: swapUse.dataset.version,
-        });
+        res = await mutateDinnerPlan(
+          {
+            op: "swap_meal",
+            meal_id: mealId,
+            recipe_version_id: swapUse.dataset.version,
+          },
+          { suppressToast: true }
+        );
+      }
+      if (res && res.failed) {
+        state.swapInFlight = false;
+        swapUse.disabled = false;
+        showSwapError(swapFailureCopy(res.error));
+        return true;
       }
       if (res) {
         state.swappedMealIds = state.swappedMealIds || {};
-        state.swappedMealIds[state.swapMealId] = true;
-        document.getElementById("swapSheet").close();
-        renderPlanReview();
+        state.swappedMealIds[mealId] = true;
+        track("swap_chosen", { meal_id: mealId, recipe_version_id: swapUse.dataset.version });
+        closeSwapSheet();
+        if (state.pendingDinnerToast) flushDinnerToast();
+        else toast("Swapped in.");
+        renderActiveDinnerSurfaces();
+      } else {
+        state.swapInFlight = false;
+        swapUse.disabled = false;
       }
       return true;
     }
@@ -4680,6 +4841,7 @@
     const finShop = e.target.closest("#btnPlanFinalizeShop");
     if (finShop) {
       e.preventDefault();
+      track("plan_finalized", { dinner_plan_id: state.dinnerPlan && state.dinnerPlan.dinner_plan_id });
       await mutateDinnerPlan({ op: "finalize" });
       await refreshDinnerShopping();
       show("shopList", { context: Nav.contextFor("shopList", "planConfirm", { established: true }) });
@@ -4689,6 +4851,7 @@
     const haveAll = e.target.closest("#btnPlanHaveEverything");
     if (haveAll) {
       e.preventDefault();
+      track("plan_finalized", { dinner_plan_id: state.dinnerPlan && state.dinnerPlan.dinner_plan_id });
       await mutateDinnerPlan({ op: "finalize" });
       show("choices");
       renderTonightPlan();
@@ -4698,6 +4861,7 @@
     if (singleMake) {
       e.preventDefault();
       const meal = state.dinnerPlan.meals[0];
+      track("plan_finalized", { dinner_plan_id: state.dinnerPlan && state.dinnerPlan.dinner_plan_id });
       await mutateDinnerPlan({ op: "finalize" });
       await mutateDinnerPlan({ op: "select_meal", meal_id: meal.meal_id });
       openPlanMealDetail(meal.meal_id, "planReview");
@@ -4706,6 +4870,7 @@
     const singleShop = e.target.closest("[data-action='single-shop']");
     if (singleShop) {
       e.preventDefault();
+      track("plan_finalized", { dinner_plan_id: state.dinnerPlan && state.dinnerPlan.dinner_plan_id });
       await mutateDinnerPlan({ op: "finalize" });
       await refreshDinnerShopping();
       show("shopList");
@@ -5955,6 +6120,15 @@
   });
   document.getElementById("btnChangeCountCancel").addEventListener("click", function () {
     document.getElementById("changeCountSheet").close();
+  });
+  document.getElementById("swapSheet").addEventListener("close", function () {
+    state.swapInFlight = false;
+    showSwapError("");
+    const opener = state.swapOpener;
+    state.swapOpener = null;
+    if (opener && typeof opener.focus === "function") {
+      try { opener.focus(); } catch (_) { /* the opener may already be gone */ }
+    }
   });
   document.addEventListener("change", function (e) {
     if (e.target.name === "removeMeal") {
