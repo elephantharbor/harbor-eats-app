@@ -12,6 +12,7 @@ This document only decides **screens, copy, and client behavior** on top of thos
 
 Companion documents:
 
+- `docs/D07-CLOSURE-UX.md` — V1 closure decisions (replace entry and chrome, time chip, Refine “On the plate”, Why this one, servings). Sections below are amended to match.
 - `docs/D07-NAV-DECISION.md` — where Find lives in navigation (binding for UI).
 - `docs/CYCLE3-UX.md` — plans, swap sheet, Tonight, recipe detail. Still binding except where this document names a change.
 - `docs/D03-D01-RELEASE.md` — `effort_level`, `ingredient_complexity`, Keep it easy, Keep ingredients simple.
@@ -119,6 +120,8 @@ Use the contract’s normalizer shape in the client too: build the request with 
 | Meal “More” sheet, recipe meal in `planned`/`selected` | New first row “Find something else” | same as above |
 | Empty slot card on `planReview` (a row with no recipe) | New secondary “Pick one yourself” | `/find?mode=choose_for_plan&dinner_plan_id={id}&meal_id={row_id}&position={p}` |
 
+Replace URLs carry only `mode`, `dinner_plan_id`, and `meal_id` (plus the person’s own refinements). Never `participant_id` or `position`: the server derives that meal’s diners, hides its current recipe, and applies the plan’s chips (`D07-CLOSURE-UX.md` §1). Read `position` and `participant_ids` for display from `response.context`.
+
 Not entry points in V1: empty slots whose reason is `no_eligible_meal` or `no_unused_eligible_meal` (Discovery would show the same nothing), leftovers and eating-out rows, the shopping list, History, Profile.
 
 If the plan represents an open slot only as `meal_count − meals.length` (no row), “Pick one yourself” opens `choose_for_plan` without `meal_id`, and the pick is `add_meal` per `selection`. See §16 gap 7.
@@ -212,8 +215,10 @@ Each shelf header has a “See all” text button (accessible name “See all {t
 
 ```
 [ Search field ……………………………………… ]            ← sticky under the app header
-[Easy] [Under 30 min ▾] [Simple ingredients] [Cuisine ▾] [Type ▾] [Main ▾] [Refine]
+[Easy] [Under 30 min] [Simple ingredients] [Cuisine ▾] [Type ▾] [Main ▾] [Refine]
 ```
+
+Group chips (Cuisine, Type, Main) are optional for V1 closure; Refine covers those groups.
 
 - Applied chips come first, filled (`.chip-tog.is-on`) with a trailing × and the accessible name “Remove {label}”. Then the remaining quick chips, unfilled. Then group chips. “Refine” is always last.
 - When anything is applied, a quiet “Clear all” sits at the end of the results header.
@@ -224,7 +229,7 @@ Each shelf header has a “See all” text button (accessible name “See all {t
 | Chip | Type | Writes |
 |------|------|--------|
 | “Easy” | toggle | `effort_levels` |
-| “Under 30 min ▾” | single-select menu: “Under 30 min”, “Under 45 min”, “Under 60 min”, “Any time” | `quick` or `max_minutes` (§2.2). The chip label shows the choice. |
+| “Under 30 min” | toggle, no caret, no menu. Off: tap sets `quick: true`. On (`quick`, or `max_minutes` 45/60 chosen in Refine): label “Under 30 min” / “Under {n} min” with ×; tap clears the time limit. 45 and 60 are set only in Refine → Time. | `quick` or `max_minutes` (§2.2) |
 | “Simple ingredients” | toggle | `ingredient_complexities` |
 | “Cuisine ▾”, “Type ▾”, “Main ▾” | group chip | Opens Refine at that group (phone/tablet) or a popover (desktop). With selections: the value (“Mexican”) for one, “Cuisine · 2” for more. |
 | “Refine” | button | All groups. “Refine · {n}” when `{n}` values are applied that aren’t visible in the row (for example a flavor). |
@@ -251,6 +256,8 @@ A `.sheet` `<dialog>` titled “Refine”. Groups in order, each an `h3` with `.
 | “Main ingredient” | Vocabulary `ingredient` terms with `on_menu: true` | checkboxes |
 | “Cuisine” | Vocabulary `cuisine` terms with `on_menu: true` | checkboxes |
 | “Flavor” | Vocabulary `flavor` terms with `on_menu: true` | checkboxes |
+| “On the plate” — helper “Everyone’s limits are already covered.” | Anything · Fish & seafood (`protein_groups: ["seafood"]`) · Plant-forward (`diet: ["plant"]`) | radio |
+| “Texture” | Crispy · Creamy · Crunchy · Tender (`criteria.textures`) | checkboxes |
 | “Lean toward” (after a divider; switch rows) | “Keep it easy”, “Keep ingredients simple”, helper “These sort the list. They don’t hide anything.” | switches |
 
 **Where options come from.** One closed list: the taste vocabulary from `/api/tastes/catalog` (already used by Taste Profile), filtered to `on_menu: true`, labels from `display_name`. The client does not keep its own cuisine, style, or ingredient lists. Texture terms (Crispy, Creamy, Crunchy, Tender) are not offered: `criteria.flavors` matches flavor terms only (§16 gap 5).
@@ -267,7 +274,7 @@ A `.sheet` `<dialog>` titled “Refine”. Groups in order, each an `h3` with `.
 
 ### 6.5 Household limits
 
-The table’s limits always apply and are not controls here. There is no dietary group in V1 (the contract has no dietary criterion, §16 gap 1). The table note (§6.6) states that limits apply. Discovery never names whose limit removed a dinner.
+The table’s limits always apply and are not controls here. There is no Diet group in V1: no Vegetarian, Dairy-free, or Vegan option, because an optional toggle next to automatic limits reads as if limits were optional, and `diet: ["dairy_free"]` would hide safe but unlabeled dinners. Plant-forward is offered only as a food choice in “On the plate” and as a shelf. A URL `diet` value other than `plant` is dropped and the URL repaired (`D07-CLOSURE-UX.md` §3). The table note (§6.6) states that limits apply. Discovery never names whose limit removed a dinner.
 
 ### 6.6 Table note and “Who’s eating”
 
@@ -389,11 +396,11 @@ A pick sends exactly what `selection` describes: `POST {selection.path}` with `{
 
 | Mode | `selection.op` | On success |
 |------|----------------|------------|
-| `replace_plan_meal` | `swap_meal` | Toast “Swapped in {title}.” The card on the plan gets “Swapped in” (Cycle 3 §5.3), focus on its title. |
+| `replace_plan_meal` | `swap_meal` | Same as the compact Swap: mark the meal swapped, flush a pending shopping-list toast if any, else toast “Swapped in {title}.” (call the mutation with `suppressToast`). The card on the plan gets “Swapped in” (Cycle 3 §5.3), focus on its title. |
 | `choose_for_plan` with an empty row | `swap_meal` on that row | Toast “{title} is on Dinner {p}.” |
 | `choose_for_plan` without `meal_id` | `add_meal` | Toast “{title} is on Dinner {p}.” |
 
-After success, return to the plan surface that opened Discovery with `history.go(-n)` to that entry (§9.2), so Discovery and recipe entries don’t stay in the back stack. Shopping-list toasts follow Cycle 3 §5.3 and §9.
+After success, return to the plan surface that opened Discovery with `history.go(-n)` to that entry (§9.2), so Discovery and recipe entries don’t stay in the back stack: `n` = 1 from a card, 2 from the recipe (track the entries Find pushed). On a cold-loaded plan-mode URL, `replaceState` to the origin (Tonight when the plan is finalized, else plan review). Shopping-list toasts follow Cycle 3 §5.3 and §9.
 
 Errors (a search hit is not a promise; the plan may have changed):
 
@@ -417,14 +424,16 @@ There is no “replace a dinner” row. Replacing starts from the plan (swap she
 
 ### 8.5 Recipe detail from Discovery
 
-Reuse `detail` and its tabs. Data stays `GET /api/recipes/{slug}` (results don’t carry ingredients), servings = Discovery participant count. The version a pick pins is the result’s `recipe_version_id`.
+Reuse `detail` and its tabs. Data stays `GET /api/recipes/{slug}?servings={n}` (results don’t carry ingredients). The version a pick pins is the result’s `recipe_version_id`.
 
 - Context line under the title:
   - standalone: “Just looking. Nothing changes until you choose.”
-  - replace: “Swapping Dinner {p} · Now: {current title}”
+  - replace: “Swapping Dinner {p} · Now: {current title}” (one-dinner plan: “Swapping tonight’s dinner · Now: {current title}”)
   - choose: “For Dinner {p}”
-- “Why this one”: only when the card had a taste reason line; show that line. No filler.
-- Meta: the same minutes / Easy / Simple ingredients pills.
+- “Why this one”: at most three lines from the result row, in this order: taste hit (the card’s reason wording), “You haven’t made this one lately” (`reasons` has `explicit_different`), “On the table in {m} minutes” (≤ 30), “Easy: short on steps, light on fuss”, “Familiar ingredients, nothing hard to find”. None apply: hide the section. Never “Clears your household’s hard limits” or any fit/limits filler (`D07-CLOSURE-UX.md` §4a).
+- Servings: `n` = `response.context.participant_ids.length` (Who’s eating subset, or that dinner’s diners in plan modes). Unknown `n`: show the recipe’s written servings, never a `1` fallback. Cards never show servings.
+- Stats: the Effort stat shows “Easy” only; otherwise it is omitted. Fit badge: “Fits everyone eating”.
+- Meta: minutes badge.
 - Sticky bar: §8.1.
 - Back: `history.back()`, restoring Discovery (§9.3). Label “Back”.
 
@@ -567,7 +576,7 @@ Breakpoints and chrome follow `FLAVORWEAVE-BRAND.md`. Standalone is `full` chrom
 │ ┌────────────────────────────────┐ │ sticky on scroll
 │ │ 🔍 Try salmon, tacos, or Thai  │ │
 │ └────────────────────────────────┘ │
-│ [Easy][Under 30 min▾][Simple ingr…]→│
+│ [Easy][Under 30 min][Simple ingr…]→ │
 │                                    │
 │ Good matches              See all  │
 │ Picked from what your table likes  │
@@ -606,8 +615,8 @@ Breakpoints and chrome follow `FLAVORWEAVE-BRAND.md`. Standalone is `full` chrom
 │ Everything here fits your table. Have a look around.                          │
 │ For everyone · Fits everyone’s limits  Change                                 │
 │ [🔍 Try salmon, tacos, or Thai                    ]  max 640px               │
-│ [Easy] [Under 30 min ▾] [Simple ingredients] [Cuisine ▾] [Type ▾] [Main ▾] [Refine]
-│ ┌──────────────────────────────┬───────────────────────────────────────────┐ │
+│ [Easy] [Under 30 min] [Simple ingredients] [Cuisine ▾] [Type ▾] [Main ▾] [Refine]
+   │ ┌──────────────────────────────┬───────────────────────────────────────────┐ │
 │ │ GOOD MATCHES                 │                                           │ │
 │ │ Teriyaki Tofu Bowls          │            photo 4:3 (1200)               │ │
 │ │ ⏱ 40 min · Simple ingredients│                                           │ │
@@ -635,8 +644,9 @@ Breakpoints and chrome follow `FLAVORWEAVE-BRAND.md`. Standalone is `full` chrom
 | Eyebrow | “Swap Dinner {p}” (single plan: “Swap tonight’s dinner”) | “Dinner {p}” (or the date) |
 | Title | “Find something else” | “Pick a dinner” |
 | Lede | “Now: {current title}” | “Anything here works for this dinner.” |
-| Table note | “For Dinner {p}: {names}” (read-only) | same |
+| Table note | “For Dinner {p}: everyone” / “For Dinner {p}: {names}” (single plan: “For tonight: …”), read-only, from `response.context` | same |
 | “Pick one for us” | not shown | not shown |
+| Back | `history.back()` to the plan surface, sheet closed, focus on that card’s “Swap” (or ⋯ when opened from More). No mutation. Cold load: `replaceState` to the origin. | same |
 
 Shelves, search, chips, and results are the same as standalone. Cards carry the mode CTA.
 
@@ -651,7 +661,7 @@ Shelves, search, chips, and results are the same as standalone. Cards carry the 
 │ Now: Teriyaki Tofu Bowls           │
 │ For Dinner 2: everyone             │
 │ [🔍 Search dinners             ]   │
-│ [Easy ×][Under 30 min▾][Cuisine▾]→ │
+│ [Easy ×][Under 30 min][Refine]→    │
 │ 7 dinners                Clear all │
 │ Easier dinners first · from your plan  Change
 │ ┌───────────────┐┌───────────────┐ │
@@ -724,7 +734,7 @@ Popovers are modal `<dialog>`s with a transparent scrim (consistent focus handli
 - **Shelves.** Plain lists; no carousel roles, no auto-advance. Tab moves card to card and scrolls the focused card into view (`inline: "nearest"`). No hover-only arrows.
 - **Live results.** One polite live region announces “{total} dinners” (or the empty-state title) 500ms after results settle. Not during typing.
 - **Suggestions.** ARIA 1.2 combobox: `aria-expanded`, `aria-controls` a `listbox`, arrows move `aria-activedescendant`, Enter chooses, Escape closes the list, a second Escape clears the text.
-- **Chips.** Toggles are `<button aria-pressed>`. The time chip is a menu button with `menuitemradio` items. Applied chips’ × is part of the button, named “Remove {label}”. Group chips have `aria-haspopup="dialog"` and a name with the selection (“Cuisine, 2 selected”).
+- **Chips.** Toggles are `<button aria-pressed>`. The time chip is a plain toggle (`aria-pressed`, no `aria-haspopup`). “On the plate” and Time in Refine are radio groups. Applied chips’ × is part of the button, named “Remove {label}”. Group chips have `aria-haspopup="dialog"` and a name with the selection (“Cuisine, 2 selected”).
 - **Refine.** `<dialog>`, focus trapped and returned to the opener. Groups are `role="group"` with `aria-labelledby`; Time is a radio group; Lean toward rows are `role="switch"` with `aria-checked`.
 - **Cards.** One link per card with a stretched hit area; the CTA is a separate button. Link name: “{title}, {m} minutes{, easy}{, simple ingredients}{, on your plan, Dinner p}”.
 - **Targets.** Chips and CTAs at least 44×44 (chips 40px tall visually, 44px hit area). Five tabs at 390px are 78px wide.
@@ -799,7 +809,7 @@ Never log raw search text in V1.
 | 2 | `criteria.protein_groups` | **Closed** on `main` | Fish & seafood shelf uses `protein_groups: ["seafood"]`. Main ingredient Refine stays vocabulary terms. |
 | 3 | `criteria.different` | **Closed** on `main` | Something different shelf when ≥ 4 survivors; empty cook history shows §11.3, not a thin shelf. |
 | 4 | Cuisine `-inspired` expansion | **Closed** on `main` | Server normalizes `italian` → `italian-inspired`, etc. Client may still send pairs from vocabulary (§6.4). |
-| 5 | `criteria.textures` | **Closed** on `main` | Contract supports textures; Refine may add texture chips in a later slice. Shelves do not fake textures. |
+| 5 | `criteria.textures` | **Closed** on `main` | Refine has a Texture group (§6.4). Shelves do not fake textures. |
 | 6 | Facet counts | Open | Refine shows no per-option counts; “Remove …” chips show no counts. |
 | 7 | Empty slot shape | **Documented** | “Pick one yourself” sends `meal_id` when a row exists; otherwise `choose_for_plan` without `meal_id` → `add_meal`. |
 | 8 | Leftovers / eating-out rows | Open | “Plan a dinner here instead” keeps Cycle 3 §6.4 swap-sheet; not Discovery targets. |
@@ -818,7 +828,7 @@ Local smoke steps: `docs/D07-SMOKE.md`.
 - No rank, scores, match, tier, or “Top pick” in UI, `aria-label`s, or `title`.
 - No moderate / involved / standard / adventurous wording.
 - No “Quick” label; no pantry language for Simple ingredients.
-- No dietary, Vegan, or Plant-based chip in V1.
+- No Diet group and no Vegetarian, Dairy-free, Vegan, or Plant-based control in V1. “Plant-forward” appears only as a shelf and in “On the plate”.
 - No sort control, no filter sidebar, no pagination or infinite scroll.
 - No Discovery-specific plan writes: only existing `/api/dinner-plans` ops, as `selection` or §8.2 says.
 - No `set_planning_preferences` from Discovery.

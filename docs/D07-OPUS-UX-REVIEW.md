@@ -53,6 +53,8 @@ Already fixed by #27, so not duplicated here: Under 30 min toggle, Clear search 
 
 ## NOTES (not fixed here; Composer or follow-up)
 
+Notes 1, 3, 4 and 8 are decided in `docs/D07-CLOSURE-UX.md` (time chip toggle without caret; Diet group removed in favor of “On the plate”; Why this one and servings; seafood sub-line). Note 2 (group chips) is optional for V1 closure.
+
 1. **Time chip caret.** “Under 30 min ▾” and `aria-haspopup="menu"` promise a menu that doesn’t exist; the chip is a toggle. Either build the §6.2 menu or drop the caret and `aria-haspopup`. 45 and 60 minutes are reachable only through Refine.
 2. **Group chips missing.** §6.1 puts Cuisine ▾, Type ▾ and Main ▾ in the chip row. Only Refine offers them today.
 3. **Refine has a Diet group** (Plant-forward, Vegetarian, Dairy-free) and Protein/Texture groups. §17 says no dietary chip in V1. “Dairy-free” next to the household’s real limits invites confusion. Product call.
