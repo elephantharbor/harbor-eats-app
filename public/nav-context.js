@@ -6,12 +6,13 @@
  * history.state later without changing these rules.
  */
 (function (root) {
-  var SECTIONS = ["home", "choices", "meals", "tasteProfile", "settings"];
+  var SECTIONS = ["home", "choices", "find", "meals", "tasteProfile", "settings"];
   var ONBOARDING_STEPS = ["create", "members", "constraints", "taste"];
   var PLAN_VIEWS = ["planCount", "planReview", "planConfirm", "shopList"];
   var LABELS = {
     home: "Home",
     choices: "Tonight",
+    find: "Find",
     meals: "History",
     tasteProfile: "Profile",
     settings: "Settings",
@@ -50,9 +51,18 @@
       if (o.current && o.current.mode === "household" && (from === "invite" || from === null)) return o.current;
       return { origin: isSection(from) ? from : "home", mode: "household" };
     }
+    if (view === "find") {
+      return {
+        mode: o.mode || "standalone",
+        origin: o.origin || (isSection(from) ? from : "home"),
+      };
+    }
     if (view === "detail") {
       // Returning from kitchen mode keeps the context the recipe was opened with.
       if (o.current && (from === "cook" || from === "detail")) return o.current;
+      if (o.origin === "find" || from === "find" || o.source === "discovery") {
+        return { origin: "find", source: "discovery", mode: o.mode || (o.current && o.current.mode) };
+      }
       if (o.origin === "planReview" || from === "planReview") {
         return { origin: "planReview", source: o.source || "dinner_plan" };
       }
@@ -92,6 +102,8 @@
     }
     if (view === "planConfirm") return "planReview";
     if (view === "shopList") return "choices";
+    if (view === "find" && ctx && ctx.mode !== "standalone") return ctx.origin || "home";
+    if (view === "detail" && ctx && ctx.origin === "find") return "find";
     if (view === "detail" && ctx && ctx.origin === "planReview") return "planReview";
     if (view === "detail" && ctx && ctx.origin === "tonightPlan") return "choices";
     return (ctx && ctx.origin) || "home";
@@ -104,8 +116,10 @@
   /** Which primary nav item is lit. Null means none. */
   function navSection(view, ctx) {
     if (isSection(view)) return view;
+    if (view === "find") return ctx && ctx.mode === "standalone" ? "find" : null;
     if (view === "detail" || view === "invite" || view === "rate") {
       var origin = ctx && ctx.origin;
+      if (origin === "find") return ctx.mode === "standalone" ? "find" : null;
       if (origin === "tonightPlan") return "choices";
       if (isSection(origin)) return origin;
       if (origin === "finished" || origin === "planReview") return "home";
@@ -120,6 +134,7 @@
   /** full: header nav + tabs · focus: header nav only · brand: wordmark only · none: kitchen mode */
   function chrome(view, ctx) {
     if (view === "cook") return "none";
+    if (view === "find" && ctx && ctx.mode !== "standalone") return "focus";
     if (isSection(view) || view === "demo") return "full";
     if (view === "invite") return ctx && ctx.mode === "household" ? "full" : "brand";
     if (view === "detail" || view === "rate") return "focus";

@@ -40,7 +40,7 @@ Scope: D-07 V1. Catalog stays 50 meals. No LLM, no chat, no generated suggestion
 | # | Decision | Answer | Where |
 |---|----------|--------|-------|
 | 1 | Top-level nav | **Hybrid.** “Find” is a primary nav item (5th tab on phone, top nav on tablet/desktop) for `standalone`. `replace_plan_meal` and `choose_for_plan` open the same view from plan actions, in `focus` chrome, without lighting Find. | `D07-NAV-DECISION.md` |
-| 2 | First-open collections | Four shelves, each a saved `DiscoveryQuery`: Good matches (or “Fits your table” with no taste hits), Easy, Under 30 minutes, Simple ingredients. Shown only with ≥ 4 results for the table. No “Something adventurous”. Fish & seafood, Plant-forward, and Something different are deferred until the contract can express them (§16). | §5 |
+| 2 | First-open collections | Shelves (each a saved `DiscoveryQuery`, gate ≥ 4): Good matches / Fits your table, Easy, Under 30 minutes, Simple ingredients, plus Fish & seafood (`protein_groups: seafood`), Plant-forward (`diet: plant`), Something different (`different: true`) when the catalog supports them. No “Something adventurous”. | §5 |
 | 3 | Card hierarchy | Photo, title, one meta row (minutes; “Easy” and “Simple ingredients” only when true), at most one taste reason line, plan status when relevant, mode CTA only in plan modes. Never rank, scores, other bands, dietary lists, emoji, or averages. | §7 |
 | 4 | Refinement model | Phone/tablet: search field, one scrolling chip row, a “Refine” bottom sheet. Desktop: same chip row, group chips open anchored popovers. No sidebar anywhere. | §6 |
 | 5 | Contextual CTAs | Standalone: “Cook tonight” + “Add to plan” (or “Add to my shopping list” with no plan), on the recipe only. Replace: “Use this” on cards, “Use this for Dinner {p}” on the recipe. Choose: “Add this” on cards, “Add this to Dinner {p}” on the recipe. | §8 |
@@ -194,9 +194,9 @@ First open never shows a blank search. Each shelf is one `GET /api/discovery/sea
 |-------|---------|
 | “Something adventurous” | Only 2 of 50 meals are `adventurous`. A two-card shelf reads as a gap, not a feature. |
 | “Quick and easy” | Only 4 meals are both. Use the two chips together. |
-| “Fish & seafood” | The catalog supports it (9 meals), but the contract has no protein group. Expressing it as a hand-picked `criteria.ingredients` id list would be a second vocabulary. Deferred, §16 gap 2. |
-| “Plant-forward” | The catalog supports it (about 30 meals), but the contract has no dietary criterion. Deferred, §16 gap 1. |
-| “Something different” | Needs a “different from recent cooks” selection. The pipeline only uses recency to re-order inside a tier. Deferred, §16 gap 3. |
+| “Fish & seafood” | Enabled when `criteria.protein_groups: ["seafood"]` returns ≥ 4 for the table. |
+| “Plant-forward” | Enabled when `criteria.diet: ["plant"]` returns ≥ 4 for the table. |
+| “Something different” | Enabled when `criteria.different: true` returns ≥ 4 (requires cook recency signal). |
 | Cuisine shelves | Largest cuisine is 10 meals, most are 1–3. Cuisines live in the chip row and Refine. |
 | “Popular”, “Trending”, “New” | No honest data. |
 
@@ -791,20 +791,20 @@ Never log raw search text in V1.
 
 ---
 
-## 16. Contract gaps found while designing (for the PR #24 owner)
+## 16. Contract gaps (status on `main`)
 
-These are not invented here. The UI works around each one in V1 as stated, and they are candidates for the contracts branch.
+| # | Topic | Status | V1 UI behavior |
+|---|-------|--------|----------------|
+| 1 | `criteria.diet` | **Closed** on `main` | Plant-forward shelf uses `diet: ["plant"]`; no standalone “Vegan” chip. Household limits still apply. |
+| 2 | `criteria.protein_groups` | **Closed** on `main` | Fish & seafood shelf uses `protein_groups: ["seafood"]`. Main ingredient Refine stays vocabulary terms. |
+| 3 | `criteria.different` | **Closed** on `main` | Something different shelf when ≥ 4 survivors; empty cook history shows §11.3, not a thin shelf. |
+| 4 | Cuisine `-inspired` expansion | **Closed** on `main` | Server normalizes `italian` → `italian-inspired`, etc. Client may still send pairs from vocabulary (§6.4). |
+| 5 | `criteria.textures` | **Closed** on `main` | Contract supports textures; Refine may add texture chips in a later slice. Shelves do not fake textures. |
+| 6 | Facet counts | Open | Refine shows no per-option counts; “Remove …” chips show no counts. |
+| 7 | Empty slot shape | **Documented** | “Pick one yourself” sends `meal_id` when a row exists; otherwise `choose_for_plan` without `meal_id` → `add_meal`. |
+| 8 | Leftovers / eating-out rows | Open | “Plan a dinner here instead” keeps Cycle 3 §6.4 swap-sheet; not Discovery targets. |
 
-| # | Gap | V1 UI behavior | Possible contract change |
-|---|-----|----------------|--------------------------|
-| 1 | No dietary criterion (vegetarian, no dairy, …) | No dietary chips; no Plant-forward shelf. Household limits still apply. | A `criteria.diet` list evaluated through `assessMealEligibility` as an extra diner. |
-| 2 | No protein / ingredient-group criterion | No Fish & seafood shelf; Main ingredient options are individual vocabulary terms. | Server-owned ingredient groups (fish, shellfish, …) or vocabulary parent terms. |
-| 3 | No “different from recent cooks” selection | No Something different shelf. | A selection flag that drops `recent_slugs` cuisines/formats (a filter, not only stage-7 order). |
-| 4 | Cuisine matching is literal; many original meals store `{x}-inspired` without a cuisine tag | Cuisine options also send `{slug}-inspired` (§6.4). | Map vocabulary synonyms to `dish.cuisine` server-side. |
-| 5 | `criteria.flavors` doesn’t match texture terms | Texture terms not offered. | Match texture vocabulary too, or add `criteria.textures`. |
-| 6 | No facet counts | Refine shows no per-option counts; “Remove …” chips show no counts. | Optional `facets` on the response. |
-| 7 | Empty slot shape: architecture says a row with a null slug; Cycle 3 derives empties from `meal_count − meals.length` | “Pick one yourself” sends `meal_id` when a row exists, otherwise opens `choose_for_plan` without one (`add_meal`). | Confirm one representation. |
-| 8 | Leftovers / eating-out rows are not search targets | “Plan a dinner here instead” keeps the Cycle 3 §6.4 swap-sheet flow. | Allow `choose_for_plan` on those rows with a composed selection. |
+Local smoke steps: `docs/D07-SMOKE.md`.
 
 ---
 
@@ -841,7 +841,7 @@ Suggested order, each slice shippable to preview. Slice 0 is PR #24.
 Acceptance checks (unit, route, Playwright in QA mode):
 
 1. **Never blank.** First open shows at least one shelf for a typical household.
-2. **Shelf gate.** A shelf with `total < 4` doesn’t render. No “Something adventurous”, Fish & seafood, Plant-forward, or Something different shelf exists in V1.
+2. **Shelf gate.** A shelf with `total < 4` doesn’t render. No “Something adventurous” shelf. Fish & seafood, Plant-forward, and Something different appear only when the contract query returns ≥ 4 for the table.
 3. **Good matches honesty.** A household with no tastes sees “Fits your table”.
 4. **Hard limits win.** A No-dairy table never sees dairy anywhere, including for text “paneer”, which shows §11.1.
 5. **Quick ≠ Easy.** Unrestricted table: “Under 30 min” → 11; with “Easy” → 4; “Easy” alone keeps the 60-minute sheet-pan chicken. No card or chip says “Quick”. The request carries `quick: true`, not `effort_levels`.
@@ -872,8 +872,8 @@ Acceptance checks (unit, route, Playwright in QA mode):
 | Easy and simple | 13 | D-01 tier 0 |
 | `total_minutes` ≤ 30 / ≤ 45 / ≤ 60 | 11 / 34 / 44 | Time options; fastest is 25, so no “Under 20” |
 | ≤ 30 and easy | 4 | Quick ≠ Easy |
-| Fish or shellfish main ingredient | 9 | Fish & seafood (deferred, §16 gap 2) |
-| No meat, poultry, fish, or shellfish (approximate) | about 30 | Plant-forward (deferred, §16 gap 1) |
+| Fish or shellfish main ingredient | 9 | Fish & seafood shelf (`protein_groups: seafood`) |
+| Plant-tagged meals | varies | Plant-forward shelf (`diet: plant`) |
 | Largest cuisine (American, incl. Cajun) | 10 | No cuisine shelves |
 
 Counts come from `catalog/*/v{latest}.json` and `data/d03-backfill-classifications-r2.json` on `main`. The server computes real counts per table; the shelf gate keeps thin shelves out as the catalog changes.

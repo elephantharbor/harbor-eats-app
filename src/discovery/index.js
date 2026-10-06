@@ -59,6 +59,20 @@ export {
   serializeQueryString,
   validateQuery,
 } from "./query.js";
+export {
+  DISCOVERY_SHELVES,
+  SHELF_MIN_TOTAL,
+  apiSearchQueryString,
+  browserDiscoverySearch,
+  defaultBrowseQuery,
+  emptyStateKind,
+  findPathFromState,
+  queryHasActiveCriteria,
+  relaxRemoveChips,
+  shelfDisplaySubtitle,
+  shelfDisplayTitle,
+  tasteReasonLine,
+} from "./client-ui.js";
 export { reasonCodesFor } from "./reasons.js";
 export { softPreferenceFor } from "./soft-prefs.js";
 export { scoreDiscoveryTaste } from "./taste.js";
