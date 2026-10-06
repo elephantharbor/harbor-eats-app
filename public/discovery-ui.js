@@ -60,7 +60,7 @@
     const out = { cuisines: [], meal_styles: [], flavors: [], ingredients: [] };
     const map = { cuisine: "cuisines", meal_style: "meal_styles", flavor: "flavors", ingredient: "ingredients" };
     ((catalog && catalog.groups) || []).forEach(function (group) {
-      const field = map[group.kind || group.id];
+      const field = map[group.kind || group.category || group.id];
       if (!field) return;
       (group.terms || []).forEach(function (term) {
         if (term.on_menu === false) return;
@@ -105,7 +105,7 @@
       requestAnimationFrame(function () {
         window.scrollTo(0, state.scrollY);
         if (state.focusSlug) {
-          const el = document.querySelector('[data-disc-slug="' + state.focusSlug + '"] h3');
+          const el = document.querySelector('[data-disc-slug="' + state.focusSlug + '"] .disc-card__link');
           if (el) el.focus();
         }
       });
@@ -339,15 +339,17 @@
     const q = currentQuery();
     const limit = hasCriteria(q) ? 50 : 50;
     const res = await fetchSearch(q, limit);
-    state.loading = false;
     if (res.error) {
+      state.loading = false;
       state.error = res.error;
       paint();
       return;
     }
+    const view = hasCriteria(res.data.query) || state.forceResults ? "results" : "shelves";
     state.response = res.data;
-    state.view = hasCriteria(res.data.query) || state.forceResults ? "results" : "shelves";
-    if (state.view === "shelves") await loadShelves();
+    if (view === "shelves") await loadShelves();
+    state.view = view;
+    state.loading = false;
     syncBrowserUrl(true);
     try {
       writeCache(findPathFromState(res.data.query, urlContextForApi()), res.data);
@@ -422,7 +424,17 @@
     return { quick: true, max_minutes: null };
   }
 
-  function metaRowHtml(row) {
+  /** Traits already promised by the shelf or an applied chip are true of every card, so they are not repeated. */
+  function impliedTraits(criteria) {
+    const c = criteria || {};
+    return {
+      easy: !!(c.effort_levels && c.effort_levels.indexOf("easy") >= 0),
+      simple: !!(c.ingredient_complexities && c.ingredient_complexities.indexOf("simple") >= 0),
+    };
+  }
+
+  function metaRowHtml(row, implied) {
+    const skip = implied || {};
     const bits = [];
     const ariaParts = [];
     if (row.total_minutes != null) {
@@ -433,11 +445,11 @@
           "</span>"
       );
     }
-    if (row.effort_level === "easy") {
+    if (row.effort_level === "easy" && !skip.easy) {
       ariaParts.push("Easy");
       bits.push('<span class="disc-meta__bit">Easy</span>');
     }
-    if (row.ingredient_complexity === "simple") {
+    if (row.ingredient_complexity === "simple" && !skip.simple) {
       ariaParts.push("Simple ingredients");
       bits.push('<span class="disc-meta__bit" aria-label="Simple ingredients">Simple</span>');
     }
@@ -466,7 +478,7 @@
     return "";
   }
 
-  function cardHtml(row, variant) {
+  function cardHtml(row, variant, implied) {
     const slug = row.recipe_slug;
     const reason =
       variant !== "grid" || (window.matchMedia && window.matchMedia("(min-width: 768px)").matches)
@@ -475,7 +487,7 @@
           : ""
         : "";
     const reasonLine = reason ? '<p class="disc-reason meta">' + esc(reason) + "</p>" : "";
-    const meta = metaRowHtml(row);
+    const meta = metaRowHtml(row, implied);
     const modeCta =
       state.mode === "replace_plan_meal"
         ? '<button type="button" class="btn btn-secondary btn-sm disc-card-cta" data-disc-action="use" data-version="' +
@@ -504,7 +516,7 @@
         esc(slug) +
         '?from=find" data-disc-open="' +
         esc(slug) +
-        '"><span class="visually-hidden">' +
+        '"><span class="sr-only">' +
         esc(row.title) +
         "</span></a>" +
         '<div class="disc-card__hero">' +
@@ -533,7 +545,7 @@
       esc(slug) +
       '?from=find" data-disc-open="' +
       esc(slug) +
-      '"><span class="visually-hidden">' +
+      '"><span class="sr-only">' +
       esc(row.title) +
       "</span></a>" +
       media +
@@ -554,6 +566,17 @@
     if (!rootEl) return;
     const resp = state.response;
     const mode = state.mode;
+    const search = document.getElementById("discSearch");
+    if (search && rootEl.dataset.discMode === mode) {
+      const current = (resp && resp.query && resp.query.text) || "";
+      if (document.activeElement !== search) search.value = current;
+      syncSearchClearButton();
+      paintChips();
+      paintMain();
+      paintTableNote();
+      return;
+    }
+    rootEl.dataset.discMode = mode;
     const title =
       mode === "replace_plan_meal"
         ? "Find something else"
@@ -574,13 +597,14 @@
     }
     html += "</div><p class=\"lede\">" + esc(lede) + '</p>';
     html += '<p class="disc-table meta" id="discTableNote"></p></div></header>';
-    html += '<div class="disc-search-row"><label class="visually-hidden" for="discSearch">Search dinners</label>';
+    html += '<div class="disc-search-row" role="search" aria-label="Find dinners"><label class="sr-only" for="discSearch">Search dinners</label>';
+    html += '<svg class="icon disc-search-icon" aria-hidden="true"><use href="#i-search" /></svg>';
     html += '<input type="search" id="discSearch" class="disc-search" placeholder="Try salmon, tacos, or Thai" autocomplete="off" value="' + esc((resp && resp.query && resp.query.text) || "") + '" />';
     const searchHasText = !!(resp && resp.query && resp.query.text);
     html +=
-      '<button type="button" class="btn btn-quiet disc-search-clear" id="discSearchClear" aria-label="Clear search"' +
+      '<button type="button" class="disc-search-clear" id="discSearchClear" aria-label="Clear search"' +
       (searchHasText ? "" : " hidden") +
-      ">Clear search</button></div>";
+      ">×</button></div>";
     html += '<div class="disc-chips" id="discChips" role="toolbar" aria-label="Refine dinners"></div>';
     html += '<div class="disc-progress" id="discProgress" hidden></div>';
     html += '<div class="disc-main" id="discMain" aria-live="polite"></div>';
@@ -665,7 +689,13 @@
     const main = document.getElementById("discMain");
     if (!main) return;
     if (state.loading && !state.response) {
-      main.innerHTML = '<div class="disc-skeleton" aria-busy="true">Loading…</div>';
+      let skel = '<div class="disc-skeleton" aria-busy="true"><span class="sr-only">Loading dinners</span>';
+      for (let s = 0; s < 2; s++) {
+        skel += '<div class="disc-skeleton__title"></div><div class="disc-shelf__row">';
+        for (let i = 0; i < 4; i++) skel += '<div class="disc-skeleton__card"></div>';
+        skel += "</div>";
+      }
+      main.innerHTML = skel + "</div>";
       return;
     }
     if (state.error && !state.response) {
@@ -685,20 +715,43 @@
 
   function paintShelves(main) {
     const shelves = state.shelves || {};
-    const keys = Object.keys(shelves);
+    const keys = (d().DISCOVERY_SHELVES || [])
+      .map(function (s) {
+        return s.id;
+      })
+      .filter(function (id) {
+        return shelves[id];
+      });
     if (!keys.length) {
       main.innerHTML = '<div class="empty-state"><strong>Nothing on the menu fits this table yet</strong><p class="meta">Between everyone’s limits, none of our dinners work. Try a different table.</p></div>';
       return;
     }
     let html = "";
-    keys.forEach(function (id) {
+    keys.forEach(function (id, shelfIndex) {
       const row = shelves[id];
       const title = d().shelfDisplayTitle ? d().shelfDisplayTitle(row.shelf, row.response) : row.shelf.title;
       const sub = d().shelfDisplaySubtitle ? d().shelfDisplaySubtitle(row.shelf, row.response) : row.shelf.subtitle;
-      html += '<section class="disc-shelf"><div class="disc-shelf__head"><div><h2>' + esc(title) + "</h2><p class=\"meta\">" + esc(sub) + '</p></div><button type="button" class="btn btn-quiet btn-sm" data-disc-see-all="' + esc(id) + '">See all</button></div><div class="disc-shelf__row">';
-      const results = row.response.results || [];
-      results.slice(0, 8).forEach(function (r, i) {
-        html += cardHtml(r, i === 0 ? "lead" : "shelf");
+      const headingId = "discShelf-" + id;
+      const implied = impliedTraits(row.shelf.query && row.shelf.query.criteria);
+      html +=
+        '<section class="disc-shelf" aria-labelledby="' +
+        headingId +
+        '"><div class="disc-shelf__head"><div><h2 id="' +
+        headingId +
+        '">' +
+        esc(title) +
+        "</h2><p class=\"meta\">" +
+        esc(sub) +
+        '</p></div><button type="button" class="btn btn-quiet btn-sm disc-see-all" data-disc-see-all="' +
+        esc(id) +
+        '" aria-label="See all ' +
+        esc(title) +
+        '">See all</button></div>';
+      const results = (row.response.results || []).slice();
+      if (shelfIndex === 0 && results.length) html += cardHtml(results.shift(), "lead", implied);
+      html += '<div class="disc-shelf__row">';
+      results.slice(0, 8).forEach(function (r) {
+        html += cardHtml(r, "shelf", implied);
       });
       html += "</div></section>";
     });
@@ -708,14 +761,16 @@
   function paintResults(main, resp) {
     const total = resp.total;
     const lean = leanSummary(resp);
-    let header = "<h2 class=\"disc-results-title\">" + esc(total === 1 ? "1 dinner" : total + " dinners") + "</h2>";
+    let header =
+      '<div class="disc-results-head"><h2 class="disc-results-title">' +
+      esc(total === 1 ? "1 dinner" : total + " dinners") +
+      '</h2><button type="button" class="btn btn-quiet btn-sm" data-disc-clear>Clear all</button></div>';
     if (lean) {
       header +=
         '<p class="disc-lean meta">' +
         esc(lean) +
         ' <button type="button" class="btn btn-quiet btn-sm" data-disc-lean-change>Change</button></p>';
     }
-    header += '<button type="button" class="btn btn-quiet btn-sm" data-disc-clear>Clear all</button>';
     let body = "";
     if (total === 0) {
       const kind = d().emptyStateKind ? d().emptyStateKind(resp.query, total, resp.excluded_counts) : "nothing_fits";
@@ -746,8 +801,9 @@
       }
     } else {
       body = '<div class="disc-grid">';
+      const implied = impliedTraits(resp.query && resp.query.criteria);
       (resp.results || []).forEach(function (r) {
-        body += cardHtml(r, "grid");
+        body += cardHtml(r, "grid", implied);
       });
       body += "</div>";
     }
@@ -1379,8 +1435,6 @@
         SHELF_MIN_TOTAL: SHELF_MIN_TOTAL,
         findPathFromState: findPathFromState,
         queryHasActiveCriteria: queryHasActiveCriteria,
-        timeChipIsOn: timeChipIsOn,
-        timeChipTogglePatch: timeChipTogglePatch,
         shelfDisplayTitle: shelfDisplayTitle,
         shelfDisplaySubtitle: shelfDisplaySubtitle,
         relaxRemoveChips: function (excluded, query) {

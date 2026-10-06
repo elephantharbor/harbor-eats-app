@@ -35,6 +35,7 @@ function loadDiscoveryHarness() {
         disabled: false,
         textContent: "",
         value: "",
+        dataset: {},
         addEventListener() {},
         setAttribute() {},
         focus() {},

@@ -64,6 +64,18 @@ describe("D-07 MealDiscovery app wiring", () => {
     expect(disc).toMatch(/kind === "time"[\s\S]{0,120}timeChipTogglePatch/);
   });
 
+  it("keeps Opus review fixes in place", () => {
+    const disc = readFileSync(new URL("../public/discovery-ui.js", import.meta.url), "utf8");
+    const css = readFileSync(new URL("../public/styles.css", import.meta.url), "utf8");
+    expect(disc).not.toContain("visually-hidden");
+    expect(disc).toContain("group.category");
+    expect(disc).toMatch(/DISCOVERY_SHELVES \|\| \[\]\)\s*\.map/);
+    expect(disc).toMatch(/rootEl\.dataset\.discMode === mode/);
+    expect(disc).not.toMatch(/deps\.timeChip(IsOn|TogglePatch)/);
+    const discCss = css.slice(css.indexOf("/* D-07 MealDiscovery */"));
+    expect(discCss).not.toMatch(/--color-surface-raised|--color-border-subtle|var\(--page-padding\)/);
+  });
+
   it("hides clear search until the field has text", () => {
     const disc = readFileSync(new URL("../public/discovery-ui.js", import.meta.url), "utf8");
     expect(disc).toContain("function syncSearchClearButton");
