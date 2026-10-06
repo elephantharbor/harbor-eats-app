@@ -413,13 +413,11 @@
   }
 
   function timeChipIsOn(criteria) {
-    if (deps && deps.timeChipIsOn) return deps.timeChipIsOn(criteria);
     const c = criteria || {};
     return c.quick === true || c.max_minutes != null;
   }
 
   function timeChipTogglePatch(criteria) {
-    if (deps && deps.timeChipTogglePatch) return deps.timeChipTogglePatch(criteria);
     if (timeChipIsOn(criteria)) return { quick: false, max_minutes: null };
     return { quick: true, max_minutes: null };
   }
