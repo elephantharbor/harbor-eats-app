@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { preferenceTier } from "../src/lib/classification.js";
-import { normalizeClientContext, resolveDiscoveryContext, selectionFor } from "../src/discovery/context.js";
+import { emptyNightCount, normalizeClientContext, resolveDiscoveryContext, selectionFor } from "../src/discovery/context.js";
 import { EXPLICIT_EASY_FIXTURE, EMPTY_QUERY_FIXTURE, QUICK_NOT_EASY_FIXTURE } from "../src/discovery/fixtures.js";
 import { parseDiscoveryHttp, routeDiscoveryRequest } from "../src/discovery/http.js";
 import { matchMealText } from "../src/discovery/match.js";
@@ -33,7 +33,7 @@ describe("discovery query", () => {
     expect(result.query.text).toBe("lemon herb");
     expect(result.query.criteria.effort_levels).toEqual(["easy"]);
     expect(result.query.criteria.quick).toBe(false);
-    expect(result.query.criteria.cuisines).toEqual(["american"]);
+    expect(result.query.criteria.cuisines).toEqual(["american", "american-inspired"]);
     expect(result.query.soft_provided).toBe(true);
     expect(result.query.soft.keep_ingredients_simple).toBe(true);
     expect(result.query.criteria.effort_levels).not.toContain("quick");
@@ -82,6 +82,37 @@ describe("discovery query", () => {
     expect(omitted.query.soft_provided).toBe(false);
     expect(explicitOff.query.soft_provided).toBe(true);
     expect(explicitOff.query.soft.keep_it_easy).toBe(false);
+  });
+});
+
+describe("discovery collections", () => {
+  it("expands base cuisines and the plant collection without inventing synonyms", () => {
+    const cuisine = normalizeQuery({ criteria: { cuisines: ["italian"] } });
+    expect(cuisine.query.criteria.cuisines).toEqual(["italian", "italian-inspired"]);
+    expect(normalizeQuery({ criteria: { cuisines: ["Italian-Inspired"] } }).query.criteria.cuisines).toEqual(["italian-inspired"]);
+    const greek = normalizeQuery({ criteria: { cuisines: ["greek"] } });
+    expect(greek.query.criteria.cuisines).toEqual(["greek", "greek-inspired"]);
+    expect(greek.query.criteria.cuisines).not.toContain("mediterranean");
+
+    expect(normalizeQuery({ criteria: { diet: ["plant"] } }).query.criteria.diet).toEqual(["plant", "plant_based", "vegetarian"]);
+    expect(normalizeQuery({ criteria: { diet: ["vegetarian"] } }).query.criteria.diet).toEqual(["vegetarian"]);
+    expect(normalizeQuery({ criteria: { diet: ["dairy_free"] } }).query.criteria.diet).toEqual(["dairy_free"]);
+    expect(normalizeQuery({ criteria: { diet: ["vegan"] } }).error).toBe("diet_invalid");
+    expect(normalizeQuery({ criteria: { protein_groups: ["seafood"] } }).query.criteria.protein_groups).toEqual(["seafood"]);
+    expect(normalizeQuery({ criteria: { protein_groups: ["beef"] } }).error).toBe("protein_groups_invalid");
+    expect(normalizeQuery({ criteria: { textures: ["crispy"] } }).ok).toBe(true);
+    expect(normalizeQuery({ criteria: { textures: ["smoky"] } }).error).toBe("textures_invalid");
+    expect(normalizeQuery({ criteria: { different: "yes" } }).error).toBe("different_invalid");
+
+    const different = parseQuery("schema=1&different=1&protein=fish,shellfish&diet=plant&texture=creamy&limit=20&offset=0");
+    expect(different.ok).toBe(true);
+    expect(different.query.criteria.different).toBe(true);
+    expect(different.query.criteria.protein_groups).toEqual(["fish", "shellfish"]);
+    expect(different.query.criteria.diet).toEqual(["plant", "plant_based", "vegetarian"]);
+    expect(different.query.criteria.textures).toEqual(["creamy"]);
+    expect(serializeQueryString(different.query)).toBe(
+      "schema=1&protein=fish%2Cshellfish&diet=plant%2Cplant_based%2Cvegetarian&texture=creamy&different=1&limit=20&offset=0"
+    );
   });
 });
 
@@ -150,6 +181,90 @@ describe("discovery context", () => {
     expect(resolved.context.exclude_slugs).toEqual(["soup"]);
     expect(selectionFor(resolved.context).action).toBe("add_meal");
     expect(resolved.context.soft_source).toBe("plan_intent");
+    expect(resolved.context.position).toBeNull();
+  });
+
+  it("fills an empty night with add_meal and ignores a client position", () => {
+    const plan = {
+      dinner_plan_id: "dp_1",
+      household_id: "hh_1",
+      meal_count: 3,
+      intent: {},
+      meals: [
+        { meal_id: "dpm_1", kind: "recipe", state: "planned", position: 1, recipe_slug: "soup", participant_ids: ["m1"] },
+      ],
+    };
+    expect(emptyNightCount(plan)).toBe(2);
+    const client = normalizeClientContext({
+      mode: "choose_for_plan",
+      dinner_plan_id: "dp_1",
+      position: 2,
+    });
+    const resolved = resolveDiscoveryContext(client.context, {
+      household_id: "hh_1",
+      member_ids: ["m1"],
+      constraints: [],
+      tastes: [],
+      plan,
+    }, emptyQuery());
+    expect(resolved.ok).toBe(true);
+    expect(resolved.context.position).toBeNull();
+    expect(resolved.context.meal_id).toBeNull();
+    expect(selectionFor(resolved.context).action).toBe("add_meal");
+
+    const full = resolveDiscoveryContext(client.context, {
+      household_id: "hh_1",
+      member_ids: ["m1"],
+      constraints: [],
+      tastes: [],
+      plan: { ...plan, meal_count: 1 },
+    }, emptyQuery());
+    expect(full.error).toBe("plan_full");
+  });
+
+  it("swaps a stored recipe row and refuses leftovers", () => {
+    const base = {
+      household_id: "hh_1",
+      member_ids: ["m1"],
+      constraints: [],
+      tastes: [],
+    };
+    const recipe = resolveDiscoveryContext(
+      normalizeClientContext({ mode: "choose_for_plan", dinner_plan_id: "dp_1", meal_id: "dpm_1" }).context,
+      {
+        ...base,
+        plan: {
+          dinner_plan_id: "dp_1",
+          household_id: "hh_1",
+          meal_count: 1,
+          intent: {},
+          meals: [
+            { meal_id: "dpm_1", kind: "recipe", state: "planned", position: 1, recipe_slug: "soup", participant_ids: ["m1"] },
+          ],
+        },
+      },
+      emptyQuery()
+    );
+    expect(recipe.context.position).toBe(1);
+    expect(selectionFor(recipe.context).action).toBe("swap_meal");
+
+    const leftovers = resolveDiscoveryContext(
+      normalizeClientContext({ mode: "choose_for_plan", dinner_plan_id: "dp_1", meal_id: "dpm_1" }).context,
+      {
+        ...base,
+        plan: {
+          dinner_plan_id: "dp_1",
+          household_id: "hh_1",
+          meal_count: 2,
+          intent: {},
+          meals: [
+            { meal_id: "dpm_1", kind: "leftovers", state: "planned", position: 1, recipe_slug: null, participant_ids: ["m1"] },
+          ],
+        },
+      },
+      emptyQuery()
+    );
+    expect(leftovers.error).toBe("outcome_locked");
   });
 });
 

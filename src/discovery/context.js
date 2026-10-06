@@ -126,6 +126,21 @@ function recipeSlugs(meals) {
 }
 
 /**
+ * Open nights on a stored plan. Cycle 3 does not persist an empty slot as
+ * a meal row. `createDinnerPlan` with `fill: "planner"` returns nights the
+ * planner could not fill in `unfilled` and does not insert them. Emptiness
+ * that remains is `meal_count` minus the stored meal rows. `set_count` can
+ * raise `meal_count` without adding rows. `add_meal` appends the next
+ * position. A client `position` is not an address of a hole.
+ * @param {object|null|undefined} plan
+ */
+export function emptyNightCount(plan) {
+  const stored = Array.isArray(plan?.meals) ? plan.meals.length : 0;
+  const count = Number.isInteger(plan?.meal_count) ? plan.meal_count : 0;
+  return Math.max(0, count - stored);
+}
+
+/**
  * Merge a normalized client context with server state.
  * Plan modes take participants, exclude slugs, and default chips from the
  * stored plan. The client cannot override those.
@@ -139,6 +154,9 @@ export function resolveDiscoveryContext(client, server, query) {
   if (!Array.isArray(server.tastes)) return fail("tastes_required");
   const mode = client.mode;
   const recent_slugs = [...new Set((server.recent_slugs || []).filter((slug) => typeof slug === "string" && slug))];
+  const recent_source = server.recent_source === "cook" || server.recent_source === "unavailable"
+    ? server.recent_source
+    : null;
 
   /** @type {string[]} */
   let participant_ids = [];
@@ -177,11 +195,11 @@ export function resolveDiscoveryContext(client, server, query) {
       exclude_slugs = meal.recipe_slug ? [meal.recipe_slug] : [];
       plan_slugs = recipeSlugs(meals.filter((row) => row.meal_id !== meal.meal_id));
     } else {
-      if (meals.length >= plan.meal_count) return fail("plan_full", 409);
+      if (emptyNightCount(plan) < 1) return fail("plan_full", 409);
       participant_ids = client.participant_ids.length ? client.participant_ids : [...(server.member_ids || [])];
       exclude_slugs = recipeSlugs(meals);
       plan_slugs = [...exclude_slugs];
-      position = client.position;
+      position = null;
     }
   }
 
@@ -211,6 +229,7 @@ export function resolveDiscoveryContext(client, server, query) {
       exclude_slugs,
       plan_slugs,
       recent_slugs,
+      recent_source,
       soft,
       soft_source,
       plan_soft: inherited,
@@ -274,6 +293,7 @@ export function publicContext(context) {
     exclude_slugs: [...context.exclude_slugs],
     plan_slugs: [...context.plan_slugs],
     recent_slugs: [...context.recent_slugs],
+    recent_source: context.recent_source || null,
     soft: { ...context.soft },
     soft_source: context.soft_source,
   };

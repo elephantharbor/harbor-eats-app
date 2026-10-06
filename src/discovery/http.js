@@ -191,6 +191,7 @@ export async function routeDiscoveryRequest(env, request, path, url) {
     constraints,
     tastes,
     recent_slugs: recent.recent_slugs,
+    recent_source: recent.recent_source,
     plan,
   }, parsed.query);
   if (!resolved.ok) return fail(resolved.error, resolved.status || 400);

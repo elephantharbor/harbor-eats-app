@@ -6,6 +6,11 @@
 
 import { canonicalIngredient } from "../lib/ingredient-identity.js";
 import { getTasteTerm } from "../lib/taste-vocabulary.js";
+import {
+  FISH_SIGNAL_TOKENS,
+  LAND_PROTEIN_TOKENS,
+  SHELLFISH_SIGNAL_TOKENS,
+} from "./constants.js";
 
 function classifyTags(ids) {
   /** @type {string[]} */
@@ -16,6 +21,8 @@ function classifyTags(ids) {
   const cuisines = [];
   /** @type {string[]} */
   const ingredients = [];
+  /** @type {string[]} */
+  const textures = [];
   for (const slug of ids || []) {
     const term = getTasteTerm(slug);
     if (!term || !term.active) continue;
@@ -23,8 +30,53 @@ function classifyTags(ids) {
     else if (term.category === "meal_style") styles.push(slug);
     else if (term.category === "cuisine") cuisines.push(slug);
     else if (term.category === "ingredient") ingredients.push(slug);
+    else if (term.category === "texture") textures.push(term.slug);
   }
-  return { flavors, styles, cuisines, ingredients };
+  return { flavors, styles, cuisines, ingredients, textures };
+}
+
+function tokenSet(list) {
+  return unique((list || []).map((token) => String(token).trim().toLowerCase()));
+}
+
+/**
+ * Seafood groups from eligibility tags and allergens only.
+ * `fish` is finfish or fish. `shellfish` is shellfish. `seafood` is either.
+ * Meat or poultry in that same union yields no group, so a poultry dish
+ * that merely contains fish sauce stays out. A missing signal yields no
+ * group. Titles, primary ingredients, and ingredient vocabulary are not read.
+ * @param {string[]} tokens
+ * @returns {string[]}
+ */
+export function proteinGroupsFromSignals(tokens) {
+  const present = new Set(tokenSet(tokens));
+  if (LAND_PROTEIN_TOKENS.some((token) => present.has(token))) return [];
+  /** @type {string[]} */
+  const groups = [];
+  if (FISH_SIGNAL_TOKENS.some((token) => present.has(token))) groups.push("fish");
+  if (SHELLFISH_SIGNAL_TOKENS.some((token) => present.has(token))) groups.push("shellfish");
+  if (groups.length) groups.push("seafood");
+  groups.sort((a, b) => a.localeCompare(b));
+  return groups;
+}
+
+function activeTextureSlug(value) {
+  if (typeof value !== "string" || !value.trim()) return null;
+  const term = getTasteTerm(value.trim().toLowerCase());
+  if (!term || !term.active || term.category !== "texture") return null;
+  return term.slug;
+}
+
+function collectionFields({ eligibility_tags, allergens, dietary_labels, texture, grouped }) {
+  const tags = tokenSet(eligibility_tags);
+  const allergy = tokenSet(allergens);
+  return {
+    eligibility_tags: tags,
+    allergens: allergy,
+    dietary_labels: tokenSet(dietary_labels),
+    textures: unique([...(grouped.textures || []), activeTextureSlug(texture)]),
+    protein_groups: proteinGroupsFromSignals([...tags, ...allergy]),
+  };
 }
 
 function unique(list) {
@@ -47,6 +99,13 @@ export function projectDiscoveryMeal(entry) {
     if (item.name) ingredient_names.push(String(item.name));
   }
   const cuisine = concept.cuisine || grouped.cuisines[0] || null;
+  const collections = collectionFields({
+    eligibility_tags: concept.tags,
+    allergens: pkg.allergens,
+    dietary_labels: pkg.dietary_labels,
+    texture: concept.texture,
+    grouped,
+  });
   return {
     recipe_slug: concept.concept_id || pkg.dish_id || null,
     recipe_version_id: pkg.recipe_version_id || null,
@@ -60,6 +119,7 @@ export function projectDiscoveryMeal(entry) {
     flavors: grouped.flavors,
     styles: grouped.styles,
     cuisines: unique([cuisine, ...grouped.cuisines]),
+    ...collections,
     ingredient_ids: unique(ingredient_ids),
     ingredient_names,
     total_minutes: pkg.total_minutes == null ? null : pkg.total_minutes,
@@ -87,6 +147,13 @@ export function discoveryMeal(partial) {
     ingredients: [],
   };
   const cuisine = partial.cuisine || grouped.cuisines[0] || null;
+  const collections = collectionFields({
+    eligibility_tags: partial.eligibility_tags,
+    allergens: partial.allergens,
+    dietary_labels: partial.dietary_labels,
+    texture: partial.texture,
+    grouped,
+  });
   return {
     recipe_slug: partial.recipe_slug,
     recipe_version_id: partial.recipe_version_id || `rv_${partial.recipe_slug}_v2`,
@@ -100,6 +167,7 @@ export function discoveryMeal(partial) {
     flavors: partial.flavors || grouped.flavors,
     styles: partial.styles || grouped.styles,
     cuisines: unique(partial.cuisines || [cuisine, ...grouped.cuisines]),
+    ...collections,
     ingredient_ids: unique(partial.ingredient_ids || []),
     ingredient_names: partial.ingredient_names || [],
     total_minutes: partial.total_minutes == null ? null : partial.total_minutes,

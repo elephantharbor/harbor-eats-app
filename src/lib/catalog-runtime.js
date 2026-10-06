@@ -138,6 +138,8 @@ export function plannerEntryFromRecord(record) {
       cuisine: record.cuisine,
       meal_format: record.meal_format,
       primary_ingredient: record.primary_ingredient,
+      texture: record.texture || null,
+      flavor_profile: record.flavor_profile || null,
       tags: record.eligibility_tags?.length ? record.eligibility_tags : record.tags,
       sparks: record.sparks,
       exploration: record.exploration,

@@ -5,6 +5,7 @@
  */
 
 import { EFFORT_LEVELS, INGREDIENT_COMPLEXITIES } from "../lib/classification.js";
+import { listVocabulary } from "../lib/taste-vocabulary.js";
 
 export const DISCOVERY_SCHEMA_VERSION = 1;
 
@@ -64,6 +65,10 @@ export const EXCLUSION_CODES = Object.freeze([
   "explicit_exclude_ingredient",
   "explicit_method",
   "explicit_equipment",
+  "explicit_protein",
+  "explicit_diet",
+  "explicit_texture",
+  "explicit_different",
 ]);
 
 /**
@@ -85,6 +90,10 @@ export const RANK_REASON_CODES = Object.freeze([
   "explicit_flavor",
   "explicit_method",
   "explicit_equipment",
+  "explicit_protein",
+  "explicit_diet",
+  "explicit_texture",
+  "explicit_different",
   "text_match",
   "soft_keep_easy",
   "soft_keep_simple",
@@ -109,10 +118,47 @@ export const CRITERIA_LIST_FIELDS = Object.freeze([
   "ingredient_complexities",
   "methods",
   "equipment",
+  "protein_groups",
+  "diet",
+  "textures",
 ]);
 
 export const EFFORT_FILTERS = EFFORT_LEVELS;
 export const COMPLEXITY_FILTERS = INGREDIENT_COMPLEXITIES;
+
+/**
+ * Seafood groups. `seafood` is the fish-or-shellfish collection.
+ * Signals that fill these groups live on eligibility tags and allergens,
+ * not on titles. See proteinGroupsFromSignals.
+ */
+export const PROTEIN_GROUP_FILTERS = Object.freeze(["fish", "seafood", "shellfish"]);
+
+/** Eligibility-tag or allergen tokens that count as finfish. */
+export const FISH_SIGNAL_TOKENS = Object.freeze(["finfish", "fish"]);
+
+/** Eligibility-tag or allergen tokens that count as shellfish. */
+export const SHELLFISH_SIGNAL_TOKENS = Object.freeze(["shellfish"]);
+
+/**
+ * Land protein in the same tag and allergen union keeps the meal out of
+ * every seafood group. Fish sauce on a chicken pho is not a fish dinner.
+ */
+export const LAND_PROTEIN_TOKENS = Object.freeze(["meat", "poultry"]);
+
+/**
+ * Stored recipe_version dietary labels the catalog actually writes.
+ * `plant` is the plant-forward collection; normalize adds `plant_based`
+ * and `vegetarian`. There is no stored `vegan` label.
+ */
+export const DIET_FILTERS = Object.freeze(["dairy_free", "plant", "plant_based", "vegetarian"]);
+
+/** Active Taste Vocabulary texture slugs. Flavor terms are not in this list. */
+export const TEXTURE_FILTERS = Object.freeze(
+  listVocabulary()
+    .filter((term) => term.category === "texture" && term.active)
+    .map((term) => term.slug)
+    .sort((a, b) => a.localeCompare(b))
+);
 
 /**
  * Keys a client might send expecting them to mean something. They are
@@ -142,6 +188,7 @@ export const CRITERIA_KEYS = Object.freeze([
   ...CRITERIA_LIST_FIELDS,
   "max_minutes",
   "quick",
+  "different",
 ]);
 
 export const SOFT_KEYS = Object.freeze(["keep_it_easy", "keep_ingredients_simple"]);

@@ -49,6 +49,33 @@ export const NLP_BINDING_RULES = Object.freeze([
     note: "Hard filter on D-03 ingredient_complexity. Not a pantry.",
   },
   {
+    id: "fish_seafood",
+    maps_to: "criteria.protein_groups",
+    value: ["seafood"],
+    must_not_map_to: ["criteria.ingredients", "title"],
+    note: "Fish and seafood collection. seafood covers the fish and shellfish groups. Do not infer a protein from the title.",
+  },
+  {
+    id: "plant_forward",
+    maps_to: "criteria.diet",
+    value: ["plant"],
+    must_not_map_to: ["constraints", "eligible"],
+    note: "Plant-forward collection. Normalize expands plant to the stored plant, plant_based, and vegetarian labels. Not an extra diner.",
+  },
+  {
+    id: "something_different",
+    maps_to: "criteria.different",
+    value: true,
+    must_not_map_to: ["taste less_often", "stage-7 recency"],
+    note: "Hard filter against recent cooks after eligibility. Survivors stay taste-ranked. Not a less-often include.",
+  },
+  {
+    id: "texture",
+    maps_to: "criteria.textures",
+    must_not_map_to: ["criteria.flavors"],
+    note: "Crispy, creamy, crunchy, and tender are texture vocabulary. They are not flavors.",
+  },
+  {
     id: "literal_text",
     maps_to: "text",
     must_not_map_to: ["criteria", "soft"],

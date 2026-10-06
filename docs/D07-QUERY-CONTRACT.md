@@ -21,9 +21,9 @@ Unknown keys are `unknown_field`.
 
 | Field | Type | Match |
 |-------|------|-------|
-| `cuisines` | slug[] | `dish.cuisine` or a cuisine vocabulary tag. |
+| `cuisines` | slug[] | `dish.cuisine` or a cuisine vocabulary tag. A base token also matches `{token}-inspired`. |
 | `meal_styles` | slug[] | A meal-style vocabulary tag or `meal_format`. |
-| `flavors` | slug[] | A flavor vocabulary tag or `flavor_profile`. |
+| `flavors` | slug[] | A flavor vocabulary tag or `flavor_profile`. Texture terms are not flavors. |
 | `ingredients` | slug[] | Canonical ingredient id, vocabulary tag, or `primary_ingredient`. |
 | `exclude_ingredients` | slug[] | Same identity. Any hit drops the meal. |
 | `effort_levels` | `easy` \| `moderate` \| `involved`[] | Hard filter on D-03 `effort_level`. |
@@ -32,10 +32,37 @@ Unknown keys are `unknown_field`.
 | `methods` | slug[] | Method token, such as `oven` or `grill`. |
 | `equipment` | slug[] | Equipment token, such as `sheet-pan`. |
 | `quick` | boolean | Default false. True means `total_minutes <= 30`. |
+| `protein_groups` | `fish` \| `seafood` \| `shellfish`[] | Hard filter. Eligibility tags union allergens. See collections below. |
+| `diet` | `dairy_free` \| `plant` \| `plant_based` \| `vegetarian`[] | Hard filter on stored `dietary_labels`. `plant` expands. |
+| `textures` | `creamy` \| `crispy` \| `crunchy` \| `tender`[] | Hard filter on active texture vocabulary tags, plus `dish.texture` when that value is one of those terms. |
+| `different` | boolean | Default false. True drops recent cooks after eligibility. |
 
-Lists are lowercase, unique, and sorted. A value outside the effort or complexity enums is `effort_levels_invalid` or `ingredient_complexities_invalid`. Other slug lists reject empty strings and characters outside `a-z`, `0-9`, hyphen, and underscore (`cuisines_invalid`, and the same pattern for each field). More than 20 items in one list is invalid. Spaces are not turned into hyphens.
+Lists are lowercase, unique, and sorted. A value outside an enum is `{field}_invalid` (`effort_levels_invalid`, `ingredient_complexities_invalid`, `protein_groups_invalid`, `diet_invalid`, `textures_invalid`). `vegan` is `diet_invalid`. There is no stored vegan label. Other slug lists reject empty strings and characters outside `a-z`, `0-9`, hyphen, and underscore (`cuisines_invalid`, and the same pattern for each field). More than 20 items in one list is invalid. Spaces are not turned into hyphens.
 
-Inside one list, any value matches. Every list that is non-empty must match. `quick: false` does not filter. `max_minutes: null` does not filter.
+Inside one list, any value matches. Every list that is non-empty must match. `quick: false` and `different: false` do not filter. `max_minutes: null` does not filter.
+
+Normalize expands two lists before the pipeline runs. The canonical query shows the expanded list.
+
+| Input token | Canonical list also contains | Does not add |
+|-------------|------------------------------|--------------|
+| `italian` | `italian-inspired` | `mediterranean` or any other cuisine |
+| `italian-inspired` | nothing further | `italian` |
+| `plant` | `plant_based`, `vegetarian` | `dairy_free` |
+| `vegetarian` or `plant_based` or `dairy_free` | nothing further | the other diet labels |
+
+`greek` expands only to `greek` and `greek-inspired`. It does not match `mediterranean`.
+
+### Collections and the fields they read
+
+| Collection | Send | Reads | Safe miss |
+|------------|------|-------|-----------|
+| Fish & seafood | `protein_groups: ["seafood"]` | `finfish` or `fish` or `shellfish` on eligibility tags or allergens, and not `meat` or `poultry` in that same union. `seafood` is the union of the fish and shellfish groups. | No signal, or land protein also present: the meal is out (`explicit_protein`). Do not infer from the title, `primary_ingredient`, ingredient slugs, or dietary label `fish`. |
+| Plant-forward | `diet: ["plant"]` | `dietary_labels` containing `plant`, `plant_based`, or `vegetarian` after expansion. | No such label: `explicit_diet`. Booleans such as `vegetarian_compatible` are not labels. Absence of a meat tag is not plant. |
+| Dairy-free or exact vegetarian | `diet: ["dairy_free"]` or `["vegetarian"]` | That stored label only. | Same exclusion. |
+| Something different | `different: true` | Slugs absent from `recent_slugs` when `recent_source` is `cook` and the list is non-empty. | Empty history or `recent_source: "unavailable"`: every meal is `explicit_different` / `no_recency_signal`. A recent slug is `recent_cook`. Survivors stay in taste order. |
+| Crispy / Creamy | `textures: ["crispy"]` or `["creamy"]` | Texture vocabulary on the meal, or `dish.texture` when it is an active texture slug. | No texture term: `explicit_texture`. `flavor_profile` and the title do not count. `mixed` is not a texture term. |
+
+Facet counts are deferred. The response has no `facets` field. Do not invent a count beside a chip. `excluded_counts` remains the count of removed meals.
 
 `quick` does not write `effort_levels`. `effort_levels` does not write `quick`. A meal can be easy and an hour long, or moderate and 20 minutes.
 
@@ -71,7 +98,7 @@ Key order is part of the fixture contract. `canonicalQuery` returns this shape. 
   "schema_version": 1,
   "text": "lemon herb",
   "criteria": {
-    "cuisines": ["american"],
+    "cuisines": ["american", "american-inspired"],
     "meal_styles": [],
     "flavors": [],
     "ingredients": [],
@@ -81,7 +108,11 @@ Key order is part of the fixture contract. `canonicalQuery` returns this shape. 
     "max_minutes": null,
     "methods": [],
     "equipment": [],
-    "quick": false
+    "quick": false,
+    "protein_groups": [],
+    "diet": [],
+    "textures": [],
+    "different": false
   },
   "soft": {
     "keep_it_easy": false,
@@ -114,6 +145,10 @@ That object is fixture `explicit-easy-not-quick`. The meal it keeps can take an 
 | `method` | `criteria.methods` |
 | `equipment` | `criteria.equipment` |
 | `quick` | `criteria.quick` |
+| `protein` | `criteria.protein_groups` |
+| `diet` | `criteria.diet` |
+| `texture` | `criteria.textures` |
+| `different` | `criteria.different` |
 | `keep_it_easy` | `soft.keep_it_easy` |
 | `keep_ingredients_simple` | `soft.keep_ingredients_simple` |
 | `limit` | `limit` |
@@ -130,7 +165,7 @@ That object is fixture `explicit-easy-not-quick`. The meal it keeps can take an 
 False `quick` is omitted from the string. Parsing it back leaves `quick` false. Soft flags are written only when `soft` was sent, including an explicit `0`, so an inherited chip survives a round trip.
 
 ```
-schema=1&text=lemon+herb&cuisine=american&effort=easy&keep_it_easy=0&keep_ingredients_simple=1&limit=10&offset=0
+schema=1&text=lemon+herb&cuisine=american%2Camerican-inspired&effort=easy&keep_it_easy=0&keep_ingredients_simple=1&limit=10&offset=0
 ```
 
 ```
@@ -203,14 +238,26 @@ Choose a new row while the plan has room. Explicit Easy, and both chips forced o
 }
 ```
 
-Fill a specific empty slot (swap that row, do not add another):
+Fill an empty night. The plan has no blank row to point at, so there is no `meal_id`. Selection is `add_meal`. `position` on this request is ignored:
+
+```json
+{
+  "mode": "choose_for_plan",
+  "context": {
+    "dinner_plan_id": "dp_1"
+  },
+  "query": {}
+}
+```
+
+Swap one stored recipe row. That row already exists, so this sends `meal_id` and selection is `swap_meal`:
 
 ```json
 {
   "mode": "choose_for_plan",
   "context": {
     "dinner_plan_id": "dp_1",
-    "meal_id": "dpm_3"
+    "meal_id": "dpm_1"
   },
   "query": {}
 }
@@ -252,7 +299,7 @@ Each result:
 | `match_score` | Stage 3. Zero when `text` is null |
 | `reasons`, `primary_reason` | `RANK_REASON_CODES` |
 
-`context` echoes `mode`, `household_id`, `participant_ids`, `dinner_plan_id`, `meal_id`, `position`, `exclude_slugs`, `plan_slugs`, `recent_slugs`, `soft`, and `soft_source`.
+`context` echoes `mode`, `household_id`, `participant_ids`, `dinner_plan_id`, `meal_id`, `position`, `exclude_slugs`, `plan_slugs`, `recent_slugs`, `recent_source`, `soft`, and `soft_source`. `position` is null when the mode is filling an empty night.
 
 ## Errors
 
@@ -274,7 +321,7 @@ Each result:
 | `forbidden_cross_household` | 403 | Plan belongs to another household |
 | `meal_not_found` | 404 | `meal_id` is not on that plan |
 | `outcome_locked` | 409 | The meal is not a planned or selected recipe |
-| `plan_full` | 409 | `choose_for_plan` without a `meal_id` and no open row |
+| `plan_full` | 409 | `choose_for_plan` without a `meal_id` when `meal_count − meals.length` is 0 |
 | `catalog_source_required` | 503 | `CATALOG_SOURCE` is not `d1` |
 | `catalog_unavailable` | 503 | Published catalog failed to load |
 | `method_not_allowed` | 405 | Not GET or POST |
@@ -293,6 +340,11 @@ Exclusion codes on a meal that did load (`EXCLUSION_CODES`) are not HTTP errors.
 | `explicit_cuisine`, `explicit_meal_style`, `explicit_flavor` | explicit criteria |
 | `explicit_ingredient`, `explicit_exclude_ingredient` | explicit criteria |
 | `explicit_method`, `explicit_equipment` | explicit criteria |
+| `explicit_protein`, `explicit_diet`, `explicit_texture`, `explicit_different` | explicit criteria |
+
+`explicit_different` uses `detail: "no_recency_signal"` when cook history is empty or `recent_source` is `unavailable`, and `detail: "recent_cook"` when the meal is in `recent_slugs`.
+
+The response does not include facet counts.
 
 `explicit_quick` and `explicit_max_minutes` use `detail: "minutes_unknown"` when the catalog has no `total_minutes`. They use `over_quick_max` or `over_max` when the clock misses.
 

@@ -21,10 +21,11 @@ function overlaps(wanted, present) {
 
 /**
  * @param {object} meal
- * @param {object} criteria
+ * @param {object} criteria normalized criteria. Cuisine and plant lists are already expanded.
+ * @param {object} [context] resolved context. `different` reads recent cooks from here.
  * @returns {{ pass: boolean, code: string|null, detail: string|null, matched: string[] }}
  */
-export function matchExplicitCriteria(meal, criteria) {
+export function matchExplicitCriteria(meal, criteria, context = {}) {
   const matched = [];
   if (criteria.effort_levels.length) {
     if (!has(criteria.effort_levels, meal.effort_level)) {
@@ -102,6 +103,34 @@ export function matchExplicitCriteria(meal, criteria) {
       return { pass: false, code: "explicit_equipment", detail: null, matched };
     }
     matched.push("explicit_equipment");
+  }
+  if (criteria.protein_groups.length) {
+    if (!overlaps(criteria.protein_groups, meal.protein_groups || [])) {
+      return { pass: false, code: "explicit_protein", detail: null, matched };
+    }
+    matched.push("explicit_protein");
+  }
+  if (criteria.diet.length) {
+    if (!overlaps(criteria.diet, meal.dietary_labels || [])) {
+      return { pass: false, code: "explicit_diet", detail: null, matched };
+    }
+    matched.push("explicit_diet");
+  }
+  if (criteria.textures.length) {
+    if (!overlaps(criteria.textures, meal.textures || [])) {
+      return { pass: false, code: "explicit_texture", detail: null, matched };
+    }
+    matched.push("explicit_texture");
+  }
+  if (criteria.different) {
+    const recent = Array.isArray(context.recent_slugs) ? context.recent_slugs : [];
+    if (context.recent_source === "unavailable" || recent.length === 0) {
+      return { pass: false, code: "explicit_different", detail: "no_recency_signal", matched };
+    }
+    if (recent.includes(meal.recipe_slug)) {
+      return { pass: false, code: "explicit_different", detail: "recent_cook", matched };
+    }
+    matched.push("explicit_different");
   }
   return { pass: true, code: null, detail: null, matched };
 }

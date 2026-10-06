@@ -240,4 +240,137 @@ describe("discovery pipeline", () => {
     expect(result.excluded.find((row) => row.recipe_slug === "tacos").code).toBe("excluded_slug");
     expect(result.excluded.find((row) => row.recipe_slug === "soup").code).toBe("text_miss");
   });
+
+  it("projects seafood, plant labels, and texture tags without inventing missing ones", () => {
+    const shrimp = projectDiscoveryMeal({
+      concept: { concept_id: "lemon-garlic-shrimp-pasta", title: "Shrimp Pasta", cuisine: "italian-inspired", tags: [] },
+      pkg: { recipe_version_id: "rv_shrimp", allergens: ["shellfish"], dietary_labels: [], vocabulary_tag_ids: [] },
+    });
+    expect(shrimp.protein_groups).toEqual(["seafood", "shellfish"]);
+
+    const pho = projectDiscoveryMeal({
+      concept: { concept_id: "vietnamese-chicken-pho", tags: ["poultry", "finfish"], cuisine: "vietnamese" },
+      pkg: { allergens: [], dietary_labels: [], vocabulary_tag_ids: [] },
+    });
+    expect(pho.protein_groups).toEqual([]);
+
+    const titled = projectDiscoveryMeal({
+      concept: {
+        concept_id: "salmon-bowl",
+        title: "Crispy Salmon",
+        tags: [],
+        cuisine: "american",
+        primary_ingredient: "salmon",
+        texture: "mixed",
+      },
+      pkg: { allergens: [], dietary_labels: ["fish"], vocabulary_tag_ids: ["salmon"], ingredients: [] },
+    });
+    expect(titled.protein_groups).toEqual([]);
+    expect(titled.textures).toEqual([]);
+
+    const crispy = projectDiscoveryMeal({
+      concept: { concept_id: "tofu-tacos", texture: "mixed", tags: [], cuisine: "mexican" },
+      pkg: { vocabulary_tag_ids: ["crispy", "smoky"], dietary_labels: ["Vegetarian"], allergens: [] },
+    });
+    expect(crispy.textures).toEqual(["crispy"]);
+    expect(crispy.flavors).toEqual(["smoky"]);
+    expect(crispy.dietary_labels).toEqual(["vegetarian"]);
+  });
+
+  it("returns fish and shellfish meals and excludes poultry that also carries finfish", () => {
+    const meals = [
+      meal({ recipe_slug: "shrimp", title: "Lemon Garlic Shrimp Pasta", allergens: ["shellfish"] }),
+      meal({ recipe_slug: "salmon", title: "Miso Salmon", eligibility_tags: ["finfish"] }),
+      meal({ recipe_slug: "pho", title: "Chicken Pho", eligibility_tags: ["poultry", "finfish"] }),
+      meal({ recipe_slug: "titled", title: "Crispy Salmon Bowl", primary_ingredient: "salmon", dietary_labels: ["fish"] }),
+    ];
+    const result = run(meals, { criteria: { protein_groups: ["seafood"] } });
+    expect(result.results.map((row) => row.recipe_slug)).toEqual(["salmon", "shrimp"]);
+    expect(result.excluded.find((row) => row.recipe_slug === "pho").code).toBe("explicit_protein");
+    expect(result.excluded.find((row) => row.recipe_slug === "titled").code).toBe("explicit_protein");
+  });
+
+  it("matches plant-forward dietary labels and leaves unlabeled meals out", () => {
+    const meals = [
+      meal({ recipe_slug: "tofu", title: "Tofu", dietary_labels: ["plant_based"] }),
+      meal({ recipe_slug: "polenta", title: "Polenta", dietary_labels: ["vegetarian"] }),
+      meal({ recipe_slug: "soup", title: "Soup", dietary_labels: ["plant"] }),
+      meal({ recipe_slug: "chicken", title: "Chicken", dietary_labels: ["dairy_free"] }),
+      meal({ recipe_slug: "unlabeled", title: "Unlabeled" }),
+    ];
+    const plant = run(meals, { criteria: { diet: ["plant"] } });
+    expect(plant.results.map((row) => row.recipe_slug)).toEqual(["polenta", "soup", "tofu"]);
+    expect(plant.excluded.find((row) => row.recipe_slug === "chicken").code).toBe("explicit_diet");
+    expect(plant.excluded.find((row) => row.recipe_slug === "unlabeled").code).toBe("explicit_diet");
+
+    const exact = run(meals, { criteria: { diet: ["vegetarian"] } });
+    expect(exact.results.map((row) => row.recipe_slug)).toEqual(["polenta"]);
+    const dairy = run(meals, { criteria: { diet: ["dairy_free"] } });
+    expect(dairy.results.map((row) => row.recipe_slug)).toEqual(["chicken"]);
+  });
+
+  it("matches a base cuisine token to the inspired catalog value", () => {
+    const meals = [
+      meal({ recipe_slug: "inspired", title: "Pasta", cuisine: "italian-inspired" }),
+      meal({ recipe_slug: "base", title: "Lasagna", cuisine: "italian" }),
+      meal({ recipe_slug: "greek", title: "Salad", cuisine: "greek" }),
+      meal({ recipe_slug: "med", title: "Bowl", cuisine: "mediterranean" }),
+    ];
+    const italian = run(meals, { criteria: { cuisines: ["italian"] } });
+    expect(italian.results.map((row) => row.recipe_slug)).toEqual(["base", "inspired"]);
+    const onlyInspired = run(meals, { criteria: { cuisines: ["italian-inspired"] } });
+    expect(onlyInspired.results.map((row) => row.recipe_slug)).toEqual(["inspired"]);
+    const greek = run(meals, { criteria: { cuisines: ["greek"] } });
+    expect(greek.results.map((row) => row.recipe_slug)).toEqual(["greek"]);
+  });
+
+  it("matches texture vocabulary and ignores a crispy title or a creamy flavor profile", () => {
+    const meals = [
+      meal({ recipe_slug: "tacos", title: "Crispy Tofu Tacos", vocabulary_tag_ids: ["crispy"] }),
+      meal({ recipe_slug: "title-only", title: "Crispy Salmon" }),
+      meal({ recipe_slug: "creamy-flavor", title: "Soup", flavor_profile: "creamy" }),
+      meal({ recipe_slug: "dish-texture", title: "Bowl", texture: "creamy" }),
+      meal({ recipe_slug: "mixed", title: "Mixed", texture: "mixed" }),
+    ];
+    const crispy = run(meals, { criteria: { textures: ["crispy"] } });
+    expect(crispy.results.map((row) => row.recipe_slug)).toEqual(["tacos"]);
+    expect(crispy.excluded.find((row) => row.recipe_slug === "title-only").code).toBe("explicit_texture");
+    const creamy = run(meals, { criteria: { textures: ["creamy"] } });
+    expect(creamy.results.map((row) => row.recipe_slug)).toEqual(["dish-texture"]);
+    const asFlavor = run(meals, { criteria: { flavors: ["creamy"] } });
+    expect(asFlavor.results.map((row) => row.recipe_slug)).toEqual(["creamy-flavor"]);
+  });
+
+  it("drops recent cooks for something different and still ranks survivors by taste", () => {
+    const meals = [
+      meal({ recipe_slug: "recent", title: "Recent", exploration: 0.9 }),
+      meal({ recipe_slug: "older", title: "Older", exploration: 0.1 }),
+      meal({ recipe_slug: "also", title: "Also", exploration: 0.2 }),
+    ];
+    const ranked = run(meals, { criteria: { different: true } }, {
+      recent_slugs: ["recent"],
+      recent_source: "cook",
+    }, {
+      scoreTaste: (item) => ({
+        score: item.recipe_slug === "recent" ? 9 : item.recipe_slug === "also" ? 3 : 1,
+        hits: item.recipe_slug === "also" ? [{ rank: "love" }] : [],
+      }),
+    });
+    expect(ranked.results.map((row) => row.recipe_slug)).toEqual(["also", "older"]);
+    expect(ranked.excluded.find((row) => row.recipe_slug === "recent").detail).toBe("recent_cook");
+    expect(ranked.results[0].primary_reason).toBe("taste_love");
+    expect(ranked.results[0].reasons).toContain("explicit_different");
+    expect(ranked.results[0].taste_score).toBeGreaterThan(ranked.results[1].taste_score);
+
+    const empty = run(meals, { criteria: { different: true } }, { recent_slugs: [], recent_source: "cook" });
+    expect(empty.results).toEqual([]);
+    expect(empty.excluded.every((row) => row.detail === "no_recency_signal")).toBe(true);
+
+    const unavailable = run(meals, { criteria: { different: true } }, {
+      recent_slugs: ["older"],
+      recent_source: "unavailable",
+    });
+    expect(unavailable.results).toEqual([]);
+    expect(unavailable.excluded.every((row) => row.detail === "no_recency_signal")).toBe(true);
+  });
 });

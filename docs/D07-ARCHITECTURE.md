@@ -48,13 +48,17 @@ The client sends ids. The server fills participants, the plan's chips, recent co
 |------|----------|--------------|--------------|-----------|
 | `standalone` | Nothing. A `dinner_plan_id` or `meal_id` is `dinner_plan_not_allowed` / `meal_not_allowed`. | Client `participant_ids`, or every active member. | Client `exclude_slugs` only. | `action: "none"`. |
 | `replace_plan_meal` | `dinner_plan_id` and `meal_id`. | That meal's participants. | That meal's `recipe_slug`, so the current dinner is not offered again. Other nights stay searchable and count toward diversity. | `swap_meal` on that `meal_id`. |
-| `choose_for_plan` | `dinner_plan_id`. | The named meal's participants when `meal_id` is set. Otherwise the client list, or every active member. | When `meal_id` is set, that slot's slug if it has one. When `meal_id` is omitted, every recipe slug already on the plan, and the plan must have room (`plan_full` when `meals.length >= meal_count`). | `swap_meal` when `meal_id` is set. `add_meal` when it is not. |
+| `choose_for_plan` | `dinner_plan_id`. | The named meal's participants when `meal_id` is set. Otherwise the client list, or every active member. | When `meal_id` is set, that row's slug if it has one. When `meal_id` is omitted, every recipe slug already on the plan. The plan must have an open night (`plan_full` when `emptyNightCount` is 0). | `swap_meal` when `meal_id` is set. `add_meal` when it is not. |
 
-`replace_plan_meal` is for a recipe in `planned` or `selected`. Anything else is `outcome_locked`, the same rule as `swap_meal`. Leftovers and eating out are not search targets.
+`replace_plan_meal` and `choose_for_plan` with a `meal_id` are for a recipe in `planned` or `selected`. Anything else is `outcome_locked`. Leftovers and eating out are not search targets. Turning one of those rows into a cooked dinner stays the Cycle 3 swap-sheet flow. Discovery does not compose a selection for them.
 
-An empty slot is a meal row with a null slug. Choosing into that slot is `choose_for_plan` with that `meal_id`, which selects `swap_meal`. It is not `add_meal`. `add_meal` is only for a new row when the plan still has room.
+### Empty nights
 
-Find a dinner is still a Cycle 3 entry point. The screen chooses a mode. Opening search with no plan is `standalone`. Replacing one dinner is `replace_plan_meal`. Filling an open slot or adding a night is `choose_for_plan`.
+Cycle 3 does not store an empty night as a meal row with a null slug. `createDinnerPlan` with `fill: "planner"` puts nights the planner could not fill on the returned `unfilled` list and does not insert those rows. `buildMeal` requires a `recipe_version_id`. What remains on the saved plan is a count: open nights are `meal_count − meals.length` (`emptyNightCount`). `set_count` can raise `meal_count` without adding rows. `remove_meal` renumbers the rows that are left. `add_meal` appends at `max(position) + 1` and fails with `plan_full` when `meals.length >= meal_count`.
+
+Filling an empty night is `choose_for_plan` with `dinner_plan_id` and no `meal_id`. Selection is `add_meal`. The resolved `position` is null. A client `position` is not the address of a hole, and the server does not copy it onto the context. Sending a `meal_id` swaps that stored row. It does not fill a missing row, because the missing row has no id.
+
+Find a dinner is still a Cycle 3 entry point. The screen chooses a mode. Opening search with no plan is `standalone`. Replacing one stored dinner is `replace_plan_meal` or `choose_for_plan` with that `meal_id`. Filling an open night is `choose_for_plan` without a `meal_id`.
 
 ### Soft chips travel with the mode
 
@@ -123,7 +127,40 @@ Unknown `effort_level` or `ingredient_complexity` fails an explicit filter that 
 
 Within one list, any token matches (Mexican or Korean). Across lists, every active list must match. `exclude_ingredients` fails the meal when any excluded token is present.
 
-Ingredient match uses canonical ingredient ids, vocabulary tags, and `primary_ingredient`. It does not scan step prose. A title-only mention is not an exclusion. Cuisine matches `dish.cuisine` or a cuisine vocabulary tag, with no invented alias (`greek` does not match `mediterranean`). Meal style matches a meal-style vocabulary tag or `meal_format`.
+Ingredient match uses canonical ingredient ids, vocabulary tags, and `primary_ingredient`. It does not scan step prose. A title-only mention is not an exclusion. Meal style matches a meal-style vocabulary tag or `meal_format`.
+
+### Cuisine
+
+Cuisine matches `dish.cuisine` or a cuisine vocabulary tag. Normalize expands a base token to that token and `{token}-inspired`, so `italian` hits a meal stored as `italian-inspired`. The canonical query lists both. A token that already ends in `-inspired` is not expanded backward: sending only `italian-inspired` does not also match `italian`. This is not a synonym table. `greek` does not match `mediterranean`, and `cajun` does not match `american`. The UI does not have to send both forms.
+
+### Collections
+
+Oversight shelves are criteria, not hand-curated slug lists. A meal with no signal for that criterion is excluded. Discovery does not invent a label from the title, from a missing field, or from the absence of meat.
+
+| Shelf | Query | Catalog fields | Missing signal |
+|-------|--------|----------------|----------------|
+| Fish & seafood | `criteria.protein_groups: ["seafood"]` | Union of eligibility tags (`concept.tags`, the published `eligibility_tags`) and `pkg.allergens`. `finfish` or `fish` fills `fish`. `shellfish` fills `shellfish`. Either fills `seafood`. | No token in that union: `explicit_protein`. Title, `primary_ingredient`, ingredient vocabulary (`salmon`, `shrimp`), and a dietary label of `fish` are not signals. |
+| Fish, or shellfish | `["fish"]` or `["shellfish"]` | The same union, one family only. | Same exclusion. |
+| Plant-forward | `criteria.diet: ["plant"]` | Stored `dietary_labels`. Normalize expands `plant` to `plant`, `plant_based`, and `vegetarian`. | No one of those labels: `explicit_diet`. |
+| Dairy-free, vegetarian, plant-based chips | `criteria.diet` with that one value | The same `dietary_labels`, exact. `dairy_free` does not expand to plant. `vegetarian` does not include `plant_based`. | Same exclusion. |
+| Something different | `criteria.different: true` | `recent_slugs`, the last eight real cooks, after hard eligibility. | Empty `recent_slugs`, or `recent_source: "unavailable"`: every meal is `explicit_different` with `detail: "no_recency_signal"`. A slug in `recent_slugs` is `detail: "recent_cook"`. |
+| Crispy, creamy, crunchy, tender | `criteria.textures` | Active texture terms on `vocabulary_tag_ids`, plus `dish.texture` when that value is itself an active texture term. | No texture term: `explicit_texture`. |
+
+`meat` or `poultry` in the same eligibility-tag and allergen union removes the meal from `fish`, `shellfish`, and `seafood`. Chicken pho that contains fish sauce stays out of Fish & seafood. A shrimp pasta whose only stored signal is allergen `shellfish` stays in.
+
+Plant-forward does not read `vegetarian_compatible` or `plant_based_compatible`. Those booleans are import metadata, not runtime labels. It does not treat "no meat tag" as plant. There is no stored `vegan` label; sending `vegan` is `diet_invalid`. Household hard limits still run in stage 2 through `assessMealEligibility`. `criteria.diet` is not an extra diner and does not relax a prohibition.
+
+Something different is a stage-4 filter. It does not drop a whole cuisine, and it does not include a meal because someone marked it less often. Less often remains a taste penalty in stage 6. Survivors are still taste-ranked, then stage 7 may reorder inside the taste band. Exploration is that tie-break. It is not the collection gate. A cook history that failed to load does not label the whole catalog as different.
+
+`criteria.flavors` stays flavor vocabulary plus `flavor_profile`. Texture words are not flavors. `dish.texture` value `mixed` is not a texture term, so it matches no texture chip. A title that says Crispy, with no texture tag, matches no texture chip.
+
+Closed lists are `PROTEIN_GROUP_FILTERS`, `DIET_FILTERS`, and `TEXTURE_FILTERS`.
+
+### Deferred
+
+Facet counts are not in V1. The response has no `facets` object. `excluded_counts` stays the count of meals removed, by exclusion code. The UI does not invent a count per cuisine, diet, or texture option.
+
+Leftovers and eating-out rows stay `outcome_locked`. A composed "plan a dinner here instead" selection is not part of this contract.
 
 ## Text
 
@@ -149,7 +186,7 @@ Inside the band, prefer:
 4. Higher `exploration`.
 5. `recipe_slug`.
 
-`recent_slugs` are the household's last eight real cooks, the same window as `loadRecommendationContext`. The field `recent_source` is `cook`, or `unavailable` when that read fails. Dinner-plan history is not a second recency list. Recency never removes a meal. The code on the card is `recent_demoted`. A clearly better score outside the band stays ahead of a new meal.
+`recent_slugs` are the household's last eight real cooks, the same window as `loadRecommendationContext`. The field `recent_source` is `cook`, or `unavailable` when that read fails. Dinner-plan history is not a second recency list. Stage 7 reorders and does not remove a meal. The code on the card is `recent_demoted`. A clearly better score outside the band stays ahead of a new meal. Removing recent cooks is only `criteria.different` in stage 4.
 
 `diversity_preferred` means this meal moved ahead of a higher-taste neighbor because cuisine or ingredient was already used. `novelty_tiebreak` means `exploration` won a tie on the keys above it. `exploration_appetite` is not read.
 
@@ -160,7 +197,7 @@ Exclusions are counts in `excluded_counts`. They are not cards. The codes are `E
 Ranking codes are `RANK_REASON_CODES`. A result lists every code that applies. `primary_reason` is the first of these that applies:
 
 1. `taste_love`, `taste_like`
-2. `explicit_effort`, `explicit_quick`, `explicit_max_minutes`, `explicit_complexity`, `explicit_ingredient`, `explicit_exclude_ingredient`, `explicit_cuisine`, `explicit_meal_style`, `explicit_flavor`, `explicit_method`, `explicit_equipment`
+2. `explicit_effort`, `explicit_quick`, `explicit_max_minutes`, `explicit_complexity`, `explicit_ingredient`, `explicit_exclude_ingredient`, `explicit_cuisine`, `explicit_meal_style`, `explicit_flavor`, `explicit_method`, `explicit_equipment`, `explicit_protein`, `explicit_diet`, `explicit_texture`, `explicit_different`
 3. `text_match`
 4. `soft_keep_easy`, `soft_keep_simple`
 5. `taste_less_often`
@@ -214,6 +251,10 @@ Result cards carry identity and rank fields only: slug, published version id, re
 | An explicit Easy ask | `criteria.effort_levels: ["easy"]` | the Keep it easy chip, Quick |
 | An explicit Quick ask | `criteria.quick: true` | effort, the Keep it easy chip |
 | An explicit Simple ask | `criteria.ingredient_complexities: ["simple"]` | the Keep ingredients simple chip, pantry |
+| Fish and seafood | `criteria.protein_groups: ["seafood"]` | ingredient slugs, the title |
+| Plant-forward | `criteria.diet: ["plant"]` | `constraints`, `eligible` |
+| Something different | `criteria.different: true` | a less-often include, dropping a cuisine |
+| Crispy or creamy | `criteria.textures` | `criteria.flavors` |
 | Leftover words | `text` | criteria and soft |
 
 Unresolved phrases come back beside the query. They are not dropped into a guessed filter. Until D-06 exists, a search box sends `query.text` and the token matcher runs.
@@ -225,12 +266,16 @@ Unresolved phrases come back beside the query. They are not dropped into a guess
 - Do not filter dairy, nuts, or the other hard rules in the client. Show `excluded_counts.ineligible_hard_limit` if the empty state needs a count.
 - Do not hide `moderate` or `involved` meals when only Keep it easy is on. Do hide them when `effort_levels` is `["easy"]`.
 - Do not treat Simple as "what is in the kitchen."
+- Fish & seafood is `criteria.protein_groups: ["seafood"]`. Plant-forward is `criteria.diet: ["plant"]`. Something different is `criteria.different: true`. Crispy and creamy are `criteria.textures`. Do not ship a hand-curated slug list for those shelves.
+- Send a base cuisine token. The server adds `{token}-inspired`. Do not also require the UI to send every inspired variant.
+- An empty night has no meal row. Fill it with `choose_for_plan` and no `meal_id` (`add_meal`). Do not look for a null slug.
+- Do not render per-option facet counts. The response does not include them.
 - Pinned versions on the plan are not a search index. Results are the current published version. The follow-up mutation pins that id.
 - `trace` is for tests and debugging. The screen can ignore it.
 - No production deploy from this work.
 
 ## Tests
 
-`test/discovery-query.test.js` covers normalize, the Quick/Easy/Simple/pantry split, fixture round-trips, mode context, and the HTTP outline.
+`test/discovery-query.test.js` covers normalize, cuisine and plant expansion, the Quick/Easy/Simple/pantry split, fixture round-trips, empty-night selection, mode context, and the HTTP outline.
 
-`test/discovery-pipeline.test.js` covers stage order, hard-limit before text, explicit Easy versus Keep it easy, Quick versus a long easy meal, Simple versus pantry, the shared preference tier, less-often still returned, `assessMealEligibility` on dairy, recency inside the taste band, and diversity without drops.
+`test/discovery-pipeline.test.js` covers stage order, hard-limit before text, explicit Easy versus Keep it easy, Quick versus a long easy meal, Simple versus pantry, the shared preference tier, less-often still returned, `assessMealEligibility` on dairy, recency inside the taste band, diversity without drops, seafood and plant collections, cuisine expansion at match time, texture tags, and something-different versus taste.

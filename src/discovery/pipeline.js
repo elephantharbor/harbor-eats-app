@@ -131,7 +131,7 @@ export function stageTextMatch(state) {
 export function stageExplicitCriteria(state) {
   const next = [];
   for (const row of state.rows) {
-    const matched = matchExplicitCriteria(row.meal, state.query.criteria);
+    const matched = matchExplicitCriteria(row.meal, state.query.criteria, state.context);
     if (!matched.pass) {
       exclude(state, row, "explicit_criteria", matched.code, matched.detail);
       continue;

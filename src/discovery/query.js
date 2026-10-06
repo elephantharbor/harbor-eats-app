@@ -7,14 +7,17 @@ import { EFFORT_LEVELS, INGREDIENT_COMPLEXITIES } from "../lib/classification.js
 import {
   CRITERIA_KEYS,
   CRITERIA_LIST_FIELDS,
+  DIET_FILTERS,
   DISCOVERY_DEFAULT_LIMIT,
   DISCOVERY_MAX_LIMIT,
   DISCOVERY_MAX_LIST,
   DISCOVERY_MAX_TEXT,
   DISCOVERY_SCHEMA_VERSION,
   FORBIDDEN_QUERY_KEYS,
+  PROTEIN_GROUP_FILTERS,
   QUERY_KEYS,
   SOFT_KEYS,
+  TEXTURE_FILTERS,
 } from "./constants.js";
 
 const SLUG_RE = /^[a-z0-9]+(?:[-_][a-z0-9]+)*$/;
@@ -89,6 +92,46 @@ function normalizeMaxMinutes(value) {
   return { ok: true, value };
 }
 
+const INSPIRED_SUFFIX = "-inspired";
+
+const LIST_ENUMS = Object.freeze({
+  effort_levels: EFFORT_LEVELS,
+  ingredient_complexities: INGREDIENT_COMPLEXITIES,
+  protein_groups: PROTEIN_GROUP_FILTERS,
+  diet: DIET_FILTERS,
+  textures: TEXTURE_FILTERS,
+});
+
+/**
+ * A base cuisine token also matches the stored `{token}-inspired` form.
+ * `italian` therefore hits `italian-inspired`. A token that already ends
+ * in `-inspired` is left alone, so the inspired form does not invent the
+ * base. This is not a synonym table: `greek` does not become `mediterranean`.
+ * @param {string[]} list
+ */
+export function expandCuisineTokens(list) {
+  const out = new Set(list);
+  for (const token of list) {
+    if (!token.endsWith(INSPIRED_SUFFIX)) out.add(`${token}${INSPIRED_SUFFIX}`);
+  }
+  return [...out].sort((a, b) => a.localeCompare(b));
+}
+
+/**
+ * `plant` is the plant-forward collection. It matches stored labels
+ * `plant`, `plant_based`, and `vegetarian`. A lone `vegetarian` or
+ * `plant_based` stays exact. `dairy_free` does not imply plant.
+ * @param {string[]} list
+ */
+export function expandDietTokens(list) {
+  const out = new Set(list);
+  if (out.has("plant")) {
+    out.add("plant_based");
+    out.add("vegetarian");
+  }
+  return [...out].sort((a, b) => a.localeCompare(b));
+}
+
 const DIET_KEYS = new Set(["constraints", "eligible"]);
 const PANTRY_KEYS = new Set(["pantry", "already_have"]);
 
@@ -132,6 +175,10 @@ export function emptyCriteria() {
     methods: [],
     equipment: [],
     quick: false,
+    protein_groups: [],
+    diet: [],
+    textures: [],
+    different: false,
   };
 }
 
@@ -191,15 +238,13 @@ export function normalizeQuery(input = {}) {
 
   const criteria = emptyCriteria();
   for (const field of CRITERIA_LIST_FIELDS) {
-    const enums = field === "effort_levels"
-      ? EFFORT_LEVELS
-      : field === "ingredient_complexities"
-        ? INGREDIENT_COMPLEXITIES
-        : null;
+    const enums = LIST_ENUMS[field] || null;
     const list = normalizeSlugList(criteriaInput[field], field, enums ? { enum: enums } : {});
     if (!list.ok) return list;
     criteria[field] = list.value;
   }
+  criteria.cuisines = expandCuisineTokens(criteria.cuisines);
+  criteria.diet = expandDietTokens(criteria.diet);
   const maxMinutes = normalizeMaxMinutes(criteriaInput.max_minutes);
   if (!maxMinutes.ok) return maxMinutes;
   criteria.max_minutes = maxMinutes.value;
@@ -208,6 +253,12 @@ export function normalizeQuery(input = {}) {
     const quick = normalizeBool(criteriaInput.quick, "quick");
     if (!quick.ok) return quick;
     criteria.quick = quick.value;
+  }
+  if (criteriaInput.different == null) criteria.different = false;
+  else {
+    const different = normalizeBool(criteriaInput.different, "different");
+    if (!different.ok) return different;
+    criteria.different = different.value;
   }
 
   const soft = emptySoft();
@@ -262,6 +313,10 @@ export function canonicalQuery(query) {
       methods: [...criteria.methods],
       equipment: [...criteria.equipment],
       quick: criteria.quick,
+      protein_groups: [...criteria.protein_groups],
+      diet: [...criteria.diet],
+      textures: [...criteria.textures],
+      different: criteria.different,
     },
     soft: query.soft_provided
       ? { keep_it_easy: query.soft.keep_it_easy, keep_ingredients_simple: query.soft.keep_ingredients_simple }
@@ -281,6 +336,9 @@ const LIST_PARAMS = Object.freeze({
   complexity: "ingredient_complexities",
   method: "methods",
   equipment: "equipment",
+  protein: "protein_groups",
+  diet: "diet",
+  texture: "textures",
 });
 
 function readListParam(params, name) {
@@ -336,6 +394,12 @@ export function queryFromSearchParams(input) {
     criteria.quick = quick;
     anyCriteria = true;
   }
+  if (params.has("different")) {
+    const different = readBoolParam(params, "different");
+    if (different && different.invalid) return fail("different_invalid");
+    criteria.different = different;
+    anyCriteria = true;
+  }
   if (anyCriteria) query.criteria = criteria;
   const keepEasy = params.has("keep_it_easy") ? readBoolParam(params, "keep_it_easy") : undefined;
   const keepSimple = params.has("keep_ingredients_simple") ? readBoolParam(params, "keep_ingredients_simple") : undefined;
@@ -372,12 +436,16 @@ export function serializeQueryString(query) {
     ["complexity", criteria.ingredient_complexities],
     ["method", criteria.methods],
     ["equipment", criteria.equipment],
+    ["protein", criteria.protein_groups],
+    ["diet", criteria.diet],
+    ["texture", criteria.textures],
   ];
   for (const [name, list] of pairs) {
     if (list && list.length) params.set(name, list.join(","));
   }
   if (criteria.max_minutes != null) params.set("max_minutes", String(criteria.max_minutes));
   if (criteria.quick) params.set("quick", "1");
+  if (criteria.different) params.set("different", "1");
   if (query.soft_provided) {
     params.set("keep_it_easy", query.soft.keep_it_easy ? "1" : "0");
     params.set("keep_ingredients_simple", query.soft.keep_ingredients_simple ? "1" : "0");

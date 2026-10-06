@@ -26,7 +26,7 @@ export const EXPLICIT_EASY_FIXTURE = Object.freeze({
     limit: 10,
     offset: 0,
   },
-  search: "schema=1&text=lemon+herb&cuisine=american&effort=easy&keep_it_easy=0&keep_ingredients_simple=1&limit=10&offset=0",
+  search: "schema=1&text=lemon+herb&cuisine=american%2Camerican-inspired&effort=easy&keep_it_easy=0&keep_ingredients_simple=1&limit=10&offset=0",
 });
 
 export const QUICK_NOT_EASY_FIXTURE = Object.freeze({
