@@ -296,7 +296,7 @@
       } catch (_) { /* ignore */ }
     }
     const fn = replace ? "replaceState" : "pushState";
-    history[fn]({ find: { scrollY: state.scrollY, focusSlug: state.focusSlug } }, "", path);
+    history[fn]({ find: captureState() }, "", path);
   }
 
   function cacheKey(path) {

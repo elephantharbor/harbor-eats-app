@@ -3370,12 +3370,17 @@
   function openDiscoveryChoose(slot) {
     const plan = state.dinnerPlan;
     if (!plan || !Discovery) return;
+    const meal = slot && slot.meal_id ? planMealById(slot.meal_id) : null;
+    const participants =
+      meal && meal.participant_ids && meal.participant_ids.length
+        ? meal.participant_ids.slice()
+        : activeMemberIds().slice();
     Discovery.open({
       mode: "choose_for_plan",
       dinner_plan_id: plan.dinner_plan_id,
       meal_id: slot && slot.meal_id,
       position: slot && slot.position,
-      participant_ids: activeMemberIds().slice(),
+      participant_ids: participants,
       origin: "planReview",
       entry: "empty_slot",
     });
@@ -3518,6 +3523,66 @@
     }
   }
 
+  function discoveryOpenRows(plan) {
+    return (plan.meals || []).filter(function (m) {
+      return m.kind === "recipe" && !m.recipe_version_id;
+    });
+  }
+
+  async function discoveryAddToPlanSlot(mealId, versionId, participants) {
+    const row = planMealById(mealId);
+    if (!row) return;
+    await mutateDinnerPlan({
+      op: "swap_meal",
+      meal_id: mealId,
+      recipe_version_id: versionId,
+      participant_ids: participants,
+    });
+    toast("Added as Dinner " + row.position + ".");
+    track("discovery_action", { mode: "standalone", action: "add_to_plan", recipe_version_id: versionId });
+    renderDetail();
+  }
+
+  function openDiscAddPlanSheet(versionId, participants, openRows) {
+    const sheet = document.getElementById("discAddPlanSheet");
+    const lede = document.getElementById("discAddPlanLede");
+    const options = document.getElementById("discAddPlanOptions");
+    const cancel = document.getElementById("discAddPlanCancel");
+    if (!sheet || !options) {
+      discoveryAddToPlanSlot(openRows[0].meal_id, versionId, participants);
+      return;
+    }
+    if (lede) lede.textContent = "Which open dinner should this fill?";
+    options.innerHTML = openRows
+      .map(function (row) {
+        return (
+          '<button type="button" class="sheet-menu__btn" data-disc-add-slot="' +
+          escapeHtml(row.meal_id) +
+          '">Dinner ' +
+          row.position +
+          "</button>"
+        );
+      })
+      .join("");
+    const onPick = async function (ev) {
+      const btn = ev.target.closest("[data-disc-add-slot]");
+      if (!btn) return;
+      ev.preventDefault();
+      sheet.close();
+      options.removeEventListener("click", onPick);
+      if (cancel) cancel.removeEventListener("click", onCancel);
+      await discoveryAddToPlanSlot(btn.dataset.discAddSlot, versionId, participants);
+    };
+    const onCancel = function () {
+      sheet.close();
+      options.removeEventListener("click", onPick);
+      if (cancel) cancel.removeEventListener("click", onCancel);
+    };
+    options.addEventListener("click", onPick);
+    if (cancel) cancel.addEventListener("click", onCancel);
+    sheet.showModal();
+  }
+
   async function discoveryAddToPlan() {
     const versionId = state.discoveryRecipeVersionId;
     if (!versionId) return;
@@ -3552,17 +3617,14 @@
       show("shopList", { context: Nav.contextFor("shopList", "detail", { established: true }) });
       return;
     }
-    const openRow = (plan.meals || []).find(function (m) {
-      return m.kind === "recipe" && !m.recipe_version_id;
-    });
-    if (openRow) {
-      await mutateDinnerPlan({
-        op: "swap_meal",
-        meal_id: openRow.meal_id,
-        recipe_version_id: versionId,
-        participant_ids: participants,
-      });
-      toast("Added as Dinner " + openRow.position + ".");
+    const openRows = discoveryOpenRows(plan);
+    if (openRows.length > 1) {
+      openDiscAddPlanSheet(versionId, participants, openRows);
+      return;
+    }
+    if (openRows.length === 1) {
+      await discoveryAddToPlanSlot(openRows[0].meal_id, versionId, participants);
+      return;
     } else if (plan.meal_count >= 14) {
       toast("Your plan is full. Add a night first.");
       return;

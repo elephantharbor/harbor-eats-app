@@ -43,4 +43,16 @@ describe("D-07 MealDiscovery app wiring", () => {
   it("passes participant_ids into replace_plan_meal discovery open", () => {
     expect(app).toMatch(/openDiscoveryReplace[\s\S]{0,500}participant_ids/);
   });
+
+  it("uses slot participant_ids for choose_for_plan and add-to-plan sheet for multiple open rows", () => {
+    expect(app).toMatch(/openDiscoveryChoose[\s\S]{0,400}meal\.participant_ids/);
+    expect(html).toContain("discAddPlanSheet");
+    expect(app).toContain("openDiscAddPlanSheet");
+  });
+
+  it("persists full find history snapshot on URL sync", () => {
+    const disc = readFileSync(new URL("../public/discovery-ui.js", import.meta.url), "utf8");
+    expect(disc).toContain("function syncBrowserUrl");
+    expect(disc).toMatch(/syncBrowserUrl[\s\S]*captureState\(\)/);
+  });
 });
