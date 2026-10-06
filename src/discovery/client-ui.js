@@ -22,6 +22,26 @@ const EXPLICIT_PREFIX = "explicit_";
 /**
  * @param {object} query normalized discovery query
  */
+/**
+ * Whether the chip-row time control is in an applied state.
+ * @param {object} criteria
+ */
+export function timeChipIsOn(criteria) {
+  const c = criteria || {};
+  return c.quick === true || c.max_minutes != null;
+}
+
+/**
+ * Toggle patch for the chip-row “Under 30 min” control (§6.2).
+ * @param {object} criteria normalized criteria
+ */
+export function timeChipTogglePatch(criteria) {
+  if (timeChipIsOn(criteria)) {
+    return { quick: false, max_minutes: null };
+  }
+  return { quick: true, max_minutes: null };
+}
+
 export function queryHasActiveCriteria(query) {
   if (!query) return false;
   if (query.text) return true;

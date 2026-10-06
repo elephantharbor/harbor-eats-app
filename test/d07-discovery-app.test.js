@@ -7,10 +7,12 @@ const nav = readFileSync(new URL("../public/nav-context.js", import.meta.url), "
 
 describe("D-07 MealDiscovery app wiring", () => {
   it("exposes Find as fifth primary nav tab and route", () => {
+    const css = readFileSync(new URL("../public/styles.css", import.meta.url), "utf8");
     expect(nav).toContain('"find"');
     expect(html).toContain('data-go="find"');
     expect(html).toContain('data-view="find"');
     expect(html).toContain("discovery-ui.js");
+    expect(css).toMatch(/\.tabbar[\s\S]{0,200}repeat\(5/);
   });
 
   it("routes Find a dinner to Discovery, not single-meal proposal", () => {
@@ -54,5 +56,17 @@ describe("D-07 MealDiscovery app wiring", () => {
     const disc = readFileSync(new URL("../public/discovery-ui.js", import.meta.url), "utf8");
     expect(disc).toContain("function syncBrowserUrl");
     expect(disc).toMatch(/syncBrowserUrl[\s\S]*captureState\(\)/);
+  });
+
+  it("toggles quick chip off on second click", () => {
+    const disc = readFileSync(new URL("../public/discovery-ui.js", import.meta.url), "utf8");
+    expect(disc).toContain("function timeChipTogglePatch");
+    expect(disc).toMatch(/kind === "time"[\s\S]{0,120}timeChipTogglePatch/);
+  });
+
+  it("hides clear search until the field has text", () => {
+    const disc = readFileSync(new URL("../public/discovery-ui.js", import.meta.url), "utf8");
+    expect(disc).toContain("function syncSearchClearButton");
+    expect(disc).toMatch(/discSearchClear[\s\S]{0,200}hidden/);
   });
 });

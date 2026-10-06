@@ -412,14 +412,45 @@
     return line;
   }
 
-  function metaBadges(row) {
+  function timeChipIsOn(criteria) {
+    if (deps && deps.timeChipIsOn) return deps.timeChipIsOn(criteria);
+    const c = criteria || {};
+    return c.quick === true || c.max_minutes != null;
+  }
+
+  function timeChipTogglePatch(criteria) {
+    if (deps && deps.timeChipTogglePatch) return deps.timeChipTogglePatch(criteria);
+    if (timeChipIsOn(criteria)) return { quick: false, max_minutes: null };
+    return { quick: true, max_minutes: null };
+  }
+
+  function metaRowHtml(row) {
     const bits = [];
-    if (row.total_minutes != null) bits.push('<span class="badge badge--sm">' + esc(row.total_minutes + " min") + "</span>");
-    if (row.effort_level === "easy") bits.push('<span class="badge badge--sm">Easy</span>');
-    if (row.ingredient_complexity === "simple") {
-      bits.push('<span class="badge badge--sm" aria-label="Simple ingredients">Simple</span>');
+    const ariaParts = [];
+    if (row.total_minutes != null) {
+      ariaParts.push(row.total_minutes + " min");
+      bits.push(
+        '<span class="disc-meta__bit"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-clock" /></svg>' +
+          esc(row.total_minutes + " min") +
+          "</span>"
+      );
     }
-    return bits.join(" ");
+    if (row.effort_level === "easy") {
+      ariaParts.push("Easy");
+      bits.push('<span class="disc-meta__bit">Easy</span>');
+    }
+    if (row.ingredient_complexity === "simple") {
+      ariaParts.push("Simple ingredients");
+      bits.push('<span class="disc-meta__bit" aria-label="Simple ingredients">Simple</span>');
+    }
+    if (!bits.length) return "";
+    return (
+      '<p class="disc-meta" aria-label="' +
+      esc(ariaParts.join(", ")) +
+      '">' +
+      bits.join('<span class="disc-meta__sep" aria-hidden="true"> · </span>') +
+      "</p>"
+    );
   }
 
   function planStatusEyebrow(slug) {
@@ -446,6 +477,7 @@
           : ""
         : "";
     const reasonLine = reason ? '<p class="disc-reason meta">' + esc(reason) + "</p>" : "";
+    const meta = metaRowHtml(row);
     const modeCta =
       state.mode === "replace_plan_meal"
         ? '<button type="button" class="btn btn-secondary btn-sm disc-card-cta" data-disc-action="use" data-version="' +
@@ -463,6 +495,34 @@
     const media = d().mealMediaHtml
       ? d().mealMediaHtml({ recipe_slug: slug, recipe_version_id: row.recipe_version_id, title: row.title }, { decorative: true, sizes: variant === "lead" ? "50vw" : "280px" })
       : "";
+    if (variant === "lead") {
+      return (
+        '<article class="disc-card disc-card--lead" data-disc-slug="' +
+        esc(slug) +
+        '" data-version="' +
+        esc(row.recipe_version_id) +
+        '">' +
+        '<a class="disc-card__link" href="/meal/' +
+        esc(slug) +
+        '?from=find" data-disc-open="' +
+        esc(slug) +
+        '"><span class="visually-hidden">' +
+        esc(row.title) +
+        "</span></a>" +
+        '<div class="disc-card__hero">' +
+        media +
+        '<div class="disc-card__hero-scrim" aria-hidden="true"></div>' +
+        '<div class="disc-card__hero-copy">' +
+        planStatusEyebrow(slug) +
+        "<h3>" +
+        esc(row.title) +
+        "</h3>" +
+        meta +
+        reasonLine +
+        modeCta +
+        "</div></div></article>"
+      );
+    }
     return (
       '<article class="disc-card disc-card--' +
       esc(variant) +
@@ -484,9 +544,7 @@
       "<h3>" +
       esc(row.title) +
       "</h3>" +
-      '<div class="disc-meta">' +
-      metaBadges(row) +
-      "</div>" +
+      meta +
       reasonLine +
       modeCta +
       "</div></article>"
@@ -512,14 +570,19 @@
     if (mode !== "standalone") {
       html += '<button type="button" class="back disc-back" data-disc-back><span class="back__label">Back</span></button>';
     }
-    html += "<h1 class=\"title\">" + esc(title) + "</h1><p class=\"lede\">" + esc(lede) + "</p>";
+    html += '<div class="disc-head__title-row"><h1 class="title">' + esc(title) + "</h1>";
     if (mode === "standalone") {
-      html += '<button type="button" class="btn btn-quiet btn-sm disc-pick-one" data-action="pick-one">Pick one for us</button>';
+      html += '<button type="button" class="btn btn-secondary btn-sm disc-pick-one" data-action="pick-one">Pick one for us</button>';
     }
+    html += "</div><p class=\"lede\">" + esc(lede) + '</p>';
     html += '<p class="disc-table meta" id="discTableNote"></p></div></header>';
     html += '<div class="disc-search-row"><label class="visually-hidden" for="discSearch">Search dinners</label>';
     html += '<input type="search" id="discSearch" class="disc-search" placeholder="Try salmon, tacos, or Thai" autocomplete="off" value="' + esc((resp && resp.query && resp.query.text) || "") + '" />';
-    html += '<button type="button" class="btn btn-quiet disc-search-clear" id="discSearchClear" aria-label="Clear search">Clear search</button></div>';
+    const searchHasText = !!(resp && resp.query && resp.query.text);
+    html +=
+      '<button type="button" class="btn btn-quiet disc-search-clear" id="discSearchClear" aria-label="Clear search"' +
+      (searchHasText ? "" : " hidden") +
+      ">Clear search</button></div>";
     html += '<div class="disc-chips" id="discChips" role="toolbar" aria-label="Refine dinners"></div>';
     html += '<div class="disc-progress" id="discProgress" hidden></div>';
     html += '<div class="disc-main" id="discMain" aria-live="polite"></div>';
@@ -527,6 +590,16 @@
     paintChips();
     paintMain();
     paintTableNote();
+    syncSearchClearButton();
+  }
+
+  function syncSearchClearButton() {
+    const input = document.getElementById("discSearch");
+    const clear = document.getElementById("discSearchClear");
+    if (!input || !clear) return;
+    const hasText = !!(input.value && input.value.trim());
+    clear.hidden = !hasText;
+    clear.disabled = !hasText;
   }
 
   function paintTableNote() {
@@ -559,8 +632,16 @@
       '" data-disc-chip="easy" aria-pressed="' +
       (easyOn ? "true" : "false") +
       '">Easy</button>';
+    const timeOn = timeChipIsOn(c);
     const timeLabel = c.quick ? "Under 30 min" : c.max_minutes ? "Under " + c.max_minutes + " min" : "Under 30 min ▾";
-    html += '<button type="button" class="chip-tog" data-disc-chip="time" aria-haspopup="menu">' + esc(timeLabel) + "</button>";
+    html +=
+      '<button type="button" class="chip-tog' +
+      (timeOn ? " is-on" : "") +
+      '" data-disc-chip="time" aria-haspopup="menu" aria-pressed="' +
+      (timeOn ? "true" : "false") +
+      '">' +
+      esc(timeLabel) +
+      "</button>";
     const simpleOn = c.ingredient_complexities && c.ingredient_complexities.indexOf("simple") >= 0;
     html +=
       '<button type="button" class="chip-tog' +
@@ -1082,7 +1163,7 @@
         const on = !(q.criteria.ingredient_complexities && q.criteria.ingredient_complexities.indexOf("simple") >= 0);
         applyQueryPatch({ criteria: { ingredient_complexities: on ? ["simple"] : [] } });
       } else if (kind === "time") {
-        applyQueryPatch({ criteria: { quick: true, max_minutes: null } });
+        applyQueryPatch({ criteria: timeChipTogglePatch(q.criteria) });
       } else if (kind === "refine") {
         openRefineSheet();
       }
@@ -1118,6 +1199,14 @@
       }
       return;
     }
+    if (e.target.closest("#discSearchClear")) {
+      e.preventDefault();
+      const input = document.getElementById("discSearch");
+      if (input) input.value = "";
+      syncSearchClearButton();
+      applyQueryPatch({ text: null });
+      return;
+    }
     const clear = e.target.closest("[data-disc-clear], [data-disc-clear-search]");
     if (clear) {
       e.preventDefault();
@@ -1136,6 +1225,7 @@
   var searchTimer = null;
   function handleSearchInput(e) {
     const val = e.target.value;
+    syncSearchClearButton();
     clearTimeout(searchTimer);
     searchTimer = setTimeout(function () {
       applyQueryPatch({ text: val.trim() || null });
@@ -1291,6 +1381,8 @@
         SHELF_MIN_TOTAL: SHELF_MIN_TOTAL,
         findPathFromState: findPathFromState,
         queryHasActiveCriteria: queryHasActiveCriteria,
+        timeChipIsOn: timeChipIsOn,
+        timeChipTogglePatch: timeChipTogglePatch,
         shelfDisplayTitle: shelfDisplayTitle,
         shelfDisplaySubtitle: shelfDisplaySubtitle,
         relaxRemoveChips: function (excluded, query) {

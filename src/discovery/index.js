@@ -79,6 +79,8 @@ export {
   shelfDisplaySubtitle,
   shelfDisplayTitle,
   tasteReasonLine,
+  timeChipIsOn,
+  timeChipTogglePatch,
 } from "./client-ui.js";
 export { reasonCodesFor } from "./reasons.js";
 export { softPreferenceFor } from "./soft-prefs.js";
