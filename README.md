@@ -11,7 +11,7 @@ Authoritative **Harbor Eats consumer** source: Cloudflare **Pages + Functions + 
 | Surface | URL |
 |---------|-----|
 | **Pages (alpha target)** | https://harbor-eats-app.pages.dev |
-| Worker + assets + D1 | https://harbor-eats-app.elephantharbor.workers.dev |
+| Legacy Worker mirror | Retired — `workers_dev` off; deploy returns `410` (see `docs/DEPLOYMENT.md`) |
 | Health | `GET /api/health` → `{ ok, d1: "ok" }` |
 | Interim github.io (legacy) | https://elephantharbor.github.io/harbor-eats-app/ |
 

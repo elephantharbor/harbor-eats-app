@@ -17,7 +17,7 @@
 
 ## Architecture
 
-- **Edge:** Cloudflare Pages (`harbor-eats-app.pages.dev`) + Worker (`harbor-eats-app.elephantharbor.workers.dev`)
+- **Edge:** Cloudflare Pages (`harbor-eats-app.pages.dev`) — authoritative consumer surface. Legacy `*.workers.dev` mirror retired (see `docs/DEPLOYMENT.md`).
 - **Data:** D1 `harbor-eats-db` — households (**0005** settings), preference evidence, client errors, plans, ratings (**0007** `recipe_version_id`), votes, events, share/invite, sessions (**0003–0007**)
 - **Recommendations:** `POST /api/recommendations/plan` — pipeline (`candidate-providers` → eligibility → Taste Model → diversity) + catalog (`recipe-store` / `meal-catalog`)
 - **Recipes:** `GET /api/recipes/:slug`, `GET /api/recipes/version/:id` — structured ingredients + steps; client cook/detail bind to selected `meal_option`
@@ -32,7 +32,7 @@
 |-----|-----|-------|
 | Local | `wrangler dev` :8787 | D1 `--local`; apply migrations **0001–0007** |
 | Alpha (persistent) | https://harbor-eats-app.pages.dev | D1 remote; apply migrations before deploy |
-| Worker mirror | https://harbor-eats-app.elephantharbor.workers.dev | Same API + assets |
+| Worker mirror | https://harbor-eats-app.elephantharbor.workers.dev | **Retired** — returns `410`; use Pages |
 
 ## Completed Meal Loop (CML)
 

@@ -2,21 +2,23 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { runInNewContext } from "node:vm";
 import { describe, expect, it } from "vitest";
-import { MEAL_CONCEPTS } from "../src/lib/recipe-store.js";
+import { listPublishedMealMedia } from "../src/lib/meal-catalog-media.js";
 
 const publicDir = join(process.cwd(), "public");
 const window = {};
+runInNewContext(readFileSync(join(publicDir, "meal-media-manifest.js"), "utf8"), { window });
 runInNewContext(readFileSync(join(publicDir, "meal-media.js"), "utf8"), { window });
 const Media = window.FlavorWeaveMedia;
+const published = listPublishedMealMedia();
 
 describe("FW-08 deterministic meal image lookup", () => {
-  it("resolves all 24 meals by slug, version id, and catalog title (cold path)", () => {
-    expect(MEAL_CONCEPTS.length).toBe(24);
-    for (const c of MEAL_CONCEPTS) {
-      const slug = c.concept_id;
+  it("resolves all published meals by slug, version id, and catalog title (cold path)", () => {
+    expect(published.length).toBe(50);
+    for (const row of published) {
+      const slug = row.slug;
       const bySlug = Media.imageFor({ recipe_slug: slug });
-      const byVersion = Media.imageFor({ recipe_version_id: c.current_version.recipe_version_id });
-      const byTitle = Media.imageFor({ title: c.title });
+      const byVersion = Media.imageFor({ recipe_version_id: row.recipe_version_id });
+      const byTitle = Media.imageFor({ title: row.title });
       expect(bySlug?.slug, slug).toBe(slug);
       expect(byVersion?.slug, slug).toBe(slug);
       expect(byTitle?.slug, slug).toBe(slug);
@@ -25,23 +27,23 @@ describe("FW-08 deterministic meal image lookup", () => {
   });
 
   it("warm restore path: title-only shared plan still resolves slug", () => {
-    for (const c of MEAL_CONCEPTS) {
-      const img = Media.imageFor({ name: c.name, title: c.title });
-      expect(img?.slug, c.concept_id).toBe(c.concept_id);
+    for (const row of published) {
+      const img = Media.imageFor({ name: row.title, title: row.title });
+      expect(img?.slug, row.slug).toBe(row.slug);
     }
   });
 
   it("slugFor matches imageFor for legacy version id parsing", () => {
-    for (const c of MEAL_CONCEPTS) {
-      const meal = { recipe_version_id: c.current_version.recipe_version_id };
-      expect(Media.slugFor(meal)).toBe(c.concept_id);
-      expect(Media.imageFor(meal)?.slug).toBe(c.concept_id);
+    for (const row of published) {
+      const meal = { recipe_version_id: row.recipe_version_id };
+      expect(Media.slugFor(meal)).toBe(row.slug);
+      expect(Media.imageFor(meal)?.slug).toBe(row.slug);
     }
   });
 
   it("bundled webp assets exist for every slug", () => {
-    for (const c of MEAL_CONCEPTS) {
-      const slug = c.concept_id;
+    for (const row of published) {
+      const slug = row.slug;
       for (const file of [`images/meals/${slug}.webp`, `images/meals/${slug}-640.webp`]) {
         expect(existsSync(join(publicDir, file)), file).toBe(true);
       }

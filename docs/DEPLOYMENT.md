@@ -8,7 +8,9 @@
 | **preview** | Optional Pages preview branches | `*.pages.dev` (project settings) |
 | **alpha** | Persistent pilot | https://harbor-eats-app.pages.dev |
 
-Worker + assets (mirror): https://harbor-eats-app.elephantharbor.workers.dev
+**Authoritative product surface:** `harbor-eats-app.pages.dev` only.
+
+The legacy `harbor-eats-app.elephantharbor.workers.dev` Workers mirror is **retired** (repo: `workers_dev = false`, Worker returns `410` with canonical link). After merging, run one final `npm run deploy` so the account stops serving the stale 24-meal mirror, or disable the workers.dev route in Cloudflare if an old version remains cached.
 
 ## Prerequisites
 
