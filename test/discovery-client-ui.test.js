@@ -53,6 +53,8 @@ describe("discovery client-ui", () => {
     expect(path).toContain("mode=replace_plan_meal");
     expect(path).toContain("dinner_plan_id=dp_1");
     expect(path).toContain("meal_id=dpm_2");
+    expect(path).not.toContain("participant_id");
+    expect(path).not.toContain("position=");
   });
 
   it("picks empty state kind from totals and excluded_counts", () => {
