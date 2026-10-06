@@ -70,11 +70,12 @@
     var slug = slugFor(meal);
     if (!slug) return null;
     var base = "/images/meals/" + slug;
+    var title = (meal && (meal.title || meal.name || meal.meal_name)) || CATALOG[slug] || null;
     return {
       slug: slug,
       src: base + ".webp",
       srcset: base + "-640.webp 640w, " + base + ".webp 1200w",
-      alt: CATALOG[slug] || slug,
+      alt: title || slug.replace(/-/g, " "),
     };
   }
 

@@ -2588,7 +2588,7 @@ export default {
 
     // SPA deep-link routes → index.html (auth boundary handled client-side)
     if (env.ASSETS) {
-      const spaPaths = ["/invite/", "/share/", "/recover/", "/rate/", "/meal/"];
+      const spaPaths = ["/invite/", "/share/", "/recover/", "/rate/", "/meal/", "/find"];
       if (spaPaths.some((p) => path.startsWith(p))) {
         // Serve SPA shell at deep-link URL (wrangler assets 307 /index.html → /).
         const shell = new URL(request.url);
