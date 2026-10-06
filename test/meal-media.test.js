@@ -28,7 +28,8 @@ describe("FlavorWeave meal imagery", () => {
   it("resolves by recipe version id and by title", () => {
     const c = MEAL_CONCEPTS[0];
     expect(Media.imageFor({ recipe_version_id: `rv_${c.concept_id}_v1` }).slug).toBe(c.concept_id);
-    expect(Media.imageFor({ title: Media.catalog[c.concept_id] }).slug).toBe(c.concept_id);
+    expect(Media.imageFor({ recipe_slug: c.concept_id, title: c.name }).slug).toBe(c.concept_id);
+    expect(Media.imageFor({ title: c.name }).slug).toBe(c.concept_id);
   });
 
   it("returns null for unknown meals (placeholder, no hotlinks)", () => {

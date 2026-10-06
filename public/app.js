@@ -1701,7 +1701,69 @@
     return { text: "Just looking — nothing’s chosen until you tap Choose this dinner.", chosen: false, action: "choose" };
   }
 
+  function syncDiscoveryDetailActions(meal) {
+    const ctx = state.navContext.detail;
+    if (!ctx || ctx.source !== "discovery") return false;
+    const disc = Discovery && Discovery.getState ? Discovery.getState() : { mode: "standalone" };
+    const mode = disc.mode || ctx.mode || "standalone";
+    const plan = state.dinnerPlan;
+    const position = (disc.urlContext && disc.urlContext.position) || (disc.urlContext && disc.urlContext.meal_id && planMealById(disc.urlContext.meal_id) && planMealById(disc.urlContext.meal_id).position);
+    const replaceMeal = disc.urlContext && disc.urlContext.meal_id ? planMealById(disc.urlContext.meal_id) : null;
+    const cookBtn = document.getElementById("btnStartCook");
+    const previewBtn = document.getElementById("btnPreviewSteps");
+    const eyebrow = document.getElementById("detailEyebrow");
+    const pickEl = document.getElementById("detailPickState");
+    const whyLabel = document.getElementById("detailWhyLabel");
+    const whyEl = document.getElementById("detailWhy");
+    if (whyLabel) whyLabel.textContent = "Why this one";
+    if (whyEl && meal && meal.discoveryWhy) whyEl.textContent = meal.discoveryWhy;
+    else if (whyEl && mode === "standalone") whyEl.textContent = "";
+    if (eyebrow) {
+      if (mode === "standalone") eyebrow.textContent = "Just looking. Nothing changes until you choose.";
+      else if (mode === "replace_plan_meal" && replaceMeal) {
+        eyebrow.textContent =
+          "Swapping Dinner " + replaceMeal.position + " · Now: " + planMealTitle(replaceMeal);
+      } else if (mode === "choose_for_plan") eyebrow.textContent = "For Dinner " + (position || "—");
+      else eyebrow.textContent = "From Discovery";
+    }
+    if (pickEl) pickEl.textContent = mode === "standalone" ? "" : " ";
+    if (cookBtn) {
+      cookBtn.hidden = false;
+      delete cookBtn.dataset.go;
+      if (mode === "standalone") {
+        cookBtn.dataset.action = "discovery-cook-tonight";
+        cookBtn.textContent = "Cook tonight";
+      } else if (mode === "replace_plan_meal") {
+        cookBtn.dataset.action = "discovery-use";
+        cookBtn.textContent =
+          plan && plan.meal_count === 1 ? "Use this for tonight" : "Use this for Dinner " + (replaceMeal && replaceMeal.position);
+      } else {
+        cookBtn.dataset.action = "discovery-add";
+        cookBtn.textContent = "Add this to Dinner " + (position || "—");
+      }
+    }
+    if (previewBtn) {
+      if (mode === "standalone") {
+        previewBtn.hidden = false;
+        previewBtn.className = "btn btn-secondary btn-lg";
+        if (hasCurrentDinnerPlan() && plan && !planIsClosed(plan)) {
+          previewBtn.dataset.action = "discovery-add-plan";
+          previewBtn.textContent = "Add to plan";
+        } else {
+          previewBtn.dataset.action = "discovery-add-list";
+          previewBtn.textContent = "Add to my shopping list";
+        }
+        delete previewBtn.dataset.go;
+        delete previewBtn.dataset.mealId;
+      } else {
+        previewBtn.hidden = true;
+      }
+    }
+    return true;
+  }
+
   function syncDetailActions(meal) {
+    if (syncDiscoveryDetailActions(meal)) return;
     const cookBtn = document.getElementById("btnStartCook");
     const previewBtn = document.getElementById("btnPreviewSteps");
     const eyebrow = document.getElementById("detailEyebrow");
@@ -3299,6 +3361,7 @@
       dinner_plan_id: plan.dinner_plan_id,
       meal_id: mealId,
       position: meal.position,
+      participant_ids: (meal.participant_ids && meal.participant_ids.length ? meal.participant_ids : activeMemberIds()).slice(),
       origin: origin || state.view,
       entry: entry || "swap_see_all",
     });
@@ -3312,13 +3375,39 @@
       dinner_plan_id: plan.dinner_plan_id,
       meal_id: slot && slot.meal_id,
       position: slot && slot.position,
+      participant_ids: activeMemberIds().slice(),
       origin: "planReview",
       entry: "empty_slot",
     });
   }
 
+  function planMealBySlug(slug) {
+    const plan = state.dinnerPlan;
+    if (!plan || !slug) return null;
+    return (plan.meals || []).find(function (m) {
+      return m.recipe_slug === slug || m.slug === slug;
+    });
+  }
+
   async function openDiscoveryRecipe(slug, recipeVersionId) {
     state.discoveryRecipeVersionId = recipeVersionId || null;
+    let discoveryWhy = "";
+    const resp = Discovery && Discovery.getResponse ? Discovery.getResponse() : null;
+    if (resp && resp.results) {
+      const row = resp.results.find(function (r) {
+        return r.recipe_slug === slug;
+      });
+      if (row && (row.primary_reason === "taste_love" || row.primary_reason === "taste_like")) {
+        const hits = (row.taste_hits || []).slice(0, 2).map(function (h) {
+          return h.display_name || h.term_slug;
+        }).filter(Boolean);
+        if (hits.length) {
+          const joined = hits.length === 1 ? hits[0] : hits[0] + " and " + hits[1];
+          discoveryWhy =
+            row.primary_reason === "taste_love" ? "You told us you love " + joined : "You said you like " + joined;
+        }
+      }
+    }
     state.dinnerDetailMeal = {
       id: "disc-" + slug,
       title: slug.replace(/-/g, " "),
@@ -3326,10 +3415,15 @@
       recipe_version_id: recipeVersionId,
       dinner_plan: false,
       discovery: true,
+      discoveryWhy: discoveryWhy,
     };
     state.previewMealId = state.dinnerDetailMeal.id;
     state.activeRecipe = null;
     const disc = Discovery && Discovery.getState ? Discovery.getState() : { mode: "standalone" };
+    if (Discovery && Discovery.captureState) {
+      const snap = Discovery.captureState();
+      history.replaceState({ find: snap }, "", location.pathname + location.search);
+    }
     history.pushState({ fromFind: true }, "", "/meal/" + encodeURIComponent(slug) + "?from=find");
     show("detail", {
       context: Nav.contextFor("detail", "find", {
@@ -3339,6 +3433,152 @@
         origin: "find",
       }),
     });
+  }
+
+  async function discoveryCookTonight() {
+    const versionId = state.discoveryRecipeVersionId;
+    if (!versionId) return;
+    const resp = Discovery && Discovery.getResponse ? Discovery.getResponse() : null;
+    const participants =
+      resp && resp.context && resp.context.participant_ids && resp.context.participant_ids.length
+        ? resp.context.participant_ids
+        : activeMemberIds();
+    const slug = state.dinnerDetailMeal && state.dinnerDetailMeal.recipe_slug;
+    const onPlan = planMealBySlug(slug);
+    if (onPlan && (onPlan.state === "planned" || onPlan.state === "selected" || onPlan.state === "cooking")) {
+      if (onPlan.state !== "cooking") await mutateDinnerPlan({ op: "select_meal", meal_id: onPlan.meal_id });
+      toast("It's tonight's pick.");
+      state.dinnerDetailMeal = uiMealFromPlanMeal(onPlan);
+      state.previewMealId = state.dinnerDetailMeal.id;
+      state.navContext.detail = Nav.contextFor("detail", "choices", {
+        established: householdEstablished(),
+        source: "tonight_plan",
+        origin: "tonightPlan",
+      });
+      renderDetail();
+      return;
+    }
+    let plan = state.dinnerPlan;
+    if (!hasCurrentDinnerPlan() || planIsClosed(plan)) {
+      plan = await createDinnerPlanRequest({
+        meal_count: 1,
+        entry_point: "find_dinner",
+        participant_ids: participants,
+      });
+      if (!plan) return;
+      const meals = plan.meals || [];
+      if (meals.length && meals[0].recipe_version_id !== versionId) {
+        await mutateDinnerPlan({
+          op: "swap_meal",
+          meal_id: meals[0].meal_id,
+          recipe_version_id: versionId,
+          participant_ids: participants,
+        });
+      } else if (!meals.length) {
+        await mutateDinnerPlan({
+          op: "add_meal",
+          kind: "recipe",
+          recipe_version_id: versionId,
+          participant_ids: participants,
+        });
+      }
+      await mutateDinnerPlan({ op: "finalize" });
+    } else {
+      if (plan.meal_count >= 14) {
+        toast("Your plan is full. Skip or remove a dinner first.");
+        return;
+      }
+      await mutateDinnerPlan({ op: "set_count", meal_count: plan.meal_count + 1 });
+      await mutateDinnerPlan({
+        op: "add_meal",
+        kind: "recipe",
+        recipe_version_id: versionId,
+        participant_ids: participants,
+      });
+      await mutateDinnerPlan({ op: "select_meal", meal_id: (state.dinnerPlan.meals || []).slice(-1)[0].meal_id });
+    }
+    plan = state.dinnerPlan;
+    const picked = (plan.meals || []).find(function (m) {
+      return m.recipe_version_id === versionId;
+    });
+    if (picked && picked.state !== "selected") {
+      await mutateDinnerPlan({ op: "select_meal", meal_id: picked.meal_id });
+    }
+    track("discovery_action", { mode: "standalone", action: "cook_tonight", recipe_version_id: versionId });
+    toast("It's tonight's pick.");
+    if (picked) {
+      state.dinnerDetailMeal = uiMealFromPlanMeal(picked);
+      state.previewMealId = state.dinnerDetailMeal.id;
+      state.navContext.detail = Nav.contextFor("detail", "choices", {
+        established: householdEstablished(),
+        source: "tonight_plan",
+        origin: "tonightPlan",
+      });
+      renderDetail();
+    }
+  }
+
+  async function discoveryAddToPlan() {
+    const versionId = state.discoveryRecipeVersionId;
+    if (!versionId) return;
+    const resp = Discovery && Discovery.getResponse ? Discovery.getResponse() : null;
+    const participants =
+      resp && resp.context && resp.context.participant_ids && resp.context.participant_ids.length
+        ? resp.context.participant_ids
+        : activeMemberIds();
+    let plan = state.dinnerPlan;
+    if (!hasCurrentDinnerPlan() || planIsClosed(plan)) {
+      plan = await createDinnerPlanRequest({ meal_count: 1, entry_point: "find_dinner", participant_ids: participants });
+      if (!plan) return;
+      const meals = plan.meals || [];
+      if (!meals.length) {
+        await mutateDinnerPlan({
+          op: "add_meal",
+          kind: "recipe",
+          recipe_version_id: versionId,
+          participant_ids: participants,
+        });
+      } else if (meals[0].recipe_version_id !== versionId) {
+        await mutateDinnerPlan({
+          op: "swap_meal",
+          meal_id: meals[0].meal_id,
+          recipe_version_id: versionId,
+          participant_ids: participants,
+        });
+      }
+      await mutateDinnerPlan({ op: "finalize" });
+      toast("Added to your plan.");
+      track("discovery_action", { mode: "standalone", action: "add_to_list", recipe_version_id: versionId });
+      show("shopList", { context: Nav.contextFor("shopList", "detail", { established: true }) });
+      return;
+    }
+    const openRow = (plan.meals || []).find(function (m) {
+      return m.kind === "recipe" && !m.recipe_version_id;
+    });
+    if (openRow) {
+      await mutateDinnerPlan({
+        op: "swap_meal",
+        meal_id: openRow.meal_id,
+        recipe_version_id: versionId,
+        participant_ids: participants,
+      });
+      toast("Added as Dinner " + openRow.position + ".");
+    } else if (plan.meal_count >= 14) {
+      toast("Your plan is full. Add a night first.");
+      return;
+    } else {
+      await mutateDinnerPlan({ op: "set_count", meal_count: plan.meal_count + 1 });
+      const added = await mutateDinnerPlan({
+        op: "add_meal",
+        kind: "recipe",
+        recipe_version_id: versionId,
+        participant_ids: participants,
+      });
+      const pos = added && added.meals ? added.meals.length : plan.meal_count;
+      toast("Added as Dinner " + pos + ".");
+    }
+    track("discovery_action", { mode: "standalone", action: "add_to_plan", recipe_version_id: versionId });
+    renderDetail();
   }
 
   async function discoveryPick(recipeVersionId, action) {
@@ -3357,7 +3597,11 @@
     if (!plan) return;
     toast(action === "use_this" ? "Swapped in." : "Added to your plan.");
     const origin = (state.navContext.find && state.navContext.find.origin) || "planReview";
-    show(origin === "choices" ? "choices" : origin === "home" ? "home" : "planReview");
+    if (window.history.length > 1) {
+      history.go(-1);
+    } else {
+      show(origin === "choices" ? "choices" : origin === "home" ? "home" : "planReview");
+    }
     renderActiveDinnerSurfaces();
   }
 
@@ -5913,8 +6157,19 @@
     return true;
   }
 
-  document.getElementById("btnStartCook").addEventListener("click", (e) => {
-    if (e.currentTarget.dataset.action === "choose") {
+  document.getElementById("btnStartCook").addEventListener("click", async (e) => {
+    const act = e.currentTarget.dataset.action;
+    if (act === "discovery-cook-tonight") {
+      e.stopImmediatePropagation();
+      await discoveryCookTonight();
+      return;
+    }
+    if (act === "discovery-use" || act === "discovery-add") {
+      e.stopImmediatePropagation();
+      await discoveryPick(state.discoveryRecipeVersionId, act === "discovery-use" ? "use_this" : "add_this");
+      return;
+    }
+    if (act === "choose") {
       e.stopImmediatePropagation();
       const meal = detailMeal();
       if (meal) selectMeal(meal.id);
@@ -5926,8 +6181,13 @@
 
   const btnPreviewSteps = document.getElementById("btnPreviewSteps");
   if (btnPreviewSteps) {
-    btnPreviewSteps.addEventListener("click", function (e) {
+    btnPreviewSteps.addEventListener("click", async function (e) {
       e.stopImmediatePropagation();
+      const act = btnPreviewSteps.dataset.action;
+      if (act === "discovery-add-plan" || act === "discovery-add-list") {
+        await discoveryAddToPlan();
+        return;
+      }
       startCooking(true);
     });
   }
@@ -6305,6 +6565,7 @@
       },
       openDiscoveryRecipe: openDiscoveryRecipe,
       discoveryPick: discoveryPick,
+      loadTasteCatalog: loadTasteCatalog,
       tasteReasonLine: function (row, memberName) {
         if (!row || (row.primary_reason !== "taste_love" && row.primary_reason !== "taste_like")) return "";
         const hits = (row.taste_hits || []).slice(0, 2);
@@ -6318,16 +6579,19 @@
         return row.primary_reason === "taste_love" ? "You told us you love " + joined : "You said you like " + joined;
       },
     });
-    window.addEventListener("popstate", function () {
+    window.addEventListener("popstate", function (ev) {
       const parts = location.pathname.replace(/\/+$/, "").split("/").filter(Boolean);
       if (parts[0] === "find") {
-        Discovery.openFromLocation();
-        Discovery.restoreFromHistory(history.state);
+        const mode = (ev.state && ev.state.find && ev.state.find.mode) || "standalone";
+        show("find", {
+          context: Nav.contextFor("find", "detail", {
+            established: householdEstablished(),
+            mode: mode,
+            origin: (ev.state && ev.state.find && ev.state.find.urlContext && ev.state.find.urlContext.origin) || "find",
+          }),
+        });
+        Discovery.restoreFromHistory(ev.state);
         return;
-      }
-      if (parts[0] !== "meal" && state.view === "detail" && state.navContext.detail && state.navContext.detail.origin === "find") {
-        show("find");
-        Discovery.restoreFromHistory(history.state);
       }
     });
   }

@@ -30,4 +30,17 @@ describe("D-07 MealDiscovery app wiring", () => {
     const routes = readFileSync(new URL("../public/_routes.json", import.meta.url), "utf8");
     expect(routes).toContain("/find");
   });
+
+  it("wires discovery recipe CTAs and history capture", () => {
+    expect(app).toContain("syncDiscoveryDetailActions");
+    expect(app).toContain("discovery-cook-tonight");
+    expect(app).toContain("discovery-add-plan");
+    expect(app).toContain("captureState");
+    expect(html).toContain("discRefineSheet");
+    expect(html).toContain("discovery-relax-bridge.js");
+  });
+
+  it("passes participant_ids into replace_plan_meal discovery open", () => {
+    expect(app).toMatch(/openDiscoveryReplace[\s\S]{0,500}participant_ids/);
+  });
 });

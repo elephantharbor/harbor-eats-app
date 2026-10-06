@@ -31,7 +31,86 @@
     scrollY: 0,
     focusSlug: null,
     forceResults: false,
+    refineDraft: null,
+    refinePreviewTotal: null,
+    refineVocab: null,
+    relaxChips: [],
   };
+
+  const INSPIRED_CUISINES = { indian: 1, thai: 1, japanese: 1, italian: 1, chinese: 1, scandinavian: 1 };
+  const DIET_OPTIONS = [
+    { slug: "plant", label: "Plant-forward" },
+    { slug: "vegetarian", label: "Vegetarian" },
+    { slug: "dairy_free", label: "Dairy-free" },
+  ];
+  const PROTEIN_OPTIONS = [{ slug: "seafood", label: "Fish & seafood" }];
+  const TEXTURE_OPTIONS = [
+    { slug: "crispy", label: "Crispy" },
+    { slug: "creamy", label: "Creamy" },
+    { slug: "crunchy", label: "Crunchy" },
+    { slug: "tender", label: "Tender" },
+  ];
+
+  function cuisineSendValues(slug) {
+    if (INSPIRED_CUISINES[slug]) return [slug, slug + "-inspired"];
+    return [slug];
+  }
+
+  function vocabularyByKind(catalog) {
+    const out = { cuisines: [], meal_styles: [], flavors: [], ingredients: [] };
+    const map = { cuisine: "cuisines", meal_style: "meal_styles", flavor: "flavors", ingredient: "ingredients" };
+    ((catalog && catalog.groups) || []).forEach(function (group) {
+      const field = map[group.kind || group.id];
+      if (!field) return;
+      (group.terms || []).forEach(function (term) {
+        if (term.on_menu === false) return;
+        out[field].push(term);
+      });
+    });
+    return out;
+  }
+
+  function draftFromQuery(query) {
+    const q = query || currentQuery();
+    return {
+      text: q.text,
+      criteria: Object.assign(emptyCriteria(), q.criteria),
+      soft: Object.assign({ keep_it_easy: false, keep_ingredients_simple: false }, q.soft || {}),
+      soft_provided: q.soft_provided === true,
+    };
+  }
+
+  function captureState() {
+    return {
+      scrollY: window.scrollY,
+      focusSlug: state.focusSlug,
+      path: findPathFromState(currentQuery(), urlContextForApi()),
+      forceResults: state.forceResults,
+      mode: state.mode,
+      urlContext: Object.assign({}, state.urlContext),
+    };
+  }
+
+  function restoreSession(snapshot) {
+    if (!snapshot) return;
+    state.forceResults = snapshot.forceResults || false;
+    state.mode = snapshot.mode || state.mode;
+    state.urlContext = Object.assign({}, snapshot.urlContext || {});
+    state.scrollY = snapshot.scrollY || 0;
+    state.focusSlug = snapshot.focusSlug || null;
+    if (snapshot.path && snapshot.path.indexOf("/find") === 0) {
+      history.replaceState({ find: snapshot }, "", snapshot.path);
+    }
+    loadMain().then(function () {
+      requestAnimationFrame(function () {
+        window.scrollTo(0, state.scrollY);
+        if (state.focusSlug) {
+          const el = document.querySelector('[data-disc-slug="' + state.focusSlug + '"] h3');
+          if (el) el.focus();
+        }
+      });
+    });
+  }
 
   function shelfDisplayTitle(shelf, response) {
     if (shelf.id !== "good_matches") return shelf.title;
@@ -489,7 +568,17 @@
       '" data-disc-chip="simple" aria-pressed="' +
       (simpleOn ? "true" : "false") +
       '">Simple ingredients</button>';
-    html += '<button type="button" class="chip-tog" data-disc-chip="refine">Refine</button>';
+    let refineLabel = "Refine";
+    const hidden =
+      (c.cuisines && c.cuisines.length) +
+      (c.meal_styles && c.meal_styles.length) +
+      (c.flavors && c.flavors.length) +
+      (c.ingredients && c.ingredients.length) +
+      (c.diet && c.diet.length) +
+      (c.protein_groups && c.protein_groups.length) +
+      (c.textures && c.textures.length);
+    if (hidden > 0) refineLabel = "Refine · " + hidden;
+    html += '<button type="button" class="chip-tog" data-disc-chip="refine">' + esc(refineLabel) + "</button>";
     box.innerHTML = html;
   }
 
@@ -541,19 +630,32 @@
     const total = resp.total;
     const lean = leanSummary(resp);
     let header = "<h2 class=\"disc-results-title\">" + esc(total === 1 ? "1 dinner" : total + " dinners") + "</h2>";
-    if (lean) header += '<p class="disc-lean meta">' + esc(lean) + '</p>';
+    if (lean) {
+      header +=
+        '<p class="disc-lean meta">' +
+        esc(lean) +
+        ' <button type="button" class="btn btn-quiet btn-sm" data-disc-lean-change>Change</button></p>';
+    }
     header += '<button type="button" class="btn btn-quiet btn-sm" data-disc-clear>Clear all</button>';
     let body = "";
     if (total === 0) {
       const kind = d().emptyStateKind ? d().emptyStateKind(resp.query, total, resp.excluded_counts) : "nothing_fits";
       if (kind === "relax") {
         const chips = d().relaxRemoveChips ? d().relaxRemoveChips(resp.excluded_counts, resp.query) : [];
+        state.relaxChips = chips;
         body =
           '<div class="empty-state"><strong>No dinners match all of that</strong><p class="meta">Loosen one thing:</p><div class="disc-chips">';
-        chips.forEach(function (chip) {
-          body += '<button type="button" class="chip-tog" data-disc-relax="' + esc(chip.label) + '">Remove ' + esc(chip.label) + "</button>";
+        chips.forEach(function (chip, i) {
+          body +=
+            '<button type="button" class="chip-tog" data-disc-relax-idx="' +
+            i +
+            '" aria-label="Remove ' +
+            esc(chip.label) +
+            '">Remove ' +
+            esc(chip.label) +
+            "</button>";
         });
-        body += "</div></div>";
+        body += '</div><button type="button" class="btn btn-secondary btn-sm" data-disc-clear>Clear all</button></div>';
       } else if (kind === "text") {
         body =
           '<div class="empty-state"><strong>Nothing here matches “' +
@@ -580,10 +682,297 @@
       next.criteria =
         opts && opts.replaceCriteria ? Object.assign(emptyCriteria(), patch.criteria) : mergeCriteria(base.criteria, patch.criteria);
     }
+    if (patch && patch.soft) {
+      next.soft = patch.soft;
+      next.soft_provided = patch.soft_provided !== false;
+      state.softTouched = true;
+    }
+    if (patch && patch.soft_provided === false) {
+      next.soft_provided = false;
+      state.softTouched = false;
+    }
     if (opts && opts.forceResults != null) state.forceResults = opts.forceResults;
     state.response = Object.assign({}, state.response || {}, { query: next });
     await loadMain();
     if (!(opts && opts.skipUrl)) syncBrowserUrl(true);
+  }
+
+  function toggleSlugList(list, slug) {
+    const out = (list || []).slice();
+    const i = out.indexOf(slug);
+    if (i >= 0) out.splice(i, 1);
+    else out.push(slug);
+    out.sort();
+    return out;
+  }
+
+  function toggleCuisine(draft, term) {
+    const values = cuisineSendValues(term.slug);
+    const cur = draft.criteria.cuisines || [];
+    const allOn = values.every(function (v) {
+      return cur.indexOf(v) >= 0;
+    });
+    let next = cur.filter(function (v) {
+      return values.indexOf(v) < 0;
+    });
+    if (!allOn) next = next.concat(values);
+    next.sort();
+    draft.criteria.cuisines = next;
+  }
+
+  var refinePreviewTimer = null;
+  function scheduleRefinePreview() {
+    clearTimeout(refinePreviewTimer);
+    refinePreviewTimer = setTimeout(previewRefineTotal, 200);
+  }
+
+  async function previewRefineTotal() {
+    const draft = state.refineDraft;
+    if (!draft) return;
+    const q = Object.assign({}, currentQuery(), {
+      criteria: draft.criteria,
+      soft: draft.soft,
+      soft_provided: draft.soft_provided,
+    });
+    const res = await fetchSearch(q, 1);
+    state.refinePreviewTotal = res.data ? res.data.total : 0;
+    const btn = document.getElementById("discRefineApply");
+    if (!btn) return;
+    const n = state.refinePreviewTotal;
+    btn.disabled = n === 0;
+    btn.textContent = n === 1 ? "Show 1 dinner" : "Show " + n + " dinners";
+  }
+
+  function renderRefineGroup(title, helper, chipsHtml) {
+    return (
+      '<section class="disc-refine-group"><h3>' +
+      esc(title) +
+      "</h3>" +
+      (helper ? '<p class="meta">' + esc(helper) + "</p>" : "") +
+      '<div class="disc-refine-chips">' +
+      chipsHtml +
+      "</div></section>"
+    );
+  }
+
+  function renderRefineBody() {
+    const body = document.getElementById("discRefineBody");
+    const draft = state.refineDraft;
+    const vocab = state.refineVocab;
+    if (!body || !draft || !vocab) return;
+    let html = "";
+    const timeOn = function (v) {
+      if (v === "30") return draft.criteria.quick;
+      if (v === "any") return !draft.criteria.quick && draft.criteria.max_minutes == null;
+      return draft.criteria.max_minutes === Number(v);
+    };
+    html += renderRefineGroup(
+      "Time",
+      "",
+      ["any", "30", "45", "60"]
+        .map(function (v) {
+          const label = v === "any" ? "Any time" : "Under " + v + " min";
+          return (
+            '<button type="button" class="chip-tog' +
+            (timeOn(v) ? " is-on" : "") +
+            '" data-disc-time="' +
+            v +
+            '">' +
+            esc(label) +
+            "</button>"
+          );
+        })
+        .join("")
+    );
+    html += renderRefineGroup(
+      "Effort",
+      "Only easy dinners.",
+      '<button type="button" class="chip-tog' +
+        (draft.criteria.effort_levels.indexOf("easy") >= 0 ? " is-on" : "") +
+        '" data-disc-effort="easy">Easy</button>'
+    );
+    html += renderRefineGroup(
+      "Ingredients",
+      "Only dinners with familiar ingredients.",
+      '<button type="button" class="chip-tog' +
+        (draft.criteria.ingredient_complexities.indexOf("simple") >= 0 ? " is-on" : "") +
+        '" data-disc-complexity="simple">Simple ingredients</button>'
+    );
+    html += renderRefineGroup(
+      "Cuisine",
+      "",
+      vocab.cuisines
+        .slice(0, 12)
+        .map(function (term) {
+          const on = cuisineSendValues(term.slug).every(function (s) {
+            return draft.criteria.cuisines.indexOf(s) >= 0;
+          });
+          return (
+            '<button type="button" class="chip-tog' +
+            (on ? " is-on" : "") +
+            '" data-disc-cuisine="' +
+            esc(term.slug) +
+            '">' +
+            esc(term.name) +
+            "</button>"
+          );
+        })
+        .join("")
+    );
+    html += renderRefineGroup(
+      "Type of dinner",
+      "",
+      vocab.meal_styles
+        .slice(0, 12)
+        .map(function (term) {
+          const on = draft.criteria.meal_styles.indexOf(term.slug) >= 0;
+          return (
+            '<button type="button" class="chip-tog' +
+            (on ? " is-on" : "") +
+            '" data-disc-style="' +
+            esc(term.slug) +
+            '">' +
+            esc(term.name) +
+            "</button>"
+          );
+        })
+        .join("")
+    );
+    html += renderRefineGroup(
+      "Main ingredient",
+      "",
+      vocab.ingredients
+        .slice(0, 12)
+        .map(function (term) {
+          const on = draft.criteria.ingredients.indexOf(term.slug) >= 0;
+          return (
+            '<button type="button" class="chip-tog' +
+            (on ? " is-on" : "") +
+            '" data-disc-ingredient="' +
+            esc(term.slug) +
+            '">' +
+            esc(term.name) +
+            "</button>"
+          );
+        })
+        .join("")
+    );
+    html += renderRefineGroup(
+      "Flavor",
+      "",
+      vocab.flavors
+        .slice(0, 8)
+        .map(function (term) {
+          const on = draft.criteria.flavors.indexOf(term.slug) >= 0;
+          return (
+            '<button type="button" class="chip-tog' +
+            (on ? " is-on" : "") +
+            '" data-disc-flavor="' +
+            esc(term.slug) +
+            '">' +
+            esc(term.name) +
+            "</button>"
+          );
+        })
+        .join("")
+    );
+    html += renderRefineGroup(
+      "Diet",
+      "",
+      DIET_OPTIONS.map(function (opt) {
+        const on = draft.criteria.diet.indexOf(opt.slug) >= 0;
+        return (
+          '<button type="button" class="chip-tog' +
+          (on ? " is-on" : "") +
+          '" data-disc-diet="' +
+          esc(opt.slug) +
+          '">' +
+          esc(opt.label) +
+          "</button>"
+        );
+      }).join("")
+    );
+    html += renderRefineGroup(
+      "Protein",
+      "",
+      PROTEIN_OPTIONS.map(function (opt) {
+        const on = draft.criteria.protein_groups.indexOf(opt.slug) >= 0;
+        return (
+          '<button type="button" class="chip-tog' +
+          (on ? " is-on" : "") +
+          '" data-disc-protein="' +
+          esc(opt.slug) +
+          '">' +
+          esc(opt.label) +
+          "</button>"
+        );
+      }).join("")
+    );
+    html += renderRefineGroup(
+      "Texture",
+      "",
+      TEXTURE_OPTIONS.map(function (opt) {
+        const on = draft.criteria.textures.indexOf(opt.slug) >= 0;
+        return (
+          '<button type="button" class="chip-tog' +
+          (on ? " is-on" : "") +
+          '" data-disc-texture="' +
+          esc(opt.slug) +
+          '">' +
+          esc(opt.label) +
+          "</button>"
+        );
+      }).join("")
+    );
+    html +=
+      '<section class="disc-refine-group disc-refine-group--soft"><h3>Lean toward</h3><p class="meta">These sort the list. They don’t hide anything.</p>' +
+      '<label class="disc-switch"><input type="checkbox" data-disc-lean="keep_it_easy"' +
+      (draft.soft.keep_it_easy ? " checked" : "") +
+      ' /> Keep it easy</label>' +
+      '<label class="disc-switch"><input type="checkbox" data-disc-lean="keep_ingredients_simple"' +
+      (draft.soft.keep_ingredients_simple ? " checked" : "") +
+      ' /> Keep ingredients simple</label></section>';
+    body.innerHTML = html;
+    scheduleRefinePreview();
+  }
+
+  function openRefineSheet() {
+    const sheet = document.getElementById("discRefineSheet");
+    if (!sheet) return;
+    const load = d().loadTasteCatalog;
+    state.refineDraft = draftFromQuery(currentQuery());
+    const resp = state.response;
+    if (resp && resp.soft_source === "plan_intent" && !state.softTouched) {
+      state.refineDraft.soft = {
+        keep_it_easy: resp.soft.keep_it_easy,
+        keep_ingredients_simple: resp.soft.keep_ingredients_simple,
+      };
+      state.refineDraft.soft_provided = false;
+    }
+    const done = function (catalog) {
+      state.refineVocab = vocabularyByKind(catalog);
+      renderRefineBody();
+      sheet.showModal();
+    };
+    if (load) {
+      load().then(done);
+    } else done({ groups: [] });
+  }
+
+  async function applyRefineDraft() {
+    const draft = state.refineDraft;
+    if (!draft) return;
+    const sheet = document.getElementById("discRefineSheet");
+    state.forceResults = true;
+    await applyQueryPatch(
+      {
+        criteria: draft.criteria,
+        soft: draft.soft,
+        soft_provided: draft.soft_provided || state.softTouched,
+      },
+      { forceResults: true, replaceCriteria: true }
+    );
+    if (sheet && sheet.open) sheet.close();
   }
 
   function open(opts) {
@@ -664,11 +1053,13 @@
     if (openRecipe && !e.target.closest(".disc-card-cta")) {
       e.preventDefault();
       const slug = openRecipe.dataset.discOpen;
+      const card = openRecipe.closest(".disc-card");
+      const version = card && card.dataset.version;
       state.scrollY = window.scrollY;
       state.focusSlug = slug;
       history.replaceState({ find: { scrollY: state.scrollY, focusSlug: slug } }, "", location.pathname + location.search);
       track("discovery_recipe_opened", { mode: state.mode, recipe_slug: slug, from: "results" });
-      d().openDiscoveryRecipe(slug);
+      d().openDiscoveryRecipe(slug, version);
       return;
     }
     const use = e.target.closest("[data-disc-action='use'], [data-disc-action='add']");
@@ -693,8 +1084,25 @@
       } else if (kind === "time") {
         applyQueryPatch({ criteria: { quick: true, max_minutes: null } });
       } else if (kind === "refine") {
-        document.getElementById("discRefineSheet") && document.getElementById("discRefineSheet").showModal();
+        openRefineSheet();
       }
+      return;
+    }
+    const relaxIdx = e.target.closest("[data-disc-relax-idx]");
+    if (relaxIdx) {
+      e.preventDefault();
+      const chip = state.relaxChips[Number(relaxIdx.dataset.discRelaxIdx)];
+      if (chip) {
+        const next = deps.applyRelaxChip(currentQuery(), chip);
+        applyQueryPatch({ criteria: next.criteria, text: next.text }, { forceResults: true, replaceCriteria: true });
+        track("discovery_remove_chip", { field: chip.label });
+      }
+      return;
+    }
+    const leanChange = e.target.closest("[data-disc-lean-change]");
+    if (leanChange) {
+      e.preventDefault();
+      openRefineSheet();
       return;
     }
     const seeAll = e.target.closest("[data-disc-see-all]");
@@ -734,14 +1142,146 @@
     }, 250);
   }
 
+  function bindRefineEvents() {
+    const sheet = document.getElementById("discRefineSheet");
+    if (!sheet) return;
+    sheet.addEventListener("change", function (e) {
+      if (e.target.matches("[data-disc-lean]") && state.refineDraft) {
+        state.refineDraft.soft[e.target.dataset.discLean] = e.target.checked;
+        state.refineDraft.soft_provided = true;
+        state.softTouched = true;
+        scheduleRefinePreview();
+      }
+    });
+    sheet.addEventListener("click", function (e) {
+      const draft = state.refineDraft;
+      if (!draft) return;
+      const time = e.target.closest("[data-disc-time]");
+      if (time) {
+        const v = time.dataset.discTime;
+        if (v === "any") {
+          draft.criteria.quick = false;
+          draft.criteria.max_minutes = null;
+        } else if (v === "30") {
+          draft.criteria.quick = true;
+          draft.criteria.max_minutes = null;
+        } else {
+          draft.criteria.quick = false;
+          draft.criteria.max_minutes = Number(v);
+        }
+        renderRefineBody();
+        return;
+      }
+      const effort = e.target.closest("[data-disc-effort]");
+      if (effort) {
+        draft.criteria.effort_levels = draft.criteria.effort_levels.indexOf("easy") >= 0 ? [] : ["easy"];
+        renderRefineBody();
+        return;
+      }
+      const complexity = e.target.closest("[data-disc-complexity]");
+      if (complexity) {
+        draft.criteria.ingredient_complexities =
+          draft.criteria.ingredient_complexities.indexOf("simple") >= 0 ? [] : ["simple"];
+        renderRefineBody();
+        return;
+      }
+      const cuisine = e.target.closest("[data-disc-cuisine]");
+      if (cuisine) {
+        toggleCuisine(draft, { slug: cuisine.dataset.discCuisine });
+        renderRefineBody();
+        return;
+      }
+      const style = e.target.closest("[data-disc-style]");
+      if (style) {
+        draft.criteria.meal_styles = toggleSlugList(draft.criteria.meal_styles, style.dataset.discStyle);
+        renderRefineBody();
+        return;
+      }
+      const ing = e.target.closest("[data-disc-ingredient]");
+      if (ing) {
+        draft.criteria.ingredients = toggleSlugList(draft.criteria.ingredients, ing.dataset.discIngredient);
+        renderRefineBody();
+        return;
+      }
+      const flavor = e.target.closest("[data-disc-flavor]");
+      if (flavor) {
+        draft.criteria.flavors = toggleSlugList(draft.criteria.flavors, flavor.dataset.discFlavor);
+        renderRefineBody();
+        return;
+      }
+      const diet = e.target.closest("[data-disc-diet]");
+      if (diet) {
+        draft.criteria.diet = toggleSlugList(draft.criteria.diet, diet.dataset.discDiet);
+        renderRefineBody();
+        return;
+      }
+      const protein = e.target.closest("[data-disc-protein]");
+      if (protein) {
+        draft.criteria.protein_groups = toggleSlugList(draft.criteria.protein_groups, protein.dataset.discProtein);
+        renderRefineBody();
+        return;
+      }
+      const texture = e.target.closest("[data-disc-texture]");
+      if (texture) {
+        draft.criteria.textures = toggleSlugList(draft.criteria.textures, texture.dataset.discTexture);
+        renderRefineBody();
+        return;
+      }
+      const lean = e.target.closest("[data-disc-lean]");
+      if (lean && lean.tagName === "INPUT") {
+        const key = lean.dataset.discLean;
+        draft.soft[key] = lean.checked;
+        draft.soft_provided = true;
+        state.softTouched = true;
+        scheduleRefinePreview();
+        return;
+      }
+      if (e.target.id === "discRefineClear") {
+        state.refineDraft = draftFromQuery({ criteria: emptyCriteria(), text: null, soft_provided: false });
+        renderRefineBody();
+        return;
+      }
+      if (e.target.id === "discRefineApply") {
+        e.preventDefault();
+        applyRefineDraft();
+        return;
+      }
+      if (e.target.id === "discRefineClose") {
+        sheet.close();
+      }
+    });
+  }
+
   function bind() {
     document.addEventListener("click", handleClick);
+    bindRefineEvents();
     const rootEl = document.getElementById("findRoot");
     if (rootEl) {
       rootEl.addEventListener("input", function (e) {
         if (e.target.id === "discSearch") handleSearchInput(e);
       });
     }
+  }
+
+  function applyRelaxChipLocal(query, chip) {
+    const base = Object.assign({}, query, { criteria: Object.assign({}, query.criteria) });
+    const p = chip.patch || {};
+    if (p.quick === false) {
+      base.criteria.quick = false;
+      base.criteria.max_minutes = null;
+    }
+    if (p.max_minutes === null) base.criteria.max_minutes = null;
+    if (p.effort_levels) base.criteria.effort_levels = p.effort_levels;
+    if (p.ingredient_complexities) base.criteria.ingredient_complexities = p.ingredient_complexities;
+    if (p.different === false) base.criteria.different = false;
+    if (p.cuisines) base.criteria.cuisines = p.cuisines;
+    if (p.meal_styles) base.criteria.meal_styles = p.meal_styles;
+    if (p.flavors) base.criteria.flavors = p.flavors;
+    if (p.ingredients) base.criteria.ingredients = p.ingredients;
+    if (p.protein_groups) base.criteria.protein_groups = p.protein_groups;
+    if (p.diet) base.criteria.diet = p.diet;
+    if (p.textures) base.criteria.textures = p.textures;
+    return base;
   }
 
   function init(dependencies) {
@@ -753,6 +1293,12 @@
         queryHasActiveCriteria: queryHasActiveCriteria,
         shelfDisplayTitle: shelfDisplayTitle,
         shelfDisplaySubtitle: shelfDisplaySubtitle,
+        relaxRemoveChips: function (excluded, query) {
+          return d().relaxRemoveChips ? d().relaxRemoveChips(excluded, query) : [];
+        },
+        applyRelaxChip: function (query, chip) {
+          return d().applyRelaxChip ? d().applyRelaxChip(query, chip) : applyRelaxChipLocal(query, chip);
+        },
         emptyStateKind: function (q, total, excluded) {
           if (total > 0) return null;
           const counts = excluded || {};
@@ -764,8 +1310,20 @@
           return "nothing_fits";
         },
       },
+      {
+        relaxRemoveChips: function (excluded, query) {
+          if (dependencies && dependencies.relaxRemoveChips) return dependencies.relaxRemoveChips(excluded, query);
+          return [];
+        },
+        applyRelaxChip: applyRelaxChipLocal,
+      },
       dependencies || {}
     );
+    const bridge = root.FlavorWeaveDiscoveryRelax;
+    deps.relaxRemoveChips =
+      (dependencies && dependencies.relaxRemoveChips) || (bridge && bridge.relaxRemoveChips) || deps.relaxRemoveChips;
+    deps.applyRelaxChip =
+      (dependencies && dependencies.applyRelaxChip) || (bridge && bridge.applyRelaxChip) || applyRelaxChipLocal;
     bind();
   }
 
@@ -775,12 +1333,9 @@
   }
 
   function restoreFromHistory(st) {
-    if (!st || !st.find) return;
-    state.scrollY = st.find.scrollY || 0;
-    state.focusSlug = st.find.focusSlug || null;
-    requestAnimationFrame(function () {
-      window.scrollTo(0, state.scrollY);
-    });
+    const snap = (st && st.find) || st;
+    if (!snap) return;
+    restoreSession(snap);
   }
 
   root.FlavorWeaveDiscovery = {
@@ -790,8 +1345,13 @@
     openStandaloneFromNav,
     onShow,
     restoreFromHistory,
+    restoreSession,
+    captureState,
     getState: function () {
       return state;
+    },
+    getResponse: function () {
+      return state.response;
     },
   };
 })(typeof window !== "undefined" ? window : globalThis);

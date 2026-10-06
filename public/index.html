@@ -889,6 +889,29 @@
         </form>
       </dialog>
 
+      <dialog class="sheet disc-refine-sheet" id="discRefineSheet" aria-labelledby="discRefineTitle">
+        <form method="dialog" class="sheet__inner disc-refine__inner">
+          <header class="disc-refine__head">
+            <h2 class="card-title" id="discRefineTitle">Refine</h2>
+            <button type="button" class="icon-btn" id="discRefineClose" aria-label="Close">×</button>
+          </header>
+          <div class="disc-refine__body" id="discRefineBody"></div>
+          <footer class="disc-refine__foot sheet__actions">
+            <button type="button" class="btn btn-quiet" id="discRefineClear">Clear all</button>
+            <button type="button" class="btn btn-primary" id="discRefineApply" disabled>Show dinners</button>
+          </footer>
+        </form>
+      </dialog>
+
+      <dialog class="sheet" id="discAddPlanSheet" aria-labelledby="discAddPlanTitle">
+        <form method="dialog" class="sheet__inner">
+          <h2 class="card-title" id="discAddPlanTitle">Add to your plan</h2>
+          <p class="meta" id="discAddPlanLede"></p>
+          <div id="discAddPlanOptions" class="sheet-menu"></div>
+          <button class="btn btn-quiet" type="button" id="discAddPlanCancel">Not now</button>
+        </form>
+      </dialog>
+
       <dialog class="sheet" id="swapSheet" aria-labelledby="swapSheetTitle">
         <form method="dialog" class="sheet__inner">
           <h2 class="card-title" id="swapSheetTitle">Swap dinner</h2>
@@ -996,6 +1019,7 @@
   <script src="/nav-context.js"></script>
   <script src="/taste-ui.js"></script>
   <script src="/planning-ui.js"></script>
+  <script src="/discovery-relax-bridge.js"></script>
   <script src="/discovery-ui.js"></script>
   <script src="/app.js"></script>
   <script>

@@ -22,6 +22,7 @@ export default [
       "public/taste-ui.js",
       "public/planning-ui.js",
       "public/discovery-ui.js",
+      "public/discovery-relax-bridge.js",
       "public/nav-context.js",
     ],
     languageOptions: {

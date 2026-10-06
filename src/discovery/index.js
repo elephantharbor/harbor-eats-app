@@ -60,6 +60,13 @@ export {
   validateQuery,
 } from "./query.js";
 export {
+  activeCriteriaCount,
+  applyRelaxChip,
+  cuisineValuesForTerm,
+  findHistorySnapshot,
+  vocabularyByKind,
+} from "./refine-helpers.js";
+export {
   DISCOVERY_SHELVES,
   SHELF_MIN_TOTAL,
   apiSearchQueryString,

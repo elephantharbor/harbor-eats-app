@@ -4317,3 +4317,43 @@ button.plan-meal-title {
 .disc-main[aria-busy="true"] .disc-shelf__row {
   opacity: 0.6;
 }
+
+.disc-refine-sheet .sheet__inner {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+.disc-refine__body {
+  overflow-y: auto;
+  flex: 1;
+  padding: var(--space-2) 0;
+}
+.disc-refine-group {
+  margin-bottom: var(--space-4);
+}
+.disc-refine-group h3 {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+.disc-refine-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.disc-refine-group--soft .disc-switch {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+.disc-refine__foot {
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: var(--space-3);
+}
+@media (min-width: 1024px) {
+  .disc-refine-sheet {
+    max-width: 640px;
+    margin: auto;
+  }
+}

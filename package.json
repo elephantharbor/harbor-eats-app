@@ -15,7 +15,7 @@
     "catalog:import:staging": "node scripts/import-catalog.mjs --target staging --sqlite .wrangler/catalog-staging.sqlite",
     "pages:deploy": "wrangler pages deploy public --project-name=harbor-eats-app",
     "interim:prepare": "bash scripts/prepare-github-io.sh",
-    "lint": "eslint src public/app.js public/theme.js public/meal-media.js public/taste-ui.js public/planning-ui.js public/discovery-ui.js public/nav-context.js functions --max-warnings=0",
+    "lint": "eslint src public/app.js public/theme.js public/meal-media.js public/taste-ui.js public/planning-ui.js public/discovery-ui.js public/discovery-relax-bridge.js public/nav-context.js functions --max-warnings=0",
     "test:migrations": "bash scripts/check-migrations.sh",
     "test:unit": "vitest run",
     "test:e2e": "playwright test --config e2e/playwright.config.js",
