@@ -107,6 +107,17 @@ Chrome modes (`#app[data-chrome]`):
 | `brand` | Wordmark only | Onboarding, join, guest share |
 | `none` | Nothing | Cook mode |
 
+## Discovery (D-07)
+
+Full spec: `docs/D07-UX.md`. Navigation: `docs/D07-NAV-DECISION.md`. Visual rules that apply beyond that screen:
+
+- **Photo first.** Find a dinner leads with one large hero card (`.tonight-hero` composition on tablet and desktop, full-width 4:3 on phone), then shelves of 4:3 photo cards. Images are resolved by `recipe_slug`, never by title.
+- **Quiet cards.** Title, then one meta row (minutes; “Easy” and “Simple ingredients” only when true), then at most one taste line. No more than three pills on a card. No emoji, flags, scores, or rank.
+- **Chips, not panels.** Refinement is a single chip row plus a sheet (phone/tablet) or popovers (desktop). No filter sidebar. Applied chips are filled with a ×; unapplied chips are outlined.
+- **Two kinds of “easy”.** The “Easy” chip hides other dinners. “Keep it easy” only sorts and lives under “Lean toward”. Copy never says “Quick” (use “Under 30 min”) and never links Simple ingredients to a pantry.
+- **Loading.** Skeleton cards on `--color-surface-sunken`. The weave loader stays reserved for building a plan.
+- New icon: `#i-search` (magnifier) for the Find tab and the search field.
+
 ## Voice
 
 Copy should be confident, friendly, honest and concise.
