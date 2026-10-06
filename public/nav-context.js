@@ -115,8 +115,8 @@
 
   /** Which primary nav item is lit. Null means none. */
   function navSection(view, ctx) {
-    if (isSection(view)) return view;
     if (view === "find") return ctx && ctx.mode === "standalone" ? "find" : null;
+    if (isSection(view)) return view;
     if (view === "detail" || view === "invite" || view === "rate") {
       var origin = ctx && ctx.origin;
       if (origin === "find") return ctx.mode === "standalone" ? "find" : null;

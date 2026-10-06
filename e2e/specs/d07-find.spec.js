@@ -117,6 +117,8 @@ test.describe("D-07 Find a dinner", () => {
     await expect(page).toHaveURL(/mode=replace_plan_meal/);
     await expect(page.url()).not.toMatch(/participant_id=/);
     await expect(page.url()).not.toMatch(/position=/);
+    await expect(page.locator('#topNav [data-nav="find"]')).not.toHaveClass(/is-on/);
+    await expect(page.locator('#topNav [data-nav="find"]')).not.toHaveAttribute("aria-current", "page");
     await expect(page.getByRole("heading", { name: "Find something else" })).toBeVisible();
     await waitDiscoveryReady(page);
     const beforeTitle = await page.locator(".plan-meal-title").first().textContent();

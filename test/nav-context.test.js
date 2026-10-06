@@ -128,6 +128,29 @@ describe("rate screen origin", () => {
   });
 });
 
+describe("D-07 Find focus chrome", () => {
+  it("standalone Find lights the Find tab", () => {
+    const r = open("find", "home", { mode: "standalone" });
+    expect(r.nav).toBe("find");
+    expect(r.chrome).toBe("full");
+  });
+
+  it("replace_plan_meal and choose_for_plan keep no primary nav lit", () => {
+    expect(open("find", "planReview", { mode: "replace_plan_meal", origin: "planReview" }).nav).toBe(null);
+    expect(open("find", "planReview", { mode: "choose_for_plan", origin: "planReview" }).nav).toBe(null);
+    expect(Nav.chrome("find", { mode: "replace_plan_meal", origin: "planReview" })).toBe("focus");
+  });
+
+  it("recipe from plan-mode Find does not light Find", () => {
+    const ctx = Nav.contextFor("detail", "find", {
+      established: true,
+      source: "discovery",
+      mode: "replace_plan_meal",
+    });
+    expect(Nav.navSection("detail", ctx)).toBe(null);
+  });
+});
+
 describe("Cycle 3 dinner plan navigation", () => {
   it("plan review opened from Tonight returns to Tonight", () => {
     const r = open("detail", "choices", { source: "tonight_plan", origin: "tonightPlan" });
