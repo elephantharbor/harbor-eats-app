@@ -1,0 +1,663 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 Batch A. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r2; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "A",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r2",
+  "revision_note": "freeze-r2 (2026-10-08 CT) fixes Vale r1 gate G as a v1 text amendment (same version_number 1; image unchanged): soy is added to recipe_version.allergens because commercial sesame hamburger buns typically contain soy (soy flour, soybean oil, or soy lecithin); allergen_notes, the bun ingredient note, and the dietary label note now state that milk, egg, and soy from commercial buns are all declared. No recipe, time, or classification change. culinary_hash added (first Batch A hash). img_v1.jpg and both WebPs unchanged.",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 Batch A: Juniper authored text, plating brief, prompt, and classification; Cora generates the image",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "classic-smash-burgers",
+    "slug": "classic-smash-burgers",
+    "title": "Classic Smash Burgers with Special Sauce",
+    "description": "Double smash burgers: loose balls of 80/20 ground chuck pressed thin onto a ripping-hot cast-iron skillet for lacy, deeply browned edges, stacked with melted American cheese on butter-toasted sesame buns with a tangy pickle special sauce, dill pickles, paper-thin onion, and shredded iceberg.",
+    "cuisine": "american",
+    "meal_format": "burgers",
+    "primary_ingredient": "ground beef",
+    "vocabulary_tag_ids": [
+      "american",
+      "sandwiches",
+      "savory",
+      "rich",
+      "crispy",
+      "tangy"
+    ],
+    "current_recipe_id": "rcp_classic-smash-burgers",
+    "current_version_id": "rv_classic-smash-burgers_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_classic-smash-burgers",
+    "dish_id": "classic-smash-burgers",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08 Batch A, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_classic-smash-burgers_v1",
+    "recipe_id": "rcp_classic-smash-burgers",
+    "dish_id": "classic-smash-burgers",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "revision_note": "freeze-r2 allergen amendment on v1 (Vale r1 G): allergens now meat, milk, egg, wheat, sesame, soy; bun note and allergen_notes[4] updated. Steps, ingredients, times, and D-03 unchanged.",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. Not certified. Not published. kitchen_tested is false.",
+    "title": "Classic Smash Burgers with Special Sauce",
+    "description": "Double smash burgers: loose balls of 80/20 ground chuck pressed thin onto a ripping-hot cast-iron skillet for lacy, deeply browned edges, stacked with melted American cheese on butter-toasted sesame buns with a tangy pickle special sauce, dill pickles, paper-thin onion, and shredded iceberg.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "ground-chuck",
+        "name": "ground chuck",
+        "display_name": "80/20 ground chuck",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "kept cold until cooking",
+        "preparation": "divided into 8 loosely formed 3-oz balls; not packed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "american-cheese",
+        "name": "American cheese",
+        "display_name": "American cheese slices",
+        "quantity": 8,
+        "unit": "slice",
+        "note": "milk allergen",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sesame-buns",
+        "name": "sesame-seed hamburger buns",
+        "display_name": "soft sesame-seed hamburger buns",
+        "quantity": 4,
+        "unit": "count",
+        "note": "contain wheat and sesame; commercial buns commonly also contain milk, egg, and soy, all declared in allergens",
+        "preparation": "split",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "unsalted-butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "softened; for toasting buns. Milk allergen.",
+        "preparation": "softened",
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "mayonnaise",
+        "name": "mayonnaise",
+        "display_name": "mayonnaise",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "egg allergen",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ketchup",
+        "name": "ketchup",
+        "display_name": "ketchup",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "yellow-mustard",
+        "name": "yellow mustard",
+        "display_name": "yellow mustard",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "mustard is not a US major allergen and has no runtime token",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dill-pickles",
+        "name": "dill pickle chips",
+        "display_name": "dill pickle chips",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "about 20 chips plus 1 tsp brine: 2 tbsp finely chopped for the sauce, the rest for topping",
+        "preparation": "2 tbsp finely chopped; rest left whole",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic-powder",
+        "name": "garlic powder",
+        "display_name": "garlic powder",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "iceberg-lettuce",
+        "name": "iceberg lettuce",
+        "display_name": "iceberg lettuce",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "about 1/4 head",
+        "preparation": "finely shredded",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "white-onion",
+        "name": "white onion",
+        "display_name": "white onion",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": "small",
+        "preparation": "sliced paper-thin",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "for the patties",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "freshly ground black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "patties plus a pinch for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "a thin film for the first batch",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Make the special sauce and toppings",
+        "body": "Finely chop 2 tbsp of the pickles. Stir together the mayonnaise, ketchup, mustard, chopped pickles, 1 tsp pickle brine, garlic powder, and a pinch of pepper. Shred the lettuce, slice the onion paper-thin, and set out the remaining pickle chips.",
+        "ingredient_refs": [
+          "dill-pickles",
+          "mayonnaise",
+          "ketchup",
+          "yellow-mustard",
+          "garlic-powder",
+          "black-pepper",
+          "iceberg-lettuce",
+          "white-onion"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Portion the beef and butter the buns",
+        "body": "Divide the chuck into 8 loosely formed 3-oz balls without packing or kneading; keep them on a plate in the refrigerator until the pan is hot. Spread the softened butter on the cut sides of the buns. Cut 8 small squares of parchment for pressing.",
+        "ingredient_refs": [
+          "ground-chuck",
+          "unsalted-butter",
+          "sesame-buns"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Heat the skillet",
+        "body": "Heat a 12-inch cast-iron skillet (or griddle) over medium-high until very hot, about 4 minutes; a drop of water should skitter.",
+        "ingredient_refs": []
+      },
+      {
+        "step_number": 4,
+        "title": "Toast the buns",
+        "body": "Toast the buttered cut sides in two batches until golden, about 1 minute per batch. Transfer to plates and spread the special sauce on both halves. Wipe the skillet with a paper towel.",
+        "ingredient_refs": [
+          "sesame-buns",
+          "unsalted-butter"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Smash and sear in batches",
+        "body": "Add a thin film of oil. Place 3 beef balls well apart in the skillet. Within the first 30 seconds, press each one hard with a stiff metal spatula (parchment square between) to about 1/4 inch thick with ragged edges. Season the tops with salt and pepper. Cook undisturbed until the edges are lacy and deep brown and only a little pink shows on top, about 2 minutes. Scrape under the crust with the spatula edge and flip. Lay a slice of cheese on each and cook 45 to 60 seconds. Stack each cheesy patty onto another to make doubles as they come off. Scrape out excess fat between batches and repeat in batches of 3, 3, and 2 (about 4 minutes per batch).",
+        "ingredient_refs": [
+          "neutral-oil",
+          "ground-chuck",
+          "kosher-salt",
+          "black-pepper",
+          "american-cheese"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Assemble",
+        "body": "Build each burger: sauced bottom bun, double patty with cheese, pickle chips, onion, shredded lettuce, sauced top bun. Serve immediately. kitchen_tested is false.",
+        "ingredient_refs": [
+          "sesame-buns",
+          "ground-chuck",
+          "dill-pickles",
+          "white-onion",
+          "iceberg-lettuce"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "special-sauce",
+        "name": "pickle special sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "mayonnaise",
+          "ketchup",
+          "yellow mustard",
+          "chopped dill pickles",
+          "pickle brine",
+          "garlic powder",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "double-smash-patties",
+        "name": "double smash patties with American cheese",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "80/20 ground chuck",
+          "American cheese",
+          "kosher salt",
+          "black pepper"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch cast-iron skillet or griddle",
+      "stiff wide metal spatula",
+      "parchment paper squares",
+      "small bowl",
+      "knife",
+      "cutting board",
+      "paper towels"
+    ],
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 21,
+    "total_time_minutes": 31,
+    "prep_minutes": 10,
+    "cook_minutes": 21,
+    "total_minutes": 31,
+    "heat": "Medium-high cast iron, very hot before the first smash. No oven.",
+    "doneness": "Patties 1/4 inch thin with lacy, deep-brown crusted edges, cooked through to no more than a trace of pink (ground beef safe target 160°F). Cheese fully melted and draped. Buns golden on the cut side. kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001-eligible: contains beef (meat other than fish) and dairy (American cheese, butter)."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels claimed: contains beef, milk (cheese, butter), egg (mayonnaise), wheat, sesame, and soy (buns).",
+    "allergens": [
+      "meat",
+      "milk",
+      "egg",
+      "wheat",
+      "sesame",
+      "soy"
+    ],
+    "allergen_notes": [
+      "Meat covers the ground chuck (FlavorWeave package token).",
+      "Milk covers American cheese and butter (and may also be in commercial buns).",
+      "Egg covers mayonnaise (and may also be in commercial buns).",
+      "Wheat and sesame cover the sesame-seed buns.",
+      "Mustard (yellow mustard) is present; not a US major allergen and has no runtime token. Soy is tokenized because commercial sesame hamburger buns typically contain soy (soy flour, soybean oil, or soy lecithin).",
+      "No peanut, tree_nut, shellfish, or finfish."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001-eligible: contains beef (meat other than fish) and dairy (American cheese, butter).",
+    "vocabulary_tag_ids": [
+      "american",
+      "sandwiches",
+      "savory",
+      "rich",
+      "crispy",
+      "tangy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Notes do not replace the array. Live PACKAGE_ALLERGEN_IDS may say dairy/nuts; do not silently remap milk to dairy or tree_nut to nuts.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in src/lib/taste-vocabulary.js (read-only). dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level and ingredient_complexity are the D-03 canonical fields. Legacy effort / effort_band / complexity are deliberately not authored. Factor scores and reason codes live in the top-level classification sidecar (factory/cert only, not runtime API V1).",
+      "package_revision": "package_revision is freeze-r2. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "images": "package_revision is freeze-r2. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "cuisine_gap": "american maps to the active D-02 cuisine slug american, which is in vocabulary_tag_ids.",
+      "meal_format": "burgers is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "ground beef: no D-02 ingredient slug; not copied into tags.",
+      "hh001_contract": "Non-HH001 (beef, dairy). No dietary labels claimed."
+    },
+    "culinary_hash": "sha256:af82dfee07e9f39013c8add4bb681c4e9143bf8b304551e67d92f7be0ff278c3",
+    "culinary_hash_note": "sha256 over culinary content (title, description, servings, ingredients, steps, components, equipment, times, heat, doneness, dietary eligibility/labels, allergens, tags); same basis as Batch B. Excludes effort_level / ingredient_complexity and image metadata, so a classification-only amendment does not change it."
+  },
+  "image": {
+    "image_id": "img_classic-smash-burgers_v1",
+    "dish_id": "classic-smash-burgers",
+    "recipe_version_id": "rv_classic-smash-burgers_v1",
+    "asset_generated": true,
+    "master_ref": "classic-smash-burgers.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "classic-smash-burgers.webp",
+        "spec_catalog_path": "/images/meals/classic-smash-burgers.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "classic-smash-burgers-640.webp",
+        "spec_catalog_path": "/images/meals/classic-smash-burgers-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the AI JPEG to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs with export_meal_webps.py after Cora GenerateImage.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 from image-prompt.md (plating brief first; house-quality reference for light/appeal only); center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Harbor Eats Lead) via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "prompt_authored_by": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI image generated by Cora with GenerateImage from image-prompt.md; master and card WebPs exported with export_meal_webps.py and frozen for preflight/audit at freeze-r2. No stock, web, or third-party imagery.",
+    "package_revision": "freeze-r2",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "sha256": {
+      "img_v1.jpg": "1156241b7d13710474ed6c34f61fdea972345381f1182e870da9333f0588dc85",
+      "classic-smash-burgers.webp": "e9ab9da22b63e210d639fb8a179f243c384a12b965c2f21cc013370c434dfba6",
+      "classic-smash-burgers-640.webp": "8e3a73f7eada75490b7d5d348030cf8e1af5dab8aa116c40c63e663fdeaac0b1"
+    },
+    "card_ref": "classic-smash-burgers-640.webp",
+    "master_filename": "classic-smash-burgers.webp",
+    "card_filename": "classic-smash-burgers-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "rejected_assets": []
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Pickles split 2 tbsp chopped (sauce) + chips (topping); pepper split patties + sauce; butter only on buns."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "1 tsp neutral oil film; 80/20 chuck renders its own fat, scraped between batches."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Mayonnaise, ketchup, mustard, pickles, buns, and American cheese are standard store-bought items with allergens declared. Special sauce is made in-recipe."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 10 (step 1 6 + step 2 4) + cook 21 (step 3 4 + step 4 3 + step 5 12 + step 6 2) = 31. Preheat/parallel work stated in the step text."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes for 1, 2, and 4 servings and do-not-scale items."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=true, contains_poultry=false, contains_finfish=false, contains_shellfish=false, contains_dairy=true, nut_policy=none. Allergens meat, milk, egg, wheat, sesame, soy. HH001 false. Non-HH001 (beef, dairy). No dietary labels claimed."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "american, sandwiches, savory, rich, crispy, tangy are active D-02 slugs. burgers is format metadata only."
+    },
+    {
+      "check": "classification_d03",
+      "result": "pass_curator_assigned",
+      "detail": "effort_level moderate (factor sum 5), ingredient_complexity simple (factor sum 1); factors and reason codes in the classification sidecar. Vale checks Gate A enums + Gate J plausibility."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r2."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY.json",
+      "detail": "Freeze Integrity Preflight is run on this exact freeze-r2 file set after finalize; its PASS/FAIL is recorded in FREEZE_INTEGRITY.json in this directory. Vale must not start unless it says PASS."
+    }
+  ],
+  "scaling_notes": {
+    "1": "2 balls (6 oz) for one double, 1 bun, 1/4 of the sauce; one batch of 2 (cook about 13 minutes total).",
+    "2": "Half of everything; batches of 3 then 1 (or 2 and 2).",
+    "4": "As written; 3 batches in a 12-inch skillet (a large griddle can do 2 batches of 4).",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "very hot cast iron before the first smash",
+      "loose, cold beef balls",
+      "smash within 30 seconds, never after flipping"
+    ]
+  },
+  "coverage_contribution": "Burgers 0->1 (deferred three waves); ground beef 0->1; a 30-minute crowd-pleaser - enjoyment-first.",
+  "near_duplicate_review": "Compared with Crispy Skillet Chicken Sandwiches: handheld on a bun, but smashed beef patties with cheese vs dredged chicken cutlets. Compared with Spiced Lamb Meatballs: ground meat, but seared flat burgers vs shaped braised meatballs. Not a live-catalog duplicate.",
+  "deliberately_not": "Not a crispy chicken sandwich twin; not a turkey or bean burger as first burger claim.",
+  "batch_challenges": "A",
+  "selection_alignment": "Matches WAVE.json/selection.json identity: american · burgers · ground beef · hh001_intent false -> hh001_eligible false. Selection time band Under 30; written clock 31 minutes. Classification deviations from proposal: effort_level easy (WAVE proposal) -> moderate (rubric).",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "effort_score": 5,
+    "complexity_score": 1,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 2,
+      "active_components": 1,
+      "technique": 1,
+      "coordination_cleanup_equipment": 0
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 0,
+      "specialty_items": [],
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredients": [
+      "ground chuck",
+      "American cheese",
+      "sesame buns",
+      "unsalted butter",
+      "mayonnaise",
+      "ketchup",
+      "yellow mustard",
+      "dill pickles",
+      "garlic powder",
+      "iceberg lettuce",
+      "white onion"
+    ],
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "continuous_attention"
+      ],
+      "ingredient": [
+        "medium_list",
+        "common_pantry"
+      ]
+    },
+    "rationale": {
+      "effort": "Light steady prep (1); continuous batch smashing and flipping (2); burger plus one stirred sauce (1); smash-sear technique, timing-sensitive (1); one skillet (0). Sum 5 -> moderate; floor rule 1 (continuous attention + any other >= 1) also requires at least moderate. WAVE proposed easy; batch searing over a hot pan is not easy under the rubric.",
+      "complexity": "11 countable (1). All mainstream supermarket items (0). One stirred sauce; patties take salt and pepper only (0). Sum 1 -> simple."
+    },
+    "borderline": false,
+    "wave_proposal": {
+      "effort_level": "easy",
+      "ingredient_complexity": "simple"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "cultural_bias_guardrail": "Cuisine unfamiliarity adds no points; specialty-store items scored once under specialty_burden, pantry_familiarity kept 0 (r2 convention)."
+  },
+  "classification_history": [],
+  "time_reconstruction": {
+    "prep_minutes": 10,
+    "cook_minutes": 21,
+    "total_minutes": 31,
+    "prep_steps": [
+      {
+        "step": 1,
+        "minutes": 6
+      },
+      {
+        "step": 2,
+        "minutes": 4
+      }
+    ],
+    "cook_steps": [
+      {
+        "step": 3,
+        "minutes": 4
+      },
+      {
+        "step": 4,
+        "minutes": 3
+      },
+      {
+        "step": 5,
+        "minutes": 12
+      },
+      {
+        "step": 6,
+        "minutes": 2
+      }
+    ],
+    "overlap_steps": [],
+    "rule": "total = prep + cook; overlap steps run inside another step's clock and add 0; any oven/broiler preheat is stated as overlapping prep in the step text."
+  },
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_images_present_awaiting_preflight"
+}

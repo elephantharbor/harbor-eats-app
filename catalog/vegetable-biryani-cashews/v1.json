@@ -1,0 +1,775 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 Batch A. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "A",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 Batch A: Juniper authored text, plating brief, prompt, and classification; Cora generates the image",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "vegetable-biryani-cashews",
+    "slug": "vegetable-biryani-cashews",
+    "title": "Vegetable Biryani with Saffron and Cashews",
+    "description": "Long-grain basmati parboiled and steamed (dum) over a garam-masala vegetable base of cauliflower, carrots, and peas, streaked with saffron and layered with crisp-fried onions, mint, and toasted cashews. Oil instead of ghee; no yogurt, cream, or butter; cashews are the only nut.",
+    "cuisine": "indian-inspired",
+    "meal_format": "layered-rice",
+    "primary_ingredient": "basmati rice",
+    "vocabulary_tag_ids": [
+      "indian",
+      "savory",
+      "herbaceous",
+      "crunchy"
+    ],
+    "current_recipe_id": "rcp_vegetable-biryani-cashews",
+    "current_version_id": "rv_vegetable-biryani-cashews_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_vegetable-biryani-cashews",
+    "dish_id": "vegetable-biryani-cashews",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08 Batch A, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_vegetable-biryani-cashews_v1",
+    "recipe_id": "rcp_vegetable-biryani-cashews",
+    "dish_id": "vegetable-biryani-cashews",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. Not certified. Not published. kitchen_tested is false.",
+    "title": "Vegetable Biryani with Saffron and Cashews",
+    "description": "Long-grain basmati parboiled and steamed (dum) over a garam-masala vegetable base of cauliflower, carrots, and peas, streaked with saffron and layered with crisp-fried onions, mint, and toasted cashews. Oil instead of ghee; no yogurt, cream, or butter; cashews are the only nut.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "basmati-rice",
+        "name": "basmati rice",
+        "display_name": "long-grain basmati rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed in several changes of water, soaked 20 minutes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "saffron",
+        "name": "saffron threads",
+        "display_name": "saffron threads",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "a big pinch (about 0.2 g), loosely packed",
+        "preparation": "crumbled and steeped in 3 tbsp warm water",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "yellow-onions",
+        "name": "yellow onions",
+        "display_name": "yellow onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": "large, about 1 1/4 lb total; fried crisp (birista) for layering and topping",
+        "preparation": "halved and sliced very thin (1/8 inch)",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "raw-cashews",
+        "name": "raw cashews",
+        "display_name": "whole raw unsalted cashews",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "HH001 cashew exception: plain single-ingredient cashews only. No almonds, pistachios, mixed nuts, or nut blends.",
+        "preparation": "toasted in oil",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated or finely minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": "about a 2-inch piece",
+        "preparation": "peeled and grated",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "serrano-chile",
+        "name": "serrano chile",
+        "display_name": "serrano chile",
+        "quantity": 1,
+        "unit": "count",
+        "note": "use 2 for more heat",
+        "preparation": "slit lengthwise",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garam-masala",
+        "name": "garam masala",
+        "display_name": "garam masala",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "2 tsp in the vegetable base, 1/2 tsp over the rice. Spice-only blend.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cauliflower",
+        "name": "cauliflower",
+        "display_name": "cauliflower",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "about 12 oz, from 1 small head",
+        "preparation": "cut into 1-inch florets",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 2,
+        "unit": "count",
+        "note": "medium, about 1 cup diced",
+        "preparation": "peeled, cut into 1/2-inch dice",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "frozen-peas",
+        "name": "frozen peas",
+        "display_name": "frozen green peas",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "thawed",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lemons",
+        "name": "lemons",
+        "display_name": "lemons",
+        "quantity": 2,
+        "unit": "count",
+        "note": "1 juiced (3 tbsp: 2 tbsp in the base, 1 tbsp over the rice), 1 cut into wedges. Lemon replaces the usual yogurt marinade.",
+        "preparation": "1 juiced, 1 cut into wedges",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fresh-mint",
+        "name": "fresh mint",
+        "display_name": "fresh mint leaves",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "loosely packed; 1/3 cup in the base, a few leaves over the rice, the rest to finish",
+        "preparation": "leaves picked",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil (canola, sunflower, or grapeseed)",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for toasting cashews and frying onions; 3 tbsp kept for the base and 1 tbsp for the rice; the rest poured off. Oil replaces ghee: no ghee, no butter.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tbsp",
+        "note": "2 tbsp for the rice water (most drains away), 1 1/4 tsp for the vegetables, pinch for the onions",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 3,
+        "unit": "quart",
+        "note": "3 quarts for parboiling the rice, plus 1/2 cup for the vegetables and 3 tbsp for the saffron",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Soak the rice and steep the saffron",
+        "body": "Rinse the basmati in several changes of cool water until nearly clear, then cover with fresh water and soak 20 minutes (the soak runs through all of prep). Warm 3 tbsp water until hot but not boiling, crumble in the saffron, and set aside to steep.",
+        "ingredient_refs": [
+          "basmati-rice",
+          "water",
+          "saffron"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Prep",
+        "body": "Halve and very thinly slice the onions. Cut the cauliflower into 1-inch florets and dice the carrots. Grate the garlic and ginger; slit the serrano. Pick the mint. Juice one lemon (3 tbsp) and cut the other into wedges. Fill a large pot with 3 quarts water and 2 tbsp salt and cover it. HARD CONTRACT: oil not ghee; no yogurt, cream, butter, or paneer; cashews are the only nut.",
+        "ingredient_refs": [
+          "yellow-onions",
+          "cauliflower",
+          "carrots",
+          "garlic",
+          "fresh-ginger",
+          "serrano-chile",
+          "fresh-mint",
+          "lemons",
+          "water",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Toast the cashews",
+        "body": "Heat the 1/2 cup oil in a heavy 5- to 6-quart Dutch oven over medium. Add the cashews and stir constantly until light golden, 2 to 3 minutes; lift out with a slotted spoon onto paper towels. Set the covered pot of salted water over high heat now so it boils by step 6.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "raw-cashews",
+          "water"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Fry the onions",
+        "body": "Add the onions and a pinch of salt to the hot oil. Cook over medium-high, stirring often at first and constantly once they color, until deep golden brown and crisp at the edges, 10 to 12 minutes. Lift out with the slotted spoon and spread on paper towels to crisp. Carefully pour off all but 3 tbsp oil into a heatproof cup; keep 1 tbsp of the poured-off oil for the rice.",
+        "ingredient_refs": [
+          "yellow-onions",
+          "kosher-salt",
+          "neutral-oil"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Build the vegetable base",
+        "body": "Over medium heat, add the garlic, ginger, and serrano to the 3 tbsp oil and stir 45 seconds. Add 2 tsp garam masala and the turmeric and stir 15 seconds. Add the cauliflower, carrots, 1 1/4 tsp salt, 2 tbsp lemon juice, and 1/2 cup water; stir, cover, and cook 6 minutes, until the cauliflower is just tender at the edges but still firm (it finishes during the steam). Stir in the peas, half the fried onions, and 1/3 cup mint. Spread level and turn off the heat.",
+        "ingredient_refs": [
+          "garlic",
+          "fresh-ginger",
+          "serrano-chile",
+          "garam-masala",
+          "ground-turmeric",
+          "cauliflower",
+          "carrots",
+          "kosher-salt",
+          "lemons",
+          "water",
+          "frozen-peas",
+          "yellow-onions",
+          "fresh-mint"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Parboil the rice",
+        "body": "While the vegetables cook in step 5, drain the soaked rice, add it to the boiling salted water, and boil uncovered 5 to 6 minutes, until the grains are long and bend but still have a firm white core (about 70% cooked). Drain well. This runs inside step 5's 8 minutes (overlap stated).",
+        "ingredient_refs": [
+          "basmati-rice",
+          "water",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 7,
+        "title": "Layer",
+        "body": "Spoon the rice evenly over the vegetables without stirring. Drizzle the saffron water over in streaks, then the reserved 1 tbsp oil and the remaining 1 tbsp lemon juice. Sprinkle the remaining 1/2 tsp garam masala and scatter a few mint leaves and a small handful of the fried onions. Cover the pot tightly with foil, crimp the edges, and set the lid on top.",
+        "ingredient_refs": [
+          "basmati-rice",
+          "saffron",
+          "neutral-oil",
+          "lemons",
+          "garam-masala",
+          "fresh-mint",
+          "yellow-onions"
+        ]
+      },
+      {
+        "step_number": 8,
+        "title": "Steam (dum) and rest",
+        "body": "Cook over medium heat 2 minutes, until you hear steam, then over the lowest heat 15 minutes. Turn off the heat and rest, still covered, 5 minutes. Do not open the pot during this time.",
+        "ingredient_refs": [
+          "basmati-rice"
+        ]
+      },
+      {
+        "step_number": 9,
+        "title": "Finish and serve",
+        "body": "Uncover: the top should show saffron-orange and white grains. Gently fold from the edges with a large spoon, or scoop deep so each portion gets vegetables and rice. Top with the remaining fried onions, the toasted cashews, and the remaining mint; serve with lemon wedges. No raita, no ghee. kitchen_tested is false.",
+        "ingredient_refs": [
+          "yellow-onions",
+          "raw-cashews",
+          "fresh-mint",
+          "lemons"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "fried-onions-cashews",
+        "name": "crisp-fried onions (birista) and toasted cashews",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "yellow onions",
+          "raw cashews",
+          "neutral oil",
+          "kosher salt"
+        ]
+      },
+      {
+        "component_id": "vegetable-masala",
+        "name": "garam-masala vegetable base",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "garlic",
+          "ginger",
+          "serrano",
+          "garam masala",
+          "turmeric",
+          "cauliflower",
+          "carrots",
+          "peas",
+          "lemon juice",
+          "mint",
+          "fried onions"
+        ]
+      },
+      {
+        "component_id": "saffron-rice",
+        "name": "parboiled basmati with saffron water",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "basmati rice",
+          "saffron",
+          "salted water",
+          "neutral oil",
+          "lemon juice",
+          "garam masala"
+        ]
+      }
+    ],
+    "equipment": [
+      "heavy 5- to 6-quart Dutch oven with lid",
+      "large pot for parboiling",
+      "fine-mesh colander",
+      "slotted spoon",
+      "paper towels",
+      "aluminum foil",
+      "heatproof cup",
+      "knife",
+      "cutting board",
+      "grater",
+      "citrus juicer"
+    ],
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 50,
+    "total_time_minutes": 70,
+    "prep_minutes": 20,
+    "cook_minutes": 50,
+    "total_minutes": 70,
+    "heat": "Medium oil for cashews, medium-high for onions, medium covered for vegetables, high boil for rice, then medium 2 minutes and lowest heat for the dum. No oven.",
+    "doneness": "Onions deep golden and crisp. Rice grains long, separate, fully tender, streaked saffron-orange. Cauliflower tender but holding shape; no wet puddle at the bottom. Cashews golden. kitchen_tested is false.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "cashews_only_ok",
+      "nut_policy_note": "Cashews are the only nut (HH001 cashew exception used honestly). No almonds, pistachios, walnuts, peanuts, or mixed nuts. Coconut not used.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based biryani. No dairy (oil instead of ghee; no yogurt, cream, butter, or paneer; lemon replaces the yogurt marinade), no shellfish, no meat, no poultry, no fish. Cashews are the only nut, which HH001 allows."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free, vegetarian, and plant_based. Oil, not ghee; no yogurt, raita, cream, butter, or paneer anywhere. Contains cashews (tree nut).",
+    "allergens": [
+      "tree_nut",
+      "cashew"
+    ],
+    "allergen_notes": [
+      "tree_nut / cashew covers the toasted cashews, the only nut in the recipe. 'cashew' matches the live PACKAGE_ALLERGEN_IDS token; tree_nut is the factory canonical token.",
+      "No milk: no ghee, yogurt, cream, butter, or paneer.",
+      "No egg, soy, wheat, sesame, peanut, shellfish, or finfish in the written ingredients."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based biryani. No dairy (oil instead of ghee; no yogurt, cream, butter, or paneer; lemon replaces the yogurt marinade), no shellfish, no meat, no poultry, no fish. Cashews are the only nut, which HH001 allows.",
+    "vocabulary_tag_ids": [
+      "indian",
+      "savory",
+      "herbaceous",
+      "crunchy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Notes do not replace the array. Live PACKAGE_ALLERGEN_IDS may say dairy/nuts; do not silently remap milk to dairy or tree_nut to nuts.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in src/lib/taste-vocabulary.js (read-only). dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level and ingredient_complexity are the D-03 canonical fields. Legacy effort / effort_band / complexity are deliberately not authored. Factor scores and reason codes live in the top-level classification sidecar (factory/cert only, not runtime API V1).",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "images": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "cuisine_gap": "indian-inspired maps to the active D-02 cuisine slug indian, which is in vocabulary_tag_ids.",
+      "meal_format": "layered-rice is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "basmati rice: no D-02 ingredient slug; not copied into tags.",
+      "hh001_contract": "HH001 requires oil not ghee, no yogurt/cream/butter/paneer, and plain cashews only (no almonds, pistachios, or nut mixes). nut_policy cashews_only_ok. Unconditional."
+    }
+  },
+  "image": {
+    "image_id": "img_vegetable-biryani-cashews_v1",
+    "dish_id": "vegetable-biryani-cashews",
+    "recipe_version_id": "rv_vegetable-biryani-cashews_v1",
+    "asset_generated": true,
+    "master_ref": "vegetable-biryani-cashews.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "vegetable-biryani-cashews.webp",
+        "spec_catalog_path": "/images/meals/vegetable-biryani-cashews.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "vegetable-biryani-cashews-640.webp",
+        "spec_catalog_path": "/images/meals/vegetable-biryani-cashews-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the AI JPEG to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs with export_meal_webps.py after Cora GenerateImage.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 from image-prompt.md (plating brief first; house-quality reference for light/appeal only); center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Harbor Eats Lead) via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "prompt_authored_by": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI image generated by Cora with GenerateImage from image-prompt.md; master and card WebPs exported with export_meal_webps.py and frozen for preflight/audit at freeze-r1. No stock, web, or third-party imagery.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "sha256": {
+      "img_v1.jpg": "ba8c20745d95cc6d04121d331bebaedc83f0cc49d6317d43636da110b06964a2",
+      "vegetable-biryani-cashews.webp": "7eb5cb2af865b2f0545c105f5256f7ae3dd0d7f22a5abdd92bd55cdb598fa049",
+      "vegetable-biryani-cashews-640.webp": "5ef254fa7bfc1bc38fe1b076875065c7017f1be0d9460a228eef6e9c2d2bf4d7"
+    },
+    "card_ref": "vegetable-biryani-cashews-640.webp",
+    "master_filename": "vegetable-biryani-cashews.webp",
+    "card_filename": "vegetable-biryani-cashews-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "rejected_assets": [
+      "rejected/attempt1-cauliflower-read-as-breaded-fritters.jpg"
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Lemon 2 tbsp base + 1 tbsp rice + wedges; garam masala 2 tsp + 1/2 tsp; fried onions half in base, a handful in the layer, rest on top; mint 1/3 cup base, few leaves layer, rest finish; oil 1/2 cup -> 3 tbsp base + 1 tbsp rice + remainder poured off."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "1/2 cup neutral oil: fry cashews and onions; 3 tbsp kept for the base; 1 tbsp drizzled on the rice; about 1/4 cup poured off (stated in step 4). No ghee or butter."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Garam masala is a spice-only blend. Fried onions are made in-recipe (store-bought crispy onions often contain wheat; not used)."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 20 (step 1 4 + step 2 16) + cook 50 (step 3 3 + step 4 12 + step 5 8 + step 7 3 + step 8 22 + step 9 2) = 70. Overlap steps (0 added): step 6. Preheat/parallel work stated in the step text."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes for 1, 2, and 4 servings and do-not-scale items."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=false, contains_poultry=false, contains_finfish=false, contains_shellfish=false, contains_dairy=false, nut_policy=cashews_only_ok. Allergens tree_nut, cashew. HH001 true. HH001 requires oil not ghee, no yogurt/cream/butter/paneer, and plain cashews only (no almonds, pistachios, or nut mixes). nut_policy cashews_only_ok. Unconditional."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "indian, savory, herbaceous, crunchy are active D-02 slugs. layered-rice is format metadata only."
+    },
+    {
+      "check": "classification_d03",
+      "result": "pass_curator_assigned",
+      "detail": "effort_level involved (factor sum 8), ingredient_complexity standard (factor sum 3); factors and reason codes in the classification sidecar. Vale checks Gate A enums + Gate J plausibility."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r1."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY.json",
+      "detail": "Freeze Integrity Preflight is run on this exact freeze-r1 file set after finalize; its PASS/FAIL is recorded in FREEZE_INTEGRITY.json in this directory. Vale must not start unless it says PASS."
+    }
+  ],
+  "scaling_notes": {
+    "1": "Not recommended below 2 servings: a small dum pot scorches. For 1, make the 2-serving batch and refrigerate the rest.",
+    "2": "Half of everything in a 3- to 4-quart heavy pot; onion frying 8 to 10 minutes; dum 12 minutes on lowest heat plus 5 rest.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "oil not ghee; no yogurt",
+      "cashews only",
+      "parboil to about 70% before layering",
+      "tight foil seal for dum"
+    ]
+  },
+  "coverage_contribution": "Layered/dum rice 0->1; Indian deepens beyond chickpea curry + saag paneer; a festive project meal for HH001 that uses the cashew exception honestly.",
+  "near_duplicate_review": "Compared with Coconut Chickpea Curry: Indian-inspired and plant, but a layered dum rice with vegetables and no coconut or chickpeas. Compared with Saag Paneer: no paneer or spinach gravy. Compared with Kimchi Fried Rice and Spanish Chorizo Pepper Rice: rice-centered, but parboiled-and-steamed layered basmati rather than fried or one-pan simmered rice. Compared with Cashew Pesto Pasta: shares cashews only. Not a live-catalog duplicate.",
+  "deliberately_not": "Not chickpea curry twin, not fried rice / one-pan arroz twin, not ghee/yogurt biryani (dairy).",
+  "batch_challenges": "A",
+  "selection_alignment": "Matches WAVE.json/selection.json identity: indian-inspired · layered-rice · basmati rice · hh001_intent true -> hh001_eligible true. Selection time band 45+; written clock 70 minutes. D-03 labels match the WAVE proposal after rubric scoring.",
+  "classification": {
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "effort_score": 8,
+    "complexity_score": 3,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 2,
+      "active_components": 2,
+      "technique": 2,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 1,
+      "specialty_items": [
+        "saffron",
+        "garam masala"
+      ],
+      "flavor_component_breadth": 1,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredients": [
+      "basmati rice",
+      "saffron",
+      "yellow onions",
+      "raw cashews",
+      "garlic",
+      "fresh ginger",
+      "serrano chile",
+      "garam masala",
+      "ground turmeric",
+      "cauliflower",
+      "carrots",
+      "frozen peas",
+      "lemons",
+      "fresh mint"
+    ],
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "continuous_attention",
+        "multi_component",
+        "batch_frying"
+      ],
+      "ingredient": [
+        "medium_list",
+        "one_specialty",
+        "multi_build"
+      ]
+    },
+    "rationale": {
+      "effort": "Steady prep (1); onion frying needs constant stirring (2); fried onions/cashews, vegetable base, and parboiled saffron rice are coordinated components (2); shallow-frying birista plus parboil-to-70% plus sealed dum is multi-stage technique (2); Dutch oven plus parboil pot with critical timing (1). Sum 8 -> involved; floor rule 2 (technique 2 + prep >= 1) also forces involved.",
+      "complexity": "14 countable (1). Saffron and garam masala are two widely available spice-aisle specialty items (1). Vegetable masala build plus saffron rice layer (1). Mainstream sourcing (0). Sum 3 -> standard. Indian cuisine adds no points."
+    },
+    "borderline": true,
+    "wave_proposal": {
+      "effort_level": "involved",
+      "ingredient_complexity": "standard"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "cultural_bias_guardrail": "Cuisine unfamiliarity adds no points; specialty-store items scored once under specialty_burden, pantry_familiarity kept 0 (r2 convention)."
+  },
+  "classification_history": [],
+  "time_reconstruction": {
+    "prep_minutes": 20,
+    "cook_minutes": 50,
+    "total_minutes": 70,
+    "prep_steps": [
+      {
+        "step": 1,
+        "minutes": 4
+      },
+      {
+        "step": 2,
+        "minutes": 16
+      }
+    ],
+    "cook_steps": [
+      {
+        "step": 3,
+        "minutes": 3
+      },
+      {
+        "step": 4,
+        "minutes": 12
+      },
+      {
+        "step": 5,
+        "minutes": 8
+      },
+      {
+        "step": 7,
+        "minutes": 3
+      },
+      {
+        "step": 8,
+        "minutes": 22
+      },
+      {
+        "step": 9,
+        "minutes": 2
+      }
+    ],
+    "overlap_steps": [
+      6
+    ],
+    "rule": "total = prep + cook; overlap steps run inside another step's clock and add 0; any oven/broiler preheat is stated as overlapping prep in the step text."
+  },
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

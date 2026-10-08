@@ -40,6 +40,7 @@ const ALLERGEN_LIMITS = {
   shellfish: ["no_shellfish"],
   finfish: ["no_finfish"],
   dairy: ["no_dairy"],
+  milk: ["no_dairy"],
   nuts: ["no_nuts"],
   walnut: ["no_nuts"],
   peanut: ["no_nuts"],

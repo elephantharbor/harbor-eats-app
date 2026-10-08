@@ -1,0 +1,716 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 Batch A. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r4; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "A",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r4",
+  "revision_note": "freeze-r4 (2026-10-08 CT) is a metadata-only revision for Vale r3 gate O: revision notes now describe the prompt that actually produced the active hero. img_v1.jpg and both WebPs are byte-identical to freeze-r3 (sha256 d81b4325…, 8c086ddb…, 16fae237…); recipe, version_number 1, D-03 classification, plating brief and culinary_hash are unchanged. Hero history: freeze-r1 hero retired as attempt1 (Vale r1 K: grill marks, fries not folded); attempt2 discarded by Cora before finalize (tomato seeds, plate clipped by crop); freeze-r2 hero retired as attempt3 (Vale r2 K: crosshatch-scored beef, tomato seeds; exact prompt not recorded); attempt4 generated verbatim from the first freeze-r3 prompt and discarded by Cora before finalize (scored/striped beef, tomato seeds, plate too wide); the active hero was generated verbatim from the revised freeze-r3 prompt (thin irregular sauce-lacquered beef strips, tomato wedges skin side up, plate in the central 60% of the frame width). rejected/REJECTIONS.md logs attempts 1-4.",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 Batch A: Juniper authored text, plating brief, prompt, and classification; Cora generates the image",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "peruvian-lomo-saltado",
+    "slug": "peruvian-lomo-saltado",
+    "title": "Peruvian Lomo Saltado",
+    "description": "Soy-and-cumin-marinated sirloin strips seared hard in a smoking-hot skillet, tossed with charred red onion, juicy tomato wedges, garlic, and a fruity ají amarillo-vinegar-soy sauce, finished with cilantro and folded with crisp oven fries; served with white rice.",
+    "cuisine": "peruvian",
+    "meal_format": "stir-fry",
+    "primary_ingredient": "beef sirloin",
+    "vocabulary_tag_ids": [
+      "stir-fries",
+      "savory",
+      "tangy",
+      "umami",
+      "crispy"
+    ],
+    "current_recipe_id": "rcp_peruvian-lomo-saltado",
+    "current_version_id": "rv_peruvian-lomo-saltado_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_peruvian-lomo-saltado",
+    "dish_id": "peruvian-lomo-saltado",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08 Batch A, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_peruvian-lomo-saltado_v1",
+    "recipe_id": "rcp_peruvian-lomo-saltado",
+    "dish_id": "peruvian-lomo-saltado",
+    "version_number": 1,
+    "package_revision": "freeze-r4",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r4. Not certified. Not published. kitchen_tested is false.",
+    "title": "Peruvian Lomo Saltado",
+    "description": "Soy-and-cumin-marinated sirloin strips seared hard in a smoking-hot skillet, tossed with charred red onion, juicy tomato wedges, garlic, and a fruity ají amarillo-vinegar-soy sauce, finished with cilantro and folded with crisp oven fries; served with white rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "beef-sirloin",
+        "name": "top sirloin steak",
+        "display_name": "top sirloin steak",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut across the grain into strips 1/2 inch thick and 2 inches long",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "2 tbsp marinade, 2 tbsp sauce. Soy and wheat.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "red-wine-vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "aji-amarillo-paste",
+        "name": "ají amarillo paste",
+        "display_name": "ají amarillo paste (Peruvian yellow chile paste)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "Contract: plain jarred ají amarillo pepper paste (peppers, water, salt, acid). Not huancaína or other ají sauces that contain cheese, milk, or crackers. Latin aisle, Latin market, or online.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 5,
+        "unit": "clove",
+        "note": "2 for the marinade, 3 for the stir-fry",
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "ground-cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "large, about 10 oz",
+        "preparation": "cut into 1/2-inch wedges, layers separated",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "roma-tomatoes",
+        "name": "Roma tomatoes",
+        "display_name": "Roma tomatoes",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 1 lb",
+        "preparation": "each cut lengthwise into 6 wedges, seeds scooped out",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "fresh cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "frozen-fries",
+        "name": "frozen French fries",
+        "display_name": "frozen straight-cut French fries",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "Contract: plain fries (potatoes, oil, salt; dextrose is fine). No seasoned, battered, or coated fries.",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "white-rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral high-heat oil (canola or vegetable)",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "1 tbsp per beef batch, 1 tbsp for the onions",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "3/4 tsp for the rice, the rest to taste at the end",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "freshly ground black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the oven and marinate the beef",
+        "body": "Heat the oven to 425°F (or the temperature on your fry package, 425 to 450°F); it preheats during the 15 minutes of prep (overlap stated). Toss the beef strips with 2 tbsp soy sauce, 2 cloves minced garlic, the cumin, and the pepper; let it marinate while you prep.",
+        "ingredient_refs": [
+          "beef-sirloin",
+          "soy-sauce",
+          "garlic",
+          "ground-cumin",
+          "black-pepper"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Prep the vegetables, sauce, and rice",
+        "body": "Cut the onion into 1/2-inch wedges and separate the layers. Cut the tomatoes into seeded wedges. Mince the remaining 3 garlic cloves. Chop the cilantro. Rinse the rice. In a small bowl stir together 2 tbsp soy sauce, the red wine vinegar, and the ají amarillo paste (the sauce).",
+        "ingredient_refs": [
+          "red-onion",
+          "roma-tomatoes",
+          "garlic",
+          "cilantro",
+          "white-rice",
+          "soy-sauce",
+          "red-wine-vinegar",
+          "aji-amarillo-paste"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Start the fries and rice",
+        "body": "Spread the frozen fries in a single layer on a rimmed sheet pan and bake 22 to 25 minutes, flipping once halfway, until deep golden and crisp. At the same time bring the rice, 2 1/4 cups water, and 3/4 tsp salt to a boil in a 2-quart saucepan, cover, reduce to low, and cook 15 minutes; then keep covered off the heat. Both are hands-off; flip the fries at about minute 12.",
+        "ingredient_refs": [
+          "frozen-fries",
+          "white-rice",
+          "water",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Sear the beef",
+        "body": "About 13 minutes after the fries go in, heat a 12-inch carbon-steel or cast-iron skillet (or wok) over high until smoking, about 2 minutes. Add 1 tbsp oil and half the beef in a single layer; sear undisturbed 1 minute, then toss 30 to 60 seconds until browned outside and still pink inside. Transfer to a plate. Repeat with 1 tbsp oil and the rest of the beef.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "beef-sirloin"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Char the onion and garlic",
+        "body": "Add the last 1 tbsp oil and the onion. Stir-fry over high 90 seconds, until the edges char but the onion is still crisp. Add the garlic and toss 15 seconds.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "red-onion",
+          "garlic"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Tomatoes, sauce, and beef",
+        "body": "Add the tomatoes and toss 45 seconds just to warm them. Pour the sauce around the edge of the pan so it sizzles and reduces, about 20 seconds. Return the beef and its juices and toss 30 seconds. Off heat, add most of the cilantro; taste and add salt only if needed (the soy is salty).",
+        "ingredient_refs": [
+          "roma-tomatoes",
+          "soy-sauce",
+          "red-wine-vinegar",
+          "aji-amarillo-paste",
+          "beef-sirloin",
+          "cilantro",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 7,
+        "title": "Plate",
+        "body": "Fold about one-third of the hot fries into the skillet so they soak up some sauce; pile the rest alongside. Pack rice into a small cup and unmold a dome onto each plate. Spoon the lomo saltado next to the rice with its juices, add the remaining fries, and scatter the remaining cilantro. Serve at once while the fries are crisp. kitchen_tested is false.",
+        "ingredient_refs": [
+          "frozen-fries",
+          "white-rice",
+          "beef-sirloin",
+          "cilantro"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "beef-marinade",
+        "name": "soy-garlic-cumin beef marinade",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "soy sauce",
+          "garlic",
+          "ground cumin",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "aji-saltado-sauce",
+        "name": "ají amarillo-vinegar-soy sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "soy sauce",
+          "red wine vinegar",
+          "ají amarillo paste"
+        ]
+      },
+      {
+        "component_id": "oven-fries",
+        "name": "oven-baked fries",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "frozen straight-cut French fries"
+        ]
+      },
+      {
+        "component_id": "white-rice-cooked",
+        "name": "steamed white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long-grain white rice",
+          "water",
+          "kosher salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch carbon-steel or cast-iron skillet or wok",
+      "rimmed sheet pan",
+      "2-quart saucepan with lid",
+      "tongs or wide spatula",
+      "small bowl",
+      "knife",
+      "cutting board"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 25,
+    "total_time_minutes": 40,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "heat": "425°F oven for fries (preheat overlaps prep); rice high then low; skillet on high, smoking hot, for the stir-fry.",
+    "doneness": "Beef browned outside, pink and juicy inside (about medium). Onion edges charred but crisp. Tomatoes warmed, not collapsed. Fries deep golden and crisp. Rice fluffy. kitchen_tested is false.",
+    "effort_level": "involved",
+    "ingredient_complexity": "adventurous",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001-eligible: contains beef (meat other than fish). Otherwise dairy-free and shellfish-free (no oyster sauce)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: no butter, cheese, or cream; ají amarillo paste contracted plain (not huancaína). Contains beef.",
+    "allergens": [
+      "meat",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat covers the sirloin (FlavorWeave package token).",
+      "Soy and wheat cover regular brewed soy sauce.",
+      "No oyster sauce, so no shellfish. Frozen fries contracted plain (no wheat batter); wheat is already declared via soy sauce.",
+      "No egg, milk, sesame, peanut, tree_nut, or finfish."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001-eligible: contains beef (meat other than fish). Otherwise dairy-free and shellfish-free (no oyster sauce).",
+    "vocabulary_tag_ids": [
+      "stir-fries",
+      "savory",
+      "tangy",
+      "umami",
+      "crispy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r4_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Notes do not replace the array. Live PACKAGE_ALLERGEN_IDS may say dairy/nuts; do not silently remap milk to dairy or tree_nut to nuts.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in src/lib/taste-vocabulary.js (read-only). dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level and ingredient_complexity are the D-03 canonical fields. Legacy effort / effort_band / complexity are deliberately not authored. Factor scores and reason codes live in the top-level classification sidecar (factory/cert only, not runtime API V1).",
+      "package_revision": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "images": "package_revision is freeze-r4. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "cuisine_gap": "peruvian has no D-02 cuisine slug; kept on dish.cuisine only, not invented as a tag.",
+      "meal_format": "stir-fry is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "beef sirloin: no D-02 ingredient slug; not copied into tags.",
+      "hh001_contract": "Non-HH001 (beef). dairy_free requires plain ají amarillo paste (not huancaína). Unconditional."
+    },
+    "culinary_hash": "sha256:776350eea4adc4d9d5599890a64347bf73c6af2df34a5c3c553a32464980f724",
+    "culinary_hash_note": "sha256 over culinary content (title, description, servings, ingredients, steps, components, equipment, times, heat, doneness, dietary eligibility/labels, allergens, tags); same basis as Batch B. Excludes effort_level / ingredient_complexity and image metadata, so a classification-only amendment does not change it."
+  },
+  "image": {
+    "image_id": "img_peruvian-lomo-saltado_v1",
+    "dish_id": "peruvian-lomo-saltado",
+    "recipe_version_id": "rv_peruvian-lomo-saltado_v1",
+    "asset_generated": true,
+    "master_ref": "peruvian-lomo-saltado.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "peruvian-lomo-saltado.webp",
+        "spec_catalog_path": "/images/meals/peruvian-lomo-saltado.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "peruvian-lomo-saltado-640.webp",
+        "spec_catalog_path": "/images/meals/peruvian-lomo-saltado-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the AI JPEG to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs with export_meal_webps.py after Cora GenerateImage.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 from image-prompt.md (plating brief first; house-quality reference for light/appeal only); center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Harbor Eats Lead) via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "prompt_authored_by": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "revision_note": "The active hero was generated verbatim from the revised freeze-r3 exact-prompt block: glossy, sauce-lacquered beef strips with no scoring, crosshatch or grill marks; tomato wedges skin side up with no seeds visible; fries partly folded into the stir-fry and partly alongside; domed white rice; plate centred. Attempts 1-4 are in rejected/ and logged in rejected/REJECTIONS.md."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI image generated by Cora with GenerateImage from image-prompt.md; master and card WebPs exported with export_meal_webps.py and frozen for preflight/audit at freeze-r4. No stock, web, or third-party imagery.",
+    "package_revision": "freeze-r4",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "sha256": {
+      "img_v1.jpg": "d81b4325582d682d9479beae298c3a84f4f3647c55d6b8fc71749472f6f5e57a",
+      "peruvian-lomo-saltado.webp": "8c086ddb66be58207a21b19cefe58751951e32764e4c5846b0593ae4e3f1ec13",
+      "peruvian-lomo-saltado-640.webp": "16fae2377d8eb123139510cb8986258c7eb7828bbd04ae03b2f2ab9ebf5a4a01"
+    },
+    "card_ref": "peruvian-lomo-saltado-640.webp",
+    "master_filename": "peruvian-lomo-saltado.webp",
+    "card_filename": "peruvian-lomo-saltado-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "rejected_assets": [
+      "rejected/attempt1-beef-grill-marks-fries-not-folded.jpg",
+      "rejected/attempt2-tomato-seeds-plate-clipped-by-crop.jpg",
+      "rejected/attempt3-beef-crosshatch-scored-tomato-seeds.jpg",
+      "rejected/attempt4-beef-scored-tomato-seeds-plate-too-wide.jpg"
+    ],
+    "rejected_assets_note": "Retired heroes (attempt1 freeze-r1; attempt2 discarded before finalize; attempt3 freeze-r2; attempt4 from the first freeze-r3 prompt, discarded before finalize) live only under rejected/; reasons and prompt provenance are logged in rejected/REJECTIONS.md."
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Soy 2 tbsp marinade + 2 tbsp sauce; garlic 2 + 3; oil 1 + 1 (beef batches) + 1 (onion); fries one-third folded in, rest alongside."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "3 tbsp neutral oil: two beef batches and the onion. Fries bake without added oil."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Ají amarillo paste and frozen fries carry explicit label contracts. Sauce is mixed in-recipe."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 (step 1 4 + step 2 11) + cook 25 (step 3 13 + step 4 6 + step 5 2 + step 6 2 + step 7 2) = 40. Preheat/parallel work stated in the step text."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes for 1, 2, and 4 servings and do-not-scale items."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=true, contains_poultry=false, contains_finfish=false, contains_shellfish=false, contains_dairy=false, nut_policy=none. Allergens meat, soy, wheat. HH001 false. Non-HH001 (beef). dairy_free requires plain ají amarillo paste (not huancaína). Unconditional."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "stir-fries, savory, tangy, umami, crispy are active D-02 slugs. stir-fry is format metadata only."
+    },
+    {
+      "check": "classification_d03",
+      "result": "pass_curator_assigned",
+      "detail": "effort_level involved (factor sum 7), ingredient_complexity adventurous (factor sum 4); factors and reason codes in the classification sidecar. Vale checks Gate A enums + Gate J plausibility."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r4. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r4."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY.json",
+      "detail": "Freeze Integrity Preflight is run on this exact freeze-r4 file set after finalize; its PASS/FAIL is recorded in FREEZE_INTEGRITY.json in this directory. Vale must not start unless it says PASS."
+    }
+  ],
+  "scaling_notes": {
+    "1": "6 oz beef, 1/4 onion, 1 tomato, 1 1/2 tsp ají paste, 6 oz fries, 1/3 cup rice; sear in one batch in a 10-inch skillet.",
+    "2": "Half of everything; beef in one batch in a 12-inch skillet.",
+    "4": "As written; beef in two batches.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "smoking-hot pan; sear beef in batches, never crowded",
+      "fold fries in at the very end"
+    ]
+  },
+  "coverage_contribution": "Peruvian 0->1; unique fries-plus-wok format; beef only grilled flank + tibs. Adventurous because of ají amarillo paste sourcing, not culture.",
+  "near_duplicate_review": "Compared with Ethiopian Beef Tibs: fast-seared beef with onion, but a soy-vinegar-ají amarillo sauce, tomatoes, and fries instead of berbere. Compared with Gochujang Grilled Flank Steak: beef, but wok-seared strips, not a grilled steak. Not a live-catalog duplicate.",
+  "deliberately_not": "Not Ethiopian tibs twin (different sauce/method), not a Chinese beef-and-broccoli.",
+  "batch_challenges": "A",
+  "selection_alignment": "Matches WAVE.json/selection.json identity: peruvian · stir-fry · beef sirloin · hh001_intent false -> hh001_eligible false. Selection time band 30–45; written clock 40 minutes. Classification deviations from proposal: effort_level moderate (WAVE proposal) -> involved (rubric).",
+  "classification": {
+    "effort_level": "involved",
+    "ingredient_complexity": "adventurous",
+    "effort_score": 7,
+    "complexity_score": 4,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 2,
+      "active_components": 2,
+      "technique": 1,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 2,
+      "specialty_items": [
+        "ají amarillo paste (specialty-store likely, no true substitute)"
+      ],
+      "flavor_component_breadth": 1,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredients": [
+      "top sirloin",
+      "soy sauce",
+      "red wine vinegar",
+      "ají amarillo paste",
+      "garlic",
+      "ground cumin",
+      "red onion",
+      "Roma tomatoes",
+      "cilantro",
+      "frozen French fries",
+      "long-grain white rice"
+    ],
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "continuous_attention",
+        "multi_component"
+      ],
+      "ingredient": [
+        "medium_list",
+        "specialty_store_likely",
+        "multi_build"
+      ]
+    },
+    "rationale": {
+      "effort": "Steady prep (1); high-heat batch stir-fry is continuous (2); stir-fry, oven fries, and rice must converge hot at the plate (2); batch searing, timing-sensitive (1); oven, rice pot, and skillet in parallel (1). Sum 7 -> involved. WAVE proposed moderate; the third coordinated component (fries) is what pushes past the tibs / thai-basil precedent (5, moderate).",
+      "complexity": "11 countable (1). Ají amarillo paste is the namesake flavor, specialty-store likely and with no true substitute (2, scored once; sourcing not double-counted, parity with Thai basil). Marinade plus pan sauce (1). Sum 4 -> adventurous, driven only by ají amarillo availability, not by Peruvian cuisine."
+    },
+    "borderline": true,
+    "wave_proposal": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "adventurous"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "cultural_bias_guardrail": "Cuisine unfamiliarity adds no points; specialty-store items scored once under specialty_burden, pantry_familiarity kept 0 (r2 convention)."
+  },
+  "classification_history": [],
+  "time_reconstruction": {
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "prep_steps": [
+      {
+        "step": 1,
+        "minutes": 4
+      },
+      {
+        "step": 2,
+        "minutes": 11
+      }
+    ],
+    "cook_steps": [
+      {
+        "step": 3,
+        "minutes": 13
+      },
+      {
+        "step": 4,
+        "minutes": 6
+      },
+      {
+        "step": 5,
+        "minutes": 2
+      },
+      {
+        "step": 6,
+        "minutes": 2
+      },
+      {
+        "step": 7,
+        "minutes": 2
+      }
+    ],
+    "overlap_steps": [],
+    "rule": "total = prep + cook; overlap steps run inside another step's clock and add 0; any oven/broiler preheat is stated as overlapping prep in the step text."
+  },
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r4_images_present_awaiting_preflight"
+}

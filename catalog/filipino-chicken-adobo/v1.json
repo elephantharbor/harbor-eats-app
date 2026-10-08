@@ -1,0 +1,668 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 Batch A. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "A",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 Batch A: Juniper authored text, plating brief, prompt, and classification; Cora generates the image",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "filipino-chicken-adobo",
+    "slug": "filipino-chicken-adobo",
+    "title": "Filipino Chicken Adobo",
+    "description": "Bone-in chicken thighs seared until golden, braised in soy sauce, vinegar, smashed garlic, bay leaves, and cracked black pepper, then reduced until the sauce turns glossy and clings to the chicken. Served over jasmine rice with crisp garlic chips and scallions.",
+    "cuisine": "filipino",
+    "meal_format": "braise",
+    "primary_ingredient": "chicken thighs",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "savory",
+      "tangy",
+      "umami",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_filipino-chicken-adobo",
+    "current_version_id": "rv_filipino-chicken-adobo_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_filipino-chicken-adobo",
+    "dish_id": "filipino-chicken-adobo",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08 Batch A, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_filipino-chicken-adobo_v1",
+    "recipe_id": "rcp_filipino-chicken-adobo",
+    "dish_id": "filipino-chicken-adobo",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. Not certified. Not published. kitchen_tested is false.",
+    "title": "Filipino Chicken Adobo",
+    "description": "Bone-in chicken thighs seared until golden, braised in soy sauce, vinegar, smashed garlic, bay leaves, and cracked black pepper, then reduced until the sauce turns glossy and clings to the chicken. Served over jasmine rice with crisp garlic chips and scallions.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "chicken-thighs",
+        "name": "chicken thighs",
+        "display_name": "bone-in, skin-on chicken thighs",
+        "quantity": 8,
+        "unit": "count",
+        "note": "about 3 lb",
+        "preparation": "excess skin trimmed, patted very dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "regular brewed soy sauce (soy and wheat)",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "vinegar",
+        "name": "vinegar",
+        "display_name": "distilled white vinegar or Filipino cane vinegar",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "either is correct; cane vinegar is slightly softer",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 12,
+        "unit": "clove",
+        "note": "about 1 head: 8 smashed for the braise, 4 thinly sliced for chips",
+        "preparation": "8 smashed, 4 thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "bay-leaves",
+        "name": "bay leaves",
+        "display_name": "dried bay leaves",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-peppercorns",
+        "name": "black peppercorns",
+        "display_name": "whole black peppercorns",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": "lightly cracked",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "brown sugar",
+        "display_name": "light or dark brown sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "rounds the vinegar; helps the glaze",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed until water runs mostly clear",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced on the bias",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil (canola or vegetable)",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "for the garlic chips and searing",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "for the rice only; the soy seasons the chicken",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.75,
+        "unit": "cup",
+        "note": "1/2 cup for the braise, 2 1/4 cups for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Trim excess skin from the thighs and pat them very dry. Smash 8 garlic cloves; thinly slice the other 4. Lightly crack the peppercorns. Slice the scallions on the bias. Rinse the rice. In a measuring cup stir together the soy sauce, vinegar, 1/2 cup water, and brown sugar.",
+        "ingredient_refs": [
+          "chicken-thighs",
+          "garlic",
+          "black-peppercorns",
+          "scallions",
+          "jasmine-rice",
+          "soy-sauce",
+          "vinegar",
+          "water",
+          "brown-sugar"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Make garlic chips",
+        "body": "Put the oil and sliced garlic in a 12-inch deep skillet or 5-quart braiser with a lid and set over medium-low. Cook, stirring constantly, until the garlic is pale gold, 3 to 4 minutes. Lift out onto a paper towel (it darkens a shade as it cools). Keep the garlic oil in the pan.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "garlic"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Sear the chicken",
+        "body": "Raise the heat to medium-high. Add the thighs skin-side down in a snug single layer and cook without moving until the skin is deep golden and much of the fat has rendered, 7 to 8 minutes. Flip and cook 2 minutes. Transfer to a plate. Pour off all but about 1 tbsp fat.",
+        "ingredient_refs": [
+          "chicken-thighs"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Start the rice",
+        "body": "As the braise goes on, combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan; bring to a boil, cover, reduce to low, and cook 15 minutes, then leave covered off the heat until serving. Set-and-forget; runs inside steps 5 to 7 (overlap stated).",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "water",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Build the braise",
+        "body": "Over medium heat, add the smashed garlic and stir 30 seconds. Pour in the soy-vinegar mixture, add the peppercorns and bay leaves, and let it boil 1 minute without stirring to soften the vinegar's sharpness. Return the chicken skin-side up with any juices; the liquid should come about halfway up the thighs, leaving the skin above it.",
+        "ingredient_refs": [
+          "garlic",
+          "soy-sauce",
+          "vinegar",
+          "brown-sugar",
+          "black-peppercorns",
+          "bay-leaves",
+          "chicken-thighs"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Braise",
+        "body": "Cover, reduce the heat to low, and simmer gently 25 minutes, until the thighs are tender and register at least 175°F near the bone.",
+        "ingredient_refs": [
+          "chicken-thighs"
+        ]
+      },
+      {
+        "step_number": 7,
+        "title": "Reduce to a glaze",
+        "body": "Uncover, raise the heat to medium, and simmer, spooning the sauce over the chicken every minute or two, until the sauce has reduced by about half and turns glossy and lightly syrupy, 8 to 10 minutes. Remove the bay leaves before serving (one may be left on the platter as a visual cue; do not eat it).",
+        "ingredient_refs": [
+          "chicken-thighs",
+          "bay-leaves"
+        ]
+      },
+      {
+        "step_number": 8,
+        "title": "Serve",
+        "body": "Fluff the rice. Serve 2 thighs per person over or beside the rice, spoon the glaze over, and scatter the garlic chips and scallions on top. kitchen_tested is false.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "chicken-thighs",
+          "garlic",
+          "scallions"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "garlic-chips",
+        "name": "crisp garlic chips",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "garlic",
+          "neutral oil"
+        ]
+      },
+      {
+        "component_id": "chicken-adobo",
+        "name": "glazed chicken adobo",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "chicken thighs",
+          "soy sauce",
+          "vinegar",
+          "water",
+          "brown sugar",
+          "smashed garlic",
+          "bay leaves",
+          "black peppercorns"
+        ]
+      },
+      {
+        "component_id": "jasmine-rice-cooked",
+        "name": "steamed jasmine rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water",
+          "kosher salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch deep skillet or 5-quart braiser with lid",
+      "2-quart saucepan with lid",
+      "tongs",
+      "slotted spoon",
+      "paper towels",
+      "measuring cup",
+      "knife",
+      "cutting board",
+      "instant-read thermometer (optional)"
+    ],
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 52,
+    "total_time_minutes": 64,
+    "prep_minutes": 12,
+    "cook_minutes": 52,
+    "total_minutes": 64,
+    "heat": "Medium-low for garlic chips, medium-high sear, low covered braise, medium uncovered reduction. No oven.",
+    "doneness": "Skin deep golden and glazed, meat tender and at least 175°F near the bone. Sauce reduced by about half, glossy and clinging. Garlic chips pale gold and crisp. kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001-eligible: contains poultry (chicken thighs). Otherwise dairy-free, shellfish-free, nut-free."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: no milk, butter, cream, or coconut milk (this is not adobo sa gata). Contains poultry.",
+    "allergens": [
+      "poultry",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Poultry covers the chicken thighs (FlavorWeave package token; contains_poultry true on dietary_eligibility).",
+      "Soy and wheat cover regular brewed soy sauce.",
+      "No egg (no hard-boiled egg added), milk, sesame, peanut, tree_nut, shellfish, or finfish."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001-eligible: contains poultry (chicken thighs). Otherwise dairy-free, shellfish-free, nut-free.",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "savory",
+      "tangy",
+      "umami",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Notes do not replace the array. Live PACKAGE_ALLERGEN_IDS may say dairy/nuts; do not silently remap milk to dairy or tree_nut to nuts.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in src/lib/taste-vocabulary.js (read-only). dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level and ingredient_complexity are the D-03 canonical fields. Legacy effort / effort_band / complexity are deliberately not authored. Factor scores and reason codes live in the top-level classification sidecar (factory/cert only, not runtime API V1).",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "images": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "cuisine_gap": "filipino has no D-02 cuisine slug; kept on dish.cuisine only, not invented as a tag.",
+      "meal_format": "braise is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "chicken thighs maps to a D-02 ingredient slug present in tags.",
+      "hh001_contract": "Non-HH001 (poultry). dairy_free is unconditional."
+    }
+  },
+  "image": {
+    "image_id": "img_filipino-chicken-adobo_v1",
+    "dish_id": "filipino-chicken-adobo",
+    "recipe_version_id": "rv_filipino-chicken-adobo_v1",
+    "asset_generated": true,
+    "master_ref": "filipino-chicken-adobo.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "filipino-chicken-adobo.webp",
+        "spec_catalog_path": "/images/meals/filipino-chicken-adobo.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "filipino-chicken-adobo-640.webp",
+        "spec_catalog_path": "/images/meals/filipino-chicken-adobo-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the AI JPEG to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs with export_meal_webps.py after Cora GenerateImage.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 from image-prompt.md (plating brief first; house-quality reference for light/appeal only); center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Harbor Eats Lead) via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "prompt_authored_by": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI image generated by Cora with GenerateImage from image-prompt.md; master and card WebPs exported with export_meal_webps.py and frozen for preflight/audit at freeze-r1. No stock, web, or third-party imagery.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "sha256": {
+      "img_v1.jpg": "4984f79fea4f67cacced62f9c8eaea1c17b2e0a0c5a2f121786111df5feb6335",
+      "filipino-chicken-adobo.webp": "64fd7c383370fb86edb0a365a199ab96e2d13cea943f4ee6dd5565fc293b6293",
+      "filipino-chicken-adobo-640.webp": "c954aa3d2595078a118ed7683a0d6c3f864ab9b6c9fa8ac7af3d44e6d166912a"
+    },
+    "card_ref": "filipino-chicken-adobo-640.webp",
+    "master_filename": "filipino-chicken-adobo.webp",
+    "card_filename": "filipino-chicken-adobo-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "rejected_assets": []
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Garlic 8 smashed (braise) + 4 sliced (chips); water 1/2 cup braise + 2 1/4 cups rice; salt only in the rice."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "3 tbsp neutral oil for chips, then the same oil plus rendered fat for searing; all but 1 tbsp fat poured off."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "No compound ingredients."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 12 (step 1 12) + cook 52 (step 2 4 + step 3 10 + step 5 3 + step 6 25 + step 7 8 + step 8 2) = 64. Overlap steps (0 added): step 4. Preheat/parallel work stated in the step text."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes for 1, 2, and 4 servings and do-not-scale items."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=false, contains_poultry=true, contains_finfish=false, contains_shellfish=false, contains_dairy=false, nut_policy=none. Allergens poultry, soy, wheat. HH001 false. Non-HH001 (poultry). dairy_free is unconditional."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "chicken, savory, tangy, umami, tender are active D-02 slugs. braise is format metadata only."
+    },
+    {
+      "check": "classification_d03",
+      "result": "pass_curator_assigned",
+      "detail": "effort_level moderate (factor sum 4), ingredient_complexity simple (factor sum 0); factors and reason codes in the classification sidecar. Vale checks Gate A enums + Gate J plausibility."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r1."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY.json",
+      "detail": "Freeze Integrity Preflight is run on this exact freeze-r1 file set after finalize; its PASS/FAIL is recorded in FREEZE_INTEGRITY.json in this directory. Vale must not start unless it says PASS."
+    }
+  ],
+  "scaling_notes": {
+    "1": "2 thighs, 2 tbsp each soy and vinegar, 2 tbsp water, 3/4 tsp sugar, 3 smashed + 1 sliced garlic, 1 bay leaf, 1/3 cup rice; 8-inch skillet; braise 20 to 25 minutes, reduce about 5.",
+    "2": "4 thighs and half of everything in a 10-inch skillet; reduction about 6 minutes.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "sear before braising",
+      "skin above the liquid",
+      "reduce to a glaze"
+    ]
+  },
+  "coverage_contribution": "Filipino 0->1 (deferred twice). Pantry soy-vinegar braise-glaze; chicken at 4/50 is now under-weight for general households at 75.",
+  "near_duplicate_review": "Compared with Sheet-Pan Lemon Herb Chicken: chicken, but a soy-vinegar braise-glaze, not a roast. Compared with Cider-Braised Pork Shoulder: braise format, but chicken thighs with a sharp soy-vinegar-garlic profile and a 1-hour clock. Compared with Teriyaki Tofu Bowls: soy glaze, but braised poultry with vinegar and bay. Not a live-catalog duplicate.",
+  "deliberately_not": "Not sheet-pan chicken twin, not pork adobo (pork already 5), not a cider-braise cousin (vinegar-garlic-bay, glazed).",
+  "batch_challenges": "A",
+  "selection_alignment": "Matches WAVE.json/selection.json identity: filipino · braise · chicken thighs · hh001_intent false -> hh001_eligible false. Selection time band 45+; written clock 64 minutes. Classification deviations from proposal: effort_level easy (WAVE proposal) -> moderate (rubric).",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "effort_score": 4,
+    "complexity_score": 0,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 1,
+      "technique": 1,
+      "coordination_cleanup_equipment": 0
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 0,
+      "specialty_burden": 0,
+      "specialty_items": [],
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredients": [
+      "chicken thighs",
+      "soy sauce",
+      "vinegar",
+      "garlic",
+      "bay leaves",
+      "brown sugar",
+      "jasmine rice",
+      "scallions"
+    ],
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "long_unattended"
+      ],
+      "ingredient": [
+        "short_list",
+        "common_pantry"
+      ]
+    },
+    "rationale": {
+      "effort": "Steady prep (1); garlic chips and sear need periodic attention, the braise is unattended (1); adobo plus rice (1); sear and reduce-to-glaze (1); one braiser plus set-and-forget rice (0). Sum 4 -> moderate. WAVE proposed easy; the sear-plus-glaze method and rice side score moderate under the rubric (legacy-Easy drift avoided). Long braise clock does not raise effort.",
+      "complexity": "8 countable (whole peppercorns counted as pepper, a freebie; 9 if counted, still band 1 -> sum 1, simple). No specialty: distilled white vinegar is the default, cane vinegar optional. One soy-vinegar profile (0). Sum 0 -> simple. Filipino cuisine adds no points."
+    },
+    "borderline": false,
+    "wave_proposal": {
+      "effort_level": "easy",
+      "ingredient_complexity": "simple"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "cultural_bias_guardrail": "Cuisine unfamiliarity adds no points; specialty-store items scored once under specialty_burden, pantry_familiarity kept 0 (r2 convention)."
+  },
+  "classification_history": [],
+  "time_reconstruction": {
+    "prep_minutes": 12,
+    "cook_minutes": 52,
+    "total_minutes": 64,
+    "prep_steps": [
+      {
+        "step": 1,
+        "minutes": 12
+      }
+    ],
+    "cook_steps": [
+      {
+        "step": 2,
+        "minutes": 4
+      },
+      {
+        "step": 3,
+        "minutes": 10
+      },
+      {
+        "step": 5,
+        "minutes": 3
+      },
+      {
+        "step": 6,
+        "minutes": 25
+      },
+      {
+        "step": 7,
+        "minutes": 8
+      },
+      {
+        "step": 8,
+        "minutes": 2
+      }
+    ],
+    "overlap_steps": [
+      4
+    ],
+    "rule": "total = prep + cook; overlap steps run inside another step's clock and add 0; any oven/broiler preheat is stated as overlapping prep in the step text."
+  },
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

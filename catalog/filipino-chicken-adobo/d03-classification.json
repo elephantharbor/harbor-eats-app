@@ -1,0 +1,59 @@
+{
+  "slug": "filipino-chicken-adobo",
+  "recipe_version_id": "rv_filipino-chicken-adobo_v1",
+  "package_revision": "freeze-r1",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "effort_score": 4,
+    "complexity_score": 0,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 1,
+      "technique": 1,
+      "coordination_cleanup_equipment": 0
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 0,
+      "specialty_burden": 0,
+      "specialty_items": [],
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredient_count": 8,
+    "countable_ingredients": [
+      "chicken thighs",
+      "soy sauce",
+      "vinegar",
+      "garlic",
+      "bay leaves",
+      "brown sugar",
+      "jasmine rice",
+      "scallions"
+    ],
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "long_unattended"
+      ],
+      "ingredient": [
+        "short_list",
+        "common_pantry"
+      ]
+    },
+    "notes": "Effort: Steady prep (1); garlic chips and sear need periodic attention, the braise is unattended (1); adobo plus rice (1); sear and reduce-to-glaze (1); one braiser plus set-and-forget rice (0). Sum 4 -> moderate. WAVE proposed easy; the sear-plus-glaze method and rice side score moderate under the rubric (legacy-Easy drift avoided). Long braise clock does not raise effort. Complexity: 8 countable (whole peppercorns counted as pepper, a freebie; 9 if counted, still band 1 -> sum 1, simple). No specialty: distilled white vinegar is the default, cane vinegar optional. One soy-vinegar profile (0). Sum 0 -> simple. Filipino cuisine adds no points.",
+    "borderline": false,
+    "proposal_from_wave": {
+      "effort_level": "easy",
+      "ingredient_complexity": "simple"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null
+  },
+  "factor_key_note": "Fourth complexity factor stored as pantry_familiarity (the key in the 50 Vale-audited classifications, d03-design/all-50-classifications.json); kept 0 because specialty-store sourcing is scored once under specialty_burden.",
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0-2 easy / 3-5 moderate / 6-10 involved with floors; complexity 0-1 simple / 2-3 standard / 4-8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

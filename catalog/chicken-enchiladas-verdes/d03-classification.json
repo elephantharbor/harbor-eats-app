@@ -1,0 +1,64 @@
+{
+  "slug": "chicken-enchiladas-verdes",
+  "recipe_version_id": "rv_chicken-enchiladas-verdes_v1",
+  "package_revision": "freeze-r1",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "effort_score": 5,
+    "complexity_score": 2,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 1,
+      "technique": 1,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 0,
+      "specialty_items": [],
+      "flavor_component_breadth": 1,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredient_count": 12,
+    "countable_ingredients": [
+      "chicken thighs",
+      "tomatillos",
+      "jalapeños",
+      "white onion",
+      "garlic",
+      "cilantro",
+      "lime",
+      "ground cumin",
+      "corn tortillas",
+      "Monterey Jack",
+      "sour cream",
+      "radishes"
+    ],
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "multi_component"
+      ],
+      "ingredient": [
+        "medium_list",
+        "common_pantry",
+        "multi_build"
+      ]
+    },
+    "notes": "Effort: Steady prep (1); watching the broiler and assembly (1); enchiladas plus salsa sauce (filling and crema are quick mixes) (1); broil, then fill-and-roll assembly, timing-sensitive tortillas (1); sheet pan, blender, and baking dish with moderate cleanup but no parallel attended pots (1). Sum 5 -> moderate. Complexity: 12 countable (1). Tomatillos, corn tortillas, and Jack are mainstream produce/dairy (0). Salsa verde plus lime crema (1). Sum 2 -> standard.",
+    "borderline": false,
+    "proposal_from_wave": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null
+  },
+  "factor_key_note": "Fourth complexity factor stored as pantry_familiarity (the key in the 50 Vale-audited classifications, d03-design/all-50-classifications.json); kept 0 because specialty-store sourcing is scored once under specialty_burden.",
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0-2 easy / 3-5 moderate / 6-10 involved with floors; complexity 0-1 simple / 2-3 standard / 4-8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

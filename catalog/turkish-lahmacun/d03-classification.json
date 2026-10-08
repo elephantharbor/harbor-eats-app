@@ -1,0 +1,53 @@
+{
+  "slug": "turkish-lahmacun",
+  "recipe_version_id": "rv_turkish-lahmacun_v1",
+  "package_revision": "freeze-r3",
+  "classification": {
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "effort_score": 7,
+    "complexity_score": 3,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 2,
+      "active_components": 1,
+      "technique": 1,
+      "coordination_cleanup_equipment": 2
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 1,
+      "flavor_component_breadth": 1,
+      "pantry_familiarity": 0,
+      "specialty_items": [
+        "Aleppo pepper",
+        "sumac"
+      ]
+    },
+    "countable_ingredient_count": 14,
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "continuous_attention",
+        "multi_component",
+        "shaping"
+      ],
+      "ingredient": [
+        "medium_list",
+        "one_specialty",
+        "multi_build"
+      ]
+    },
+    "notes": "Effort: food-processor topping and salad prep (1); continuous rolling/topping while batches bake (2); flatbread + salad (1); rolling thin dough and transferring to a hot pan (1); food processor, parchment, hot pan, batch timing (2). Sum 7 = involved (floor: continuous attention + other ≥1 also satisfied). Complexity: 14 countable ingredients (salt, pepper, oil excluded) -> 1; Aleppo pepper and sumac are spice-aisle items at major chains -> 1; topping paste + sumac salad builds -> 1; sourcing scored once -> 0. Sum 3 = standard. Store-bought dough keeps it weeknight-real without lowering effort below involved. Matches WAVE proposal.",
+    "proposal_from_wave": {
+      "effort_level": "involved",
+      "ingredient_complexity": "standard"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "factor_key_note": "pantry_familiarity is the canonical complexity factor key (batch A, batch C, and the 50 audited meals; the rubric's sourcing-difficulty factor). Batch B r1/r2 authored it as sourcing_difficulty; renamed 2026-10-08 after Vale's batch B audit. Value unchanged (0); labels unchanged."
+  },
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0–2 easy / 3–5 moderate / 6–10 involved with floors; complexity 0–1 simple / 2–3 standard / 4–8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

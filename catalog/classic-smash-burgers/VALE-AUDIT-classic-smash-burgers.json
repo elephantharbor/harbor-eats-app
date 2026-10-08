@@ -1,0 +1,415 @@
+{
+  "slug": "classic-smash-burgers",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-08",
+  "audit_round": "r2",
+  "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r2",
+  "recipe_version_id": "rv_classic-smash-burgers_v1",
+  "freeze_integrity": "PASS (0 fails; re-run by Vale at r2 on a /tmp copy, package not mutated)",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "failed_gates": [],
+  "kitchen_tested": false,
+  "packages_mutated": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Identity unchanged: slug = dish_id, rcp_/rv_<slug>_v1, version_number 1. package_revision is freeze-r2 on root, recipe_version, image, README, image-prompt.md, and d03-classification.json. effort_level moderate and ingredient_complexity simple are unchanged and valid. The d03 sidecar differs from r1 only in package_revision. No legacy effort/complexity keys.",
+      "rescored_r2": true
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null,
+      "note": "All 14 ingredients referenced; pickles 2 tbsp chopped + 1 tsp brine for sauce, rest for topping; pepper patties + pinch sauce."
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null,
+      "note": "8 x 3-oz balls = 1.5 lb (6 oz per double); batches 3/3/2 in a 12-inch skillet. Scaling sound."
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Very hot cast iron, smash within 30 s, ~2 min + flip + 45–60 s with cheese; doneness 'no more than a trace of pink (ground beef safe target 160F)' — 1/4-inch patties reach 160F in this window; 160F target stated."
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Prep 10 (6+4) + cook 21 (4+3+12+2) = 31; batch math (3 x ~4 min) holds. Honest 31 min even though selection band was Under 30."
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Buns are the compound ingredient at issue; the allergen consequence is judged under G."
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r2": true,
+      "note": "r1 defect cleared. recipe_version.allergens is now [meat, milk, egg, wheat, sesame, soy]. Soy from commercial sesame buns is tokenized and no longer appears only in notes. allergen_notes[4] now explains why soy is tokenized instead of telling soy-allergic households to check labels. The sesame-buns ingredient note says milk, egg, and soy are all declared. dietary_label_note adds soy (buns). No other notes-only major allergen: milk = American cheese and butter (and buns); egg = mayonnaise (and buns); wheat and sesame = buns; meat = ground chuck. Ketchup, yellow mustard, dill pickles, garlic powder, lettuce, onion, oil, salt, and pepper add no US major allergen; mustard has no runtime token, and the package says so. No Worcestershire or other hidden fish/soy source. Dietary eligibility is unchanged and correct: contains_meat and contains_dairy are true; poultry, finfish, and shellfish are false; nut_policy is none; no dietary labels are claimed; HH001 false (beef, dairy)."
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null,
+      "note": "american, sandwiches, savory, rich, crispy, tangy — all active D-02 slugs."
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Distinct from Crispy Skillet Chicken Sandwiches and Spiced Lamb Meatballs; Batch C Cottage Pie uses ground beef in a different format."
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Plan easy -> rubric moderate (5) ACCEPTED: continuous batch smashing/flipping (attention 2) with any other factor ≥1 triggers floor rule 1 (at least moderate). Simple (1): 11 countable, all mainstream."
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Hero double cheeseburger: two thin-ish browned patties with ragged lacy edges, melted American cheese between and over patties, pickle chips, white onion, shredded iceberg, pink-orange sauce peeking, sesame bun; assembly order matches step 6; second burger soft behind. No fries, tomato, bacon, toothpick, drinks, bottles, jalapeños."
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Rolled up from L1 and L2."
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; image.sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 and Batch B); no text, logo, watermark, packaging, or hands; one active set; master_ref points at the active WebP."
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Classic craveable burger shot: molten cheese, crusty edges, crisp lettuce, warm bun; low angle shows layers; strong at card scale."
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null,
+      "note": "recipe provenance original_ai_assisted (live ai_assisted gap documented); image generation method/date/generator present, model honestly 'unknown'; image-plating-brief.md (mtime 16:53 CT) predates img_v1.jpg (16:59 CT) and image-prompt.md derives from recipe + brief; catalog_confidence PRESENT_AI / KNOWN_TEXT_AND_IMAGE / PENDING_AUDIT; rights not_cleared_for_external_release; no stock or web imagery."
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Shopping list unchanged (same 14 ingredients and quantities). The soy token adds no item. The bun note no longer asks the shopper to check labels for soy; declaring it covers the typical commercial bun. Optional hard contract (not required): a soy-free bun.",
+      "rescored_r2": true
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r2": true,
+      "note": "v1 text amendment on a never-planned, never-cooked v1, so version_number 1 stays (same precedent as Batch B lahmacun freeze-r2). Root revision_note and recipe_version.revision_note are present and accurate. Compared field by field with the freeze-r1 copy: the only changes are allergens[5]=soy, allergen_notes[4], ingredients[2].note, dietary_label_note, culinary_hash and culinary_hash_note, revision notes, and freeze-r1 -> freeze-r2 strings. culinary_hash sha256:af82dfee07e9f39013c8add4bb681c4e9143bf8b304551e67d92f7be0ff278c3 recomputed independently from v1.json on the stated basis (title, description, servings, ingredients, steps, components, equipment, prep/cook/total, heat, doneness, dietary_eligibility, dietary_labels, allergens, vocabulary_tag_ids). It matches, and it excludes D-03 fields. img_v1.jpg and both WebPs are byte-identical to freeze-r1 (cmp), and image.sha256 matches the files on disk. classification_history unchanged. README mirrors v1.json."
+    }
+  },
+  "image_review": {
+    "K": "PASS",
+    "L1": "PASS",
+    "L2": "PASS",
+    "L": "PASS",
+    "files_inspected": [
+      "img_v1.jpg",
+      "classic-smash-burgers-640.webp"
+    ],
+    "observation": "Double smash cheeseburger with all listed toppings in recipe order; nothing forbidden."
+  },
+  "dietary_eligibility": "Meat true (beef); dairy true (cheese, butter); poultry/finfish/shellfish false; no dietary labels; nut_policy none.",
+  "allergens": "Tokens: meat, milk, egg, wheat, sesame, soy. Soy (commercial buns) is now tokenized. No notes-only major allergen remains. Mustard is not a US major allergen and has no token; the package documents this.",
+  "allergen_runtime_gaps": {
+    "package_tokens": [
+      "meat",
+      "milk",
+      "egg",
+      "wheat",
+      "sesame",
+      "soy"
+    ],
+    "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+      "milk",
+      "egg",
+      "wheat",
+      "sesame",
+      "soy"
+    ],
+    "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+    "documented_in_runtime_enum_gaps": true
+  },
+  "hh001": "Not intended; claimed false; correct (beef, dairy).",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "gate_A_enums": "valid",
+    "gate_J_plausibility": "moderate (5, floor rule 1) / simple (1). Plan easy -> moderate accepted.",
+    "legacy_fields_authored": false,
+    "factor_key": "pantry_familiarity (canonical)"
+  },
+  "fails_needing_revision": [],
+  "required_fixes": [],
+  "non_blocking_notes": [
+    "31-minute clock exceeds the selected 'Under 30' band; honest per Gate E, but Under-30 filters will drop it.",
+    "Onion in the hero reads as ~1/4-inch rings rather than 'paper-thin'; minor, not a K fail.",
+    "Doneness uses color + 160F; colour alone is not a USDA-reliable indicator, but the 160F target is stated.",
+    "No culinary_hash (see summary).",
+    "r2: total time is still 31 min, so the dish misses an 'Under 30' filter band (r1 ruling stands; Gate E PASS).",
+    "r2: structural_qa_state freeze_r2_images_present_awaiting_preflight and image.recipe_fidelity_state awaiting_preflight are the factory's pre-release states, as on every r1 PASS package. Set them at release, not here."
+  ],
+  "statement": "r2 re-audit (2026-10-08 CT) of freeze-r2 (allergen text amendment on v1; image unchanged). G PASS: soy is tokenized and no notes-only allergen remains. A, N, and O PASS. Freeze Integrity PASS. culinary_hash recomputed and verified. Images are byte-identical to r1. All other gates carried from r1 (PASS), including K, L1, and L2 on the unchanged image. Overall PASS -> CERTIFY_V1. kitchen_tested remains false. No creator file was edited.",
+  "culinary_hash": "sha256:af82dfee07e9f39013c8add4bb681c4e9143bf8b304551e67d92f7be0ff278c3",
+  "culinary_hash_verified": true,
+  "culinary_hash_unchanged_from_r1": null,
+  "culinary_hash_note": "First hash for this package (r1 had none). It changed versus a hypothetical r1 hash only because allergens are in the hash basis, which is expected for a G fix.",
+  "asset_sha256_verified": {
+    "img_v1.jpg": "1156241b7d13710474ed6c34f61fdea972345381f1182e870da9333f0588dc85",
+    "classic-smash-burgers.webp": "e9ab9da22b63e210d639fb8a179f243c384a12b965c2f21cc013370c434dfba6",
+    "classic-smash-burgers-640.webp": "8e3a73f7eada75490b7d5d348030cf8e1af5dab8aa116c40c63e663fdeaac0b1"
+  },
+  "images_identical_to_r1": true,
+  "r2_scope": [
+    "G",
+    "A",
+    "N",
+    "O",
+    "freeze_integrity",
+    "culinary_hash",
+    "asset_sha256"
+  ],
+  "rescore": {
+    "round": "freeze-r2",
+    "prior_overall": "FAIL",
+    "prior_failed_gates": [
+      "G"
+    ],
+    "prior_audit": "history[0] in this file (r1, freeze-r1)",
+    "cleared_from_r1": [
+      "G: soy added to recipe_version.allergens (recipes_part3.py line 188)",
+      "G: allergen_notes[4] and sesame-buns note rewritten as specified; no \"check labels\" notes-only disclosure remains",
+      "dietary_label_note also lists soy (buns), which is consistent"
+    ],
+    "still_failing": []
+  },
+  "history": [
+    {
+      "slug": "classic-smash-burgers",
+      "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+      "audit_date": "2026-10-08",
+      "audit_round": "r1",
+      "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+      "package_file": "v1.json",
+      "package_revision": "freeze-r1",
+      "recipe_version_id": "rv_classic-smash-burgers_v1",
+      "freeze_integrity": "PASS",
+      "disposition": "REVISE",
+      "overall": "FAIL",
+      "failed_gates": [
+        "G"
+      ],
+      "kitchen_tested": false,
+      "packages_mutated": false,
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug = dish_id; rcp_/rv_<slug>_v1; version_number 1); package_revision freeze-r1 on root, recipe_version, and image; effort_level and ingredient_complexity present on recipe_version with valid D-03 enums; no legacy effort / effort_band / complexity keys anywhere in v1.json. d03-classification.json labels match v1.json. moderate/simple."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All 14 ingredients referenced; pickles 2 tbsp chopped + 1 tsp brine for sauce, rest for topping; pepper patties + pinch sauce."
+        },
+        "C": {
+          "result": "PASS",
+          "defect": null,
+          "note": "8 x 3-oz balls = 1.5 lb (6 oz per double); batches 3/3/2 in a 12-inch skillet. Scaling sound."
+        },
+        "D": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Very hot cast iron, smash within 30 s, ~2 min + flip + 45–60 s with cheese; doneness 'no more than a trace of pink (ground beef safe target 160F)' — 1/4-inch patties reach 160F in this window; 160F target stated."
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Prep 10 (6+4) + cook 21 (4+3+12+2) = 31; batch math (3 x ~4 min) holds. Honest 31 min even though selection band was Under 30."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Buns are the compound ingredient at issue; the allergen consequence is judged under G."
+        },
+        "G": {
+          "result": "FAIL",
+          "defect": "Notes-only major allergen. ingredients[sesame-buns].note says commercial buns commonly contain soy ('check labels if soy matters') and allergen_notes[4] says 'Commercial buns may contain soy; soy is not in the written ingredients, so it is not tokenized - households with soy allergy should check bun labels.' The bun is an uncontracted compound ingredient that typically contains soy (soy flour / soybean oil / soy lecithin), so soy is disclosed only in notes and absent from recipe_version.allergens. Per the binding Dry Run lesson ('Notes-only allergens -> FAIL') and the no-conditional-claims rule, either tokenize soy or contract a soy-free bun.",
+          "note": "Dietary eligibility itself is correct: meat true, dairy true, poultry/finfish/shellfish false, no labels claimed, nut_policy none. Tokens meat, milk, egg, wheat, sesame are correct but incomplete (soy)."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null,
+          "note": "american, sandwiches, savory, rich, crispy, tangy — all active D-02 slugs."
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Distinct from Crispy Skillet Chicken Sandwiches and Spiced Lamb Meatballs; Batch C Cottage Pie uses ground beef in a different format."
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Plan easy -> rubric moderate (5) ACCEPTED: continuous batch smashing/flipping (attention 2) with any other factor ≥1 triggers floor rule 1 (at least moderate). Simple (1): 11 countable, all mainstream."
+        },
+        "K": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Hero double cheeseburger: two thin-ish browned patties with ragged lacy edges, melted American cheese between and over patties, pickle chips, white onion, shredded iceberg, pink-orange sauce peeking, sesame bun; assembly order matches step 6; second burger soft behind. No fries, tomato, bacon, toothpick, drinks, bottles, jalapeños."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; image.sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 and Batch B); no text, logo, watermark, packaging, or hands; one active set; master_ref points at the active WebP."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Classic craveable burger shot: molten cheese, crusty edges, crisp lettuce, warm bun; low angle shows layers; strong at card scale."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "note": "recipe provenance original_ai_assisted (live ai_assisted gap documented); image generation method/date/generator present, model honestly 'unknown'; image-plating-brief.md (mtime 16:53 CT) predates img_v1.jpg (16:59 CT) and image-prompt.md derives from recipe + brief; catalog_confidence PRESENT_AI / KNOWN_TEXT_AND_IMAGE / PENDING_AUDIT; rights not_cleared_for_external_release; no stock or web imagery."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All mainstream; the bun shopping line lacks an allergen contract (see G fix)."
+        },
+        "O": {
+          "result": "PASS",
+          "defect": null,
+          "note": "version_number 1, package_revision freeze-r1 consistent across v1.json, README, image-prompt.md; classification_history []; curator_preflight image = frozen_for_preflight; no README/prompt language denies present WebPs; FREEZE_INTEGRITY.json PASS (0 fails) and Vale's independent re-run on a /tmp copy also PASS; renderer --check OK and recipes_part*.py source in sync with rendered v1.json."
+        }
+      },
+      "image_review": {
+        "K": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "L": "PASS",
+        "files_inspected": [
+          "img_v1.jpg",
+          "classic-smash-burgers-640.webp"
+        ],
+        "observation": "Double smash cheeseburger with all listed toppings in recipe order; nothing forbidden."
+      },
+      "dietary_eligibility": "Meat true (beef); dairy true (cheese, butter); poultry/finfish/shellfish false; no dietary labels; nut_policy none.",
+      "allergens": "meat, milk, egg, wheat, sesame — correct but INCOMPLETE: soy from commercial buns is disclosed only in notes (G FAIL).",
+      "allergen_runtime_gaps": {
+        "package_tokens": [
+          "meat",
+          "milk",
+          "egg",
+          "wheat",
+          "sesame"
+        ],
+        "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+          "milk",
+          "egg",
+          "wheat",
+          "sesame"
+        ],
+        "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS (dairy, nuts, cashew, walnut, peanut, almond, pecan, hazelnut, pistachio, macadamia, pine_nut, shellfish, finfish, poultry, meat)",
+        "documented_in_runtime_enum_gaps": true
+      },
+      "hh001": "Not intended; claimed false; correct (beef, dairy).",
+      "classification": {
+        "effort_level": "moderate",
+        "ingredient_complexity": "simple",
+        "gate_A_enums": "valid",
+        "gate_J_plausibility": "moderate (5, floor rule 1) / simple (1). Plan easy -> moderate accepted.",
+        "legacy_fields_authored": false,
+        "factor_key": "pantry_familiarity (canonical)"
+      },
+      "fails_needing_revision": [
+        "G: Notes-only major allergen. ingredients[sesame-buns].note says commercial buns commonly contain soy ('check labels if soy matters') and allergen_notes[4] says 'Commercial buns may contain soy; soy is not in the written ingredients, so it is not tokenized - households with soy allergy should check bun labels.' The bun is an uncontracted compound ingredient that typically contains soy (soy flour / soybean oil / soy lecithin), so soy is disclosed only in notes and absent from recipe_version.allergens. Per the binding Dry Run lesson ('Notes-only allergens -> FAIL') and the no-conditional-claims rule, either tokenize soy or contract a soy-free bun."
+      ],
+      "required_fixes": [
+        {
+          "gate": "G",
+          "option": "A (recommended): tokenize soy",
+          "edits": [
+            {
+              "file": "wave-12/batch-a-tools/recipes_part3.py line 188 (RECIPES['classic-smash-burgers'] allergens) -> rendered recipe_version.allergens",
+              "current": [
+                "meat",
+                "milk",
+                "egg",
+                "wheat",
+                "sesame"
+              ],
+              "required": [
+                "meat",
+                "milk",
+                "egg",
+                "wheat",
+                "sesame",
+                "soy"
+              ]
+            },
+            {
+              "file": "recipes_part3.py line 194 -> recipe_version.allergen_notes[4]",
+              "current": "Mustard (yellow mustard) is present; not a US major allergen and has no runtime token. Commercial buns may contain soy; soy is not in the written ingredients, so it is not tokenized - households with soy allergy should check bun labels.",
+              "required": "Mustard (yellow mustard) is present; not a US major allergen and has no runtime token. Soy is tokenized because commercial sesame hamburger buns typically contain soy (soy flour, soybean oil, or soy lecithin)."
+            },
+            {
+              "file": "recipes_part3.py line 132 -> recipe_version.ingredients[sesame-buns].note",
+              "current": "contain wheat and sesame; many commercial buns also contain milk, egg, or soy (milk and egg are already declared; check labels if soy matters)",
+              "required": "contain wheat and sesame; commercial buns commonly also contain milk, egg, and soy, all declared in allergens"
+            },
+            {
+              "file": "recipe_version.allergen_notes (add/keep)",
+              "current": "(no soy line)",
+              "required": "Soy covers the commercial sesame buns."
+            }
+          ]
+        },
+        {
+          "gate": "G",
+          "option": "B (alternative): hard soy-free bun contract",
+          "edits": [
+            {
+              "file": "recipes_part3.py line 132 -> ingredients[sesame-buns].display_name/note",
+              "current": "soft sesame-seed hamburger buns / '...check labels if soy matters'",
+              "required": "soft sesame-seed hamburger buns (soy-free) / 'REQUIRED: label lists no soy (no soy flour, soybean oil, or soy lecithin)'; allergen_notes[4] states soy excluded by contract"
+            }
+          ]
+        },
+        {
+          "gate": "process",
+          "edits": [
+            {
+              "file": "render_batch_a.py line 43 REV",
+              "current": "freeze-r1 (global)",
+              "required": "render this slug at freeze-r2 (per-slug override, or bump REV only for this --finalize run) so the 7 passing packages stay at freeze-r1"
+            },
+            {
+              "file": "run",
+              "required": "python3 render_batch_a.py --finalize classic-smash-burgers --generation-date 2026-10-08 --model unknown (no image regeneration; sha256 unchanged) -> python3 freeze_integrity.py <cand> must PASS -> Vale re-audit G (+A, N, O consistency)"
+            }
+          ]
+        }
+      ],
+      "non_blocking_notes": [
+        "31-minute clock exceeds the selected 'Under 30' band; honest per Gate E, but Under-30 filters will drop it.",
+        "Onion in the hero reads as ~1/4-inch rings rather than 'paper-thin'; minor, not a K fail.",
+        "Doneness uses color + 160F; colour alone is not a USDA-reliable indicator, but the 160F target is stated.",
+        "No culinary_hash (see summary)."
+      ],
+      "statement": "Gate result only. Binary PASS/FAIL per the certification skill (no PASS WITH NOTES publication state; notes above are non-blocking). Not publication, not a production release, not a cook test. Vale did not edit the package.",
+      "round": "r1"
+    }
+  ]
+}

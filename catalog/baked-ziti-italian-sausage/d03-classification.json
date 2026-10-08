@@ -1,0 +1,62 @@
+{
+  "slug": "baked-ziti-italian-sausage",
+  "recipe_version_id": "rv_baked-ziti-italian-sausage_v1",
+  "package_revision": "freeze-r1",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "effort_score": 4,
+    "complexity_score": 1,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 1,
+      "technique": 0,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 0,
+      "specialty_items": [],
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredient_count": 11,
+    "countable_ingredients": [
+      "ziti",
+      "Italian sausage",
+      "yellow onion",
+      "garlic",
+      "crushed tomatoes",
+      "dried oregano",
+      "red pepper flakes",
+      "ricotta",
+      "mozzarella",
+      "Parmesan",
+      "fresh basil"
+    ],
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "long_unattended"
+      ],
+      "ingredient": [
+        "medium_list",
+        "common_pantry"
+      ]
+    },
+    "notes": "Effort: Steady prep (1); periodic stirring of the sauce (1); sauced pasta plus ricotta layer (1); brown, simmer, bake (0, same as mushroom bolognese); sauce pan and pasta pot attended in parallel plus a baking dish (1, herbed-polenta precedent). Sum 4 -> moderate. Complexity: 11 countable (1). All mainstream supermarket (0). One Italian-American tomato-sausage profile; the ricotta takes only salt, pepper, and basil from the same profile (0). Sum 1 -> simple. Borderline if the ricotta seasoning is read as a second build (would be 2 -> standard).",
+    "borderline": true,
+    "proposal_from_wave": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "simple"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null
+  },
+  "factor_key_note": "Fourth complexity factor stored as pantry_familiarity (the key in the 50 Vale-audited classifications, d03-design/all-50-classifications.json); kept 0 because specialty-store sourcing is scored once under specialty_burden.",
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0-2 easy / 3-5 moderate / 6-10 involved with floors; complexity 0-1 simple / 2-3 standard / 4-8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

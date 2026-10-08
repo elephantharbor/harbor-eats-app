@@ -1,0 +1,598 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08, creator batch C. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true. Not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "C",
+  "creator_batch": "C",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "tomato-soup-grilled-cheese",
+    "slug": "tomato-soup-grilled-cheese",
+    "title": "Roasted Tomato Soup with Grilled Cheese",
+    "description": "Silky soup of oven-roasted Roma tomatoes, onion, and garlic blended with vegetable broth, basil, and a splash of cream, served with golden, buttery sharp-cheddar grilled cheese on sourdough for dunking.",
+    "cuisine": "american",
+    "meal_format": "soup-and-sandwich",
+    "primary_ingredient": "tomatoes",
+    "vocabulary_tag_ids": [
+      "american",
+      "soups",
+      "sandwiches",
+      "rich",
+      "creamy",
+      "crispy",
+      "savory"
+    ],
+    "current_recipe_id": "rcp_tomato-soup-grilled-cheese",
+    "current_version_id": "rv_tomato-soup-grilled-cheese_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_tomato-soup-grilled-cheese",
+    "dish_id": "tomato-soup-grilled-cheese",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_tomato-soup-grilled-cheese_v1",
+    "recipe_id": "rcp_tomato-soup-grilled-cheese",
+    "dish_id": "tomato-soup-grilled-cheese",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Roasted Tomato Soup with Grilled Cheese",
+    "description": "Silky soup of oven-roasted Roma tomatoes, onion, and garlic blended with vegetable broth, basil, and a splash of cream, served with golden, buttery sharp-cheddar grilled cheese on sourdough for dunking.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "roma-tomatoes",
+        "name": "roma tomatoes",
+        "display_name": "Roma (plum) tomatoes",
+        "quantity": 3,
+        "unit": "lb",
+        "note": "about 12 to 14",
+        "preparation": "cored, halved lengthwise",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "large",
+        "preparation": "cut into 8 wedges",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": "peeled, left whole",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "extra-virgin-olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "for roasting",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 1/2 tsp for roasting, up to 1/2 tsp to finish",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "freshly ground black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "deepens the soup",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "vegetable-broth",
+        "name": "vegetable broth",
+        "display_name": "low-sodium vegetable broth",
+        "quantity": 2.5,
+        "unit": "cup",
+        "note": "vegetable broth keeps the meal vegetarian",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "fresh-basil",
+        "name": "fresh basil",
+        "display_name": "fresh basil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "loosely packed leaves; save a few small leaves to finish",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "heavy-cream",
+        "name": "heavy cream",
+        "display_name": "heavy cream",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "milk allergen; reserve 1 tbsp to swirl on top",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "granulated sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "only if the tomatoes taste sharp",
+        "preparation": null,
+        "optional": true,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sourdough-bread",
+        "name": "sourdough bread",
+        "display_name": "sourdough sandwich bread",
+        "quantity": 8,
+        "unit": "slice",
+        "note": "about 1/2 inch thick, from a plain (unseeded) sandwich-size loaf. Wheat allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sharp-cheddar",
+        "name": "sharp cheddar",
+        "display_name": "sharp cheddar cheese (vegetarian rennet)",
+        "quantity": 8,
+        "unit": "oz",
+        "note": "block, about 2 cups shredded. REQUIRED vegetarian cheddar: label states microbial or non-animal rennet (or vegetarian). Milk allergen.",
+        "preparation": "coarsely shredded",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "unsalted-butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "for the outside of the bread. Milk allergen.",
+        "preparation": "softened",
+        "optional": false,
+        "role": "fat"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the oven and prep the tomatoes",
+        "body": "Heat the oven to 450 F with a rack in the upper-middle position at the start of prep; it preheats while you work. Core and halve the tomatoes lengthwise, cut the onion into 8 wedges, and peel the garlic. On a rimmed sheet pan, toss the tomatoes, onion, and garlic with the olive oil, 1 1/2 tsp salt, and the pepper, then turn the tomatoes cut side up. Shred the cheddar and leave the butter out to soften.",
+        "ingredient_refs": [
+          "roma-tomatoes",
+          "yellow-onion",
+          "garlic",
+          "extra-virgin-olive-oil",
+          "kosher-salt",
+          "black-pepper",
+          "sharp-cheddar",
+          "unsalted-butter"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Roast the vegetables",
+        "body": "Roast until the tomatoes slump and blister with browned, caramelized edges, the onion tips char, and the garlic is soft, 25 to 28 minutes.",
+        "ingredient_refs": [
+          "roma-tomatoes",
+          "yellow-onion",
+          "garlic"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Build the sandwiches",
+        "body": "While the tomatoes roast, butter one side of each bread slice. Make 4 sandwiches with the buttered sides out and about 1/2 cup cheddar inside each, pressing gently so they hold together.",
+        "ingredient_refs": [
+          "sourdough-bread",
+          "unsalted-butter",
+          "sharp-cheddar"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer the soup",
+        "body": "Scrape the roasted vegetables and every bit of their juices into a large pot. Add the tomato paste, vegetable broth, and basil leaves (keep a few small leaves for the top). Bring to a simmer over medium-high, about 4 minutes, then simmer gently 6 minutes. Turn the oven off.",
+        "ingredient_refs": [
+          "roma-tomatoes",
+          "yellow-onion",
+          "garlic",
+          "tomato-paste",
+          "vegetable-broth",
+          "fresh-basil"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Griddle the grilled cheese",
+        "body": "As soon as the soup goes on, heat a 12-inch skillet over medium-low. Cook 2 sandwiches at a time until the bread is deep golden and crisp and the cheese has melted, 3 to 4 minutes per side, pressing lightly with a spatula. Keep the first batch on a rack in the turned-off, still-warm oven while you cook the second.",
+        "ingredient_refs": [
+          "sourdough-bread",
+          "sharp-cheddar",
+          "unsalted-butter"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Blend and finish",
+        "body": "Take the soup off the heat and blend with an immersion blender until silky, 2 to 3 minutes. Stir in all but 1 tbsp of the cream. Taste; add up to 1/2 tsp salt, and the sugar only if the soup tastes sharp. Rewarm briefly without boiling.",
+        "ingredient_refs": [
+          "heavy-cream",
+          "kosher-salt",
+          "sugar"
+        ]
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Ladle the soup into bowls, swirl the reserved cream on top, and add the reserved basil leaves. Cut each grilled cheese in half diagonally and serve alongside for dunking. kitchen_tested is false.",
+        "ingredient_refs": [
+          "heavy-cream",
+          "fresh-basil",
+          "sourdough-bread"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "roasted-tomato-soup",
+        "name": "roasted tomato soup",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "Roma tomatoes",
+          "yellow onion",
+          "garlic",
+          "olive oil",
+          "kosher salt",
+          "black pepper",
+          "tomato paste",
+          "vegetable broth",
+          "fresh basil",
+          "heavy cream",
+          "sugar (optional)"
+        ]
+      },
+      {
+        "component_id": "cheddar-grilled-cheese",
+        "name": "sharp cheddar grilled cheese on sourdough",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "sourdough bread",
+          "sharp cheddar",
+          "unsalted butter"
+        ]
+      }
+    ],
+    "equipment": [
+      "rimmed sheet pan",
+      "large pot",
+      "immersion blender",
+      "12-inch skillet",
+      "wide spatula",
+      "box grater",
+      "wire rack",
+      "ladle",
+      "knife",
+      "cutting board"
+    ],
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 44,
+    "total_time_minutes": 56,
+    "prep_minutes": 12,
+    "cook_minutes": 44,
+    "total_minutes": 56,
+    "time_clock": "Prep 12 (oven preheat to 450 F starts at minute 0 and finishes during prep). Cook 44 = 28 roast (sandwiches built during it) + 10 bring to a simmer and simmer + 3 blend + 1 cream and season + 2 serve. Grilled cheese, 2 batches of about 7 minutes, runs from cook minute 28 to 42, inside the simmer and blend window.",
+    "heat": "Oven 450 F for roasting (upper-middle rack); medium-high to bring the soup to a simmer, then gentle; medium-low skillet for the grilled cheese.",
+    "doneness": "Tomatoes slumped and blistered with browned edges; soup silky, no skins visible. Grilled cheese deep golden and crisp with fully melted cheese. kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "when": "2026-10-08",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment by rubric before freeze. Factor scores and reason codes in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "culinary_hash": "b7eea4de343af68f82f688881691b5ce5bb110161d8f1e6863af74942cdb4b97",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook, heat, doneness. Excludes classification.",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Cheddar, butter, and heavy cream are dairy. HH001 does not eat dairy. Global catalog candidate for other households."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dairy_free label: cheddar, butter, and cream are required. vegetarian_compatible is true by hard contract: vegetable broth and vegetarian (non-animal rennet) cheddar. Following the wave-10/11 dairy-main precedent, the vegetarian claim lives in dietary_eligibility and no vegetarian label is stamped.",
+    "allergens": [
+      "milk",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Milk covers the cheddar, butter, and heavy cream.",
+      "Wheat covers the sourdough bread.",
+      "No egg, soy, sesame, peanut, tree_nut, shellfish, or finfish in the written ingredients. The bread is a plain unseeded sourdough by contract.",
+      "contains_dairy is true on dietary_eligibility. The allergen token is milk, not dairy."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Cheddar, butter, and heavy cream are dairy. HH001 does not eat dairy. Global catalog candidate for other households.",
+    "hh001_contract": "Not HH001: dairy is integral (cheddar, butter, cream). Vegetarian by contract: vegetable broth and non-animal-rennet cheddar.",
+    "vocabulary_tag_ids": [
+      "american",
+      "soups",
+      "sandwiches",
+      "rich",
+      "creamy",
+      "crispy",
+      "savory"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Factory allergen tokens (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Live PACKAGE_ALLERGEN_IDS use dairy (for milk) and nuts (for tree_nut) and carry cashew; map at import, do not silently drop. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level / ingredient_complexity are D-03 enums. Legacy effort / complexity strings deliberately omitted (package skill). Reason codes in the sidecar are proposed; the closed reason-code list (FACTORY-SKILL-AMENDMENT.md) was not on the box at authoring.",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true.",
+      "cuisine_gap": "american is dish metadata; the closest active D-02 cuisine slug is used in tags where one exists."
+    }
+  },
+  "image": {
+    "image_id": "img_tomato-soup-grilled-cheese_v1",
+    "dish_id": "tomato-soup-grilled-cheese",
+    "recipe_version_id": "rv_tomato-soup-grilled-cheese_v1",
+    "asset_generated": true,
+    "master_ref": "tomato-soup-grilled-cheese.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "tomato-soup-grilled-cheese.webp",
+        "spec_catalog_path": "/images/meals/tomato-soup-grilled-cheese.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "tomato-soup-grilled-cheese-640.webp",
+        "spec_catalog_path": "/images/meals/tomato-soup-grilled-cheese-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop the GenerateImage JPEG (img_v1.jpg) to 4:3, then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage, 4:3 landscape, house-quality reference as quality/light reference only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Grok Bot Catalog Factory wave-12) via GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated from this package's recipe and plating brief. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "c69db42b1967ac768be05753fe734d9b48b5575bda5a39a5ff311e9bd13ec065",
+      "master_sha256": "2a4d60e79624ce1a49bfb80faf7e09c548544dd6199c424f17eed0d37ad183cf",
+      "card_sha256": "d8ece887e9fdd9e73b58916d1f247b37d3919d1b448a952211276f6b4cf83dde"
+    },
+    "card_ref": "tomato-soup-grilled-cheese-640.webp",
+    "master_filename": "tomato-soup-grilled-cheese.webp",
+    "card_filename": "tomato-soup-grilled-cheese-640.webp",
+    "rejected_dir": "rejected/",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "All 14 ingredients are referenced by at least one step; every step ref resolves to a listed ingredient (machine-checked by batch_c_build.py)."
+    },
+    {
+      "check": "fats",
+      "result": "pass",
+      "detail": "Fats fully accounted: 3 tbsp extra-virgin olive oil (for roasting); 4 tbsp unsalted butter (for the outside of the bread. Milk allergen.)."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Store-bought compound items carry a shopping note; made components listed under components. Not HH001: dairy is integral (cheddar, butter, cream). Vegetarian by contract: vegetable broth and non-animal-rennet cheddar."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 12 + cook 44 = 56. Prep 12 (oven preheat to 450 F starts at minute 0 and finishes during prep). Cook 44 = 28 roast (sandwiches built during it) + 10 bring to a simmer and simmer + 3 blend + 1 cream and season + 2 serve. Grilled cheese, 2 batches of about 7 minutes, runs from cook minute 28 to 42, inside the simmer and blend window."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes; do_not_scale: vegetarian-rennet cheddar; vegetable broth; roast at 450 F; medium-low heat for the grilled cheese"
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "hh001_eligible false. Cheddar, butter, and heavy cream are dairy. HH001 does not eat dairy. Global catalog candidate for other households. Allergens: milk, wheat. Labels: none."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "american, soups, sandwiches, rich, creamy, crispy, savory are D-02 slugs (checked against taste-vocabulary.js list). Cuisine 'american', format 'soup-and-sandwich', primary 'tomatoes' are dish metadata, not tags."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level moderate (score 4); ingredient_complexity simple (score 0, 11 counted items). Factors in d03-classification.json. WAVE proposal: easy/simple."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "pass",
+      "detail": "freeze_integrity.py PASS at freeze-r1. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+    }
+  ],
+  "scaling_notes": {
+    "1": "12 oz tomatoes, 1/4 onion, 2 garlic cloves on a quarter sheet pan; blend with 2/3 cup broth in a regular blender (vent the lid). 1 sandwich.",
+    "2": "Half of everything; one batch of 2 sandwiches.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "vegetarian-rennet cheddar",
+      "vegetable broth",
+      "roast at 450 F",
+      "medium-low heat for the grilled cheese"
+    ]
+  },
+  "coverage_contribution": "Classic October comfort pair and a household-planner staple. A vegetarian dairy dinner that is not risotto, gratin, paneer, or pizza, and the first soup-and-sandwich format.",
+  "near_duplicate_review": "Compared with White Bean Kale Soup: brothy bean soup vs blended roasted tomato with a sandwich. Compared with Herbed Polenta Tomato Stew: tomato base, but a polenta bowl vs soup and grilled cheese. Compared with Sheet-Pan Margherita Pizza: tomato and cheese, but different format and technique. Not a live-catalog duplicate.",
+  "selection_alignment": "Matches selection.json: american / soup-and-sandwich / tomatoes / hh001_intent false. Deviations from WAVE proposals: effort_level easy -> moderate (rubric); time band 30-45 -> 45+ (written clock 56 min).",
+  "batch_challenges": "C",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_preflight_pass_awaiting_vale"
+}

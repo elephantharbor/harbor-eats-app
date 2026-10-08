@@ -1,0 +1,88 @@
+{
+  "slug": "cottage-pie",
+  "recipe_version_id": "rv_cottage-pie_v1",
+  "package_revision": "freeze-r2",
+  "assigned_by": "Juniper (Harbor Eats - Catalog Curator)",
+  "assigned_on": "2026-10-08",
+  "rubric": "D-03 (factory SKILL.md)",
+  "conventions": {
+    "ingredient_count_band": "Counted ingredients exclude optional items, salt, black pepper, water, and cooking oils: <=8 -> 0, 9-14 -> 1, 15+ -> 2 (D-03 rubric; corrected at freeze-r2 from the non-rubric <=12 / 13-16 / 17+ band, Vale r1).",
+    "pantry_familiarity": "Kept 0; specialty-store items score once under specialty_burden (no double counting). Cultural unfamiliarity adds no points."
+  },
+  "effort_factors": {
+    "active_prep": 1,
+    "active_attention": 1,
+    "active_components": 1,
+    "technique": 1,
+    "coordination_cleanup_equipment": 1
+  },
+  "effort_score": 5,
+  "effort_level": "moderate",
+  "effort_floors_applied": [],
+  "complexity_factors": {
+    "ingredient_count_band": 2,
+    "specialty_burden": 0,
+    "flavor_component_breadth": 0,
+    "pantry_familiarity": 0
+  },
+  "complexity_score": 2,
+  "ingredient_complexity": "standard",
+  "ingredient_count": 15,
+  "counted_ingredient_ids": [
+    "yukon-gold-potatoes",
+    "unsalted-butter",
+    "whole-milk",
+    "ground-beef",
+    "yellow-onion",
+    "carrots",
+    "celery",
+    "garlic",
+    "tomato-paste",
+    "all-purpose-flour",
+    "beef-broth",
+    "worcestershire-sauce",
+    "fresh-thyme",
+    "bay-leaf",
+    "frozen-peas"
+  ],
+  "specialty_items": [],
+  "reason_codes": {
+    "effort": [
+      "steady_prep",
+      "periodic_attention",
+      "multi_component"
+    ],
+    "ingredient": [
+      "long_list",
+      "common_pantry"
+    ]
+  },
+  "reason_codes_status": "closed v1 set (d03-design/FACTORY-SKILL-AMENDMENT.md, draft), remapped at freeze-r2 from Vale r1 suggested mappings",
+  "borderline": false,
+  "rationale": "Peeling potatoes plus diced vegetables is steady prep (1). The filling needs stirring but not constant attention (1). Filling plus mash is components 1. A flour-thickened gravy, mash, and a watched broil is technique 1. Pot, skillet, and oven run in parallel (coordination 1). Score 5 is moderate, matching the WAVE proposal. The long clock is mostly unattended baking; time is not effort. Complexity: 15 countable mainstream items (band 2; butter counted, batch A smash-burger convention) with one gravy build give 2, so standard.",
+  "wave_proposal": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "time_band": "45+"
+  },
+  "classification_amendments": [
+    {
+      "version_number": 1,
+      "type": "classification_only_metadata_amendment",
+      "who": "Juniper (Harbor Eats - Catalog Curator)",
+      "when": "2026-10-08",
+      "from": {
+        "effort_level": "moderate",
+        "ingredient_complexity": "simple"
+      },
+      "to": {
+        "effort_level": "moderate",
+        "ingredient_complexity": "standard"
+      },
+      "reason": "Vale wave-12 batch C r1 Gate J: 15 countable (band 2) -> 2 standard (factors 2,0,0,0).",
+      "culinary_hash_unchanged": true,
+      "image_unchanged_by_this_amendment": true,
+      "vale_recheck_scope": "Gate A + Gate J-classification only"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "tomato-soup-grilled-cheese",
+  "recipe_version_id": "rv_tomato-soup-grilled-cheese_v1",
+  "package_revision": "freeze-r1",
+  "assigned_by": "Juniper (Harbor Eats - Catalog Curator)",
+  "assigned_on": "2026-10-08",
+  "rubric": "D-03 (factory SKILL.md)",
+  "conventions": {
+    "ingredient_count_band": "Counted ingredients exclude salt, black pepper, water, and cooking oils: <=12 -> 0, 13-16 -> 1, 17+ -> 2.",
+    "pantry_familiarity": "Kept 0; specialty-store items score once under specialty_burden (no double counting). Cultural unfamiliarity adds no points."
+  },
+  "effort_factors": {
+    "active_prep": 1,
+    "active_attention": 1,
+    "active_components": 1,
+    "technique": 0,
+    "coordination_cleanup_equipment": 1
+  },
+  "effort_score": 4,
+  "effort_level": "moderate",
+  "effort_floors_applied": [],
+  "complexity_factors": {
+    "ingredient_count_band": 0,
+    "specialty_burden": 0,
+    "flavor_component_breadth": 0,
+    "pantry_familiarity": 0
+  },
+  "complexity_score": 0,
+  "ingredient_complexity": "simple",
+  "ingredient_count": 11,
+  "counted_ingredient_ids": [
+    "roma-tomatoes",
+    "yellow-onion",
+    "garlic",
+    "tomato-paste",
+    "vegetable-broth",
+    "fresh-basil",
+    "heavy-cream",
+    "sugar",
+    "sourdough-bread",
+    "sharp-cheddar",
+    "unsalted-butter"
+  ],
+  "specialty_items": [],
+  "reason_codes": {
+    "effort": [
+      "steady_prep",
+      "batch_griddle_flips",
+      "two_components",
+      "oven_pot_skillet"
+    ],
+    "ingredient": [
+      "short_list",
+      "common_pantry",
+      "single_sauce_build"
+    ]
+  },
+  "reason_codes_status": "proposed (closed reason-code list not on box at authoring)",
+  "borderline": true,
+  "rationale": "Roasting and the soup simmer are hands-off, but griddling 4 sandwiches in 2 batches needs flipping and watching (attention 1). Soup plus sandwiches scores components 1. Oven, pot, immersion blender, and skillet run in parallel (coordination 1). Score 4 is moderate; WAVE proposed easy. Every ingredient is mainstream (vegetarian-rennet cheddar is labeled and widely stocked), so complexity is simple.",
+  "wave_proposal": {
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "time_band": "30-45"
+  }
+}

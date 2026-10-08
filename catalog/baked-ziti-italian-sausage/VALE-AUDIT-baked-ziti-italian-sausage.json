@@ -1,0 +1,146 @@
+{
+  "slug": "baked-ziti-italian-sausage",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-08",
+  "audit_round": "r1",
+  "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r1",
+  "recipe_version_id": "rv_baked-ziti-italian-sausage_v1",
+  "freeze_integrity": "PASS",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "failed_gates": [],
+  "kitchen_tested": false,
+  "packages_mutated": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Identity ids agree (slug = dish_id; rcp_/rv_<slug>_v1; version_number 1); package_revision freeze-r1 on root, recipe_version, and image; effort_level and ingredient_complexity present on recipe_version with valid D-03 enums; no legacy effort / effort_band / complexity keys anywhere in v1.json. d03-classification.json labels match v1.json. moderate/simple."
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null,
+      "note": "All 15 ingredients referenced; mozzarella 1 + 1 cup; Parmesan 1/4 + 1/4 cup; basil 2 + 2 tbsp; salt 1 tbsp water + 1/2 + 1/4 tsp."
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null,
+      "note": "12 oz ziti, 1 lb sausage, 28 oz crushed tomatoes, 1 cup ricotta, 8 oz mozzarella for a 9x13 serving 4 — sound; pasta water splash if tight. Scaling sound."
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Sausage browned with no pink, then simmered 12 min and baked 20 min — safe (pork sausage 160F is easily exceeded). Pasta undercooked 2 min to finish in the oven. Non-blocking: adding '160F' to the sausage doneness would be tidier."
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Prep 10 + cook 52 (7+4+12+4+20+5) = 62; oven preheats during prep and sauce (stated); pasta boil overlaps step 4."
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null,
+      "note": "No compound ingredients needing a contract; Italian sausage is a common supermarket item and its allergens (meat; milk/wheat if any) are already declared."
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Dietary: meat (pork) + dairy true; poultry/finfish/shellfish false; no labels; nut_policy none. Allergens meat, milk, wheat — correct."
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null,
+      "note": "italian, pasta, savory, rich, creamy — all active D-02 slugs; creamy supported by ricotta pockets."
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Distinct from Lemon Garlic Shrimp Pasta, Cashew Pesto Pasta, Mushroom Walnut Bolognese, Sheet-Pan Margherita Pizza."
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Promise matches method. D-03 moderate (4) ACCEPTED (sauce + pasta pot attended in parallel + baking dish, herbed-polenta precedent). Simple (1) ACCEPTED: 11 countable, no specialty; seasoning the ricotta with salt/pepper/basil from the same profile is not a second build. Borderline noted by creator; Vale agrees with simple."
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Off-white 9x13: golden spotted mozzarella-Parmesan crust, ridged ziti/penne rigate tubes (penne rigate allowed), browned sausage crumbles, a white ricotta pocket at the scooped area, torn basil, sauce bubbling at the edges; Parmesan wedge and basil at frame edge. No lasagna sheets, meatballs, spinach, mushrooms, bread, salad, burnt cheese, grease pools, parsley."
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Rolled up from L1 and L2."
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; image.sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 and Batch B); no text, logo, watermark, packaging, or hands; one active set; master_ref points at the active WebP."
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Warm, bubbling, golden crust with scooped cross-section; very craveable; strong at card scale."
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null,
+      "note": "recipe provenance original_ai_assisted (live ai_assisted gap documented); image generation method/date/generator present, model honestly 'unknown'; image-plating-brief.md (mtime 16:53 CT) predates img_v1.jpg (16:59 CT) and image-prompt.md derives from recipe + brief; catalog_confidence PRESENT_AI / KNOWN_TEXT_AND_IMAGE / PENDING_AUDIT; rights not_cleared_for_external_release; no stock or web imagery."
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null,
+      "note": "All mainstream items."
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null,
+      "note": "version_number 1, package_revision freeze-r1 consistent across v1.json, README, image-prompt.md; classification_history []; curator_preflight image = frozen_for_preflight; no README/prompt language denies present WebPs; FREEZE_INTEGRITY.json PASS (0 fails) and Vale's independent re-run on a /tmp copy also PASS; renderer --check OK and recipes_part*.py source in sync with rendered v1.json."
+    }
+  },
+  "image_review": {
+    "K": "PASS",
+    "L1": "PASS",
+    "L2": "PASS",
+    "L": "PASS",
+    "files_inspected": [
+      "img_v1.jpg",
+      "baked-ziti-italian-sausage-640.webp"
+    ],
+    "observation": "Bubbling baked ziti with sausage, ricotta pocket, basil; nothing forbidden."
+  },
+  "dietary_eligibility": "Meat (pork) true; dairy true; poultry/finfish/shellfish false; no labels; nut_policy none.",
+  "allergens": "meat, milk, wheat. Correct.",
+  "allergen_runtime_gaps": {
+    "package_tokens": [
+      "meat",
+      "milk",
+      "wheat"
+    ],
+    "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+      "milk",
+      "wheat"
+    ],
+    "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS (dairy, nuts, cashew, walnut, peanut, almond, pecan, hazelnut, pistachio, macadamia, pine_nut, shellfish, finfish, poultry, meat)",
+    "documented_in_runtime_enum_gaps": true
+  },
+  "hh001": "Not intended; claimed false; correct (pork, dairy).",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "gate_A_enums": "valid",
+    "gate_J_plausibility": "moderate (4) / simple (1); matches WAVE proposal; borderline simple confirmed.",
+    "legacy_fields_authored": false,
+    "factor_key": "pantry_familiarity (canonical)"
+  },
+  "fails_needing_revision": [],
+  "required_fixes": [],
+  "non_blocking_notes": [
+    "Some sausage clumps in the scooped area are large and rounded; still read as crumbles, not meatballs.",
+    "Optional: state 160F for the sausage in step 2 doneness.",
+    "No culinary_hash (see summary)."
+  ],
+  "statement": "Gate result only. Binary PASS/FAIL per the certification skill (no PASS WITH NOTES publication state; notes above are non-blocking). Not publication, not a production release, not a cook test. Vale did not edit the package."
+}

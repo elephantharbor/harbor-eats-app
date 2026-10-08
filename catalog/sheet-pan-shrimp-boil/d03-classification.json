@@ -1,0 +1,47 @@
+{
+  "slug": "sheet-pan-shrimp-boil",
+  "recipe_version_id": "rv_sheet-pan-shrimp-boil_v1",
+  "package_revision": "freeze-r1",
+  "classification": {
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "effort_score": 2,
+    "complexity_score": 1,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 0,
+      "active_components": 0,
+      "technique": 0,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 0,
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0,
+      "specialty_items": []
+    },
+    "countable_ingredient_count": 10,
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "mostly_hands_off"
+      ],
+      "ingredient": [
+        "medium_list",
+        "common_pantry"
+      ]
+    },
+    "notes": "Effort: halving potatoes, cutting corn, slicing sausage (1); oven roasting with timed add-ins, set-and-check (0); one sheet-pan meal, shrimp butter is tossed on rather than a separate sauce (0); roast technique (0); two sheet pans + a microwave bowl with a rack swap (1). Sum 2 = easy. Complexity: 10 countable ingredients (oil, salt excluded) -> 1; andouille, Old Bay, and frozen/fresh shrimp are mainstream supermarket items (0 specialty, 0 sourcing); one Old Bay seasoning profile (0). Sum 1 = simple. Matches WAVE proposal.",
+    "proposal_from_wave": {
+      "effort_level": "easy",
+      "ingredient_complexity": "simple"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "factor_key_note": "pantry_familiarity is the canonical complexity factor key (batch A, batch C, and the 50 audited meals; the rubric's sourcing-difficulty factor). Batch B r1/r2 authored it as sourcing_difficulty; renamed 2026-10-08 after Vale's batch B audit. Value unchanged (0); labels unchanged."
+  },
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0–2 easy / 3–5 moderate / 6–10 involved with floors; complexity 0–1 simple / 2–3 standard / 4–8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

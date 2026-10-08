@@ -1,0 +1,77 @@
+{
+  "slug": "sabich-pita-sandwiches",
+  "recipe_version_id": "rv_sabich-pita-sandwiches_v1",
+  "package_revision": "freeze-r1",
+  "assigned_by": "Juniper (Harbor Eats - Catalog Curator)",
+  "assigned_on": "2026-10-08",
+  "rubric": "D-03 (factory SKILL.md)",
+  "conventions": {
+    "ingredient_count_band": "Counted ingredients exclude salt, black pepper, water, and cooking oils: <=12 -> 0, 13-16 -> 1, 17+ -> 2.",
+    "pantry_familiarity": "Kept 0; specialty-store items score once under specialty_burden (no double counting). Cultural unfamiliarity adds no points."
+  },
+  "effort_factors": {
+    "active_prep": 1,
+    "active_attention": 1,
+    "active_components": 2,
+    "technique": 1,
+    "coordination_cleanup_equipment": 1
+  },
+  "effort_score": 6,
+  "effort_level": "involved",
+  "effort_floors_applied": [],
+  "complexity_factors": {
+    "ingredient_count_band": 0,
+    "specialty_burden": 1,
+    "flavor_component_breadth": 1,
+    "pantry_familiarity": 0
+  },
+  "complexity_score": 2,
+  "ingredient_complexity": "standard",
+  "ingredient_count": 12,
+  "counted_ingredient_ids": [
+    "globe-eggplant",
+    "eggs",
+    "tahini",
+    "lemon",
+    "garlic",
+    "hummus",
+    "pita",
+    "tomatoes",
+    "persian-cucumbers",
+    "flat-leaf-parsley",
+    "dill-pickles",
+    "amba"
+  ],
+  "specialty_items": [
+    "amba (optional; Middle Eastern grocer or online)"
+  ],
+  "reason_codes": {
+    "effort": [
+      "steady_prep",
+      "batch_shallow_fry",
+      "four_made_components",
+      "shallow_fry",
+      "two_burners_parallel"
+    ],
+    "ingredient": [
+      "medium_list",
+      "optional_specialty_item",
+      "sauce_plus_salad"
+    ]
+  },
+  "reason_codes_status": "proposed (closed reason-code list not on box at authoring)",
+  "borderline": true,
+  "rationale": "Four separately made components (fried eggplant, boiled eggs, tahini sauce, chopped salad) score components 2. Batch shallow-frying is intermittent attention (1) and a shallow-fry technique (1); eggs boil in parallel (coordination 1). The total of 6 is the lowest involved score, the same level as Spiced Lamb Meatballs (6). (Thai Basil Eggplant Stir-Fry is not a comparator here: its final D-03 ruling is moderate 5 [1,2,1,1,0].) WAVE proposed moderate; the rubric gives involved because of the component count, not because of cuisine. Complexity: 12 shopping items (mainstream tahini, hummus, pita, pickles); amba is optional and is the only specialty item (1). Israeli cuisine adds no points.",
+  "wave_proposal": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "time_band": "30-45"
+  },
+  "rationale_amendment": {
+    "when": "2026-10-08",
+    "who": "Juniper (Harbor Eats - Catalog Curator)",
+    "type": "note_only",
+    "change": "Removed the stale citation 'Thai Basil Eggplant Stir-Fry (6)' as an involved comparator; its final D-03 ruling (JUNIPER-CLASSIFICATION-BATCH r2, Vale agreed) is moderate 5 [1,2,1,1,0].",
+    "reason": "Vale wave-12 batch C r1 non-blocking note. Labels, factor scores, package_revision freeze-r1, v1.json, culinary_hash, and images unchanged."
+  }
+}

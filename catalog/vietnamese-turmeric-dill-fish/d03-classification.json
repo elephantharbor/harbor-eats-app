@@ -1,0 +1,52 @@
+{
+  "slug": "vietnamese-turmeric-dill-fish",
+  "recipe_version_id": "rv_vietnamese-turmeric-dill-fish_v1",
+  "package_revision": "freeze-r1",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "effort_score": 5,
+    "complexity_score": 3,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 1,
+      "technique": 1,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 1,
+      "flavor_component_breadth": 1,
+      "pantry_familiarity": 0,
+      "specialty_items": [
+        "fish sauce",
+        "rice vermicelli"
+      ]
+    },
+    "countable_ingredient_count": 14,
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "multi_component"
+      ],
+      "ingredient": [
+        "medium_list",
+        "one_specialty",
+        "multi_build"
+      ]
+    },
+    "notes": "Effort: marinade + herb/sauce prep (1); short sear and wilt, otherwise boil-and-drain (1); fish + noodles + nước chấm (1); sear with gentle turning (1); pot + skillet (1). Sum 5 = moderate. Complexity: 14 countable ingredients (salt, pepper, oil, water excluded) -> 1; fish sauce and rice vermicelli are international-aisle staples at major chains -> 1; marinade + nước chấm builds -> 1; sourcing scored once -> 0. Sum 3 = standard. Cuisine unfamiliarity adds nothing. Matches WAVE proposal.",
+    "proposal_from_wave": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "factor_key_note": "pantry_familiarity is the canonical complexity factor key (batch A, batch C, and the 50 audited meals; the rubric's sourcing-difficulty factor). Batch B r1/r2 authored it as sourcing_difficulty; renamed 2026-10-08 after Vale's batch B audit. Value unchanged (0); labels unchanged."
+  },
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0–2 easy / 3–5 moderate / 6–10 involved with floors; complexity 0–1 simple / 2–3 standard / 4–8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

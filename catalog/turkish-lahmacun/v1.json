@@ -1,0 +1,636 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 (Batch B). Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r3; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r3",
+  "revision_note": "freeze-r2 (2026-10-08 CT) applies the Vale r1 gate C and D fixes as a v1 text amendment (same version_number 1, image unchanged). Parchment is now six 10-by-8-inch pieces that fit two side by side on the inverted pan. Each batch starts on parchment for 3 minutes, then the parchment is pulled out with tongs and the bake finishes directly on the hot pan (7 to 8 minutes total), so the parchment no longer stays in the 475 F oven for the full bake and nothing is trimmed in the oven. Dough thickness is corrected to about 1/8 inch (6 x 4-oz balls rolled 9 by 7 inches), and the description now says 'Thin flatbreads'. Times unchanged (20 / 32 / 52); culinary_hash recomputed. img_v1.jpg and both WebPs are unchanged, and the exact prompt in image-prompt.md is kept verbatim as generation provenance for that image. freeze-r3 (2026-10-08 CT) follow-up v1 text amendment after Vale r2 (Vale batch B r2 non-blocking note 3 and the wave-wide scaling note): components[thin-flatbreads] is now made_in_recipe true / store_bought false (the flatbreads are rolled and baked in the recipe; only the pizza-dough ingredient is store-bought, and its store-bought note and contract are kept), culinary_hash recomputed; scaling_notes.ratio['1'] is now 1/3 (0.3333) to match the 1-serving note (2 of 6 lahmacun = one-third recipe).",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "turkish-lahmacun",
+    "slug": "turkish-lahmacun",
+    "title": "Turkish Lahmacun with Herb Salad",
+    "description": "Thin flatbreads spread edge to edge with a spiced lamb, tomato, pepper, and parsley paste seasoned with Aleppo pepper and cumin, baked in a very hot oven until the rims crisp. Topped with a sumac red-onion, tomato, and parsley salad and a squeeze of lemon, then rolled up to eat. No cheese.",
+    "cuisine": "turkish",
+    "meal_format": "flatbread",
+    "primary_ingredient": "ground lamb",
+    "vocabulary_tag_ids": [
+      "middle-eastern",
+      "savory",
+      "crispy",
+      "herbaceous",
+      "tangy",
+      "fresh"
+    ],
+    "current_recipe_id": "rcp_turkish-lahmacun",
+    "current_version_id": "rv_turkish-lahmacun_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_turkish-lahmacun",
+    "dish_id": "turkish-lahmacun",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_turkish-lahmacun_v1",
+    "recipe_id": "rcp_turkish-lahmacun",
+    "dish_id": "turkish-lahmacun",
+    "version_number": 1,
+    "package_revision": "freeze-r3",
+    "immutable": true,
+    "revision_note": "freeze-r2 text amendment on v1 (Vale r1 C/D): steps 1-3, heat, equipment (tongs), description, and do-not-scale thickness updated; parchment out after 3 minutes, no overhang, about 1/8-inch dough. Times 20 / 32 / 52 unchanged. culinary_hash recomputed. freeze-r3 follow-up v1 text change (2026-10-08 CT, Vale r2 note 3): components[thin-flatbreads] made_in_recipe false -> true, store_bought true -> false; pizza-dough ingredient keeps its store-bought note; culinary_hash recomputed again.",
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present on disk (turkish-lahmacun.webp, turkish-lahmacun-640.webp) with source img_v1.jpg; asset_generated is true; package_revision freeze-r3. Not certified. Not published. kitchen_tested is false.",
+    "title": "Turkish Lahmacun with Herb Salad",
+    "description": "Thin flatbreads spread edge to edge with a spiced lamb, tomato, pepper, and parsley paste seasoned with Aleppo pepper and cumin, baked in a very hot oven until the rims crisp. Topped with a sumac red-onion, tomato, and parsley salad and a squeeze of lemon, then rolled up to eat. No cheese.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "pizza-dough",
+        "name": "pizza dough",
+        "display_name": "store-bought plain pizza dough",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "HARD CONTRACT: plain dough (flour, water, yeast, salt, oil, optional sugar). No milk, egg, or cheese. Wheat.",
+        "preparation": "divided into 6 equal balls",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "all-purpose-flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour (for rolling)",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "Wheat.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "ground-lamb",
+        "name": "ground lamb",
+        "display_name": "ground lamb (80–85% lean)",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "Meat.",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "1 small, about 5 oz (topping)",
+        "preparation": "quartered",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "red-bell-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "seeded and cut into chunks",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "roma-tomatoes",
+        "name": "Roma tomatoes",
+        "display_name": "Roma tomatoes",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "1 seeded and quartered for the topping; 2 diced for the salad",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "peeled",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "flat-leaf-parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "fresh flat-leaf parsley",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "1 large bunch: 1/2 cup for the topping, 1 1/2 cups whole leaves for the salad",
+        "preparation": "leaves and tender stems",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "aleppo-pepper",
+        "name": "Aleppo pepper",
+        "display_name": "Aleppo pepper (pul biber)",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "Divided: 2 tsp topping, 1/2 tsp salad. Mild, fruity chile flakes; spice aisle or online. If unavailable use 2 tsp sweet paprika + 1/2 tsp crushed red pepper.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.25,
+        "unit": "tsp",
+        "note": "divided: 1 tsp topping, 1/4 tsp onions",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "divided: 1 tbsp topping, 1 tbsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "1 small",
+        "preparation": "halved and very thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sumac",
+        "name": "ground sumac",
+        "display_name": "ground sumac",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "tart, lemony red spice; spice aisle",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lemons",
+        "name": "lemons",
+        "display_name": "lemons",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "1 juiced for the salad, 1 cut into wedges",
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the oven, rest the dough, make the topping and salad base",
+        "body": "Put a large rimmed sheet pan upside down on the lowest oven rack and heat the oven to 475 F for at least 20 minutes (it heats through this prep). Divide the dough into 6 balls, cover with a towel, and let it relax on the counter. Cut six 10-by-8-inch pieces of parchment (two fit side by side on the inverted pan with no overhang). For the topping, pulse the quartered onion, the bell pepper, 1 seeded tomato, the garlic, and 1/2 cup parsley in a food processor until finely minced. Add the lamb, tomato paste, 2 tsp Aleppo pepper, cumin, 1 tsp kosher salt, black pepper, and 1 tbsp olive oil; pulse to a smooth, spreadable paste. For the salad, toss the sliced red onion with the sumac and 1/4 tsp salt; dice the remaining 2 tomatoes; pick 1 1/2 cups parsley leaves; juice 1 lemon and cut the other into wedges. Do not dress the salad yet. About 20 minutes.",
+        "ingredient_refs": [
+          "pizza-dough",
+          "yellow-onion",
+          "red-bell-pepper",
+          "roma-tomatoes",
+          "garlic",
+          "flat-leaf-parsley",
+          "ground-lamb",
+          "tomato-paste",
+          "aleppo-pepper",
+          "ground-cumin",
+          "kosher-salt",
+          "black-pepper",
+          "olive-oil",
+          "red-onion",
+          "sumac",
+          "lemons"
+        ],
+        "clock": {
+          "phase": "prep",
+          "minutes": 20,
+          "note": "oven and inverted pan preheat at 475 F for the full 20 minutes"
+        }
+      },
+      {
+        "step_number": 2,
+        "title": "Roll and top the first two",
+        "body": "Lightly flour two parchment pieces. Roll two dough balls directly on them into very thin ovals about 9 by 7 inches (about 1/8 inch). If the dough springs back, let it rest 1 minute and roll again. Spread one-sixth of the lamb paste over each in a thin, even layer right to within 1/4 inch of the edge, pressing it into the dough. About 6 minutes.",
+        "ingredient_refs": [
+          "all-purpose-flour",
+          "pizza-dough",
+          "ground-lamb"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 6
+        }
+      },
+      {
+        "step_number": 3,
+        "title": "Bake in three batches",
+        "body": "Slide the two lahmacun, still on their parchment, onto the hot inverted pan. Bake 3 minutes, then use tongs to slide the parchment out from under each lahmacun and discard it; bake directly on the pan 4 to 5 minutes more (7 to 8 minutes total), until the rims and underside are browned and crisp and the topping is sizzling and cooked through with no pink (160 F). While each batch bakes, roll and top the next two on floured parchment. Repeat for three batches total, stacking finished lahmacun loosely on a board. About 24 minutes.",
+        "ingredient_refs": [
+          "pizza-dough",
+          "ground-lamb",
+          "all-purpose-flour"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 24
+        }
+      },
+      {
+        "step_number": 4,
+        "title": "Dress the salad and serve",
+        "body": "Toss the sumac onions, diced tomatoes, and parsley leaves with the lemon juice, 1 tbsp olive oil, and the last 1/2 tsp Aleppo pepper. Pile salad down the middle of each lahmacun, add a lemon wedge, and roll or fold to eat. No cheese, no yogurt. About 2 minutes. kitchen_tested is false.",
+        "ingredient_refs": [
+          "red-onion",
+          "sumac",
+          "roma-tomatoes",
+          "flat-leaf-parsley",
+          "lemons",
+          "olive-oil",
+          "aleppo-pepper"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 2
+        }
+      }
+    ],
+    "components": [
+      {
+        "component_id": "lamb-topping",
+        "name": "spiced lamb, tomato, and parsley paste",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ground lamb",
+          "yellow onion",
+          "red bell pepper",
+          "Roma tomato",
+          "garlic",
+          "flat-leaf parsley",
+          "tomato paste",
+          "Aleppo pepper",
+          "ground cumin",
+          "kosher salt",
+          "black pepper",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "thin-flatbreads",
+        "name": "rolled thin flatbreads",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "store-bought plain pizza dough",
+          "all-purpose flour"
+        ],
+        "contract": "Store-bought plain pizza dough (no milk, egg, or cheese), rolled and baked in the recipe."
+      },
+      {
+        "component_id": "sumac-herb-salad",
+        "name": "sumac onion, tomato, and parsley salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "red onion",
+          "sumac",
+          "kosher salt",
+          "Roma tomatoes",
+          "flat-leaf parsley",
+          "lemon juice",
+          "olive oil",
+          "Aleppo pepper"
+        ]
+      }
+    ],
+    "equipment": [
+      "large rimmed sheet pan (used upside down) or pizza steel",
+      "food processor",
+      "rolling pin",
+      "parchment paper",
+      "kitchen towel",
+      "offset spatula or spoon",
+      "tongs",
+      "kitchen shears",
+      "salad bowl",
+      "knife",
+      "cutting board",
+      "citrus juicer",
+      "measuring cups and spoons"
+    ],
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 32,
+    "total_time_minutes": 52,
+    "prep_minutes": 20,
+    "cook_minutes": 32,
+    "total_minutes": 52,
+    "time_clock": "Prep 20 (oven and inverted pan preheat at 475 F for the whole block; dough relaxes; topping and salad base made). Cook 32 = 6 roll/top first pair + 24 bake (3 batches x 8, next pair rolled during each bake) + 2 dress and serve.",
+    "heat": "Oven 475 F with an inverted rimmed sheet pan on the lowest rack, preheated 20 minutes during prep. Lahmacun start on parchment for 3 minutes, then finish directly on the hot pan; 7 to 8 minutes total per batch.",
+    "doneness": "Flatbread rims and underside browned and crisp, still flexible enough to roll; topping sizzling, browned in spots, cooked through with no pink (160 F). kitchen_tested is false.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_sidecar": "d03-classification.json",
+    "classification_history": [],
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, cashews, or pine nuts.",
+      "hh001_eligible": false,
+      "hh001_reason": "Ground lamb is meat other than fish. HH001 does not eat it. The dish is dairy-free by contract (plain dough, no cheese or yogurt), but lamb alone makes it ineligible."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: plain pizza dough is contracted with no milk, egg, or cheese; no yogurt or cheese anywhere. Contains lamb, so not vegetarian.",
+    "allergens": [
+      "meat",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat covers the ground lamb (FlavorWeave supports meat as a token).",
+      "Wheat covers the pizza dough and the rolling flour.",
+      "No egg, milk, soy, sesame, peanut, tree_nut, shellfish, finfish, or poultry. Dough is contracted plain (no milk or egg)."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Ground lamb is meat other than fish. HH001 does not eat it. The dish is dairy-free by contract (plain dough, no cheese or yogurt), but lamb alone makes it ineligible.",
+    "vocabulary_tag_ids": [
+      "middle-eastern",
+      "savory",
+      "crispy",
+      "herbaceous",
+      "tangy",
+      "fresh"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims; every claim rests on a hard ingredient contract.",
+      "allergens_runtime": "Package tokens use milk (not dairy) and wheat (not gluten). Live PACKAGE_ALLERGEN_IDS uses dairy/nuts/cashew/... and lacks egg, soy, wheat, sesame, milk, tree_nut; keep package tokens and do not silently remap.",
+      "classification": "D-03 canonical fields effort_level and ingredient_complexity are on recipe_version. Legacy effort / effort_band / complexity strings are deliberately not authored. Factor scores and reason codes live in the d03-classification.json sidecar, not in runtime fields.",
+      "package_revision": "package_revision is freeze-r3. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r3. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "vocabulary": "middle-eastern is the D-02 cuisine slug used for turkish (turkish has no D-02 slug). savory, crispy, herbaceous, tangy, fresh are active slugs. lamb has no D-02 ingredient slug.",
+      "meal_format": "flatbread is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "ground lamb — no D-02 ingredient slug; not copied into tags.",
+      "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes meat; listed because lamb is present."
+    },
+    "culinary_hash": "sha256:09f38cab5f6df061fac7598b3585d3e946f3b87ac4eea468e46843a875777dd3",
+    "culinary_hash_note": "sha256 over culinary content (ingredients, steps, components, equipment, times, heat, doneness, dietary eligibility/labels, allergens, tags). Excludes effort_level / ingredient_complexity and image metadata, so a classification-only amendment does not change it."
+  },
+  "image": {
+    "image_id": "img_turkish-lahmacun_v1",
+    "dish_id": "turkish-lahmacun",
+    "recipe_version_id": "rv_turkish-lahmacun_v1",
+    "asset_generated": true,
+    "master_ref": "turkish-lahmacun.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "turkish-lahmacun.webp",
+        "spec_catalog_path": "/images/meals/turkish-lahmacun.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "turkish-lahmacun-640.webp",
+        "spec_catalog_path": "/images/meals/turkish-lahmacun-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the GenerateImage source to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs via export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage (4:3 or landscape) from image-prompt.md with the house-quality reference for quality/light only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-12 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_by": "Juniper (Harbor Eats - Catalog Curator)",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r3.",
+    "package_revision": "freeze-r3",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "turkish-lahmacun-640.webp",
+    "master_filename": "turkish-lahmacun.webp",
+    "card_filename": "turkish-lahmacun-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "fa37b122c3f57627c65220215e60bb9e1cd4567c11346199d7688137fa4285b0",
+      "turkish-lahmacun.webp": "e1647c8d934f1b66c660dcd3ad0e00761992f70b603afb0a853566b82229212d",
+      "turkish-lahmacun-640.webp": "7100428e44760276c68ec4d32f167b91ee85e9e253ad90e361ab35a5d5ef2d04"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient is used: dough, topping, and salad base in step 1; flour/dough/topping in steps 2–3; salad dressing and serving in step 4. Aleppo 2 + 1/2 tsp; salt 1 + 1/4 tsp; oil 1 + 1 tbsp; tomatoes 1 + 2; parsley 1/2 + 1 1/2 cups."
+    },
+    {
+      "check": "fat",
+      "result": "pass",
+      "detail": "2 tbsp olive oil (topping, salad). Lamb fat renders in the bake."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Pizza dough is a declared store-bought component with a plain-dough contract. Topping and salad built in the recipe."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 20 (preheat inside) + cook 32 (6 + 24 + 2) = 52. Rolling the next pair overlaps each bake."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Scale by flatbread count; dough ball halves cleanly. See scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=true, contains_poultry=false, contains_finfish=false, contains_shellfish=false, contains_dairy=false, plant_based_compatible=false, vegetarian_compatible=false, nut_policy=none, hh001_eligible=false. Allergens: meat, wheat. Labels: dairy_free."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "Tags middle-eastern, savory, crispy, herbaceous, tangy, fresh are active D-02 slugs in taste-vocabulary.js. flatbread and ground lamb are metadata."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level involved (factor sum 7); ingredient_complexity standard (factor sum 3). Factors and reason codes in d03-classification.json. WAVE proposal involved/standard."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r3. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit (turkish-lahmacun.webp, turkish-lahmacun-640.webp, img_v1.jpg). asset_generated is true. package_revision freeze-r3."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY_json",
+      "detail": "freeze_integrity.py is run on this directory after finalize; its PASS/FAIL lives only in FREEZE_INTEGRITY.json and is not restated here."
+    }
+  ],
+  "scaling_notes": {
+    "1": "Make 2 lahmacun (one-third of the recipe; 1-serving shopping ratio 1/3): 8 oz dough, 4 oz lamb, and one-third of every topping and salad amount (food processor needs at least the 2-serving volume to pulse well; mince by hand for 1). One bake batch.",
+    "2": "Make 3 lahmacun: 12 oz dough (cut a 1 1/2-lb ball in half), 6 oz lamb, half the topping and salad. Two batches (2 + 1).",
+    "4": "As written: 6 lahmacun, 3 batches.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.3333,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "475 F with preheated inverted pan",
+      "1/8-inch thin dough",
+      "topping spread thin edge to edge",
+      "no cheese"
+    ]
+  },
+  "coverage_contribution": "Turkish 0→1 (deferred 2–3 waves). Flatbread format distinct from Sheet-Pan Margherita Pizza: no cheese, spiced meat paste, rolled with a sumac-herb salad.",
+  "near_duplicate_review": "Compared with Sheet-Pan Margherita Pizza: both baked doughs, but that is a thick sheet-pan pizza with mozzarella and tomato; this is a thin, cheese-free lamb flatbread eaten rolled with salad. Compared with Spiced Lamb Meatballs: same protein, but shaped meatballs simmered in sauce vs a thin spread on crisp bread. Compared with Roasted Cauliflower Shawarma Plate: Middle-Eastern spices, but a plant plate. Not a live-catalog duplicate.",
+  "batch_label": "B",
+  "batch_challenges": "B",
+  "selection_alignment": "Matches selection.json: turkish · flatbread · ground lamb · hh001_intent false. expected_allergens [wheat] extended with meat (FlavorWeave supported token). Rough band 45+; written clock 52. D-03 re-scored: involved / standard (matches).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

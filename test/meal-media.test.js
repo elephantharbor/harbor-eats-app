@@ -12,9 +12,9 @@ const Media = window.FlavorWeaveMedia;
 const published = listPublishedMealMedia();
 
 describe("FlavorWeave meal imagery", () => {
-  it("manifest covers all 50 published catalog meals", () => {
-    expect(published).toHaveLength(50);
-    expect(Object.keys(Media.catalog)).toHaveLength(50);
+  it("manifest covers all 75 published catalog meals", () => {
+    expect(published).toHaveLength(75);
+    expect(Object.keys(Media.catalog)).toHaveLength(75);
     for (const row of published) {
       expect(Media.catalog[row.slug], row.slug).toBe(row.title);
     }

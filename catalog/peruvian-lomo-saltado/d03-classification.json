@@ -1,0 +1,65 @@
+{
+  "slug": "peruvian-lomo-saltado",
+  "recipe_version_id": "rv_peruvian-lomo-saltado_v1",
+  "package_revision": "freeze-r4",
+  "classification": {
+    "effort_level": "involved",
+    "ingredient_complexity": "adventurous",
+    "effort_score": 7,
+    "complexity_score": 4,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 2,
+      "active_components": 2,
+      "technique": 1,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 2,
+      "specialty_items": [
+        "ají amarillo paste (specialty-store likely, no true substitute)"
+      ],
+      "flavor_component_breadth": 1,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredient_count": 11,
+    "countable_ingredients": [
+      "top sirloin",
+      "soy sauce",
+      "red wine vinegar",
+      "ají amarillo paste",
+      "garlic",
+      "ground cumin",
+      "red onion",
+      "Roma tomatoes",
+      "cilantro",
+      "frozen French fries",
+      "long-grain white rice"
+    ],
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "continuous_attention",
+        "multi_component"
+      ],
+      "ingredient": [
+        "medium_list",
+        "specialty_store_likely",
+        "multi_build"
+      ]
+    },
+    "notes": "Effort: Steady prep (1); high-heat batch stir-fry is continuous (2); stir-fry, oven fries, and rice must converge hot at the plate (2); batch searing, timing-sensitive (1); oven, rice pot, and skillet in parallel (1). Sum 7 -> involved. WAVE proposed moderate; the third coordinated component (fries) is what pushes past the tibs / thai-basil precedent (5, moderate). Complexity: 11 countable (1). Ají amarillo paste is the namesake flavor, specialty-store likely and with no true substitute (2, scored once; sourcing not double-counted, parity with Thai basil). Marinade plus pan sauce (1). Sum 4 -> adventurous, driven only by ají amarillo availability, not by Peruvian cuisine.",
+    "borderline": true,
+    "proposal_from_wave": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "adventurous"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null
+  },
+  "factor_key_note": "Fourth complexity factor stored as pantry_familiarity (the key in the 50 Vale-audited classifications, d03-design/all-50-classifications.json); kept 0 because specialty-store sourcing is scored once under specialty_burden.",
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0-2 easy / 3-5 moderate / 6-10 involved with floors; complexity 0-1 simple / 2-3 standard / 4-8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

@@ -1,6 +1,6 @@
 /**
  * Published catalog meals → display titles for client meal imagery.
- * Source: catalog packages (50 live dishes), not recipe-store.js.
+ * Source: catalog packages (75 live dishes), not recipe-store.js.
  */
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";

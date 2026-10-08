@@ -1,0 +1,61 @@
+{
+  "slug": "classic-smash-burgers",
+  "recipe_version_id": "rv_classic-smash-burgers_v1",
+  "package_revision": "freeze-r2",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "effort_score": 5,
+    "complexity_score": 1,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 2,
+      "active_components": 1,
+      "technique": 1,
+      "coordination_cleanup_equipment": 0
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 0,
+      "specialty_items": [],
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredient_count": 11,
+    "countable_ingredients": [
+      "ground chuck",
+      "American cheese",
+      "sesame buns",
+      "unsalted butter",
+      "mayonnaise",
+      "ketchup",
+      "yellow mustard",
+      "dill pickles",
+      "garlic powder",
+      "iceberg lettuce",
+      "white onion"
+    ],
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "continuous_attention"
+      ],
+      "ingredient": [
+        "medium_list",
+        "common_pantry"
+      ]
+    },
+    "notes": "Effort: Light steady prep (1); continuous batch smashing and flipping (2); burger plus one stirred sauce (1); smash-sear technique, timing-sensitive (1); one skillet (0). Sum 5 -> moderate; floor rule 1 (continuous attention + any other >= 1) also requires at least moderate. WAVE proposed easy; batch searing over a hot pan is not easy under the rubric. Complexity: 11 countable (1). All mainstream supermarket items (0). One stirred sauce; patties take salt and pepper only (0). Sum 1 -> simple.",
+    "borderline": false,
+    "proposal_from_wave": {
+      "effort_level": "easy",
+      "ingredient_complexity": "simple"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null
+  },
+  "factor_key_note": "Fourth complexity factor stored as pantry_familiarity (the key in the 50 Vale-audited classifications, d03-design/all-50-classifications.json); kept 0 because specialty-store sourcing is scored once under specialty_burden.",
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0-2 easy / 3-5 moderate / 6-10 involved with floors; complexity 0-1 simple / 2-3 standard / 4-8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

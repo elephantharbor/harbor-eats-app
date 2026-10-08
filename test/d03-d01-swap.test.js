@@ -316,7 +316,7 @@ describe("swap version resolution", () => {
     await retireCatalogVersions(shim, [...new Set(retireVersionIds)]);
     const loaded = await loadPublishedCatalog(shim);
     expect(loaded.ok, loaded.detail).toBe(true);
-    expect(loaded.count).toBe(50);
+    expect(loaded.count).toBe(75);
     const miso = loaded.planner.find((entry) => entry.concept.concept_id === "miso-ginger-salmon");
     const salmon = loaded.planner.find((entry) => entry.concept.concept_id === "maple-mustard-glazed-salmon");
     const preview = planDinners(intent({ dinner_count: 2 }), {

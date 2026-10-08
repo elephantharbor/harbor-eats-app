@@ -1,0 +1,677 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 (Batch B). Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "pumpkin-pinto-bean-chili",
+    "slug": "pumpkin-pinto-bean-chili",
+    "title": "Smoky Pumpkin and Pinto Bean Chili",
+    "description": "A thick, brick-red pinto bean chili built on smoked paprika, chili powder, and fire-roasted tomatoes, with canned pumpkin melted in for body and a gentle sweetness. Finished with lime and topped with diced avocado, radish, cilantro, and crushed corn tortilla chips. Plant-based; no cheese, no sour cream.",
+    "cuisine": "southwestern",
+    "meal_format": "chili",
+    "primary_ingredient": "pinto beans",
+    "vocabulary_tag_ids": [
+      "american",
+      "smoky",
+      "spicy",
+      "savory",
+      "stews",
+      "fresh"
+    ],
+    "current_recipe_id": "rcp_pumpkin-pinto-bean-chili",
+    "current_version_id": "rv_pumpkin-pinto-bean-chili_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_pumpkin-pinto-bean-chili",
+    "dish_id": "pumpkin-pinto-bean-chili",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_pumpkin-pinto-bean-chili_v1",
+    "recipe_id": "rcp_pumpkin-pinto-bean-chili",
+    "dish_id": "pumpkin-pinto-bean-chili",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present on disk (pumpkin-pinto-bean-chili.webp, pumpkin-pinto-bean-chili-640.webp) with source img_v1.jpg; asset_generated is true; package_revision freeze-r1. Not certified. Not published. kitchen_tested is false.",
+    "title": "Smoky Pumpkin and Pinto Bean Chili",
+    "description": "A thick, brick-red pinto bean chili built on smoked paprika, chili powder, and fire-roasted tomatoes, with canned pumpkin melted in for body and a gentle sweetness. Finished with lime and topped with diced avocado, radish, cilantro, and crushed corn tortilla chips. Plant-based; no cheese, no sour cream.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "for softening the onion and pepper",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "1 large, about 10 oz",
+        "preparation": "diced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "red-bell-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cored and cut into 1/2-inch dice",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "chili-powder",
+        "name": "chili powder",
+        "display_name": "chili powder (US-style blend)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "Store-bought spice blend. HARD CONTRACT: plain blend whose label lists only ground chiles, spices, salt, garlic (and an anti-caking agent). No added flour, no 'chili seasoning mix' packets.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "smoked-paprika",
+        "name": "smoked paprika",
+        "display_name": "smoked paprika",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "carries most of the smoke",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-chipotle",
+        "name": "ground chipotle chile",
+        "display_name": "ground chipotle chile powder",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "pure ground chipotle (single spice), not chipotles in adobo. Adds smoky heat; use 1/4 tsp for mild.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dried-oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano (Mexican preferred)",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "pumpkin-puree",
+        "name": "pumpkin puree",
+        "display_name": "canned 100% pure pumpkin puree",
+        "quantity": 15,
+        "unit": "oz",
+        "note": "1 (15-oz) can. HARD CONTRACT: 100% pure pumpkin, NOT pumpkin pie filling (which is sweetened and spiced).",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "fire-roasted-tomatoes",
+        "name": "fire-roasted diced tomatoes",
+        "display_name": "canned fire-roasted diced tomatoes",
+        "quantity": 14.5,
+        "unit": "oz",
+        "note": "1 (14.5-oz) can",
+        "preparation": "with their juices",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "pinto-beans",
+        "name": "pinto beans",
+        "display_name": "canned pinto beans",
+        "quantity": 30,
+        "unit": "oz",
+        "note": "2 (15-oz) cans, about 3 cups drained",
+        "preparation": "drained and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "vegetable-broth",
+        "name": "vegetable broth",
+        "display_name": "vegetable broth",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "HARD CONTRACT: vegetable broth. Not chicken, beef, or bone broth. Choose a carton with no milk listed.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "divided: 1/2 tsp with the onion and pepper, 1 tsp with the liquids; adjust at the end",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "limes",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "1 juiced (about 2 tbsp), 1 cut into wedges",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "avocados",
+        "name": "avocados",
+        "display_name": "ripe Hass avocados",
+        "quantity": 2,
+        "unit": "count",
+        "note": "topping; also the creamy element in place of sour cream",
+        "preparation": "halved, pitted, and diced just before serving",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "radishes",
+        "name": "radishes",
+        "display_name": "radishes",
+        "quantity": 4,
+        "unit": "count",
+        "note": "topping",
+        "preparation": "trimmed and thinly sliced into coins",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "fresh cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "topping",
+        "preparation": "leaves and tender stems, roughly chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "tortilla-chips",
+        "name": "corn tortilla chips",
+        "display_name": "plain corn tortilla chips",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "topping. HARD CONTRACT: plain corn tortilla chips whose label lists only corn (masa/lime), oil, and salt, fried in corn, sunflower, safflower, or canola oil. Not peanut oil, not cheese- or ranch-flavored, no wheat.",
+        "preparation": "lightly crushed",
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep the vegetables, spices, and toppings",
+        "body": "Dice the onion and the red bell pepper (1/2-inch). Mince the garlic. In a small bowl combine the 2 tbsp chili powder, 2 tsp cumin, 2 tsp smoked paprika, 1/2 tsp ground chipotle, and 1 tsp oregano. Measure the 2 tbsp tomato paste. Open the pumpkin and tomatoes; drain and rinse the pinto beans. For the toppings: thinly slice the radishes, chop the cilantro, juice 1 lime (about 2 tbsp) and cut the other into wedges, and lightly crush the tortilla chips in their bag. Leave the avocados whole for now. Confirm the contracts: vegetable broth, 100% pure pumpkin, plain corn chips. About 12 minutes.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "red-bell-pepper",
+          "garlic",
+          "chili-powder",
+          "ground-cumin",
+          "smoked-paprika",
+          "ground-chipotle",
+          "dried-oregano",
+          "tomato-paste",
+          "pumpkin-puree",
+          "fire-roasted-tomatoes",
+          "pinto-beans",
+          "radishes",
+          "cilantro",
+          "limes",
+          "tortilla-chips"
+        ],
+        "clock": {
+          "phase": "prep",
+          "minutes": 12
+        }
+      },
+      {
+        "step_number": 2,
+        "title": "Soften the onion and pepper",
+        "body": "Heat the 2 tbsp olive oil in a 5- to 6-quart Dutch oven or heavy pot over medium heat. Add the onion, bell pepper, and 1/2 tsp of the kosher salt. Cook, stirring occasionally, until soft and the onion edges turn golden, 6 to 7 minutes. Add the garlic and cook 1 minute until fragrant. About 8 minutes.",
+        "ingredient_refs": [
+          "olive-oil",
+          "yellow-onion",
+          "red-bell-pepper",
+          "kosher-salt",
+          "garlic"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 8
+        }
+      },
+      {
+        "step_number": 3,
+        "title": "Bloom the spices and tomato paste",
+        "body": "Add the spice mix and the tomato paste. Stir constantly for 1 to 2 minutes, until the paste darkens to brick red and the spices smell toasty. Lower the heat if anything starts to scorch. About 2 minutes.",
+        "ingredient_refs": [
+          "chili-powder",
+          "ground-cumin",
+          "smoked-paprika",
+          "ground-chipotle",
+          "dried-oregano",
+          "tomato-paste"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 2
+        }
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer the chili",
+        "body": "Add the pumpkin puree, the fire-roasted tomatoes with their juices, the pinto beans, the 2 cups vegetable broth, and the remaining 1 tsp kosher salt. Stir well, scraping up anything stuck to the bottom. Raise the heat to medium-high and bring to a simmer, about 5 minutes. Reduce to medium-low and simmer uncovered for 15 minutes, stirring every 5 minutes, until thick enough to mound on a spoon. In the last 5 minutes, press about 1 cup of the beans against the side of the pot with the spoon and stir them back in to thicken. While it simmers, halve, pit, and dice the avocados (this overlaps the simmer and adds no time). About 20 minutes.",
+        "ingredient_refs": [
+          "pumpkin-puree",
+          "fire-roasted-tomatoes",
+          "pinto-beans",
+          "vegetable-broth",
+          "kosher-salt",
+          "avocados"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 20,
+          "note": "avocado dicing overlaps the 15-minute simmer"
+        }
+      },
+      {
+        "step_number": 5,
+        "title": "Finish with lime and top",
+        "body": "Take the pot off the heat and stir in the lime juice. Taste and add salt if needed. Ladle into wide bowls. Top each with diced avocado, radish coins, cilantro, and a handful of crushed tortilla chips; serve lime wedges alongside. No cheese, no sour cream. About 3 minutes. kitchen_tested is false.",
+        "ingredient_refs": [
+          "limes",
+          "kosher-salt",
+          "avocados",
+          "radishes",
+          "cilantro",
+          "tortilla-chips"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 3
+        }
+      }
+    ],
+    "components": [
+      {
+        "component_id": "smoky-pumpkin-pinto-chili",
+        "name": "smoky pumpkin pinto bean chili",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "olive oil",
+          "yellow onion",
+          "red bell pepper",
+          "garlic",
+          "chili powder",
+          "ground cumin",
+          "smoked paprika",
+          "ground chipotle",
+          "dried oregano",
+          "tomato paste",
+          "pumpkin puree",
+          "fire-roasted tomatoes",
+          "pinto beans",
+          "vegetable broth",
+          "kosher salt",
+          "lime juice"
+        ]
+      },
+      {
+        "component_id": "fresh-toppings",
+        "name": "avocado, radish, cilantro, and tortilla-chip toppings",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "avocados",
+          "radishes",
+          "cilantro",
+          "corn tortilla chips",
+          "lime wedges"
+        ],
+        "contract": "Assembled from raw/whole ingredients; tortilla chips are store-bought with a plain-corn, non-peanut-oil contract."
+      }
+    ],
+    "equipment": [
+      "5- to 6-quart Dutch oven or heavy pot",
+      "wooden spoon",
+      "knife",
+      "cutting board",
+      "colander",
+      "can opener",
+      "small bowl",
+      "measuring cups and spoons",
+      "ladle"
+    ],
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 33,
+    "total_time_minutes": 45,
+    "prep_minutes": 12,
+    "cook_minutes": 33,
+    "total_minutes": 45,
+    "time_clock": "Prep 12 (all dicing, spice mix, toppings except avocado). Cook 33 = 8 soften + 2 bloom + 20 (5 return to simmer + 15 uncovered simmer) + 3 finish. Avocado dicing overlaps the simmer. Stovetop only; no oven, so no preheat.",
+    "heat": "Stovetop only. Medium to soften the onion and pepper; medium-high to return to a simmer; medium-low uncovered simmer. No oven.",
+    "doneness": "Chili thick enough to mound on a spoon; beans tender and some crushed into the base; pumpkin fully melted into a brick-red, glossy chili; no raw spice taste. kitchen_tested is false.",
+    "effort_level": "easy",
+    "ingredient_complexity": "standard",
+    "classification_sidecar": "d03-classification.json",
+    "classification_history": [],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Tortilla chips are contracted not to be fried in peanut oil. Avocado is a fruit, not a nut.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based chili. No dairy (no cheese, no sour cream; avocado is the creamy topping), no shellfish, no meat, no poultry, no nuts. Vegetable broth, 100% pure pumpkin, and plain corn tortilla chips (non-peanut oil) are hard shopping contracts, not 'if' claims."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free, vegetarian, and plant_based. Every ingredient is plant-derived. Vegetable broth (never chicken/beef/bone broth) and plain corn chips are hard contracts. No cheese or sour cream garnish anywhere in the recipe.",
+    "allergens": [],
+    "allergen_notes": [
+      "No allergen tokens: no egg, milk, peanut, tree_nut, soy, wheat, sesame, shellfish, finfish, meat, or poultry in the written ingredients.",
+      "Tortilla chips are contracted as plain corn chips (corn, oil, salt) fried in a non-peanut oil, so no wheat or peanut token.",
+      "Chili powder is contracted as a plain spice blend with no added flour.",
+      "The allergen list is an explicit empty list, not an omission."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based chili. No dairy (no cheese, no sour cream; avocado is the creamy topping), no shellfish, no meat, no poultry, no nuts. Vegetable broth, 100% pure pumpkin, and plain corn tortilla chips (non-peanut oil) are hard shopping contracts, not 'if' claims.",
+    "vocabulary_tag_ids": [
+      "american",
+      "smoky",
+      "spicy",
+      "savory",
+      "stews",
+      "fresh"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims; every claim rests on a hard ingredient contract.",
+      "allergens_runtime": "Package tokens use milk (not dairy) and wheat (not gluten). Live PACKAGE_ALLERGEN_IDS uses dairy/nuts/cashew/... and lacks egg, soy, wheat, sesame, milk, tree_nut; keep package tokens and do not silently remap.",
+      "classification": "D-03 canonical fields effort_level and ingredient_complexity are on recipe_version. Legacy effort / effort_band / complexity strings are deliberately not authored. Factor scores and reason codes live in the d03-classification.json sidecar, not in runtime fields.",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "vocabulary": "american is the D-02 cuisine slug used for southwestern (southwestern has no D-02 slug; same pattern as cajun → american). smoky, spicy, savory, fresh are flavor slugs; stews is the meal_style slug that best fits a chili. pinto beans and pumpkin have no D-02 ingredient slugs.",
+      "meal_format": "chili is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "pinto beans — no D-02 ingredient slug; not copied into tags.",
+      "hh001_contract": "plant_based_compatible true rests on vegetable broth, plain corn chips, and no cheese/sour cream garnish. Unconditional.",
+      "allergens": "Empty list is deliberate: no tokens present."
+    },
+    "culinary_hash": "sha256:655f59f15e726b69eaf8d32a3447f69f83896fdfd73d5dd9e3ed2170f5e42cbd",
+    "culinary_hash_note": "sha256 over culinary content (ingredients, steps, components, equipment, times, heat, doneness, dietary eligibility/labels, allergens, tags). Excludes effort_level / ingredient_complexity and image metadata, so a classification-only amendment does not change it."
+  },
+  "image": {
+    "image_id": "img_pumpkin-pinto-bean-chili_v1",
+    "dish_id": "pumpkin-pinto-bean-chili",
+    "recipe_version_id": "rv_pumpkin-pinto-bean-chili_v1",
+    "asset_generated": true,
+    "master_ref": "pumpkin-pinto-bean-chili.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "pumpkin-pinto-bean-chili.webp",
+        "spec_catalog_path": "/images/meals/pumpkin-pinto-bean-chili.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "pumpkin-pinto-bean-chili-640.webp",
+        "spec_catalog_path": "/images/meals/pumpkin-pinto-bean-chili-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the GenerateImage source to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs via export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage (4:3 or landscape) from image-prompt.md with the house-quality reference for quality/light only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-12 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_by": "Juniper (Harbor Eats - Catalog Curator)",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r1.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "pumpkin-pinto-bean-chili-640.webp",
+    "master_filename": "pumpkin-pinto-bean-chili.webp",
+    "card_filename": "pumpkin-pinto-bean-chili-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "e3a45bcf040951edd81a2188270e1d9366d61b4ba62ee96a0550af093d48d6b9",
+      "pumpkin-pinto-bean-chili.webp": "2343efec3dd258b58dbaa63f62208d3b469e875d84397d0764c8bf27d57c72c3",
+      "pumpkin-pinto-bean-chili-640.webp": "84d616844b1be07e9a2dff6ecf246cf12fd0a99e06547a2adf70e2b842238d9c"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient is used: aromatics in step 2, spices/paste in step 3, pumpkin/tomatoes/beans/broth/salt in step 4, lime/avocado/radish/cilantro/chips in step 5. Salt split 1/2 + 1 tsp."
+    },
+    {
+      "check": "fat",
+      "result": "pass",
+      "detail": "2 tbsp olive oil, used in step 2. No other added fat."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Chili powder (spice blend) and tortilla chips are store-bought with explicit contracts. Chili base built in the pot; no canned chili, no seasoning packet."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 12 + cook 33 (8 + 2 + 20 + 3) = 45. Avocado dicing overlaps the simmer. No oven."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Cans do not quarter cleanly; partial-can amounts and shorter simmers are stated in scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=false, contains_poultry=false, contains_finfish=false, contains_shellfish=false, contains_dairy=false, plant_based_compatible=true, vegetarian_compatible=true, nut_policy=none, hh001_eligible=true. Allergens: none (explicit empty list). Labels: dairy_free, vegetarian, plant_based."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "Tags american, smoky, spicy, savory, stews, fresh are active D-02 slugs in taste-vocabulary.js. chili and pinto beans are metadata."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level easy (factor sum 2); ingredient_complexity standard (factor sum 2). Factors and reason codes in d03-classification.json. WAVE proposal easy/simple."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit (pumpkin-pinto-bean-chili.webp, pumpkin-pinto-bean-chili-640.webp, img_v1.jpg). asset_generated is true. package_revision freeze-r1."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY_json",
+      "detail": "freeze_integrity.py is run on this directory after finalize; its PASS/FAIL lives only in FREEZE_INTEGRITY.json and is not restated here."
+    }
+  ],
+  "scaling_notes": {
+    "1": "Quarter everything; use a 2-quart saucepan. Use about 1/4 of the pumpkin can (about 1/2 cup) and refrigerate the rest. The smaller volume thickens faster: simmer about 10 minutes.",
+    "2": "Halve everything in a 3-quart saucepan; 1 can of beans; about half the pumpkin can. Simmer about 12 minutes.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "vegetable broth contract",
+      "100% pure pumpkin contract",
+      "plain corn chips (non-peanut oil) contract",
+      "no cheese or sour cream",
+      "dice avocado at serving"
+    ]
+  },
+  "coverage_contribution": "Opens the chili format (0 in the 50-meal base; deferred twice). October pumpkin; pinto beans stay out of the black-bean Mexican cluster. The only new legume-led HH001 meal this wave, and HH001's first chili.",
+  "near_duplicate_review": "Compared with Smoky Lentil Sweet Potato Stew: both smoky plant pots, but that is a lentil-sweet-potato stew; this is a bean chili with chili-powder/cumin/oregano spicing, pumpkin body, and fresh crunchy toppings. Compared with Chipotle Lime Black Bean Bowls, Black Bean Quesadillas, and Crispy Chipotle Tofu Tacos: different bean (pinto), different format (pot chili vs bowl/handheld), no rice. Compared with White Bean Kale Soup: brothy Italian-leaning soup vs thick spiced chili. Deliberately not turkey chili and not a black-bean chili. Not a live-catalog duplicate.",
+  "batch_label": "B",
+  "batch_challenges": "B",
+  "selection_alignment": "Matches selection.json: southwestern · chili · pinto beans · hh001_intent true. expected_allergens [] matches (empty list). Rough band 30–45; written clock 45. D-03 re-scored at package time: easy (matches) / standard (selection proposed simple; rubric list-length band moves it).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

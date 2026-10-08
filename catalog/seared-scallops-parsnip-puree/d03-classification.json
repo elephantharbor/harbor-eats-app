@@ -1,0 +1,66 @@
+{
+  "slug": "seared-scallops-parsnip-puree",
+  "recipe_version_id": "rv_seared-scallops-parsnip-puree_v1",
+  "package_revision": "freeze-r2",
+  "assigned_by": "Juniper (Harbor Eats - Catalog Curator)",
+  "assigned_on": "2026-10-08",
+  "rubric": "D-03 (factory SKILL.md)",
+  "conventions": {
+    "ingredient_count_band": "Counted ingredients exclude optional items, salt, black pepper, water, and cooking oils: <=8 -> 0, 9-14 -> 1, 15+ -> 2 (D-03 rubric; corrected at freeze-r2 from the non-rubric <=12 / 13-16 / 17+ band, Vale r1).",
+    "pantry_familiarity": "Kept 0; specialty-store items score once under specialty_burden (no double counting). Cultural unfamiliarity adds no points."
+  },
+  "effort_factors": {
+    "active_prep": 1,
+    "active_attention": 2,
+    "active_components": 2,
+    "technique": 2,
+    "coordination_cleanup_equipment": 1
+  },
+  "effort_score": 8,
+  "effort_level": "involved",
+  "effort_floors_applied": [
+    "attention_2_plus_other_ge1_min_moderate",
+    "technique_2_plus_prep_or_components_involved"
+  ],
+  "complexity_factors": {
+    "ingredient_count_band": 0,
+    "specialty_burden": 1,
+    "flavor_component_breadth": 1,
+    "pantry_familiarity": 0
+  },
+  "complexity_score": 2,
+  "ingredient_complexity": "standard",
+  "ingredient_count": 7,
+  "counted_ingredient_ids": [
+    "sea-scallops",
+    "parsnips",
+    "whole-milk",
+    "unsalted-butter",
+    "fresh-sage",
+    "lemon",
+    "baby-arugula"
+  ],
+  "specialty_items": [
+    "dry-packed sea scallops"
+  ],
+  "reason_codes": {
+    "effort": [
+      "steady_prep",
+      "continuous_attention",
+      "multi_component"
+    ],
+    "ingredient": [
+      "short_list",
+      "one_specialty",
+      "multi_build"
+    ]
+  },
+  "reason_codes_status": "closed v1 set (d03-design/FACTORY-SKILL-AMENDMENT.md, draft), remapped at freeze-r2 from Vale r1 suggested mappings",
+  "borderline": false,
+  "rationale": "The scallop sear is a precision technique (crust without overcooking, pulled at 120 to 125 F) and the brown butter needs watching (technique 2, attention 2). Purée, brown butter, scallops, and salad are 4 made components (2). Saucepan, blender, two skillets, and a salad bowl run in parallel (coordination 1). Score 8 is involved; the technique floor also applies. Complexity: a short list of 7 counted items, but dry-packed scallops are a fishmonger or quality-counter item (specialty 1) and there are 4 components (breadth 1). Score 2 is standard, matching WAVE.",
+  "wave_proposal": {
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "time_band": "30-45"
+  }
+}

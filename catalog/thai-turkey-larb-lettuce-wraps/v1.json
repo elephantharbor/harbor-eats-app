@@ -1,0 +1,596 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 (Batch B). Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "thai-turkey-larb-lettuce-wraps",
+    "slug": "thai-turkey-larb-lettuce-wraps",
+    "title": "Thai Turkey Larb Lettuce Wraps",
+    "description": "Ground turkey cooked into fine crumbles and dressed warm with lime juice, fish sauce, and chile flakes, then tossed with shallots, scallions, a fistful of mint and cilantro, and nutty homemade toasted rice powder. Spooned into butter lettuce cups with cool cucumber. Bright, herby, and on the table in under 30 minutes.",
+    "cuisine": "thai-inspired",
+    "meal_format": "lettuce-wraps",
+    "primary_ingredient": "ground turkey",
+    "vocabulary_tag_ids": [
+      "thai",
+      "spicy",
+      "fresh",
+      "herbaceous",
+      "tangy",
+      "crunchy"
+    ],
+    "current_recipe_id": "rcp_thai-turkey-larb-lettuce-wraps",
+    "current_version_id": "rv_thai-turkey-larb-lettuce-wraps_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_thai-turkey-larb-lettuce-wraps",
+    "dish_id": "thai-turkey-larb-lettuce-wraps",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_thai-turkey-larb-lettuce-wraps_v1",
+    "recipe_id": "rcp_thai-turkey-larb-lettuce-wraps",
+    "dish_id": "thai-turkey-larb-lettuce-wraps",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present on disk (thai-turkey-larb-lettuce-wraps.webp, thai-turkey-larb-lettuce-wraps-640.webp) with source img_v1.jpg; asset_generated is true; package_revision freeze-r1. Not certified. Not published. kitchen_tested is false.",
+    "title": "Thai Turkey Larb Lettuce Wraps",
+    "description": "Ground turkey cooked into fine crumbles and dressed warm with lime juice, fish sauce, and chile flakes, then tossed with shallots, scallions, a fistful of mint and cilantro, and nutty homemade toasted rice powder. Spooned into butter lettuce cups with cool cucumber. Bright, herby, and on the table in under 30 minutes.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "ground-turkey",
+        "name": "ground turkey",
+        "display_name": "ground turkey (85–93% lean)",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "a dark-meat blend (85%) stays juiciest. Poultry.",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "uncooked jasmine rice (or sticky rice)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "toasted and ground into khao khua (toasted rice powder) in the recipe",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral high-heat oil",
+        "display_name": "neutral high-heat oil (canola or grapeseed)",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "keeps the turkey in fine crumbles as it cooks",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fish-sauce",
+        "name": "fish sauce",
+        "display_name": "fish sauce",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "Finfish (anchovy).",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "limes",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "juice 2 to get 1/4 cup; cut the third into wedges",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "granulated sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dried-chile-flakes",
+        "name": "dried chile flakes",
+        "display_name": "Thai dried chile flakes or crushed red pepper",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "medium heat; use 1/2 tsp for mild or up to 2 1/2 tsp for Thai-hot",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "shallots",
+        "name": "shallots",
+        "display_name": "shallots",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved and thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-mint",
+        "name": "fresh mint",
+        "display_name": "fresh mint leaves",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "large leaves torn",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "fresh cilantro leaves and tender stems",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "roughly chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "butter-lettuce",
+        "name": "butter lettuce",
+        "display_name": "butter lettuce",
+        "quantity": 2,
+        "unit": "count",
+        "note": "2 heads, about 16 cups. Lettuce variety; no dairy.",
+        "preparation": "leaves separated, washed, and dried",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "english-cucumber",
+        "name": "English cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced on a slight bias",
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep the herbs, aromatics, and wraps",
+        "body": "Thinly slice the shallots and scallions. Pick and tear the mint; chop the cilantro. Separate, wash, and spin dry the lettuce leaves. Slice the cucumber. Juice 2 limes to get 1/4 cup and cut the third into wedges. About 10 minutes.",
+        "ingredient_refs": [
+          "shallots",
+          "scallions",
+          "fresh-mint",
+          "cilantro",
+          "butter-lettuce",
+          "english-cucumber",
+          "limes"
+        ],
+        "clock": {
+          "phase": "prep",
+          "minutes": 10
+        }
+      },
+      {
+        "step_number": 2,
+        "title": "Toast and grind the rice",
+        "body": "Put the 2 tbsp raw jasmine rice in a dry 12-inch skillet over medium heat. Toast, shaking and stirring constantly, until the grains are deep golden and smell like popcorn, about 5 minutes. Tip into a mortar or spice grinder and grind to coarse sand (about 1 minute). This is the toasted rice powder. About 6 minutes.",
+        "ingredient_refs": [
+          "jasmine-rice"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 6
+        }
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the turkey",
+        "body": "Return the same skillet to medium-high heat with the 1 tbsp oil. Add the turkey and the 3 tbsp water and break it into small crumbles with a spatula. Cook, stirring and breaking it up, until no pink remains, the liquid has evaporated, and a few bits are lightly browned, 6 to 8 minutes (165 F). About 8 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "ground-turkey",
+          "water"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 8
+        }
+      },
+      {
+        "step_number": 4,
+        "title": "Dress the larb",
+        "body": "Take the skillet off the heat and let it cool for 1 minute. Stir in the 3 tbsp fish sauce, the 1/4 cup lime juice, the 1 tsp sugar, and the chile flakes. Fold in the shallots, scallions, two-thirds of the toasted rice powder, and most of the mint and cilantro. Taste: it should be sharp, salty, and spicy; add a squeeze more lime or a dash of fish sauce if needed. About 3 minutes.",
+        "ingredient_refs": [
+          "fish-sauce",
+          "limes",
+          "sugar",
+          "dried-chile-flakes",
+          "shallots",
+          "scallions",
+          "jasmine-rice",
+          "fresh-mint",
+          "cilantro"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 3
+        }
+      },
+      {
+        "step_number": 5,
+        "title": "Serve as wraps",
+        "body": "Pile the larb into a serving bowl or onto a platter. Scatter the remaining herbs and toasted rice powder on top. Arrange the lettuce cups, cucumber slices, and lime wedges alongside. To eat, spoon larb into a lettuce leaf, add cucumber, squeeze lime, and fold. About 2 minutes. kitchen_tested is false.",
+        "ingredient_refs": [
+          "ground-turkey",
+          "fresh-mint",
+          "cilantro",
+          "jasmine-rice",
+          "butter-lettuce",
+          "english-cucumber",
+          "limes"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 2
+        }
+      }
+    ],
+    "components": [
+      {
+        "component_id": "toasted-rice-powder",
+        "name": "toasted rice powder (khao khua)",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice"
+        ]
+      },
+      {
+        "component_id": "turkey-larb",
+        "name": "lime-chile turkey larb",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ground turkey",
+          "neutral oil",
+          "water",
+          "fish sauce",
+          "lime juice",
+          "sugar",
+          "dried chile flakes",
+          "shallots",
+          "scallions",
+          "fresh mint",
+          "cilantro",
+          "toasted rice powder"
+        ]
+      },
+      {
+        "component_id": "wraps",
+        "name": "butter lettuce cups with cucumber and lime",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "butter lettuce",
+          "English cucumber",
+          "lime wedges"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "spatula",
+      "mortar and pestle or spice grinder",
+      "salad spinner",
+      "knife",
+      "cutting board",
+      "citrus juicer",
+      "serving bowl and platter",
+      "measuring cups and spoons"
+    ],
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 19,
+    "total_time_minutes": 29,
+    "prep_minutes": 10,
+    "cook_minutes": 19,
+    "total_minutes": 29,
+    "time_clock": "Prep 10 (herbs, aromatics, lettuce, cucumber, limes). Cook 19 = 6 toast/grind rice + 8 turkey + 3 dress + 2 serve. One skillet. No oven.",
+    "heat": "Stovetop only. Medium dry heat to toast the rice; medium-high for the turkey. Dressing goes in off the heat. No oven.",
+    "doneness": "Rice powder deep golden and nutty; turkey in fine crumbles, no pink (165 F), liquid evaporated; herbs bright and just barely wilted from the residual warmth. kitchen_tested is false.",
+    "effort_level": "easy",
+    "ingredient_complexity": "standard",
+    "classification_sidecar": "d03-classification.json",
+    "classification_history": [],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Toasted rice powder provides the crunch traditionally; no peanut garnish.",
+      "hh001_eligible": false,
+      "hh001_reason": "Ground turkey is poultry. HH001 does not eat poultry. The dish is otherwise dairy-free, shellfish-free, and nut-free, but poultry alone makes it ineligible."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: no milk, butter, cream, or cheese. Contains poultry and fish sauce, so not vegetarian or plant-based.",
+    "allergens": [
+      "poultry",
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Poultry covers the ground turkey (FlavorWeave supports poultry as a token).",
+      "Finfish covers the fish sauce (anchovy).",
+      "No egg, milk, wheat, soy, sesame, peanut, tree_nut, shellfish, or meat."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Ground turkey is poultry. HH001 does not eat poultry. The dish is otherwise dairy-free, shellfish-free, and nut-free, but poultry alone makes it ineligible.",
+    "vocabulary_tag_ids": [
+      "thai",
+      "spicy",
+      "fresh",
+      "herbaceous",
+      "tangy",
+      "crunchy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims; every claim rests on a hard ingredient contract.",
+      "allergens_runtime": "Package tokens use milk (not dairy) and wheat (not gluten). Live PACKAGE_ALLERGEN_IDS uses dairy/nuts/cashew/... and lacks egg, soy, wheat, sesame, milk, tree_nut; keep package tokens and do not silently remap.",
+      "classification": "D-03 canonical fields effort_level and ingredient_complexity are on recipe_version. Legacy effort / effort_band / complexity strings are deliberately not authored. Factor scores and reason codes live in the d03-classification.json sidecar, not in runtime fields.",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "vocabulary": "thai is the D-02 cuisine slug (thai-inspired synonym). spicy, fresh, herbaceous, tangy, crunchy are active slugs (crunchy = lettuce, cucumber, toasted rice). turkey has no D-02 ingredient slug.",
+      "meal_format": "lettuce-wraps is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "ground turkey — no D-02 ingredient slug; not copied into tags.",
+      "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes poultry; listed because turkey is present."
+    },
+    "culinary_hash": "sha256:ff6ca65444468d53b84a4d858ddc8fe20a8afc596ffe6ff877606b8addf90f0f",
+    "culinary_hash_note": "sha256 over culinary content (ingredients, steps, components, equipment, times, heat, doneness, dietary eligibility/labels, allergens, tags). Excludes effort_level / ingredient_complexity and image metadata, so a classification-only amendment does not change it."
+  },
+  "image": {
+    "image_id": "img_thai-turkey-larb-lettuce-wraps_v1",
+    "dish_id": "thai-turkey-larb-lettuce-wraps",
+    "recipe_version_id": "rv_thai-turkey-larb-lettuce-wraps_v1",
+    "asset_generated": true,
+    "master_ref": "thai-turkey-larb-lettuce-wraps.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "thai-turkey-larb-lettuce-wraps.webp",
+        "spec_catalog_path": "/images/meals/thai-turkey-larb-lettuce-wraps.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "thai-turkey-larb-lettuce-wraps-640.webp",
+        "spec_catalog_path": "/images/meals/thai-turkey-larb-lettuce-wraps-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the GenerateImage source to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs via export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage (4:3 or landscape) from image-prompt.md with the house-quality reference for quality/light only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-12 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_by": "Juniper (Harbor Eats - Catalog Curator)",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r1.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "thai-turkey-larb-lettuce-wraps-640.webp",
+    "master_filename": "thai-turkey-larb-lettuce-wraps.webp",
+    "card_filename": "thai-turkey-larb-lettuce-wraps-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "87f9ff798de45782c5f2c007ef154fa0395969b5bacb8521215a6bda273bcb1a",
+      "thai-turkey-larb-lettuce-wraps.webp": "f4dbf6a1445c198068f8afd2fa30edc95578fc2e8ead9d755354c45a52104e1c",
+      "thai-turkey-larb-lettuce-wraps-640.webp": "3ca9409ffcd66236384ff088bd5dfaabe610d2a6490d73befd26f3a10fb885fd"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient is used: herbs/aromatics/lettuce/cucumber/limes in step 1, rice in step 2, turkey/oil/water in step 3, dressing and folds in step 4, serving in step 5. Rice powder split two-thirds in, one-third on top."
+    },
+    {
+      "check": "fat",
+      "result": "pass",
+      "detail": "1 tbsp neutral oil for the turkey. Rice toasts dry."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Toasted rice powder made in the recipe (no store-bought khao khua needed). Dressing built in the pan."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 10 + cook 19 (6 + 8 + 3 + 2) = 29."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Rice powder is easiest toasted at full 2 tbsp; extra stores well."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=false, contains_poultry=true, contains_finfish=true, contains_shellfish=false, contains_dairy=false, plant_based_compatible=false, vegetarian_compatible=false, nut_policy=none, hh001_eligible=false. Allergens: poultry, finfish. Labels: dairy_free."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "Tags thai, spicy, fresh, herbaceous, tangy, crunchy are active D-02 slugs in taste-vocabulary.js. lettuce-wraps and ground turkey are metadata."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level easy (factor sum 2); ingredient_complexity standard (factor sum 2). Factors and reason codes in d03-classification.json. WAVE proposal easy/standard."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit (thai-turkey-larb-lettuce-wraps.webp, thai-turkey-larb-lettuce-wraps-640.webp, img_v1.jpg). asset_generated is true. package_revision freeze-r1."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY_json",
+      "detail": "freeze_integrity.py is run on this directory after finalize; its PASS/FAIL lives only in FREEZE_INTEGRITY.json and is not restated here."
+    }
+  ],
+  "scaling_notes": {
+    "1": "6 oz turkey, 1 1/2 tsp rice (toast 2 tbsp anyway and store the extra powder airtight), 2 1/4 tsp fish sauce, 1 tbsp lime juice, pinch sugar, scant 1/2 tsp chile, 1/2 shallot, 1 scallion, 1/4 cup mint, 2 tbsp cilantro, 1/2 head lettuce, 1/4 cucumber. 8-inch skillet.",
+    "2": "Halve everything; 10-inch skillet; toast the full 2 tbsp rice and keep the extra powder.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "dress off the heat (herbs and lime stay bright)",
+      "toast rice to deep golden, not pale"
+    ]
+  },
+  "coverage_contribution": "Turkey 0→1 (open three waves) and lettuce wraps 0→1. Under-30, bright, fresh weeknight dinner for general households.",
+  "near_duplicate_review": "Compared with Thai Basil Eggplant Stir-Fry: Thai flavors but a hot, saucy vegetable stir-fry over rice; this is a lime-dressed meat salad in lettuce. Compared with Thai Red Curry with Kabocha: coconut curry. Compared with Crispy Chipotle Tofu Tacos / Crispy Fish Tacos: handhelds in tortillas, different cuisine. Deliberately turkey, not chicken (chicken is adding elsewhere this wave). Not a live-catalog duplicate.",
+  "batch_label": "B",
+  "batch_challenges": "B",
+  "selection_alignment": "Matches selection.json: thai-inspired · lettuce-wraps · ground turkey · hh001_intent false. expected_allergens [finfish] is extended with poultry (FlavorWeave supported token; turkey is present). Rough band Under 30; written clock 29. D-03 re-scored: easy / standard (matches).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}
