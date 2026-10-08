@@ -1,0 +1,626 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 Batch A. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "A",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 Batch A: Juniper authored text, plating brief, prompt, and classification; Cora generates the image",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "sheet-pan-gnocchi-brussels-apples",
+    "slug": "sheet-pan-gnocchi-brussels-apples",
+    "title": "Sheet-Pan Crispy Gnocchi with Brussels Sprouts and Apples",
+    "description": "Shelf-stable potato gnocchi roasted straight from the package until golden and crisp, with deeply browned Brussels sprouts, red onion, and apple wedges, finished in a sticky maple-Dijon-cider glaze with fresh thyme. Egg-free, dairy-free gnocchi contracted; no Parmesan, no butter, no nuts.",
+    "cuisine": "italian-inspired",
+    "meal_format": "sheet-pan",
+    "primary_ingredient": "potato gnocchi",
+    "vocabulary_tag_ids": [
+      "italian",
+      "crispy",
+      "savory",
+      "tangy"
+    ],
+    "current_recipe_id": "rcp_sheet-pan-gnocchi-brussels-apples",
+    "current_version_id": "rv_sheet-pan-gnocchi-brussels-apples_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_sheet-pan-gnocchi-brussels-apples",
+    "dish_id": "sheet-pan-gnocchi-brussels-apples",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08 Batch A, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_sheet-pan-gnocchi-brussels-apples_v1",
+    "recipe_id": "rcp_sheet-pan-gnocchi-brussels-apples",
+    "dish_id": "sheet-pan-gnocchi-brussels-apples",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. Not certified. Not published. kitchen_tested is false.",
+    "title": "Sheet-Pan Crispy Gnocchi with Brussels Sprouts and Apples",
+    "description": "Shelf-stable potato gnocchi roasted straight from the package until golden and crisp, with deeply browned Brussels sprouts, red onion, and apple wedges, finished in a sticky maple-Dijon-cider glaze with fresh thyme. Egg-free, dairy-free gnocchi contracted; no Parmesan, no butter, no nuts.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "shelf-stable-potato-gnocchi",
+        "name": "shelf-stable potato gnocchi",
+        "display_name": "shelf-stable potato gnocchi (egg-free, dairy-free)",
+        "quantity": 2,
+        "unit": "package",
+        "note": "Two 16- to 17.6-oz vacuum-sealed shelf-stable packages (about 2 lb total). REQUIRED HH001 shopping contract: the ingredient label lists no milk, milk powder, whey, cheese, butter, or egg (typical label: potato, wheat flour, potato starch, salt). Do not use refrigerated fresh gnocchi, ricotta gnocchi, cheese-filled gnocchi, or cauliflower gnocchi. Roast straight from the package; do not boil.",
+        "preparation": "pieces separated; not boiled",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "brussels-sprouts",
+        "name": "Brussels sprouts",
+        "display_name": "Brussels sprouts",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "about 24 medium sprouts",
+        "preparation": "trimmed, halved through the stem (quartered if wider than 1.5 inches)",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "crisp-apples",
+        "name": "crisp apples",
+        "display_name": "crisp apples (Honeycrisp, Fuji, or Pink Lady)",
+        "quantity": 2,
+        "unit": "count",
+        "note": "about 8 oz each; skin on for color",
+        "preparation": "cored, cut into 3/4-inch wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "about 8 oz",
+        "preparation": "cut into 1-inch wedges through the root end",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 5,
+        "unit": "tbsp",
+        "note": "2 tbsp for the sprout pan, 3 tbsp for the gnocchi pan. No butter.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "fresh-thyme",
+        "name": "fresh thyme",
+        "display_name": "fresh thyme leaves",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "from about 8 sprigs; 2 tsp on the gnocchi pan, 1 tsp in the glaze",
+        "preparation": "leaves stripped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "maple-syrup",
+        "name": "pure maple syrup",
+        "display_name": "pure maple syrup",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "pure maple, not pancake syrup",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "apple-cider-vinegar",
+        "name": "apple cider vinegar",
+        "display_name": "apple cider vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dijon-mustard",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "mustard is not a US major allergen and has no runtime allergen token; disclosed in allergen_notes",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "3/4 tsp sprout pan, 1/2 tsp gnocchi pan, 1/4 tsp glaze",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "freshly ground black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "1/4 tsp per pan",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the oven and prep",
+        "body": "Set racks in the upper-middle and lower-middle positions and heat the oven to 450°F. The oven preheats during this prep and the pan loading in step 2 (about 15 minutes total; preheat overlap stated, so it is not added to cook time). Trim and halve the Brussels sprouts. Core the apples and cut into 3/4-inch wedges. Cut the red onion into 1-inch wedges through the root. Strip the thyme leaves. In a small bowl whisk the maple syrup, cider vinegar, Dijon, 1 tsp thyme, and 1/4 tsp salt; this is the glaze. Open the gnocchi and break apart any pieces stuck together. HARD CONTRACT: gnocchi label shows no milk, whey, cheese, butter, or egg; no Parmesan or butter anywhere in this recipe.",
+        "ingredient_refs": [
+          "brussels-sprouts",
+          "crisp-apples",
+          "red-onion",
+          "fresh-thyme",
+          "maple-syrup",
+          "apple-cider-vinegar",
+          "dijon-mustard",
+          "kosher-salt",
+          "shelf-stable-potato-gnocchi"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Load two sheet pans",
+        "body": "Pan 1: toss the sprouts and onion with 2 tbsp olive oil, 3/4 tsp salt, and 1/4 tsp pepper; turn the sprouts cut-side down. Pan 2: toss the uncooked gnocchi and apple wedges with 3 tbsp olive oil, 1/2 tsp salt, 1/4 tsp pepper, and 2 tsp thyme; spread in a single layer with a little space between pieces so they crisp instead of steam.",
+        "ingredient_refs": [
+          "brussels-sprouts",
+          "red-onion",
+          "olive-oil",
+          "kosher-salt",
+          "black-pepper",
+          "shelf-stable-potato-gnocchi",
+          "crisp-apples",
+          "fresh-thyme"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Roast",
+        "body": "Roast the gnocchi pan on the upper rack and the sprout pan on the lower rack for 15 minutes.",
+        "ingredient_refs": [
+          "shelf-stable-potato-gnocchi",
+          "brussels-sprouts"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Flip, swap, and finish roasting",
+        "body": "With a thin metal spatula, flip the gnocchi and apples; toss the sprouts and onion. Swap rack positions. Roast 10 minutes more, until the gnocchi are puffed, golden, and crisp at the edges, the apples are browned at the edges but still hold their shape, and the sprouts are deeply browned on the cut sides and tender when pierced.",
+        "ingredient_refs": [
+          "shelf-stable-potato-gnocchi",
+          "crisp-apples",
+          "brussels-sprouts",
+          "red-onion"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Glaze",
+        "body": "Drizzle the glaze over both pans, about half on each, and toss. Return to the oven for 3 minutes, until the glaze bubbles and turns sticky.",
+        "ingredient_refs": [
+          "maple-syrup",
+          "apple-cider-vinegar",
+          "dijon-mustard"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Combine and serve",
+        "body": "Slide the sprouts and onion onto the gnocchi pan (or a warm platter) and toss gently. Taste; add a pinch of salt if needed. Serve right away while the gnocchi are crisp. No Parmesan, no butter, no nuts. kitchen_tested is false.",
+        "ingredient_refs": [
+          "brussels-sprouts",
+          "shelf-stable-potato-gnocchi",
+          "kosher-salt"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "maple-dijon-glaze",
+        "name": "maple-Dijon-cider glaze",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "pure maple syrup",
+          "apple cider vinegar",
+          "Dijon mustard",
+          "fresh thyme",
+          "kosher salt"
+        ]
+      },
+      {
+        "component_id": "roasted-gnocchi-sprouts-apples",
+        "name": "roasted gnocchi, sprouts, apples, and onion",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "shelf-stable potato gnocchi (egg-free, dairy-free)",
+          "Brussels sprouts",
+          "crisp apples",
+          "red onion",
+          "olive oil",
+          "fresh thyme"
+        ]
+      }
+    ],
+    "equipment": [
+      "2 rimmed half-sheet pans",
+      "thin metal spatula",
+      "small bowl and whisk",
+      "knife",
+      "cutting board",
+      "measuring spoons"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 30,
+    "total_time_minutes": 45,
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "total_minutes": 45,
+    "heat": "450°F oven, two racks (upper-middle and lower-middle). Preheat overlaps prep.",
+    "doneness": "Gnocchi puffed, golden, and crisp at the edges with soft centers. Sprouts deeply browned on cut sides and knife-tender. Apples browned at edges but holding shape. Glaze sticky, not pooled. kitchen_tested is false.",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. The HH001 cashew exception is not used.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based sheet-pan dinner. No dairy (no Parmesan, no butter; gnocchi contracted milk-free), no shellfish, no meat, no poultry, no fish. Gnocchi also contracted egg-free so plant_based holds unconditionally. Nuts absent. Wheat present (HH001 allows wheat)."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free, vegetarian, and plant_based. The shelf-stable gnocchi must list no milk, whey, cheese, butter, or egg; that is a hard shopping contract, not a conditional dairy claim. No Parmesan, no butter, no brown-butter sauce.",
+    "allergens": [
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Wheat covers the wheat flour in the shelf-stable potato gnocchi.",
+      "Mustard (Dijon) is present. It is not a US major allergen and has no FlavorWeave runtime token; disclosed here for households that track it.",
+      "No egg or milk: the gnocchi contract excludes milk, whey, cheese, butter, and egg. No soy, sesame, peanut, tree_nut, shellfish, or finfish in the written ingredients."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based sheet-pan dinner. No dairy (no Parmesan, no butter; gnocchi contracted milk-free), no shellfish, no meat, no poultry, no fish. Gnocchi also contracted egg-free so plant_based holds unconditionally. Nuts absent. Wheat present (HH001 allows wheat).",
+    "vocabulary_tag_ids": [
+      "italian",
+      "crispy",
+      "savory",
+      "tangy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Notes do not replace the array. Live PACKAGE_ALLERGEN_IDS may say dairy/nuts; do not silently remap milk to dairy or tree_nut to nuts.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in src/lib/taste-vocabulary.js (read-only). dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level and ingredient_complexity are the D-03 canonical fields. Legacy effort / effort_band / complexity are deliberately not authored. Factor scores and reason codes live in the top-level classification sidecar (factory/cert only, not runtime API V1).",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "images": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "cuisine_gap": "italian-inspired maps to the active D-02 cuisine slug italian, which is in vocabulary_tag_ids.",
+      "meal_format": "sheet-pan is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "potato gnocchi: no D-02 ingredient slug; not copied into tags.",
+      "hh001_contract": "plant_based_compatible true requires contracted egg-free, dairy-free shelf-stable gnocchi and no Parmesan/butter. Unconditional; not a 'skip the cheese' note."
+    }
+  },
+  "image": {
+    "image_id": "img_sheet-pan-gnocchi-brussels-apples_v1",
+    "dish_id": "sheet-pan-gnocchi-brussels-apples",
+    "recipe_version_id": "rv_sheet-pan-gnocchi-brussels-apples_v1",
+    "asset_generated": true,
+    "master_ref": "sheet-pan-gnocchi-brussels-apples.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "sheet-pan-gnocchi-brussels-apples.webp",
+        "spec_catalog_path": "/images/meals/sheet-pan-gnocchi-brussels-apples.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "sheet-pan-gnocchi-brussels-apples-640.webp",
+        "spec_catalog_path": "/images/meals/sheet-pan-gnocchi-brussels-apples-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the AI JPEG to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs with export_meal_webps.py after Cora GenerateImage.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 from image-prompt.md (plating brief first; house-quality reference for light/appeal only); center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Harbor Eats Lead) via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "prompt_authored_by": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI image generated by Cora with GenerateImage from image-prompt.md; master and card WebPs exported with export_meal_webps.py and frozen for preflight/audit at freeze-r1. No stock, web, or third-party imagery.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "sha256": {
+      "img_v1.jpg": "b897accf3bd0d6aedc4c7e0d95b1e74e9618aa1b116c688db4942445c884715c",
+      "sheet-pan-gnocchi-brussels-apples.webp": "65e891f83bfa49d23fe6758e6850c6c5e68ff6e8e8682480c69359c5f921f79a",
+      "sheet-pan-gnocchi-brussels-apples-640.webp": "7e07b01c3b3e2e7089e59e508f6e524c5abcd42654ae713b491f7519012d21ce"
+    },
+    "card_ref": "sheet-pan-gnocchi-brussels-apples-640.webp",
+    "master_filename": "sheet-pan-gnocchi-brussels-apples.webp",
+    "card_filename": "sheet-pan-gnocchi-brussels-apples-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "rejected_assets": [
+      "rejected/attempt1-gnocchi-read-as-tofu-cubes.jpg"
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every ingredient is used in steps 1-6; glaze is mixed in step 1 and applied in step 5; thyme split 2 tsp pan / 1 tsp glaze; salt split 3/4 + 1/2 + 1/4 = 1.5 tsp."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "5 tbsp olive oil: 2 tbsp sprout pan + 3 tbsp gnocchi pan. No butter."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Shelf-stable gnocchi is the only compound ingredient and carries an explicit label contract. Glaze is built in-recipe."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 (step 1 11 + step 2 4) + cook 30 (step 3 15 + step 4 10 + step 5 3 + step 6 2) = 45. Preheat/parallel work stated in the step text."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes for 1, 2, and 4 servings and do-not-scale items."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=false, contains_poultry=false, contains_finfish=false, contains_shellfish=false, contains_dairy=false, nut_policy=none. Allergens wheat. HH001 true. plant_based_compatible true requires contracted egg-free, dairy-free shelf-stable gnocchi and no Parmesan/butter. Unconditional; not a 'skip the cheese' note."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "italian, crispy, savory, tangy are active D-02 slugs. sheet-pan is format metadata only."
+    },
+    {
+      "check": "classification_d03",
+      "result": "pass_curator_assigned",
+      "detail": "effort_level easy (factor sum 2), ingredient_complexity simple (factor sum 1); factors and reason codes in the classification sidecar. Vale checks Gate A enums + Gate J plausibility."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r1."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY.json",
+      "detail": "Freeze Integrity Preflight is run on this exact freeze-r1 file set after finalize; its PASS/FAIL is recorded in FREEZE_INTEGRITY.json in this directory. Vale must not start unless it says PASS."
+    }
+  ],
+  "scaling_notes": {
+    "1": "1/2 package gnocchi, 6 oz sprouts, 1/2 apple, 1/4 onion on one pan; 1.5 tsp each maple and vinegar, 3/4 tsp Dijon. Same 450°F and times.",
+    "2": "1 package gnocchi, 12 oz sprouts, 1 apple, 1/2 onion. One half-sheet pan if pieces stay in a single layer; otherwise use two pans. Half the glaze.",
+    "4": "As written, two pans.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "egg-free, dairy-free gnocchi contract",
+      "no Parmesan or butter",
+      "450°F oven",
+      "single-layer spacing"
+    ]
+  },
+  "coverage_contribution": "Sheet-pan is claimed only by lemon-herb chicken; gnocchi 0->1; Brussels sprouts + apples 0->1 and squarely October. Fast HH001 plant weeknight that is not pasta, bowl, or legume.",
+  "near_duplicate_review": "Compared with Sheet-Pan Lemon Herb Chicken: same sheet-pan format, but plant gnocchi and fall produce vs chicken. Compared with Roasted Butternut Farro Plate: roasted fall vegetables, but no squash and no grain; gnocchi is the starch. Compared with Cashew Pesto Pasta / Mushroom Walnut Bolognese: not a sauced pasta, no nuts. Compared with Potato Leek Gratin: potato-based but no dairy, crisp-roasted not baked in cream. Not a live-catalog duplicate.",
+  "deliberately_not": "Not a fourth Italian plant pasta, not butter-sage gnocchi (dairy), not a squash plate (butternut/kabocha already).",
+  "batch_challenges": "A",
+  "selection_alignment": "Matches WAVE.json/selection.json identity: italian-inspired · sheet-pan · potato gnocchi · hh001_intent true -> hh001_eligible true. Selection time band 30–45; written clock 45 minutes. D-03 labels match the WAVE proposal after rubric scoring.",
+  "classification": {
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "effort_score": 2,
+    "complexity_score": 1,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 0,
+      "active_components": 1,
+      "technique": 0,
+      "coordination_cleanup_equipment": 0
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 0,
+      "specialty_burden": 1,
+      "specialty_items": [
+        "contracted egg-free, dairy-free shelf-stable gnocchi"
+      ],
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredients": [
+      "shelf-stable potato gnocchi",
+      "Brussels sprouts",
+      "crisp apples",
+      "red onion",
+      "fresh thyme",
+      "pure maple syrup",
+      "apple cider vinegar",
+      "Dijon mustard"
+    ],
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "mostly_hands_off"
+      ],
+      "ingredient": [
+        "short_list",
+        "one_specialty"
+      ]
+    },
+    "rationale": {
+      "effort": "Steady prep (1); oven roast with one flip is mostly unattended (0); one whisked glaze is a simple sauce (1); roast technique (0); two sheet pans in one oven with no parallel attended vessel (0, same convention as packets+rice and harissa carrots+couscous). Sum 2 -> easy. Borderline at the easy|moderate edge.",
+      "complexity": "8 countable items (0). Hard-contract egg-free/dairy-free gnocchi scored as one widely available contract specialty (1), by parity with the vegetarian-Parmesan precedent, even though most shelf-stable gnocchi already comply. One maple-Dijon-thyme seasoning profile (0). Sourcing mainstream (0). Sum 1 -> simple."
+    },
+    "borderline": true,
+    "wave_proposal": {
+      "effort_level": "easy",
+      "ingredient_complexity": "simple"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "cultural_bias_guardrail": "Cuisine unfamiliarity adds no points; specialty-store items scored once under specialty_burden, pantry_familiarity kept 0 (r2 convention)."
+  },
+  "classification_history": [],
+  "time_reconstruction": {
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "total_minutes": 45,
+    "prep_steps": [
+      {
+        "step": 1,
+        "minutes": 11
+      },
+      {
+        "step": 2,
+        "minutes": 4
+      }
+    ],
+    "cook_steps": [
+      {
+        "step": 3,
+        "minutes": 15
+      },
+      {
+        "step": 4,
+        "minutes": 10
+      },
+      {
+        "step": 5,
+        "minutes": 3
+      },
+      {
+        "step": 6,
+        "minutes": 2
+      }
+    ],
+    "overlap_steps": [],
+    "rule": "total = prep + cook; overlap steps run inside another step's clock and add 0; any oven/broiler preheat is stated as overlapping prep in the step text."
+  },
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

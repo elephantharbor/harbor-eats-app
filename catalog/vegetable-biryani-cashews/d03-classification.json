@@ -1,0 +1,70 @@
+{
+  "slug": "vegetable-biryani-cashews",
+  "recipe_version_id": "rv_vegetable-biryani-cashews_v1",
+  "package_revision": "freeze-r1",
+  "classification": {
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "effort_score": 8,
+    "complexity_score": 3,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 2,
+      "active_components": 2,
+      "technique": 2,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 1,
+      "specialty_items": [
+        "saffron",
+        "garam masala"
+      ],
+      "flavor_component_breadth": 1,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredient_count": 14,
+    "countable_ingredients": [
+      "basmati rice",
+      "saffron",
+      "yellow onions",
+      "raw cashews",
+      "garlic",
+      "fresh ginger",
+      "serrano chile",
+      "garam masala",
+      "ground turmeric",
+      "cauliflower",
+      "carrots",
+      "frozen peas",
+      "lemons",
+      "fresh mint"
+    ],
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "continuous_attention",
+        "multi_component",
+        "batch_frying"
+      ],
+      "ingredient": [
+        "medium_list",
+        "one_specialty",
+        "multi_build"
+      ]
+    },
+    "notes": "Effort: Steady prep (1); onion frying needs constant stirring (2); fried onions/cashews, vegetable base, and parboiled saffron rice are coordinated components (2); shallow-frying birista plus parboil-to-70% plus sealed dum is multi-stage technique (2); Dutch oven plus parboil pot with critical timing (1). Sum 8 -> involved; floor rule 2 (technique 2 + prep >= 1) also forces involved. Complexity: 14 countable (1). Saffron and garam masala are two widely available spice-aisle specialty items (1). Vegetable masala build plus saffron rice layer (1). Mainstream sourcing (0). Sum 3 -> standard. Indian cuisine adds no points.",
+    "borderline": true,
+    "proposal_from_wave": {
+      "effort_level": "involved",
+      "ingredient_complexity": "standard"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null
+  },
+  "factor_key_note": "Fourth complexity factor stored as pantry_familiarity (the key in the 50 Vale-audited classifications, d03-design/all-50-classifications.json); kept 0 because specialty-store sourcing is scored once under specialty_burden.",
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0-2 easy / 3-5 moderate / 6-10 involved with floors; complexity 0-1 simple / 2-3 standard / 4-8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

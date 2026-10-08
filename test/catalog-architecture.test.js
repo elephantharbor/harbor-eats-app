@@ -186,12 +186,12 @@ describe("catalog import", () => {
         expect(createHash("sha256").update(left).digest("hex")).toBe(createHash("sha256").update(right).digest("hex"));
       }
     }
-    expect(records).toHaveLength(74);
+    expect(records).toHaveLength(99);
     expect(records.filter((record) => record.version_number === 1 && record.source_contract === LEGACY_CONTRACT)).toHaveLength(
       24
     );
     expect(records.filter((record) => record.version_number === 2)).toHaveLength(24);
-    expect(records.filter((record) => record.provenance.factory_certified === 1)).toHaveLength(26);
+    expect(records.filter((record) => record.provenance.factory_certified === 1)).toHaveLength(51);
     expect(records.filter((record) => record.provenance.certification_class === "legacy_structural")).toHaveLength(48);
     const swordfish = records.find((record) => record.slug === "grilled-swordfish-olive-caper");
     expect(swordfish.provenance.kitchen_tested).toBe(0);
@@ -214,7 +214,7 @@ describe("catalog import", () => {
     expect(conflict.errors[0].code).toBe("immutable_version_conflict");
   });
 
-  it("imports 50 published meals idempotently and matches the original 24", async () => {
+  it("imports 75 published meals idempotently and matches the original 24", async () => {
     const { failures, records, retireVersionIds } = loadRecords();
     expect(failures).toEqual([]);
     const parity = parityCatalog(
@@ -229,13 +229,13 @@ describe("catalog import", () => {
     const shim = sqliteShim(database);
     const loaded = await loadPublishedCatalog(shim);
     expect(loaded.ok).toBe(true);
-    expect(loaded.count).toBe(50);
+    expect(loaded.count).toBe(75);
     const again = await importOnce(database, records, retireVersionIds);
     expect(again.ok).toBe(true);
-    expect(again.unchanged).toHaveLength(74);
+    expect(again.unchanged).toHaveLength(99);
     const reloaded = await loadPublishedCatalog(shim);
-    expect(reloaded.count).toBe(50);
-    expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_version").get().c).toBe(74);
+    expect(reloaded.count).toBe(75);
+    expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_version").get().c).toBe(99);
     expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_ingredient").get().c).toBe(
       records.reduce((sum, record) => sum + record.ingredients.length, 0)
     );

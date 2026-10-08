@@ -1,0 +1,731 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 Batch A. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "A",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 Batch A: Juniper authored text, plating brief, prompt, and classification; Cora generates the image",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "miso-mushroom-ramen",
+    "slug": "miso-mushroom-ramen",
+    "title": "Miso Mushroom Ramen",
+    "description": "Springy ramen noodles in a dried-shiitake broth enriched with white miso, tahini, garlic, and ginger, topped with soy-seared shiitake, tender baby bok choy, sweet corn, nori, scallions, and sesame. Fully plant-based: no egg, no bonito, no pork or chicken broth, no butter.",
+    "cuisine": "japanese",
+    "meal_format": "noodle-soup",
+    "primary_ingredient": "shiitake mushrooms",
+    "vocabulary_tag_ids": [
+      "japanese",
+      "umami",
+      "savory",
+      "rich",
+      "mushrooms",
+      "soups"
+    ],
+    "current_recipe_id": "rcp_miso-mushroom-ramen",
+    "current_version_id": "rv_miso-mushroom-ramen_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_miso-mushroom-ramen",
+    "dish_id": "miso-mushroom-ramen",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08 Batch A, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_miso-mushroom-ramen_v1",
+    "recipe_id": "rcp_miso-mushroom-ramen",
+    "dish_id": "miso-mushroom-ramen",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. Not certified. Not published. kitchen_tested is false.",
+    "title": "Miso Mushroom Ramen",
+    "description": "Springy ramen noodles in a dried-shiitake broth enriched with white miso, tahini, garlic, and ginger, topped with soy-seared shiitake, tender baby bok choy, sweet corn, nori, scallions, and sesame. Fully plant-based: no egg, no bonito, no pork or chicken broth, no butter.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "dried-shiitake",
+        "name": "dried shiitake mushrooms",
+        "display_name": "dried shiitake mushrooms",
+        "quantity": 8,
+        "unit": "count",
+        "note": "about 3/4 oz (20 g) whole dried caps; the broth base. Plant broth only: no bonito, no pork or chicken stock.",
+        "preparation": "rinsed briefly, soaked in the broth water",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "fresh-shiitake",
+        "name": "fresh shiitake mushrooms",
+        "display_name": "fresh shiitake mushrooms",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": "stems removed, caps sliced 1/4 inch thick",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "baby-bok-choy",
+        "name": "baby bok choy",
+        "display_name": "baby bok choy",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 1 lb",
+        "preparation": "halved lengthwise, rinsed of grit",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sweet-corn",
+        "name": "frozen sweet corn",
+        "display_name": "frozen sweet corn kernels",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "No butter or corn-butter topping.",
+        "preparation": "thawed",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "white-miso",
+        "name": "white miso",
+        "display_name": "white (shiro) or yellow miso paste",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "about 4.5 oz. REQUIRED plant contract: plain miso paste (soybeans, rice or barley koji, salt). Do not use dashi-iri / 'with dashi' / bonito-added miso or instant miso-soup mix. Soy allergen; barley miso also contains gluten (wheat already declared).",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tahini",
+        "name": "tahini",
+        "display_name": "tahini (100% sesame)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "well stirred; adds body to the broth. Sesame allergen. Not a nut.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "2 tbsp in the miso tare, 1 tbsp for the mushrooms. Regular brewed soy sauce: soy and wheat.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "about a 1.5-inch piece",
+        "preparation": "peeled and grated",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "toasted-sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "2 tsp for the aromatics, 1 tsp to finish. Sesame allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral high-heat oil (canola or grapeseed)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "for searing the mushrooms",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "ramen-noodles",
+        "name": "ramen noodles",
+        "display_name": "egg-free wheat ramen noodles",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "12 oz dried or about 1.25 lb fresh. REQUIRED contract: label lists wheat flour, water, salt, and alkaline salts (kansui) with no egg. If using instant-noodle blocks, discard the seasoning packet (often contains milk, fish, or meat).",
+        "preparation": "cooked separately and drained",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": "whites for the aromatics, greens to finish",
+        "preparation": "thinly sliced, whites and greens separated",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "nori",
+        "name": "nori",
+        "display_name": "roasted nori sheets",
+        "quantity": 2,
+        "unit": "sheet",
+        "note": null,
+        "preparation": "each cut into 4 rectangles",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "toasted-sesame-seeds",
+        "name": "toasted sesame seeds",
+        "display_name": "toasted sesame seeds",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "sesame allergen; garnish",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 8,
+        "unit": "cup",
+        "note": "broth water (hot tap water is fine for the soak). Noodle cooking water is separate and not listed.",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "a pinch for the mushrooms; more only after tasting the finished broth",
+        "preparation": null,
+        "optional": true,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Soak the dried shiitake and prep",
+        "body": "Rinse the dried shiitake and drop them into 8 cups of hot tap water in a large bowl or pitcher to soak while you prep (they soften and start the broth). Fill a separate large pot with water for the noodles, cover, and set it over high heat. Remove the fresh shiitake stems and slice the caps 1/4 inch thick. Halve and rinse the bok choy. Thaw the corn in a sieve under warm water. Grate the garlic and ginger. Slice the scallions, keeping whites and greens separate. Cut the nori into 8 rectangles. In a small bowl stir the miso, tahini, and 2 tbsp soy sauce into a smooth paste (the tare). HARD CONTRACT: plain miso (no bonito/dashi added), egg-free noodles, no butter, no egg topping, no pork or chicken broth.",
+        "ingredient_refs": [
+          "dried-shiitake",
+          "water",
+          "fresh-shiitake",
+          "baby-bok-choy",
+          "sweet-corn",
+          "garlic",
+          "fresh-ginger",
+          "scallions",
+          "nori",
+          "white-miso",
+          "tahini",
+          "soy-sauce",
+          "ramen-noodles"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Sear the mushrooms",
+        "body": "Heat the neutral oil in a 5- to 6-quart pot over medium-high. Add the sliced fresh shiitake in an even layer with a pinch of salt and cook undisturbed 3 minutes, then stir occasionally until browned with crisp edges, 3 to 4 minutes more. Add 1 tbsp soy sauce and toss 30 seconds until absorbed and glossy. Transfer to a plate; this is the topping.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "fresh-shiitake",
+          "kosher-salt",
+          "soy-sauce"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Build the broth",
+        "body": "Lower the heat to medium. Add 2 tsp toasted sesame oil, the garlic, ginger, and scallion whites; stir 1 minute until fragrant without browning. Pour in the soaked dried shiitake and their soaking water, leaving any grit in the bottom of the bowl. Bring to a simmer over high, about 8 minutes, then reduce to a gentle simmer, partly covered, for 8 minutes. Lift out the rehydrated shiitake, slice thinly, and return them to the pot.",
+        "ingredient_refs": [
+          "toasted-sesame-oil",
+          "garlic",
+          "fresh-ginger",
+          "scallions",
+          "dried-shiitake",
+          "water"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Cook the bok choy, corn, and noodles",
+        "body": "Add the bok choy and corn to the simmering broth and cook until the bok choy stems are crisp-tender, 2 to 3 minutes; lift the bok choy out with tongs. At the same time, cook the noodles in the boiling noodle pot according to the package (fresh about 2 to 3 minutes, dried about 4 to 5) until just tender; drain well and shake dry. Do not rinse.",
+        "ingredient_refs": [
+          "baby-bok-choy",
+          "sweet-corn",
+          "ramen-noodles"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Season the broth",
+        "body": "Turn the broth to low; it should not boil from here on. Ladle about 1 cup hot broth into the miso-tahini tare, whisk smooth, and stir it back into the pot. Taste; add a pinch of salt only if needed.",
+        "ingredient_refs": [
+          "white-miso",
+          "tahini",
+          "soy-sauce",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Assemble the bowls",
+        "body": "Divide the noodles among 4 deep bowls and ladle about 1 1/2 cups broth with corn and sliced shiitake over each. Arrange the seared shiitake and two bok choy halves on top, tuck 2 nori rectangles at the rim, and finish with scallion greens, sesame seeds, and a few drops of the remaining 1 tsp toasted sesame oil. Serve immediately. No egg, no butter, no chashu. kitchen_tested is false.",
+        "ingredient_refs": [
+          "ramen-noodles",
+          "fresh-shiitake",
+          "baby-bok-choy",
+          "sweet-corn",
+          "nori",
+          "scallions",
+          "toasted-sesame-seeds",
+          "toasted-sesame-oil"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "shiitake-miso-broth",
+        "name": "shiitake miso-tahini broth",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "dried shiitake",
+          "water",
+          "garlic",
+          "ginger",
+          "scallion whites",
+          "toasted sesame oil",
+          "white miso",
+          "tahini",
+          "soy sauce",
+          "sweet corn"
+        ]
+      },
+      {
+        "component_id": "soy-seared-shiitake",
+        "name": "soy-seared shiitake topping",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "fresh shiitake",
+          "neutral oil",
+          "soy sauce"
+        ]
+      },
+      {
+        "component_id": "ramen-noodles-cooked",
+        "name": "cooked egg-free ramen noodles",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "egg-free wheat ramen noodles"
+        ]
+      }
+    ],
+    "equipment": [
+      "5- to 6-quart pot",
+      "large pot for noodles",
+      "large bowl or pitcher for soaking",
+      "colander",
+      "tongs",
+      "small bowl and whisk",
+      "ladle",
+      "knife",
+      "cutting board",
+      "microplane or grater"
+    ],
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 32,
+    "total_time_minutes": 44,
+    "prep_minutes": 12,
+    "cook_minutes": 32,
+    "total_minutes": 44,
+    "heat": "Medium-high sear, then simmer; broth held below a boil after the miso goes in.",
+    "doneness": "Mushrooms browned with crisp edges. Bok choy stems crisp-tender and bright. Noodles springy, not soft. Broth opaque, savory, and creamy-bodied from miso and tahini, not boiled after seasoning. kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Tahini and sesame are sesame allergen tokens, not nuts.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant miso ramen. No dairy (no butter or corn-butter), no shellfish, no meat, no poultry, no pork or chicken broth, no bonito (plant claim chosen even though HH001 would allow fish), no egg topping. Miso and noodles are contracted plain/egg-free. Soy, wheat, and sesame present; HH001 allows them. Nuts absent."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free, vegetarian, and plant_based. Hard contracts: plain miso without bonito/dashi, egg-free ramen noodles, instant seasoning packets discarded, no egg, no butter. Not an 'add an egg if you like' recipe.",
+    "allergens": [
+      "soy",
+      "wheat",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Soy covers miso and soy sauce.",
+      "Wheat covers the ramen noodles and regular brewed soy sauce (and barley-koji miso, if used, contains gluten).",
+      "Sesame covers tahini, toasted sesame oil, and sesame seeds.",
+      "No egg (egg-free noodle contract, no soft-boiled egg), no milk (no butter), no peanut, tree_nut, shellfish, or finfish (no bonito)."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant miso ramen. No dairy (no butter or corn-butter), no shellfish, no meat, no poultry, no pork or chicken broth, no bonito (plant claim chosen even though HH001 would allow fish), no egg topping. Miso and noodles are contracted plain/egg-free. Soy, wheat, and sesame present; HH001 allows them. Nuts absent.",
+    "vocabulary_tag_ids": [
+      "japanese",
+      "umami",
+      "savory",
+      "rich",
+      "mushrooms",
+      "soups"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Notes do not replace the array. Live PACKAGE_ALLERGEN_IDS may say dairy/nuts; do not silently remap milk to dairy or tree_nut to nuts.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in src/lib/taste-vocabulary.js (read-only). dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level and ingredient_complexity are the D-03 canonical fields. Legacy effort / effort_band / complexity are deliberately not authored. Factor scores and reason codes live in the top-level classification sidecar (factory/cert only, not runtime API V1).",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "images": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "cuisine_gap": "japanese maps to the active D-02 cuisine slug japanese, which is in vocabulary_tag_ids.",
+      "meal_format": "noodle-soup is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "shiitake mushrooms maps to a D-02 ingredient slug present in tags.",
+      "hh001_contract": "plant_based_compatible true requires plain miso (no bonito/dashi), egg-free noodles, no egg topping, no butter, and plant broth. Unconditional."
+    }
+  },
+  "image": {
+    "image_id": "img_miso-mushroom-ramen_v1",
+    "dish_id": "miso-mushroom-ramen",
+    "recipe_version_id": "rv_miso-mushroom-ramen_v1",
+    "asset_generated": true,
+    "master_ref": "miso-mushroom-ramen.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "miso-mushroom-ramen.webp",
+        "spec_catalog_path": "/images/meals/miso-mushroom-ramen.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "miso-mushroom-ramen-640.webp",
+        "spec_catalog_path": "/images/meals/miso-mushroom-ramen-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the AI JPEG to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs with export_meal_webps.py after Cora GenerateImage.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 from image-prompt.md (plating brief first; house-quality reference for light/appeal only); center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Harbor Eats Lead) via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "prompt_authored_by": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI image generated by Cora with GenerateImage from image-prompt.md; master and card WebPs exported with export_meal_webps.py and frozen for preflight/audit at freeze-r1. No stock, web, or third-party imagery.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "sha256": {
+      "img_v1.jpg": "f326c12d6aec2d029ad7949374d0f046ef913a93e335a92240e1ce122d725bfb",
+      "miso-mushroom-ramen.webp": "f1646394db888c60b30869a2dc3db87389e821acaceab9e8f82def9e4468f1d1",
+      "miso-mushroom-ramen-640.webp": "162e5f369d7078fbd0d86b346ac84cb9106d77cb0cb6518db586a3beab6c671d"
+    },
+    "card_ref": "miso-mushroom-ramen-640.webp",
+    "master_filename": "miso-mushroom-ramen.webp",
+    "card_filename": "miso-mushroom-ramen-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "rejected_assets": []
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Dried shiitake soak in step 1 becomes the broth in step 3; tare mixed in step 1, whisked in step 5; soy split 2 tbsp tare + 1 tbsp mushrooms; sesame oil split 2 tsp aromatics + 1 tsp finish."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "2 tbsp neutral oil (sear) + 1 tbsp toasted sesame oil (2 tsp + 1 tsp). No butter."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Miso and ramen noodles carry explicit label contracts; instant seasoning packets are discarded. Broth is built in-recipe; no store-bought stock."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 12 (step 1 12) + cook 32 (step 2 7 + step 3 17 + step 4 3 + step 5 2 + step 6 3) = 44. Preheat/parallel work stated in the step text."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes for 1, 2, and 4 servings and do-not-scale items."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=false, contains_poultry=false, contains_finfish=false, contains_shellfish=false, contains_dairy=false, nut_policy=none. Allergens soy, wheat, sesame. HH001 true. plant_based_compatible true requires plain miso (no bonito/dashi), egg-free noodles, no egg topping, no butter, and plant broth. Unconditional."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "japanese, umami, savory, rich, mushrooms, soups are active D-02 slugs. noodle-soup is format metadata only."
+    },
+    {
+      "check": "classification_d03",
+      "result": "pass_curator_assigned",
+      "detail": "effort_level moderate (factor sum 5), ingredient_complexity standard (factor sum 3); factors and reason codes in the classification sidecar. Vale checks Gate A enums + Gate J plausibility."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r1."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY.json",
+      "detail": "Freeze Integrity Preflight is run on this exact freeze-r1 file set after finalize; its PASS/FAIL is recorded in FREEZE_INTEGRITY.json in this directory. Vale must not start unless it says PASS."
+    }
+  ],
+  "scaling_notes": {
+    "1": "2 dried shiitake in 2 cups water, 3 oz fresh shiitake, 1 bok choy, 1/4 cup corn, 2 tbsp miso, 1 1/2 tsp tahini, about 2 1/4 tsp soy, 3 oz noodles. Small saucepan; simmer times the same.",
+    "2": "Half of everything; 3-quart pot.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "plain miso contract (no bonito)",
+      "egg-free noodle contract",
+      "no egg, no butter",
+      "miso added off the boil"
+    ]
+  },
+  "coverage_contribution": "Ramen 0->1; the only broth-noodle soup is chicken pho (non-HH001). Gives HH001 a cozy October noodle soup; highly photogenic.",
+  "near_duplicate_review": "Compared with Vietnamese Chicken Pho: both noodle soups, but pho is poultry-based with a spiced clear stock; this is a plant miso-tahini broth. Compared with Sesame Soba Noodle Bowl: cold dressed soba vs hot ramen soup. Compared with Miso Ginger Salmon: shares miso, different format and protein. Compared with tofu bowls: no tofu lead. Not a live-catalog duplicate.",
+  "deliberately_not": "Not a pork tonkotsu (meat, 12-hour), not soba bowl twin (cold/sesame), not a tofu-lead bowl (tofu x4).",
+  "batch_challenges": "A",
+  "selection_alignment": "Matches WAVE.json/selection.json identity: japanese · noodle-soup · shiitake mushrooms · hh001_intent true -> hh001_eligible true. Selection time band 30–45; written clock 44 minutes. D-03 labels match the WAVE proposal after rubric scoring.",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "effort_score": 5,
+    "complexity_score": 3,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 1,
+      "technique": 1,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 2,
+      "specialty_items": [
+        "miso (contracted plain)",
+        "dried shiitake",
+        "egg-free ramen noodles",
+        "nori"
+      ],
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredients": [
+      "dried shiitake",
+      "fresh shiitake",
+      "baby bok choy",
+      "frozen sweet corn",
+      "white miso",
+      "tahini",
+      "soy sauce",
+      "garlic",
+      "fresh ginger",
+      "toasted sesame oil",
+      "ramen noodles",
+      "scallions",
+      "nori",
+      "toasted sesame seeds"
+    ],
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "multi_component"
+      ],
+      "ingredient": [
+        "medium_list",
+        "several_specialty"
+      ]
+    },
+    "rationale": {
+      "effort": "Steady prep (1); periodic attention while searing and simmering (1); broth+noodles as the main with one seared topping (1); sear plus keep-miso-below-boil timing (1); two pots converging at assembly (1). Sum 5 -> moderate. No floor rule triggered.",
+      "complexity": "14 countable (1). Miso, dried shiitake, ramen noodles, and nori are 3+ widely stocked international-aisle items (2), scored once; sourcing not double-counted (0). One broth build; the mushrooms take a splash of the same soy, not an independent sauce (0). Sum 3 -> standard. Cuisine adds no points."
+    },
+    "borderline": true,
+    "wave_proposal": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "cultural_bias_guardrail": "Cuisine unfamiliarity adds no points; specialty-store items scored once under specialty_burden, pantry_familiarity kept 0 (r2 convention)."
+  },
+  "classification_history": [],
+  "time_reconstruction": {
+    "prep_minutes": 12,
+    "cook_minutes": 32,
+    "total_minutes": 44,
+    "prep_steps": [
+      {
+        "step": 1,
+        "minutes": 12
+      }
+    ],
+    "cook_steps": [
+      {
+        "step": 2,
+        "minutes": 7
+      },
+      {
+        "step": 3,
+        "minutes": 17
+      },
+      {
+        "step": 4,
+        "minutes": 3
+      },
+      {
+        "step": 5,
+        "minutes": 2
+      },
+      {
+        "step": 6,
+        "minutes": 3
+      }
+    ],
+    "overlap_steps": [],
+    "rule": "total = prep + cook; overlap steps run inside another step's clock and add 0; any oven/broiler preheat is stated as overlapping prep in the step text."
+  },
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

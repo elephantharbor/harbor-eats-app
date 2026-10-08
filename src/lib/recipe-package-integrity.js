@@ -5,10 +5,15 @@
 
 import { getTasteTerm } from "./taste-vocabulary.js";
 
-export const PACKAGE_DIETARY_LABELS = new Set(["plant", "dairy_free", "fish"]);
+export const PACKAGE_DIETARY_LABELS = new Set(["plant", "dairy_free", "fish", "vegetarian"]);
 
 export const PACKAGE_ALLERGEN_IDS = new Set([
   "dairy",
+  "milk",
+  "egg",
+  "soy",
+  "wheat",
+  "sesame",
   "nuts",
   "cashew",
   "walnut",

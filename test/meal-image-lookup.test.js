@@ -13,7 +13,7 @@ const published = listPublishedMealMedia();
 
 describe("FW-08 deterministic meal image lookup", () => {
   it("resolves all published meals by slug, version id, and catalog title (cold path)", () => {
-    expect(published.length).toBe(50);
+    expect(published.length).toBe(75);
     for (const row of published) {
       const slug = row.slug;
       const bySlug = Media.imageFor({ recipe_slug: slug });

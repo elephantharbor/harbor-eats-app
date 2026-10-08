@@ -1,0 +1,92 @@
+{
+  "slug": "cashew-chicken-stir-fry",
+  "recipe_version_id": "rv_cashew-chicken-stir-fry_v1",
+  "package_revision": "freeze-r3",
+  "assigned_by": "Juniper (Harbor Eats - Catalog Curator)",
+  "assigned_on": "2026-10-08",
+  "rubric": "D-03 (factory SKILL.md)",
+  "conventions": {
+    "ingredient_count_band": "Counted ingredients exclude optional items, salt, black pepper, water, and cooking oils: <=8 -> 0, 9-14 -> 1, 15+ -> 2 (D-03 rubric; corrected at freeze-r2 from the non-rubric <=12 / 13-16 / 17+ band, Vale r1).",
+    "pantry_familiarity": "Kept 0; specialty-store items score once under specialty_burden (no double counting). Cultural unfamiliarity adds no points."
+  },
+  "effort_factors": {
+    "active_prep": 1,
+    "active_attention": 2,
+    "active_components": 1,
+    "technique": 1,
+    "coordination_cleanup_equipment": 0
+  },
+  "effort_score": 5,
+  "effort_level": "moderate",
+  "effort_floors_applied": [
+    "attention_2_plus_other_ge1_min_moderate"
+  ],
+  "complexity_factors": {
+    "ingredient_count_band": 2,
+    "specialty_burden": 0,
+    "flavor_component_breadth": 1,
+    "pantry_familiarity": 0
+  },
+  "complexity_score": 3,
+  "ingredient_complexity": "standard",
+  "ingredient_count": 15,
+  "counted_ingredient_ids": [
+    "jasmine-rice",
+    "chicken-breast",
+    "soy-sauce",
+    "dry-sherry",
+    "cornstarch",
+    "hoisin-sauce",
+    "brown-sugar",
+    "roasted-cashews",
+    "red-bell-pepper",
+    "celery",
+    "yellow-onion",
+    "garlic",
+    "fresh-ginger",
+    "scallions",
+    "toasted-sesame-oil"
+  ],
+  "specialty_items": [],
+  "reason_codes": {
+    "effort": [
+      "steady_prep",
+      "continuous_attention",
+      "multi_component",
+      "one_pan"
+    ],
+    "ingredient": [
+      "long_list",
+      "common_pantry",
+      "multi_build"
+    ]
+  },
+  "reason_codes_status": "closed v1 set (d03-design/FACTORY-SKILL-AMENDMENT.md, draft), remapped at freeze-r2 from Vale r1 suggested mappings",
+  "borderline": true,
+  "rationale": "High-heat stir-frying is continuous attention (2), which floors it at moderate, so easy is not available. Chicken sear, vegetables, and sauce happen in sequence in one skillet, and the rice cooks unattended in a pot started during prep, so coordination is 0. Velveting and batch searing is technique 1. Score 5 is moderate. This matches the final D-03 ruling for Thai Basil Eggplant Stir-Fry, moderate 5 [1,2,1,1,0], where unattended rice is coordination 0. WAVE proposed easy. Complexity: 15 countable mainstream items (dry sherry, hoisin, cashews all supermarket) is band 2, and the velvet marinade plus stir-fry sauce is flavor breadth 1, giving 3, so standard.",
+  "wave_proposal": {
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "time_band": "Under 30"
+  },
+  "classification_amendments": [
+    {
+      "version_number": 1,
+      "type": "classification_only_metadata_amendment",
+      "who": "Juniper (Harbor Eats - Catalog Curator)",
+      "when": "2026-10-08",
+      "from": {
+        "effort_level": "moderate",
+        "ingredient_complexity": "simple"
+      },
+      "to": {
+        "effort_level": "moderate",
+        "ingredient_complexity": "standard"
+      },
+      "reason": "Vale wave-12 batch C r1 Gate J: 15 countable (band 2) + velvet marinade/sauce breadth 1 -> 3 standard (factors 2,0,1,0).",
+      "culinary_hash_unchanged": true,
+      "image_unchanged_by_this_amendment": true,
+      "vale_recheck_scope": "Gate A + Gate J-classification only"
+    }
+  ]
+}

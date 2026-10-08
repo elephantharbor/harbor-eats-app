@@ -1,0 +1,467 @@
+{
+  "slug": "salade-nicoise-seared-tuna",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-08",
+  "audit_round": "r3",
+  "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r2",
+  "recipe_version_id": "rv_salade-nicoise-seared-tuna_v1",
+  "freeze_integrity": "PASS (0 fails; Vale re-ran freeze_integrity.py on a /tmp copy at r3)",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "failed_gates": [],
+  "kitchen_tested": false,
+  "packages_mutated": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. involved/simple.",
+      "rechecked_r3": "Light r3 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 6/1 and labels involved/simple unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null,
+      "note": "All ingredients referenced; salt 3+1/2+3/4 = 4 1/4 tsp, pepper 1/2+1/4+1/4 = 1 tsp, oil 2 tbsp to potatoes + rest over salad."
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Scaling by egg/steak count; vinaigrette made whole. OK."
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Tuna rare (~115 F) with 145 F cook-through option given and previously-frozen sashimi-grade preferred; tuna is a parasite-exempt species. Jammy eggs from cold, 7 min. Acceptable; see release note on undercooked advisory."
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Prep 15 (12 + 3, water boils inside) + cook 29 (13+3+4+4+5) = 44. Realistic."
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Dietary: finfish true, dairy false (vinaigrette is oil/vinegar/Dijon by recipe), nut_policy none, HH001 true. Allergens finfish, egg — correct; mustard recorded in notes/runtime_enum_gaps (not a token)."
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Description matches. D-03 involved (6, borderline) accepted as rubric-consistent: several timed components (potatoes+eggs, beans, sear, vinaigrette, composition) across pot+skillet+ice bath. Moderate would also be defensible; not obviously wrong, so not failed. simple (1) correct.",
+      "rechecked_r3": "Light r3 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 6/1 and labels involved/simple unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r2": true,
+      "note": "New hero (master + 640 card inspected, plus 3x crops of img_v1.jpg): base greens are bright green, soft, rounded lettuce leaves with no thick white midribs or pale-yellow crinkle and no longer read as napa/savoy cabbage (direct comparison with rejected/attempt1_master.webp); 7 jammy egg halves visible (>=6 required; recipe 8) with soft, deep-orange yolks; five rare tuna slices fanned at centre with ruby interior and thin seared edge; crust is dark cracked black pepper. The few pale flecks at 3x zoom read as cracked-peppercorn cores, not sesame, and they are invisible at card scale. Halved skin-on potatoes, haricots verts, halved cherry tomatoes, dark olives, capers, parsley, vinaigrette sheen and jar all present. Nothing forbidden: no cabbage, no sesame, no cheese, anchovy, bread, lemon, avocado, egg yolk dust or canned tuna."
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Rolled up from L1 and L2 (r2)."
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r2": true,
+      "note": "Master 1200x900 WebP RGB, card 640x480 WebP RGB (Pillow); 16:9 1280x720 source center-cropped to 4:3, so the master is a 1.25x upscale of a 960x720 crop, same as r1 and the wave-11 precedent; whole plate inside frame with the jar cropped at the right edge as environmental styling; no text, logo, watermark or hands; no visible artifacts. One unambiguous active set (img_v1.jpg + both WebPs); r1 assets only under rejected/attempt1_*; asset_sha256 matches all three files."
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r2": true,
+      "note": "Bright natural light and vivid, believable color: ruby tuna, orange yolks, green beans and lettuce, red tomatoes, glossy olives. Abundant, intentional plating; the tuna fan and the eggs carry the 640x480 card immediately."
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null,
+      "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r3": true,
+      "note": "Clears r2 provenance note 1. rejected/attempt2_img.jpg sha256 2a38a3052102bdf5f3e7779b2f74510dc858b6597d46b0cde47db2ad9781802a equals the discarded first freeze-r2 generation (agent asset of the same hash). It is logged in rejected/REJECTIONS.md as 'Cora pre-screen, never finalized', and image.rejected_assets_note now names attempt1_* and attempt2_img.jpg and the active set. Active set and asset_sha256 unchanged (3/3 match); culinary_hash 3661d36c... unchanged and verified; FI PASS. The only v1.json change is that provenance note in the image block, with no content, asset or hash change, so no new package_revision is needed. Nothing in rejected/ is referenced as master/card/source."
+    }
+  },
+  "image_review": {
+    "K": "PASS",
+    "L1": "PASS",
+    "L2": "PASS",
+    "L": "PASS",
+    "files_inspected": [
+      "salade-nicoise-seared-tuna.webp",
+      "salade-nicoise-seared-tuna-640.webp",
+      "img_v1.jpg (3x crops)",
+      "rejected/attempt1_master.webp (comparison)"
+    ],
+    "observation": "Round off-white plate on light stone. Rare pepper-crusted tuna fan at centre; 7 jammy egg halves around it; soft green lettuce; potatoes, haricots verts, cherry tomatoes, olives, capers, parsley; vinaigrette jar top right. The cabbage read, short egg count and sesame-like crust from r1 are cleared."
+  },
+  "dietary_eligibility": "contains_finfish true; meat/poultry/shellfish/dairy false; not vegetarian/plant_based; nut_policy none; label dairy_free (unconditional).",
+  "allergens": "finfish, egg. Correct. Mustard (Dijon) noted only; not a FlavorWeave token.",
+  "allergen_runtime_gaps": {
+    "package_tokens": [
+      "finfish",
+      "egg"
+    ],
+    "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+      "egg"
+    ],
+    "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+    "documented_in_runtime_enum_gaps": true
+  },
+  "hh001": "Intended eligible; claimed true; VERIFIED (fish + egg allowed; dairy-free vinaigrette by recipe; optional anchovy is fish).",
+  "classification": {
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "gate_A_enums": "valid",
+    "gate_J_plausibility": "effort_level involved (6, borderline) / ingredient_complexity simple (1). Plan was moderate/standard; both changes rubric-consistent.",
+    "legacy_fields_authored": false
+  },
+  "fails_needing_revision": [],
+  "non_blocking_notes": [
+    "Rare tuna (115 F) and jammy eggs: consider an app-level undercooked-food advisory; package already offers 145 F cook-through.",
+    "r2 (cosmetic, not a K item): the brief asks for a large oval platter and the hero shows a round plate. The recipe allows a platter or plates, so this does not affect fidelity.",
+    "r2 provenance note (archive the discarded generation) was resolved at r3."
+  ],
+  "statement": "r3 re-check (2026-10-08 CT): O PASS (attempt2 archived, logged, and noted; active set and hashes unchanged); A/J PASS (key rename only); FI PASS. K/L1/L2 and other gates carried from r2. Overall PASS -> CERTIFY_V1. kitchen_tested remains false.",
+  "culinary_hash": "sha256:3661d36c83102cca94608f74dd4f60bcb14f74ba20ae6b329bd1dd6134d6a736",
+  "culinary_hash_verified": true,
+  "culinary_hash_unchanged_from_r1": true,
+  "asset_sha256_verified": {
+    "img_v1.jpg": "9858353e2e15b5615c881c48ab1a56c67b6bca18a1850f10dfec2183f28d7523",
+    "salade-nicoise-seared-tuna.webp": "4577e62720960f7a8f2228e3ac119566c0c26a36eb7c42a1c5f5cf7ea2223c7e",
+    "salade-nicoise-seared-tuna-640.webp": "f25c8e4511db91bbc6f33fd8f4b605ecc0685d2ce97e42f5ba0ca4ffa7b91b3f"
+  },
+  "rescore": {
+    "round": "r3",
+    "trigger": "Juniper cleanup 2026-10-08 ~17:16 CT (backup /workspace/backups/wave-12-juniper-r2-20261008-171303)",
+    "prior_round": "r2",
+    "prior_overall": "PASS",
+    "prior_audit": "history[1] in this file",
+    "package_changes_reviewed": [
+      "image.rejected_assets_note (attempt2 archived)",
+      "d03 key rename"
+    ],
+    "still_failing": []
+  },
+  "history": [
+    {
+      "round": "r1",
+      "audit_date": "2026-10-08",
+      "package_revision": "freeze-r1",
+      "overall": "FAIL",
+      "failed_gates": [
+        "K"
+      ],
+      "disposition": "REVISE_IMAGE_ONLY",
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. involved/simple."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All ingredients referenced; salt 3+1/2+3/4 = 4 1/4 tsp, pepper 1/2+1/4+1/4 = 1 tsp, oil 2 tbsp to potatoes + rest over salad."
+        },
+        "C": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Scaling by egg/steak count; vinaigrette made whole. OK."
+        },
+        "D": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Tuna rare (~115 F) with 145 F cook-through option given and previously-frozen sashimi-grade preferred; tuna is a parasite-exempt species. Jammy eggs from cold, 7 min. Acceptable; see release note on undercooked advisory."
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Prep 15 (12 + 3, water boils inside) + cook 29 (13+3+4+4+5) = 44. Realistic."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null
+        },
+        "G": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Dietary: finfish true, dairy false (vinaigrette is oil/vinegar/Dijon by recipe), nut_policy none, HH001 true. Allergens finfish, egg — correct; mustard recorded in notes/runtime_enum_gaps (not a token)."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Description matches. D-03 involved (6, borderline) accepted as rubric-consistent: several timed components (potatoes+eggs, beans, sear, vinaigrette, composition) across pot+skillet+ice bath. Moderate would also be defensible; not obviously wrong, so not failed. simple (1) correct."
+        },
+        "K": {
+          "result": "FAIL",
+          "defect": "Lettuce identity wrong: the greens under every group are heavily crinkled, pale yellow-green leaves with thick white midribs (clearest right of the tuna fan and around the olives) and read as napa/savoy cabbage, not butter lettuce (smooth, soft, cupped leaves). Recipe and brief require butter lettuce. Also only 3 jammy egg halves are visible; brief Required-visible says '4+ jammy egg halves' (recipe yields 8). Secondary: the tuna crust contains pale oval seed-like specks that risk reading as sesame (forbidden) — keep the crust visibly cracked black pepper only."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Bright, abundant, strong color separation; ruby tuna fan is an immediate focal point at card scale. PASS on appeal alone (fidelity fails under K)."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null
+        },
+        "O": {
+          "result": "PASS",
+          "defect": null,
+          "note": "version_number 1, package_revision freeze-r1 consistently; classification_history []; culinary_hash present and excludes D-03 fields; README mirrors v1.json with no stale reserved/not-run image language; FREEZE_INTEGRITY.json PASS (0 fails)."
+        }
+      },
+      "image_review": {
+        "K": "FAIL",
+        "L1": "PASS",
+        "L2": "PASS",
+        "L": "PASS",
+        "files_inspected": [
+          "img_v1.jpg",
+          "salade-nicoise-seared-tuna-640.webp"
+        ],
+        "observation": "Oval platter, tuna fan with rare center, olives, tomatoes, beans, potatoes, vinaigrette jar. Base greens read as napa/savoy cabbage; 3 egg halves; crust has sesame-like pale specks."
+      },
+      "fails_needing_revision": [
+        {
+          "gate": "K",
+          "defect": "Base greens read as napa/savoy cabbage, not butter lettuce; only 3 egg halves visible (brief requires 4+); pale seed-like specks in pepper crust risk a sesame read.",
+          "fix_type": "image regeneration only — no culinary change, no v2, no classification change",
+          "fix": [
+            "Run: python3 /workspace/flavorweave-catalog-factory/wave-12/notes/batch-b/build_batch_b.py reject salade-nicoise-seared-tuna --reason \"K: greens read as napa/savoy cabbage not butter lettuce; 3 egg halves; sesame-like specks in crust\"",
+            "Edit r_nicoise.py image prompt (mirrors image-prompt.md 'Exact prompt'): replace 'on pale-green butter lettuce leaves' with 'on soft, smooth, rounded cup-shaped butter (Bibb) lettuce leaves, tender and gently folded, fine veins, no crinkling, no thick white ribs'; replace 'halved jammy soft-boiled eggs' with 'eight halved jammy soft-boiled eggs (at least six halves clearly visible)'; replace 'thin browned seared edge with cracked black pepper' with 'thin browned seared edge crusted with coarsely cracked black peppercorns only (dark, no pale seeds)'; append to negatives 'no napa cabbage, no savoy cabbage, no romaine, no iceberg'.",
+            "image-prompt.md 'Must be visible': 'Butter lettuce' -> 'Butter (Bibb) lettuce: smooth, cupped leaves (not cabbage)'; 'Jammy egg halves' -> 'At least 6 jammy egg halves'. 'Must not appear': add 'Napa/savoy cabbage, romaine, iceberg' and 'pale seeds in the tuna crust'.",
+            "Regenerate with GenerateImage, then: build_batch_b.py finalize salade-nicoise-seared-tuna --src <new image> --preflight. Active filenames stay img_v1.jpg / salade-nicoise-seared-tuna.webp / -640.webp; image.generation.revision_note records the regen; package_revision freeze-r1 -> freeze-r2 everywhere (root, recipe_version, image, README, curator_preflight); refresh image.asset_sha256; re-run freeze_integrity.py (must be PASS).",
+            "Keep current L2 qualities (bright light, abundant separated groups, ruby tuna focal point)."
+          ]
+        }
+      ],
+      "statement": "Gate result only. Not publication, not a production release, not a cook test. Vale did not edit the package."
+    },
+    {
+      "slug": "salade-nicoise-seared-tuna",
+      "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+      "audit_date": "2026-10-08",
+      "audit_round": "r2",
+      "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+      "package_file": "v1.json",
+      "package_revision": "freeze-r2",
+      "recipe_version_id": "rv_salade-nicoise-seared-tuna_v1",
+      "freeze_integrity": "PASS (0 fails, re-run by Vale at r2)",
+      "disposition": "CERTIFY_V1",
+      "overall": "PASS",
+      "failed_gates": [],
+      "kitchen_tested": false,
+      "packages_mutated": false,
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. involved/simple."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All ingredients referenced; salt 3+1/2+3/4 = 4 1/4 tsp, pepper 1/2+1/4+1/4 = 1 tsp, oil 2 tbsp to potatoes + rest over salad."
+        },
+        "C": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Scaling by egg/steak count; vinaigrette made whole. OK."
+        },
+        "D": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Tuna rare (~115 F) with 145 F cook-through option given and previously-frozen sashimi-grade preferred; tuna is a parasite-exempt species. Jammy eggs from cold, 7 min. Acceptable; see release note on undercooked advisory."
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Prep 15 (12 + 3, water boils inside) + cook 29 (13+3+4+4+5) = 44. Realistic."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null
+        },
+        "G": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Dietary: finfish true, dairy false (vinaigrette is oil/vinegar/Dijon by recipe), nut_policy none, HH001 true. Allergens finfish, egg — correct; mustard recorded in notes/runtime_enum_gaps (not a token)."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Description matches. D-03 involved (6, borderline) accepted as rubric-consistent: several timed components (potatoes+eggs, beans, sear, vinaigrette, composition) across pot+skillet+ice bath. Moderate would also be defensible; not obviously wrong, so not failed. simple (1) correct."
+        },
+        "K": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "New hero (master + 640 card inspected, plus 3x crops of img_v1.jpg): base greens are bright green, soft, rounded lettuce leaves with no thick white midribs or pale-yellow crinkle and no longer read as napa/savoy cabbage (direct comparison with rejected/attempt1_master.webp); 7 jammy egg halves visible (>=6 required; recipe 8) with soft, deep-orange yolks; five rare tuna slices fanned at centre with ruby interior and thin seared edge; crust is dark cracked black pepper. The few pale flecks at 3x zoom read as cracked-peppercorn cores, not sesame, and they are invisible at card scale. Halved skin-on potatoes, haricots verts, halved cherry tomatoes, dark olives, capers, parsley, vinaigrette sheen and jar all present. Nothing forbidden: no cabbage, no sesame, no cheese, anchovy, bread, lemon, avocado, egg yolk dust or canned tuna."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2 (r2)."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "Master 1200x900 WebP RGB, card 640x480 WebP RGB (Pillow); 16:9 1280x720 source center-cropped to 4:3, so the master is a 1.25x upscale of a 960x720 crop, same as r1 and the wave-11 precedent; whole plate inside frame with the jar cropped at the right edge as environmental styling; no text, logo, watermark or hands; no visible artifacts. One unambiguous active set (img_v1.jpg + both WebPs); r1 assets only under rejected/attempt1_*; asset_sha256 matches all three files."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "Bright natural light and vivid, believable color: ruby tuna, orange yolks, green beans and lettuce, red tomatoes, glossy olives. Abundant, intentional plating; the tuna fan and the eggs carry the 640x480 card immediately."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null
+        },
+        "O": {
+          "result": "PASS",
+          "defect": null,
+          "note": "version_number 1, package_revision freeze-r1 consistently; classification_history []; culinary_hash present and excludes D-03 fields; README mirrors v1.json with no stale reserved/not-run image language; FREEZE_INTEGRITY.json PASS (0 fails)."
+        }
+      },
+      "image_review": {
+        "K": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "L": "PASS",
+        "files_inspected": [
+          "salade-nicoise-seared-tuna.webp",
+          "salade-nicoise-seared-tuna-640.webp",
+          "img_v1.jpg (3x crops)",
+          "rejected/attempt1_master.webp (comparison)"
+        ],
+        "observation": "Round off-white plate on light stone. Rare pepper-crusted tuna fan at centre; 7 jammy egg halves around it; soft green lettuce; potatoes, haricots verts, cherry tomatoes, olives, capers, parsley; vinaigrette jar top right. The cabbage read, short egg count and sesame-like crust from r1 are cleared."
+      },
+      "dietary_eligibility": "contains_finfish true; meat/poultry/shellfish/dairy false; not vegetarian/plant_based; nut_policy none; label dairy_free (unconditional).",
+      "allergens": "finfish, egg. Correct. Mustard (Dijon) noted only; not a FlavorWeave token.",
+      "allergen_runtime_gaps": {
+        "package_tokens": [
+          "finfish",
+          "egg"
+        ],
+        "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+          "egg"
+        ],
+        "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+        "documented_in_runtime_enum_gaps": true
+      },
+      "hh001": "Intended eligible; claimed true; VERIFIED (fish + egg allowed; dairy-free vinaigrette by recipe; optional anchovy is fish).",
+      "classification": {
+        "effort_level": "involved",
+        "ingredient_complexity": "simple",
+        "gate_A_enums": "valid",
+        "gate_J_plausibility": "effort_level involved (6, borderline) / ingredient_complexity simple (1). Plan was moderate/standard; both changes rubric-consistent.",
+        "legacy_fields_authored": false
+      },
+      "fails_needing_revision": [],
+      "non_blocking_notes": [
+        "Rare tuna (115 F) and jammy eggs: consider an app-level undercooked-food advisory; package already offers 145 F cook-through.",
+        "r2 provenance (process note, not a gate FAIL; active set is unambiguous): the first freeze-r2 generation, which Cora discarded for crinkled leaves and pale specks, was never finalized and is not in rejected/ or REJECTIONS.md. It appears to be agent asset 2a38a3052102bdf5f3e7779b2f74510dc858b6597d46b0cde47db2ad9781802a.jpg (17:06 CT). Wave-11 spanish-chorizo archived its failed r2a attempt under rejected/. For parity, copy it to rejected/attempt2_img.jpg, add a REJECTIONS.md line ('attempt2 (2026-10-08 17:06 CDT): K: generation discarded before finalize - crinkled cabbage-like leaves, pale specks in crust - files: attempt2_img.jpg') and extend image.rejected_assets_note to mention it. Do not touch the active set or hashes.",
+        "r2 (cosmetic, not a K item): the brief asks for a large oval platter and the hero shows a round plate. The recipe allows a platter or plates, so this does not affect fidelity."
+      ],
+      "statement": "r2 re-audit (2026-10-08 CT) of freeze-r2 (image-only revision): K, L1, L2 PASS on the actual master and card WebPs; Freeze Integrity PASS; culinary_hash unchanged and verified; asset_sha256 verified. Other gates carried from r1 (PASS; recipe text unchanged). Overall PASS -> CERTIFY_V1. kitchen_tested remains false.",
+      "culinary_hash": "sha256:3661d36c83102cca94608f74dd4f60bcb14f74ba20ae6b329bd1dd6134d6a736",
+      "culinary_hash_verified": true,
+      "culinary_hash_unchanged_from_r1": true,
+      "asset_sha256_verified": {
+        "img_v1.jpg": "9858353e2e15b5615c881c48ab1a56c67b6bca18a1850f10dfec2183f28d7523",
+        "salade-nicoise-seared-tuna.webp": "4577e62720960f7a8f2228e3ac119566c0c26a36eb7c42a1c5f5cf7ea2223c7e",
+        "salade-nicoise-seared-tuna-640.webp": "f25c8e4511db91bbc6f33fd8f4b605ecc0685d2ce97e42f5ba0ca4ffa7b91b3f"
+      },
+      "r2_scope": [
+        "K",
+        "L1",
+        "L2",
+        "freeze_integrity",
+        "culinary_hash",
+        "asset_sha256"
+      ],
+      "rescore": {
+        "round": "freeze-r2",
+        "prior_overall": "FAIL",
+        "prior_failed_gates": [
+          "K"
+        ],
+        "prior_audit": "history[0] in this file (r1, freeze-r1)",
+        "cleared_from_r1": [
+          "K: greens now read as lettuce, not napa/savoy cabbage",
+          "K: 7 egg halves visible (r1 had 3; >=6 required)",
+          "K: crust is dark cracked black pepper with no sesame-like seeds",
+          "r1 hero archived as rejected/attempt1_* and logged in REJECTIONS.md; active filenames kept; package_revision freeze-r2 with revision_note; culinary_hash unchanged (image-only revision)"
+        ],
+        "still_failing": []
+      }
+    }
+  ],
+  "r3_scope": [
+    "O",
+    "asset_sha256",
+    "freeze_integrity",
+    "A (light)",
+    "J (light)"
+  ]
+}

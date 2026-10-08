@@ -1,0 +1,188 @@
+{
+ "slug": "cashew-chicken-stir-fry",
+ "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+ "audit_date": "2026-10-08",
+ "audit_round": "r3",
+ "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+ "package_file": "v1.json",
+ "package_revision": "freeze-r3",
+ "recipe_version_id": "rv_cashew-chicken-stir-fry_v1",
+ "freeze_integrity": "PASS",
+ "disposition": "CERTIFY",
+ "overall": "PASS",
+ "failed_gates": [],
+ "kitchen_tested": false,
+ "packages_mutated": false,
+ "gates": {
+  "A": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "freeze-r2 on root/recipe_version/image/README/prompt/brief/sidecar; ingredient_complexity 'standard' valid; no legacy keys; classification_history[1] moderate/simple -> moderate/standard. FREEZE_INTEGRITY re-run by Vale on a scratch copy at r2: PASS, 0 fails."
+  },
+  "B": {
+   "result": "PASS",
+   "defect": null,
+   "note": "All ingredients referenced; soy sauce, cornstarch, sherry splits between velvet marinade and sauce correct."
+  },
+  "C": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Velveted chicken, red pepper, celery, onion, cashews, soy-hoisin sauce, jasmine rice. Correct Chinese-American build."
+  },
+  "D": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Chicken cooked through to 165 F stated; high-heat oil cues."
+  },
+  "E": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Prep 15 + cook 18 = 33 (rice started in prep, unattended). Honest; band 30–45."
+  },
+  "F": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Soy sauce, hoisin, sesame oil allergens declared; roasted cashews unsalted/plain."
+  },
+  "G": {
+   "result": "PASS",
+   "defect": null,
+   "note": "contains_poultry true; dairy false; nut_policy cashews_only_ok; labels dairy_free. Allergens tree_nut, cashew, soy, wheat, sesame, poultry — correct."
+  },
+  "H": {
+   "result": "PASS",
+   "defect": null
+  },
+  "I": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Distinct from batch A vegetable biryani with cashews."
+  },
+  "J": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "moderate 5 [1,2,1,1,0] / standard 3 [2,0,1,0] (15 countable, band 2; velvet marinade + sauce breadth 1). Builder recompute matches. Rationale now cites Thai Basil Eggplant's final ruling (moderate 5). Reason codes closed-set (steady_prep, continuous_attention, multi_component, one_pan / long_list, common_pantry, multi_build)."
+  },
+  "K": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "New hero (master + card inspected, source zoomed): bite-size chicken pieces (~3/4-1 inch, about cashew length), lightly seared and glossed, no cutlets, strips or grill marks; whole curved kidney-shaped cashews are the only nuts; no peanuts, chickpeas or round nuggets; red bell pepper squares, celery, translucent onion, scallion lengths, glossy brown sauce, white jasmine rice in the same bowl; chopsticks. No broccoli/carrots/sesame/dried chiles/noodles/orange-chicken look."
+  },
+  "L": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "Rolled up from L1 and L2."
+  },
+  "L1": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; image.file_hashes and asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3; no text/logo/watermark/hands/faces; one active set; superseded files only under rejected/. Bowl fully in frame in master and card; only the soft-focus ginger prop is clipped at the left edge."
+  },
+  "L2": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "Glossy, colourful, clearly cashew chicken at 640x480; strong red/green/white contrast."
+  },
+  "M": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Text provenance original_ai_assisted (wave-11 value; importer maps to live ai_assisted, see runtime_enum_gaps); image.generation method/date/generator present, model honestly 'unknown'; image-plating-brief.md and image-prompt.md present with must-be-visible / must-not-appear lists; external_image_api_called false, stock_or_web_photo_used false; rights not_cleared_for_external_release."
+  },
+  "N": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Shopping-id ingredients with quantity/unit/preparation separated from prep text; units are shoppable; scaling_notes present with ratio map {1:0.25, 2:0.5, 4:1}."
+  },
+  "O": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r3": true,
+   "note": "r2 O defects resolved. v1.json .revision_note and README line 24 now say the hero was regenerated at freeze-r2 and relabeled freeze-r3 for records only. Juniper's change from Vale's 'at freeze-r3' text is accepted because it is more accurate. REJECTIONS.md attempt1 now ends 'superseded by Cora's regenerated hero (active img_v1.jpg, sha256 d8f3e026…)', which matches the active file. No 'awaiting' language remains. freeze-r3 appears on root, recipe_version, image, README, prompt and brief. The Exact prompt block is byte-identical to r2. image.rejected_assets lists attempt1 (3 files, all present). classification_history is unchanged. version_number is 1."
+  }
+ },
+ "image_review": {
+  "K": "PASS",
+  "L1": "PASS",
+  "L2": "PASS",
+  "L": "PASS",
+  "files_inspected": [
+   "img_v1.jpg (1280x720 source, zoomed)",
+   "cashew-chicken-stir-fry.webp (1200x900)",
+   "cashew-chicken-stir-fry-640.webp (640x480)"
+  ],
+  "observation": "New hero (master + card inspected, source zoomed): bite-size chicken pieces (~3/4-1 inch, about cashew length), lightly seared and glossed, no cutlets, strips or grill marks; whole curved kidney-shaped cashews are the only nuts; no peanuts, chickpeas or round nuggets; red bell pepper squares, celery, translucent onion, scallion lengths, glossy brown sauce, white jasmine rice in the same bowl; chopsticks. No broccoli/carrots/sesame/dried chiles/noodles/orange-chicken look."
+ },
+ "dietary_eligibility": "contains_poultry true; dairy false; nut_policy cashews_only_ok; labels dairy_free.",
+ "allergens": "tree_nut, cashew, soy, wheat, sesame, poultry. Correct.",
+ "allergen_runtime_gaps": {
+  "package_tokens": [
+   "tree_nut",
+   "cashew",
+   "soy",
+   "wheat",
+   "sesame",
+   "poultry"
+  ],
+  "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+   "tree_nut (live: nuts — see HH001 cashew mapping note)",
+   "soy",
+   "wheat",
+   "sesame"
+  ],
+  "live_enum_source": "cycle2-preview/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+  "documented_in_runtime_enum_gaps": true,
+  "ruling": "Package keeps the wave-11 token; importer maps explicitly; never silently drop egg/soy/wheat/sesame/milk."
+ },
+ "hh001": "Intended NOT eligible; claimed false (poultry). Correct.",
+ "classification": {
+  "effort_level": "moderate",
+  "ingredient_complexity": "standard",
+  "gate_A_enums": "valid",
+  "gate_J_plausibility": "moderate 5 [1,2,1,1,0] / standard 3 [2,0,1,0] (15 countable, band 2; velvet marinade + sauce breadth 1). Builder recompute matches. Rationale now cites Thai Basil Eggplant's final ruling (moderate 5). Reason codes closed-set (steady_prep, continuous_attention, multi_component, one_pan / long_list, common_pantry, multi_build).",
+  "factor_key": "pantry_familiarity (canonical)",
+  "legacy_fields_authored": false
+ },
+ "fails_needing_revision": [],
+ "non_blocking_notes": [
+  "Sauce is a little more abundant/pooled than 'no pooling'; acceptable.",
+  "Hoisin 'label lists no peanuts' line still not added (r1 non-blocking note; would change culinary_hash).",
+  "Hoisin: no peanut-free label line; most hoisin is peanut-free but add 'label lists no peanuts' to support the 'No peanuts' note (non-HH001; non-blocking, larb fish-sauce precedent).",
+  "Allergen import: map tree_nut+cashew to live 'cashew' without adding generic live 'nuts' so the HH001 cashew exception is not broken by a generic nuts token."
+ ],
+ "statement": "Vale r3 re-check (Gate O + hashes). Packages not mutated; kitchen_tested false. PASS is binary for publication; non-blocking notes do not condition the verdict.",
+ "history": [
+  {
+   "audit_round": "r1",
+   "file": "VALE-AUDIT-cashew-chicken-stir-fry-r1.json",
+   "package_revision": "freeze-r1",
+   "overall": "FAIL",
+   "failed_gates": [
+    "J",
+    "K",
+    "L"
+   ],
+   "disposition": "REGENERATE_IMAGE_AND_CLASSIFICATION_AMENDMENT"
+  },
+  {
+   "audit_round": "r2",
+   "file": "VALE-AUDIT-cashew-chicken-stir-fry-r2.json",
+   "package_revision": "freeze-r2",
+   "overall": "FAIL",
+   "failed_gates": [
+    "O"
+   ],
+   "disposition": "REVISE_RECORDS_ONLY_NO_IMAGE_REGEN"
+  }
+ ],
+ "hash_recheck_r3": "img_v1.jpg and both WebPs are byte-identical to r2; file_hashes, asset_sha256 and image-state.json all match the on-disk files. culinary_hash 80aeaa5a4094… recomputes from batch_c_recipes.py and is unchanged. D-03 moderate/standard is unchanged, and the builder's recompute matches. rejected/ is unchanged apart from REJECTIONS.md. FREEZE_INTEGRITY re-run by Vale on a scratch copy: PASS, 0 fails.",
+ "r3_rescored_gates": [
+  "O"
+ ],
+ "r3_scope_note": "r3 scope: Gate O plus the image, culinary and file hashes only. All other gates carry forward from r2, and their files were verified unchanged."
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "japanese-okonomiyaki",
+  "recipe_version_id": "rv_japanese-okonomiyaki_v1",
+  "package_revision": "freeze-r1",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "effort_score": 5,
+    "complexity_score": 3,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 1,
+      "technique": 1,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 1,
+      "flavor_component_breadth": 1,
+      "pantry_familiarity": 0,
+      "specialty_items": [
+        "katsuobushi (bonito flakes)",
+        "Japanese-style mayonnaise"
+      ]
+    },
+    "countable_ingredient_count": 12,
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "multi_component"
+      ],
+      "ingredient": [
+        "medium_list",
+        "one_specialty",
+        "multi_build"
+      ]
+    },
+    "notes": "Effort: shredding a head of cabbage and slicing (1); covered cooking with flips in two batches (periodic, 1); pancake + made sauce + toppings (1); flipping thick pancakes / doneness judgment (1); one skillet with two batches (1). Sum 5 = moderate. Complexity: 12 countable required ingredients (water, salt, oil, optional aonori and beni shoga excluded) -> 1; two widely available specialty items (bonito flakes and Japanese mayo, both in the international aisle of major chains) -> 1; batter + sauce builds -> 1; sourcing scored once under specialty -> 0. Sum 3 = standard. WAVE proposed adventurous because it assumed bottled okonomi sauce + required aonori; this package makes the sauce from ketchup/Worcestershire/soy and leaves aonori/beni shoga optional, which lowers real shopping burden.",
+    "proposal_from_wave": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "adventurous"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "factor_key_note": "pantry_familiarity is the canonical complexity factor key (batch A, batch C, and the 50 audited meals; the rubric's sourcing-difficulty factor). Batch B r1/r2 authored it as sourcing_difficulty; renamed 2026-10-08 after Vale's batch B audit. Value unchanged (0); labels unchanged."
+  },
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0–2 easy / 3–5 moderate / 6–10 involved with floors; complexity 0–1 simple / 2–3 standard / 4–8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

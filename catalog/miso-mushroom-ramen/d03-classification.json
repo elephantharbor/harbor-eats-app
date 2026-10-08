@@ -1,0 +1,70 @@
+{
+  "slug": "miso-mushroom-ramen",
+  "recipe_version_id": "rv_miso-mushroom-ramen_v1",
+  "package_revision": "freeze-r1",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "effort_score": 5,
+    "complexity_score": 3,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 1,
+      "technique": 1,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 2,
+      "specialty_items": [
+        "miso (contracted plain)",
+        "dried shiitake",
+        "egg-free ramen noodles",
+        "nori"
+      ],
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredient_count": 14,
+    "countable_ingredients": [
+      "dried shiitake",
+      "fresh shiitake",
+      "baby bok choy",
+      "frozen sweet corn",
+      "white miso",
+      "tahini",
+      "soy sauce",
+      "garlic",
+      "fresh ginger",
+      "toasted sesame oil",
+      "ramen noodles",
+      "scallions",
+      "nori",
+      "toasted sesame seeds"
+    ],
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "multi_component"
+      ],
+      "ingredient": [
+        "medium_list",
+        "several_specialty"
+      ]
+    },
+    "notes": "Effort: Steady prep (1); periodic attention while searing and simmering (1); broth+noodles as the main with one seared topping (1); sear plus keep-miso-below-boil timing (1); two pots converging at assembly (1). Sum 5 -> moderate. No floor rule triggered. Complexity: 14 countable (1). Miso, dried shiitake, ramen noodles, and nori are 3+ widely stocked international-aisle items (2), scored once; sourcing not double-counted (0). One broth build; the mushrooms take a splash of the same soy, not an independent sauce (0). Sum 3 -> standard. Cuisine adds no points.",
+    "borderline": true,
+    "proposal_from_wave": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null
+  },
+  "factor_key_note": "Fourth complexity factor stored as pantry_familiarity (the key in the 50 Vale-audited classifications, d03-design/all-50-classifications.json); kept 0 because specialty-store sourcing is scored once under specialty_burden.",
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0-2 easy / 3-5 moderate / 6-10 involved with floors; complexity 0-1 simple / 2-3 standard / 4-8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

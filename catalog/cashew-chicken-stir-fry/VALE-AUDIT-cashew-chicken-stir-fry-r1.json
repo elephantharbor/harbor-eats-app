@@ -1,0 +1,178 @@
+{
+ "slug": "cashew-chicken-stir-fry",
+ "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+ "audit_date": "2026-10-08",
+ "audit_round": "r1",
+ "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+ "package_file": "v1.json",
+ "package_revision": "freeze-r1",
+ "recipe_version_id": "rv_cashew-chicken-stir-fry_v1",
+ "freeze_integrity": "PASS",
+ "disposition": "REGENERATE_IMAGE_AND_CLASSIFICATION_AMENDMENT",
+ "overall": "FAIL",
+ "failed_gates": [
+  "J",
+  "K",
+  "L"
+ ],
+ "kitchen_tested": false,
+ "packages_mutated": false,
+ "gates": {
+  "A": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Identity ids agree (slug/dish/rcp/rv/version 1); effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort / effort_band / complexity keys anywhere in v1.json (D-03 sanity PASS)."
+  },
+  "B": {
+   "result": "PASS",
+   "defect": null,
+   "note": "All ingredients referenced; soy sauce, cornstarch, sherry splits between velvet marinade and sauce correct."
+  },
+  "C": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Velveted chicken, red pepper, celery, onion, cashews, soy-hoisin sauce, jasmine rice. Correct Chinese-American build."
+  },
+  "D": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Chicken cooked through to 165 F stated; high-heat oil cues."
+  },
+  "E": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Prep 15 + cook 18 = 33 (rice started in prep, unattended). Honest; band 30–45."
+  },
+  "F": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Soy sauce, hoisin, sesame oil allergens declared; roasted cashews unsalted/plain."
+  },
+  "G": {
+   "result": "PASS",
+   "defect": null,
+   "note": "contains_poultry true; dairy false; nut_policy cashews_only_ok; labels dairy_free. Allergens tree_nut, cashew, soy, wheat, sesame, poultry — correct."
+  },
+  "H": {
+   "result": "PASS",
+   "defect": null
+  },
+  "I": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Distinct from batch A vegetable biryani with cashews."
+  },
+  "J": {
+   "result": "FAIL",
+   "defect": "ingredient_complexity 'simple' (1) is wrong. 15 countable items -> rubric count band 2 (>=15). Velvet marinade + stir-fry sauce = flavor_component_breadth 1 (greek-souvlaki / teriyaki marinade+sauce precedent). Specialty 0. Score 3 -> standard (still standard at 2 if breadth were 0).",
+   "note": "Effort moderate 5 [1,2,1,1,0] PASS: matches the FINAL Thai Basil Eggplant ruling (moderate 5 [1,2,1,1,0]; Juniper corrected involved->moderate and Vale agreed: unattended rice = coordination 0). The 'Thai Basil = involved' premise is superseded; easy->moderate accepted via attention-2 floor."
+  },
+  "K": {
+   "result": "FAIL",
+   "defect": "Chicken is shown as large flat cutlet/tender-like pieces (~2 inches) with grill-style stripes instead of bite-size (3/4-inch) velveted, wok-seared pieces. Small round tan nuggets scattered in the sauce read as peanuts or chickpeas — not in the recipe, and peanuts are an explicit must-not (misleading for nut-allergic users on a cashews-only claim)."
+  },
+  "L": {
+   "result": "FAIL",
+   "defect": null,
+   "note": "Fails via K; L1 and L2 individually pass."
+  },
+  "L1": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; image.file_hashes for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (wave-11 precedent); no text/logo/watermark/hands/faces; one active set."
+  },
+  "L2": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Glossy, colorful bowl; appealing at card size."
+  },
+  "M": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Text provenance original_ai_assisted (wave-11 value; importer maps to live ai_assisted, see runtime_enum_gaps); image.generation method/date/generator present, model honestly 'unknown'; image-plating-brief.md and image-prompt.md present with must-be-visible / must-not-appear lists; external_image_api_called false, stock_or_web_photo_used false; rights not_cleared_for_external_release."
+  },
+  "N": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Shopping-id ingredients with quantity/unit/preparation separated from prep text; units are shoppable; scaling_notes present with ratio map {1:0.25, 2:0.5, 4:1}."
+  },
+  "O": {
+   "result": "PASS",
+   "defect": null,
+   "note": "version_number 1; package_revision freeze-r1 on root, recipe_version and image; classification_history has the initial Juniper entry; culinary_hash recomputed from batch_c_recipes.py and matches (excludes D-03 fields); README mirrors v1.json and correctly says 'Awaiting Vale A–O'; FREEZE_INTEGRITY.json PASS (0 fails), re-run by Vale."
+  }
+ },
+ "image_review": {
+  "K": "FAIL",
+  "L1": "PASS",
+  "L2": "PASS",
+  "L": "FAIL",
+  "files_inspected": [
+   "img_v1.jpg",
+   "cashew-chicken-stir-fry.webp",
+   "cashew-chicken-stir-fry-640.webp"
+  ],
+  "observation": "K FAIL: cutlet-size grill-striped chicken; peanut/chickpea-like round nuggets. Regenerate."
+ },
+ "dietary_eligibility": "contains_poultry true; dairy false; nut_policy cashews_only_ok; labels dairy_free.",
+ "allergens": "tree_nut, cashew, soy, wheat, sesame, poultry. Correct.",
+ "allergen_runtime_gaps": {
+  "package_tokens": [
+   "tree_nut",
+   "cashew",
+   "soy",
+   "wheat",
+   "sesame",
+   "poultry"
+  ],
+  "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+   "tree_nut (live: nuts — see HH001 cashew mapping note)",
+   "soy",
+   "wheat",
+   "sesame"
+  ],
+  "live_enum_source": "cycle2-preview/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+  "documented_in_runtime_enum_gaps": true,
+  "ruling": "Package keeps the wave-11 token; importer maps explicitly; never silently drop egg/soy/wheat/sesame/milk."
+ },
+ "hh001": "Intended NOT eligible; claimed false (poultry). Correct.",
+ "classification": {
+  "effort_level": "moderate",
+  "ingredient_complexity": "simple -> standard (required)",
+  "gate_A_enums": "valid",
+  "gate_J_plausibility": "moderate 5 PASS / simple FAIL -> standard 3 [2,0,1,0]",
+  "factor_key": "pantry_familiarity (canonical)",
+  "legacy_fields_authored": false
+ },
+ "fails_needing_revision": [
+  {
+   "gate": "K",
+   "defect": "Chicken cut/cook misrepresented (large grill-striped cutlets vs bite-size velveted pieces); peanut/chickpea-like inclusions not in recipe.",
+   "fix_type": "image regeneration (culinary text unchanged)",
+   "fix": [
+    "Move img_v1.jpg and both WebPs to rejected/ (e.g. rejected/img_v1_try1.jpg).",
+    "image-prompt.md 'Exact prompt' and image-plating-brief.md: replace 'bite-size pieces of chicken breast seared golden at the edges' with 'bite-size 3/4-inch cubes of velveted chicken breast, golden at the edges, no whole cutlets, no strips longer than 1 inch, no grill marks'; add 'the only nuts are whole cashews; no other small round nuts, legumes or chickpeas'. Add to Must not appear: 'Large cutlets or grill-striped chicken', 'Chickpeas or any non-cashew nut'.",
+    "Regenerate; batch_c_build.py prepare cashew-chicken-stir-fry <png>; combine with the J amendment in one freeze-r2; finalize; FREEZE_INTEGRITY PASS; Vale r2 K/L1/L2 re-check."
+   ]
+  },
+  {
+   "gate": "J",
+   "defect": "ingredient_complexity simple (1) should be standard (3): 15 countable -> band 2; marinade + sauce breadth 1.",
+   "fix_type": "classification metadata amendment (same version_number 1, classification_history entry)",
+   "fix": [
+    "batch_c_build.py: count_band(n) 'return 0 if n <= 12 else (1 if n <= 16 else 2)' -> 'return 0 if n <= 8 else (1 if n <= 14 else 2)' (D-03 rubric; batch A render_batch_a.py and Vale D-03 audits use <=8 / 9-14 / >=15), and counted_ingredients() must also skip ingredients with optional == True (batch A/B convention). Update d03-classification.json conventions.ingredient_count_band text to match.",
+    "batch_c_recipes.py cashew-chicken d03.complexity_factors.flavor_component_breadth: 0 -> 1; rationale: drop 'Thai Basil Eggplant Stir-Fry scored 6 (involved)' -> 'matches the final Thai Basil Eggplant ruling, moderate 5 [1,2,1,1,0]'; complexity sentence -> '15 countable items (band 2) and a velvet marinade plus sauce (breadth 1) give 3 -> standard.'",
+    "d03-classification.json: complexity_factors {1,0,0,0} -> {ingredient_count_band 2, specialty_burden 0, flavor_component_breadth 1, pantry_familiarity 0}; complexity_score 1 -> 3; ingredient_complexity 'simple' -> 'standard'.",
+    "v1.json recipe_version.ingredient_complexity: 'simple' -> 'standard'; classification_history append {\"version_number\": 1, \"who\": \"Juniper (Harbor Eats - Catalog Curator)\", \"when\": \"<amendment date>\", \"from\": {\"effort_level\": \"moderate\", \"ingredient_complexity\": \"simple\"}, \"to\": {\"effort_level\": \"moderate\", \"ingredient_complexity\": \"standard\"}, \"reason\": \"Vale wave-12 batch C r1 Gate J: 15 countable (band 2) + marinade/sauce breadth 1 -> 3 standard.\"}",
+    "v1.json curator_preflight[7].detail, README.md lines 20/38/40, BATCH-C-STATUS.md row: 'simple (score 1)' -> 'standard (score 3)'.",
+    "Re-render only this slug (or confirm untouched slugs stay hash-identical), set package_revision freeze-r2 on root/recipe_version/image/README, run batch_c_build.py finalize <slug>, require FREEZE_INTEGRITY PASS, then Vale r2 re-check."
+   ]
+  }
+ ],
+ "non_blocking_notes": [
+  "Hoisin: no peanut-free label line; most hoisin is peanut-free but add 'label lists no peanuts' to support the 'No peanuts' note (non-HH001; non-blocking, larb fish-sauce precedent).",
+  "Allergen import: map tree_nut+cashew to live 'cashew' without adding generic live 'nuts' so the HH001 cashew exception is not broken by a generic nuts token.",
+  "Reason codes not from the closed v1 set: suggest effort [steady_prep, continuous_attention, multi_component, one_pan]; ingredient [long_list, common_pantry, multi_build]."
+ ],
+ "statement": "Vale audited this frozen package independently against certification gates A–O with K, L1 and L2 reported separately; packages were not mutated; kitchen_tested is false. PASS is binary for publication; non-blocking notes do not condition the verdict."
+}

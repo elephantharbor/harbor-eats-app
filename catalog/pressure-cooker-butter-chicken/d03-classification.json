@@ -1,0 +1,51 @@
+{
+  "slug": "pressure-cooker-butter-chicken",
+  "recipe_version_id": "rv_pressure-cooker-butter-chicken_v1",
+  "package_revision": "freeze-r2",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "effort_score": 4,
+    "complexity_score": 3,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 1,
+      "technique": 0,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 2,
+      "specialty_burden": 1,
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0,
+      "specialty_items": [
+        "garam masala"
+      ]
+    },
+    "countable_ingredient_count": 16,
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "multi_component",
+        "mostly_hands_off"
+      ],
+      "ingredient": [
+        "long_list",
+        "one_specialty"
+      ]
+    },
+    "notes": "Effort: cutting chicken, chopping aromatics (1); sauté then hands-off pressure, short finish (1); curry + rice (1); pressure-cooker set-and-release, no advanced technique (0); cooker + saucepan with a timed overlap (1). Sum 4 = moderate. Complexity: 16 countable ingredients (salt, oil, water excluded) -> 2; garam masala is the one widely available specialty item -> 1; one sauce build (0); mainstream sourcing (0). Sum 3 = standard. Matches WAVE proposal.",
+    "proposal_from_wave": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "factor_key_note": "pantry_familiarity is the canonical complexity factor key (batch A, batch C, and the 50 audited meals; the rubric's sourcing-difficulty factor). Batch B r1/r2 authored it as sourcing_difficulty; renamed 2026-10-08 after Vale's batch B audit. Value unchanged (0); labels unchanged."
+  },
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0–2 easy / 3–5 moderate / 6–10 involved with floors; complexity 0–1 simple / 2–3 standard / 4–8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

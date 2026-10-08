@@ -15,6 +15,13 @@ import {
   isEffortLevel,
   isIngredientComplexity,
 } from "./classification.js";
+import {
+  eligibilityTagsFromMappedFactory,
+  mapFactoryDietaryLabel,
+  mapFactoryPackageAllergens,
+  mapFactoryProvenance,
+  normalizeFactoryPublicationStatus,
+} from "./factory-package-tokens.js";
 
 export const FACTORY_CONTRACT = "flavorweave-catalog-package";
 
@@ -40,6 +47,10 @@ const ELIGIBILITY_TOKENS = new Set([
   "milk",
   "cheese",
   "butter",
+  "egg",
+  "soy",
+  "wheat",
+  "sesame",
   "nuts",
   "peanut",
   "almond",
@@ -116,8 +127,14 @@ function sortedUnique(values) {
  * Hard-limit tags taken only from fields the factory package already states.
  * @param {object} pkg
  */
-export function eligibilityTagsFromFactory(pkg) {
-  const version = pkg?.recipe_version || {};
+export function eligibilityTagsFromFactory(pkg, mappedAllergens = null) {
+  if (mappedAllergens) return eligibilityTagsFromMappedFactory(pkg, mappedAllergens);
+  const mapped = mapFactoryPackageAllergens(pkg);
+  if (!mapped.ok) return legacyEligibilityTags(pkg?.recipe_version || {});
+  return eligibilityTagsFromMappedFactory(pkg, mapped.allergens);
+}
+
+function legacyEligibilityTags(version) {
   const eligibility = version.dietary_eligibility || {};
   /** @type {string[]} */
   const tags = [];
@@ -130,10 +147,8 @@ export function eligibilityTagsFromFactory(pkg) {
     const name = String(token || "").trim().toLowerCase();
     if (ELIGIBILITY_TOKENS.has(name)) tags.push(name);
   }
-  const nutPolicy = eligibility.nut_policy;
-  if (nutPolicy && nutPolicy !== "none" && ELIGIBILITY_TOKENS.has(String(nutPolicy).toLowerCase())) {
-    tags.push(String(nutPolicy).toLowerCase());
-  }
+  const nutPolicy = String(eligibility.nut_policy || "").toLowerCase();
+  if (nutPolicy === "cashews_only_ok") tags.push("cashew");
   return sortedUnique(tags);
 }
 
@@ -409,16 +424,7 @@ export function normalizeLegacyAuditDraftPackage(pkg, source, policy = {}) {
       role: item.role || null,
     };
   });
-  const eligibility = version.dietary_eligibility || {};
-  const eligibilityTags = sortedUnique([
-    ...asArray(dish.tags),
-    ...(eligibility.contains_meat === true ? ["meat"] : []),
-    ...(eligibility.contains_poultry === true ? ["poultry"] : []),
-    ...(eligibility.contains_finfish === true ? ["finfish"] : []),
-    ...(eligibility.contains_shellfish === true ? ["shellfish"] : []),
-    ...(eligibility.contains_dairy === true ? ["dairy"] : []),
-    ...asArray(version.allergens),
-  ]);
+  const eligibilityTags = legacyEligibilityTags(version);
   const certification = pkg.certification || {
     certification_class: "unreviewed_revision_draft",
     factory_certified: false,
@@ -541,7 +547,29 @@ export function normalizeFactoryPackage(pkg, source, policy = {}) {
   const master = imagePath(image, "master", dish.slug);
   const card = imagePath(image, "card", dish.slug);
   if (!master || !card) errors.push(error("missing_image", "image"));
-  const eligibilityTags = eligibilityTagsFromFactory(pkg);
+  const allergenMap = mapFactoryPackageAllergens(pkg);
+  if (!allergenMap.ok) {
+    for (const token of allergenMap.unknown) {
+      errors.push(error("unknown_factory_allergen", "recipe_version.allergens", token));
+    }
+  }
+  /** @type {string[]} */
+  const mappedAllergens = allergenMap.ok ? allergenMap.allergens : [];
+  /** @type {string[]} */
+  const mappedDietary = [];
+  for (const label of asArray(version.dietary_labels)) {
+    const mapped = mapFactoryDietaryLabel(label);
+    if (!mapped.ok) errors.push(error("unknown_factory_dietary_label", "recipe_version.dietary_labels", mapped.token));
+    else mappedDietary.push(mapped.value);
+  }
+  const provenanceRaw = version.provenance || recipe.provenance?.source_class || null;
+  const provenanceMapped = mapFactoryProvenance(
+    typeof provenanceRaw === "object" && provenanceRaw?.source_class ? provenanceRaw.source_class : provenanceRaw
+  );
+  if (!provenanceMapped.ok) {
+    errors.push(error("unknown_factory_provenance", "recipe_version.provenance", provenanceMapped.token));
+  }
+  const eligibilityTags = allergenMap.ok ? eligibilityTagsFromMappedFactory(pkg, mappedAllergens) : [];
   const ingredients = asArray(version.ingredients).map((item, index) => ({
     position: index,
     ingredient_id: item.ingredient_id || null,
@@ -589,17 +617,24 @@ export function normalizeFactoryPackage(pkg, source, policy = {}) {
     version,
     ingredients,
     taste,
-    dietary: asArray(version.dietary_labels),
-    allergens: asArray(version.allergens).map((item) => String(item)),
+    dietary: mappedDietary,
+    allergens: mappedAllergens,
     equipment: asArray(version.equipment).map((item) => String(item)),
     eligibilityTags,
     publicationStatus,
-    artifactPublicationStatus: version.publication_status || version.publication_state || null,
+    artifactPublicationStatus:
+      normalizeFactoryPublicationStatus(version.publication_status || version.publication_state) ||
+      version.publication_status ||
+      version.publication_state ||
+      null,
     certification: {
       certification_class: "factory_certified",
       factory_certified: true,
-      text_provenance: "ai_assisted",
-      text_provenance_raw: version.provenance || recipe.provenance?.source_class || null,
+      text_provenance: provenanceMapped.ok ? provenanceMapped.value || "ai_assisted" : "ai_assisted",
+      text_provenance_raw:
+        typeof provenanceRaw === "object" && provenanceRaw?.source_class
+          ? provenanceRaw.source_class
+          : version.provenance || recipe.provenance?.source_class || null,
       image_provenance: image.provenance || "ai_illustration",
       image_rights: image.rights || version.rights_state || "unknown",
       kitchen_tested: false,

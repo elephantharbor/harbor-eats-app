@@ -1,0 +1,143 @@
+{
+  "slug": "sheet-pan-gnocchi-brussels-apples",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-08",
+  "audit_round": "r1",
+  "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r1",
+  "recipe_version_id": "rv_sheet-pan-gnocchi-brussels-apples_v1",
+  "freeze_integrity": "PASS",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "failed_gates": [],
+  "kitchen_tested": false,
+  "packages_mutated": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Identity ids agree (slug = dish_id; rcp_/rv_<slug>_v1; version_number 1); package_revision freeze-r1 on root, recipe_version, and image; effort_level and ingredient_complexity present on recipe_version with valid D-03 enums; no legacy effort / effort_band / complexity keys anywhere in v1.json. d03-classification.json labels match v1.json. easy/simple."
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null,
+      "note": "All 11 ingredients referenced; thyme split 2 tsp pan / 1 tsp glaze; salt 3/4 + 1/2 + 1/4 = 1.5 tsp; oil 2 + 3 = 5 tbsp; glaze built step 1, applied step 5."
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null,
+      "note": "2 shelf-stable packages (~2.2 lb) for 4 is a normal portion; 1/2/4 scaling ratios correct (1 serving = 1/2 package)."
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null,
+      "note": "450F two-rack roast 15 + flip/swap 10 + glaze 3 min; doneness cues for gnocchi, sprouts, apples stated. Roast-from-package shelf-stable gnocchi is a sound technique."
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Prep 15 (11+4) + cook 30 (15+10+3+2) = 45; preheat stated as overlapping prep/pan loading."
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Shelf-stable gnocchi is the only compound and carries a hard label contract (no milk, whey, cheese, butter, egg). Glaze built in-recipe."
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Dietary: meat/poultry/finfish/shellfish/dairy all false, plant_based + vegetarian true by hard gnocchi contract, nut_policy none. Allergens: wheat only — correct (mustard disclosed in notes; not a token allergen). Hidden-source check: no butter, no Parmesan, gnocchi contract excludes milk/egg."
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null,
+      "note": "italian, crispy, savory, tangy — all active D-02 slugs (verified against taste-vocabulary.js); crispy/tangy supported by roast + cider glaze."
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null,
+      "note": "No slug collision vs 50 live + wave-12 B/C; distinct from Sheet-Pan Lemon Herb Chicken and Roasted Butternut Farro Plate."
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Title/description promises (crisp gnocchi, browned sprouts, sticky glaze) are delivered by the method. D-03 easy (2) / simple (1) is rubric-faithful: 8 countable items sits exactly at the ≤8 band edge, specialty 1 for the contracted gnocchi (parity with vegetarian-Parmesan), breadth 0, two pans in one oven scored 0 coordination per harissa-carrots/packets precedent. Borderline but correct; no cultural factor."
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Light aluminum half-sheet; ridged golden gnocchi, halved Brussels sprouts with dark caramelized cut faces, red-skinned apple wedges with browned edges, purple red-onion wedges, thyme leaves, cracked pepper. Nothing forbidden (no cheese, butter, sage, nuts, bacon, parchment, pomegranate). Gnocchi read as ridged gnocchi pillows on zoom — improved over the rejected tofu-cube attempt."
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Rolled up from L1 and L2."
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; image.sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 and Batch B); no text, logo, watermark, packaging, or hands; one active set; master_ref points at the active WebP. rejected/attempt1-gnocchi-read-as-tofu-cubes.jpg retained only under rejected/ and listed in image.rejected_assets; not active."
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Bright window light, strong green/gold/red/purple separation from real ingredients, pan filled edge to edge, textures (crisp sprout leaves, gnocchi ridges) legible at 320 px. Parity with the Chipotle Lime house reference."
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null,
+      "note": "recipe provenance original_ai_assisted (live ai_assisted gap documented); image generation method/date/generator present, model honestly 'unknown'; image-plating-brief.md (mtime 16:53 CT) predates img_v1.jpg (16:59 CT) and image-prompt.md derives from recipe + brief; catalog_confidence PRESENT_AI / KNOWN_TEXT_AND_IMAGE / PENDING_AUDIT; rights not_cleared_for_external_release; no stock or web imagery."
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Shopping ids separate from prep; gnocchi shopping contract explicit (do not buy refrigerated/ricotta/cheese/cauliflower gnocchi)."
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null,
+      "note": "version_number 1, package_revision freeze-r1 consistent across v1.json, README, image-prompt.md; classification_history []; curator_preflight image = frozen_for_preflight; no README/prompt language denies present WebPs; FREEZE_INTEGRITY.json PASS (0 fails) and Vale's independent re-run on a /tmp copy also PASS; renderer --check OK and recipes_part*.py source in sync with rendered v1.json."
+    }
+  },
+  "image_review": {
+    "K": "PASS",
+    "L1": "PASS",
+    "L2": "PASS",
+    "L": "PASS",
+    "files_inspected": [
+      "img_v1.jpg",
+      "sheet-pan-gnocchi-brussels-apples-640.webp"
+    ],
+    "observation": "Sheet pan filled with ridged golden gnocchi, caramelized sprouts, apple wedges, red onion; card legible."
+  },
+  "dietary_eligibility": "Plant-based/vegetarian/dairy_free unconditional via hard gnocchi contract; meat/poultry/finfish/shellfish/dairy false; nut_policy none.",
+  "allergens": "wheat. Correct.",
+  "allergen_runtime_gaps": {
+    "package_tokens": [
+      "wheat"
+    ],
+    "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+      "wheat"
+    ],
+    "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS (dairy, nuts, cashew, walnut, peanut, almond, pecan, hazelnut, pistachio, macadamia, pine_nut, shellfish, finfish, poultry, meat)",
+    "documented_in_runtime_enum_gaps": true
+  },
+  "hh001": "Intended eligible; claimed true; VERIFIED — no butter/Parmesan, gnocchi contracted milk- and egg-free, no nuts, no animal protein.",
+  "classification": {
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "gate_A_enums": "valid",
+    "gate_J_plausibility": "easy (2) / simple (1); matches WAVE proposal; borderline at the 8-ingredient cutoff but correct.",
+    "legacy_fields_authored": false,
+    "factor_key": "pantry_familiarity (canonical)"
+  },
+  "fails_needing_revision": [],
+  "required_fixes": [],
+  "non_blocking_notes": [
+    "Gnocchi in the hero are drawn larger and blockier than real shelf-stable gnocchi (about sprout-half size). Identity holds via ridges; if regenerated for any other reason, ask for 'small 1-inch ridged gnocchi pillows'.",
+    "Gnocchi pan carries ~2.2 lb gnocchi + 1 lb apples on one half-sheet (~70% coverage). Single layer is achievable but tight; a future v2 could move the apples to the sprout pan to protect crispness.",
+    "No culinary_hash on Batch A packages (wave-11 precedent also had none; Batch B/C carry one). Add culinary_hash excluding D-03 fields before any future classification-only amendment."
+  ],
+  "statement": "Gate result only. Binary PASS/FAIL per the certification skill (no PASS WITH NOTES publication state; notes above are non-blocking). Not publication, not a production release, not a cook test. Vale did not edit the package."
+}

@@ -1,0 +1,664 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08, creator batch C. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true. Not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "C",
+  "creator_batch": "C",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "mushroom-hominy-pozole-rojo",
+    "slug": "mushroom-hominy-pozole-rojo",
+    "title": "Mushroom and Hominy Pozole Rojo",
+    "description": "A brick-red pozole of toasted guajillo and ancho chile broth with deeply browned cremini mushrooms and plump hominy, finished at the table with crunchy cabbage, radish, white onion, oregano, lime, and corn tostadas. Vegetable broth; no cheese, no crema.",
+    "cuisine": "mexican",
+    "meal_format": "soup",
+    "primary_ingredient": "hominy",
+    "vocabulary_tag_ids": [
+      "mexican",
+      "savory",
+      "smoky",
+      "fresh",
+      "crunchy",
+      "soups",
+      "mushrooms"
+    ],
+    "current_recipe_id": "rcp_mushroom-hominy-pozole-rojo",
+    "current_version_id": "rv_mushroom-hominy-pozole-rojo_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_mushroom-hominy-pozole-rojo",
+    "dish_id": "mushroom-hominy-pozole-rojo",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_mushroom-hominy-pozole-rojo_v1",
+    "recipe_id": "rcp_mushroom-hominy-pozole-rojo",
+    "dish_id": "mushroom-hominy-pozole-rojo",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Mushroom and Hominy Pozole Rojo",
+    "description": "A brick-red pozole of toasted guajillo and ancho chile broth with deeply browned cremini mushrooms and plump hominy, finished at the table with crunchy cabbage, radish, white onion, oregano, lime, and corn tostadas. Vegetable broth; no cheese, no crema.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "guajillo-chiles",
+        "name": "dried guajillo chiles",
+        "display_name": "dried guajillo chiles",
+        "quantity": 5,
+        "unit": "count",
+        "note": "about 1 oz; Hispanic aisle of most supermarkets",
+        "preparation": "stemmed, seeded, torn flat",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ancho-chiles",
+        "name": "dried ancho chiles",
+        "display_name": "dried ancho chiles",
+        "quantity": 2,
+        "unit": "count",
+        "note": "Hispanic aisle of most supermarkets",
+        "preparation": "stemmed, seeded, torn flat",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "boiling water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "for soaking the chiles; 1 cup of the soaking liquid goes into the blender, the rest is discarded",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cremini-mushrooms",
+        "name": "cremini mushrooms",
+        "display_name": "cremini mushrooms",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "wiped clean, quartered (halve small ones)",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral high-heat oil (canola or avocado)",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "1 tbsp per mushroom batch, 1 tbsp for the onion and chile puree",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "white-onion",
+        "name": "white onion",
+        "display_name": "white onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "large, about 12 oz. Half goes into the pot; half is the raw garnish.",
+        "preparation": "half diced; half finely diced, rinsed, and drained for garnish",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 5,
+        "unit": "clove",
+        "note": "3 whole for the blender, 2 minced for the pot",
+        "preparation": "peeled",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "ground-cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dried-mexican-oregano",
+        "name": "dried Mexican oregano",
+        "display_name": "dried Mexican oregano",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 tsp blended into the chile puree, 1 tsp crumbled over bowls. Sold beside the dried chiles; regular dried oregano is a fine stand-in.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bay-leaves",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "white-hominy",
+        "name": "white hominy",
+        "display_name": "canned white hominy",
+        "quantity": 50,
+        "unit": "oz",
+        "note": "two 25-oz cans",
+        "preparation": "drained and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "vegetable-broth",
+        "name": "vegetable broth",
+        "display_name": "low-sodium vegetable broth",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "REQUIRED vegetable broth: no chicken, beef, or pork stock and no milk ingredients on the label. This keeps the soup plant-based for HH001.",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 tsp across the mushroom batches, 1/2 tsp in the chile puree, up to 1/2 tsp to finish",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "green-cabbage",
+        "name": "green cabbage",
+        "display_name": "green cabbage",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "about 1/4 small head",
+        "preparation": "very finely shredded",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "radishes",
+        "name": "radishes",
+        "display_name": "radishes",
+        "quantity": 6,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced into coins",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "limes",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "corn-tostadas",
+        "name": "corn tostadas",
+        "display_name": "store-bought corn tostadas",
+        "quantity": 8,
+        "unit": "count",
+        "note": "REQUIRED: crisp corn tostadas whose label lists corn, vegetable oil, salt, and lime only. No lard and no cheese.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep chiles, mushrooms, and garnishes",
+        "body": "Bring 2 cups water to a boil in a kettle or small pot. Stem and seed the guajillo and ancho chiles, shaking out the seeds, and tear them flat. Wipe and quarter the mushrooms. Dice half the onion for the pot; finely dice the other half, rinse it under cold water, and drain it for garnish. Peel the garlic; keep 3 cloves whole and mince 2. Finely shred the cabbage, slice the radishes into thin coins, and cut the limes into wedges. Drain and rinse the hominy. HARD CONTRACT: vegetable broth only; tostadas with no lard or cheese; no crema, sour cream, or cheese anywhere on the bowl.",
+        "ingredient_refs": [
+          "water",
+          "guajillo-chiles",
+          "ancho-chiles",
+          "cremini-mushrooms",
+          "white-onion",
+          "garlic",
+          "green-cabbage",
+          "radishes",
+          "limes",
+          "white-hominy",
+          "vegetable-broth",
+          "corn-tostadas"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Toast and soak the chiles",
+        "body": "Set a 6-quart Dutch oven over medium heat. Toast the chile pieces in the dry pot, pressing them flat with a spatula, about 15 to 20 seconds per side, until fragrant and lightly blistered. Do not let them blacken; burnt chiles make the broth bitter. Move them to a heatproof bowl, pour the 2 cups boiling water over, and weigh them down with a small plate. Soak until soft, about 15 minutes.",
+        "ingredient_refs": [
+          "guajillo-chiles",
+          "ancho-chiles",
+          "water"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Brown the mushrooms",
+        "body": "While the chiles soak, raise the heat under the same pot to medium-high and add 1 tbsp oil. Add half the mushrooms in a single layer with 1/2 tsp salt. Cook undisturbed 3 minutes, then stir and cook until deeply browned, about 3 minutes more. Move to a plate. Repeat with 1 tbsp oil, the remaining mushrooms, and 1/2 tsp salt.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "cremini-mushrooms",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Soften the onion and blend the chiles",
+        "body": "Lower the heat to medium. Add the last 1 tbsp oil and the diced onion (the pot half) and cook, stirring, until soft and turning golden, about 4 minutes; add the minced garlic for the last minute. While the onion cooks, put the soaked chiles, 1 cup of their soaking liquid, the 3 whole garlic cloves, 1 tsp oregano, the cumin, and 1/2 tsp salt in a blender. Blend on high until completely smooth, about 1 minute. Discard the remaining soaking liquid.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "white-onion",
+          "garlic",
+          "guajillo-chiles",
+          "ancho-chiles",
+          "water",
+          "dried-mexican-oregano",
+          "ground-cumin",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Fry the chile puree",
+        "body": "Pour the puree through a fine-mesh strainer into the pot, pressing the solids with a spoon; discard the skins left in the strainer. Cook, stirring often, until the puree darkens to brick red and thickens, about 4 minutes. This frying step is where the broth gets its depth.",
+        "ingredient_refs": [
+          "guajillo-chiles",
+          "ancho-chiles"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Simmer the pozole",
+        "body": "Add the browned mushrooms and their juices, the hominy, the vegetable broth, and the bay leaves. Bring to a boil over high heat, about 5 minutes, then reduce to a steady simmer. Simmer uncovered until the hominy is plump and tender and the broth tastes rounded, about 15 minutes.",
+        "ingredient_refs": [
+          "cremini-mushrooms",
+          "white-hominy",
+          "vegetable-broth",
+          "bay-leaves"
+        ]
+      },
+      {
+        "step_number": 7,
+        "title": "Season and serve",
+        "body": "Remove the bay leaves. Taste and add up to 1/2 tsp salt. Ladle into deep bowls. Top each bowl with shredded cabbage, radish coins, raw diced onion, and a pinch of the remaining oregano crumbled between your palms. Serve with lime wedges to squeeze over and corn tostadas alongside for crunch. No cheese, no crema. kitchen_tested is false.",
+        "ingredient_refs": [
+          "kosher-salt",
+          "green-cabbage",
+          "radishes",
+          "white-onion",
+          "dried-mexican-oregano",
+          "limes",
+          "corn-tostadas"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "guajillo-ancho-puree",
+        "name": "toasted guajillo-ancho chile puree",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "guajillo chiles",
+          "ancho chiles",
+          "soaking water",
+          "garlic",
+          "dried Mexican oregano",
+          "ground cumin",
+          "kosher salt"
+        ]
+      },
+      {
+        "component_id": "mushroom-hominy-pozole",
+        "name": "mushroom and hominy pozole broth",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "browned cremini mushrooms",
+          "white onion",
+          "garlic",
+          "chile puree",
+          "hominy",
+          "vegetable broth",
+          "bay leaves"
+        ]
+      },
+      {
+        "component_id": "pozole-garnish",
+        "name": "crunchy table garnish",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "green cabbage",
+          "radishes",
+          "raw white onion",
+          "dried Mexican oregano",
+          "limes"
+        ]
+      },
+      {
+        "component_id": "corn-tostadas",
+        "name": "corn tostadas",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "corn tostadas"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart Dutch oven",
+      "kettle or small pot",
+      "heatproof bowl and small plate",
+      "blender",
+      "fine-mesh strainer",
+      "spatula",
+      "ladle",
+      "knife",
+      "cutting board"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 48,
+    "total_time_minutes": 63,
+    "prep_minutes": 15,
+    "cook_minutes": 48,
+    "total_minutes": 63,
+    "time_clock": "Prep 15 (kettle boils during prep). Cook 48 = 3 toast chiles + 12 brown mushrooms in two batches (the 15-minute chile soak runs inside this) + 5 onion/garlic (blend during it) + 5 strain and fry puree + 5 bring to a boil + 15 simmer + 3 season and serve.",
+    "heat": "Medium for toasting chiles; medium-high for browning mushrooms; medium for onion and frying the puree; high to boil, then a steady simmer. No oven.",
+    "doneness": "Mushrooms deeply browned at the edges. Chile puree darkened to brick red before the broth goes in. Hominy plump and tender; broth brick red, rounded, and not bitter. kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "when": "2026-10-08",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment by rubric before freeze. Factor scores and reason codes in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "culinary_hash": "9c6fc145a003d2fba1786502e33f7e7fc5764bb8c2aece445f0b49f7e706eab0",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook, heat, doneness. Excludes classification.",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Dried chiles, cumin, and oregano are spices; hominy is corn.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant pozole. No dairy (no cheese or crema garnish), no shellfish, no meat, no poultry, no egg. Vegetable broth and lard-free corn tostadas are hard shopping contracts. No nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free, vegetarian, and plant_based. Vegetable broth (no meat stock) and corn tostadas with no lard or cheese are required ingredients, not suggestions. No crema, sour cream, cheese, pork, or chicken.",
+    "allergens": [],
+    "allergen_notes": [
+      "No allergen tokens in the written ingredients: no egg, milk, soy, wheat, sesame, peanut, tree_nut, shellfish, or finfish.",
+      "Corn (hominy, tostadas) is not a major allergen token in this factory set.",
+      "The allergens array is intentionally empty; this is a reviewed result, not a missing field."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant pozole. No dairy (no cheese or crema garnish), no shellfish, no meat, no poultry, no egg. Vegetable broth and lard-free corn tostadas are hard shopping contracts. No nuts.",
+    "hh001_contract": "plant_based_compatible true requires vegetable broth and lard-free, cheese-free corn tostadas, and no crema or cheese garnish. Unconditional.",
+    "vocabulary_tag_ids": [
+      "mexican",
+      "savory",
+      "smoky",
+      "fresh",
+      "crunchy",
+      "soups",
+      "mushrooms"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Factory allergen tokens (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Live PACKAGE_ALLERGEN_IDS use dairy (for milk) and nuts (for tree_nut) and carry cashew; map at import, do not silently drop. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level / ingredient_complexity are D-03 enums. Legacy effort / complexity strings deliberately omitted (package skill). Reason codes in the sidecar are proposed; the closed reason-code list (FACTORY-SKILL-AMENDMENT.md) was not on the box at authoring.",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true.",
+      "cuisine_gap": "mexican is dish metadata; the closest active D-02 cuisine slug is used in tags where one exists."
+    }
+  },
+  "image": {
+    "image_id": "img_mushroom-hominy-pozole-rojo_v1",
+    "dish_id": "mushroom-hominy-pozole-rojo",
+    "recipe_version_id": "rv_mushroom-hominy-pozole-rojo_v1",
+    "asset_generated": true,
+    "master_ref": "mushroom-hominy-pozole-rojo.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "mushroom-hominy-pozole-rojo.webp",
+        "spec_catalog_path": "/images/meals/mushroom-hominy-pozole-rojo.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "mushroom-hominy-pozole-rojo-640.webp",
+        "spec_catalog_path": "/images/meals/mushroom-hominy-pozole-rojo-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop the GenerateImage JPEG (img_v1.jpg) to 4:3, then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage, 4:3 landscape, house-quality reference as quality/light reference only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Grok Bot Catalog Factory wave-12) via GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated from this package's recipe and plating brief. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "72629cce1c92f5c97365ca0328e55b39da85bf0177d35d2d2a5534dd5895a774",
+      "master_sha256": "b0a24e04fb36e91c5a5e5fb256440e831979a288e53237561249e34b7822c98f",
+      "card_sha256": "805238f462e48b3b8e5f65315e0733e788a1c3e162d46e1f63854a98589810db"
+    },
+    "card_ref": "mushroom-hominy-pozole-rojo-640.webp",
+    "master_filename": "mushroom-hominy-pozole-rojo.webp",
+    "card_filename": "mushroom-hominy-pozole-rojo-640.webp",
+    "rejected_dir": "rejected/",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "All 17 ingredients are referenced by at least one step; every step ref resolves to a listed ingredient (machine-checked by batch_c_build.py)."
+    },
+    {
+      "check": "fats",
+      "result": "pass",
+      "detail": "Fats fully accounted: 3 tbsp neutral high-heat oil (canola or avocado) (1 tbsp per mushroom batch, 1 tbsp for the onion and chile puree)."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Store-bought compound items carry a shopping note; made components listed under components. plant_based_compatible true requires vegetable broth and lard-free, cheese-free corn tostadas, and no crema or cheese garnish. Unconditional."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 + cook 48 = 63. Prep 15 (kettle boils during prep). Cook 48 = 3 toast chiles + 12 brown mushrooms in two batches (the 15-minute chile soak runs inside this) + 5 onion/garlic (blend during it) + 5 strain and fry puree + 5 bring to a boil + 15 simmer + 3 season and serve."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes; do_not_scale: vegetable broth only; no cheese or crema; lard-free tostadas; strain the chile puree; toast chiles briefly, never black"
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "hh001_eligible true. Plant pozole. No dairy (no cheese or crema garnish), no shellfish, no meat, no poultry, no egg. Vegetable broth and lard-free corn tostadas are hard shopping contracts. No nuts. Allergens: none. Labels: dairy_free, vegetarian, plant_based."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "mexican, savory, smoky, fresh, crunchy, soups, mushrooms are D-02 slugs (checked against taste-vocabulary.js list). Cuisine 'mexican', format 'soup', primary 'hominy' are dish metadata, not tags."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level moderate (score 5); ingredient_complexity standard (score 3, 14 counted items). Factors in d03-classification.json. WAVE proposal: moderate/standard."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "pass",
+      "detail": "freeze_integrity.py PASS at freeze-r1. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+    }
+  ],
+  "scaling_notes": {
+    "1": "Blend a half batch of chiles (small chile batches scorch and blend poorly), use 1/4 of it, and freeze the rest. A quarter batch of soup is 6 oz mushrooms, 12 oz hominy, 1 1/2 cups broth, 2 tostadas.",
+    "2": "Half of everything; brown the mushrooms in one batch. If your blender will not puree 3 1/2 chiles smoothly, blend a full batch and freeze the extra puree.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "vegetable broth only",
+      "no cheese or crema",
+      "lard-free tostadas",
+      "strain the chile puree",
+      "toast chiles briefly, never black"
+    ]
+  },
+  "coverage_contribution": "Hominy 0 to 1 and Mexican soup 0 to 1. Moves Mexican off the black-bean cluster with an October soup whose radish, cabbage, and lime finish gives it a bright hero image. HH001 plant meal that is not legume-led.",
+  "near_duplicate_review": "Compared with White Bean Kale Soup: different cuisine, chile broth, hominy vs beans. Compared with Smoky Lentil Sweet Potato Stew: no legumes, brothy soup with raw garnish. Compared with Chipotle Lime Black Bean Bowls and Crispy Chipotle Tofu Tacos: no black beans or chipotle, soup format. Pork pozole deliberately avoided. Not a live-catalog duplicate.",
+  "selection_alignment": "Matches selection.json: mexican / soup / hominy / hh001_intent true. No deviations from WAVE proposals.",
+  "batch_challenges": "C",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_preflight_pass_awaiting_vale"
+}

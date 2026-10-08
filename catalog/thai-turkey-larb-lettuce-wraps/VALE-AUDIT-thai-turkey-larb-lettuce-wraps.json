@@ -1,0 +1,297 @@
+{
+  "slug": "thai-turkey-larb-lettuce-wraps",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-08",
+  "audit_round": "r2",
+  "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r1",
+  "recipe_version_id": "rv_thai-turkey-larb-lettuce-wraps_v1",
+  "freeze_integrity": "PASS (0 fails; Vale re-ran freeze_integrity.py on a /tmp copy at r2)",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "failed_gates": [],
+  "kitchen_tested": false,
+  "packages_mutated": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. easy/standard.",
+      "rechecked_r2": "Light r2 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 2/2 and labels easy/standard unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null,
+      "note": "All ingredients referenced; rice powder 2/3 in, 1/3 on top."
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Turkey to 165 F, no pink; dressing off heat."
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Prep 10 + cook 19 (6+8+3+2) = 29; 'under 30 minutes' claim holds."
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Khao khua made in recipe. Fish sauce has no no-shellfish contract (acceptable for a non-HH001 meal; see note)."
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Dietary: poultry + finfish true, dairy false, nut_policy none, HH001 false (poultry). Allergens poultry, finfish — correct."
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null,
+      "note": "easy (2, borderline) accepted — continuous-ish stirring could argue moderate, but rubric scoring is defensible; standard (fish sauce) correct.",
+      "rechecked_r2": "Light r2 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 2/2 and labels easy/standard unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Butter-lettuce cups (soft, cupped) with fine turkey crumbles, chile flakes, shallot, scallion, mint, cilantro, rice-powder specks; cucumber, lime, side dish of toasted rice powder. No glaze/peanuts/cashews/carrots/water chestnuts."
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Rolled up from L1 and L2."
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir."
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Fresh, herb-flecked, bright platter; reads well at card scale."
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null,
+      "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null,
+      "note": "version_number 1, package_revision freeze-r1 consistently; classification_history []; culinary_hash present and excludes D-03 fields; README mirrors v1.json with no stale reserved/not-run image language; FREEZE_INTEGRITY.json PASS (0 fails)."
+    }
+  },
+  "image_review": {
+    "K": "PASS",
+    "L1": "PASS",
+    "L2": "PASS",
+    "L": "PASS",
+    "files_inspected": [
+      "img_v1.jpg",
+      "thai-turkey-larb-lettuce-wraps-640.webp"
+    ],
+    "observation": "Platter of 4 filled cups; all required components; nothing forbidden."
+  },
+  "dietary_eligibility": "contains_poultry + finfish true; dairy false; nut_policy none; label dairy_free.",
+  "allergens": "poultry, finfish. Correct.",
+  "allergen_runtime_gaps": {
+    "package_tokens": [
+      "poultry",
+      "finfish"
+    ],
+    "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [],
+    "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+    "documented_in_runtime_enum_gaps": true
+  },
+  "hh001": "Intended NOT eligible; claimed false (poultry). Correct.",
+  "classification": {
+    "effort_level": "easy",
+    "ingredient_complexity": "standard",
+    "gate_A_enums": "valid",
+    "gate_J_plausibility": "easy (2, borderline) / standard (2). Matches plan.",
+    "legacy_fields_authored": false
+  },
+  "fails_needing_revision": [],
+  "non_blocking_notes": [
+    "Non-blocking: fish sauce lacks the no-shellfish contract used in the Vietnamese package; the 'no shellfish' allergen statement relies on typical anchovy fish sauce. Consider adding the contract in a future revision."
+  ],
+  "statement": "r2 light A/J re-check (2026-10-08 CT) after the D-03 factor-key rename: A and J PASS; v1.json unchanged; culinary_hash and asset_sha256 verified; FI PASS. All other gates carried from r1. Overall PASS -> CERTIFY_V1.",
+  "culinary_hash": "sha256:ff6ca65444468d53b84a4d858ddc8fe20a8afc596ffe6ff877606b8addf90f0f",
+  "culinary_hash_verified": true,
+  "asset_sha256_verified": {
+    "img_v1.jpg": "87f9ff798de45782c5f2c007ef154fa0395969b5bacb8521215a6bda273bcb1a",
+    "thai-turkey-larb-lettuce-wraps.webp": "f4dbf6a1445c198068f8afd2fa30edc95578fc2e8ead9d755354c45a52104e1c",
+    "thai-turkey-larb-lettuce-wraps-640.webp": "3ca9409ffcd66236384ff088bd5dfaabe610d2a6490d73befd26f3a10fb885fd"
+  },
+  "r2_scope": [
+    "A (light)",
+    "J (light)",
+    "freeze_integrity",
+    "culinary_hash",
+    "asset_sha256"
+  ],
+  "rescore": {
+    "round": "r2",
+    "trigger": "Juniper cleanup 2026-10-08 ~17:16 CT (backup /workspace/backups/wave-12-juniper-r2-20261008-171303)",
+    "prior_round": "r1",
+    "prior_overall": "PASS",
+    "prior_audit": "history[0] in this file",
+    "package_changes_reviewed": [
+      "d03 sidecar + README key rename only; v1.json byte-identical to backup"
+    ],
+    "still_failing": []
+  },
+  "history": [
+    {
+      "slug": "thai-turkey-larb-lettuce-wraps",
+      "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+      "audit_date": "2026-10-08",
+      "audit_round": "r1",
+      "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+      "package_file": "v1.json",
+      "package_revision": "freeze-r1",
+      "recipe_version_id": "rv_thai-turkey-larb-lettuce-wraps_v1",
+      "freeze_integrity": "PASS",
+      "disposition": "CERTIFY_V1",
+      "overall": "PASS",
+      "failed_gates": [],
+      "kitchen_tested": false,
+      "packages_mutated": false,
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. easy/standard."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All ingredients referenced; rice powder 2/3 in, 1/3 on top."
+        },
+        "C": {
+          "result": "PASS",
+          "defect": null
+        },
+        "D": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Turkey to 165 F, no pink; dressing off heat."
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Prep 10 + cook 19 (6+8+3+2) = 29; 'under 30 minutes' claim holds."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Khao khua made in recipe. Fish sauce has no no-shellfish contract (acceptable for a non-HH001 meal; see note)."
+        },
+        "G": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Dietary: poultry + finfish true, dairy false, nut_policy none, HH001 false (poultry). Allergens poultry, finfish — correct."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "note": "easy (2, borderline) accepted — continuous-ish stirring could argue moderate, but rubric scoring is defensible; standard (fish sauce) correct."
+        },
+        "K": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Butter-lettuce cups (soft, cupped) with fine turkey crumbles, chile flakes, shallot, scallion, mint, cilantro, rice-powder specks; cucumber, lime, side dish of toasted rice powder. No glaze/peanuts/cashews/carrots/water chestnuts."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Fresh, herb-flecked, bright platter; reads well at card scale."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null
+        },
+        "O": {
+          "result": "PASS",
+          "defect": null,
+          "note": "version_number 1, package_revision freeze-r1 consistently; classification_history []; culinary_hash present and excludes D-03 fields; README mirrors v1.json with no stale reserved/not-run image language; FREEZE_INTEGRITY.json PASS (0 fails)."
+        }
+      },
+      "image_review": {
+        "K": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "L": "PASS",
+        "files_inspected": [
+          "img_v1.jpg",
+          "thai-turkey-larb-lettuce-wraps-640.webp"
+        ],
+        "observation": "Platter of 4 filled cups; all required components; nothing forbidden."
+      },
+      "dietary_eligibility": "contains_poultry + finfish true; dairy false; nut_policy none; label dairy_free.",
+      "allergens": "poultry, finfish. Correct.",
+      "allergen_runtime_gaps": {
+        "package_tokens": [
+          "poultry",
+          "finfish"
+        ],
+        "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [],
+        "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+        "documented_in_runtime_enum_gaps": true
+      },
+      "hh001": "Intended NOT eligible; claimed false (poultry). Correct.",
+      "classification": {
+        "effort_level": "easy",
+        "ingredient_complexity": "standard",
+        "gate_A_enums": "valid",
+        "gate_J_plausibility": "easy (2, borderline) / standard (2). Matches plan.",
+        "legacy_fields_authored": false
+      },
+      "fails_needing_revision": [],
+      "non_blocking_notes": [
+        "Non-blocking: fish sauce lacks the no-shellfish contract used in the Vietnamese package; the 'no shellfish' allergen statement relies on typical anchovy fish sauce. Consider adding the contract in a future revision."
+      ],
+      "statement": "Gate result only. Not publication, not a production release, not a cook test. Vale did not edit the package."
+    }
+  ]
+}

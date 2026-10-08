@@ -1,0 +1,687 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 (Batch B). Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r2; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r2",
+  "revision_note": "freeze-r2 (2026-10-08 CT) is a scaling-metadata touch-up after Vale's batch B audit (wave-wide scaling note): the 1-serving note now gives one instruction, make the 2-serving half batch and refrigerate the second portion, and scaling_notes.ratio['1'] is 0.5 to match (was 0.25 against a 'make the full recipe' note). Recipe text, version_number 1, culinary_hash, D-03 classification, and the image are unchanged. The complexity factor key is renamed sourcing_difficulty -> pantry_familiarity in the sidecar (value 0).",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "pressure-cooker-butter-chicken",
+    "slug": "pressure-cooker-butter-chicken",
+    "title": "Pressure-Cooker Butter Chicken",
+    "description": "Tender chicken thigh pieces in a silky, gently spiced tomato-butter-cream sauce made in an electric pressure cooker: onion, garlic, and ginger bloomed in butter with garam masala and paprika, pressure-cooked with tomato puree, then finished with cream and a last knob of butter. Served with fluffy basmati rice and cilantro.",
+    "cuisine": "indian-inspired",
+    "meal_format": "curry",
+    "primary_ingredient": "chicken thighs",
+    "vocabulary_tag_ids": [
+      "indian",
+      "rich",
+      "creamy",
+      "savory",
+      "curries",
+      "chicken"
+    ],
+    "current_recipe_id": "rcp_pressure-cooker-butter-chicken",
+    "current_version_id": "rv_pressure-cooker-butter-chicken_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_pressure-cooker-butter-chicken",
+    "dish_id": "pressure-cooker-butter-chicken",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_pressure-cooker-butter-chicken_v1",
+    "recipe_id": "rcp_pressure-cooker-butter-chicken",
+    "dish_id": "pressure-cooker-butter-chicken",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present on disk (pressure-cooker-butter-chicken.webp, pressure-cooker-butter-chicken-640.webp) with source img_v1.jpg; asset_generated is true; package_revision freeze-r2. Not certified. Not published. kitchen_tested is false.",
+    "title": "Pressure-Cooker Butter Chicken",
+    "description": "Tender chicken thigh pieces in a silky, gently spiced tomato-butter-cream sauce made in an electric pressure cooker: onion, garlic, and ginger bloomed in butter with garam masala and paprika, pressure-cooked with tomato puree, then finished with cream and a last knob of butter. Served with fluffy basmati rice and cilantro.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "chicken-thighs",
+        "name": "boneless skinless chicken thighs",
+        "display_name": "boneless, skinless chicken thighs",
+        "quantity": 2,
+        "unit": "lb",
+        "note": "Poultry.",
+        "preparation": "trimmed and cut into 1 1/2-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "divided: 1 1/2 tsp chicken, 1/2 tsp onion, 1/2 tsp rice water",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garam-masala",
+        "name": "garam masala",
+        "display_name": "garam masala",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "Store-bought ground spice blend (no allergens). Divided: 1 tsp chicken, 1 tsp spice mix, 1/2 tsp finish.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-coriander",
+        "name": "ground coriander",
+        "display_name": "ground coriander",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sweet-paprika",
+        "name": "sweet paprika",
+        "display_name": "sweet paprika",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "for the classic orange-red color",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cayenne",
+        "name": "cayenne pepper",
+        "display_name": "cayenne pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "medium heat; 1/4 tsp for mild",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "unsalted-butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 5,
+        "unit": "tbsp",
+        "note": "Milk. Divided: 3 tbsp to sauté, 2 tbsp cold, cubed, to finish.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil (canola or grapeseed)",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "with the butter so it does not brown too fast",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "1 large",
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "about a 3-inch piece",
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.75,
+        "unit": "cup",
+        "note": "divided: 1/2 cup to deglaze the cooker, 2 1/4 cups for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "tomato-puree",
+        "name": "tomato puree",
+        "display_name": "canned tomato puree (or crushed tomatoes)",
+        "quantity": 15,
+        "unit": "oz",
+        "note": "1 (15-oz) can, plain",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "heavy-cream",
+        "name": "heavy cream",
+        "display_name": "heavy cream",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "Milk. 2 tbsp held back for the finishing swirl.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "granulated sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "rounds out the tomato acidity",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "fresh cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "basmati-rice",
+        "name": "basmati rice",
+        "display_name": "white basmati rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed until the water runs mostly clear",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Season the chicken and prep",
+        "body": "Cut the chicken into 1 1/2-inch pieces and toss with 1 1/2 tsp kosher salt and 1 tsp garam masala. Finely chop the onion, mince the garlic, and grate the ginger. In a small bowl combine 1 tsp garam masala, the cumin, coriander, turmeric, paprika, and cayenne. Rinse the basmati until the water runs mostly clear and drain. Cut 2 tbsp of the butter into cubes and keep cold. About 15 minutes.",
+        "ingredient_refs": [
+          "chicken-thighs",
+          "kosher-salt",
+          "garam-masala",
+          "yellow-onion",
+          "garlic",
+          "fresh-ginger",
+          "ground-cumin",
+          "ground-coriander",
+          "ground-turmeric",
+          "sweet-paprika",
+          "cayenne",
+          "basmati-rice",
+          "unsalted-butter"
+        ],
+        "clock": {
+          "phase": "prep",
+          "minutes": 15
+        }
+      },
+      {
+        "step_number": 2,
+        "title": "Sauté the aromatics",
+        "body": "Set a 6-quart electric pressure cooker to Sauté (high). Add 3 tbsp butter and the 1 tbsp oil; when the butter foams (about 2 minutes), add the onion and 1/2 tsp kosher salt. Cook, stirring, until soft and golden at the edges, about 5 minutes. Add the garlic and ginger and stir 1 minute. About 8 minutes.",
+        "ingredient_refs": [
+          "unsalted-butter",
+          "neutral-oil",
+          "yellow-onion",
+          "kosher-salt",
+          "garlic",
+          "fresh-ginger"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 8
+        }
+      },
+      {
+        "step_number": 3,
+        "title": "Bloom the spices and deglaze",
+        "body": "Add the spice mix and stir 30 seconds until fragrant. Pour in 1/2 cup water and scrape the bottom thoroughly until nothing is stuck; this prevents a burn warning. Turn off Sauté. About 2 minutes.",
+        "ingredient_refs": [
+          "garam-masala",
+          "ground-cumin",
+          "ground-coriander",
+          "ground-turmeric",
+          "sweet-paprika",
+          "cayenne",
+          "water"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 2
+        }
+      },
+      {
+        "step_number": 4,
+        "title": "Layer and pressure cook",
+        "body": "Spread the chicken in an even layer over the onions. Pour the tomato puree over the top and do not stir (the thick tomato stays off the bottom). Lock the lid, set the valve to Sealing, and Pressure Cook on High for 5 minutes. It takes about 10 minutes to come to pressure. When the cook time ends, let the pressure release naturally for 5 minutes, then quick-release the rest. About 20 minutes.",
+        "ingredient_refs": [
+          "chicken-thighs",
+          "tomato-puree"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 20
+        }
+      },
+      {
+        "step_number": 5,
+        "title": "Cook the rice",
+        "body": "As soon as the cooker is sealed, combine the rinsed basmati, 2 1/4 cups water, and 1/2 tsp kosher salt in a medium saucepan. Bring to a boil, cover, reduce to low, and cook 15 minutes. Turn off the heat and let it stand covered 5 minutes, then fluff. This runs entirely inside the 20-minute pressure step and adds no time.",
+        "ingredient_refs": [
+          "basmati-rice",
+          "water",
+          "kosher-salt"
+        ],
+        "clock": {
+          "phase": "overlap",
+          "minutes": 0,
+          "note": "runs inside the 20-minute pressure step"
+        }
+      },
+      {
+        "step_number": 6,
+        "title": "Finish the sauce",
+        "body": "Open the lid away from you. Set to Sauté. Stir in all but 2 tbsp of the cream, the sugar, and the last 1/2 tsp garam masala. Simmer, stirring gently, 3 to 4 minutes, until the sauce thickens enough to coat a spoon and the chicken is very tender (at least 165 F; thighs are best at 175 F). Turn off the heat and stir in the 2 tbsp cold cubed butter until the sauce turns glossy. Taste and adjust salt. About 5 minutes.",
+        "ingredient_refs": [
+          "heavy-cream",
+          "sugar",
+          "garam-masala",
+          "chicken-thighs",
+          "unsalted-butter",
+          "kosher-salt"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 5
+        }
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Spoon rice into one side of 4 wide, shallow bowls and ladle the butter chicken beside it. Drizzle the reserved 2 tbsp cream over the sauce in a loose swirl and scatter cilantro. About 2 minutes. kitchen_tested is false.",
+        "ingredient_refs": [
+          "basmati-rice",
+          "chicken-thighs",
+          "heavy-cream",
+          "cilantro"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 2
+        }
+      }
+    ],
+    "components": [
+      {
+        "component_id": "butter-chicken",
+        "name": "pressure-cooker butter chicken",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "chicken thighs",
+          "kosher salt",
+          "garam masala",
+          "ground cumin",
+          "ground coriander",
+          "ground turmeric",
+          "sweet paprika",
+          "cayenne",
+          "unsalted butter",
+          "neutral oil",
+          "yellow onion",
+          "garlic",
+          "fresh ginger",
+          "water",
+          "tomato puree",
+          "heavy cream",
+          "sugar"
+        ]
+      },
+      {
+        "component_id": "basmati-rice",
+        "name": "steamed basmati rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "basmati rice",
+          "water",
+          "kosher salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart electric pressure cooker (Instant Pot–style)",
+      "medium saucepan with lid",
+      "wooden spoon",
+      "small bowl",
+      "fine-mesh strainer",
+      "knife",
+      "cutting board",
+      "microplane or grater",
+      "ladle",
+      "measuring cups and spoons",
+      "instant-read thermometer (optional)"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 37,
+    "total_time_minutes": 52,
+    "prep_minutes": 15,
+    "cook_minutes": 37,
+    "total_minutes": 52,
+    "time_clock": "Prep 15. Cook 37 = 8 sauté + 2 bloom/deglaze + 20 pressure (about 10 to come to pressure + 5 at High + 5 natural release) + 5 finish + 2 serve. Rice (15 cook + 5 rest) runs inside the 20-minute pressure step. Come-up time is counted, not hidden.",
+    "heat": "Electric pressure cooker: Sauté (high) for butter and aromatics; Pressure Cook High 5 minutes with 5-minute natural release; Sauté to finish with cream. Stovetop saucepan for rice: boil, then low. No oven.",
+    "doneness": "Chicken very tender, at least 165 F (175 F ideal for thighs); sauce thick enough to coat a spoon, glossy after the cold butter; no raw spice taste. Rice tender and fluffy with separate grains. kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_sidecar": "d03-classification.json",
+    "classification_history": [],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Many butter chicken recipes thicken with cashew paste; this one does not — the sauce is thickened by reduction, cream, and butter.",
+      "hh001_eligible": false,
+      "hh001_reason": "Chicken is poultry and the sauce relies on butter and heavy cream (dairy). HH001 excludes both. Global catalog meal."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dairy_free label: butter and heavy cream are required. Not vegetarian (chicken).",
+    "allergens": [
+      "poultry",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Poultry covers the chicken thighs (FlavorWeave supports poultry as a token).",
+      "Milk covers the butter and heavy cream.",
+      "No egg, wheat, soy, sesame, peanut, tree_nut (no cashew paste), shellfish, finfish, or meat."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Chicken is poultry and the sauce relies on butter and heavy cream (dairy). HH001 excludes both. Global catalog meal.",
+    "vocabulary_tag_ids": [
+      "indian",
+      "rich",
+      "creamy",
+      "savory",
+      "curries",
+      "chicken"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims; every claim rests on a hard ingredient contract.",
+      "allergens_runtime": "Package tokens use milk (not dairy) and wheat (not gluten). Live PACKAGE_ALLERGEN_IDS uses dairy/nuts/cashew/... and lacks egg, soy, wheat, sesame, milk, tree_nut; keep package tokens and do not silently remap.",
+      "classification": "D-03 canonical fields effort_level and ingredient_complexity are on recipe_version. Legacy effort / effort_band / complexity strings are deliberately not authored. Factor scores and reason codes live in the d03-classification.json sidecar, not in runtime fields.",
+      "package_revision": "package_revision is freeze-r2. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r2. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "vocabulary": "indian is the D-02 cuisine slug (indian inspired synonym). rich, creamy, savory are flavor/texture slugs; curries is the meal_style slug; chicken is the ingredient slug.",
+      "meal_format": "curry metadata maps to the D-02 curries meal_style slug, which is included.",
+      "primary_ingredient": "chicken thighs → chicken D-02 ingredient slug included.",
+      "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes poultry; listed because chicken is present.",
+      "equipment": "Electric pressure cooker is the primary vessel (equipment gap noted in wave-12 coverage)."
+    },
+    "culinary_hash": "sha256:d09a51031647f27db91bad4f75d4971216bd8faa92d9aca24e5dd897ce5e5f55",
+    "culinary_hash_note": "sha256 over culinary content (ingredients, steps, components, equipment, times, heat, doneness, dietary eligibility/labels, allergens, tags). Excludes effort_level / ingredient_complexity and image metadata, so a classification-only amendment does not change it."
+  },
+  "image": {
+    "image_id": "img_pressure-cooker-butter-chicken_v1",
+    "dish_id": "pressure-cooker-butter-chicken",
+    "recipe_version_id": "rv_pressure-cooker-butter-chicken_v1",
+    "asset_generated": true,
+    "master_ref": "pressure-cooker-butter-chicken.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "pressure-cooker-butter-chicken.webp",
+        "spec_catalog_path": "/images/meals/pressure-cooker-butter-chicken.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "pressure-cooker-butter-chicken-640.webp",
+        "spec_catalog_path": "/images/meals/pressure-cooker-butter-chicken-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the GenerateImage source to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs via export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage (4:3 or landscape) from image-prompt.md with the house-quality reference for quality/light only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-12 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_by": "Juniper (Harbor Eats - Catalog Curator)",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r2.",
+    "package_revision": "freeze-r2",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "pressure-cooker-butter-chicken-640.webp",
+    "master_filename": "pressure-cooker-butter-chicken.webp",
+    "card_filename": "pressure-cooker-butter-chicken-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "e662b0952e1c93979a2bc12f095f6e80d1ddc0abfa412f672ab1f6188081183d",
+      "pressure-cooker-butter-chicken.webp": "760c124e7bc24ae4ab12853a231d806353f239ad04cce9f9cecc3c13428b9bde",
+      "pressure-cooker-butter-chicken-640.webp": "65b7172fca077bb076c40d008047871f74ffa14cbe3cbf89df00d5b0be613263"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient is used: seasoning/prep in step 1, aromatics in step 2, spice mix and deglaze in step 3, chicken and tomato in step 4, rice in step 5, cream/sugar/garam masala/cold butter in step 6, cream swirl and cilantro in step 7. Salt 1 1/2 + 1/2 + 1/2 tsp; garam masala 1 + 1 + 1/2 tsp; butter 3 + 2 tbsp; water 1/2 + 2 1/4 cups; cream 10 tbsp + 2 tbsp swirl."
+    },
+    {
+      "check": "fat",
+      "result": "pass",
+      "detail": "3 tbsp butter + 1 tbsp oil to sauté; 2 tbsp cold butter to finish. Heavy cream in the sauce."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Garam masala is a declared store-bought spice blend. Sauce built in the cooker; no jarred simmer sauce."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 + cook 37 (8 + 2 + 20 + 5 + 2) = 52. Pressure come-up (~10) and 5-minute natural release are inside the 20. Rice runs inside the pressure step."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Minimum-liquid rule stated; 1 serving not recommended in a 6-quart cooker."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=false, contains_poultry=true, contains_finfish=false, contains_shellfish=false, contains_dairy=true, plant_based_compatible=false, vegetarian_compatible=false, nut_policy=none, hh001_eligible=false. Allergens: poultry, milk. Labels: none."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "Tags indian, rich, creamy, savory, curries, chicken are active D-02 slugs in taste-vocabulary.js. curry and chicken thighs are metadata."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level moderate (factor sum 4); ingredient_complexity standard (factor sum 3). Factors and reason codes in d03-classification.json. WAVE proposal moderate/standard."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit (pressure-cooker-butter-chicken.webp, pressure-cooker-butter-chicken-640.webp, img_v1.jpg). asset_generated is true. package_revision freeze-r2."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY_json",
+      "detail": "freeze_integrity.py is run on this directory after finalize; its PASS/FAIL lives only in FREEZE_INTEGRITY.json and is not restated here."
+    }
+  ],
+  "scaling_notes": {
+    "1": "A true single serving is not recommended in a 6-quart cooker (minimum liquid and burn risk). For 1, make the 2-serving half batch below (1-serving shopping ratio 0.5) and refrigerate the second portion up to 3 days.",
+    "2": "Halve everything; keep the 1/2 cup deglazing water unchanged (minimum liquid). Same 5-minute High pressure; come-up is a few minutes faster. Rice: 3/4 cup basmati, 1 1/8 cups water.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.5,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "1/2 cup deglaze water minimum",
+      "do not stir the tomato into the bottom before pressure cooking",
+      "5 minutes High + 5 minutes natural release (piece size, not batch size, sets the time)"
+    ]
+  },
+  "coverage_contribution": "Pressure-cooker primary 0→1 (equipment gap deferred since wave-11). Butter chicken is among the most-loved Indian dishes and adds Indian chicken 0→1.",
+  "near_duplicate_review": "Compared with Saag Paneer: Indian and creamy, but spinach with paneer vs tomato-butter-cream with chicken. Compared with Coconut Chickpea Curry and Thai Red Curry with Kabocha: plant coconut curries. Compared with Sheet-Pan Lemon Herb Chicken / Greek Chicken Souvlaki / Crispy Skillet Chicken Sandwiches: chicken in different cuisines and formats. Deliberately not a stovetop tikka masala and not cashew-thickened. Not a live-catalog duplicate.",
+  "batch_label": "B",
+  "batch_challenges": "B",
+  "selection_alignment": "Matches selection.json: indian-inspired · curry · chicken thighs · hh001_intent false. expected_allergens [milk] extended with poultry (FlavorWeave supported token). Rough band 30–45; written clock 52 because pressure come-up and natural release are counted honestly. D-03 re-scored: moderate / standard (matches). The rationale's naan is not included (it would add wheat/milk/egg and a purchase); hero contrast comes from basmati, cream swirl, and cilantro.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

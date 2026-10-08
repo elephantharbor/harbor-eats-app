@@ -1,0 +1,303 @@
+{
+  "slug": "sheet-pan-shrimp-boil",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-08",
+  "audit_round": "r2",
+  "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r1",
+  "recipe_version_id": "rv_sheet-pan-shrimp-boil_v1",
+  "freeze_integrity": "PASS (0 fails; Vale re-ran freeze_integrity.py on a /tmp copy at r2)",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "failed_gates": [],
+  "kitchen_tested": false,
+  "packages_mutated": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. easy/simple.",
+      "rechecked_r2": "Light r2 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 2/1 and labels easy/simple unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null,
+      "note": "All ingredients referenced; Old Bay 2 tsp + 1 tsp + 1 tbsp = 2 tbsp; oil 1 1/2 + 1/2 tbsp."
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Shrimp 6–7 min at 425 F to opaque/145 F; andouille fully cooked; potatoes 32 min total at 425 F."
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Prep 15 (425 F preheat inside) + cook 35 (15+10+7+3) = 50. Honest; exceeds plan band 30–45 but time is not effort."
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Old Bay declared blend; andouille contracted pork with no wheat/soy on label."
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Dietary: meat + shellfish + dairy true, HH001 false. Allergens shellfish, milk, meat — correct; celery (Old Bay) noted only."
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Title says 'boil' but description is explicit: 'without the boil' — roasted. Acceptable. easy/simple matches plan.",
+      "rechecked_r2": "Light r2 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 2/1 and labels easy/simple unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Light aluminum sheet pan; tail-on peeled pink shrimp in C shapes, browned halved potatoes, charred corn rounds, andouille coins, red onion wedges, parsley, lemon wedges, Old Bay dish. No shell-on/crab/crawfish/bread/beer/newspaper/parchment. Minor butter pooling."
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Rolled up from L1 and L2."
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir."
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Abundant, warm, high-contrast; very strong card."
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null,
+      "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null,
+      "note": "version_number 1, package_revision freeze-r1 consistently; classification_history []; culinary_hash present and excludes D-03 fields; README mirrors v1.json with no stale reserved/not-run image language; FREEZE_INTEGRITY.json PASS (0 fails)."
+    }
+  },
+  "image_review": {
+    "K": "PASS",
+    "L1": "PASS",
+    "L2": "PASS",
+    "L": "PASS",
+    "files_inspected": [
+      "img_v1.jpg",
+      "sheet-pan-shrimp-boil-640.webp"
+    ],
+    "observation": "One of the two pans shown as hero; all components; nothing forbidden."
+  },
+  "dietary_eligibility": "contains_meat, shellfish, dairy true; no dairy_free label; nut_policy none.",
+  "allergens": "shellfish, milk, meat. Correct; milk is a runtime enum gap (live uses dairy).",
+  "allergen_runtime_gaps": {
+    "package_tokens": [
+      "shellfish",
+      "milk",
+      "meat"
+    ],
+    "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+      "milk"
+    ],
+    "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+    "documented_in_runtime_enum_gaps": true
+  },
+  "hh001": "Intended NOT eligible; claimed false (shellfish, pork, butter). Correct.",
+  "classification": {
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "gate_A_enums": "valid",
+    "gate_J_plausibility": "easy (2) / simple (1). Matches plan.",
+    "legacy_fields_authored": false
+  },
+  "fails_needing_revision": [],
+  "non_blocking_notes": [
+    "50-minute total (plan band 30–45)."
+  ],
+  "statement": "r2 light A/J re-check (2026-10-08 CT) after the D-03 factor-key rename: A and J PASS; v1.json unchanged; culinary_hash and asset_sha256 verified; FI PASS. All other gates carried from r1. Overall PASS -> CERTIFY_V1.",
+  "culinary_hash": "sha256:a2e092125d18c703518d18b97b67a56433e481662c5f4db49f5376414a8c20d6",
+  "culinary_hash_verified": true,
+  "asset_sha256_verified": {
+    "img_v1.jpg": "2ab3e973e4ab3b4935fbe471194b25c83d303cd34e5341dddffa4c2c862092f7",
+    "sheet-pan-shrimp-boil.webp": "db25510ed44716663d365b164e687e6049ad9f97437ef6929e723b2bbb8e2a67",
+    "sheet-pan-shrimp-boil-640.webp": "fd5709879dfdb35daa4a1730e2d626bfce355bf025b864f02934bb081d51d006"
+  },
+  "r2_scope": [
+    "A (light)",
+    "J (light)",
+    "freeze_integrity",
+    "culinary_hash",
+    "asset_sha256"
+  ],
+  "rescore": {
+    "round": "r2",
+    "trigger": "Juniper cleanup 2026-10-08 ~17:16 CT (backup /workspace/backups/wave-12-juniper-r2-20261008-171303)",
+    "prior_round": "r1",
+    "prior_overall": "PASS",
+    "prior_audit": "history[0] in this file",
+    "package_changes_reviewed": [
+      "d03 sidecar + README key rename only; v1.json byte-identical to backup"
+    ],
+    "still_failing": []
+  },
+  "history": [
+    {
+      "slug": "sheet-pan-shrimp-boil",
+      "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+      "audit_date": "2026-10-08",
+      "audit_round": "r1",
+      "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+      "package_file": "v1.json",
+      "package_revision": "freeze-r1",
+      "recipe_version_id": "rv_sheet-pan-shrimp-boil_v1",
+      "freeze_integrity": "PASS",
+      "disposition": "CERTIFY_V1",
+      "overall": "PASS",
+      "failed_gates": [],
+      "kitchen_tested": false,
+      "packages_mutated": false,
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. easy/simple."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All ingredients referenced; Old Bay 2 tsp + 1 tsp + 1 tbsp = 2 tbsp; oil 1 1/2 + 1/2 tbsp."
+        },
+        "C": {
+          "result": "PASS",
+          "defect": null
+        },
+        "D": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Shrimp 6–7 min at 425 F to opaque/145 F; andouille fully cooked; potatoes 32 min total at 425 F."
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Prep 15 (425 F preheat inside) + cook 35 (15+10+7+3) = 50. Honest; exceeds plan band 30–45 but time is not effort."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Old Bay declared blend; andouille contracted pork with no wheat/soy on label."
+        },
+        "G": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Dietary: meat + shellfish + dairy true, HH001 false. Allergens shellfish, milk, meat — correct; celery (Old Bay) noted only."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Title says 'boil' but description is explicit: 'without the boil' — roasted. Acceptable. easy/simple matches plan."
+        },
+        "K": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Light aluminum sheet pan; tail-on peeled pink shrimp in C shapes, browned halved potatoes, charred corn rounds, andouille coins, red onion wedges, parsley, lemon wedges, Old Bay dish. No shell-on/crab/crawfish/bread/beer/newspaper/parchment. Minor butter pooling."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Abundant, warm, high-contrast; very strong card."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null
+        },
+        "O": {
+          "result": "PASS",
+          "defect": null,
+          "note": "version_number 1, package_revision freeze-r1 consistently; classification_history []; culinary_hash present and excludes D-03 fields; README mirrors v1.json with no stale reserved/not-run image language; FREEZE_INTEGRITY.json PASS (0 fails)."
+        }
+      },
+      "image_review": {
+        "K": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "L": "PASS",
+        "files_inspected": [
+          "img_v1.jpg",
+          "sheet-pan-shrimp-boil-640.webp"
+        ],
+        "observation": "One of the two pans shown as hero; all components; nothing forbidden."
+      },
+      "dietary_eligibility": "contains_meat, shellfish, dairy true; no dairy_free label; nut_policy none.",
+      "allergens": "shellfish, milk, meat. Correct; milk is a runtime enum gap (live uses dairy).",
+      "allergen_runtime_gaps": {
+        "package_tokens": [
+          "shellfish",
+          "milk",
+          "meat"
+        ],
+        "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+          "milk"
+        ],
+        "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+        "documented_in_runtime_enum_gaps": true
+      },
+      "hh001": "Intended NOT eligible; claimed false (shellfish, pork, butter). Correct.",
+      "classification": {
+        "effort_level": "easy",
+        "ingredient_complexity": "simple",
+        "gate_A_enums": "valid",
+        "gate_J_plausibility": "easy (2) / simple (1). Matches plan.",
+        "legacy_fields_authored": false
+      },
+      "fails_needing_revision": [],
+      "non_blocking_notes": [
+        "50-minute total (plan band 30–45)."
+      ],
+      "statement": "Gate result only. Not publication, not a production release, not a cook test. Vale did not edit the package."
+    }
+  ]
+}

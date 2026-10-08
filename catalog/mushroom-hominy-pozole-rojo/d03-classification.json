@@ -1,0 +1,73 @@
+{
+  "slug": "mushroom-hominy-pozole-rojo",
+  "recipe_version_id": "rv_mushroom-hominy-pozole-rojo_v1",
+  "package_revision": "freeze-r1",
+  "assigned_by": "Juniper (Harbor Eats - Catalog Curator)",
+  "assigned_on": "2026-10-08",
+  "rubric": "D-03 (factory SKILL.md)",
+  "conventions": {
+    "ingredient_count_band": "Counted ingredients exclude salt, black pepper, water, and cooking oils: <=12 -> 0, 13-16 -> 1, 17+ -> 2.",
+    "pantry_familiarity": "Kept 0; specialty-store items score once under specialty_burden (no double counting). Cultural unfamiliarity adds no points."
+  },
+  "effort_factors": {
+    "active_prep": 1,
+    "active_attention": 1,
+    "active_components": 1,
+    "technique": 1,
+    "coordination_cleanup_equipment": 1
+  },
+  "effort_score": 5,
+  "effort_level": "moderate",
+  "effort_floors_applied": [],
+  "complexity_factors": {
+    "ingredient_count_band": 1,
+    "specialty_burden": 1,
+    "flavor_component_breadth": 1,
+    "pantry_familiarity": 0
+  },
+  "complexity_score": 3,
+  "ingredient_complexity": "standard",
+  "ingredient_count": 14,
+  "counted_ingredient_ids": [
+    "guajillo-chiles",
+    "ancho-chiles",
+    "cremini-mushrooms",
+    "white-onion",
+    "garlic",
+    "ground-cumin",
+    "dried-mexican-oregano",
+    "bay-leaves",
+    "white-hominy",
+    "vegetable-broth",
+    "green-cabbage",
+    "radishes",
+    "limes",
+    "corn-tostadas"
+  ],
+  "specialty_items": [
+    "dried guajillo chiles",
+    "dried ancho chiles"
+  ],
+  "reason_codes": {
+    "effort": [
+      "steady_prep",
+      "intermittent_stirring",
+      "two_components",
+      "chile_toast_blend_strain",
+      "blender_and_strainer"
+    ],
+    "ingredient": [
+      "medium_list",
+      "one_supermarket_specialty_aisle",
+      "sauce_plus_fresh_garnish"
+    ]
+  },
+  "reason_codes_status": "proposed (closed reason-code list not on box at authoring)",
+  "borderline": false,
+  "rationale": "Toasting, soaking, blending, straining, and frying the chile puree is a real technique step (1) and adds a blender and strainer (coordination 1). Mushrooms brown in two batches with intermittent stirring (attention 1). Puree plus soup plus raw garnish scores components 1 because the garnish is knife work only. Dried guajillo and ancho chiles are in the Hispanic aisle of mainstream supermarkets, so specialty burden is 1, not 2. Mexican cuisine adds no points.",
+  "wave_proposal": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "time_band": "45+"
+  }
+}

@@ -1,0 +1,160 @@
+{
+ "slug": "spaghetti-puttanesca",
+ "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+ "audit_date": "2026-10-08",
+ "audit_round": "r1",
+ "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+ "package_file": "v1.json",
+ "package_revision": "freeze-r1",
+ "recipe_version_id": "rv_spaghetti-puttanesca_v1",
+ "freeze_integrity": "PASS",
+ "disposition": "CLASSIFICATION_METADATA_AMENDMENT_NO_CULINARY_CHANGE_NO_IMAGE_REGEN",
+ "overall": "FAIL",
+ "failed_gates": [
+  "J"
+ ],
+ "kitchen_tested": false,
+ "packages_mutated": false,
+ "gates": {
+  "A": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Identity ids agree (slug/dish/rcp/rv/version 1); effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort / effort_band / complexity keys anywhere in v1.json (D-03 sanity PASS)."
+  },
+  "B": {
+   "result": "PASS",
+   "defect": null,
+   "note": "All 12 ingredients referenced; anchovies, garlic, olives, capers, parsley quantities split correctly across steps."
+  },
+  "C": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Pasta + anchovy-tomato sauce, 1 lb spaghetti for 4; sauce volume and pasta-water toss sensible."
+  },
+  "D": {
+   "result": "PASS",
+   "defect": null,
+   "note": "No raw-protein doneness risk (anchovies cured/cooked into the sauce); pasta al dente cue."
+  },
+  "E": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Prep 10 + cook 16 = 26; water put on at minute 0 boils ~minute 12, spaghetti in at cook minute 4 inside the simmer. Honest; band Under 30."
+  },
+  "F": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Dried spaghetti egg-free contract; anchovy fillets are fish (allowed for HH001); no butter, no cheese."
+  },
+  "G": {
+   "result": "PASS",
+   "defect": null,
+   "note": "contains_finfish true, dairy false, labels dairy_free. Allergens finfish, wheat — correct."
+  },
+  "H": {
+   "result": "PASS",
+   "defect": null,
+   "note": "All tags exist in taste-vocabulary.js."
+  },
+  "I": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Distinct from wave-11 swordfish olive-caper (pasta main vs grilled fish)."
+  },
+  "J": {
+   "result": "FAIL",
+   "defect": "ingredient_complexity 'simple' (score 0) is wrong. Rubric count band for 10 countable items is 1 (<=8 / 9-14 / >=15), not 0 (batch C builder uses a non-rubric <=12 band). Anchovy fillets are specialty 1 per the Vale D-03 grilled-swordfish precedent ('9 countable (1), anchovies (1)'). Breadth 0, sourcing 0. Score 2 -> standard.",
+   "note": "Effort moderate 3 PASS (easy->moderate change accepted; pasta+skillet timing). Factor split [1,0,1,0,1] differs from some pasta precedents (attention 1 / components 0 also gives 3) — non-blocking."
+  },
+  "K": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Glossy red puttanesca-coated spaghetti, olives, capers, parsley, chili flakes; no cheese, no basil-only garnish."
+  },
+  "L": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Rolled up from L1 and L2."
+  },
+  "L1": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; image.file_hashes for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (wave-11 precedent); no text/logo/watermark/hands/faces; one active set."
+  },
+  "L2": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Appetizing glossy twirl, strong red/green contrast; reads at card size."
+  },
+  "M": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Text provenance original_ai_assisted (wave-11 value; importer maps to live ai_assisted, see runtime_enum_gaps); image.generation method/date/generator present, model honestly 'unknown'; image-plating-brief.md and image-prompt.md present with must-be-visible / must-not-appear lists; external_image_api_called false, stock_or_web_photo_used false; rights not_cleared_for_external_release."
+  },
+  "N": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Shopping-id ingredients with quantity/unit/preparation separated from prep text; units are shoppable; scaling_notes present with ratio map {1:0.25, 2:0.5, 4:1}."
+  },
+  "O": {
+   "result": "PASS",
+   "defect": null,
+   "note": "version_number 1; package_revision freeze-r1 on root, recipe_version and image; classification_history has the initial Juniper entry; culinary_hash recomputed from batch_c_recipes.py and matches (excludes D-03 fields); README mirrors v1.json and correctly says 'Awaiting Vale A–O'; FREEZE_INTEGRITY.json PASS (0 fails), re-run by Vale."
+  }
+ },
+ "image_review": {
+  "K": "PASS",
+  "L1": "PASS",
+  "L2": "PASS",
+  "L": "PASS",
+  "files_inspected": [
+   "img_v1.jpg",
+   "spaghetti-puttanesca.webp",
+   "spaghetti-puttanesca-640.webp"
+  ],
+  "observation": "Matches recipe. Notes: olives shown as halves rather than chopped; garlic slices a little large. No regeneration required."
+ },
+ "dietary_eligibility": "contains_finfish true; dairy false; nut_policy none; labels dairy_free.",
+ "allergens": "finfish, wheat. Correct.",
+ "allergen_runtime_gaps": {
+  "package_tokens": [
+   "finfish",
+   "wheat"
+  ],
+  "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+   "wheat"
+  ],
+  "live_enum_source": "cycle2-preview/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+  "documented_in_runtime_enum_gaps": true,
+  "ruling": "Package keeps the wave-11 token; importer maps explicitly; never silently drop egg/soy/wheat/sesame/milk."
+ },
+ "hh001": "Intended eligible; claimed true. Anchovies are fish (allowed); egg-free dried pasta; no dairy/shellfish/meat/poultry/nuts. Correct.",
+ "classification": {
+  "effort_level": "moderate",
+  "ingredient_complexity": "simple -> standard (required)",
+  "gate_A_enums": "valid",
+  "gate_J_plausibility": "moderate 3 PASS / simple FAIL -> standard 2 [1,1,0,0]",
+  "factor_key": "pantry_familiarity (canonical)",
+  "legacy_fields_authored": false
+ },
+ "fails_needing_revision": [
+  {
+   "gate": "J",
+   "defect": "ingredient_complexity simple (0) should be standard (2): count band 1 for 10 countable items; anchovies specialty 1.",
+   "fix_type": "classification metadata amendment (same version_number 1, classification_history entry, no culinary v2, no K/L rerun)",
+   "fix": [
+    "batch_c_build.py: count_band(n) 'return 0 if n <= 12 else (1 if n <= 16 else 2)' -> 'return 0 if n <= 8 else (1 if n <= 14 else 2)' (D-03 rubric; batch A render_batch_a.py and Vale D-03 audits use <=8 / 9-14 / >=15), and counted_ingredients() must also skip ingredients with optional == True (batch A/B convention). Update d03-classification.json conventions.ingredient_count_band text to match.",
+    "batch_c_recipes.py spaghetti-puttanesca d03.complexity_factors.specialty_burden: 0 -> 1; specialty_items: [] -> [\"anchovy fillets\"]; rationale last sentence -> 'Ten countable items (band 1) and anchovies as the one specialty item (1, swordfish precedent) give 2 -> standard.'",
+    "d03-classification.json: complexity_factors {ingredient_count_band 0, specialty_burden 0, flavor_component_breadth 0, pantry_familiarity 0} -> {1, 1, 0, 0}; complexity_score 0 -> 2; ingredient_complexity 'simple' -> 'standard'; specialty_items [] -> ['anchovy fillets'] (ingredient_count 10 unchanged).",
+    "v1.json recipe_version.ingredient_complexity: 'simple' -> 'standard'.",
+    "v1.json recipe_version.classification_history: append {\"version_number\": 1, \"who\": \"Juniper (Harbor Eats - Catalog Curator)\", \"when\": \"<amendment date>\", \"from\": {\"effort_level\": \"moderate\", \"ingredient_complexity\": \"simple\"}, \"to\": {\"effort_level\": \"moderate\", \"ingredient_complexity\": \"standard\"}, \"reason\": \"Vale wave-12 batch C r1 Gate J: rubric count band 1 (10 countable) + anchovies specialty 1 -> 2 standard. Metadata amendment; culinary_hash unchanged.\"}",
+    "v1.json curator_preflight[7].detail and README.md lines 20/38/40: 'simple (score 0)' -> 'standard (score 2)'; factors line -> 'ingredient_count_band 1, specialty_burden 1, flavor_component_breadth 0, pantry_familiarity 0 (10 counted items) -> 2 -> standard'. Update BATCH-C-STATUS.md row.",
+    "Re-render only this slug (or confirm untouched slugs stay hash-identical), set package_revision freeze-r2 on root/recipe_version/image/README, run batch_c_build.py finalize <slug>, require FREEZE_INTEGRITY PASS, then Vale r2 re-check."
+   ]
+  }
+ ],
+ "non_blocking_notes": [
+  "Reason codes are not from the closed v1 set (FACTORY-SKILL-AMENDMENT.md is a draft): suggest effort [steady_prep, mostly_hands_off, multi_component]; ingredient [medium_list, one_specialty]."
+ ],
+ "statement": "Vale audited this frozen package independently against certification gates A–O with K, L1 and L2 reported separately; packages were not mutated; kitchen_tested is false. PASS is binary for publication; non-blocking notes do not condition the verdict."
+}

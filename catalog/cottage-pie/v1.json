@@ -1,0 +1,675 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08, creator batch C. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "C",
+  "creator_batch": "C",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r2",
+  "revision_note": "freeze-r2 (2026-10-08 CT) is a classification-only metadata amendment for Vale wave-12 batch C r1 Gate J: ingredient_complexity simple -> standard (15 countable items is rubric band 2; factors 2,0,0,0 = 2). effort_level moderate (5) unchanged. Reason codes remapped to the closed v1 set. Scaling reconciliation (Vale wave-wide note): the 1-serving note makes a half recipe, so scaling_notes.ratio['1'] is now 0.5 (was 0.25) and the note says so. Recipe text, version_number 1, culinary_hash, and the image are unchanged; no K/L rerun.",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "cottage-pie",
+    "slug": "cottage-pie",
+    "title": "Cottage Pie with Thyme Gravy",
+    "description": "Ground beef simmered with onion, carrot, celery, and peas in a glossy thyme gravy, topped with buttery mashed potatoes raked into ridges and baked until the peaks are golden and crisp.",
+    "cuisine": "british",
+    "meal_format": "potato-topped-bake",
+    "primary_ingredient": "ground beef",
+    "vocabulary_tag_ids": [
+      "savory",
+      "rich",
+      "herbaceous",
+      "creamy",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_cottage-pie",
+    "current_version_id": "rv_cottage-pie_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_cottage-pie",
+    "dish_id": "cottage-pie",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_cottage-pie_v1",
+    "recipe_id": "rcp_cottage-pie",
+    "dish_id": "cottage-pie",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Cottage Pie with Thyme Gravy",
+    "description": "Ground beef simmered with onion, carrot, celery, and peas in a glossy thyme gravy, topped with buttery mashed potatoes raked into ridges and baked until the peaks are golden and crisp.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "yukon-gold-potatoes",
+        "name": "yukon gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled, cut into 1 1/2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 4.5,
+        "unit": "tsp",
+        "note": "1 tbsp for the potato water, 1 tsp for the beef, 1/2 tsp for the mash",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "unsalted-butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 5,
+        "unit": "tbsp",
+        "note": "4 tbsp for the mash, 1 tbsp to dot the top. Milk allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "whole-milk",
+        "name": "whole milk",
+        "display_name": "whole milk",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "Milk allergen.",
+        "preparation": "warmed",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "ground-beef",
+        "name": "ground beef",
+        "display_name": "ground beef (85% lean)",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "meat",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "to start the browning",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "large",
+        "preparation": "diced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 2,
+        "unit": "count",
+        "note": "medium",
+        "preparation": "diced 1/4 inch",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "celery",
+        "name": "celery",
+        "display_name": "celery",
+        "quantity": 2,
+        "unit": "rib",
+        "note": null,
+        "preparation": "diced 1/4 inch",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "all-purpose-flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "thickens the gravy. Wheat allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "beef-broth",
+        "name": "beef broth",
+        "display_name": "low-sodium beef broth",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "worcestershire-sauce",
+        "name": "worcestershire sauce",
+        "display_name": "Worcestershire sauce",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "contains anchovies (finfish allergen)",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fresh-thyme",
+        "name": "fresh thyme",
+        "display_name": "fresh thyme",
+        "quantity": 6,
+        "unit": "sprig",
+        "note": "about 1 tbsp leaves for the gravy plus a few leaves to finish",
+        "preparation": "leaves stripped",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bay-leaf",
+        "name": "bay leaf",
+        "display_name": "bay leaf",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "freshly ground black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "frozen-peas",
+        "name": "frozen peas",
+        "display_name": "frozen peas",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "no need to thaw",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep and start the potatoes",
+        "body": "Peel the potatoes, cut into 1 1/2-inch chunks, and put them in a large pot with cold water to cover by 1 inch and 1 tbsp salt. Dice the onion, carrots, and celery; mince the garlic; strip the thyme leaves (keep a pinch for the top). Set the potato pot over high heat at the end of prep.",
+        "ingredient_refs": [
+          "yukon-gold-potatoes",
+          "kosher-salt",
+          "yellow-onion",
+          "carrots",
+          "celery",
+          "garlic",
+          "fresh-thyme"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the potatoes",
+        "body": "Bring the potatoes to a boil, about 10 minutes, then simmer until a knife slides in with no resistance, 12 to 15 minutes. Drain well and return to the hot pot for 1 minute to steam dry.",
+        "ingredient_refs": [
+          "yukon-gold-potatoes"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Brown the beef",
+        "body": "Meanwhile, heat the oil in a 12-inch oven-safe skillet over medium-high. Add the beef and 1 tsp salt, break it up, and cook until well browned with crusty bits, about 8 minutes. Spoon off all but about 1 tbsp of fat.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "ground-beef",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Soften the vegetables",
+        "body": "Reduce the heat to medium. Add the onion, carrots, and celery and cook, stirring, until softened, about 6 minutes. Add the garlic and tomato paste and cook 2 minutes, until the paste darkens.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "carrots",
+          "celery",
+          "garlic",
+          "tomato-paste"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Make the thyme gravy",
+        "body": "Sprinkle the flour over the beef and stir 1 minute. Stir in the broth, Worcestershire, thyme leaves, bay leaf, and pepper, scraping up the browned bits. Simmer until the gravy is glossy and coats a spoon, about 10 minutes. At the start of this simmer, heat the oven to 400 F with a rack in the upper-middle position. Off the heat, remove the bay leaf and stir in the frozen peas.",
+        "ingredient_refs": [
+          "all-purpose-flour",
+          "beef-broth",
+          "worcestershire-sauce",
+          "fresh-thyme",
+          "bay-leaf",
+          "black-pepper",
+          "frozen-peas"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Mash",
+        "body": "Warm the milk (about 45 seconds in the microwave). Mash the potatoes with 4 tbsp butter, the warm milk, and 1/2 tsp salt until smooth and fluffy.",
+        "ingredient_refs": [
+          "whole-milk",
+          "unsalted-butter",
+          "yukon-gold-potatoes",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 7,
+        "title": "Top",
+        "body": "Spoon the mash over the filling, starting at the edges to seal it in, then spread to cover. Drag a fork across the top to make deep ridges. Dot with the remaining 1 tbsp butter.",
+        "ingredient_refs": [
+          "yukon-gold-potatoes",
+          "unsalted-butter"
+        ]
+      },
+      {
+        "step_number": 8,
+        "title": "Bake, broil, and rest",
+        "body": "Set the skillet on a rimmed sheet pan and bake until the gravy bubbles at the edges, about 20 minutes. Switch to broil and broil until the ridges are golden-brown and crisp, 2 to 3 minutes, watching closely. Rest 8 minutes so the gravy sets, scatter with the reserved thyme leaves, and serve in scoops. kitchen_tested is false.",
+        "ingredient_refs": [
+          "fresh-thyme"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "beef-thyme-filling",
+        "name": "beef and vegetables in thyme gravy",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ground beef",
+          "neutral oil",
+          "yellow onion",
+          "carrots",
+          "celery",
+          "garlic",
+          "tomato paste",
+          "flour",
+          "beef broth",
+          "Worcestershire sauce",
+          "fresh thyme",
+          "bay leaf",
+          "black pepper",
+          "frozen peas"
+        ]
+      },
+      {
+        "component_id": "buttery-mash",
+        "name": "buttery mashed potatoes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "Yukon Gold potatoes",
+          "kosher salt",
+          "unsalted butter",
+          "whole milk"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch oven-safe skillet (about 3 inches deep)",
+      "large pot",
+      "colander",
+      "potato masher",
+      "rimmed sheet pan",
+      "wooden spoon",
+      "fork",
+      "knife",
+      "cutting board"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 66,
+    "total_time_minutes": 81,
+    "prep_minutes": 15,
+    "cook_minutes": 66,
+    "total_minutes": 81,
+    "time_clock": "Prep 15. Cook 66 = 8 brown beef + 8 vegetables, garlic, and paste + 11 flour and gravy simmer (oven preheats during it) + 4 mash finish + 4 top + 20 bake + 3 broil + 8 rest. Potatoes run from cook minute 0 to about 25 (10 to boil + 15 simmer) in parallel with the filling.",
+    "heat": "High to boil the potatoes, then a simmer; medium-high to brown the beef, medium for vegetables and gravy; oven 400 F, then broil.",
+    "doneness": "Gravy glossy and coating a spoon; bubbling at the edges after baking. Mash ridges golden-brown and crisp. Beef cooked through (160 F). kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "when": "2026-10-08",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment by rubric before freeze. Factor scores and reason codes in d03-classification.json."
+      },
+      {
+        "version_number": 1,
+        "type": "classification_only_metadata_amendment",
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "when": "2026-10-08",
+        "from": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Vale wave-12 batch C r1 Gate J: 15 countable (band 2) -> 2 standard (factors 2,0,0,0).",
+        "culinary_hash_unchanged": true,
+        "image_unchanged_by_this_amendment": true,
+        "vale_recheck_scope": "Gate A + Gate J-classification only"
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "culinary_hash": "5904fcfda5344505c8e31886cc4474388741387854a69bc6ca9edffbd5f488e0",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook, heat, doneness. Excludes classification.",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Ground beef is meat other than fish, and the mash has butter and milk (dairy). HH001 does not eat either. Global catalog candidate."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dairy_free label: butter and milk are in the mash. contains_finfish is true because Worcestershire sauce contains anchovies. Not vegetarian.",
+    "allergens": [
+      "milk",
+      "wheat",
+      "finfish",
+      "meat"
+    ],
+    "allergen_notes": [
+      "Milk covers the butter and whole milk in the mash.",
+      "Wheat covers the flour in the gravy.",
+      "Finfish covers the anchovies in Worcestershire sauce.",
+      "Meat is listed because the live allergen enum carries it (wave-11 Ethiopian Beef Tibs precedent); contains_meat is also true on dietary_eligibility (not a substitute).",
+      "No egg, soy, sesame, peanut, tree_nut, or shellfish in the written ingredients."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Ground beef is meat other than fish, and the mash has butter and milk (dairy). HH001 does not eat either. Global catalog candidate.",
+    "hh001_contract": "Not HH001 (beef and dairy).",
+    "vocabulary_tag_ids": [
+      "savory",
+      "rich",
+      "herbaceous",
+      "creamy",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Factory allergen tokens (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Live PACKAGE_ALLERGEN_IDS use dairy (for milk) and nuts (for tree_nut) and carry cashew; map at import, do not silently drop. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level / ingredient_complexity are D-03 enums. Legacy effort / complexity strings deliberately omitted (package skill). Reason codes in the sidecar use the closed v1 set in d03-design/FACTORY-SKILL-AMENDMENT.md (draft, not yet applied to the skill), remapped at freeze-r2 per Vale r1.",
+      "package_revision": "package_revision is freeze-r2. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true.",
+      "cuisine_gap": "british is dish metadata; no british D-02 cuisine slug exists, so no cuisine tag is applied."
+    }
+  },
+  "image": {
+    "image_id": "img_cottage-pie_v1",
+    "dish_id": "cottage-pie",
+    "recipe_version_id": "rv_cottage-pie_v1",
+    "asset_generated": true,
+    "master_ref": "cottage-pie.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "cottage-pie.webp",
+        "spec_catalog_path": "/images/meals/cottage-pie.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "cottage-pie-640.webp",
+        "spec_catalog_path": "/images/meals/cottage-pie-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop the GenerateImage JPEG (img_v1.jpg) to 4:3, then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage, 4:3 landscape, house-quality reference as quality/light reference only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Grok Bot Catalog Factory wave-12) via GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated from this package's recipe and plating brief. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "3bcd5ab80a82dd8fda596a665887bec753bca479aabfe9ee6c53e73d5bd7bca9",
+      "master_sha256": "06969afab63ac4a35d692ec509b79e9f55a0533c16e4f6944d1d8227ed71a694",
+      "card_sha256": "73711e502a71a1a024e4869761d795477b8f1e99c84632412a480b29c871a38a"
+    },
+    "card_ref": "cottage-pie-640.webp",
+    "master_filename": "cottage-pie.webp",
+    "card_filename": "cottage-pie-640.webp",
+    "rejected_dir": "rejected/",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "3bcd5ab80a82dd8fda596a665887bec753bca479aabfe9ee6c53e73d5bd7bca9",
+      "cottage-pie.webp": "06969afab63ac4a35d692ec509b79e9f55a0533c16e4f6944d1d8227ed71a694",
+      "cottage-pie-640.webp": "73711e502a71a1a024e4869761d795477b8f1e99c84632412a480b29c871a38a"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "All 18 ingredients are referenced by at least one step; every step ref resolves to a listed ingredient (machine-checked by batch_c_build.py)."
+    },
+    {
+      "check": "fats",
+      "result": "pass",
+      "detail": "Fats fully accounted: 5 tbsp unsalted butter (4 tbsp for the mash, 1 tbsp to dot the top. Milk allergen.); 1 tbsp neutral oil (to start the browning)."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Store-bought compound items carry a shopping note; made components listed under components. Not HH001 (beef and dairy)."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 + cook 66 = 81. Prep 15. Cook 66 = 8 brown beef + 8 vegetables, garlic, and paste + 11 flour and gravy simmer (oven preheats during it) + 4 mash finish + 4 top + 20 bake + 3 broil + 8 rest. Potatoes run from cook minute 0 to about 25 (10 to boil + 15 simmer) in parallel with the filling."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes; do_not_scale: steam-dry the potatoes; seal the mash to the edges; watch the broiler"
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "hh001_eligible false. Ground beef is meat other than fish, and the mash has butter and milk (dairy). HH001 does not eat either. Global catalog candidate. Allergens: milk, wheat, finfish, meat. Labels: none."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "savory, rich, herbaceous, creamy, tender are D-02 slugs (checked against taste-vocabulary.js list). Cuisine 'british', format 'potato-topped-bake', primary 'ground beef' are dish metadata, not tags."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level moderate (score 5); ingredient_complexity standard (score 2, 15 counted items). Factors in d03-classification.json. WAVE proposal: moderate/simple."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "pass",
+      "detail": "freeze_integrity.py PASS at freeze-r2. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+    }
+  ],
+  "scaling_notes": {
+    "1": "Make half the recipe (the 2-serving amounts, so the 1-serving shopping ratio is 0.5, not 0.25) in a 1-quart baking dish; eat one portion and refrigerate the second for up to 3 days. Bake about 15 minutes before broiling.",
+    "2": "Half of everything in a 10-inch oven-safe skillet or 8-inch square dish; bake about 18 minutes before broiling.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.5,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "steam-dry the potatoes",
+      "seal the mash to the edges",
+      "watch the broiler"
+    ]
+  },
+  "coverage_contribution": "British 0 to 1 and mash-topped casserole 0 to 1. October comfort bake for general households; ground beef in a format the catalog lacks.",
+  "near_duplicate_review": "Compared with Herb Vegetable Pot Pie: mash topping instead of pastry, beef instead of vegetables only. Compared with Potato-Leek Gratin: potatoes are a topping here, not the dish. Shepherd's pie with lamb deliberately avoided (lamb covered). Not a live-catalog duplicate.",
+  "selection_alignment": "Matches selection.json: british / potato-topped-bake / ground beef / hh001_intent false. Deviations from WAVE proposals: ingredient_complexity simple -> standard (rubric).",
+  "batch_challenges": "C",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale"
+}

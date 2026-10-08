@@ -1,0 +1,307 @@
+{
+  "slug": "japanese-okonomiyaki",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-08",
+  "audit_round": "r2",
+  "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r1",
+  "recipe_version_id": "rv_japanese-okonomiyaki_v1",
+  "freeze_integrity": "PASS (0 fails; Vale re-ran freeze_integrity.py on a /tmp copy at r2)",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "failed_gates": [],
+  "kitchen_tested": false,
+  "packages_mutated": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. moderate/standard.",
+      "rechecked_r2": "Light r2 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 5/3 and labels moderate/standard unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null,
+      "note": "All ingredients referenced; soy 1 tsp batter + 2 tsp sauce; oil 1 1/2 + 1 1/2 tbsp."
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null,
+      "note": "1 cup flour / 2/3 cup water / 4 eggs / ~6 cups cabbage is a sound okonomiyaki ratio; scales by pancake count."
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Covered 4–5 min per side at medium on 3/4-inch pancakes; 160 F egg-batter doneness stated."
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Prep 15 + cook 26 (2+5+5+11+3) = 41. Realistic for two batches of two."
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Okonomi sauce built in-recipe (ketchup/Worcestershire/soy/sugar) — no bottled okonomi sauce (oyster risk). Japanese mayo and Worcestershire carry explicit contracts."
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Dietary: finfish true (bonito, anchovy Worcestershire), dairy false, nut_policy none, HH001 true. Hidden sources checked: homemade sauce (explicit component contract + step-1 'Contract check'), egg-yolk mayo with no milk (hard contract), classic anchovy Worcestershire with no oyster/shellfish (hard contract), dashi powder deliberately excluded (lactose), no tenkasu/pork/shrimp/squid/cheese. Allergens wheat, egg, finfish, soy — correct."
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Plan adventurous -> standard is justified: sauce made from staples, aonori/beni shoga optional, only bonito + Japanese mayo specialty (international aisle). Not cultural-bias.",
+      "rechecked_r2": "Light r2 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 5/3 and labels moderate/standard unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Thick golden round pancake, glossy brown sauce to edges, mayo lattice, bonito, scallion greens, cut showing shredded cabbage, browned shiitake on underside. No meat/seafood/noodles/cheese/sesame/aonori/beni shoga."
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Rolled up from L1 and L2."
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir."
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Glossy lattice and feathery bonito give strong texture and focal clarity; excellent at card scale."
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null,
+      "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null,
+      "note": "version_number 1, package_revision freeze-r1 consistently; classification_history []; culinary_hash present and excludes D-03 fields; README mirrors v1.json with no stale reserved/not-run image language; FREEZE_INTEGRITY.json PASS (0 fails)."
+    }
+  },
+  "image_review": {
+    "K": "PASS",
+    "L1": "PASS",
+    "L2": "PASS",
+    "L": "PASS",
+    "files_inspected": [
+      "img_v1.jpg",
+      "japanese-okonomiyaki-640.webp"
+    ],
+    "observation": "One cut pancake on light plate plus soft-focus second; all required components visible; nothing forbidden."
+  },
+  "dietary_eligibility": "contains_finfish true; meat/poultry/shellfish/dairy false; nut_policy none; label dairy_free (unconditional by contract).",
+  "allergens": "wheat, egg, finfish, soy. Correct.",
+  "allergen_runtime_gaps": {
+    "package_tokens": [
+      "wheat",
+      "egg",
+      "finfish",
+      "soy"
+    ],
+    "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+      "wheat",
+      "egg",
+      "soy"
+    ],
+    "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+    "documented_in_runtime_enum_gaps": true
+  },
+  "hh001": "Intended eligible; claimed true; VERIFIED — homemade okonomi-style sauce and no-milk egg-yolk mayo, anchovy (fish) Worcestershire with no shellfish, no dashi powder are explicit in ingredients, components, and steps.",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "gate_A_enums": "valid",
+    "gate_J_plausibility": "moderate (5) / standard (3). Plan moderate/adventurous; standard accepted.",
+    "legacy_fields_authored": false
+  },
+  "fails_needing_revision": [],
+  "non_blocking_notes": [],
+  "statement": "r2 light A/J re-check (2026-10-08 CT) after the D-03 factor-key rename: A and J PASS; v1.json unchanged; culinary_hash and asset_sha256 verified; FI PASS. All other gates carried from r1. Overall PASS -> CERTIFY_V1.",
+  "culinary_hash": "sha256:bf946a607cc5dfe4965c2c15c13aea4c58fd381c0d3b7edef584fa1573ef9e91",
+  "culinary_hash_verified": true,
+  "asset_sha256_verified": {
+    "img_v1.jpg": "08c618c6f235cc4c8970e3742e2e21b8a0df1d75004825b6f1b438aa33f18383",
+    "japanese-okonomiyaki.webp": "563a2d08f16844c240bd8fea3e1c99295a19bb0c268da38e9442e280d8efe205",
+    "japanese-okonomiyaki-640.webp": "c54a7d41eeda732f5f1fd54b7a0a1e2048578d82102c80562263c9d4b4850554"
+  },
+  "r2_scope": [
+    "A (light)",
+    "J (light)",
+    "freeze_integrity",
+    "culinary_hash",
+    "asset_sha256"
+  ],
+  "rescore": {
+    "round": "r2",
+    "trigger": "Juniper cleanup 2026-10-08 ~17:16 CT (backup /workspace/backups/wave-12-juniper-r2-20261008-171303)",
+    "prior_round": "r1",
+    "prior_overall": "PASS",
+    "prior_audit": "history[0] in this file",
+    "package_changes_reviewed": [
+      "d03 sidecar + README key rename only; v1.json byte-identical to backup"
+    ],
+    "still_failing": []
+  },
+  "history": [
+    {
+      "slug": "japanese-okonomiyaki",
+      "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+      "audit_date": "2026-10-08",
+      "audit_round": "r1",
+      "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+      "package_file": "v1.json",
+      "package_revision": "freeze-r1",
+      "recipe_version_id": "rv_japanese-okonomiyaki_v1",
+      "freeze_integrity": "PASS",
+      "disposition": "CERTIFY_V1",
+      "overall": "PASS",
+      "failed_gates": [],
+      "kitchen_tested": false,
+      "packages_mutated": false,
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. moderate/standard."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All ingredients referenced; soy 1 tsp batter + 2 tsp sauce; oil 1 1/2 + 1 1/2 tbsp."
+        },
+        "C": {
+          "result": "PASS",
+          "defect": null,
+          "note": "1 cup flour / 2/3 cup water / 4 eggs / ~6 cups cabbage is a sound okonomiyaki ratio; scales by pancake count."
+        },
+        "D": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Covered 4–5 min per side at medium on 3/4-inch pancakes; 160 F egg-batter doneness stated."
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Prep 15 + cook 26 (2+5+5+11+3) = 41. Realistic for two batches of two."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Okonomi sauce built in-recipe (ketchup/Worcestershire/soy/sugar) — no bottled okonomi sauce (oyster risk). Japanese mayo and Worcestershire carry explicit contracts."
+        },
+        "G": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Dietary: finfish true (bonito, anchovy Worcestershire), dairy false, nut_policy none, HH001 true. Hidden sources checked: homemade sauce (explicit component contract + step-1 'Contract check'), egg-yolk mayo with no milk (hard contract), classic anchovy Worcestershire with no oyster/shellfish (hard contract), dashi powder deliberately excluded (lactose), no tenkasu/pork/shrimp/squid/cheese. Allergens wheat, egg, finfish, soy — correct."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Plan adventurous -> standard is justified: sauce made from staples, aonori/beni shoga optional, only bonito + Japanese mayo specialty (international aisle). Not cultural-bias."
+        },
+        "K": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Thick golden round pancake, glossy brown sauce to edges, mayo lattice, bonito, scallion greens, cut showing shredded cabbage, browned shiitake on underside. No meat/seafood/noodles/cheese/sesame/aonori/beni shoga."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Glossy lattice and feathery bonito give strong texture and focal clarity; excellent at card scale."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null
+        },
+        "O": {
+          "result": "PASS",
+          "defect": null,
+          "note": "version_number 1, package_revision freeze-r1 consistently; classification_history []; culinary_hash present and excludes D-03 fields; README mirrors v1.json with no stale reserved/not-run image language; FREEZE_INTEGRITY.json PASS (0 fails)."
+        }
+      },
+      "image_review": {
+        "K": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "L": "PASS",
+        "files_inspected": [
+          "img_v1.jpg",
+          "japanese-okonomiyaki-640.webp"
+        ],
+        "observation": "One cut pancake on light plate plus soft-focus second; all required components visible; nothing forbidden."
+      },
+      "dietary_eligibility": "contains_finfish true; meat/poultry/shellfish/dairy false; nut_policy none; label dairy_free (unconditional by contract).",
+      "allergens": "wheat, egg, finfish, soy. Correct.",
+      "allergen_runtime_gaps": {
+        "package_tokens": [
+          "wheat",
+          "egg",
+          "finfish",
+          "soy"
+        ],
+        "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+          "wheat",
+          "egg",
+          "soy"
+        ],
+        "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+        "documented_in_runtime_enum_gaps": true
+      },
+      "hh001": "Intended eligible; claimed true; VERIFIED — homemade okonomi-style sauce and no-milk egg-yolk mayo, anchovy (fish) Worcestershire with no shellfish, no dashi powder are explicit in ingredients, components, and steps.",
+      "classification": {
+        "effort_level": "moderate",
+        "ingredient_complexity": "standard",
+        "gate_A_enums": "valid",
+        "gate_J_plausibility": "moderate (5) / standard (3). Plan moderate/adventurous; standard accepted.",
+        "legacy_fields_authored": false
+      },
+      "fails_needing_revision": [],
+      "non_blocking_notes": [],
+      "statement": "Gate result only. Not publication, not a production release, not a cook test. Vale did not edit the package."
+    }
+  ]
+}

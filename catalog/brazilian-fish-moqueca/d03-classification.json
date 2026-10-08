@@ -1,0 +1,64 @@
+{
+  "slug": "brazilian-fish-moqueca",
+  "recipe_version_id": "rv_brazilian-fish-moqueca_v1",
+  "package_revision": "freeze-r1",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "effort_score": 3,
+    "complexity_score": 2,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 1,
+      "technique": 0,
+      "coordination_cleanup_equipment": 0
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 0,
+      "specialty_items": [],
+      "flavor_component_breadth": 1,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredient_count": 12,
+    "countable_ingredients": [
+      "halibut",
+      "limes",
+      "garlic",
+      "sweet paprika",
+      "yellow onion",
+      "red bell pepper",
+      "yellow bell pepper",
+      "tomatoes",
+      "fresh chile",
+      "coconut milk",
+      "cilantro",
+      "long-grain white rice"
+    ],
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "mostly_hands_off"
+      ],
+      "ingredient": [
+        "medium_list",
+        "common_pantry",
+        "multi_build"
+      ]
+    },
+    "notes": "Effort: Steady slicing plus marinade (1); short sauté then covered simmer (1); stew plus rice (1); layer-and-simmer technique (0); rice is set-and-forget so coordination 0 (same as coconut curry / thai basil precedent). Sum 3 -> moderate. Complexity: 12 countable (1). Every item is mainstream supermarket; halibut is a fish-counter staple and cod is an equal swap; dende deliberately not used (0). Marinade plus coconut stew build (1). Sum 2 -> standard. Brazilian cuisine adds no points.",
+    "borderline": false,
+    "proposal_from_wave": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null
+  },
+  "factor_key_note": "Fourth complexity factor stored as pantry_familiarity (the key in the 50 Vale-audited classifications, d03-design/all-50-classifications.json); kept 0 because specialty-store sourcing is scored once under specialty_burden.",
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0-2 easy / 3-5 moderate / 6-10 involved with floors; complexity 0-1 simple / 2-3 standard / 4-8 adventurous; cultural-bias guardrail; specialty scored once)."
+}
