@@ -130,8 +130,12 @@ export async function skipToChoices(page) {
   await reachTonightChoices(page);
 }
 
-/** @param {import('@playwright/test').APIRequestContext} request */
-export async function apiCreateHousehold(request, name) {
+/**
+ * @param {import('@playwright/test').APIRequestContext} request
+ * @param {string} name
+ * @param {string[]} [keys]
+ */
+export async function apiCreateHousehold(request, name, keys = ["dairy"]) {
   const base = process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:8787";
   const member_id = `owner-${Date.now().toString(36)}`;
   const hh = await request.post(`${base}/api/households`, {
@@ -151,10 +155,12 @@ export async function apiCreateHousehold(request, name) {
   const cookieHeader = sessionToken
     ? { Cookie: `he_session=${encodeURIComponent(sessionToken)}` }
     : {};
-  await request.post(`${base}/api/members/${member_id}/constraints`, {
-    headers: cookieHeader,
-    data: { household_id, keys: ["dairy"] },
-  });
+  if (keys.length) {
+    await request.post(`${base}/api/members/${member_id}/constraints`, {
+      headers: cookieHeader,
+      data: { household_id, keys },
+    });
+  }
   return {
     household_id,
     memberId: member_id,
