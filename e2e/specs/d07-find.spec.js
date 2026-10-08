@@ -71,7 +71,8 @@ test.describe("D-07 Find a dinner", () => {
     await expect(time).not.toHaveAttribute("aria-haspopup", /.*/);
     await time.click();
     await expect(time).toHaveAttribute("aria-pressed", "true");
-    await page.locator(".disc-card__link").first().click({ force: true });
+    await waitDiscoveryReady(page);
+    await page.locator(".disc-grid .disc-card__link, .disc-grid [data-disc-open]").first().click({ force: true });
     await expect(page).toHaveURL(/\/meal\/.+\?from=find/);
     await page.getByRole("button", { name: "Back" }).click();
     await expect(page).toHaveURL(/\/find\?.*text=taco/);
