@@ -104,6 +104,68 @@ async function discoverySearchAll(request, base, headers, query = {}) {
   return { slugs, firstBody, unique: new Set(slugs) };
 }
 
+/**
+ * @param {import('@playwright/test').Page} page
+ */
+async function assertFindCardImagesHealthy(page, request, base) {
+  const cardImages = page.locator(".disc-card img");
+  await expect(cardImages.first()).toBeVisible({ timeout: 30000 });
+  const srcs = await cardImages.evaluateAll((imgs) => {
+    const out = new Set();
+    for (const img of imgs) {
+      const src = img.getAttribute("src");
+      if (src) out.add(src);
+    }
+    return [...out];
+  });
+  expect(srcs.length).toBeGreaterThan(0);
+  for (const src of srcs) {
+    const url = src.startsWith("http") ? src : new URL(src, base).href;
+    const res = await request.get(url);
+    expect(res.status()).toBe(200);
+    expect(res.headers()["content-type"] || "").toMatch(/image\/webp/i);
+  }
+
+  await expect
+    .poll(
+      async () => {
+        return cardImages.evaluateAll((imgs) => {
+          const vw = window.innerWidth;
+          const vh = window.innerHeight;
+          let loaded = 0;
+          for (const img of imgs) {
+            const style = window.getComputedStyle(img);
+            if (style.visibility === "hidden" || style.display === "none") continue;
+            const rect = img.getBoundingClientRect();
+            if (rect.width === 0 || rect.height === 0) continue;
+            const inView = rect.bottom > 0 && rect.right > 0 && rect.top < vh && rect.left < vw;
+            if (!inView) continue;
+            if (img.complete && img.naturalWidth > 0) loaded += 1;
+          }
+          return loaded;
+        });
+      },
+      { timeout: 15000 }
+    )
+    .toBeGreaterThan(0);
+}
+
+/** @param {unknown} row */
+function mealOptionSlug(row) {
+  if (!row || typeof row !== "object") return null;
+  if (row.recipe_slug) return row.recipe_slug;
+  let attrs = row.attributes_json;
+  if (typeof attrs === "string") {
+    try {
+      attrs = JSON.parse(attrs);
+    } catch {
+      return null;
+    }
+  }
+  if (attrs && typeof attrs === "object" && attrs.recipe_slug) return attrs.recipe_slug;
+  return null;
+}
+
 describeHosted("Wave-12 catalog (hosted preview)", () => {
   test("health, images, discovery, and HH001 hard limits", async ({ page, request }) => {
     const base = process.env.PLAYWRIGHT_BASE_URL;
@@ -137,13 +199,7 @@ describeHosted("Wave-12 catalog (hosted preview)", () => {
     await page.locator('[data-go="find"][data-nav="find"]').filter({ visible: true }).first().click();
     await expect(page.getByRole("heading", { name: "Find a dinner" })).toBeVisible({ timeout: 30000 });
     await waitDiscoveryReady(page);
-    const cardImages = page.locator(".disc-card img");
-    const imageCount = await cardImages.count();
-    expect(imageCount).toBeGreaterThan(0);
-    for (let i = 0; i < imageCount; i++) {
-      const loaded = await cardImages.nth(i).evaluate((img) => img.complete && img.naturalWidth > 0);
-      expect(loaded).toBe(true);
-    }
+    await assertFindCardImagesHealthy(page, request, base);
 
     const hh001 = await apiCreateHousehold(request, "Wave12 HH001", HH001_KEYS);
     const hhHeaders = { ...(hh001.cookieHeader || {}), "Content-Type": "application/json" };
@@ -162,12 +218,9 @@ describeHosted("Wave-12 catalog (hosted preview)", () => {
     expect(planRes.status()).toBe(201);
     const planBody = await planRes.json();
     expect(planBody.ok).toBe(true);
-    const pickSlugs = (planBody.meal_options || []).map((row) => {
-      if (row.recipe_slug) return row.recipe_slug;
-      const attrs = row.attributes_json;
-      if (attrs && typeof attrs === "object" && attrs.recipe_slug) return attrs.recipe_slug;
-      return null;
-    });
+    expect(Array.isArray(planBody.meal_options)).toBe(true);
+    expect(planBody.meal_options.length).toBeGreaterThan(0);
+    const pickSlugs = (planBody.meal_options || []).map((row) => mealOptionSlug(row));
     for (const blocked of HH001_BLOCKED) {
       expect(pickSlugs).not.toContain(blocked);
     }
