@@ -1,0 +1,690 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 Batch A. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "A",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 Batch A: Juniper authored text, plating brief, prompt, and classification; Cora generates the image",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "baked-ziti-italian-sausage",
+    "slug": "baked-ziti-italian-sausage",
+    "title": "Baked Ziti with Italian Sausage",
+    "description": "Ziti tossed in a garlicky crushed-tomato and browned Italian sausage sauce with mozzarella, layered with pockets of basil-seasoned ricotta, topped with more mozzarella and Parmesan, and baked until bubbling and golden.",
+    "cuisine": "italian-american",
+    "meal_format": "baked-pasta",
+    "primary_ingredient": "italian sausage",
+    "vocabulary_tag_ids": [
+      "italian",
+      "pasta",
+      "savory",
+      "rich",
+      "creamy"
+    ],
+    "current_recipe_id": "rcp_baked-ziti-italian-sausage",
+    "current_version_id": "rv_baked-ziti-italian-sausage_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_baked-ziti-italian-sausage",
+    "dish_id": "baked-ziti-italian-sausage",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08 Batch A, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_baked-ziti-italian-sausage_v1",
+    "recipe_id": "rcp_baked-ziti-italian-sausage",
+    "dish_id": "baked-ziti-italian-sausage",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. Not certified. Not published. kitchen_tested is false.",
+    "title": "Baked Ziti with Italian Sausage",
+    "description": "Ziti tossed in a garlicky crushed-tomato and browned Italian sausage sauce with mozzarella, layered with pockets of basil-seasoned ricotta, topped with more mozzarella and Parmesan, and baked until bubbling and golden.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "ziti",
+        "name": "ziti",
+        "display_name": "dried ziti (or penne rigate)",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "durum wheat semolina pasta",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "italian-sausage",
+        "name": "Italian sausage",
+        "display_name": "sweet or hot Italian pork sausage",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "casings removed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "medium, about 8 oz",
+        "preparation": "diced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "crushed-tomatoes",
+        "name": "crushed tomatoes",
+        "display_name": "canned crushed tomatoes",
+        "quantity": 28,
+        "unit": "oz",
+        "note": "one can",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "dried-oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "red-pepper-flakes",
+        "name": "red pepper flakes",
+        "display_name": "red pepper flakes",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "use 1/2 tsp with sweet sausage if you like heat",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ricotta",
+        "name": "whole-milk ricotta",
+        "display_name": "whole-milk ricotta",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "8 oz. Milk allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "mozzarella",
+        "name": "low-moisture mozzarella",
+        "display_name": "low-moisture whole-milk mozzarella",
+        "quantity": 8,
+        "unit": "oz",
+        "note": "2 cups shredded: 1 cup tossed with the pasta, 1 cup on top",
+        "preparation": "shredded",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "parmesan",
+        "name": "Parmesan",
+        "display_name": "Parmesan cheese",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "about 1 oz finely grated: 1/4 cup in the pasta, 1/4 cup on top",
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-basil",
+        "name": "fresh basil",
+        "display_name": "fresh basil leaves",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "2 tbsp in the ricotta, 2 tbsp to finish",
+        "preparation": "torn",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 3.75,
+        "unit": "tsp",
+        "note": "1 tbsp for the pasta water, 1/2 tsp for the sauce, 1/4 tsp for the ricotta",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "freshly ground black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "for the ricotta",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 4,
+        "unit": "quart",
+        "note": "for boiling the pasta; reserve 1/2 cup",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the oven and prep",
+        "body": "Set a rack in the upper-middle position and heat the oven to 400°F; it preheats during prep and the sauce (about 37 minutes before the bake; overlap stated). Bring 4 quarts water with 1 tbsp salt to a boil in a large covered pot. Dice the onion, mince the garlic, shred the mozzarella, and grate the Parmesan. Stir the ricotta with 1/4 tsp salt, the pepper, and 2 tbsp torn basil.",
+        "ingredient_refs": [
+          "water",
+          "kosher-salt",
+          "yellow-onion",
+          "garlic",
+          "mozzarella",
+          "parmesan",
+          "ricotta",
+          "black-pepper",
+          "fresh-basil"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the sausage",
+        "body": "Heat the olive oil in a 12-inch deep skillet or 5-quart Dutch oven over medium-high. Add the sausage and break it into bite-size pieces; cook until well browned and no longer pink, 6 to 7 minutes.",
+        "ingredient_refs": [
+          "olive-oil",
+          "italian-sausage"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Add the aromatics",
+        "body": "Add the onion and cook until softened, about 3 minutes. Add the garlic, oregano, and red pepper flakes and stir 30 seconds.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "garlic",
+          "dried-oregano",
+          "red-pepper-flakes"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer the sauce",
+        "body": "Add the crushed tomatoes and 1/2 tsp salt. Simmer gently, stirring now and then, until slightly thickened, about 12 minutes. Taste for salt.",
+        "ingredient_refs": [
+          "crushed-tomatoes",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Boil the pasta",
+        "body": "While the sauce simmers, add the ziti to the boiling water and cook 2 minutes less than the package's al dente time (about 8 minutes); it finishes in the oven. Reserve 1/2 cup pasta water and drain. Runs inside step 4 (overlap stated).",
+        "ingredient_refs": [
+          "ziti",
+          "water"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Combine and layer",
+        "body": "Off heat, stir the ziti into the sauce with 1 cup mozzarella and 1/4 cup Parmesan, adding a splash of pasta water if it looks tight. Spread half in a 9x13-inch (3-quart) baking dish, dollop the ricotta mixture over in spoonfuls, and cover with the rest of the pasta. Scatter the remaining 1 cup mozzarella and 1/4 cup Parmesan over the top.",
+        "ingredient_refs": [
+          "ziti",
+          "mozzarella",
+          "parmesan",
+          "ricotta",
+          "water"
+        ]
+      },
+      {
+        "step_number": 7,
+        "title": "Bake",
+        "body": "Bake uncovered on the upper-middle rack until bubbling at the edges and the cheese is melted with golden-brown spots, about 20 minutes.",
+        "ingredient_refs": [
+          "mozzarella",
+          "parmesan"
+        ]
+      },
+      {
+        "step_number": 8,
+        "title": "Rest and serve",
+        "body": "Rest 5 minutes so it holds together, then scatter the remaining 2 tbsp torn basil. kitchen_tested is false.",
+        "ingredient_refs": [
+          "fresh-basil"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "sausage-tomato-sauce",
+        "name": "Italian sausage tomato sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "Italian sausage",
+          "olive oil",
+          "onion",
+          "garlic",
+          "dried oregano",
+          "red pepper flakes",
+          "crushed tomatoes",
+          "kosher salt"
+        ]
+      },
+      {
+        "component_id": "basil-ricotta",
+        "name": "seasoned basil ricotta",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "whole-milk ricotta",
+          "basil",
+          "kosher salt",
+          "black pepper"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch deep skillet or 5-quart Dutch oven",
+      "large pasta pot with lid",
+      "colander",
+      "9x13-inch (3-quart) baking dish",
+      "wooden spoon",
+      "knife",
+      "cutting board",
+      "grater"
+    ],
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 52,
+    "total_time_minutes": 62,
+    "prep_minutes": 10,
+    "cook_minutes": 52,
+    "total_minutes": 62,
+    "heat": "Medium-high to brown, gentle simmer for the sauce, 400°F oven upper-middle rack (preheat overlaps prep and sauce).",
+    "doneness": "Sausage browned with no pink. Pasta just under al dente before baking, tender after. Sauce bubbling at the edges; mozzarella melted with golden-brown spots; ricotta pockets creamy. kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001-eligible: contains pork sausage (meat other than fish) and dairy (ricotta, mozzarella, Parmesan)."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels claimed: contains pork sausage and milk (ricotta, mozzarella, Parmesan).",
+    "allergens": [
+      "meat",
+      "milk",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat covers the Italian pork sausage (FlavorWeave package token).",
+      "Milk covers ricotta, mozzarella, and Parmesan.",
+      "Wheat covers the durum semolina ziti.",
+      "No egg (dried pasta is egg-free; no egg in the ricotta), soy, sesame, peanut, tree_nut, shellfish, or finfish."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001-eligible: contains pork sausage (meat other than fish) and dairy (ricotta, mozzarella, Parmesan).",
+    "vocabulary_tag_ids": [
+      "italian",
+      "pasta",
+      "savory",
+      "rich",
+      "creamy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Notes do not replace the array. Live PACKAGE_ALLERGEN_IDS may say dairy/nuts; do not silently remap milk to dairy or tree_nut to nuts.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in src/lib/taste-vocabulary.js (read-only). dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level and ingredient_complexity are the D-03 canonical fields. Legacy effort / effort_band / complexity are deliberately not authored. Factor scores and reason codes live in the top-level classification sidecar (factory/cert only, not runtime API V1).",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "images": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "cuisine_gap": "italian-american maps to the active D-02 cuisine slug italian, which is in vocabulary_tag_ids.",
+      "meal_format": "baked-pasta is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "italian sausage: no D-02 ingredient slug; not copied into tags.",
+      "hh001_contract": "Non-HH001 (pork, dairy). No dietary labels claimed."
+    }
+  },
+  "image": {
+    "image_id": "img_baked-ziti-italian-sausage_v1",
+    "dish_id": "baked-ziti-italian-sausage",
+    "recipe_version_id": "rv_baked-ziti-italian-sausage_v1",
+    "asset_generated": true,
+    "master_ref": "baked-ziti-italian-sausage.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "baked-ziti-italian-sausage.webp",
+        "spec_catalog_path": "/images/meals/baked-ziti-italian-sausage.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "baked-ziti-italian-sausage-640.webp",
+        "spec_catalog_path": "/images/meals/baked-ziti-italian-sausage-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the AI JPEG to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs with export_meal_webps.py after Cora GenerateImage.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 from image-prompt.md (plating brief first; house-quality reference for light/appeal only); center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Harbor Eats Lead) via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "prompt_authored_by": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI image generated by Cora with GenerateImage from image-prompt.md; master and card WebPs exported with export_meal_webps.py and frozen for preflight/audit at freeze-r1. No stock, web, or third-party imagery.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "sha256": {
+      "img_v1.jpg": "a4596b2f0dbef7767c81e7f7adcc08dd7fd1416d6142acda2deebcf652bc1227",
+      "baked-ziti-italian-sausage.webp": "ac1d68cca7eac46c6176cd5d3523c8a0bbaf848aa5ffb16f9d84956d66405260",
+      "baked-ziti-italian-sausage-640.webp": "04fd0350ca4dc1c1870664870241a90e4336b4e70c0b6a2443a13ba3860b935f"
+    },
+    "card_ref": "baked-ziti-italian-sausage-640.webp",
+    "master_filename": "baked-ziti-italian-sausage.webp",
+    "card_filename": "baked-ziti-italian-sausage-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "rejected_assets": []
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Mozzarella 1 cup pasta + 1 cup top; Parmesan 1/4 + 1/4 cup; basil 2 tbsp ricotta + 2 tbsp finish; salt 1/2 tsp sauce + 1/4 tsp ricotta + 1 tbsp in the pasta water (stated in step 1)."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "1 tbsp olive oil to start the sausage; sausage fat does the rest."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Italian sausage is a standard store-bought fresh sausage; meat token declared. Sauce made in-recipe (no jarred marinara)."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 10 (step 1 10) + cook 52 (step 2 7 + step 3 4 + step 4 12 + step 6 4 + step 7 20 + step 8 5) = 62. Overlap steps (0 added): step 5. Preheat/parallel work stated in the step text."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes for 1, 2, and 4 servings and do-not-scale items."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=true, contains_poultry=false, contains_finfish=false, contains_shellfish=false, contains_dairy=true, nut_policy=none. Allergens meat, milk, wheat. HH001 false. Non-HH001 (pork, dairy). No dietary labels claimed."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "italian, pasta, savory, rich, creamy are active D-02 slugs. baked-pasta is format metadata only."
+    },
+    {
+      "check": "classification_d03",
+      "result": "pass_curator_assigned",
+      "detail": "effort_level moderate (factor sum 4), ingredient_complexity simple (factor sum 1); factors and reason codes in the classification sidecar. Vale checks Gate A enums + Gate J plausibility."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r1."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY.json",
+      "detail": "Freeze Integrity Preflight is run on this exact freeze-r1 file set after finalize; its PASS/FAIL is recorded in FREEZE_INTEGRITY.json in this directory. Vale must not start unless it says PASS."
+    }
+  ],
+  "scaling_notes": {
+    "1": "3 oz ziti, 4 oz sausage, 1/4 onion, 1 garlic clove, 7 oz crushed tomatoes, 1/4 cup ricotta, 2 oz mozzarella, 2 tbsp Parmesan; small gratin dish; bake about 15 minutes.",
+    "2": "Half of everything in an 8x8-inch dish; bake about 18 minutes.",
+    "4": "As written in a 9x13-inch dish.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "undercook the pasta by 2 minutes",
+      "rest 5 minutes before serving"
+    ]
+  },
+  "coverage_contribution": "Baked pasta 0->1; Italian sausage 0->1; family make-ahead comfort bake that the 3 stovetop pastas don't cover.",
+  "near_duplicate_review": "Compared with Lemon Garlic Shrimp Pasta, Cashew Pesto Pasta, and Mushroom Walnut Bolognese: pasta, but baked with cheese and pork sausage instead of a stovetop toss. Compared with Sheet-Pan Margherita Pizza: tomato and mozzarella, different format. Compared with Spanish Chorizo Pepper Rice: pork sausage, but Italian and pasta. Not a live-catalog duplicate.",
+  "deliberately_not": "Not lasagna (heavier, involved), not a chorizo cousin, not another plant pasta.",
+  "batch_challenges": "A",
+  "selection_alignment": "Matches WAVE.json/selection.json identity: italian-american · baked-pasta · italian sausage · hh001_intent false -> hh001_eligible false. Selection time band 45+; written clock 62 minutes. D-03 labels match the WAVE proposal after rubric scoring.",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "effort_score": 4,
+    "complexity_score": 1,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 1,
+      "technique": 0,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 0,
+      "specialty_items": [],
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredients": [
+      "ziti",
+      "Italian sausage",
+      "yellow onion",
+      "garlic",
+      "crushed tomatoes",
+      "dried oregano",
+      "red pepper flakes",
+      "ricotta",
+      "mozzarella",
+      "Parmesan",
+      "fresh basil"
+    ],
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "long_unattended"
+      ],
+      "ingredient": [
+        "medium_list",
+        "common_pantry"
+      ]
+    },
+    "rationale": {
+      "effort": "Steady prep (1); periodic stirring of the sauce (1); sauced pasta plus ricotta layer (1); brown, simmer, bake (0, same as mushroom bolognese); sauce pan and pasta pot attended in parallel plus a baking dish (1, herbed-polenta precedent). Sum 4 -> moderate.",
+      "complexity": "11 countable (1). All mainstream supermarket (0). One Italian-American tomato-sausage profile; the ricotta takes only salt, pepper, and basil from the same profile (0). Sum 1 -> simple. Borderline if the ricotta seasoning is read as a second build (would be 2 -> standard)."
+    },
+    "borderline": true,
+    "wave_proposal": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "simple"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "cultural_bias_guardrail": "Cuisine unfamiliarity adds no points; specialty-store items scored once under specialty_burden, pantry_familiarity kept 0 (r2 convention)."
+  },
+  "classification_history": [],
+  "time_reconstruction": {
+    "prep_minutes": 10,
+    "cook_minutes": 52,
+    "total_minutes": 62,
+    "prep_steps": [
+      {
+        "step": 1,
+        "minutes": 10
+      }
+    ],
+    "cook_steps": [
+      {
+        "step": 2,
+        "minutes": 7
+      },
+      {
+        "step": 3,
+        "minutes": 4
+      },
+      {
+        "step": 4,
+        "minutes": 12
+      },
+      {
+        "step": 6,
+        "minutes": 4
+      },
+      {
+        "step": 7,
+        "minutes": 20
+      },
+      {
+        "step": 8,
+        "minutes": 5
+      }
+    ],
+    "overlap_steps": [
+      5
+    ],
+    "rule": "total = prep + cook; overlap steps run inside another step's clock and add 0; any oven/broiler preheat is stated as overlapping prep in the step text."
+  },
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

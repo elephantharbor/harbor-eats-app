@@ -1,0 +1,743 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 Batch A. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "A",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 Batch A: Juniper authored text, plating brief, prompt, and classification; Cora generates the image",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "chicken-enchiladas-verdes",
+    "slug": "chicken-enchiladas-verdes",
+    "title": "Chicken Enchiladas Verdes",
+    "description": "Broiler-charred tomatillos, jalapeños, onion, and garlic blended with cilantro and lime into a bright salsa verde; broiled cumin chicken thighs shredded with salsa and Monterey Jack, rolled in warm corn tortillas, smothered in more salsa and cheese, and baked until bubbling. Finished with lime crema, diced onion, radishes, and cilantro.",
+    "cuisine": "mexican",
+    "meal_format": "enchiladas",
+    "primary_ingredient": "chicken",
+    "vocabulary_tag_ids": [
+      "mexican",
+      "chicken",
+      "tangy",
+      "savory",
+      "creamy"
+    ],
+    "current_recipe_id": "rcp_chicken-enchiladas-verdes",
+    "current_version_id": "rv_chicken-enchiladas-verdes_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_chicken-enchiladas-verdes",
+    "dish_id": "chicken-enchiladas-verdes",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08 Batch A, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_chicken-enchiladas-verdes_v1",
+    "recipe_id": "rcp_chicken-enchiladas-verdes",
+    "dish_id": "chicken-enchiladas-verdes",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. Not certified. Not published. kitchen_tested is false.",
+    "title": "Chicken Enchiladas Verdes",
+    "description": "Broiler-charred tomatillos, jalapeños, onion, and garlic blended with cilantro and lime into a bright salsa verde; broiled cumin chicken thighs shredded with salsa and Monterey Jack, rolled in warm corn tortillas, smothered in more salsa and cheese, and baked until bubbling. Finished with lime crema, diced onion, radishes, and cilantro.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "chicken-thighs",
+        "name": "boneless skinless chicken thighs",
+        "display_name": "boneless, skinless chicken thighs",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatillos",
+        "name": "tomatillos",
+        "display_name": "tomatillos",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "about 10 to 12 medium",
+        "preparation": "husked and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jalapenos",
+        "name": "jalapeños",
+        "display_name": "jalapeños",
+        "quantity": 2,
+        "unit": "count",
+        "note": "keep seeds for heat, remove for mild",
+        "preparation": "stemmed and halved lengthwise",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "white-onion",
+        "name": "white onion",
+        "display_name": "white onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "medium: half for the salsa, a quarter diced for garnish (the last quarter is spare)",
+        "preparation": "half cut into 2 thick wedges; 1/4 finely diced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "unpeeled",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "fresh cilantro",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "lightly packed; 3/4 cup with tender stems for the salsa, 1/4 cup leaves to finish",
+        "preparation": "divided",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lime",
+        "name": "lime",
+        "display_name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": "about 2 tbsp juice: 1 tbsp salsa, 1 tbsp crema",
+        "preparation": "juiced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "corn-tortillas",
+        "name": "corn tortillas",
+        "display_name": "6-inch corn tortillas",
+        "quantity": 12,
+        "unit": "count",
+        "note": "100% corn (masa, water, lime); not a corn-wheat blend",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "monterey-jack",
+        "name": "Monterey Jack cheese",
+        "display_name": "Monterey Jack cheese",
+        "quantity": 8,
+        "unit": "oz",
+        "note": "2 cups shredded: 1 cup filling, 1 cup topping. Milk allergen.",
+        "preparation": "shredded",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sour-cream",
+        "name": "sour cream",
+        "display_name": "sour cream",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "thinned into lime crema. Milk allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "radishes",
+        "name": "radishes",
+        "display_name": "radishes",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "1 tbsp for the chicken, 1 tbsp for the tortillas",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "3/4 tsp chicken, 3/4 tsp salsa",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "freshly ground black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "1/4 cup for blending the salsa, 1 tbsp for the crema",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the broiler and load the pan",
+        "body": "Set an oven rack about 6 inches below the broiler and heat the broiler to high; it heats during this prep (overlap stated). Line a rimmed sheet pan with foil. Toss the chicken with 1 tbsp oil, the cumin, 3/4 tsp salt, and the pepper. Arrange the chicken, tomatillos, the two onion wedges, jalapeño halves (cut side down), and unpeeled garlic on the pan in a single layer.",
+        "ingredient_refs": [
+          "chicken-thighs",
+          "neutral-oil",
+          "ground-cumin",
+          "kosher-salt",
+          "black-pepper",
+          "tomatillos",
+          "white-onion",
+          "jalapenos",
+          "garlic"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Prep the garnishes",
+        "body": "Finely dice a quarter of the onion. Thinly slice the radishes. Pick 1/4 cup cilantro leaves; roughly chop the rest with tender stems for the salsa. Shred the cheese if using a block. Juice the lime.",
+        "ingredient_refs": [
+          "white-onion",
+          "radishes",
+          "cilantro",
+          "monterey-jack",
+          "lime"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Broil",
+        "body": "Broil 6 minutes, until the tomatillos blister and the chicken browns in spots. Flip the chicken and turn the tomatillos; broil 5 to 6 minutes more, until the tomatillos are soft, slumped, and charred in patches and the chicken reaches 175°F. Move the chicken to a board. Switch the oven to bake at 425°F (it is already hot).",
+        "ingredient_refs": [
+          "tomatillos",
+          "chicken-thighs",
+          "jalapenos",
+          "white-onion",
+          "garlic"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Blend the salsa verde",
+        "body": "Squeeze the garlic from its skins. Blend the tomatillos with their juices, broiled onion, jalapeños, garlic, 3/4 cup chopped cilantro, 1 tbsp lime juice, 3/4 tsp salt, and 1/4 cup water until smooth but still slightly textured. Taste. You should have about 3 1/2 cups.",
+        "ingredient_refs": [
+          "tomatillos",
+          "white-onion",
+          "jalapenos",
+          "garlic",
+          "cilantro",
+          "lime",
+          "kosher-salt",
+          "water"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Make the filling",
+        "body": "Shred the chicken with two forks and toss with 3/4 cup salsa verde and 1 cup Monterey Jack.",
+        "ingredient_refs": [
+          "chicken-thighs",
+          "monterey-jack"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Warm the tortillas",
+        "body": "Brush the tortillas lightly on both sides with 1 tbsp oil, stack, wrap in a damp paper towel, and microwave about 60 seconds until pliable (or warm them one at a time in a dry skillet). Warm tortillas roll without cracking.",
+        "ingredient_refs": [
+          "corn-tortillas",
+          "neutral-oil"
+        ]
+      },
+      {
+        "step_number": 7,
+        "title": "Fill and roll",
+        "body": "Spread 1/2 cup salsa in a 9x13-inch baking dish. Fill each tortilla with about 1/3 cup filling, roll snugly, and lay seam-side down in two rows. Pour the remaining salsa (about 2 1/4 cups) evenly over, covering the tortilla ends so they don't dry out. Scatter the remaining 1 cup cheese over the top.",
+        "ingredient_refs": [
+          "corn-tortillas",
+          "chicken-thighs",
+          "monterey-jack"
+        ]
+      },
+      {
+        "step_number": 8,
+        "title": "Bake",
+        "body": "Bake at 425°F until the salsa bubbles at the edges and the cheese is melted with golden spots, about 15 minutes.",
+        "ingredient_refs": [
+          "corn-tortillas",
+          "monterey-jack"
+        ]
+      },
+      {
+        "step_number": 9,
+        "title": "Finish",
+        "body": "Stir the sour cream with the remaining 1 tbsp lime juice and 1 tbsp water into a drizzle-able lime crema. Rest the enchiladas 3 minutes, then drizzle with crema and scatter the diced onion, radishes, and cilantro leaves. Serve 3 per person. kitchen_tested is false.",
+        "ingredient_refs": [
+          "sour-cream",
+          "lime",
+          "water",
+          "white-onion",
+          "radishes",
+          "cilantro"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "salsa-verde",
+        "name": "broiled tomatillo salsa verde",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomatillos",
+          "white onion",
+          "jalapeños",
+          "garlic",
+          "cilantro",
+          "lime juice",
+          "kosher salt",
+          "water"
+        ]
+      },
+      {
+        "component_id": "chicken-filling",
+        "name": "shredded cumin chicken filling",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "chicken thighs",
+          "ground cumin",
+          "salsa verde",
+          "Monterey Jack"
+        ]
+      },
+      {
+        "component_id": "lime-crema",
+        "name": "lime crema",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "sour cream",
+          "lime juice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "rimmed sheet pan",
+      "aluminum foil",
+      "blender",
+      "9x13-inch baking dish",
+      "pastry brush",
+      "microwave or skillet for tortillas",
+      "2 forks",
+      "knife",
+      "cutting board",
+      "instant-read thermometer (optional)"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 47,
+    "total_time_minutes": 62,
+    "prep_minutes": 15,
+    "cook_minutes": 47,
+    "total_minutes": 62,
+    "heat": "High broiler (heats during prep), then 425°F bake.",
+    "doneness": "Chicken 175°F and tender before shredding. Salsa bubbling at the edges, cheese melted with golden spots, tortillas soft (not dry at the ends). kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001-eligible: contains poultry (chicken) and dairy (Monterey Jack, sour cream)."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels claimed: contains chicken and milk. Corn tortillas are contracted 100% corn, but no gluten-free label is claimed.",
+    "allergens": [
+      "poultry",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Poultry covers the chicken thighs (FlavorWeave package token).",
+      "Milk covers Monterey Jack and sour cream.",
+      "No wheat: corn tortillas are contracted 100% corn. No egg, soy, sesame, peanut, tree_nut, shellfish, or finfish."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001-eligible: contains poultry (chicken) and dairy (Monterey Jack, sour cream).",
+    "vocabulary_tag_ids": [
+      "mexican",
+      "chicken",
+      "tangy",
+      "savory",
+      "creamy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Notes do not replace the array. Live PACKAGE_ALLERGEN_IDS may say dairy/nuts; do not silently remap milk to dairy or tree_nut to nuts.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in src/lib/taste-vocabulary.js (read-only). dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level and ingredient_complexity are the D-03 canonical fields. Legacy effort / effort_band / complexity are deliberately not authored. Factor scores and reason codes live in the top-level classification sidecar (factory/cert only, not runtime API V1).",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "images": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "cuisine_gap": "mexican maps to the active D-02 cuisine slug mexican, which is in vocabulary_tag_ids.",
+      "meal_format": "enchiladas is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "chicken maps to a D-02 ingredient slug present in tags.",
+      "hh001_contract": "Non-HH001 (poultry, dairy). Corn tortillas contracted 100% corn so wheat stays off the allergen list."
+    }
+  },
+  "image": {
+    "image_id": "img_chicken-enchiladas-verdes_v1",
+    "dish_id": "chicken-enchiladas-verdes",
+    "recipe_version_id": "rv_chicken-enchiladas-verdes_v1",
+    "asset_generated": true,
+    "master_ref": "chicken-enchiladas-verdes.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "chicken-enchiladas-verdes.webp",
+        "spec_catalog_path": "/images/meals/chicken-enchiladas-verdes.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "chicken-enchiladas-verdes-640.webp",
+        "spec_catalog_path": "/images/meals/chicken-enchiladas-verdes-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the AI JPEG to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs with export_meal_webps.py after Cora GenerateImage.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 from image-prompt.md (plating brief first; house-quality reference for light/appeal only); center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Harbor Eats Lead) via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "prompt_authored_by": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI image generated by Cora with GenerateImage from image-prompt.md; master and card WebPs exported with export_meal_webps.py and frozen for preflight/audit at freeze-r1. No stock, web, or third-party imagery.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "sha256": {
+      "img_v1.jpg": "f440199cba96994b3388c0cb12e68a730cd60350059ae2ba71ae6240c174b26f",
+      "chicken-enchiladas-verdes.webp": "8e61787222a6ddddaed6092a65a1c1c5c4c25d86a081538c96bdd81af67d0589",
+      "chicken-enchiladas-verdes-640.webp": "466fa26331efeb6752f707499e3683c85467062870bb2279a4ade7875e837dcb"
+    },
+    "card_ref": "chicken-enchiladas-verdes-640.webp",
+    "master_filename": "chicken-enchiladas-verdes.webp",
+    "card_filename": "chicken-enchiladas-verdes-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "rejected_assets": []
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Salsa 1/2 cup dish + 3/4 cup filling + about 2 1/4 cups topping = about 3 1/2 cups; cheese 1 cup filling + 1 cup top; lime 1 tbsp salsa + 1 tbsp crema; onion half salsa + quarter garnish."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "2 tbsp neutral oil: 1 tbsp chicken, 1 tbsp brushed on tortillas."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Salsa verde and crema are made in-recipe (no jarred salsa). Corn tortillas carry a 100% corn contract."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 (step 1 9 + step 2 6) + cook 47 (step 3 12 + step 4 3 + step 5 4 + step 6 2 + step 7 8 + step 8 15 + step 9 3) = 62. Preheat/parallel work stated in the step text."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes for 1, 2, and 4 servings and do-not-scale items."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=false, contains_poultry=true, contains_finfish=false, contains_shellfish=false, contains_dairy=true, nut_policy=none. Allergens poultry, milk. HH001 false. Non-HH001 (poultry, dairy). Corn tortillas contracted 100% corn so wheat stays off the allergen list."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "mexican, chicken, tangy, savory, creamy are active D-02 slugs. enchiladas is format metadata only."
+    },
+    {
+      "check": "classification_d03",
+      "result": "pass_curator_assigned",
+      "detail": "effort_level moderate (factor sum 5), ingredient_complexity standard (factor sum 2); factors and reason codes in the classification sidecar. Vale checks Gate A enums + Gate J plausibility."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r1."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY.json",
+      "detail": "Freeze Integrity Preflight is run on this exact freeze-r1 file set after finalize; its PASS/FAIL is recorded in FREEZE_INTEGRITY.json in this directory. Vale must not start unless it says PASS."
+    }
+  ],
+  "scaling_notes": {
+    "1": "6 oz chicken, 6 oz tomatillos, 1/2 jalapeño, 3 tortillas, 2 oz cheese, 2 tbsp sour cream; small baking dish or 8-inch skillet; broil and bake times the same.",
+    "2": "Half of everything in an 8x8-inch dish; same times.",
+    "4": "As written in a 9x13-inch dish.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "warm tortillas before rolling",
+      "cover tortilla ends with salsa",
+      "100% corn tortilla contract"
+    ]
+  },
+  "coverage_contribution": "Enchiladas / baked Mexican 0->1 (deferred). Moves Mexican off the chipotle-black-bean cluster with tomatillo-green flavor and a bake format.",
+  "near_duplicate_review": "Compared with Black Bean Quesadillas: tortillas and cheese, but rolled, sauced, and baked with chicken and salsa verde. Compared with Chipotle Lime Black Bean Bowls / Crispy Chipotle Tofu Tacos: Mexican, but green tomatillo instead of chipotle-red and no beans. Not a live-catalog duplicate.",
+  "deliberately_not": "Not quesadilla twin, not black-bean enchiladas (bean cluster), not chipotle-red sauce.",
+  "batch_challenges": "A",
+  "selection_alignment": "Matches WAVE.json/selection.json identity: mexican · enchiladas · chicken · hh001_intent false -> hh001_eligible false. Selection time band 45+; written clock 62 minutes. D-03 labels match the WAVE proposal after rubric scoring.",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "effort_score": 5,
+    "complexity_score": 2,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 1,
+      "technique": 1,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 0,
+      "specialty_items": [],
+      "flavor_component_breadth": 1,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredients": [
+      "chicken thighs",
+      "tomatillos",
+      "jalapeños",
+      "white onion",
+      "garlic",
+      "cilantro",
+      "lime",
+      "ground cumin",
+      "corn tortillas",
+      "Monterey Jack",
+      "sour cream",
+      "radishes"
+    ],
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "multi_component"
+      ],
+      "ingredient": [
+        "medium_list",
+        "common_pantry",
+        "multi_build"
+      ]
+    },
+    "rationale": {
+      "effort": "Steady prep (1); watching the broiler and assembly (1); enchiladas plus salsa sauce (filling and crema are quick mixes) (1); broil, then fill-and-roll assembly, timing-sensitive tortillas (1); sheet pan, blender, and baking dish with moderate cleanup but no parallel attended pots (1). Sum 5 -> moderate.",
+      "complexity": "12 countable (1). Tomatillos, corn tortillas, and Jack are mainstream produce/dairy (0). Salsa verde plus lime crema (1). Sum 2 -> standard."
+    },
+    "borderline": false,
+    "wave_proposal": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "cultural_bias_guardrail": "Cuisine unfamiliarity adds no points; specialty-store items scored once under specialty_burden, pantry_familiarity kept 0 (r2 convention)."
+  },
+  "classification_history": [],
+  "time_reconstruction": {
+    "prep_minutes": 15,
+    "cook_minutes": 47,
+    "total_minutes": 62,
+    "prep_steps": [
+      {
+        "step": 1,
+        "minutes": 9
+      },
+      {
+        "step": 2,
+        "minutes": 6
+      }
+    ],
+    "cook_steps": [
+      {
+        "step": 3,
+        "minutes": 12
+      },
+      {
+        "step": 4,
+        "minutes": 3
+      },
+      {
+        "step": 5,
+        "minutes": 4
+      },
+      {
+        "step": 6,
+        "minutes": 2
+      },
+      {
+        "step": 7,
+        "minutes": 8
+      },
+      {
+        "step": 8,
+        "minutes": 15
+      },
+      {
+        "step": 9,
+        "minutes": 3
+      }
+    ],
+    "overlap_steps": [],
+    "rule": "total = prep + cook; overlap steps run inside another step's clock and add 0; any oven/broiler preheat is stated as overlapping prep in the step text."
+  },
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

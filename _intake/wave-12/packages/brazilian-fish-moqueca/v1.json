@@ -1,0 +1,722 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 Batch A. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "A",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 Batch A: Juniper authored text, plating brief, prompt, and classification; Cora generates the image",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "brazilian-fish-moqueca",
+    "slug": "brazilian-fish-moqueca",
+    "title": "Brazilian Fish Moqueca",
+    "description": "Lime-and-garlic-marinated halibut layered with onion, red and yellow pepper rings, and tomato, then gently simmered in coconut milk with sweet paprika and olive oil until just flaky; finished with lime and cilantro and served over white rice. A Bahian-style coconut moqueca made with olive oil instead of dende. White fish only; no shrimp or shellfish.",
+    "cuisine": "brazilian",
+    "meal_format": "stew",
+    "primary_ingredient": "halibut",
+    "vocabulary_tag_ids": [
+      "stews",
+      "citrusy",
+      "rich",
+      "savory",
+      "herbaceous"
+    ],
+    "current_recipe_id": "rcp_brazilian-fish-moqueca",
+    "current_version_id": "rv_brazilian-fish-moqueca_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_brazilian-fish-moqueca",
+    "dish_id": "brazilian-fish-moqueca",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08 Batch A, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_brazilian-fish-moqueca_v1",
+    "recipe_id": "rcp_brazilian-fish-moqueca",
+    "dish_id": "brazilian-fish-moqueca",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. Not certified. Not published. kitchen_tested is false.",
+    "title": "Brazilian Fish Moqueca",
+    "description": "Lime-and-garlic-marinated halibut layered with onion, red and yellow pepper rings, and tomato, then gently simmered in coconut milk with sweet paprika and olive oil until just flaky; finished with lime and cilantro and served over white rice. A Bahian-style coconut moqueca made with olive oil instead of dende. White fish only; no shrimp or shellfish.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "halibut",
+        "name": "halibut fillet",
+        "display_name": "skinless halibut fillet",
+        "quantity": 1.75,
+        "unit": "lb",
+        "note": "1 to 1.5 inches thick. REQUIRED contract: firm white finfish only; cod or haddock may replace halibut one-for-one. NO shrimp, prawns, or any shellfish.",
+        "preparation": "patted dry, cut into 2-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "limes",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 3,
+        "unit": "count",
+        "note": "2 juiced (about 1/4 cup: 2 tbsp marinade, 2 tbsp finish), 1 cut into wedges for serving",
+        "preparation": "2 juiced, 1 cut into wedges",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 5,
+        "unit": "clove",
+        "note": "2 for the marinade, 3 for the base",
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sweet-paprika",
+        "name": "sweet paprika",
+        "display_name": "sweet paprika",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 tsp marinade, 1 tsp base; gives the broth its coral color in place of dende",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "large, about 12 oz; half for the base, half layered",
+        "preparation": "sliced into thin rings",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "red-bell-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": "half for the base, half layered",
+        "preparation": "seeded, sliced into 1/4-inch rings",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "yellow-bell-pepper",
+        "name": "yellow bell pepper",
+        "display_name": "yellow bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": "half for the base, half layered",
+        "preparation": "seeded, sliced into 1/4-inch rings",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "tomatoes",
+        "display_name": "ripe vine or Roma tomatoes",
+        "quantity": 3,
+        "unit": "count",
+        "note": "about 1 lb",
+        "preparation": "sliced into 1/4-inch rounds",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fresh-chile",
+        "name": "fresh chile",
+        "display_name": "Fresno or jalapeño chile",
+        "quantity": 1,
+        "unit": "count",
+        "note": "seeds removed for mild warmth",
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "coconut-milk",
+        "name": "coconut milk",
+        "display_name": "full-fat unsweetened canned coconut milk",
+        "quantity": 13.5,
+        "unit": "fl oz",
+        "note": "one can. Contract: canned coconut milk (coconut and water, possibly guar gum). Not coconut-milk beverage, coffee creamer, or sweetened cream of coconut. Coconut is not a tree nut for this package policy.",
+        "preparation": "shaken, whisked smooth",
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "fresh cilantro",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "loosely packed",
+        "preparation": "tender stems finely chopped (about 2 tbsp) for the base; leaves reserved to finish",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "white-rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed until water runs mostly clear",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "2 tbsp for the base, 1 tbsp drizzled over the layers. Dende (red palm oil) is not used.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "3/4 tsp fish, 1/2 tsp base, 1/2 tsp coconut milk, 3/4 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "freshly ground black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Marinate the fish",
+        "body": "Pat the halibut dry and cut into 2-inch pieces. Toss in a bowl with 2 tbsp lime juice, 2 cloves minced garlic, 1 tsp paprika, 3/4 tsp salt, and the black pepper. Let it marinate while you prep, about 15 minutes (no longer than 30, or the lime starts to firm the fish). HARD CONTRACT: white finfish only; no shrimp or any shellfish.",
+        "ingredient_refs": [
+          "halibut",
+          "limes",
+          "garlic",
+          "sweet-paprika",
+          "kosher-salt",
+          "black-pepper"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Prep the vegetables and rice",
+        "body": "Slice the onion, red pepper, and yellow pepper into thin rings and the tomatoes into 1/4-inch rounds. Thinly slice the chile. Mince the remaining 3 garlic cloves. Finely chop 2 tbsp cilantro stems and pick the leaves. Rinse the rice until the water runs mostly clear. Cut the third lime into wedges. Shake and whisk the coconut milk smooth with 1/2 tsp salt.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "red-bell-pepper",
+          "yellow-bell-pepper",
+          "tomatoes",
+          "fresh-chile",
+          "garlic",
+          "cilantro",
+          "white-rice",
+          "limes",
+          "coconut-milk",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Start the rice",
+        "body": "In a 2-quart saucepan bring the rice, 2 1/4 cups water, and 3/4 tsp salt to a boil over high (about 4 minutes). Cover, reduce to low, and cook 15 minutes; then leave it covered off the heat until serving (at least 5 minutes). This is set-and-forget and runs during steps 4 to 7 (overlap stated).",
+        "ingredient_refs": [
+          "white-rice",
+          "water",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Build the base",
+        "body": "At the same time, heat 2 tbsp olive oil in a 12-inch braiser or wide 5-quart Dutch oven over medium. Add half the onion, half of each pepper, the 3 cloves garlic, the cilantro stems, 1 tsp paprika, and 1/2 tsp salt. Cook, stirring occasionally, until softened, about 5 minutes. Spread in an even layer.",
+        "ingredient_refs": [
+          "olive-oil",
+          "yellow-onion",
+          "red-bell-pepper",
+          "yellow-bell-pepper",
+          "garlic",
+          "cilantro",
+          "sweet-paprika",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Layer",
+        "body": "Lay half the tomato slices over the base. Nestle the fish in a single layer and pour over any marinade. Top with the remaining onion, pepper rings, tomatoes, and chile. Pour the coconut milk evenly over everything and drizzle with the remaining 1 tbsp olive oil.",
+        "ingredient_refs": [
+          "tomatoes",
+          "halibut",
+          "yellow-onion",
+          "red-bell-pepper",
+          "yellow-bell-pepper",
+          "fresh-chile",
+          "coconut-milk",
+          "olive-oil"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Simmer gently",
+        "body": "Bring to a gentle simmer over medium, about 4 minutes (small bubbles at the edges). Cover, reduce to medium-low, and simmer without stirring 10 to 12 minutes, tilting the pan and spooning broth over the top once halfway, until the fish is opaque and flakes at the thickest part (145°F) and the peppers are tender but still hold their rings.",
+        "ingredient_refs": [
+          "coconut-milk",
+          "halibut"
+        ]
+      },
+      {
+        "step_number": 7,
+        "title": "Finish and serve",
+        "body": "Off heat, sprinkle with the remaining 2 tbsp lime juice, taste the broth for salt, and scatter the cilantro leaves. Serve in shallow bowls with the rice and lime wedges. No shrimp, no dende, no dairy. kitchen_tested is false.",
+        "ingredient_refs": [
+          "limes",
+          "cilantro",
+          "white-rice",
+          "kosher-salt"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "lime-garlic-marinade",
+        "name": "lime-garlic-paprika fish marinade",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "lime juice",
+          "garlic",
+          "sweet paprika",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "coconut-moqueca",
+        "name": "layered coconut moqueca",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "halibut",
+          "onion",
+          "red and yellow bell peppers",
+          "tomatoes",
+          "chile",
+          "coconut milk",
+          "olive oil",
+          "cilantro",
+          "garlic",
+          "sweet paprika"
+        ]
+      },
+      {
+        "component_id": "white-rice-cooked",
+        "name": "steamed white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long-grain white rice",
+          "water",
+          "kosher salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch braiser or wide 5-quart Dutch oven with lid",
+      "2-quart saucepan with lid",
+      "mixing bowl",
+      "knife",
+      "cutting board",
+      "citrus juicer",
+      "instant-read thermometer (optional)"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 25,
+    "total_time_minutes": 40,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "heat": "Medium sauté, then gentle covered simmer at medium-low. Rice on high then low. No oven.",
+    "doneness": "Fish opaque and flaking at the thickest part (145°F), still moist. Peppers tender with rings intact. Broth creamy, coral-colored, and bright with lime. Rice fluffy. kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Coconut is not a tree nut for this package policy (consistent with the live Thai red curry package).",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish only (halibut, or cod/haddock by contract). No shrimp or any shellfish, no dairy, no meat, no poultry. Coconut milk and olive oil are the fats. Nuts absent."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: coconut milk and olive oil only; no butter, cream, or cheese. Pescatarian: contains finfish, so not vegetarian or plant_based.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish covers the halibut (or cod/haddock substitute).",
+      "No shellfish: shrimp, prawns, and all shellfish are excluded by contract.",
+      "Coconut milk is present; coconut is not treated as a tree nut for this package policy. Disclosed for households that avoid coconut.",
+      "No egg, milk, soy, wheat, sesame, peanut, or tree_nut in the written ingredients."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish only (halibut, or cod/haddock by contract). No shrimp or any shellfish, no dairy, no meat, no poultry. Coconut milk and olive oil are the fats. Nuts absent.",
+    "vocabulary_tag_ids": [
+      "stews",
+      "citrusy",
+      "rich",
+      "savory",
+      "herbaceous"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Allergen tokens only (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Notes do not replace the array. Live PACKAGE_ALLERGEN_IDS may say dairy/nuts; do not silently remap milk to dairy or tree_nut to nuts.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in src/lib/taste-vocabulary.js (read-only). dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level and ingredient_complexity are the D-03 canonical fields. Legacy effort / effort_band / complexity are deliberately not authored. Factor scores and reason codes live in the top-level classification sidecar (factory/cert only, not runtime API V1).",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "images": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "cuisine_gap": "brazilian has no D-02 cuisine slug; kept on dish.cuisine only, not invented as a tag.",
+      "meal_format": "stew is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "halibut: no D-02 ingredient slug; not copied into tags.",
+      "hh001_contract": "HH001 requires white finfish only (no shrimp moqueca), canned coconut milk (not creamer), and olive oil fat. Unconditional."
+    }
+  },
+  "image": {
+    "image_id": "img_brazilian-fish-moqueca_v1",
+    "dish_id": "brazilian-fish-moqueca",
+    "recipe_version_id": "rv_brazilian-fish-moqueca_v1",
+    "asset_generated": true,
+    "master_ref": "brazilian-fish-moqueca.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "brazilian-fish-moqueca.webp",
+        "spec_catalog_path": "/images/meals/brazilian-fish-moqueca.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "brazilian-fish-moqueca-640.webp",
+        "spec_catalog_path": "/images/meals/brazilian-fish-moqueca-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the AI JPEG to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs with export_meal_webps.py after Cora GenerateImage.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage 4:3 from image-prompt.md (plating brief first; house-quality reference for light/appeal only); center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Harbor Eats Lead) via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "prompt_authored_by": "Juniper (FlavorWeave Catalog Curator, Harbor Eats)",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI image generated by Cora with GenerateImage from image-prompt.md; master and card WebPs exported with export_meal_webps.py and frozen for preflight/audit at freeze-r1. No stock, web, or third-party imagery.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "sha256": {
+      "img_v1.jpg": "6eb3c43df2d9d9c53891f3249c6822d692fcdbe6b15769c95d0a3718556d3dcb",
+      "brazilian-fish-moqueca.webp": "7b35b1fbbf3517f3377709ae5aca82d43f5e3604628564b44e918587b4d306ea",
+      "brazilian-fish-moqueca-640.webp": "18f67630c5d688bbe02ccb7ad24b57f0f634360b21b39e414c1b9c7db7880252"
+    },
+    "card_ref": "brazilian-fish-moqueca-640.webp",
+    "master_filename": "brazilian-fish-moqueca.webp",
+    "card_filename": "brazilian-fish-moqueca-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "rejected_assets": []
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Lime 2 tbsp marinade + 2 tbsp finish + wedges; garlic 2 + 3; paprika 1 + 1; onion/peppers half base, half layered; salt 3/4 + 1/2 + 1/2 + 3/4 = 2.5 tsp."
+    },
+    {
+      "check": "oil",
+      "result": "pass",
+      "detail": "3 tbsp olive oil: 2 tbsp base + 1 tbsp drizzled before simmer. No dende, no butter."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Canned coconut milk carries a contract excluding creamers and sweetened cream of coconut. No stock or pre-made sauce."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 (step 1 4 + step 2 11) + cook 25 (step 4 6 + step 5 2 + step 6 16 + step 7 1) = 40. Overlap steps (0 added): step 3. Preheat/parallel work stated in the step text."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes for 1, 2, and 4 servings and do-not-scale items."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=false, contains_poultry=false, contains_finfish=true, contains_shellfish=false, contains_dairy=false, nut_policy=none. Allergens finfish. HH001 true. HH001 requires white finfish only (no shrimp moqueca), canned coconut milk (not creamer), and olive oil fat. Unconditional."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "stews, citrusy, rich, savory, herbaceous are active D-02 slugs. stew is format metadata only."
+    },
+    {
+      "check": "classification_d03",
+      "result": "pass_curator_assigned",
+      "detail": "effort_level moderate (factor sum 3), ingredient_complexity standard (factor sum 2); factors and reason codes in the classification sidecar. Vale checks Gate A enums + Gate J plausibility."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit. asset_generated is true. package_revision freeze-r1."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY.json",
+      "detail": "Freeze Integrity Preflight is run on this exact freeze-r1 file set after finalize; its PASS/FAIL is recorded in FREEZE_INTEGRITY.json in this directory. Vale must not start unless it says PASS."
+    }
+  ],
+  "scaling_notes": {
+    "1": "7 oz fish, 1/4 each onion and peppers, 1 small tomato, about 1/3 cup coconut milk, 1/3 cup rice; 8-inch skillet with lid; simmer 8 to 10 minutes.",
+    "2": "Half of everything in a 10-inch skillet with lid; same simmer time.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "white-fish-only contract (no shrimp)",
+      "single fish layer",
+      "gentle simmer without stirring",
+      "marinade no longer than 30 minutes"
+    ]
+  },
+  "coverage_contribution": "Brazilian 0->1; fish stew 0->1 (fish lives only as fillet/taco/packet). Vivid peppers + coconut + lime make a strong hero.",
+  "near_duplicate_review": "Compared with Thai Red Curry Kabocha and Coconut Chickpea Curry: coconut liquid, but a fish stew with lime, paprika, and layered peppers rather than a curry-paste or spice-blend curry. Compared with Ginger-Scallion Fish Packets and Citrus Fennel Arctic Char: fish, but stewed in coconut broth instead of baked fillets. Compared with Garlic Tomato Mussels: tomato-based seafood pot, but shellfish vs finfish. Not a live-catalog duplicate.",
+  "deliberately_not": "Not shrimp moqueca (shellfish), not Thai coconut curry twin (tofu/kabocha), not another plain fillet.",
+  "batch_challenges": "A",
+  "selection_alignment": "Matches WAVE.json/selection.json identity: brazilian · stew · halibut · hh001_intent true -> hh001_eligible true. Selection time band 30–45; written clock 40 minutes. D-03 labels match the WAVE proposal after rubric scoring.",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "effort_score": 3,
+    "complexity_score": 2,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 1,
+      "technique": 0,
+      "coordination_cleanup_equipment": 0
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 0,
+      "specialty_items": [],
+      "flavor_component_breadth": 1,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredients": [
+      "halibut",
+      "limes",
+      "garlic",
+      "sweet paprika",
+      "yellow onion",
+      "red bell pepper",
+      "yellow bell pepper",
+      "tomatoes",
+      "fresh chile",
+      "coconut milk",
+      "cilantro",
+      "long-grain white rice"
+    ],
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "mostly_hands_off"
+      ],
+      "ingredient": [
+        "medium_list",
+        "common_pantry",
+        "multi_build"
+      ]
+    },
+    "rationale": {
+      "effort": "Steady slicing plus marinade (1); short sauté then covered simmer (1); stew plus rice (1); layer-and-simmer technique (0); rice is set-and-forget so coordination 0 (same as coconut curry / thai basil precedent). Sum 3 -> moderate.",
+      "complexity": "12 countable (1). Every item is mainstream supermarket; halibut is a fish-counter staple and cod is an equal swap; dende deliberately not used (0). Marinade plus coconut stew build (1). Sum 2 -> standard. Brazilian cuisine adds no points."
+    },
+    "borderline": false,
+    "wave_proposal": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "cultural_bias_guardrail": "Cuisine unfamiliarity adds no points; specialty-store items scored once under specialty_burden, pantry_familiarity kept 0 (r2 convention)."
+  },
+  "classification_history": [],
+  "time_reconstruction": {
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "prep_steps": [
+      {
+        "step": 1,
+        "minutes": 4
+      },
+      {
+        "step": 2,
+        "minutes": 11
+      }
+    ],
+    "cook_steps": [
+      {
+        "step": 4,
+        "minutes": 6
+      },
+      {
+        "step": 5,
+        "minutes": 2
+      },
+      {
+        "step": 6,
+        "minutes": 16
+      },
+      {
+        "step": 7,
+        "minutes": 1
+      }
+    ],
+    "overlap_steps": [
+      3
+    ],
+    "rule": "total = prep + cook; overlap steps run inside another step's clock and add 0; any oven/broiler preheat is stated as overlapping prep in the step text."
+  },
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

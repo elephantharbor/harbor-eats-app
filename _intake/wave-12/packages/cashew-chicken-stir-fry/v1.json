@@ -1,0 +1,690 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08, creator batch C. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r3. asset_generated is true. Not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "C",
+  "creator_batch": "C",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r3",
+  "revision_note": "freeze-r2 (2026-10-08 CT) for Vale wave-12 batch C r1: (1) Gate J classification-only amendment, ingredient_complexity simple (1) -> standard (3): 15 countable items is rubric band 2 and the velvet marinade plus stir-fry sauce is flavor breadth 1 (factors 2,0,1,0); effort_level moderate (5) unchanged; the stale Thai Basil Eggplant '(6, involved)' citation is corrected to its final ruling, moderate 5; reason codes remapped to the closed v1 set. (2) Gate K: the r1 hero (large grill-striped cutlet pieces; peanut/chickpea-like round nuggets) is archived as rejected/attempt1_* and logged in rejected/REJECTIONS.md, and the prompt and Plating Brief now require bite-size 3/4-inch cubes of stir-fried chicken (no whole or sliced cutlets, no grill marks) and whole curved cashews as the only nuts, with explicit negatives for peanuts, chickpeas, round nuggets, grill marks, and sliced cutlets. Cora regenerated the hero at freeze-r2 from the exact prompt (relabeled freeze-r3 for records only) in image-prompt.md (GenerateImage), then ran prepare/finalize; FREEZE_INTEGRITY PASS. Recipe text, version_number 1, and culinary_hash unchanged. freeze-r3 (2026-10-08 CT) is a records-only re-render for Vale r2 Gate O; img_v1.jpg and both WebPs, culinary_hash, version_number 1, and D-03 labels are unchanged.",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "cashew-chicken-stir-fry",
+    "slug": "cashew-chicken-stir-fry",
+    "title": "Cashew Chicken Stir-Fry",
+    "description": "Takeout-style cashew chicken at home: cornstarch-velveted chicken breast seared in a hot skillet with red bell pepper, celery, onion, garlic, and ginger, glossed in a savory-sweet soy-hoisin sauce, and tossed with toasted cashews and scallions over jasmine rice.",
+    "cuisine": "chinese-american",
+    "meal_format": "stir-fry",
+    "primary_ingredient": "chicken breast",
+    "vocabulary_tag_ids": [
+      "chinese",
+      "stir-fries",
+      "chicken",
+      "savory",
+      "umami",
+      "crunchy"
+    ],
+    "current_recipe_id": "rcp_cashew-chicken-stir-fry",
+    "current_version_id": "rv_cashew-chicken-stir-fry_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_cashew-chicken-stir-fry",
+    "dish_id": "cashew-chicken-stir-fry",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_cashew-chicken-stir-fry_v1",
+    "recipe_id": "rcp_cashew-chicken-stir-fry",
+    "dish_id": "cashew-chicken-stir-fry",
+    "version_number": 1,
+    "package_revision": "freeze-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Cashew Chicken Stir-Fry",
+    "description": "Takeout-style cashew chicken at home: cornstarch-velveted chicken breast seared in a hot skillet with red bell pepper, celery, onion, garlic, and ginger, glossed in a savory-sweet soy-hoisin sauce, and tossed with toasted cashews and scallions over jasmine rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.33,
+        "unit": "cup",
+        "note": "2 cups for the rice, 1/3 cup for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "chicken-breast",
+        "name": "chicken breast",
+        "display_name": "boneless skinless chicken breast",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "poultry",
+        "preparation": "cut into 3/4-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "low-sodium soy sauce",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "1 tbsp for the chicken, 3 tbsp for the sauce. Soy and wheat allergens.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dry-sherry",
+        "name": "dry sherry",
+        "display_name": "dry sherry",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "1 tbsp for the chicken, 1 tbsp for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cornstarch",
+        "name": "cornstarch",
+        "display_name": "cornstarch",
+        "quantity": 4,
+        "unit": "tsp",
+        "note": "1 tbsp for the chicken, 1 tsp for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "hoisin-sauce",
+        "name": "hoisin sauce",
+        "display_name": "hoisin sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "bottled. Typical hoisin contains soy, wheat, and often sesame.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "brown sugar",
+        "display_name": "light brown sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral high-heat oil (canola or avocado; not peanut oil)",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "1 tbsp per chicken batch, 1 tbsp for the vegetables",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "roasted-cashews",
+        "name": "cashews",
+        "display_name": "roasted unsalted cashews",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "whole. Tree nut (cashew) allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "red-bell-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": "large",
+        "preparation": "cut into 1-inch pieces",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "celery",
+        "name": "celery",
+        "display_name": "celery",
+        "quantity": 2,
+        "unit": "rib",
+        "note": null,
+        "preparation": "sliced 1/2 inch on the bias",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "small",
+        "preparation": "cut into 1-inch pieces",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fresh-ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "about a 1-inch piece",
+        "preparation": "peeled, minced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1-inch lengths, whites and greens separated",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "toasted-sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "to finish. Sesame allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Start the rice",
+        "body": "At the start of prep, put the rinsed rice and 2 cups water in a saucepan and bring to a boil over high heat. Cover, reduce to low, and cook 15 minutes; turn off the heat and rest, covered, 10 minutes. It needs no further attention and is ready before the stir-fry is done.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "water"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Velvet the chicken and mix the sauce",
+        "body": "Cut the chicken into 3/4-inch pieces and toss with 1 tbsp soy sauce, 1 tbsp sherry, and 1 tbsp cornstarch until evenly coated; let it sit while you prep. In a small bowl, whisk the remaining 3 tbsp soy sauce, 1 tbsp sherry, the hoisin, brown sugar, 1 tsp cornstarch, and 1/3 cup water. Cut the bell pepper, celery, and onion; mince the garlic and ginger; cut the scallions, keeping whites and greens apart.",
+        "ingredient_refs": [
+          "chicken-breast",
+          "soy-sauce",
+          "dry-sherry",
+          "cornstarch",
+          "hoisin-sauce",
+          "brown-sugar",
+          "water",
+          "red-bell-pepper",
+          "celery",
+          "yellow-onion",
+          "garlic",
+          "fresh-ginger",
+          "scallions"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Toast the cashews",
+        "body": "Toast the cashews in a dry 12-inch skillet over medium heat, tossing often, until golden in spots and fragrant, 3 to 4 minutes. Move them to a plate.",
+        "ingredient_refs": [
+          "roasted-cashews"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Sear the chicken",
+        "body": "Raise the heat to high. Add 1 tbsp oil and, once shimmering, half the chicken in a single layer. Sear undisturbed until golden underneath, about 2 minutes, then stir-fry until just cooked through with no pink (165 F), about 2 minutes more. Move to a plate. Repeat with 1 tbsp oil and the rest of the chicken.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "chicken-breast"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Stir-fry the vegetables",
+        "body": "Add the last 1 tbsp oil to the hot skillet. Add the onion, celery, bell pepper, and scallion whites and stir-fry until crisp-tender with a few charred spots, about 3 minutes. Add the garlic and ginger and stir 30 seconds, until fragrant.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "yellow-onion",
+          "celery",
+          "red-bell-pepper",
+          "scallions",
+          "garlic",
+          "fresh-ginger"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Sauce and finish",
+        "body": "Return the chicken and its juices. Re-whisk the sauce, pour it in, and toss until it bubbles and turns glossy and lightly thick, about 1 minute. Off the heat, toss in the cashews, scallion greens, and sesame oil. Fluff the rice and serve the stir-fry over it. kitchen_tested is false.",
+        "ingredient_refs": [
+          "chicken-breast",
+          "soy-sauce",
+          "hoisin-sauce",
+          "roasted-cashews",
+          "scallions",
+          "toasted-sesame-oil",
+          "jasmine-rice"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "velveted-chicken",
+        "name": "cornstarch-velveted seared chicken",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "chicken breast",
+          "soy sauce",
+          "dry sherry",
+          "cornstarch",
+          "neutral oil"
+        ]
+      },
+      {
+        "component_id": "soy-hoisin-sauce",
+        "name": "soy-hoisin stir-fry sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "soy sauce",
+          "dry sherry",
+          "hoisin sauce",
+          "brown sugar",
+          "cornstarch",
+          "water"
+        ]
+      },
+      {
+        "component_id": "cashew-vegetable-stir-fry",
+        "name": "cashew vegetable stir-fry",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "red bell pepper",
+          "celery",
+          "yellow onion",
+          "scallions",
+          "garlic",
+          "fresh ginger",
+          "toasted cashews",
+          "toasted sesame oil"
+        ]
+      },
+      {
+        "component_id": "jasmine-rice",
+        "name": "steamed jasmine rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet or wok",
+      "medium saucepan with lid",
+      "spatula",
+      "small bowl and whisk",
+      "knife",
+      "cutting board",
+      "measuring spoons"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 18,
+    "total_time_minutes": 33,
+    "prep_minutes": 15,
+    "cook_minutes": 18,
+    "total_minutes": 33,
+    "time_clock": "Prep 15 (rice goes on at prep minute 0: 2 minutes hands-on, then 15 cook + 10 rest unattended, ready at minute 27, before the stir-fry finishes at 33). Cook 18 = 4 toast cashews + 8 sear chicken in 2 batches + 4 vegetables and aromatics + 2 sauce and finish.",
+    "heat": "High to boil the rice, then low; medium dry skillet for the cashews; high heat for searing and stir-frying. No oven.",
+    "doneness": "Chicken golden in spots and just cooked through (165 F). Vegetables crisp-tender with a few charred spots. Sauce glossy and lightly thick, coating rather than pooling. Cashews golden. kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "when": "2026-10-08",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment by rubric before freeze. Factor scores and reason codes in d03-classification.json."
+      },
+      {
+        "version_number": 1,
+        "type": "classification_only_metadata_amendment",
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "when": "2026-10-08",
+        "from": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Vale wave-12 batch C r1 Gate J: 15 countable (band 2) + velvet marinade/sauce breadth 1 -> 3 standard (factors 2,0,1,0).",
+        "culinary_hash_unchanged": true,
+        "image_unchanged_by_this_amendment": true,
+        "vale_recheck_scope": "Gate A + Gate J-classification only"
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "culinary_hash": "80aeaa5a4094f6d8f9eb7258ef75343835c70d5719d28159c292feac4d9077fb",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook, heat, doneness. Excludes classification.",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "cashews_only_ok",
+      "nut_policy_note": "Cashews are the only nut. No peanuts or peanut oil, and no other tree nuts. The cashew exception would satisfy HH001, but poultry keeps this meal ineligible.",
+      "hh001_eligible": false,
+      "hh001_reason": "Chicken is poultry. HH001 does not eat poultry. Cashews alone would be allowed (cashews_only_ok), and there is no dairy or shellfish (no oyster sauce), but poultry makes it ineligible. Global catalog candidate."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: no butter, milk, or cream in the written recipe. No oyster sauce, so no shellfish. Not vegetarian (chicken).",
+    "allergens": [
+      "tree_nut",
+      "cashew",
+      "soy",
+      "wheat",
+      "sesame",
+      "poultry"
+    ],
+    "allergen_notes": [
+      "tree_nut and cashew cover the roasted cashews (cashew is the specific tree nut).",
+      "Soy covers the soy sauce and hoisin.",
+      "Wheat covers the regular soy sauce and typical hoisin.",
+      "Sesame covers the toasted sesame oil and the sesame commonly in hoisin.",
+      "Poultry is listed because the live allergen enum carries it; contains_poultry is also true on dietary_eligibility (not a substitute).",
+      "No egg, milk, peanut, shellfish, or finfish in the written ingredients. Oyster sauce is deliberately not used."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Chicken is poultry. HH001 does not eat poultry. Cashews alone would be allowed (cashews_only_ok), and there is no dairy or shellfish (no oyster sauce), but poultry makes it ineligible. Global catalog candidate.",
+    "hh001_contract": "Not HH001 (poultry). Nut policy cashews_only_ok; no peanut or peanut oil; no oyster sauce.",
+    "vocabulary_tag_ids": [
+      "chinese",
+      "stir-fries",
+      "chicken",
+      "savory",
+      "umami",
+      "crunchy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Factory allergen tokens (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Live PACKAGE_ALLERGEN_IDS use dairy (for milk) and nuts (for tree_nut) and carry cashew; map at import, do not silently drop. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level / ingredient_complexity are D-03 enums. Legacy effort / complexity strings deliberately omitted (package skill). Reason codes in the sidecar use the closed v1 set in d03-design/FACTORY-SKILL-AMENDMENT.md (draft, not yet applied to the skill), remapped at freeze-r2 per Vale r1.",
+      "package_revision": "package_revision is freeze-r3. Master and card WebPs are present and frozen for preflight/audit at freeze-r3. asset_generated is true.",
+      "cuisine_gap": "chinese-american is dish metadata; the closest active D-02 cuisine slug is used in tags where one exists."
+    }
+  },
+  "image": {
+    "image_id": "img_cashew-chicken-stir-fry_v1",
+    "dish_id": "cashew-chicken-stir-fry",
+    "recipe_version_id": "rv_cashew-chicken-stir-fry_v1",
+    "asset_generated": true,
+    "master_ref": "cashew-chicken-stir-fry.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "cashew-chicken-stir-fry.webp",
+        "spec_catalog_path": "/images/meals/cashew-chicken-stir-fry.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "cashew-chicken-stir-fry-640.webp",
+        "spec_catalog_path": "/images/meals/cashew-chicken-stir-fry-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop the GenerateImage JPEG (img_v1.jpg) to 4:3, then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage, 4:3 landscape, house-quality reference as quality/light reference only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Grok Bot Catalog Factory wave-12) via GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "revision_note": "freeze-r2 regenerates the hero so the chicken reads as bite-size 3/4-inch stir-fried cubes with no cutlets or grill marks and the only nuts are whole curved cashews (no peanut-, chickpea-, or nugget-like rounds); the r1 hero is rejected/attempt1_*."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated from this package's recipe and plating brief. Master and card WebPs are present and frozen for preflight/audit at freeze-r3. asset_generated is true.",
+    "package_revision": "freeze-r3",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "d8f3e0262cd4a1083a1ca448963c4d582f3f4ef6e47a87c4d7fb78f89af194e2",
+      "master_sha256": "147f07ae97d632979eb09c467f06fcbf7f649a9c34d6939773a049570a262152",
+      "card_sha256": "224f9651052fe806bb3163930d18d54f0384c6daab313076fd8fd4bea506d70e"
+    },
+    "card_ref": "cashew-chicken-stir-fry-640.webp",
+    "master_filename": "cashew-chicken-stir-fry.webp",
+    "card_filename": "cashew-chicken-stir-fry-640.webp",
+    "rejected_dir": "rejected/",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "d8f3e0262cd4a1083a1ca448963c4d582f3f4ef6e47a87c4d7fb78f89af194e2",
+      "cashew-chicken-stir-fry.webp": "147f07ae97d632979eb09c467f06fcbf7f649a9c34d6939773a049570a262152",
+      "cashew-chicken-stir-fry-640.webp": "224f9651052fe806bb3163930d18d54f0384c6daab313076fd8fd4bea506d70e"
+    },
+    "rejected_assets": [
+      {
+        "attempt": 1,
+        "files": [
+          "rejected/attempt1_img.jpg",
+          "rejected/attempt1_master.webp",
+          "rejected/attempt1_card.webp"
+        ],
+        "stage": "freeze-r1 active hero, Vale r1 K FAIL",
+        "reason": "Chicken shown as large (~2-inch) flat cutlet/tender pieces with grill stripes instead of bite-size 3/4-inch stir-fried pieces; small round tan nuggets read as peanuts or chickpeas (peanuts are a must-not; the meal claims cashews only)."
+      }
+    ],
+    "rejected_assets_note": "Superseded hero attempts live only under rejected/ (logged in rejected/REJECTIONS.md): attempt1 (freeze-r1 active hero, Vale r1 K FAIL). The active set is img_v1.jpg, cashew-chicken-stir-fry.webp, cashew-chicken-stir-fry-640.webp at freeze-r3."
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "All 17 ingredients are referenced by at least one step; every step ref resolves to a listed ingredient (machine-checked by batch_c_build.py)."
+    },
+    {
+      "check": "fats",
+      "result": "pass",
+      "detail": "Fats fully accounted: 3 tbsp neutral high-heat oil (canola or avocado; not peanut oil) (1 tbsp per chicken batch, 1 tbsp for the vegetables); 1 tsp toasted sesame oil (to finish. Sesame allergen.)."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Store-bought compound items carry a shopping note; made components listed under components. Not HH001 (poultry). Nut policy cashews_only_ok; no peanut or peanut oil; no oyster sauce."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 + cook 18 = 33. Prep 15 (rice goes on at prep minute 0: 2 minutes hands-on, then 15 cook + 10 rest unattended, ready at minute 27, before the stir-fry finishes at 33). Cook 18 = 4 toast cashews + 8 sear chicken in 2 batches + 4 vegetables and aromatics + 2 sauce and finish."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes; do_not_scale: sear the chicken in batches to avoid steaming; no peanuts or peanut oil; no oyster sauce"
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "hh001_eligible false. Chicken is poultry. HH001 does not eat poultry. Cashews alone would be allowed (cashews_only_ok), and there is no dairy or shellfish (no oyster sauce), but poultry makes it ineligible. Global catalog candidate. Allergens: tree_nut, cashew, soy, wheat, sesame, poultry. Labels: dairy_free."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "chinese, stir-fries, chicken, savory, umami, crunchy are D-02 slugs (checked against taste-vocabulary.js list). Cuisine 'chinese-american', format 'stir-fry', primary 'chicken breast' are dish metadata, not tags."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level moderate (score 5; floors: attention_2_plus_other_ge1_min_moderate); ingredient_complexity standard (score 3, 15 counted items). Factors in d03-classification.json. WAVE proposal: easy/simple."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r3. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit at freeze-r3. asset_generated is true."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "pass",
+      "detail": "freeze_integrity.py PASS at freeze-r3. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+    }
+  ],
+  "scaling_notes": {
+    "1": "6 oz chicken, 1/4 of the sauce and vegetables, 3 tbsp cashews, 1/3 cup rice with 1/2 cup water. Sear in one batch.",
+    "2": "Half of everything; sear the chicken in one batch in a 12-inch skillet.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "sear the chicken in batches to avoid steaming",
+      "no peanuts or peanut oil",
+      "no oyster sauce"
+    ]
+  },
+  "coverage_contribution": "Chinese-American takeout at home; chicken stir-fry 0 to 1. Uses cashews, the one nut HH001 can eat, though poultry keeps the meal non-HH001. Brings chicken back up for general households.",
+  "near_duplicate_review": "Compared with Peanut Noodle Stir-Fry: no peanuts, chicken over rice instead of plant noodles. Compared with Thai Basil Eggplant Stir-Fry: different cuisine, protein, and sauce. Compared with Kimchi Fried Rice: rice is a base here, not fried. Compared with Teriyaki Tofu Bowls: chicken plus cashews with a hoisin sauce, not a tofu bowl. Not a live-catalog duplicate.",
+  "selection_alignment": "Matches selection.json: chinese-american / stir-fry / chicken breast / hh001_intent false. Deviations from WAVE proposals: effort_level easy -> moderate (rubric); ingredient_complexity simple -> standard (rubric); time band Under 30 -> 30-45 (written clock 33 min).",
+  "batch_challenges": "C",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r3_preflight_pass_awaiting_vale"
+}

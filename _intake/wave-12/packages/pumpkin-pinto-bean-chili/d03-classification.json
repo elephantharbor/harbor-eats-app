@@ -1,0 +1,48 @@
+{
+  "slug": "pumpkin-pinto-bean-chili",
+  "recipe_version_id": "rv_pumpkin-pinto-bean-chili_v1",
+  "package_revision": "freeze-r1",
+  "classification": {
+    "effort_level": "easy",
+    "ingredient_complexity": "standard",
+    "effort_score": 2,
+    "complexity_score": 2,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 0,
+      "technique": 0,
+      "coordination_cleanup_equipment": 0
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 2,
+      "specialty_burden": 0,
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0,
+      "specialty_items": []
+    },
+    "countable_ingredient_count": 18,
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "one_pan"
+      ],
+      "ingredient": [
+        "long_list",
+        "common_pantry"
+      ]
+    },
+    "notes": "Effort: steady chopping (1), periodic stirring during an unattended simmer (1), one pot, toppings are raw assembly (trivial finish = 0), sauté/simmer technique (0). Sum 2 = easy. Complexity: 18 countable ingredients (oil/salt excluded) -> count band 2; every item is mainstream supermarket (0 specialty, 0 sourcing); one seasoning profile (0). Sum 2 = standard. WAVE proposal was simple; the rubric gives standard purely on list length (many single spices + toppings), not specialty burden.",
+    "proposal_from_wave": {
+      "effort_level": "easy",
+      "ingredient_complexity": "simple"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "factor_key_note": "pantry_familiarity is the canonical complexity factor key (batch A, batch C, and the 50 audited meals; the rubric's sourcing-difficulty factor). Batch B r1/r2 authored it as sourcing_difficulty; renamed 2026-10-08 after Vale's batch B audit. Value unchanged (0); labels unchanged."
+  },
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0–2 easy / 3–5 moderate / 6–10 involved with floors; complexity 0–1 simple / 2–3 standard / 4–8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

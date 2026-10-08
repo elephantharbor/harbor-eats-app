@@ -1,0 +1,650 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08, creator batch C. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true. Not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "C",
+  "creator_batch": "C",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "sabich-pita-sandwiches",
+    "slug": "sabich-pita-sandwiches",
+    "title": "Sabich Pita with Crispy Eggplant and Tahini",
+    "description": "Warm pocket pitas spread with hummus and stuffed with golden pan-fried eggplant, sliced hard-boiled egg, a chopped tomato-cucumber salad, dill pickles, and parsley, then drizzled with garlicky lemon tahini. Dairy-free pita contracted; amba (mango pickle sauce) optional.",
+    "cuisine": "israeli",
+    "meal_format": "sandwiches",
+    "primary_ingredient": "eggplant",
+    "vocabulary_tag_ids": [
+      "middle-eastern",
+      "sandwiches",
+      "eggplant",
+      "crispy",
+      "creamy",
+      "tangy",
+      "fresh"
+    ],
+    "current_recipe_id": "rcp_sabich-pita-sandwiches",
+    "current_version_id": "rv_sabich-pita-sandwiches_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_sabich-pita-sandwiches",
+    "dish_id": "sabich-pita-sandwiches",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_sabich-pita-sandwiches_v1",
+    "recipe_id": "rcp_sabich-pita-sandwiches",
+    "dish_id": "sabich-pita-sandwiches",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Sabich Pita with Crispy Eggplant and Tahini",
+    "description": "Warm pocket pitas spread with hummus and stuffed with golden pan-fried eggplant, sliced hard-boiled egg, a chopped tomato-cucumber salad, dill pickles, and parsley, then drizzled with garlicky lemon tahini. Dairy-free pita contracted; amba (mango pickle sauce) optional.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "globe-eggplant",
+        "name": "eggplant",
+        "display_name": "globe eggplant",
+        "quantity": 2,
+        "unit": "count",
+        "note": "medium, about 2 lb total",
+        "preparation": "sliced into 1/2-inch rounds",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1 tsp to salt the eggplant, 1/4 tsp tahini sauce, 1/4 tsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral high-heat oil (canola or avocado)",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for shallow-frying the eggplant in 3 batches, about 2 1/2 tbsp per batch",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "eggs",
+        "display_name": "large eggs",
+        "quantity": 6,
+        "unit": "count",
+        "note": "egg allergen; HH001 allows eggs",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tahini",
+        "name": "tahini",
+        "display_name": "tahini (sesame paste)",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "well stirred. Sesame allergen, not a nut.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "juiced: about 3 tbsp. 2 tbsp for tahini, 1 tbsp for the salad.",
+        "preparation": "juiced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": null,
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "cold water",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "to loosen the tahini sauce (the egg-boiling water is extra, not measured)",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "hummus",
+        "name": "hummus",
+        "display_name": "store-bought hummus",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "REQUIRED dairy-free: label lists no milk, yogurt, or cheese. Contains sesame (tahini).",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "pita",
+        "name": "pita",
+        "display_name": "large pocket pitas (about 7-inch)",
+        "quantity": 4,
+        "unit": "count",
+        "note": "REQUIRED dairy-free pita: label lists no milk, whey, butter, yogurt, or other milk ingredients. Wheat allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "tomatoes",
+        "display_name": "ripe tomatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": "medium",
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "persian-cucumbers",
+        "name": "persian cucumbers",
+        "display_name": "Persian cucumbers",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "extra-virgin-olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the salad",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "flat-leaf-parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "fresh flat-leaf parsley",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "half in the salad, half to finish",
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "dill-pickles",
+        "name": "dill pickles",
+        "display_name": "store-bought kosher dill pickles",
+        "quantity": 2,
+        "unit": "count",
+        "note": "medium, from a jar",
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "amba",
+        "name": "amba",
+        "display_name": "store-bought amba (mango pickle sauce)",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "traditional tangy finish; Middle Eastern grocers or online. The dish is complete without it.",
+        "preparation": null,
+        "optional": true,
+        "role": "condiment"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Boil water, salt the eggplant, and prep",
+        "body": "Bring a medium saucepan of water to a boil for the eggs (it heats during this prep). Slice the eggplant into 1/2-inch rounds, sprinkle both sides with 1 tsp salt, and lay them on a towel-lined sheet pan for 10 minutes. Meanwhile, finely dice the tomatoes and cucumbers, chop the parsley, slice the pickles, grate the garlic, and juice the lemon. Read the pita and hummus labels: no milk, whey, butter, yogurt, or cheese. HARD CONTRACT: dairy-free pita and hummus; no feta, no yogurt sauce.",
+        "ingredient_refs": [
+          "globe-eggplant",
+          "kosher-salt",
+          "tomatoes",
+          "persian-cucumbers",
+          "flat-leaf-parsley",
+          "dill-pickles",
+          "garlic",
+          "lemon",
+          "pita",
+          "hummus"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Make the tahini sauce and salad",
+        "body": "In a bowl, stir the tahini with 2 tbsp lemon juice, the grated garlic, and 1/4 tsp salt. Whisk in the cold water a little at a time; it will seize and thicken, then loosen into a smooth, pourable sauce. In another bowl, toss the tomatoes, cucumbers, half the parsley, 1 tbsp lemon juice, the olive oil, and 1/4 tsp salt. Pat the eggplant slices very dry with the towel.",
+        "ingredient_refs": [
+          "tahini",
+          "lemon",
+          "garlic",
+          "kosher-salt",
+          "water",
+          "tomatoes",
+          "persian-cucumbers",
+          "flat-leaf-parsley",
+          "extra-virgin-olive-oil",
+          "globe-eggplant"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the eggs",
+        "body": "Lower the eggs into the boiling water with a spoon and boil 10 minutes for firm but still moist yolks. Move them to a bowl of ice water for 5 minutes, then peel and slice into rounds. This runs alongside the eggplant.",
+        "ingredient_refs": [
+          "eggs"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Pan-fry the eggplant",
+        "body": "Heat a 12-inch skillet over medium-high with about 2 1/2 tbsp oil until it shimmers. Fry a single layer of eggplant rounds until deep golden-brown and crisp at the edges, 3 to 4 minutes per side, and creamy all the way through. Drain on paper towels. Repeat in two more batches with the remaining oil, adjusting the heat so the slices brown without burning.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "globe-eggplant"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Warm the pitas",
+        "body": "Wipe out the skillet and warm each pita over medium heat, about 30 seconds per side, until soft and pliable. Cut a 2-inch opening along one edge (or halve them) to make a pocket.",
+        "ingredient_refs": [
+          "pita"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Stuff and serve",
+        "body": "Spread 2 tbsp hummus inside each pita. Layer in the eggplant, egg slices, chopped salad, and pickles, then drizzle generously with tahini sauce and scatter with the remaining parsley. Add a spoonful of amba if you have it. Serve right away while the eggplant is still crisp. kitchen_tested is false.",
+        "ingredient_refs": [
+          "hummus",
+          "pita",
+          "globe-eggplant",
+          "eggs",
+          "tomatoes",
+          "persian-cucumbers",
+          "dill-pickles",
+          "tahini",
+          "flat-leaf-parsley",
+          "amba"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "crispy-eggplant",
+        "name": "pan-fried eggplant rounds",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "eggplant",
+          "kosher salt",
+          "neutral oil"
+        ]
+      },
+      {
+        "component_id": "hard-boiled-eggs",
+        "name": "hard-boiled eggs",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "eggs"
+        ]
+      },
+      {
+        "component_id": "lemon-tahini",
+        "name": "garlic lemon tahini sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tahini",
+          "lemon juice",
+          "garlic",
+          "kosher salt",
+          "cold water"
+        ]
+      },
+      {
+        "component_id": "chopped-salad",
+        "name": "tomato-cucumber chopped salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomatoes",
+          "Persian cucumbers",
+          "parsley",
+          "lemon juice",
+          "olive oil",
+          "kosher salt"
+        ]
+      },
+      {
+        "component_id": "store-bought-condiments",
+        "name": "hummus, dill pickles, optional amba",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "hummus",
+          "dill pickles",
+          "amba"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "medium saucepan",
+      "rimmed sheet pan and kitchen towel",
+      "slotted spoon",
+      "2 mixing bowls plus an ice-water bowl",
+      "whisk",
+      "paper towels",
+      "knife",
+      "cutting board",
+      "microplane or fine grater"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 28,
+    "total_time_minutes": 43,
+    "prep_minutes": 15,
+    "cook_minutes": 28,
+    "total_minutes": 43,
+    "time_clock": "Prep 15 (egg water heats from minute 0; eggplant salts 10 minutes while the salad vegetables are diced; tahini sauce and salad are mixed at the end of prep). Cook 28 = 20 pan-fry eggplant in 3 batches (eggs boil 10 + ice 5 + peel 3 alongside) + 3 warm pitas + 5 stuff and serve.",
+    "heat": "Medium-high skillet for shallow-frying; boiling water for eggs; medium dry skillet to warm pitas. No oven.",
+    "doneness": "Eggplant deep golden with crisp edges and fully creamy inside (no white, spongy centers). Eggs boiled 10 minutes: whites set, yolks firm but moist. Tahini pourable. kitchen_tested is false.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "when": "2026-10-08",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment by rubric before freeze. Factor scores and reason codes in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "culinary_hash": "a4fa79ac6241cb644bacedc16e2527e2785d7c5cd48a5c8bdc080abae9a3f1f0",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook, heat, doneness. Excludes classification.",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Tahini and hummus are sesame (an allergen token), not nuts.",
+      "hh001_eligible": true,
+      "hh001_reason": "Eggs are allowed for HH001. No dairy: pita and hummus are hard-contracted dairy-free and there is no feta or yogurt. No shellfish, no meat, no poultry, no fish. Tahini is sesame, not a nut; no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and vegetarian. Dairy-free pita and hummus are required ingredients. Not plant-based because of the eggs.",
+    "allergens": [
+      "egg",
+      "sesame",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Egg covers the hard-boiled eggs (6 large).",
+      "Sesame covers the tahini and the tahini in store-bought hummus.",
+      "Wheat covers the pita.",
+      "No milk by contract (pita and hummus labels). No soy, peanut, tree_nut, shellfish, or finfish in the written ingredients.",
+      "Optional amba is mango, vinegar, and spices (often fenugreek and mustard seed); mustard is not a token in this factory set."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Eggs are allowed for HH001. No dairy: pita and hummus are hard-contracted dairy-free and there is no feta or yogurt. No shellfish, no meat, no poultry, no fish. Tahini is sesame, not a nut; no nuts.",
+    "hh001_contract": "Pita and hummus must be dairy-free by label; no feta, yogurt, or labneh. Eggs and sesame are allowed for HH001. Unconditional.",
+    "vocabulary_tag_ids": [
+      "middle-eastern",
+      "sandwiches",
+      "eggplant",
+      "crispy",
+      "creamy",
+      "tangy",
+      "fresh"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Factory allergen tokens (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Live PACKAGE_ALLERGEN_IDS use dairy (for milk) and nuts (for tree_nut) and carry cashew; map at import, do not silently drop. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level / ingredient_complexity are D-03 enums. Legacy effort / complexity strings deliberately omitted (package skill). Reason codes in the sidecar are proposed; the closed reason-code list (FACTORY-SKILL-AMENDMENT.md) was not on the box at authoring.",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true.",
+      "cuisine_gap": "israeli is dish metadata; the closest active D-02 cuisine slug is used in tags where one exists."
+    }
+  },
+  "image": {
+    "image_id": "img_sabich-pita-sandwiches_v1",
+    "dish_id": "sabich-pita-sandwiches",
+    "recipe_version_id": "rv_sabich-pita-sandwiches_v1",
+    "asset_generated": true,
+    "master_ref": "sabich-pita-sandwiches.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "sabich-pita-sandwiches.webp",
+        "spec_catalog_path": "/images/meals/sabich-pita-sandwiches.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "sabich-pita-sandwiches-640.webp",
+        "spec_catalog_path": "/images/meals/sabich-pita-sandwiches-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop the GenerateImage JPEG (img_v1.jpg) to 4:3, then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage, 4:3 landscape, house-quality reference as quality/light reference only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Grok Bot Catalog Factory wave-12) via GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated from this package's recipe and plating brief. Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "ee9ad0265216f73b14c6148371ba5920e0536e062a0ce5b5cec3363d7d6f0679",
+      "master_sha256": "29771d8ab0c5bdd28ff704e3fd7e55e106835570b1dcd1847f8133be21cd8c15",
+      "card_sha256": "fe3357ec019c1ee46e28975663933f35864d1b8540b01c693e1caf409c9d193c"
+    },
+    "card_ref": "sabich-pita-sandwiches-640.webp",
+    "master_filename": "sabich-pita-sandwiches.webp",
+    "card_filename": "sabich-pita-sandwiches-640.webp",
+    "rejected_dir": "rejected/",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "All 16 ingredients are referenced by at least one step; every step ref resolves to a listed ingredient (machine-checked by batch_c_build.py)."
+    },
+    {
+      "check": "fats",
+      "result": "pass",
+      "detail": "Fats fully accounted: 1/2 cup neutral high-heat oil (canola or avocado) (for shallow-frying the eggplant in 3 batches, about 2 1/2 tbsp per batch); 1 tbsp extra-virgin olive oil (for the salad)."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Store-bought compound items carry a shopping note; made components listed under components. Pita and hummus must be dairy-free by label; no feta, yogurt, or labneh. Eggs and sesame are allowed for HH001. Unconditional."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 + cook 28 = 43. Prep 15 (egg water heats from minute 0; eggplant salts 10 minutes while the salad vegetables are diced; tahini sauce and salad are mixed at the end of prep). Cook 28 = 20 pan-fry eggplant in 3 batches (eggs boil 10 + ice 5 + peel 3 alongside) + 3 warm pitas + 5 stuff and serve."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes; do_not_scale: dairy-free pita and hummus; dry the salted eggplant before frying; single layer when frying"
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "hh001_eligible true. Eggs are allowed for HH001. No dairy: pita and hummus are hard-contracted dairy-free and there is no feta or yogurt. No shellfish, no meat, no poultry, no fish. Tahini is sesame, not a nut; no nuts. Allergens: egg, sesame, wheat. Labels: dairy_free, vegetarian."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "middle-eastern, sandwiches, eggplant, crispy, creamy, tangy, fresh are D-02 slugs (checked against taste-vocabulary.js list). Cuisine 'israeli', format 'sandwiches', primary 'eggplant' are dish metadata, not tags."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level involved (score 6); ingredient_complexity standard (score 2, 12 counted items). Factors in d03-classification.json. WAVE proposal: moderate/standard."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit at freeze-r1. asset_generated is true."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "pass",
+      "detail": "freeze_integrity.py PASS at freeze-r1. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+    }
+  ],
+  "scaling_notes": {
+    "1": "1 pita, 1 small eggplant (about 8 oz, one batch), 1 or 2 eggs, 2 tbsp tahini made into sauce, a quarter of the salad. A 10-inch skillet works.",
+    "2": "Half of everything; fry the eggplant in 2 batches. Boil 3 eggs.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "dairy-free pita and hummus",
+      "dry the salted eggplant before frying",
+      "single layer when frying"
+    ]
+  },
+  "coverage_contribution": "Israeli 0 to 1. Second sandwich in the catalog and the first HH001 handheld beyond tacos. Eggplant, egg, and tahini is a new flavor stack, and it uses eggs as a component rather than an egg-led dinner.",
+  "near_duplicate_review": "Compared with Roasted Cauliflower Shawarma Plate: shares pita and tahini, but that is a roasted-cauliflower plate with shawarma spice; this is a stuffed sandwich of fried eggplant and egg. Compared with Thai Basil Eggplant Stir-Fry: different cuisine, technique, and format. Compared with Skillet Shakshuka: egg is a component here, not the dinner. Compared with Crispy Skillet Chicken Sandwiches: plant/egg pita vs dredged chicken. Not a live-catalog duplicate.",
+  "selection_alignment": "Matches selection.json: israeli / sandwiches / eggplant / hh001_intent true. Deviations from WAVE proposals: effort_level moderate -> involved (rubric).",
+  "batch_challenges": "C",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_preflight_pass_awaiting_vale"
+}

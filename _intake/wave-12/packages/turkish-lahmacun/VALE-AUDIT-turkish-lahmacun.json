@@ -1,0 +1,679 @@
+{
+  "slug": "turkish-lahmacun",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-08",
+  "audit_round": "r4",
+  "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r3",
+  "recipe_version_id": "rv_turkish-lahmacun_v1",
+  "freeze_integrity": "PASS (0 fails; Vale re-ran freeze_integrity.py on a /tmp copy at r4)",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "failed_gates": [],
+  "kitchen_tested": false,
+  "packages_mutated": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. involved/standard.",
+      "rechecked_r3": "Light r3 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 7/3 and labels involved/standard unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null,
+      "note": "All ingredients referenced; Aleppo 2+1/2 tsp, salt 1+1/4, oil 1+1 tbsp, tomatoes 1+2, parsley 1/2+1 1/2 cups."
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r3": true,
+      "note": "steps[0] now cuts six 10-by-8-inch parchment pieces (two fit side by side on the ~16.5x11.5-inch flat of an inverted half-sheet, or a pizza steel, with no overhang); steps[1] rolls 4-oz balls (1.5 lb / 6) to ~9x7-inch ovals 'about 1/8 inch' -- consistent with the mass (~113 g over ~50 sq in = ~0.14 in); scaling_notes.do_not_scale[1] = '1/8-inch thin dough'; dish.description and recipe_version.description now 'Thin flatbreads'. No residual '1/16', '12-inch square(s)', 'paper-thin', or 'parchment squares' anywhere in v1.json or README. r3: components[thin-flatbreads] is now made_in_recipe true / store_bought false (the flatbreads are rolled and baked in the recipe); the pizza-dough ingredient keeps its HARD CONTRACT store-bought note, and the component contract still names the store-bought dough. README Components mirrors this. This clears r2 non-blocking note 3."
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r2": true,
+      "note": "steps[2]: bake 3 min on parchment, then tongs pull the parchment out and the bake finishes directly on the hot pan 4-5 min (7-8 total) to browned/crisp rims and topping cooked through, no pink, 160 F (correct for ground lamb). Parchment is in the 475 F oven only ~3 min with no overhang; the 'darkens ... expected' normalization and in-oven trim instruction are gone. heat field matches ('start on parchment for 3 minutes, then finish directly on the hot pan; 7 to 8 minutes total per batch'). tongs added to equipment."
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r2": true,
+      "note": "prep 20 / cook 32 / total 52 unchanged and still honest: step1 20 (475 F + inverted-pan preheat inside), step2 6, step3 3 batches x 8 = 24 (rolling next batch overlaps), step4 2 -> cook 32. The parchment pull at 3 min fits inside the 8-min batch window."
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Plain pizza dough contract (no milk/egg/cheese)."
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Dietary: meat true, dairy false by contract, HH001 false (lamb). Allergens meat, wheat — correct."
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r2": true,
+      "note": "d03-classification.json involved (7) / standard (3) unchanged and consistent with v1.json recipe_version.effort_level/ingredient_complexity; the added mid-bake parchment pull is already covered by active_attention 2 (continuous batch attention). No legacy effort/complexity fields authored; classification_history []. 'Paper-thin' promise removed.",
+      "rechecked_r3": "Light r3 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 7/3 and labels involved/standard unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Thin oval flatbreads with crisp browned rims, red-brown lamb paste edge to edge, sumac onion/tomato/parsley salad, folded front piece, lemon wedges, parchment, sumac dish. No cheese/pita/yogurt/cucumber/olives/pine nuts. Image stays valid after the text fix (still a thin flatbread)."
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Rolled up from L1 and L2."
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir. Card crop clips the folded right edge slightly; subject still legible."
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Vivid salad on crisp flatbread, strong texture; good card read."
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null,
+      "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r3": true,
+      "note": "scaling_notes.ratio['1'] 0.25 -> 0.3333, which now matches scaling_notes['1'] ('Make 2 lahmacun ... one-third of the recipe': 8 oz dough = 1/3 of 1.5 lb, 4 oz lamb = 1/3 of 12 oz, 1/3 topping and salad, one batch). ratio['2'] 0.5 = 3 lahmacun / 12 oz dough; ratio['4'] 1. do_not_scale unchanged. The README mirrors it."
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r4": true,
+      "note": "freeze-r3 relabel verified against backups/lahmacun-r3-172117. The v1.json diff is label-only: package_revision freeze-r2 -> freeze-r3 at root, recipe_version and image; catalog_contract_note, immutability_note, runtime_enum_gaps.package_revision/.images, image.provenance_note and curator_preflight[9]/[10] updated. Root revision_note follow-up now begins 'freeze-r3 (2026-10-08 CT) follow-up v1 text amendment after Vale r2'; recipe_version.revision_note follow-up begins 'freeze-r3 follow-up v1 text change'. Remaining freeze-r2 mentions are the historical r2 sentences only. d03 sidecar and image-prompt.md Status line say freeze-r3; README lines 5, 22, 23, 155, 156 and 161 mirror it. culinary_hash recomputed = sha256:09f38cab5f6df061fac7598b3585d3e946f3b87ac4eea468e46843a875777dd3 (unchanged). Image bytes unchanged: img_v1.jpg fa37b122..85b0, master e1647c8d..212d, card 7100428e..2d04 are byte-identical to the backup and match asset_sha256. image-plating-brief.md unchanged. version_number 1; classification_history []; FI PASS (re-run on a /tmp copy). The other 7 Batch B v1.json files are untouched (last modified 17:16:44)."
+    }
+  },
+  "image_review": {
+    "K": "PASS",
+    "L1": "PASS",
+    "L2": "PASS",
+    "L": "PASS",
+    "files_inspected": [
+      "img_v1.jpg",
+      "turkish-lahmacun-640.webp"
+    ],
+    "observation": "Matches recipe; no regeneration required."
+  },
+  "dietary_eligibility": "contains_meat true; dairy false (plain-dough contract); nut_policy none; label dairy_free.",
+  "allergens": "meat, wheat. Correct; wheat is a runtime enum gap.",
+  "allergen_runtime_gaps": {
+    "package_tokens": [
+      "meat",
+      "wheat"
+    ],
+    "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+      "wheat"
+    ],
+    "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+    "documented_in_runtime_enum_gaps": true
+  },
+  "hh001": "Intended NOT eligible; claimed false (lamb). Correct.",
+  "classification": {
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "gate_A_enums": "valid",
+    "gate_J_plausibility": "involved (7) / standard (3). Matches plan.",
+    "legacy_fields_authored": false
+  },
+  "fails_needing_revision": [],
+  "non_blocking_notes": [
+    "52-minute total (plan band 45+, consistent).",
+    "r2 (pre-existing, not a gate FAIL): recipe_version.components[thin-flatbreads] has made_in_recipe false / store_bought true while its contract says the dough is 'rolled and baked in the recipe'. Only the dough is store-bought. If this component is ever surfaced as a 'store-bought' badge, set made_in_recipe true / store_bought false and keep the store-bought dough contract on the pizza-dough ingredient; otherwise leave it for the next v1 text touch."
+  ],
+  "statement": "r4 re-check (2026-10-08 CT) of freeze-r3, O only: PASS. The relabel is label-only, culinary_hash is unchanged and verified, the image bytes are unchanged, and FI passes. Other gates are carried from r3 (C, N, A/J PASS) and earlier rounds. Overall PASS -> CERTIFY_V1. kitchen_tested remains false.",
+  "culinary_hash": "sha256:09f38cab5f6df061fac7598b3585d3e946f3b87ac4eea468e46843a875777dd3",
+  "culinary_hash_verified": true,
+  "asset_sha256_verified": {
+    "img_v1.jpg": "fa37b122c3f57627c65220215e60bb9e1cd4567c11346199d7688137fa4285b0",
+    "turkish-lahmacun.webp": "e1647c8d934f1b66c660dcd3ad0e00761992f70b603afb0a853566b82229212d",
+    "turkish-lahmacun-640.webp": "7100428e44760276c68ec4d32f167b91ee85e9e253ad90e361ab35a5d5ef2d04"
+  },
+  "rescore": {
+    "round": "r4",
+    "trigger": "creator applied Vale r3 O fix (freeze-r3 relabel), backup /workspace/backups/lahmacun-r3-172117",
+    "prior_round": "r3",
+    "prior_overall": "FAIL",
+    "prior_audit": "history[2] in this file",
+    "cleared_from_r3": [
+      "O: package_revision freeze-r3 everywhere; revision notes reworded; culinary_hash 09f38cab... unchanged"
+    ],
+    "still_failing": []
+  },
+  "image_bytes_unchanged": true,
+  "r4_scope": [
+    "O",
+    "image bytes",
+    "culinary_hash",
+    "freeze_integrity"
+  ],
+  "history": [
+    {
+      "round": "r1",
+      "audit_date": "2026-10-08",
+      "package_revision": "freeze-r1",
+      "overall": "FAIL",
+      "failed_gates": [
+        "C",
+        "D"
+      ],
+      "disposition": "REVISE_V1_TEXT_NO_IMAGE_REGEN",
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. involved/standard."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All ingredients referenced; Aleppo 2+1/2 tsp, salt 1+1/4, oil 1+1 tbsp, tomatoes 1+2, parsley 1/2+1 1/2 cups."
+        },
+        "C": {
+          "result": "FAIL",
+          "defect": "Dough quantity contradicts stated dimensions: 1.5 lb dough / 6 = 4 oz (~113 g) balls; a 9x7-inch oval (~50 sq in) at that mass is ~1/8 inch thick, not 'about 1/16 inch'. Rolling to 1/16 inch would give a ~13x11-inch oval, and two would no longer fit the inverted pan, breaking the 3-batch clock. Description promises 'Paper-thin'."
+        },
+        "D": {
+          "result": "FAIL",
+          "defect": "Parchment safety/cookability: recipe bakes on parchment at 475 F for 7–8 min on a preheated pan on the lowest rack (most US parchment is rated ~420–450 F), states 'parchment darkens at this heat, which is expected', and asks the cook to 'Trim any parchment that overhangs the pan' — but the six 12-inch squares cannot sit two-across on an inverted half-sheet (~16.5x11.5-inch flat bottom), so overhang is guaranteed and trimming would happen at a 475 F oven. Exposed, over-rated parchment near the bottom element is a scorch/ignition risk the package normalizes instead of preventing."
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Prep 20 (475 F + pan preheat inside) + cook 32 (6 + 3x8 overlapped rolling + 2) = 52. Realistic; unchanged by the fix."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Plain pizza dough contract (no milk/egg/cheese)."
+        },
+        "G": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Dietary: meat true, dairy false by contract, HH001 false (lamb). Allergens meat, wheat — correct."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "note": "involved (7) / standard (3: Aleppo + sumac) plausible and matches plan. 'Paper-thin' promise addressed by the C fix."
+        },
+        "K": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Thin oval flatbreads with crisp browned rims, red-brown lamb paste edge to edge, sumac onion/tomato/parsley salad, folded front piece, lemon wedges, parchment, sumac dish. No cheese/pita/yogurt/cucumber/olives/pine nuts. Image stays valid after the text fix (still a thin flatbread)."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir. Card crop clips the folded right edge slightly; subject still legible."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Vivid salad on crisp flatbread, strong texture; good card read."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null
+        },
+        "O": {
+          "result": "PASS",
+          "defect": null,
+          "note": "version_number 1, package_revision freeze-r1 consistently; classification_history []; culinary_hash present and excludes D-03 fields; README mirrors v1.json with no stale reserved/not-run image language; FREEZE_INTEGRITY.json PASS (0 fails)."
+        }
+      },
+      "image_review": {
+        "K": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "L": "PASS",
+        "files_inspected": [
+          "img_v1.jpg",
+          "turkish-lahmacun-640.webp"
+        ],
+        "observation": "Matches recipe; no regeneration required."
+      },
+      "fails_needing_revision": [
+        {
+          "gate": "D",
+          "defect": "Parchment used above typical rating at 475 F for the full bake, guaranteed overhang from 12-inch squares, and an in-oven trim instruction.",
+          "fix_type": "v1 text amendment (culinary text; same version_number, re-freeze)",
+          "fix": [
+            "recipe_version.steps[0].body: 'Cut six 12-inch squares of parchment.' -> 'Cut six 10-by-8-inch pieces of parchment (two fit side by side on the inverted pan with no overhang).'",
+            "recipe_version.steps[2].body: 'Bake 7 to 8 minutes, until the rims and underside are browned and crisp and the topping is sizzling and cooked through with no pink (160 F). Trim any parchment that overhangs the pan; parchment darkens at this heat, which is expected.' -> 'Bake 3 minutes, then use tongs to slide the parchment out from under each lahmacun and discard it; bake directly on the pan 4 to 5 minutes more (7 to 8 minutes total), until the rims and underside are browned and crisp and the topping is sizzling and cooked through with no pink (160 F).'",
+            "recipe_version.heat: 'Lahmacun bake on parchment directly on the hot pan, 7 to 8 minutes per batch.' -> 'Lahmacun start on parchment for 3 minutes, then finish directly on the hot pan; 7 to 8 minutes total per batch.'",
+            "Times unchanged (prep 20 / cook 32 / total 52)."
+          ]
+        },
+        {
+          "gate": "C",
+          "defect": "4-oz dough balls rolled to 9x7 inches are ~1/8 inch, not 1/16 inch; 'paper-thin' overstates.",
+          "fix_type": "v1 text amendment",
+          "fix": [
+            "recipe_version.steps[1].body: '(about 1/16 inch)' -> '(about 1/8 inch)'",
+            "scaling_notes.do_not_scale: '1/16-inch thin dough' -> '1/8-inch thin dough'",
+            "dish.description and recipe_version.description: 'Paper-thin flatbreads' -> 'Thin flatbreads'"
+          ]
+        },
+        {
+          "gate": "process",
+          "defect": "n/a",
+          "fix_type": "re-freeze",
+          "fix": [
+            "Apply the same edits in wave-12/notes/batch-b/r_lahmacun.py and re-render (build_batch_b.py render turkish-lahmacun) so README.md and v1.json agree; image-plating-brief.md / image-prompt.md 'paper-thin' wording may stay (image is unchanged) or be softened to 'thin'.",
+            "package_revision freeze-r1 -> freeze-r2 (root, recipe_version, image, README, curator_preflight); recompute culinary_hash; re-run freeze_integrity.py (must PASS); request Vale re-audit."
+          ]
+        }
+      ],
+      "statement": "Gate result only. Not publication, not a production release, not a cook test. Vale did not edit the package."
+    },
+    {
+      "slug": "turkish-lahmacun",
+      "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+      "audit_date": "2026-10-08",
+      "audit_round": "r2",
+      "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+      "package_file": "v1.json",
+      "package_revision": "freeze-r2",
+      "recipe_version_id": "rv_turkish-lahmacun_v1",
+      "freeze_integrity": "PASS (0 fails, re-run by Vale at r2)",
+      "disposition": "CERTIFY_V1",
+      "overall": "PASS",
+      "failed_gates": [],
+      "kitchen_tested": false,
+      "packages_mutated": false,
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. involved/standard."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All ingredients referenced; Aleppo 2+1/2 tsp, salt 1+1/4, oil 1+1 tbsp, tomatoes 1+2, parsley 1/2+1 1/2 cups."
+        },
+        "C": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "steps[0] now cuts six 10-by-8-inch parchment pieces (two fit side by side on the ~16.5x11.5-inch flat of an inverted half-sheet, or a pizza steel, with no overhang); steps[1] rolls 4-oz balls (1.5 lb / 6) to ~9x7-inch ovals 'about 1/8 inch' -- consistent with the mass (~113 g over ~50 sq in = ~0.14 in); scaling_notes.do_not_scale[1] = '1/8-inch thin dough'; dish.description and recipe_version.description now 'Thin flatbreads'. No residual '1/16', '12-inch square(s)', 'paper-thin', or 'parchment squares' anywhere in v1.json or README."
+        },
+        "D": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "steps[2]: bake 3 min on parchment, then tongs pull the parchment out and the bake finishes directly on the hot pan 4-5 min (7-8 total) to browned/crisp rims and topping cooked through, no pink, 160 F (correct for ground lamb). Parchment is in the 475 F oven only ~3 min with no overhang; the 'darkens ... expected' normalization and in-oven trim instruction are gone. heat field matches ('start on parchment for 3 minutes, then finish directly on the hot pan; 7 to 8 minutes total per batch'). tongs added to equipment."
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "prep 20 / cook 32 / total 52 unchanged and still honest: step1 20 (475 F + inverted-pan preheat inside), step2 6, step3 3 batches x 8 = 24 (rolling next batch overlaps), step4 2 -> cook 32. The parchment pull at 3 min fits inside the 8-min batch window."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Plain pizza dough contract (no milk/egg/cheese)."
+        },
+        "G": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Dietary: meat true, dairy false by contract, HH001 false (lamb). Allergens meat, wheat — correct."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "d03-classification.json involved (7) / standard (3) unchanged and consistent with v1.json recipe_version.effort_level/ingredient_complexity; the added mid-bake parchment pull is already covered by active_attention 2 (continuous batch attention). No legacy effort/complexity fields authored; classification_history []. 'Paper-thin' promise removed."
+        },
+        "K": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Thin oval flatbreads with crisp browned rims, red-brown lamb paste edge to edge, sumac onion/tomato/parsley salad, folded front piece, lemon wedges, parchment, sumac dish. No cheese/pita/yogurt/cucumber/olives/pine nuts. Image stays valid after the text fix (still a thin flatbread)."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir. Card crop clips the folded right edge slightly; subject still legible."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Vivid salad on crisp flatbread, strong texture; good card read."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null
+        },
+        "O": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "package_revision freeze-r2 at root, recipe_version, image block, README and curator_preflight; version_number stays 1 (text amendment, same as wave-11 r2 practice); revision_note present at root and recipe_version and mirrored in README; culinary_hash sha256:89a0fe2bbd3f79bb265aacd250480dfb9c229bab06c891389a020ff037a8e3eb recomputed by Vale with build_batch_b.culinary_hash() over the on-disk recipe_version -> exact match; image.asset_sha256 matches all three unchanged files (img_v1.jpg fa37b122..85b0, master e1647c8d..212d, card 7100428e..2d04); FREEZE_INTEGRITY PASS (0 fails). image-prompt.md keeps the generation-time 'paper-thin' wording verbatim and is labelled as provenance for the unchanged image -- acceptable."
+        }
+      },
+      "image_review": {
+        "K": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "L": "PASS",
+        "files_inspected": [
+          "img_v1.jpg",
+          "turkish-lahmacun-640.webp"
+        ],
+        "observation": "Matches recipe; no regeneration required."
+      },
+      "dietary_eligibility": "contains_meat true; dairy false (plain-dough contract); nut_policy none; label dairy_free.",
+      "allergens": "meat, wheat. Correct; wheat is a runtime enum gap.",
+      "allergen_runtime_gaps": {
+        "package_tokens": [
+          "meat",
+          "wheat"
+        ],
+        "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+          "wheat"
+        ],
+        "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+        "documented_in_runtime_enum_gaps": true
+      },
+      "hh001": "Intended NOT eligible; claimed false (lamb). Correct.",
+      "classification": {
+        "effort_level": "involved",
+        "ingredient_complexity": "standard",
+        "gate_A_enums": "valid",
+        "gate_J_plausibility": "involved (7) / standard (3). Matches plan.",
+        "legacy_fields_authored": false
+      },
+      "fails_needing_revision": [],
+      "non_blocking_notes": [
+        "52-minute total (plan band 45+, consistent).",
+        "r2 (pre-existing, not a gate FAIL): recipe_version.components[thin-flatbreads] has made_in_recipe false / store_bought true while its contract says the dough is 'rolled and baked in the recipe'. Only the dough is store-bought. If this component is ever surfaced as a 'store-bought' badge, set made_in_recipe true / store_bought false and keep the store-bought dough contract on the pizza-dough ingredient; otherwise leave it for the next v1 text touch."
+      ],
+      "statement": "r2 re-audit (2026-10-08 CT) of freeze-r2: C, D, E, J, O PASS; Freeze Integrity PASS; culinary_hash and asset_sha256 verified against files. Other gates carried from r1 (PASS; image unchanged). Overall PASS -> CERTIFY_V1. kitchen_tested remains false.",
+      "culinary_hash": "sha256:89a0fe2bbd3f79bb265aacd250480dfb9c229bab06c891389a020ff037a8e3eb",
+      "culinary_hash_verified": true,
+      "asset_sha256_verified": {
+        "img_v1.jpg": "fa37b122c3f57627c65220215e60bb9e1cd4567c11346199d7688137fa4285b0",
+        "turkish-lahmacun.webp": "e1647c8d934f1b66c660dcd3ad0e00761992f70b603afb0a853566b82229212d",
+        "turkish-lahmacun-640.webp": "7100428e44760276c68ec4d32f167b91ee85e9e253ad90e361ab35a5d5ef2d04"
+      },
+      "r2_scope": [
+        "C",
+        "D",
+        "E",
+        "J",
+        "O",
+        "freeze_integrity",
+        "culinary_hash",
+        "asset_sha256"
+      ],
+      "rescore": {
+        "round": "freeze-r2",
+        "prior_overall": "FAIL",
+        "prior_failed_gates": [
+          "C",
+          "D"
+        ],
+        "prior_audit": "history[0] in this file (r1, freeze-r1)",
+        "cleared_from_r1": [
+          "C: dough thickness now 'about 1/8 inch' (consistent with 4-oz balls at 9x7 in); do_not_scale '1/8-inch thin dough'; descriptions 'Thin flatbreads'",
+          "D: parchment 10x8 in, two fit on the inverted pan with no overhang; parchment pulled with tongs after 3 min, bake finishes on the pan; no in-oven trimming, no 'darkens is expected' text; heat field and equipment (tongs) consistent"
+        ],
+        "still_failing": []
+      }
+    },
+    {
+      "slug": "turkish-lahmacun",
+      "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+      "audit_date": "2026-10-08",
+      "audit_round": "r3",
+      "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+      "package_file": "v1.json",
+      "package_revision": "freeze-r2",
+      "recipe_version_id": "rv_turkish-lahmacun_v1",
+      "freeze_integrity": "PASS (0 fails; Vale re-ran freeze_integrity.py on a /tmp copy at r3)",
+      "disposition": "REVISE_REFREEZE_LABEL_ONLY",
+      "overall": "FAIL",
+      "failed_gates": [
+        "O"
+      ],
+      "kitchen_tested": false,
+      "packages_mutated": false,
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. involved/standard.",
+          "rechecked_r3": "Light r3 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 7/3 and labels involved/standard unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All ingredients referenced; Aleppo 2+1/2 tsp, salt 1+1/4, oil 1+1 tbsp, tomatoes 1+2, parsley 1/2+1 1/2 cups."
+        },
+        "C": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r3": true,
+          "note": "steps[0] now cuts six 10-by-8-inch parchment pieces (two fit side by side on the ~16.5x11.5-inch flat of an inverted half-sheet, or a pizza steel, with no overhang); steps[1] rolls 4-oz balls (1.5 lb / 6) to ~9x7-inch ovals 'about 1/8 inch' -- consistent with the mass (~113 g over ~50 sq in = ~0.14 in); scaling_notes.do_not_scale[1] = '1/8-inch thin dough'; dish.description and recipe_version.description now 'Thin flatbreads'. No residual '1/16', '12-inch square(s)', 'paper-thin', or 'parchment squares' anywhere in v1.json or README. r3: components[thin-flatbreads] is now made_in_recipe true / store_bought false (the flatbreads are rolled and baked in the recipe); the pizza-dough ingredient keeps its HARD CONTRACT store-bought note, and the component contract still names the store-bought dough. README Components mirrors this. This clears r2 non-blocking note 3."
+        },
+        "D": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "steps[2]: bake 3 min on parchment, then tongs pull the parchment out and the bake finishes directly on the hot pan 4-5 min (7-8 total) to browned/crisp rims and topping cooked through, no pink, 160 F (correct for ground lamb). Parchment is in the 475 F oven only ~3 min with no overhang; the 'darkens ... expected' normalization and in-oven trim instruction are gone. heat field matches ('start on parchment for 3 minutes, then finish directly on the hot pan; 7 to 8 minutes total per batch'). tongs added to equipment."
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "prep 20 / cook 32 / total 52 unchanged and still honest: step1 20 (475 F + inverted-pan preheat inside), step2 6, step3 3 batches x 8 = 24 (rolling next batch overlaps), step4 2 -> cook 32. The parchment pull at 3 min fits inside the 8-min batch window."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Plain pizza dough contract (no milk/egg/cheese)."
+        },
+        "G": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Dietary: meat true, dairy false by contract, HH001 false (lamb). Allergens meat, wheat — correct."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "d03-classification.json involved (7) / standard (3) unchanged and consistent with v1.json recipe_version.effort_level/ingredient_complexity; the added mid-bake parchment pull is already covered by active_attention 2 (continuous batch attention). No legacy effort/complexity fields authored; classification_history []. 'Paper-thin' promise removed.",
+          "rechecked_r3": "Light r3 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 7/3 and labels involved/standard unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+        },
+        "K": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Thin oval flatbreads with crisp browned rims, red-brown lamb paste edge to edge, sumac onion/tomato/parsley salad, folded front piece, lemon wedges, parchment, sumac dish. No cheese/pita/yogurt/cucumber/olives/pine nuts. Image stays valid after the text fix (still a thin flatbread)."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir. Card crop clips the folded right edge slightly; subject still legible."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Vivid salad on crisp flatbread, strong texture; good card read."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r3": true,
+          "note": "scaling_notes.ratio['1'] 0.25 -> 0.3333, which now matches scaling_notes['1'] ('Make 2 lahmacun ... one-third of the recipe': 8 oz dough = 1/3 of 1.5 lb, 4 oz lamb = 1/3 of 12 oz, 1/3 topping and salad, one batch). ratio['2'] 0.5 = 3 lahmacun / 12 oz dough; ratio['4'] 1. do_not_scale unchanged. The README mirrors it."
+        },
+        "O": {
+          "result": "FAIL",
+          "rescored_r3": true,
+          "defect": "Frozen-revision identity broken: after the r2 audit PASS certified freeze-r2 at culinary_hash sha256:89a0fe2bbd3f79bb265aacd250480dfb9c229bab06c891389a020ff037a8e3eb, the culinary content was changed again (components[thin-flatbreads] flags, scaling ratio), and culinary_hash is now sha256:09f38cab5f6df061fac7598b3585d3e946f3b87ac4eea468e46843a875777dd3. package_revision is still freeze-r2 everywhere, so two different culinary contents carry the same frozen label, and the root revision_note calls it 'Post-certification touch-ups at freeze-r2'. Revise -> re-freeze -> FI -> re-audit requires a new frozen revision for a culinary_hash change. Same-day precedent: pressure-cooker-butter-chicken was bumped freeze-r1 -> freeze-r2 for a smaller, non-hash scaling change.",
+          "note": "Everything else in O is clean: hash recompute matches 09f38cab...; image asset_sha256 3/3 match; FI PASS; README mirrors v1.json; version_number 1; classification_history []."
+        }
+      },
+      "image_review": {
+        "K": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "L": "PASS",
+        "files_inspected": [
+          "img_v1.jpg",
+          "turkish-lahmacun-640.webp"
+        ],
+        "observation": "Matches recipe; no regeneration required."
+      },
+      "dietary_eligibility": "contains_meat true; dairy false (plain-dough contract); nut_policy none; label dairy_free.",
+      "allergens": "meat, wheat. Correct; wheat is a runtime enum gap.",
+      "allergen_runtime_gaps": {
+        "package_tokens": [
+          "meat",
+          "wheat"
+        ],
+        "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+          "wheat"
+        ],
+        "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+        "documented_in_runtime_enum_gaps": true
+      },
+      "hh001": "Intended NOT eligible; claimed false (lamb). Correct.",
+      "classification": {
+        "effort_level": "involved",
+        "ingredient_complexity": "standard",
+        "gate_A_enums": "valid",
+        "gate_J_plausibility": "involved (7) / standard (3). Matches plan.",
+        "legacy_fields_authored": false
+      },
+      "fails_needing_revision": [
+        {
+          "gate": "O",
+          "defect": "Culinary content and culinary_hash changed after the freeze-r2 audit without a new package_revision.",
+          "fix_type": "re-freeze label only (no content, image, or classification change)",
+          "fix": [
+            "r_lahmacun.py: package_revision 'freeze-r2' -> 'freeze-r3' and re-render with build_batch_b.py. This must land in v1.json .package_revision, .recipe_version.package_revision, .image.package_revision, .catalog_contract_note, .recipe_version.immutability_note, .recipe_version.runtime_enum_gaps.package_revision/.images, .image.provenance_note, .curator_preflight[9]/[10].detail; d03-classification.json .package_revision; README (lines 5, 22, 155, 156, 161); image-prompt.md Status line.",
+            "Root revision_note: keep the freeze-r2 sentence as history and replace 'Post-certification touch-ups at freeze-r2 (2026-10-08 CT, ...)' with 'freeze-r3 (2026-10-08 CT) follow-up v1 text amendment after Vale r2 (non-blocking note 3 and the wave-wide scaling note): ...' (rest unchanged). In recipe_version.revision_note, change 'Follow-up v1 text change (2026-10-08 CT, Vale r2 note 3)' to 'freeze-r3 follow-up v1 text change (2026-10-08 CT, Vale r2 note 3)'. Mirror both in README.",
+            "Content stays as is: culinary_hash must remain sha256:09f38cab5f6df061fac7598b3585d3e946f3b87ac4eea468e46843a875777dd3 (package_revision and revision_note are not hashed). Image and asset_sha256 unchanged. version_number stays 1.",
+            "Re-run freeze_integrity.py (must PASS), then Vale re-checks O only."
+          ]
+        }
+      ],
+      "non_blocking_notes": [
+        "52-minute total (plan band 45+, consistent).",
+        "r2 (pre-existing, not a gate FAIL): recipe_version.components[thin-flatbreads] has made_in_recipe false / store_bought true while its contract says the dough is 'rolled and baked in the recipe'. Only the dough is store-bought. If this component is ever surfaced as a 'store-bought' badge, set made_in_recipe true / store_bought false and keep the store-bought dough contract on the pizza-dough ingredient; otherwise leave it for the next v1 text touch."
+      ],
+      "statement": "r3 re-check (2026-10-08 CT) after Juniper's cleanup: C and N PASS; A/J PASS (key rename only); culinary_hash 09f38cab... verified by recompute; asset_sha256 3/3; FI PASS. O FAIL: culinary content changed after the freeze-r2 audit but package_revision was not bumped (needs freeze-r3, label only). Overall FAIL -> REVISE_REFREEZE_LABEL_ONLY. kitchen_tested remains false.",
+      "culinary_hash": "sha256:09f38cab5f6df061fac7598b3585d3e946f3b87ac4eea468e46843a875777dd3",
+      "culinary_hash_verified": true,
+      "asset_sha256_verified": {
+        "img_v1.jpg": "fa37b122c3f57627c65220215e60bb9e1cd4567c11346199d7688137fa4285b0",
+        "turkish-lahmacun.webp": "e1647c8d934f1b66c660dcd3ad0e00761992f70b603afb0a853566b82229212d",
+        "turkish-lahmacun-640.webp": "7100428e44760276c68ec4d32f167b91ee85e9e253ad90e361ab35a5d5ef2d04"
+      },
+      "rescore": {
+        "round": "r3",
+        "trigger": "Juniper cleanup 2026-10-08 ~17:16 CT (backup /workspace/backups/wave-12-juniper-r2-20261008-171303)",
+        "prior_round": "r2",
+        "prior_overall": "PASS",
+        "prior_audit": "history[1] in this file",
+        "package_changes_reviewed": [
+          "components[thin-flatbreads] made_in_recipe/store_bought",
+          "scaling_notes.ratio['1'] 0.25 -> 0.3333 and scaling_notes['1'] text",
+          "culinary_hash 89a0fe2b... -> 09f38cab...",
+          "d03 key rename"
+        ],
+        "still_failing": [
+          "O: Culinary content and culinary_hash changed after the freeze-r2 audit without a new package_revision."
+        ]
+      },
+      "r3_scope": [
+        "C",
+        "N",
+        "O",
+        "culinary_hash",
+        "asset_sha256",
+        "freeze_integrity",
+        "A (light)",
+        "J (light)"
+      ]
+    }
+  ]
+}

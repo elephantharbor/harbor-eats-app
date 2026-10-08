@@ -1,0 +1,586 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08, creator batch C. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "C",
+  "creator_batch": "C",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r2",
+  "revision_note": "freeze-r2 (2026-10-08 CT) is a classification-only metadata amendment for Vale wave-12 batch C r1 Gate J: ingredient_complexity simple -> standard (rubric count band 1 for 10 countable items; anchovy fillets specialty 1, swordfish precedent; factors 1,1,0,0 = 2). effort_level moderate (3) unchanged. Reason codes remapped to the closed v1 set. Recipe text, version_number 1, culinary_hash, and the image are unchanged; no K/L rerun.",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "spaghetti-puttanesca",
+    "slug": "spaghetti-puttanesca",
+    "title": "Spaghetti Puttanesca",
+    "description": "Spaghetti tossed in a quick, punchy tomato sauce built on olive oil-melted anchovies, garlic, and chile flakes, with Kalamata olives and capers, finished with parsley and a last splash of olive oil. Egg-free dried pasta; no cheese, no butter.",
+    "cuisine": "italian-inspired",
+    "meal_format": "pasta",
+    "primary_ingredient": "anchovies",
+    "vocabulary_tag_ids": [
+      "italian",
+      "savory",
+      "umami",
+      "tangy",
+      "spicy",
+      "pasta"
+    ],
+    "current_recipe_id": "rcp_spaghetti-puttanesca",
+    "current_version_id": "rv_spaghetti-puttanesca_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_spaghetti-puttanesca",
+    "dish_id": "spaghetti-puttanesca",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_spaghetti-puttanesca_v1",
+    "recipe_id": "rcp_spaghetti-puttanesca",
+    "dish_id": "spaghetti-puttanesca",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Spaghetti Puttanesca",
+    "description": "Spaghetti tossed in a quick, punchy tomato sauce built on olive oil-melted anchovies, garlic, and chile flakes, with Kalamata olives and capers, finished with parsley and a last splash of olive oil. Egg-free dried pasta; no cheese, no butter.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "for the pasta water only (4 quarts). Do not salt the sauce until the final taste; anchovies, olives, and capers season it.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "spaghetti",
+        "name": "spaghetti",
+        "display_name": "dried spaghetti (egg-free durum wheat)",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "REQUIRED egg-free dried pasta: label lists durum wheat semolina (plus water and standard enrichment) only. Not fresh egg pasta. Wheat allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "extra-virgin-olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "3 tbsp to build the sauce, 1 tbsp to finish.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "anchovy-fillets",
+        "name": "anchovy fillets",
+        "display_name": "oil-packed anchovy fillets",
+        "quantity": 6,
+        "unit": "count",
+        "note": "about half of a 2-oz tin. Finfish allergen. They melt into the sauce and are the backbone of the flavor.",
+        "preparation": "drained, finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 5,
+        "unit": "clove",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "red-pepper-flakes",
+        "name": "red pepper flakes",
+        "display_name": "crushed red pepper flakes",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "use 1/4 tsp for mild heat",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "whole-peeled-tomatoes",
+        "name": "whole peeled tomatoes",
+        "display_name": "canned whole peeled tomatoes",
+        "quantity": 28,
+        "unit": "oz",
+        "note": "one 28-oz can, with juices",
+        "preparation": "crushed by hand",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kalamata-olives",
+        "name": "kalamata olives",
+        "display_name": "pitted Kalamata olives",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "brined olives; confirm pitted",
+        "preparation": "roughly chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "capers",
+        "name": "capers",
+        "display_name": "brined capers",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "drained and rinsed",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "dried-oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "flat-leaf-parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "fresh flat-leaf parsley",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "from about 1 small bunch; reserve 1 tbsp for the top",
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "freshly ground black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Start the water and prep",
+        "body": "Fill a large pot with 4 quarts water, add the 2 tbsp kosher salt, cover, and set over high heat. It takes about 12 minutes to boil, which overlaps this prep and the anchovy step. Thinly slice the garlic. Drain and finely chop the anchovies. Roughly chop the olives. Rinse and drain the capers. Crush the tomatoes by hand in a bowl, keeping every bit of juice. Chop the parsley. HARD CONTRACT: egg-free dried spaghetti; no Parmesan, pecorino, butter, or cream anywhere in this dish.",
+        "ingredient_refs": [
+          "kosher-salt",
+          "garlic",
+          "anchovy-fillets",
+          "kalamata-olives",
+          "capers",
+          "whole-peeled-tomatoes",
+          "flat-leaf-parsley",
+          "spaghetti"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Melt the anchovies with garlic and chile",
+        "body": "In a 12-inch skillet over medium heat, warm 3 tbsp olive oil. Add the anchovies, garlic, and red pepper flakes. Cook, stirring and pressing the anchovies with a wooden spoon, until they dissolve into the oil and the garlic is pale gold at the edges, about 3 minutes. Do not let the garlic go dark brown. Stir in the tomato paste and cook 1 minute, until it darkens slightly.",
+        "ingredient_refs": [
+          "extra-virgin-olive-oil",
+          "anchovy-fillets",
+          "garlic",
+          "red-pepper-flakes",
+          "tomato-paste"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer the sauce",
+        "body": "Add the crushed tomatoes and their juice, the olives, capers, and oregano. Bring to a brisk simmer over medium-high, then adjust the heat to keep it bubbling steadily. Simmer, stirring occasionally, until the sauce is thick and glossy and the oil begins to pool at the edges, about 10 minutes.",
+        "ingredient_refs": [
+          "whole-peeled-tomatoes",
+          "kalamata-olives",
+          "capers",
+          "dried-oregano"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Cook the spaghetti",
+        "body": "As soon as the sauce reaches its simmer (the water is at a rolling boil by now), add the spaghetti to the pot. Stir during the first minute so it does not stick. Cook until 1 minute shy of package al dente, about 8 to 9 minutes. Scoop out 1 cup of pasta water, then drain.",
+        "ingredient_refs": [
+          "spaghetti",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Toss and finish",
+        "body": "Add the drained spaghetti and 1/2 cup reserved pasta water to the sauce. Toss with tongs over medium-high heat until the sauce clings to every strand and looks glossy, 1 to 2 minutes; add more pasta water a splash at a time if it tightens. Off heat, toss in most of the parsley, the black pepper, and the remaining 1 tbsp olive oil. Taste and add a pinch of salt only if needed. Serve in shallow bowls topped with the reserved parsley. No cheese, no butter.",
+        "ingredient_refs": [
+          "spaghetti",
+          "flat-leaf-parsley",
+          "black-pepper",
+          "extra-virgin-olive-oil"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "puttanesca-sauce",
+        "name": "anchovy-olive-caper tomato sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "olive oil",
+          "anchovy fillets",
+          "garlic",
+          "red pepper flakes",
+          "tomato paste",
+          "whole peeled tomatoes",
+          "kalamata olives",
+          "capers",
+          "dried oregano"
+        ]
+      },
+      {
+        "component_id": "spaghetti",
+        "name": "spaghetti cooked al dente",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "spaghetti",
+          "salted water"
+        ]
+      }
+    ],
+    "equipment": [
+      "6- to 8-quart pot with lid",
+      "12-inch skillet",
+      "colander",
+      "tongs",
+      "wooden spoon",
+      "liquid measuring cup",
+      "knife",
+      "cutting board"
+    ],
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 16,
+    "total_time_minutes": 26,
+    "prep_minutes": 10,
+    "cook_minutes": 16,
+    "total_minutes": 26,
+    "time_clock": "Prep 10 (pasta water goes on at minute 0 and boils around minute 12, overlapping prep and the anchovy step). Cook 16 = 3 anchovy-garlic bloom + 1 tomato paste + 10 sauce simmer + 2 toss. Spaghetti (8-9 min) goes in at cook minute 4, inside the simmer, and is drained by cook minute 13-14.",
+    "heat": "High heat for the pasta water; medium for the anchovy-garlic bloom; brisk simmer (medium to medium-high) for the sauce; medium-high to toss. No oven.",
+    "doneness": "Anchovies fully dissolved; garlic pale gold, not brown. Sauce thick enough to cling, glossy with oil at the edges. Spaghetti al dente with sauce on every strand. kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "when": "2026-10-08",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment by rubric before freeze. Factor scores and reason codes in d03-classification.json."
+      },
+      {
+        "version_number": 1,
+        "type": "classification_only_metadata_amendment",
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "when": "2026-10-08",
+        "from": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Vale wave-12 batch C r1 Gate J: rubric count band 1 (10 countable) + anchovies specialty 1 -> 2 standard (factors 1,1,0,0). Metadata amendment; culinary_hash unchanged.",
+        "culinary_hash_unchanged": true,
+        "image_unchanged_by_this_amendment": true,
+        "vale_recheck_scope": "Gate A + Gate J-classification only"
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "culinary_hash": "eb3e82607f057bb9be0c11f3a3dc0c0d727ded0f5930010e1457c9d4895194e9",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook, heat, doneness. Excludes classification.",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Olives and capers are not nuts.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish (anchovies) is allowed for HH001. No dairy by recipe: no Parmesan, pecorino, butter, or cream. No shellfish, no meat other than fish, no poultry, no nuts. Egg-free dried spaghetti is a hard shopping contract (egg would also be HH001-allowed; the contract keeps the allergen list exact)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: the written recipe has no cheese, butter, cream, or milk. Not vegetarian or plant-based because anchovies are finfish.",
+    "allergens": [
+      "finfish",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Finfish covers the anchovy fillets.",
+      "Wheat covers the durum-wheat spaghetti.",
+      "Egg is absent by contract: dried spaghetti must be egg-free.",
+      "No milk, soy, sesame, peanut, tree_nut, or shellfish in the written ingredients. Meat and poultry are not present."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish (anchovies) is allowed for HH001. No dairy by recipe: no Parmesan, pecorino, butter, or cream. No shellfish, no meat other than fish, no poultry, no nuts. Egg-free dried spaghetti is a hard shopping contract (egg would also be HH001-allowed; the contract keeps the allergen list exact).",
+    "hh001_contract": "Egg-free dried spaghetti required; no cheese or butter in recipe or garnish; anchovies are the only animal ingredient (finfish, HH001-allowed). Unconditional, not a skip-the-cheese note.",
+    "vocabulary_tag_ids": [
+      "italian",
+      "savory",
+      "umami",
+      "tangy",
+      "spicy",
+      "pasta"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Factory allergen tokens (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Live PACKAGE_ALLERGEN_IDS use dairy (for milk) and nuts (for tree_nut) and carry cashew; map at import, do not silently drop. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level / ingredient_complexity are D-03 enums. Legacy effort / complexity strings deliberately omitted (package skill). Reason codes in the sidecar use the closed v1 set in d03-design/FACTORY-SKILL-AMENDMENT.md (draft, not yet applied to the skill), remapped at freeze-r2 per Vale r1.",
+      "package_revision": "package_revision is freeze-r2. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true.",
+      "cuisine_gap": "italian-inspired is dish metadata; the closest active D-02 cuisine slug is used in tags where one exists."
+    }
+  },
+  "image": {
+    "image_id": "img_spaghetti-puttanesca_v1",
+    "dish_id": "spaghetti-puttanesca",
+    "recipe_version_id": "rv_spaghetti-puttanesca_v1",
+    "asset_generated": true,
+    "master_ref": "spaghetti-puttanesca.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "spaghetti-puttanesca.webp",
+        "spec_catalog_path": "/images/meals/spaghetti-puttanesca.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "spaghetti-puttanesca-640.webp",
+        "spec_catalog_path": "/images/meals/spaghetti-puttanesca-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop the GenerateImage JPEG (img_v1.jpg) to 4:3, then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage, 4:3 landscape, house-quality reference as quality/light reference only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Grok Bot Catalog Factory wave-12) via GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated from this package's recipe and plating brief. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "01a42848bd1a27dce612ac216b90a473db73f6530fa232b6985cc798f103c143",
+      "master_sha256": "1b77b3b71d101f0b7d20501c2b971e9b31d070e8e4d9c274b52ef534682722a3",
+      "card_sha256": "e397f0725f34dc5ad9cff128989fd16b5c92adbccded0c7b9c8c7647181ea17e"
+    },
+    "card_ref": "spaghetti-puttanesca-640.webp",
+    "master_filename": "spaghetti-puttanesca.webp",
+    "card_filename": "spaghetti-puttanesca-640.webp",
+    "rejected_dir": "rejected/",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "01a42848bd1a27dce612ac216b90a473db73f6530fa232b6985cc798f103c143",
+      "spaghetti-puttanesca.webp": "1b77b3b71d101f0b7d20501c2b971e9b31d070e8e4d9c274b52ef534682722a3",
+      "spaghetti-puttanesca-640.webp": "e397f0725f34dc5ad9cff128989fd16b5c92adbccded0c7b9c8c7647181ea17e"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "All 13 ingredients are referenced by at least one step; every step ref resolves to a listed ingredient (machine-checked by batch_c_build.py)."
+    },
+    {
+      "check": "fats",
+      "result": "pass",
+      "detail": "Fats fully accounted: 4 tbsp extra-virgin olive oil (3 tbsp to build the sauce, 1 tbsp to finish.)."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Store-bought compound items carry a shopping note; made components listed under components. Egg-free dried spaghetti required; no cheese or butter in recipe or garnish; anchovies are the only animal ingredient (finfish, HH001-allowed). Unconditional, not a skip-the-cheese note."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 10 + cook 16 = 26. Prep 10 (pasta water goes on at minute 0 and boils around minute 12, overlapping prep and the anchovy step). Cook 16 = 3 anchovy-garlic bloom + 1 tomato paste + 10 sauce simmer + 2 toss. Spaghetti (8-9 min) goes in at cook minute 4, inside the simmer, and is drained by cook minute 13-14."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes; do_not_scale: no cheese or butter; egg-free dried pasta; salt the pasta water, not the sauce; reserve pasta water before draining"
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "hh001_eligible true. Finfish (anchovies) is allowed for HH001. No dairy by recipe: no Parmesan, pecorino, butter, or cream. No shellfish, no meat other than fish, no poultry, no nuts. Egg-free dried spaghetti is a hard shopping contract (egg would also be HH001-allowed; the contract keeps the allergen list exact). Allergens: finfish, wheat. Labels: dairy_free."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "italian, savory, umami, tangy, spicy, pasta are D-02 slugs (checked against taste-vocabulary.js list). Cuisine 'italian-inspired', format 'pasta', primary 'anchovies' are dish metadata, not tags."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level moderate (score 3); ingredient_complexity standard (score 2, 10 counted items). Factors in d03-classification.json. WAVE proposal: easy/simple."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "pass",
+      "detail": "freeze_integrity.py PASS at freeze-r2. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+    }
+  ],
+  "scaling_notes": {
+    "1": "4 oz spaghetti, 2 anchovies, 1 large garlic clove, 7 oz tomatoes (a scant cup), 2 tbsp olives, 1 1/2 tsp capers; 10-inch skillet; simmer about 7 minutes. Use 3 quarts water with 1 1/2 tbsp salt.",
+    "2": "Half of everything except the pasta water: 3 quarts with 1 1/2 tbsp salt. 12-inch skillet still fine; simmer about 8 minutes.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "no cheese or butter",
+      "egg-free dried pasta",
+      "salt the pasta water, not the sauce",
+      "reserve pasta water before draining"
+    ]
+  },
+  "coverage_contribution": "Under-30-minute pantry pasta for HH001. The live plant pastas are cashew pesto and walnut bolognese, and walnut is HH001-prohibited. Puttanesca brings fish into pasta through anchovy without dairy.",
+  "near_duplicate_review": "Compared with Grilled Swordfish with Olive-Caper relish: shared olive/caper flavors acknowledged, but that is a grilled fish plate and this is a weeknight tomato pasta. Compared with Lemon Garlic Shrimp Pasta: shellfish and lemon-butter-style vs anchovy-tomato, no shellfish. Compared with Cashew Pesto and Mushroom Walnut Bolognese: plant sauces, different flavor system. Not a live-catalog duplicate.",
+  "selection_alignment": "Matches selection.json: italian-inspired / pasta / anchovies / hh001_intent true. Deviations from WAVE proposals: effort_level easy -> moderate (rubric); ingredient_complexity simple -> standard (rubric).",
+  "batch_challenges": "C",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale"
+}

@@ -1,0 +1,161 @@
+{
+ "slug": "seared-scallops-parsnip-puree",
+ "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+ "audit_date": "2026-10-08",
+ "audit_round": "r2",
+ "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+ "package_file": "v1.json",
+ "package_revision": "freeze-r2",
+ "recipe_version_id": "rv_seared-scallops-parsnip-puree_v1",
+ "freeze_integrity": "PASS",
+ "disposition": "CERTIFY",
+ "overall": "PASS",
+ "failed_gates": [],
+ "kitchen_tested": false,
+ "packages_mutated": false,
+ "gates": {
+  "A": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Identity ids agree (slug/dish/rcp/rv/version 1); effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort / effort_band / complexity keys anywhere in v1.json (D-03 sanity PASS)."
+  },
+  "B": {
+   "result": "PASS",
+   "defect": null,
+   "note": "All ingredients referenced; butter 4 + 2 tbsp, salt splits correct."
+  },
+  "C": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Dry-packed scallops hard-seared, parsnip purée simmered in milk, sage brown butter, lemony arugula. Correct."
+  },
+  "D": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "recipe_version.steps[4].body and recipe_version.doneness now carry, verbatim, 'For fully cooked scallops (recommended for young children, pregnant, older, or immunocompromised diners), cook 1 to 2 minutes longer on the second side until opaque throughout (145 F).' Matches the swordfish/niçoise precedent. README mirrors both."
+  },
+  "E": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Prep 10 + cook 37 = 47 (sage/brown butter inside the parsnip simmer; two sear batches). Honest; band 45+. Fix adds ~1–2 min only on the optional path; times unchanged."
+  },
+  "F": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Dry-packed scallops note; no compound ingredients."
+  },
+  "G": {
+   "result": "PASS",
+   "defect": null,
+   "note": "contains_shellfish true, dairy true. Allergens shellfish, milk — correct."
+  },
+  "H": {
+   "result": "PASS",
+   "defect": null
+  },
+  "I": {
+   "result": "PASS",
+   "defect": null
+  },
+  "J": {
+   "result": "PASS",
+   "defect": null,
+   "note": "involved 8 [1,2,2,2,1] / standard 2 [0,1,1,0] (7 countable band 0; dry-packed scallops specialty 1; purée + brown butter breadth 1). Correct."
+  },
+  "K": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Deep-golden seared scallops on silky parsnip purée, brown butter, crispy sage, arugula, lemon."
+  },
+  "L": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Rolled up from L1 and L2."
+  },
+  "L1": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; image.file_hashes for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (wave-11 precedent); no text/logo/watermark/hands/faces; one active set."
+  },
+  "L2": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Restaurant-style plate with strong crust contrast; good card read."
+  },
+  "M": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Text provenance original_ai_assisted (wave-11 value; importer maps to live ai_assisted, see runtime_enum_gaps); image.generation method/date/generator present, model honestly 'unknown'; image-plating-brief.md and image-prompt.md present with must-be-visible / must-not-appear lists; external_image_api_called false, stock_or_web_photo_used false; rights not_cleared_for_external_release."
+  },
+  "N": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Shopping-id ingredients with quantity/unit/preparation separated from prep text; units are shoppable; scaling_notes present with ratio map {1:0.25, 2:0.5, 4:1}."
+  },
+  "O": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "package_revision freeze-r2 on root/recipe_version/image/README/prompt/brief/sidecar; version_number 1; root and recipe_version revision_note describe the D text amendment; culinary_hash recomputed by Vale from batch_c_recipes.py = 737ef601b9c4… and matches v1; D-03 labels involved/standard unchanged; image files byte-identical to r1; FREEZE_INTEGRITY re-run by Vale on a scratch copy at r2: PASS, 0 fails."
+  }
+ },
+ "image_review": {
+  "K": "PASS",
+  "L1": "PASS",
+  "L2": "PASS",
+  "L": "PASS",
+  "files_inspected": [
+   "img_v1.jpg",
+   "seared-scallops-parsnip-puree.webp",
+   "seared-scallops-parsnip-puree-640.webp"
+  ],
+  "observation": "Matches recipe; image stays valid after the text fix. Notes: sage leaves look a little soft; extra lemon slice in the arugula. No regeneration."
+ },
+ "dietary_eligibility": "contains_shellfish true; dairy true; nut_policy none.",
+ "allergens": "shellfish, milk. Correct.",
+ "allergen_runtime_gaps": {
+  "package_tokens": [
+   "shellfish",
+   "milk"
+  ],
+  "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+   "milk (live: dairy)"
+  ],
+  "live_enum_source": "cycle2-preview/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+  "documented_in_runtime_enum_gaps": true,
+  "ruling": "Package keeps the wave-11 token; importer maps explicitly; never silently drop egg/soy/wheat/sesame/milk."
+ },
+ "hh001": "Intended NOT eligible; claimed false (shellfish, dairy). Correct.",
+ "classification": {
+  "effort_level": "involved",
+  "ingredient_complexity": "standard",
+  "gate_A_enums": "valid",
+  "gate_J_plausibility": "involved 8 [1,2,2,2,1] / standard 2 [0,1,1,0] (7 countable band 0; dry-packed scallops specialty 1; purée + brown butter breadth 1). Correct.",
+  "factor_key": "pantry_familiarity (canonical)",
+  "legacy_fields_authored": false
+ },
+ "fails_needing_revision": [],
+ "non_blocking_notes": [
+  "time_clock unchanged (3 + 3 min sear batches); the optional fully cooked path adds up to ~2 min per batch (total ~51, band still 45+). Optional wording at a future re-freeze; non-blocking.",
+  "Image notes from r1 (soft sage, extra lemon slice) remain non-blocking."
+ ],
+ "statement": "Vale r2 re-audit of the revised package; packages were not mutated; kitchen_tested is false. PASS is binary for publication; non-blocking notes do not condition the verdict.",
+ "r2_rescored_gates": [
+  "D",
+  "O"
+ ],
+ "r2_scope_note": "Gates not listed in r2_rescored_gates carry forward from r1 (files unchanged for those gates or out of the requested re-audit scope).",
+ "history": [
+  {
+   "audit_round": "r1",
+   "file": "VALE-AUDIT-seared-scallops-parsnip-puree-r1.json",
+   "package_revision": "freeze-r1",
+   "overall": "FAIL",
+   "failed_gates": [
+    "D"
+   ],
+   "disposition": "REVISE_V1_TEXT_NO_IMAGE_REGEN"
+  }
+ ]
+}

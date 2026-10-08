@@ -1,0 +1,589 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08, creator batch C. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "batch_label": "C",
+  "creator_batch": "C",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r2",
+  "revision_note": "freeze-r2 (2026-10-08 CT) is a v1 text amendment for Vale wave-12 batch C r1 Gate D: steps[4].body and the doneness field now give a fully cooked option (opaque throughout, 145 F) for young children, pregnant, older, or immunocompromised diners. culinary_hash recomputed. Times (10/37/47), version_number 1, D-03 classification (involved/standard), and the image are unchanged. Reason codes remapped to the closed v1 set (sidecar only).",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "seared-scallops-parsnip-puree",
+    "slug": "seared-scallops-parsnip-puree",
+    "title": "Seared Scallops with Parsnip Purée and Crispy Sage",
+    "description": "Golden-crusted sea scallops on a silky, sweet parsnip purée, spooned with nutty sage brown butter and crisp-fried sage leaves, with a lemony baby arugula salad for brightness.",
+    "cuisine": "new-american",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "scallops",
+    "vocabulary_tag_ids": [
+      "american",
+      "savory",
+      "rich",
+      "creamy",
+      "crispy",
+      "herbaceous"
+    ],
+    "current_recipe_id": "rcp_seared-scallops-parsnip-puree",
+    "current_version_id": "rv_seared-scallops-parsnip-puree_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_seared-scallops-parsnip-puree",
+    "dish_id": "seared-scallops-parsnip-puree",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_seared-scallops-parsnip-puree_v1",
+    "recipe_id": "rcp_seared-scallops-parsnip-puree",
+    "dish_id": "seared-scallops-parsnip-puree",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "revision_note": "freeze-r2 (Vale r1 Gate D): added the fully cooked option to steps[4].body and doneness: 'For fully cooked scallops (recommended for young children, pregnant, older, or immunocompromised diners), cook 1 to 2 minutes longer on the second side until opaque throughout (145 F).' Times unchanged; same version_number 1 (not yet planned, shopped, cooked, or rated).",
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Seared Scallops with Parsnip Purée and Crispy Sage",
+    "description": "Golden-crusted sea scallops on a silky, sweet parsnip purée, spooned with nutty sage brown butter and crisp-fried sage leaves, with a lemony baby arugula salad for brightness.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "sea-scallops",
+        "name": "sea scallops",
+        "display_name": "dry-packed large sea scallops",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "about 16 (U-10 to U-15). Buy dry-packed (no added phosphates/STPP) so they sear. Shellfish allergen.",
+        "preparation": "side muscle removed, patted very dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsnips",
+        "name": "parsnips",
+        "display_name": "parsnips",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled, cut into 1-inch pieces (woody cores of very thick ends removed)",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "whole-milk",
+        "name": "whole milk",
+        "display_name": "whole milk",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "Milk allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "for simmering the parsnips",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "unsalted-butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 6,
+        "unit": "tbsp",
+        "note": "2 tbsp for the purée, 4 tbsp for the sage brown butter. Milk allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.75,
+        "unit": "tsp",
+        "note": "1 tsp for the parsnips, 1/2 tsp for the scallops, 1/4 tsp for the sage and salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fresh-sage",
+        "name": "fresh sage",
+        "display_name": "fresh sage leaves",
+        "quantity": 20,
+        "unit": "count",
+        "note": "large leaves",
+        "preparation": "picked, patted dry",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral high-heat oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "for searing",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "freshly ground black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "baby-arugula",
+        "name": "baby arugula",
+        "display_name": "baby arugula",
+        "quantity": 5,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "extra-virgin-olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the salad",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Peel the parsnips and cut into 1-inch pieces. Pull the small side muscle off each scallop, then lay the scallops on a paper-towel-lined plate, pat the tops very dry, and refrigerate uncovered. Pick and dry the sage leaves. Halve the lemon.",
+        "ingredient_refs": [
+          "parsnips",
+          "sea-scallops",
+          "fresh-sage",
+          "lemon"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Simmer the parsnips",
+        "body": "Put the parsnips, milk, water, and 1 tsp salt in a medium saucepan. Bring to a bare simmer over medium, about 5 minutes (watch that the milk does not boil over), then simmer gently until very tender, about 15 minutes.",
+        "ingredient_refs": [
+          "parsnips",
+          "whole-milk",
+          "water",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Fry the sage in brown butter",
+        "body": "While the parsnips simmer, melt 4 tbsp butter in a small skillet over medium. Once it foams, add the sage leaves in a single layer and fry until crisp and the butter turns nutty brown, 2 to 3 minutes. Lift the leaves onto a paper towel and sprinkle lightly with salt; pour the brown butter into a small bowl. Takes 4 to 5 minutes, inside the parsnip simmer.",
+        "ingredient_refs": [
+          "unsalted-butter",
+          "fresh-sage",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Blend the purée",
+        "body": "With a slotted spoon, move the parsnips to a blender. Add 2 tbsp butter and about 1/2 cup of the cooking liquid and blend until completely silky, 2 to 3 minutes, adding more liquid a splash at a time until it is soft and spoonable. Taste for salt. Return to the saucepan, cover, and keep warm on the lowest heat.",
+        "ingredient_refs": [
+          "parsnips",
+          "unsalted-butter",
+          "whole-milk",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Sear the scallops",
+        "body": "Heat a 12-inch heavy skillet (cast iron or stainless) over high until very hot, about 2 minutes. Season the scallops with 1/2 tsp salt and the pepper. Add 1 tbsp oil and half the scallops, flat side down, spaced apart. Sear without moving until a deep golden-brown crust forms, about 2 minutes, then flip and cook 1 minute more, until just opaque at the edges and still translucent in the center (120 to 125 F). For fully cooked scallops (recommended for young children, pregnant, older, or immunocompromised diners), cook 1 to 2 minutes longer on the second side until opaque throughout (145 F). Move to a plate and repeat with the remaining oil and scallops.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "sea-scallops",
+          "kosher-salt",
+          "black-pepper"
+        ]
+      },
+      {
+        "step_number": 6,
+        "title": "Dress the salad and plate",
+        "body": "Toss the arugula with the olive oil, a squeeze from half the lemon, and a pinch of salt. Swoosh a generous spoonful of purée on each plate, set 4 scallops crust side up on it, spoon over the sage brown butter, and top with the crispy sage. Add a small mound of arugula and a lemon wedge cut from the remaining half. Serve right away. kitchen_tested is false.",
+        "ingredient_refs": [
+          "baby-arugula",
+          "extra-virgin-olive-oil",
+          "lemon",
+          "kosher-salt",
+          "parsnips",
+          "sea-scallops",
+          "unsalted-butter",
+          "fresh-sage"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "parsnip-puree",
+        "name": "silky parsnip purée",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "parsnips",
+          "whole milk",
+          "water",
+          "unsalted butter",
+          "kosher salt"
+        ]
+      },
+      {
+        "component_id": "sage-brown-butter",
+        "name": "sage brown butter with crispy sage",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "unsalted butter",
+          "fresh sage",
+          "kosher salt"
+        ]
+      },
+      {
+        "component_id": "seared-scallops",
+        "name": "seared sea scallops",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "sea scallops",
+          "neutral oil",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "lemony-arugula",
+        "name": "lemony arugula salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "baby arugula",
+          "extra-virgin olive oil",
+          "lemon",
+          "kosher salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "medium saucepan",
+      "blender",
+      "small skillet",
+      "12-inch heavy skillet (cast iron or stainless)",
+      "slotted spoon",
+      "thin fish spatula or tongs",
+      "mixing bowl",
+      "paper towels",
+      "knife",
+      "cutting board"
+    ],
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 37,
+    "total_time_minutes": 47,
+    "prep_minutes": 10,
+    "cook_minutes": 37,
+    "total_minutes": 47,
+    "time_clock": "Prep 10. Cook 37 = 20 parsnip simmer (5 to a simmer + 15 gentle; sage brown butter, 4 to 5 minutes, runs inside it) + 4 blend + 2 heat skillet + 3 first sear batch + 3 second batch + 5 dress salad and plate.",
+    "heat": "Medium to bring the parsnips to a bare simmer, then gentle; medium for the brown butter; high, very hot skillet for searing; lowest heat to hold the purée.",
+    "doneness": "Parsnips very tender; purée completely silky. Sage crisp and butter nutty brown, not black. Scallops with a deep golden-brown crust, just opaque at the edges, translucent in the center (120 to 125 F). For fully cooked scallops (recommended for young children, pregnant, older, or immunocompromised diners), cook 1 to 2 minutes longer on the second side until opaque throughout (145 F). kitchen_tested is false.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "when": "2026-10-08",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment by rubric before freeze. Factor scores and reason codes in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "culinary_hash": "737ef601b9c4f6b80a20d8ffef76b177e43592850163f1754ab158c43c75bf39",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook, heat, doneness. Excludes classification.",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": true,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Scallops are shellfish, and the purée and brown butter are dairy. HH001 does not eat either. Global catalog candidate."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dairy_free label (butter and milk). Pescatarian-friendly but not vegetarian; no pescatarian label is stamped, matching catalog precedent.",
+    "allergens": [
+      "shellfish",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Shellfish covers the sea scallops (mollusk).",
+      "Milk covers the whole milk and butter.",
+      "No egg, wheat, soy, sesame, peanut, tree_nut, or finfish in the written ingredients."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Scallops are shellfish, and the purée and brown butter are dairy. HH001 does not eat either. Global catalog candidate.",
+    "hh001_contract": "Not HH001 (shellfish and dairy).",
+    "vocabulary_tag_ids": [
+      "american",
+      "savory",
+      "rich",
+      "creamy",
+      "crispy",
+      "herbaceous"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted. Do not silently remap.",
+      "publication_state": "Draft / draft alias. Not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "allergens": "Factory allergen tokens (egg, milk, soy, wheat, sesame, peanut, tree_nut, cashew, shellfish, finfish, meat, poultry). Live PACKAGE_ALLERGEN_IDS use dairy (for milk) and nuts (for tree_nut) and carry cashew; map at import, do not silently drop. Notes do not replace the array.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
+      "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
+      "classification": "effort_level / ingredient_complexity are D-03 enums. Legacy effort / complexity strings deliberately omitted (package skill). Reason codes in the sidecar use the closed v1 set in d03-design/FACTORY-SKILL-AMENDMENT.md (draft, not yet applied to the skill), remapped at freeze-r2 per Vale r1.",
+      "package_revision": "package_revision is freeze-r2. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true.",
+      "cuisine_gap": "new-american is dish metadata; the closest active D-02 cuisine slug is used in tags where one exists."
+    }
+  },
+  "image": {
+    "image_id": "img_seared-scallops-parsnip-puree_v1",
+    "dish_id": "seared-scallops-parsnip-puree",
+    "recipe_version_id": "rv_seared-scallops-parsnip-puree_v1",
+    "asset_generated": true,
+    "master_ref": "seared-scallops-parsnip-puree.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "seared-scallops-parsnip-puree.webp",
+        "spec_catalog_path": "/images/meals/seared-scallops-parsnip-puree.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "seared-scallops-parsnip-puree-640.webp",
+        "spec_catalog_path": "/images/meals/seared-scallops-parsnip-puree-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop the GenerateImage JPEG (img_v1.jpg) to 4:3, then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage, 4:3 landscape, house-quality reference as quality/light reference only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Cora (Grok Bot Catalog Factory wave-12) via GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated from this package's recipe and plating brief. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "1a48c88f081e644cebdc88ad45cd95e313e7159cf37026855ffeb13dc0f6cd70",
+      "master_sha256": "ada4b6388c51864bb4460cc4a3d5fba926fb14095cf034d5311658b14f20d135",
+      "card_sha256": "1eaa030d12e59cd1eb641a543dec696dae961d130e0673c7ac5470c0c222442b"
+    },
+    "card_ref": "seared-scallops-parsnip-puree-640.webp",
+    "master_filename": "seared-scallops-parsnip-puree.webp",
+    "card_filename": "seared-scallops-parsnip-puree-640.webp",
+    "rejected_dir": "rejected/",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "1a48c88f081e644cebdc88ad45cd95e313e7159cf37026855ffeb13dc0f6cd70",
+      "seared-scallops-parsnip-puree.webp": "ada4b6388c51864bb4460cc4a3d5fba926fb14095cf034d5311658b14f20d135",
+      "seared-scallops-parsnip-puree-640.webp": "1eaa030d12e59cd1eb641a543dec696dae961d130e0673c7ac5470c0c222442b"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "All 12 ingredients are referenced by at least one step; every step ref resolves to a listed ingredient (machine-checked by batch_c_build.py)."
+    },
+    {
+      "check": "fats",
+      "result": "pass",
+      "detail": "Fats fully accounted: 6 tbsp unsalted butter (2 tbsp for the purée, 4 tbsp for the sage brown butter. Milk allergen.); 2 tbsp neutral high-heat oil (for searing); 1 tbsp extra-virgin olive oil (for the salad)."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Store-bought compound items carry a shopping note; made components listed under components. Not HH001 (shellfish and dairy)."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 10 + cook 37 = 47. Prep 10. Cook 37 = 20 parsnip simmer (5 to a simmer + 15 gentle; sage brown butter, 4 to 5 minutes, runs inside it) + 4 blend + 2 heat skillet + 3 first sear batch + 3 second batch + 5 dress salad and plate."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "See scaling_notes; do_not_scale: dry-packed scallops; pat the scallops very dry; sear in batches without crowding; pull at 120 to 125 F"
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "hh001_eligible false. Scallops are shellfish, and the purée and brown butter are dairy. HH001 does not eat either. Global catalog candidate. Allergens: shellfish, milk. Labels: none."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "american, savory, rich, creamy, crispy, herbaceous are D-02 slugs (checked against taste-vocabulary.js list). Cuisine 'new-american', format 'composed-plate', primary 'scallops' are dish metadata, not tags."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level involved (score 8; floors: attention_2_plus_other_ge1_min_moderate, technique_2_plus_prep_or_components_involved); ingredient_complexity standard (score 2, 7 counted items). Factors in d03-classification.json. WAVE proposal: involved/standard."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "pass",
+      "detail": "freeze_integrity.py PASS at freeze-r2. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+    }
+  ],
+  "scaling_notes": {
+    "1": "6 oz scallops seared in one batch in a 10-inch skillet; 6 oz parsnips with 1/2 cup milk and 1/4 cup water; 5 sage leaves in 1 tbsp butter.",
+    "2": "Half of everything; sear the scallops in one batch in a 12-inch skillet.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "dry-packed scallops",
+      "pat the scallops very dry",
+      "sear in batches without crowding",
+      "pull at 120 to 125 F"
+    ]
+  },
+  "coverage_contribution": "Shellfish date-night plate and a fall root-vegetable purée. Adds a restaurant-style special-occasion meal with a scallop protein the catalog lacks.",
+  "near_duplicate_review": "Compared with Lemon Garlic Shrimp Pasta: different shellfish, a purée-based plate, no pasta. Compared with Pan-Seared Arctic Char: a seared-protein plate, but scallops on a parsnip purée with sage brown butter instead of fish. Not a live-catalog duplicate.",
+  "selection_alignment": "Matches selection.json: new-american / composed-plate / scallops / hh001_intent false. Deviations from WAVE proposals: time band 30-45 -> 45+ (written clock 47 min).",
+  "batch_challenges": "C",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale"
+}

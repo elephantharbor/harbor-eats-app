@@ -1,0 +1,697 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 (Batch B). Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r2; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r2",
+  "revision_note": "freeze-r2 (2026-10-08 CT) is an image-only revision for Vale r1 gate K: the r1 hero (greens read as napa/savoy cabbage, only 3 egg halves, sesame-like specks in the crust) was moved to rejected/ with build_batch_b.py reject, the Plating Brief and image prompt were tightened (smooth cupped butter/Bibb lettuce with no crinkling or thick white ribs; eight jammy egg halves with at least six clearly visible; crust of coarsely cracked black peppercorns only; explicit no napa/savoy cabbage, romaine, iceberg, or sesame), and a new hero was generated and finalized under the same active filenames (img_v1.jpg, salade-nicoise-seared-tuna.webp, salade-nicoise-seared-tuna-640.webp) with asset_sha256 refreshed. Recipe, version_number 1, culinary_hash, and D-03 classification unchanged.",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "salade-nicoise-seared-tuna",
+    "slug": "salade-nicoise-seared-tuna",
+    "title": "Salade Niçoise with Seared Tuna",
+    "description": "A dinner-sized composed salad: pepper-crusted seared ahi tuna sliced rare, warm baby potatoes tossed in Dijon-shallot vinaigrette, jammy 7-minute eggs, crisp green beans, cherry tomatoes, olives, and capers on butter lettuce. Dairy-free vinaigrette; no butter anywhere.",
+    "cuisine": "french",
+    "meal_format": "composed-salad",
+    "primary_ingredient": "tuna",
+    "vocabulary_tag_ids": [
+      "mediterranean",
+      "fresh",
+      "tangy",
+      "savory",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_salade-nicoise-seared-tuna",
+    "current_version_id": "rv_salade-nicoise-seared-tuna_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_salade-nicoise-seared-tuna",
+    "dish_id": "salade-nicoise-seared-tuna",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_salade-nicoise-seared-tuna_v1",
+    "recipe_id": "rcp_salade-nicoise-seared-tuna",
+    "dish_id": "salade-nicoise-seared-tuna",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present on disk (salade-nicoise-seared-tuna.webp, salade-nicoise-seared-tuna-640.webp) with source img_v1.jpg; asset_generated is true; package_revision freeze-r2. Not certified. Not published. kitchen_tested is false.",
+    "title": "Salade Niçoise with Seared Tuna",
+    "description": "A dinner-sized composed salad: pepper-crusted seared ahi tuna sliced rare, warm baby potatoes tossed in Dijon-shallot vinaigrette, jammy 7-minute eggs, crisp green beans, cherry tomatoes, olives, and capers on butter lettuce. Dairy-free vinaigrette; no butter anywhere.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "ahi-tuna-steaks",
+        "name": "yellowfin tuna steaks",
+        "display_name": "yellowfin (ahi) tuna steaks, about 1 inch thick",
+        "quantity": 1.25,
+        "unit": "lb",
+        "note": "2 to 3 steaks from the supermarket seafood counter or freezer case (thaw overnight in the fridge if frozen). Previously frozen sushi/sashimi-grade is preferred because the center is served rare; sear 3 minutes per side instead if anyone wants it cooked through. Finfish.",
+        "preparation": "patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "baby-potatoes",
+        "name": "baby potatoes",
+        "display_name": "baby Yukon Gold or red potatoes",
+        "quantity": 1.25,
+        "unit": "lb",
+        "note": null,
+        "preparation": "halved (quartered if wider than 1 1/2 inches)",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-beans",
+        "name": "green beans",
+        "display_name": "green beans or haricots verts",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": "stem ends trimmed",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "eggs",
+        "display_name": "large eggs",
+        "quantity": 4,
+        "unit": "count",
+        "note": "cold from the fridge. Egg allergen (HH001 allows eggs).",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cherry-tomatoes",
+        "name": "cherry tomatoes",
+        "display_name": "cherry tomatoes",
+        "quantity": 10,
+        "unit": "oz",
+        "note": "about 1 pint",
+        "preparation": "halved",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "olives",
+        "name": "pitted olives",
+        "display_name": "pitted Niçoise or Kalamata olives",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "either olive is fine; both are brine-cured olives with no dairy",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "butter-lettuce",
+        "name": "butter lettuce",
+        "display_name": "butter lettuce",
+        "quantity": 1,
+        "unit": "count",
+        "note": "1 large head (or 2 heads Little Gem). 'Butter' is the lettuce variety; there is no butter (dairy) in this recipe.",
+        "preparation": "leaves separated, washed, and dried",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "capers",
+        "name": "capers",
+        "display_name": "capers",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "drained",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "flat-leaf-parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "fresh flat-leaf parsley",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "anchovy-fillets",
+        "name": "anchovy fillets",
+        "display_name": "oil-packed anchovy fillets",
+        "quantity": 8,
+        "unit": "count",
+        "note": "OPTIONAL garnish. Finfish is already declared for the tuna, so this does not change eligibility or allergens.",
+        "preparation": null,
+        "optional": true,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "extra-virgin-olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for the vinaigrette",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "red-wine-vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dijon-mustard",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "Dijon is mustard seed, vinegar/wine, and salt; it contains no dairy. Mustard is not a FlavorWeave allergen token (see allergen_notes).",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "shallot",
+        "name": "shallot",
+        "display_name": "shallot",
+        "quantity": 1,
+        "unit": "count",
+        "note": "1 small, about 2 tbsp minced",
+        "preparation": "finely minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": "1 small clove",
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral high-heat oil",
+        "display_name": "neutral high-heat oil (canola or grapeseed)",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for searing the tuna. Not peanut oil.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 4.25,
+        "unit": "tsp",
+        "note": "divided: 1 tbsp (3 tsp) for the cooking water, 1/2 tsp for the vinaigrette, 3/4 tsp for the tuna",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper, coarsely cracked",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "divided: 1/2 tsp tuna crust, 1/4 tsp vinaigrette, 1/4 tsp to finish",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Start the water and prep",
+        "body": "Fill a 5- to 6-quart pot with 3 quarts water, add 1 tbsp of the kosher salt, cover, and bring to a boil over high heat (about 10 minutes; this overlaps the prep). Halve the potatoes, trim the green beans, halve the cherry tomatoes, separate, wash, and dry the lettuce leaves, mince the shallot, grate the garlic, chop the parsley, and drain the capers. Set out a large bowl of ice water. Pat the tuna dry and leave it on a plate while you work. About 12 minutes.",
+        "ingredient_refs": [
+          "kosher-salt",
+          "baby-potatoes",
+          "green-beans",
+          "cherry-tomatoes",
+          "butter-lettuce",
+          "shallot",
+          "garlic",
+          "flat-leaf-parsley",
+          "capers",
+          "ahi-tuna-steaks"
+        ],
+        "clock": {
+          "phase": "prep",
+          "minutes": 12,
+          "note": "pot comes to a boil during this prep block"
+        }
+      },
+      {
+        "step_number": 2,
+        "title": "Shake the Dijon-shallot vinaigrette",
+        "body": "In a jar, combine the minced shallot, 3 tbsp red wine vinegar, and 1/2 tsp kosher salt; let it sit while you measure the rest so the shallot mellows. Add the 1 tbsp Dijon, the grated garlic, 1/4 tsp cracked pepper, and the 1/2 cup extra-virgin olive oil. Close and shake hard until creamy and emulsified. The dressing is oil, vinegar, and mustard only: no butter, cream, yogurt, or cheese. About 3 minutes.",
+        "ingredient_refs": [
+          "shallot",
+          "red-wine-vinegar",
+          "kosher-salt",
+          "dijon-mustard",
+          "garlic",
+          "black-pepper",
+          "extra-virgin-olive-oil"
+        ],
+        "clock": {
+          "phase": "prep",
+          "minutes": 3
+        }
+      },
+      {
+        "step_number": 3,
+        "title": "Boil the potatoes and jammy eggs in one pot",
+        "body": "Add the potatoes to the boiling water and keep it at a steady boil. After 6 minutes, gently lower the cold eggs into the same pot with a slotted spoon. Boil 7 more minutes, then move the eggs to the ice water. Test a potato: a knife should slide in with no resistance. Lift the potatoes out with the slotted spoon into a wide bowl and toss them while hot with 2 tbsp of the vinaigrette so they absorb it. Keep the water boiling. About 13 minutes.",
+        "ingredient_refs": [
+          "baby-potatoes",
+          "eggs",
+          "extra-virgin-olive-oil",
+          "red-wine-vinegar"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 13
+        }
+      },
+      {
+        "step_number": 4,
+        "title": "Blanch the green beans; heat the skillet",
+        "body": "Drop the green beans into the same boiling water and cook 2 1/2 to 3 minutes, until bright green and crisp-tender. Move them to the ice water with the eggs for 1 minute, then drain and pat dry. At the same time, set a 12-inch cast-iron or heavy stainless skillet over high heat with the 1 tbsp neutral oil so it is shimmering hot by the time the beans are out. About 3 minutes.",
+        "ingredient_refs": [
+          "green-beans",
+          "neutral-oil"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 3
+        }
+      },
+      {
+        "step_number": 5,
+        "title": "Sear the tuna",
+        "body": "Season the tuna on all sides with 3/4 tsp kosher salt and 1/2 tsp cracked pepper, pressing the pepper in. Lay the steaks in the shimmering skillet and do not move them: 1 1/2 to 2 minutes per side for a rare, deep-red center with a thin cooked band (about 115 F inside), or 3 minutes per side to cook through (145 F). Briefly sear the edges with tongs. Move to a cutting board. About 4 minutes.",
+        "ingredient_refs": [
+          "ahi-tuna-steaks",
+          "kosher-salt",
+          "black-pepper"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 4
+        }
+      },
+      {
+        "step_number": 6,
+        "title": "Rest the tuna; peel the eggs",
+        "body": "Let the tuna rest 3 to 4 minutes. Meanwhile peel the eggs under a trickle of water and halve them lengthwise; the yolks should be jammy and just set at the edges. About 4 minutes.",
+        "ingredient_refs": [
+          "ahi-tuna-steaks",
+          "eggs"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 4
+        }
+      },
+      {
+        "step_number": 7,
+        "title": "Slice and compose",
+        "body": "Slice the tuna across the grain into 1/2-inch slices. Line a large platter or 4 shallow plates with lettuce leaves. Arrange the dressed potatoes, green beans, cherry tomatoes, egg halves, and olives in separate groups, and fan the tuna slices in the center. Scatter the capers and parsley; drape the anchovy fillets over the eggs if using. Spoon the remaining vinaigrette over everything and finish with the last 1/4 tsp cracked pepper. Serve right away while the potatoes are warm. About 5 minutes. kitchen_tested is false.",
+        "ingredient_refs": [
+          "ahi-tuna-steaks",
+          "butter-lettuce",
+          "baby-potatoes",
+          "green-beans",
+          "cherry-tomatoes",
+          "eggs",
+          "olives",
+          "capers",
+          "flat-leaf-parsley",
+          "anchovy-fillets",
+          "extra-virgin-olive-oil",
+          "black-pepper"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 5
+        }
+      }
+    ],
+    "components": [
+      {
+        "component_id": "dijon-shallot-vinaigrette",
+        "name": "Dijon-shallot vinaigrette (dairy-free)",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "extra-virgin olive oil",
+          "red wine vinegar",
+          "Dijon mustard",
+          "shallot",
+          "garlic",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "one-pot-potatoes-eggs-beans",
+        "name": "warm vinaigrette potatoes, jammy eggs, and blanched green beans (one pot)",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "baby potatoes",
+          "eggs",
+          "green beans",
+          "kosher salt",
+          "vinaigrette"
+        ]
+      },
+      {
+        "component_id": "pepper-seared-tuna",
+        "name": "pepper-seared ahi tuna",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "yellowfin tuna",
+          "neutral oil",
+          "kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "composed-salad",
+        "name": "composed niçoise salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "butter lettuce",
+          "cherry tomatoes",
+          "olives",
+          "capers",
+          "parsley",
+          "optional anchovies"
+        ]
+      }
+    ],
+    "equipment": [
+      "5- to 6-quart pot with lid",
+      "12-inch cast-iron or heavy stainless skillet",
+      "slotted spoon",
+      "large bowl for ice water",
+      "jar with lid",
+      "tongs",
+      "knife",
+      "cutting board",
+      "large platter or 4 shallow plates",
+      "measuring cups and spoons",
+      "instant-read thermometer (optional)"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 29,
+    "total_time_minutes": 44,
+    "prep_minutes": 15,
+    "cook_minutes": 29,
+    "total_minutes": 44,
+    "time_clock": "Prep 15 = 12 knife prep (the salted water comes to a boil during this block) + 3 vinaigrette. Cook 29 = 13 potatoes with eggs added at minute 6 + 3 green beans (skillet heats at the same time) + 4 sear + 4 rest/peel + 5 slice and compose. No oven.",
+    "heat": "Stovetop only. High heat for the boiling water and a steady boil for potatoes/eggs/beans; high heat, shimmering oil for the tuna sear. No oven.",
+    "doneness": "Potatoes knife-tender; eggs jammy (7 minutes from cold); beans bright green and crisp-tender; tuna seared on the outside with a deep-red rare center (about 115 F) or 145 F if cooked through by preference. kitchen_tested is false.",
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "classification_sidecar": "d03-classification.json",
+    "classification_history": [],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Olives and capers are not nuts.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish (tuna; optional anchovy) and eggs are allowed for HH001. Vinaigrette is oil, vinegar, Dijon, shallot, and garlic: dairy-free by recipe, not by brand choice. No butter anywhere (butter lettuce is a lettuce variety). No shellfish, no meat other than fish, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: no butter, cream, yogurt, cheese, or milk in any component; the dressing is a mustard vinaigrette. Not vegetarian or plant-based (tuna, egg, optional anchovy).",
+    "allergens": [
+      "finfish",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Finfish covers the yellowfin tuna and the optional anchovy fillets.",
+      "Egg covers the four jammy eggs.",
+      "Dijon mustard contains mustard seed. Mustard is a regulated allergen in some regions but is not a FlavorWeave allergen token; recorded here and in runtime_enum_gaps.",
+      "No milk, wheat, soy, sesame, peanut, tree_nut, shellfish, meat, or poultry."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish (tuna; optional anchovy) and eggs are allowed for HH001. Vinaigrette is oil, vinegar, Dijon, shallot, and garlic: dairy-free by recipe, not by brand choice. No butter anywhere (butter lettuce is a lettuce variety). No shellfish, no meat other than fish, no poultry, no nuts.",
+    "vocabulary_tag_ids": [
+      "mediterranean",
+      "fresh",
+      "tangy",
+      "savory",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims; every claim rests on a hard ingredient contract.",
+      "allergens_runtime": "Package tokens use milk (not dairy) and wheat (not gluten). Live PACKAGE_ALLERGEN_IDS uses dairy/nuts/cashew/... and lacks egg, soy, wheat, sesame, milk, tree_nut; keep package tokens and do not silently remap.",
+      "classification": "D-03 canonical fields effort_level and ingredient_complexity are on recipe_version. Legacy effort / effort_band / complexity strings are deliberately not authored. Factor scores and reason codes live in the d03-classification.json sidecar, not in runtime fields.",
+      "package_revision": "package_revision is freeze-r2. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r2. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "vocabulary": "mediterranean is the D-02 cuisine slug used for french Niçoise (french has no D-02 slug; Nice cooking is Mediterranean). fresh, tangy, savory, tender are active slugs. tuna has no D-02 ingredient slug.",
+      "meal_format": "composed-salad is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "tuna — no D-02 ingredient slug; not copied into tags.",
+      "hh001_contract": "Dairy-free is unconditional: the vinaigrette recipe contains no dairy, and no butter is used to cook anything.",
+      "allergen_mustard": "Mustard (Dijon) is not in FlavorWeave allergen tokens; noted in allergen_notes rather than invented as a token."
+    },
+    "culinary_hash": "sha256:3661d36c83102cca94608f74dd4f60bcb14f74ba20ae6b329bd1dd6134d6a736",
+    "culinary_hash_note": "sha256 over culinary content (ingredients, steps, components, equipment, times, heat, doneness, dietary eligibility/labels, allergens, tags). Excludes effort_level / ingredient_complexity and image metadata, so a classification-only amendment does not change it."
+  },
+  "image": {
+    "image_id": "img_salade-nicoise-seared-tuna_v1",
+    "dish_id": "salade-nicoise-seared-tuna",
+    "recipe_version_id": "rv_salade-nicoise-seared-tuna_v1",
+    "asset_generated": true,
+    "master_ref": "salade-nicoise-seared-tuna.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "salade-nicoise-seared-tuna.webp",
+        "spec_catalog_path": "/images/meals/salade-nicoise-seared-tuna.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "salade-nicoise-seared-tuna-640.webp",
+        "spec_catalog_path": "/images/meals/salade-nicoise-seared-tuna-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the GenerateImage source to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs via export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage (4:3 or landscape) from image-prompt.md with the house-quality reference for quality/light only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-12 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_by": "Juniper (Harbor Eats - Catalog Curator)",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "revision_note": "freeze-r2 regenerates the hero so the greens are smooth, cupped butter (Bibb) lettuce rather than napa/savoy cabbage, at least six jammy egg halves are clearly visible, and the tuna crust shows only dark cracked black peppercorns (no sesame-like specks); the r1 hero is in rejected/."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r2.",
+    "package_revision": "freeze-r2",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "salade-nicoise-seared-tuna-640.webp",
+    "master_filename": "salade-nicoise-seared-tuna.webp",
+    "card_filename": "salade-nicoise-seared-tuna-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "9858353e2e15b5615c881c48ab1a56c67b6bca18a1850f10dfec2183f28d7523",
+      "salade-nicoise-seared-tuna.webp": "4577e62720960f7a8f2228e3ac119566c0c26a36eb7c42a1c5f5cf7ea2223c7e",
+      "salade-nicoise-seared-tuna-640.webp": "f25c8e4511db91bbc6f33fd8f4b605ecc0685d2ce97e42f5ba0ca4ffa7b91b3f"
+    },
+    "rejected_assets_note": "Superseded hero attempts live only under rejected/ (logged in rejected/REJECTIONS.md): attempt1 (attempt1_img.jpg, attempt1_master.webp, attempt1_card.webp) is the freeze-r1 hero rejected by Vale r1 gate K; attempt2 (attempt2_img.jpg) is the first freeze-r2 generation, discarded at Cora's pre-screen (leaves still crinkled/ribbed, pale specks in the pepper crust) and never finalized or exported. The active set is img_v1.jpg, salade-nicoise-seared-tuna.webp, salade-nicoise-seared-tuna-640.webp at freeze-r2."
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient is used: knife prep in step 1, vinaigrette in step 2, potatoes/eggs in step 3, beans/oil in step 4, tuna seasoning in step 5, peel in step 6, composition with capers/parsley/olives/optional anchovy in step 7. Salt split 3 + 1/2 + 3/4 tsp; pepper split 1/2 + 1/4 + 1/4 tsp."
+    },
+    {
+      "check": "fat",
+      "result": "pass",
+      "detail": "1/2 cup olive oil in the vinaigrette (2 tbsp onto the hot potatoes, the rest over the salad) + 1 tbsp neutral oil to sear. No butter."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Vinaigrette built in the recipe. Dijon is a single condiment with no dairy. No bottled dressing."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 (12 + 3) + cook 29 (13 + 3 + 4 + 4 + 5) = 44. Water boils during prep; skillet heats during the bean blanch."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Eggs and tuna steaks scale by count; vinaigrette is easiest made whole. See scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=false, contains_poultry=false, contains_finfish=true, contains_shellfish=false, contains_dairy=false, plant_based_compatible=false, vegetarian_compatible=false, nut_policy=none, hh001_eligible=true. Allergens: finfish, egg. Labels: dairy_free."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "Tags mediterranean, fresh, tangy, savory, tender are active D-02 slugs in taste-vocabulary.js. composed-salad and tuna are metadata."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level involved (factor sum 6); ingredient_complexity simple (factor sum 1). Factors and reason codes in d03-classification.json. WAVE proposal moderate/standard."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit (salade-nicoise-seared-tuna.webp, salade-nicoise-seared-tuna-640.webp, img_v1.jpg). asset_generated is true. package_revision freeze-r2."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY_json",
+      "detail": "freeze_integrity.py is run on this directory after finalize; its PASS/FAIL lives only in FREEZE_INTEGRITY.json and is not restated here."
+    }
+  ],
+  "scaling_notes": {
+    "1": "One 5-oz tuna steak, 5 oz potatoes, 2 oz green beans, 1 egg, 1/4 of the tomatoes/olives, 1 tbsp capers is fine as 1 tsp. Make the full vinaigrette and refrigerate the leftover (keeps 5 days). Small saucepan; same timings.",
+    "2": "Halve the solids; make the full vinaigrette or halve it (a 1/2 tbsp Dijon is fine). Same timings; a 10-inch skillet works.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "7-minute egg timing",
+      "tuna sear time per side (depends on thickness, not count)",
+      "no butter / dairy-free vinaigrette",
+      "toss potatoes with dressing while hot"
+    ]
+  },
+  "coverage_contribution": "French 0→1, dinner salad 0→1, tuna 0→1. Warm potatoes and jammy eggs make it a real October dinner, and it gives HH001 a fish dinner that is neither a fillet plate nor a taco.",
+  "near_duplicate_review": "Compared with Grilled Swordfish with Olive-Caper Relish: shares olives/capers and finfish, but that is a grilled fillet plate with a relish; this is a composed salad with seared rare tuna, potatoes, eggs, beans, and a Dijon vinaigrette. Compared with Citrus Fennel Arctic Char, Miso-Ginger Salmon, Maple-Mustard Glazed Salmon: cooked-through fillet plates vs a rare-seared salad. Compared with Skillet Shakshuka: eggs are one component here, not the dish. Not a live-catalog duplicate.",
+  "batch_label": "B",
+  "batch_challenges": "B",
+  "selection_alignment": "Matches selection.json: french · composed-salad · tuna · hh001_intent true. expected_allergens [finfish, egg] matches. Rough band 30–45; written clock 44. D-03 re-scored at package time: involved (borderline; selection proposed moderate) / simple (selection proposed standard).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

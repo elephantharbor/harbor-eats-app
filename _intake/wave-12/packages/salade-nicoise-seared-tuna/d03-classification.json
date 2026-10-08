@@ -1,0 +1,48 @@
+{
+  "slug": "salade-nicoise-seared-tuna",
+  "recipe_version_id": "rv_salade-nicoise-seared-tuna_v1",
+  "package_revision": "freeze-r2",
+  "classification": {
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "effort_score": 6,
+    "complexity_score": 1,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 1,
+      "active_components": 2,
+      "technique": 1,
+      "coordination_cleanup_equipment": 1
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 1,
+      "specialty_burden": 0,
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0,
+      "specialty_items": []
+    },
+    "countable_ingredient_count": 13,
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "periodic_attention",
+        "multi_component"
+      ],
+      "ingredient": [
+        "medium_list",
+        "common_pantry"
+      ]
+    },
+    "notes": "BORDERLINE involved at 6. Effort: steady knife prep (1); periodic timed attention and a short sear (1); several coordinated components — potatoes, eggs, beans, seared tuna, vinaigrette, composition (2); timing-sensitive jammy eggs and rare sear (1); pot + skillet + ice bath with sequenced timing (1). Sum 6 = involved under the rubric; each element is simple, so Vale may reasonably challenge toward moderate. Complexity: 13 countable required ingredients (optional anchovy, oils, salt, pepper excluded) -> 1; tuna steaks, olives, capers, Dijon are mainstream supermarket items (0 specialty, 0 sourcing); one vinaigrette build, tuna is salt-and-pepper only (0). Sum 1 = simple. WAVE proposal was moderate/standard.",
+    "proposal_from_wave": {
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null,
+    "factor_key_note": "pantry_familiarity is the canonical complexity factor key (batch A, batch C, and the 50 audited meals; the rubric's sourcing-difficulty factor). Batch B r1/r2 authored it as sourcing_difficulty; renamed 2026-10-08 after Vale's batch B audit. Value unchanged (0); labels unchanged."
+  },
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0–2 easy / 3–5 moderate / 6–10 involved with floors; complexity 0–1 simple / 2–3 standard / 4–8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

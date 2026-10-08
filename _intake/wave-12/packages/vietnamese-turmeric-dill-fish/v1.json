@@ -1,0 +1,684 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 (Batch B). Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "vietnamese-turmeric-dill-fish",
+    "slug": "vietnamese-turmeric-dill-fish",
+    "title": "Vietnamese Turmeric Fish with Dill and Noodles",
+    "description": "Chả cá–style catfish: bite-size pieces marinated in turmeric, ginger, shallot, and fish sauce, seared golden, then tossed with a big handful of dill and scallions wilted in the hot pan. Served over cool rice vermicelli with mint, chopped roasted cashews, red chile, and a bright lime nước chấm. No shrimp paste; cashews instead of peanuts.",
+    "cuisine": "vietnamese",
+    "meal_format": "noodle-plate",
+    "primary_ingredient": "catfish",
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "fresh",
+      "tangy",
+      "savory",
+      "crunchy",
+      "rice-noodles"
+    ],
+    "current_recipe_id": "rcp_vietnamese-turmeric-dill-fish",
+    "current_version_id": "rv_vietnamese-turmeric-dill-fish_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_vietnamese-turmeric-dill-fish",
+    "dish_id": "vietnamese-turmeric-dill-fish",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_vietnamese-turmeric-dill-fish_v1",
+    "recipe_id": "rcp_vietnamese-turmeric-dill-fish",
+    "dish_id": "vietnamese-turmeric-dill-fish",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present on disk (vietnamese-turmeric-dill-fish.webp, vietnamese-turmeric-dill-fish-640.webp) with source img_v1.jpg; asset_generated is true; package_revision freeze-r1. Not certified. Not published. kitchen_tested is false.",
+    "title": "Vietnamese Turmeric Fish with Dill and Noodles",
+    "description": "Chả cá–style catfish: bite-size pieces marinated in turmeric, ginger, shallot, and fish sauce, seared golden, then tossed with a big handful of dill and scallions wilted in the hot pan. Served over cool rice vermicelli with mint, chopped roasted cashews, red chile, and a bright lime nước chấm. No shrimp paste; cashews instead of peanuts.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "catfish-fillets",
+        "name": "catfish fillets",
+        "display_name": "skinless catfish fillets (US farm-raised)",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "Finfish. Firm, mild, and holds together in the pan.",
+        "preparation": "patted dry and cut into 2-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ground-turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fresh-ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "about a 2-inch piece",
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "shallot",
+        "name": "shallot",
+        "display_name": "shallot",
+        "quantity": 1,
+        "unit": "count",
+        "note": "1 large, about 3 tbsp minced",
+        "preparation": "finely minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": "divided: 2 for the marinade, 1 for the nước chấm",
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "fish-sauce",
+        "name": "fish sauce",
+        "display_name": "fish sauce",
+        "quantity": 4.5,
+        "unit": "tbsp",
+        "note": "divided: 1 1/2 tbsp marinade, 3 tbsp nước chấm. HARD CONTRACT: label lists only anchovy (fish), salt, and optionally water/sugar. No shrimp, crab, oyster, or other shellfish ingredient. This is not shrimp paste (mắm tôm), which is excluded.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "granulated sugar",
+        "quantity": 7,
+        "unit": "tsp",
+        "note": "divided: 1 tsp marinade, 2 tbsp (6 tsp) nước chấm",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "marinade; the fish sauce carries most of the salt",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "freshly ground, marinade",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral high-heat oil",
+        "display_name": "neutral high-heat oil (canola or grapeseed)",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "divided: 1 tbsp marinade, 2 tbsp sear, 1 tbsp for the dill. HARD CONTRACT: not peanut oil.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "fresh-dill",
+        "name": "fresh dill",
+        "display_name": "fresh dill",
+        "quantity": 4,
+        "unit": "oz",
+        "note": "2 large bunches. Dill is a main vegetable here, not a garnish.",
+        "preparation": "thick stems removed, cut into 2-inch sprigs (about 3 loosely packed cups)",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 8,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 2-inch lengths; white parts halved lengthwise",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "rice-vermicelli",
+        "name": "rice vermicelli",
+        "display_name": "dried thin rice vermicelli (bún)",
+        "quantity": 8,
+        "unit": "oz",
+        "note": "HARD CONTRACT: rice-and-water noodles (no wheat).",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "roasted-cashews",
+        "name": "roasted cashews",
+        "display_name": "unsalted roasted cashews",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "HARD CONTRACT: plain cashews only, not a mixed-nut or trail-mix product. Replaces the traditional peanuts. Tree nut (cashew) — the HH001 cashew exception.",
+        "preparation": "coarsely chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "fresh-mint",
+        "name": "fresh mint",
+        "display_name": "fresh mint leaves",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "limes",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "2 juiced (about 3 tbsp), 1 cut into wedges",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "red-chile",
+        "name": "fresh red chile",
+        "display_name": "fresh red chile (Fresno or Thai)",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced; half for the nước chấm, half to garnish",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "warm-water",
+        "name": "water",
+        "display_name": "warm water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for the nước chấm",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Marinate the fish",
+        "body": "Pat the catfish dry and cut into 2-inch pieces. In a bowl stir together 1 tbsp turmeric, the grated ginger, the minced shallot, 2 cloves of the garlic, 1 1/2 tbsp of the fish sauce, 1 tsp of the sugar, 1/4 tsp kosher salt, 1/2 tsp black pepper, and 1 tbsp of the oil. Add the fish and turn gently to coat every piece yellow. Let it marinate at room temperature for 15 minutes while you do the next step (or refrigerate up to 2 hours). About 5 minutes.",
+        "ingredient_refs": [
+          "catfish-fillets",
+          "ground-turmeric",
+          "fresh-ginger",
+          "shallot",
+          "garlic",
+          "fish-sauce",
+          "sugar",
+          "kosher-salt",
+          "black-pepper",
+          "neutral-oil"
+        ],
+        "clock": {
+          "phase": "prep",
+          "minutes": 5
+        }
+      },
+      {
+        "step_number": 2,
+        "title": "Boil water; prep herbs, cashews, and nước chấm",
+        "body": "Bring a large covered pot of water to a boil for the noodles. Cut the dill into 2-inch sprigs and the scallions into 2-inch lengths. Pick the mint leaves. Coarsely chop the cashews. Thinly slice the chile. Juice 2 limes (about 3 tbsp) and cut the third into wedges. For the nước chấm, stir 2 tbsp sugar into 1/2 cup warm water until dissolved, then add 3 tbsp fish sauce, the 3 tbsp lime juice, the last clove of minced garlic, and half the chile. Taste: it should be bright, salty-sweet-sour. The fish finishes its 15-minute marinade during this step. About 15 minutes.",
+        "ingredient_refs": [
+          "fresh-dill",
+          "scallions",
+          "fresh-mint",
+          "roasted-cashews",
+          "red-chile",
+          "limes",
+          "sugar",
+          "warm-water",
+          "fish-sauce",
+          "garlic"
+        ],
+        "clock": {
+          "phase": "prep",
+          "minutes": 15,
+          "note": "15-minute marinade runs inside this block"
+        }
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the noodles",
+        "body": "Boil the rice vermicelli according to the package, usually 3 to 5 minutes, until tender but springy. Drain, rinse under cold water until cool, shake very dry, and divide among 4 shallow bowls. About 6 minutes.",
+        "ingredient_refs": [
+          "rice-vermicelli"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 6
+        }
+      },
+      {
+        "step_number": 4,
+        "title": "Sear the turmeric fish",
+        "body": "Heat 2 tbsp of the oil in a 12-inch nonstick skillet over medium-high until shimmering. Add the fish in a single layer with space between pieces, scraping in any marinade. Cook without moving for 3 minutes, until the undersides are deep golden. Turn each piece gently with a thin spatula and cook 2 to 3 minutes more, until opaque all the way through and flaking at the edges (145 F). Move the fish to a plate. About 6 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "catfish-fillets"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 6
+        }
+      },
+      {
+        "step_number": 5,
+        "title": "Wilt the dill and scallions",
+        "body": "Return the skillet to medium-high and add the last 1 tbsp oil. Add the scallions and toss 30 seconds, then add the dill and toss 30 to 45 seconds, just until wilted, glossy, and bright green. Turn off the heat, return the fish, and fold gently so the dill drapes over the fish. About 2 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "scallions",
+          "fresh-dill",
+          "catfish-fillets"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 2
+        }
+      },
+      {
+        "step_number": 6,
+        "title": "Assemble",
+        "body": "Spoon the fish, dill, and scallions over the noodles. Scatter mint leaves, chopped cashews, and the remaining chile over each bowl; add a lime wedge. Pour nước chấm over at the table, about 2 to 3 tbsp per bowl, and toss everything together. No peanuts, no shrimp paste. About 3 minutes. kitchen_tested is false.",
+        "ingredient_refs": [
+          "catfish-fillets",
+          "fresh-dill",
+          "rice-vermicelli",
+          "fresh-mint",
+          "roasted-cashews",
+          "red-chile",
+          "limes",
+          "fish-sauce"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 3
+        }
+      }
+    ],
+    "components": [
+      {
+        "component_id": "turmeric-catfish",
+        "name": "turmeric-ginger marinated seared catfish",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "catfish",
+          "ground turmeric",
+          "fresh ginger",
+          "shallot",
+          "garlic",
+          "fish sauce",
+          "sugar",
+          "kosher salt",
+          "black pepper",
+          "neutral oil"
+        ]
+      },
+      {
+        "component_id": "wilted-dill-scallions",
+        "name": "pan-wilted dill and scallions",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "fresh dill",
+          "scallions",
+          "neutral oil"
+        ]
+      },
+      {
+        "component_id": "nuoc-cham",
+        "name": "lime nước chấm",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "fish sauce",
+          "lime juice",
+          "sugar",
+          "warm water",
+          "garlic",
+          "red chile"
+        ]
+      },
+      {
+        "component_id": "noodles-and-toppings",
+        "name": "rice vermicelli with mint, cashews, and chile",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rice vermicelli",
+          "fresh mint",
+          "roasted cashews",
+          "red chile",
+          "lime wedges"
+        ]
+      }
+    ],
+    "equipment": [
+      "large pot with lid",
+      "12-inch nonstick skillet",
+      "thin fish spatula",
+      "colander",
+      "2 mixing bowls",
+      "small bowl or jar for nước chấm",
+      "citrus juicer",
+      "knife",
+      "cutting board",
+      "microplane or grater",
+      "measuring cups and spoons"
+    ],
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 17,
+    "total_time_minutes": 37,
+    "prep_minutes": 20,
+    "cook_minutes": 17,
+    "total_minutes": 37,
+    "time_clock": "Prep 20 = 5 marinate + 15 herbs/cashews/nước chấm (the 15-minute marinade and the noodle water both run inside this block). Cook 17 = 6 noodles + 6 sear + 2 wilt dill + 3 assemble. No oven.",
+    "heat": "Stovetop only. Rolling boil for noodles; medium-high, shimmering oil for the sear and the quick dill wilt. No oven.",
+    "doneness": "Fish deep golden on the seared side, opaque and flaking through (145 F); dill just wilted and still vivid green; noodles tender, rinsed cool, and not clumped. kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_sidecar": "d03-classification.json",
+    "classification_history": [],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "cashews_only_ok",
+      "nut_policy_note": "Cashews are the only nut, as a required topping (HH001 cashew exception). No peanuts: the traditional peanut garnish is replaced by cashews, and the cooking oil is contracted not to be peanut oil. Cashews are contracted as plain cashews, not a mixed-nut product.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish (catfish, fish sauce) is allowed for HH001. No shellfish: shrimp paste (mắm tôm) is excluded and the fish sauce is contracted anchovy-and-salt only. No dairy, no meat other than fish, no poultry. The only nut is cashew (allowed); peanuts are excluded by recipe, not by a skip-it note."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: no milk, butter, cream, or cheese in any component. Not vegetarian (catfish, fish sauce).",
+    "allergens": [
+      "finfish",
+      "tree_nut",
+      "cashew"
+    ],
+    "allergen_notes": [
+      "Finfish covers the catfish and the fish sauce (marinade and nước chấm).",
+      "tree_nut covers the cashews; cashew is also listed as the specific nut token (live PACKAGE_ALLERGEN_IDS supports cashew but not tree_nut; see runtime_enum_gaps).",
+      "No peanut: cashews replace the traditional peanuts and the oil is not peanut oil.",
+      "No wheat: rice vermicelli is contracted rice-and-water; no soy sauce is used.",
+      "No egg, milk, soy, sesame, shellfish, meat, or poultry."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish (catfish, fish sauce) is allowed for HH001. No shellfish: shrimp paste (mắm tôm) is excluded and the fish sauce is contracted anchovy-and-salt only. No dairy, no meat other than fish, no poultry. The only nut is cashew (allowed); peanuts are excluded by recipe, not by a skip-it note.",
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "fresh",
+      "tangy",
+      "savory",
+      "crunchy",
+      "rice-noodles"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims; every claim rests on a hard ingredient contract.",
+      "allergens_runtime": "Package tokens use milk (not dairy) and wheat (not gluten). Live PACKAGE_ALLERGEN_IDS uses dairy/nuts/cashew/... and lacks egg, soy, wheat, sesame, milk, tree_nut; keep package tokens and do not silently remap.",
+      "classification": "D-03 canonical fields effort_level and ingredient_complexity are on recipe_version. Legacy effort / effort_band / complexity strings are deliberately not authored. Factor scores and reason codes live in the d03-classification.json sidecar, not in runtime fields.",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "vocabulary": "vietnamese has no D-02 cuisine slug and is not forced into another cuisine tag. herbaceous, fresh, tangy, savory, crunchy are active slugs; rice-noodles is an active D-02 ingredient slug. catfish has no D-02 ingredient slug.",
+      "meal_format": "noodle-plate is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "catfish — no D-02 ingredient slug; not copied into tags.",
+      "allergens_tree_nut": "Live PACKAGE_ALLERGEN_IDS has cashew and nuts but not tree_nut. Both tree_nut (canonical package token) and cashew (specific runtime token) are kept on allergens; do not silently remap.",
+      "hh001_contract": "Cashews only (no peanuts), fish sauce without shellfish, no shrimp paste. Unconditional."
+    },
+    "culinary_hash": "sha256:6066546fd818a101d9d3cd2564b9611318c60808b3eea0edca1e288b5fd7a39d",
+    "culinary_hash_note": "sha256 over culinary content (ingredients, steps, components, equipment, times, heat, doneness, dietary eligibility/labels, allergens, tags). Excludes effort_level / ingredient_complexity and image metadata, so a classification-only amendment does not change it."
+  },
+  "image": {
+    "image_id": "img_vietnamese-turmeric-dill-fish_v1",
+    "dish_id": "vietnamese-turmeric-dill-fish",
+    "recipe_version_id": "rv_vietnamese-turmeric-dill-fish_v1",
+    "asset_generated": true,
+    "master_ref": "vietnamese-turmeric-dill-fish.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "vietnamese-turmeric-dill-fish.webp",
+        "spec_catalog_path": "/images/meals/vietnamese-turmeric-dill-fish.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "vietnamese-turmeric-dill-fish-640.webp",
+        "spec_catalog_path": "/images/meals/vietnamese-turmeric-dill-fish-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the GenerateImage source to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs via export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage (4:3 or landscape) from image-prompt.md with the house-quality reference for quality/light only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-12 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_by": "Juniper (Harbor Eats - Catalog Curator)",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r1.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "vietnamese-turmeric-dill-fish-640.webp",
+    "master_filename": "vietnamese-turmeric-dill-fish.webp",
+    "card_filename": "vietnamese-turmeric-dill-fish-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "e7b78f6d50b6daebc8d5f115479b6cfc730b46376d71301b518a632d44748bdf",
+      "vietnamese-turmeric-dill-fish.webp": "578a570a98f5f61e6e7465a0e3cd4936a0981ec3b5e266b1434da7a20170121d",
+      "vietnamese-turmeric-dill-fish-640.webp": "dc8b2ae41e26118317bd43327efb39474eb588302c7e6021cc984d0c6f6b904e"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient is used: marinade in step 1; herbs, cashews, chile, limes, nước chấm in step 2; noodles in step 3; sear in step 4; wilt dill/scallions in step 5; assembly in step 6. Fish sauce split 1 1/2 + 3 tbsp; sugar 1 + 6 tsp; garlic 2 + 1 clove; oil 1 + 2 + 1 tbsp."
+    },
+    {
+      "check": "fat",
+      "result": "pass",
+      "detail": "4 tbsp neutral oil: 1 marinade, 2 sear, 1 dill wilt. No butter."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Nước chấm made in the recipe. Fish sauce has a no-shellfish contract. No shrimp paste. No bottled dressing."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 20 (5 + 15; marinade and water boil inside) + cook 17 (6 + 6 + 2 + 3) = 37."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Quarter/half marinade amounts stated; nước chấm is easiest made whole."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=false, contains_poultry=false, contains_finfish=true, contains_shellfish=false, contains_dairy=false, plant_based_compatible=false, vegetarian_compatible=false, nut_policy=cashews_only_ok, hh001_eligible=true. Allergens: finfish, tree_nut, cashew. Labels: dairy_free."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "Tags herbaceous, fresh, tangy, savory, crunchy, rice-noodles are active D-02 slugs in taste-vocabulary.js. noodle-plate and catfish are metadata."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level moderate (factor sum 5); ingredient_complexity standard (factor sum 3). Factors and reason codes in d03-classification.json. WAVE proposal moderate/standard."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit (vietnamese-turmeric-dill-fish.webp, vietnamese-turmeric-dill-fish-640.webp, img_v1.jpg). asset_generated is true. package_revision freeze-r1."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY_json",
+      "detail": "freeze_integrity.py is run on this directory after finalize; its PASS/FAIL lives only in FREEZE_INTEGRITY.json and is not restated here."
+    }
+  ],
+  "scaling_notes": {
+    "1": "6 oz catfish; quarter the marinade (scant 1 tsp turmeric, 1 tsp ginger, 1 tbsp shallot, 1/2 clove garlic, 1 tsp fish sauce, pinch sugar); 2 oz noodles; 1 oz dill; 2 scallions; 2 tbsp cashews. Make the full nước chấm (keeps 1 week refrigerated). 8-inch skillet.",
+    "2": "Halve everything; a 10-inch skillet holds 12 oz fish in one layer. Nước chấm can be made whole.",
+    "4": "As written.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "single-layer sear (crowding steams the fish)",
+      "cashews only, never peanuts",
+      "fish sauce contract (no shellfish)",
+      "no shrimp paste"
+    ]
+  },
+  "coverage_contribution": "Deepens Vietnamese beyond chicken pho (non-HH001). Turmeric + dill is an unused flavor system in the catalog, and fish over rice noodles is a new fish format for HH001.",
+  "near_duplicate_review": "Compared with Cajun Blackened Catfish: same fish, but that is a spice-crusted fillet plate with remoulade; this is turmeric-marinated bite-size pieces with wilted dill over noodles and a lime-fish-sauce dressing. Compared with Vietnamese Chicken Pho: same cuisine, but a broth soup with chicken. Compared with Sesame Soba Noodle Bowl / Peanut Noodle Stir-Fry: plant noodle dishes with sesame/peanut sauces; this has no peanut and is fish-led. Compared with Ginger-Scallion Fish Packets: steamed packet fish, no noodles. Not a live-catalog duplicate.",
+  "batch_label": "B",
+  "batch_challenges": "B",
+  "selection_alignment": "Matches selection.json: vietnamese · noodle-plate · catfish · hh001_intent true. expected_allergens [finfish] is extended with tree_nut + cashew because this package uses cashews (selection allowed 'toasted rice or none'; cashews are the HH001-allowed nut and keep the crunch). Rough band 30–45; written clock 37. D-03 re-scored: moderate / standard (matches).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

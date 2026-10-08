@@ -1,0 +1,662 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 (Batch B). Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "japanese-okonomiyaki",
+    "slug": "japanese-okonomiyaki",
+    "title": "Okonomiyaki (Japanese Cabbage Pancakes)",
+    "description": "Thick, crisp-edged cabbage-and-scallion pancakes with seared shiitake on the underside, brushed with a quick homemade okonomi-style sauce (ketchup, Worcestershire, soy), striped with Japanese egg-yolk mayonnaise, and showered with bonito flakes. No pork, shrimp, squid, or cheese.",
+    "cuisine": "japanese",
+    "meal_format": "savory-pancake",
+    "primary_ingredient": "cabbage",
+    "vocabulary_tag_ids": [
+      "japanese",
+      "savory",
+      "umami",
+      "crispy",
+      "tangy"
+    ],
+    "current_recipe_id": "rcp_japanese-okonomiyaki",
+    "current_version_id": "rv_japanese-okonomiyaki_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_japanese-okonomiyaki",
+    "dish_id": "japanese-okonomiyaki",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_japanese-okonomiyaki_v1",
+    "recipe_id": "rcp_japanese-okonomiyaki",
+    "dish_id": "japanese-okonomiyaki",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present on disk (japanese-okonomiyaki.webp, japanese-okonomiyaki-640.webp) with source img_v1.jpg; asset_generated is true; package_revision freeze-r1. Not certified. Not published. kitchen_tested is false.",
+    "title": "Okonomiyaki (Japanese Cabbage Pancakes)",
+    "description": "Thick, crisp-edged cabbage-and-scallion pancakes with seared shiitake on the underside, brushed with a quick homemade okonomi-style sauce (ketchup, Worcestershire, soy), striped with Japanese egg-yolk mayonnaise, and showered with bonito flakes. No pork, shrimp, squid, or cheese.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "all-purpose-flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "about 125 g. Wheat.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "baking-powder",
+        "name": "baking powder",
+        "display_name": "baking powder",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "for a little lift",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cold-water",
+        "name": "water",
+        "display_name": "cold water",
+        "quantity": 0.67,
+        "unit": "cup",
+        "note": "2/3 cup. Plain water stands in for dashi: dashi powders such as Hondashi commonly contain lactose (milk), so no dashi powder is used in this package.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "divided: 1 tsp in the batter, 2 tsp in the sauce. Soy and wheat.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "eggs",
+        "display_name": "large eggs",
+        "quantity": 4,
+        "unit": "count",
+        "note": "Egg allergen; HH001 allows eggs.",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-cabbage",
+        "name": "green cabbage",
+        "display_name": "green cabbage",
+        "quantity": 1,
+        "unit": "count",
+        "note": "1 small head, about 1 1/2 lb",
+        "preparation": "cored and very finely shredded (1/8 inch), about 6 packed cups",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 6,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced; greens of 2 reserved for garnish",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "shiitake-mushrooms",
+        "name": "shiitake mushrooms",
+        "display_name": "fresh shiitake mushrooms",
+        "quantity": 4,
+        "unit": "oz",
+        "note": "stand in for the traditional pork-belly layer",
+        "preparation": "stems removed, caps thinly sliced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral high-heat oil",
+        "display_name": "neutral high-heat oil (canola or grapeseed)",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "1 1/2 tbsp per batch. Not peanut oil.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "ketchup",
+        "name": "ketchup",
+        "display_name": "ketchup",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "worcestershire-sauce",
+        "name": "Worcestershire sauce",
+        "display_name": "classic Worcestershire sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "HARD CONTRACT: classic anchovy-based Worcestershire (vinegar, molasses, anchovies, tamarind, spices). Contains finfish (anchovy). No oyster or other shellfish ingredient. Malt vinegar may contain barley.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "granulated sugar",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "japanese-mayonnaise",
+        "name": "Japanese mayonnaise",
+        "display_name": "Japanese-style egg-yolk mayonnaise (such as Kewpie)",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "HARD CONTRACT: egg-yolk mayonnaise (oil, egg yolk, vinegar, salt, seasoning). Mayonnaise is egg-based and contains no milk. Do not substitute a 'creamy' dressing or mayo-style spread that lists milk, buttermilk, or cheese. Egg allergen.",
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "bonito-flakes",
+        "name": "bonito flakes",
+        "display_name": "dried bonito flakes (katsuobushi)",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "loosely packed, about 5 g. Plain dried, smoked skipjack tuna shavings, not a dashi seasoning blend. Finfish.",
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "aonori",
+        "name": "aonori",
+        "display_name": "aonori (dried green seaweed flakes)",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "OPTIONAL garnish.",
+        "preparation": null,
+        "optional": true,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "beni-shoga",
+        "name": "pickled red ginger",
+        "display_name": "beni shoga (Japanese pickled red ginger)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "OPTIONAL garnish.",
+        "preparation": "chopped",
+        "optional": true,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Shred the cabbage and make the sauce",
+        "body": "Core the cabbage and shred it very finely (about 1/8 inch) to get 6 packed cups. Thinly slice the scallions and set aside the greens of 2 for garnish. Stem the shiitake and thinly slice the caps. For the okonomi-style sauce, whisk 1/4 cup ketchup, 2 tbsp Worcestershire, 2 tsp of the soy sauce, and 2 tsp sugar until the sugar dissolves. Spoon the Japanese mayonnaise into a small zip-top bag (snip a tiny corner later) or a squeeze bottle. Contract check: no pork belly, no shrimp, no squid, no tenkasu, no cheese, no dashi powder. About 12 minutes.",
+        "ingredient_refs": [
+          "green-cabbage",
+          "scallions",
+          "shiitake-mushrooms",
+          "ketchup",
+          "worcestershire-sauce",
+          "soy-sauce",
+          "sugar",
+          "japanese-mayonnaise"
+        ],
+        "clock": {
+          "phase": "prep",
+          "minutes": 12
+        }
+      },
+      {
+        "step_number": 2,
+        "title": "Mix the batter",
+        "body": "In a large bowl whisk the 1 cup flour, 1/2 tsp baking powder, and 1/2 tsp kosher salt. Add the 2/3 cup cold water, the remaining 1 tsp soy sauce, and the 4 eggs and whisk until smooth. Fold in the cabbage and the sliced scallions (not the reserved greens) until every shred is coated. The mixture should be mostly cabbage, just bound by batter. About 3 minutes.",
+        "ingredient_refs": [
+          "all-purpose-flour",
+          "baking-powder",
+          "kosher-salt",
+          "cold-water",
+          "soy-sauce",
+          "eggs",
+          "green-cabbage",
+          "scallions"
+        ],
+        "clock": {
+          "phase": "prep",
+          "minutes": 3
+        }
+      },
+      {
+        "step_number": 3,
+        "title": "Heat the skillet",
+        "body": "Set a 12-inch nonstick skillet (or an electric griddle at 375 F) over medium heat with 1 1/2 tbsp of the neutral oil until shimmering. About 2 minutes.",
+        "ingredient_refs": [
+          "neutral-oil"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 2
+        }
+      },
+      {
+        "step_number": 4,
+        "title": "Cook the first side of batch one",
+        "body": "Scoop a quarter of the batter into each side of the pan to form two rounds about 5 1/2 inches wide and 3/4 inch thick; tidy the edges with the spatula. Lay a quarter of the shiitake slices over the top of each, pressing them in lightly. Cover and cook until the underside is deep golden and the edges look set, 4 to 5 minutes. About 5 minutes.",
+        "ingredient_refs": [
+          "shiitake-mushrooms"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 5
+        }
+      },
+      {
+        "step_number": 5,
+        "title": "Flip and finish batch one",
+        "body": "Using two wide spatulas, flip each pancake so the mushrooms are on the bottom. Press gently, cover, and cook 4 to 5 minutes, until the mushrooms are browned and the center is set: a thin knife in the middle comes out with no wet batter (the egg batter should reach 160 F). Flip once more so the first golden side faces up and move to a plate or rack, loosely tented. About 5 minutes.",
+        "ingredient_refs": [
+          "eggs"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 5
+        }
+      },
+      {
+        "step_number": 6,
+        "title": "Cook batch two",
+        "body": "Add the remaining 1 1/2 tbsp oil and repeat the two-sided cook with the rest of the batter and shiitake: 4 to 5 minutes covered, flip, 4 to 5 minutes covered, flip back. About 11 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "shiitake-mushrooms"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 11
+        }
+      },
+      {
+        "step_number": 7,
+        "title": "Sauce, mayo, and bonito",
+        "body": "With the golden side up, spoon or brush the okonomi sauce over each pancake right to the edges. Snip a small corner of the mayo bag and pipe thin parallel lines across, then drag a chopstick through at right angles for a lattice. Scatter the bonito flakes (they ripple in the heat) and the reserved scallion greens; add aonori and pickled red ginger if using. Cut into wedges and serve hot. About 3 minutes. kitchen_tested is false.",
+        "ingredient_refs": [
+          "ketchup",
+          "worcestershire-sauce",
+          "japanese-mayonnaise",
+          "bonito-flakes",
+          "scallions",
+          "aonori",
+          "beni-shoga"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 3
+        }
+      }
+    ],
+    "components": [
+      {
+        "component_id": "cabbage-pancake",
+        "name": "cabbage-scallion okonomiyaki with seared shiitake",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "all-purpose flour",
+          "baking powder",
+          "kosher salt",
+          "cold water",
+          "soy sauce",
+          "eggs",
+          "green cabbage",
+          "scallions",
+          "shiitake mushrooms",
+          "neutral oil"
+        ]
+      },
+      {
+        "component_id": "okonomi-style-sauce",
+        "name": "quick okonomi-style sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ketchup",
+          "Worcestershire sauce",
+          "soy sauce",
+          "sugar"
+        ],
+        "contract": "Made in the recipe instead of bottled okonomi sauce, which can contain oyster extract (shellfish)."
+      },
+      {
+        "component_id": "toppings",
+        "name": "Japanese mayo lattice, bonito flakes, scallion greens",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "Japanese egg-yolk mayonnaise",
+          "bonito flakes",
+          "scallion greens",
+          "optional aonori",
+          "optional pickled red ginger"
+        ],
+        "contract": "Mayonnaise is egg-yolk mayonnaise with no milk; bonito flakes are plain katsuobushi."
+      }
+    ],
+    "equipment": [
+      "12-inch nonstick skillet with lid (or electric griddle with a cover)",
+      "2 wide spatulas",
+      "large mixing bowl",
+      "whisk",
+      "small bowl",
+      "zip-top bag or squeeze bottle",
+      "knife",
+      "cutting board",
+      "plate or wire rack",
+      "measuring cups and spoons"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 26,
+    "total_time_minutes": 41,
+    "prep_minutes": 15,
+    "cook_minutes": 26,
+    "total_minutes": 41,
+    "time_clock": "Prep 15 = 12 shred/slice/sauce + 3 batter. Cook 26 = 2 heat pan + 5 first side + 5 flip and finish (batch one) + 11 batch two + 3 dress. Two pancakes per batch, two batches. No oven.",
+    "heat": "Stovetop medium (or griddle 375 F), covered for each side so the thick cabbage center steams through while the outside crisps. No oven.",
+    "doneness": "Both faces deep golden and crisp at the edges; center set with no wet batter (about 160 F for the egg batter); cabbage tender-crisp; shiitake browned. kitchen_tested is false.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_sidecar": "d03-classification.json",
+    "classification_history": [],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Frying oil is contracted canola or grapeseed, not peanut oil.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish (bonito flakes; anchovy in the Worcestershire) and eggs (batter, egg-yolk mayonnaise) are allowed for HH001. No pork belly, shrimp, squid, or other meat/shellfish. No dairy: the mayonnaise is contracted egg-yolk mayo with no milk, no cheese is used, and dashi powder (which commonly contains lactose) is deliberately excluded. The okonomi sauce is made in the recipe to avoid bottled sauces with oyster extract. No nuts."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: no milk, butter, cheese, or cream; mayonnaise is egg-based by contract; no dashi powder (lactose risk) by design. Not vegetarian (bonito flakes and anchovy-based Worcestershire are fish).",
+    "allergens": [
+      "wheat",
+      "egg",
+      "finfish",
+      "soy"
+    ],
+    "allergen_notes": [
+      "Wheat covers the flour and the soy sauce. Worcestershire malt vinegar may also contain barley (gluten, not a separate token).",
+      "Egg covers the 4 eggs in the batter and the egg-yolk mayonnaise.",
+      "Finfish covers the bonito flakes (skipjack tuna) and the anchovies in classic Worcestershire.",
+      "Soy covers the soy sauce (batter and sauce) and is commonly present in Japanese mayonnaise oil.",
+      "No milk, sesame, peanut, tree_nut, shellfish, meat, or poultry. Optional aonori (seaweed) and pickled ginger add no tokens."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish (bonito flakes; anchovy in the Worcestershire) and eggs (batter, egg-yolk mayonnaise) are allowed for HH001. No pork belly, shrimp, squid, or other meat/shellfish. No dairy: the mayonnaise is contracted egg-yolk mayo with no milk, no cheese is used, and dashi powder (which commonly contains lactose) is deliberately excluded. The okonomi sauce is made in the recipe to avoid bottled sauces with oyster extract. No nuts.",
+    "vocabulary_tag_ids": [
+      "japanese",
+      "savory",
+      "umami",
+      "crispy",
+      "tangy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims; every claim rests on a hard ingredient contract.",
+      "allergens_runtime": "Package tokens use milk (not dairy) and wheat (not gluten). Live PACKAGE_ALLERGEN_IDS uses dairy/nuts/cashew/... and lacks egg, soy, wheat, sesame, milk, tree_nut; keep package tokens and do not silently remap.",
+      "classification": "D-03 canonical fields effort_level and ingredient_complexity are on recipe_version. Legacy effort / effort_band / complexity strings are deliberately not authored. Factor scores and reason codes live in the d03-classification.json sidecar, not in runtime fields.",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "vocabulary": "japanese is the D-02 cuisine slug. savory, umami, crispy, tangy are active slugs. cabbage has no D-02 ingredient slug; mushrooms is a slug but shiitake is a supporting layer, not the lead, so it is not tagged.",
+      "meal_format": "savory-pancake is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "cabbage — no D-02 ingredient slug; not copied into tags.",
+      "hh001_contract": "Egg-yolk mayonnaise (no milk), classic anchovy Worcestershire (no shellfish), homemade sauce (no oyster extract), no dashi powder (lactose), no pork/shrimp/squid. Unconditional."
+    },
+    "culinary_hash": "sha256:bf946a607cc5dfe4965c2c15c13aea4c58fd381c0d3b7edef584fa1573ef9e91",
+    "culinary_hash_note": "sha256 over culinary content (ingredients, steps, components, equipment, times, heat, doneness, dietary eligibility/labels, allergens, tags). Excludes effort_level / ingredient_complexity and image metadata, so a classification-only amendment does not change it."
+  },
+  "image": {
+    "image_id": "img_japanese-okonomiyaki_v1",
+    "dish_id": "japanese-okonomiyaki",
+    "recipe_version_id": "rv_japanese-okonomiyaki_v1",
+    "asset_generated": true,
+    "master_ref": "japanese-okonomiyaki.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "japanese-okonomiyaki.webp",
+        "spec_catalog_path": "/images/meals/japanese-okonomiyaki.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "japanese-okonomiyaki-640.webp",
+        "spec_catalog_path": "/images/meals/japanese-okonomiyaki-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the GenerateImage source to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs via export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage (4:3 or landscape) from image-prompt.md with the house-quality reference for quality/light only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-12 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_by": "Juniper (Harbor Eats - Catalog Curator)",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r1.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "japanese-okonomiyaki-640.webp",
+    "master_filename": "japanese-okonomiyaki.webp",
+    "card_filename": "japanese-okonomiyaki-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "08c618c6f235cc4c8970e3742e2e21b8a0df1d75004825b6f1b438aa33f18383",
+      "japanese-okonomiyaki.webp": "563a2d08f16844c240bd8fea3e1c99295a19bb0c268da38e9442e280d8efe205",
+      "japanese-okonomiyaki-640.webp": "c54a7d41eeda732f5f1fd54b7a0a1e2048578d82102c80562263c9d4b4850554"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient is used: shred/slice/sauce in step 1, batter in step 2, oil in steps 3 and 6, shiitake in steps 4 and 6, finish with sauce/mayo/bonito/scallion greens/optional aonori and beni shoga in step 7. Soy split 1 tsp batter + 2 tsp sauce; oil split 1 1/2 + 1 1/2 tbsp."
+    },
+    {
+      "check": "fat",
+      "result": "pass",
+      "detail": "3 tbsp neutral oil, 1 1/2 tbsp per batch. Japanese mayo is a topping, not a cooking fat."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Okonomi-style sauce made in the recipe. Store-bought Japanese mayo and Worcestershire carry explicit contracts (egg mayo with no milk; classic anchovy Worcestershire with no shellfish). No bottled okonomi sauce, no dashi powder, no tenkasu."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 (12 + 3) + cook 26 (2 + 5 + 5 + 11 + 3) = 41. No oven."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Scale by pancake count; one batch at 2 servings. See scaling_notes."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=false, contains_poultry=false, contains_finfish=true, contains_shellfish=false, contains_dairy=false, plant_based_compatible=false, vegetarian_compatible=false, nut_policy=none, hh001_eligible=true. Allergens: wheat, egg, finfish, soy. Labels: dairy_free."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "Tags japanese, savory, umami, crispy, tangy are active D-02 slugs in taste-vocabulary.js. savory-pancake and cabbage are metadata."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level moderate (factor sum 5); ingredient_complexity standard (factor sum 3). Factors and reason codes in d03-classification.json. WAVE proposal moderate/adventurous."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit (japanese-okonomiyaki.webp, japanese-okonomiyaki-640.webp, img_v1.jpg). asset_generated is true. package_revision freeze-r1."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY_json",
+      "detail": "freeze_integrity.py is run on this directory after finalize; its PASS/FAIL lives only in FREEZE_INTEGRITY.json and is not restated here."
+    }
+  ],
+  "scaling_notes": {
+    "1": "Make one pancake: 1/4 cup flour, pinch baking powder, pinch salt, 2 1/2 tbsp water, 1/4 tsp soy, 1 egg, 1 1/2 cups cabbage, 1–2 scallions, 1 oz shiitake. Sauce: 1 tbsp ketchup, 1 1/2 tsp Worcestershire, 1/2 tsp soy, 1/2 tsp sugar. 8-inch skillet, same 4–5 min per side.",
+    "2": "Halve everything; one batch of two pancakes in a 12-inch skillet (skip batch two).",
+    "4": "As written: two batches of two.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "pancake size and thickness (5 1/2 inch, 3/4 inch) — scale by count, not size",
+      "egg-yolk mayonnaise contract",
+      "no dashi powder",
+      "no pork, shrimp, squid, or cheese"
+    ]
+  },
+  "coverage_contribution": "Savory pancake format 0→1. A cabbage-forward, egg-and-fish HH001 dinner with high fun factor; the sauce-and-mayo lattice under waving bonito is a distinctive hero.",
+  "near_duplicate_review": "Compared with Pan-Fried Pork Dumplings: both pan-crisped and Asian, but dumplings are pork-filled wheat wrappers with a dip; this is a cabbage-egg batter pancake with no meat. Compared with Kimchi Fried Rice and Thai Basil Eggplant Stir-Fry: rice/stir-fry formats. Compared with Skillet Shakshuka: egg-forward skillet but eggs poached in tomato sauce. Compared with Teriyaki Tofu Bowls / Miso-Ginger Salmon (Japanese): bowls and fillets, not a griddled pancake. Not a live-catalog duplicate.",
+  "batch_label": "B",
+  "batch_challenges": "B",
+  "selection_alignment": "Matches selection.json: japanese · savory-pancake · cabbage · hh001_intent true. expected_allergens [wheat, egg, finfish, soy] matches. Rough band 30–45; written clock 41. D-03 re-scored: moderate (matches) / standard (selection proposed adventurous; homemade sauce and optional aonori lower the specialty count).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

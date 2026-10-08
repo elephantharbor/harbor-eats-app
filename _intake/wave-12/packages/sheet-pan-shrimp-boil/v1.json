@@ -1,0 +1,563 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08 (Batch B). Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r1; not imported, not published.",
+  "batch_id": "wave-12-2026-10-08",
+  "mode": "certified_batch",
+  "package_revision": "freeze-r1",
+  "authored_on": "2026-10-08",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
+  "authored_by": "Grok Bot Catalog Factory wave-12 for Cora",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "sheet-pan-shrimp-boil",
+    "slug": "sheet-pan-shrimp-boil",
+    "title": "Sheet-Pan Shrimp Boil with Corn and Andouille",
+    "description": "All the flavor of a Lowcountry boil without the boil: Old Bay–seasoned baby potatoes, red onion, corn rounds, and smoky andouille roast until browned, then garlic-Old Bay butter shrimp go on for the last few minutes. Finished with lemon and parsley, straight from the pans.",
+    "cuisine": "southern",
+    "meal_format": "sheet-pan",
+    "primary_ingredient": "shrimp",
+    "vocabulary_tag_ids": [
+      "american",
+      "spicy",
+      "smoky",
+      "savory",
+      "shrimp",
+      "citrusy"
+    ],
+    "current_recipe_id": "rcp_sheet-pan-shrimp-boil",
+    "current_version_id": "rv_sheet-pan-shrimp-boil_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_sheet-pan-shrimp-boil",
+    "dish_id": "sheet-pan-shrimp-boil",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-08",
+      "curator": "Juniper (Harbor Eats - Catalog Curator)",
+      "process": "FlavorWeave Catalog Factory wave-12-2026-10-08, Grok Bot Catalog Factory for Cora",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_sheet-pan-shrimp-boil_v1",
+    "recipe_id": "rcp_sheet-pan-shrimp-boil",
+    "dish_id": "sheet-pan-shrimp-boil",
+    "version_number": 1,
+    "package_revision": "freeze-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present on disk (sheet-pan-shrimp-boil.webp, sheet-pan-shrimp-boil-640.webp) with source img_v1.jpg; asset_generated is true; package_revision freeze-r1. Not certified. Not published. kitchen_tested is false.",
+    "title": "Sheet-Pan Shrimp Boil with Corn and Andouille",
+    "description": "All the flavor of a Lowcountry boil without the boil: Old Bay–seasoned baby potatoes, red onion, corn rounds, and smoky andouille roast until browned, then garlic-Old Bay butter shrimp go on for the last few minutes. Finished with lemon and parsley, straight from the pans.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "baby-potatoes",
+        "name": "baby potatoes",
+        "display_name": "baby red or Yukon Gold potatoes",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "halved (1 to 1 1/2 inches across)",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "1 medium",
+        "preparation": "cut through the root into 8 wedges",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "corn",
+        "name": "corn on the cob",
+        "display_name": "fresh corn on the cob",
+        "quantity": 4,
+        "unit": "count",
+        "note": "4 ears; or 12 frozen mini cobs, thawed and patted dry",
+        "preparation": "husked and cut into 3 rounds each",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "andouille-sausage",
+        "name": "andouille sausage",
+        "display_name": "fully cooked smoked pork andouille sausage",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "Pork (meat). HARD CONTRACT: pork andouille (not chicken andouille) whose label allergen statement lists no wheat or soy; most smoked pork andouille does not. Choose another andouille if it does.",
+        "preparation": "sliced into 1/2-inch coins on a slight bias",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "shrimp",
+        "name": "shrimp",
+        "display_name": "large shrimp (21/25 per lb), peeled and deveined, tails on",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "Shellfish.",
+        "preparation": "thawed if frozen and patted very dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "divided: 1 1/2 tbsp potatoes and onion, 1/2 tbsp corn",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "old-bay-seasoning",
+        "name": "Old Bay seasoning",
+        "display_name": "Old Bay seasoning",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "Store-bought seafood spice blend. Divided: 2 tsp potatoes/onion, 1 tsp corn, 1 tbsp in the shrimp butter. Salty; added salt is kept low.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "potatoes and onion only; Old Bay seasons the rest",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "unsalted-butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "Milk. Melted with the garlic and tossed with the shrimp.",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lemons",
+        "name": "lemons",
+        "display_name": "lemons",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "1 halved for squeezing, 1 cut into wedges",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "flat-leaf-parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "fresh flat-leaf parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the oven and prep",
+        "body": "Set racks in the upper and lower thirds of the oven and heat it to 425 F; it preheats while you prep (about 15 minutes). Halve the potatoes and cut the onion into wedges. Husk the corn and cut each ear into 3 rounds with a heavy knife (rock the blade through the cob). Slice the andouille. Pat the shrimp very dry. Mince the garlic, chop the parsley, halve one lemon, and cut the other into wedges. About 15 minutes.",
+        "ingredient_refs": [
+          "baby-potatoes",
+          "red-onion",
+          "corn",
+          "andouille-sausage",
+          "shrimp",
+          "garlic",
+          "flat-leaf-parsley",
+          "lemons"
+        ],
+        "clock": {
+          "phase": "prep",
+          "minutes": 15,
+          "note": "oven preheat to 425 F runs inside this block"
+        }
+      },
+      {
+        "step_number": 2,
+        "title": "Roast the potatoes and onion",
+        "body": "On two rimmed half-sheet pans, toss the potatoes and onion with 1 1/2 tbsp olive oil, 2 tsp Old Bay, and the 1/2 tsp kosher salt. Spread out, potatoes cut side down. Roast 15 minutes. About 15 minutes.",
+        "ingredient_refs": [
+          "baby-potatoes",
+          "red-onion",
+          "olive-oil",
+          "old-bay-seasoning",
+          "kosher-salt"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 15
+        }
+      },
+      {
+        "step_number": 3,
+        "title": "Add the corn and andouille",
+        "body": "Toss the corn rounds with the remaining 1/2 tbsp oil and 1 tsp Old Bay. Add the corn and andouille to the pans, nestling them among the potatoes, then switch the pans between racks. Roast 10 minutes, until the potatoes are nearly tender and browned underneath and the sausage is sizzling. During the last 2 minutes, put the butter and garlic in a large microwave-safe bowl and microwave 45 to 60 seconds until melted and sizzling; stir in 1 tbsp Old Bay and add the shrimp, tossing to coat (overlaps the roast; adds no time). About 10 minutes.",
+        "ingredient_refs": [
+          "corn",
+          "olive-oil",
+          "old-bay-seasoning",
+          "andouille-sausage",
+          "unsalted-butter",
+          "garlic",
+          "shrimp"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 10,
+          "note": "shrimp-butter toss overlaps the last 2 minutes of this roast"
+        }
+      },
+      {
+        "step_number": 4,
+        "title": "Roast the shrimp",
+        "body": "Spoon the buttered shrimp onto the pans in a single layer among the vegetables and drizzle any garlic butter left in the bowl over the corn. Roast 6 to 7 minutes, until the shrimp are pink, opaque, and curled into loose C shapes (145 F) and the potatoes are fork-tender. About 7 minutes.",
+        "ingredient_refs": [
+          "shrimp",
+          "unsalted-butter",
+          "corn",
+          "baby-potatoes"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 7
+        }
+      },
+      {
+        "step_number": 5,
+        "title": "Finish with lemon and parsley",
+        "body": "Squeeze the halved lemon over both pans, scatter the parsley, and tuck in the lemon wedges. Serve straight from the pans or pile everything onto a platter. About 3 minutes. kitchen_tested is false.",
+        "ingredient_refs": [
+          "lemons",
+          "flat-leaf-parsley"
+        ],
+        "clock": {
+          "phase": "cook",
+          "minutes": 3
+        }
+      }
+    ],
+    "components": [
+      {
+        "component_id": "old-bay-sheet-pan-vegetables-and-sausage",
+        "name": "Old Bay roasted potatoes, onion, corn, and andouille",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "baby potatoes",
+          "red onion",
+          "corn",
+          "andouille sausage",
+          "olive oil",
+          "Old Bay seasoning",
+          "kosher salt"
+        ]
+      },
+      {
+        "component_id": "garlic-old-bay-butter-shrimp",
+        "name": "garlic Old Bay butter shrimp",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "shrimp",
+          "unsalted butter",
+          "garlic",
+          "Old Bay seasoning"
+        ]
+      }
+    ],
+    "equipment": [
+      "2 rimmed half-sheet pans",
+      "large microwave-safe bowl",
+      "heavy chef's knife",
+      "cutting board",
+      "tongs or spatula",
+      "measuring spoons",
+      "oven mitts"
+    ],
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 35,
+    "total_time_minutes": 50,
+    "prep_minutes": 15,
+    "cook_minutes": 35,
+    "total_minutes": 50,
+    "time_clock": "Prep 15 (oven preheats to 425 F during prep). Cook 35 = 15 potatoes/onion + 10 corn/andouille (shrimp-butter toss overlaps the last 2 minutes) + 7 shrimp + 3 finish.",
+    "heat": "Oven 425 F, racks in upper and lower thirds, preheated during the 15-minute prep. Pans switch racks when the corn goes in. Microwave only to melt the garlic butter.",
+    "doneness": "Potatoes fork-tender and browned on the cut side; corn kernels spotted golden; andouille browned at the edges; shrimp pink, opaque, loosely C-shaped (145 F), not tightly curled. kitchen_tested is false.",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "classification_sidecar": "d03-classification.json",
+    "classification_history": [],
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": true,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Old Bay is a spice blend with no nuts.",
+      "hh001_eligible": false,
+      "hh001_reason": "Shrimp is shellfish, andouille is pork (meat other than fish), and the shrimp are tossed in butter (dairy). HH001 excludes all three. Global catalog meal."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dairy_free label: butter is required for the shrimp. Not vegetarian or plant-based (shrimp, pork andouille).",
+    "allergens": [
+      "shellfish",
+      "milk",
+      "meat"
+    ],
+    "allergen_notes": [
+      "Shellfish covers the shrimp.",
+      "Milk covers the butter.",
+      "Meat covers the pork andouille (FlavorWeave supports meat as a token).",
+      "Andouille is contracted to a label with no wheat or soy, so neither is listed. Old Bay contains celery seed/celery salt; celery is not a FlavorWeave allergen token (noted in runtime_enum_gaps).",
+      "No egg, wheat, soy, sesame, peanut, tree_nut, finfish, or poultry."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Shrimp is shellfish, andouille is pork (meat other than fish), and the shrimp are tossed in butter (dairy). HH001 excludes all three. Global catalog meal.",
+    "vocabulary_tag_ids": [
+      "american",
+      "spicy",
+      "smoky",
+      "savory",
+      "shrimp",
+      "citrusy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r1_images_present_awaiting_preflight",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "curator_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. Live RECIPE_PROVENANCE has ai_assisted and does not list original_ai_assisted. Do not silently remap.",
+      "publication_state": "Factory value is Draft. Live PUBLICATION_STATUSES uses lowercase draft. publication_status is the lowercase alias and is not published.",
+      "data_origin": "synthetic means authored, not cooked.",
+      "dietary_eligibility": "Separate from allergens. No conditional X-free claims; every claim rests on a hard ingredient contract.",
+      "allergens_runtime": "Package tokens use milk (not dairy) and wheat (not gluten). Live PACKAGE_ALLERGEN_IDS uses dairy/nuts/cashew/... and lacks egg, soy, wheat, sesame, milk, tree_nut; keep package tokens and do not silently remap.",
+      "classification": "D-03 canonical fields effort_level and ingredient_complexity are on recipe_version. Legacy effort / effort_band / complexity strings are deliberately not authored. Factor scores and reason codes live in the d03-classification.json sidecar, not in runtime fields.",
+      "package_revision": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true.",
+      "images": "package_revision is freeze-r1. Master and card WebPs are present on disk. asset_generated is true. image_provenance is PRESENT_AI. Metadata agrees with on-disk assets.",
+      "vocabulary": "american is the D-02 cuisine slug for southern/Lowcountry. spicy, smoky, savory, citrusy are active flavor slugs; shrimp is an active D-02 ingredient slug.",
+      "meal_format": "sheet-pan is format metadata, not a vocabulary tag.",
+      "primary_ingredient": "shrimp — active D-02 ingredient slug, included in vocabulary_tag_ids.",
+      "allergens": "Tokens are shellfish, milk, meat. selection.json expected shellfish and milk; meat added because pork andouille is present. Celery (Old Bay) is not a FlavorWeave token.",
+      "allergens_meat_poultry": "FlavorWeave PACKAGE_ALLERGEN_IDS includes meat; listed because pork andouille is present."
+    },
+    "culinary_hash": "sha256:a2e092125d18c703518d18b97b67a56433e481662c5f4db49f5376414a8c20d6",
+    "culinary_hash_note": "sha256 over culinary content (ingredients, steps, components, equipment, times, heat, doneness, dietary eligibility/labels, allergens, tags). Excludes effort_level / ingredient_complexity and image metadata, so a classification-only amendment does not change it."
+  },
+  "image": {
+    "image_id": "img_sheet-pan-shrimp-boil_v1",
+    "dish_id": "sheet-pan-shrimp-boil",
+    "recipe_version_id": "rv_sheet-pan-shrimp-boil_v1",
+    "asset_generated": true,
+    "master_ref": "sheet-pan-shrimp-boil.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "sheet-pan-shrimp-boil.webp",
+        "spec_catalog_path": "/images/meals/sheet-pan-shrimp-boil.webp",
+        "status": "frozen_for_preflight"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "sheet-pan-shrimp-boil-640.webp",
+        "spec_catalog_path": "/images/meals/sheet-pan-shrimp-boil-640.webp",
+        "status": "frozen_for_preflight"
+      }
+    ],
+    "dimensions_basis": "Center-crop from the GenerateImage source to 4:3, then LANCZOS resize to 1200x900 master and 640x480 card WebPs via export_meal_webps.py.",
+    "generation": {
+      "method": "cursor_GenerateImage_then_format_size_conversion",
+      "method_detail": "GenerateImage (4:3 or landscape) from image-prompt.md with the house-quality reference for quality/light only; center-crop/LANCZOS WebP export via export_meal_webps.py",
+      "generator": "Grok Bot Catalog Factory wave-12 (Cora)",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_by": "Juniper (Harbor Eats - Catalog Curator)",
+      "prompt_authored_on": "2026-10-08",
+      "generation_date": "2026-10-08",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_preflight",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration; master and card WebPs frozen for preflight/audit at freeze-r1.",
+    "package_revision": "freeze-r1",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "card_ref": "sheet-pan-shrimp-boil-640.webp",
+    "master_filename": "sheet-pan-shrimp-boil.webp",
+    "card_filename": "sheet-pan-shrimp-boil-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "2ab3e973e4ab3b4935fbe471194b25c83d303cd34e5341dddffa4c2c862092f7",
+      "sheet-pan-shrimp-boil.webp": "db25510ed44716663d365b164e687e6049ad9f97437ef6929e723b2bbb8e2a67",
+      "sheet-pan-shrimp-boil-640.webp": "fd5709879dfdb35daa4a1730e2d626bfce355bf025b864f02934bb081d51d006"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "NOT_RUN",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "ingredient_instruction_reconciliation",
+      "result": "pass",
+      "detail": "Every listed ingredient is used: prep in step 1; potatoes/onion/oil/Old Bay/salt in step 2; corn/oil/Old Bay/andouille and the butter-garlic-Old Bay shrimp toss in step 3; shrimp roast in step 4; lemon and parsley in step 5. Old Bay split 2 tsp + 1 tsp + 1 tbsp = 2 tbsp; oil 1 1/2 + 1/2 tbsp."
+    },
+    {
+      "check": "fat",
+      "result": "pass",
+      "detail": "2 tbsp olive oil for the vegetables + 4 tbsp butter for the shrimp. Fully accounted."
+    },
+    {
+      "check": "compounds",
+      "result": "pass",
+      "detail": "Old Bay is a declared store-bought spice blend. Andouille is a declared fully cooked sausage with a pork and allergen-label contract."
+    },
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 (preheat inside) + cook 35 (15 + 10 + 7 + 3) = 50. Butter melt overlaps the corn roast."
+    },
+    {
+      "check": "scaling_1_2_4",
+      "result": "pass_with_rounding_notes",
+      "detail": "Pan count scales with servings; oven times unchanged."
+    },
+    {
+      "check": "dietary_vs_ingredients",
+      "result": "pass",
+      "detail": "contains_meat=true, contains_poultry=false, contains_finfish=false, contains_shellfish=true, contains_dairy=true, plant_based_compatible=false, vegetarian_compatible=false, nut_policy=none, hh001_eligible=false. Allergens: shellfish, milk, meat. Labels: none."
+    },
+    {
+      "check": "taste_vocabulary",
+      "result": "pass",
+      "detail": "Tags american, spicy, smoky, savory, shrimp, citrusy are active D-02 slugs in taste-vocabulary.js. sheet-pan and shrimp are metadata."
+    },
+    {
+      "check": "d03_classification",
+      "result": "pass",
+      "detail": "effort_level easy (factor sum 2); ingredient_complexity simple (factor sum 1). Factors and reason codes in d03-classification.json. WAVE proposal easy/simple."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false. Not a Vale certification."
+    },
+    {
+      "check": "publication",
+      "result": "pass",
+      "detail": "publication_state is Draft. package_revision is freeze-r1. Not published. Not certified."
+    },
+    {
+      "check": "image",
+      "result": "frozen_for_preflight",
+      "detail": "Master and card WebPs are present and frozen for preflight/audit (sheet-pan-shrimp-boil.webp, sheet-pan-shrimp-boil-640.webp, img_v1.jpg). asset_generated is true. package_revision freeze-r1."
+    },
+    {
+      "check": "freeze_integrity",
+      "result": "recorded_in_FREEZE_INTEGRITY_json",
+      "detail": "freeze_integrity.py is run on this directory after finalize; its PASS/FAIL lives only in FREEZE_INTEGRITY.json and is not restated here."
+    }
+  ],
+  "scaling_notes": {
+    "1": "6 oz potatoes, 1/4 onion, 1 ear corn, 3 oz andouille, 6 oz shrimp, 1 1/2 tsp oil, 1 1/2 tsp Old Bay total, pinch salt, 1 tbsp butter, 1 garlic clove, 1/2 lemon, 1 tbsp parsley. One quarter-sheet pan; same oven timings.",
+    "2": "Halve everything; one half-sheet pan; same timings, no rack swap.",
+    "4": "As written: two half-sheet pans.",
+    "base_servings": 4,
+    "ratio": {
+      "1": 0.25,
+      "2": 0.5,
+      "4": 1
+    },
+    "do_not_scale": [
+      "425 F oven",
+      "staged additions (potatoes 15, corn and sausage 10, shrimp 6–7)",
+      "single layer (crowding steams instead of roasts)"
+    ]
+  },
+  "coverage_contribution": "Southern/Lowcountry 0→1; shrimp beyond pasta; second sheet-pan dinner (only lemon-herb chicken today). Party-style, vivid one-pan weeknight dinner.",
+  "near_duplicate_review": "Compared with Lemon Garlic Shrimp Pasta: shrimp + garlic, but a stovetop pasta; this is roasted potatoes, corn, and sausage with Old Bay. Compared with Cajun Blackened Catfish: Southern spice, but a pan-seared finfish fillet. Compared with Sheet-Pan Lemon Herb Chicken: same format, different protein and seasoning. Compared with Spanish Chorizo Pepper Rice: smoked pork sausage, but a one-pan rice. Compared with Garlic Tomato Mussels: shellfish pot in tomato broth. Not a live-catalog duplicate.",
+  "batch_label": "B",
+  "batch_challenges": "B",
+  "selection_alignment": "Matches selection.json: southern · sheet-pan · shrimp · hh001_intent false. expected_allergens [shellfish, milk] extended with meat (pork andouille; FlavorWeave supported token). Rough band 30–45; written clock 50 (honest oven timing; time is not effort). D-03 re-scored: easy / simple (matches).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r1_images_present_awaiting_preflight"
+}

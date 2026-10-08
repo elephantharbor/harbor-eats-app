@@ -1,0 +1,60 @@
+{
+  "slug": "sheet-pan-gnocchi-brussels-apples",
+  "recipe_version_id": "rv_sheet-pan-gnocchi-brussels-apples_v1",
+  "package_revision": "freeze-r1",
+  "classification": {
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "effort_score": 2,
+    "complexity_score": 1,
+    "effort_factors": {
+      "active_prep": 1,
+      "active_attention": 0,
+      "active_components": 1,
+      "technique": 0,
+      "coordination_cleanup_equipment": 0
+    },
+    "complexity_factors": {
+      "ingredient_count_band": 0,
+      "specialty_burden": 1,
+      "specialty_items": [
+        "contracted egg-free, dairy-free shelf-stable gnocchi"
+      ],
+      "flavor_component_breadth": 0,
+      "pantry_familiarity": 0
+    },
+    "countable_ingredient_count": 8,
+    "countable_ingredients": [
+      "shelf-stable potato gnocchi",
+      "Brussels sprouts",
+      "crisp apples",
+      "red onion",
+      "fresh thyme",
+      "pure maple syrup",
+      "apple cider vinegar",
+      "Dijon mustard"
+    ],
+    "countable_rule": "excludes optional ingredients, water, salt, black pepper, and cooking oils",
+    "reason_codes": {
+      "effort": [
+        "steady_prep",
+        "mostly_hands_off"
+      ],
+      "ingredient": [
+        "short_list",
+        "one_specialty"
+      ]
+    },
+    "notes": "Effort: Steady prep (1); oven roast with one flip is mostly unattended (0); one whisked glaze is a simple sauce (1); roast technique (0); two sheet pans in one oven with no parallel attended vessel (0, same convention as packets+rice and harissa carrots+couscous). Sum 2 -> easy. Borderline at the easy|moderate edge. Complexity: 8 countable items (0). Hard-contract egg-free/dairy-free gnocchi scored as one widely available contract specialty (1), by parity with the vegetarian-Parmesan precedent, even though most shelf-stable gnocchi already comply. One maple-Dijon-thyme seasoning profile (0). Sourcing mainstream (0). Sum 1 -> simple.",
+    "borderline": true,
+    "proposal_from_wave": {
+      "effort_level": "easy",
+      "ingredient_complexity": "simple"
+    },
+    "classified_by": "juniper",
+    "classified_on": "2026-10-08",
+    "audited_by": null
+  },
+  "factor_key_note": "Fourth complexity factor stored as pantry_familiarity (the key in the 50 Vale-audited classifications, d03-design/all-50-classifications.json); kept 0 because specialty-store sourcing is scored once under specialty_burden.",
+  "rubric": "d03-design/DESIGN-DRAFT.md + factory SKILL D-03 (effort 0-2 easy / 3-5 moderate / 6-10 involved with floors; complexity 0-1 simple / 2-3 standard / 4-8 adventurous; cultural-bias guardrail; specialty scored once)."
+}

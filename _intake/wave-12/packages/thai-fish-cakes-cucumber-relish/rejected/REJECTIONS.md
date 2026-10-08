@@ -1,0 +1,8 @@
+# Rejected hero attempts — thai-fish-cakes-cucumber-relish
+
+Superseded images live only in this folder; none is an active asset. Active filenames (img_v1.jpg, thai-fish-cakes-cucumber-relish.webp, thai-fish-cakes-cucumber-relish-640.webp) are never reused here.
+
+- attempt1 (2026-10-08 ~16:59 CT, creator pre-screen, never finalized): crumb/breadcrumb-coated surface violates the Must-not-appear list (breadcrumb or panko coating). File: rejected/attempt1-crumb-coated-violates-must-not.jpg (sha256 a8e809423d19fd97…).
+- attempt2 (2026-10-08 17:15 CDT, archived by Juniper at freeze-r2; was the freeze-r1 active hero): Vale wave-12 batch C r1 Gate K FAIL — cut interior vivid salmon-pink and moist-looking (reads as salmon or undercooked fish); green inclusions read as peas/edamame instead of thin green-bean rings; pebbly, crumb-like surface close to the attempt-1 must-not. Files: rejected/attempt2_img.jpg (sha256 c38b2920fff046c4…), rejected/attempt2_master.webp (0e792ed75cb151a7…), rejected/attempt2_card.webp (4eb1c63d39ba3ca9…). Prompt and Plating Brief revised at freeze-r2; superseded (see attempt3 and the active hero).
+
+- attempt3 (2026-10-08 ~17:18 CT, Cora pre-screen, never finalized): generated verbatim from freeze-r2 exact prompt (interior wording switched ivory-white -> pale tan curry-tinted to match the 3 tbsp red curry paste in the recipe); interior good but surface read as breaded/crumbed and cakes as perfect discs. Prompt surface wording rewritten positively (tod mun pla, sleek glossy reddish-golden skin, irregular frilly edges) in batch_c_recipes.py and image-prompt.md re-rendered before next generation. File: rejected/attempt3-surface-reads-crumb-coated.jpg

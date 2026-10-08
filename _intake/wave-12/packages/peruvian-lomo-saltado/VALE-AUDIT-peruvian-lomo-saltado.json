@@ -1,0 +1,947 @@
+{
+  "slug": "peruvian-lomo-saltado",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-08",
+  "audit_round": "r4",
+  "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r4",
+  "recipe_version_id": "rv_peruvian-lomo-saltado_v1",
+  "freeze_integrity": "PASS (0 fails; re-run by Vale at r4 on a /tmp copy, package not mutated)",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "failed_gates": [],
+  "kitchen_tested": false,
+  "packages_mutated": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Identity ids agree (slug = dish_id; rcp_/rv_<slug>_v1; version_number 1); package_revision freeze-r1 on root, recipe_version, and image; effort_level and ingredient_complexity present on recipe_version with valid D-03 enums; no legacy effort / effort_band / complexity keys anywhere in v1.json. d03-classification.json labels match v1.json. involved/adventurous."
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null,
+      "note": "All 15 ingredients referenced; soy 2 tbsp marinade + 2 tbsp sauce; oil 1 + 1 + 1 tbsp; garlic 2 + 3; salt 3/4 rice + to taste."
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null,
+      "note": "1.5 lb sirloin in two batches in a 12-inch pan; 1.5 lb frozen fries single layer on one sheet; 2 tbsp ají amarillo. Scaling sound."
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Smoking-hot batch sear, quick toss, sauce reduced 20 s, fries folded at the end. Whole-muscle sirloin served 'about medium' (pink inside) — accepted for whole-muscle beef (surface seared; not ground). Non-blocking note: consider stating ~145F + rest as an option."
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Prep 15 (4+11) + cook 25 (13+6+2+2+2) = 40; oven preheat overlaps prep; fries (22–25 min) and rice (~19 min) finish with the stir-fry."
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Ají amarillo paste contracted plain (not huancaína); frozen fries contracted plain (not battered/seasoned)."
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Dietary: meat true; poultry/finfish/shellfish/dairy false; dairy_free unconditional; no oyster sauce. Allergens meat, soy, wheat — correct."
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null,
+      "note": "stir-fries, savory, tangy, umami, crispy — all active D-02 slugs."
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Distinct from Ethiopian Beef Tibs and Gochujang Grilled Flank Steak."
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Culinary promise matches the method. Plan moderate -> rubric involved (7) ACCEPTED as borderline-correct: continuous high-heat batch stir-fry (2), three converging components (stir-fry, oven fries, rice) (2), timed oven/pot/skillet coordination (1); under the batch's own set-and-forget convention (coordination 0) it is still 6 -> involved. Adventurous (4) ACCEPTED: ají amarillo paste is a single specialty-store-likely, no-substitute item (2), parity with Thai basil / Scotch bonnet precedents; count 1, breadth 1. Driven by sourcing, not Peruvian cuisine — no cultural-bias fail."
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r3": true,
+      "note": "Inspected the 1200x900 master, the 640 card, the full 1280x720 img_v1.jpg, and 3-4x crops (beef, upper and front red pieces, fries junction). Cleared from r2: no crosshatch, diamond, scoring, grill marks, or char stripes on any beef strip; no tomato seeds or gel visible (wedges skin side up, and the two front wedges show smooth flesh at the cut edge). Present: bite-size whole-muscle beef strips with glossy dark soy-sauce coating; red onion petals with some edge colour; red tomato wedges holding shape; cilantro; thin amber pan juices pooling at front left; neat domed white rice on the left; golden straight-cut fries, with several tucked into and under the stir-fry at the junction and the rest piled alongside. That meets the brief's 'some folded in and some alongside', though fewer than the prompt's 'about a third'. Nothing from the Forbidden list: no egg, huancaína, green pepper, broccoli, sesame, scallion, lime, ketchup/mayo, chips, chopsticks, or heavy steam. Reads as lomo saltado (stir-fry + fries + rice), not steak frites. Non-blocking fidelity notes: (a) the brief's 'pink interior visible on a cut edge or two' is not shown. The strips are fully sauce-coated, but nothing contradicts the recipe's 'browned outside, still pink inside'. (b) The coating is darker and more lacquered than a 20-second soy-vinegar-ají amarillo reduction would usually give, because the prompt says 'like teriyaki beef'. It is still a plausible glossy soy coat, with thin pan juices on the plate, not a thick gravy. (c) Skin-side-up wedges at the back of the pile could be read as red bell pepper strips; the front wedges read clearly as tomato.",
+      "carried_from": "r3 (img_v1.jpg and both WebPs byte-identical: d81b4325…, 8c086ddb…, 16fae237…)"
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Rolled up from L1 and L2 (r3). K is reported separately.",
+      "carried_from": "r3 (img_v1.jpg and both WebPs byte-identical: d81b4325…, 8c086ddb…, 16fae237…)"
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r3": true,
+      "note": "Master 1200x900 and card 640x480 WebP verified. image.sha256 (img_v1.jpg d81b4325…, master 8c086ddb…, card 16fae237…) matches the files on disk. Both WebPs reproduce a 4:3 center crop + LANCZOS of img_v1.jpg (mean abs diff 1.7 and 2.4 out of 255, i.e. WebP loss only). The whole plate rim is inside master and card (plate about 66% of source width; prompt asked for the central 60%). Cilantro sprigs at the top right are recipe-listed environmental styling. No text, logo, watermark, packaging, hands, or faces. One active set. rejected/ holds attempts 1-4, none under an active filename.",
+      "carried_from": "r3 (img_v1.jpg and both WebPs byte-identical: d81b4325…, 8c086ddb…, 16fae237…)"
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r3": true,
+      "note": "Bright soft light; clean off-white plate on light stone; glossy, juicy-looking beef; strong red/purple/gold/white/green contrast; abundant, intentional plating; very legible and appetizing at card size. Parity with the house reference.",
+      "carried_from": "r3 (img_v1.jpg and both WebPs byte-identical: d81b4325…, 8c086ddb…, 16fae237…)"
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r3": true,
+      "note": "Generation method, date 2026-10-08, generator Cora, and model 'unknown' are present; rights not_cleared_for_external_release; original AI image. The image-prompt.md exact-prompt block is identical to RECIPES['peruvian-lomo-saltado']['prompt'] in recipes_part4.py, and the levers are identical too (checked programmatically). The block's content matches the active image (thin sauce-lacquered strips, tomatoes skin side up, centred plate, cilantro sprigs at one edge). Vale cannot see the GenerateImage call itself. Cora's statement that she generated from the block verbatim is consistent with the image and with the file order (prompt re-render before finalize). The plating brief is byte-identical to r1/r2.",
+      "carried_from": "r3 (img_v1.jpg and both WebPs byte-identical: d81b4325…, 8c086ddb…, 16fae237…)"
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Ají amarillo shopping note gives Latin aisle / Latin market / online; fries contract buyable."
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r4": true,
+      "note": "All r3 O defects cleared. Each of the following was compared programmatically to the Vale r3 required text and matches it exactly: v1.json revision_note, image.generation.revision_note, image.rejected_assets_note, image-prompt.md line 5 'Revision (freeze-r4)', and the README revision/image notes. package_revision is freeze-r4 on root, recipe_version, image, d03 sidecar, README, and image-prompt.md. The image-prompt.md exact-prompt block is unchanged from freeze-r3 (only lines 3, 5, and 68 changed). rejected/REJECTIONS.md: 4 entries in a single list, each in the 'attemptN (…): reason - file' format. The attempt4 entry carries its verbatim prompt. Vale reconstructed that prompt from the freeze-r2 prompt (Juniper backup wave12-batcha-r3-20261008-171452) plus r2 required_fixes steps 2-4: it matches except for one extra clause, 'glossy sauce-coated, smooth-surfaced strips like the beef in a classic wok stir-fry,'. That clause agrees with the first freeze-r3 revision line Vale quoted at r3 ('…glossy and sauce-coated'), so the verbatim text is credible; the parenthetical 'steps 2-4 applied' just understates it. The first freeze-r3 prompt is not preserved in any backup, so the text itself rests on Juniper's record. culinary_hash sha256:776350ee… recomputed and unchanged. Culinary fields, effort_level, ingredient_complexity, and classification_history are identical to freeze-r3. Plating brief and all 4 rejected files are byte-identical to the r3 copy."
+    }
+  },
+  "image_review": {
+    "files_inspected": [
+      "peruvian-lomo-saltado.webp (1200x900)",
+      "peruvian-lomo-saltado-640.webp (640x480)",
+      "img_v1.jpg full + 3-4x crops",
+      "rejected/attempt4-beef-scored-tomato-seeds-plate-too-wide.jpg"
+    ],
+    "asset_sha256": {
+      "img_v1.jpg": "d81b4325582d682d9479beae298c3a84f4f3647c55d6b8fc71749472f6f5e57a",
+      "peruvian-lomo-saltado.webp": "8c086ddb66be58207a21b19cefe58751951e32764e4c5846b0593ae4e3f1ec13",
+      "peruvian-lomo-saltado-640.webp": "16fae2377d8eb123139510cb8986258c7eb7828bbd04ae03b2f2ab9ebf5a4a01"
+    },
+    "rejected_sha256": {
+      "attempt1-beef-grill-marks-fries-not-folded.jpg": "eec4dbdaa82c431afca2cb07fd3d44770ecd4de5f973f6ade1ee73527363aee5",
+      "attempt2-tomato-seeds-plate-clipped-by-crop.jpg": "b48d9589998ade382866ad0c6ddb9bfafbf3231c9c3146d37be4db499b830e6b",
+      "attempt3-beef-crosshatch-scored-tomato-seeds.jpg": "6a2e56f275b6db7e588e76b467c7f653e4fed77b324fadefa822961fcf81392d",
+      "attempt4-beef-scored-tomato-seeds-plate-too-wide.jpg": "307d6249b5626131a526b8c84b793cde2d18fc286b7779f6f4cd7f87520f5ccd"
+    },
+    "K": "PASS",
+    "L1": "PASS",
+    "L2": "PASS",
+    "prompt_block_matches_source": true,
+    "r2_items": {
+      "crosshatch/scored beef": "FIXED",
+      "tomato seeds/gel": "FIXED (skin side up)",
+      "fries folded in": "still met (some folded in, rest alongside)"
+    }
+  },
+  "dietary_eligibility": "Meat true (beef); poultry/finfish/shellfish/dairy false; dairy_free unconditional; nut_policy none.",
+  "allergens": "meat, soy, wheat. Correct.",
+  "allergen_runtime_gaps": {
+    "package_tokens": [
+      "meat",
+      "soy",
+      "wheat"
+    ],
+    "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+      "soy",
+      "wheat"
+    ],
+    "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS (dairy, nuts, cashew, walnut, peanut, almond, pecan, hazelnut, pistachio, macadamia, pine_nut, shellfish, finfish, poultry, meat)",
+    "documented_in_runtime_enum_gaps": true
+  },
+  "hh001": "Not intended; claimed false; correct (beef).",
+  "classification": {
+    "effort_level": "involved",
+    "ingredient_complexity": "adventurous",
+    "gate_A_enums": "valid",
+    "gate_J_plausibility": "involved (7) / adventurous (4). Plan moderate -> involved accepted (borderline, rubric-faithful); adventurous accepted on ají amarillo sourcing, not culture.",
+    "legacy_fields_authored": false,
+    "factor_key": "pantry_familiarity (canonical)"
+  },
+  "fails_needing_revision": [],
+  "required_fixes": [],
+  "non_blocking_notes": [
+    "Whole-muscle beef served about medium; consider adding '145F with a 3-minute rest if you prefer' as an option (not required).",
+    "Adventurous rests on a single item (ají amarillo); add ají amarillo paste to the factory specialty heuristic list as specialty_store_likely so future Peruvian meals score consistently.",
+    "No culinary_hash (see summary).",
+    "r2: candidates/BATCH-A-STATUS.md (Juniper, 17:10 CT) still shows lomo as 'freeze-r2 (pending image)' with Freeze Integrity 'not run (no active image)'. Cora's finalize at 17:11-17:12 CT superseded that. Update the row to the r2 result now, and again after r3.",
+    "r2: L2 is strong. The regeneration should change only the beef surface and the tomato flesh.",
+    "r3: the active prompt departs from the plating brief, which was not updated: 'like teriyaki beef' and 'dark mahogany' vs the brief's 'light glossy amber pan sauce'; 'thin' strips vs the recipe's 1/2-inch-thick strips; 'medium round plate' vs 'wide dinner plate'; the brief-required 'pink interior visible on a cut edge or two' was dropped; 'no steak' was added. The image still passes K. Before any future regeneration or v2, re-derive the prompt from recipe + brief (meal-image spec §17), or have Juniper amend the brief deliberately.",
+    "r3: the GenerateImage call-notes line in image-prompt.md still says 'central 75%' (shared template). It is harmless; do not edit the shared template (see required_fixes step 7).",
+    "r3 process: render_batch_a.py --render-pending re-rendered all 8 other Batch A packages to a pending, no-provenance state. Add a guard so --render-pending skips any slug with an active img_v1.jpg, or requires an explicit slug list.",
+    "r4: the REJECTIONS.md attempt4 parenthetical '(the freeze-r2 prompt with Vale r2 required_fixes steps 2-4 applied)' omits Juniper's extra 'glossy sauce-coated, smooth-surfaced strips…' clause. The verbatim text is authoritative; optionally add 'plus one glossy-strips clause' at the next touch.",
+    "r4: render_batch_a.py --render-pending now skips any slug with an active image (lines 10-11, 705-712). This closes the r3 process note."
+  ],
+  "statement": "r4 re-check (2026-10-08 CT) of freeze-r4 (metadata-only revision). O PASS: every revision, prompt, image, and rejected-asset note matches the required text; REJECTIONS.md is complete and conforming; package_revision is consistent. Freeze Integrity PASS. Image bytes are unchanged from r3 (sha256 verified), so K, L1, L2, and M carry from r3 (PASS). culinary_hash is unchanged. Recipe gates carry from r1 (PASS; recipe unchanged since r1). Overall PASS -> CERTIFY_V1. kitchen_tested remains false. No creator file was edited.",
+  "culinary_hash": "sha256:776350eea4adc4d9d5599890a64347bf73c6af2df34a5c3c553a32464980f724",
+  "culinary_hash_verified": true,
+  "culinary_hash_note": "First hash for this package (r1 had none). The recipe content is byte-identical to freeze-r1, so the hash must not change at freeze-r3.",
+  "asset_sha256_verified": {
+    "img_v1.jpg": "d81b4325582d682d9479beae298c3a84f4f3647c55d6b8fc71749472f6f5e57a",
+    "peruvian-lomo-saltado.webp": "8c086ddb66be58207a21b19cefe58751951e32764e4c5846b0593ae4e3f1ec13",
+    "peruvian-lomo-saltado-640.webp": "16fae2377d8eb123139510cb8986258c7eb7828bbd04ae03b2f2ab9ebf5a4a01"
+  },
+  "rescore": {
+    "round": "freeze-r4",
+    "prior_overall": "FAIL",
+    "prior_failed_gates": [
+      "O"
+    ],
+    "prior_audit": "history[2] in this file (r3, freeze-r3); history[0]=r1, history[1]=r2",
+    "cleared_from_r3": [
+      "revision_note / image revision_note / prompt revision line / rejected_assets_note now describe the active prompt and attempts 1-4",
+      "REJECTIONS.md attempt4 entry conforming, with a verbatim prompt"
+    ],
+    "still_failing": []
+  },
+  "culinary_hash_unchanged_from_r2": true,
+  "r4_scope": [
+    "O",
+    "freeze_integrity",
+    "asset_sha256",
+    "culinary_hash",
+    "batch_A_integrity"
+  ],
+  "history": [
+    {
+      "slug": "peruvian-lomo-saltado",
+      "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+      "audit_date": "2026-10-08",
+      "audit_round": "r1",
+      "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+      "package_file": "v1.json",
+      "package_revision": "freeze-r1",
+      "recipe_version_id": "rv_peruvian-lomo-saltado_v1",
+      "freeze_integrity": "PASS",
+      "disposition": "REVISE",
+      "overall": "FAIL",
+      "failed_gates": [
+        "K"
+      ],
+      "kitchen_tested": false,
+      "packages_mutated": false,
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug = dish_id; rcp_/rv_<slug>_v1; version_number 1); package_revision freeze-r1 on root, recipe_version, and image; effort_level and ingredient_complexity present on recipe_version with valid D-03 enums; no legacy effort / effort_band / complexity keys anywhere in v1.json. d03-classification.json labels match v1.json. involved/adventurous."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All 15 ingredients referenced; soy 2 tbsp marinade + 2 tbsp sauce; oil 1 + 1 + 1 tbsp; garlic 2 + 3; salt 3/4 rice + to taste."
+        },
+        "C": {
+          "result": "PASS",
+          "defect": null,
+          "note": "1.5 lb sirloin in two batches in a 12-inch pan; 1.5 lb frozen fries single layer on one sheet; 2 tbsp ají amarillo. Scaling sound."
+        },
+        "D": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Smoking-hot batch sear, quick toss, sauce reduced 20 s, fries folded at the end. Whole-muscle sirloin served 'about medium' (pink inside) — accepted for whole-muscle beef (surface seared; not ground). Non-blocking note: consider stating ~145F + rest as an option."
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Prep 15 (4+11) + cook 25 (13+6+2+2+2) = 40; oven preheat overlaps prep; fries (22–25 min) and rice (~19 min) finish with the stir-fry."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Ají amarillo paste contracted plain (not huancaína); frozen fries contracted plain (not battered/seasoned)."
+        },
+        "G": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Dietary: meat true; poultry/finfish/shellfish/dairy false; dairy_free unconditional; no oyster sauce. Allergens meat, soy, wheat — correct."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null,
+          "note": "stir-fries, savory, tangy, umami, crispy — all active D-02 slugs."
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Distinct from Ethiopian Beef Tibs and Gochujang Grilled Flank Steak."
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Culinary promise matches the method. Plan moderate -> rubric involved (7) ACCEPTED as borderline-correct: continuous high-heat batch stir-fry (2), three converging components (stir-fry, oven fries, rice) (2), timed oven/pot/skillet coordination (1); under the batch's own set-and-forget convention (coordination 0) it is still 6 -> involved. Adventurous (4) ACCEPTED: ají amarillo paste is a single specialty-store-likely, no-substitute item (2), parity with Thai basil / Scotch bonnet precedents; count 1, breadth 1. Driven by sourcing, not Peruvian cuisine — no cultural-bias fail."
+        },
+        "K": {
+          "result": "FAIL",
+          "defect": "Beef technique and plating mismatch. (1) Most sirloin pieces carry regular parallel grill-mark/char stripes, which signal a grilled steak; the recipe and description are 'seared hard in a smoking-hot skillet' and tossed (saltado). The Meal Image Spec requires protein to show the actual grill/sear treatment. (2) Brief Required item 'Golden crisp straight-cut fries, some folded in and some alongside' and description 'folded with crisp oven fries' are not met: all fries sit in a separate pile behind the beef; none are tossed into the stir-fry or glossed with sauce. Together the hero reads closer to sliced grilled steak with a side of fries than to lomo saltado.",
+          "note": "Present and correct: browned sirloin with pink cut faces, charred red-onion petals, tomato wedges, cilantro, amber pan juices, domed white rice, straight-cut fries. Nothing from the Forbidden list (no egg, huancaína, green pepper, broccoli, sesame, scallion, lime, chopsticks). Minor: one tomato wedge still shows seeds (recipe scoops them)."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2 (K is reported separately)."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; image.sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 and Batch B); no text, logo, watermark, packaging, or hands; one active set; master_ref points at the active WebP."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Bright, appetizing, good color (red tomato, purple onion, golden fries, white rice); strong at card scale. Keep this light/composition when regenerating."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "note": "recipe provenance original_ai_assisted (live ai_assisted gap documented); image generation method/date/generator present, model honestly 'unknown'; image-plating-brief.md (mtime 16:53 CT) predates img_v1.jpg (16:59 CT) and image-prompt.md derives from recipe + brief; catalog_confidence PRESENT_AI / KNOWN_TEXT_AND_IMAGE / PENDING_AUDIT; rights not_cleared_for_external_release; no stock or web imagery."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Ají amarillo shopping note gives Latin aisle / Latin market / online; fries contract buyable."
+        },
+        "O": {
+          "result": "PASS",
+          "defect": null,
+          "note": "version_number 1, package_revision freeze-r1 consistent across v1.json, README, image-prompt.md; classification_history []; curator_preflight image = frozen_for_preflight; no README/prompt language denies present WebPs; FREEZE_INTEGRITY.json PASS (0 fails) and Vale's independent re-run on a /tmp copy also PASS; renderer --check OK and recipes_part*.py source in sync with rendered v1.json."
+        }
+      },
+      "image_review": {
+        "K": "FAIL",
+        "L1": "PASS",
+        "L2": "PASS",
+        "L": "PASS",
+        "files_inspected": [
+          "img_v1.jpg",
+          "peruvian-lomo-saltado-640.webp"
+        ],
+        "observation": "Lomo components present and appetizing, but beef shows grill stripes and no fries are folded into the stir-fry (K FAIL)."
+      },
+      "dietary_eligibility": "Meat true (beef); poultry/finfish/shellfish/dairy false; dairy_free unconditional; nut_policy none.",
+      "allergens": "meat, soy, wheat. Correct.",
+      "allergen_runtime_gaps": {
+        "package_tokens": [
+          "meat",
+          "soy",
+          "wheat"
+        ],
+        "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+          "soy",
+          "wheat"
+        ],
+        "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS (dairy, nuts, cashew, walnut, peanut, almond, pecan, hazelnut, pistachio, macadamia, pine_nut, shellfish, finfish, poultry, meat)",
+        "documented_in_runtime_enum_gaps": true
+      },
+      "hh001": "Not intended; claimed false; correct (beef).",
+      "classification": {
+        "effort_level": "involved",
+        "ingredient_complexity": "adventurous",
+        "gate_A_enums": "valid",
+        "gate_J_plausibility": "involved (7) / adventurous (4). Plan moderate -> involved accepted (borderline, rubric-faithful); adventurous accepted on ají amarillo sourcing, not culture.",
+        "legacy_fields_authored": false,
+        "factor_key": "pantry_familiarity (canonical)"
+      },
+      "fails_needing_revision": [
+        "K: Beef technique and plating mismatch. (1) Most sirloin pieces carry regular parallel grill-mark/char stripes, which signal a grilled steak; the recipe and description are 'seared hard in a smoking-hot skillet' and tossed (saltado). The Meal Image Spec requires protein to show the actual grill/sear treatment. (2) Brief Required item 'Golden crisp straight-cut fries, some folded in and some alongside' and description 'folded with crisp oven fries' are not met: all fries sit in a separate pile behind the beef; none are tossed into the stir-fry or glossed with sauce. Together the hero reads closer to sliced grilled steak with a side of fries than to lomo saltado."
+      ],
+      "required_fixes": [
+        {
+          "gate": "K",
+          "edits": [
+            {
+              "file": "move active img_v1.jpg",
+              "required": "rejected/attempt1-beef-grill-marks-fries-not-folded.jpg (do not reuse active filenames under rejected/); add to image.rejected_assets"
+            },
+            {
+              "file": "wave-12/batch-a-tools/recipes_part4.py lines 114-118 RECIPES['peruvian-lomo-saltado'] prompt (rendered into image-prompt.md 'Exact prompt')",
+              "current": "\"A generous heap of glossy, well-seared beef sirloin strips (juicy, pink just visible inside a cut edge) ... golden, crisp straight-cut French fries tucked into the stir-fry and piled beside it;\"",
+              "required": "\"A generous heap of bite-size beef sirloin strips pan-seared in a smoking-hot wok, with an even deep-brown seared crust and no grill marks or char stripes (juicy, pink just visible inside a cut edge) ... about a third of the golden, crisp straight-cut French fries tossed right into the stir-fry, glossed with the amber pan sauce and mingled with the beef, onion and tomato, the rest piled alongside;\" and add to the negatives: \"no grill marks, no char stripes, no sliced grilled steak, no tomato seeds\""
+            },
+            {
+              "file": "recipes_part4.py line 119 regen_levers",
+              "required": "add \"Beef shows grill stripes -> 'even pan-seared crust, no grill marks'\" and \"Fries only on the side -> 'a third of the fries tossed into the stir-fry, sauce-glossed'\""
+            },
+            {
+              "file": "image-plating-brief.md",
+              "required": "no change (already requires seared strips and fries folded in; brief is pre-generation and not rewritten)"
+            }
+          ]
+        },
+        {
+          "gate": "process",
+          "edits": [
+            {
+              "file": "run",
+              "required": "GenerateImage with the revised prompt -> save img_v1.jpg -> export_meal_webps.py -> render at freeze-r2 for this slug only (render_batch_a.py REV override) with --finalize peruvian-lomo-saltado -> freeze_integrity.py PASS -> Vale re-audit K, L1, L2 (+M, O consistency). No culinary, version, or classification change."
+            }
+          ]
+        }
+      ],
+      "non_blocking_notes": [
+        "Whole-muscle beef served about medium; consider adding '145F with a 3-minute rest if you prefer' as an option (not required).",
+        "Adventurous rests on a single item (ají amarillo); add ají amarillo paste to the factory specialty heuristic list as specialty_store_likely so future Peruvian meals score consistently.",
+        "No culinary_hash (see summary)."
+      ],
+      "statement": "Gate result only. Binary PASS/FAIL per the certification skill (no PASS WITH NOTES publication state; notes above are non-blocking). Not publication, not a production release, not a cook test. Vale did not edit the package.",
+      "round": "r1"
+    },
+    {
+      "slug": "peruvian-lomo-saltado",
+      "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+      "audit_date": "2026-10-08",
+      "audit_round": "r2",
+      "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+      "package_file": "v1.json",
+      "package_revision": "freeze-r2",
+      "recipe_version_id": "rv_peruvian-lomo-saltado_v1",
+      "freeze_integrity": "PASS (0 fails; re-run by Vale at r2 on a /tmp copy, package not mutated)",
+      "disposition": "REVISE_IMAGE",
+      "overall": "FAIL",
+      "failed_gates": [
+        "K",
+        "O"
+      ],
+      "kitchen_tested": false,
+      "packages_mutated": false,
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug = dish_id; rcp_/rv_<slug>_v1; version_number 1); package_revision freeze-r1 on root, recipe_version, and image; effort_level and ingredient_complexity present on recipe_version with valid D-03 enums; no legacy effort / effort_band / complexity keys anywhere in v1.json. d03-classification.json labels match v1.json. involved/adventurous."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All 15 ingredients referenced; soy 2 tbsp marinade + 2 tbsp sauce; oil 1 + 1 + 1 tbsp; garlic 2 + 3; salt 3/4 rice + to taste."
+        },
+        "C": {
+          "result": "PASS",
+          "defect": null,
+          "note": "1.5 lb sirloin in two batches in a 12-inch pan; 1.5 lb frozen fries single layer on one sheet; 2 tbsp ají amarillo. Scaling sound."
+        },
+        "D": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Smoking-hot batch sear, quick toss, sauce reduced 20 s, fries folded at the end. Whole-muscle sirloin served 'about medium' (pink inside) — accepted for whole-muscle beef (surface seared; not ground). Non-blocking note: consider stating ~145F + rest as an option."
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Prep 15 (4+11) + cook 25 (13+6+2+2+2) = 40; oven preheat overlaps prep; fries (22–25 min) and rice (~19 min) finish with the stir-fry."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Ají amarillo paste contracted plain (not huancaína); frozen fries contracted plain (not battered/seasoned)."
+        },
+        "G": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Dietary: meat true; poultry/finfish/shellfish/dairy false; dairy_free unconditional; no oyster sauce. Allergens meat, soy, wheat — correct."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null,
+          "note": "stir-fries, savory, tangy, umami, crispy — all active D-02 slugs."
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Distinct from Ethiopian Beef Tibs and Gochujang Grilled Flank Steak."
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Culinary promise matches the method. Plan moderate -> rubric involved (7) ACCEPTED as borderline-correct: continuous high-heat batch stir-fry (2), three converging components (stir-fry, oven fries, rice) (2), timed oven/pot/skillet coordination (1); under the batch's own set-and-forget convention (coordination 0) it is still 6 -> involved. Adventurous (4) ACCEPTED: ají amarillo paste is a single specialty-store-likely, no-substitute item (2), parity with Thai basil / Scotch bonnet precedents; count 1, breadth 1. Driven by sourcing, not Peruvian cuisine — no cultural-bias fail."
+        },
+        "K": {
+          "result": "FAIL",
+          "rescored_r2": true,
+          "defect": "(1) Beef surface technique. Almost every sirloin piece carries a regular crosshatch/diamond lattice of shallow parallel lines in two directions. Clear at 3x crop of img_v1.jpg, on the 1200x900 master, and still legible on the 640 card. This reads as scored or crosshatch-grilled steak, not the even deep-brown seared crust of strips seared in a smoking-hot skillet or wok (recipe step 4). The recipe does not score the meat. It is the r1 grill-mark defect in a new form, and it contradicts the prompt line 'even deep-brown seared crust and no grill marks'. The beef also reads grey-brown rather than deep brown. Spec: technique and texture must match. (2) Tomato prep state. The right-front tomato wedge clearly shows its seed cavity with seeds and gel, and the left-front wedge shows a gel-filled locule. The recipe prepares 'Roma tomatoes ... seeds scooped out' (ingredient preparation; step 2 'seeded wedges'), and the prompt says 'no tomato seeds'. In r1 this was a minor note beside two major defects. It is now a K item because it persisted through an explicit prompt fix, and Cora's own attempt2 rejection treats it as rejectable.",
+          "note": "Cleared from r1: fries are now folded in. About a third sit inside the stir-fry (lower centre, under and between the beef, glossed with amber pan juices), and the rest are piled alongside on the right, which meets the brief ('some folded in and some alongside'). No parallel char stripes. Present and correct: red onion petals, cilantro, amber pan juices pooling under the stir-fry, domed white rice on the left, straight-cut golden fries. Pale translucent pieces between the beef read as sauce-glossed onion layers; they are not a forbidden pepper. Nothing from the Forbidden list: no egg, huancaína, green pepper, broccoli, sesame, scallion, lime, ketchup/mayo, chips, chopsticks, or heavy steam. Not cleared: beef surface (crosshatch) and tomato seeds (see defect)."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2 (r2). K is reported separately."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "Master 1200x900 WebP and card 640x480 WebP verified with Pillow. image.sha256 for img_v1.jpg and both WebPs matches the files on disk. The master matches a 4:3 center crop of the 1280x720 img_v1.jpg plus LANCZOS resize (mean abs diff 1.6/255, i.e. WebP loss only). The whole plate rim sits inside the frame on master and card (the attempt2 crop-clip problem is fixed). No text, logo, watermark, packaging, hands, or faces. One active set. rejected/ holds attempt1 (byte-identical to the r1 hero) and attempt2, neither under an active filename."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "Bright soft light, clean off-white plate on light stone, strong colour contrast (red tomato, purple onion, golden fries, white rice, green cilantro), abundant and intentional plating, and good card-scale legibility. Parity with the house reference. Keep this composition, light, and fries arrangement in the regeneration. Only the beef surface and tomato flesh need to change. Appeal does not offset the K failure (beautiful-but-wrong fails)."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r2": true,
+          "note": "Image generation method, date, and generator are present; model honestly 'unknown'; rights not_cleared_for_external_release; original AI image, no stock. The plating brief (16:53 CT) predates every generation. Note: provenance_note says the hero was 'generated ... from image-prompt.md', which is true only once the O fix makes image-prompt.md equal the prompt actually used. The record defect is ruled under O."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Ají amarillo shopping note gives Latin aisle / Latin market / online; fries contract buyable."
+        },
+        "O": {
+          "result": "FAIL",
+          "rescored_r2": true,
+          "defect": "The prompt record does not match the active generation. Per Cora, the active img_v1.jpg (attempt 3 overall) was generated from Juniper's freeze-r2 prompt plus three additions: a smaller centred plate, sliced whole-muscle sirloin with no ground-meat texture, and seeded-out tomato wedges. image-prompt.md 'Exact prompt' and recipes_part4.py lines 114-118 hold only Juniper's text, and the exact wording Cora sent is recorded nowhere in the factory. image.generation.prompt_file = image-prompt.md therefore misstates the active image's prompt. rejected/ also has no REJECTIONS.md recording why attempt1/attempt2 were retired (Batch B precedent: salade-nicoise-seared-tuna/rejected/REJECTIONS.md).",
+          "note": "Otherwise consistent: version_number 1; package_revision freeze-r2 on root, recipe_version, image, README, image-prompt.md, and d03 sidecar; revision notes present. culinary_hash sha256:776350eea4adc4d9d5599890a64347bf73c6af2df34a5c3c553a32464980f724 recomputed independently and matches. The recipe text is byte-identical to freeze-r1 apart from revision strings, so the hash is correctly image-independent. image.rejected_assets lists both rejected files."
+        }
+      },
+      "image_review": {
+        "files_inspected": [
+          "peruvian-lomo-saltado.webp (1200x900)",
+          "peruvian-lomo-saltado-640.webp (640x480)",
+          "img_v1.jpg 3x crops (beef, both front tomato wedges, folded fries, mid-pile pale pieces)",
+          "rejected/attempt2-tomato-seeds-plate-clipped-by-crop.jpg (comparison)"
+        ],
+        "asset_sha256": {
+          "img_v1.jpg": "6a2e56f275b6db7e588e76b467c7f653e4fed77b324fadefa822961fcf81392d",
+          "peruvian-lomo-saltado.webp": "9b76f69966c943137576d26eddfaa1a3529d98f414fbf000bb388668b51a06f5",
+          "peruvian-lomo-saltado-640.webp": "27a9662334f633883a8161b8954c02cdd438bcd0901b825d5eb46dd02b9b7e74"
+        },
+        "K": "FAIL - crosshatch/diamond-scored beef surface (not an even wok sear); visible tomato seeds/gel in seeded-tomato recipe",
+        "L1": "PASS",
+        "L2": "PASS",
+        "r1_items": {
+          "grill-mark stripes": "replaced by a crosshatch lattice: same defect class, still FAIL",
+          "fries folded in": "FIXED",
+          "tomato seeds": "still visible (right-front wedge)"
+        }
+      },
+      "dietary_eligibility": "Meat true (beef); poultry/finfish/shellfish/dairy false; dairy_free unconditional; nut_policy none.",
+      "allergens": "meat, soy, wheat. Correct.",
+      "allergen_runtime_gaps": {
+        "package_tokens": [
+          "meat",
+          "soy",
+          "wheat"
+        ],
+        "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+          "soy",
+          "wheat"
+        ],
+        "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS (dairy, nuts, cashew, walnut, peanut, almond, pecan, hazelnut, pistachio, macadamia, pine_nut, shellfish, finfish, poultry, meat)",
+        "documented_in_runtime_enum_gaps": true
+      },
+      "hh001": "Not intended; claimed false; correct (beef).",
+      "classification": {
+        "effort_level": "involved",
+        "ingredient_complexity": "adventurous",
+        "gate_A_enums": "valid",
+        "gate_J_plausibility": "involved (7) / adventurous (4). Plan moderate -> involved accepted (borderline, rubric-faithful); adventurous accepted on ají amarillo sourcing, not culture.",
+        "legacy_fields_authored": false,
+        "factor_key": "pantry_familiarity (canonical)"
+      },
+      "fails_needing_revision": [
+        "K",
+        "O"
+      ],
+      "required_fixes": [
+        {
+          "gate": "K/O",
+          "step": 1,
+          "action": "Retire the current hero without reusing active names: python3 batch-a-tools/render_batch_a.py --retire peruvian-lomo-saltado --as attempt3-beef-crosshatch-scored-tomato-seeds  (-> rejected/attempt3-beef-crosshatch-scored-tomato-seeds.jpg)"
+        },
+        {
+          "gate": "K/O",
+          "step": 2,
+          "file": "wave-12/batch-a-tools/recipes_part4.py",
+          "line": 115,
+          "current": "A generous heap of bite-size beef sirloin strips pan-seared in a smoking-hot wok, with an even deep-brown seared crust and no grill marks or char stripes (juicy, pink just visible inside a cut edge), tossed with charred red onion wedges that are still crisp and juicy red tomato wedges holding their shape with the seeds scooped out, ",
+          "required": "A generous heap of bite-size strips of sliced whole-muscle beef sirloin (smooth meat, no ground-meat texture) pan-seared in a smoking-hot wok, each with a smooth, naturally uneven deep-brown caramelized sear and no scoring, crosshatch, diamond pattern, grill marks or char stripes (juicy, pink just visible inside a cut edge), tossed with charred red onion wedges that are still crisp and juicy red Roma tomato wedges holding their shape, seeds and seed gel fully scooped out so only smooth firm red flesh shows, ",
+          "unchanged": "the rest of line 115 (sauce, cilantro, fries about a third folded in, rice dome)"
+        },
+        {
+          "gate": "K/O",
+          "step": 3,
+          "file": "wave-12/batch-a-tools/recipes_part4.py",
+          "line": 117,
+          "current": "Keep the whole plate within the central 75% of the frame width so it survives a 4:3 center crop. ",
+          "required": "Keep the plate slightly smaller and centred, with the whole plate rim within the central 75% of the frame width so it survives a 4:3 center crop. ",
+          "why": "Records Cora's 'smaller centred plate' addition in the canonical prompt."
+        },
+        {
+          "gate": "K/O",
+          "step": 4,
+          "file": "wave-12/batch-a-tools/recipes_part4.py",
+          "line": 118,
+          "current": "No grill marks, no char stripes, no sliced grilled steak, no tomato seeds, no fried egg, ...",
+          "required": "No crosshatch or diamond scoring on the beef, no grill marks, no char stripes, no sliced grilled steak, no ground-meat texture, no tomato seeds or seed gel, no fried egg, ... (rest unchanged)"
+        },
+        {
+          "gate": "K",
+          "step": 5,
+          "file": "wave-12/batch-a-tools/recipes_part4.py",
+          "line": 119,
+          "field": "regen_levers (append)",
+          "required": [
+            "Crosshatch/diamond scoring or grill-like lattice on the beef -> 'smooth, naturally uneven deep-brown caramelized sear, no scoring, crosshatch or diamond pattern' and lead the negatives with 'no crosshatch or diamond scoring on the beef'",
+            "Tomato seeds or gel visible -> 'seeds and seed gel fully scooped out so only smooth firm red flesh shows' (or show wedges skin-side up)"
+          ]
+        },
+        {
+          "gate": "O",
+          "step": 6,
+          "action": "Re-render the package (render_batch_a.py --render-pending, or the slug render path) BEFORE generating, so image-prompt.md 'Exact prompt' equals the new lines 114-118. Generate with GenerateImage using that block verbatim. If any wording changes between attempts, edit recipes_part4.py and re-render first, so image-prompt.md always holds the exact prompt of the active image. No ad-hoc additions at generation time."
+        },
+        {
+          "gate": "O",
+          "step": 7,
+          "file": "wave-12/candidates/peruvian-lomo-saltado/rejected/REJECTIONS.md",
+          "current": "absent",
+          "required": "One line per retired hero: 'attempt1 (freeze-r1, 2026-10-08 16:59 CT): Vale r1 K - beef grill-mark stripes; fries not folded in - attempt1-beef-grill-marks-fries-not-folded.jpg'; 'attempt2 (2026-10-08 CT, discarded by Cora before finalize): tomato seeds visible; plate clipped by 4:3 crop - attempt2-tomato-seeds-plate-clipped-by-crop.jpg'; 'attempt3 (freeze-r2, 2026-10-08 17:11 CT): Vale r2 K - crosshatch/diamond-scored beef surface; seeded tomato shows seeds/gel. Prompt = image-prompt.md freeze-r2 text plus Cora's three ad-hoc additions (smaller centred plate; whole-muscle sirloin, no ground-meat texture; seeded-out tomato wedges); exact text not recorded - attempt3-beef-crosshatch-scored-tomato-seeds.jpg'. Set image.rejected_assets_note to point at it.",
+          "note": "This logs the attempt3 prompt delta honestly instead of rewriting attempt3 history."
+        },
+        {
+          "gate": "O",
+          "step": 8,
+          "file": "wave-12/batch-a-tools/render_batch_a.py",
+          "field": "SLUG_REVISIONS[\"peruvian-lomo-saltado\"]",
+          "current": "package_revision freeze-r2; revision_note / prompt_revision_note / image_revision_note describe the freeze-r2 image",
+          "required": "package_revision freeze-r3 (the freeze-r2 file set was frozen, Freeze-Integrity-checked and audited, so a new hero needs a new revision). Add a freeze-r3 revision_note (image-only: r2 hero retired as attempt3 for crosshatch beef and tomato seeds; prompt now records every generation-time addition), update prompt_revision_note and image_revision_note to match. culinary_hash must stay sha256:776350ee... (no recipe change)."
+        },
+        {
+          "gate": "K/L/M/O",
+          "step": 9,
+          "action": "Export with export_meal_webps.py, then render_batch_a.py --finalize peruvian-lomo-saltado. Freeze Integrity must PASS. Vale r3 re-audits K, L1, L2, M, and O on the actual master and card."
+        }
+      ],
+      "non_blocking_notes": [
+        "Whole-muscle beef served about medium; consider adding '145F with a 3-minute rest if you prefer' as an option (not required).",
+        "Adventurous rests on a single item (ají amarillo); add ají amarillo paste to the factory specialty heuristic list as specialty_store_likely so future Peruvian meals score consistently.",
+        "No culinary_hash (see summary).",
+        "r2: candidates/BATCH-A-STATUS.md (Juniper, 17:10 CT) still shows lomo as 'freeze-r2 (pending image)' with Freeze Integrity 'not run (no active image)'. Cora's finalize at 17:11-17:12 CT superseded that. Update the row to the r2 result now, and again after r3.",
+        "r2: L2 is strong. The regeneration should change only the beef surface and the tomato flesh."
+      ],
+      "statement": "r2 re-audit (2026-10-08 CT) of freeze-r2 (image-only revision). Freeze Integrity PASS; culinary_hash verified; asset hashes verified. K FAIL: the fries are now correctly folded in, but the beef carries a crosshatch/diamond scored-or-grilled lattice instead of an even wok sear, and a front tomato wedge shows seeds although the recipe seeds the tomatoes. O FAIL: the active hero's actual prompt (Juniper text plus three Cora additions) is not recorded; image-prompt.md holds only Juniper's text, and rejected/ has no REJECTIONS.md. L1 and L2 PASS. Recipe gates are carried from r1 (PASS; recipe unchanged). Overall FAIL -> regenerate at freeze-r3 with the exact fixes in required_fixes. kitchen_tested remains false. No creator file was edited.",
+      "culinary_hash": "sha256:776350eea4adc4d9d5599890a64347bf73c6af2df34a5c3c553a32464980f724",
+      "culinary_hash_verified": true,
+      "culinary_hash_unchanged_from_r1": null,
+      "culinary_hash_note": "First hash for this package (r1 had none). The recipe content is byte-identical to freeze-r1, so the hash must not change at freeze-r3.",
+      "asset_sha256_verified": {
+        "img_v1.jpg": "6a2e56f275b6db7e588e76b467c7f653e4fed77b324fadefa822961fcf81392d",
+        "peruvian-lomo-saltado.webp": "9b76f69966c943137576d26eddfaa1a3529d98f414fbf000bb388668b51a06f5",
+        "peruvian-lomo-saltado-640.webp": "27a9662334f633883a8161b8954c02cdd438bcd0901b825d5eb46dd02b9b7e74"
+      },
+      "r2_scope": [
+        "K",
+        "L1",
+        "L2",
+        "M",
+        "O",
+        "freeze_integrity",
+        "culinary_hash",
+        "asset_sha256"
+      ],
+      "rescore": {
+        "round": "freeze-r2",
+        "prior_overall": "FAIL",
+        "prior_failed_gates": [
+          "K"
+        ],
+        "prior_audit": "history[0] in this file (r1, freeze-r1)",
+        "cleared_from_r1": [
+          "K: about a third of the fries folded into the stir-fry and glossed with sauce, the rest alongside",
+          "K: no parallel grill-mark/char stripes",
+          "r1 hero archived (byte-identical) as rejected/attempt1-beef-grill-marks-fries-not-folded.jpg; active filenames kept; package_revision freeze-r2 with revision notes; culinary_hash added"
+        ],
+        "still_failing": [
+          "K: beef surface shows crosshatch/diamond scoring (grill/scored texture, not an even wok sear)",
+          "K: tomato seeds/gel visible on front wedges (recipe seeds them)",
+          "O (new at r2): active-image prompt not recorded; no REJECTIONS.md"
+        ]
+      },
+      "round": "r2"
+    },
+    {
+      "slug": "peruvian-lomo-saltado",
+      "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+      "audit_date": "2026-10-08",
+      "audit_round": "r3",
+      "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+      "package_file": "v1.json",
+      "package_revision": "freeze-r3",
+      "recipe_version_id": "rv_peruvian-lomo-saltado_v1",
+      "freeze_integrity": "PASS (0 fails; re-run by Vale at r3 on a /tmp copy, package not mutated)",
+      "disposition": "AMEND_METADATA (no regeneration)",
+      "overall": "FAIL",
+      "failed_gates": [
+        "O"
+      ],
+      "kitchen_tested": false,
+      "packages_mutated": false,
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug = dish_id; rcp_/rv_<slug>_v1; version_number 1); package_revision freeze-r1 on root, recipe_version, and image; effort_level and ingredient_complexity present on recipe_version with valid D-03 enums; no legacy effort / effort_band / complexity keys anywhere in v1.json. d03-classification.json labels match v1.json. involved/adventurous."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All 15 ingredients referenced; soy 2 tbsp marinade + 2 tbsp sauce; oil 1 + 1 + 1 tbsp; garlic 2 + 3; salt 3/4 rice + to taste."
+        },
+        "C": {
+          "result": "PASS",
+          "defect": null,
+          "note": "1.5 lb sirloin in two batches in a 12-inch pan; 1.5 lb frozen fries single layer on one sheet; 2 tbsp ají amarillo. Scaling sound."
+        },
+        "D": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Smoking-hot batch sear, quick toss, sauce reduced 20 s, fries folded at the end. Whole-muscle sirloin served 'about medium' (pink inside) — accepted for whole-muscle beef (surface seared; not ground). Non-blocking note: consider stating ~145F + rest as an option."
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Prep 15 (4+11) + cook 25 (13+6+2+2+2) = 40; oven preheat overlaps prep; fries (22–25 min) and rice (~19 min) finish with the stir-fry."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Ají amarillo paste contracted plain (not huancaína); frozen fries contracted plain (not battered/seasoned)."
+        },
+        "G": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Dietary: meat true; poultry/finfish/shellfish/dairy false; dairy_free unconditional; no oyster sauce. Allergens meat, soy, wheat — correct."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null,
+          "note": "stir-fries, savory, tangy, umami, crispy — all active D-02 slugs."
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Distinct from Ethiopian Beef Tibs and Gochujang Grilled Flank Steak."
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Culinary promise matches the method. Plan moderate -> rubric involved (7) ACCEPTED as borderline-correct: continuous high-heat batch stir-fry (2), three converging components (stir-fry, oven fries, rice) (2), timed oven/pot/skillet coordination (1); under the batch's own set-and-forget convention (coordination 0) it is still 6 -> involved. Adventurous (4) ACCEPTED: ají amarillo paste is a single specialty-store-likely, no-substitute item (2), parity with Thai basil / Scotch bonnet precedents; count 1, breadth 1. Driven by sourcing, not Peruvian cuisine — no cultural-bias fail."
+        },
+        "K": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r3": true,
+          "note": "Inspected the 1200x900 master, the 640 card, the full 1280x720 img_v1.jpg, and 3-4x crops (beef, upper and front red pieces, fries junction). Cleared from r2: no crosshatch, diamond, scoring, grill marks, or char stripes on any beef strip; no tomato seeds or gel visible (wedges skin side up, and the two front wedges show smooth flesh at the cut edge). Present: bite-size whole-muscle beef strips with glossy dark soy-sauce coating; red onion petals with some edge colour; red tomato wedges holding shape; cilantro; thin amber pan juices pooling at front left; neat domed white rice on the left; golden straight-cut fries, with several tucked into and under the stir-fry at the junction and the rest piled alongside. That meets the brief's 'some folded in and some alongside', though fewer than the prompt's 'about a third'. Nothing from the Forbidden list: no egg, huancaína, green pepper, broccoli, sesame, scallion, lime, ketchup/mayo, chips, chopsticks, or heavy steam. Reads as lomo saltado (stir-fry + fries + rice), not steak frites. Non-blocking fidelity notes: (a) the brief's 'pink interior visible on a cut edge or two' is not shown. The strips are fully sauce-coated, but nothing contradicts the recipe's 'browned outside, still pink inside'. (b) The coating is darker and more lacquered than a 20-second soy-vinegar-ají amarillo reduction would usually give, because the prompt says 'like teriyaki beef'. It is still a plausible glossy soy coat, with thin pan juices on the plate, not a thick gravy. (c) Skin-side-up wedges at the back of the pile could be read as red bell pepper strips; the front wedges read clearly as tomato."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2 (r3). K is reported separately."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r3": true,
+          "note": "Master 1200x900 and card 640x480 WebP verified. image.sha256 (img_v1.jpg d81b4325…, master 8c086ddb…, card 16fae237…) matches the files on disk. Both WebPs reproduce a 4:3 center crop + LANCZOS of img_v1.jpg (mean abs diff 1.7 and 2.4 out of 255, i.e. WebP loss only). The whole plate rim is inside master and card (plate about 66% of source width; prompt asked for the central 60%). Cilantro sprigs at the top right are recipe-listed environmental styling. No text, logo, watermark, packaging, hands, or faces. One active set. rejected/ holds attempts 1-4, none under an active filename."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r3": true,
+          "note": "Bright soft light; clean off-white plate on light stone; glossy, juicy-looking beef; strong red/purple/gold/white/green contrast; abundant, intentional plating; very legible and appetizing at card size. Parity with the house reference."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "rescored_r3": true,
+          "note": "Generation method, date 2026-10-08, generator Cora, and model 'unknown' are present; rights not_cleared_for_external_release; original AI image. The image-prompt.md exact-prompt block is identical to RECIPES['peruvian-lomo-saltado']['prompt'] in recipes_part4.py, and the levers are identical too (checked programmatically). The block's content matches the active image (thin sauce-lacquered strips, tomatoes skin side up, centred plate, cilantro sprigs at one edge). Vale cannot see the GenerateImage call itself. Cora's statement that she generated from the block verbatim is consistent with the image and with the file order (prompt re-render before finalize). The plating brief is byte-identical to r1/r2."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Ají amarillo shopping note gives Latin aisle / Latin market / online; fries contract buyable."
+        },
+        "O": {
+          "result": "FAIL",
+          "rescored_r3": true,
+          "defect": "The revision metadata describes the superseded first freeze-r3 prompt (the one that produced attempt4), not the active hero, and makes claims about the image that are false. Specifically: (1) v1.json image.generation.revision_note says the Roma tomato wedges 'show only smooth seeded-out flesh', but the active hero shows them skin side up. It also says 'Attempts 1-3 are in rejected/', but there are 4. (2) image-prompt.md line 5 'Revision (freeze-r3)' describes the first freeze-r3 prompt ('smooth, naturally uneven deep-brown caramelized sear… seeds and seed gel fully scooped out… rim inside the central 75%… negatives lead with no crosshatch'). The exact block below it is the revised prompt (teriyaki-like lacquered strips, skin side up, central 60%, negatives lead with 'No grill marks, no steak'). (3) The v1.json root revision_note and the README revision note say 'rejected/REJECTIONS.md logs attempts 1-3' and never mention attempt4 or the prompt rewrite. (4) image.rejected_assets_note lists only attempts 1-3, while image.rejected_assets lists 4. (5) The rejected/REJECTIONS.md attempt4 entry does not follow the file's one-line 'attemptN (…): reason - file' format. It says attempt4 was generated 'verbatim from the freeze-r3 exact prompt', but that text was overwritten by the re-render and is not preserved or pointed to anywhere. Source of (1)-(4): render_batch_a.py SLUG_REVISIONS['peruvian-lomo-saltado'] (lines 66-92).",
+          "note": "Otherwise sound: version_number 1; package_revision freeze-r3 on root, recipe_version, image, README, image-prompt.md, and d03 sidecar. culinary_hash sha256:776350eea4adc4d9d5599890a64347bf73c6af2df34a5c3c553a32464980f724 recomputed and matches (unchanged since r2). Every culinary field, effort_level, and ingredient_complexity is identical to the r2 snapshot. attempt3 is byte-identical to the r2 active hero (sha 6a2e56f2…); attempt1 is the r1 hero (eec4dbda…). The attempt4 rejection reason was verified visually: grill-striped beef, seeded tomato wedges, and a wide plate."
+        }
+      },
+      "image_review": {
+        "files_inspected": [
+          "peruvian-lomo-saltado.webp (1200x900)",
+          "peruvian-lomo-saltado-640.webp (640x480)",
+          "img_v1.jpg full + 3-4x crops",
+          "rejected/attempt4-beef-scored-tomato-seeds-plate-too-wide.jpg"
+        ],
+        "asset_sha256": {
+          "img_v1.jpg": "d81b4325582d682d9479beae298c3a84f4f3647c55d6b8fc71749472f6f5e57a",
+          "peruvian-lomo-saltado.webp": "8c086ddb66be58207a21b19cefe58751951e32764e4c5846b0593ae4e3f1ec13",
+          "peruvian-lomo-saltado-640.webp": "16fae2377d8eb123139510cb8986258c7eb7828bbd04ae03b2f2ab9ebf5a4a01"
+        },
+        "rejected_sha256": {
+          "attempt1-beef-grill-marks-fries-not-folded.jpg": "eec4dbdaa82c431afca2cb07fd3d44770ecd4de5f973f6ade1ee73527363aee5",
+          "attempt2-tomato-seeds-plate-clipped-by-crop.jpg": "b48d9589998ade382866ad0c6ddb9bfafbf3231c9c3146d37be4db499b830e6b",
+          "attempt3-beef-crosshatch-scored-tomato-seeds.jpg": "6a2e56f275b6db7e588e76b467c7f653e4fed77b324fadefa822961fcf81392d",
+          "attempt4-beef-scored-tomato-seeds-plate-too-wide.jpg": "307d6249b5626131a526b8c84b793cde2d18fc286b7779f6f4cd7f87520f5ccd"
+        },
+        "K": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "prompt_block_matches_source": true,
+        "r2_items": {
+          "crosshatch/scored beef": "FIXED",
+          "tomato seeds/gel": "FIXED (skin side up)",
+          "fries folded in": "still met (some folded in, rest alongside)"
+        }
+      },
+      "dietary_eligibility": "Meat true (beef); poultry/finfish/shellfish/dairy false; dairy_free unconditional; nut_policy none.",
+      "allergens": "meat, soy, wheat. Correct.",
+      "allergen_runtime_gaps": {
+        "package_tokens": [
+          "meat",
+          "soy",
+          "wheat"
+        ],
+        "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+          "soy",
+          "wheat"
+        ],
+        "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS (dairy, nuts, cashew, walnut, peanut, almond, pecan, hazelnut, pistachio, macadamia, pine_nut, shellfish, finfish, poultry, meat)",
+        "documented_in_runtime_enum_gaps": true
+      },
+      "hh001": "Not intended; claimed false; correct (beef).",
+      "classification": {
+        "effort_level": "involved",
+        "ingredient_complexity": "adventurous",
+        "gate_A_enums": "valid",
+        "gate_J_plausibility": "involved (7) / adventurous (4). Plan moderate -> involved accepted (borderline, rubric-faithful); adventurous accepted on ají amarillo sourcing, not culture.",
+        "legacy_fields_authored": false,
+        "factor_key": "pantry_familiarity (canonical)"
+      },
+      "fails_needing_revision": [
+        "O"
+      ],
+      "required_fixes": [
+        {
+          "gate": "O",
+          "step": 1,
+          "file": "wave-12/batch-a-tools/render_batch_a.py SLUG_REVISIONS[\"peruvian-lomo-saltado\"]",
+          "field": "package_revision",
+          "current": "freeze-r3",
+          "required": "freeze-r4",
+          "why": "The freeze-r3 file set was frozen and audited, so any metadata change needs a new revision (same rule as the burgers r2 text amendment)."
+        },
+        {
+          "gate": "O",
+          "step": 2,
+          "file": "wave-12/batch-a-tools/render_batch_a.py SLUG_REVISIONS[\"peruvian-lomo-saltado\"]",
+          "field": "revision_note",
+          "current": "freeze-r3 (2026-10-08 CT) is an image-only revision for Vale r2 gates K and O; … rejected/REJECTIONS.md logs attempts 1-3; …",
+          "required": "freeze-r4 (2026-10-08 CT) is a metadata-only revision for Vale r3 gate O: revision notes now describe the prompt that actually produced the active hero. img_v1.jpg and both WebPs are byte-identical to freeze-r3 (sha256 d81b4325…, 8c086ddb…, 16fae237…); recipe, version_number 1, D-03 classification, plating brief and culinary_hash are unchanged. Hero history: freeze-r1 hero retired as attempt1 (Vale r1 K: grill marks, fries not folded); attempt2 discarded by Cora before finalize (tomato seeds, plate clipped by crop); freeze-r2 hero retired as attempt3 (Vale r2 K: crosshatch-scored beef, tomato seeds; exact prompt not recorded); attempt4 generated verbatim from the first freeze-r3 prompt and discarded by Cora before finalize (scored/striped beef, tomato seeds, plate too wide); the active hero was generated verbatim from the revised freeze-r3 prompt (thin irregular sauce-lacquered beef strips, tomato wedges skin side up, plate in the central 60% of the frame width). rejected/REJECTIONS.md logs attempts 1-4."
+        },
+        {
+          "gate": "O",
+          "step": 3,
+          "file": "wave-12/batch-a-tools/render_batch_a.py SLUG_REVISIONS[\"peruvian-lomo-saltado\"]",
+          "field": "prompt_revision_note (renders image-prompt.md line 5)",
+          "current": "freeze-r3 prompt for Vale r2 K/O, re-rendered before generation: whole-muscle sirloin strips with a smooth, naturally uneven deep-brown caramelized sear … rim inside the central 75%; negatives lead with no crosshatch or diamond scoring. …",
+          "required": "Revised freeze-r3 prompt (after attempt4), re-rendered before the active generation: the beef is described positively as thin, irregular, bite-size stir-fried strips lacquered in a glossy dark soy-vinegar pan sauce with smooth sauce-coated surfaces (lattice-priming words removed); tomato wedges lie skin side up; the plate is medium, round and centred in the central 60% of the frame width; negatives lead with no grill marks, no steak, no tomato seeds. This block is the exact text pasted into GenerateImage for the active hero; any change goes into recipes_part4.py and is re-rendered first (no ad-hoc additions). The first freeze-r3 prompt (attempt4) is superseded; retired heroes are logged in rejected/REJECTIONS.md."
+        },
+        {
+          "gate": "O",
+          "step": 4,
+          "file": "wave-12/batch-a-tools/render_batch_a.py SLUG_REVISIONS[\"peruvian-lomo-saltado\"]",
+          "field": "image_revision_note (renders v1.json image.generation.revision_note and the README image note)",
+          "current": "freeze-r3 regenerates the hero … and the Roma tomato wedges show only smooth seeded-out flesh; … Attempts 1-3 are in rejected/ …",
+          "required": "The active hero was generated verbatim from the revised freeze-r3 exact-prompt block: glossy, sauce-lacquered beef strips with no scoring, crosshatch or grill marks; tomato wedges skin side up with no seeds visible; fries partly folded into the stir-fry and partly alongside; domed white rice; plate centred. Attempts 1-4 are in rejected/ and logged in rejected/REJECTIONS.md."
+        },
+        {
+          "gate": "O",
+          "step": 5,
+          "file": "wave-12/batch-a-tools/render_batch_a.py SLUG_REVISIONS[\"peruvian-lomo-saltado\"]",
+          "field": "rejected_assets_note",
+          "current": "Retired heroes (attempt1 freeze-r1, attempt2 discarded before finalize, attempt3 freeze-r2) live only under rejected/; …",
+          "required": "Retired heroes (attempt1 freeze-r1; attempt2 discarded before finalize; attempt3 freeze-r2; attempt4 from the first freeze-r3 prompt, discarded before finalize) live only under rejected/; reasons and prompt provenance are logged in rejected/REJECTIONS.md."
+        },
+        {
+          "gate": "O",
+          "step": 6,
+          "file": "wave-12/candidates/peruvian-lomo-saltado/rejected/REJECTIONS.md",
+          "field": "attempt4 entry (last bullet) and the blank line before it",
+          "current": "- attempt4-beef-scored-tomato-seeds-plate-too-wide.jpg (2026-10-08 ~17:16 CT, Cora pre-screen, never finalized): generated verbatim from the freeze-r3 exact prompt; …",
+          "required": "- attempt4 (first freeze-r3 prompt, 2026-10-08 ~17:16 CT, discarded by Cora before finalize): scored/striped beef; tomato seeds visible; plate wider than the central 75% - attempt4-beef-scored-tomato-seeds-plate-too-wide.jpg. Prompt = the first freeze-r3 image-prompt.md exact block (the freeze-r2 prompt with Vale r2 required_fixes steps 2-4 applied); that block was overwritten when the prompt was rewritten, so paste its full text here if Cora still has it, otherwise state 'exact text not preserved; equivalent to Vale r2 required_fixes steps 2-4'. Prompt then rewritten in recipes_part4.py (positive beef description, tomatoes skin side up, plate in the central 60%) and image-prompt.md re-rendered before the active generation.",
+          "note": "Remove the blank line so all four entries form one list."
+        },
+        {
+          "gate": "O",
+          "step": 7,
+          "action": "Re-render ONLY this slug, with the image unchanged: python3 batch-a-tools/render_batch_a.py --finalize peruvian-lomo-saltado --generation-date 2026-10-08 --model unknown. Do NOT run --render-pending (it resets every Batch A package). Do NOT change the shared GenerateImage call-notes template (render_batch_a.py line 566, 'central 75%'), because that would change the image-prompt.md of the 8 certified packages. Then run freeze_integrity.py (must PASS) and --check. Confirm img_v1.jpg/WebP sha256 and culinary_hash are unchanged."
+        },
+        {
+          "gate": "O",
+          "step": 8,
+          "action": "Vale r4 re-checks O and confirms the image bytes and culinary_hash are unchanged. K, L1, L2, and M carry from r3 if the image bytes are identical."
+        }
+      ],
+      "non_blocking_notes": [
+        "Whole-muscle beef served about medium; consider adding '145F with a 3-minute rest if you prefer' as an option (not required).",
+        "Adventurous rests on a single item (ají amarillo); add ají amarillo paste to the factory specialty heuristic list as specialty_store_likely so future Peruvian meals score consistently.",
+        "No culinary_hash (see summary).",
+        "r2: candidates/BATCH-A-STATUS.md (Juniper, 17:10 CT) still shows lomo as 'freeze-r2 (pending image)' with Freeze Integrity 'not run (no active image)'. Cora's finalize at 17:11-17:12 CT superseded that. Update the row to the r2 result now, and again after r3.",
+        "r2: L2 is strong. The regeneration should change only the beef surface and the tomato flesh.",
+        "r3: the active prompt departs from the plating brief, which was not updated: 'like teriyaki beef' and 'dark mahogany' vs the brief's 'light glossy amber pan sauce'; 'thin' strips vs the recipe's 1/2-inch-thick strips; 'medium round plate' vs 'wide dinner plate'; the brief-required 'pink interior visible on a cut edge or two' was dropped; 'no steak' was added. The image still passes K. Before any future regeneration or v2, re-derive the prompt from recipe + brief (meal-image spec §17), or have Juniper amend the brief deliberately.",
+        "r3: the GenerateImage call-notes line in image-prompt.md still says 'central 75%' (shared template). It is harmless; do not edit the shared template (see required_fixes step 7).",
+        "r3 process: render_batch_a.py --render-pending re-rendered all 8 other Batch A packages to a pending, no-provenance state. Add a guard so --render-pending skips any slug with an active img_v1.jpg, or requires an explicit slug list."
+      ],
+      "statement": "r3 re-audit (2026-10-08 CT) of freeze-r3 (image-only revision). Freeze Integrity PASS; culinary_hash unchanged and verified; asset sha256 verified; the image-prompt.md exact block equals the source prompt. K PASS: no scored or striped beef, no tomato seeds, fries partly folded in, plate fully inside the crop. L1 and L2 PASS. M PASS. O FAIL: the revision notes (v1.json root and image.generation, README, image-prompt.md line 5, rejected_assets_note) describe the superseded first freeze-r3 prompt, make false claims about the image (seeded-out flesh shown, 3 attempts), and the REJECTIONS.md attempt4 entry is non-conforming and points to no prompt record. Fix is metadata-only at freeze-r4 with no regeneration; K, L1, L2, and M carry over if the image bytes are unchanged. kitchen_tested remains false. No creator file was edited.",
+      "culinary_hash": "sha256:776350eea4adc4d9d5599890a64347bf73c6af2df34a5c3c553a32464980f724",
+      "culinary_hash_verified": true,
+      "culinary_hash_note": "First hash for this package (r1 had none). The recipe content is byte-identical to freeze-r1, so the hash must not change at freeze-r3.",
+      "asset_sha256_verified": {
+        "img_v1.jpg": "d81b4325582d682d9479beae298c3a84f4f3647c55d6b8fc71749472f6f5e57a",
+        "peruvian-lomo-saltado.webp": "8c086ddb66be58207a21b19cefe58751951e32764e4c5846b0593ae4e3f1ec13",
+        "peruvian-lomo-saltado-640.webp": "16fae2377d8eb123139510cb8986258c7eb7828bbd04ae03b2f2ab9ebf5a4a01"
+      },
+      "rescore": {
+        "round": "freeze-r3",
+        "prior_overall": "FAIL",
+        "prior_failed_gates": [
+          "K",
+          "O"
+        ],
+        "prior_audit": "history[1] in this file (r2, freeze-r2); history[0] is r1",
+        "cleared_from_r2": [
+          "K: crosshatch/diamond-scored beef gone",
+          "K: tomato seeds/gel gone (wedges skin side up)",
+          "O (r2): canonical prompt now equals the active generation prompt; REJECTIONS.md created; attempt3 retired byte-identical"
+        ],
+        "still_failing": [
+          "O (new at r3): revision notes describe the superseded first freeze-r3 prompt and misstate the image; rejected_assets_note omits attempt4; REJECTIONS.md attempt4 entry non-conforming, with no prompt record"
+        ]
+      },
+      "culinary_hash_unchanged_from_r2": true,
+      "r3_scope": [
+        "K",
+        "L1",
+        "L2",
+        "M",
+        "O",
+        "freeze_integrity",
+        "culinary_hash",
+        "asset_sha256",
+        "prompt_block_vs_source",
+        "REJECTIONS.md"
+      ],
+      "round": "r3"
+    }
+  ]
+}

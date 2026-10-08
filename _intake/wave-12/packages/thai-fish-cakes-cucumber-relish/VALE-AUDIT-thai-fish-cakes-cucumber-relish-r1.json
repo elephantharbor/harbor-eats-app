@@ -1,0 +1,171 @@
+{
+ "slug": "thai-fish-cakes-cucumber-relish",
+ "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+ "audit_date": "2026-10-08",
+ "audit_round": "r1",
+ "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+ "package_file": "v1.json",
+ "package_revision": "freeze-r1",
+ "recipe_version_id": "rv_thai-fish-cakes-cucumber-relish_v1",
+ "freeze_integrity": "PASS",
+ "disposition": "REGENERATE_IMAGE_AND_CLASSIFICATION_AMENDMENT",
+ "overall": "FAIL",
+ "failed_gates": [
+  "J",
+  "K",
+  "L"
+ ],
+ "kitchen_tested": false,
+ "packages_mutated": false,
+ "gates": {
+  "A": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Identity ids agree (slug/dish/rcp/rv/version 1); effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort / effort_band / complexity keys anywhere in v1.json (D-03 sanity PASS)."
+  },
+  "B": {
+   "result": "PASS",
+   "defect": null,
+   "note": "All ingredients referenced; curry paste, fish sauce, lime, sugar splits between paste and relish correct."
+  },
+  "C": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Processed white-fish/red-curry paste with egg, green-bean rounds, makrut optional; shaped and shallow-fried; cucumber-shallot-chile relish; jasmine rice. Correct tod mun pla build."
+  },
+  "D": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Cakes fried until cooked through, 145 F stated; oil temperature/batch cues."
+  },
+  "E": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Prep 15 + cook 28 = 43 (rice unattended from minute 0). Honest; band 30–45."
+  },
+  "F": {
+   "result": "PASS",
+   "defect": null,
+   "note": "HARD shopping rules: red curry paste with no shrimp/shrimp paste and no soy/wheat (label check in step 1); fish sauce only anchovy, salt, sugar/water (no shrimp); neutral oil not peanut oil."
+  },
+  "G": {
+   "result": "PASS",
+   "defect": null,
+   "note": "contains_finfish true; dairy false; labels dairy_free. Allergens finfish, egg — correct."
+  },
+  "H": {
+   "result": "PASS",
+   "defect": null
+  },
+  "I": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Distinct from batch B Vietnamese turmeric-dill fish."
+  },
+  "J": {
+   "result": "FAIL",
+   "defect": "effort_level 'moderate' (5) is wrong. Processing, slapping and shaping 16 cakes plus shallow-frying in batches is technique 2 under the rubric ('Shaping, deep/shallow fry batches') and the Vale D-03 spiced-lamb-meatball precedent (shaping 16 = technique 2). Floor rule 'technique 2 + (prep>=1 or components>=1) -> involved' then applies. The creator's 'lighter than meatball-plus-sauce' argument does not change the technique factor.",
+   "note": "Complexity standard 3 correct (13 countable excluding optional makrut -> band 1; curry paste + fish sauce specialty 1; paste + relish breadth 1)."
+  },
+  "K": {
+   "result": "FAIL",
+   "defect": "Broken-open cake interior is vivid salmon-pink and looks moist/raw — reads as salmon or undercooked fish, not an opaque, pale cooked white-fish paste (D-safety-adjacent misrepresentation). Green inclusions read as whole peas/edamame rather than thin green-bean rounds. Surface is pebbly and crumb-like, close to the must-not (crumb-coated) that caused the first rejection."
+  },
+  "L": {
+   "result": "FAIL",
+   "defect": null,
+   "note": "Fails via K; L1 and L2 individually pass."
+  },
+  "L1": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; image.file_hashes for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (wave-11 precedent); no text/logo/watermark/hands/faces; one active set. First attempt correctly stored in rejected/."
+  },
+  "L2": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Attractive golden cakes and relish at card size; regeneration should keep this appeal."
+  },
+  "M": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Text provenance original_ai_assisted (wave-11 value; importer maps to live ai_assisted, see runtime_enum_gaps); image.generation method/date/generator present, model honestly 'unknown'; image-plating-brief.md and image-prompt.md present with must-be-visible / must-not-appear lists; external_image_api_called false, stock_or_web_photo_used false; rights not_cleared_for_external_release. Note: the rejected first attempt is not recorded in v1.json image metadata (only rejected_dir) — add a rejected_attempts entry at regeneration (non-blocking)."
+  },
+  "N": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Shopping-id ingredients with quantity/unit/preparation separated from prep text; units are shoppable; scaling_notes present with ratio map {1:0.25, 2:0.5, 4:1}."
+  },
+  "O": {
+   "result": "PASS",
+   "defect": null,
+   "note": "version_number 1; package_revision freeze-r1 on root, recipe_version and image; classification_history has the initial Juniper entry; culinary_hash recomputed from batch_c_recipes.py and matches (excludes D-03 fields); README mirrors v1.json and correctly says 'Awaiting Vale A–O'; FREEZE_INTEGRITY.json PASS (0 fails), re-run by Vale."
+  }
+ },
+ "image_review": {
+  "K": "FAIL",
+  "L1": "PASS",
+  "L2": "PASS",
+  "L": "FAIL",
+  "files_inspected": [
+   "img_v1.jpg",
+   "thai-fish-cakes-cucumber-relish.webp",
+   "thai-fish-cakes-cucumber-relish-640.webp",
+   "rejected/ (first attempt)"
+  ],
+  "observation": "K FAIL: pink/raw-looking interior, pea/edamame-like inclusions, crumb-like surface. Regenerate."
+ },
+ "dietary_eligibility": "contains_finfish true; dairy false; nut_policy none; labels dairy_free.",
+ "allergens": "finfish, egg. Correct (curry paste soy/wheat-free by contract).",
+ "allergen_runtime_gaps": {
+  "package_tokens": [
+   "finfish",
+   "egg"
+  ],
+  "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+   "egg"
+  ],
+  "live_enum_source": "cycle2-preview/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+  "documented_in_runtime_enum_gaps": true,
+  "ruling": "Package keeps the wave-11 token; importer maps explicitly; never silently drop egg/soy/wheat/sesame/milk."
+ },
+ "hh001": "Intended eligible; claimed true. Shrimp-paste-free curry paste and shrimp-free fish sauce are explicit hard shopping rules; eggs and fish allowed; no peanuts. Correct.",
+ "classification": {
+  "effort_level": "moderate -> involved (required)",
+  "ingredient_complexity": "standard",
+  "gate_A_enums": "valid",
+  "gate_J_plausibility": "moderate 5 FAIL -> involved 6 [1,1,1,2,1] with floor; standard 3 PASS",
+  "factor_key": "pantry_familiarity (canonical)",
+  "legacy_fields_authored": false
+ },
+ "fails_needing_revision": [
+  {
+   "gate": "K",
+   "defect": "Hero image misrepresents doneness/fish (pink, moist interior), shows pea/edamame-like inclusions instead of green-bean rounds, and a crumb-like surface.",
+   "fix_type": "image regeneration (culinary text unchanged)",
+   "fix": [
+    "Move img_v1.jpg and both WebPs to rejected/ under new names (e.g. rejected/img_v1_try2.jpg); never reuse active names.",
+    "image-prompt.md 'Exact prompt' and image-plating-brief.md: add 'broken-open cake shows an opaque, matte, pale tan-coral cooked interior flecked with red curry paste — not pink, not translucent, not moist-looking; thin green-bean rings (about 1/8-inch slices showing seeds), no peas, no edamame; smooth, puffed, blistered golden surface, no crumbs or breading'. Add to Must not appear: 'Pink, salmon-colored or translucent interior', 'Peas or edamame'.",
+    "Regenerate with GenerateImage; batch_c_build.py prepare thai-fish-cakes-cucumber-relish <png>; record the try1 and try2 rejections in image metadata.",
+    "Combine with the J amendment in one freeze-r2; batch_c_build.py finalize; FREEZE_INTEGRITY PASS; Vale r2 K/L1/L2 re-check."
+   ]
+  },
+  {
+   "gate": "J",
+   "defect": "effort_level moderate (5) should be involved (6): shaping 16 cakes + batch shallow-fry = technique 2; floor forces involved.",
+   "fix_type": "classification metadata amendment (same version_number 1, classification_history entry, no culinary v2)",
+   "fix": [
+    "batch_c_recipes.py thai-fish-cakes d03.effort_factors.technique: 1 -> 2; rationale -> 'Processing and shaping 16 cakes and shallow-frying in batches is technique 2 (rubric; spiced-lamb-meatball precedent), which with prep 1 floors effort at involved. Score 6.' Also specialty_items -> ['shrimp-paste-free red curry paste', 'fish sauce (shrimp-free label)'] and drop optional makrut from the count (non-blocking).",
+    "d03-classification.json: effort_factors.technique 1 -> 2; effort_score 5 -> 6; effort_level 'moderate' -> 'involved'; effort_floors_applied [] -> ['technique_2_plus_prep_or_components_involved']. (attention 2 for pan-fry batches is also defensible -> 7; label involved either way.)",
+    "v1.json recipe_version.effort_level: 'moderate' -> 'involved'; classification_history append {\"version_number\": 1, \"who\": \"Juniper (Harbor Eats - Catalog Curator)\", \"when\": \"<amendment date>\", \"from\": {\"effort_level\": \"moderate\", \"ingredient_complexity\": \"standard\"}, \"to\": {\"effort_level\": \"involved\", \"ingredient_complexity\": \"standard\"}, \"reason\": \"Vale wave-12 batch C r1 Gate J: shaping 16 cakes + batch shallow-fry = technique 2; floor -> involved (6).\"}",
+    "v1.json curator_preflight[7].detail, README.md lines 19/36/40 and BATCH-C-STATUS.md row: 'moderate (score 5)' -> 'involved (score 6; floor technique_2_plus_prep_or_components_involved)'.",
+    "Re-render only this slug (or confirm untouched slugs stay hash-identical), set package_revision freeze-r2 on root/recipe_version/image/README, run batch_c_build.py finalize <slug>, require FREEZE_INTEGRITY PASS, then Vale r2 re-check."
+   ]
+  }
+ ],
+ "non_blocking_notes": [
+  "specialty_items should list fish sauce; makrut lime leaves are optional and should not be counted.",
+  "Reason codes not from the closed v1 set: suggest effort [steady_prep, periodic_attention, multi_component, shaping, batch_frying]; ingredient [medium_list, several_specialty, multi_build]."
+ ],
+ "statement": "Vale audited this frozen package independently against certification gates A–O with K, L1 and L2 reported separately; packages were not mutated; kitchen_tested is false. PASS is binary for publication; non-blocking notes do not condition the verdict."
+}

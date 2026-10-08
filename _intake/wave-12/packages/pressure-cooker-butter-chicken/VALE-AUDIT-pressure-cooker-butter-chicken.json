@@ -1,0 +1,308 @@
+{
+  "slug": "pressure-cooker-butter-chicken",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-08",
+  "audit_round": "r2",
+  "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r2",
+  "recipe_version_id": "rv_pressure-cooker-butter-chicken_v1",
+  "freeze_integrity": "PASS (0 fails; Vale re-ran freeze_integrity.py on a /tmp copy at r2)",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "failed_gates": [],
+  "kitchen_tested": false,
+  "packages_mutated": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. moderate/standard.",
+      "rechecked_r2": "Light r2 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 4/3 and labels moderate/standard unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null,
+      "note": "All ingredients referenced; salt 1 1/2+1/2+1/2, garam masala 1+1+1/2, butter 3+2, water 1/2+2 1/4 cups, cream 10 tbsp + 2 tbsp swirl."
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null,
+      "note": "2-serving halving keeps 1/2 cup deglaze minimum; 1 serving correctly not recommended in a 6-qt cooker."
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null,
+      "note": "High pressure 5 min + 5 NR on 1 1/2-inch thigh pieces, then 165 F check (175 F ideal); deglaze and tomato-on-top prevent burn warning."
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Prep 15 + cook 37 (8+2+20 incl. ~10 come-up+5 HP+5 NR, +5+2) = 52. Rice boil-up adds ~4 min beyond the 20-min block but is absorbed by the 5-min finish; clock holds."
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Dietary: poultry + dairy true, HH001 false; nut_policy none (no cashew paste). Allergens poultry, milk — correct."
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null,
+      "note": "moderate/standard matches plan; naan omitted honestly.",
+      "rechecked_r2": "Light r2 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 4/3 and labels moderate/standard unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Orange-red sauce with chicken thigh pieces, cream drizzle, cilantro, fluffy basmati in same bowl; no naan/nuts/paneer/bone-in/pressure cooker/copper. Cream drizzle is a zigzag rather than a loose swirl — acceptable (2 tbsp)."
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Rolled up from L1 and L2."
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir."
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Glossy sauce vs white rice contrast, clean styling; strong card."
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null,
+      "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r2": true,
+      "note": "scaling_notes['1'] now gives one instruction: make the 2-serving half batch and refrigerate the second portion up to 3 days (true single serving is still not recommended in a 6-quart cooker: minimum liquid and burn risk). ratio['1'] 0.25 -> 0.5 matches it and equals ratio['2'] 0.5, whose note keeps the 1/2 cup deglaze water at the minimum. Leftover handling is food-safe. do_not_scale unchanged. The README mirrors it."
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null,
+      "rescored_r2": true,
+      "note": "Bumped freeze-r1 -> freeze-r2 consistently: root, recipe_version, image.package_revision, d03 sidecar, catalog_contract_note, immutability_note, runtime_enum_gaps, image.provenance_note, curator_preflight[9]/[10], README (4 places) and image-prompt.md Status. No stale freeze-r1 outside history text. A root revision_note explains the change and is mirrored in README. version_number 1. culinary_hash sha256:d09a5103... recomputed by Vale -> match (unchanged; scaling_notes are not hashed). asset_sha256 3/3 match; FI PASS; classification_history []."
+    }
+  },
+  "image_review": {
+    "K": "PASS",
+    "L1": "PASS",
+    "L2": "PASS",
+    "L": "PASS",
+    "files_inspected": [
+      "img_v1.jpg",
+      "pressure-cooker-butter-chicken-640.webp"
+    ],
+    "observation": "Shallow bowl, rice on one side; all components; nothing forbidden."
+  },
+  "dietary_eligibility": "contains_poultry + dairy true; no dairy_free label; nut_policy none.",
+  "allergens": "poultry, milk. Correct; milk is a runtime enum gap.",
+  "allergen_runtime_gaps": {
+    "package_tokens": [
+      "poultry",
+      "milk"
+    ],
+    "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+      "milk"
+    ],
+    "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+    "documented_in_runtime_enum_gaps": true
+  },
+  "hh001": "Intended NOT eligible; claimed false (chicken, butter, cream). Correct.",
+  "classification": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "gate_A_enums": "valid",
+    "gate_J_plausibility": "moderate (4) / standard (3). Matches plan.",
+    "legacy_fields_authored": false
+  },
+  "fails_needing_revision": [],
+  "non_blocking_notes": [
+    "52-minute total (plan band 30–45); requires an electric pressure cooker (equipment filter)."
+  ],
+  "statement": "r2 re-check (2026-10-08 CT) of freeze-r2 (scaling-metadata touch-up): N and O PASS; A/J PASS (key rename only); culinary_hash unchanged and verified; asset_sha256 3/3; FI PASS. Other gates carried from r1. Overall PASS -> CERTIFY_V1. kitchen_tested remains false.",
+  "culinary_hash": "sha256:d09a51031647f27db91bad4f75d4971216bd8faa92d9aca24e5dd897ce5e5f55",
+  "culinary_hash_verified": true,
+  "asset_sha256_verified": {
+    "img_v1.jpg": "e662b0952e1c93979a2bc12f095f6e80d1ddc0abfa412f672ab1f6188081183d",
+    "pressure-cooker-butter-chicken.webp": "760c124e7bc24ae4ab12853a231d806353f239ad04cce9f9cecc3c13428b9bde",
+    "pressure-cooker-butter-chicken-640.webp": "65b7172fca077bb076c40d008047871f74ffa14cbe3cbf89df00d5b0be613263"
+  },
+  "r2_scope": [
+    "N",
+    "O",
+    "culinary_hash",
+    "asset_sha256",
+    "freeze_integrity",
+    "A (light)",
+    "J (light)"
+  ],
+  "rescore": {
+    "round": "r2",
+    "trigger": "Juniper cleanup 2026-10-08 ~17:16 CT (backup /workspace/backups/wave-12-juniper-r2-20261008-171303)",
+    "prior_round": "r1",
+    "prior_overall": "PASS",
+    "prior_audit": "history[0] in this file",
+    "package_changes_reviewed": [
+      "scaling_notes['1'] text and ratio['1'] 0.25 -> 0.5",
+      "package_revision freeze-r1 -> freeze-r2 + revision_note",
+      "d03 key rename"
+    ],
+    "still_failing": []
+  },
+  "history": [
+    {
+      "slug": "pressure-cooker-butter-chicken",
+      "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+      "audit_date": "2026-10-08",
+      "audit_round": "r1",
+      "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+      "package_file": "v1.json",
+      "package_revision": "freeze-r1",
+      "recipe_version_id": "rv_pressure-cooker-butter-chicken_v1",
+      "freeze_integrity": "PASS",
+      "disposition": "CERTIFY_V1",
+      "overall": "PASS",
+      "failed_gates": [],
+      "kitchen_tested": false,
+      "packages_mutated": false,
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. moderate/standard."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All ingredients referenced; salt 1 1/2+1/2+1/2, garam masala 1+1+1/2, butter 3+2, water 1/2+2 1/4 cups, cream 10 tbsp + 2 tbsp swirl."
+        },
+        "C": {
+          "result": "PASS",
+          "defect": null,
+          "note": "2-serving halving keeps 1/2 cup deglaze minimum; 1 serving correctly not recommended in a 6-qt cooker."
+        },
+        "D": {
+          "result": "PASS",
+          "defect": null,
+          "note": "High pressure 5 min + 5 NR on 1 1/2-inch thigh pieces, then 165 F check (175 F ideal); deglaze and tomato-on-top prevent burn warning."
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Prep 15 + cook 37 (8+2+20 incl. ~10 come-up+5 HP+5 NR, +5+2) = 52. Rice boil-up adds ~4 min beyond the 20-min block but is absorbed by the 5-min finish; clock holds."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null
+        },
+        "G": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Dietary: poultry + dairy true, HH001 false; nut_policy none (no cashew paste). Allergens poultry, milk — correct."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "note": "moderate/standard matches plan; naan omitted honestly."
+        },
+        "K": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Orange-red sauce with chicken thigh pieces, cream drizzle, cilantro, fluffy basmati in same bowl; no naan/nuts/paneer/bone-in/pressure cooker/copper. Cream drizzle is a zigzag rather than a loose swirl — acceptable (2 tbsp)."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Glossy sauce vs white rice contrast, clean styling; strong card."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null
+        },
+        "O": {
+          "result": "PASS",
+          "defect": null,
+          "note": "version_number 1, package_revision freeze-r1 consistently; classification_history []; culinary_hash present and excludes D-03 fields; README mirrors v1.json with no stale reserved/not-run image language; FREEZE_INTEGRITY.json PASS (0 fails)."
+        }
+      },
+      "image_review": {
+        "K": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "L": "PASS",
+        "files_inspected": [
+          "img_v1.jpg",
+          "pressure-cooker-butter-chicken-640.webp"
+        ],
+        "observation": "Shallow bowl, rice on one side; all components; nothing forbidden."
+      },
+      "dietary_eligibility": "contains_poultry + dairy true; no dairy_free label; nut_policy none.",
+      "allergens": "poultry, milk. Correct; milk is a runtime enum gap.",
+      "allergen_runtime_gaps": {
+        "package_tokens": [
+          "poultry",
+          "milk"
+        ],
+        "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+          "milk"
+        ],
+        "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+        "documented_in_runtime_enum_gaps": true
+      },
+      "hh001": "Intended NOT eligible; claimed false (chicken, butter, cream). Correct.",
+      "classification": {
+        "effort_level": "moderate",
+        "ingredient_complexity": "standard",
+        "gate_A_enums": "valid",
+        "gate_J_plausibility": "moderate (4) / standard (3). Matches plan.",
+        "legacy_fields_authored": false
+      },
+      "fails_needing_revision": [],
+      "non_blocking_notes": [
+        "52-minute total (plan band 30–45); requires an electric pressure cooker (equipment filter)."
+      ],
+      "statement": "Gate result only. Not publication, not a production release, not a cook test. Vale did not edit the package."
+    }
+  ]
+}

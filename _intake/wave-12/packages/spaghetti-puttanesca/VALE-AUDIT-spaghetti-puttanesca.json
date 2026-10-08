@@ -1,0 +1,163 @@
+{
+ "slug": "spaghetti-puttanesca",
+ "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+ "audit_date": "2026-10-08",
+ "audit_round": "r2",
+ "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+ "package_file": "v1.json",
+ "package_revision": "freeze-r2",
+ "recipe_version_id": "rv_spaghetti-puttanesca_v1",
+ "freeze_integrity": "PASS",
+ "disposition": "CERTIFY",
+ "overall": "PASS",
+ "failed_gates": [],
+ "kitchen_tested": false,
+ "packages_mutated": false,
+ "gates": {
+  "A": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "package_revision freeze-r2 on root, recipe_version, image, README, prompt/brief, sidecar; ingredient_complexity 'standard' valid D-03 enum; no legacy effort/effort_band/complexity keys. classification_history[1] (moderate/simple -> moderate/standard, same version_number 1, culinary_hash_unchanged true). FREEZE_INTEGRITY re-run by Vale on a scratch copy at r2: PASS, 0 fails."
+  },
+  "B": {
+   "result": "PASS",
+   "defect": null,
+   "note": "All 12 ingredients referenced; anchovies, garlic, olives, capers, parsley quantities split correctly across steps."
+  },
+  "C": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Pasta + anchovy-tomato sauce, 1 lb spaghetti for 4; sauce volume and pasta-water toss sensible."
+  },
+  "D": {
+   "result": "PASS",
+   "defect": null,
+   "note": "No raw-protein doneness risk (anchovies cured/cooked into the sauce); pasta al dente cue."
+  },
+  "E": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Prep 10 + cook 16 = 26; water put on at minute 0 boils ~minute 12, spaghetti in at cook minute 4 inside the simmer. Honest; band Under 30."
+  },
+  "F": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Dried spaghetti egg-free contract; anchovy fillets are fish (allowed for HH001); no butter, no cheese."
+  },
+  "G": {
+   "result": "PASS",
+   "defect": null,
+   "note": "contains_finfish true, dairy false, labels dairy_free. Allergens finfish, wheat — correct."
+  },
+  "H": {
+   "result": "PASS",
+   "defect": null,
+   "note": "All tags exist in taste-vocabulary.js."
+  },
+  "I": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Distinct from wave-11 swordfish olive-caper (pasta main vs grilled fish)."
+  },
+  "J": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "moderate 3 [1,0,1,0,1] / standard 2 [1,1,0,0] (10 countable, band 1; anchovy fillets specialty 1). Builder recompute matches the sidecar and v1. Reason codes now from the closed v1 set (steady_prep, mostly_hands_off, multi_component / medium_list, one_specialty). culinary_hash eb3e8260… unchanged; images byte-identical to r1."
+  },
+  "K": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Glossy red puttanesca-coated spaghetti, olives, capers, parsley, chili flakes; no cheese, no basil-only garnish."
+  },
+  "L": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Rolled up from L1 and L2."
+  },
+  "L1": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; image.file_hashes for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (wave-11 precedent); no text/logo/watermark/hands/faces; one active set."
+  },
+  "L2": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Appetizing glossy twirl, strong red/green contrast; reads at card size."
+  },
+  "M": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Text provenance original_ai_assisted (wave-11 value; importer maps to live ai_assisted, see runtime_enum_gaps); image.generation method/date/generator present, model honestly 'unknown'; image-plating-brief.md and image-prompt.md present with must-be-visible / must-not-appear lists; external_image_api_called false, stock_or_web_photo_used false; rights not_cleared_for_external_release."
+  },
+  "N": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Shopping-id ingredients with quantity/unit/preparation separated from prep text; units are shoppable; scaling_notes present with ratio map {1:0.25, 2:0.5, 4:1}."
+  },
+  "O": {
+   "result": "PASS",
+   "defect": null,
+   "note": "version_number 1; package_revision freeze-r1 on root, recipe_version and image; classification_history has the initial Juniper entry; culinary_hash recomputed from batch_c_recipes.py and matches (excludes D-03 fields); README mirrors v1.json and correctly says 'Awaiting Vale A–O'; FREEZE_INTEGRITY.json PASS (0 fails), re-run by Vale."
+  }
+ },
+ "image_review": {
+  "K": "PASS",
+  "L1": "PASS",
+  "L2": "PASS",
+  "L": "PASS",
+  "files_inspected": [
+   "img_v1.jpg",
+   "spaghetti-puttanesca.webp",
+   "spaghetti-puttanesca-640.webp"
+  ],
+  "observation": "Matches recipe. Notes: olives shown as halves rather than chopped; garlic slices a little large. No regeneration required."
+ },
+ "dietary_eligibility": "contains_finfish true; dairy false; nut_policy none; labels dairy_free.",
+ "allergens": "finfish, wheat. Correct.",
+ "allergen_runtime_gaps": {
+  "package_tokens": [
+   "finfish",
+   "wheat"
+  ],
+  "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+   "wheat"
+  ],
+  "live_enum_source": "cycle2-preview/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+  "documented_in_runtime_enum_gaps": true,
+  "ruling": "Package keeps the wave-11 token; importer maps explicitly; never silently drop egg/soy/wheat/sesame/milk."
+ },
+ "hh001": "Intended eligible; claimed true. Anchovies are fish (allowed); egg-free dried pasta; no dairy/shellfish/meat/poultry/nuts. Correct.",
+ "classification": {
+  "effort_level": "moderate",
+  "ingredient_complexity": "standard",
+  "gate_A_enums": "valid",
+  "gate_J_plausibility": "moderate 3 [1,0,1,0,1] / standard 2 [1,1,0,0] (10 countable, band 1; anchovy fillets specialty 1). Builder recompute matches the sidecar and v1. Reason codes now from the closed v1 set (steady_prep, mostly_hands_off, multi_component / medium_list, one_specialty). culinary_hash eb3e8260… unchanged; images byte-identical to r1.",
+  "factor_key": "pantry_familiarity (canonical)",
+  "legacy_fields_authored": false
+ },
+ "fails_needing_revision": [],
+ "non_blocking_notes": [
+  "Image notes from r1 (olive halves, large garlic slices) remain non-blocking.",
+  "Reason codes are not from the closed v1 set (FACTORY-SKILL-AMENDMENT.md is a draft): suggest effort [steady_prep, mostly_hands_off, multi_component]; ingredient [medium_list, one_specialty]."
+ ],
+ "statement": "Vale r2 re-audit of the revised package; packages were not mutated; kitchen_tested is false. PASS is binary for publication; non-blocking notes do not condition the verdict.",
+ "r2_rescored_gates": [
+  "A",
+  "J"
+ ],
+ "r2_scope_note": "Gates not listed in r2_rescored_gates carry forward from r1 (files unchanged for those gates or out of the requested re-audit scope).",
+ "history": [
+  {
+   "audit_round": "r1",
+   "file": "VALE-AUDIT-spaghetti-puttanesca-r1.json",
+   "package_revision": "freeze-r1",
+   "overall": "FAIL",
+   "failed_gates": [
+    "J"
+   ],
+   "disposition": "CLASSIFICATION_METADATA_AMENDMENT_NO_CULINARY_CHANGE_NO_IMAGE_REGEN"
+  }
+ ]
+}

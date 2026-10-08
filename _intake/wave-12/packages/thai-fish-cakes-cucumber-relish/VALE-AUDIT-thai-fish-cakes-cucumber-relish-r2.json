@@ -1,0 +1,192 @@
+{
+ "slug": "thai-fish-cakes-cucumber-relish",
+ "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+ "audit_date": "2026-10-08",
+ "audit_round": "r2",
+ "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+ "package_file": "v1.json",
+ "package_revision": "freeze-r2",
+ "recipe_version_id": "rv_thai-fish-cakes-cucumber-relish_v1",
+ "freeze_integrity": "PASS",
+ "disposition": "REVISE_RECORDS_ONLY_NO_IMAGE_REGEN",
+ "overall": "FAIL",
+ "failed_gates": [
+  "O"
+ ],
+ "kitchen_tested": false,
+ "packages_mutated": false,
+ "gates": {
+  "A": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "freeze-r2 on root/recipe_version/image/README/prompt/brief/sidecar; effort_level 'involved' valid; no legacy keys; classification_history[1] moderate/standard -> involved/standard. FREEZE_INTEGRITY re-run by Vale on a scratch copy at r2: PASS, 0 fails."
+  },
+  "B": {
+   "result": "PASS",
+   "defect": null,
+   "note": "All ingredients referenced; curry paste, fish sauce, lime, sugar splits between paste and relish correct."
+  },
+  "C": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Processed white-fish/red-curry paste with egg, green-bean rounds, makrut optional; shaped and shallow-fried; cucumber-shallot-chile relish; jasmine rice. Correct tod mun pla build."
+  },
+  "D": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Cakes fried until cooked through, 145 F stated; oil temperature/batch cues."
+  },
+  "E": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Prep 15 + cook 28 = 43 (rice unattended from minute 0). Honest; band 30–45."
+  },
+  "F": {
+   "result": "PASS",
+   "defect": null,
+   "note": "HARD shopping rules: red curry paste with no shrimp/shrimp paste and no soy/wheat (label check in step 1); fish sauce only anchovy, salt, sugar/water (no shrimp); neutral oil not peanut oil."
+  },
+  "G": {
+   "result": "PASS",
+   "defect": null,
+   "note": "contains_finfish true; dairy false; labels dairy_free. Allergens finfish, egg — correct."
+  },
+  "H": {
+   "result": "PASS",
+   "defect": null
+  },
+  "I": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Distinct from batch B Vietnamese turmeric-dill fish."
+  },
+  "J": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "involved 6 [1,1,1,2,1] with floor technique_2_plus_prep_or_components_involved / standard 3 [1,1,1,0] (13 countable excluding optional makrut; curry paste + fish sauce specialty 1; paste + relish breadth 1). Builder recompute matches. Reason codes closed-set."
+  },
+  "K": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "New hero (master + card inspected, cut cakes zoomed): the cut interior is opaque, matte, pale tan with tiny curry flecks — cooked white-fish paste, not pink, salmon or translucent (Cora's tan wording is the right call: 3 tbsp red curry paste in the paste and the description says 'curry-red'). Thin green-bean rings with visible seeds on the surfaces and in the interior; no peas or edamame. The surface is a glossy reddish-golden pan-fried skin, not crumbed or breaded (clearly better than attempt3). Cucumber quarter-moons, purple shallot and red chile in brine; jasmine rice; cilantro; lime wedge. 6 cakes (5 whole + 1 halved) per the brief's 5-6. No peanuts, sweet chili sauce, shellfish, lettuce or noodles."
+  },
+  "L": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "Rolled up from L1 and L2."
+  },
+  "L1": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; image.file_hashes and asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3; no text/logo/watermark/hands/faces; one active set; superseded files only under rejected/. Creator flag ruled: the 16:9 source center-crop clips the relish bowl's left rim (~5% of the bowl) and the plate rims in master and card; the relish contents remain fully legible and the hero cakes are uncropped. Same treatment as batch B lahmacun (card clips an edge, subject legible) -> PASS with note."
+  },
+  "L2": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "Appetizing glossy cakes, vivid relish, and the cut interior reads as cooked at card size."
+  },
+  "M": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "Generation method/date/generator present, model honestly 'unknown'; plating brief and image-prompt.md present; external_image_api_called false; stock false; rights not_cleared_for_external_release. Record completeness is ruled under O (lomo-saltado precedent)."
+  },
+  "N": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Shopping-id ingredients with quantity/unit/preparation separated from prep text; units are shoppable; scaling_notes present with ratio map {1:0.25, 2:0.5, 4:1}."
+  },
+  "O": {
+   "result": "FAIL",
+   "defect": "The prompt/rejection record does not match what happened. (1) v1.json image.rejected_assets and image.rejected_assets_note list only attempts 1-2, but rejected/attempt3-surface-reads-crumb-coated.jpg exists and REJECTIONS.md logs it. (2) The 'Revision (freeze-r2)' header in image-prompt.md and image-plating-brief.md (prompt_revision_note) and v1.json image.generation.revision_note still describe the surface as 'smooth, golden-brown, blistered' and name only attempts 1-2, while the Exact prompt that produced the active image was rewritten after attempt3 ('sleek, glossy, deep reddish-golden-brown skin… irregular frilly edges'). (3) v1.json .revision_note and README.md line 24 still say 'Awaiting Cora's regenerated hero.' (4) REJECTIONS.md attempt2 still ends 'awaiting Cora's regeneration'; attempt3 is timestamped ~17:20 CT but the file is from 17:18:18 CDT.",
+   "rescored_r2": true,
+   "note": "Otherwise consistent: version_number 1; culinary_hash ecb6c0dd… recomputes and matches (unchanged); image-prompt.md Exact prompt equals the batch_c_recipes.py prompt and describes the active image (the GenerateImage call text itself cannot be independently verified; Cora's verbatim statement accepted)."
+  }
+ },
+ "image_review": {
+  "K": "PASS",
+  "L1": "PASS",
+  "L2": "PASS",
+  "L": "PASS",
+  "files_inspected": [
+   "img_v1.jpg (1280x720 source, zoomed)",
+   "thai-fish-cakes-cucumber-relish.webp (1200x900)",
+   "thai-fish-cakes-cucumber-relish-640.webp (640x480)",
+   "rejected/attempt3-surface-reads-crumb-coated.jpg (comparison)"
+  ],
+  "observation": "New hero (master + card inspected, cut cakes zoomed): the cut interior is opaque, matte, pale tan with tiny curry flecks — cooked white-fish paste, not pink, salmon or translucent (Cora's tan wording is the right call: 3 tbsp red curry paste in the paste and the description says 'curry-red'). Thin green-bean rings with visible seeds on the surfaces and in the interior; no peas or edamame. The surface is a glossy reddish-golden pan-fried skin, not crumbed or breaded (clearly better than attempt3). Cucumber quarter-moons, purple shallot and red chile in brine; jasmine rice; cilantro; lime wedge. 6 cakes (5 whole + 1 halved) per the brief's 5-6. No peanuts, sweet chili sauce, shellfish, lettuce or noodles."
+ },
+ "dietary_eligibility": "contains_finfish true; dairy false; nut_policy none; labels dairy_free.",
+ "allergens": "finfish, egg. Correct (curry paste soy/wheat-free by contract).",
+ "allergen_runtime_gaps": {
+  "package_tokens": [
+   "finfish",
+   "egg"
+  ],
+  "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+   "egg"
+  ],
+  "live_enum_source": "cycle2-preview/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+  "documented_in_runtime_enum_gaps": true,
+  "ruling": "Package keeps the wave-11 token; importer maps explicitly; never silently drop egg/soy/wheat/sesame/milk."
+ },
+ "hh001": "Intended eligible; claimed true. Shrimp-paste-free curry paste and shrimp-free fish sauce are explicit hard shopping rules; eggs and fish allowed; no peanuts. Correct.",
+ "classification": {
+  "effort_level": "involved",
+  "ingredient_complexity": "standard",
+  "gate_A_enums": "valid",
+  "gate_J_plausibility": "involved 6 [1,1,1,2,1] with floor technique_2_plus_prep_or_components_involved / standard 3 [1,1,1,0] (13 countable excluding optional makrut; curry paste + fish sauce specialty 1; paste + relish breadth 1). Builder recompute matches. Reason codes closed-set.",
+  "factor_key": "pantry_familiarity (canonical)",
+  "legacy_fields_authored": false
+ },
+ "fails_needing_revision": [
+  {
+   "gate": "O",
+   "defect": "Incomplete/stale image record: attempt3 missing from image.rejected_assets; revision headers describe the pre-attempt3 surface wording; 'Awaiting Cora's regenerated hero' in v1/README; stale REJECTIONS.md line.",
+   "fix_type": "records-only re-render (no image regen, no culinary change)",
+   "fix": [
+    "batch_c_recipes.py thai-fish-cakes-cucumber-relish 'revision_note': replace 'Awaiting Cora's regenerated hero.' with 'Cora regenerated the hero at freeze-r2: attempt3 was rejected at pre-screen (surface read as crumb-coated) and the exact prompt's surface wording was rewritten (tod mun pla, sleek glossy reddish-golden skin, irregular frilly edges); the next generation, verbatim from image-prompt.md, is the active hero; prepare/finalize, FREEZE_INTEGRITY PASS.' (renders to v1.json .revision_note and README.md line 24).",
+    "batch_c_recipes.py thai-fish-cakes-cucumber-relish 'rejected_assets': append {\"attempt\": 3, \"files\": [\"rejected/attempt3-surface-reads-crumb-coated.jpg\"], \"stage\": \"Cora pre-screen at freeze-r2, never finalized\", \"reason\": \"Interior colour acceptable, but the surface read as breaded/crumb-coated and the cakes as perfect discs; exact-prompt surface wording rewritten before the next generation.\"}. This makes v1.json image.rejected_assets and image.rejected_assets_note list attempts 1-3 (currently 1-2 only, although the file exists and REJECTIONS.md logs it).",
+    "batch_c_recipes.py 'prompt_revision_note' (renders to the 'Revision' header of image-prompt.md and image-plating-brief.md) and 'image_revision_note' (v1.json image.generation.revision_note): replace 'the surface is smooth, golden-brown, blistered…' / 'the surface is smooth golden-brown and blistered…' with the wording actually used: 'a sleek, glossy, deep reddish-golden-brown pan-fried skin with soft bumps, a few shallow blisters and irregular frilly edges; no breadcrumbs, panko, batter, crumb coating, or grainy/sandy crust', and change 'Attempts 1 (crumb-coated) and 2 (r1 active hero) are in rejected/.' to 'Attempts 1 (crumb-coated), 2 (r1 active hero) and 3 (freeze-r2 pre-screen, crumb-like surface) are in rejected/.'",
+    "rejected/REJECTIONS.md: attempt2 line 'Prompt and Plating Brief revised at freeze-r2; awaiting Cora's regeneration.' -> 'Prompt and Plating Brief revised at freeze-r2; superseded (see attempt3 and the active hero).'; attempt3 timestamp '~17:20 CT' -> '~17:18 CT' (file mtime 17:18:18 CDT).",
+    "batch_c_recipes.py thai-fish-cakes-cucumber-relish package_revision 'freeze-r2' -> 'freeze-r3', then batch_c_build.py finalize thai-fish-cakes-cucumber-relish; FREEZE_INTEGRITY must PASS. Image files, culinary_hash, and D-03 labels must stay unchanged (Vale r3 re-checks O and hashes only)."
+   ]
+  }
+ ],
+ "non_blocking_notes": [
+  "K notes (non-blocking): cakes read about 3/4-1 inch thick and evenly round vs the recipe's 1/2-inch patties and the prompt's 'irregular… frilly edges'; the cut interior is slightly granular (minced look) rather than smooth and springy; edges are not lacy. None is a must-not, and the dish reads as tod mun pla.",
+  "BATCH-C-STATUS.md 'Flags' still says the prompt requires an ivory-white interior; update it to the tan wording."
+ ],
+ "statement": "Vale r2 re-audit of the revised package; packages were not mutated; kitchen_tested is false. PASS is binary for publication; non-blocking notes do not condition the verdict.",
+ "r2_rescored_gates": [
+  "A",
+  "J",
+  "K",
+  "L",
+  "L1",
+  "L2",
+  "M",
+  "O"
+ ],
+ "r2_scope_note": "Gates not listed in r2_rescored_gates carry forward from r1 (files unchanged for those gates or out of the requested re-audit scope).",
+ "history": [
+  {
+   "audit_round": "r1",
+   "file": "VALE-AUDIT-thai-fish-cakes-cucumber-relish-r1.json",
+   "package_revision": "freeze-r1",
+   "overall": "FAIL",
+   "failed_gates": [
+    "J",
+    "K",
+    "L"
+   ],
+   "disposition": "REGENERATE_IMAGE_AND_CLASSIFICATION_AMENDMENT"
+  }
+ ]
+}

@@ -1,0 +1,168 @@
+{
+ "slug": "cottage-pie",
+ "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+ "audit_date": "2026-10-08",
+ "audit_round": "r2",
+ "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+ "package_file": "v1.json",
+ "package_revision": "freeze-r2",
+ "recipe_version_id": "rv_cottage-pie_v1",
+ "freeze_integrity": "PASS",
+ "disposition": "CERTIFY",
+ "overall": "PASS",
+ "failed_gates": [],
+ "kitchen_tested": false,
+ "packages_mutated": false,
+ "gates": {
+  "A": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "freeze-r2 consistent across files; ingredient_complexity 'standard' valid; no legacy keys; classification_history[1] moderate/simple -> moderate/standard, culinary_hash unchanged. FREEZE_INTEGRITY re-run by Vale on a scratch copy at r2: PASS, 0 fails."
+  },
+  "B": {
+   "result": "PASS",
+   "defect": null,
+   "note": "All ingredients referenced; butter/milk/salt splits between mash and filling correct."
+  },
+  "C": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Beef, mirepoix, tomato paste, flour-thickened broth gravy with Worcestershire and thyme, peas; Yukon mash; bake + broil. Correct."
+  },
+  "D": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Ground beef cooked to 160 F (doneness field); broil watched."
+  },
+  "E": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Prep 15 + cook 66 = 81 (bake largely unattended). Honest; band 45+."
+  },
+  "F": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Worcestershire (anchovies) declared finfish; beef broth plain."
+  },
+  "G": {
+   "result": "PASS",
+   "defect": null,
+   "note": "contains_meat true, finfish true (Worcestershire), dairy true. Allergens milk, wheat, finfish, meat — correct and conservative (meat token per wave-11 tibs precedent)."
+  },
+  "H": {
+   "result": "PASS",
+   "defect": null,
+   "note": "No british tag exists in D-02; omission correct and recorded as runtime_enum_gaps cuisine_gap (ethiopian/spanish precedent). Do not invent a tag."
+  },
+  "I": {
+   "result": "PASS",
+   "defect": null
+  },
+  "J": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "moderate 5 [1,1,1,1,1] / standard 2 [2,0,0,0] (15 countable, band 2). Builder recompute matches. Reason codes closed-set."
+  },
+  "K": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Browned piped/ridged mash over beef-and-vegetable gravy filling with peas visible."
+  },
+  "L": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Rolled up from L1 and L2."
+  },
+  "L1": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; image.file_hashes for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (wave-11 precedent); no text/logo/watermark/hands/faces; one active set."
+  },
+  "L2": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Golden crust, scooped serving shows filling; appealing at card size."
+  },
+  "M": {
+   "result": "PASS",
+   "defect": null,
+   "note": "Text provenance original_ai_assisted (wave-11 value; importer maps to live ai_assisted, see runtime_enum_gaps); image.generation method/date/generator present, model honestly 'unknown'; image-plating-brief.md and image-prompt.md present with must-be-visible / must-not-appear lists; external_image_api_called false, stock_or_web_photo_used false; rights not_cleared_for_external_release."
+  },
+  "N": {
+   "result": "PASS",
+   "defect": null,
+   "rescored_r2": true,
+   "note": "scaling_notes.ratio['1'] 0.25 -> 0.5 now matches the 1-serving note (make the half recipe, refrigerate the second portion); shopping-id ingredients unchanged; scaling_notes are outside culinary_hash (unchanged 5904fcfd…)."
+  },
+  "O": {
+   "result": "PASS",
+   "defect": null,
+   "note": "version_number 1; package_revision freeze-r1 on root, recipe_version and image; classification_history has the initial Juniper entry; culinary_hash recomputed from batch_c_recipes.py and matches (excludes D-03 fields); README mirrors v1.json and correctly says 'Awaiting Vale A–O'; FREEZE_INTEGRITY.json PASS (0 fails), re-run by Vale."
+  }
+ },
+ "image_review": {
+  "K": "PASS",
+  "L1": "PASS",
+  "L2": "PASS",
+  "L": "PASS",
+  "files_inspected": [
+   "img_v1.jpg",
+   "cottage-pie.webp",
+   "cottage-pie-640.webp"
+  ],
+  "observation": "Matches recipe. Notes: braiser rather than skillet; mash looks slightly grainy. No regeneration."
+ },
+ "dietary_eligibility": "contains_meat true; contains_finfish true (Worcestershire); dairy true; nut_policy none.",
+ "allergens": "milk, wheat, finfish, meat. Correct.",
+ "allergen_runtime_gaps": {
+  "package_tokens": [
+   "milk",
+   "wheat",
+   "finfish",
+   "meat"
+  ],
+  "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [
+   "milk (live: dairy)",
+   "wheat"
+  ],
+  "live_enum_source": "cycle2-preview/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+  "documented_in_runtime_enum_gaps": true,
+  "ruling": "Package keeps the wave-11 token; importer maps explicitly; never silently drop egg/soy/wheat/sesame/milk."
+ },
+ "hh001": "Intended NOT eligible; claimed false (beef, dairy). Correct.",
+ "classification": {
+  "effort_level": "moderate",
+  "ingredient_complexity": "standard",
+  "gate_A_enums": "valid",
+  "gate_J_plausibility": "moderate 5 [1,1,1,1,1] / standard 2 [2,0,0,0] (15 countable, band 2). Builder recompute matches. Reason codes closed-set.",
+  "factor_key": "pantry_familiarity (canonical)",
+  "legacy_fields_authored": false
+ },
+ "fails_needing_revision": [],
+ "non_blocking_notes": [
+  "scaling_notes['1'] is user-facing yet contains internal wording '(the 2-serving amounts, so the 1-serving shopping ratio is 0.5, not 0.25)'; suggest 'Make the 2-serving amounts in a 1-quart baking dish; eat one portion…' at the next re-freeze (non-blocking).",
+  "Image notes from r1 (braiser, slightly grainy mash) remain non-blocking.",
+  "Beef broth/Worcestershire: some brands carry soy/wheat; non-HH001, wheat already declared; non-blocking."
+ ],
+ "statement": "Vale r2 re-audit of the revised package; packages were not mutated; kitchen_tested is false. PASS is binary for publication; non-blocking notes do not condition the verdict.",
+ "r2_rescored_gates": [
+  "A",
+  "J",
+  "N"
+ ],
+ "r2_scope_note": "Gates not listed in r2_rescored_gates carry forward from r1 (files unchanged for those gates or out of the requested re-audit scope).",
+ "history": [
+  {
+   "audit_round": "r1",
+   "file": "VALE-AUDIT-cottage-pie-r1.json",
+   "package_revision": "freeze-r1",
+   "overall": "FAIL",
+   "failed_gates": [
+    "J"
+   ],
+   "disposition": "CLASSIFICATION_METADATA_AMENDMENT_NO_CULINARY_CHANGE_NO_IMAGE_REGEN"
+  }
+ ]
+}

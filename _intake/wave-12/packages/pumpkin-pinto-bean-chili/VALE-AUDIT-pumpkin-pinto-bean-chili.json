@@ -1,0 +1,291 @@
+{
+  "slug": "pumpkin-pinto-bean-chili",
+  "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+  "audit_date": "2026-10-08",
+  "audit_round": "r2",
+  "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r1",
+  "recipe_version_id": "rv_pumpkin-pinto-bean-chili_v1",
+  "freeze_integrity": "PASS (0 fails; Vale re-ran freeze_integrity.py on a /tmp copy at r2)",
+  "disposition": "CERTIFY_V1",
+  "overall": "PASS",
+  "failed_gates": [],
+  "kitchen_tested": false,
+  "packages_mutated": false,
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. easy/standard.",
+      "rechecked_r2": "Light r2 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 2/2 and labels easy/standard unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "B": {
+      "result": "PASS",
+      "defect": null,
+      "note": "All 20 ingredients referenced; salt 1/2+1 tsp reconciles."
+    },
+    "C": {
+      "result": "PASS",
+      "defect": null,
+      "note": "1/2/4 scaling stated with partial-can amounts and shorter simmers."
+    },
+    "D": {
+      "result": "PASS",
+      "defect": null
+    },
+    "E": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Prep 12 + cook 33 (8+2+5 return-to-simmer+15+3) = 45; stovetop only, no preheat issue."
+    },
+    "F": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Chili powder (plain blend, no flour) and tortilla chips (corn/oil/salt, non-peanut oil) carry hard contracts."
+    },
+    "G": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Dietary: all contains_* false, plant_based/vegetarian true, nut_policy none, HH001 true via vegetable-broth, pure-pumpkin, plain-corn-chip contracts (no conditionals). Allergens: explicit [] — correct for written ingredients."
+    },
+    "H": {
+      "result": "PASS",
+      "defect": null
+    },
+    "I": {
+      "result": "PASS",
+      "defect": null
+    },
+    "J": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Title/description match method. D-03 easy (2) plausible; standard (2) driven by 18-item list band, not specialty — departs from plan 'simple' but rubric-consistent, not cultural.",
+      "rechecked_r2": "Light r2 recheck after the D-03 factor-key rename: d03-classification.json complexity_factors are now ingredient_count_band/specialty_burden/flavor_component_breadth/pantry_familiarity. pantry_familiarity is the canonical key used by Batch A, Batch C and the 50 audited D-03 meals (d03-design/all-50-classifications.json), and it maps to the rubric's 'Sourcing difficulty' factor. Diff vs backup: only the key rename (value 0 -> 0) plus a factor_key_note; scores 2/2 and labels easy/standard unchanged and equal to v1.json recipe_version.effort_level/ingredient_complexity; no legacy effort/effort_band/complexity keys; README factor line renamed to match. No residual sourcing_difficulty key in build_batch_b.py or r_*.py (only explanatory comments/notes)."
+    },
+    "K": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Brick-red thick chili, tan speckled pinto beans, red pepper, diced avocado, radish coins, cilantro, crushed corn chips, lime wedge. No cheese/sour cream/meat/black or kidney beans/corn kernels/jalapeño/scallion/pumpkin chunks."
+    },
+    "L": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Rolled up from L1 and L2."
+    },
+    "L1": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir."
+    },
+    "L2": {
+      "result": "PASS",
+      "defect": null,
+      "note": "Bright natural light, strong red/green/white/gold contrast, abundant off-center topping crescent; reads instantly at 640x480 card scale. Parity with house reference."
+    },
+    "M": {
+      "result": "PASS",
+      "defect": null,
+      "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+    },
+    "N": {
+      "result": "PASS",
+      "defect": null
+    },
+    "O": {
+      "result": "PASS",
+      "defect": null,
+      "note": "version_number 1, package_revision freeze-r1 consistently; classification_history []; culinary_hash present and excludes D-03 fields; README mirrors v1.json with no stale reserved/not-run image language; FREEZE_INTEGRITY.json PASS (0 fails)."
+    }
+  },
+  "image_review": {
+    "K": "PASS",
+    "L1": "PASS",
+    "L2": "PASS",
+    "L": "PASS",
+    "files_inspected": [
+      "img_v1.jpg",
+      "pumpkin-pinto-bean-chili-640.webp"
+    ],
+    "observation": "Wide speckled stoneware bowl, higher 3/4; pintos, pepper, avocado, radish, cilantro, chips, lime all visible; nothing forbidden. L2 strong."
+  },
+  "dietary_eligibility": "contains_meat/poultry/finfish/shellfish/dairy false; plant_based + vegetarian true; nut_policy none; labels dairy_free, vegetarian, plant_based (unconditional via hard contracts).",
+  "allergens": "[] (explicit empty list). Correct.",
+  "allergen_runtime_gaps": {
+    "package_tokens": [],
+    "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [],
+    "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+    "documented_in_runtime_enum_gaps": true
+  },
+  "hh001": "Intended eligible; claimed true; VERIFIED (vegetable broth, plain corn chips non-peanut oil, 100% pumpkin, no cheese/sour cream).",
+  "classification": {
+    "effort_level": "easy",
+    "ingredient_complexity": "standard",
+    "gate_A_enums": "valid",
+    "gate_J_plausibility": "effort_level easy (sum 2) / ingredient_complexity standard (sum 2). Plan was easy/simple; standard accepted on list length.",
+    "legacy_fields_authored": false
+  },
+  "fails_needing_revision": [],
+  "non_blocking_notes": [
+    "Plan time band 30–45; written 45 (within band)."
+  ],
+  "statement": "r2 light A/J re-check (2026-10-08 CT) after the D-03 factor-key rename: A and J PASS; v1.json unchanged; culinary_hash and asset_sha256 verified; FI PASS. All other gates carried from r1. Overall PASS -> CERTIFY_V1.",
+  "culinary_hash": "sha256:655f59f15e726b69eaf8d32a3447f69f83896fdfd73d5dd9e3ed2170f5e42cbd",
+  "culinary_hash_verified": true,
+  "asset_sha256_verified": {
+    "img_v1.jpg": "e3a45bcf040951edd81a2188270e1d9366d61b4ba62ee96a0550af093d48d6b9",
+    "pumpkin-pinto-bean-chili.webp": "2343efec3dd258b58dbaa63f62208d3b469e875d84397d0764c8bf27d57c72c3",
+    "pumpkin-pinto-bean-chili-640.webp": "84d616844b1be07e9a2dff6ecf246cf12fd0a99e06547a2adf70e2b842238d9c"
+  },
+  "r2_scope": [
+    "A (light)",
+    "J (light)",
+    "freeze_integrity",
+    "culinary_hash",
+    "asset_sha256"
+  ],
+  "rescore": {
+    "round": "r2",
+    "trigger": "Juniper cleanup 2026-10-08 ~17:16 CT (backup /workspace/backups/wave-12-juniper-r2-20261008-171303)",
+    "prior_round": "r1",
+    "prior_overall": "PASS",
+    "prior_audit": "history[0] in this file",
+    "package_changes_reviewed": [
+      "d03 sidecar + README key rename only; v1.json byte-identical to backup"
+    ],
+    "still_failing": []
+  },
+  "history": [
+    {
+      "slug": "pumpkin-pinto-bean-chili",
+      "auditor": "Vale (Harbor Eats - Catalog Auditor)",
+      "audit_date": "2026-10-08",
+      "audit_round": "r1",
+      "contract_version": "flavorweave-catalog-certification (A–O, L1+L2, D-03)",
+      "package_file": "v1.json",
+      "package_revision": "freeze-r1",
+      "recipe_version_id": "rv_pumpkin-pinto-bean-chili_v1",
+      "freeze_integrity": "PASS",
+      "disposition": "CERTIFY_V1",
+      "overall": "PASS",
+      "failed_gates": [],
+      "kitchen_tested": false,
+      "packages_mutated": false,
+      "gates": {
+        "A": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Identity ids agree (slug/dish/rcp/rv/version 1); package_revision freeze-r1 on root, recipe_version, image; effort_level and ingredient_complexity present with valid D-03 enums; no legacy effort/effort_band/complexity keys anywhere in v1.json. easy/standard."
+        },
+        "B": {
+          "result": "PASS",
+          "defect": null,
+          "note": "All 20 ingredients referenced; salt 1/2+1 tsp reconciles."
+        },
+        "C": {
+          "result": "PASS",
+          "defect": null,
+          "note": "1/2/4 scaling stated with partial-can amounts and shorter simmers."
+        },
+        "D": {
+          "result": "PASS",
+          "defect": null
+        },
+        "E": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Prep 12 + cook 33 (8+2+5 return-to-simmer+15+3) = 45; stovetop only, no preheat issue."
+        },
+        "F": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Chili powder (plain blend, no flour) and tortilla chips (corn/oil/salt, non-peanut oil) carry hard contracts."
+        },
+        "G": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Dietary: all contains_* false, plant_based/vegetarian true, nut_policy none, HH001 true via vegetable-broth, pure-pumpkin, plain-corn-chip contracts (no conditionals). Allergens: explicit [] — correct for written ingredients."
+        },
+        "H": {
+          "result": "PASS",
+          "defect": null
+        },
+        "I": {
+          "result": "PASS",
+          "defect": null
+        },
+        "J": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Title/description match method. D-03 easy (2) plausible; standard (2) driven by 18-item list band, not specialty — departs from plan 'simple' but rubric-consistent, not cultural."
+        },
+        "K": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Brick-red thick chili, tan speckled pinto beans, red pepper, diced avocado, radish coins, cilantro, crushed corn chips, lime wedge. No cheese/sour cream/meat/black or kidney beans/corn kernels/jalapeño/scallion/pumpkin chunks."
+        },
+        "L": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Rolled up from L1 and L2."
+        },
+        "L1": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Master 1200x900 WebP RGB and card 640x480 WebP RGB verified with Pillow; asset_sha256 for img_v1.jpg + both WebPs match on-disk files; 1280x720 source center-cropped to 4:3 (master is a 1.25x upscale of a 960x720 crop, same as wave-11 precedent); no text/logo/watermark/hands; one active set, no rejected/ dir."
+        },
+        "L2": {
+          "result": "PASS",
+          "defect": null,
+          "note": "Bright natural light, strong red/green/white/gold contrast, abundant off-center topping crescent; reads instantly at 640x480 card scale. Parity with house reference."
+        },
+        "M": {
+          "result": "PASS",
+          "defect": null,
+          "note": "original_ai_assisted text provenance; image generation method/date/generator present, model honestly 'unknown'; plating brief and image prompt present and written before generation; .image_meta.json source path recorded; rights not_cleared_for_external_release."
+        },
+        "N": {
+          "result": "PASS",
+          "defect": null
+        },
+        "O": {
+          "result": "PASS",
+          "defect": null,
+          "note": "version_number 1, package_revision freeze-r1 consistently; classification_history []; culinary_hash present and excludes D-03 fields; README mirrors v1.json with no stale reserved/not-run image language; FREEZE_INTEGRITY.json PASS (0 fails)."
+        }
+      },
+      "image_review": {
+        "K": "PASS",
+        "L1": "PASS",
+        "L2": "PASS",
+        "L": "PASS",
+        "files_inspected": [
+          "img_v1.jpg",
+          "pumpkin-pinto-bean-chili-640.webp"
+        ],
+        "observation": "Wide speckled stoneware bowl, higher 3/4; pintos, pepper, avocado, radish, cilantro, chips, lime all visible; nothing forbidden. L2 strong."
+      },
+      "dietary_eligibility": "contains_meat/poultry/finfish/shellfish/dairy false; plant_based + vegetarian true; nut_policy none; labels dairy_free, vegetarian, plant_based (unconditional via hard contracts).",
+      "allergens": "[] (explicit empty list). Correct.",
+      "allergen_runtime_gaps": {
+        "package_tokens": [],
+        "unsupported_by_live_PACKAGE_ALLERGEN_IDS": [],
+        "live_enum_source": "harbor-eats-app/src/lib/recipe-package-integrity.js PACKAGE_ALLERGEN_IDS",
+        "documented_in_runtime_enum_gaps": true
+      },
+      "hh001": "Intended eligible; claimed true; VERIFIED (vegetable broth, plain corn chips non-peanut oil, 100% pumpkin, no cheese/sour cream).",
+      "classification": {
+        "effort_level": "easy",
+        "ingredient_complexity": "standard",
+        "gate_A_enums": "valid",
+        "gate_J_plausibility": "effort_level easy (sum 2) / ingredient_complexity standard (sum 2). Plan was easy/simple; standard accepted on list length.",
+        "legacy_fields_authored": false
+      },
+      "fails_needing_revision": [],
+      "non_blocking_notes": [
+        "Plan time band 30–45; written 45 (within band)."
+      ],
+      "statement": "Gate result only. Not publication, not a production release, not a cook test. Vale did not edit the package."
+    }
+  ]
+}

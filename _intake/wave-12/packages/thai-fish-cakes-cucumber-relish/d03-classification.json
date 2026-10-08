@@ -1,0 +1,94 @@
+{
+  "slug": "thai-fish-cakes-cucumber-relish",
+  "recipe_version_id": "rv_thai-fish-cakes-cucumber-relish_v1",
+  "package_revision": "freeze-r3",
+  "assigned_by": "Juniper (Harbor Eats - Catalog Curator)",
+  "assigned_on": "2026-10-08",
+  "rubric": "D-03 (factory SKILL.md)",
+  "conventions": {
+    "ingredient_count_band": "Counted ingredients exclude optional items, salt, black pepper, water, and cooking oils: <=8 -> 0, 9-14 -> 1, 15+ -> 2 (D-03 rubric; corrected at freeze-r2 from the non-rubric <=12 / 13-16 / 17+ band, Vale r1).",
+    "pantry_familiarity": "Kept 0; specialty-store items score once under specialty_burden (no double counting). Cultural unfamiliarity adds no points."
+  },
+  "effort_factors": {
+    "active_prep": 1,
+    "active_attention": 1,
+    "active_components": 1,
+    "technique": 2,
+    "coordination_cleanup_equipment": 1
+  },
+  "effort_score": 6,
+  "effort_level": "involved",
+  "effort_floors_applied": [
+    "technique_2_plus_prep_or_components_involved"
+  ],
+  "complexity_factors": {
+    "ingredient_count_band": 1,
+    "specialty_burden": 1,
+    "flavor_component_breadth": 1,
+    "pantry_familiarity": 0
+  },
+  "complexity_score": 3,
+  "ingredient_complexity": "standard",
+  "ingredient_count": 13,
+  "counted_ingredient_ids": [
+    "jasmine-rice",
+    "white-fish",
+    "red-curry-paste",
+    "fish-sauce",
+    "egg",
+    "sugar",
+    "lime",
+    "green-beans",
+    "english-cucumber",
+    "shallot",
+    "red-chile",
+    "rice-vinegar",
+    "cilantro"
+  ],
+  "specialty_items": [
+    "shrimp-paste-free red curry paste (label-checked supermarket item)",
+    "fish sauce (shrimp-free label)"
+  ],
+  "reason_codes": {
+    "effort": [
+      "steady_prep",
+      "periodic_attention",
+      "multi_component",
+      "shaping",
+      "batch_frying"
+    ],
+    "ingredient": [
+      "medium_list",
+      "several_specialty",
+      "multi_build"
+    ]
+  },
+  "reason_codes_status": "closed v1 set (d03-design/FACTORY-SKILL-AMENDMENT.md, draft), remapped at freeze-r2 from Vale r1 suggested mappings",
+  "borderline": true,
+  "rationale": "Processing, slapping, and shaping 16 cakes and shallow-frying them in batches is technique 2 (D-03 rubric: shaping, shallow-fry batches; Vale spiced-lamb-meatball precedent), and with steady prep (1) the floor technique 2 + prep >= 1 makes it involved. Frying in two batches is intermittent attention (1). Cakes, no-cook relish, and unattended rice score components 1. A food processor, skillet, and rice pot score coordination 1. Score 6, involved. Complexity: 13 countable items (optional makrut leaves are not counted) is band 1; the shrimp-paste-free curry paste and shrimp-free fish sauce need label reading but are supermarket items (specialty 1); paste plus relish is breadth 1. Score 3, standard. Thai cuisine adds no points.",
+  "wave_proposal": {
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "time_band": "30-45"
+  },
+  "classification_amendments": [
+    {
+      "version_number": 1,
+      "type": "classification_only_metadata_amendment",
+      "who": "Juniper (Harbor Eats - Catalog Curator)",
+      "when": "2026-10-08",
+      "from": {
+        "effort_level": "moderate",
+        "ingredient_complexity": "standard"
+      },
+      "to": {
+        "effort_level": "involved",
+        "ingredient_complexity": "standard"
+      },
+      "reason": "Vale wave-12 batch C r1 Gate J: shaping 16 cakes + batch shallow-fry = technique 2; floor technique_2_plus_prep_or_components_involved -> involved (6, factors 1,1,1,2,1).",
+      "culinary_hash_unchanged": true,
+      "image_unchanged_by_this_amendment": true,
+      "vale_recheck_scope": "Gate A + Gate J-classification only"
+    }
+  ]
+}
