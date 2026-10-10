@@ -3,6 +3,7 @@ export const AI_ERROR_CODES = Object.freeze([
   "timeout",
   "rate_limited",
   "malformed_output",
+  "output_limit",
   "provider_outage",
   "disabled",
   "budget_exceeded",

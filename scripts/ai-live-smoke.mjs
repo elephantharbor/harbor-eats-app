@@ -2,7 +2,7 @@
 /**
  * MANUAL, PAID D-05 live smoke. NEVER run in CI (refuses when CI is set; not wired into npm scripts).
  * Sends exactly ONE request to the token-gated internal endpoint, which runs ONE tiny
- * `explanation` task on gpt-6-luna (max 120 output tokens, ~$0.0001) through the normal gateway.
+ * `explanation` task on gpt-6-luna (max 300 output tokens, reasoning none, ~$0.0002) through the normal gateway.
  *
  *   AI_SMOKE_TOKEN=<smoke token> node scripts/ai-live-smoke.mjs \
  *     --url https://harbor-eats-cycle1-preview.pages.dev --i-understand-this-costs-money [--nonce abc]
@@ -32,7 +32,7 @@ const expl = (health.tasks || []).find((t) => t.id === "explanation");
 console.log(JSON.stringify({ provider: health.provider, key_present: health.openai_key_present, gateway_enabled: health.gateway_enabled, explanation: expl, pricing_version: health.pricing_version, budget: health.daily_budget_usd }));
 if (!health.openai_key_present || !health.provider_configured) die("provider not configured on target (set the OPENAI_API_KEY secret and redeploy)");
 if (!health.gateway_enabled || !expl?.enabled) die("gateway or explanation task not enabled on target");
-if (expl.model !== "gpt-6-luna" || expl.max_output_tokens > 120) die(`unexpected routing ${expl.model}/${expl.max_output_tokens}; refusing`);
+if (expl.model !== "gpt-6-luna" || expl.max_output_tokens > 300) die(`unexpected routing ${expl.model}/${expl.max_output_tokens}; refusing`);
 
 const smokeUrl = new URL("/api/ai/internal/smoke", url);
 const nonce = opt("--nonce");

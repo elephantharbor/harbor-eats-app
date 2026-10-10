@@ -55,7 +55,8 @@ describe("OpenAI adapter: request shape + Structured Outputs", () => {
     expect(c.body.text.format).toMatchObject({ type: "json_schema", name: "explanation", strict: true });
     expect(c.body.text.format.schema).toEqual({ type: "object", properties: { text: { type: "string" } }, required: ["text"], additionalProperties: false });
     expect(JSON.parse(r.text)).toEqual({ text: "Quick." });
-    expect(r.metadata.request_id).toBe("resp_1");
+    expect(r.metadata.request_id).toBe("req_x");
+    expect(r.metadata.response_id).toBe("resp_1");
   });
   it("strict schema: all props required, optionals nullable, nested objects closed; nulls dropped on the way back", async () => {
     const s = toStrictSchema(TASKS.planning_intent.output_schema);
@@ -73,8 +74,8 @@ describe("OpenAI adapter: request shape + Structured Outputs", () => {
     expect(buildResponsesRequest(req({ model: "gpt-6.1-sol", max_output_tokens: 5000 })).max_output_tokens).toBe(1500);
   });
   it("parses usage: input, cached (input_tokens_details.cached_tokens), output", async () => {
-    expect(parseUsage({ input_tokens: 100, output_tokens: 7, input_tokens_details: { cached_tokens: 40 } })).toEqual({ input_tokens: 100, cached_input_tokens: 40, output_tokens: 7, cache_write_tokens: 0 });
-    expect(parseUsage(undefined)).toEqual({ input_tokens: 0, cached_input_tokens: 0, output_tokens: 0, cache_write_tokens: 0 });
+    expect(parseUsage({ input_tokens: 100, output_tokens: 7, input_tokens_details: { cached_tokens: 40 } })).toEqual({ input_tokens: 100, cached_input_tokens: 40, output_tokens: 7, reasoning_tokens: 0, cache_write_tokens: 0 });
+    expect(parseUsage(undefined)).toEqual({ input_tokens: 0, cached_input_tokens: 0, output_tokens: 0, reasoning_tokens: 0, cache_write_tokens: 0 });
     const { provider } = openai(() => ({ body: okBody({ text: "x" }) }));
     expect((await provider.generate(req())).usage).toMatchObject({ input_tokens: 120, cached_input_tokens: 20, output_tokens: 30 });
   });
@@ -91,14 +92,15 @@ describe("OpenAI adapter: error mapping", () => {
     expect(await code(() => ({ status: 500, body: null }))).toBe("provider_outage");
     expect(await code(() => ({ status: 401, body: { error: { message: "bad key" } } }))).toBe("provider_outage");
   });
-  it("refusal and incomplete status => malformed_output (with usage attached)", async () => {
+  it("refusal / non-cap incomplete => malformed_output; cap incomplete => output_limit (with usage attached)", async () => {
     const refusal = { id: "r", status: "completed", output: [{ type: "message", content: [{ type: "refusal", refusal: "no" }] }], usage: { input_tokens: 50, output_tokens: 5 } };
     const { provider } = openai(() => ({ body: refusal }));
     const e = await provider.generate(req()).catch((x) => x);
     expect(e.code).toBe("malformed_output");
     expect(e.detail).toBe("refusal");
     expect(e.usage.input_tokens).toBe(50);
-    expect(await code(() => ({ body: { status: "incomplete", incomplete_details: { reason: "max_output_tokens" }, usage: {} } }))).toBe("malformed_output");
+    expect(await code(() => ({ body: { status: "incomplete", incomplete_details: { reason: "max_output_tokens" }, usage: {} } }))).toBe("output_limit");
+    expect(await code(() => ({ body: { status: "incomplete", incomplete_details: { reason: "content_filter" }, usage: {} } }))).toBe("malformed_output");
     expect(await code(() => ({ body: { status: "failed" } }))).toBe("provider_outage");
   });
   it("timeout via AbortController => timeout; network error => provider_outage", async () => {
@@ -186,7 +188,7 @@ describe("pricing", () => {
 describe("ceilings, retries, no escalation", () => {
   it("max_output_tokens = min(task cap, model ceiling); lower task caps unchanged", () => {
     expect(MODEL_OUTPUT_CEILINGS).toEqual({ "gpt-6-luna": 600, "gpt-6.1-sol": 1500 });
-    expect(effectiveMaxOutputTokens(TASKS.explanation.limits.max_output_tokens, "gpt-6-luna")).toBe(120);
+    expect(effectiveMaxOutputTokens(TASKS.explanation.limits.max_output_tokens, "gpt-6-luna")).toBe(300);
     expect(effectiveMaxOutputTokens(TASKS.discovery_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(250);
     expect(effectiveMaxOutputTokens(TASKS.planning_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(400);
     expect(effectiveMaxOutputTokens(TASKS.concept_generation.limits.max_output_tokens, "gpt-6-luna")).toBe(600);
@@ -333,7 +335,7 @@ describe("kill switch, config, secrecy", () => {
     expect(h).toMatchObject({ provider: "openai", provider_id: "openai", provider_configured: true, openai_key_present: true, pricing_version: PRICING_VERSION });
     expect(h.models.aliases.strong).toBe("gpt-6.1-sol");
     expect(h.limits).toMatchObject({ household_per_minute: 5, household_per_day: 30, global_per_day: 50, sol_household_per_day: 5, max_repair_retries: 1 });
-    expect(h.tasks.find((t) => t.id === "explanation")).toMatchObject({ model: "gpt-6-luna", max_output_tokens: 120 });
+    expect(h.tasks.find((t) => t.id === "explanation")).toMatchObject({ model: "gpt-6-luna", max_output_tokens: 300, reasoning_effort: "none" });
     expect(JSON.stringify(h)).not.toContain(KEY);
     expect(spy).not.toHaveBeenCalled();
   });
@@ -383,7 +385,8 @@ describe("internal smoke endpoint (token-gated, disabled by default)", () => {
     const on = await handleAiSmoke(request({ "x-ai-smoke-token": "tok" }), { ...ON, AI_TASKS_ENABLED: "explanation", AI_SMOKE_TOKEN: "tok", DB }, provider);
     expect(on.body).toMatchObject({ ok: true, source: "provider", model: "gpt-6-luna" });
     expect(provider.calls).toHaveLength(1);
-    expect(provider.calls[0].max_output_tokens).toBe(120);
+    expect(provider.calls[0].max_output_tokens).toBe(300);
+    expect(provider.calls[0].reasoning_effort).toBe("none");
   });
   it("live smoke script is never wired into CI or npm test", () => {
     const pkg = readFileSync("package.json", "utf8");

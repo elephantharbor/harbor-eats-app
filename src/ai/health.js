@@ -29,6 +29,7 @@ export function aiHealth(env = {}, provider = null) {
       cost_class: t.cost_class,
       model: modelForTask(t),
       max_output_tokens: effectiveMaxOutputTokens(t.limits.max_output_tokens, modelForTask(t)),
+      reasoning_effort: t.reasoning_effort,
       executable: t.executable,
       enabled: cfg.enabled && cfg.tasks_enabled.includes(t.id),
       cache: t.cache.enabled,

@@ -26,6 +26,18 @@ export function estimateInputTokens(prompt) {
   return Math.ceil((prompt.system.length + prompt.user.length) / 3) + 64;
 }
 
+/** Whitelist of non-content provider metadata fields allowed into usage_metadata_json. */
+const PROVIDER_META_KEYS = ["http_status", "response_status", "incomplete_reason", "reported_model", "request_id", "response_id"];
+export function safeProviderMeta(m) {
+  if (!m || typeof m !== "object") return null;
+  const out = {};
+  for (const k of PROVIDER_META_KEYS) {
+    const v = m[k] ?? (k === "response_status" ? m.finish_reason : undefined);
+    out[k] = v == null ? null : typeof v === "number" ? v : String(v).slice(0, 80);
+  }
+  return out;
+}
+
 export function createGenerationService({ provider, store, env = {}, now = () => new Date(), log = () => {}, idFactory = null, maxTimeoutMs = Infinity }) {
   const config = readAiConfig(env);
   let seq = 0;
@@ -47,7 +59,7 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
       latency_ms: fields.latency_ms ?? null,
       estimated_cost_usd: fields.estimated_cost_usd || 0,
       pricing_version: PRICING_VERSION,
-      usage_metadata_json: fields.metadata ? JSON.stringify(fields.metadata).slice(0, 500) : null,
+      usage_metadata_json: fields.metadata ? JSON.stringify(fields.metadata).slice(0, 2000) : null,
       created_at: now().toISOString(),
     };
     try { await store.recordUsage(row); } catch (e) { log("ai_usage_write_failed", { task: task.id, code: String(e?.message || e).slice(0, 80) }); }
@@ -131,12 +143,16 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
     let repairNote = "";
     const started = now().getTime();
     let meta = null;
+    let reasonTok = 0;
+    let errCode = null;
+    let errDetail = null;
     const addUsage = (u) => {
       if (!u) return;
       inTok += u.input_tokens || 0;
       cachedTok += u.cached_input_tokens || 0;
       outTok += u.output_tokens || 0;
       writeTok += u.cache_write_tokens || 0;
+      reasonTok += u.reasoning_tokens || 0;
     };
     const spent = () => costUsd(model, { input_tokens: inTok, cached_input_tokens: cachedTok, output_tokens: outTok, cache_write_tokens: writeTok });
     let result = null;
@@ -151,31 +167,55 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
           max_output_tokens: maxOut,
           response_schema: task.output_schema,
           temperature: task.cost_class === "creative" ? 0.7 : 0,
+          reasoning_effort: task.reasoning_effort,
         }, Math.min(task.limits.timeout_ms, maxTimeoutMs));
         addUsage(res.usage);
-        meta = res.metadata ? { finish_reason: res.metadata.finish_reason ?? null, request_id: res.metadata.request_id ?? null } : null;
+        meta = safeProviderMeta(res.metadata);
+        errCode = null; errDetail = null;
         const parsed = parseJsonOutput(res.text);
         const check = parsed == null ? { ok: false, errors: ["not_json"] } : validateSchema(task.output_schema, parsed);
         if (!check.ok) {
-          lastCode = "malformed_output";
+          lastCode = "malformed_output"; errCode = lastCode; errDetail = `schema:${check.errors.slice(0, 2).join(";")}`.replace(/[^\w.:;\- ]/g, "").slice(0, 120);
           repairNote = `\nYour previous output was invalid (${check.errors.slice(0, 3).join("; ")}). Return only valid JSON for the schema.`;
           continue;
         }
         const post = task.post_validate(parsed, safeInput);
-        if (!post.ok) { lastCode = "malformed_output"; repairNote = "\nPrevious output violated policy. Do not make safety, allergen or eligibility claims."; continue; }
+        if (!post.ok) { lastCode = "malformed_output"; errCode = lastCode; errDetail = `post_validate:${String(post.reason || "").slice(0, 40)}`; repairNote = "\nPrevious output violated policy. Do not make safety, allergen or eligibility claims."; continue; }
         result = post.value;
         break;
       } catch (error) {
         const norm = error instanceof AiError ? error : normalizeError(error);
         addUsage(error?.usage);
         lastCode = norm.code;
+        errCode = norm.code;
+        errDetail = norm.detail ? String(norm.detail).slice(0, 120) : null;
+        meta = safeProviderMeta(error?.provider_meta) || meta;
         // Only transient timeout/outage get the single retry (same model). 429, refusals, incomplete: stop.
         if (norm.code !== "timeout" && norm.code !== "provider_outage") break;
       }
     }
     const cost = spent();
     await settleSpend(store, reservation.held, cost);
-    const base = { model, household_key: hk, input_tokens: inTok, cached_input_tokens: cachedTok, output_tokens: outTok, attempts, latency_ms: now().getTime() - started, estimated_cost_usd: cost, metadata: meta };
+    const metadata = {
+      requested_model: wireModel,
+      reported_model: meta?.reported_model ?? null,
+      http_status: meta?.http_status ?? null,
+      response_status: meta?.response_status ?? null,
+      incomplete_reason: meta?.incomplete_reason ?? null,
+      error_code: result !== null ? null : (errCode || lastCode),
+      error_detail: result !== null ? null : errDetail,
+      reasoning_effort: task.reasoning_effort,
+      max_output_tokens: maxOut,
+      input_tokens: inTok,
+      cached_input_tokens: cachedTok,
+      reasoning_tokens: reasonTok,
+      output_tokens: outTok,
+      pricing_version: PRICING_VERSION,
+      estimated_cost_usd: cost,
+      request_id: meta?.request_id ?? null,
+      response_id: meta?.response_id ?? null,
+    };
+    const base = { model, household_key: hk, input_tokens: inTok, cached_input_tokens: cachedTok, output_tokens: outTok, attempts, latency_ms: now().getTime() - started, estimated_cost_usd: cost, metadata };
     if (result !== null) {
       await record(task, { status: "ok", ...base });
       if (task.cache.enabled) {

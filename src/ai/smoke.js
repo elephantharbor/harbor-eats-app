@@ -2,7 +2,7 @@
  * Internal live-smoke endpoint: POST /api/ai/internal/smoke
  * DISABLED unless the AI_SMOKE_TOKEN secret is set (404 otherwise) and the request carries a
  * matching `x-ai-smoke-token` header. It runs exactly ONE fixed, tiny `explanation` task
- * (gpt-6-luna, max 120 output tokens) through the normal GenerationService, so the kill switch,
+ * (gpt-6-luna, max 300 output tokens, reasoning none) through the normal GenerationService, so the kill switch,
  * task flag, limits and budget all still apply. Not a consumer route; nothing in public/ calls it.
  */
 import { createGenerationService } from "./gateway.js";
