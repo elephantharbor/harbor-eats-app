@@ -1729,6 +1729,7 @@ function serializeRecipeForClient(concept, version) {
     ingredient_complexity: version.ingredient_complexity || null,
     effort_label: effortLabel(version.effort_level),
     methods: version.methods,
+    equipment: Array.isArray(version.equipment) ? version.equipment : [],
     dietary_tags: version.dietary_tags,
     plate: concept.plate,
     ingredients: version.ingredients,

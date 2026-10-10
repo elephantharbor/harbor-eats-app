@@ -26,6 +26,16 @@
 
   const PLAN_ID = "local-plan";
 
+  /** Required equipment from canonical catalog metadata (recipe.equipment); never parsed from steps. */
+  function renderEquipment(recipe) {
+    const wrap = document.getElementById("detailEquipmentWrap");
+    const list = document.getElementById("detailEquipment");
+    if (!wrap || !list) return;
+    const items = Array.isArray(recipe && recipe.equipment) ? recipe.equipment.filter(Boolean) : [];
+    list.innerHTML = items.map(function (e) { return "<li>" + escapeHtml(e) + "</li>"; }).join("");
+    wrap.hidden = items.length === 0;
+  }
+
   function escapeHtml(s) {
     return String(s == null ? "" : s)
       .replace(/&/g, "&amp;")
@@ -2063,6 +2073,7 @@
         })
         .join("");
     }
+    renderEquipment(recipe);
     if (stepsEl) {
       stepsEl.innerHTML = (recipe.steps || [])
         .map(function (s, idx) {

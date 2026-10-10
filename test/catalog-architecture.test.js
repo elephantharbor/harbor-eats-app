@@ -344,3 +344,37 @@ describe("catalog import", () => {
     expect(plannerEntryFromRecord(loaded.records[0]).pkg.recipe_version_id).toBe(loaded.records[0].recipe_version_id);
   });
 });
+
+describe("recipe detail equipment (canonical metadata only)", () => {
+  it("exposes Butter Chicken's pressure cooker from catalog_equipment and never from step prose", async () => {
+    const { recipeShapeFromEntry, canonicalEquipment } = await import("../src/lib/catalog-runtime.js");
+    const { records, retireVersionIds } = loadRecords();
+    const database = new DatabaseSync(":memory:");
+    applyMigrations(database);
+    await importOnce(database, records, retireVersionIds);
+    const loaded = await loadPublishedCatalog(sqliteShim(database));
+    const entry = loaded.planner.find((row) => row.concept.concept_id === "pressure-cooker-butter-chicken");
+    const shape = recipeShapeFromEntry(entry);
+    expect(shape.version.equipment.some((item) => /pressure cooker/i.test(item))).toBe(true);
+    const dbRows = database
+      .prepare("SELECT item FROM catalog_equipment WHERE recipe_version_id = ?")
+      .all(entry.pkg.recipe_version_id)
+      .map((row) => row.item);
+    expect([...shape.version.equipment].sort()).toEqual([...new Set(dbRows)].sort());
+    const prosey = { ...entry, pkg: { ...entry.pkg, equipment: [], steps: [{ title: "Use a pressure cooker", body: "Pressure cook" }] } };
+    expect(recipeShapeFromEntry(prosey).version.equipment).toEqual([]);
+    expect(canonicalEquipment([" Skillet ", "skillet", "", null])).toEqual(["Skillet"]);
+    expect(canonicalEquipment(undefined)).toEqual([]);
+  });
+
+  it("recipe view renders equipment from recipe.equipment, hides when empty, escapes", () => {
+    const app = readFileSync(join(process.cwd(), "public/app.js"), "utf8");
+    const html = readFileSync(join(process.cwd(), "public/index.html"), "utf8");
+    expect(html).toContain('id="detailEquipmentWrap" hidden');
+    const fn = app.slice(app.indexOf("function renderEquipment"), app.indexOf("function escapeHtml"));
+    expect(fn).toContain("recipe.equipment");
+    expect(fn).toContain("escapeHtml(e)");
+    expect(fn).toContain("wrap.hidden = items.length === 0");
+    expect(fn).not.toMatch(/steps|body|instructions/);
+  });
+});
