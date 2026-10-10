@@ -27,13 +27,15 @@ export function estimateInputTokens(prompt) {
 }
 
 /** Whitelist of non-content provider metadata fields allowed into usage_metadata_json. */
-const PROVIDER_META_KEYS = ["http_status", "response_status", "incomplete_reason", "reported_model", "request_id", "response_id"];
+const PROVIDER_META_KEYS = ["http_status", "response_status", "incomplete_reason", "reported_model", "request_id", "response_id", "error_message", "error_type", "error_param"];
+const PROVIDER_META_LIMITS = { error_message: 160, error_type: 64, error_param: 80 };
 export function safeProviderMeta(m) {
   if (!m || typeof m !== "object") return null;
   const out = {};
   for (const k of PROVIDER_META_KEYS) {
     const v = m[k] ?? (k === "response_status" ? m.finish_reason : undefined);
-    out[k] = v == null ? null : typeof v === "number" ? v : String(v).slice(0, 80);
+    const limit = PROVIDER_META_LIMITS[k] || 80;
+    out[k] = v == null ? null : typeof v === "number" ? v : String(v).slice(0, limit);
   }
   return out;
 }
@@ -214,6 +216,9 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
       estimated_cost_usd: cost,
       request_id: meta?.request_id ?? null,
       response_id: meta?.response_id ?? null,
+      error_message: meta?.error_message ?? null,
+      error_type: meta?.error_type ?? null,
+      error_param: meta?.error_param ?? null,
     };
     const base = { model, household_key: hk, input_tokens: inTok, cached_input_tokens: cachedTok, output_tokens: outTok, attempts, latency_ms: now().getTime() - started, estimated_cost_usd: cost, metadata };
     if (result !== null) {
@@ -225,11 +230,11 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
           expires_at: new Date(now().getTime() + task.cache.ttl_seconds * 1000).toISOString(),
         }).catch(() => {});
       }
-      return { ok: true, output: result, source: "provider", model, prompt_version: task.prompt_version };
+      return { ok: true, output: result, source: "provider", model, prompt_version: task.prompt_version, estimated_cost_usd: cost, metadata };
     }
     log("ai_task_fallback", { task: task.id, code: lastCode, attempts });
     await record(task, { status: `fallback:${lastCode}`, ...base });
-    return fail(lastCode, fallback);
+    return { ok: false, error: lastCode, fallback: fallback === undefined ? null : fallback, estimated_cost_usd: cost, metadata };
   }
 
   return { run, config };

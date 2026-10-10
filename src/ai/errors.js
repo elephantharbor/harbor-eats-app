@@ -5,6 +5,7 @@ export const AI_ERROR_CODES = Object.freeze([
   "malformed_output",
   "output_limit",
   "provider_outage",
+  "provider_config",
   "disabled",
   "budget_exceeded",
   "invalid_input",
@@ -28,6 +29,7 @@ export function normalizeError(error) {
   const status = Number(error?.status || 0);
   if (name === "AbortError" || name === "TimeoutError") return new AiError("timeout");
   if (status === 429) return new AiError("rate_limited");
+  if (status === 400) return new AiError("provider_config", "status_400");
   if (status >= 500 || status === 0) return new AiError("provider_outage");
   return new AiError("provider_outage", `status_${status}`);
 }

@@ -113,7 +113,7 @@ describe("D-06 intent corpus", () => {
 
   for (const c of allCases) {
     it(`case ${c.id}`, () => {
-      if (c.kind === "bypass" || c.task === "discovery_intent" && c.text) {
+      if (c.kind === "bypass") {
         const cls = classifyDiscoveryBypass(c.text);
         expect(cls.bypass).toBe(c.expect?.bypass !== false);
         if (c.expect?.ingredients) {

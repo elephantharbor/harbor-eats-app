@@ -104,8 +104,9 @@ describe("OpenAI adapter: error mapping", () => {
     const { provider } = openai(responder);
     try { await provider.generate(req(), opts); return "no-error"; } catch (e) { return e.code; }
   };
-  it("429 => rate_limited, 5xx => provider_outage, 4xx => provider_outage", async () => {
+  it("429 => rate_limited, 400 => provider_config, 5xx and other 4xx => provider_outage", async () => {
     expect(await code(() => ({ status: 429, body: { error: { message: "slow down" } } }))).toBe("rate_limited");
+    expect(await code(() => ({ status: 400, body: { error: { message: "bad schema", type: "invalid_request_error", param: "text.format.schema" } } }))).toBe("provider_config");
     expect(await code(() => ({ status: 503, body: {} }))).toBe("provider_outage");
     expect(await code(() => ({ status: 500, body: null }))).toBe("provider_outage");
     expect(await code(() => ({ status: 401, body: { error: { message: "bad key" } } }))).toBe("provider_outage");

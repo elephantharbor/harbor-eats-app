@@ -29,8 +29,12 @@ function stripAuthorityClaims(text) {
 // tasks only carry max_retries (<=1), the output cap (outer model ceiling applies) and timeout.
 const DEFAULT_LIMITS = { max_retries: 1, max_output_tokens: 400, timeout_ms: 8000 };
 
-/** Allowed Responses API reasoning efforts. Every task MUST set one explicitly (no provider defaults). */
-export const REASONING_EFFORTS = Object.freeze(["none", "minimal", "low", "medium", "high"]);
+/**
+ * Efforts a task may declare. Every task MUST set one explicitly (no provider defaults).
+ * `minimal` is omitted: gpt-6-luna and gpt-6.1-sol both reject it with HTTP 400.
+ * Cheap Luna tasks use `low`, the smallest effort those models accept above `none`.
+ */
+export const REASONING_EFFORTS = Object.freeze(["none", "low", "medium", "high"]);
 
 function task(id, spec) {
   if (!PROMPTS[id]) throw new Error(`task ${id} has no prompt`);
@@ -49,7 +53,7 @@ function task(id, spec) {
 
 export const TASKS = Object.freeze({
   planning_intent: task("planning_intent", {
-    reasoning_effort: "minimal",
+    reasoning_effort: "low",
     executable: true,
     cost_class: "cheap",
     allowed_models: ["fast-small"],
@@ -59,7 +63,7 @@ export const TASKS = Object.freeze({
     limits: { max_output_tokens: 560, timeout_ms: 8000 },
   }),
   discovery_intent: task("discovery_intent", {
-    reasoning_effort: "minimal",
+    reasoning_effort: "low",
     executable: true,
     cost_class: "cheap",
     allowed_models: ["fast-small"],
@@ -69,7 +73,7 @@ export const TASKS = Object.freeze({
     limits: { max_output_tokens: 320, timeout_ms: 5000 },
   }),
   feedback_extraction: task("feedback_extraction", {
-    reasoning_effort: "minimal",
+    reasoning_effort: "low",
     cost_class: "cheap",
     allowed_models: ["fast-small"],
     input_schema: { type: "object", required: ["text"], properties: { text: str(1000), meal: str(120) } },
@@ -132,7 +136,7 @@ export const TASKS = Object.freeze({
     limits: { max_output_tokens: 300, timeout_ms: 5000 },
   }),
   semantic_search_assist: task("semantic_search_assist", {
-    reasoning_effort: "minimal",
+    reasoning_effort: "low",
     cost_class: "cheap",
     allowed_models: ["fast-small"],
     input_schema: textInput(200),

@@ -81,14 +81,21 @@ describe("usage metadata on every call", () => {
       error_code: null, error_detail: null, reasoning_effort: "none", max_output_tokens: 300,
       input_tokens: 130, cached_input_tokens: 10, reasoning_tokens: 0, output_tokens: 60,
       pricing_version: PRICING_VERSION, estimated_cost_usd: cost, request_id: "req_abc123", response_id: "resp_ok1",
+      error_message: null, error_type: null, error_param: null,
     });
     expect(store.usage.at(-1).status).toBe("ok");
   });
-  it("HTTP 400 failure still records metadata with code/detail", async () => {
-    const { service, store } = run({ error: { message: "bad param " + KEY } }, { status: 400 });
+  it("HTTP 400 is provider_config, not retried, and records sanitized error message/type/param", async () => {
+    const { service, store, fetchImpl } = run({ error: { message: "bad param " + KEY, type: "invalid_request_error", param: "reasoning.effort" } }, { status: 400 });
     const r = await service.run("explanation", { meal: MEAL, reasons: ["quick"], cache_bust: null });
-    expect(r.error).toBe("provider_outage");
-    expect(meta(store)).toMatchObject({ http_status: 400, error_code: "provider_outage", error_detail: "status_400", request_id: "req_abc123", requested_model: "gpt-6-luna" });
+    expect(r.error).toBe("provider_config");
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    expect(store.usage.at(-1).attempts).toBe(1);
+    const m = meta(store);
+    expect(m).toMatchObject({ http_status: 400, error_code: "provider_config", error_detail: "status_400", error_type: "invalid_request_error", error_param: "reasoning.effort", request_id: "req_abc123", requested_model: "gpt-6-luna" });
+    expect(m.error_message).toMatch(/bad param/);
+    expect(m.error_message).not.toMatch(/sk-/);
+    expect(JSON.stringify(m)).not.toContain(KEY);
   });
   it("schema failure records malformed_output with schema detail", async () => {
     const { service, store } = run({ ...completed(), output: [{ type: "message", content: [{ type: "output_text", text: '{"nope":1}' }] }] });

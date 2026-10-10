@@ -37,6 +37,10 @@
     {
       "id": "plan-effort-easy",
       "task": "planning_intent",
+      "kind": "initial",
+      "text": "Keep most of these dinners easy.",
+      "state": null,
+      "household": "clear",
       "delta": {
         "acknowledgement": "Mostly easy.",
         "clear": [],
@@ -60,6 +64,10 @@
     {
       "id": "plan-fish-twice",
       "task": "planning_intent",
+      "kind": "initial",
+      "text": "Give us four dinners. Fish twice.",
+      "state": null,
+      "household": "clear",
       "delta": {
         "acknowledgement": "Four dinners, fish twice.",
         "clear": [],
@@ -83,6 +91,10 @@
     {
       "id": "plan-pasta-max-once",
       "task": "planning_intent",
+      "kind": "refine",
+      "text": "Pasta no more than once.",
+      "state": null,
+      "household": "clear",
       "delta": {
         "acknowledgement": "Pasta at most once.",
         "clear": [],
@@ -106,6 +118,10 @@
     {
       "id": "plan-tuesday-easy",
       "task": "planning_intent",
+      "kind": "refine",
+      "text": "Make Tuesday easier.",
+      "state": null,
+      "household": "clear",
       "context": { "today": "2026-10-10", "dates": [{ "position": 2, "date": "2026-10-13", "weekday": "tuesday" }] },
       "delta": {
         "acknowledgement": "Tuesday easy.",
@@ -145,6 +161,10 @@
     {
       "id": "plan-fuzzy-not-heavy",
       "task": "planning_intent",
+      "kind": "initial",
+      "text": "Not too heavy.",
+      "state": null,
+      "household": "clear",
       "delta": {
         "acknowledgement": "Not too heavy.",
         "clear": [],
@@ -170,6 +190,7 @@
       "task": "discovery_intent",
       "kind": "bypass",
       "text": "salmon",
+      "household": "clear",
       "expect": { "bypass": true, "ingredients": ["salmon"] }
     },
     {
@@ -177,11 +198,16 @@
       "task": "discovery_intent",
       "kind": "bypass",
       "text": "korean",
+      "household": "clear",
       "expect": { "bypass": true }
     },
     {
       "id": "find-cozy-easy",
       "task": "discovery_intent",
+      "kind": "initial",
+      "text": "Something cozy and easy.",
+      "state": null,
+      "household": "clear",
       "delta": {
         "acknowledgement": "Cozy and easy.",
         "clear": [],

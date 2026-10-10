@@ -135,21 +135,21 @@ describe("D-05 gateway behaviour", () => {
   it("persistent malformed output stops at max_retries and falls back", async () => {
     const { service, provider, store } = svc({ script: [{ text: "{\"facets\":1}" }] });
     const r = await service.run("discovery_intent", DISC_IN("thai"), { fallback: [] });
-    expect(r).toEqual({ ok: false, error: "malformed_output", fallback: [] });
+    expect(r).toMatchObject({ ok: false, error: "malformed_output", fallback: [] });
     expect(provider.calls).toHaveLength(TASKS.discovery_intent.limits.max_retries + 1);
     expect(store.usage.at(-1).status).toBe("fallback:malformed_output");
   });
   it("explanation post-validation rejects allergen / eligibility claims", async () => {
     const { service } = svc({ script: [{ json: { text: "This is nut-free and safe for your family." } }] });
     const r = await service.run("explanation", { meal: "Sabich", reasons: ["quick"], cache_bust: null }, { fallback: "Quick weeknight pick." });
-    expect(r).toEqual({ ok: false, error: "malformed_output", fallback: "Quick weeknight pick." });
+    expect(r).toMatchObject({ ok: false, error: "malformed_output", fallback: "Quick weeknight pick." });
   });
   it("timeout is enforced, retried once (bounded), normalized and falls back", async () => {
     const provider = createFakeProvider({ script: [{ hang: true }] });
     const store = createMemoryStore();
     const service = createGenerationService({ provider, store, env: ON, maxTimeoutMs: 20 });
     const r = await service.run("discovery_intent", DISC_IN("thai"), { fallback: "FB" });
-    expect(r).toEqual({ ok: false, error: "timeout", fallback: "FB" });
+    expect(r).toMatchObject({ ok: false, error: "timeout", fallback: "FB" });
     expect(provider.calls).toHaveLength(TASKS.discovery_intent.limits.max_retries + 1);
     expect(store.usage.at(-1).status).toBe("fallback:timeout");
   });
@@ -160,7 +160,7 @@ describe("D-05 gateway behaviour", () => {
     const b = svc({ script: [{ throw: { status: 503 } }] });
     expect((await b.service.run("discovery_intent", DISC_IN("thai"))).error).toBe("provider_outage");
     expect(b.provider.calls).toHaveLength(2);
-    expect(AI_ERROR_CODES).toEqual(expect.arrayContaining(["timeout", "rate_limited", "malformed_output", "provider_outage", "disabled", "budget_exceeded"]));
+    expect(AI_ERROR_CODES).toEqual(expect.arrayContaining(["timeout", "rate_limited", "malformed_output", "provider_outage", "provider_config", "disabled", "budget_exceeded"]));
   });
   it("budget: zero budget (default) blocks spend", async () => {
     const { service, provider } = svc({ script: [good], env: { AI_GATEWAY_ENABLED: "1", AI_TASKS_ENABLED: "discovery_intent" } });
@@ -195,6 +195,17 @@ describe("D-05 privacy, context, adapter, health", () => {
   it("health makes no provider call and leaks no secrets", () => {
     const h = aiHealth({ AI_PROVIDER_KEY: "sk-secret-123456789", OPENAI_API_KEY: "sk-secret-123456789" }, resolveProvider({}));
     expect(h).toMatchObject({ ok: true, gateway_enabled: false, provider_configured: false, consumer_ui: false });
+    const live = aiHealth(
+      { AI_GATEWAY_ENABLED: "1", AI_TASKS_ENABLED: "planning_intent,discovery_intent", AI_PROVIDER: "openai", OPENAI_API_KEY: "sk-secret-123456789" },
+      resolveProvider({ AI_PROVIDER: "openai", OPENAI_API_KEY: "sk-secret-123456789" })
+    );
+    expect(live.consumer_ui).toBe(true);
+    expect(live.gateway_enabled).toBe(true);
+    const explanationOnly = aiHealth(
+      { AI_GATEWAY_ENABLED: "1", AI_TASKS_ENABLED: "explanation", AI_PROVIDER: "openai", OPENAI_API_KEY: "sk-secret-123456789" },
+      resolveProvider({ AI_PROVIDER: "openai", OPENAI_API_KEY: "sk-secret-123456789" })
+    );
+    expect(explanationOnly.consumer_ui).toBe(false);
     expect(h.tasks).toHaveLength(8);
     expect(JSON.stringify(h)).not.toContain("sk-secret");
     expect(h.openai_key_present).toBe(true);

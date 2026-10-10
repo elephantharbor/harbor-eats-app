@@ -109,12 +109,14 @@ async function runDiscoveryForQuery(env, session, query, clientContext) {
     householdTastes(env.DB, session.household_id),
     loadDiscoveryRecentSlugs(env.DB, session.household_id),
   ]);
-  const resolved = await resolveDiscoveryContext(env.DB, session, clientContext, {
-    memberIds,
+  const resolved = resolveDiscoveryContext(clientContext, {
+    household_id: session.household_id,
+    member_ids: memberIds,
     constraints,
     tastes,
     recent_slugs: recent.recent_slugs,
-  });
+    recent_source: recent.recent_source,
+  }, query);
   if (!resolved.ok) return { error: fail(resolved.error, resolved.status || 400) };
   const meals = loaded.planner.map(projectDiscoveryMeal);
   const ran = runDiscoveryPipeline(meals, query, resolved.context);
@@ -394,6 +396,7 @@ export async function routeWeaveRequest(env, request, path) {
         preview: null,
         model: gen.model ?? null,
         prompt_version: gen.prompt_version ?? null,
+        metadata: { estimated_cost_usd: Number(gen.estimated_cost_usd) || 0 },
       });
     }
     const applied = applyPlanningDelta(priorState, gen.output, context);
@@ -429,6 +432,7 @@ export async function routeWeaveRequest(env, request, path) {
         dropped: applied.dropped,
         changed_positions: [],
         preview: null,
+        metadata: { estimated_cost_usd: Number(gen.estimated_cost_usd) || 0 },
       });
     }
     let catalog = null;
@@ -461,6 +465,7 @@ export async function routeWeaveRequest(env, request, path) {
       deterministic_latency_ms: deterministicMs,
       total_latency_ms: providerMs + deterministicMs,
       fallback_code: null,
+      metadata: { estimated_cost_usd: Number(gen.estimated_cost_usd) || 0 },
     });
   }
 
@@ -481,6 +486,7 @@ export async function routeWeaveRequest(env, request, path) {
   let conflicts = [];
   let removed = [];
   let modelAck = "";
+  let estimatedCost = 0;
   if (bypass.bypass && bypass.reason === "lexicon") {
     executedState = bypassDiscoveryPatch(text);
   } else if (bypass.bypass && bypass.reason === "empty") {
@@ -493,6 +499,7 @@ export async function routeWeaveRequest(env, request, path) {
       { text, state: priorDiscovery, context, vocabulary },
       { householdId: session.household_id, fallback: null }
     );
+    estimatedCost = Number(gen.estimated_cost_usd) || 0;
     if (!gen.ok || isEmptyDiscoveryDelta(gen.output)) {
       const normText = normalizeFindText(text).slice(0, 200);
       const q = normalizeQuery({ text: normText });
@@ -508,6 +515,7 @@ export async function routeWeaveRequest(env, request, path) {
         chips: [],
         conflicts: [],
         dropped: [],
+        metadata: { estimated_cost_usd: estimatedCost },
         ...ran.payload,
       });
     }
@@ -560,6 +568,7 @@ export async function routeWeaveRequest(env, request, path) {
     deterministic_latency_ms: deterministicMs,
     total_latency_ms: providerMs + deterministicMs,
     fallback_code,
+    metadata: { estimated_cost_usd: estimatedCost },
     ...ran.payload,
   });
 }

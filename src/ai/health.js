@@ -6,6 +6,9 @@ import { PRICING_VERSION, MODEL_PRICING, MODEL_OUTPUT_CEILINGS, effectiveMaxOutp
 
 export const D05_VERSION = "d05-provider-1";
 
+/** Household-facing Weave tasks. Explanation stays internal. */
+const CONSUMER_UI_TASKS = ["planning_intent", "discovery_intent"];
+
 export function aiHealth(env = {}, provider = null) {
   const cfg = readAiConfig(env);
   return {
@@ -22,7 +25,10 @@ export function aiHealth(env = {}, provider = null) {
     models: { aliases: { ...MODEL_ALIASES }, denylist: [...MODEL_DENYLIST], output_ceilings: { ...MODEL_OUTPUT_CEILINGS } },
     pricing_version: PRICING_VERSION,
     pricing_usd_per_mtok: MODEL_PRICING,
-    consumer_ui: false,
+    consumer_ui:
+      cfg.enabled &&
+      Boolean(provider && provider.configured(env)) &&
+      CONSUMER_UI_TASKS.some((id) => cfg.tasks_enabled.includes(id)),
     tasks: Object.values(TASKS).map((t) => ({
       id: t.id,
       prompt_version: t.prompt_version,
