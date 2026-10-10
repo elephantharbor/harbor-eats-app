@@ -1,0 +1,67 @@
+name: Hosted E2E (isolated preview only)
+
+# Manual only. Runs Playwright against an ALREADY-DEPLOYED isolated preview.
+# Never deploys, never migrates, never targets production (guard step below).
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "Preview base URL (https://<id>.harbor-eats-cycle1-preview.pages.dev). Prod hosts are rejected."
+        required: true
+        type: string
+      grep:
+        description: "Optional Playwright --grep (targeted run). Empty = full suite (budget: one per stable candidate)."
+        required: false
+        type: string
+        default: ""
+      require_binding_vars:
+        description: "Require /api/health deploy_env + d1_database_id (true once the next release ships them)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hosted-e2e
+  cancel-in-progress: false
+
+jobs:
+  hosted-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      E2E_MODE: hosted-preview
+      PLAYWRIGHT_BASE_URL: ${{ inputs.base_url }}
+      PLAYWRIGHT_SKIP_WEBSERVER: "1"
+      REQUIRE_BINDING_VARS: ${{ inputs.require_binding_vars && '1' || '0' }}
+      CI: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Guard — reject production / non-https targets
+        run: node scripts/ci/assert-hosted-target.mjs "$PLAYWRIGHT_BASE_URL"
+      - name: Preflight (E2E mode contract)
+        run: npm run preflight:e2e
+      - name: Health assertion (preview binding + 75 meals)
+        run: node scripts/ci/assert-hosted-target.mjs "$PLAYWRIGHT_BASE_URL" --health
+      - run: npx playwright install chromium --with-deps
+      - name: Playwright (hosted)
+        env:
+          E2E_GREP: ${{ inputs.grep }}
+        run: |
+          if [ -n "$E2E_GREP" ]; then
+            npx playwright test --config e2e/playwright.config.js --grep "$E2E_GREP"
+          else
+            npx playwright test --config e2e/playwright.config.js
+          fi
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: hosted-e2e-results
+          path: test-results/

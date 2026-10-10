@@ -1,6 +1,6 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
-import { apiCreateHousehold } from "./helpers.js";
+import { apiCreateHousehold, apiCreateIsolatedHousehold } from "./helpers.js";
 
 /** @param {import('@playwright/test').APIRequestContext} request */
 function sessionHeaders(sessionToken) {
@@ -28,10 +28,12 @@ test.describe("household authorization boundary", () => {
     await request.dispose();
   });
 
-  test("household A session cannot read or mutate household B", async ({ request }) => {
+  test("household A session cannot read or mutate household B", async ({ request, playwright }) => {
     const base = process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:8787";
     const a = await apiCreateHousehold(request, "Household A");
-    const b = await apiCreateHousehold(request, "Household B");
+    // B is fully set up in its own context (a shared context would carry A's cookie into B's setup).
+    const b = await apiCreateIsolatedHousehold(playwright, "Household B");
+    await b.dispose();
 
     const headers = sessionHeaders(a.sessionToken);
 

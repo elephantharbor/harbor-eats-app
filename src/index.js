@@ -184,6 +184,10 @@ async function handleHealth(env, url) {
     ok: true,
     app: env.APP_NAME || "harbor-eats-app",
     environment: env.ENVIRONMENT || "dev",
+    // Post-deploy binding check (scripts/deploy/verify-binding.mjs): declared next to the
+    // D1 binding in deploy/pages/<env>/wrangler.toml so a wrong-config deploy is detectable.
+    deploy_env: env.DEPLOY_ENV || null,
+    d1_database_id: env.D1_DATABASE_ID || null,
     d1,
     client_errors_24h: recent_errors,
     catalog_quality_ok: catalog.ok,

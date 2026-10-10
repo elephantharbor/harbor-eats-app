@@ -137,29 +137,33 @@ export async function skipToChoices(page) {
  */
 export async function apiCreateHousehold(request, name, keys = ["dairy"]) {
   const base = process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:8787";
-  const member_id = `owner-${Date.now().toString(36)}`;
+  const member_id = `owner-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
   const hh = await request.post(`${base}/api/households`, {
     data: { display_name: name },
   });
   const body = await hh.json();
+  expectStatus(hh, 201, "POST /api/households", body);
   const household_id = body.household_id;
-  await request.post(`${base}/api/households/${household_id}/members`, {
+  if (!household_id) throw new Error(`apiCreateHousehold: no household_id in ${JSON.stringify(body)}`);
+  const mem = await request.post(`${base}/api/households/${household_id}/members`, {
     data: { member_id, display_name: "Owner", role: "owner", status: "active" },
   });
+  expectStatus(mem, 201, `POST /api/households/${household_id}/members`, await safeJson(mem));
   const sess = await request.post(`${base}/api/sessions`, {
     data: { household_id, member_id },
   });
+  expectStatus(sess, [200, 201], "POST /api/sessions", await safeJson(sess));
   const setCookie = sess.headers()["set-cookie"] || "";
   const tokenMatch = /he_session=([^;]+)/.exec(setCookie);
   const sessionToken = tokenMatch ? decodeURIComponent(tokenMatch[1]) : null;
-  const cookieHeader = sessionToken
-    ? { Cookie: `he_session=${encodeURIComponent(sessionToken)}` }
-    : {};
+  if (!sessionToken) throw new Error("apiCreateHousehold: POST /api/sessions returned no he_session cookie");
+  const cookieHeader = { Cookie: `he_session=${encodeURIComponent(sessionToken)}` };
   if (keys.length) {
-    await request.post(`${base}/api/members/${member_id}/constraints`, {
+    const c = await request.post(`${base}/api/members/${member_id}/constraints`, {
       headers: cookieHeader,
       data: { household_id, keys },
     });
+    expectStatus(c, 200, `POST /api/members/${member_id}/constraints`, await safeJson(c));
   }
   return {
     household_id,
@@ -167,4 +171,38 @@ export async function apiCreateHousehold(request, name, keys = ["dairy"]) {
     sessionToken,
     cookieHeader,
   };
+}
+
+/**
+ * Create a household in its OWN fresh APIRequestContext so no session cookie
+ * from a previously created household leaks into member add / session / constraints
+ * (wave-12 root cause: forbidden_cross_household → 404 → forbidden_member).
+ * Caller must `await result.dispose()`.
+ * @param {import('@playwright/test').PlaywrightWorkerArgs['playwright']} playwright
+ */
+export async function apiCreateIsolatedHousehold(playwright, name, keys = ["dairy"]) {
+  const ctx = await playwright.request.newContext();
+  const created = await apiCreateHousehold(ctx, name, keys);
+  return { ...created, request: ctx, dispose: () => ctx.dispose() };
+}
+
+/** @param {import('@playwright/test').APIResponse} res */
+async function safeJson(res) {
+  try {
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Throw with a readable message when a setup call returns the wrong status.
+ * @param {import('@playwright/test').APIResponse} res
+ * @param {number|number[]} expected
+ */
+export function expectStatus(res, expected, label, body) {
+  const ok = Array.isArray(expected) ? expected : [expected];
+  if (!ok.includes(res.status())) {
+    throw new Error(`${label}: expected ${ok.join("|")}, got ${res.status()} ${JSON.stringify(body)}`);
+  }
 }

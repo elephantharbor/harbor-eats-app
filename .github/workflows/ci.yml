@@ -15,6 +15,7 @@ jobs:
           node-version: "22"
           cache: npm
       - run: npm ci
+      - run: npm run preflight
       - run: npm run test:migrations
       - run: npm run test:unit
       - run: npm run lint
@@ -22,3 +23,5 @@ jobs:
       - run: npm run test:e2e
         env:
           CI: "true"
+      - name: Structural catalog smoke (seeded local D1, all published meals)
+        run: npm run smoke:catalog

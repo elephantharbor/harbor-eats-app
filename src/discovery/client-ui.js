@@ -216,6 +216,9 @@ const REMOVAL_ORDER = [
   ["explicit_protein", "protein"],
   ["explicit_diet", "diet"],
   ["explicit_texture", "texture"],
+  ["explicit_method", "method"],
+  ["explicit_equipment", "equipment"],
+  ["explicit_exclude_ingredient", "exclude"],
   ["explicit_different", "different"],
 ];
 
@@ -249,10 +252,40 @@ export function relaxRemoveChips(excluded, query) {
       chips.push({ label: "Plant-forward", patch: { diet: [] } });
     } else if (kind === "texture" && query.criteria.textures.length) {
       chips.push({ label: query.criteria.textures[0], patch: { textures: query.criteria.textures.slice(1) } });
+    } else if (kind === "method" && (query.criteria.methods || []).length) {
+      chips.push({ label: query.criteria.methods[0], patch: { methods: query.criteria.methods.slice(1) } });
+    } else if (kind === "equipment" && (query.criteria.equipment || []).length) {
+      chips.push({ label: query.criteria.equipment[0], patch: { equipment: query.criteria.equipment.slice(1) } });
+    } else if (kind === "exclude" && (query.criteria.exclude_ingredients || []).length) {
+      chips.push({ label: "No " + query.criteria.exclude_ingredients[0], patch: { exclude_ingredients: query.criteria.exclude_ingredients.slice(1) } });
     }
     if (chips.length >= 3) break;
   }
+  // D-07: search text is also a narrowing input; offer it as a broaden chip when criteria + text yield nothing.
+  if (query && query.text && chips.length < 3) chips.push({ label: "“" + query.text + "”", patch: { text: null } });
   return chips.slice(0, 3);
+}
+
+/**
+ * D-07 no-results: human summary of the CURRENT criteria so the user sees what is narrowing results.
+ * Household limits are never listed as removable (they are hard eligibility).
+ * @param {object} query normalized
+ * @returns {string[]}
+ */
+export function emptyCriteriaSummary(query) {
+  const c = (query && query.criteria) || {};
+  const out = [];
+  if (query && query.text) out.push("“" + query.text + "”");
+  if (c.quick) out.push("Under 30 min");
+  else if (c.max_minutes != null) out.push("Under " + c.max_minutes + " min");
+  if ((c.effort_levels || []).length) out.push("Easy");
+  if ((c.ingredient_complexities || []).length) out.push("Simple ingredients");
+  for (const k of ["cuisines", "meal_styles", "flavors", "ingredients", "textures", "methods", "equipment"]) out.push(...(c[k] || []));
+  for (const x of c.exclude_ingredients || []) out.push("No " + x);
+  if ((c.protein_groups || []).length) out.push("Fish & seafood");
+  if ((c.diet || []).length) out.push("Plant-forward");
+  if (c.different) out.push("Something different");
+  return out;
 }
 
 /**

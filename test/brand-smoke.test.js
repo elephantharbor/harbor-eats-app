@@ -59,9 +59,10 @@ describe("FlavorWeave brand smoke", () => {
     expect(title.replace(/<[^>]+>/g, " ")).not.toMatch(/FlavorWeave/);
   });
 
-  it("service worker shell caches fw-sw-v18", () => {
+  it("service worker shell caches the release-metadata SW version", () => {
     const sw = read("sw.js");
-    expect(sw).toMatch(/const CACHE_VERSION = "fw-sw-v18"/);
+    const meta = JSON.parse(readFileSync(join(process.cwd(), "release/release-metadata.json"), "utf8"));
+    expect(sw).toContain(`const CACHE_VERSION = "${meta.sw_cache_version}"`);
     for (const asset of [
       "/theme.js",
       "/meal-media-manifest.js",

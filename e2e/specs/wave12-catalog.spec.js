@@ -1,6 +1,6 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
-import { apiCreateHousehold, skipToChoices } from "./helpers.js";
+import { apiCreateIsolatedHousehold, skipToChoices } from "./helpers.js";
 
 const WAVE12_SLUGS = [
   "sheet-pan-gnocchi-brussels-apples",
@@ -167,7 +167,7 @@ function mealOptionSlug(row) {
 }
 
 describeHosted("Wave-12 catalog (hosted preview)", () => {
-  test("health, images, discovery, and HH001 hard limits", async ({ page, request }) => {
+  test("health, images, discovery, and HH001 hard limits", async ({ page, request, playwright }) => {
     const base = process.env.PLAYWRIGHT_BASE_URL;
     expect(base).toBeTruthy();
 
@@ -184,9 +184,12 @@ describeHosted("Wave-12 catalog (hosted preview)", () => {
       }
     }
 
-    const openHousehold = await apiCreateHousehold(request, "Wave12 discover75", []);
-    const openHeaders = { ...(openHousehold.cookieHeader || {}), "Content-Type": "application/json" };
-    const discover75 = await discoverySearchAll(request, base, openHeaders);
+    // Fresh request context per household: a shared context keeps the first
+    // household's he_session cookie and silently breaks the second household.
+    const openHousehold = await apiCreateIsolatedHousehold(playwright, "Wave12 discover75", []);
+    const openHeaders = { ...openHousehold.cookieHeader, "Content-Type": "application/json" };
+    const discover75 = await discoverySearchAll(openHousehold.request, base, openHeaders);
+    await openHousehold.dispose();
     expect(discover75.firstBody?.total).toBe(75);
     expect(discover75.firstBody?.catalog_size).toBe(75);
     expect(discover75.unique.size).toBe(75);
@@ -201,9 +204,12 @@ describeHosted("Wave-12 catalog (hosted preview)", () => {
     await waitDiscoveryReady(page);
     await assertFindCardImagesHealthy(page, request, base);
 
-    const hh001 = await apiCreateHousehold(request, "Wave12 HH001", HH001_KEYS);
-    const hhHeaders = { ...(hh001.cookieHeader || {}), "Content-Type": "application/json" };
-    const hhSearch = await discoverySearchAll(request, base, hhHeaders);
+    const hh001 = await apiCreateIsolatedHousehold(playwright, "Wave12 HH001", HH001_KEYS);
+    const hhRequest = hh001.request;
+    const hhHeaders = { ...hh001.cookieHeader, "Content-Type": "application/json" };
+    const hhSearch = await discoverySearchAll(hhRequest, base, hhHeaders);
+    // Guard against the wave-12 failure class: a restricted household must not see all 75.
+    expect(hhSearch.unique.size).toBeLessThan(75);
     for (const blocked of HH001_BLOCKED) {
       expect(hhSearch.slugs).not.toContain(blocked);
     }
@@ -211,7 +217,7 @@ describeHosted("Wave-12 catalog (hosted preview)", () => {
       expect(hhSearch.slugs).toContain(slug);
     }
 
-    const planRes = await request.post(`${base}/api/recommendations/plan`, {
+    const planRes = await hhRequest.post(`${base}/api/recommendations/plan`, {
       headers: hhHeaders,
       data: { household_id: hh001.household_id },
     });
@@ -224,5 +230,6 @@ describeHosted("Wave-12 catalog (hosted preview)", () => {
     for (const blocked of HH001_BLOCKED) {
       expect(pickSlugs).not.toContain(blocked);
     }
+    await hh001.dispose();
   });
 });
