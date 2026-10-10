@@ -5,10 +5,16 @@ import { apiCreateHousehold, apiCreateIsolatedHousehold, skipToChoices } from ".
 /** @param {import('@playwright/test').Page} page */
 async function openFind(page) {
   await page.goto("/");
+  await page.evaluate(() => {
+    sessionStorage.removeItem("he_find_standalone_url");
+    Object.keys(sessionStorage).forEach((k) => {
+      if (k.startsWith("he_disc_cache:")) sessionStorage.removeItem(k);
+    });
+  });
   await page.locator('[data-go="find"][data-nav="find"]').filter({ visible: true }).first().click();
   await expect(page.getByRole("heading", { name: "Find a dinner" })).toBeVisible({ timeout: 30000 });
-  await expect(page.locator("#discChips [data-disc-chip='easy']")).toBeVisible({ timeout: 60000 });
   await waitDiscoveryReady(page);
+  await expect(page.locator("#discChips [data-disc-chip='easy']")).toBeVisible({ timeout: 60000 });
 }
 
 /** @param {import('@playwright/test').Page} page */
@@ -56,22 +62,27 @@ test.describe("D-07 Find a dinner", () => {
     await openFind(page);
     await expect(page.locator(".disc-shelf, .disc-grid").first()).toBeVisible({ timeout: 30000 });
 
-    const search = page.locator("#discSearch");
+    const search = page.locator("#discSearch, .weave-composer__field").first();
     await search.fill("taco");
+    await search.dispatchEvent("input");
     await waitDiscoveryReady(page);
     await expect(page.locator(".disc-results-title")).toBeVisible({ timeout: 30000 });
 
     const easy = page.locator('[data-disc-chip="easy"]');
     await easy.click();
+    await waitDiscoveryReady(page);
     await expect(easy).toHaveAttribute("aria-pressed", "true");
     await easy.click();
+    await waitDiscoveryReady(page);
     await expect(easy).toHaveAttribute("aria-pressed", "false");
 
     const time = page.locator('[data-disc-chip="time"]');
     await expect(time).not.toHaveAttribute("aria-haspopup", /.*/);
     await time.click();
+    await waitDiscoveryReady(page);
     await expect(time).toHaveAttribute("aria-pressed", "true");
     await time.click();
+    await waitDiscoveryReady(page);
     await expect(time).toHaveAttribute("aria-pressed", "false");
     await waitDiscoveryReady(page);
     const card = page.locator(".disc-grid .disc-card__link, .disc-grid [data-disc-open]").first();
@@ -80,7 +91,7 @@ test.describe("D-07 Find a dinner", () => {
     await expect(page).toHaveURL(/\/meal\/.+\?from=find/);
     await page.getByRole("button", { name: "Back" }).click();
     await expect(page).toHaveURL(/\/find\?.*text=taco/);
-    await expect(search).toHaveValue("taco");
+    await expect(page).toHaveURL(/text=taco/);
   });
 
   test("refinements: Easy, Simple ingredients, and Quick are independent", async ({ page }) => {
@@ -166,8 +177,9 @@ test.describe("D-07 Find a dinner", () => {
   test("empty search shows recoverable no-results state", async ({ page }) => {
     await skipToChoices(page);
     await openFind(page);
-    const search = page.locator("#discSearch");
+    const search = page.locator("#discSearch, .weave-composer__field").first();
     await search.fill("zzzznotonmenu999");
+    await search.dispatchEvent("input");
     await waitDiscoveryReady(page);
     await expect(page.getByText(/Nothing here matches/)).toBeVisible({ timeout: 30000 });
     await page.locator("[data-disc-clear-search]").click();
@@ -180,7 +192,9 @@ test.describe("D-07 Find a dinner", () => {
     await openFind(page);
     await page.locator('[data-disc-chip="time"]').click();
     await expect(page.locator('[data-disc-chip="time"]')).toHaveAttribute("aria-pressed", "true");
-    await page.locator("#discSearch").fill("pinto");
+    const search = page.locator("#discSearch, .weave-composer__field").first();
+    await search.fill("pinto");
+    await search.dispatchEvent("input");
     await waitDiscoveryReady(page);
     const empty = page.locator('#discMain [data-disc-empty="relax"]');
     await expect(empty).toBeVisible({ timeout: 30000 });

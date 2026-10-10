@@ -1,5 +1,5 @@
 /**
- * POST /api/plan/interpret and POST /api/discovery/interpret (D-06).
+ * D-06 weave routes: interpret, deterministic apply, plan commit.
  */
 import { createD1Store, createGenerationService, resolveProvider } from "../ai/index.js";
 import { catalogReadsFromD1, loadPublishedCatalog } from "../lib/catalog-runtime.js";
@@ -9,7 +9,7 @@ import {
   householdTastes,
   loadDinnerPlan,
 } from "../lib/dinner-plan-store.js";
-import { assertParticipants } from "../lib/plan-contract.js";
+import { assertParticipants, presentDinnerPlan } from "../lib/plan-contract.js";
 import { planDinners } from "../lib/dinner-planner.js";
 import { requireSession } from "../lib/auth.js";
 import { DISCOVERY_SCHEMA_VERSION } from "../discovery/constants.js";
@@ -31,6 +31,9 @@ import {
   isEmptyPlanningDelta,
 } from "./state.js";
 import { buildWeaveVocabulary } from "./vocabulary.js";
+import { removeDiscoveryChip, removePlanningChip } from "./chip-ops.js";
+import { createDinnerPlan } from "../lib/plan-mutations.js";
+import { saveDinnerPlan } from "../lib/dinner-plan-store.js";
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -140,10 +143,114 @@ async function runDiscoveryForQuery(env, session, query, clientContext) {
 /**
  * @param {{ DB: object, CATALOG_SOURCE?: string }} env
  */
+async function executePlanning(env, session, { priorState, dinnerPlan, participantIds }) {
+  const [constraints, tastes] = await Promise.all([
+    householdConstraints(env.DB, session.household_id),
+    householdTastes(env.DB, session.household_id),
+  ]);
+  const conflictPass = detectPlanningConflicts(priorState, {
+    participantIds,
+    constraints,
+    tastes,
+  });
+  const executed = conflictPass.repaired;
+  const ack = reconcileAcknowledgement({
+    task: "planning_intent",
+    modelAck: "",
+    state: executed,
+    conflicts: conflictPass.conflicts,
+    dropped: [],
+    removedTokens: conflictPass.removed,
+  });
+  const parsed = parsePlannerFromState(executed, { participant_ids: participantIds });
+  if (!parsed.ok) {
+    return {
+      ok: true,
+      task: "planning_intent",
+      source: "deterministic",
+      fallback_code: parsed.error,
+      acknowledgement: null,
+      state: priorState,
+      chips: buildPlanningChips(executed),
+      conflicts: conflictPass.conflicts,
+      dropped: [],
+      changed_positions: [],
+      preview: null,
+    };
+  }
+  let catalog = null;
+  if (catalogReadsFromD1(env)) {
+    const loaded = await loadPublishedCatalog(env.DB);
+    if (loaded.ok) catalog = loaded.planner;
+  }
+  const t1 = Date.now();
+  const preview = planDinners(parsed.intent, {
+    catalog,
+    constraints,
+    tastes,
+    previous_slots: dinnerPlan?.meals?.map((m) => m.slot) || null,
+  });
+  const deterministicMs = Date.now() - t1;
+  return {
+    ok: true,
+    task: "planning_intent",
+    source: "deterministic",
+    ...ack,
+    state: executed,
+    chips: buildPlanningChips(executed),
+    conflicts: conflictPass.conflicts,
+    dropped: [],
+    changed_positions: preview.changed_positions || [],
+    preview,
+    deterministic_latency_ms: deterministicMs,
+    total_latency_ms: deterministicMs,
+    fallback_code: null,
+  };
+}
+
+async function executeDiscovery(env, session, { executedState, clientContext, conflicts, dropped, removed, modelAck, source, model, prompt_version, providerMs }) {
+  const ack = reconcileAcknowledgement({
+    task: "discovery_intent",
+    modelAck,
+    state: executedState,
+    conflicts,
+    dropped,
+    removedTokens: removed,
+  });
+  const mapped = discoveryStateToQuery(executedState, {});
+  if (!mapped.ok) return { error: fail(mapped.error, mapped.status || 400) };
+  const t1 = Date.now();
+  const ran = await runDiscoveryForQuery(env, session, mapped.query, clientContext);
+  const deterministicMs = Date.now() - t1;
+  if (ran.error) return { error: ran.error };
+  return {
+    payload: {
+      ok: true,
+      task: "discovery_intent",
+      source,
+      model,
+      prompt_version,
+      ...ack,
+      state: executedState,
+      chips: buildDiscoveryChips(executedState),
+      conflicts,
+      dropped,
+      provider_latency_ms: providerMs,
+      deterministic_latency_ms: deterministicMs,
+      total_latency_ms: providerMs + deterministicMs,
+      fallback_code: null,
+      ...ran.payload,
+    },
+  };
+}
+
 export async function routeWeaveRequest(env, request, path) {
-  const isPlan = path === "/api/plan/interpret" && request.method === "POST";
-  const isFind = path === "/api/discovery/interpret" && request.method === "POST";
-  if (!isPlan && !isFind) return null;
+  const isPlanInterpret = path === "/api/plan/interpret" && request.method === "POST";
+  const isFindInterpret = path === "/api/discovery/interpret" && request.method === "POST";
+  const isPlanApply = path === "/api/plan/apply" && request.method === "POST";
+  const isFindApply = path === "/api/discovery/apply" && request.method === "POST";
+  const isPlanCommit = path === "/api/plan/commit" && request.method === "POST";
+  if (!isPlanInterpret && !isFindInterpret && !isPlanApply && !isFindApply && !isPlanCommit) return null;
 
   const auth = await requireSession(env.DB, request);
   if (auth.error) return auth.error;
@@ -152,8 +259,6 @@ export async function routeWeaveRequest(env, request, path) {
   if (body === null) return fail("invalid_json");
   if (body.schema_version != null && body.schema_version !== 1) return fail("schema_version_unsupported");
   if (body.constraints || body.eligible) return fail("client_constraints_forbidden");
-  const text = String(body.text || "").trim();
-  if (!text || text.length > (isFind ? 200 : 500)) return fail("text_invalid");
 
   const vocabulary = buildWeaveVocabulary();
   const timezone = body.timezone || "UTC";
@@ -165,10 +270,101 @@ export async function routeWeaveRequest(env, request, path) {
   const members = assertParticipants(participantIds, await householdMemberIds(env.DB, session.household_id));
   if (!members.ok) return fail(members.error, members.status || 403);
 
+  if (isPlanApply) {
+    let priorState = body.state || emptyPlanningState();
+    if (body.chip_id) priorState = removePlanningChip(priorState, body.chip_id);
+    let dinnerPlan = null;
+    if (body.dinner_plan_id) {
+      dinnerPlan = await loadDinnerPlan(env.DB, body.dinner_plan_id);
+      if (!dinnerPlan || dinnerPlan.household_id !== session.household_id) return fail("forbidden_cross_household", 403);
+    }
+    const result = await executePlanning(env, session, {
+      priorState,
+      dinnerPlan,
+      participantIds,
+    });
+    return json(result);
+  }
+
+  if (isFindApply) {
+    const client = normalizeClientContext({ mode: body.mode || "standalone", ...(body.context || {}) });
+    if (!client.ok) return fail(client.error, client.status || 400);
+    let priorState = body.state || applyDiscoveryDelta(null, {}, {}).state;
+    if (body.chip_id) priorState = removeDiscoveryChip(priorState, body.chip_id);
+    const [constraints, tastes] = await Promise.all([
+      householdConstraints(env.DB, session.household_id),
+      householdTastes(env.DB, session.household_id),
+    ]);
+    const conflictPass = detectDiscoveryConflicts(priorState, { participantIds, constraints, tastes });
+    const executedState = conflictPass.repaired;
+    const ran = await executeDiscovery(env, session, {
+      executedState,
+      clientContext: client.context,
+      conflicts: conflictPass.conflicts,
+      dropped: [],
+      removed: conflictPass.removed,
+      modelAck: "",
+      source: "deterministic",
+      model: null,
+      prompt_version: null,
+      providerMs: 0,
+    });
+    if (ran.error) return ran.error;
+    return json(ran.payload);
+  }
+
+  if (isPlanCommit) {
+    const preview = body.preview;
+    const weaveState = body.state;
+    if (!preview?.slots || !weaveState?.dinner_count) return fail("preview_invalid");
+    const parsed = parsePlannerFromState(weaveState, { participant_ids: participantIds });
+    if (!parsed.ok) return fail(parsed.error, parsed.status || 400);
+    const now = new Date().toISOString();
+    const [constraints, tastes, catalogLoad] = await Promise.all([
+      householdConstraints(env.DB, session.household_id),
+      householdTastes(env.DB, session.household_id),
+      catalogReadsFromD1(env) ? loadPublishedCatalog(env.DB) : Promise.resolve({ ok: false }),
+    ]);
+    const ctx = {
+      now,
+      actor_member_id: session.member_id,
+      household_member_ids: await householdMemberIds(env.DB, session.household_id),
+      constraints,
+      tastes,
+      data_origin: "weave",
+      catalog: catalogLoad.ok ? catalogLoad.planner : null,
+      versions: catalogLoad.ok ? catalogLoad.versionsById : null,
+    };
+    const created = createDinnerPlan(
+      {
+        meal_count: weaveState.dinner_count,
+        entry_point: body.entry_point || "plan_dinners",
+        participant_ids: participantIds,
+        fill: "from_preview",
+        preview_slots: preview.slots,
+        intent: parsed.intent,
+        keep_it_easy: weaveState.keep_it_easy === true,
+        keep_ingredients_simple: weaveState.keep_ingredients_simple === true,
+      },
+      ctx
+    );
+    if (!created.ok) return fail(created.error, created.status || 400, created);
+    try {
+      await saveDinnerPlan(env.DB, created.plan);
+    } catch (error) {
+      return fail("dinner_plan_save_failed", 500, { detail: String(error.message || error) });
+    }
+    return json({ ok: true, plan: presentDinnerPlan(created.plan), unfilled: created.unfilled });
+  }
+
+  const text = String(body.text || "").trim();
+  const isFind = isFindInterpret;
+  if (!text || text.length > (isFind ? 200 : 500)) return fail("text_invalid");
+
   const provider = resolveProvider(env);
   const service = createGenerationService({ provider, store: createD1Store(env.DB), env });
 
-  if (isPlan) {
+  if (isPlanInterpret) {
     let priorState = body.state;
     let dinnerPlan = null;
     if (priorState == null && body.dinner_plan_id) {
@@ -267,6 +463,8 @@ export async function routeWeaveRequest(env, request, path) {
       fallback_code: null,
     });
   }
+
+  if (!isFindInterpret) return null;
 
   // Discovery interpret
   const client = normalizeClientContext({ mode: body.mode || "standalone", ...(body.context || {}) });

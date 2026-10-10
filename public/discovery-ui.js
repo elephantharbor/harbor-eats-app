@@ -650,7 +650,8 @@
     const resp = state.response;
     const mode = state.mode;
     const search = document.getElementById("discSearch");
-    if (search && rootEl.dataset.discMode === mode) {
+    const weaveHost = document.getElementById("discWeaveHost");
+    if ((search || weaveHost) && rootEl.dataset.discMode === mode) {
       const current = (resp && resp.query && resp.query.text) || "";
       if (document.activeElement !== search) search.value = current;
       syncSearchClearButton();
@@ -661,6 +662,7 @@
       return;
     }
     rootEl.dataset.discMode = mode;
+    weaveFindCtrl = null;
     const title =
       mode === "replace_plan_meal"
         ? "Find something else"
@@ -687,14 +689,22 @@
     }
     html += '</div><p class="lede" id="discLede">' + esc(lede) + '</p>';
     html += '<p class="disc-table meta" id="discTableNote"></p></div></header>';
-    html += '<div class="disc-search-row" role="search" aria-label="Find dinners"><label class="sr-only" for="discSearch">Search dinners</label>';
-    html += '<svg class="icon disc-search-icon" aria-hidden="true"><use href="#i-search" /></svg>';
-    html += '<input type="search" id="discSearch" class="disc-search" placeholder="Try salmon, tacos, or Thai" autocomplete="off" value="' + esc((resp && resp.query && resp.query.text) || "") + '" />';
-    const searchHasText = !!(resp && resp.query && resp.query.text);
-    html +=
-      '<button type="button" class="disc-search-clear" id="discSearchClear" aria-label="Clear search"' +
-      (searchHasText ? "" : " hidden") +
-      ">×</button></div>";
+    if (mode === "standalone") {
+      html +=
+        '<input type="search" id="discSearch" class="sr-only" tabindex="-1" aria-hidden="true" autocomplete="off" value="' +
+        esc((resp && resp.query && resp.query.text) || "") +
+        '" />';
+      html += '<div id="discWeaveHost"></div>';
+    } else {
+      html += '<div class="disc-search-row" role="search" aria-label="Find dinners"><label class="sr-only" for="discSearch">Search dinners</label>';
+      html += '<svg class="icon disc-search-icon" aria-hidden="true"><use href="#i-search" /></svg>';
+      html += '<input type="search" id="discSearch" class="disc-search" placeholder="Try salmon, tacos, or Thai" autocomplete="off" value="' + esc((resp && resp.query && resp.query.text) || "") + '" />';
+      const searchHasText = !!(resp && resp.query && resp.query.text);
+      html +=
+        '<button type="button" class="disc-search-clear" id="discSearchClear" aria-label="Clear search"' +
+        (searchHasText ? "" : " hidden") +
+        ">×</button></div>";
+    }
     html += '<div class="disc-chips" id="discChips" role="toolbar" aria-label="Refine dinners"></div>';
     html += '<div class="disc-progress" id="discProgress" hidden></div>';
     html += '<div class="disc-main" id="discMain" aria-live="polite"></div>';
@@ -703,6 +713,83 @@
     paintMain();
     paintTableNote();
     syncSearchClearButton();
+    if (mode === "standalone") {
+      try {
+        mountFindWeave();
+      } catch (err) {
+        console.error("weave mount failed", err);
+      }
+    }
+  }
+
+  var weaveFindCtrl = null;
+
+  function mountFindWeave() {
+    const B = root.FlavorWeaveWeaveBridge;
+    if (!B || weaveFindCtrl) return;
+    weaveFindCtrl = B.findMount({
+      track: track,
+      discoveryMode: function () {
+        return state.mode;
+      },
+      discoveryContext: function () {
+        return urlContextForApi();
+      },
+      discoveryTotal: function () {
+        return state.response && state.response.total != null ? String(state.response.total) : "";
+      },
+      discoveryLiveSearch: async function (text) {
+        await applyQueryPatch({ text: text || null }, { forceResults: true });
+        const resp = state.response || {};
+        return {
+          ok: true,
+          source: "bypass",
+          results: resp.results,
+          query: resp.query,
+          total: resp.total,
+          chips: [],
+          acknowledgement: null,
+        };
+      },
+      discoveryApplyWeaveResponse: function (data, opts) {
+        if (!data.query && data.results) {
+          state.response = data;
+          state.view = "results";
+          state.forceResults = true;
+          paintChips();
+          paintMain();
+          const path = findPathFromState(data.query || currentQuery(), urlContextForApi());
+          history.replaceState({ find: captureState() }, "", path);
+          writeCache(path, data);
+          return;
+        }
+        if (data.query) {
+          applyQueryPatch(
+            {
+              text: data.query.text,
+              criteria: data.query.criteria,
+              soft: data.soft,
+            },
+            { forceResults: true, replaceCriteria: true }
+          );
+        }
+      },
+      discoveryPaintChipsWeave: function (weaveChips) {
+        state.weaveChips = weaveChips || [];
+        paintChips();
+      },
+    });
+  }
+
+  function moodChipHtml(chip) {
+    return (
+      '<button type="button" class="chip-tog is-on weave-mood-chip" data-weave-chip-id="' +
+      esc(chip.id) +
+      '" aria-pressed="true">' +
+      '<span class="weave-mood-mark" aria-hidden="true"><span></span><span></span><span></span></span>' +
+      esc(chip.label) +
+      " ×</button>"
+    );
   }
 
   function syncSearchClearButton() {
@@ -749,10 +836,17 @@
 
   function paintChips() {
     const box = document.getElementById("discChips");
-    if (!box || !state.response) return;
-    const q = state.response.query;
-    const c = q.criteria;
+    if (!box) return;
+    if (!state.response) {
+      box.innerHTML = "";
+      return;
+    }
+    const q = state.response.query || {};
+    const c = q.criteria || emptyCriteria();
     let html = "";
+    (state.weaveChips || []).forEach(function (chip) {
+      if (chip.id && chip.id.indexOf("cue:") === 0) html += moodChipHtml(chip);
+    });
     const easyOn = c.effort_levels && c.effort_levels.indexOf("easy") >= 0;
     html +=
       '<button type="button" class="chip-tog' +
@@ -1239,6 +1333,8 @@
     state.forceResults = false;
     state.response = null;
     state.shelves = {};
+    state.weaveChips = [];
+    weaveFindCtrl = null;
     track("discovery_opened", { mode: state.mode, entry: state.entry });
     const cached = o.path && readCache(o.path);
     if (cached) {
@@ -1530,7 +1626,7 @@
     const rootEl = document.getElementById("findRoot");
     if (rootEl) {
       rootEl.addEventListener("input", function (e) {
-        if (e.target.id === "discSearch") handleSearchInput(e);
+        if (e.target.id === "discSearch" || e.target.classList.contains("weave-composer__field")) handleSearchInput(e);
       });
     }
   }

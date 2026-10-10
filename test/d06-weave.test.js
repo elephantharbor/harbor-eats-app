@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { classifyDiscoveryBypass } from "../src/weave/bypass.js";
+import { removePlanningChip } from "../src/weave/chip-ops.js";
 import { applyPlanningDelta } from "../src/weave/state.js";
 import { reconcileAcknowledgement } from "../src/weave/ack.js";
 import { cueScoreForMeal } from "../src/weave/cues.js";
@@ -44,6 +45,15 @@ describe("D-06 weave", () => {
     });
     expect(ack.acknowledgement_source).toBe("reconciled");
     expect(ack.acknowledgement).toMatch(/seafood dinner/);
+  });
+
+  it("removes planning chips without model", () => {
+    const st = removePlanningChip(
+      { dinner_count: 3, frequencies: [{ token: "fish", min_count: 2, max_count: 2 }] },
+      "freq:fish"
+    );
+    expect(st.frequencies).toHaveLength(0);
+    expect(st.dinner_count).toBe(3);
   });
 
   it("scores intent cues deterministically", () => {

@@ -358,6 +358,7 @@
               <div id="tonightPlanSections"></div>
               <div class="card tonight-find-more" id="tonightFindMore">
                 <p class="card-kicker">Not feeling any of these?</p>
+                <button class="btn btn-secondary weave-tonight-cta" type="button" data-action="tonight-find-composer">What sounds good tonight?</button>
                 <button class="btn btn-secondary" type="button" data-action="see-all-dinners">See all dinners</button>
               </div>
             </div>
@@ -470,11 +471,13 @@
             <header class="page-head">
               <div class="page-head__copy">
                 <p class="eyebrow">Plan our dinners</p>
-                <h1 class="title" id="planCountTitle">How many dinners?</h1>
-                <p class="lede">Count the nights you want covered. Leftovers and nights out can take a spot later.</p>
-                <div id="planCountPrefs"></div>
+                <h1 class="title" id="planCountTitle">Plan your dinners</h1>
+                <p class="lede">Tell us what the week needs, or choose how many below.</p>
+                <div id="planWeaveHost"></div>
+                <div id="planCountPrefs" hidden></div>
               </div>
             </header>
+            <p class="weave-divider-label" id="planCountDivider">Or choose how many</p>
             <div class="plan-count-layout" id="planCountOptions"></div>
             <div class="sticky-actions">
               <button class="btn btn-primary btn-lg" type="button" id="btnPlanCountSubmit" disabled>Choose a number</button>
@@ -495,6 +498,7 @@
                 <p class="eyebrow" id="planReviewEyebrow">Your plan</p>
                 <h1 class="title" id="planReviewTitle">Here’s a good plan</h1>
                 <p class="lede" id="planReviewLede">One dinner per night, picked for your table. Swap anything that doesn’t feel right.</p>
+                <div id="planReviewWeaveHost"></div>
                 <div id="planReviewPrefs"></div>
                 <p class="meta" id="planReviewStarIntro" hidden></p>
               </div>
@@ -1027,6 +1031,7 @@
   <script src="/discovery-relax-bridge.js"></script>
   <script src="/discovery-ui.js"></script>
   <script src="/weave-ui.js"></script>
+  <script src="/weave-bridge.js"></script>
   <script src="/app.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
