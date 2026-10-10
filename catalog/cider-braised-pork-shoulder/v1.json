@@ -3,7 +3,7 @@
   "catalog_contract_note": "Factory package for Dry Run #2. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are frozen for re-audit, not imported, not published.",
   "batch_id": "dry-run-2",
   "mode": "dry_run",
-  "package_revision": "freeze-r2",
+  "package_revision": "freeze-r3",
   "authored_on": "2026-10-04",
   "authored_timezone": "America/Chicago",
   "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
@@ -387,7 +387,43 @@
       "dietary_eligibility": "Separate from allergens. No conditional dairy_free claim. dairy_free is used only when no ingredient is a dairy food and none is a check-the-label dairy carrier such as mayonnaise.",
       "vocabulary": "vocabulary_tag_ids are active D-02 slugs only. meal_format may name a format with no D-02 slug. primary_ingredient may name a food with no D-02 slug. Neither is copied into tags.",
       "meal_format": "meal_format braise is not a D-02 meal_style slug and is not in vocabulary_tag_ids."
-    }
+    },
+    "classification_history": [
+      {
+        "version_number": 1,
+        "type": "classification_metadata_amendment",
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "when": "2026-10-10",
+        "applied_in_catalog": "D-03 backfill (d03-design/backfill-classifications-r2.json), recorded retroactively at freeze-r3",
+        "from": {
+          "effort": "long",
+          "complexity": "involved",
+          "source": "flavorweave-catalog-factory/dry-run-2/candidates/cider-braised-pork-shoulder/v1.json (freeze-r2)"
+        },
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "effort_factors": {
+          "active_prep": 1,
+          "active_attention": 0,
+          "active_components": 1,
+          "technique": 1,
+          "coordination_cleanup_equipment": 1
+        },
+        "effort_score": 4,
+        "complexity_factors": {
+          "ingredient_count_band": 1,
+          "specialty_burden": 0,
+          "flavor_component_breadth": 1,
+          "pantry_familiarity": 0
+        },
+        "complexity_score": 2,
+        "reason": "Sear then long unattended braise plus a cabbage side: effort factors prep 1, attention 0, components 1, technique 1, coordination 1 = 4 -> moderate (time is not effort; 'long' was a clock label). Complexity: count band 1, specialty 0, breadth 1 (braise + side), familiarity 0 = 2 -> standard. Rubric per factory SKILL.md D-03; matches d03-design/JUNIPER-CLASSIFICATION-BATCH.json. Cultural-bias guardrail: no cuisine points.",
+        "culinary_hash_affected": false,
+        "image_affected": false
+      }
+    ]
   },
   "image": {
     "image_id": "img_cider-braised-pork-shoulder_v1",
@@ -440,7 +476,7 @@
     "rights": "not_cleared_for_external_release",
     "provenance": "ai_illustration",
     "provenance_note": "Existing AI-generated JPEG supplied for this dry-run freeze; rights not cleared for external release.",
-    "package_revision": "freeze-r2",
+    "package_revision": "freeze-r3",
     "source_dimensions": {
       "width": 1280,
       "height": 720,
@@ -535,5 +571,26 @@
     "C",
     "D"
   ],
-  "recommendation_eligible": false
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r3_source_path_records_amendment_awaiting_preflight_and_vale",
+  "factory_source": {
+    "factory_candidate_dir": "flavorweave-catalog-factory/dry-run-2/candidates/cider-braised-pork-shoulder",
+    "factory_candidate_dir_abs": "/workspace/flavorweave-catalog-factory/dry-run-2/candidates/cider-braised-pork-shoulder",
+    "factory_package_file": "v1.json",
+    "factory_package_revision": "freeze-r2",
+    "factory_package_sha256": "5293812be92d43349909881ceb741d39c8f5a4ed7e8607b8ee4325ad5fa2335b",
+    "active_catalog_path": "catalog/cider-braised-pork-shoulder/v1.json (harbor-eats-app repo; read-only reference)",
+    "active_catalog_sha256": "6e831b26bb670f1bf1985b0c77ea00496acd65d28e9fb45469cf034f02dd40b2",
+    "relationship": "Active catalog v1.json = factory dry-run-2 v1.json with only recipe_version.effort/complexity replaced by D-03 effort_level/ingredient_complexity (d03-design backfill-classifications-r2). All other fields identical (JSON diff, 2026-10-10).",
+    "image_assets_identical": {
+      "cider-braised-pork-shoulder-640.webp": true,
+      "cider-braised-pork-shoulder.webp": true
+    },
+    "previous_freeze_integrity_candidate_dir": "/workspace/catalog/cider-braised-pork-shoulder",
+    "previous_freeze_integrity_note": "Recorded candidate_dir points at a path that does not exist (no factory source path). Superseded by this amendment's FREEZE_INTEGRITY.json.",
+    "amended_on": "2026-10-10",
+    "amended_by": "Juniper (Harbor Eats - Catalog Curator)",
+    "amendment_type": "records_only_source_path"
+  },
+  "revision_note": "freeze-r3 (2026-10-10 CT, hardening-1): records-only source-path amendment; adds factory_source metadata. No culinary, dietary, allergen or image change. Classification differs from the factory source (freeze-r2: legacy effort 'long' / complexity 'involved') because the active catalog carries the D-03 backfill (moderate/standard); that change is now recorded in recipe_version.classification_history. This amendment itself changes no classification value."
 }

@@ -1,0 +1,46 @@
+{
+  "slug": "crispy-skillet-chicken-sandwiches",
+  "recipe_version_id": "rv_crispy-skillet-chicken-sandwiches_v1",
+  "package_revision": "freeze-r1",
+  "assigned_by": "Juniper (Harbor Eats - Catalog Curator)",
+  "assigned_on": "2026-10-10",
+  "rubric": "D-03 (factory SKILL.md)",
+  "effort_factors": {
+    "active_prep": 1,
+    "active_attention": 1,
+    "active_components": 1,
+    "technique": 1,
+    "coordination_cleanup_equipment": 1
+  },
+  "effort_score": 5,
+  "effort_level": "moderate",
+  "effort_floors_applied": [],
+  "complexity_factors": {
+    "ingredient_count_band": 1,
+    "specialty_burden": 0,
+    "flavor_component_breadth": 1,
+    "pantry_familiarity": 0
+  },
+  "complexity_score": 2,
+  "ingredient_complexity": "standard",
+  "ingredient_count": 12,
+  "specialty_items": [],
+  "reason_codes": {
+    "effort": [
+      "steady_prep",
+      "periodic_attention"
+    ],
+    "ingredient": [
+      "medium_list",
+      "common_pantry",
+      "multi_build"
+    ]
+  },
+  "borderline": false,
+  "rationale": "Butterfly and pound cutlets plus a dredge station is steady prep (1). Two skillet batches need watching to 165F (1). Cutlets plus a stirred lemon-dijon mayo and assembly = components 1. Dredge-and-sear is technique 1 (no floor: technique <2). Skillet, dredge bowls, thermometer, assembly = coordination 1. Score 5 = moderate. Complexity: 12 counted supermarket items (band 1), no specialty items (0), a second build (mayo sauce) = breadth 1. Score 2 = standard. Legacy 'weeknight' is time-flavored; time is not effort.",
+  "precedent": "d03-design/JUNIPER-CLASSIFICATION-BATCH.json (same labels/factors)",
+  "legacy": {
+    "effort": "weeknight",
+    "complexity": "straightforward"
+  }
+}

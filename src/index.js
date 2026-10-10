@@ -1,3 +1,4 @@
+import { aiHealth, resolveProvider } from "./ai/index.js";
 /**
  * Harbor Eats consumer API (Workers + D1) — MVO write/read paths.
  * Ratings: 1–10 per diner; CML when every active member rated. No invented metrics.
@@ -1729,6 +1730,7 @@ function serializeRecipeForClient(concept, version) {
     ingredient_complexity: version.ingredient_complexity || null,
     effort_label: effortLabel(version.effort_level),
     methods: version.methods,
+    equipment: Array.isArray(version.equipment) ? version.equipment : [],
     dietary_tags: version.dietary_tags,
     plate: concept.plate,
     ingredients: version.ingredients,
@@ -2293,6 +2295,10 @@ export default {
         request.method === "GET"
       ) {
         return handleHealth(env, url);
+      }
+
+      if (path === "/api/ai/health" && request.method === "GET") {
+        return json(aiHealth(env, resolveProvider(env)));
       }
 
       if (!env.DB) {

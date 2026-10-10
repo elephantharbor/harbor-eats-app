@@ -14,15 +14,18 @@ Draft catalog package for FlavorWeave Catalog Factory Dry Run #1. Not kitchen-te
 - Primary ingredient: mussels
 - Servings: 4
 - Time: prep 15 + cook 13 = 28 minutes
-- Effort: weeknight (straightforward)
+- effort_level: moderate · ingredient_complexity: standard (D-03; replaces legacy effort/complexity; see d03-classification.json and classification_history)
+- Package revision: `freeze-r1` (matches v1.json)
 - Publication state: Draft
 - Provenance: original_ai_assisted
 - Kitchen tested: false
 - HH001 eligible: false — Shellfish is banned for HH001. Global catalog candidate. It is not a second shrimp pasta.
 - Taste tags: mediterranean, savory, tangy, fresh, tender, crunchy
 - Dietary labels: dairy_free
+- Dietary label note: dairy_free is unconditional: no milk, butter, cheese, cream or yogurt is in the ingredient list; bread is a lean baguette/ciabatta and is brushed with olive oil.
 - Allergens: shellfish, wheat
-- Allergen notes: Wheat (required crusty bread, baguette or ciabatta) is on the structured array with shellfish. Live PACKAGE_ALLERGEN_IDS has shellfish and no wheat id. That gap does not remove wheat from the array. Wine is not an allergen and was not added.
+- Dietary eligibility: contains_meat=false, contains_poultry=false, contains_finfish=false, contains_shellfish=true, contains_dairy=false, plant_based_compatible=false, vegetarian_compatible=false, pescatarian_compatible=true, nut_policy=none, hh001_eligible=false
+- Allergen notes: Shellfish covers the mussels. Wheat covers the crusty bread (baguette or ciabatta). Wine is not an allergen token. Live enum gap: PACKAGE_ALLERGEN_IDS does not include wheat; it stays on the array.
 
 ## Why this slot
 
@@ -127,3 +130,7 @@ Frozen for Vale round 2. Not certified. Not published.
 - Method: format and size conversion of the existing AI JPEG. Model slug: unknown (C2PA softwareAgent on the JPEG is "Grok Imagine"; that label was not invented into a model id).
 - Provenance token: `ai_illustration`. qa_state: pending_r2.
 - Rights: not cleared for external release.
+
+## Amendment freeze-r1 (2026-10-10 CT, hardening-1)
+
+freeze-r1 (2026-10-10 CT, hardening-1): contract-forward creator amendment of the Dry Run #1 package. Records/classification only; recipe and images unchanged (culinary_hash unchanged). Changes: package_revision added; dietary_eligibility object added; allergens reviewed (shellfish stays: it is both an allergen token and an eligibility class); D-03 effort_level/ingredient_complexity replace legacy effort/complexity; image.generation.generator added from existing generator_identity; image.dimensions converted to master/card format. culinary_hash `05af6403921004fb800aac0e7ae1d328626c82aa17b62d8e645d7c79a5f208b6` (basis in v1.json culinary_hash_basis; identical to the dry-run-1 record). Image dimensions now recorded as master 1200×900 / card 640×480. structural_qa_state `freeze_r1_contract_forward_amendment_awaiting_preflight_and_vale`. The certification block records the Dry Run #1 Vale r2 PASS for the pre-contract record. It does not certify freeze-r1; freeze-r1 needs Vale re-audit (A, G, J-classification, M, N, O; see AMENDMENT-freeze-r1.md in this directory).

@@ -1,0 +1,57 @@
+{
+  "slug": "korean-soft-tofu-stew",
+  "package_revision": "freeze-r6",
+  "computed_on": "2026-10-10",
+  "computed_by": "Juniper (creator)",
+  "algorithm": "sha256",
+  "canonicalization": "json.dumps(obj, sort_keys=True, separators=(',',':'), ensure_ascii=False).encode('utf-8')",
+  "culinary_hash_fields": [
+    "recipe_version.base_servings",
+    "recipe_version.ingredients",
+    "recipe_version.steps",
+    "recipe_version.components",
+    "recipe_version.equipment",
+    "recipe_version.prep_minutes",
+    "recipe_version.cook_minutes",
+    "recipe_version.total_minutes",
+    "recipe_version.heat",
+    "recipe_version.doneness",
+    "recipe_version.description",
+    "scaling_notes"
+  ],
+  "excluded": [
+    "effort_level",
+    "ingredient_complexity",
+    "effort",
+    "complexity",
+    "classification_history",
+    "ids",
+    "package_revision",
+    "states",
+    "image",
+    "README/brief prose"
+  ],
+  "v1": {
+    "file": "v1.json",
+    "recipe_version_id": "rv_korean-soft-tofu-stew_v1",
+    "package_revision": "freeze-r4",
+    "culinary_hash": "4edc3751115e5ce0559e33c546b391bd3664f1a7024285b8af70a455da337922",
+    "ingredient_basis_hash": "c70f29ef505950ab3fb2b122a020ca88a50fa67e15d9effbabeaf23bd3e678ca",
+    "technique_basis_hash": "8d72b362dffd6911c9492b9f814b7ae7bbc2f43510db3d9fff1249e68c83ef71"
+  },
+  "v2": {
+    "file": "v2.json",
+    "recipe_version_id": "rv_korean-soft-tofu-stew_v2",
+    "package_revision": "freeze-r6",
+    "culinary_hash": "ccfd44b12425f519c1db8895758e45aa693136d69e09f5bc8418967272c83b92",
+    "ingredient_basis_hash": "c70f29ef505950ab3fb2b122a020ca88a50fa67e15d9effbabeaf23bd3e678ca",
+    "technique_basis_hash": "8d72b362dffd6911c9492b9f814b7ae7bbc2f43510db3d9fff1249e68c83ef71"
+  },
+  "ingredient_basis_fields": "per ingredient: ingredient_id, quantity, unit, preparation, optional",
+  "technique_basis_fields": "heat, doneness, prep/cook/total_minutes, equipment, step_count",
+  "ingredients_full_equal": true,
+  "culinary_hash_changed": true,
+  "why_changed": "step 1/2/6 bodies, step ingredient_refs (dangling 'shiitake-mushrooms' ref removed), components[0].ingredients, description, scaling_notes['1'] text",
+  "freeze_r5_v2_hash_rejected": "c5333899927b4b63f28ab12d439695711343e0ce94835a27e8559d44976dd7f6 (different, undocumented basis; superseded)",
+  "editorial_only": true
+}

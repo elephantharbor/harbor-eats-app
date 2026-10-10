@@ -87,7 +87,7 @@ async function legacySidecar(dir, slug, fileName) {
   };
 }
 
-async function factorySidecar(dir, slug) {
+async function factorySidecar(dir, slug, file = "v1.json") {
   const names = await readdir(dir);
   let freezeIntegrity = "not_in_package";
   let freezeDetail = null;
@@ -106,7 +106,7 @@ async function factorySidecar(dir, slug) {
     readmeDeclares = /not certified/i.test(readme);
   }
   return {
-    source_path: `catalog/${slug}/v1.json`,
+    source_path: `catalog/${slug}/${file}`,
     freeze_integrity: freezeIntegrity,
     freeze_detail: freezeDetail,
     readme_declares_not_certified: readmeDeclares,
@@ -125,11 +125,25 @@ for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name))) {
       failures.push({ slug: entry.name, errors: [{ code: "directory_slug_mismatch", detail: entry.name }] });
       continue;
     }
+    const hasFactoryV2 = names.includes("v2.json");
+    const published = stagingPolicy.publication_status || "published";
     const normalized = normalizeFactoryPackage(pkg, await factorySidecar(dir, entry.name), {
-      publicationStatus: stagingPolicy.publication_status || "published",
+      publicationStatus: hasFactoryV2 ? "retired" : published,
     });
     if (!normalized.ok) failures.push({ slug: entry.name, errors: normalized.errors });
     else records.push(normalized.record);
+    if (hasFactoryV2) {
+      // Factory successor: v1 is kept as retired history, v2 becomes current.
+      const pkg2 = JSON.parse(await readFile(join(dir, "v2.json"), "utf8"));
+      const v2 = normalizeFactoryPackage(pkg2, await factorySidecar(dir, entry.name, "v2.json"), { publicationStatus: published });
+      if (!v2.ok) failures.push({ slug: entry.name, file: "v2.json", errors: v2.errors });
+      else if (v2.record.supersedes_version_id !== normalized.record?.recipe_version_id) {
+        failures.push({ slug: entry.name, file: "v2.json", errors: [{ code: "supersedes_mismatch", detail: v2.record.supersedes_version_id }] });
+      } else {
+        records.push(v2.record);
+        retireVersionIds.push(normalized.record.recipe_version_id);
+      }
+    }
     continue;
   }
   if (pkg.catalog_contract !== LEGACY_CONTRACT) {

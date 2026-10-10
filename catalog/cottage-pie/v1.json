@@ -1,12 +1,12 @@
 {
   "catalog_contract": "flavorweave-catalog-package",
-  "catalog_contract_note": "Factory package for wave-12-2026-10-08, creator batch C. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not imported, not published.",
+  "catalog_contract_note": "Factory package for wave-12-2026-10-08, creator batch C. Dish, Recipe, Recipe Version, Image. dietary_eligibility is separate from allergens. Master and card WebPs are present and frozen for preflight/audit at freeze-r3 (assets unchanged since freeze-r2). asset_generated is true. Not imported, not published.",
   "batch_id": "wave-12-2026-10-08",
   "batch_label": "C",
   "creator_batch": "C",
   "mode": "certified_batch",
-  "package_revision": "freeze-r2",
-  "revision_note": "freeze-r2 (2026-10-08 CT) is a classification-only metadata amendment for Vale wave-12 batch C r1 Gate J: ingredient_complexity simple -> standard (15 countable items is rubric band 2; factors 2,0,0,0 = 2). effort_level moderate (5) unchanged. Reason codes remapped to the closed v1 set. Scaling reconciliation (Vale wave-wide note): the 1-serving note makes a half recipe, so scaling_notes.ratio['1'] is now 0.5 (was 0.25) and the note says so. Recipe text, version_number 1, culinary_hash, and the image are unchanged; no K/L rerun.",
+  "package_revision": "freeze-r3",
+  "revision_note": "freeze-r2 (2026-10-08 CT) is a classification-only metadata amendment for Vale wave-12 batch C r1 Gate J: ingredient_complexity simple -> standard (15 countable items is rubric band 2; factors 2,0,0,0 = 2). effort_level moderate (5) unchanged. Reason codes remapped to the closed v1 set. Scaling reconciliation (Vale wave-wide note): the 1-serving note makes a half recipe, so scaling_notes.ratio['1'] is now 0.5 (was 0.25) and the note says so. Recipe text, version_number 1, culinary_hash, and the image are unchanged; no K/L rerun. freeze-r3 (2026-10-10 CT, hardening-1): editorial-only rewording of scaling_notes['1'] to remove internal shopping-ratio wording flagged by Vale batch C ('…shopping ratio is 0.5, not 0.25'). ratio['1'] stays 0.5; quantities, steps, ingredients, image, version_number 1, D-03 labels and culinary_hash are unchanged (scaling_notes are outside the culinary_hash basis and are not imported to runtime). Vale re-check scope: Gate N (shopping/scaling) + Gate O (version/history) only. freeze-r3 records reconciliation (2026-10-10 CT, Vale r3 Gate O): README revision label/scaling line, structural_qa_state, image.package_revision and current-state freeze-r2 references updated to freeze-r3. Records-only; no culinary, quantity, classification or image change. Historical freeze-r2 mentions in this note are intentional history.",
   "authored_on": "2026-10-08",
   "authored_timezone": "America/Chicago",
   "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
@@ -49,9 +49,9 @@
     "recipe_id": "rcp_cottage-pie",
     "dish_id": "cottage-pie",
     "version_number": 1,
-    "package_revision": "freeze-r2",
+    "package_revision": "freeze-r3",
     "immutable": true,
-    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r3 (assets unchanged since freeze-r2). asset_generated is true. Not certified. Not published. kitchen_tested is false.",
     "title": "Cottage Pie with Thyme Gravy",
     "description": "Ground beef simmered with onion, carrot, celery, and peas in a glossy thyme gravy, topped with buttery mashed potatoes raked into ridges and baked until the peaks are golden and crisp.",
     "base_servings": 4,
@@ -475,7 +475,7 @@
     ],
     "publication_state": "Draft",
     "publication_status": "draft",
-    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "structural_qa_state": "freeze_r3_records_reconciled_awaiting_vale_N_O_recheck",
     "culinary_audit_state": "not_audited",
     "kitchen_tested": false,
     "validation_kind": "curator_preflight_only",
@@ -492,7 +492,7 @@
       "dietary_eligibility": "Separate from allergens. No conditional X-free claims.",
       "vocabulary": "vocabulary_tag_ids are active D-02 slugs verified in taste-vocabulary.js. dish.cuisine / meal_format / primary_ingredient may name cells with no D-02 slug and are not copied into tags.",
       "classification": "effort_level / ingredient_complexity are D-03 enums. Legacy effort / complexity strings deliberately omitted (package skill). Reason codes in the sidecar use the closed v1 set in d03-design/FACTORY-SKILL-AMENDMENT.md (draft, not yet applied to the skill), remapped at freeze-r2 per Vale r1.",
-      "package_revision": "package_revision is freeze-r2. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true.",
+      "package_revision": "package_revision is freeze-r3. Master and card WebPs are present and frozen for preflight/audit at freeze-r3 (unchanged since freeze-r2). asset_generated is true.",
       "cuisine_gap": "british is dish metadata; no british D-02 cuisine slug exists, so no cuisine tag is applied."
     }
   },
@@ -549,8 +549,8 @@
     "recipe_fidelity_state": "awaiting_preflight",
     "rights": "not_cleared_for_external_release",
     "provenance": "ai_illustration",
-    "provenance_note": "Original AI illustration generated from this package's recipe and plating brief. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true.",
-    "package_revision": "freeze-r2",
+    "provenance_note": "Original AI illustration generated from this package's recipe and plating brief. Master and card WebPs are present and frozen for preflight/audit at freeze-r3 (generated 2026-10-08; byte-identical since freeze-r2, see image-state.json hashes). asset_generated is true.",
+    "package_revision": "freeze-r3",
     "source_dimensions": {
       "width": 1280,
       "height": 720
@@ -637,21 +637,21 @@
     {
       "check": "publication",
       "result": "pass",
-      "detail": "publication_state is Draft. package_revision is freeze-r2. Not published. Not certified."
+      "detail": "publication_state is Draft. package_revision is freeze-r3. Not published. Not certified."
     },
     {
       "check": "image",
       "result": "frozen_for_preflight",
-      "detail": "Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true."
+      "detail": "Master and card WebPs are present and frozen for preflight/audit at freeze-r3 (unchanged since freeze-r2). asset_generated is true."
     },
     {
       "check": "freeze_integrity",
       "result": "pass",
-      "detail": "freeze_integrity.py PASS at freeze-r2. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
+      "detail": "freeze_integrity.py re-run at freeze-r3 (2026-10-10 records reconciliation); see FREEZE_INTEGRITY.json. Master and card WebPs present. FREEZE_INTEGRITY.json recorded."
     }
   ],
   "scaling_notes": {
-    "1": "Make half the recipe (the 2-serving amounts, so the 1-serving shopping ratio is 0.5, not 0.25) in a 1-quart baking dish; eat one portion and refrigerate the second for up to 3 days. Bake about 15 minutes before broiling.",
+    "1": "Make half the recipe (use the 2-serving amounts) in a 1-quart baking dish; eat one portion and refrigerate the second for up to 3 days. Bake about 15 minutes before broiling.",
     "2": "Half of everything in a 10-inch oven-safe skillet or 8-inch square dish; bake about 18 minutes before broiling.",
     "4": "As written.",
     "base_servings": 4,
@@ -671,5 +671,18 @@
   "selection_alignment": "Matches selection.json: british / potato-topped-bake / ground beef / hh001_intent false. Deviations from WAVE proposals: ingredient_complexity simple -> standard (rubric).",
   "batch_challenges": "C",
   "recommendation_eligible": false,
-  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale"
+  "structural_qa_state": "freeze_r3_records_reconciled_awaiting_vale_N_O_recheck",
+  "editorial_amendments": [
+    {
+      "type": "editorial_scaling_note",
+      "who": "Juniper (Harbor Eats - Catalog Curator), via hardening-1 integration owner",
+      "when": "2026-10-10",
+      "field": "scaling_notes.1",
+      "from": "Make half the recipe (the 2-serving amounts, so the 1-serving shopping ratio is 0.5, not 0.25) in a 1-quart baking dish; eat one portion and refrigerate the second for up to 3 days. Bake about 15 minutes before broiling.",
+      "to": "Make half the recipe (use the 2-serving amounts) in a 1-quart baking dish; eat one portion and refrigerate the second for up to 3 days. Bake about 15 minutes before broiling.",
+      "culinary_hash_unchanged": true,
+      "ratio_unchanged": true,
+      "vale_recheck_scope": "Gate N + Gate O"
+    }
+  ]
 }

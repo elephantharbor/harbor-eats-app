@@ -216,6 +216,25 @@ export function recommendationMealFromRecord(record) {
   };
 }
 
+/**
+ * Required equipment from canonical catalog metadata only (catalog_equipment rows).
+ * Never derived from step prose.
+ * @param {unknown} list
+ * @returns {string[]}
+ */
+export function canonicalEquipment(list) {
+  if (!Array.isArray(list)) return [];
+  const seen = new Set();
+  const out = [];
+  for (const raw of list) {
+    const item = String(raw ?? "").trim();
+    if (!item || seen.has(item.toLowerCase())) continue;
+    seen.add(item.toLowerCase());
+    out.push(item);
+  }
+  return out;
+}
+
 export function recipeShapeFromEntry(entry) {
   const concept = entry.concept;
   const pkg = entry.pkg;
@@ -235,6 +254,7 @@ export function recipeShapeFromEntry(entry) {
       effort_level: pkg.effort_level || null,
       ingredient_complexity: pkg.ingredient_complexity || null,
       methods: pkg.methods || [],
+      equipment: canonicalEquipment(pkg.equipment),
       dietary_tags: pkg.dietary_labels || [],
       ingredients: pkg.display_ingredients || pkg.ingredients,
       steps: (pkg.steps || []).map((step) => ({

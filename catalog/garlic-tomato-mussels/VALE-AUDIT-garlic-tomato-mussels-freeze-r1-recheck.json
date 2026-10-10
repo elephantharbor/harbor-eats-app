@@ -1,0 +1,20 @@
+{
+  "auditor": "Vale (Harbor Eats - Catalog Auditor), independent",
+  "audit_date": "2026-10-10",
+  "audit_timezone": "America/Chicago",
+  "contract_version": "flavorweave-catalog-certification (A-O, L1+L2, D-03)",
+  "packages_mutated": false,
+  "freeze_integrity": "PASS - re-run by Vale on scratch copy 2026-10-10; identical to package record",
+  "overall": "PASS",
+  "slug": "garlic-tomato-mussels",
+  "package_revision": "freeze-r1",
+  "recipe_version_id": "rv_garlic-tomato-mussels_v1",
+  "gates": {
+    "O": {
+      "result": "PASS",
+      "note": "AMENDMENT-freeze-r1.md present and consistent with v1.json (migration list, current values, culinary_hash reproduced by Vale, images byte-identical); certification_scope_note resolves; dry-run PASS explicitly scoped to pre-contract record."
+    }
+  },
+  "supersedes": "prior: FAIL O",
+  "recheck_round": 2
+}

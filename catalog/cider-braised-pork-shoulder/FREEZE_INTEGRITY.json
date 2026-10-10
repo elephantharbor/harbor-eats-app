@@ -1,6 +1,6 @@
 {
   "FREEZE_INTEGRITY": "PASS",
-  "candidate_dir": "/workspace/catalog/cider-braised-pork-shoulder",
+  "candidate_dir": "/workspace/flavorweave-catalog-factory/hardening-1/amendments/cider-braised-pork-shoulder-freeze-r3-source-path",
   "fail_count": 0,
   "checks": [
     {
@@ -11,7 +11,7 @@
     {
       "id": "identity_present",
       "result": "PASS",
-      "detail": "cider-braised-pork-shoulder freeze-r2"
+      "detail": "cider-braised-pork-shoulder freeze-r3"
     },
     {
       "id": "identity_agree",
@@ -61,7 +61,7 @@
     {
       "id": "field_allergens",
       "result": "PASS",
-      "detail": "present at recipe_version.allergens"
+      "detail": "present at recipe_version.allergens (empty list)"
     },
     {
       "id": "allergens_list",
@@ -109,11 +109,6 @@
       "detail": "1200x900"
     },
     {
-      "id": "declared_master_dims",
-      "result": "PASS",
-      "detail": "declared master matches spec"
-    },
-    {
       "id": "image_format_card",
       "result": "PASS",
       "detail": "cider-braised-pork-shoulder-640.webp webp"
@@ -124,14 +119,9 @@
       "detail": "640x480"
     },
     {
-      "id": "declared_card_dims",
-      "result": "PASS",
-      "detail": "declared card matches spec"
-    },
-    {
       "id": "rejected_not_active_name",
       "result": "PASS",
-      "detail": "rejected files do not reuse active filenames"
+      "detail": "no rejected dir"
     }
   ]
 }

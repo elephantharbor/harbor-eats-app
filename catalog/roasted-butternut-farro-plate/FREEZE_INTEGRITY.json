@@ -1,6 +1,6 @@
 {
   "FREEZE_INTEGRITY": "PASS",
-  "candidate_dir": "/workspace/catalog/roasted-butternut-farro-plate",
+  "candidate_dir": "/workspace/flavorweave-catalog-factory/hardening-1/amendments/roasted-butternut-farro-plate-freeze-r3-source-path",
   "fail_count": 0,
   "checks": [
     {
@@ -11,7 +11,7 @@
     {
       "id": "identity_present",
       "result": "PASS",
-      "detail": "roasted-butternut-farro-plate freeze-r2"
+      "detail": "roasted-butternut-farro-plate freeze-r3"
     },
     {
       "id": "identity_agree",
@@ -109,11 +109,6 @@
       "detail": "1200x900"
     },
     {
-      "id": "declared_master_dims",
-      "result": "PASS",
-      "detail": "declared master matches spec"
-    },
-    {
       "id": "image_format_card",
       "result": "PASS",
       "detail": "roasted-butternut-farro-plate-640.webp webp"
@@ -122,11 +117,6 @@
       "id": "image_dims_card",
       "result": "PASS",
       "detail": "640x480"
-    },
-    {
-      "id": "declared_card_dims",
-      "result": "PASS",
-      "detail": "declared card matches spec"
     },
     {
       "id": "rejected_not_active_name",

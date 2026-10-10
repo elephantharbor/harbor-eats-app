@@ -1,0 +1,34 @@
+{
+  "auditor": "Vale (Harbor Eats - Catalog Auditor), independent",
+  "audit_date": "2026-10-10",
+  "audit_timezone": "America/Chicago",
+  "contract_version": "flavorweave-catalog-certification (A-O, L1+L2, D-03)",
+  "packages_mutated": false,
+  "freeze_integrity": "PASS (re-run on scratch copy 2026-10-10; record in package matches)",
+  "slug": "cottage-pie",
+  "candidate": "hardening-1/amendments/cottage-pie-freeze-r3",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r3",
+  "recipe_version_id": "rv_cottage-pie_v1",
+  "overall": "FAIL",
+  "disposition": "EDITORIAL_CONFIRMED_FIX_RECORDS_THEN_RECHECK",
+  "editorial_check": {
+    "result": "CONFIRMED_EDITORIAL",
+    "basis": "JSON diff vs wave-12/candidates/cottage-pie/v1.json (freeze-r2, Vale r2 PASS): only package_revision (x2), revision_note, scaling_notes['1'] wording, editorial_amendments added. Ingredients, quantities, steps, ratio 0.5, eligibility, allergens, D-03, image unchanged; versioning not required."
+  },
+  "gates": {
+    "N": {
+      "result": "PASS",
+      "note": "1-serving = make the 2-serving amounts; ratio['1']=0.5 consistent; shopping unchanged."
+    },
+    "O": {
+      "result": "FAIL",
+      "defect": [
+        "README.md is unchanged from freeze-r2: still states package_revision freeze-r2 (lines 5, 23, 156, 160) and still carries the old scaling wording '...shopping ratio is 0.5, not 0.25' (line 141), contradicting v1.json freeze-r3.",
+        "Top-level structural_qa_state still 'freeze_r2_preflight_pass_awaiting_vale'.",
+        "Package dir carries VALE-AUDIT-cottage-pie.json (r2 PASS for freeze-r2) with no freeze-r3 record; must not be read as certifying freeze-r3."
+      ]
+    }
+  },
+  "required_fix": "Records-only: update README revision + scaling line and structural_qa_state to freeze-r3 (editorial; freeze-r4 label if re-frozen), re-run freeze_integrity, re-check N+O."
+}

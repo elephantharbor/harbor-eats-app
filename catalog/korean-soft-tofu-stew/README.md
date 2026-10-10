@@ -1,24 +1,24 @@
 # Korean Soft Tofu Stew
 
-Soft tofu simmered in a spicy gochugaru broth with plant kimchi, zucchini, and mushrooms. No egg, no seafood, no meat.
+Soft tofu simmered in a spicy gochugaru broth with plant kimchi and zucchini. No egg, no seafood, no meat.
 
-Frozen catalog package for FlavorWeave Catalog Factory wave-10-2026-10-05. Complete Dish→Recipe→Recipe Version→Image package with master and card WebPs present. package_revision `freeze-r4`. asset_generated is true. Draft only — not certified, not published, kitchen_tested false.
+Frozen catalog package for FlavorWeave Catalog Factory wave-10-2026-10-05. Complete Dish→Recipe→Recipe Version→Image package with master and card WebPs present. package_revision `freeze-r6` (recipe version 2; supersedes v1 certified at freeze-r4). asset_generated is true. Draft only — not certified, not published, kitchen_tested false.
 
 ## Identity
 
 - Dish id / slug: `korean-soft-tofu-stew`
 - Recipe id: `rcp_korean-soft-tofu-stew`
-- Recipe version id: `rv_korean-soft-tofu-stew_v1`
-- Image id (reserved): `img_korean-soft-tofu-stew_v1`
+- Recipe version id: `rv_korean-soft-tofu-stew_v2` (current; supersedes `rv_korean-soft-tofu-stew_v1`, retained verbatim in v1.json)
+- Image id: `img_korean-soft-tofu-stew_v1` (asset identity; byte-identical freeze-r4 hero carried forward, associated with rv_korean-soft-tofu-stew_v2)
 - Cuisine: korean
 - Meal format: stew
 - Primary ingredient: soft tofu
 - Servings: 4
 - Time: prep 15 + cook 21 = 36 minutes
-- Effort: easy (simple)
+- effort_level: easy · ingredient_complexity: standard (D-03; see d03-design sidecar `d03-classification.json` and classification_history)
 - Publication state: Draft / draft
 - Provenance: original_ai_assisted
-Package revision: `freeze-r4` (matches v1.json).
+- Package revision: `freeze-r6` (matches v2.json).
 - Kitchen tested: false
 - HH001 eligible: true — Plant soft-tofu stew. No dairy, no shellfish, no meat, no poultry, no eggs. Plant kimchi is contracted seafood-free. Soy and sesame are present as allergens but HH001 allows soy/sesame. Nuts absent except the sesame oil which is not a banned tree nut under HH001.
 - Taste tags: korean, stews, tofu, spicy, savory, umami, tender
@@ -67,7 +67,6 @@ Quantities are for 4 servings. Preparation is not part of the shopping id.
 - `garlic` — 4 clove garlic; prep: minced
 - `fresh-ginger` — 1 tbsp fresh ginger; prep: minced
 - `zucchini` — 1 count zucchini; prep: halved lengthwise and sliced 1/4 inch thick; note: about 8 oz
-- `shiitake-mushrooms` — 6 oz shiitake mushrooms; prep: sliced; note: stems removed. Fresh, not dried rehydrated with a meat stock.
 - `vegetable-stock` — 3 cup vegetable stock; note: plant stock only. Do not use chicken, beef, or seafood stock. Unsalted or low-sodium preferred.
 - `water` — 0.5 cup water; note: to loosen the broth if needed
 - `scallions` — 4 count scallions; prep: thinly sliced
@@ -78,17 +77,17 @@ Quantities are for 4 servings. Preparation is not part of the shopping id.
 ## Components
 
 - **spicy kimchi broth** — made in the recipe: true. Store-bought finished component: false.
-  Ingredients: neutral oil, toasted sesame oil, yellow onion, garlic, fresh ginger, shiitake mushrooms, gochugaru, gochujang, plant kimchi, zucchini, vegetable stock, water, soy sauce, sugar, kosher salt, black pepper
+  Ingredients: neutral oil, toasted sesame oil, yellow onion, garlic, fresh ginger, gochugaru, gochujang, plant kimchi, zucchini, vegetable stock, water, soy sauce, sugar, kosher salt, black pepper
 
 ## Steps
 
 ### 1. Prep
 
-Drain the soft tofu and cut it into large spoonable chunks; leave them on a plate. Roughly chop the plant kimchi. Dice the yellow onion. Halve and slice the zucchini. Remove shiitake stems and slice the caps. Mince the garlic and fresh ginger. Thinly slice the scallions. Measure the gochugaru, gochujang, soy sauce, toasted sesame oil, neutral oil, vegetable stock, water, sugar, kosher salt, and black pepper. Confirm the kimchi label is plant/vegan with no fish sauce or shrimp. Do not crack any eggs; this stew has no egg garnish.
+Drain the soft tofu and cut it into large spoonable chunks; leave them on a plate. Roughly chop the plant kimchi. Dice the yellow onion. Halve and slice the zucchini. Mince the garlic and fresh ginger. Thinly slice the scallions. Measure the gochugaru, gochujang, soy sauce, toasted sesame oil, neutral oil, vegetable stock, water, sugar, kosher salt, and black pepper. Confirm the kimchi label is plant/vegan with no fish sauce or shrimp. Do not crack any eggs; this stew has no egg garnish.
 
 ### 2. Start the aromatics
 
-Heat the neutral oil and 1 tsp of the toasted sesame oil in a 3-to-4-quart pot or deep skillet over medium heat. Add the yellow onion and 1/4 tsp of the kosher salt. Cook, stirring, until the onion softens, about 4 minutes. Add the garlic, fresh ginger, and shiitake mushrooms. Cook until the mushrooms soften and smell fragrant, about 3 minutes. Do not brown hard.
+Heat the neutral oil and 1 tsp of the toasted sesame oil in a 3-to-4-quart pot or deep skillet over medium heat. Add the yellow onion and 1/4 tsp of the kosher salt. Cook, stirring, until the onion softens, about 4 minutes. Add the garlic and fresh ginger. Cook, stirring, until fragrant and the onion is fully soft, about 3 minutes. Do not brown hard.
 
 ### 3. Bloom the chili paste and flakes
 
@@ -104,11 +103,11 @@ Slide the soft tofu chunks into the pot. Spoon hot broth over them. Simmer gentl
 
 ### 6. Finish
 
-Take the pot off the heat. Stir in the remaining 1 tsp toasted sesame oil. Scatter the scallions over the top. Serve in bowls as a stew: soft tofu, kimchi, zucchini, mushrooms, and spicy broth. No egg on top. No rice is required by this recipe (rice on the side is outside the package). kitchen_tested is false.
+Take the pot off the heat. Stir in the remaining 1 tsp toasted sesame oil. Scatter the scallions over the top. Serve in bowls as a stew: soft tofu, kimchi, zucchini, and spicy broth. No egg on top. No rice is required by this recipe (rice on the side is outside the package). kitchen_tested is false.
 
 ## Scaling notes
 
-- **1 serving(s):** One serving: about 7 oz soft tofu (half a 14 oz tube), 6 tbsp chopped plant kimchi, 3/4 cup vegetable stock, 2 tbsp water. Onion: 1/4 small. Zucchini: 1/4. Shiitake: about 1.5 oz. Garlic: 1 clove. Ginger: 1 tsp. Gochugaru: 1.5 tsp. Gochujang: 1 tsp. Soy sauce: 1 tsp. Neutral oil: 1 tsp. Sesame oil: 1/2 tsp total. Scallions: 1. Use a small saucepan so the broth still covers the tofu. Same gentle simmer.
+- **1 serving(s):** One serving: about 7 oz soft tofu (half a 14 oz tube), 6 tbsp chopped plant kimchi, 3/4 cup vegetable stock, 2 tbsp water. Onion: 1/4 small. Zucchini: 1/4. Garlic: 1 clove. Ginger: 1 tsp. Gochugaru: 1.5 tsp. Gochujang: 1 tsp. Soy sauce: 1 tsp. Neutral oil: 1 tsp. Sesame oil: 1/2 tsp total. Scallions: 1. Use a small saucepan so the broth still covers the tofu. Same gentle simmer.
 - **2 serving(s):** 14 oz soft tofu, 3/4 cup plant kimchi, 1.5 cups stock, half the aromatics and seasonings. 2-quart pot.
 - **4 serving(s):** As written. 28 oz soft tofu, 1.5 cups plant kimchi, 3 cups stock, 3-to-4-quart pot.
 - Do not scale: gentle simmer for soft tofu; seafood-free kimchi contract; no egg garnish; pot size must shrink with the batch so tofu stays submerged
@@ -122,9 +121,15 @@ Take the pot off the heat. Stir in the remaining 1 tsp toasted sesame oil. Scatt
 
 ## Image status
 
-Hero assets present: `img_v1.jpg`, `korean-soft-tofu-stew.webp` (1200×900), `korean-soft-tofu-stew-640.webp` (640×480). asset_generated is true. Not published.
+Hero assets present (carried forward byte-identical from freeze-r4): `img_v1.jpg`, `korean-soft-tofu-stew.webp` (1200×900), `korean-soft-tofu-stew-640.webp` (640×480). asset_generated is true. Not published.
 
 
 ## Certification
 
-auditor: null. certification: null. Culinary audit not run. Freeze integrity not claimed PASS. Awaiting Vale.
+auditor: null. certification: null. v2 / freeze-r6 not yet audited; awaiting Vale re-audit after Freeze Integrity Preflight.
+
+## Revision freeze-r6 (2026-10-10 CT)
+
+freeze-r6 / version 2 (2026-10-10 CT, hardening-1). Replaces rejected freeze-r5 v2 (which re-added 6 oz shiitake; Vale r5 FAIL C/J/K/N/O). Cora decision: shiitake stays OUT, consistent with freeze-r4. Purely editorial: removes leftover shiitake/mushroom text from steps 1/2/6, description, components, scaling_notes['1'], README, plating brief, image prompt. No ingredient, quantity, heat, timing or technique change vs r4-certified v1 (ingredient basis hash and technique basis hash identical). Image carried forward byte-identical. Classification: legacy effort/complexity keys replaced by D-03 enums easy/standard with classification_history (complexity simple->standard per rubric). v1.json restored verbatim from wave-10.
+
+culinary_hash (v2): `ccfd44b12425f519c1db8895758e45aa693136d69e09f5bc8418967272c83b92`. Basis and v1 hash: `CULINARY_HASH.json`. structural_qa_state: `freeze_r6_images_present_awaiting_vale`.

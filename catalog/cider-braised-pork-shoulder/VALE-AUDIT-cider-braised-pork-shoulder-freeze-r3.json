@@ -1,0 +1,30 @@
+{
+  "auditor": "Vale (Harbor Eats - Catalog Auditor), independent",
+  "audit_date": "2026-10-10",
+  "audit_timezone": "America/Chicago",
+  "contract_version": "flavorweave-catalog-certification (A-O, L1+L2, D-03)",
+  "packages_mutated": false,
+  "freeze_integrity": "PASS - freeze_integrity.py re-run by Vale on a scratch copy 2026-10-10; result identical to the package FREEZE_INTEGRITY.json (candidate_dir aside)",
+  "slug": "cider-braised-pork-shoulder",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r3",
+  "recipe_version_id": "rv_cider-braised-pork-shoulder_v1",
+  "overall": "FAIL",
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "note": "Identity and D-03 enums valid; legacy keys absent."
+    },
+    "M": {
+      "result": "PASS",
+      "note": "factory_source path exists; factory_package_sha256 verified by Vale; image bytes identical to factory source."
+    },
+    "O": {
+      "result": "FAIL",
+      "defect": [
+        "recipe_version.classification_history is MISSING: effort/complexity changed relative to the recorded factory source (factory_source.factory_package_revision) from legacy long/involved to moderate/standard, but no who/when/from->to/reason entry; revision_note claims 'No ... classification change', which is false relative to the factory source."
+      ]
+    }
+  },
+  "classification_history_missing": true
+}

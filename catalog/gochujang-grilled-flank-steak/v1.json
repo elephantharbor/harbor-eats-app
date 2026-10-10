@@ -3,6 +3,7 @@
   "catalog_contract_note": "Factory package for Dry Run #1. Nested Dish → Recipe → Recipe Version → Image. Not imported to recipe-store. Not published.",
   "batch_id": "dry-run-1",
   "mode": "dry_run",
+  "package_revision": "freeze-r1",
   "authored_on": "2026-10-04",
   "authored_timezone": "America/Chicago",
   "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
@@ -337,17 +338,34 @@
     "doneness": "130–135°F in the center for medium-rare, then a 5-minute rest. Slice against the grain.",
     "effort_level": "moderate",
     "ingredient_complexity": "standard",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "pescatarian_compatible": false,
+      "nut_policy": "none",
+      "hh001_eligible": false,
+      "notes": "Beef flank steak is meat: contains_meat true (eligibility class, not an allergen token). No dairy listed. Sesame is an allergen, not a nut under nut_policy. No tree nuts or peanuts."
+    },
     "dietary_labels": [
       "dairy_free"
     ],
+    "dietary_label_note": "dairy_free is unconditional: no milk, butter, cheese, cream or yogurt in the ingredient list.",
     "allergens": [
-      "meat",
       "soy",
-      "sesame"
+      "sesame",
+      "wheat"
     ],
     "allergen_notes": [
-      "Contains meat (flank steak), soy (soy sauce), and sesame (toasted sesame oil and sesame seeds). All three are on the structured allergens array.",
-      "Live enum gap: PACKAGE_ALLERGEN_IDS includes meat and does not include soy or sesame. Soy and sesame stay on the array. The note does not replace the field."
+      "Soy covers the soy sauce and typical commercial gochujang.",
+      "Sesame covers the toasted sesame oil and sesame seeds.",
+      "Wheat covers the soy sauce and the gochujang. The ingredient lines give no wheat-free or gluten-free requirement (soy sauce has no qualifier; gochujang is 'store-bought Korean fermented chili paste'), and conventional soy sauce and commercial gochujang typically contain wheat, so wheat is listed. Added at freeze-r1; the dry-run record omitted it.",
+      "Meat is not an allergen token; it is recorded as dietary_eligibility.contains_meat = true.",
+      "Live enum gap: PACKAGE_ALLERGEN_IDS does not include soy, sesame, or wheat; they stay on the array."
     ],
     "hh001_eligible": false,
     "hh001_reason": "Beef is meat other than fish. HH001 does not eat this. It is a global catalog candidate.",
@@ -362,7 +380,7 @@
     ],
     "publication_state": "Draft",
     "publication_status": "draft",
-    "structural_qa_state": "revision_r1_applied_pending_r2",
+    "structural_qa_state": "freeze_r1_contract_forward_amendment_awaiting_preflight_and_vale",
     "culinary_audit_state": "r1_fail_returned_revision_applied_pending_r2",
     "kitchen_tested": false,
     "validation_kind": "structural_only",
@@ -375,9 +393,51 @@
       "provenance": "Factory value is original_ai_assisted, as specified for this dry run. The live Cycle 2 RECIPE_PROVENANCE enum has ai_assisted and does not list original_ai_assisted. Do not silently remap in a later implement pass without Cora confirming the mapping.",
       "publication_state": "Factory value is Draft. The live PUBLICATION_STATUSES enum uses lowercase draft. publication_status is included as that lowercase alias and is not published.",
       "data_origin": "data_origin synthetic matches the live enum for authored-not-household data. It does not mean the recipe was cooked.",
-      "allergens": "Structured allergens now list the real allergens, including tokens outside live PACKAGE_ALLERGEN_IDS (dairy, nuts, cashew, walnut, peanut, almond, pecan, hazelnut, pistachio, macadamia, pine_nut, shellfish, finfish, poultry, meat). Soy, sesame, egg, and wheat are not in that enum. They stay on the allergens array anyway. A note is not a substitute for the field, and the enum is not a reason to drop a real allergen. allergen_notes keeps the nuance. Do not strip these tokens in a later implement pass to force an enum match.",
-      "vocabulary": "No D-02 ingredient slug exists for beef, mussels, or sandwich rolls. primary_ingredient carries that identity. Tags were not invented."
-    }
+      "allergens": "Allergens are allergen tokens only. Live PACKAGE_ALLERGEN_IDS lists poultry and meat, but under the current package contract those are dietary_eligibility classes (contains_poultry / contains_meat) and were moved off the allergens array at freeze-r1. Egg, wheat, soy and sesame are not in the live enum; they stay on the array. A note is not a substitute for the field.",
+      "vocabulary": "No D-02 ingredient slug exists for beef, mussels, or sandwich rolls. primary_ingredient carries that identity. Tags were not invented.",
+      "dietary_eligibility": "dietary_eligibility object added at freeze-r1 (current contract). Live runtime may only read dietary_labels; the object is the factory source of truth."
+    },
+    "package_revision": "freeze-r1",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "type": "classification_metadata_amendment",
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "when": "2026-10-10",
+        "from": {
+          "effort": "moderate",
+          "complexity": "moderate",
+          "field_form": "legacy freeform dry-run-1 keys"
+        },
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "D-03 rubric: effort factors [1, 1, 1, 1, 1] = 5; complexity factors [1, 1, 1, 0] = 3. Matches d03-design JUNIPER-CLASSIFICATION-BATCH. Marinade paste plus cucumber salad prep is steady (1). Grilling to temperature and resting needs attention (1). Marinade/steak plus salad = components 1. Direct-heat grilling to an internal temp and slicing against the grain is technique 1 (no floor). Grill plus kitchen prep = coordination 1. Score 5 = moderate. Complexity: 11 counted (band 1); gochujang is one specialty-aisle item (1, by sourcing not cuisine); two builds (marinade + salad) breadth 1. Score 3 = standard. Legacy 'moderate' complexity is not a D-03 enum.",
+        "sidecar": "d03-classification.json",
+        "culinary_hash_affected": false
+      }
+    ],
+    "metadata_amendments": [
+      {
+        "package_revision": "freeze-r1",
+        "when": "2026-10-10",
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "type": "contract_forward_records_amendment",
+        "changes": [
+          "package_revision added",
+          "dietary_eligibility object added",
+          "poultry/meat moved from allergens to dietary_eligibility",
+          "D-03 effort_level/ingredient_complexity replace legacy effort/complexity",
+          "image.generation.generator added from existing generator_identity",
+          "image.dimensions converted to master/card format",
+          "wheat added to allergens (soy sauce + gochujang carry no wheat-free requirement)"
+        ],
+        "unchanged": "ingredients, quantities, steps, times, components, equipment, scaling, image pixels (byte-identical)"
+      }
+    ],
+    "culinary_hash": "cf9efd51ba33d4a6bd7ee99eb3816199cd41655fae454e6717dfc5d5716e5ca8",
+    "culinary_hash_basis": "sha256 over canonical JSON (sort_keys, separators (',',':'), ensure_ascii False, UTF-8) of {base_servings, ingredients, steps, components, equipment, prep/cook/total_minutes, heat, doneness, description (recipe_version), scaling_notes}. Excludes classification, dietary/allergen metadata, ids, revision, states, image."
   },
   "image": {
     "image_id": "img_gochujang-grilled-flank-steak_v1",
@@ -386,10 +446,16 @@
     "asset_generated": true,
     "master_ref": "gochujang-grilled-flank-steak.webp",
     "active_source_jpeg": "img_v1.jpg",
-    "dimensions": {
+    "dimensions_target": {
       "width": 1200,
       "height": 900,
       "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
     },
     "derivatives": [
       {
@@ -430,7 +496,8 @@
       "prompt_file": "image-prompt.md",
       "source_jpeg": "img_v1.jpg",
       "external_image_api_called": false,
-      "external_image_api_note": "No external image API call in this revision. WebP files are a format and size conversion of the existing AI JPEG named in source_jpeg."
+      "external_image_api_note": "No external image API call in this revision. WebP files are a format and size conversion of the existing AI JPEG named in source_jpeg.",
+      "generator": "Source JPEG C2PA softwareAgent: Grok Imagine. Curator process: Juniper via Grok Bot Dry Run #1. Model slug unknown."
     },
     "qa_state": "certified_r2_pass",
     "recipe_fidelity_state": "pass_r2",
@@ -438,7 +505,20 @@
     "rights": "original_ai",
     "rights_note": "Original AI pixels already on disk, converted to the catalog WebP pair. No stock, restaurant, or recipe-site photograph. Model slug unknown. Rights are not cleared for external release. Not published.",
     "provenance": "ai_illustration",
-    "provenance_note": "Live IMAGE_PROVENANCE token ai_illustration. The r1 token ai_illustration_intended described a missing binary. The audit asset now exists as a conversion of an on-disk original AI JPEG. This is not a third-party license and it does not clear rights. Model slug remains unknown."
+    "provenance_note": "Live IMAGE_PROVENANCE token ai_illustration. The r1 token ai_illustration_intended described a missing binary. The audit asset now exists as a conversion of an on-disk original AI JPEG. This is not a third-party license and it does not clear rights. Model slug remains unknown.",
+    "master_filename": "gochujang-grilled-flank-steak.webp",
+    "card_filename": "gochujang-grilled-flank-steak-640.webp",
+    "card_ref": "gochujang-grilled-flank-steak-640.webp",
+    "package_revision": "freeze-r1",
+    "carried_forward": {
+      "from": "dry-run-1/candidates/gochujang-grilled-flank-steak",
+      "statement": "Pixels unchanged; byte-identical copy.",
+      "sha256": {
+        "gochujang-grilled-flank-steak.webp": "060c50bc1047b5fc7c71500821f616470a57baae2269f47b1e7cebad07bbb910",
+        "img_v1.jpg": "7a4145f1c5164fceecac7ee9274f02f3b17850e0ac7d54756e5708ba3be98b52",
+        "gochujang-grilled-flank-steak-640.webp": "ca38b5c3256290d29f7f556c7f093348b8e5b9b4d4d17cb0c518e89c88bd4e20"
+      }
+    }
   },
   "catalog_confidence": {
     "structural_validation": "PASS",
@@ -500,15 +580,15 @@
     }
   ],
   "scaling_notes": {
-    "1": "Buy about 6 oz flank steak, not a tiny scrap that will fall through the grates. Round the marinade down but keep enough to coat: about 2 tsp gochujang, 1 1/2 tsp soy sauce, 3/4 tsp rice vinegar in the marinade and 3/4 tsp in the salad, 3/4 tsp toasted sesame oil in the marinade and 1/4 tsp in the salad, 3/4 tsp brown sugar, 1 garlic clove, 1 tsp grated fresh ginger. Use 1/4 of the cucumber and 1 scallion. Grill temperature stays 450–500°F. A smaller piece of the same thickness may finish about 1 minute sooner per side; use the thermometer.",
-    "2": "Halve every quantity. Two garlic cloves is the practical round of 1.5. Grill temperature and target doneness do not change. A half-width steak still needs the 5-minute rest.",
-    "4": "As written. 1.5 lb is about 6 oz raw per person.",
     "base_servings": 4,
     "ratio": {
       "1": 0.25,
       "2": 0.5,
       "4": 1
     },
+    "1": "Buy about 6 oz flank steak, not a tiny scrap that will fall through the grates. Round the marinade down but keep enough to coat: about 2 tsp gochujang, 1 1/2 tsp soy sauce, 3/4 tsp rice vinegar in the marinade and 3/4 tsp in the salad, 3/4 tsp toasted sesame oil in the marinade and 1/4 tsp in the salad, 3/4 tsp brown sugar, 1 garlic clove, 1 tsp grated fresh ginger. Use 1/4 of the cucumber and 1 scallion. Grill temperature stays 450–500°F. A smaller piece of the same thickness may finish about 1 minute sooner per side; use the thermometer.",
+    "2": "Halve every quantity. Two garlic cloves is the practical round of 1.5. Grill temperature and target doneness do not change. A half-width steak still needs the 5-minute rest.",
+    "4": "As written. 1.5 lb is about 6 oz raw per person.",
     "do_not_scale": [
       "grill temperature",
       "internal temperature",
@@ -529,5 +609,8 @@
     ],
     "certification": null,
     "published": false
-  }
+  },
+  "structural_qa_state": "freeze_r1_contract_forward_amendment_awaiting_preflight_and_vale",
+  "certification_scope_note": "The certification block records the Dry Run #1 Vale r2 PASS for the pre-contract record. It does not certify freeze-r1; freeze-r1 needs Vale re-audit (A, G, J-classification, M, N, O; see AMENDMENT-freeze-r1.md in this directory).",
+  "revision_note": "freeze-r1 (2026-10-10 CT, hardening-1): contract-forward creator amendment of the Dry Run #1 package. Records/classification only; recipe and images unchanged (culinary_hash unchanged)."
 }
