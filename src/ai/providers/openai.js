@@ -73,6 +73,7 @@ export function buildResponsesRequest(req) {
       { role: "user", content: String(req.user || "") },
     ],
     max_output_tokens: max,
+    ...(req.reasoning_effort ? { reasoning: { effort: String(req.reasoning_effort) } } : {}),
     store: false,
     text: {
       format: {
@@ -92,6 +93,7 @@ export function parseUsage(usage) {
     input_tokens: Number(u.input_tokens) || 0,
     cached_input_tokens: Number(u.input_tokens_details?.cached_tokens) || 0,
     output_tokens: Number(u.output_tokens) || 0,
+    reasoning_tokens: Number(u.output_tokens_details?.reasoning_tokens) || 0,
     cache_write_tokens: Number(u.input_tokens_details?.cache_write_tokens ?? u.input_tokens_details?.cache_creation_tokens) || 0,
   };
 }
@@ -110,10 +112,25 @@ export function extractOutput(body) {
   return { text, refusal };
 }
 
-function err(code, detail, usage) {
+function err(code, detail, usage, providerMeta) {
   const e = new AiError(code, detail);
   if (usage) e.usage = usage;
+  if (providerMeta) e.provider_meta = providerMeta;
   return e;
+}
+
+const safeStr = (v, n = 80) => (v == null ? null : String(v).replace(/[^\w.:-]/g, "").slice(0, n) || null);
+
+/** Safe, non-content provider metadata (no prompt, output, reasoning text or key). */
+export function providerMetadata(res, json) {
+  return {
+    http_status: Number(res?.status) || null,
+    response_status: safeStr(json?.status, 20),
+    incomplete_reason: safeStr(json?.incomplete_details?.reason, 40),
+    reported_model: safeStr(json?.model, 64),
+    request_id: safeStr(res?.headers?.get?.("x-request-id"), 80),
+    response_id: safeStr(json?.id, 80),
+  };
 }
 
 export function createOpenAIProvider({ env = {}, fetchImpl = (...a) => globalThis.fetch(...a), defaultTimeoutMs = DEFAULT_TIMEOUT_MS } = {}) {
@@ -154,23 +171,24 @@ export function createOpenAIProvider({ env = {}, fetchImpl = (...a) => globalThi
         signal?.removeEventListener?.("abort", onAbort);
       }
       const usage = parseUsage(json?.usage);
-      const requestId = res.headers?.get?.("x-request-id") || null;
-      if (res.status === 429) throw err("rate_limited", "status_429", usage);
-      if (res.status >= 500) throw err("provider_outage", `status_${res.status}`, usage);
-      if (!res.ok) throw err("provider_outage", `status_${res.status}`, usage); // 400/401/403/404: config problem, no detail echoed
-      if (json?.error) throw err("provider_outage", "response_error", usage);
-      if (json?.status === "incomplete") throw err("malformed_output", `incomplete:${String(json?.incomplete_details?.reason || "unknown").slice(0, 40)}`, usage);
-      if (json?.status === "failed") throw err("provider_outage", "failed", usage);
-      if (json?.status && json.status !== "completed") throw err("provider_outage", `status:${String(json.status).slice(0, 20)}`, usage);
+      const pm = providerMetadata(res, json);
+      if (res.status === 429) throw err("rate_limited", "status_429", usage, pm);
+      if (res.status >= 500) throw err("provider_outage", `status_${res.status}`, usage, pm);
+      if (!res.ok) throw err("provider_outage", `status_${res.status}`, usage, pm); // 400/401/403/404: config problem, no detail echoed
+      if (json?.error) throw err("provider_outage", "response_error", usage, pm);
+      if (json?.status === "incomplete" && json?.incomplete_details?.reason === "max_output_tokens") throw err("output_limit", "incomplete:max_output_tokens", usage, pm);
+      if (json?.status === "incomplete") throw err("malformed_output", `incomplete:${String(json?.incomplete_details?.reason || "unknown").slice(0, 40)}`, usage, pm);
+      if (json?.status === "failed") throw err("provider_outage", "failed", usage, pm);
+      if (json?.status && json.status !== "completed") throw err("provider_outage", `status:${String(json.status).slice(0, 20)}`, usage, pm);
       const { text, refusal } = extractOutput(json);
-      if (refusal) throw err("malformed_output", "refusal", usage);
+      if (refusal) throw err("malformed_output", "refusal", usage, pm);
       let parsed = null;
       try { parsed = JSON.parse(text); } catch { parsed = null; }
       return {
         text: parsed ? JSON.stringify(dropNullOptionals(parsed, req.response_schema)) : text,
         model: String(json?.model || body.model),
         usage,
-        metadata: { finish_reason: json?.status || null, request_id: json?.id || requestId },
+        metadata: { finish_reason: json?.status || null, ...pm },
       };
     },
   };

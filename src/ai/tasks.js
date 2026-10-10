@@ -44,8 +44,12 @@ const facetsSchema = {
 // tasks only carry max_retries (<=1), the output cap (outer model ceiling applies) and timeout.
 const DEFAULT_LIMITS = { max_retries: 1, max_output_tokens: 400, timeout_ms: 8000 };
 
+/** Allowed Responses API reasoning efforts. Every task MUST set one explicitly (no provider defaults). */
+export const REASONING_EFFORTS = Object.freeze(["none", "minimal", "low", "medium", "high"]);
+
 function task(id, spec) {
   if (!PROMPTS[id]) throw new Error(`task ${id} has no prompt`);
+  if (!REASONING_EFFORTS.includes(spec.reasoning_effort)) throw new Error(`task ${id} must set reasoning_effort explicitly`);
   const { limits = {}, ...rest } = spec;
   return Object.freeze({
     id,
@@ -60,6 +64,7 @@ function task(id, spec) {
 
 export const TASKS = Object.freeze({
   planning_intent: task("planning_intent", {
+    reasoning_effort: "minimal",
     cost_class: "cheap",
     allowed_models: ["fast-small"],
     input_schema: textInput(),
@@ -76,6 +81,7 @@ export const TASKS = Object.freeze({
     },
   }),
   discovery_intent: task("discovery_intent", {
+    reasoning_effort: "minimal",
     executable: true,
     cost_class: "cheap",
     allowed_models: ["fast-small"],
@@ -101,6 +107,7 @@ export const TASKS = Object.freeze({
     limits: { max_output_tokens: 250, timeout_ms: 5000 },
   }),
   feedback_extraction: task("feedback_extraction", {
+    reasoning_effort: "minimal",
     cost_class: "cheap",
     allowed_models: ["fast-small"],
     input_schema: { type: "object", required: ["text"], properties: { text: str(1000), meal: str(120) } },
@@ -113,6 +120,7 @@ export const TASKS = Object.freeze({
     // Never produces a taste score: themes are advisory text only.
   }),
   concept_generation: task("concept_generation", {
+    reasoning_effort: "low",
     cost_class: "creative",
     allowed_models: ["balanced", "strong"],
     cache: { enabled: false, ttl_seconds: 0 },
@@ -126,6 +134,7 @@ export const TASKS = Object.freeze({
     limits: { max_output_tokens: 800, timeout_ms: 20000 },
   }),
   recipe_draft: task("recipe_draft", {
+    reasoning_effort: "low",
     cost_class: "creative",
     allowed_models: ["strong"],
     cache: { enabled: false, ttl_seconds: 0 },
@@ -134,6 +143,7 @@ export const TASKS = Object.freeze({
     limits: { max_output_tokens: 1500, timeout_ms: 30000 },
   }),
   recipe_adaptation: task("recipe_adaptation", {
+    reasoning_effort: "low",
     cost_class: "creative",
     allowed_models: ["balanced", "strong"],
     cache: { enabled: false, ttl_seconds: 0 },
@@ -142,6 +152,7 @@ export const TASKS = Object.freeze({
     limits: { max_output_tokens: 600, timeout_ms: 15000 },
   }),
   explanation: task("explanation", {
+    reasoning_effort: "none",
     executable: true,
     cost_class: "standard",
     allowed_models: ["fast-small", "balanced"],
@@ -155,9 +166,11 @@ export const TASKS = Object.freeze({
       const check = stripAuthorityClaims(output.text);
       return check.ok ? { ok: true, value: output } : { ok: false, reason: check.reason };
     },
-    limits: { max_output_tokens: 120, timeout_ms: 5000 },
+    // 300 (was 120): s1 smoke exhausted 120 tokens -> incomplete. Luna ceiling (600) still applies.
+    limits: { max_output_tokens: 300, timeout_ms: 5000 },
   }),
   semantic_search_assist: task("semantic_search_assist", {
+    reasoning_effort: "minimal",
     cost_class: "cheap",
     allowed_models: ["fast-small"],
     input_schema: textInput(200),
