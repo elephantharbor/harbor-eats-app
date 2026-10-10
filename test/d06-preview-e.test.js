@@ -291,7 +291,7 @@ describe("E5 prompt cache, effort, and the planning clock", () => {
     const spy = vi.spyOn(Date, "now").mockReturnValue(frozen);
     const start = monotonicNow();
     let i = 0;
-    while (elapsedMs(start) === 0 && i < 5e7) i += 1;
+    while ((elapsedMs(start) ?? 0) === 0 && i < 5e7) i += 1;
     spy.mockRestore();
     expect(i).toBeLessThan(5e7);
     expect(elapsedMs(start)).toBeGreaterThan(0);
@@ -362,7 +362,7 @@ describe("E6 shellfish plan alternative", () => {
       dropped: [],
       removedTokens: ["shrimp"],
     });
-    expect(findAck.acknowledgement).toMatch(/seafood dinner/);
+    expect(findAck.acknowledgement).toMatch(/looked for fish/);
   });
 });
 
@@ -377,10 +377,10 @@ describe("E7 token cost", () => {
 
 describe("E8 service worker cache", () => {
   it("bumps the cache version and keeps the shell hash in step", () => {
-    expect(readSw().version).toBe("fw-sw-v24");
+    expect(readSw().version).toBe("fw-sw-v25");
     const check = checkSwInvariant();
     expect(check.ok, check.problems.join("; ")).toBe(true);
-    expect(check.version).toBe("fw-sw-v24");
+    expect(check.version).toBe("fw-sw-v25");
   });
 });
 
@@ -488,7 +488,7 @@ describe("plan interpret route", () => {
     expect(res.body.state.dinner_count).toBe(3);
     expect(res.body.acknowledgement).toMatch(/Planned 3 dinners/);
     expect(provider.calls).toHaveLength(1);
-    expect(res.body.deterministic_latency_ms).toBeGreaterThan(0);
+    expect(res.body.deterministic_latency_ms).toBeNull();
   });
 
   it("uses the household's last plan length as the usual count", async () => {

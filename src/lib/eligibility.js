@@ -35,6 +35,16 @@ const EXCEPTION_KEYS = { cashew_ok: "cashew" };
 
 export const HARD_RULE_KEYS = Object.keys(RULE_TO_TAGS);
 
+/** Client and stored keys the constraints API may write. Unknown keys are rejected. */
+export function isKnownRestrictionKey(key) {
+  const rule = String(key || "").trim();
+  if (!rule || rule === "none") return false;
+  if (HARD_RULE_KEYS.includes(rule)) return true;
+  if (Object.prototype.hasOwnProperty.call(RULE_EXCEPTIONS, rule)) return true;
+  if (Object.prototype.hasOwnProperty.call(EXCEPTION_KEYS, rule)) return true;
+  return false;
+}
+
 /**
  * @param {ConstraintRow[]} rows
  * @returns {Set<string>}

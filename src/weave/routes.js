@@ -20,7 +20,7 @@ import { projectDiscoveryMeal } from "../discovery/meal.js";
 import { runDiscoveryPipeline } from "../discovery/pipeline.js";
 import { resolveDiscoveryContext, selectionFor, publicContext, normalizeClientContext } from "../discovery/context.js";
 import { loadDiscoveryRecentSlugs } from "../discovery/http.js";
-import { buildPlanningChips, buildDiscoveryChips, reconcileAcknowledgement } from "./ack.js";
+import { buildPlanningChips, buildDiscoveryChips, noResultsAcknowledgement, NO_RESULTS_SUGGESTIONS, reconcileAcknowledgement, refinementAcknowledgement } from "./ack.js";
 import { classifyDiscoveryBypass, bypassDiscoveryPatch, normalizeFindText } from "./bypass.js";
 import { detectDiscoveryConflicts, detectPlanningConflicts, frequencyConflicts } from "./conflicts.js";
 import { discoveryStateToQuery } from "./discovery-map.js";
@@ -76,6 +76,11 @@ function todayInTimezone(timezone) {
   }
 }
 
+/**
+ * Prompt context is household-free on purpose. It carries the clock, a diner
+ * count, and plan dates — not member ids, names, allergens, tastes, or limits.
+ * The interpret cache key is this payload. Conflicts are applied after the cache.
+ */
 function buildPromptContext({ timezone, participantIds, dinnerPlan, today, usual }) {
   const dates = datesFromPlanMeals(dinnerPlan?.meals);
   return {
@@ -128,15 +133,17 @@ function seedPlanningStateFromPlan(plan) {
   return state;
 }
 
-async function runDiscoveryForQuery(env, session, query, clientContext) {
-  const loaded = await loadPublishedCatalog(env.DB);
+async function runDiscoveryForQuery(env, session, query, clientContext, preloaded = null) {
+  const loaded = preloaded?.catalog?.ok ? preloaded.catalog : await loadPublishedCatalog(env.DB);
   if (!loaded.ok) return { error: fail(loaded.error || "catalog_unavailable", 503) };
-  const [memberIds, constraints, tastes, recent] = await Promise.all([
-    householdMemberIds(env.DB, session.household_id),
-    householdConstraints(env.DB, session.household_id),
-    householdTastes(env.DB, session.household_id),
-    loadDiscoveryRecentSlugs(env.DB, session.household_id),
-  ]);
+  const [memberIds, constraints, tastes, recent] = preloaded
+    ? [preloaded.memberIds, preloaded.constraints, preloaded.tastes, preloaded.recent]
+    : await Promise.all([
+        householdMemberIds(env.DB, session.household_id),
+        householdConstraints(env.DB, session.household_id),
+        householdTastes(env.DB, session.household_id),
+        loadDiscoveryRecentSlugs(env.DB, session.household_id),
+      ]);
   const resolved = resolveDiscoveryContext(clientContext, {
     household_id: session.household_id,
     member_ids: memberIds,
@@ -173,11 +180,13 @@ async function runDiscoveryForQuery(env, session, query, clientContext) {
 /**
  * @param {{ DB: object, CATALOG_SOURCE?: string }} env
  */
-async function executePlanning(env, session, { priorState, dinnerPlan, participantIds }) {
-  const [constraints, tastes] = await Promise.all([
-    householdConstraints(env.DB, session.household_id),
-    householdTastes(env.DB, session.household_id),
-  ]);
+async function executePlanning(env, session, { priorState, dinnerPlan, participantIds, preloaded = null, routeStarted = Date.now() }) {
+  const [constraints, tastes] = preloaded
+    ? [preloaded.constraints, preloaded.tastes]
+    : await Promise.all([
+        householdConstraints(env.DB, session.household_id),
+        householdTastes(env.DB, session.household_id),
+      ]);
   const conflictPass = detectPlanningConflicts(priorState, {
     participantIds,
     constraints,
@@ -221,18 +230,20 @@ async function executePlanning(env, session, { priorState, dinnerPlan, participa
   }
   let catalog = null;
   if (catalogReadsFromD1(env)) {
-    const loaded = await loadPublishedCatalog(env.DB);
+    const loaded = preloaded?.catalog || (await loadPublishedCatalog(env.DB));
     if (loaded.ok) catalog = loaded.planner;
   }
-  const t1 = monotonicNow();
+  const previousSlots = previousSlotsFromMeals(dinnerPlan?.meals);
   const preview = planDinners(parsed.intent, {
     catalog,
     constraints,
     tastes,
-    previous_slots: previousSlotsFromMeals(dinnerPlan?.meals),
+    previous_slots: previousSlots,
   });
-  const deterministicMs = elapsedMs(t1);
+  // planDinners is synchronous. Workers freeze both clocks during CPU, so this is n/a.
+  const deterministicMs = null;
   const conflicts = [...conflictPass.conflicts, ...frequencyConflicts(preview)];
+  const refinement = refinementAcknowledgement({ preview, previousSlots, slots: executed.slots });
   const ack = reconcileAcknowledgement({
     task: "planning_intent",
     modelAck: "",
@@ -242,6 +253,7 @@ async function executePlanning(env, session, { priorState, dinnerPlan, participa
     removedTokens: conflictPass.removed,
     dinnerCountDefaulted,
     dinnerCountUsual,
+    refinement,
   });
   return {
     ok: true,
@@ -254,27 +266,33 @@ async function executePlanning(env, session, { priorState, dinnerPlan, participa
     dropped: [],
     changed_positions: preview.changed_positions || [],
     preview,
-    deterministic_latency_ms: deterministicMs,
-    total_latency_ms: deterministicMs,
+    suggestions: ack.suggestions || [],
+    ...latencyFields({ routeStarted, providerMs: 0, deterministicMs }),
     fallback_code: null,
   };
 }
 
-async function executeDiscovery(env, session, { executedState, clientContext, conflicts, dropped, removed, modelAck, source, model, prompt_version, providerMs }) {
-  const ack = reconcileAcknowledgement({
+async function executeDiscovery(env, session, { executedState, clientContext, conflicts, dropped, removed, modelAck, source, model, prompt_version, providerMs, preloaded = null, routeStarted = Date.now(), userText = "" }) {
+  let ack = reconcileAcknowledgement({
     task: "discovery_intent",
     modelAck,
     state: executedState,
     conflicts,
     dropped,
     removedTokens: removed,
+    userText,
   });
   const mapped = discoveryStateToQuery(executedState, {});
   if (!mapped.ok) return { error: fail(mapped.error, mapped.status || 400) };
   const t1 = monotonicNow();
-  const ran = await runDiscoveryForQuery(env, session, mapped.query, clientContext);
+  const ran = await runDiscoveryForQuery(env, session, mapped.query, clientContext, preloaded);
   const deterministicMs = elapsedMs(t1);
   if (ran.error) return { error: ran.error };
+  let suggestions = ack.suggestions || [];
+  if ((ran.payload.total || 0) === 0) {
+    ack = { acknowledgement: noResultsAcknowledgement(conflicts), acknowledgement_source: "reconciled", suggestions: [...NO_RESULTS_SUGGESTIONS] };
+    suggestions = ack.suggestions;
+  }
   return {
     payload: {
       ok: true,
@@ -287,16 +305,29 @@ async function executeDiscovery(env, session, { executedState, clientContext, co
       chips: buildDiscoveryChips(executedState),
       conflicts,
       dropped,
-      provider_latency_ms: providerMs,
-      deterministic_latency_ms: deterministicMs,
-      total_latency_ms: providerMs + deterministicMs,
+      suggestions,
+      ...latencyFields({ routeStarted, providerMs, deterministicMs }),
       fallback_code: null,
       ...ran.payload,
     },
   };
 }
 
+function latencyFields({ routeStarted, providerMs, deterministicMs }) {
+  const total = Math.max(0, Date.now() - routeStarted);
+  const provider = Number(providerMs) || 0;
+  const deterministic = typeof deterministicMs === "number" ? deterministicMs : null;
+  const overhead = Math.max(0, total - provider - (deterministic || 0));
+  return {
+    provider_latency_ms: provider,
+    server_overhead_ms: overhead,
+    deterministic_latency_ms: deterministic,
+    total_latency_ms: total,
+  };
+}
+
 export async function routeWeaveRequest(env, request, path) {
+  const routeStarted = Date.now();
   const isPlanInterpret = path === "/api/plan/interpret" && request.method === "POST";
   const isFindInterpret = path === "/api/discovery/interpret" && request.method === "POST";
   const isPlanApply = path === "/api/plan/apply" && request.method === "POST";
@@ -315,12 +346,20 @@ export async function routeWeaveRequest(env, request, path) {
   const vocabulary = buildWeaveVocabulary();
   const timezone = body.timezone || "UTC";
   const today = todayInTimezone(timezone);
-  const participantIds =
-    (body.participant_ids || body.context?.participant_ids || []).length
-      ? body.participant_ids || body.context?.participant_ids
-      : await householdMemberIds(env.DB, session.household_id);
-  const members = assertParticipants(participantIds, await householdMemberIds(env.DB, session.household_id));
+  const householdIds = await householdMemberIds(env.DB, session.household_id);
+  const requestedIds = body.participant_ids || body.context?.participant_ids || [];
+  const participantIds = requestedIds.length ? requestedIds : householdIds;
+  const members = assertParticipants(participantIds, householdIds);
   if (!members.ok) return fail(members.error, members.status || 403);
+  const reads = {
+    constraints: householdConstraints(env.DB, session.household_id),
+    tastes: householdTastes(env.DB, session.household_id),
+    catalog: catalogReadsFromD1(env) ? loadPublishedCatalog(env.DB) : Promise.resolve({ ok: false }),
+    recent: isFindInterpret || isFindApply
+      ? loadDiscoveryRecentSlugs(env.DB, session.household_id)
+      : Promise.resolve({ recent_slugs: [], recent_source: null }),
+  };
+  const settleReads = () => Promise.allSettled([reads.constraints, reads.tastes, reads.catalog, reads.recent]);
 
   if (isPlanApply) {
     let priorState = body.state || emptyPlanningState();
@@ -330,10 +369,13 @@ export async function routeWeaveRequest(env, request, path) {
       dinnerPlan = await loadDinnerPlan(env.DB, body.dinner_plan_id);
       if (!dinnerPlan || dinnerPlan.household_id !== session.household_id) return fail("forbidden_cross_household", 403);
     }
+    const [constraints, tastes, catalog] = await Promise.all([reads.constraints, reads.tastes, reads.catalog]);
     const result = await executePlanning(env, session, {
       priorState,
       dinnerPlan,
       participantIds,
+      preloaded: { constraints, tastes, catalog },
+      routeStarted,
     });
     return json(result);
   }
@@ -343,11 +385,8 @@ export async function routeWeaveRequest(env, request, path) {
     if (!client.ok) return fail(client.error, client.status || 400);
     let priorState = body.state || applyDiscoveryDelta(null, {}, {}).state;
     if (body.chip_id) priorState = removeDiscoveryChip(priorState, body.chip_id);
-    const [constraints, tastes] = await Promise.all([
-      householdConstraints(env.DB, session.household_id),
-      householdTastes(env.DB, session.household_id),
-    ]);
-    const conflictPass = detectDiscoveryConflicts(priorState, { participantIds, constraints, tastes });
+    const [constraints, tastes, recent, catalog] = await Promise.all([reads.constraints, reads.tastes, reads.recent, reads.catalog]);
+    const conflictPass = detectDiscoveryConflicts(priorState, { participantIds, constraints, tastes, userText: body.text || "" });
     const executedState = conflictPass.repaired;
     const ran = await executeDiscovery(env, session, {
       executedState,
@@ -360,6 +399,9 @@ export async function routeWeaveRequest(env, request, path) {
       model: null,
       prompt_version: null,
       providerMs: 0,
+      userText: body.text || "",
+      routeStarted,
+      preloaded: { memberIds: householdIds, constraints, tastes, recent, catalog },
     });
     if (ran.error) return ran.error;
     return json(ran.payload);
@@ -368,19 +410,18 @@ export async function routeWeaveRequest(env, request, path) {
   if (isPlanCommit) {
     const preview = body.preview;
     const weaveState = body.state;
-    if (!preview?.slots || !weaveState?.dinner_count) return fail("preview_invalid");
+    if (!preview?.slots || !weaveState?.dinner_count) {
+      await settleReads();
+      return fail("preview_invalid");
+    }
     const parsed = parsePlannerFromState(weaveState, { participant_ids: participantIds });
     if (!parsed.ok) return fail(parsed.error, parsed.status || 400);
     const now = new Date().toISOString();
-    const [constraints, tastes, catalogLoad] = await Promise.all([
-      householdConstraints(env.DB, session.household_id),
-      householdTastes(env.DB, session.household_id),
-      catalogReadsFromD1(env) ? loadPublishedCatalog(env.DB) : Promise.resolve({ ok: false }),
-    ]);
+    const [constraints, tastes, catalogLoad] = await Promise.all([reads.constraints, reads.tastes, reads.catalog]);
     const ctx = {
       now,
       actor_member_id: session.member_id,
-      household_member_ids: await householdMemberIds(env.DB, session.household_id),
+      household_member_ids: householdIds,
       constraints,
       tastes,
       data_origin: "weave",
@@ -411,7 +452,10 @@ export async function routeWeaveRequest(env, request, path) {
 
   const text = String(body.text || "").trim();
   const isFind = isFindInterpret;
-  if (!text || text.length > (isFind ? 200 : 500)) return fail("text_invalid");
+  if (!text || text.length > (isFind ? 200 : 500)) {
+    await settleReads();
+    return fail("text_invalid");
+  }
 
   const provider = resolveProvider(env);
   const service = createGenerationService({ provider, store: createD1Store(env.DB), env });
@@ -421,16 +465,19 @@ export async function routeWeaveRequest(env, request, path) {
       priorState: body.state,
       dinnerPlanId: body.dinner_plan_id,
     });
-    if (anchor.error) return anchor.error;
+    if (anchor.error) {
+      await settleReads();
+      return anchor.error;
+    }
     const { dinnerPlan, usual } = anchor;
     const priorState = anchor.priorState;
     const context = buildPromptContext({ timezone, participantIds, dinnerPlan, today, usual });
     context.vocabulary = vocabulary;
-    const t0 = Date.now();
     const runInput = { text, state: priorState, context, vocabulary };
     const gen = await service.run("planning_intent", runInput, { householdId: session.household_id, fallback: null });
-    const providerMs = Date.now() - t0;
+    const providerMs = Number(gen.provider_latency_ms) || 0;
     if (!gen.ok || isEmptyPlanningDelta(gen.output)) {
+      await settleReads();
       return json({
         ok: true,
         task: "planning_intent",
@@ -450,14 +497,12 @@ export async function routeWeaveRequest(env, request, path) {
       });
     }
     const applied = applyPlanningDelta(priorState, gen.output, context);
-    const [constraints, tastes] = await Promise.all([
-      householdConstraints(env.DB, session.household_id),
-      householdTastes(env.DB, session.household_id),
-    ]);
+    const [constraints, tastes, catalogLoad] = await Promise.all([reads.constraints, reads.tastes, reads.catalog]);
     const conflictPass = detectPlanningConflicts(applied.state, {
       participantIds,
       constraints,
       tastes,
+      userText: text,
     });
     const executed = conflictPass.repaired;
     const parsed = parsePlannerFromState(executed, { participant_ids: participantIds });
@@ -488,20 +533,18 @@ export async function routeWeaveRequest(env, request, path) {
         metadata: { estimated_cost_usd: Number(gen.estimated_cost_usd) || 0 },
       });
     }
-    let catalog = null;
-    if (catalogReadsFromD1(env)) {
-      const loaded = await loadPublishedCatalog(env.DB);
-      if (loaded.ok) catalog = loaded.planner;
-    }
-    const t1 = monotonicNow();
+    const catalog = catalogLoad?.ok ? catalogLoad.planner : null;
+    const previousSlots = previousSlotsFromMeals(dinnerPlan?.meals);
     const preview = planDinners(parsed.intent, {
       catalog,
       constraints,
       tastes,
-      previous_slots: previousSlotsFromMeals(dinnerPlan?.meals),
+      previous_slots: previousSlots,
     });
-    const deterministicMs = elapsedMs(t1);
+    // Synchronous CPU. Workers freeze both clocks until an await, so this is n/a.
+    const deterministicMs = null;
     const conflicts = [...conflictPass.conflicts, ...frequencyConflicts(preview)];
+    const refinement = refinementAcknowledgement({ preview, previousSlots, slots: executed.slots });
     const ack = reconcileAcknowledgement({
       task: "planning_intent",
       modelAck: gen.output.acknowledgement,
@@ -512,6 +555,7 @@ export async function routeWeaveRequest(env, request, path) {
       userText: text,
       dinnerCountDefaulted: applied.dinner_count_defaulted === true,
       dinnerCountUsual: usual.usual === true,
+      refinement,
     });
     return json({
       ok: true,
@@ -526,22 +570,35 @@ export async function routeWeaveRequest(env, request, path) {
       dropped: applied.dropped,
       changed_positions: preview.changed_positions || [],
       preview,
-      provider_latency_ms: providerMs,
-      deterministic_latency_ms: deterministicMs,
-      total_latency_ms: providerMs + deterministicMs,
+      suggestions: ack.suggestions || [],
+      ...latencyFields({ routeStarted, providerMs, deterministicMs }),
       fallback_code: null,
       metadata: { estimated_cost_usd: Number(gen.estimated_cost_usd) || 0 },
     });
   }
 
-  if (!isFindInterpret) return null;
+  if (!isFindInterpret) {
+    await settleReads();
+    return null;
+  }
 
-  // Discovery interpret
+  // Discovery interpret. Household reads already in flight overlap the provider call.
   const client = normalizeClientContext({ mode: body.mode || "standalone", ...(body.context || {}) });
-  if (!client.ok) return fail(client.error, client.status || 400);
+  if (!client.ok) {
+    await settleReads();
+    return fail(client.error, client.status || 400);
+  }
   const priorDiscovery = body.state;
   const bypass = classifyDiscoveryBypass(text);
-  const t0 = Date.now();
+  const providerPromise = bypass.bypass
+    ? null
+    : service.run(
+        "discovery_intent",
+        { text, state: priorDiscovery, context: { today, timezone: contextTimezone(timezone), diners: participantIds.length, vocabulary }, vocabulary },
+        { householdId: session.household_id, fallback: null }
+      );
+  const [constraints, tastes, recent, catalog] = await Promise.all([reads.constraints, reads.tastes, reads.recent, reads.catalog]);
+  const preloaded = { memberIds: householdIds, constraints, tastes, recent, catalog };
   let source = "bypass";
   let model = null;
   let prompt_version = null;
@@ -552,59 +609,51 @@ export async function routeWeaveRequest(env, request, path) {
   let removed = [];
   let modelAck = "";
   let estimatedCost = 0;
+  let providerMs = 0;
   if (bypass.bypass && bypass.reason === "lexicon") {
     executedState = bypassDiscoveryPatch(text);
   } else if (bypass.bypass && bypass.reason === "empty") {
     executedState = priorDiscovery || applyDiscoveryDelta(null, {}, {}).state;
   } else {
-    source = "provider";
-    const context = { today, timezone: contextTimezone(timezone), diners: participantIds.length, vocabulary };
-    const gen = await service.run(
-      "discovery_intent",
-      { text, state: priorDiscovery, context, vocabulary },
-      { householdId: session.household_id, fallback: null }
-    );
+    const gen = await providerPromise;
+    providerMs = Number(gen.provider_latency_ms) || 0;
     estimatedCost = Number(gen.estimated_cost_usd) || 0;
     if (!gen.ok || isEmptyDiscoveryDelta(gen.output)) {
       const normText = normalizeFindText(text).slice(0, 200);
       const q = normalizeQuery({ text: normText });
-      const ran = await runDiscoveryForQuery(env, session, q.ok ? q.query : normalizeQuery({}).query, client.context);
+      const ran = await runDiscoveryForQuery(env, session, q.ok ? q.query : normalizeQuery({}).query, client.context, preloaded);
       if (ran.error) return ran.error;
+      const emptyAck = (ran.payload.total || 0) === 0 ? noResultsAcknowledgement([]) : null;
       return json({
         ok: true,
         task: "discovery_intent",
         source: "fallback",
         fallback_code: gen.error || "empty_delta",
-        acknowledgement: null,
+        acknowledgement: emptyAck,
+        acknowledgement_source: emptyAck ? "reconciled" : null,
         state: priorDiscovery,
         chips: [],
         conflicts: [],
         dropped: [],
+        suggestions: emptyAck ? [...NO_RESULTS_SUGGESTIONS] : [],
+        ...latencyFields({ routeStarted, providerMs, deterministicMs: null }),
         metadata: { estimated_cost_usd: estimatedCost },
         ...ran.payload,
       });
     }
     const applied = applyDiscoveryDelta(priorDiscovery, gen.output, { vocabulary, today });
     dropped = applied.dropped;
-    const [constraints, tastes] = await Promise.all([
-      householdConstraints(env.DB, session.household_id),
-      householdTastes(env.DB, session.household_id),
-    ]);
-    const conflictPass = detectDiscoveryConflicts(applied.state, {
-      participantIds,
-      constraints,
-      tastes,
-    });
-    conflicts = conflictPass.conflicts;
-    removed = conflictPass.removed;
-    executedState = conflictPass.repaired;
+    executedState = applied.state;
     model = gen.model;
     prompt_version = gen.prompt_version;
     source = gen.source;
     modelAck = gen.output.acknowledgement;
   }
-  const providerMs = Date.now() - t0;
-  const ack = reconcileAcknowledgement({
+  const conflictPass = detectDiscoveryConflicts(executedState, { participantIds, constraints, tastes, userText: text });
+  conflicts = conflictPass.conflicts;
+  removed = conflictPass.removed;
+  executedState = conflictPass.repaired;
+  let ack = reconcileAcknowledgement({
     task: "discovery_intent",
     modelAck,
     state: executedState,
@@ -616,9 +665,18 @@ export async function routeWeaveRequest(env, request, path) {
   const mapped = discoveryStateToQuery(executedState, {});
   if (!mapped.ok) return fail(mapped.error, mapped.status || 400);
   const t1 = monotonicNow();
-  const ran = await runDiscoveryForQuery(env, session, mapped.query, client.context);
+  const ran = await runDiscoveryForQuery(env, session, mapped.query, client.context, preloaded);
   const deterministicMs = elapsedMs(t1);
   if (ran.error) return ran.error;
+  let suggestions = ack.suggestions || [];
+  if ((ran.payload.total || 0) === 0) {
+    ack = {
+      acknowledgement: noResultsAcknowledgement(conflicts),
+      acknowledgement_source: "reconciled",
+      suggestions: [...NO_RESULTS_SUGGESTIONS],
+    };
+    suggestions = ack.suggestions;
+  }
   return json({
     ok: true,
     task: "discovery_intent",
@@ -630,9 +688,8 @@ export async function routeWeaveRequest(env, request, path) {
     chips: buildDiscoveryChips(executedState),
     conflicts,
     dropped,
-    provider_latency_ms: providerMs,
-    deterministic_latency_ms: deterministicMs,
-    total_latency_ms: providerMs + deterministicMs,
+    suggestions,
+    ...latencyFields({ routeStarted, providerMs, deterministicMs }),
     fallback_code,
     metadata: { estimated_cost_usd: estimatedCost },
     ...ran.payload,

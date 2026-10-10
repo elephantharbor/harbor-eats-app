@@ -88,50 +88,52 @@ export async function loadDinnerPlan(db, dinnerPlanId) {
     [dinnerPlanId]
   );
   if (!plan) return null;
-  const meals = await bindAll(
-    db,
-    `SELECT meal_id, dinner_plan_id, position, kind, state, scheduled_date, recipe_slug,
-            recipe_id, recipe_version_id, version_number, cooked_recipe_version_id, title,
-            base_servings, pinned_ingredients_json, pinned_steps_json, allergens_json,
-            vocabulary_json, tags_json, effort_level, ingredient_complexity, data_origin
-     FROM dinner_plan_meal WHERE dinner_plan_id = ? ORDER BY position`,
-    [dinnerPlanId]
-  );
-  const participants = await bindAll(
-    db,
-    `SELECT part.meal_id, part.member_id, part.active
-     FROM dinner_plan_participant part
-     JOIN dinner_plan_meal meal ON meal.meal_id = part.meal_id
-     WHERE meal.dinner_plan_id = ? AND part.active = 1
-     ORDER BY part.member_id`,
-    [dinnerPlanId]
-  );
-  const ratings = await bindAll(
-    db,
-    `SELECT rating_id, meal_id, member_id, recipe_version_id, score, data_origin, created_at, updated_at
-     FROM dinner_plan_rating WHERE dinner_plan_id = ?`,
-    [dinnerPlanId]
-  );
-  const lines = await bindAll(
-    db,
-    `SELECT line_id, ingredient_id, display_name, preparation, unit, quantity, list_state,
-            still_needed, surplus_quantity, meal_ids_json, created_at, updated_at
-     FROM dinner_shop_line WHERE dinner_plan_id = ?
-     ORDER BY ingredient_id, unit`,
-    [dinnerPlanId]
-  );
-  const deltas = await bindAll(
-    db,
-    `SELECT delta_id, dinner_plan_id, kind, ingredient_id, display_name, unit, quantity, meal_id, created_at
-     FROM dinner_shop_delta WHERE dinner_plan_id = ? ORDER BY created_at, delta_id`,
-    [dinnerPlanId]
-  );
-  const votes = await bindAll(
-    db,
-    `SELECT vote_id, dinner_plan_id, meal_id, member_id, data_origin, created_at
-     FROM dinner_plan_vote WHERE dinner_plan_id = ?`,
-    [dinnerPlanId]
-  );
+  const [meals, participants, ratings, lines, deltas, votes] = await Promise.all([
+    bindAll(
+      db,
+      `SELECT meal_id, dinner_plan_id, position, kind, state, scheduled_date, recipe_slug,
+              recipe_id, recipe_version_id, version_number, cooked_recipe_version_id, title,
+              base_servings, pinned_ingredients_json, pinned_steps_json, allergens_json,
+              vocabulary_json, tags_json, effort_level, ingredient_complexity, data_origin
+       FROM dinner_plan_meal WHERE dinner_plan_id = ? ORDER BY position`,
+      [dinnerPlanId]
+    ),
+    bindAll(
+      db,
+      `SELECT part.meal_id, part.member_id, part.active
+       FROM dinner_plan_participant part
+       JOIN dinner_plan_meal meal ON meal.meal_id = part.meal_id
+       WHERE meal.dinner_plan_id = ? AND part.active = 1
+       ORDER BY part.member_id`,
+      [dinnerPlanId]
+    ),
+    bindAll(
+      db,
+      `SELECT rating_id, meal_id, member_id, recipe_version_id, score, data_origin, created_at, updated_at
+       FROM dinner_plan_rating WHERE dinner_plan_id = ?`,
+      [dinnerPlanId]
+    ),
+    bindAll(
+      db,
+      `SELECT line_id, ingredient_id, display_name, preparation, unit, quantity, list_state,
+              still_needed, surplus_quantity, meal_ids_json, created_at, updated_at
+       FROM dinner_shop_line WHERE dinner_plan_id = ?
+       ORDER BY ingredient_id, unit`,
+      [dinnerPlanId]
+    ),
+    bindAll(
+      db,
+      `SELECT delta_id, dinner_plan_id, kind, ingredient_id, display_name, unit, quantity, meal_id, created_at
+       FROM dinner_shop_delta WHERE dinner_plan_id = ? ORDER BY created_at, delta_id`,
+      [dinnerPlanId]
+    ),
+    bindAll(
+      db,
+      `SELECT vote_id, dinner_plan_id, meal_id, member_id, data_origin, created_at
+       FROM dinner_plan_vote WHERE dinner_plan_id = ?`,
+      [dinnerPlanId]
+    ),
+  ]);
   const byMeal = new Map();
   for (const meal of meals) {
     byMeal.set(meal.meal_id, {

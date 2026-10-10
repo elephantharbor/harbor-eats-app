@@ -33,7 +33,10 @@ if (!Number.isFinite(cap) || cap < 0) {
   process.exit(2);
 }
 
+import { memberIdForRun, newRunId, profileKeys } from "./eval-d06-households.mjs";
+
 const corpus = JSON.parse(readFileSync(new URL("../test/fixtures/d06-intent-corpus.json", import.meta.url), "utf8"));
+const runId = newRunId();
 
 const RULE_KEY = {
   no_dairy: "dairy",
@@ -75,36 +78,47 @@ function costOf(data) {
   return Number.isFinite(n) ? n : 0;
 }
 
+function idsFor(key) {
+  const spec = corpus.households[key];
+  const map = new Map();
+  for (const localId of spec?.members || []) map.set(localId, memberIdForRun(runId, key, localId));
+  return map;
+}
+
 async function ensureHousehold(key) {
   const spec = corpus.households[key];
   if (!spec) throw new Error(`corpus household ${key} is not defined`);
+  const ids = idsFor(key);
   const created = await api("/api/households", {
     method: "POST",
-    body: { display_name: `D06 eval ${key}`, data_origin: "synthetic", timezone: "America/Chicago", servings_default: spec.members.length },
+    body: { display_name: `D06 eval ${key} ${runId}`, data_origin: "synthetic", timezone: "America/Chicago", servings_default: spec.members.length },
   });
   if (!created.data?.household_id) throw new Error(`household create failed for ${key}: ${created.status} ${JSON.stringify(created.data)}`);
   const householdId = created.data.household_id;
-  const [owner, ...rest] = spec.members;
+  const [ownerLocal, ...rest] = spec.members;
+  const ownerId = ids.get(ownerLocal);
   const ownerRes = await api(`/api/households/${householdId}/members`, {
     method: "POST",
-    body: { member_id: owner, display_name: owner, role: "owner", data_origin: "synthetic" },
+    body: { member_id: ownerId, display_name: ownerLocal, role: "owner", data_origin: "synthetic" },
   });
   if (ownerRes.status >= 400) throw new Error(`owner create failed for ${key}: ${ownerRes.status} ${JSON.stringify(ownerRes.data)}`);
   const session = await api("/api/sessions", {
     method: "POST",
-    body: { household_id: householdId, member_id: owner, data_origin: "synthetic" },
+    body: { household_id: householdId, member_id: ownerId, data_origin: "synthetic" },
   });
   if (!session.cookie) throw new Error(`session cookie missing for ${key}: ${session.status} ${JSON.stringify(session.data)}`);
   let cookie = session.cookie;
-  for (const memberId of rest) {
+  for (const localId of rest) {
+    const memberId = ids.get(localId);
     const added = await api(`/api/households/${householdId}/members`, {
       method: "POST",
       cookie,
-      body: { member_id: memberId, display_name: memberId, role: "member", data_origin: "synthetic" },
+      body: { member_id: memberId, display_name: localId, role: "member", data_origin: "synthetic" },
     });
     if (added.status >= 400) throw new Error(`member ${memberId} failed: ${added.status} ${JSON.stringify(added.data)}`);
   }
-  for (const [memberId, limits] of Object.entries(spec.limits || {})) {
+  for (const [localId, limits] of Object.entries(spec.limits || {})) {
+    const memberId = ids.get(localId);
     const keys = (limits || []).map((limit) => RULE_KEY[limit] || String(limit).replace(/^no_/, "")).filter(Boolean);
     if (!keys.length) continue;
     const saved = await api(`/api/members/${memberId}/constraints`, {
@@ -126,6 +140,10 @@ for (const c of corpus.cases) {
     console.error(`corpus case ${c.id} is missing text or household`);
     process.exit(1);
   }
+}
+
+for (const key of profileKeys(corpus)) {
+  if (!sessions.has(key)) sessions.set(key, await ensureHousehold(key));
 }
 
 for (const c of corpus.cases) {

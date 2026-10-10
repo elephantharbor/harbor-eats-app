@@ -155,6 +155,7 @@
         return [];
       },
       suggestions(data) {
+        if (Array.isArray(data.suggestions) && data.suggestions.length) return data.suggestions.slice(0, 4);
         const out = [];
         const st = data.state || {};
         if (st.dinner_count != null && st.dinner_count < 7) out.push("Add another dinner");
@@ -277,6 +278,7 @@
         ];
       },
       suggestions(data) {
+        if (Array.isArray(data.suggestions) && data.suggestions.length) return data.suggestions.slice(0, 4);
         const out = ["Make it easier", "Try fish", "Something spicier"];
         return out.slice(0, 4);
       },

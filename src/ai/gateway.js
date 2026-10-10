@@ -108,6 +108,10 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
       return fail("disabled", fallback);
     }
     const safeInput = redactValue(input);
+    // Interpretation inputs are household-free: no member ids, names, allergens, tastes,
+    // or constraint rows. A date list or dinner-count default can differ per plan and
+    // only partitions the cache. Conflicts and eligibility are recomputed after every
+    // hit, on that household's own rows, so this key must not include them.
     const cacheKey = await sha256Hex(`${task.id}|${task.prompt_version}|${model}|${JSON.stringify(normalizeInput(safeInput))}`);
     const nowDate = now();
     const nowIso = nowDate.toISOString();
@@ -116,7 +120,7 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
       const hit = await store.cacheGet(cacheKey, nowIso).catch(() => null);
       if (hit) {
         await record(task, { status: "cache_hit", model, household_key: hk });
-        return { ok: true, output: hit, source: "cache", model, prompt_version: task.prompt_version };
+        return { ok: true, output: hit, source: "cache", model, prompt_version: task.prompt_version, provider_latency_ms: 0 };
       }
     }
 
@@ -144,6 +148,7 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
     let lastCode = "malformed_output";
     let repairNote = "";
     const started = now().getTime();
+    let providerLatency = 0;
     let meta = null;
     let reasonTok = 0;
     let errCode = null;
@@ -196,6 +201,7 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
         if (norm.code !== "timeout" && norm.code !== "provider_outage") break;
       }
     }
+    providerLatency = Math.max(0, now().getTime() - started);
     const cost = spent();
     await settleSpend(store, reservation.held, cost);
     const metadata = {
@@ -230,11 +236,11 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
           expires_at: new Date(now().getTime() + task.cache.ttl_seconds * 1000).toISOString(),
         }).catch(() => {});
       }
-      return { ok: true, output: result, source: "provider", model, prompt_version: task.prompt_version, estimated_cost_usd: cost, metadata };
+      return { ok: true, output: result, source: "provider", model, prompt_version: task.prompt_version, estimated_cost_usd: cost, provider_latency_ms: providerLatency, metadata };
     }
     log("ai_task_fallback", { task: task.id, code: lastCode, attempts });
     await record(task, { status: `fallback:${lastCode}`, ...base });
-    return { ok: false, error: lastCode, fallback: fallback === undefined ? null : fallback, estimated_cost_usd: cost, metadata };
+    return { ok: false, error: lastCode, fallback: fallback === undefined ? null : fallback, estimated_cost_usd: cost, provider_latency_ms: providerLatency, metadata };
   }
 
   return { run, config };

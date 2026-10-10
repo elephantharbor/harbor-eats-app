@@ -6,7 +6,7 @@ import { aiHealth, resolveProvider, handleAiSmoke } from "./ai/index.js";
  */
 
 import { effortLabel } from "./lib/classification.js";
-import { constraintRowsFromKeys, filterEligibleOptions } from "./lib/eligibility.js";
+import { constraintRowsFromKeys, filterEligibleOptions, isKnownRestrictionKey } from "./lib/eligibility.js";
 import {
   catalogReadsFromD1,
   coverageFromMeals,
@@ -382,6 +382,9 @@ async function setConstraints(env, member_id, body, session) {
       const status = r.status || "prohibited";
       if (status !== "prohibited" && status !== "permitted") {
         return err("invalid_constraint_status", 400, { rule_key });
+      }
+      if (!isKnownRestrictionKey(rule_key)) {
+        return err("unknown_restriction", 400, { rule_key });
       }
       const constraint_id = r.constraint_id || id("cr");
       await env.DB.prepare(
