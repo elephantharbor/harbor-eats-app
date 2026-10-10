@@ -15,8 +15,8 @@
  *   // errors: throw { status } / AbortError; the gateway normalizes them.
  * }
  *
- * No real provider adapter ships in D-05: no credential is configured in either Pages
- * project or the box, and provider/spend selection is an open Oversight decision.
+ * Real adapter: providers/openai.js (Responses API, Structured Outputs), selected by
+ * resolveProvider() when AI_PROVIDER=openai and OPENAI_API_KEY is set.
  */
 export const REQUIRED_ADAPTER_METHODS = Object.freeze(["configured", "resolveModel", "generate"]);
 

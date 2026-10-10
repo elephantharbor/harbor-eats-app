@@ -40,7 +40,9 @@ const facetsSchema = {
   properties: Object.fromEntries(FACET_KEYS.map((k) => [k, strList(10, 40)])),
 };
 
-const DEFAULT_LIMITS = { max_retries: 1, max_output_tokens: 400, timeout_ms: 8000, per_household_per_hour: 30 };
+// Rate limits live in config.js/limits.js (household/minute, household/day, global/day, Sol/day);
+// tasks only carry max_retries (<=1), the output cap (outer model ceiling applies) and timeout.
+const DEFAULT_LIMITS = { max_retries: 1, max_output_tokens: 400, timeout_ms: 8000 };
 
 function task(id, spec) {
   if (!PROMPTS[id]) throw new Error(`task ${id} has no prompt`);
@@ -121,7 +123,7 @@ export const TASKS = Object.freeze({
       additionalProperties: false,
       properties: { concepts: { type: "array", maxItems: 5, items: { type: "object", required: ["title"], properties: { title: str(80), pitch: str(240) } } } },
     },
-    limits: { max_output_tokens: 800, timeout_ms: 20000, per_household_per_hour: 5 },
+    limits: { max_output_tokens: 800, timeout_ms: 20000 },
   }),
   recipe_draft: task("recipe_draft", {
     cost_class: "creative",
@@ -129,7 +131,7 @@ export const TASKS = Object.freeze({
     cache: { enabled: false, ttl_seconds: 0 },
     input_schema: textInput(300),
     output_schema: { type: "object", required: ["title", "status"], properties: { title: str(80), status: { type: "string", enum: ["draft_unreviewed"] } } },
-    limits: { max_output_tokens: 1500, timeout_ms: 30000, per_household_per_hour: 2 },
+    limits: { max_output_tokens: 1500, timeout_ms: 30000 },
   }),
   recipe_adaptation: task("recipe_adaptation", {
     cost_class: "creative",
@@ -137,7 +139,7 @@ export const TASKS = Object.freeze({
     cache: { enabled: false, ttl_seconds: 0 },
     input_schema: { type: "object", required: ["text", "recipe"], properties: { text: str(300), recipe: str(120) } },
     output_schema: { type: "object", required: ["suggestion", "status"], properties: { suggestion: str(600), status: { type: "string", enum: ["draft_unreviewed"] } } },
-    limits: { max_output_tokens: 600, timeout_ms: 15000, per_household_per_hour: 5 },
+    limits: { max_output_tokens: 600, timeout_ms: 15000 },
   }),
   explanation: task("explanation", {
     executable: true,

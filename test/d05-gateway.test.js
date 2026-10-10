@@ -7,7 +7,8 @@ import {
   intentToDiscoveryQuery, TASKS, TASK_IDS, buildHouseholdContext, redactText, assertAdapter, unconfiguredProvider, resolveProvider,
 } from "../src/ai/index.js";
 import { PROMPTS, renderPrompt } from "../src/ai/prompts.js";
-import { routeModels, estimateCostUsd, COST_CLASSES } from "../src/ai/routing.js";
+import { routeModels, modelForTask, COST_CLASSES } from "../src/ai/routing.js";
+import { MODEL_PRICING } from "../src/ai/pricing.js";
 import { validateSchema, parseJsonOutput } from "../src/ai/schema.js";
 import { normalizeError, AI_ERROR_CODES } from "../src/ai/errors.js";
 
@@ -32,8 +33,9 @@ describe("D-05 task registry", () => {
       expect(routeModels(t).length).toBeGreaterThan(0);
       expect(COST_CLASSES[t.cost_class]).toBeTruthy();
       expect(typeof t.post_validate).toBe("function");
-      for (const k of ["max_retries", "max_output_tokens", "timeout_ms", "per_household_per_hour"]) expect(t.limits[k]).toBeGreaterThan(-1);
-      expect(t.limits.max_retries).toBeLessThanOrEqual(2);
+      for (const k of ["max_retries", "max_output_tokens", "timeout_ms"]) expect(t.limits[k]).toBeGreaterThan(-1);
+      expect(t.limits.max_retries).toBeLessThanOrEqual(1);
+      expect(t.limits).not.toHaveProperty("per_household_per_hour");
     }
   });
   it("routes cheap models to extraction/classification and strong models only to creative tasks", () => {
@@ -42,7 +44,7 @@ describe("D-05 task registry", () => {
       expect(routeModels(TASKS[id])).not.toContain("strong");
     }
     for (const t of Object.values(TASKS)) if (routeModels(t).includes("strong")) expect(t.cost_class).toBe("creative");
-    expect(estimateCostUsd("cheap", 1e6, 0)).toBeLessThan(estimateCostUsd("creative", 1e6, 0));
+    expect(MODEL_PRICING[modelForTask(TASKS.discovery_intent)].input).toBeLessThan(MODEL_PRICING[modelForTask(TASKS.recipe_draft)].input);
   });
   it("creative drafts are never cached and draft outputs are marked unreviewed", () => {
     for (const id of ["concept_generation", "recipe_draft", "recipe_adaptation"]) expect(TASKS[id].cache.enabled).toBe(false);
@@ -85,7 +87,7 @@ describe("D-05 gateway behaviour", () => {
     expect(r.ok).toBe(true);
     expect(r.output.facets).toEqual({ cuisines: ["korean"], methods: ["grill"] });
     const row = store.usage.at(-1);
-    expect(row).toMatchObject({ task: "discovery_intent", provider: "fake", model: "fast-small", status: "ok", prompt_version: "discovery_intent@1", attempts: 1 });
+    expect(row).toMatchObject({ task: "discovery_intent", provider: "fake", model: "gpt-6-luna", status: "ok", pricing_version: "openai-standard-2026-10-10", prompt_version: "discovery_intent@1", attempts: 1 });
     expect(row.input_tokens).toBeGreaterThan(0);
     expect(row.output_tokens).toBeGreaterThan(0);
     expect(row.estimated_cost_usd).toBeGreaterThan(0);
@@ -100,7 +102,7 @@ describe("D-05 gateway behaviour", () => {
     const { service } = svc({ script: [good], store });
     await service.run("discovery_intent", { text: "thai", vocabulary: VOCAB });
     const [key] = [...store.cache.keys()];
-    expect(store.cache.get(key)).toMatchObject({ prompt_version: "discovery_intent@1", model: "fast-small" });
+    expect(store.cache.get(key)).toMatchObject({ prompt_version: "discovery_intent@1", model: "gpt-6-luna" });
   });
   it("bounded repair: one malformed output then valid => ok with attempts 2", async () => {
     const { service, provider, store } = svc({ script: [{ text: "not json" }, good] });
@@ -140,20 +142,6 @@ describe("D-05 gateway behaviour", () => {
     expect(b.provider.calls).toHaveLength(2);
     expect(AI_ERROR_CODES).toEqual(expect.arrayContaining(["timeout", "rate_limited", "malformed_output", "provider_outage", "disabled", "budget_exceeded"]));
   });
-  it("per-household rate limit", async () => {
-    const store = createMemoryStore();
-    const { service } = svc({ script: () => ({ json: { text: "Fits a quick night." } }), store });
-    const limit = TASKS.explanation.limits.per_household_per_hour;
-    for (let i = 0; i < limit; i++) expect((await service.run("explanation", { meal: `m${i}`, reasons: ["quick"] }, { householdId: "hh_one11111" })).ok).toBe(true);
-    expect((await service.run("explanation", { meal: "next", reasons: ["quick"] }, { householdId: "hh_one11111" })).error).toBe("rate_limited");
-    expect((await service.run("explanation", { meal: "next", reasons: ["quick"] }, { householdId: "hh_two22222" })).ok).toBe(true);
-  });
-  it("global hourly ceiling", async () => {
-    const { service } = svc({ script: () => ({ json: { text: "ok" } }), env: { ...ON, AI_GLOBAL_PER_HOUR: "2" } });
-    await service.run("explanation", { meal: "a", reasons: [] });
-    await service.run("explanation", { meal: "b", reasons: [] });
-    expect((await service.run("explanation", { meal: "c", reasons: [] })).error).toBe("rate_limited");
-  });
   it("budget: zero budget (default) blocks spend", async () => {
     const { service, provider } = svc({ script: [good], env: { AI_GATEWAY_ENABLED: "1", AI_TASKS_ENABLED: "discovery_intent" } });
     expect((await service.run("discovery_intent", { text: "thai" })).error).toBe("budget_exceeded");
@@ -185,10 +173,11 @@ describe("D-05 privacy, context, adapter, health", () => {
     expect(empty.ok).toBe(true);
   });
   it("health makes no provider call and leaks no secrets", () => {
-    const h = aiHealth({ AI_PROVIDER_KEY: "sk-secret-123456789" }, resolveProvider({}));
+    const h = aiHealth({ AI_PROVIDER_KEY: "sk-secret-123456789", OPENAI_API_KEY: "sk-secret-123456789" }, resolveProvider({}));
     expect(h).toMatchObject({ ok: true, gateway_enabled: false, provider_configured: false, consumer_ui: false });
     expect(h.tasks).toHaveLength(8);
     expect(JSON.stringify(h)).not.toContain("sk-secret");
+    expect(h.openai_key_present).toBe(true);
   });
   it("adapter contract", () => {
     expect(() => assertAdapter({})).toThrow();
@@ -228,9 +217,10 @@ describe("D-05 boundaries (static)", () => {
 });
 
 describe("D-05 migration + D1 store", () => {
-  it("0014 applies and the D1 store records usage, counts, spend, cache", async () => {
+  it("0014+0015 apply and the D1 store records usage, counts, spend, cache", async () => {
     const db = new DatabaseSync(":memory:");
     db.exec(readFileSync("migrations/0014_ai_gateway.sql", "utf8"));
+    db.exec(readFileSync("migrations/0015_ai_provider_limits.sql", "utf8"));
     const shim = {
       prepare(sql) {
         let args = [];
@@ -249,9 +239,10 @@ describe("D-05 migration + D1 store", () => {
     const rows = db.prepare("SELECT task, status, model, prompt_version FROM ai_usage ORDER BY created_at").all();
     expect(rows.map((r) => r.status)).toEqual(["ok", "cache_hit"]);
     const cols = db.prepare("PRAGMA table_info(ai_usage)").all().map((c) => c.name);
-    for (const c of ["task", "provider", "model", "input_tokens", "output_tokens", "usage_metadata_json", "estimated_cost_usd", "created_at", "status", "prompt_version"]) expect(cols).toContain(c);
+    for (const c of ["pricing_version", "cached_input_tokens", "task", "provider", "model", "input_tokens", "output_tokens", "usage_metadata_json", "estimated_cost_usd", "created_at", "status", "prompt_version"]) expect(cols).toContain(c);
     expect(cols.join(",")).not.toMatch(/prompt_text|output_text|reasoning/);
-    expect(await store.countSince({ since: "2026-10-10T00:00:00.000Z" })).toBe(1);
+    expect(await store.counterValue("global_day:2026-10-10")).toBe(1);
+    expect(db.prepare("SELECT pricing_version FROM ai_usage WHERE status='ok'").get().pricing_version).toBe("openai-standard-2026-10-10");
     expect(await store.spendSince("2026-10-10T00:00:00.000Z")).toBeGreaterThan(0);
   });
 });

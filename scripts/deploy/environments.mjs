@@ -55,6 +55,39 @@ export function parsePagesConfig(text) {
   };
 }
 
+export const AI_REQUIRED_VARS = Object.freeze([
+  "AI_PROVIDER", "AI_GATEWAY_ENABLED", "AI_TASKS_ENABLED", "AI_DAILY_BUDGET_USD",
+  "AI_GLOBAL_PER_DAY", "AI_HOUSEHOLD_PER_MINUTE", "AI_HOUSEHOLD_PER_DAY", "AI_SOL_HOUSEHOLD_PER_DAY",
+]);
+export const AI_RETIRED_VARS = Object.freeze(["AI_GLOBAL_PER_HOUR"]);
+
+/** Parse `KEY = "value"` lines (vars only; no TOML dependency). */
+export function parseVars(text) {
+  return Object.fromEntries([...String(text || "").matchAll(/^\s*([A-Z][A-Z0-9_]*)\s*=\s*"([^"]*)"/gm)].map((m) => [m[1], m[2]]));
+}
+
+/**
+ * D-05 AI var guard: all limiter/budget vars present and valid, no denylisted model (astra)
+ * anywhere, no retired hourly vars, and no secret material in a committed config.
+ */
+export function validateAiVars(configText) {
+  const text = String(configText || "");
+  const vars = parseVars(text);
+  const problems = [];
+  if (/astra/i.test(text)) problems.push("denylisted model gpt-6-astra referenced");
+  if (/^\s*OPENAI_API_KEY\s*=/m.test(text) || /\bsk-[A-Za-z0-9_-]{16,}/.test(text)) problems.push("secret material in config (OPENAI_API_KEY must be a Pages secret)");
+  for (const k of AI_REQUIRED_VARS) if (!(k in vars)) problems.push(`missing ${k}`);
+  for (const k of AI_RETIRED_VARS) if (k in vars) problems.push(`${k} is retired (use the per-day limiter vars)`);
+  if ("AI_PROVIDER" in vars && !["openai", "none"].includes(vars.AI_PROVIDER)) problems.push(`AI_PROVIDER=${vars.AI_PROVIDER} unsupported`);
+  if ("AI_GATEWAY_ENABLED" in vars && !["0", "1"].includes(vars.AI_GATEWAY_ENABLED)) problems.push("AI_GATEWAY_ENABLED must be \"0\" or \"1\"");
+  for (const k of ["AI_GLOBAL_PER_DAY", "AI_HOUSEHOLD_PER_MINUTE", "AI_HOUSEHOLD_PER_DAY", "AI_SOL_HOUSEHOLD_PER_DAY"]) {
+    if (k in vars && !(/^\d+$/.test(vars[k]) && Number(vars[k]) > 0)) problems.push(`${k} must be a positive integer`);
+  }
+  if ("AI_DAILY_BUDGET_USD" in vars && !(/^\d+(\.\d+)?$/.test(vars.AI_DAILY_BUDGET_USD))) problems.push("AI_DAILY_BUDGET_USD must be a non-negative number");
+  if (problems.length) throw new DeploySafetyError(`AI vars: ${problems.join("; ")}`);
+  return vars;
+}
+
 /**
  * Validate a requested deploy against the canonical target. Throws DeploySafetyError
  * for any wrong combination; returns the normalized plan otherwise.
@@ -85,6 +118,7 @@ export function validateDeployPlan(req) {
     throw new DeploySafetyError(`config pages_build_output_dir must be ./public, got ${cfg.outputDir}`);
   if (cfg.deployEnv !== target.name || cfg.d1Var !== target.d1Id)
     throw new DeploySafetyError("config DEPLOY_ENV / D1_DATABASE_ID vars must match the target (post-deploy binding check)");
+  validateAiVars(req.configText);
   return { ...target, project, branch, root, d1Id };
 }
 
