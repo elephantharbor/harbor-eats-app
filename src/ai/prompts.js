@@ -10,8 +10,24 @@ const SYSTEM = [
 ].join(" ");
 
 export const PROMPTS = Object.freeze({
-  planning_intent: { version: "planning_intent@1", system: SYSTEM, user: "Extract planning intent from the household request.\nRequest: {{text}}\nContext: {{context}}" },
-  discovery_intent: { version: "discovery_intent@1", system: SYSTEM, user: "Map the search request onto discovery facets using only the allowed vocabulary.\nRequest: {{text}}\nAllowed: {{vocabulary}}" },
+  planning_intent: {
+    version: "planning_intent@2",
+    system: SYSTEM,
+    user:
+      "Return a planning_intent DELTA JSON only. Null scalars and empty op arrays mean unchanged. Do not restate unchanged state.\n" +
+      "fish twice => frequency fish min 2 max 2 (not seafood). pasta no more than once => frequency pasta max 1.\n" +
+      "Named weekday => slot_op not global effort. mostly easy => keep_it_easy true. only easy on a day => slot effort easy.\n" +
+      "under 30 => max_minutes 30 and max_minutes_hard true. simple ingredients => keep_ingredients_simple true.\n" +
+      "Request: {{text}}\nState: {{state}}\nContext: {{context}}",
+  },
+  discovery_intent: {
+    version: "discovery_intent@2",
+    system: SYSTEM,
+    user:
+      "Return a discovery_intent DELTA JSON only. Use list_ops and scalars; null means unchanged.\n" +
+      "Map fuzzy language to intent_cues enum only (cozy, fresh, filling, light, comforting, summery, special, restaurant_like, weeknight).\n" +
+      "Request: {{text}}\nState: {{state}}\nContext: {{context}}",
+  },
   feedback_extraction: { version: "feedback_extraction@1", system: SYSTEM, user: "Extract structured feedback themes from this comment about a cooked meal.\nMeal: {{meal}}\nComment: {{text}}" },
   concept_generation: { version: "concept_generation@1", system: SYSTEM, user: "Propose meal concepts for the brief. They are drafts for human review.\nBrief: {{text}}\nContext: {{context}}" },
   recipe_draft: { version: "recipe_draft@1", system: SYSTEM, user: "Draft a recipe for the concept. It is an unreviewed draft.\nConcept: {{text}}" },
@@ -24,8 +40,10 @@ export const PROMPTS = Object.freeze({
 export function renderPrompt(taskId, vars = {}) {
   const tpl = PROMPTS[taskId];
   if (!tpl) throw new Error(`no prompt for ${taskId}`);
+  const promptVars = { ...vars };
+  if (taskId === "explanation") delete promptVars.cache_bust;
   const user = tpl.user.replace(/\{\{(\w+)\}\}/g, (_, k) => {
-    const v = vars[k];
+    const v = promptVars[k];
     const s = v == null ? "" : typeof v === "string" ? v : JSON.stringify(v);
     return s.slice(0, 4000);
   });

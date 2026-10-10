@@ -9,6 +9,7 @@ import { PIPELINE_STAGES } from "./constants.js";
 import { matchExplicitCriteria } from "./criteria.js";
 import { matchMealText } from "./match.js";
 import { applyNoveltyDiversityRecency } from "./novelty.js";
+import { cueScoreForMeal } from "../weave/cues.js";
 import { reasonCodesFor } from "./reasons.js";
 import { softPreferenceFor } from "./soft-prefs.js";
 import { scoreDiscoveryTaste } from "./taste.js";
@@ -163,6 +164,8 @@ export function stageSoftPrefs(state) {
 
 export function stageTasteRanking(state, deps) {
   const scoreTaste = deps.scoreTaste || scoreDiscoveryTaste;
+  const cues = state.query.intent_cues || [];
+  const preferMax = state.query.prefer_max_minutes;
   for (const row of state.rows) {
     const taste = scoreTaste(row.meal, state.context);
     if (taste?.excludes) {
@@ -170,10 +173,14 @@ export function stageTasteRanking(state, deps) {
     }
     row.taste_score = Number(taste?.score) || 0;
     row.taste_hits = taste?.hits || [];
+    row.cue_score = cues.length
+      ? cueScoreForMeal(row.meal, cues, { keep_it_easy: state.context.soft?.keep_it_easy, prefer_max_minutes: preferMax })
+      : 0;
+    if (row.cue_score > 0) row.intent_cue = true;
   }
   state.rows.sort((a, b) =>
     a.preference_tier - b.preference_tier
-    || b.taste_score - a.taste_score
+    || (b.taste_score + b.cue_score) - (a.taste_score + a.cue_score)
     || b.match_score - a.match_score
     || a.meal.recipe_slug.localeCompare(b.meal.recipe_slug)
   );
@@ -183,6 +190,11 @@ export function stageTasteRanking(state, deps) {
 
 export function stageNovelty(state) {
   const planMeals = state.context.plan_meals || [];
+  const inCount = state.rows.length;
+  if ((state.query.intent_cues || []).length) {
+    state.trace.push({ stage: "novelty", in: inCount, out: inCount, excluded: 0 });
+    return state;
+  }
   state.rows = applyNoveltyDiversityRecency(state.rows, planMeals);
   trace(state, "novelty");
   return state;

@@ -102,6 +102,7 @@ export const RANK_REASON_CODES = Object.freeze([
   "recent_demoted",
   "diversity_preferred",
   "novelty_tiebreak",
+  "intent_cue",
   "eligible_catalog_fit",
 ]);
 
@@ -182,6 +183,8 @@ export const QUERY_KEYS = Object.freeze([
   "soft",
   "limit",
   "offset",
+  "intent_cues",
+  "prefer_max_minutes",
 ]);
 
 export const CRITERIA_KEYS = Object.freeze([

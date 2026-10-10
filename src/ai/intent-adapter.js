@@ -1,10 +1,8 @@
 /**
- * NaturalLanguageIntent -> existing D-07 DiscoveryQuery. No new recommendation engine:
- * the output goes through D-07's own normalizeQuery, which enforces vocabulary, limits and
- * schema. Anything the query cannot express is dropped, never forced.
- * D-06 plugs in here: text -> gateway(discovery_intent) -> this adapter -> D-07 pipeline.
+ * Legacy adapter: maps old facet-shaped intents or D-06 canonical discovery state to DiscoveryQuery.
  */
 import { normalizeQuery } from "../discovery/query.js";
+import { discoveryStateToQuery } from "../weave/discovery-map.js";
 
 const FACET_TO_CRITERIA = Object.freeze({
   cuisines: "cuisines",
@@ -19,12 +17,14 @@ const FACET_TO_CRITERIA = Object.freeze({
 });
 
 /**
- * @param {{ facets?: Record<string,string[]>, max_minutes?: number|null, quick?: boolean, different?: boolean,
- *           keep_it_easy?: boolean, keep_ingredients_simple?: boolean }} intent
+ * @param {object} intent facet or canonical discovery state
  * @param {{ text?: string|null, limit?: number }} [opts]
- * @returns {{ ok: true, query: object, dropped: string[] } | { ok: false, error: string }}
  */
 export function intentToDiscoveryQuery(intent, opts = {}) {
+  if (intent && !intent.facets) {
+    const mapped = discoveryStateToQuery(intent, opts);
+    return mapped.ok ? { ok: true, query: mapped.query, dropped: [] } : { ok: false, error: mapped.error };
+  }
   const criteria = {};
   const dropped = [];
   for (const [facet, values] of Object.entries(intent?.facets || {})) {
@@ -42,7 +42,6 @@ export function intentToDiscoveryQuery(intent, opts = {}) {
     input.soft = { keep_it_easy: intent.keep_it_easy === true, keep_ingredients_simple: intent.keep_ingredients_simple === true };
   }
   let result = normalizeQuery(input);
-  // Drop facets one by one if the D-07 normalizer rejects a value (unknown enum etc.).
   for (const key of Object.keys(criteria)) {
     if (result.ok) break;
     dropped.push(key);

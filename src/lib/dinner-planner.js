@@ -15,6 +15,8 @@ import { scoreDinerTastes } from "./diner-taste-rank.js";
 import { canonicalIngredient } from "./ingredient-identity.js";
 import { getTasteTerm } from "./taste-vocabulary.js";
 import { PRACTICAL_HINT_KEYS } from "./cycle2-schema.js";
+import { cueScoreForMeal } from "../weave/cues.js";
+import { PLAN_TOKENS } from "../weave/constants.js";
 
 const TASTE_BAND = 0.5;
 
@@ -36,7 +38,7 @@ export function plannerCatalog() {
   return cached;
 }
 
-function featuresOf(entry) {
+export function featuresOf(entry) {
   const tags = entry.pkg.vocabulary_tag_ids || [];
   const styles = [];
   const flavors = [];
@@ -63,6 +65,8 @@ function featuresOf(entry) {
     minutes: entry.pkg.total_minutes,
     effort_level: entry.pkg.effort_level || null,
     ingredient_complexity: entry.pkg.ingredient_complexity || null,
+    exploration: entry.pkg.exploration ?? entry.concept.exploration ?? 0,
+    vocabulary_tag_ids: entry.pkg.vocabulary_tag_ids || [],
     equipment: entry.pkg.equipment || [],
     methods: entry.concept.current_version?.methods || [],
     entry,
@@ -124,7 +128,7 @@ export function assessMealEligibility(entry, participantIds, constraints, tastes
   };
 }
 
-function matchesRequest(feature, slug) {
+export function matchesRequest(feature, slug) {
   if (!slug) return false;
   if (feature.ingredient === slug) return true;
   if (feature.entry.concept.primary_ingredient === slug) return true;
@@ -149,7 +153,7 @@ function hintBoost(feature, intent) {
       const detail = hint.detail || "";
       const method = detail.replace(/-/g, "_");
       if (detail && (feature.equipment.includes(detail) || feature.methods.includes(method))) boost += 0.2;
-    } else {
+    } else if (hint.hint_key !== "weeknight") {
       unscored.push(hint.hint_key);
     }
   }
@@ -204,7 +208,40 @@ function usedFromSlots(slots, catalogBySlug) {
   return used;
 }
 
-function scoreFeature(feature, participantIds, tastes, intent) {
+function mealMatchesCategory(feature, token) {
+  if (PLAN_TOKENS.includes(token) && feature.styles.includes(token)) return true;
+  if (token === "fish" || token === "seafood" || token === "shellfish") {
+    const tags = feature.entry?.pkg?.allergens || [];
+    if (token === "fish" && tags.includes("finfish")) return true;
+    if (token === "shellfish" && tags.includes("shellfish")) return true;
+    if (token === "seafood" && (tags.includes("finfish") || tags.includes("shellfish"))) return true;
+  }
+  return matchesRequest(feature, token);
+}
+
+function passesPoolFilters(feature, intent, slotOverride = {}) {
+  const effort = slotOverride.effort || intent.require_effort;
+  if (effort && feature.effort_level !== effort) return false;
+  const complexity = slotOverride.ingredient_complexity || intent.require_ingredient_complexity;
+  if (complexity && feature.ingredient_complexity !== complexity) return false;
+  const hardMinutes = slotOverride.max_minutes_hard ? slotOverride.max_minutes : intent.max_cook_minutes_hard ? intent.max_cook_minutes : null;
+  if (hardMinutes != null && typeof feature.minutes === "number" && feature.minutes > hardMinutes) return false;
+  for (const slug of intent.exclude_ingredients || []) {
+    if (matchesRequest(feature, slug)) return false;
+  }
+  for (const cat of intent.exclude_categories || []) {
+    if (mealMatchesCategory(feature, cat)) return false;
+  }
+  return true;
+}
+
+function slotOverrideFor(intent, index) {
+  const slots = intent.weave_slots || [];
+  const position = index + 1;
+  return slots.find((s) => s.position === position) || slots[index] || null;
+}
+
+function scoreFeature(feature, participantIds, tastes, intent, slotOverride = {}) {
   const taste = scoreDinerTastes(
     {
       recipe_slug: feature.slug,
@@ -213,7 +250,12 @@ function scoreFeature(feature, participantIds, tastes, intent) {
     (tastes || []).filter((row) => participantIds.includes(row.member_id))
   );
   const hints = hintBoost(feature, intent);
-  return { taste: taste.score, total: taste.score + hints.boost, unscored: hints.unscored, excludes: taste.excludes };
+  const cue = cueScoreForMeal(feature, intent.intent_cues || [], { keep_it_easy: intent.keep_it_easy });
+  let total = taste.score + hints.boost + cue;
+  if (slotOverride.special === true) {
+    total += (feature.exploration || 0) >= 0.55 ? 0.25 : (feature.exploration || 0) * 0.1;
+  }
+  return { taste: taste.score, total, unscored: hints.unscored, excludes: taste.excludes, cue };
 }
 
 function catalogCount(features, slug) {
@@ -221,12 +263,12 @@ function catalogCount(features, slug) {
   return features.filter((feature) => matchesRequest(feature, slug)).length;
 }
 
-function rankEligible(eligible, participantIds, tastes, intent) {
+function rankEligible(eligible, participantIds, tastes, intent, slotOverride = {}) {
   const active = preferencesActive(intent);
   const prefs = planningPreferences(intent);
   const ranked = eligible
     .map((feature) => {
-      const score = scoreFeature(feature, participantIds, tastes, intent);
+      const score = scoreFeature(feature, participantIds, tastes, intent, slotOverride);
       return {
         feature,
         total: score.total,
@@ -340,14 +382,28 @@ export function planDinners(intent, context = {}) {
   const used = emptyUsed();
   const slots = [];
   const preference_relaxations = [];
+  const previous = context.previous_slots || null;
+  const changed_positions = [];
   for (let index = 0; index < intent.dinner_count; index += 1) {
+    const slotOverride = slotOverrideFor(intent, index) || {};
     const participant_ids = intent.slots?.[index]?.participant_ids?.length
       ? intent.slots[index].participant_ids
       : intent.participant_ids;
-    const eligible = features.filter((feature) =>
-      assessMealEligibility(feature.entry, participant_ids, context.constraints || [], context.tastes || []).eligible
+    const prev = previous ? previous[index] : null;
+    if (previous && prev?.recipe_version_id && !slotOverride.position && !Object.keys(slotOverride).length) {
+      slots.push({ ...prev, position: index + 1, participant_ids });
+      if (prev.recipe_slug) {
+        const entry = catalog.find((e) => e.concept.concept_id === prev.recipe_slug);
+        if (entry) remember(used, featuresOf(entry));
+      }
+      continue;
+    }
+    const eligible = features.filter(
+      (feature) =>
+        assessMealEligibility(feature.entry, participant_ids, context.constraints || [], context.tastes || []).eligible &&
+        passesPoolFilters(feature, intent, slotOverride)
     );
-    const pool = rankEligible(eligible, participant_ids, context.tastes || [], intent);
+    const pool = rankEligible(eligible, participant_ids, context.tastes || [], intent, slotOverride);
     pool.ranked.forEach((row) => row.unscored?.forEach((key) => unscored.add(key)));
     const picked = eligible.length
       ? pickFeature(pool.ranked, used, recent, pool.active)
@@ -364,6 +420,7 @@ export function planDinners(intent, context = {}) {
       });
     }
     slots.push(slot);
+    if (!prev || prev.recipe_version_id !== slot.recipe_version_id) changed_positions.push(index + 1);
   }
   return {
     ok: true,
@@ -375,6 +432,7 @@ export function planDinners(intent, context = {}) {
     unscored_hints: [...unscored],
     preference_relaxations,
     slots,
+    changed_positions,
   };
 }
 

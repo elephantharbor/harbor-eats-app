@@ -14,13 +14,30 @@ import { normalizeError, AI_ERROR_CODES } from "../src/ai/errors.js";
 
 const ON = { AI_GATEWAY_ENABLED: "1", AI_TASKS_ENABLED: "discovery_intent,explanation", AI_DAILY_BUDGET_USD: "5" };
 const VOCAB = { cuisines: ["korean", "thai", "italian"], methods: ["grill", "pressure-cook"], equipment: ["grill"] };
+const DISC_IN = (text, vocabulary = VOCAB) => ({ text, state: null, context: {}, vocabulary });
 const fixedNow = () => new Date("2026-10-10T15:00:00.000Z");
 
 function svc({ script, env = ON, store = createMemoryStore(), now = fixedNow } = {}) {
   const provider = createFakeProvider({ script });
   return { service: createGenerationService({ provider, store, env, now }), provider, store };
 }
-const good = { json: { facets: { cuisines: ["Korean", "klingon"], methods: ["grill"] }, quick: true } };
+const good = {
+  json: {
+    acknowledgement: "Korean grill it is.",
+    clear: [],
+    text_residue: null,
+    max_minutes: null,
+    max_minutes_hard: null,
+    quick: true,
+    different: null,
+    keep_it_easy: null,
+    keep_ingredients_simple: null,
+    list_ops: [
+      { field: "cuisines", op: "add", value: "korean" },
+      { field: "methods", op: "add", value: "grill" },
+    ],
+  },
+};
 
 describe("D-05 task registry", () => {
   it("registers all eight tasks with schema, prompt version, models, cost class, cache, limits, post-validation", () => {
@@ -62,7 +79,7 @@ describe("D-05 task registry", () => {
 describe("D-05 gateway behaviour", () => {
   it("is OFF by default (kill switch) and returns the deterministic fallback without calling the provider", async () => {
     const { service, provider, store } = svc({ script: [good], env: {} });
-    const r = await service.run("discovery_intent", { text: "korean", vocabulary: VOCAB }, { fallback: "FB" });
+    const r = await service.run("discovery_intent", DISC_IN("korean"), { fallback: "FB" });
     expect(r).toEqual({ ok: false, error: "disabled", fallback: "FB" });
     expect(provider.calls).toHaveLength(0);
     expect(store.usage[0].status).toBe("fallback:disabled");
@@ -75,38 +92,41 @@ describe("D-05 gateway behaviour", () => {
   it("unknown task and invalid input are normalized", async () => {
     const { service } = svc({ script: [good] });
     expect((await service.run("nope", {})).error).toBe("unknown_task");
-    expect((await service.run("discovery_intent", { text: "x".repeat(500) })).error).toBe("invalid_input");
+    expect((await service.run("discovery_intent", DISC_IN("x".repeat(500)))).error).toBe("invalid_input");
   });
   it("unconfigured provider => provider_unconfigured fallback, no call", async () => {
     const service = createGenerationService({ provider: unconfiguredProvider(), store: createMemoryStore(), env: ON });
-    expect((await service.run("discovery_intent", { text: "thai" })).error).toBe("provider_unconfigured");
+    expect((await service.run("discovery_intent", DISC_IN("thai"))).error).toBe("provider_unconfigured");
   });
   it("validates output, post-filters to deterministic vocabulary, records usage, caches", async () => {
     const { service, provider, store } = svc({ script: [good] });
-    const r = await service.run("discovery_intent", { text: "Korean grill", vocabulary: VOCAB }, { householdId: "hh_abc12345" });
+    const r = await service.run("discovery_intent", DISC_IN("Korean grill"), { householdId: "hh_abc12345" });
     expect(r.ok).toBe(true);
-    expect(r.output.facets).toEqual({ cuisines: ["korean"], methods: ["grill"] });
+    expect(r.output.list_ops).toEqual([
+      { field: "cuisines", op: "add", value: "korean" },
+      { field: "methods", op: "add", value: "grill" },
+    ]);
     const row = store.usage.at(-1);
-    expect(row).toMatchObject({ task: "discovery_intent", provider: "fake", model: "gpt-6-luna", status: "ok", pricing_version: "openai-standard-2026-10-10", prompt_version: "discovery_intent@1", attempts: 1 });
+    expect(row).toMatchObject({ task: "discovery_intent", provider: "fake", model: "gpt-6-luna", status: "ok", pricing_version: "openai-standard-2026-10-10", prompt_version: "discovery_intent@2", attempts: 1 });
     expect(row.input_tokens).toBeGreaterThan(0);
     expect(row.output_tokens).toBeGreaterThan(0);
     expect(row.estimated_cost_usd).toBeGreaterThan(0);
     expect(row.household_key).toMatch(/^[0-9a-f]{24}$/);
     expect(JSON.stringify(row)).not.toMatch(/hh_abc12345|korean grill/i);
-    const again = await service.run("discovery_intent", { text: "  korean   GRILL ", vocabulary: VOCAB });
+    const again = await service.run("discovery_intent", DISC_IN("  korean   GRILL "));
     expect(again.source).toBe("cache");
     expect(provider.calls).toHaveLength(1);
   });
   it("cache key includes prompt version and model", async () => {
     const store = createMemoryStore();
     const { service } = svc({ script: [good], store });
-    await service.run("discovery_intent", { text: "thai", vocabulary: VOCAB });
+    await service.run("discovery_intent", DISC_IN("thai"));
     const [key] = [...store.cache.keys()];
-    expect(store.cache.get(key)).toMatchObject({ prompt_version: "discovery_intent@1", model: "gpt-6-luna" });
+    expect(store.cache.get(key)).toMatchObject({ prompt_version: "discovery_intent@2", model: "gpt-6-luna" });
   });
   it("bounded repair: one malformed output then valid => ok with attempts 2", async () => {
     const { service, provider, store } = svc({ script: [{ text: "not json" }, good] });
-    const r = await service.run("discovery_intent", { text: "thai", vocabulary: VOCAB });
+    const r = await service.run("discovery_intent", DISC_IN("thai"));
     expect(r.ok).toBe(true);
     expect(provider.calls).toHaveLength(2);
     expect(provider.calls[1].user).toMatch(/previous output was invalid/);
@@ -114,42 +134,42 @@ describe("D-05 gateway behaviour", () => {
   });
   it("persistent malformed output stops at max_retries and falls back", async () => {
     const { service, provider, store } = svc({ script: [{ text: "{\"facets\":1}" }] });
-    const r = await service.run("discovery_intent", { text: "thai", vocabulary: VOCAB }, { fallback: [] });
+    const r = await service.run("discovery_intent", DISC_IN("thai"), { fallback: [] });
     expect(r).toEqual({ ok: false, error: "malformed_output", fallback: [] });
     expect(provider.calls).toHaveLength(TASKS.discovery_intent.limits.max_retries + 1);
     expect(store.usage.at(-1).status).toBe("fallback:malformed_output");
   });
   it("explanation post-validation rejects allergen / eligibility claims", async () => {
     const { service } = svc({ script: [{ json: { text: "This is nut-free and safe for your family." } }] });
-    const r = await service.run("explanation", { meal: "Sabich", reasons: ["quick"] }, { fallback: "Quick weeknight pick." });
+    const r = await service.run("explanation", { meal: "Sabich", reasons: ["quick"], cache_bust: null }, { fallback: "Quick weeknight pick." });
     expect(r).toEqual({ ok: false, error: "malformed_output", fallback: "Quick weeknight pick." });
   });
   it("timeout is enforced, retried once (bounded), normalized and falls back", async () => {
     const provider = createFakeProvider({ script: [{ hang: true }] });
     const store = createMemoryStore();
     const service = createGenerationService({ provider, store, env: ON, maxTimeoutMs: 20 });
-    const r = await service.run("discovery_intent", { text: "thai" }, { fallback: "FB" });
+    const r = await service.run("discovery_intent", DISC_IN("thai"), { fallback: "FB" });
     expect(r).toEqual({ ok: false, error: "timeout", fallback: "FB" });
     expect(provider.calls).toHaveLength(TASKS.discovery_intent.limits.max_retries + 1);
     expect(store.usage.at(-1).status).toBe("fallback:timeout");
   });
   it("rate limit (429) and outage (5xx) are normalized", async () => {
     const a = svc({ script: [{ throw: { status: 429 } }] });
-    expect((await a.service.run("discovery_intent", { text: "thai" })).error).toBe("rate_limited");
+    expect((await a.service.run("discovery_intent", DISC_IN("thai"))).error).toBe("rate_limited");
     expect(a.provider.calls).toHaveLength(1);
     const b = svc({ script: [{ throw: { status: 503 } }] });
-    expect((await b.service.run("discovery_intent", { text: "thai" })).error).toBe("provider_outage");
+    expect((await b.service.run("discovery_intent", DISC_IN("thai"))).error).toBe("provider_outage");
     expect(b.provider.calls).toHaveLength(2);
     expect(AI_ERROR_CODES).toEqual(expect.arrayContaining(["timeout", "rate_limited", "malformed_output", "provider_outage", "disabled", "budget_exceeded"]));
   });
   it("budget: zero budget (default) blocks spend", async () => {
     const { service, provider } = svc({ script: [good], env: { AI_GATEWAY_ENABLED: "1", AI_TASKS_ENABLED: "discovery_intent" } });
-    expect((await service.run("discovery_intent", { text: "thai" })).error).toBe("budget_exceeded");
+    expect((await service.run("discovery_intent", DISC_IN("thai"))).error).toBe("budget_exceeded");
     expect(provider.calls).toHaveLength(0);
   });
   it("redacts PII and secrets before the provider sees input", async () => {
     const { service, provider } = svc({ script: [good] });
-    await service.run("discovery_intent", { text: "email a@b.com key sk-abcdef123456 hh_abcdef99 +1 312 555 0100", vocabulary: VOCAB });
+    await service.run("discovery_intent", DISC_IN("email a@b.com key sk-abcdef123456 hh_abcdef99 +1 312 555 0100"));
     const sent = provider.calls[0].user;
     expect(sent).not.toMatch(/a@b\.com|sk-abcdef|hh_abcdef99|555 0100/);
     expect(redactText("https://x.y/z")).toBe("[url]");
@@ -210,7 +230,8 @@ describe("D-05 boundaries (static)", () => {
   });
   it("Plan/Find/Shop/Cook/Rate modules do not import the gateway", () => {
     for (const f of files("src")) {
-      if (f.startsWith(join("src", "ai")) || f.endsWith("index.js") && f === join("src", "index.js")) continue;
+      if (f.startsWith(join("src", "ai"))) continue;
+      if (f === join("src", "index.js") || f === join("src", "weave", "routes.js")) continue;
       expect(readFileSync(f, "utf8"), f).not.toMatch(/from ["'][./]*ai\//);
     }
   });
@@ -234,8 +255,8 @@ describe("D-05 migration + D1 store", () => {
     };
     const store = createD1Store(shim);
     const service = createGenerationService({ provider: createFakeProvider({ script: [good] }), store, env: ON, now: fixedNow });
-    expect((await service.run("discovery_intent", { text: "thai", vocabulary: VOCAB }, { householdId: "hh_zz" })).ok).toBe(true);
-    expect((await service.run("discovery_intent", { text: "thai", vocabulary: VOCAB })).source).toBe("cache");
+    expect((await service.run("discovery_intent", DISC_IN("thai"), { householdId: "hh_zz" })).ok).toBe(true);
+    expect((await service.run("discovery_intent", DISC_IN("thai"))).source).toBe("cache");
     const rows = db.prepare("SELECT task, status, model, prompt_version FROM ai_usage ORDER BY created_at").all();
     expect(rows.map((r) => r.status)).toEqual(["ok", "cache_hit"]);
     const cols = db.prepare("PRAGMA table_info(ai_usage)").all().map((c) => c.name);

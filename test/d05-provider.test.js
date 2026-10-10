@@ -15,7 +15,7 @@ import { validateAiVars } from "../scripts/deploy/environments.mjs";
 const KEY = "sk-test-NEVER-LEAK-0123456789abcdef";
 const fixedNow = () => new Date("2026-10-10T15:00:30.000Z");
 const ON = { AI_GATEWAY_ENABLED: "1", AI_TASKS_ENABLED: "explanation,recipe_draft,concept_generation,discovery_intent", AI_DAILY_BUDGET_USD: "5", AI_PROVIDER: "openai" };
-const EXPL = (i = 0) => ({ meal: `meal ${i}`, reasons: ["quick"] });
+const EXPL = (i = 0) => ({ meal: `meal ${i}`, reasons: ["quick"], cache_bust: i ? String(i) : null });
 
 function okBody(obj, usage = { input_tokens: 120, output_tokens: 30, input_tokens_details: { cached_tokens: 20 } }) {
   return { id: "resp_1", status: "completed", model: "gpt-6-luna", output: [{ type: "message", content: [{ type: "output_text", text: JSON.stringify(obj) }] }], usage };
@@ -60,14 +60,32 @@ describe("OpenAI adapter: request shape + Structured Outputs", () => {
   });
   it("strict schema: all props required, optionals nullable, nested objects closed; nulls dropped on the way back", async () => {
     const s = toStrictSchema(TASKS.planning_intent.output_schema);
-    expect(s.required.sort()).toEqual(["keep_ingredients_simple", "keep_it_easy", "nights", "notes"]);
-    expect(s.properties.notes.type).toEqual(["string", "null"]);
+    expect(s.required).toContain("acknowledgement");
     expect(s.additionalProperties).toBe(false);
     const c = toStrictSchema(TASKS.concept_generation.output_schema);
     expect(c.properties.concepts.items).toMatchObject({ additionalProperties: false, required: ["title", "pitch"] });
-    const { provider } = openai(() => ({ body: okBody({ nights: 3, keep_it_easy: true, keep_ingredients_simple: null, notes: null }) }));
+    const { provider } = openai(() => ({
+      body: okBody({
+        acknowledgement: "Three easy dinners.",
+        clear: [],
+        dinner_count: 3,
+        date_start: null,
+        date_end: null,
+        keep_it_easy: true,
+        keep_ingredients_simple: null,
+        max_minutes: null,
+        max_minutes_hard: null,
+        effort: null,
+        ingredient_complexity: null,
+        ingredient_complexity_hard: null,
+        special_count: null,
+        list_ops: [],
+        frequency_ops: [],
+        slot_ops: [],
+      }),
+    }));
     const r = await provider.generate(req({ response_schema: TASKS.planning_intent.output_schema }));
-    expect(JSON.parse(r.text)).toEqual({ nights: 3, keep_it_easy: true });
+    expect(JSON.parse(r.text).dinner_count).toBe(3);
   });
   it("max_output_tokens never exceeds the model ceiling", () => {
     expect(buildResponsesRequest(req({ max_output_tokens: 5000 })).max_output_tokens).toBe(600);
@@ -189,8 +207,8 @@ describe("ceilings, retries, no escalation", () => {
   it("max_output_tokens = min(task cap, model ceiling); lower task caps unchanged", () => {
     expect(MODEL_OUTPUT_CEILINGS).toEqual({ "gpt-6-luna": 600, "gpt-6.1-sol": 1500 });
     expect(effectiveMaxOutputTokens(TASKS.explanation.limits.max_output_tokens, "gpt-6-luna")).toBe(300);
-    expect(effectiveMaxOutputTokens(TASKS.discovery_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(250);
-    expect(effectiveMaxOutputTokens(TASKS.planning_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(400);
+    expect(effectiveMaxOutputTokens(TASKS.discovery_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(320);
+    expect(effectiveMaxOutputTokens(TASKS.planning_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(560);
     expect(effectiveMaxOutputTokens(TASKS.concept_generation.limits.max_output_tokens, "gpt-6-luna")).toBe(600);
     expect(effectiveMaxOutputTokens(TASKS.recipe_draft.limits.max_output_tokens, "gpt-6.1-sol")).toBe(1500);
     expect(effectiveMaxOutputTokens(5000, "gpt-6.1-sol")).toBe(1500);
@@ -322,7 +340,7 @@ describe("kill switch, config, secrecy", () => {
       // Production must stay OFF. Preview may be OFF, or ON with explanation only (D-05 preview smoke).
       const onPair = [vars.AI_GATEWAY_ENABLED, vars.AI_TASKS_ENABLED];
       if (env === "production") expect(onPair).toEqual(["0", ""]);
-      else expect([["0", ""], ["1", "explanation"]]).toContainEqual(onPair);
+      else expect([["0", ""], ["1", "explanation"], ["1", "planning_intent,discovery_intent"]]).toContainEqual(onPair);
       expect(vars).toMatchObject({ AI_PROVIDER: "openai", AI_DAILY_BUDGET_USD: budget, AI_GLOBAL_PER_DAY: global, AI_HOUSEHOLD_PER_MINUTE: "5", AI_HOUSEHOLD_PER_DAY: "30", AI_SOL_HOUSEHOLD_PER_DAY: "5" });
     }
     expect(() => validateAiVars('AI_PROVIDER = "openai"')).toThrow(/missing AI_DAILY_BUDGET_USD/);

@@ -25,6 +25,7 @@ export function reasonCodesFor(row, query) {
   if (row.recent) codes.push("recent_demoted");
   if (row.diversity_preferred) codes.push("diversity_preferred");
   if (row.novelty_tiebreak) codes.push("novelty_tiebreak");
+  if (row.intent_cue || (row.cue_score && row.cue_score > 0)) codes.push("intent_cue");
   if (!codes.length) codes.push("eligible_catalog_fit");
 
   const unique = [];
