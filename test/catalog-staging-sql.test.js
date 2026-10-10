@@ -103,4 +103,24 @@ describe("staging catalog D1 SQL", () => {
     expect(tags).not.toContain("nuts");
     expect(tags).not.toContain("walnut");
   });
+
+  it("clears stale child rows when an amendment empties a version's set (chicken dairy_free removed)", async () => {
+    const source = new DatabaseSync(":memory:");
+    applyMigrations(source);
+    await importCatalogTo(source);
+    const sql = renderStagingD1Sql(source);
+    const CHICKEN = "rv_crispy-skillet-chicken-sandwiches_v1";
+    expect(sql).toContain(`DELETE FROM catalog_dietary_label WHERE recipe_version_id = '${CHICKEN}';`);
+
+    const target = new DatabaseSync(":memory:");
+    applyMigrations(target);
+    copyRecipeRows(source, target);
+    for (const statement of splitStagingD1Statements(sql)) target.exec(`${statement};`);
+    // Simulate a remote D1 that still holds the pre-amendment label, then re-apply the canonical SQL.
+    target.prepare("INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES (?, 'dairy_free')").run(CHICKEN);
+    for (const statement of splitStagingD1Statements(sql)) target.exec(`${statement};`);
+    const labels = target.prepare("SELECT label FROM catalog_dietary_label WHERE recipe_version_id = ?").all(CHICKEN);
+    expect(labels).toEqual([]);
+    expect(target.prepare("SELECT COUNT(*) AS c FROM catalog_eligibility_tag WHERE recipe_version_id = ? AND tag = 'dairy'").get(CHICKEN).c).toBe(1);
+  });
 });

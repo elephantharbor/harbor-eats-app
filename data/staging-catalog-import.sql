@@ -2558,8 +2558,10 @@ INSERT INTO catalog_taste_tag (recipe_version_id, vocabulary_slug) VALUES ('rv_w
 INSERT INTO catalog_taste_tag (recipe_version_id, vocabulary_slug) VALUES ('rv_white-bean-kale-soup_v2', 'soups');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_air-fryer-honey-mustard-pork_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_air-fryer-honey-mustard-pork_v1', 'dairy_free');
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_baked-ziti-italian-sausage_v1';
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_black-bean-quesadillas_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_black-bean-quesadillas_v1', 'plant');
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_black-bean-quesadillas_v2';
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_brazilian-fish-moqueca_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_brazilian-fish-moqueca_v1', 'dairy_free');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_cajun-blackened-catfish_v1';
@@ -2571,6 +2573,7 @@ INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_cashew-
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_cashew-pesto-pasta_v2';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_cashew-pesto-pasta_v2', 'dairy_free');
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_cashew-pesto-pasta_v2', 'plant');
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_chicken-enchiladas-verdes_v1';
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_chipotle-lime-black-bean-bowls_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_chipotle-lime-black-bean-bowls_v1', 'dairy_free');
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_chipotle-lime-black-bean-bowls_v1', 'plant');
@@ -2582,12 +2585,14 @@ DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_citrus-fennel-ar
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_citrus-fennel-arctic-char_v1', 'dairy_free');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_citrus-fennel-arctic-char_v2';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_citrus-fennel-arctic-char_v2', 'dairy_free');
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_classic-smash-burgers_v1';
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_coconut-chickpea-curry_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_coconut-chickpea-curry_v1', 'dairy_free');
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_coconut-chickpea-curry_v1', 'plant');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_coconut-chickpea-curry_v2';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_coconut-chickpea-curry_v2', 'dairy_free');
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_coconut-chickpea-curry_v2', 'plant');
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_cottage-pie_v1';
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_crispy-chipotle-tofu-tacos_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_crispy-chipotle-tofu-tacos_v1', 'dairy_free');
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_crispy-chipotle-tofu-tacos_v1', 'plant');
@@ -2598,6 +2603,7 @@ DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_crispy-fish-taco
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_crispy-fish-tacos-cabbage-slaw_v1', 'dairy_free');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_crispy-fish-tacos-cabbage-slaw_v2';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_crispy-fish-tacos-cabbage-slaw_v2', 'dairy_free');
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_crispy-skillet-chicken-sandwiches_v1';
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_ethiopian-beef-tibs_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_ethiopian-beef-tibs_v1', 'dairy_free');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_filipino-chicken-adobo_v1';
@@ -2626,6 +2632,8 @@ DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_grilled-swordfis
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_grilled-swordfish-olive-caper_v1', 'dairy_free');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_harissa-roasted-carrots-feta_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_harissa-roasted-carrots-feta_v1', 'plant');
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_harissa-roasted-carrots-feta_v2';
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_herb-vegetable-pot-pie_v1';
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_herbed-polenta-tomato-stew_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_herbed-polenta-tomato-stew_v1', 'dairy_free');
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_herbed-polenta-tomato-stew_v1', 'plant');
@@ -2646,6 +2654,9 @@ INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_korean-
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_korean-soft-tofu-stew_v2';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_korean-soft-tofu-stew_v2', 'dairy_free');
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_korean-soft-tofu-stew_v2', 'plant');
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_lemon-garlic-shrimp-pasta_v1';
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_lemon-garlic-shrimp-pasta_v2';
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_lemon-pea-risotto_v1';
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_lentil-stuffed-cabbage_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_lentil-stuffed-cabbage_v1', 'dairy_free');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_maple-mustard-glazed-salmon_v1';
@@ -2685,6 +2696,8 @@ DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_peanut-noodle-st
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_peanut-noodle-stir-fry_v2', 'plant');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_peruvian-lomo-saltado_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_peruvian-lomo-saltado_v1', 'dairy_free');
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_potato-leek-gratin_v1';
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_pressure-cooker-butter-chicken_v1';
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_pumpkin-pinto-bean-chili_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_pumpkin-pinto-bean-chili_v1', 'dairy_free');
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_pumpkin-pinto-bean-chili_v1', 'vegetarian');
@@ -2696,11 +2709,13 @@ INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_roasted
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_roasted-cauliflower-shawarma-plate_v1', 'plant');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_roasted-cauliflower-shawarma-plate_v2';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_roasted-cauliflower-shawarma-plate_v2', 'plant');
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_saag-paneer_v1';
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_sabich-pita-sandwiches_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_sabich-pita-sandwiches_v1', 'dairy_free');
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_sabich-pita-sandwiches_v1', 'vegetarian');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_salade-nicoise-seared-tuna_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_salade-nicoise-seared-tuna_v1', 'dairy_free');
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_seared-scallops-parsnip-puree_v1';
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_sesame-soba-noodle-bowl_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_sesame-soba-noodle-bowl_v1', 'dairy_free');
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_sesame-soba-noodle-bowl_v1', 'plant');
@@ -2711,6 +2726,10 @@ DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_sheet-pan-gnocch
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_sheet-pan-gnocchi-brussels-apples_v1', 'dairy_free');
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_sheet-pan-gnocchi-brussels-apples_v1', 'vegetarian');
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_sheet-pan-gnocchi-brussels-apples_v1', 'plant');
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_sheet-pan-lemon-herb-chicken_v1';
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_sheet-pan-lemon-herb-chicken_v2';
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_sheet-pan-margherita-pizza_v1';
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_sheet-pan-shrimp-boil_v1';
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_skillet-shakshuka_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_skillet-shakshuka_v1', 'dairy_free');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_smoky-lentil-sweet-potato-stew_v1';
@@ -2745,6 +2764,7 @@ INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_thai-re
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_thai-red-curry-kabocha_v1', 'plant');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_thai-turkey-larb-lettuce-wraps_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_thai-turkey-larb-lettuce-wraps_v1', 'dairy_free');
+DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_tomato-soup-grilled-cheese_v1';
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_turkish-lahmacun_v1';
 INSERT INTO catalog_dietary_label (recipe_version_id, label) VALUES ('rv_turkish-lahmacun_v1', 'dairy_free');
 DELETE FROM catalog_dietary_label WHERE recipe_version_id = 'rv_vegetable-biryani-cashews_v1';
@@ -2793,6 +2813,9 @@ INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_cashew-pe
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_chicken-enchiladas-verdes_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_chicken-enchiladas-verdes_v1', 'milk');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_chicken-enchiladas-verdes_v1', 'poultry');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_chipotle-lime-black-bean-bowls_v1';
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_chipotle-lime-black-bean-bowls_v2';
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_cider-braised-pork-shoulder_v1';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_citrus-fennel-arctic-char_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_citrus-fennel-arctic-char_v1', 'finfish');
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_citrus-fennel-arctic-char_v2';
@@ -2804,11 +2827,14 @@ INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_classic-s
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_classic-smash-burgers_v1', 'sesame');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_classic-smash-burgers_v1', 'soy');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_classic-smash-burgers_v1', 'wheat');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_coconut-chickpea-curry_v1';
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_coconut-chickpea-curry_v2';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_cottage-pie_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_cottage-pie_v1', 'finfish');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_cottage-pie_v1', 'meat');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_cottage-pie_v1', 'milk');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_cottage-pie_v1', 'wheat');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_crispy-chipotle-tofu-tacos_v1';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_crispy-chipotle-tofu-tacos_v2';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_crispy-chipotle-tofu-tacos_v2', 'soy');
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_crispy-fish-tacos-cabbage-slaw_v1';
@@ -2841,6 +2867,8 @@ INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_gochujang
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_gochujang-grilled-flank-steak_v1', 'wheat');
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_greek-chicken-souvlaki_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_greek-chicken-souvlaki_v1', 'poultry');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_grilled-peach-burrito-bowl_v1';
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_grilled-peach-burrito-bowl_v2';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_grilled-swordfish-olive-caper_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_grilled-swordfish-olive-caper_v1', 'finfish');
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_harissa-roasted-carrots-feta_v1';
@@ -2852,6 +2880,8 @@ DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_herb-vegetable-pot-pi
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_herb-vegetable-pot-pie_v1', 'egg');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_herb-vegetable-pot-pie_v1', 'milk');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_herb-vegetable-pot-pie_v1', 'wheat');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_herbed-polenta-tomato-stew_v1';
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_herbed-polenta-tomato-stew_v2';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_jamaican-jerk-pork-chops_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_jamaican-jerk-pork-chops_v1', 'meat');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_jamaican-jerk-pork-chops_v1', 'soy');
@@ -2879,6 +2909,7 @@ INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_lemon-gar
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_lemon-garlic-shrimp-pasta_v2', 'wheat');
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_lemon-pea-risotto_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_lemon-pea-risotto_v1', 'milk');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_lentil-stuffed-cabbage_v1';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_maple-mustard-glazed-salmon_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_maple-mustard-glazed-salmon_v1', 'finfish');
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_maple-mustard-glazed-salmon_v2';
@@ -2893,8 +2924,10 @@ DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_miso-mushroom-ramen_v
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_miso-mushroom-ramen_v1', 'sesame');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_miso-mushroom-ramen_v1', 'soy');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_miso-mushroom-ramen_v1', 'wheat');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_moroccan-chickpea-skillet_v1';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_moroccan-chickpea-skillet_v2';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_moroccan-chickpea-skillet_v2', 'wheat');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_mushroom-hominy-pozole-rojo_v1';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_mushroom-walnut-bolognese_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_mushroom-walnut-bolognese_v1', 'nuts');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_mushroom-walnut-bolognese_v1', 'walnut');
@@ -2924,8 +2957,10 @@ INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_potato-le
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_pressure-cooker-butter-chicken_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_pressure-cooker-butter-chicken_v1', 'milk');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_pressure-cooker-butter-chicken_v1', 'poultry');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_pumpkin-pinto-bean-chili_v1';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_roasted-butternut-farro-plate_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_roasted-butternut-farro-plate_v1', 'wheat');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_roasted-cauliflower-shawarma-plate_v1';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_roasted-cauliflower-shawarma-plate_v2';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_roasted-cauliflower-shawarma-plate_v2', 'sesame');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_roasted-cauliflower-shawarma-plate_v2', 'wheat');
@@ -2941,6 +2976,7 @@ INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_salade-ni
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_seared-scallops-parsnip-puree_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_seared-scallops-parsnip-puree_v1', 'milk');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_seared-scallops-parsnip-puree_v1', 'shellfish');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_sesame-soba-noodle-bowl_v1';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_sesame-soba-noodle-bowl_v2';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_sesame-soba-noodle-bowl_v2', 'wheat');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_sesame-soba-noodle-bowl_v2', 'soy');
@@ -2961,6 +2997,8 @@ INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_sheet-pan
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_sheet-pan-shrimp-boil_v1', 'shellfish');
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_skillet-shakshuka_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_skillet-shakshuka_v1', 'egg');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_smoky-lentil-sweet-potato-stew_v1';
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_smoky-lentil-sweet-potato-stew_v2';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_spaghetti-puttanesca_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_spaghetti-puttanesca_v1', 'finfish');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_spaghetti-puttanesca_v1', 'wheat');
@@ -2970,10 +3008,12 @@ DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_spiced-lamb-meatballs
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_spiced-lamb-meatballs_v1', 'egg');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_spiced-lamb-meatballs_v1', 'meat');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_spiced-lamb-meatballs_v1', 'wheat');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_teriyaki-tofu-bowls_v1';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_teriyaki-tofu-bowls_v2';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_teriyaki-tofu-bowls_v2', 'sesame');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_teriyaki-tofu-bowls_v2', 'soy');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_teriyaki-tofu-bowls_v2', 'wheat');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_thai-basil-eggplant-stir-fry_v1';
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_thai-basil-eggplant-stir-fry_v2';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_thai-basil-eggplant-stir-fry_v2', 'soy');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_thai-basil-eggplant-stir-fry_v2', 'wheat');
@@ -2999,6 +3039,8 @@ INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_vietnames
 DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_vietnamese-turmeric-dill-fish_v1';
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_vietnamese-turmeric-dill-fish_v1', 'cashew');
 INSERT INTO catalog_allergen (recipe_version_id, allergen) VALUES ('rv_vietnamese-turmeric-dill-fish_v1', 'finfish');
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_white-bean-kale-soup_v1';
+DELETE FROM catalog_allergen WHERE recipe_version_id = 'rv_white-bean-kale-soup_v2';
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_air-fryer-honey-mustard-pork_v1';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_air-fryer-honey-mustard-pork_v1', 'air fryer');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_air-fryer-honey-mustard-pork_v1', 'instant-read thermometer');
@@ -3043,6 +3085,7 @@ INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_cashew-chick
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_cashew-chicken-stir-fry_v1', 'knife');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_cashew-chicken-stir-fry_v1', 'cutting board');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_cashew-chicken-stir-fry_v1', 'measuring spoons');
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_cashew-pesto-pasta_v1';
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_cashew-pesto-pasta_v2';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_cashew-pesto-pasta_v2', 'stovetop');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_cashew-pesto-pasta_v2', 'blender');
@@ -3057,6 +3100,7 @@ INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_chicken-ench
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_chicken-enchiladas-verdes_v1', 'knife');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_chicken-enchiladas-verdes_v1', 'cutting board');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_chicken-enchiladas-verdes_v1', 'instant-read thermometer (optional)');
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_chipotle-lime-black-bean-bowls_v1';
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_chipotle-lime-black-bean-bowls_v2';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_chipotle-lime-black-bean-bowls_v2', 'saucepan');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_chipotle-lime-black-bean-bowls_v2', 'skillet or second saucepan');
@@ -3069,6 +3113,7 @@ INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_cider-braise
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_cider-braised-pork-shoulder_v1', 'knife');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_cider-braised-pork-shoulder_v1', 'cutting board');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_cider-braised-pork-shoulder_v1', 'oven');
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_citrus-fennel-arctic-char_v1';
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_citrus-fennel-arctic-char_v2';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_citrus-fennel-arctic-char_v2', 'sheet pan');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_citrus-fennel-arctic-char_v2', 'oven');
@@ -3080,6 +3125,7 @@ INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_classic-smas
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_classic-smash-burgers_v1', 'knife');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_classic-smash-burgers_v1', 'cutting board');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_classic-smash-burgers_v1', 'paper towels');
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_coconut-chickpea-curry_v1';
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_coconut-chickpea-curry_v2';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_coconut-chickpea-curry_v2', 'stovetop');
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_cottage-pie_v1';
@@ -3098,6 +3144,7 @@ INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_crispy-chipo
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_crispy-chipotle-tofu-tacos_v2';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_crispy-chipotle-tofu-tacos_v2', 'air-fryer');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_crispy-chipotle-tofu-tacos_v2', 'stovetop');
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_crispy-fish-tacos-cabbage-slaw_v1';
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_crispy-fish-tacos-cabbage-slaw_v2';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_crispy-fish-tacos-cabbage-slaw_v2', 'skillet');
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_crispy-skillet-chicken-sandwiches_v1';
@@ -3137,6 +3184,7 @@ INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_ginger-glaze
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_ginger-glazed-tempeh-plate_v1', 'knife');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_ginger-glazed-tempeh-plate_v1', 'cutting board');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_ginger-glazed-tempeh-plate_v1', 'optional steamer basket');
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_ginger-scallion-fish-packets_v1';
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_ginger-scallion-fish-packets_v2';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_ginger-scallion-fish-packets_v2', 'foil');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_ginger-scallion-fish-packets_v2', 'sheet pan');
@@ -3157,6 +3205,7 @@ INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_greek-chicke
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_greek-chicken-souvlaki_v1', 'instant-read thermometer');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_greek-chicken-souvlaki_v1', 'knife');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_greek-chicken-souvlaki_v1', 'cutting board');
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_grilled-peach-burrito-bowl_v1';
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_grilled-peach-burrito-bowl_v2';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_grilled-peach-burrito-bowl_v2', 'grill');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_grilled-peach-burrito-bowl_v2', 'small skillet');
@@ -3228,6 +3277,8 @@ INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_korean-soft-
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_korean-soft-tofu-stew_v2', 'cutting board');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_korean-soft-tofu-stew_v2', 'measuring spoons');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_korean-soft-tofu-stew_v2', 'measuring cups');
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_lemon-garlic-shrimp-pasta_v1';
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_lemon-garlic-shrimp-pasta_v2';
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_lemon-pea-risotto_v1';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_lemon-pea-risotto_v1', 'wide heavy pot or deep skillet');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_lemon-pea-risotto_v1', 'saucepan for stock');
@@ -3301,6 +3352,8 @@ INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_pan-fried-po
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_pan-fried-pork-dumplings_v1', 'microplane or grater');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_pan-fried-pork-dumplings_v1', 'measuring spoons and cups');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_pan-fried-pork-dumplings_v1', 'instant-read thermometer (optional check)');
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_peanut-noodle-stir-fry_v1';
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_peanut-noodle-stir-fry_v2';
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_peruvian-lomo-saltado_v1';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_peruvian-lomo-saltado_v1', '12-inch carbon-steel or cast-iron skillet or wok');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_peruvian-lomo-saltado_v1', 'rimmed sheet pan');
@@ -3347,6 +3400,7 @@ INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_roasted-butt
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_roasted-butternut-farro-plate_v1', 'knife');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_roasted-butternut-farro-plate_v1', 'cutting board');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_roasted-butternut-farro-plate_v1', 'oven');
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_roasted-cauliflower-shawarma-plate_v1';
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_roasted-cauliflower-shawarma-plate_v2';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_roasted-cauliflower-shawarma-plate_v2', 'sheet pan');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_roasted-cauliflower-shawarma-plate_v2', 'mixing bowl');
@@ -3395,6 +3449,7 @@ INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_seared-scall
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_seared-scallops-parsnip-puree_v1', 'paper towels');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_seared-scallops-parsnip-puree_v1', 'knife');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_seared-scallops-parsnip-puree_v1', 'cutting board');
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_sesame-soba-noodle-bowl_v1';
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_sesame-soba-noodle-bowl_v2';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_sesame-soba-noodle-bowl_v2', 'saucepan');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_sesame-soba-noodle-bowl_v2', 'colander');
@@ -3468,6 +3523,7 @@ DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_teriyaki-tofu-bowls_
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_teriyaki-tofu-bowls_v2', 'oven');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_teriyaki-tofu-bowls_v2', 'sheet-pan');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_teriyaki-tofu-bowls_v2', 'stovetop');
+DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_thai-basil-eggplant-stir-fry_v1';
 DELETE FROM catalog_equipment WHERE recipe_version_id = 'rv_thai-basil-eggplant-stir-fry_v2';
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_thai-basil-eggplant-stir-fry_v2', 'wide skillet');
 INSERT INTO catalog_equipment (recipe_version_id, item) VALUES ('rv_thai-basil-eggplant-stir-fry_v2', 'saucepan with lid');
@@ -3604,6 +3660,7 @@ DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_chipotle-lime-
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_chipotle-lime-black-bean-bowls_v1', 'plant');
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_chipotle-lime-black-bean-bowls_v1', 'dairy-free');
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_chipotle-lime-black-bean-bowls_v1', 'bowl');
+DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_chipotle-lime-black-bean-bowls_v2';
 DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_cider-braised-pork-shoulder_v1';
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_cider-braised-pork-shoulder_v1', 'meat');
 DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_citrus-fennel-arctic-char_v1';
@@ -3737,9 +3794,11 @@ DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_lemon-garlic-s
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_lemon-garlic-shrimp-pasta_v1', 'shellfish');
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_lemon-garlic-shrimp-pasta_v1', 'seafood');
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_lemon-garlic-shrimp-pasta_v1', 'pasta');
+DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_lemon-garlic-shrimp-pasta_v2';
 DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_lemon-pea-risotto_v1';
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_lemon-pea-risotto_v1', 'dairy');
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_lemon-pea-risotto_v1', 'milk');
+DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_lentil-stuffed-cabbage_v1';
 DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_maple-mustard-glazed-salmon_v1';
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_maple-mustard-glazed-salmon_v1', 'fish');
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_maple-mustard-glazed-salmon_v1', 'finfish');
@@ -3763,6 +3822,7 @@ INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_morocca
 DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_moroccan-chickpea-skillet_v2';
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_moroccan-chickpea-skillet_v2', 'plant');
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_moroccan-chickpea-skillet_v2', 'dairy-free');
+DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_mushroom-hominy-pozole-rojo_v1';
 DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_mushroom-walnut-bolognese_v1';
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_mushroom-walnut-bolognese_v1', 'plant');
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_mushroom-walnut-bolognese_v1', 'dairy-free');
@@ -3796,6 +3856,7 @@ DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_pressure-cooke
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_pressure-cooker-butter-chicken_v1', 'dairy');
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_pressure-cooker-butter-chicken_v1', 'milk');
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_pressure-cooker-butter-chicken_v1', 'poultry');
+DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_pumpkin-pinto-bean-chili_v1';
 DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_roasted-butternut-farro-plate_v1';
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_roasted-butternut-farro-plate_v1', 'wheat');
 DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_roasted-cauliflower-shawarma-plate_v1';
@@ -3903,6 +3964,7 @@ INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_vietnam
 DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_white-bean-kale-soup_v1';
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_white-bean-kale-soup_v1', 'plant');
 INSERT INTO catalog_eligibility_tag (recipe_version_id, tag) VALUES ('rv_white-bean-kale-soup_v1', 'dairy-free');
+DELETE FROM catalog_eligibility_tag WHERE recipe_version_id = 'rv_white-bean-kale-soup_v2';
 DELETE FROM catalog_image_ref WHERE recipe_version_id = 'rv_air-fryer-honey-mustard-pork_v1';
 INSERT INTO catalog_image_ref (recipe_version_id, role, path, provenance, rights_state) VALUES ('rv_air-fryer-honey-mustard-pork_v1', 'master', '/images/meals/air-fryer-honey-mustard-pork.webp', 'ai_illustration', 'not_cleared_for_external_release');
 INSERT INTO catalog_image_ref (recipe_version_id, role, path, provenance, rights_state) VALUES ('rv_air-fryer-honey-mustard-pork_v1', 'card', '/images/meals/air-fryer-honey-mustard-pork-640.webp', 'ai_illustration', 'not_cleared_for_external_release');
