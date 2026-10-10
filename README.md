@@ -4,7 +4,7 @@ Authoritative **Harbor Eats consumer** source: Cloudflare **Pages + Functions + 
 
 - **Not** the Operating Desk ([`elephantharbor/harbor-eats`](https://github.com/elephantharbor/harbor-eats) → github.io/harbor-eats/).
 - **Product entrypoint:** `public/` (UI) + `functions/api` (same-origin `/api/*`) + `src/index.js` (Worker).
-- **Legacy static mirror:** `legacy/github-io/` — optional github.io preview only (in-memory fallback). Do not treat as source of truth.
+- **Legacy static prototype:** `legacy/github-io/` — archived source only. The repo's GitHub Pages site was disabled on 2026-10-10; it is not published anywhere.
 
 ## Live URLs
 
@@ -13,7 +13,7 @@ Authoritative **Harbor Eats consumer** source: Cloudflare **Pages + Functions + 
 | **Pages (alpha target)** | https://harbor-eats-app.pages.dev |
 | Legacy Worker mirror | Retired — `workers_dev` off; deploy returns `410` (see `docs/DEPLOYMENT.md`) |
 | Health | `GET /api/health` → `{ ok, d1: "ok" }` |
-| Interim github.io (legacy) | https://elephantharbor.github.io/harbor-eats-app/ |
+| GitHub Pages (legacy) | Disabled 2026-10-10 — the old `elephantharbor.github.io/harbor-eats-app/` URL serves nothing |
 
 D1: `harbor-eats-db` (`23aa3db3-1090-471b-8c8a-b6fe71f5c053`).
 
@@ -73,7 +73,9 @@ npm run pages:deploy
 - [`docs/DATABASE.md`](docs/DATABASE.md) — migration discipline
 - [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) — environments & rollback
 
-## Interim github.io (optional)
+## Legacy github.io staging (archived)
+
+GitHub Pages is disabled for this repo. The script below only stages files locally; do not re-enable Pages without Oversight sign-off.
 
 ```bash
 bash scripts/prepare-github-io.sh
