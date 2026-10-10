@@ -6,6 +6,8 @@ import { listVocabulary, normalizeTasteTerm } from "../lib/taste-vocabulary.js";
 import { INTENT_CUES } from "./constants.js";
 import { emptyDiscoveryState } from "./state.js";
 
+const KEYWORD_STOP = new Set(["date", "night", "tonight", "please", "week", "today", "tomorrow", "our", "my", "your"]);
+
 const FUNCTION_WORDS = new Set([
   "something",
   "and",
@@ -119,6 +121,53 @@ export function classifyDiscoveryBypass(text) {
  * Apply bypass patch onto discovery canonical state (delta-shaped write).
  * @param {string} text
  */
+function applyLexiconHit(state, hit) {
+  if (!hit) return;
+  if (hit.kind === "quick_phrase") {
+    Object.assign(state, hit.extra || {});
+    return;
+  }
+  const list = state[hit.kind];
+  if (Array.isArray(list) && hit.slug && !list.includes(hit.slug)) list.push(hit.slug);
+}
+
+/**
+ * Deterministic Find when interpretation is unavailable.
+ * Known dish words become filters. Leftover content words are the text query.
+ * @param {string} text
+ */
+export function keywordDiscoveryInput(text) {
+  const normalized = normalizeFindText(text);
+  const state = emptyDiscoveryState();
+  if (!normalized) return { state, text: null };
+  const keys = [...lexicon().keys()].sort((a, b) => b.length - a.length);
+  const taken = new Array(normalized.length).fill(false);
+  for (const key of keys) {
+    const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const re = new RegExp(`(?:^| )${escaped}(?= |$)`, "g");
+    let match;
+    while ((match = re.exec(normalized))) {
+      const start = match.index + (match[0].startsWith(" ") ? 1 : 0);
+      const end = start + key.length;
+      if (taken.slice(start, end).some(Boolean)) continue;
+      for (let i = start; i < end; i += 1) taken[i] = true;
+      applyLexiconHit(state, lexicon().get(key));
+      break;
+    }
+  }
+  const leftover = [];
+  let cursor = 0;
+  for (const token of normalized.split(" ")) {
+    const start = normalized.indexOf(token, cursor);
+    const end = start + token.length;
+    cursor = end;
+    if (start < 0 || taken.slice(start, end).some(Boolean)) continue;
+    if (FUNCTION_WORDS.has(token) || KEYWORD_STOP.has(token)) continue;
+    leftover.push(token);
+  }
+  return { state, text: leftover.length ? leftover.join(" ").slice(0, 200) : null };
+}
+
 export function bypassDiscoveryPatch(text) {
   const normalized = normalizeFindText(text);
   const state = emptyDiscoveryState();

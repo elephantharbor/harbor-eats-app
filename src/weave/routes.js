@@ -20,8 +20,9 @@ import { projectDiscoveryMeal } from "../discovery/meal.js";
 import { runDiscoveryPipeline } from "../discovery/pipeline.js";
 import { resolveDiscoveryContext, selectionFor, publicContext, normalizeClientContext } from "../discovery/context.js";
 import { loadDiscoveryRecentSlugs } from "../discovery/http.js";
-import { buildPlanningChips, buildDiscoveryChips, noResultsAcknowledgement, NO_RESULTS_SUGGESTIONS, reconcileAcknowledgement, refinementAcknowledgement } from "./ack.js";
-import { classifyDiscoveryBypass, bypassDiscoveryPatch, normalizeFindText } from "./bypass.js";
+import { buildPlanningChips, buildDiscoveryChips, noResultsAcknowledgement, NO_RESULTS_SUGGESTIONS, reconcileAcknowledgement, refinementAcknowledgement, FIND_UNAVAILABLE_ACK, PLAN_PICKER_ACK, planCountFallbackAck, withRelaxation } from "./ack.js";
+import { classifyDiscoveryBypass, bypassDiscoveryPatch, normalizeFindText, keywordDiscoveryInput } from "./bypass.js";
+import { discoveryRelaxations } from "./relax.js";
 import { detectDiscoveryConflicts, detectPlanningConflicts, frequencyConflicts } from "./conflicts.js";
 import { discoveryStateToQuery } from "./discovery-map.js";
 import { parsePlannerFromState } from "./plan-map.js";
@@ -60,6 +61,18 @@ async function readJson(request) {
 }
 
 const TZ_RE = /^[A-Za-z0-9_+\-/]{1,64}$/;
+const UNAVAILABLE_GATEWAY = new Set(["rate_limited", "budget_exceeded", "provider_outage", "provider_config"]);
+const DINNER_COUNT_WORDS = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"];
+
+function parseDinnerCount(text) {
+  const norm = String(text || "").toLowerCase();
+  const digit = norm.match(/\b([1-9]|1[0-4])\b/);
+  if (digit) return Number(digit[1]);
+  for (let n = DINNER_COUNT_WORDS.length; n >= 1; n -= 1) {
+    if (new RegExp(`\\b${DINNER_COUNT_WORDS[n - 1]}\\b`).test(norm)) return n;
+  }
+  return null;
+}
 
 function todayInTimezone(timezone) {
   const tz = TZ_RE.test(timezone || "") ? timezone : "UTC";
@@ -477,6 +490,58 @@ export async function routeWeaveRequest(env, request, path) {
     const gen = await service.run("planning_intent", runInput, { householdId: session.household_id, fallback: null });
     const providerMs = Number(gen.provider_latency_ms) || 0;
     if (!gen.ok || isEmptyPlanningDelta(gen.output)) {
+      if (UNAVAILABLE_GATEWAY.has(gen.error)) {
+        const count = parseDinnerCount(text);
+        if (count) {
+          const [constraints, tastes, catalogLoad] = await Promise.all([reads.constraints, reads.tastes, reads.catalog]);
+          const state = emptyPlanningState();
+          state.dinner_count = count;
+          const parsed = parsePlannerFromState(state, { participant_ids: participantIds });
+          const catalog = catalogLoad?.ok ? catalogLoad.planner : null;
+          const preview = parsed.ok
+            ? planDinners(parsed.intent, {
+                catalog,
+                constraints,
+                tastes,
+                previous_slots: previousSlotsFromMeals(dinnerPlan?.meals),
+              })
+            : null;
+          return json({
+            ok: true,
+            task: "planning_intent",
+            source: "fallback",
+            fallback_code: gen.error,
+            acknowledgement: planCountFallbackAck(count),
+            acknowledgement_source: "reconciled",
+            state,
+            chips: buildPlanningChips(state),
+            conflicts: [],
+            dropped: [],
+            changed_positions: preview?.changed_positions || [],
+            preview,
+            suggestions: [],
+            metadata: { estimated_cost_usd: Number(gen.estimated_cost_usd) || 0 },
+          });
+        }
+        await settleReads();
+        return json({
+          ok: true,
+          task: "planning_intent",
+          source: "fallback",
+          fallback_code: gen.error,
+          acknowledgement: PLAN_PICKER_ACK,
+          acknowledgement_source: "reconciled",
+          state: priorState || emptyPlanningState(),
+          chips: [],
+          conflicts: [],
+          dropped: [],
+          changed_positions: [],
+          preview: null,
+          model: gen.model ?? null,
+          prompt_version: gen.prompt_version ?? null,
+          metadata: { estimated_cost_usd: Number(gen.estimated_cost_usd) || 0 },
+        });
+      }
       await settleReads();
       return json({
         ok: true,
@@ -619,26 +684,31 @@ export async function routeWeaveRequest(env, request, path) {
     providerMs = Number(gen.provider_latency_ms) || 0;
     estimatedCost = Number(gen.estimated_cost_usd) || 0;
     if (!gen.ok || isEmptyDiscoveryDelta(gen.output)) {
+      const unavailable = UNAVAILABLE_GATEWAY.has(gen.error);
+      const extracted = unavailable ? keywordDiscoveryInput(text) : null;
       const normText = normalizeFindText(text).slice(0, 200);
-      const q = normalizeQuery({ text: normText });
+      const q = extracted
+        ? discoveryStateToQuery(extracted.state, { text: extracted.text || undefined })
+        : normalizeQuery({ text: normText });
       const ran = await runDiscoveryForQuery(env, session, q.ok ? q.query : normalizeQuery({}).query, client.context, preloaded);
       if (ran.error) return ran.error;
-      const emptyAck = (ran.payload.total || 0) === 0 ? noResultsAcknowledgement([]) : null;
+      const gentle = unavailable ? FIND_UNAVAILABLE_ACK : null;
+      const emptyAck = gentle || ((ran.payload.total || 0) === 0 ? noResultsAcknowledgement([]) : null);
       return json({
         ok: true,
         task: "discovery_intent",
         source: "fallback",
         fallback_code: gen.error || "empty_delta",
-        acknowledgement: emptyAck,
         acknowledgement_source: emptyAck ? "reconciled" : null,
-        state: priorDiscovery,
-        chips: [],
+        state: extracted ? extracted.state : priorDiscovery,
+        chips: extracted ? buildDiscoveryChips(extracted.state) : [],
         conflicts: [],
         dropped: [],
-        suggestions: emptyAck ? [...NO_RESULTS_SUGGESTIONS] : [],
+        suggestions: gentle ? [] : emptyAck ? [...NO_RESULTS_SUGGESTIONS] : [],
         ...latencyFields({ routeStarted, providerMs, deterministicMs: null }),
         metadata: { estimated_cost_usd: estimatedCost },
         ...ran.payload,
+        acknowledgement: emptyAck,
       });
     }
     const applied = applyDiscoveryDelta(priorDiscovery, gen.output, { vocabulary, today });
@@ -665,9 +735,27 @@ export async function routeWeaveRequest(env, request, path) {
   const mapped = discoveryStateToQuery(executedState, {});
   if (!mapped.ok) return fail(mapped.error, mapped.status || 400);
   const t1 = monotonicNow();
-  const ran = await runDiscoveryForQuery(env, session, mapped.query, client.context, preloaded);
-  const deterministicMs = elapsedMs(t1);
+  let ran = await runDiscoveryForQuery(env, session, mapped.query, client.context, preloaded);
   if (ran.error) return ran.error;
+  if ((ran.payload.total || 0) === 0 && conflicts.length) {
+    for (const step of discoveryRelaxations(executedState)) {
+      const relaxedQuery = discoveryStateToQuery(step.state, {});
+      if (!relaxedQuery.ok) continue;
+      const again = await runDiscoveryForQuery(env, session, relaxedQuery.query, client.context, preloaded);
+      if (again.error) return again.error;
+      if ((again.payload.total || 0) === 0) continue;
+      executedState = step.state;
+      ran = again;
+      const dish = (step.state.meal_styles || [])[0] || null;
+      ack = {
+        acknowledgement: withRelaxation(ack.acknowledgement, { relaxed: step.relaxed, dish }),
+        acknowledgement_source: "reconciled",
+        suggestions: [],
+      };
+      break;
+    }
+  }
+  const deterministicMs = elapsedMs(t1);
   let suggestions = ack.suggestions || [];
   if ((ran.payload.total || 0) === 0) {
     ack = {

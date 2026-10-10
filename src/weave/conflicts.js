@@ -183,7 +183,7 @@ function applyFish(repaired, token, kind) {
   const alt = "fish";
   if (kind === "discovery") {
     scrubToken(repaired, token, kind);
-    const groups = (repaired.protein_groups || []).filter((item) => item !== "shellfish");
+    const groups = (repaired.protein_groups || []).filter((item) => item !== "shellfish" && item !== "seafood");
     if (!groups.includes(alt)) groups.push(alt);
     repaired.protein_groups = groups.sort((a, b) => a.localeCompare(b));
     return;
@@ -258,6 +258,9 @@ function detectConflicts(state, ctx, kind) {
   }
 
   if (kind === "discovery") {
+    if (conflicts.some((row) => (row.limit_ids || []).includes("no_shellfish"))) {
+      repaired.protein_groups = (repaired.protein_groups || []).filter((item) => item !== "shellfish" && item !== "seafood");
+    }
     // A repaired query must not keep leftover words from the dropped request.
     repaired.text_residue = removed.length ? null : stripFillerResidue(repaired.text_residue);
   }

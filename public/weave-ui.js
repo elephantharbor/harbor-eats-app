@@ -382,21 +382,31 @@
         });
         if (!data.ok) throw new Error(data.error || "failed");
         if (data.fallback_code && !data.preview && !data.results) {
-          ctrl.notice = {
-            kind: "alert",
-            style: "error",
-            text: "Couldn’t quite make sense of that. Try saying it another way, or use the options below.",
-            actions: ' <button type="button" class="btn btn-quiet btn-sm weave-notice-edit">Edit</button>',
-          };
+          const gentle = data.fallback_code === "rate_limited" || data.fallback_code === "budget_exceeded" || data.fallback_code === "provider_outage" || data.fallback_code === "provider_config";
+          ctrl.notice = gentle
+            ? {
+                kind: "status",
+                style: "info",
+                text: data.acknowledgement || "Typing a request isn’t available right now. Choose how many below.",
+              }
+            : {
+                kind: "alert",
+                style: "error",
+                text: "Couldn’t quite make sense of that. Try saying it another way, or use the options below.",
+                actions: ' <button type="button" class="btn btn-quiet btn-sm weave-notice-edit">Edit</button>',
+              };
           ctrl.state = "composing";
           ctrl.draft = text;
           setBusy(false);
           render();
-          body.querySelector(".weave-notice-edit")?.addEventListener("click", () => {
-            ctrl.notice = null;
-            render();
-            body.querySelector("#weaveField")?.focus();
-          });
+          if (gentle) adapter.scrollToManual?.();
+          else {
+            body.querySelector(".weave-notice-edit")?.addEventListener("click", () => {
+              ctrl.notice = null;
+              render();
+              body.querySelector("#weaveField")?.focus();
+            });
+          }
           return;
         }
         await adapter.applyResult(data, ctrl);

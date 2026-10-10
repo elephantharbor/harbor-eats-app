@@ -2,7 +2,7 @@
 /**
  * Live D-06 eval (NEVER run in CI). Bounded spend via --max-usd.
  * Creates one synthetic household per corpus profile, then runs every corpus case.
- * Usage: npm run eval:d06:live -- --url <preview> --max-usd 0.05
+ * Usage: npm run eval:d06:live -- --url <preview> --max-usd 0.05 --max-calls 6 --delay 1500
  *
  * Cost is summed from each response's metadata.estimated_cost_usd. That figure is
  * not a substitute for the ai_usage ledger; the script prints a reminder to check it.
@@ -19,6 +19,8 @@ const { values } = parseArgs({
   options: {
     url: { type: "string" },
     "max-usd": { type: "string", default: "0.05" },
+    "max-calls": { type: "string" },
+    delay: { type: "string", default: "1500" },
   },
 });
 
@@ -30,6 +32,16 @@ if (!base) {
 const cap = Number(values["max-usd"] || "0.05");
 if (!Number.isFinite(cap) || cap < 0) {
   console.error("Invalid --max-usd");
+  process.exit(2);
+}
+const maxCalls = values["max-calls"] == null || values["max-calls"] === "" ? null : Number(values["max-calls"]);
+if (maxCalls != null && (!Number.isInteger(maxCalls) || maxCalls < 0)) {
+  console.error("Invalid --max-calls");
+  process.exit(2);
+}
+const delayMs = Number(values.delay ?? "1500");
+if (!Number.isFinite(delayMs) || delayMs < 0) {
+  console.error("Invalid --delay");
   process.exit(2);
 }
 
@@ -133,7 +145,12 @@ async function ensureHousehold(key) {
 
 const sessions = new Map();
 let spent = 0;
+let calls = 0;
 const results = [];
+
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 for (const c of corpus.cases) {
   if (!c.text || !c.household) {
@@ -152,6 +169,13 @@ for (const c of corpus.cases) {
     console.log(JSON.stringify({ id: c.id, skipped: true, reason: "max_usd", spent_usd: spent, cap_usd: cap }));
     continue;
   }
+  if (maxCalls != null && calls >= maxCalls) {
+    results.push({ id: c.id, skipped: true, reason: "max_calls" });
+    console.log(JSON.stringify({ id: c.id, skipped: true, reason: "max_calls", calls, max_calls: maxCalls }));
+    continue;
+  }
+  if (calls > 0 && delayMs > 0) await wait(delayMs);
+  calls += 1;
   if (!sessions.has(c.household)) sessions.set(c.household, await ensureHousehold(c.household));
   const session = sessions.get(c.household);
   const path = c.task === "planning_intent" ? "/api/plan/interpret" : "/api/discovery/interpret";

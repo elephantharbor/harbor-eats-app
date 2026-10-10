@@ -99,7 +99,10 @@ function phrasePartsPlanning(state, notes = {}) {
   return parts;
 }
 
+const SHELLFISH_TOKENS = new Set(["shrimp", "prawn", "prawns", "shellfish", "crab", "lobster", "scallop"]);
+
 function conflictLabel(conflict) {
+  if (SHELLFISH_TOKENS.has(String(conflict.token || "").toLowerCase())) return "Shellfish";
   const display = displayForToken(conflict.token, conflict.field);
   return display.charAt(0).toUpperCase() + display.slice(1);
 }
@@ -110,9 +113,16 @@ function conflictNames(conflicts) {
     const label = conflictLabel(conflict);
     if (!labels.includes(label)) labels.push(label);
   }
-  if (labels.length <= 1) return labels[0] || "That";
-  if (labels.length === 2) return `${labels[0]} or ${labels[1]}`;
-  return `${labels.slice(0, -1).join(", ")}, or ${labels[labels.length - 1]}`;
+  const pretty = labels.map((label, index) => (index === 0 ? label : label.toLowerCase()));
+  if (pretty.length <= 1) return pretty[0] || "That";
+  if (pretty.length === 2) return `${pretty[0]} and ${pretty[1]}`;
+  return `${pretty.slice(0, -1).join(", ")}, and ${pretty[pretty.length - 1]}`;
+}
+
+function worksForEveryone(conflicts) {
+  const names = conflictNames(conflicts);
+  const verb = names.includes(" and ") ? "don't" : "doesn't";
+  return `${names} ${verb} work for everyone`;
 }
 
 const WEEKDAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -168,6 +178,24 @@ export function refinementAcknowledgement({ preview, previousSlots, slots }) {
   return null;
 }
 
+export const FIND_UNAVAILABLE_ACK = "Here's what I found for that.";
+export const PLAN_PICKER_ACK = "Typing a request isn’t available right now. Choose how many below.";
+
+export function planCountFallbackAck(count) {
+  const n = Number(count);
+  return `Here's a plan for ${n} ${n === 1 ? "dinner" : "dinners"}.`;
+}
+
+export function withRelaxation(ack, { relaxed, dish }) {
+  const name = dish ? displayForToken(dish).toLowerCase() : "";
+  const looked = name ? `fish ${name}` : "fish";
+  const tail = `so I looked for ${looked} and dropped ${relaxed}.`;
+  const source = String(ack || "");
+  if (/so I looked for fish/.test(source)) return source.replace(/so I looked for fish\.?/, tail).slice(0, 120);
+  const head = source.replace(/\.\s*$/, "");
+  return `${head}. I dropped ${relaxed}.`.slice(0, 120);
+}
+
 export const NO_RESULTS_SUGGESTIONS = Object.freeze(["Try fish", "Make it easier", "Clear a filter"]);
 
 export function noResultsAcknowledgement(conflicts) {
@@ -196,13 +224,11 @@ export function reconciledAcknowledgement(task, state, conflicts, notes = {}) {
   }
   const hard = (conflicts || []).filter((row) => row.code !== "frequency_unfilled");
   if (hard.length) {
-    const names = conflictNames(hard);
+    const head = worksForEveryone(hard);
     const fish = hard.some((row) => row.alternative?.kind === "category" && row.alternative.token === "fish");
-    if (fish && task === "planning_intent") {
-      return `I can't use ${names} for everyone at your table, so these dinners are fish.`.slice(0, 120);
-    }
-    if (fish) return `I can't use ${names} for everyone at your table, so I looked for fish.`.slice(0, 120);
-    return `I can't use ${names} for everyone at your table, so I left that out.`.slice(0, 120);
+    if (fish && task === "planning_intent") return `${head}, so these dinners are fish.`.slice(0, 120);
+    if (fish) return `${head}, so I looked for fish.`.slice(0, 120);
+    return `${head}, so I left that out.`.slice(0, 120);
   }
   const parts = task === "planning_intent" ? phrasePartsPlanning(state, notes) : buildDiscoveryChips(state).map((c) => c.label);
   if (!parts.length) return "Got it.";

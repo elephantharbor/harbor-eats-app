@@ -45,8 +45,8 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
   let seq = 0;
   const newId = idFactory || (() => `aiu_${now().getTime().toString(36)}_${(seq++).toString(36)}`);
 
-  async function record(task, fields) {
-    const row = {
+  function buildUsage(task, fields) {
+    return {
       usage_id: newId(),
       task: task.id,
       prompt_version: task.prompt_version,
@@ -64,6 +64,10 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
       usage_metadata_json: fields.metadata ? JSON.stringify(fields.metadata).slice(0, 2000) : null,
       created_at: now().toISOString(),
     };
+  }
+
+  async function record(task, fields) {
+    const row = buildUsage(task, fields);
     try { await store.recordUsage(row); } catch (e) { log("ai_usage_write_failed", { task: task.id, code: String(e?.message || e).slice(0, 80) }); }
     return row;
   }
@@ -131,7 +135,7 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
     const plan = planReservations({ config, householdKey: hk, model, worstCaseUsd: worst, now: nowDate });
     let reservation;
     try {
-      reservation = await reserveAll(store, plan, nowIso);
+      reservation = store.reservePlan ? await store.reservePlan(plan, nowIso) : await reserveAll(store, plan, nowIso);
     } catch {
       reservation = { ok: false, code: "rate_limited", name: "store_error" }; // fail closed
     }
@@ -203,7 +207,6 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
     }
     providerLatency = Math.max(0, now().getTime() - started);
     const cost = spent();
-    await settleSpend(store, reservation.held, cost);
     const metadata = {
       requested_model: wireModel,
       reported_model: meta?.reported_model ?? null,
@@ -226,20 +229,29 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
       error_type: meta?.error_type ?? null,
       error_param: meta?.error_param ?? null,
     };
-    const base = { model, household_key: hk, input_tokens: inTok, cached_input_tokens: cachedTok, output_tokens: outTok, attempts, latency_ms: now().getTime() - started, estimated_cost_usd: cost, metadata };
-    if (result !== null) {
-      await record(task, { status: "ok", ...base });
-      if (task.cache.enabled) {
-        await store.cachePut({
+    const base = { model, household_key: hk, input_tokens: inTok, cached_input_tokens: cachedTok, output_tokens: outTok, attempts, latency_ms: providerLatency, estimated_cost_usd: cost, metadata };
+    const status = result !== null ? "ok" : `fallback:${lastCode}`;
+    const usage = buildUsage(task, { status, ...base });
+    const cache = result !== null && task.cache.enabled
+      ? {
           cache_key: cacheKey, task: task.id, prompt_version: task.prompt_version, model,
           output_json: JSON.stringify(result), created_at: nowIso,
           expires_at: new Date(now().getTime() + task.cache.ttl_seconds * 1000).toISOString(),
-        }).catch(() => {});
-      }
+        }
+      : null;
+    if (store.finishRun) {
+      await store.finishRun({ held: reservation.held, cost, usage, cache }).catch((error) => {
+        log("ai_usage_write_failed", { task: task.id, code: String(error?.message || error).slice(0, 80) });
+      });
+    } else {
+      await settleSpend(store, reservation.held, cost);
+      await record(task, { status, ...base });
+      if (cache) await store.cachePut(cache).catch(() => {});
+    }
+    if (result !== null) {
       return { ok: true, output: result, source: "provider", model, prompt_version: task.prompt_version, estimated_cost_usd: cost, provider_latency_ms: providerLatency, metadata };
     }
     log("ai_task_fallback", { task: task.id, code: lastCode, attempts });
-    await record(task, { status: `fallback:${lastCode}`, ...base });
     return { ok: false, error: lastCode, fallback: fallback === undefined ? null : fallback, estimated_cost_usd: cost, provider_latency_ms: providerLatency, metadata };
   }
 
