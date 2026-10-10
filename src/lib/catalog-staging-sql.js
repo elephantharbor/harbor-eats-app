@@ -115,6 +115,12 @@ export function renderStagingD1Sql(database) {
       byVersion.get(versionId).push(row);
     }
     for (const versionId of [...byVersion.keys()].sort()) {
+      if (table === "catalog_classification_history") {
+        // Append-only audit log: never DELETE, and skip a row whose classification transition is
+        // already recorded (hardening-1 Decision Card: classification-history dedupe).
+        for (const row of byVersion.get(versionId)) lines.push(classificationHistoryInsert(cols, row));
+        continue;
+      }
       lines.push(`DELETE FROM ${table} WHERE recipe_version_id = ${sqlLiteral(versionId)};`);
       for (const row of byVersion.get(versionId)) {
         lines.push(
@@ -125,6 +131,25 @@ export function renderStagingD1Sql(database) {
   }
   lines.push("");
   return lines.join("\n");
+}
+
+/**
+ * Idempotent history insert: same version + same prior→new transition + same source is one row.
+ * @param {string[]} cols
+ * @param {object} row
+ */
+export function classificationHistoryInsert(cols, row) {
+  const same = [
+    `h.recipe_version_id = ${sqlLiteral(row.recipe_version_id)}`,
+    `COALESCE(h.prior_effort_level, '') = COALESCE(${sqlLiteral(row.prior_effort_level)}, '')`,
+    `COALESCE(h.prior_ingredient_complexity, '') = COALESCE(${sqlLiteral(row.prior_ingredient_complexity)}, '')`,
+    `h.new_effort_level = ${sqlLiteral(row.new_effort_level)}`,
+    `h.new_ingredient_complexity = ${sqlLiteral(row.new_ingredient_complexity)}`,
+    `h.source = ${sqlLiteral(row.source)}`,
+  ].join(" AND ");
+  return `INSERT OR IGNORE INTO catalog_classification_history (${cols.join(", ")}) SELECT ${cols
+    .map((col) => sqlLiteral(row[col]))
+    .join(", ")} WHERE NOT EXISTS (SELECT 1 FROM catalog_classification_history h WHERE ${same});`;
 }
 
 /**
