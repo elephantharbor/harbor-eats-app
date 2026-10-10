@@ -19,3 +19,13 @@ ENVIRONMENT = "production"
 DEPLOY_ENV = "production"
 D1_DATABASE_ID = "23aa3db3-1090-471b-8c8a-b6fe71f5c053"
 CATALOG_SOURCE = "d1"
+# D-05 AI gateway (non-secret). OPENAI_API_KEY is a Pages SECRET, never in this file.
+# Gateway stays OFF until the key is set and the preview smoke passes: see docs/D05-DECISION-CARD.md.
+AI_PROVIDER = "openai"
+AI_GATEWAY_ENABLED = "0"
+AI_TASKS_ENABLED = ""
+AI_DAILY_BUDGET_USD = "1.00"
+AI_GLOBAL_PER_DAY = "100"
+AI_HOUSEHOLD_PER_MINUTE = "5"
+AI_HOUSEHOLD_PER_DAY = "30"
+AI_SOL_HOUSEHOLD_PER_DAY = "5"
