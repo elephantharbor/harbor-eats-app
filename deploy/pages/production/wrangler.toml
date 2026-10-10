@@ -11,7 +11,7 @@ compatibility_date = "2026-09-28"
 binding = "DB"
 database_name = "harbor-eats-db"
 database_id = "23aa3db3-1090-471b-8c8a-b6fe71f5c053"
-migrations_dir = "migrations"
+migrations_dir = "../../../migrations" # relative to this file
 
 [vars]
 APP_NAME = "harbor-eats-app"
