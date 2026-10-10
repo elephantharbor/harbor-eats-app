@@ -77,6 +77,16 @@ describe("D-07 MealDiscovery app wiring", () => {
     expect(discCss).not.toMatch(/--color-surface-raised|--color-border-subtle|var\(--page-padding\)/);
   });
 
+  it("does not literal-search a weave sentence over an open recipe", () => {
+    const disc = readFileSync(new URL("../public/discovery-ui.js", import.meta.url), "utf8");
+    const bridge = readFileSync(new URL("../public/weave-bridge.js", import.meta.url), "utf8");
+    expect(disc).toContain("function composerLiteralSearch");
+    expect(disc).toContain("function discoverySurfaceCurrent");
+    expect(disc).toMatch(/weave-composer__field[\s\S]{0,80}composerLiteralSearch/);
+    expect(disc).toMatch(/syncBrowserUrl[\s\S]{0,180}discoverySurfaceCurrent/);
+    expect(bridge).toContain("classifyLiveSearch");
+  });
+
   it("hides clear search until the field has text", () => {
     const disc = readFileSync(new URL("../public/discovery-ui.js", import.meta.url), "utf8");
     expect(disc).toContain("function syncSearchClearButton");

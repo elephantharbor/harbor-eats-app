@@ -356,8 +356,20 @@
     return "/api/discovery/search?" + params.toString();
   }
 
+  /**
+   * A recipe open pushStates /meal/...?from=find. An in-flight Find search must not
+   * replaceState that entry or repaint the grid out from under the click.
+   */
+  function discoverySurfaceCurrent() {
+    const path = location.pathname.replace(/\/+$/, "");
+    if (path === "/meal" || path.indexOf("/meal/") === 0) return false;
+    const view = d().getView ? d().getView() : "find";
+    return view === "find";
+  }
+
   function syncBrowserUrl(replace) {
     if (!d().findPathFromState) return;
+    if (!discoverySurfaceCurrent()) return;
     const path = d().findPathFromState(currentQuery(), urlContextForApi());
     if (state.mode === "standalone") {
       try {
@@ -401,13 +413,20 @@
     return d().queryHasActiveCriteria ? d().queryHasActiveCriteria(q) : !!(q && q.text);
   }
 
+  let loadSeq = 0;
+
   async function loadMain() {
+    const seq = ++loadSeq;
+    const abandoned = function () {
+      return seq !== loadSeq || !discoverySurfaceCurrent();
+    };
     state.loading = true;
     state.error = null;
-    paint();
+    if (discoverySurfaceCurrent()) paint();
     const q = currentQuery();
     const limit = hasCriteria(q) ? 50 : 50;
     const res = await fetchSearch(q, limit);
+    if (abandoned()) return;
     if (res.error) {
       state.loading = false;
       state.error = res.error;
@@ -417,6 +436,7 @@
     const view = hasCriteria(res.data.query) || state.forceResults ? "results" : "shelves";
     state.response = res.data;
     if (view === "shelves") await loadShelves();
+    if (abandoned()) return;
     state.view = view;
     state.loading = false;
     syncBrowserUrl(true);
@@ -1620,13 +1640,31 @@
     });
   }
 
+  /**
+   * Lexicon lookups ("taco", "salmon") may search as the person types.
+   * A sentence is interpret-on-submit only. A literal search of that sentence
+   * lowercases it into /find?text=... and replaceStates over a recipe open.
+   */
+  function composerLiteralSearch(text) {
+    const raw = String(text || "");
+    if (!raw.trim()) return true;
+    const bridge = root.FlavorWeaveWeaveBridge;
+    return !!(bridge && bridge.classifyLiveSearch && bridge.classifyLiveSearch(raw));
+  }
+
   function bind() {
     document.addEventListener("click", handleClick);
     bindRefineEvents();
     const rootEl = document.getElementById("findRoot");
     if (rootEl) {
       rootEl.addEventListener("input", function (e) {
-        if (e.target.id === "discSearch" || e.target.classList.contains("weave-composer__field")) handleSearchInput(e);
+        if (e.target.id === "discSearch") {
+          handleSearchInput(e);
+          return;
+        }
+        if (e.target.classList.contains("weave-composer__field") && composerLiteralSearch(e.target.value)) {
+          handleSearchInput(e);
+        }
       });
     }
   }
