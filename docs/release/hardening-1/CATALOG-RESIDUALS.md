@@ -1,0 +1,14 @@
+# Catalog residuals — hardening-1 outcomes
+
+Factory rules applied: no certified content patched in app code; any content change gets a new freeze-rN in the Factory
+plus an independent Vale re-audit before import. Amendment candidates live in
+`/workspace/flavorweave-catalog-factory/hardening-1/amendments/` (NOT imported, NOT in `catalog/`).
+
+| Item | Verdict | Action |
+|---|---|---|
+| 19 Butter Chicken pressure cooker | **Genuinely required** (title, description, equipment[0] "6-quart electric pressure cooker (Instant Pot–style)", steps 2–6). Not an authoring defect. | No content change. Runtime gap noted: `/api/recipes/:slug` does not surface `equipment` to the recipe view (all meals) — next-release UI item. |
+| 20 Cottage Pie ratio wording | **Editorial only**: `scaling_notes["1"]` exposes internal wording "(…shopping ratio is 0.5, not 0.25)". `ratio["1"]=0.5` unchanged; scaling_notes are outside culinary_hash and not imported to runtime. | freeze-r3 candidate authored (wording only, culinary_hash unchanged), Freeze Integrity PASS. **Pending Vale re-check N + O** before it replaces freeze-r2. |
+| 21 Thai Basil Eggplant hero | **Not blank**: 1200×900 + 640×480 valid WebP, rich content (σ≈75), byte-identical across factory, repo, preview and prod. | No regeneration (recipe unchanged). |
+| 22 Moroccan Chickpea L2 | **L2 PASS** (independent eval, not the image's creator): appetizing, bright soft light, glossy chickpeas, wilted spinach, couscous distinct, good card-scale contrast, house-reference parity. Non-blocking K note for Vale: preserved-lemon rind reads as uniform opaque yellow cubes (could read as pepper). | Left as is. |
+| 23 Korean Soft Tofu Stew shiitake | **Real defect (Gate B)**: steps 1/2/6, scaling_notes["1"], README and Plating Brief use shiitake; ingredient list omits it (removed at an earlier revision; Vale r2–r4 "shiitake removed"). Live in preview + prod D1 (17 ingredients, no shiitake). | v2 / freeze-r5 candidate authored: restores "shiitake mushrooms 6 oz" (README qty; 1-serving note 1.5 oz confirms). New culinary_hash, v1 retained immutable, Freeze Integrity PASS. **Pending independent Vale re-audit B, C, D, J-classification, K (confirm), N, O**, then import as v2 next release. |
+| 24 FREEZE_INTEGRITY audit | 75 active packages; **72 have records, 3 missing**: `crispy-skillet-chicken-sandwiches`, `garlic-tomato-mussels`, `gochujang-grilled-flank-steak` (dry-run-1). Canonical `freeze_integrity.py` on their factory sources **FAILs** (no `dietary_eligibility` object, identity/revision missing, generator + declared dims missing) — contract drift, they predate those rules. | No record generated (they don't verify; no bookkeeping recert). Repair needs a Factory metadata amendment + Vale G/A/M. Also found: repo `scripts/run-freeze-integrity.mjs` false-FAILs legacy v2 and wave-12 packages vs the canonical python tool — use the python tool until reconciled. |

@@ -14,6 +14,11 @@ on:
         required: false
         type: string
         default: ""
+      require_binding_vars:
+        description: "Require /api/health deploy_env + d1_database_id (true once the next release ships them)"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -30,6 +35,7 @@ jobs:
       E2E_MODE: hosted-preview
       PLAYWRIGHT_BASE_URL: ${{ inputs.base_url }}
       PLAYWRIGHT_SKIP_WEBSERVER: "1"
+      REQUIRE_BINDING_VARS: ${{ inputs.require_binding_vars && '1' || '0' }}
       CI: "true"
     steps:
       - uses: actions/checkout@v4
@@ -46,9 +52,11 @@ jobs:
         run: node scripts/ci/assert-hosted-target.mjs "$PLAYWRIGHT_BASE_URL" --health
       - run: npx playwright install chromium --with-deps
       - name: Playwright (hosted)
+        env:
+          E2E_GREP: ${{ inputs.grep }}
         run: |
-          if [ -n "${{ inputs.grep }}" ]; then
-            npx playwright test --config e2e/playwright.config.js --grep "${{ inputs.grep }}"
+          if [ -n "$E2E_GREP" ]; then
+            npx playwright test --config e2e/playwright.config.js --grep "$E2E_GREP"
           else
             npx playwright test --config e2e/playwright.config.js
           fi
