@@ -314,10 +314,14 @@ describe("kill switch, config, secrecy", () => {
     expect((await service.run("explanation", EXPL())).error).toBe("disabled");
     expect(fetchImpl).not.toHaveBeenCalled();
   });
-  it("committed configs: gateway OFF, tasks empty, limits present, no astra/secret", () => {
+  it("committed configs: prod gateway OFF, preview OFF or explanation-only, limits present, no astra/secret", () => {
     for (const [env, budget, global] of [["preview", "0.25", "50"], ["production", "1.00", "100"]]) {
       const vars = validateAiVars(readFileSync(`deploy/pages/${env}/wrangler.toml`, "utf8"));
-      expect(vars).toMatchObject({ AI_PROVIDER: "openai", AI_GATEWAY_ENABLED: "0", AI_TASKS_ENABLED: "", AI_DAILY_BUDGET_USD: budget, AI_GLOBAL_PER_DAY: global, AI_HOUSEHOLD_PER_MINUTE: "5", AI_HOUSEHOLD_PER_DAY: "30", AI_SOL_HOUSEHOLD_PER_DAY: "5" });
+      // Production must stay OFF. Preview may be OFF, or ON with explanation only (D-05 preview smoke).
+      const onPair = [vars.AI_GATEWAY_ENABLED, vars.AI_TASKS_ENABLED];
+      if (env === "production") expect(onPair).toEqual(["0", ""]);
+      else expect([["0", ""], ["1", "explanation"]]).toContainEqual(onPair);
+      expect(vars).toMatchObject({ AI_PROVIDER: "openai", AI_DAILY_BUDGET_USD: budget, AI_GLOBAL_PER_DAY: global, AI_HOUSEHOLD_PER_MINUTE: "5", AI_HOUSEHOLD_PER_DAY: "30", AI_SOL_HOUSEHOLD_PER_DAY: "5" });
     }
     expect(() => validateAiVars('AI_PROVIDER = "openai"')).toThrow(/missing AI_DAILY_BUDGET_USD/);
     expect(() => validateAiVars(readFileSync("deploy/pages/preview/wrangler.toml", "utf8") + `\nOPENAI_API_KEY = "${KEY}"`)).toThrow(/secret/);
