@@ -1,4 +1,4 @@
-import { aiHealth, resolveProvider } from "./ai/index.js";
+import { aiHealth, resolveProvider, handleAiSmoke } from "./ai/index.js";
 /**
  * Harbor Eats consumer API (Workers + D1) — MVO write/read paths.
  * Ratings: 1–10 per diner; CML when every active member rated. No invented metrics.
@@ -2299,6 +2299,12 @@ export default {
 
       if (path === "/api/ai/health" && request.method === "GET") {
         return json(aiHealth(env, resolveProvider(env)));
+      }
+
+      // Internal, token-gated live smoke (404 unless AI_SMOKE_TOKEN secret is set). Not consumer-facing.
+      if (path === "/api/ai/internal/smoke" && request.method === "POST") {
+        const r = await handleAiSmoke(request, env, resolveProvider(env));
+        return json(r.body, r.status);
       }
 
       if (!env.DB) {
