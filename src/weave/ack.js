@@ -74,9 +74,13 @@ export function buildDiscoveryChips(state) {
   return chips;
 }
 
-function phrasePartsPlanning(state) {
+function phrasePartsPlanning(state, notes = {}) {
   const parts = [];
-  if (state.dinner_count != null) parts.push(`${state.dinner_count} dinners`);
+  if (state.dinner_count != null) {
+    if (notes.dinnerCountDefaulted && notes.dinnerCountUsual) parts.push(`${state.dinner_count} dinners, your usual`);
+    else if (notes.dinnerCountDefaulted) parts.push(`Planned ${state.dinner_count} dinners`);
+    else parts.push(`${state.dinner_count} dinners`);
+  }
   if (state.keep_it_easy === true) parts.push("Easy leaning");
   for (const row of state.frequencies || []) {
     if (row.max_count === 0) continue;
@@ -88,23 +92,31 @@ function phrasePartsPlanning(state) {
   return parts;
 }
 
-export function reconciledAcknowledgement(task, state, conflicts) {
+export function reconciledAcknowledgement(task, state, conflicts, notes = {}) {
   const conflict = conflicts?.[0];
+  if (conflict?.code === "frequency_unfilled") {
+    const name = displayForToken(conflict.token, "frequencies");
+    return `I could only plan ${conflict.placed} ${name}; you asked for ${conflict.min_count}.`.slice(0, 120);
+  }
   if (conflict?.alternative?.kind === "category" && conflict.alternative.token === "fish") {
     const display = displayForToken(conflict.token, "include_ingredients");
+    if (task === "planning_intent") {
+      return `I can't use ${display} for everyone at your table, so these dinners are fish.`.slice(0, 120);
+    }
     return `I can't use ${display} for everyone at your table, but I can find another seafood dinner.`.slice(0, 120);
   }
   if (conflict) {
     const display = displayForToken(conflict.token, conflict.field);
     return `I can't use ${display} for everyone at your table, so I left that out.`.slice(0, 120);
   }
-  const parts = task === "planning_intent" ? phrasePartsPlanning(state) : buildDiscoveryChips(state).map((c) => c.label);
+  const parts = task === "planning_intent" ? phrasePartsPlanning(state, notes) : buildDiscoveryChips(state).map((c) => c.label);
   if (!parts.length) return "Got it.";
   return parts.join(" · ").slice(0, 120);
 }
 
-export function shouldKeepModelAcknowledgement(ack, conflicts, dropped, removedTokens) {
+export function shouldKeepModelAcknowledgement(ack, conflicts, dropped, removedTokens, userText) {
   if (!ack || ack === "Got it.") return false;
+  if (userText && ack.trim().toLowerCase() === String(userText).trim().toLowerCase()) return false;
   if (AUTHORITY_CLAIMS.test(ack)) return false;
   if ((conflicts || []).length) return false;
   if ((dropped || []).length) return false;
@@ -125,12 +137,19 @@ export function reconcileAcknowledgement({
   conflicts,
   dropped,
   removedTokens,
+  userText,
+  dinnerCountDefaulted,
+  dinnerCountUsual,
 }) {
-  if (shouldKeepModelAcknowledgement(modelAck, conflicts, dropped, removedTokens)) {
-    return { acknowledgement: modelAck, acknowledgement_source: "model" };
+  const notes = {
+    dinnerCountDefaulted: dinnerCountDefaulted === true,
+    dinnerCountUsual: dinnerCountUsual === true,
+  };
+  if (!notes.dinnerCountDefaulted && shouldKeepModelAcknowledgement(modelAck, conflicts, dropped, removedTokens, userText)) {
+    return { acknowledgement: String(modelAck).trim(), acknowledgement_source: "model" };
   }
   return {
-    acknowledgement: reconciledAcknowledgement(task, state, conflicts),
+    acknowledgement: reconciledAcknowledgement(task, state, conflicts, notes),
     acknowledgement_source: "reconciled",
   };
 }

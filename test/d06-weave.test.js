@@ -44,7 +44,8 @@ describe("D-06 weave", () => {
       removedTokens: ["shrimp"],
     });
     expect(ack.acknowledgement_source).toBe("reconciled");
-    expect(ack.acknowledgement).toMatch(/seafood dinner/);
+    expect(ack.acknowledgement).toMatch(/these dinners are fish/);
+    expect(ack.acknowledgement).not.toMatch(/find another seafood/);
   });
 
   it("removes planning chips without model", () => {

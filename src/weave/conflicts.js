@@ -1,29 +1,11 @@
 import { HARD_LIMIT_IDS } from "../lib/cycle2-schema.js";
-import { assessMealEligibility, plannerCatalog, featuresOf } from "../lib/dinner-planner.js";
-import { canonicalIngredient } from "../lib/ingredient-identity.js";
-
-function matchesRequest(feature, slug) {
-  if (!slug) return false;
-  if (feature.ingredient === slug) return true;
-  if (feature.entry.concept.primary_ingredient === slug) return true;
-  if ((feature.entry.pkg.vocabulary_tag_ids || []).includes(slug)) return true;
-  const ids = (feature.entry.pkg.ingredients || []).map(
-    (item) => canonicalIngredient(item.name, item.note).ingredient_id
-  );
-  return ids.includes(slug);
-}
+import { assessMealEligibility, plannerCatalog, featuresOf, mealMatchesCategory } from "../lib/dinner-planner.js";
 
 const SHELLFISH_TOKENS = new Set(["shrimp", "shellfish"]);
 const FISH_TOKENS = new Set(["fish", "salmon", "cod", "swordfish", "arctic-char"]);
 
 function anyEligible(features, token, participantIds, constraints, tastes) {
-  const matches = features.filter(
-    (f) =>
-      matchesRequest(f, token) ||
-      f.styles.includes(token) ||
-      f.ingredient === token ||
-      f.entry.concept.primary_ingredient === token
-  );
+  const matches = features.filter((f) => mealMatchesCategory(f, token));
   if (!matches.length) return { eligible: false, coverage: false };
   const eligible = matches.some(
     (f) => assessMealEligibility(f.entry, participantIds, constraints, tastes).eligible
@@ -67,7 +49,11 @@ export function detectPlanningConflicts(state, { participantIds, constraints, ta
     const check = anyEligible(features, token, participantIds, constraints, tastes);
     if (!check.coverage) continue;
     if (check.eligible) continue;
-    const alternative = alternativeForToken(token);
+    let alternative = alternativeForToken(token);
+    if (alternative.kind === "category") {
+      const altCheck = anyEligible(features, alternative.token, participantIds, constraints, tastes);
+      if (!altCheck.eligible) alternative = { kind: "drop" };
+    }
     conflicts.push({
       code: "hard_ineligible",
       field: "include_ingredients",
@@ -76,13 +62,32 @@ export function detectPlanningConflicts(state, { participantIds, constraints, ta
       alternative,
     });
     removed.push(token);
-    repaired.include_ingredients = (repaired.include_ingredients || []).filter((t) => t !== token);
-    repaired.frequencies = (repaired.frequencies || []).filter((f) => f.token !== token);
-    repaired.slots = (repaired.slots || []).map((s) => {
-      if (s.ingredient === token) return { ...s, ingredient: null };
-      if (s.category === token) return { ...s, category: null };
-      return s;
-    });
+    const priorFreq = (repaired.frequencies || []).find((row) => row.token === token);
+    const slotHits = (repaired.slots || []).filter((slot) => slot.ingredient === token || slot.category === token);
+    repaired.include_ingredients = (repaired.include_ingredients || []).filter((item) => item !== token);
+    repaired.frequencies = (repaired.frequencies || []).filter((row) => row.token !== token);
+    if (alternative.kind === "category" && alternative.token) {
+      const alt = alternative.token;
+      const already = (repaired.frequencies || []).some((row) => row.token === alt);
+      if (!already) {
+        const min = priorFreq?.min_count ?? Math.max(1, slotHits.length || 1);
+        const max = priorFreq ? priorFreq.max_count : slotHits.length > 1 ? slotHits.length : null;
+        repaired.frequencies = [...(repaired.frequencies || []), { token: alt, min_count: min, max_count: max }].sort((a, b) =>
+          a.token.localeCompare(b.token)
+        );
+      }
+      repaired.slots = (repaired.slots || []).map((slot) => {
+        if (slot.ingredient === token) return { ...slot, ingredient: null, category: alt };
+        if (slot.category === token) return { ...slot, category: alt };
+        return slot;
+      });
+    } else {
+      repaired.slots = (repaired.slots || []).map((slot) => {
+        if (slot.ingredient === token) return { ...slot, ingredient: null };
+        if (slot.category === token) return { ...slot, category: null };
+        return slot;
+      });
+    }
   }
   return { conflicts, repaired, removed };
 }
@@ -108,4 +113,18 @@ export function detectDiscoveryConflicts(state, ctx) {
     repaired.ingredients = (repaired.ingredients || []).filter((t) => t !== token);
   }
   return { conflicts, repaired, removed };
+}
+
+/** Planner shortfalls the weave UI reads from `conflicts`. */
+export function frequencyConflicts(preview) {
+  return (preview?.constrained_requests || [])
+    .filter((row) => row && row.field === "frequency")
+    .map((row) => ({
+      code: "frequency_unfilled",
+      field: "frequencies",
+      token: row.token,
+      min_count: row.min_count,
+      placed: row.placed,
+      reason: row.reason || "insufficient_eligible",
+    }));
 }

@@ -177,10 +177,11 @@ export const discoveryIntentOutputSchema = {
 };
 
 export function postValidatePlanningDelta(output) {
-  const ack = String(output.acknowledgement || "").trim();
-  if (!ack) return { ok: false, reason: "empty_ack" };
+  const ack = String(output?.acknowledgement ?? "").trim();
+  // The model's acknowledgement is optional. An empty string is valid;
+  // the route composes one from the applied intent. Never burn a retry on it.
   let acknowledgement = ack;
-  if (/\b(allergen[- ]?free|safe for|guaranteed|certified)\b/i.test(ack)) acknowledgement = "Got it.";
+  if (ack && /\b(allergen[- ]?free|safe for|guaranteed|certified)\b/i.test(ack)) acknowledgement = "Got it.";
   return { ok: true, value: { ...output, acknowledgement } };
 }
 

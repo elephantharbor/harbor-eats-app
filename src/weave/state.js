@@ -1,5 +1,27 @@
 import { INTENT_CUES, PLAN_TOKENS, WEEKDAYS } from "./constants.js";
 
+export const FALLBACK_DINNER_COUNT = 3;
+
+/** Last plan length when it is a real count; otherwise the household fallback of 3. */
+export function usualDinnerCount(mealCount) {
+  const n = Number(mealCount);
+  if (Number.isInteger(n) && n >= 1 && n <= 14) return { count: n, usual: true };
+  return { count: FALLBACK_DINNER_COUNT, usual: false };
+}
+
+/** Dates live on meals (`scheduled_date`), not on `plan.scheduled_dates`. */
+export function datesFromPlanMeals(meals) {
+  const dates = [];
+  for (const meal of meals || []) {
+    const date = meal?.scheduled_date || meal?.date || null;
+    if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(String(date))) continue;
+    const position = Number(meal.position);
+    if (!Number.isInteger(position)) continue;
+    dates.push({ position, date: String(date), weekday: weekdayFromDate(String(date)) });
+  }
+  return dates.sort((a, b) => a.position - b.position);
+}
+
 export function emptyPlanningState() {
   return {
     dinner_count: null,
@@ -74,7 +96,7 @@ function parseDate(s) {
   return /^\d{4}-\d{2}-\d{2}$/.test(s) ? s : null;
 }
 
-function weekdayFromDate(dateStr) {
+export function weekdayFromDate(dateStr) {
   const [y, m, d] = dateStr.split("-").map(Number);
   const names = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
   return names[new Date(Date.UTC(y, m - 1, d)).getUTCDay()];
@@ -225,6 +247,7 @@ function inferDinnerCountFromDates(state, context) {
 }
 
 function autoFrequencies(state) {
+  state.frequencies = state.frequencies || [];
   for (const slug of state.include_ingredients || []) {
     if ((state.frequencies || []).some((f) => f.token === slug)) continue;
     state.frequencies.push({ token: slug, min_count: 1, max_count: null });
@@ -250,7 +273,7 @@ function applyCueSideEffects(state) {
  */
 export function applyPlanningDelta(prior, delta, context = {}) {
   const dropped = [];
-  const state = cloneState(prior || emptyPlanningState());
+  const state = cloneState({ ...emptyPlanningState(), ...(prior || {}) });
   for (const field of delta.clear || []) {
     if (field === "slots") state.slots = [];
     else if (field === "frequencies") state.frequencies = [];
@@ -330,9 +353,17 @@ export function applyPlanningDelta(prior, delta, context = {}) {
     rest.push(merged);
     state.slots = rest.sort((a, b) => (a.position || 0) - (b.position || 0));
   }
+  let dinner_count_defaulted = false;
   if (state.dinner_count == null) {
     const inferred = inferDinnerCountFromDates(state, context);
     if (inferred) state.dinner_count = inferred;
+  }
+  if (state.dinner_count == null) {
+    const fallback = Number(context.dinner_count_default);
+    if (Number.isInteger(fallback) && fallback >= 1 && fallback <= 14) {
+      state.dinner_count = fallback;
+      dinner_count_defaulted = true;
+    }
   }
   if (state.dinner_count != null) {
     if (state.dinner_count < 1) {
@@ -347,7 +378,7 @@ export function applyPlanningDelta(prior, delta, context = {}) {
   autoFrequencies(state);
   applyCueSideEffects(state);
   postValidatePlanning(state, context.vocabulary, dropped);
-  return { state, dropped };
+  return { state, dropped, dinner_count_defaulted };
 }
 
 export function applyDiscoveryDelta(prior, delta, context = {}) {

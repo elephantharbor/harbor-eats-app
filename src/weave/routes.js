@@ -7,8 +7,10 @@ import {
   householdConstraints,
   householdMemberIds,
   householdTastes,
+  latestHouseholdDinnerCount,
   loadDinnerPlan,
 } from "../lib/dinner-plan-store.js";
+import { elapsedMs, monotonicNow } from "../lib/clock.js";
 import { assertParticipants, presentDinnerPlan } from "../lib/plan-contract.js";
 import { planDinners } from "../lib/dinner-planner.js";
 import { requireSession } from "../lib/auth.js";
@@ -20,15 +22,17 @@ import { resolveDiscoveryContext, selectionFor, publicContext, normalizeClientCo
 import { loadDiscoveryRecentSlugs } from "../discovery/http.js";
 import { buildPlanningChips, buildDiscoveryChips, reconcileAcknowledgement } from "./ack.js";
 import { classifyDiscoveryBypass, bypassDiscoveryPatch, normalizeFindText } from "./bypass.js";
-import { detectDiscoveryConflicts, detectPlanningConflicts } from "./conflicts.js";
+import { detectDiscoveryConflicts, detectPlanningConflicts, frequencyConflicts } from "./conflicts.js";
 import { discoveryStateToQuery } from "./discovery-map.js";
 import { parsePlannerFromState } from "./plan-map.js";
 import {
   applyDiscoveryDelta,
   applyPlanningDelta,
+  datesFromPlanMeals,
   emptyPlanningState,
   isEmptyDiscoveryDelta,
   isEmptyPlanningDelta,
+  usualDinnerCount,
 } from "./state.js";
 import { buildWeaveVocabulary } from "./vocabulary.js";
 import { removeDiscoveryChip, removePlanningChip } from "./chip-ops.js";
@@ -72,23 +76,47 @@ function todayInTimezone(timezone) {
   }
 }
 
-function buildPromptContext({ timezone, participantIds, dinnerPlan, today }) {
-  const dates = [];
-  if (dinnerPlan?.scheduled_dates?.length) {
-    for (let i = 0; i < dinnerPlan.scheduled_dates.length; i += 1) {
-      const date = dinnerPlan.scheduled_dates[i];
-      if (!date) continue;
-      const weekday = new Date(`${date}T12:00:00Z`).toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" }).toLowerCase();
-      dates.push({ position: i + 1, date, weekday });
-    }
-  }
+function buildPromptContext({ timezone, participantIds, dinnerPlan, today, usual }) {
+  const dates = datesFromPlanMeals(dinnerPlan?.meals);
   return {
     today,
     timezone: TZ_RE.test(timezone || "") ? timezone : "UTC",
     diners: participantIds.length,
-    dinner_count_default: 4,
+    dinner_count_default: usual.count,
+    dinner_count_usual: usual.usual === true,
     dates: dates.length ? dates : undefined,
   };
+}
+
+function previousSlotsFromMeals(meals) {
+  if (!meals?.length) return null;
+  return meals.map((meal) => ({
+    position: meal.position,
+    recipe_slug: meal.recipe_slug,
+    recipe_version_id: meal.recipe_version_id,
+    recipe_id: meal.recipe_id,
+    version_number: meal.version_number,
+    title: meal.title,
+    scheduled_date: meal.scheduled_date,
+    effort_level: meal.effort_level || null,
+    ingredient_complexity: meal.ingredient_complexity || null,
+    participant_ids: meal.participant_ids || [],
+    result: meal.recipe_version_id ? "recommended" : "constrained",
+  }));
+}
+
+async function loadPlanningAnchor(env, session, { priorState, dinnerPlanId }) {
+  let dinnerPlan = null;
+  if (dinnerPlanId) {
+    dinnerPlan = await loadDinnerPlan(env.DB, dinnerPlanId);
+    if (!dinnerPlan || dinnerPlan.household_id !== session.household_id) {
+      return { error: fail("forbidden_cross_household", 403) };
+    }
+  }
+  const latestCount = dinnerPlan?.meal_count ?? (await latestHouseholdDinnerCount(env.DB, session.household_id));
+  const usual = usualDinnerCount(latestCount);
+  const state = priorState == null && dinnerPlan ? seedPlanningStateFromPlan(dinnerPlan) : priorState;
+  return { dinnerPlan, usual, priorState: state };
 }
 
 function seedPlanningStateFromPlan(plan) {
@@ -156,22 +184,33 @@ async function executePlanning(env, session, { priorState, dinnerPlan, participa
     tastes,
   });
   const executed = conflictPass.repaired;
-  const ack = reconcileAcknowledgement({
-    task: "planning_intent",
-    modelAck: "",
-    state: executed,
-    conflicts: conflictPass.conflicts,
-    dropped: [],
-    removedTokens: conflictPass.removed,
-  });
+  let dinnerCountDefaulted = false;
+  let dinnerCountUsual = false;
+  if (executed.dinner_count == null) {
+    const latestCount = dinnerPlan?.meal_count ?? (await latestHouseholdDinnerCount(env.DB, session.household_id));
+    const usual = usualDinnerCount(latestCount);
+    executed.dinner_count = usual.count;
+    dinnerCountDefaulted = true;
+    dinnerCountUsual = usual.usual;
+  }
   const parsed = parsePlannerFromState(executed, { participant_ids: participantIds });
   if (!parsed.ok) {
+    const ack = reconcileAcknowledgement({
+      task: "planning_intent",
+      modelAck: "",
+      state: executed,
+      conflicts: conflictPass.conflicts,
+      dropped: [],
+      removedTokens: conflictPass.removed,
+      dinnerCountDefaulted,
+      dinnerCountUsual,
+    });
     return {
       ok: true,
       task: "planning_intent",
       source: "deterministic",
       fallback_code: parsed.error,
-      acknowledgement: null,
+      ...ack,
       state: priorState,
       chips: buildPlanningChips(executed),
       conflicts: conflictPass.conflicts,
@@ -185,14 +224,25 @@ async function executePlanning(env, session, { priorState, dinnerPlan, participa
     const loaded = await loadPublishedCatalog(env.DB);
     if (loaded.ok) catalog = loaded.planner;
   }
-  const t1 = Date.now();
+  const t1 = monotonicNow();
   const preview = planDinners(parsed.intent, {
     catalog,
     constraints,
     tastes,
-    previous_slots: dinnerPlan?.meals?.map((m) => m.slot) || null,
+    previous_slots: previousSlotsFromMeals(dinnerPlan?.meals),
   });
-  const deterministicMs = Date.now() - t1;
+  const deterministicMs = elapsedMs(t1);
+  const conflicts = [...conflictPass.conflicts, ...frequencyConflicts(preview)];
+  const ack = reconcileAcknowledgement({
+    task: "planning_intent",
+    modelAck: "",
+    state: executed,
+    conflicts,
+    dropped: [],
+    removedTokens: conflictPass.removed,
+    dinnerCountDefaulted,
+    dinnerCountUsual,
+  });
   return {
     ok: true,
     task: "planning_intent",
@@ -200,7 +250,7 @@ async function executePlanning(env, session, { priorState, dinnerPlan, participa
     ...ack,
     state: executed,
     chips: buildPlanningChips(executed),
-    conflicts: conflictPass.conflicts,
+    conflicts,
     dropped: [],
     changed_positions: preview.changed_positions || [],
     preview,
@@ -221,9 +271,9 @@ async function executeDiscovery(env, session, { executedState, clientContext, co
   });
   const mapped = discoveryStateToQuery(executedState, {});
   if (!mapped.ok) return { error: fail(mapped.error, mapped.status || 400) };
-  const t1 = Date.now();
+  const t1 = monotonicNow();
   const ran = await runDiscoveryForQuery(env, session, mapped.query, clientContext);
-  const deterministicMs = Date.now() - t1;
+  const deterministicMs = elapsedMs(t1);
   if (ran.error) return { error: ran.error };
   return {
     payload: {
@@ -367,14 +417,14 @@ export async function routeWeaveRequest(env, request, path) {
   const service = createGenerationService({ provider, store: createD1Store(env.DB), env });
 
   if (isPlanInterpret) {
-    let priorState = body.state;
-    let dinnerPlan = null;
-    if (priorState == null && body.dinner_plan_id) {
-      dinnerPlan = await loadDinnerPlan(env.DB, body.dinner_plan_id);
-      if (!dinnerPlan || dinnerPlan.household_id !== session.household_id) return fail("forbidden_cross_household", 403);
-      priorState = seedPlanningStateFromPlan(dinnerPlan);
-    }
-    const context = buildPromptContext({ timezone, participantIds, dinnerPlan, today });
+    const anchor = await loadPlanningAnchor(env, session, {
+      priorState: body.state,
+      dinnerPlanId: body.dinner_plan_id,
+    });
+    if (anchor.error) return anchor.error;
+    const { dinnerPlan, usual } = anchor;
+    const priorState = anchor.priorState;
+    const context = buildPromptContext({ timezone, participantIds, dinnerPlan, today, usual });
     context.vocabulary = vocabulary;
     const t0 = Date.now();
     const runInput = { text, state: priorState, context, vocabulary };
@@ -410,22 +460,25 @@ export async function routeWeaveRequest(env, request, path) {
       tastes,
     });
     const executed = conflictPass.repaired;
-    const ack = reconcileAcknowledgement({
-      task: "planning_intent",
-      modelAck: gen.output.acknowledgement,
-      state: executed,
-      conflicts: conflictPass.conflicts,
-      dropped: applied.dropped,
-      removedTokens: conflictPass.removed,
-    });
     const parsed = parsePlannerFromState(executed, { participant_ids: participantIds });
     if (!parsed.ok) {
+      const ack = reconcileAcknowledgement({
+        task: "planning_intent",
+        modelAck: gen.output.acknowledgement,
+        state: executed,
+        conflicts: conflictPass.conflicts,
+        dropped: applied.dropped,
+        removedTokens: conflictPass.removed,
+        userText: text,
+        dinnerCountDefaulted: applied.dinner_count_defaulted === true,
+        dinnerCountUsual: usual.usual === true,
+      });
       return json({
         ok: true,
         task: "planning_intent",
         source: "fallback",
         fallback_code: parsed.error,
-        acknowledgement: null,
+        ...ack,
         state: priorState || emptyPlanningState(),
         chips: buildPlanningChips(executed),
         conflicts: conflictPass.conflicts,
@@ -440,14 +493,26 @@ export async function routeWeaveRequest(env, request, path) {
       const loaded = await loadPublishedCatalog(env.DB);
       if (loaded.ok) catalog = loaded.planner;
     }
-    const t1 = Date.now();
+    const t1 = monotonicNow();
     const preview = planDinners(parsed.intent, {
       catalog,
       constraints,
       tastes,
-      previous_slots: dinnerPlan?.meals?.map((m) => m.slot) || null,
+      previous_slots: previousSlotsFromMeals(dinnerPlan?.meals),
     });
-    const deterministicMs = Date.now() - t1;
+    const deterministicMs = elapsedMs(t1);
+    const conflicts = [...conflictPass.conflicts, ...frequencyConflicts(preview)];
+    const ack = reconcileAcknowledgement({
+      task: "planning_intent",
+      modelAck: gen.output.acknowledgement,
+      state: executed,
+      conflicts,
+      dropped: applied.dropped,
+      removedTokens: conflictPass.removed,
+      userText: text,
+      dinnerCountDefaulted: applied.dinner_count_defaulted === true,
+      dinnerCountUsual: usual.usual === true,
+    });
     return json({
       ok: true,
       task: "planning_intent",
@@ -457,7 +522,7 @@ export async function routeWeaveRequest(env, request, path) {
       ...ack,
       state: executed,
       chips: buildPlanningChips(executed),
-      conflicts: conflictPass.conflicts,
+      conflicts,
       dropped: applied.dropped,
       changed_positions: preview.changed_positions || [],
       preview,
@@ -546,12 +611,13 @@ export async function routeWeaveRequest(env, request, path) {
     conflicts,
     dropped,
     removedTokens: removed,
+    userText: text,
   });
   const mapped = discoveryStateToQuery(executedState, {});
   if (!mapped.ok) return fail(mapped.error, mapped.status || 400);
-  const t1 = Date.now();
+  const t1 = monotonicNow();
   const ran = await runDiscoveryForQuery(env, session, mapped.query, client.context);
-  const deterministicMs = Date.now() - t1;
+  const deterministicMs = elapsedMs(t1);
   if (ran.error) return ran.error;
   return json({
     ok: true,

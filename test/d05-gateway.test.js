@@ -107,7 +107,7 @@ describe("D-05 gateway behaviour", () => {
       { field: "methods", op: "add", value: "grill" },
     ]);
     const row = store.usage.at(-1);
-    expect(row).toMatchObject({ task: "discovery_intent", provider: "fake", model: "gpt-6-luna", status: "ok", pricing_version: "openai-standard-2026-10-10", prompt_version: "discovery_intent@2", attempts: 1 });
+    expect(row).toMatchObject({ task: "discovery_intent", provider: "fake", model: "gpt-6-luna", status: "ok", pricing_version: "openai-standard-2026-10-10", prompt_version: "discovery_intent@3", attempts: 1 });
     expect(row.input_tokens).toBeGreaterThan(0);
     expect(row.output_tokens).toBeGreaterThan(0);
     expect(row.estimated_cost_usd).toBeGreaterThan(0);
@@ -122,7 +122,7 @@ describe("D-05 gateway behaviour", () => {
     const { service } = svc({ script: [good], store });
     await service.run("discovery_intent", DISC_IN("thai"));
     const [key] = [...store.cache.keys()];
-    expect(store.cache.get(key)).toMatchObject({ prompt_version: "discovery_intent@2", model: "gpt-6-luna" });
+    expect(store.cache.get(key)).toMatchObject({ prompt_version: "discovery_intent@3", model: "gpt-6-luna" });
   });
   it("bounded repair: one malformed output then valid => ok with attempts 2", async () => {
     const { service, provider, store } = svc({ script: [{ text: "not json" }, good] });

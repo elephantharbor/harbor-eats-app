@@ -41,6 +41,18 @@ export const DINNER_PLAN_LIST_LIMIT = 5;
  */
 const DINNER_PLAN_RECENCY = "updated_at DESC, created_at DESC, dinner_plan_id DESC";
 
+export async function latestHouseholdDinnerCount(db, householdId) {
+  const row = await bindGet(
+    db,
+    `SELECT meal_count FROM dinner_plan
+     WHERE household_id = ?
+     ORDER BY ${DINNER_PLAN_RECENCY}
+     LIMIT 1`,
+    [householdId]
+  );
+  return row?.meal_count ?? null;
+}
+
 export async function findCurrentDinnerPlanId(db, householdId) {
   const row = await bindGet(
     db,

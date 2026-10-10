@@ -187,7 +187,9 @@ describe("pricing", () => {
     expect(costUsd("gpt-6-luna", { input_tokens: 1000, cached_input_tokens: 200, output_tokens: 100 })).toBeCloseTo(0.000132, 9);
     // Sol: 1000 * 2 + 0 + 500 * 10 = 7000 / 1e6; + 100 cache-write * 2.5 = 250
     expect(costUsd("gpt-6.1-sol", { input_tokens: 1000, output_tokens: 500 })).toBeCloseTo(0.007, 9);
-    expect(costUsd("gpt-6.1-sol", { input_tokens: 1000, output_tokens: 500, cache_write_tokens: 100 })).toBeCloseTo(0.00725, 9);
+    expect(costUsd("gpt-6-luna", { input_tokens: 1346, output_tokens: 159, cache_write_tokens: 1346 })).toBe(0.000214);
+    expect(costUsd("gpt-6.1-sol", { input_tokens: 1000, output_tokens: 500, cache_write_tokens: 100 })).toBeCloseTo(0.007, 9);
+    expect(costUsd("gpt-6.1-sol", { input_tokens: 1000, output_tokens: 500, cache_write_tokens: 1100 })).toBeCloseTo(0.00725, 9);
     expect(costUsd("gpt-6-astra", { input_tokens: 1 })).toBe(Infinity);
     expect(worstCaseCostUsd("gpt-6-luna", 1000, 600)).toBeCloseTo((1000 * 0.125 + 600 * 0.5) / 1e6, 9);
   });
