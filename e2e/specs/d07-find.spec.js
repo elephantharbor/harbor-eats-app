@@ -1,6 +1,6 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
-import { apiCreateHousehold, skipToChoices } from "./helpers.js";
+import { apiCreateHousehold, apiCreateIsolatedHousehold, skipToChoices } from "./helpers.js";
 
 /** @param {import('@playwright/test').Page} page */
 async function openFind(page) {
@@ -173,5 +173,34 @@ test.describe("D-07 Find a dinner", () => {
     await page.locator("[data-disc-clear-search]").click();
     await waitDiscoveryReady(page);
     await expect(page.locator(".disc-shelf, .disc-grid").first()).toBeVisible({ timeout: 30000 });
+  });
+
+  test("no-results (relax): shows current criteria, offers broaden chip, never fills with other meals", async ({ page }) => {
+    await skipToChoices(page);
+    await openFind(page);
+    await page.locator('[data-disc-chip="time"]').click();
+    await expect(page.locator('[data-disc-chip="time"]')).toHaveAttribute("aria-pressed", "true");
+    await page.locator("#discSearch").fill("pinto");
+    await waitDiscoveryReady(page);
+    const empty = page.locator('#discMain [data-disc-empty="relax"]');
+    await expect(empty).toBeVisible({ timeout: 30000 });
+    await expect(empty.locator("[data-disc-empty-criteria]")).toContainText("Under 30 min");
+    await expect(empty.locator("[data-disc-empty-criteria]")).toContainText("pinto");
+    await expect(page.locator("#discMain .disc-card")).toHaveCount(0);
+    await empty.getByRole("button", { name: "Remove Under 30 min" }).click();
+    await waitDiscoveryReady(page);
+    await expect(page.locator("#discMain .disc-card").first()).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('[data-disc-chip="time"]')).toHaveAttribute("aria-pressed", "false");
+  });
+
+  test("no-results (eligibility): restricted household gets zero, not ineligible filler", async ({ playwright }) => {
+    const base = process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:8787";
+    const hh = await apiCreateIsolatedHousehold(playwright, "D07 Dairy empty", ["dairy"]);
+    const res = await discoverySearchPost(hh.request, base, hh.cookieHeader, { text: "paneer" });
+    const body = await res.json();
+    expect(res.ok(), JSON.stringify(body)).toBe(true);
+    expect(body.total).toBe(0);
+    expect(body.results || []).toEqual([]);
+    await hh.dispose();
   });
 });

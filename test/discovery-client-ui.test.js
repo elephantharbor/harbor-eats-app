@@ -89,3 +89,55 @@ describe("discovery client-ui", () => {
     expect(back.query.criteria.different).toBe(true);
   });
 });
+
+describe("D-07 no-results completeness (hardening-1)", async () => {
+  const { relaxRemoveChips: srcChips, emptyCriteriaSummary } = await import("../src/discovery/client-ui.js");
+  await import("../public/discovery-relax-bridge.js");
+  const bridge = globalThis.FlavorWeaveDiscoveryRelax;
+  const q = (criteria, text = null) => ({
+    text,
+    criteria: {
+      cuisines: [], meal_styles: [], flavors: [], ingredients: [], exclude_ingredients: [], effort_levels: [],
+      ingredient_complexities: [], max_minutes: null, methods: [], equipment: [], quick: false, protein_groups: [],
+      diet: [], textures: [], different: false, ...criteria,
+    },
+  });
+
+  it("method, equipment and exclude-ingredient exclusions always yield a broaden chip", () => {
+    const query = q({ methods: ["grill"], equipment: ["air fryer"], exclude_ingredients: ["mushroom"] });
+    const chips = srcChips({ explicit_method: 4, explicit_equipment: 2, explicit_exclude_ingredient: 1 }, query);
+    expect(chips.map((c) => c.label)).toEqual(["grill", "air fryer", "No mushroom"]);
+  });
+  it("search text combined with criteria is offered as a removable chip", () => {
+    const chips = srcChips({ explicit_effort: 3 }, q({ effort_levels: ["easy"] }, "tacos"));
+    expect(chips.map((c) => c.label)).toEqual(["Easy", "“tacos”"]);
+    const next = bridge.applyRelaxChip(q({ effort_levels: ["easy"] }, "tacos"), chips[1]);
+    expect(next.text).toBeNull();
+    expect(next.criteria.effort_levels).toEqual(["easy"]);
+  });
+  it("browser bridge mirrors src chips exactly", () => {
+    const cases = [
+      [{ explicit_quick: 1, explicit_cuisine: 2 }, q({ quick: true, cuisines: ["thai"] })],
+      [{ explicit_equipment: 1 }, q({ equipment: ["pressure cooker"] }, "curry")],
+      [{ explicit_exclude_ingredient: 1, explicit_texture: 1 }, q({ exclude_ingredients: ["egg"], textures: ["crispy"] })],
+    ];
+    for (const [ex, query] of cases) {
+      expect(JSON.parse(JSON.stringify(bridge.relaxRemoveChips(ex, query)))).toEqual(JSON.parse(JSON.stringify(srcChips(ex, query))));
+      expect(bridge.emptyCriteriaSummary(query)).toEqual(emptyCriteriaSummary(query));
+    }
+  });
+  it("current criteria are summarized; household limits are never listed", () => {
+    expect(emptyCriteriaSummary(q({ quick: true, effort_levels: ["easy"], cuisines: ["thai"], exclude_ingredients: ["egg"] }, "noodles"))).toEqual([
+      "“noodles”", "Under 30 min", "Easy", "thai", "No egg",
+    ]);
+    expect(emptyCriteriaSummary(q({}))).toEqual([]);
+  });
+  it("applying every chip removes only that criterion", () => {
+    const query = q({ methods: ["grill", "roast"], equipment: ["wok"], exclude_ingredients: ["egg"] });
+    const chips = bridge.relaxRemoveChips({ explicit_method: 1, explicit_equipment: 1, explicit_exclude_ingredient: 1 }, query);
+    expect(bridge.applyRelaxChip(query, chips[0]).criteria.methods).toEqual(["roast"]);
+    expect(bridge.applyRelaxChip(query, chips[1]).criteria.equipment).toEqual([]);
+    expect(bridge.applyRelaxChip(query, chips[2]).criteria.exclude_ingredients).toEqual([]);
+    expect(bridge.applyRelaxChip(query, chips[2]).criteria.methods).toEqual(["grill", "roast"]);
+  });
+});

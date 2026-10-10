@@ -888,8 +888,15 @@
       if (kind === "relax") {
         const chips = d().relaxRemoveChips ? d().relaxRemoveChips(resp.excluded_counts, resp.query) : [];
         state.relaxChips = chips;
+        const asked = d().emptyCriteriaSummary ? d().emptyCriteriaSummary(resp.query) : [];
         body =
-          '<div class="empty-state"><strong>No dinners match all of that</strong><p class="meta">Loosen one thing:</p><div class="disc-chips">';
+          '<div class="empty-state" data-disc-empty="relax"><strong>No dinners match all of that</strong>' +
+          (asked.length
+            ? '<p class="meta" data-disc-empty-criteria>You asked for: ' + esc(asked.join(" · ")) + "</p>"
+            : "") +
+          '<p class="meta">' +
+          (chips.length ? "Loosen one thing:" : "Try clearing your choices.") +
+          '</p><div class="disc-chips">';
         chips.forEach(function (chip, i) {
           body +=
             '<button type="button" class="chip-tog" data-disc-relax-idx="' +
@@ -903,7 +910,7 @@
         body += '</div><button type="button" class="btn btn-secondary btn-sm" data-disc-clear>Clear all</button></div>';
       } else if (kind === "text") {
         body =
-          '<div class="empty-state"><strong>Nothing here matches “' +
+          '<div class="empty-state" data-disc-empty="text"><strong>Nothing here matches “' +
           esc(resp.query.text) +
           '” for this table</strong><p class="meta">It may not be on the menu yet, or it may not work with everyone’s limits.</p><button type="button" class="btn btn-secondary" data-disc-clear-search>Clear search</button></div>';
       } else {
@@ -1546,6 +1553,10 @@
     if (p.protein_groups) base.criteria.protein_groups = p.protein_groups;
     if (p.diet) base.criteria.diet = p.diet;
     if (p.textures) base.criteria.textures = p.textures;
+    if (p.methods) base.criteria.methods = p.methods;
+    if (p.equipment) base.criteria.equipment = p.equipment;
+    if (p.exclude_ingredients) base.criteria.exclude_ingredients = p.exclude_ingredients;
+    if (Object.prototype.hasOwnProperty.call(p, "text")) base.text = p.text;
     return base;
   }
 
@@ -1589,6 +1600,8 @@
       (dependencies && dependencies.relaxRemoveChips) || (bridge && bridge.relaxRemoveChips) || deps.relaxRemoveChips;
     deps.applyRelaxChip =
       (dependencies && dependencies.applyRelaxChip) || (bridge && bridge.applyRelaxChip) || applyRelaxChipLocal;
+    deps.emptyCriteriaSummary =
+      (dependencies && dependencies.emptyCriteriaSummary) || (bridge && bridge.emptyCriteriaSummary) || null;
     bind();
   }
 
