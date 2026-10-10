@@ -102,6 +102,10 @@ export function renderStagingD1Sql(database) {
   }
   lines.push("");
   lines.push("-- Child tables: one DELETE per version, then every row for that version.");
+  const allVersionIds = database
+    .prepare("SELECT recipe_version_id FROM catalog_version ORDER BY recipe_version_id")
+    .all()
+    .map((row) => row.recipe_version_id);
   for (const table of CHILD_TABLES) {
     const cols = database.prepare(`PRAGMA table_info(${table})`).all().map((c) => c.name);
     const rows = database
@@ -114,7 +118,10 @@ export function renderStagingD1Sql(database) {
       if (!byVersion.has(versionId)) byVersion.set(versionId, []);
       byVersion.get(versionId).push(row);
     }
-    for (const versionId of [...byVersion.keys()].sort()) {
+    // Every imported version gets a DELETE, including versions whose set is now EMPTY
+    // (e.g. a dietary label removed by an amendment); otherwise stale rows survive on remote D1.
+    const versionIds = table === "catalog_classification_history" ? [...byVersion.keys()] : allVersionIds;
+    for (const versionId of [...new Set(versionIds)].sort()) {
       if (table === "catalog_classification_history") {
         // Append-only audit log: never DELETE, and skip a row whose classification transition is
         // already recorded (hardening-1 Decision Card: classification-history dedupe).
@@ -122,7 +129,7 @@ export function renderStagingD1Sql(database) {
         continue;
       }
       lines.push(`DELETE FROM ${table} WHERE recipe_version_id = ${sqlLiteral(versionId)};`);
-      for (const row of byVersion.get(versionId)) {
+      for (const row of byVersion.get(versionId) || []) {
         lines.push(
           `INSERT INTO ${table} (${cols.join(", ")}) VALUES (${cols.map((col) => sqlLiteral(row[col])).join(", ")});`
         );
