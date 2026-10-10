@@ -110,9 +110,19 @@ function loadRecords() {
     if (!names.includes("v1.json")) continue;
     const pkg = JSON.parse(readFileSync(join(dir, "v1.json"), "utf8"));
     if (pkg.catalog_contract === "flavorweave-catalog-package") {
-      const normalized = normalizeFactoryPackage(pkg, factorySidecar(slug), { publicationStatus: "published" });
+      const hasV2 = names.includes("v2.json");
+      const normalized = normalizeFactoryPackage(pkg, factorySidecar(slug), { publicationStatus: hasV2 ? "retired" : "published" });
       if (!normalized.ok) failures.push({ slug, errors: normalized.errors });
       else records.push(normalized.record);
+      if (hasV2) {
+        const pkg2 = JSON.parse(readFileSync(join(dir, "v2.json"), "utf8"));
+        const v2 = normalizeFactoryPackage(pkg2, { ...factorySidecar(slug), source_path: `catalog/${slug}/v2.json` }, { publicationStatus: "published" });
+        if (!v2.ok) failures.push({ slug, file: "v2.json", errors: v2.errors });
+        else {
+          records.push(v2.record);
+          retireVersionIds.push(normalized.record.recipe_version_id);
+        }
+      }
       continue;
     }
     if (pkg.catalog_contract !== LEGACY_CONTRACT) continue;
@@ -186,12 +196,12 @@ describe("catalog import", () => {
         expect(createHash("sha256").update(left).digest("hex")).toBe(createHash("sha256").update(right).digest("hex"));
       }
     }
-    expect(records).toHaveLength(99);
+    expect(records).toHaveLength(100);
     expect(records.filter((record) => record.version_number === 1 && record.source_contract === LEGACY_CONTRACT)).toHaveLength(
       24
     );
-    expect(records.filter((record) => record.version_number === 2)).toHaveLength(24);
-    expect(records.filter((record) => record.provenance.factory_certified === 1)).toHaveLength(51);
+    expect(records.filter((record) => record.version_number === 2)).toHaveLength(25);
+    expect(records.filter((record) => record.provenance.factory_certified === 1)).toHaveLength(52);
     expect(records.filter((record) => record.provenance.certification_class === "legacy_structural")).toHaveLength(48);
     const swordfish = records.find((record) => record.slug === "grilled-swordfish-olive-caper");
     expect(swordfish.provenance.kitchen_tested).toBe(0);
@@ -232,10 +242,10 @@ describe("catalog import", () => {
     expect(loaded.count).toBe(75);
     const again = await importOnce(database, records, retireVersionIds);
     expect(again.ok).toBe(true);
-    expect(again.unchanged).toHaveLength(99);
+    expect(again.unchanged).toHaveLength(100);
     const reloaded = await loadPublishedCatalog(shim);
     expect(reloaded.count).toBe(75);
-    expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_version").get().c).toBe(99);
+    expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_version").get().c).toBe(100);
     expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_ingredient").get().c).toBe(
       records.reduce((sum, record) => sum + record.ingredients.length, 0)
     );
@@ -247,6 +257,21 @@ describe("catalog import", () => {
       .prepare(`SELECT publication_status FROM catalog_version WHERE recipe_version_id = 'rv_miso-ginger-salmon_v1'`)
       .get();
     expect(misoV1.publication_status).toBe("retired");
+    const korean = database
+      .prepare(`SELECT recipe_version_id, publication_status FROM catalog_version WHERE dish_id = 'korean-soft-tofu-stew' ORDER BY version_number`)
+      .all();
+    expect(korean).toEqual([
+      { recipe_version_id: "rv_korean-soft-tofu-stew_v1", publication_status: "retired" },
+      { recipe_version_id: "rv_korean-soft-tofu-stew_v2", publication_status: "published" },
+    ]);
+    expect(database.prepare(`SELECT current_version_id FROM catalog_dish WHERE dish_id = 'korean-soft-tofu-stew'`).get().current_version_id).toBe("rv_korean-soft-tofu-stew_v2");
+    expect(database.prepare(`SELECT COUNT(*) AS c FROM catalog_ingredient WHERE recipe_version_id = 'rv_korean-soft-tofu-stew_v2' AND lower(name) LIKE '%shiitake%'`).get().c).toBe(0);
+    expect(database.prepare(`SELECT COUNT(*) AS c FROM catalog_ingredient WHERE recipe_version_id = 'rv_korean-soft-tofu-stew_v1'`).get().c).toBeGreaterThan(0);
+    const allergens = (id) => database.prepare("SELECT allergen FROM catalog_allergen WHERE recipe_version_id = ?").all(id).map((r) => r.allergen);
+    expect(allergens("rv_gochujang-grilled-flank-steak_v1")).toContain("wheat");
+    expect(allergens("rv_sabich-pita-sandwiches_v1")).toContain("sesame");
+    const chickenLabels = database.prepare("SELECT label FROM catalog_dietary_label WHERE recipe_version_id = 'rv_crispy-skillet-chicken-sandwiches_v1'").all().map((r) => r.label);
+    expect(chickenLabels).not.toContain("dairy_free");
     const mushroomTags = JSON.parse(
       database.prepare(`SELECT tags_json FROM catalog_dish WHERE dish_id = 'mushroom-walnut-bolognese'`).get().tags_json
     );
@@ -376,5 +401,21 @@ describe("recipe detail equipment (canonical metadata only)", () => {
     expect(fn).toContain("escapeHtml(e)");
     expect(fn).toContain("wrap.hidden = items.length === 0");
     expect(fn).not.toMatch(/steps|body|instructions/);
+  });
+});
+
+describe("factory successor versions", () => {
+  it("accepts v2 only when it supersedes an earlier version of the same dish", () => {
+    const pkg2 = JSON.parse(readFileSync(join(root, "korean-soft-tofu-stew", "v2.json"), "utf8"));
+    const src = { source_path: "catalog/korean-soft-tofu-stew/v2.json", freeze_integrity: "PASS" };
+    const ok = normalizeFactoryPackage(pkg2, src, { publicationStatus: "published" });
+    expect(ok.ok, JSON.stringify(ok.errors)).toBe(true);
+    expect(ok.record.supersedes_version_id).toBe("rv_korean-soft-tofu-stew_v1");
+    for (const bad of [null, "rv_cottage-pie_v1", "rv_korean-soft-tofu-stew_v2"]) {
+      const clone = structuredClone(pkg2);
+      clone.recipe_version.supersedes_recipe_version_id = bad;
+      const r = normalizeFactoryPackage(clone, src, { publicationStatus: "published" });
+      expect(r.errors.map((e) => e.code)).toContain("bad_version_number");
+    }
   });
 });

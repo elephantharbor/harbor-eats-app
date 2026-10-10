@@ -1,0 +1,21 @@
+{
+  "auditor": "Vale (Harbor Eats - Catalog Auditor), independent",
+  "audit_date": "2026-10-10",
+  "audit_timezone": "America/Chicago",
+  "contract_version": "flavorweave-catalog-certification (A-O, L1+L2, D-03)",
+  "packages_mutated": false,
+  "freeze_integrity": "PASS - re-run by Vale on scratch copy 2026-10-10; identical to package record",
+  "overall": "PASS",
+  "slug": "lentil-stuffed-cabbage",
+  "package_revision": "freeze-r4",
+  "recipe_version_id": "rv_lentil-stuffed-cabbage_v1",
+  "gates": {
+    "O": {
+      "result": "PASS",
+      "note": "classification_history present (who/when/from->to with factory source/factors/reason); revision_note now accurate; recipe_version otherwise identical to factory source; images byte-identical; factory_source sha256 verified. FREEZE.txt now freeze-r4 and cites Gate E PASS at Vale r3."
+    }
+  },
+  "classification_history_missing": false,
+  "supersedes": "prior: FAIL O",
+  "recheck_round": 2
+}

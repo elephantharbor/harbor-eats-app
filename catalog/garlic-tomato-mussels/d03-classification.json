@@ -1,0 +1,47 @@
+{
+  "slug": "garlic-tomato-mussels",
+  "recipe_version_id": "rv_garlic-tomato-mussels_v1",
+  "package_revision": "freeze-r1",
+  "assigned_by": "Juniper (Harbor Eats - Catalog Curator)",
+  "assigned_on": "2026-10-10",
+  "rubric": "D-03 (factory SKILL.md)",
+  "effort_factors": {
+    "active_prep": 1,
+    "active_attention": 1,
+    "active_components": 1,
+    "technique": 1,
+    "coordination_cleanup_equipment": 1
+  },
+  "effort_score": 5,
+  "effort_level": "moderate",
+  "effort_floors_applied": [],
+  "complexity_factors": {
+    "ingredient_count_band": 1,
+    "specialty_burden": 1,
+    "flavor_component_breadth": 0,
+    "pantry_familiarity": 0
+  },
+  "complexity_score": 2,
+  "ingredient_complexity": "standard",
+  "ingredient_count": 9,
+  "specialty_items": [
+    "live mussels (fish counter; buy-day-of)"
+  ],
+  "reason_codes": {
+    "effort": [
+      "steady_prep",
+      "periodic_attention"
+    ],
+    "ingredient": [
+      "medium_list",
+      "one_specialty"
+    ]
+  },
+  "borderline": false,
+  "rationale": "Scrubbing/debearding 4 lb mussels and slicing bread is steady prep (1). Steaming to open and discarding unopened shells needs attention (1). Broth plus grilled bread = components 1. Steaming live shellfish is technique 1. Pot plus grill pan in parallel = coordination 1. Score 5 = moderate. Complexity: 9 counted (band 1); live mussels are a one-off fish-counter buy (specialty 1); single broth (0). Score 2 = standard.",
+  "precedent": "d03-design/JUNIPER-CLASSIFICATION-BATCH.json (same labels/factors)",
+  "legacy": {
+    "effort": "weeknight",
+    "complexity": "straightforward"
+  }
+}

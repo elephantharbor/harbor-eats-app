@@ -2,7 +2,7 @@
 
 Ground beef simmered with onion, carrot, celery, and peas in a glossy thyme gravy, topped with buttery mashed potatoes raked into ridges and baked until the peaks are golden and crisp.
 
-Draft catalog package for FlavorWeave Catalog Factory wave-12-2026-10-08, creator batch C. Complete Dish→Recipe→Recipe Version→Image metadata package. package_revision `freeze-r2`. asset_generated is true. Master and card WebPs present. Draft only — not certified, not published, kitchen_tested false.
+Draft catalog package for FlavorWeave Catalog Factory wave-12-2026-10-08, creator batch C. Complete Dish→Recipe→Recipe Version→Image metadata package. package_revision `freeze-r3`. asset_generated is true. Master and card WebPs present. Draft only — not certified, not published, kitchen_tested false.
 
 ## Identity
 
@@ -20,8 +20,8 @@ Draft catalog package for FlavorWeave Catalog Factory wave-12-2026-10-08, creato
 - ingredient_complexity: standard (D-03 score 2)
 - Publication state: Draft / draft
 - Provenance: original_ai_assisted
-- Package revision: `freeze-r2` (matches v1.json)
-- Revision note: freeze-r2 (2026-10-08 CT) is a classification-only metadata amendment for Vale wave-12 batch C r1 Gate J: ingredient_complexity simple -> standard (15 countable items is rubric band 2; factors 2,0,0,0 = 2). effort_level moderate (5) unchanged. Reason codes remapped to the closed v1 set. Scaling reconciliation (Vale wave-wide note): the 1-serving note makes a half recipe, so scaling_notes.ratio['1'] is now 0.5 (was 0.25) and the note says so. Recipe text, version_number 1, culinary_hash, and the image are unchanged; no K/L rerun.
+- Package revision: `freeze-r3` (matches v1.json)
+- Revision note: freeze-r2 (2026-10-08 CT) is a classification-only metadata amendment for Vale wave-12 batch C r1 Gate J: ingredient_complexity simple -> standard (15 countable items is rubric band 2; factors 2,0,0,0 = 2). effort_level moderate (5) unchanged. Reason codes remapped to the closed v1 set. Scaling reconciliation (Vale wave-wide note): the 1-serving note makes a half recipe, so scaling_notes.ratio['1'] is now 0.5 (was 0.25) and the note says so. Recipe text, version_number 1, culinary_hash, and the image are unchanged; no K/L rerun. freeze-r3 (2026-10-10 CT, hardening-1): editorial-only rewording of scaling_notes['1'] to remove internal shopping-ratio wording flagged by Vale batch C ('…shopping ratio is 0.5, not 0.25'). ratio['1'] stays 0.5; quantities, steps, ingredients, image, version_number 1, D-03 labels and culinary_hash are unchanged (scaling_notes are outside the culinary_hash basis and are not imported to runtime). Vale re-check scope: Gate N (shopping/scaling) + Gate O (version/history) only. freeze-r3 records reconciliation (2026-10-10 CT, Vale r3 Gate O): README revision label/scaling line, structural_qa_state, image.package_revision and current-state freeze-r2 references updated to freeze-r3. Records-only; no culinary, quantity, classification or image change. Historical freeze-r2 mentions in this note are intentional history.
 - Kitchen tested: false
 - HH001 eligible: false — Ground beef is meat other than fish, and the mash has butter and milk (dairy). HH001 does not eat either. Global catalog candidate.
 - HH001 / shopping contract: Not HH001 (beef and dairy).
@@ -138,7 +138,7 @@ Set the skillet on a rimmed sheet pan and bake until the gravy bubbles at the ed
 
 ## Scaling notes
 
-- **1 serving(s):** Make half the recipe (the 2-serving amounts, so the 1-serving shopping ratio is 0.5, not 0.25) in a 1-quart baking dish; eat one portion and refrigerate the second for up to 3 days. Bake about 15 minutes before broiling.
+- **1 serving(s):** Make half the recipe (use the 2-serving amounts) in a 1-quart baking dish; eat one portion and refrigerate the second for up to 3 days. Bake about 15 minutes before broiling.
 - **2 serving(s):** Half of everything in a 10-inch oven-safe skillet or 8-inch square dish; bake about 18 minutes before broiling.
 - **4 serving(s):** As written.
 - Do not scale: steam-dry the potatoes; seal the mash to the edges; watch the broiler
@@ -153,8 +153,10 @@ Set the skillet on a rimmed sheet pan and bake until the gravy bubbles at the ed
 
 ## Image status
 
-Master and card WebPs present: `img_v1.jpg` (source 1280×720), `cottage-pie.webp` (1200×900), `cottage-pie-640.webp` (640×480). asset_generated is true. package_revision freeze-r2. Not published. See image-plating-brief.md and image-prompt.md.
+Master and card WebPs present: `img_v1.jpg` (source 1280×720), `cottage-pie.webp` (1200×900), `cottage-pie-640.webp` (640×480). asset_generated is true. package_revision freeze-r3 (assets byte-identical since freeze-r2). Not published. See image-plating-brief.md and image-prompt.md.
 
 ## Certification
 
-auditor: null. certification: null. Culinary audit not run. Master and card WebPs are present; FREEZE_INTEGRITY PASS at freeze-r2. Awaiting Vale A–O. kitchen_tested false. Not published.
+auditor: null. certification: null. Culinary audit not run. Master and card WebPs are present; FREEZE_INTEGRITY re-run at freeze-r3 (see FREEZE_INTEGRITY.json). Awaiting Vale re-check of Gates N + O for freeze-r3. structural_qa_state: `freeze_r3_records_reconciled_awaiting_vale_N_O_recheck`.
+
+Audit records in this dir: `VALE-AUDIT-cottage-pie.json` is the Vale r2 PASS for **freeze-r2 only** and does not certify freeze-r3. `VALE-AUDIT-cottage-pie-r1.json` is the r1 FAIL (history). `VALE-AUDIT-cottage-pie-r3.json` is the freeze-r3 Gate O FAIL that this records reconciliation addresses. kitchen_tested false. Not published.

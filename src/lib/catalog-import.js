@@ -511,7 +511,17 @@ export function normalizeFactoryPackage(pkg, source, policy = {}) {
   if (!version.recipe_version_id || version.dish_id !== dish.dish_id || version.recipe_id !== recipe.recipe_id) {
     errors.push(error("version_identity", "recipe_version.recipe_version_id"));
   }
-  if (version.version_number !== 1) errors.push(error("bad_version_number", "recipe_version.version_number"));
+  // Factory v1, or a factory successor (vN>1) that names the version it supersedes in the same recipe.
+  const factorySupersedes = version.supersedes_recipe_version_id || version.supersedes_version_id || null;
+  const validSuccessor =
+    Number.isInteger(version.version_number) &&
+    version.version_number > 1 &&
+    typeof factorySupersedes === "string" &&
+    factorySupersedes.startsWith(`rv_${dish.dish_id}_v`) &&
+    factorySupersedes !== version.recipe_version_id;
+  if (version.version_number !== 1 && !validSuccessor) {
+    errors.push(error("bad_version_number", "recipe_version.version_number"));
+  }
   if (version.immutable !== true) errors.push(error("version_not_immutable", "recipe_version.immutable"));
   if (!Number.isInteger(version.base_servings) || version.base_servings < 1) {
     errors.push(error("bad_servings", "recipe_version.base_servings"));
@@ -657,6 +667,7 @@ export function normalizeFactoryPackage(pkg, source, policy = {}) {
     contract: FACTORY_CONTRACT,
     selfReport,
   });
+  record.supersedes_version_id = version.version_number > 1 ? factorySupersedes : null;
   stampHashes(record);
   return { ok: errors.length === 0, errors, record: errors.length ? null : record };
 }

@@ -1,17 +1,22 @@
 {
   "FREEZE_INTEGRITY": "PASS",
-  "candidate_dir": "/workspace/flavorweave-catalog-factory/wave-10/candidates/korean-soft-tofu-stew",
+  "candidate_dir": "/workspace/flavorweave-catalog-factory/hardening-1/amendments/korean-soft-tofu-stew-v2-freeze-r6",
   "fail_count": 0,
   "checks": [
     {
+      "id": "v1_retained",
+      "result": "PASS",
+      "detail": "v1.json exists and parses; current image is not required on v1"
+    },
+    {
       "id": "package_file",
       "result": "PASS",
-      "detail": "v1.json parses"
+      "detail": "v2.json parses"
     },
     {
       "id": "identity_present",
       "result": "PASS",
-      "detail": "korean-soft-tofu-stew freeze-r4"
+      "detail": "korean-soft-tofu-stew freeze-r6"
     },
     {
       "id": "identity_agree",
@@ -26,7 +31,7 @@
     {
       "id": "version_id",
       "result": "PASS",
-      "detail": "rv_korean-soft-tofu-stew_v1"
+      "detail": "rv_korean-soft-tofu-stew_v2"
     },
     {
       "id": "field_ingredients",

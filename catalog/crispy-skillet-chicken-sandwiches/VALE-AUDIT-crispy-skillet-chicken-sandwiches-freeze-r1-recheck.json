@@ -1,0 +1,24 @@
+{
+  "auditor": "Vale (Harbor Eats - Catalog Auditor), independent",
+  "audit_date": "2026-10-10",
+  "audit_timezone": "America/Chicago",
+  "contract_version": "flavorweave-catalog-certification (A-O, L1+L2, D-03)",
+  "packages_mutated": false,
+  "freeze_integrity": "PASS - re-run by Vale on scratch copy 2026-10-10; identical to package record",
+  "overall": "PASS",
+  "slug": "crispy-skillet-chicken-sandwiches",
+  "package_revision": "freeze-r1",
+  "recipe_version_id": "rv_crispy-skillet-chicken-sandwiches_v1",
+  "gates": {
+    "G": {
+      "result": "PASS",
+      "note": "dairy_free removed; dietary_labels []; contains_dairy true (conservative, with basis). No conditional claim remains. allergens egg, wheat match listed ingredients; contract requires tokens for ingredients present, and no milk ingredient is listed, so a milk token is not required (Cora position accepted). Poultry in dietary_eligibility."
+    },
+    "O": {
+      "result": "PASS",
+      "note": "AMENDMENT-freeze-r1.md present and consistent with v1.json (migration list, current values, culinary_hash reproduced by Vale, images byte-identical); certification_scope_note resolves; dry-run PASS explicitly scoped to pre-contract record."
+    }
+  },
+  "supersedes": "prior: FAIL G,O",
+  "recheck_round": 2
+}

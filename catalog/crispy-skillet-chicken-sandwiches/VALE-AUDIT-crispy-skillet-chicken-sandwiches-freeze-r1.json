@@ -1,0 +1,40 @@
+{
+  "auditor": "Vale (Harbor Eats - Catalog Auditor), independent",
+  "audit_date": "2026-10-10",
+  "audit_timezone": "America/Chicago",
+  "contract_version": "flavorweave-catalog-certification (A-O, L1+L2, D-03)",
+  "packages_mutated": false,
+  "freeze_integrity": "PASS - freeze_integrity.py re-run by Vale on a scratch copy 2026-10-10; result identical to the package FREEZE_INTEGRITY.json (candidate_dir aside)",
+  "slug": "crispy-skillet-chicken-sandwiches",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r1",
+  "recipe_version_id": "rv_crispy-skillet-chicken-sandwiches_v1",
+  "overall": "FAIL",
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "note": "Identity, freeze-r1, D-03 enums valid; legacy keys removed."
+    },
+    "G": {
+      "result": "FAIL",
+      "defect": [
+        "dairy_free / contains_dairy=false asserted without basis: mayonnaise ingredient note reads 'egg and oil style, dairy-free \u2014 check the label' - a conditional, not a hard contract.",
+        "sandwich-rolls ingredient is 'soft rolls, split' with no dairy-free requirement; soft rolls commonly contain milk/butter. Remedy: culinary v2 hard-contracting dairy-free mayo and rolls, or remove dairy_free and set contains_dairy honestly (Gate G re-audit). Allergens egg/wheat correct; poultry correctly moved to dietary_eligibility."
+      ]
+    },
+    "J": {
+      "result": "PASS",
+      "note": "moderate/standard plausible (effort 5, complexity 2); classification_history present."
+    },
+    "M": {
+      "result": "PASS",
+      "note": "Image bytes identical to dry-run-1; generator/model/method present."
+    },
+    "O": {
+      "result": "FAIL",
+      "defect": [
+        "certification_scope_note references AMENDMENT-freeze-r1.md, which does not exist in the package dir or anywhere under the factory; amendment record is dangling (contents only in README section + metadata_amendments)."
+      ]
+    }
+  }
+}

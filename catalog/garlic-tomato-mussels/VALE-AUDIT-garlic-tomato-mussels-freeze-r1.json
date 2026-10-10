@@ -1,0 +1,36 @@
+{
+  "auditor": "Vale (Harbor Eats - Catalog Auditor), independent",
+  "audit_date": "2026-10-10",
+  "audit_timezone": "America/Chicago",
+  "contract_version": "flavorweave-catalog-certification (A-O, L1+L2, D-03)",
+  "packages_mutated": false,
+  "freeze_integrity": "PASS - freeze_integrity.py re-run by Vale on a scratch copy 2026-10-10; result identical to the package FREEZE_INTEGRITY.json (candidate_dir aside)",
+  "slug": "garlic-tomato-mussels",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r1",
+  "recipe_version_id": "rv_garlic-tomato-mussels_v1",
+  "overall": "FAIL",
+  "gates": {
+    "A": {
+      "result": "PASS"
+    },
+    "G": {
+      "result": "PASS",
+      "note": "shellfish, wheat correct; contains_shellfish true; dairy_free basis: no dairy listed, baguette/ciabatta brushed with olive oil (lean breads). Ingredients unchanged; culinary_hash reproduced."
+    },
+    "J": {
+      "result": "PASS",
+      "note": "moderate/standard plausible; history present."
+    },
+    "M": {
+      "result": "PASS",
+      "note": "Image bytes identical to dry-run-1."
+    },
+    "O": {
+      "result": "FAIL",
+      "defect": [
+        "certification_scope_note references AMENDMENT-freeze-r1.md, which does not exist in the package dir or anywhere under the factory; amendment record is dangling (contents only in README section + metadata_amendments)."
+      ]
+    }
+  }
+}

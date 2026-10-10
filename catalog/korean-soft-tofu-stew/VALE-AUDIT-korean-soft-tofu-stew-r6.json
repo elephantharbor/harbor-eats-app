@@ -1,0 +1,61 @@
+{
+  "auditor": "Vale (Harbor Eats - Catalog Auditor), independent",
+  "audit_date": "2026-10-10",
+  "audit_timezone": "America/Chicago",
+  "contract_version": "flavorweave-catalog-certification (A-O, L1+L2, D-03)",
+  "packages_mutated": false,
+  "freeze_integrity": "PASS - freeze_integrity.py re-run by Vale on a scratch copy 2026-10-10; result identical to the package FREEZE_INTEGRITY.json (candidate_dir aside)",
+  "slug": "korean-soft-tofu-stew",
+  "package_file": "v2.json",
+  "package_revision": "freeze-r6",
+  "recipe_version_id": "rv_korean-soft-tofu-stew_v2",
+  "overall": "PASS",
+  "disposition": "CERTIFY_V2",
+  "gates": {
+    "A": {
+      "result": "PASS",
+      "note": "Identity v2 consistent (dish pointer, rv id, version 2, freeze-r6); effort_level easy, ingredient_complexity standard valid enums."
+    },
+    "B": {
+      "result": "PASS",
+      "note": "Every ingredient used; no dangling refs; shiitake removed from steps 1/2/6, components, description, scaling_notes['1']."
+    },
+    "C": {
+      "result": "PASS",
+      "note": "1/2/4 scaling notes consistent with base 4; no orphan shiitake amount."
+    },
+    "D": {
+      "result": "PASS"
+    },
+    "E": {
+      "result": "PASS",
+      "note": "15+21=36; step 2 still 4+3 min; preflight clock updated (no mushroom minutes)."
+    },
+    "J": {
+      "result": "PASS",
+      "note": "Classification easy/standard reproduced from d03 sidecar (effort 1,1,0,0,0=2; complexity 1+2+0+0=3, specialty scored by sourcing). classification_history present (legacy easy/simple -> easy/standard)."
+    },
+    "K": {
+      "result": "PASS",
+      "note": "Hero byte-identical to freeze-r4 (sha256 verified): tofu, zucchini, kimchi, scallions, no mushrooms - matches v2."
+    },
+    "L1": {
+      "result": "PASS"
+    },
+    "L2": {
+      "result": "PASS",
+      "note": "unchanged r4 asset"
+    },
+    "L": {
+      "result": "PASS"
+    },
+    "N": {
+      "result": "PASS",
+      "note": "Shopping list = r4 list; no shiitake purchase."
+    },
+    "O": {
+      "result": "PASS",
+      "note": "v1.json byte-identical to wave-10 frozen v1; v2 supersedes with carried_forward image record; CULINARY_HASH reproduced by Vale: v1 4edc3751..., v2 ccfd44b1...; freeze-r5 hash superseded and documented."
+    }
+  }
+}

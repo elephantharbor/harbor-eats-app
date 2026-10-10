@@ -1,0 +1,87 @@
+{
+  "slug": "korean-soft-tofu-stew",
+  "recipe_version_id": "rv_korean-soft-tofu-stew_v2",
+  "package_revision": "freeze-r6",
+  "assigned_by": "Juniper (Harbor Eats - Catalog Curator)",
+  "assigned_on": "2026-10-10",
+  "rubric": "D-03 (factory SKILL.md)",
+  "conventions": {
+    "ingredient_count_band": "Counted ingredients exclude optional items, salt, black pepper, water, and cooking oils (neutral oil): <=8 -> 0, 9-14 -> 1, 15+ -> 2.",
+    "pantry_familiarity": "Kept 0; specialty items scored once under specialty_burden. Cultural unfamiliarity adds no points."
+  },
+  "effort_factors": {
+    "active_prep": 1,
+    "active_attention": 1,
+    "active_components": 0,
+    "technique": 0,
+    "coordination_cleanup_equipment": 0
+  },
+  "effort_score": 2,
+  "effort_level": "easy",
+  "effort_floors_applied": [],
+  "complexity_factors": {
+    "ingredient_count_band": 1,
+    "specialty_burden": 2,
+    "flavor_component_breadth": 0,
+    "pantry_familiarity": 0
+  },
+  "complexity_score": 3,
+  "ingredient_complexity": "standard",
+  "ingredient_count": 13,
+  "counted_ingredient_ids": [
+    "soft-tofu",
+    "plant-kimchi",
+    "gochugaru",
+    "gochujang",
+    "soy-sauce",
+    "toasted-sesame-oil",
+    "yellow-onion",
+    "garlic",
+    "fresh-ginger",
+    "zucchini",
+    "vegetable-stock",
+    "scallions",
+    "sugar"
+  ],
+  "specialty_items": [
+    "gochugaru",
+    "gochujang",
+    "plant (vegan, seafood-free) kimchi"
+  ],
+  "reason_codes": {
+    "effort": [
+      "steady_prep",
+      "periodic_attention",
+      "one_pan"
+    ],
+    "ingredient": [
+      "medium_list",
+      "several_specialty",
+      "specialty_store_likely"
+    ]
+  },
+  "borderline": true,
+  "rationale": "Chopping onion/zucchini/scallions and cutting soft tofu is steady prep (1). Simmer needs periodic stirring/tasting, gentle tofu handling (1). One pot, one broth component, no special technique: 0/0/0. Score 2 = easy; no floor. Complexity: 13 counted (band 1); gochugaru, gochujang, and contracted vegan kimchi are specialty-store-likely one-off buys (2, scored once, by sourcing not cuisine); single broth build (0). Score 3 = standard. Shiitake absent (as at r4), so it adds no count.",
+  "precedent": "d03-design/JUNIPER-CLASSIFICATION-BATCH.json and backfill-classifications-r2.json: easy/standard, factors identical.",
+  "classification_amendments": [
+    {
+      "version_number": 2,
+      "type": "classification_metadata_amendment",
+      "who": "Juniper (Harbor Eats - Catalog Curator)",
+      "when": "2026-10-10",
+      "from": {
+        "effort": "easy",
+        "complexity": "simple",
+        "note": "legacy keys on v1 freeze-r4"
+      },
+      "to": {
+        "effort_level": "easy",
+        "ingredient_complexity": "standard"
+      },
+      "reason": "Rubric requires standard (score 3); legacy keys not contract-compliant.",
+      "culinary_hash_unchanged_by_this_amendment": true,
+      "image_unchanged": true,
+      "vale_recheck_scope": "Gate A + Gate J-classification"
+    }
+  ]
+}

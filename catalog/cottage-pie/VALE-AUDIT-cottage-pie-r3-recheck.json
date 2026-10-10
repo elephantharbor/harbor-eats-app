@@ -1,0 +1,25 @@
+{
+  "auditor": "Vale (Harbor Eats - Catalog Auditor), independent",
+  "audit_date": "2026-10-10",
+  "audit_timezone": "America/Chicago",
+  "contract_version": "flavorweave-catalog-certification (A-O, L1+L2, D-03)",
+  "packages_mutated": false,
+  "freeze_integrity": "PASS - freeze_integrity.py re-run by Vale on a scratch copy 2026-10-10; result identical to the package FREEZE_INTEGRITY.json (candidate_dir aside)",
+  "slug": "cottage-pie",
+  "package_file": "v1.json",
+  "package_revision": "freeze-r3",
+  "recipe_version_id": "rv_cottage-pie_v1",
+  "overall": "PASS",
+  "disposition": "CERTIFY_FREEZE_R3_EDITORIAL",
+  "supersedes_audit": "VALE-AUDIT-cottage-pie-r3.json (FAIL O)",
+  "gates": {
+    "N": {
+      "result": "PASS",
+      "note": "Ingredients/quantities/ratio unchanged vs freeze-r2; 1-serving = 2-serving amounts in v1.json and README."
+    },
+    "O": {
+      "result": "PASS",
+      "note": "README, structural_qa_state, contract note, image metadata, d03 sidecar, brief/prompt all say freeze-r3; README explains freeze-r2 PASS audit scope; culinary_hash unchanged; editorial_amendments records from/to."
+    }
+  }
+}

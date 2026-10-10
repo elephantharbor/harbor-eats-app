@@ -3,6 +3,7 @@
   "catalog_contract_note": "Factory package for Dry Run #1. Nested Dish → Recipe → Recipe Version → Image. Not imported to recipe-store. Not published.",
   "batch_id": "dry-run-1",
   "mode": "dry_run",
+  "package_revision": "freeze-r1",
   "authored_on": "2026-10-04",
   "authored_timezone": "America/Chicago",
   "curator_role": "Juniper (Harbor Eats - Catalog Curator)",
@@ -329,18 +330,32 @@
     "doneness": "165°F in the center of each cutlet. Color is not the doneness test.",
     "effort_level": "moderate",
     "ingredient_complexity": "standard",
-    "dietary_labels": [
-      "dairy_free"
-    ],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "pescatarian_compatible": false,
+      "nut_policy": "none",
+      "hh001_eligible": false,
+      "notes": "Poultry (boneless skinless chicken breast) is an eligibility class, not an allergen token. contains_dairy is set conservatively true: no dairy-free contract exists for the soft rolls or the mayonnaise (ingredient note is label-conditional). Eggs present (egg allergen). No tree nuts or peanuts.",
+      "contains_dairy_basis": "conservative (Cora decision 2026-10-10, Vale freeze-r1 Gate G): mayonnaise is only label-conditional dairy-free and 'soft rolls' carry no dairy-free requirement; soft rolls commonly contain milk/butter. Recorded true rather than asserting dairy-free. No recipe version change."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels claimed. dairy_free removed at freeze-r1 (Cora decision, Vale Gate G): the recipe has no hard dairy-free contract for the soft rolls or mayonnaise, so the claim would be conditional. Household eligibility unchanged: poultry already excludes this dish where relevant (HH001 false).",
     "allergens": [
-      "poultry",
       "egg",
       "wheat"
     ],
     "allergen_notes": [
-      "Contains poultry (chicken), egg (eggs, and egg in the mayonnaise), and wheat (all-purpose flour and sandwich rolls). All three are on the structured allergens array.",
-      "Live enum gap: PACKAGE_ALLERGEN_IDS includes poultry and does not include egg or wheat. Egg and wheat stay on the array. The note does not replace the field.",
-      "Dairy-free assumes a dairy-free egg-and-oil mayonnaise. Check the label. Yogurt-based or cheese-added mayo would fail the dairy_free label. That assumption is not an allergen omission."
+      "Egg covers the 2 eggs in the dredge and the egg in the egg-and-oil mayonnaise.",
+      "Wheat covers the all-purpose flour and the sandwich rolls.",
+      "Poultry is not an allergen token; it is recorded as dietary_eligibility.contains_poultry = true.",
+      "Live enum gap: PACKAGE_ALLERGEN_IDS does not include egg or wheat. Both stay on the array; see runtime_enum_gaps.",
+      "Milk is not added as an allergen token: no milk ingredient is listed; contains_dairy=true is a conservative eligibility setting because roll/mayo dairy status is uncontracted. Vale G to confirm whether a 'milk' may-contain token is wanted."
     ],
     "hh001_eligible": false,
     "hh001_reason": "Poultry is banned for HH001. Global catalog candidate. It is the second chicken technique, not a second sheet-pan.",
@@ -356,7 +371,7 @@
     ],
     "publication_state": "Draft",
     "publication_status": "draft",
-    "structural_qa_state": "revision_r1_applied_pending_r2",
+    "structural_qa_state": "freeze_r1_contract_forward_amendment_awaiting_preflight_and_vale",
     "culinary_audit_state": "r1_fail_returned_revision_applied_pending_r2",
     "kitchen_tested": false,
     "validation_kind": "structural_only",
@@ -369,9 +384,51 @@
       "provenance": "Factory value is original_ai_assisted, as specified for this dry run. The live Cycle 2 RECIPE_PROVENANCE enum has ai_assisted and does not list original_ai_assisted. Do not silently remap in a later implement pass without Cora confirming the mapping.",
       "publication_state": "Factory value is Draft. The live PUBLICATION_STATUSES enum uses lowercase draft. publication_status is included as that lowercase alias and is not published.",
       "data_origin": "data_origin synthetic matches the live enum for authored-not-household data. It does not mean the recipe was cooked.",
-      "allergens": "Structured allergens now list the real allergens, including tokens outside live PACKAGE_ALLERGEN_IDS (dairy, nuts, cashew, walnut, peanut, almond, pecan, hazelnut, pistachio, macadamia, pine_nut, shellfish, finfish, poultry, meat). Soy, sesame, egg, and wheat are not in that enum. They stay on the allergens array anyway. A note is not a substitute for the field, and the enum is not a reason to drop a real allergen. allergen_notes keeps the nuance. Do not strip these tokens in a later implement pass to force an enum match.",
-      "vocabulary": "No D-02 ingredient slug exists for beef, mussels, or sandwich rolls. primary_ingredient carries that identity. Tags were not invented."
-    }
+      "allergens": "Allergens are allergen tokens only. Live PACKAGE_ALLERGEN_IDS lists poultry and meat, but under the current package contract those are dietary_eligibility classes (contains_poultry / contains_meat) and were moved off the allergens array at freeze-r1. Egg, wheat, soy and sesame are not in the live enum; they stay on the array. A note is not a substitute for the field.",
+      "vocabulary": "No D-02 ingredient slug exists for beef, mussels, or sandwich rolls. primary_ingredient carries that identity. Tags were not invented.",
+      "dietary_eligibility": "dietary_eligibility object added at freeze-r1 (current contract). Live runtime may only read dietary_labels; the object is the factory source of truth."
+    },
+    "package_revision": "freeze-r1",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "type": "classification_metadata_amendment",
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "when": "2026-10-10",
+        "from": {
+          "effort": "weeknight",
+          "complexity": "straightforward",
+          "field_form": "legacy freeform dry-run-1 keys"
+        },
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "D-03 rubric: effort factors [1, 1, 1, 1, 1] = 5; complexity factors [1, 0, 1, 0] = 2. Matches d03-design JUNIPER-CLASSIFICATION-BATCH. Butterfly and pound cutlets plus a dredge station is steady prep (1). Two skillet batches need watching to 165F (1). Cutlets plus a stirred lemon-dijon mayo and assembly = components 1. Dredge-and-sear is technique 1 (no floor: technique <2). Skillet, dredge bowls, thermometer, assembly = coordination 1. Score 5 = moderate. Complexity: 12 counted supermarket items (band 1), no specialty items (0), a second build (mayo sauce) = breadth 1. Score 2 = standard. Legacy 'weeknight' is time-flavored; time is not effort.",
+        "sidecar": "d03-classification.json",
+        "culinary_hash_affected": false
+      }
+    ],
+    "metadata_amendments": [
+      {
+        "package_revision": "freeze-r1",
+        "when": "2026-10-10",
+        "who": "Juniper (Harbor Eats - Catalog Curator)",
+        "type": "contract_forward_records_amendment",
+        "changes": [
+          "package_revision added",
+          "dietary_eligibility object added",
+          "poultry/meat moved from allergens to dietary_eligibility",
+          "D-03 effort_level/ingredient_complexity replace legacy effort/complexity",
+          "image.generation.generator added from existing generator_identity",
+          "image.dimensions converted to master/card format",
+          "dairy_free label removed; dietary_eligibility.contains_dairy set conservatively true (Cora decision)"
+        ],
+        "unchanged": "ingredients, quantities, steps, times, components, equipment, scaling, image pixels (byte-identical)"
+      }
+    ],
+    "culinary_hash": "0c0cd0c7b7220636001787b27880334b1ef2108c6b9432047e289ea6d9b1c62b",
+    "culinary_hash_basis": "sha256 over canonical JSON (sort_keys, separators (',',':'), ensure_ascii False, UTF-8) of {base_servings, ingredients, steps, components, equipment, prep/cook/total_minutes, heat, doneness, description (recipe_version), scaling_notes}. Excludes classification, dietary/allergen metadata, ids, revision, states, image."
   },
   "image": {
     "image_id": "img_crispy-skillet-chicken-sandwiches_v2",
@@ -380,10 +437,16 @@
     "asset_generated": true,
     "master_ref": "crispy-skillet-chicken-sandwiches.webp",
     "active_source_jpeg": "img_v2.jpg",
-    "dimensions": {
+    "dimensions_target": {
       "width": 1200,
       "height": 900,
       "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
     },
     "derivatives": [
       {
@@ -424,7 +487,8 @@
       "prompt_file": "image-prompt.md",
       "source_jpeg": "img_v2.jpg",
       "external_image_api_called": false,
-      "external_image_api_note": "No external image API call in this revision. WebP files are a format and size conversion of the existing AI JPEG named in source_jpeg."
+      "external_image_api_note": "No external image API call in this revision. WebP files are a format and size conversion of the existing AI JPEG named in source_jpeg.",
+      "generator": "Source JPEG C2PA softwareAgent: Grok Imagine. Curator process: Juniper via Grok Bot Dry Run #1. Model slug unknown."
     },
     "qa_state": "certified_r2_pass",
     "recipe_fidelity_state": "pass_r2",
@@ -441,7 +505,20 @@
         "reason": "Vale r1 opened img_v1.jpg and saw a thick cutlet with a coarse breadcrumb crust and a full-thickness white interior. The recipe pounds to about 1/4 inch and dredges flour then egg only. There are no breadcrumbs.",
         "disposition": "Left on disk as img_v1.jpg. Not the audit asset and not the WebP source. Canonical audit image is the v2-derived WebP."
       }
-    ]
+    ],
+    "master_filename": "crispy-skillet-chicken-sandwiches.webp",
+    "card_filename": "crispy-skillet-chicken-sandwiches-640.webp",
+    "card_ref": "crispy-skillet-chicken-sandwiches-640.webp",
+    "package_revision": "freeze-r1",
+    "carried_forward": {
+      "from": "dry-run-1/candidates/crispy-skillet-chicken-sandwiches",
+      "statement": "Pixels unchanged; byte-identical copy.",
+      "sha256": {
+        "crispy-skillet-chicken-sandwiches.webp": "37cd19661e7702c2fb11cbcbe8dbab3510521fc79d5264b5df529eef9869e4fd",
+        "img_v2.jpg": "278e0e6e8b368ef552ee4b59a1f6d79648251d1f855214393f730269a7314b4f",
+        "crispy-skillet-chicken-sandwiches-640.webp": "7a907216e74fa344280bac76e60436a6efea89e9e3b9b5630436dbae3ef6e995"
+      }
+    }
   },
   "catalog_confidence": {
     "structural_validation": "PASS",
@@ -484,7 +561,7 @@
     {
       "check": "dietary_vs_ingredients",
       "result": "pass",
-      "detail": "dietary_labels stay dairy_free only if the mayonnaise is dairy-free egg-and-oil mayonnaise. Structured allergens are poultry, egg, and wheat, matching chicken, eggs, mayonnaise, flour, and rolls. Egg and wheat are outside the live enum and are still on the array. This revision is not a Vale pass."
+      "detail": "Superseded at freeze-r1: no dietary labels claimed (dairy_free removed, Cora decision); dietary_eligibility.contains_dairy conservatively true; contains_poultry true. Allergens egg, wheat. Dry-run detail retained in history only."
     },
     {
       "check": "taste_vocabulary",
@@ -503,15 +580,15 @@
     }
   ],
   "scaling_notes": {
-    "1": "One 4 oz cutlet, 1 roll, 2 slices of tomato, 1 lettuce leaf. Keep 1 egg even though the scaled amount is half an egg; a smaller egg wash still has to coat. Use about 2 tbsp flour, 1 tbsp canola oil, and 2 tbsp mayonnaise with 3/4 tsp dijon. One small garlic clove is enough. Cook in one batch, still to 165°F, about 3 minutes per side.",
-    "2": "Two cutlets in one batch. One egg is still enough. Halve the flour, oil, sauce, lemon (use half a lemon), parsley, and salt. Same skillet temperature and 165°F target.",
-    "4": "As written. Two skillet batches so the pan is not crowded. Oil is split, 2 tbsp then 2 tbsp.",
     "base_servings": 4,
     "ratio": {
       "1": 0.25,
       "2": 0.5,
       "4": 1
     },
+    "1": "One 4 oz cutlet, 1 roll, 2 slices of tomato, 1 lettuce leaf. Keep 1 egg even though the scaled amount is half an egg; a smaller egg wash still has to coat. Use about 2 tbsp flour, 1 tbsp canola oil, and 2 tbsp mayonnaise with 3/4 tsp dijon. One small garlic clove is enough. Cook in one batch, still to 165°F, about 3 minutes per side.",
+    "2": "Two cutlets in one batch. One egg is still enough. Halve the flour, oil, sauce, lemon (use half a lemon), parsley, and salt. Same skillet temperature and 165°F target.",
+    "4": "As written. Two skillet batches so the pan is not crowded. Oil is split, 2 tbsp then 2 tbsp.",
     "do_not_scale": [
       "skillet temperature",
       "165°F doneness",
@@ -533,5 +610,8 @@
     ],
     "certification": null,
     "published": false
-  }
+  },
+  "structural_qa_state": "freeze_r1_contract_forward_amendment_awaiting_preflight_and_vale",
+  "certification_scope_note": "The certification block records the Dry Run #1 Vale r2 PASS for the pre-contract record. It does not certify freeze-r1; freeze-r1 needs Vale re-audit (A, G, J-classification, M, N, O; see AMENDMENT-freeze-r1.md in this directory).",
+  "revision_note": "freeze-r1 (2026-10-10 CT, hardening-1): contract-forward creator amendment of the Dry Run #1 package. Records/classification only; recipe and images unchanged (culinary_hash unchanged)."
 }

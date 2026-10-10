@@ -25,15 +25,16 @@ describe("freeze integrity", () => {
     }
   });
 
-  it("dry-run packages missing recipe_version.dietary_eligibility cannot mechanical-PASS", () => {
+  it("freeze-r1 amendments add dietary_eligibility so the three dry-run packages now PASS with a recorded FREEZE_INTEGRITY", () => {
     for (const slug of [
       "crispy-skillet-chicken-sandwiches",
       "garlic-tomato-mussels",
       "gochujang-grilled-flank-steak",
     ]) {
       const report = runFreezeIntegrity(join(root, slug));
-      expect(report.FREEZE_INTEGRITY).toBe("FAIL");
-      expect(report.checks.some((c) => c.id === "field_dietary_eligibility" && c.result === "FAIL")).toBe(true);
+      expect(report.FREEZE_INTEGRITY, slug).toBe("PASS");
+      expect(report.checks.some((c) => c.id === "field_dietary_eligibility" && c.result === "FAIL")).toBe(false);
+      expect(JSON.parse(readFileSync(join(root, slug, "FREEZE_INTEGRITY.json"), "utf8")).FREEZE_INTEGRITY).toBe("PASS");
     }
   });
 });

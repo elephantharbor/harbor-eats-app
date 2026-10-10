@@ -129,3 +129,7 @@ Master and card WebPs are frozen for re-audit. They are not imported or publishe
 - Targets: `roasted-butternut-farro-plate.webp` (1200x900) and `roasted-butternut-farro-plate-640.webp` (640x480).
 - asset_generated: true. generation_date: 2026-10-04. qa_state: frozen_for_audit. Active source: `img_v2.jpg`; rejected prior assets are under `rejected/`.
 
+
+## Amendment freeze-r3 — source path (2026-10-10 CT, hardening-1)
+
+Records-only. Factory source: `flavorweave-catalog-factory/dry-run-2/candidates/roasted-butternut-farro-plate` (factory package_revision freeze-r2). Active catalog package: `catalog/roasted-butternut-farro-plate/v1.json (harbor-eats-app repo; read-only reference)`; v1.json here is that active package plus `factory_source` metadata and package_revision `freeze-r3`. Classification shown in v1.json is the D-03 backfill value (effort_level `moderate`, ingredient_complexity `standard`), which supersedes legacy wording elsewhere in this README. Previous FREEZE_INTEGRITY candidate_dir `/workspace/catalog/roasted-butternut-farro-plate` did not exist. No culinary, dietary, allergen or image change. Classification changed vs the factory source (legacy weeknight/straightforward -> moderate/standard, D-03 backfill); recorded in classification_history with rubric rationale.
