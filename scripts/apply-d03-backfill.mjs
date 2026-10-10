@@ -205,7 +205,7 @@ const sql = [
   "--   npx wrangler d1 execute harbor-eats-cycle1-preview --remote --config wrangler.staging.toml --file data/d03-classification-import.sql",
   "--",
   "-- Production (harbor-eats-db, 23aa3db3-1090-471b-8c8a-b6fe71f5c053), Cora only:",
-  "--   npx wrangler d1 migrations apply harbor-eats-db --remote --config wrangler.toml",
+  "--   npx wrangler d1 migrations apply harbor-eats-db --remote --config deploy/pages/production/wrangler.toml",
   "--   npx wrangler d1 execute harbor-eats-db --remote --config wrangler.toml --file data/d03-classification-import.sql",
   "--",
   "-- Fresh empty databases should use scripts/import-catalog.mjs after 0013,",
