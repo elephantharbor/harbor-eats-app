@@ -339,7 +339,7 @@ describe("kill switch, config, secrecy", () => {
     expect(fetchImpl).not.toHaveBeenCalled();
   });
   it("committed configs: prod gateway OFF or D-06 tasks only, preview OFF or allowed sets, limits present, no astra/secret", () => {
-    for (const [env, budget, global] of [["preview", "0.25", "50"], ["production", "1.00", "100"]]) {
+    for (const [env, budget, global] of [["preview", "0.25", "250"], ["production", "1.00", "100"]]) {
       const vars = validateAiVars(readFileSync(`deploy/pages/${env}/wrangler.toml`, "utf8"));
       // Production: OFF, or ON with exactly the D-06 tasks (enabled 2026-10-10, Thomas). Preview may also run the D-05 explanation smoke.
       const onPair = [vars.AI_GATEWAY_ENABLED, vars.AI_TASKS_ENABLED];
