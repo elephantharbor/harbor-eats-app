@@ -1,0 +1,89 @@
+{
+  "dir": "/workspace/factory/waves/wave-13/candidates/roasted-cabbage-cashew-romesco",
+  "slug": "roasted-cabbage-cashew-romesco",
+  "STRUCTURAL_PREFLIGHT": "PASS",
+  "hh001_eligible": true,
+  "fail_count": 0,
+  "checks": [
+    {
+      "id": "package_json",
+      "result": "PASS",
+      "detail": "v1.json parses"
+    },
+    {
+      "id": "importer_normalize",
+      "result": "PASS",
+      "detail": "rv_roasted-cabbage-cashew-romesco_v1"
+    },
+    {
+      "id": "kitchen_tested",
+      "result": "PASS",
+      "detail": "version=false confidence=false"
+    },
+    {
+      "id": "cook_counts",
+      "result": "PASS",
+      "detail": "household cooks and ratings are 0"
+    },
+    {
+      "id": "d03_enums",
+      "result": "PASS",
+      "detail": "moderate / simple"
+    },
+    {
+      "id": "equipment",
+      "result": "PASS",
+      "detail": "4 items"
+    },
+    {
+      "id": "methods",
+      "result": "PASS",
+      "detail": "roast"
+    },
+    {
+      "id": "dietary_eligibility",
+      "result": "PASS",
+      "detail": "cashews_only_ok"
+    },
+    {
+      "id": "hh001_contract",
+      "result": "PASS",
+      "detail": "Plant-based. The only nut is cashew, which HH001 allows when that is the whole nut policy. No dairy, no bread, no almonds."
+    },
+    {
+      "id": "no_conditional_claims",
+      "result": "PASS",
+      "detail": "none"
+    },
+    {
+      "id": "ingredient_refs",
+      "result": "PASS",
+      "detail": "11 ingredients referenced"
+    },
+    {
+      "id": "cooking_d061",
+      "result": "PASS",
+      "detail": "metadata frying=- crisp=baked,roasted stir=false"
+    },
+    {
+      "id": "plating_brief",
+      "result": "PASS",
+      "detail": "required sections present"
+    },
+    {
+      "id": "image_prompt",
+      "result": "PASS",
+      "detail": "image-prompt.md"
+    },
+    {
+      "id": "image_slot",
+      "result": "PASS",
+      "detail": "pending_image_pass"
+    },
+    {
+      "id": "d03_sidecar",
+      "result": "PASS",
+      "detail": "moderate / simple"
+    }
+  ]
+}

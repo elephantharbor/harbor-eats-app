@@ -1,0 +1,127 @@
+{
+  "FREEZE_INTEGRITY": "FAIL",
+  "candidate_dir": "/workspace/factory/waves/wave-13/candidates/spanish-potato-tortilla",
+  "fail_count": 3,
+  "checks": [
+    {
+      "id": "package_file",
+      "result": "PASS",
+      "detail": "v1.json parses"
+    },
+    {
+      "id": "identity_present",
+      "result": "PASS",
+      "detail": "spanish-potato-tortilla author-r1"
+    },
+    {
+      "id": "identity_agree",
+      "result": "PASS",
+      "detail": "slug matches dish_id"
+    },
+    {
+      "id": "recipe_id",
+      "result": "PASS",
+      "detail": "rcp_spanish-potato-tortilla"
+    },
+    {
+      "id": "version_id",
+      "result": "PASS",
+      "detail": "rv_spanish-potato-tortilla_v1"
+    },
+    {
+      "id": "field_ingredients",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "field_steps",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "field_taste_tags",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "field_base_servings",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "field_dietary_eligibility",
+      "result": "PASS",
+      "detail": "present"
+    },
+    {
+      "id": "eligibility_object",
+      "result": "PASS",
+      "detail": "dietary_eligibility is an object"
+    },
+    {
+      "id": "field_allergens",
+      "result": "PASS",
+      "detail": "present at recipe_version.allergens"
+    },
+    {
+      "id": "allergens_list",
+      "result": "PASS",
+      "detail": "1 tokens"
+    },
+    {
+      "id": "no_denial_strings",
+      "result": "PASS",
+      "detail": "no stale missing-image denials"
+    },
+    {
+      "id": "provenance_method",
+      "result": "PASS",
+      "detail": "pending_original_ai"
+    },
+    {
+      "id": "provenance_generation_date",
+      "result": "FAIL",
+      "detail": "missing"
+    },
+    {
+      "id": "provenance_generator",
+      "result": "PASS",
+      "detail": "unassigned_image_pass"
+    },
+    {
+      "id": "provenance_model",
+      "result": "PASS",
+      "detail": "unknown"
+    },
+    {
+      "id": "active_not_rejected",
+      "result": "PASS",
+      "detail": "active refs do not mention rejected/"
+    },
+    {
+      "id": "image_exists_master",
+      "result": "FAIL",
+      "detail": "missing /workspace/factory/waves/wave-13/candidates/spanish-potato-tortilla/spanish-potato-tortilla.webp"
+    },
+    {
+      "id": "image_exists_card",
+      "result": "FAIL",
+      "detail": "missing /workspace/factory/waves/wave-13/candidates/spanish-potato-tortilla/spanish-potato-tortilla-640.webp"
+    },
+    {
+      "id": "declared_master_dims",
+      "result": "PASS",
+      "detail": "declared master matches spec"
+    },
+    {
+      "id": "declared_card_dims",
+      "result": "PASS",
+      "detail": "declared card matches spec"
+    },
+    {
+      "id": "rejected_not_active_name",
+      "result": "PASS",
+      "detail": "no rejected dir"
+    }
+  ]
+}

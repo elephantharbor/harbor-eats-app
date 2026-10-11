@@ -1,0 +1,488 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-13. Image slot is pending_image_pass. Not certified. Not published. Not imported.",
+  "batch_id": "wave-13-2026-10-11",
+  "batch_label": "wave-13",
+  "mode": "author_batch",
+  "package_revision": "author-r1",
+  "authored_on": "2026-10-11",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Author (catalog factory cloud agent)",
+  "authored_by": "Cursor cloud agent, author role, wave-13",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "deep-fried-cod-roasted-potatoes",
+    "slug": "deep-fried-cod-roasted-potatoes",
+    "title": "Deep-Fried Cod with Oven-Roasted Potatoes",
+    "description": "Cod in a club-soda batter, deep-fried until golden, with oven-roasted potato wedges whose edges are crisp. Lemon, parsley, and vinegar at the table. No butter.",
+    "cuisine": "british",
+    "meal_format": "plate",
+    "primary_ingredient": "cod",
+    "vocabulary_tag_ids": [
+      "cod",
+      "crispy",
+      "savory",
+      "fresh"
+    ],
+    "current_recipe_id": "rcp_deep-fried-cod-roasted-potatoes",
+    "current_version_id": "rv_deep-fried-cod-roasted-potatoes_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_deep-fried-cod-roasted-potatoes",
+    "dish_id": "deep-fried-cod-roasted-potatoes",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-11",
+      "curator": "Author (catalog factory cloud agent)",
+      "process": "FlavorWeave Catalog Factory wave-13-2026-10-11",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_deep-fried-cod-roasted-potatoes_v1",
+    "recipe_id": "rcp_deep-fried-cod-roasted-potatoes",
+    "dish_id": "deep-fried-cod-roasted-potatoes",
+    "version_number": 1,
+    "package_revision": "author-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. The image slot is pending_image_pass. Not certified. Not published. kitchen_tested is false.",
+    "title": "Deep-Fried Cod with Oven-Roasted Potatoes",
+    "description": "Cod in a club-soda batter, deep-fried until golden, with oven-roasted potato wedges whose edges are crisp. Lemon, parsley, and vinegar at the table. No butter.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "cod-fillets",
+        "name": "cod",
+        "display_name": "cod fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 6 oz each, 1.5 lb total",
+        "preparation": "patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "russet-potatoes",
+        "name": "russet potatoes",
+        "display_name": "russet potatoes",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 3/4-inch wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "for the potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "1 tsp potatoes, 1/2 tsp batter, 1 tsp fish",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "all-purpose-flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cornstarch",
+        "name": "cornstarch",
+        "display_name": "cornstarch",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "baking-powder",
+        "name": "baking powder",
+        "display_name": "baking powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "egg",
+        "name": "egg",
+        "display_name": "large egg",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "club-soda",
+        "name": "club soda",
+        "display_name": "club soda",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "cold. The batter liquid is club soda, not beer and not milk.",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "canola or peanut-free vegetable oil, enough for about 2 inches in the pot",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "white-wine-vinegar",
+        "name": "white wine vinegar",
+        "display_name": "white wine vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "at the table, in place of malt vinegar",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the oven and cut the potatoes",
+        "body": "Turn the oven to 425 F before anything else; it heats during this prep. Cut the potatoes into 3/4-inch wedges, toss with the olive oil, 1 tsp salt, and the pepper, and spread them on a sheet pan.",
+        "ingredient_refs": [
+          "russet-potatoes",
+          "olive-oil",
+          "kosher-salt",
+          "black-pepper"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Mix the batter and salt the cod",
+        "body": "Whisk the flour, cornstarch, baking powder, and 1/2 tsp salt. Whisk in the egg and the cold club soda until just combined; a few lumps are fine. Pat the cod dry and salt it with the remaining 1 tsp. About 20 minutes for both prep steps, including the oven heat.",
+        "ingredient_refs": [
+          "all-purpose-flour",
+          "cornstarch",
+          "baking-powder",
+          "kosher-salt",
+          "egg",
+          "club-soda",
+          "cod-fillets"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Roast the potatoes",
+        "body": "Roast the potatoes at 425 F for 35 minutes, turning once halfway, until the centers are tender and the edges are crisp. Leave them in the oven if they finish a few minutes early.",
+        "ingredient_refs": [
+          "russet-potatoes"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Deep-fry the cod",
+        "body": "When the potatoes have about 10 minutes left, heat the neutral oil to 375 F. Dip two fillets in batter, let the excess drip off, and deep-fry until deep golden and 145 F in the center, about 3 to 4 minutes. Drain on a rack. Repeat with the other two fillets. This sits inside the 35-minute roast.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "cod-fillets",
+          "all-purpose-flour",
+          "cornstarch",
+          "egg",
+          "club-soda"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Put the cod and potatoes on plates. Scatter the parsley and serve with lemon and the vinegar.",
+        "ingredient_refs": [
+          "parsley",
+          "lemon",
+          "white-wine-vinegar",
+          "cod-fillets",
+          "russet-potatoes"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "batter",
+        "name": "club-soda batter",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "flour",
+          "cornstarch",
+          "baking powder",
+          "egg",
+          "club soda"
+        ]
+      },
+      {
+        "component_id": "potatoes",
+        "name": "oven-roasted potato wedges",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "russet potatoes",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "heavy 4-quart pot or dutch oven",
+      "deep-fry thermometer or an instant-read thermometer that clips to the pot",
+      "rimmed sheet pan",
+      "tongs",
+      "wire rack",
+      "mixing bowl",
+      "paper towels"
+    ],
+    "methods": [
+      "deep-fry",
+      "roast"
+    ],
+    "cooking": {
+      "frying": [
+        "deep"
+      ],
+      "crispy_non_fry": [
+        "baked",
+        "roasted"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 35,
+    "total_time_minutes": 55,
+    "prep_minutes": 20,
+    "cook_minutes": 35,
+    "total_minutes": 55,
+    "time_clock": "Prep 20, and the oven goes on at minute 0 so it is hot before the pan goes in. Cook 35 is the potato roast. The oil heats during the last 8 minutes of that roast, and the cod is deep-fried in two batches inside the same 35 minutes.",
+    "heat": "Oven 425 F for the potatoes. Oil at 375 F for the cod.",
+    "doneness": "Potatoes tender in the center with crisp edges. Cod deep golden, opaque, and 145 F in the center.",
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Cursor cloud agent, author role, wave-13",
+        "when": "2026-10-11",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. The batter is club soda, flour, cornstarch, and egg, with no dairy and no shellfish. No nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. Fish because of the cod. Not vegetarian.",
+    "allergens": [
+      "finfish",
+      "wheat",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Finfish is the cod.",
+      "Wheat is the flour.",
+      "Egg is in the batter."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. The batter is club soda, flour, cornstarch, and egg, with no dairy and no shellfish. No nuts.",
+    "hh001_contract": "Club-soda batter only. No beer batter, no milk, no butter, and no shellfish in the fryer.",
+    "vocabulary_tag_ids": [
+      "cod",
+      "crispy",
+      "savory",
+      "fresh"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r1_image_slot_pending",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js. Warnings about other methods stay out of the title, description, and steps."
+    },
+    "culinary_hash": "8b1d39b594206f74b1b77cfabff167cf25ef4ca3da79ad4624f7ee1cfb84efdb",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_deep-fried-cod-roasted-potatoes_v1",
+    "dish_id": "deep-fried-cod-roasted-potatoes",
+    "recipe_version_id": "rv_deep-fried-cod-roasted-potatoes_v1",
+    "asset_generated": false,
+    "slot_status": "pending_image_pass",
+    "master_filename": "deep-fried-cod-roasted-potatoes.webp",
+    "card_filename": "deep-fried-cod-roasted-potatoes-640.webp",
+    "master_ref": null,
+    "card_ref": null,
+    "derivatives": [],
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "dimensions_note": "Targets for the image pass. No WebP file is in this directory yet.",
+    "generation": {
+      "method": "pending_original_ai",
+      "generator": "unassigned_image_pass",
+      "model": "unknown",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "factory/tools/image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "pending_image_pass",
+    "recipe_fidelity_state": "pending_image_pass",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "pending_original_ai",
+    "package_revision": "author-r1",
+    "rejected_dir": "rejected/"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_ASSET",
+    "provenance": "KNOWN_TEXT",
+    "image_rights_provenance": "PENDING_ORIGINAL_AI",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PENDING_GROK_BOT"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 20, and the oven goes on at minute 0 so it is hot before the pan goes in. Cook 35 is the potato roast. The oil heats during the last 8 minutes of that roast, and the cod is deep-fried in two batches inside the same 35 minutes."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pending_image_pass",
+      "detail": "Plating brief and prompt are written. WebP files are not in this directory."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"deep\"], \"crispy_non_fry\": [\"baked\", \"roasted\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One fillet, a quarter of the batter, one potato. Same oil depth; do not cut the oil down to a puddle.",
+    "2": "Half the fish, batter, and potatoes. Still two batches if the pot is crowded.",
+    "4": "As written.",
+    "do_not_scale": [
+      "oil depth in the pot",
+      "oil temperature of 375 F"
+    ]
+  },
+  "coverage_contribution": "British 1 to 2, and the first HH001 British meal. Cod moves from tacos to a deep-fried plate. Potatoes are roasted crisp, not a second fry.",
+  "near_duplicate_review": "Compared with crispy fish tacos: same species, different format, and those tacos are a stovetop legacy package. Compared with Cajun catfish: blackened, not deep-fried. Compared with Thai fish cakes: a paste cake, not a battered fillet.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r1_image_slot_pending"
+}

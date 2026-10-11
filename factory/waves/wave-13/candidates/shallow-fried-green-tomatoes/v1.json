@@ -1,0 +1,492 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-13. Image slot is pending_image_pass. Not certified. Not published. Not imported.",
+  "batch_id": "wave-13-2026-10-11",
+  "batch_label": "wave-13",
+  "mode": "author_batch",
+  "package_revision": "author-r1",
+  "authored_on": "2026-10-11",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Author (catalog factory cloud agent)",
+  "authored_by": "Cursor cloud agent, author role, wave-13",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "shallow-fried-green-tomatoes",
+    "slug": "shallow-fried-green-tomatoes",
+    "title": "Shallow-Fried Green Tomatoes with White Beans and Slaw",
+    "description": "Cornmeal-crusted green tomato slices, shallow-fried until golden, with smoky white beans and a vinegar slaw. No buttermilk and no mayonnaise.",
+    "cuisine": "southern",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "green tomatoes",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "tangy",
+      "savory",
+      "fresh"
+    ],
+    "current_recipe_id": "rcp_shallow-fried-green-tomatoes",
+    "current_version_id": "rv_shallow-fried-green-tomatoes_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_shallow-fried-green-tomatoes",
+    "dish_id": "shallow-fried-green-tomatoes",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-11",
+      "curator": "Author (catalog factory cloud agent)",
+      "process": "FlavorWeave Catalog Factory wave-13-2026-10-11",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_shallow-fried-green-tomatoes_v1",
+    "recipe_id": "rcp_shallow-fried-green-tomatoes",
+    "dish_id": "shallow-fried-green-tomatoes",
+    "version_number": 1,
+    "package_revision": "author-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. The image slot is pending_image_pass. Not certified. Not published. kitchen_tested is false.",
+    "title": "Shallow-Fried Green Tomatoes with White Beans and Slaw",
+    "description": "Cornmeal-crusted green tomato slices, shallow-fried until golden, with smoky white beans and a vinegar slaw. No buttermilk and no mayonnaise.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "green-tomatoes",
+        "name": "green tomatoes",
+        "display_name": "green tomatoes",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 1.5 lb, firm and green",
+        "preparation": "sliced 1/2 inch thick",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 tsp on the tomatoes, 1/2 tsp cornmeal, 1/2 tsp slaw",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cornmeal",
+        "name": "cornmeal",
+        "display_name": "cornmeal",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "not a wheat flour",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "eggs",
+        "display_name": "large eggs",
+        "quantity": 2,
+        "unit": "count",
+        "note": "beaten with 1 tbsp water",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "into the eggs",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "about 1/4 inch in a 10-inch skillet",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "cannellini-beans",
+        "name": "cannellini beans",
+        "display_name": "cannellini beans",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "drained, from two 15-oz cans, no pork in the can",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 2,
+        "unit": "clove",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the beans",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "smoked-paprika",
+        "name": "smoked paprika",
+        "display_name": "smoked paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "green-cabbage",
+        "name": "green cabbage",
+        "display_name": "green cabbage",
+        "quantity": 4,
+        "unit": "cup",
+        "note": null,
+        "preparation": "shredded",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "apple-cider-vinegar",
+        "name": "apple cider vinegar",
+        "display_name": "apple cider vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Salt the tomatoes and mix the slaw",
+        "body": "Lay the tomato slices on towels, sprinkle with 1 tsp salt, and wait 10 minutes, then pat them very dry. Meanwhile toss the cabbage, scallions, vinegar, sugar, and 1/2 tsp salt. Beat the eggs with the water. Stir the remaining salt and the pepper into the cornmeal. About 18 minutes.",
+        "ingredient_refs": [
+          "green-tomatoes",
+          "kosher-salt",
+          "green-cabbage",
+          "scallions",
+          "apple-cider-vinegar",
+          "sugar",
+          "eggs",
+          "water",
+          "cornmeal",
+          "black-pepper"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Heat the beans",
+        "body": "Warm the olive oil and garlic in a saucepan over medium for 1 minute. Add the beans, smoked paprika, and a splash of water if they look dry. Heat through, about 8 minutes, while the tomatoes cook. Keep them warm.",
+        "ingredient_refs": [
+          "olive-oil",
+          "garlic",
+          "cannellini-beans",
+          "smoked-paprika"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Shallow-fry the tomatoes",
+        "body": "Heat the neutral oil over medium until it shimmers, about 1/4 inch deep in the 10-inch skillet. Dip the tomatoes in egg, then cornmeal, and shallow-fry in three batches until golden, about 3 minutes per side. Drain on a rack. Cook clock is 18 minutes including the beans.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "green-tomatoes",
+          "eggs",
+          "cornmeal"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Plate",
+        "body": "Spoon beans onto plates, add the tomatoes and a pile of slaw.",
+        "ingredient_refs": [
+          "cannellini-beans",
+          "green-tomatoes",
+          "green-cabbage"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "tomatoes",
+        "name": "shallow-fried green tomatoes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "green tomatoes",
+          "cornmeal",
+          "eggs"
+        ]
+      },
+      {
+        "component_id": "beans",
+        "name": "smoky white beans",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cannellini beans",
+          "garlic",
+          "smoked paprika"
+        ]
+      },
+      {
+        "component_id": "slaw",
+        "name": "vinegar slaw",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "green cabbage",
+          "scallions",
+          "apple cider vinegar",
+          "sugar"
+        ]
+      }
+    ],
+    "equipment": [
+      "10-inch skillet",
+      "slotted spatula",
+      "wire rack",
+      "medium saucepan",
+      "two mixing bowls",
+      "paper towels"
+    ],
+    "methods": [
+      "shallow-fry"
+    ],
+    "cooking": {
+      "frying": [
+        "shallow"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 18,
+    "cook_time_minutes": 18,
+    "total_time_minutes": 36,
+    "prep_minutes": 18,
+    "cook_minutes": 18,
+    "total_minutes": 36,
+    "time_clock": "Prep 18 includes a 10-minute salt on the tomatoes while the slaw is mixed. Cook 18 is the shallow-fry in three batches, and the beans heat on a second burner during the first batch.",
+    "heat": "Medium skillet, about 1/4 inch of oil, for the tomatoes. A small pot over medium for the beans.",
+    "doneness": "Tomato crust golden and crisp, interior hot and juicy, not raw and not mush. Beans heated through. Slaw still crunchy.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Cursor cloud agent, author role, wave-13",
+        "when": "2026-10-11",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "No meat, poultry, fish, shellfish, or dairy. Eggs are allowed. Cornmeal replaces a wheat dredge. The slaw has vinegar, not mayonnaise. No nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and vegetarian. Not plant-based, because of the eggs.",
+    "allergens": [
+      "egg"
+    ],
+    "allergen_notes": [
+      "Egg is the dredge. Cornmeal is not wheat. No milk."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "No meat, poultry, fish, shellfish, or dairy. Eggs are allowed. Cornmeal replaces a wheat dredge. The slaw has vinegar, not mayonnaise. No nuts.",
+    "hh001_contract": "Dredge is egg and water, not buttermilk. Slaw is vinegar, not mayonnaise. No bacon and no butter.",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "tangy",
+      "savory",
+      "fresh"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r1_image_slot_pending",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js. Warnings about other methods stay out of the title, description, and steps."
+    },
+    "culinary_hash": "d10b36ef55cf27f826dd50c570be596b71de0ab66edf06c4db57caec7f4cf7b0",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_shallow-fried-green-tomatoes_v1",
+    "dish_id": "shallow-fried-green-tomatoes",
+    "recipe_version_id": "rv_shallow-fried-green-tomatoes_v1",
+    "asset_generated": false,
+    "slot_status": "pending_image_pass",
+    "master_filename": "shallow-fried-green-tomatoes.webp",
+    "card_filename": "shallow-fried-green-tomatoes-640.webp",
+    "master_ref": null,
+    "card_ref": null,
+    "derivatives": [],
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "dimensions_note": "Targets for the image pass. No WebP file is in this directory yet.",
+    "generation": {
+      "method": "pending_original_ai",
+      "generator": "unassigned_image_pass",
+      "model": "unknown",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "factory/tools/image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "pending_image_pass",
+    "recipe_fidelity_state": "pending_image_pass",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "pending_original_ai",
+    "package_revision": "author-r1",
+    "rejected_dir": "rejected/"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_ASSET",
+    "provenance": "KNOWN_TEXT",
+    "image_rights_provenance": "PENDING_ORIGINAL_AI",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PENDING_GROK_BOT"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 18 includes a 10-minute salt on the tomatoes while the slaw is mixed. Cook 18 is the shallow-fry in three batches, and the beans heat on a second burner during the first batch."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pending_image_pass",
+      "detail": "Plating brief and prompt are written. WebP files are not in this directory."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"shallow\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One tomato, one egg is still easier than a fraction, a quarter of the beans and slaw.",
+    "2": "Half, fried in two batches.",
+    "4": "As written.",
+    "do_not_scale": [
+      "oil depth stays about 1/4 inch",
+      "do not stack wet tomatoes in the skillet"
+    ]
+  },
+  "coverage_contribution": "Southern 1 to 2, and the first HH001 southern plate. First green tomato. Explicit shallow-fry.",
+  "near_duplicate_review": "The only other southern meal is a shrimp boil with sausage and butter. Sabich also shallow-fries, but that is eggplant in a pita, not a tomato plate.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r1_image_slot_pending"
+}

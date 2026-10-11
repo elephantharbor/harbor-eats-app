@@ -1,0 +1,387 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-13. Image slot is pending_image_pass. Not certified. Not published. Not imported.",
+  "batch_id": "wave-13-2026-10-11",
+  "batch_label": "wave-13",
+  "mode": "author_batch",
+  "package_revision": "author-r1",
+  "authored_on": "2026-10-11",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Author (catalog factory cloud agent)",
+  "authored_by": "Cursor cloud agent, author role, wave-13",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "linguine-with-clams",
+    "slug": "linguine-with-clams",
+    "title": "Linguine with Clams",
+    "description": "Littleneck clams steamed open in garlic and white wine, tossed with linguine, parsley, and lemon. No cheese and no butter.",
+    "cuisine": "italian",
+    "meal_format": "pasta",
+    "primary_ingredient": "clams",
+    "vocabulary_tag_ids": [
+      "pasta",
+      "savory",
+      "herbaceous",
+      "fresh"
+    ],
+    "current_recipe_id": "rcp_linguine-with-clams",
+    "current_version_id": "rv_linguine-with-clams_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_linguine-with-clams",
+    "dish_id": "linguine-with-clams",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-11",
+      "curator": "Author (catalog factory cloud agent)",
+      "process": "FlavorWeave Catalog Factory wave-13-2026-10-11",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_linguine-with-clams_v1",
+    "recipe_id": "rcp_linguine-with-clams",
+    "dish_id": "linguine-with-clams",
+    "version_number": 1,
+    "package_revision": "author-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. The image slot is pending_image_pass. Not certified. Not published. kitchen_tested is false.",
+    "title": "Linguine with Clams",
+    "description": "Littleneck clams steamed open in garlic and white wine, tossed with linguine, parsley, and lemon. No cheese and no butter.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "littleneck-clams",
+        "name": "littleneck clams",
+        "display_name": "littleneck clams",
+        "quantity": 4,
+        "unit": "lb",
+        "note": null,
+        "preparation": "scrubbed, any that are open and do not close when tapped discarded",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "linguine",
+        "name": "linguine",
+        "display_name": "linguine",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": "sliced thin",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "white-wine",
+        "name": "dry white wine",
+        "display_name": "dry white wine",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "red-pepper-flakes",
+        "name": "red pepper flakes",
+        "display_name": "red pepper flakes",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "juiced, plus wedges to serve",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the pasta water",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Scrub and boil",
+        "body": "Scrub the clams. Slice the garlic, chop the parsley, and juice the lemon. Put a large pot of water on to boil and salt it. The water should be boiling by the end of this 15-minute prep.",
+        "ingredient_refs": [
+          "littleneck-clams",
+          "garlic",
+          "parsley",
+          "lemon",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Pasta and clams",
+        "body": "Boil the linguine until it is almost tender, about 10 minutes. Meanwhile warm the olive oil, garlic, and red pepper flakes in a skillet over medium until the garlic is fragrant, about 1 minute. Add the wine and the clams, cover, and cook until the clams open, about 6 to 8 minutes. Discard any that stay shut.",
+        "ingredient_refs": [
+          "linguine",
+          "olive-oil",
+          "garlic",
+          "red-pepper-flakes",
+          "white-wine",
+          "littleneck-clams"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Toss",
+        "body": "Drain the pasta, reserving 1/2 cup pasta water. Toss the pasta with the clams, their liquor, the parsley, lemon juice, and pepper. Loosen with pasta water if it looks dry. Cook is 18 minutes.",
+        "ingredient_refs": [
+          "linguine",
+          "littleneck-clams",
+          "parsley",
+          "lemon",
+          "black-pepper"
+        ]
+      }
+    ],
+    "components": [],
+    "equipment": [
+      "large pot",
+      "12-inch skillet with a lid",
+      "tongs",
+      "colander"
+    ],
+    "methods": [
+      "stovetop"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 18,
+    "total_time_minutes": 33,
+    "prep_minutes": 15,
+    "cook_minutes": 18,
+    "total_minutes": 33,
+    "time_clock": "Prep 15 is scrubbing clams, slicing garlic, and bringing the pasta water to a boil. Cook 18 is the pasta and the clams together: pasta about 10 minutes, clams about 8, then a short toss.",
+    "heat": "A large pot of boiling water for the pasta. A 12-inch skillet or wide pot over medium for the clams.",
+    "doneness": "Pasta tender with a slight bite. Clams open. Any clam that stays shut is discarded. Sauce glossy from the clam liquor and olive oil, not creamy.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Cursor cloud agent, author role, wave-13",
+        "when": "2026-10-11",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": true,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Clams are shellfish, which HH001 does not eat. There is no dairy."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. Shellfish, so not vegetarian, not plant-based, and not the fish label.",
+    "allergens": [
+      "shellfish",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Shellfish is the clams.",
+      "Wheat is the linguine."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Clams are shellfish, which HH001 does not eat. There is no dairy.",
+    "hh001_contract": "Not an HH001 meal. No cheese and no butter. Olive oil, garlic, white wine, parsley, and lemon only.",
+    "vocabulary_tag_ids": [
+      "pasta",
+      "savory",
+      "herbaceous",
+      "fresh"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r1_image_slot_pending",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js. Warnings about other methods stay out of the title, description, and steps."
+    },
+    "culinary_hash": "f20cc312e6423d9bcc31bf5bccafeba582079d4af11e9dc8baac08990ac85800",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_linguine-with-clams_v1",
+    "dish_id": "linguine-with-clams",
+    "recipe_version_id": "rv_linguine-with-clams_v1",
+    "asset_generated": false,
+    "slot_status": "pending_image_pass",
+    "master_filename": "linguine-with-clams.webp",
+    "card_filename": "linguine-with-clams-640.webp",
+    "master_ref": null,
+    "card_ref": null,
+    "derivatives": [],
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "dimensions_note": "Targets for the image pass. No WebP file is in this directory yet.",
+    "generation": {
+      "method": "pending_original_ai",
+      "generator": "unassigned_image_pass",
+      "model": "unknown",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "factory/tools/image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "pending_image_pass",
+    "recipe_fidelity_state": "pending_image_pass",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "pending_original_ai",
+    "package_revision": "author-r1",
+    "rejected_dir": "rejected/"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_ASSET",
+    "provenance": "KNOWN_TEXT",
+    "image_rights_provenance": "PENDING_ORIGINAL_AI",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PENDING_GROK_BOT"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 is scrubbing clams, slicing garlic, and bringing the pasta water to a boil. Cook 18 is the pasta and the clams together: pasta about 10 minutes, clams about 8, then a short toss."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pending_image_pass",
+      "detail": "Plating brief and prompt are written. WebP files are not in this directory."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "1 lb clams, 3 oz pasta, one garlic clove, a splash of wine.",
+    "2": "Half.",
+    "4": "As written.",
+    "do_not_scale": [
+      "discard clams that do not open",
+      "salt the pasta water"
+    ]
+  },
+  "coverage_contribution": "First clam dish. Shellfish was shrimp, mussels, and scallops. A pasta with no dairy.",
+  "near_duplicate_review": "Lemon garlic shrimp pasta is a different shellfish and often a different sauce shape. Mussels are a tomato one-pot, not linguine.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r1_image_slot_pending"
+}

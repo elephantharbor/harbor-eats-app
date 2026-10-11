@@ -1,0 +1,89 @@
+{
+  "dir": "/workspace/factory/waves/wave-13/candidates/deep-fried-cod-roasted-potatoes",
+  "slug": "deep-fried-cod-roasted-potatoes",
+  "STRUCTURAL_PREFLIGHT": "PASS",
+  "hh001_eligible": true,
+  "fail_count": 0,
+  "checks": [
+    {
+      "id": "package_json",
+      "result": "PASS",
+      "detail": "v1.json parses"
+    },
+    {
+      "id": "importer_normalize",
+      "result": "PASS",
+      "detail": "rv_deep-fried-cod-roasted-potatoes_v1"
+    },
+    {
+      "id": "kitchen_tested",
+      "result": "PASS",
+      "detail": "version=false confidence=false"
+    },
+    {
+      "id": "cook_counts",
+      "result": "PASS",
+      "detail": "household cooks and ratings are 0"
+    },
+    {
+      "id": "d03_enums",
+      "result": "PASS",
+      "detail": "involved / simple"
+    },
+    {
+      "id": "equipment",
+      "result": "PASS",
+      "detail": "7 items"
+    },
+    {
+      "id": "methods",
+      "result": "PASS",
+      "detail": "deep-fry, roast"
+    },
+    {
+      "id": "dietary_eligibility",
+      "result": "PASS",
+      "detail": "none"
+    },
+    {
+      "id": "hh001_contract",
+      "result": "PASS",
+      "detail": "Finfish is allowed. The batter is club soda, flour, cornstarch, and egg, with no dairy and no shellfish. No nuts."
+    },
+    {
+      "id": "no_conditional_claims",
+      "result": "PASS",
+      "detail": "none"
+    },
+    {
+      "id": "ingredient_refs",
+      "result": "PASS",
+      "detail": "14 ingredients referenced"
+    },
+    {
+      "id": "cooking_d061",
+      "result": "PASS",
+      "detail": "metadata frying=deep crisp=baked,roasted stir=false"
+    },
+    {
+      "id": "plating_brief",
+      "result": "PASS",
+      "detail": "required sections present"
+    },
+    {
+      "id": "image_prompt",
+      "result": "PASS",
+      "detail": "image-prompt.md"
+    },
+    {
+      "id": "image_slot",
+      "result": "PASS",
+      "detail": "pending_image_pass"
+    },
+    {
+      "id": "d03_sidecar",
+      "result": "PASS",
+      "detail": "involved / simple"
+    }
+  ]
+}

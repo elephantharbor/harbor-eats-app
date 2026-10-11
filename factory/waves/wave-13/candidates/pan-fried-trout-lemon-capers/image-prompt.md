@@ -1,0 +1,7 @@
+# Image prompt — Pan-Fried Trout with Lemon and Capers
+
+Status: pending_image_pass. package_revision `author-r1`. Do not treat this file as a finished asset. The image pass generates an original AI image from this prompt, then exports WebPs with `factory/tools/export_meal_webps.py`.
+
+Prompt:
+
+Editorial food photograph of Pan-Fried Trout with Lemon and Capers for a premium meal-planning app. Two trout fillets with a light golden flour crust and a thin lemon-caper sauce spooned over, capers visible. Vessel: Off-white dinner plate or a low oval platter. Camera: Elevated three-quarter so the fillet length and the sauce sheen both show. Must show: Trout, capers, parsley, a little sauce. No rice pile and no potato. Texture: Thin golden crust, moist flaky fish, glossy thin sauce. Sauce: Spooned over the center, not a lake. Capers sitting on top. Garnish: Chopped parsley only. Color from the recipe only: Pale pink-white fish, golden crust, green parsley, dull green capers, yellow lemon. Do not include: Butter pats, cream sauce, almonds, olives, shrimp, dill-heavy Scandinavian styling that implies another recipe, text, logos. Lighting: bright diffused daylight, soft shadows, real highlights, no harsh flash, no muddy dark, no synthetic gloss. Background: light neutral tabletop, modern off-white ceramic. 4:3 landscape, subject centered and crop-safe. Pan-fried trout, not grilled swordfish and not a salmon glaze. Quality reference is the Chipotle Lime Black Bean Bowl standard for light and appetite only. Not a copy of that bowl.

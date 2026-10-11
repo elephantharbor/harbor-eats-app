@@ -1,0 +1,7 @@
+# Image prompt — Sichuan Green Bean and Mushroom Stir-Fry
+
+Status: pending_image_pass. package_revision `author-r1`. Do not treat this file as a finished asset. The image pass generates an original AI image from this prompt, then exports WebPs with `factory/tools/export_meal_webps.py`.
+
+Prompt:
+
+Editorial food photograph of Sichuan Green Bean and Mushroom Stir-Fry for a premium meal-planning app. A mound of blistered green beans and dark shiitake in a reddish sauce, scallions on top, with white rice visible at the edge of the bowl. Vessel: A wide, low, off-white bowl. Camera: Slightly overhead, the usual bowl angle, close enough that individual beans read. Must show: Wrinkled green beans, shiitake slices, red-brown sauce, scallion, white rice. Texture: Blistered bean skins, glossy sauce, matte rice. Sauce: Clinging to the beans, not a soup around them. Garnish: Scallions from the recipe only. Color from the recipe only: Green, brown, rust red, white rice. Do not include: Chicken, beef, peanuts, cashews, oyster sauce sheen that reads as seafood, a fryer, text, logos. Lighting: bright diffused daylight, soft shadows, real highlights, no harsh flash, no muddy dark, no synthetic gloss. Background: light neutral tabletop, modern off-white ceramic. 4:3 landscape, subject centered and crop-safe. A vegetable stir-fry over rice. Not cashew chicken and not a curry. Quality reference is the Chipotle Lime Black Bean Bowl standard for light and appetite only. Not a copy of that bowl.
