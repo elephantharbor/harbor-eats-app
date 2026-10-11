@@ -16,8 +16,9 @@ function catalogRootFromModule() {
     // The worker bundle has no module URL. Fall through to the process directory.
   }
   try {
-    if (typeof process !== "undefined" && typeof process.cwd === "function") {
-      const candidate = join(process.cwd(), "catalog");
+    const runtime = globalThis.process;
+    if (runtime && typeof runtime.cwd === "function") {
+      const candidate = join(runtime.cwd(), "catalog");
       if (existsSync(candidate)) return candidate;
     }
   } catch {
