@@ -174,7 +174,7 @@ describeHosted("Wave-12 catalog (hosted preview)", () => {
     const health = await request.get(`${base}/api/health`);
     expect(health.ok()).toBe(true);
     const healthBody = await health.json();
-    expect(healthBody.catalog_runtime_meals).toBe(75);
+    expect(healthBody.catalog_runtime_meals).toBe(85);
 
     for (const slug of WAVE12_SLUGS) {
       for (const suffix of ["", "-640"]) {
@@ -190,9 +190,9 @@ describeHosted("Wave-12 catalog (hosted preview)", () => {
     const openHeaders = { ...openHousehold.cookieHeader, "Content-Type": "application/json" };
     const discover75 = await discoverySearchAll(openHousehold.request, base, openHeaders);
     await openHousehold.dispose();
-    expect(discover75.firstBody?.total).toBe(75);
-    expect(discover75.firstBody?.catalog_size).toBe(75);
-    expect(discover75.unique.size).toBe(75);
+    expect(discover75.firstBody?.total).toBe(85);
+    expect(discover75.firstBody?.catalog_size).toBe(85);
+    expect(discover75.unique.size).toBe(85);
     for (const slug of WAVE12_SLUGS) {
       expect(discover75.unique.has(slug)).toBe(true);
     }
@@ -208,8 +208,8 @@ describeHosted("Wave-12 catalog (hosted preview)", () => {
     const hhRequest = hh001.request;
     const hhHeaders = { ...hh001.cookieHeader, "Content-Type": "application/json" };
     const hhSearch = await discoverySearchAll(hhRequest, base, hhHeaders);
-    // Guard against the wave-12 failure class: a restricted household must not see all 75.
-    expect(hhSearch.unique.size).toBeLessThan(75);
+    // Guard against the wave-12 failure class: a restricted household must not see all 85.
+    expect(hhSearch.unique.size).toBeLessThan(85);
     for (const blocked of HH001_BLOCKED) {
       expect(hhSearch.slugs).not.toContain(blocked);
     }

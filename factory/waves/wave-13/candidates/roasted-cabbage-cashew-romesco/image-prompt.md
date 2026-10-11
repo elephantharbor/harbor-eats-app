@@ -1,0 +1,7 @@
+# Image prompt — Roasted Cabbage Steaks with Cashew Romesco
+
+Status: image pass complete. package_revision `author-r1`. The active image was generated from this prompt on 2026-10-11 with Grok Bot GenerateImage and exported with `factory/tools/export_meal_webps.py`.
+
+Prompt:
+
+Editorial food photograph of Roasted Cabbage Steaks with Cashew Romesco for a premium meal-planning app. Two cabbage steaks with blackened crisp rims and a thick rust-red cashew romesco spooned across the center, cashew flecks visible in the sauce. Vessel: Off-white dinner plate. Camera: Slightly overhead, still a three-quarter, so the round steaks read. Must show: Cabbage steaks, red romesco, green parsley, a few whole cashews on the sauce. Texture: Charred leaf edges, pale tender core, coarse sauce. Sauce: A band of romesco across the steaks, not a bowl of soup. Garnish: Parsley and a few cashews from the sauce quantity. Color from the recipe only: Pale green and blackened cabbage, rust-red sauce, green parsley, cream-colored cashews. Do not include: Almonds, bread, cheese, chorizo, a fryer, text, logos. Lighting: bright diffused daylight, soft shadows, real highlights, no harsh flash, no muddy dark, no synthetic gloss. Background: light neutral tabletop, modern off-white ceramic. 4:3 landscape, subject centered and crop-safe. Roasted cabbage with a red cashew sauce. Not a soup and not shawarma. Quality reference is the Chipotle Lime Black Bean Bowl standard for light and appetite only. Not a copy of that bowl.

@@ -1,0 +1,50 @@
+{
+  "slug": "seared-duck-breast-cherry",
+  "recipe_version_id": "rv_seared-duck-breast-cherry_v1",
+  "package_revision": "author-r1",
+  "assigned_by": "Cursor cloud agent, author role, wave-13",
+  "assigned_on": "2026-10-11",
+  "rubric": "D-03 as stated in factory/PACKAGE.md",
+  "effort_factors": {
+    "active_prep": 1,
+    "active_attention": 2,
+    "active_components": 1,
+    "technique": 2,
+    "coordination_cleanup_equipment": 1
+  },
+  "effort_score": 7,
+  "effort_level": "involved",
+  "effort_floors_applied": [
+    "technique_2_with_prep",
+    "continuous_attention"
+  ],
+  "complexity_factors": {
+    "ingredient_count_band": 0,
+    "specialty_burden": 1,
+    "flavor_component_breadth": 1,
+    "pantry_familiarity": 0
+  },
+  "complexity_score": 2,
+  "ingredient_complexity": "standard",
+  "ingredient_count": 8,
+  "counted_ingredient_ids": [
+    "duck-breasts",
+    "cherries",
+    "shallot",
+    "red-wine-vinegar",
+    "red-wine",
+    "honey",
+    "thyme",
+    "arugula"
+  ],
+  "excluded_from_count": [
+    "black-pepper",
+    "kosher-salt",
+    "neutral-oil",
+    "olive-oil",
+    "sesame-oil",
+    "water"
+  ],
+  "rationale": "Rendering duck skin is continuous attention and a technique score of 2. The technique floor and the attention floor both apply. Total 7, involved. Eight counted items. Duck breast is a butcher or good-grocery item, specialty burden 1. The cherry sauce is flavor breadth 1. French cooking adds no points.",
+  "cultural_bias": "Cuisine unfamiliarity added no points."
+}

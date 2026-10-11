@@ -1,0 +1,7 @@
+# Image prompt — Grilled Mackerel with Fennel and Orange
+
+Status: image pass complete. package_revision `author-r1`. The active image was generated from this prompt on 2026-10-11 with Grok Bot GenerateImage and exported with `factory/tools/export_meal_webps.py`.
+
+Prompt:
+
+Editorial food photograph of Grilled Mackerel with Fennel and Orange for a premium meal-planning app. One whole grilled mackerel, skin marked, with fennel wedges and a bright orange-parsley relish. Vessel: Oval off-white platter. Camera: Elevated three-quarter so the whole fish reads, not a top-down fillet shot. Must show: Mackerel with intact skin and grill marks, fennel wedges, orange pieces, green parsley. Texture: Charred skin, oily sheen that looks like the fish, not a glaze, tender fennel. Sauce: Relish spooned along the fish, not a cream pool. Garnish: Parsley and orange from the relish. Lemon wedge from the recipe. Color from the recipe only: Silver and charred skin, pale fennel, orange, green. Do not include: Butter, olives, capers, a fillet that could be swordfish, shrimp, text, logos. Lighting: bright diffused daylight, soft shadows, real highlights, no harsh flash, no muddy dark, no synthetic gloss. Background: light neutral tabletop, modern off-white ceramic. 4:3 landscape, subject centered and crop-safe. Whole grilled mackerel. Not swordfish and not salmon. Quality reference is the Chipotle Lime Black Bean Bowl standard for light and appetite only. Not a copy of that bowl.

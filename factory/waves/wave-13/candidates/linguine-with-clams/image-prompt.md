@@ -1,0 +1,7 @@
+# Image prompt — Linguine with Clams
+
+Status: image pass complete. package_revision `author-r1`. The active image was generated from this prompt on 2026-10-11 with Grok Bot GenerateImage and exported with `factory/tools/export_meal_webps.py`.
+
+Prompt:
+
+Editorial food photograph of Linguine with Clams for a premium meal-planning app. A tangle of linguine with open littleneck clams in their shells, garlic slices, parsley, and a lemon wedge. Vessel: Wide shallow off-white bowl. Camera: Slightly overhead, close, so shells and pasta both read. Must show: Open clam shells, pasta, parsley, garlic, lemon. No cream. Texture: Glossy oil-and-wine coating, not a white sauce. Plump clam meat. Sauce: A light gloss on the noodles. No puddle of cream. Garnish: Parsley and lemon from the recipe. Color from the recipe only: Pale pasta, gray-white shells, beige clam, green parsley, yellow lemon. Do not include: Cheese, butter pats, cream, shrimp, mussels as the hero, tomato sauce, text, logos. Lighting: bright diffused daylight, soft shadows, real highlights, no harsh flash, no muddy dark, no synthetic gloss. Background: light neutral tabletop, modern off-white ceramic. 4:3 landscape, subject centered and crop-safe. Clam linguine. Not shrimp pasta and not mussels in tomato broth. Quality reference is the Chipotle Lime Black Bean Bowl standard for light and appetite only. Not a copy of that bowl.

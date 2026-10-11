@@ -1,0 +1,552 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-13. Image pass complete. Not certified. Not published. Not imported.",
+  "batch_id": "wave-13-2026-10-11",
+  "batch_label": "wave-13",
+  "mode": "author_batch",
+  "package_revision": "author-r1",
+  "authored_on": "2026-10-11",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Author (catalog factory cloud agent)",
+  "authored_by": "Cursor cloud agent, author role, wave-13",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "air-fried-vegetable-spring-rolls",
+    "slug": "air-fried-vegetable-spring-rolls",
+    "title": "Air-Fried Vegetable Spring Rolls",
+    "description": "Cabbage, shiitake, and rice-vermicelli rolls air-fried until the wrappers are crisp, with a soy and lime dip. No shrimp and no fish sauce.",
+    "cuisine": "vietnamese",
+    "meal_format": "handheld",
+    "primary_ingredient": "cabbage",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "crunchy",
+      "fresh",
+      "savory"
+    ],
+    "current_recipe_id": "rcp_air-fried-vegetable-spring-rolls",
+    "current_version_id": "rv_air-fried-vegetable-spring-rolls_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_air-fried-vegetable-spring-rolls",
+    "dish_id": "air-fried-vegetable-spring-rolls",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-11",
+      "curator": "Author (catalog factory cloud agent)",
+      "process": "FlavorWeave Catalog Factory wave-13-2026-10-11",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_air-fried-vegetable-spring-rolls_v1",
+    "recipe_id": "rcp_air-fried-vegetable-spring-rolls",
+    "dish_id": "air-fried-vegetable-spring-rolls",
+    "version_number": 1,
+    "package_revision": "author-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. The image pass is complete. Not certified. Not published. kitchen_tested is false.",
+    "title": "Air-Fried Vegetable Spring Rolls",
+    "description": "Cabbage, shiitake, and rice-vermicelli rolls air-fried until the wrappers are crisp, with a soy and lime dip. No shrimp and no fish sauce.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "spring-roll-wrappers",
+        "name": "spring roll wrappers",
+        "display_name": "spring roll wrappers",
+        "quantity": 12,
+        "unit": "count",
+        "note": "wheat wrappers, about 8-inch squares, not rice paper",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-cabbage",
+        "name": "green cabbage",
+        "display_name": "green cabbage",
+        "quantity": 3,
+        "unit": "cup",
+        "note": null,
+        "preparation": "shredded thin",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrot",
+        "name": "carrot",
+        "display_name": "carrot",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "cut into matchsticks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "shiitake",
+        "name": "shiitake mushrooms",
+        "display_name": "shiitake mushrooms",
+        "quantity": 4,
+        "unit": "oz",
+        "note": null,
+        "preparation": "stems removed, sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-vermicelli",
+        "name": "rice vermicelli",
+        "display_name": "rice vermicelli",
+        "quantity": 2,
+        "unit": "oz",
+        "note": null,
+        "preparation": "soaked until pliable, drained, cut into 1-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "ginger",
+        "display_name": "ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": "2 for the filling, 1 for the dip",
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "1 tbsp in the filling, 2 tbsp in the dip. Wheat and soy.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sesame-oil",
+        "name": "sesame oil",
+        "display_name": "sesame oil",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "rice-vinegar",
+        "name": "rice vinegar",
+        "display_name": "rice vinegar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "1 tsp to soften the filling, the rest brushed on the rolls",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "lime",
+        "name": "lime",
+        "display_name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "juiced, about 2 tbsp",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "in the dip",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "red-chile",
+        "name": "red chile",
+        "display_name": "red chile",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Soften the filling",
+        "body": "Soak the rice vermicelli until pliable, drain, and cut it up. Warm 1 tsp of the neutral oil in a skillet over medium-high. Add the cabbage, carrot, and shiitake and cook, stirring, until the cabbage softens, about 4 minutes. Stir in the ginger, 2 cloves of garlic, scallions, 1 tbsp soy sauce, the sesame oil, rice vinegar, and salt. Fold in the vermicelli. Spread the filling on a plate until it is cool enough to handle.",
+        "ingredient_refs": [
+          "rice-vermicelli",
+          "neutral-oil",
+          "green-cabbage",
+          "carrot",
+          "shiitake",
+          "ginger",
+          "garlic",
+          "scallions",
+          "soy-sauce",
+          "sesame-oil",
+          "rice-vinegar",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Roll",
+        "body": "Lay a wrapper on a point. Place about 2 tbsp filling near the bottom, fold the point over, fold the sides in, and roll tight. Repeat for all 12. Mix the dip: remaining soy sauce, lime juice, water, sugar, the last garlic clove, and the chile. Prep is about 25 minutes.",
+        "ingredient_refs": [
+          "spring-roll-wrappers",
+          "green-cabbage",
+          "shiitake",
+          "soy-sauce",
+          "lime",
+          "water",
+          "sugar",
+          "garlic",
+          "red-chile"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Air-fry",
+        "body": "Heat the air fryer to 375 F. Brush the rolls with the remaining neutral oil. Air-fry in two batches until the wrappers are crisp and blistered, about 8 minutes per batch, turning once. Cook is 16 minutes. Serve with the dip.",
+        "ingredient_refs": [
+          "spring-roll-wrappers",
+          "neutral-oil",
+          "soy-sauce"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "filling",
+        "name": "cabbage and mushroom filling",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cabbage",
+          "carrot",
+          "shiitake",
+          "rice vermicelli",
+          "soy sauce"
+        ]
+      },
+      {
+        "component_id": "dip",
+        "name": "soy lime dip",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "soy sauce",
+          "lime",
+          "garlic",
+          "sugar",
+          "red chile"
+        ]
+      },
+      {
+        "component_id": "wrappers",
+        "name": "wheat spring roll wrappers",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "spring roll wrappers"
+        ],
+        "contract": "Wheat spring roll wrappers, not rice paper. No egg wash required by the package."
+      }
+    ],
+    "equipment": [
+      "air fryer",
+      "12-inch skillet",
+      "mixing bowl",
+      "pastry brush",
+      "small bowl"
+    ],
+    "methods": [
+      "air-fry"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "air_fried"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 25,
+    "cook_time_minutes": 16,
+    "total_time_minutes": 41,
+    "prep_minutes": 25,
+    "cook_minutes": 16,
+    "total_minutes": 41,
+    "time_clock": "Prep 25 is the filling, a cool-down, and rolling twelve wrappers. Cook 16 is two air-fryer batches at about 8 minutes each. The machine heats during the first minute of that cook clock.",
+    "heat": "Air fryer at 375 F. A skillet over medium-high only to soften the filling.",
+    "doneness": "Wrappers crisp and blistered, filling hot, vermicelli tender. Dip salty, sour, and a little sweet.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Cursor cloud agent, author role, wave-13",
+        "when": "2026-10-11",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews. Sesame oil is not a nut.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No shrimp, no fish sauce, no dairy, no meat, no poultry, and no nuts. Sesame oil is sesame, which HH001 allows. Wheat is in the wrappers."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free, vegetarian, and plant_based. The dip does not contain fish sauce.",
+    "allergens": [
+      "wheat",
+      "soy",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Wheat is the wrappers and the soy sauce.",
+      "Soy is the soy sauce.",
+      "Sesame is the sesame oil."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No shrimp, no fish sauce, no dairy, no meat, no poultry, and no nuts. Sesame oil is sesame, which HH001 allows. Wheat is in the wrappers.",
+    "hh001_contract": "Dip is soy, lime, water, sugar, garlic, and chile. No fish sauce. Filling has no shrimp and no crab.",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "crunchy",
+      "fresh",
+      "savory"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r1_image_pass_complete",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js. Warnings about other methods stay out of the title, description, and steps."
+    },
+    "culinary_hash": "386834bbcfaf0f40716196785e7d15adba403f5a5c008eee149bfe3b94eaa36a",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_air-fried-vegetable-spring-rolls_v1",
+    "dish_id": "air-fried-vegetable-spring-rolls",
+    "recipe_version_id": "rv_air-fried-vegetable-spring-rolls_v1",
+    "asset_generated": true,
+    "slot_status": "image_pass_complete",
+    "master_filename": "air-fried-vegetable-spring-rolls.webp",
+    "card_filename": "air-fried-vegetable-spring-rolls-640.webp",
+    "master_ref": "air-fried-vegetable-spring-rolls.webp",
+    "card_ref": "air-fried-vegetable-spring-rolls-640.webp",
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "air-fried-vegetable-spring-rolls.webp",
+        "spec_catalog_path": "/images/meals/air-fried-vegetable-spring-rolls.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "air-fried-vegetable-spring-rolls-640.webp",
+        "spec_catalog_path": "/images/meals/air-fried-vegetable-spring-rolls-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "dimensions_note": "Center-crop of the 1280x720 GenerateImage JPEG to 4:3, LANCZOS-resized with export_meal_webps.py.",
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_webp_export",
+      "generator": "Grok Bot GenerateImage",
+      "model": "unknown",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "factory/tools/image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generation_date": "2026-10-11",
+      "generation_window": "2026-10-11 13:08-13:15 CT",
+      "regeneration_count": 0
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "package_revision": "author-r1",
+    "rejected_dir": "rejected/",
+    "active_source_jpeg": "img_v1.jpg",
+    "provenance_note": "Original AI image generated with Grok Bot GenerateImage from this package's prompt and plating brief. No stock or web imagery.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "39bb750e8f9e4369d1cfdccdbe606b67fd383cabbb6f62e44ada983f0dff59a0",
+      "master_sha256": "7bd76a2c24b6935da9461ac76349ad603ed89dbfecd4ed6fd06a3c7a7c8ac1dc",
+      "card_sha256": "aa35c5393b54e1d9b94a3b6480fba4158c0b070d4ce6c2d0c9152038b33ed9d8"
+    },
+    "regeneration_count": 0
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "AWAITING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 25 is the filling, a cool-down, and rolling twelve wrappers. Cook 16 is two air-fryer batches at about 8 minutes each. The machine heats during the first minute of that cook clock."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "Master and card WebPs present from the image pass."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"air_fried\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Three rolls and a quarter of the dip. Still heat the air fryer.",
+    "2": "Six rolls, one batch.",
+    "4": "As written, two batches.",
+    "do_not_scale": [
+      "do not pack the air fryer so the rolls touch in a solid mass",
+      "wrappers tear if overfilled"
+    ]
+  },
+  "coverage_contribution": "Vietnamese handheld, first spring roll, and an air-fry method token that is crisp and not a frying kind.",
+  "near_duplicate_review": "Pho is chicken noodle soup. Turmeric dill fish is a noodle plate with catfish and cashews. Neither is a crisp roll.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r1_image_pass_complete"
+}

@@ -1,0 +1,7 @@
+# Image prompt — Seared Duck Breast with Cherry Pan Sauce
+
+Status: image pass complete. package_revision `author-r1`. The active image was generated from this prompt on 2026-10-11 with Grok Bot GenerateImage and exported with `factory/tools/export_meal_webps.py`.
+
+Prompt:
+
+Editorial food photograph of Seared Duck Breast with Cherry Pan Sauce for a premium meal-planning app. Sliced duck breast with a strip of crisp golden skin, a dark cherry sauce, and a small pile of arugula. Vessel: Off-white dinner plate. Camera: Elevated three-quarter so the skin edge and the pink interior both show. Must show: Duck slices, crisp skin, cherries in a glossy sauce, arugula, a thyme sprig from the sauce. Texture: Rendered crisp skin, juicy meat, syrupy sauce, leafy arugula. Sauce: Spooned beside and partly over the slices. Cherries visible, not a brown mystery gravy. Garnish: Thyme from the recipe. No extra berries. Color from the recipe only: Deep pink meat, amber skin, dark red cherries, green arugula. Do not include: Butter, orange glaze that is not in the recipe, potatoes, chicken, text, logos. Lighting: bright diffused daylight, soft shadows, real highlights, no harsh flash, no muddy dark, no synthetic gloss. Background: light neutral tabletop, modern off-white ceramic. 4:3 landscape, subject centered and crop-safe. Seared duck breast. Not chicken and not a steak. Quality reference is the Chipotle Lime Black Bean Bowl standard for light and appetite only. Not a copy of that bowl.
