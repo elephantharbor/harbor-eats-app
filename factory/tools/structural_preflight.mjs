@@ -7,8 +7,11 @@
  * dietary eligibility, D-03 enums, equipment, plating brief, and D-06.1
  * cooking agreement with src/weave/semantics.js.
  *
- * A pending image slot can pass here. factory/tools/freeze_integrity.py
- * still fails until the WebP pair is on disk.
+ * A pending image slot (asset_generated false, slot_status pending_image_pass)
+ * can pass here. A finished image pass passes only when asset_generated is
+ * true, the declared image files are on disk, and FREEZE_INTEGRITY.json is
+ * PASS. A half-done slot fails. factory/tools/freeze_integrity.py still fails
+ * a pending slot until the WebP pair is on disk.
  *
  * Usage, from the repo root:
  *   node factory/tools/structural_preflight.mjs factory/waves/<wave>/candidates
@@ -18,8 +21,8 @@
  * Exit 0 when every candidate passes, 1 otherwise.
  */
 import { access, readdir, readFile, writeFile } from "node:fs/promises";
-import { join, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join, basename } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { normalizeFactoryPackage } from "../../src/lib/catalog-import.js";
 import { deriveCookingMethod } from "../../src/weave/semantics.js";
 
@@ -64,6 +67,66 @@ async function candidateDirs(target) {
 
 function check(checks, id, ok, detail) {
   checks.push({ id, result: ok ? "PASS" : "FAIL", detail });
+}
+
+function imageFileName(value, fallback) {
+  const raw = typeof value === "string" && value.trim() ? value.trim() : fallback;
+  if (!raw) return null;
+  return basename(raw);
+}
+
+/**
+ * Pending slots stay valid. A finished image pass passes only when
+ * asset_generated is true, the image files exist, and freeze integrity is PASS.
+ * Anything short of that on a generated slot is half-done.
+ *
+ * @param {string} dir
+ * @param {object} image
+ * @param {string} [slug]
+ * @returns {Promise<{ ok: boolean, detail: string }>}
+ */
+export async function assessImageSlot(dir, image = {}, slug = "") {
+  if (image.asset_generated !== true) {
+    const pending = image.asset_generated === false && image.slot_status === "pending_image_pass";
+    return {
+      ok: pending,
+      detail: pending ? "pending_image_pass" : image.slot_status || "unset",
+    };
+  }
+
+  const master = imageFileName(image.master_filename, slug ? `${slug}.webp` : "");
+  const card = imageFileName(image.card_filename, slug ? `${slug}-640.webp` : "");
+  const source = imageFileName(image.active_source_jpeg, "");
+  const required = [master, card, source].filter(Boolean);
+  const missing = [];
+  for (const name of required) {
+    if (!(await exists(join(dir, name)))) missing.push(name);
+  }
+  if (!master) missing.push("master");
+  if (!card) missing.push("card");
+
+  let freezeStatus = "missing";
+  const freezePath = join(dir, "FREEZE_INTEGRITY.json");
+  if (await exists(freezePath)) {
+    try {
+      const freeze = JSON.parse(await readFile(freezePath, "utf8"));
+      freezeStatus = freeze?.FREEZE_INTEGRITY === "PASS" ? "PASS" : freeze?.FREEZE_INTEGRITY || "unreadable";
+    } catch {
+      freezeStatus = "unreadable";
+    }
+  }
+
+  const filesOk = missing.length === 0;
+  const freezeOk = freezeStatus === "PASS";
+  if (filesOk && freezeOk) {
+    const listed = required.join(", ");
+    return { ok: true, detail: `asset_generated; files ${listed}; freeze integrity PASS` };
+  }
+
+  const reasons = [];
+  if (!filesOk) reasons.push(`missing ${missing.join(", ")}`);
+  if (!freezeOk) reasons.push(`freeze integrity ${freezeStatus}`);
+  return { ok: false, detail: `half-done image slot: ${reasons.join("; ")}` };
 }
 
 function cookingView(cooking) {
@@ -165,11 +228,8 @@ async function preflightDir(dir) {
   }
   check(checks, "image_prompt", await exists(join(dir, "image-prompt.md")), "image-prompt.md");
   const image = pkg.image || {};
-  if (image.asset_generated === true) {
-    check(checks, "image_slot", false, "asset_generated true is an image-pass concern; structural preflight expects a pending slot unless freeze integrity is the gate");
-  } else {
-    check(checks, "image_slot", image.asset_generated === false && image.slot_status === "pending_image_pass", image.slot_status || "unset");
-  }
+  const slot = await assessImageSlot(dir, image, dish.slug || "");
+  check(checks, "image_slot", slot.ok, slot.detail);
 
   const sidecar = join(dir, "d03-classification.json");
   if (!(await exists(sidecar))) {
@@ -199,29 +259,36 @@ function finish(dir, checks, hh001 = false) {
   };
 }
 
-const target = process.argv[2];
-if (!target) {
-  console.error("usage: structural_preflight.mjs <candidates-dir-or-candidate-dir>");
-  process.exit(2);
-}
-const dirs = await candidateDirs(target.startsWith("/") ? target : join(repoRoot, target));
-if (!dirs.length) {
-  console.error(`no v1.json under ${target}`);
-  process.exit(1);
-}
-let failed = 0;
-/** @type {object[]} */
-const reports = [];
-for (const dir of dirs) {
-  const report = await preflightDir(dir);
-  reports.push(report);
-  await writeFile(join(dir, "STRUCTURAL_PREFLIGHT.json"), `${JSON.stringify(report, null, 2)}\n`);
-  console.log(`${report.slug}: STRUCTURAL_PREFLIGHT ${report.STRUCTURAL_PREFLIGHT} (${report.fail_count} fails)`);
-  for (const item of report.checks.filter((row) => row.result === "FAIL")) {
-    console.log(`  FAIL ${item.id}: ${item.detail}`);
+async function main() {
+  const target = process.argv[2];
+  if (!target) {
+    console.error("usage: structural_preflight.mjs <candidates-dir-or-candidate-dir>");
+    process.exit(2);
   }
-  if (report.STRUCTURAL_PREFLIGHT !== "PASS") failed += 1;
+  const dirs = await candidateDirs(target.startsWith("/") ? target : join(repoRoot, target));
+  if (!dirs.length) {
+    console.error(`no v1.json under ${target}`);
+    process.exit(1);
+  }
+  let failed = 0;
+  /** @type {object[]} */
+  const reports = [];
+  for (const dir of dirs) {
+    const report = await preflightDir(dir);
+    reports.push(report);
+    await writeFile(join(dir, "STRUCTURAL_PREFLIGHT.json"), `${JSON.stringify(report, null, 2)}\n`);
+    console.log(`${report.slug}: STRUCTURAL_PREFLIGHT ${report.STRUCTURAL_PREFLIGHT} (${report.fail_count} fails)`);
+    for (const item of report.checks.filter((row) => row.result === "FAIL")) {
+      console.log(`  FAIL ${item.id}: ${item.detail}`);
+    }
+    if (report.STRUCTURAL_PREFLIGHT !== "PASS") failed += 1;
+  }
+  const hh = reports.filter((report) => report.hh001_eligible).length;
+  console.log(`structural_preflight ${failed ? "FAIL" : "PASS"} ${reports.length - failed}/${reports.length} hh001=${hh}`);
+  process.exit(failed ? 1 : 0);
 }
-const hh = reports.filter((report) => report.hh001_eligible).length;
-console.log(`structural_preflight ${failed ? "FAIL" : "PASS"} ${reports.length - failed}/${reports.length} hh001=${hh}`);
-process.exit(failed ? 1 : 0);
+
+const invokedDirectly = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+if (invokedDirectly) {
+  await main();
+}
