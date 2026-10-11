@@ -4,15 +4,13 @@
 |---|---|
 | Slug | `roasted-cabbage-cashew-romesco` |
 | Recipe version | `rv_roasted-cabbage-cashew-romesco_v1` |
-| Package revision | `author-r1` |
+| Package revision | `author-r2` |
 | Freeze integrity | PASS |
-| Overall | **FAIL** |
+| Overall | **PASS** |
 
-Independent auditor (Vale role), 2026-10-11. Run `bc-d19f3d1e-d801-59d5-8734-22463092a47a`. Recipe text was not edited. Importer accepts the package. Structural preflight image slot is PASS. The meal fails gate E.
+Independent auditor (Vale role), re-audit 2026-10-11 of `author-r2` at `73f897a`. Run `bc-d19f3d1e-d801-59d5-8734-22463092a47a`. The prior audit of `author-r1` failed gate E. This pass re-runs A–O on the revised package. Recipe text was not edited by the auditor. Importer accepts the package. Structural preflight is PASS, including the image slot. `FREEZE_INTEGRITY.json` is PASS for `author-r2`.
 
-## Failed gate
-
-**E — time realism.** The oven is cold when the roast clock starts. Step 1 is titled "Heat the oven" and says "Turn the oven to 425 F," then immediately cuts the cabbage, oils it, and loads the sheet pan. Step 2 starts "Roast 8 minutes" and states a 30-minute cook (8 + about 22). No preheat minutes are in the prep clock, and the 15-minute prep is defined as overlapping the roast (the blender work in step 3), not as time for the oven to reach 425 F before the food goes in. A cold oven that starts at the bake, with no preheat minutes and no earlier overlap, fails E. Cod in this same wave does the overlap correctly: the oven heats during a stated 20-minute prep before the roast begins.
+Image SHA-256 values are unchanged from the `author-r1` audit: source `4c858bb4…7e90`, master `f2b3fb3a…2ffc`, card `a54ff4e1…4153`. K, L1, and L2 are re-applied to those same pixels.
 
 ## A — PASS
 
@@ -28,11 +26,11 @@ One cabbage cut into four steaks at 4 servings. Scaling is one steak for 1 and t
 
 ## D — PASS
 
-The roast has a visual target: cores tender, cut faces crisp and browned, cashews pulled when golden. The sauce is blended until spoonable. The missing preheat is an E defect, not a missing culinary step of another kind.
+The roast has a visual target: cores tender, cut faces crisp and browned, cashews pulled when golden. The sauce is blended until spoonable. The preheat is now its own step, covered under E.
 
-## E — FAIL
+## E — PASS
 
-Prep 15 + cook 30 = 45 on the package, and the arithmetic identity holds. The reconstruction does not. The oven is switched on and the food goes in as part of the same setup, then a 30-minute roast is counted as if the oven were already at 425 F. The only stated overlap is the sauce blend during the roast. There is no preheat interval before the bake. See the failed-gate note above.
+Prep 15 + cook 30 = 45. Step 1 is now a real preheat: the oven heats to 425 F for about 15 minutes, and the pan stays out. Step 2 cuts and oils during that preheat (about 8 minutes active) and says to wait if the oven is not at temperature yet. Step 3 puts the pan in only when the oven is hot, then roasts 8 minutes plus about 22 minutes. That 30 minutes is hot-oven time. Step 4 blends the romesco during the roast (about 5 minutes active) and does not add it to prep. Plating is about 1 minute. Active time, about 15 minutes, sits inside the 45-minute total. The cold-oven defect from `author-r1` is gone.
 
 ## F — PASS
 
@@ -72,7 +70,7 @@ Char against pale cabbage and a red sauce is strong contrast. The plate is full.
 
 ## L — PASS
 
-L1 and L2 both pass. Gate L does not fail with E.
+L1 and L2 both pass. The pixels are the same files judged at `author-r1`.
 
 ## M — PASS
 
@@ -80,8 +78,8 @@ L1 and L2 both pass. Gate L does not fail with E.
 
 ## N — PASS
 
-Cabbage is one head cut into steaks. Cashews are 3/4 cup. Peppers are 1.5 cups from a jar. Units are shoppable. The E failure is the clock, not the shopping list.
+Cabbage is one head cut into steaks. Cashews are 3/4 cup. Peppers are 1.5 cups from a jar. Units are shoppable. The clock is covered under E.
 
 ## O — PASS
 
-First version, classification history present, auditor and certification null.
+Still version 1. It was never certified, planned, or cooked, so the author amended the unpublished draft in place and set `package_revision` to `author-r2`. `classification_history` records the move from `author-r1` to `author-r2` with the same enums. The culinary hash changed because the steps changed, and the package says so. `auditor` and `certification` remain null.

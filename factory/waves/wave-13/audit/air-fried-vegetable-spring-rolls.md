@@ -10,6 +10,8 @@
 
 Independent auditor (Vale role), 2026-10-11. Run `bc-d19f3d1e-d801-59d5-8734-22463092a47a`. Recipe text was not edited. Importer `normalizeFactoryPackage` accepts the package. Structural preflight, after the image-slot fix, is PASS, including `image_slot`.
 
+Hash re-check at `73f897a`: `v1.json`, `img_v1.jpg`, both WebPs, the plating brief, the image prompt, and `d03-classification.json` are the same blobs as the audit at `f2f95a9`. Image SHA-256 values match. Package revision is still `author-r1`. Gates were not reopened. Verdict remains PASS.
+
 ## A — PASS
 
 Directory, `dish.dish_id`, and `dish.slug` are `air-fried-vegetable-spring-rolls`. `rcp_air-fried-vegetable-spring-rolls`, `rv_air-fried-vegetable-spring-rolls_v1`, version 1, `immutable: true`. `publication_status` is `draft`. `recommendation_eligible` is false. `kitchen_tested` is false on the version and on `catalog_confidence`. Household cooks and ratings are 0. `effort_level` is `moderate`. `ingredient_complexity` is `standard`. Both are the allowed enums. Equipment has five items, including an air fryer. `certification` and `auditor` are null.

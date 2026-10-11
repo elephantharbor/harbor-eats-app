@@ -10,6 +10,8 @@
 
 Independent auditor (Vale role), 2026-10-11. Run `bc-d19f3d1e-d801-59d5-8734-22463092a47a`. Recipe text was not edited. Importer accepts the package. Structural preflight image slot is PASS.
 
+Hash re-check at `73f897a`: `v1.json`, `img_v1.jpg`, both WebPs, the plating brief, the image prompt, and `d03-classification.json` are the same blobs as the audit at `f2f95a9`. Image SHA-256 values match. Package revision is still `author-r1`. Gates were not reopened. Verdict remains PASS.
+
 ## A — PASS
 
 Identity ids agree. Version 1, immutable, draft, not recommendation-eligible. `kitchen_tested` false. `effort_level` `moderate`, `ingredient_complexity` `simple`. Equipment includes a 10-inch skillet, a slotted spatula, a rack, a saucepan, two bowls, and paper towels. `certification` and `auditor` are null.
