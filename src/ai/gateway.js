@@ -26,14 +26,24 @@ export function estimateInputTokens(prompt) {
   return Math.ceil((prompt.system.length + prompt.user.length) / 3) + 64;
 }
 
+/**
+ * planning_intent and discovery_intent must answer or fall back inside one
+ * user-visible wait. A timeout already spent that budget, so it is not retried.
+ * Creative tasks keep the single timeout retry and their own longer caps.
+ */
+const INTERPRET_TASKS = new Set(["planning_intent", "discovery_intent"]);
+const INTERPRET_USER_BUDGET_MS = 6000;
+
 /** Whitelist of non-content provider metadata fields allowed into usage_metadata_json. */
-const PROVIDER_META_KEYS = ["http_status", "response_status", "incomplete_reason", "reported_model", "request_id", "response_id"];
+const PROVIDER_META_KEYS = ["http_status", "response_status", "incomplete_reason", "reported_model", "request_id", "response_id", "error_message", "error_type", "error_param"];
+const PROVIDER_META_LIMITS = { error_message: 160, error_type: 64, error_param: 80 };
 export function safeProviderMeta(m) {
   if (!m || typeof m !== "object") return null;
   const out = {};
   for (const k of PROVIDER_META_KEYS) {
     const v = m[k] ?? (k === "response_status" ? m.finish_reason : undefined);
-    out[k] = v == null ? null : typeof v === "number" ? v : String(v).slice(0, 80);
+    const limit = PROVIDER_META_LIMITS[k] || 80;
+    out[k] = v == null ? null : typeof v === "number" ? v : String(v).slice(0, limit);
   }
   return out;
 }
@@ -43,8 +53,8 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
   let seq = 0;
   const newId = idFactory || (() => `aiu_${now().getTime().toString(36)}_${(seq++).toString(36)}`);
 
-  async function record(task, fields) {
-    const row = {
+  function buildUsage(task, fields) {
+    return {
       usage_id: newId(),
       task: task.id,
       prompt_version: task.prompt_version,
@@ -62,6 +72,10 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
       usage_metadata_json: fields.metadata ? JSON.stringify(fields.metadata).slice(0, 2000) : null,
       created_at: now().toISOString(),
     };
+  }
+
+  async function record(task, fields) {
+    const row = buildUsage(task, fields);
     try { await store.recordUsage(row); } catch (e) { log("ai_usage_write_failed", { task: task.id, code: String(e?.message || e).slice(0, 80) }); }
     return row;
   }
@@ -106,6 +120,10 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
       return fail("disabled", fallback);
     }
     const safeInput = redactValue(input);
+    // Interpretation inputs are household-free: no member ids, names, allergens, tastes,
+    // or constraint rows. A date list or dinner-count default can differ per plan and
+    // only partitions the cache. Conflicts and eligibility are recomputed after every
+    // hit, on that household's own rows, so this key must not include them.
     const cacheKey = await sha256Hex(`${task.id}|${task.prompt_version}|${model}|${JSON.stringify(normalizeInput(safeInput))}`);
     const nowDate = now();
     const nowIso = nowDate.toISOString();
@@ -114,7 +132,7 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
       const hit = await store.cacheGet(cacheKey, nowIso).catch(() => null);
       if (hit) {
         await record(task, { status: "cache_hit", model, household_key: hk });
-        return { ok: true, output: hit, source: "cache", model, prompt_version: task.prompt_version };
+        return { ok: true, output: hit, source: "cache", model, prompt_version: task.prompt_version, provider_latency_ms: 0 };
       }
     }
 
@@ -125,7 +143,7 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
     const plan = planReservations({ config, householdKey: hk, model, worstCaseUsd: worst, now: nowDate });
     let reservation;
     try {
-      reservation = await reserveAll(store, plan, nowIso);
+      reservation = store.reservePlan ? await store.reservePlan(plan, nowIso) : await reserveAll(store, plan, nowIso);
     } catch {
       reservation = { ok: false, code: "rate_limited", name: "store_error" }; // fail closed
     }
@@ -142,6 +160,7 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
     let lastCode = "malformed_output";
     let repairNote = "";
     const started = now().getTime();
+    let providerLatency = 0;
     let meta = null;
     let reasonTok = 0;
     let errCode = null;
@@ -156,8 +175,22 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
     };
     const spent = () => costUsd(model, { input_tokens: inTok, cached_input_tokens: cachedTok, output_tokens: outTok, cache_write_tokens: writeTok });
     let result = null;
+    const attemptLatencies = [];
+    const interpret = INTERPRET_TASKS.has(task.id);
     while (attempts <= maxRetries) {
+      const elapsed = Math.max(0, now().getTime() - started);
+      let timeoutMs = Math.min(task.limits.timeout_ms, maxTimeoutMs);
+      if (interpret) {
+        const remaining = INTERPRET_USER_BUDGET_MS - elapsed;
+        if (remaining <= 0) break;
+        timeoutMs = Math.min(timeoutMs, remaining);
+      }
+      if (!(timeoutMs > 0)) break;
       attempts += 1;
+      const attemptStarted = now().getTime();
+      const finishAttempt = () => {
+        attemptLatencies.push(Math.max(0, now().getTime() - attemptStarted));
+      };
       try {
         const res = await callWithTimeout({
           model: wireModel,
@@ -168,7 +201,8 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
           response_schema: task.output_schema,
           temperature: task.cost_class === "creative" ? 0.7 : 0,
           reasoning_effort: task.reasoning_effort,
-        }, Math.min(task.limits.timeout_ms, maxTimeoutMs));
+        }, timeoutMs);
+        finishAttempt();
         addUsage(res.usage);
         meta = safeProviderMeta(res.metadata);
         errCode = null; errDetail = null;
@@ -184,18 +218,22 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
         result = post.value;
         break;
       } catch (error) {
+        finishAttempt();
         const norm = error instanceof AiError ? error : normalizeError(error);
         addUsage(error?.usage);
         lastCode = norm.code;
         errCode = norm.code;
         errDetail = norm.detail ? String(norm.detail).slice(0, 120) : null;
         meta = safeProviderMeta(error?.provider_meta) || meta;
-        // Only transient timeout/outage get the single retry (same model). 429, refusals, incomplete: stop.
+        // Malformed output still gets the one repair retry. A timeout on an
+        // interpret task already used the user budget. Outage may retry only
+        // while that budget remains. Creative tasks still retry a timeout once.
         if (norm.code !== "timeout" && norm.code !== "provider_outage") break;
+        if (interpret && norm.code === "timeout") break;
       }
     }
+    providerLatency = Math.max(0, now().getTime() - started);
     const cost = spent();
-    await settleSpend(store, reservation.held, cost);
     const metadata = {
       requested_model: wireModel,
       reported_model: meta?.reported_model ?? null,
@@ -212,24 +250,38 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
       output_tokens: outTok,
       pricing_version: PRICING_VERSION,
       estimated_cost_usd: cost,
+      attempts,
+      attempt_latencies_ms: attemptLatencies,
       request_id: meta?.request_id ?? null,
       response_id: meta?.response_id ?? null,
+      error_message: meta?.error_message ?? null,
+      error_type: meta?.error_type ?? null,
+      error_param: meta?.error_param ?? null,
     };
-    const base = { model, household_key: hk, input_tokens: inTok, cached_input_tokens: cachedTok, output_tokens: outTok, attempts, latency_ms: now().getTime() - started, estimated_cost_usd: cost, metadata };
-    if (result !== null) {
-      await record(task, { status: "ok", ...base });
-      if (task.cache.enabled) {
-        await store.cachePut({
+    const base = { model, household_key: hk, input_tokens: inTok, cached_input_tokens: cachedTok, output_tokens: outTok, attempts, latency_ms: providerLatency, estimated_cost_usd: cost, metadata };
+    const status = result !== null ? "ok" : `fallback:${lastCode}`;
+    const usage = buildUsage(task, { status, ...base });
+    const cache = result !== null && task.cache.enabled
+      ? {
           cache_key: cacheKey, task: task.id, prompt_version: task.prompt_version, model,
           output_json: JSON.stringify(result), created_at: nowIso,
           expires_at: new Date(now().getTime() + task.cache.ttl_seconds * 1000).toISOString(),
-        }).catch(() => {});
-      }
-      return { ok: true, output: result, source: "provider", model, prompt_version: task.prompt_version };
+        }
+      : null;
+    if (store.finishRun) {
+      await store.finishRun({ held: reservation.held, cost, usage, cache }).catch((error) => {
+        log("ai_usage_write_failed", { task: task.id, code: String(error?.message || error).slice(0, 80) });
+      });
+    } else {
+      await settleSpend(store, reservation.held, cost);
+      await record(task, { status, ...base });
+      if (cache) await store.cachePut(cache).catch(() => {});
+    }
+    if (result !== null) {
+      return { ok: true, output: result, source: "provider", model, prompt_version: task.prompt_version, estimated_cost_usd: cost, provider_latency_ms: providerLatency, metadata };
     }
     log("ai_task_fallback", { task: task.id, code: lastCode, attempts });
-    await record(task, { status: `fallback:${lastCode}`, ...base });
-    return fail(lastCode, fallback);
+    return { ok: false, error: lastCode, fallback: fallback === undefined ? null : fallback, estimated_cost_usd: cost, provider_latency_ms: providerLatency, metadata };
   }
 
   return { run, config };

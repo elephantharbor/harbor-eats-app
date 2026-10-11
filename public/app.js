@@ -3430,6 +3430,72 @@
     } else more.hidden = true;
   }
 
+  function weaveDepsForPlan() {
+    return {
+      track: track,
+      activeMemberIds: activeMemberIds,
+      applyDinnerPlan: applyDinnerPlan,
+      show: show,
+      navContextFor: function (a, b, c) {
+        return Nav.contextFor(a, b, c);
+      },
+      planningApi: planningApi,
+      getDinnerPlan: function () {
+        return state.dinnerPlan;
+      },
+      mutateDinnerPlan: mutateDinnerPlan,
+      renderPlanReview: renderPlanReview,
+      renderPlanReviewPartial: renderPlanReviewPartial,
+      focusPlanMeal: function (mealId) {
+        state.pendingPlanMealFocus = mealId;
+        const card = document.querySelector('.plan-meal-card[data-meal-id="' + mealId + '"]');
+        if (card) {
+          card.classList.add("plan-meal-card--changed");
+          card.scrollIntoView({
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+            block: "nearest",
+          });
+        }
+        focusPendingPlanMeal();
+      },
+      mountPlanReview: mountPlanReviewWeave,
+    };
+  }
+
+  function mountPlanCountWeave() {
+    const B = window.FlavorWeaveWeaveBridge;
+    if (!B) return;
+    state.weavePlanCount = B.planMountCount(weaveDepsForPlan());
+  }
+
+  function mountPlanReviewWeave() {
+    const B = window.FlavorWeaveWeaveBridge;
+    if (!B) return;
+    const prefs = document.getElementById("planReviewPrefs");
+    if (prefs) prefs.hidden = true;
+    state.weavePlanReview = B.planMountReview(weaveDepsForPlan());
+  }
+
+  function renderPlanReviewPartial(changed) {
+    const plan = state.dinnerPlan;
+    if (!plan || !changed || !changed.length) return;
+    changed.forEach(function (pos) {
+      const meal = (plan.meals || []).find(function (m) {
+        return m.position === pos;
+      });
+      if (!meal) return;
+      const el = document.querySelector('.plan-meal-card[data-meal-id="' + meal.meal_id + '"]');
+      if (!el) return;
+      const tmp = document.createElement("div");
+      tmp.innerHTML = renderPlanMealCard(meal);
+      const newCard = tmp.firstElementChild;
+      if (newCard) {
+        newCard.classList.add("plan-meal-card--changed");
+        el.replaceWith(newCard);
+      }
+    });
+  }
+
   function renderPlanCount() {
     const root = document.getElementById("planCountOptions");
     const groups = [
@@ -3472,6 +3538,7 @@
     state.planCountValue = null;
     fillPrefSlot("planCountPrefs", draftPrefs(), "draft");
     syncPlanCountSubmit();
+    mountPlanCountWeave();
   }
 
   function syncPlanCountSubmit() {
@@ -4032,6 +4099,7 @@
       document.getElementById("planReviewSideShop").textContent =
         k === 0 ? "Nothing to shop for." : k + " things on your list";
     } else side.hidden = true;
+    mountPlanReviewWeave();
   }
 
   function renderPlanConfirm() {
@@ -5585,6 +5653,16 @@
     if (seeAllDinners) {
       e.preventDefault();
       openDiscoveryStandalone("tonight");
+      return true;
+    }
+    const tonightFind = e.target.closest("[data-action='tonight-find-composer']");
+    if (tonightFind) {
+      e.preventDefault();
+      openDiscoveryStandalone("tonight");
+      setTimeout(function () {
+        const field = document.querySelector("#discWeaveHost .weave-composer__field");
+        field?.focus();
+      }, 400);
       return true;
     }
     const pickTonight = e.target.closest("[data-action='pick-for-tonight'], [data-action='pick-for-tonight-detail']");

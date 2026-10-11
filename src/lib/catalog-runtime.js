@@ -176,6 +176,7 @@ export function plannerEntryFromRecord(record) {
       })),
       steps: record.steps,
       dietary_labels: record.dietary_labels,
+      dietary_tags: record.dietary_tags || [],
       allergens: record.allergens,
       vocabulary_tag_ids: record.vocabulary_tag_ids,
       visibility: record.visibility,
@@ -297,18 +298,21 @@ export async function loadPublishedCatalog(db) {
       return { ok: true, source: "d1", count: 0, records: [], meals: [], planner: [], versionsById: {} };
     }
     const placeholders = ids.map(() => "?").join(",");
-    const [ingredients, steps, taste, dietary, allergens, equipment, eligibility, images, provenance] =
-      await Promise.all([
-        all(db, `SELECT * FROM catalog_ingredient WHERE recipe_version_id IN (${placeholders})`, ...ids),
-        all(db, `SELECT * FROM catalog_step WHERE recipe_version_id IN (${placeholders})`, ...ids),
-        all(db, `SELECT * FROM catalog_taste_tag WHERE recipe_version_id IN (${placeholders})`, ...ids),
-        all(db, `SELECT * FROM catalog_dietary_label WHERE recipe_version_id IN (${placeholders})`, ...ids),
-        all(db, `SELECT * FROM catalog_allergen WHERE recipe_version_id IN (${placeholders})`, ...ids),
-        all(db, `SELECT * FROM catalog_equipment WHERE recipe_version_id IN (${placeholders})`, ...ids),
-        all(db, `SELECT * FROM catalog_eligibility_tag WHERE recipe_version_id IN (${placeholders})`, ...ids),
-        all(db, `SELECT * FROM catalog_image_ref WHERE recipe_version_id IN (${placeholders})`, ...ids),
-        all(db, `SELECT * FROM catalog_provenance WHERE recipe_version_id IN (${placeholders})`, ...ids),
-      ]);
+    const childSql = [
+      `SELECT * FROM catalog_ingredient WHERE recipe_version_id IN (${placeholders})`,
+      `SELECT * FROM catalog_step WHERE recipe_version_id IN (${placeholders})`,
+      `SELECT * FROM catalog_taste_tag WHERE recipe_version_id IN (${placeholders})`,
+      `SELECT * FROM catalog_dietary_label WHERE recipe_version_id IN (${placeholders})`,
+      `SELECT * FROM catalog_allergen WHERE recipe_version_id IN (${placeholders})`,
+      `SELECT * FROM catalog_equipment WHERE recipe_version_id IN (${placeholders})`,
+      `SELECT * FROM catalog_eligibility_tag WHERE recipe_version_id IN (${placeholders})`,
+      `SELECT * FROM catalog_image_ref WHERE recipe_version_id IN (${placeholders})`,
+      `SELECT * FROM catalog_provenance WHERE recipe_version_id IN (${placeholders})`,
+    ];
+    const childRows = typeof db.batch === "function"
+      ? (await db.batch(childSql.map((sql) => db.prepare(sql).bind(...ids)))).map((result) => result?.results || [])
+      : await Promise.all(childSql.map((sql) => all(db, sql, ...ids)));
+    const [ingredients, steps, taste, dietary, allergens, equipment, eligibility, images, provenance] = childRows;
     const children = {
       ingredients: groupBy(ingredients),
       steps: groupBy(steps),

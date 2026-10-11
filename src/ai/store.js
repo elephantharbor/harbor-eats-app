@@ -2,7 +2,9 @@
  * Usage, limiter-counter and cache stores. D1 store for runtime; memory store for tests/local.
  *   reserve({key, amount, limit, expires_at, now}) -> boolean   atomic conditional increment
  *   adjust(key, delta)                                         release / settle (floored at 0)
+ *   reservePlan / finishRun batch the remote round trips when db.batch exists
  */
+import { MICRO } from "./limits.js";
 
 export function createMemoryStore() {
   const usage = [];
@@ -70,5 +72,94 @@ export function createD1Store(db) {
         `INSERT OR REPLACE INTO ai_cache (cache_key, task, prompt_version, model, output_json, created_at, expires_at) VALUES (?,?,?,?,?,?,?)`
       ).bind(r.cache_key, r.task, r.prompt_version, r.model, r.output_json, r.created_at, r.expires_at).run();
     },
+    async reservePlan(plan, nowIso) {
+      const valid = (plan || []).filter((r) => Number.isFinite(r.amount) && r.limit > 0 && r.amount <= r.limit);
+      if (valid.length !== (plan || []).length) {
+        const failed = (plan || []).find((r) => !(Number.isFinite(r.amount) && r.limit > 0 && r.amount <= r.limit)) || plan?.[0];
+        return { ok: false, code: failed?.code || "rate_limited", name: failed?.name || "limit" };
+      }
+      if (typeof db.batch !== "function") {
+        const held = [];
+        for (const r of valid) {
+          const ok = await this.reserve({ ...r, now: nowIso });
+          if (!ok) {
+            for (const h of held) await this.adjust(h.key, -h.amount).catch(() => {});
+            return { ok: false, code: r.code, name: r.name };
+          }
+          held.push(r);
+        }
+        return { ok: true, held };
+      }
+      const statements = [];
+      if (nowIso) statements.push(db.prepare(`DELETE FROM ai_limit_counters WHERE expires_at < ?`).bind(nowIso));
+      for (const r of valid) {
+        statements.push(
+          db.prepare(
+            `INSERT INTO ai_limit_counters (bucket, count, expires_at) VALUES (?, ?, ?)
+               ON CONFLICT(bucket) DO UPDATE SET count = count + excluded.count
+               WHERE ai_limit_counters.count + excluded.count <= ?
+             RETURNING count`
+          ).bind(r.key, r.amount, r.expires_at, r.limit)
+        );
+      }
+      const results = await db.batch(statements);
+      const offset = nowIso ? 1 : 0;
+      const held = [];
+      for (let i = 0; i < valid.length; i += 1) {
+        const row = resultRows(results[offset + i])[0];
+        if (!row) {
+          if (held.length) {
+            await db.batch(
+              held.map((h) => db.prepare(`UPDATE ai_limit_counters SET count = MAX(0, count + ?) WHERE bucket = ?`).bind(-h.amount, h.key))
+            );
+          }
+          return { ok: false, code: valid[i].code, name: valid[i].name };
+        }
+        held.push(valid[i]);
+      }
+      return { ok: true, held };
+    },
+    async finishRun({ held, cost, usage, cache }) {
+      const statements = [];
+      const spend = (held || []).find((h) => h.name === "daily_budget_usd");
+      if (spend) {
+        const actual = Math.ceil(Math.max(0, cost || 0) * MICRO);
+        statements.push(
+          db.prepare(`UPDATE ai_limit_counters SET count = MAX(0, count + ?) WHERE bucket = ?`).bind(actual - spend.amount, spend.key)
+        );
+      }
+      if (usage) {
+        statements.push(
+          db.prepare(
+            `INSERT INTO ai_usage (usage_id, task, prompt_version, provider, model, household_key, status, input_tokens, cached_input_tokens, output_tokens, attempts, latency_ms, estimated_cost_usd, pricing_version, usage_metadata_json, created_at)
+             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+          ).bind(
+            usage.usage_id, usage.task, usage.prompt_version, usage.provider, usage.model, usage.household_key, usage.status,
+            usage.input_tokens, usage.cached_input_tokens ?? 0, usage.output_tokens, usage.attempts, usage.latency_ms,
+            usage.estimated_cost_usd, usage.pricing_version ?? null, usage.usage_metadata_json, usage.created_at
+          )
+        );
+      }
+      if (cache) {
+        statements.push(
+          db.prepare(
+            `INSERT OR REPLACE INTO ai_cache (cache_key, task, prompt_version, model, output_json, created_at, expires_at) VALUES (?,?,?,?,?,?,?)`
+          ).bind(cache.cache_key, cache.task, cache.prompt_version, cache.model, cache.output_json, cache.created_at, cache.expires_at)
+        );
+      }
+      if (!statements.length) return;
+      if (typeof db.batch === "function") {
+        await db.batch(statements);
+        return;
+      }
+      for (const statement of statements) await statement.run();
+    },
   };
+}
+
+function resultRows(result) {
+  if (!result) return [];
+  if (Array.isArray(result.results)) return result.results;
+  if (Array.isArray(result)) return result;
+  return [];
 }

@@ -16,16 +16,21 @@ export const MODEL_OUTPUT_CEILINGS = Object.freeze({ "gpt-6-luna": 600, "gpt-6.1
 const round6 = (n) => Math.round(n * 1e6) / 1e6;
 
 /**
- * Cost = uncached input + cached input + output (+ cache writes when the provider reports them).
+ * Cost from the token columns a usage row stores: input, cached input, and output.
  * `input_tokens` is the provider's TOTAL input (OpenAI includes cached tokens in it).
- * Unknown model => Infinity so a budget check fails closed.
+ * Automatic prompt caching does not add a write surcharge on top of that total:
+ * a reported `cache_write_tokens` count that is already inside `input_tokens`
+ * must not be billed again. Only a write count beyond the input total is added,
+ * at `cache_write`. Unknown model => Infinity so a budget check fails closed.
  */
 export function costUsd(model, { input_tokens = 0, cached_input_tokens = 0, output_tokens = 0, cache_write_tokens = 0 } = {}) {
   const p = MODEL_PRICING[model];
   if (!p) return Infinity;
-  const cached = Math.min(Math.max(0, cached_input_tokens), Math.max(0, input_tokens));
-  const uncached = Math.max(0, input_tokens - cached);
-  return round6((uncached * p.input + cached * p.cached_input + output_tokens * p.output + Math.max(0, cache_write_tokens) * p.cache_write) / 1e6);
+  const input = Math.max(0, input_tokens);
+  const cached = Math.min(Math.max(0, cached_input_tokens), input);
+  const uncached = input - cached;
+  const extraWrite = Math.max(0, Math.max(0, cache_write_tokens) - input);
+  return round6((uncached * p.input + cached * p.cached_input + Math.max(0, output_tokens) * p.output + extraWrite * p.cache_write) / 1e6);
 }
 
 /** Worst case for one attempt: every input token at the dearest input rate, output at the cap. */

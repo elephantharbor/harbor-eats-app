@@ -5,6 +5,14 @@
  * D-05 foundation; others are registered contracts for later releases.
  */
 import { PROMPTS } from "./prompts.js";
+import {
+  discoveryIntentInputSchema,
+  discoveryIntentOutputSchema,
+  planningIntentInputSchema,
+  planningIntentOutputSchema,
+  postValidateDiscoveryDelta,
+  postValidatePlanningDelta,
+} from "../weave/task-schemas.js";
 
 const str = (max) => ({ type: "string", maxLength: max });
 const strList = (max, items = 120) => ({ type: "array", maxItems: max, items: str(items) });
@@ -17,35 +25,17 @@ function stripAuthorityClaims(text) {
   return AUTHORITY_CLAIMS.test(text) ? { ok: false, reason: "authority_claim" } : { ok: true };
 }
 
-/** Keep only facet values present in the deterministic vocabulary the caller supplied. */
-function filterToVocabulary(output, input) {
-  const vocab = input.vocabulary || {};
-  const facets = {};
-  for (const [key, values] of Object.entries(output.facets || {})) {
-    const allowed = new Set((vocab[key] || []).map((v) => String(v).toLowerCase()));
-    const kept = (values || []).map((v) => String(v).toLowerCase()).filter((v) => allowed.has(v));
-    if (kept.length) facets[key] = [...new Set(kept)].sort();
-  }
-  const out = { ...output, facets };
-  if (out.max_minutes != null && !(Number.isInteger(out.max_minutes) && out.max_minutes >= 5 && out.max_minutes <= 240)) {
-    delete out.max_minutes;
-  }
-  return { ok: true, value: out };
-}
-
-const FACET_KEYS = ["cuisines", "meal_styles", "flavors", "ingredients", "exclude_ingredients", "methods", "equipment", "textures", "effort_levels"];
-const facetsSchema = {
-  type: "object",
-  additionalProperties: false,
-  properties: Object.fromEntries(FACET_KEYS.map((k) => [k, strList(10, 40)])),
-};
-
 // Rate limits live in config.js/limits.js (household/minute, household/day, global/day, Sol/day);
 // tasks only carry max_retries (<=1), the output cap (outer model ceiling applies) and timeout.
 const DEFAULT_LIMITS = { max_retries: 1, max_output_tokens: 400, timeout_ms: 8000 };
 
-/** Allowed Responses API reasoning efforts. Every task MUST set one explicitly (no provider defaults). */
-export const REASONING_EFFORTS = Object.freeze(["none", "minimal", "low", "medium", "high"]);
+/**
+ * Efforts a task may declare. Every task MUST set one explicitly (no provider defaults).
+ * `minimal` is omitted: gpt-6-luna and gpt-6.1-sol both reject it with HTTP 400.
+ * planning_intent and discovery_intent use `none` (Luna accepts it; Sol is not routed here).
+ * `low` spends a reasoning pass these schema fills do not need and dominated preview latency.
+ */
+export const REASONING_EFFORTS = Object.freeze(["none", "low", "medium", "high"]);
 
 function task(id, spec) {
   if (!PROMPTS[id]) throw new Error(`task ${id} has no prompt`);
@@ -64,50 +54,28 @@ function task(id, spec) {
 
 export const TASKS = Object.freeze({
   planning_intent: task("planning_intent", {
-    reasoning_effort: "minimal",
-    cost_class: "cheap",
-    allowed_models: ["fast-small"],
-    input_schema: textInput(),
-    output_schema: {
-      type: "object",
-      required: ["nights", "keep_it_easy"],
-      additionalProperties: false,
-      properties: {
-        nights: { type: ["integer", "null"], minimum: 1, maximum: 7 },
-        keep_it_easy: { type: "boolean" },
-        keep_ingredients_simple: { type: "boolean" },
-        notes: str(200),
-      },
-    },
-  }),
-  discovery_intent: task("discovery_intent", {
-    reasoning_effort: "minimal",
+    reasoning_effort: "none",
     executable: true,
     cost_class: "cheap",
     allowed_models: ["fast-small"],
-    input_schema: {
-      type: "object",
-      required: ["text"],
-      properties: { text: str(200), vocabulary: { type: "object" } },
-    },
-    output_schema: {
-      type: "object",
-      required: ["facets"],
-      additionalProperties: false,
-      properties: {
-        facets: facetsSchema,
-        max_minutes: { type: ["integer", "null"] },
-        quick: { type: "boolean" },
-        different: { type: "boolean" },
-        keep_it_easy: { type: "boolean" },
-        keep_ingredients_simple: { type: "boolean" },
-      },
-    },
-    post_validate: filterToVocabulary,
-    limits: { max_output_tokens: 250, timeout_ms: 5000 },
+    input_schema: planningIntentInputSchema,
+    output_schema: planningIntentOutputSchema,
+    post_validate: postValidatePlanningDelta,
+    limits: { max_output_tokens: 560, timeout_ms: 8000 },
+  }),
+  discovery_intent: task("discovery_intent", {
+    reasoning_effort: "none",
+    executable: true,
+    cost_class: "cheap",
+    allowed_models: ["fast-small"],
+    input_schema: discoveryIntentInputSchema,
+    output_schema: discoveryIntentOutputSchema,
+    post_validate: postValidateDiscoveryDelta,
+    // One shot inside the interpret user budget. A timed-out call is not retried.
+    limits: { max_output_tokens: 320, timeout_ms: 6000 },
   }),
   feedback_extraction: task("feedback_extraction", {
-    reasoning_effort: "minimal",
+    reasoning_effort: "low",
     cost_class: "cheap",
     allowed_models: ["fast-small"],
     input_schema: { type: "object", required: ["text"], properties: { text: str(1000), meal: str(120) } },
@@ -158,8 +126,8 @@ export const TASKS = Object.freeze({
     allowed_models: ["fast-small", "balanced"],
     input_schema: {
       type: "object",
-      required: ["meal", "reasons"],
-      properties: { meal: str(120), reasons: strList(6, 60) },
+      required: ["meal", "reasons", "cache_bust"],
+      properties: { meal: str(120), reasons: strList(6, 60), cache_bust: { type: ["string", "null"], maxLength: 16 } },
     },
     output_schema: { type: "object", required: ["text"], additionalProperties: false, properties: { text: str(280) } },
     post_validate: (output) => {
@@ -170,7 +138,7 @@ export const TASKS = Object.freeze({
     limits: { max_output_tokens: 300, timeout_ms: 5000 },
   }),
   semantic_search_assist: task("semantic_search_assist", {
-    reasoning_effort: "minimal",
+    reasoning_effort: "low",
     cost_class: "cheap",
     allowed_models: ["fast-small"],
     input_schema: textInput(200),

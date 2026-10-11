@@ -15,6 +15,9 @@ import { scoreDinerTastes } from "./diner-taste-rank.js";
 import { canonicalIngredient } from "./ingredient-identity.js";
 import { getTasteTerm } from "./taste-vocabulary.js";
 import { PRACTICAL_HINT_KEYS } from "./cycle2-schema.js";
+import { cueScoreForMeal } from "../weave/cues.js";
+import { PLAN_TOKENS } from "../weave/constants.js";
+import { isPlantMeal, mealSatisfiesSlot } from "../weave/slot-match.js";
 
 const TASTE_BAND = 0.5;
 
@@ -36,7 +39,7 @@ export function plannerCatalog() {
   return cached;
 }
 
-function featuresOf(entry) {
+export function featuresOf(entry) {
   const tags = entry.pkg.vocabulary_tag_ids || [];
   const styles = [];
   const flavors = [];
@@ -63,6 +66,8 @@ function featuresOf(entry) {
     minutes: entry.pkg.total_minutes,
     effort_level: entry.pkg.effort_level || null,
     ingredient_complexity: entry.pkg.ingredient_complexity || null,
+    exploration: entry.pkg.exploration ?? entry.concept.exploration ?? 0,
+    vocabulary_tag_ids: entry.pkg.vocabulary_tag_ids || [],
     equipment: entry.pkg.equipment || [],
     methods: entry.concept.current_version?.methods || [],
     entry,
@@ -124,7 +129,7 @@ export function assessMealEligibility(entry, participantIds, constraints, tastes
   };
 }
 
-function matchesRequest(feature, slug) {
+export function matchesRequest(feature, slug) {
   if (!slug) return false;
   if (feature.ingredient === slug) return true;
   if (feature.entry.concept.primary_ingredient === slug) return true;
@@ -149,7 +154,7 @@ function hintBoost(feature, intent) {
       const detail = hint.detail || "";
       const method = detail.replace(/-/g, "_");
       if (detail && (feature.equipment.includes(detail) || feature.methods.includes(method))) boost += 0.2;
-    } else {
+    } else if (hint.hint_key !== "weeknight") {
       unscored.push(hint.hint_key);
     }
   }
@@ -204,7 +209,85 @@ function usedFromSlots(slots, catalogBySlug) {
   return used;
 }
 
-function scoreFeature(feature, participantIds, tastes, intent) {
+export function mealMatchesCategory(feature, token) {
+  if (token === "plant" || token === "vegetarian" || token === "plant_based") return isPlantMeal(feature);
+  if (PLAN_TOKENS.includes(token) && feature.styles.includes(token)) return true;
+  if (token === "fish" || token === "seafood" || token === "shellfish") {
+    const tags = feature.entry?.pkg?.allergens || [];
+    if (token === "fish" && tags.includes("finfish")) return true;
+    if (token === "shellfish" && tags.includes("shellfish")) return true;
+    if (token === "seafood" && (tags.includes("finfish") || tags.includes("shellfish"))) return true;
+  }
+  return matchesRequest(feature, token);
+}
+
+function passesPoolFilters(feature, intent, slotOverride = {}) {
+  const effort = slotOverride.effort || intent.require_effort;
+  if (effort && feature.effort_level !== effort) return false;
+  const complexity = slotOverride.ingredient_complexity || intent.require_ingredient_complexity;
+  if (complexity && feature.ingredient_complexity !== complexity) return false;
+  const hardMinutes = slotOverride.max_minutes_hard ? slotOverride.max_minutes : intent.max_cook_minutes_hard ? intent.max_cook_minutes : null;
+  if (hardMinutes != null && typeof feature.minutes === "number" && feature.minutes > hardMinutes) return false;
+  for (const slug of intent.exclude_ingredients || []) {
+    if (matchesRequest(feature, slug)) return false;
+  }
+  for (const cat of intent.exclude_categories || []) {
+    if (mealMatchesCategory(feature, cat)) return false;
+  }
+  if (slotOverride.category && !mealMatchesCategory(feature, slotOverride.category)) return false;
+  return true;
+}
+
+const SLOT_OVERRIDE_KEYS = [
+  "effort",
+  "ingredient_complexity",
+  "max_minutes",
+  "max_minutes_hard",
+  "special",
+  "cuisine",
+  "meal_style",
+  "ingredient",
+  "category",
+  "intent_cue",
+];
+
+/** Position match only. An unmatched slot must not fall through onto slots[index]. */
+function slotOverrideFor(intent, index) {
+  const position = index + 1;
+  const hit = (intent.weave_slots || []).find((slot) => Number(slot?.position) === position);
+  if (!hit) return {};
+  const out = {};
+  for (const key of SLOT_OVERRIDE_KEYS) {
+    const value = hit[key];
+    if (value == null || value === false) continue;
+    out[key] = value;
+  }
+  return out;
+}
+
+function previousAt(previous, index) {
+  if (!Array.isArray(previous)) return null;
+  const position = index + 1;
+  return previous.find((slot) => slot && Number(slot.position) === position) || previous[index] || null;
+}
+
+function slotParticipants(intent, index) {
+  return intent.slots?.[index]?.participant_ids?.length
+    ? intent.slots[index].participant_ids
+    : intent.participant_ids;
+}
+
+function replacementDropsSlotRule(override, feature) {
+  if (!override) return false;
+  if (override.ingredient && !matchesRequest(feature, override.ingredient) && !mealMatchesCategory(feature, override.ingredient)) {
+    return true;
+  }
+  if (override.category && !mealMatchesCategory(feature, override.category)) return true;
+  if (override.cuisine && feature.cuisine !== override.cuisine) return true;
+  return false;
+}
+
+function scoreFeature(feature, participantIds, tastes, intent, slotOverride = {}) {
   const taste = scoreDinerTastes(
     {
       recipe_slug: feature.slug,
@@ -213,7 +296,13 @@ function scoreFeature(feature, participantIds, tastes, intent) {
     (tastes || []).filter((row) => participantIds.includes(row.member_id))
   );
   const hints = hintBoost(feature, intent);
-  return { taste: taste.score, total: taste.score + hints.boost, unscored: hints.unscored, excludes: taste.excludes };
+  const cues = slotOverride.intent_cue ? [slotOverride.intent_cue] : intent.intent_cues || [];
+  const cue = cueScoreForMeal(feature, cues, { keep_it_easy: intent.keep_it_easy });
+  let total = taste.score + hints.boost + cue;
+  if (slotOverride.special === true) {
+    total += (feature.exploration || 0) >= 0.55 ? 0.25 : (feature.exploration || 0) * 0.1;
+  }
+  return { taste: taste.score, total, unscored: hints.unscored, excludes: taste.excludes, cue };
 }
 
 function catalogCount(features, slug) {
@@ -221,12 +310,12 @@ function catalogCount(features, slug) {
   return features.filter((feature) => matchesRequest(feature, slug)).length;
 }
 
-function rankEligible(eligible, participantIds, tastes, intent) {
+function rankEligible(eligible, participantIds, tastes, intent, slotOverride = {}) {
   const active = preferencesActive(intent);
   const prefs = planningPreferences(intent);
   const ranked = eligible
     .map((feature) => {
-      const score = scoreFeature(feature, participantIds, tastes, intent);
+      const score = scoreFeature(feature, participantIds, tastes, intent, slotOverride);
       return {
         feature,
         total: score.total,
@@ -245,7 +334,7 @@ function rankEligible(eligible, participantIds, tastes, intent) {
   return { ranked, active };
 }
 
-function pickFeature(ranked, used, recent, tiered) {
+function pickFeature(ranked, used, recent, tiered, opts = {}) {
   const unused = ranked.filter((row) => !used.slugs.has(row.feature.slug));
   if (!unused.length) {
     return {
@@ -262,7 +351,10 @@ function pickFeature(ranked, used, recent, tiered) {
     pool = unused.filter((row) => row.requirement === bestRequirement && row.preference === bestPreference);
   }
   const best = pool[0].total;
-  const band = pool.filter((row) => row.total >= best - TASTE_BAND);
+  // A slot cue is clamped to 0.4, inside the usual 0.5 diversity band, so
+  // diversity would ignore it. Hold the band tight when the slot named a cue.
+  const bandWidth = opts.cueBound ? 0.05 : TASTE_BAND;
+  const band = pool.filter((row) => row.total >= best - bandWidth);
   const diverse = band.find((row) => !conflicts(row.feature, used) && !recent.has(row.feature.slug))
     || band.find((row) => !conflicts(row.feature, used));
   const chosen = diverse || pool[0];
@@ -340,20 +432,83 @@ export function planDinners(intent, context = {}) {
   const used = emptyUsed();
   const slots = [];
   const preference_relaxations = [];
-  for (let index = 0; index < intent.dinner_count; index += 1) {
-    const participant_ids = intent.slots?.[index]?.participant_ids?.length
-      ? intent.slots[index].participant_ids
-      : intent.participant_ids;
-    const eligible = features.filter((feature) =>
-      assessMealEligibility(feature.entry, participant_ids, context.constraints || [], context.tastes || []).eligible
+  const previous = context.previous_slots || null;
+  const changed = new Set();
+  const tastes = context.tastes || [];
+  const constraints = context.constraints || [];
+
+  function featureBySlug(slug) {
+    if (!slug) return null;
+    const entry = catalog.find((item) => item.concept.concept_id === slug);
+    return entry ? featuresOf(entry) : null;
+  }
+
+  function countToken(token, replaceIndex = -1, candidate = null) {
+    let n = 0;
+    for (let i = 0; i < slots.length; i += 1) {
+      const feature = i === replaceIndex ? candidate : featureBySlug(slots[i]?.recipe_slug);
+      if (feature && mealMatchesCategory(feature, token)) n += 1;
+    }
+    if (replaceIndex === slots.length && candidate && mealMatchesCategory(candidate, token)) n += 1;
+    return n;
+  }
+
+  function respectsMax(candidate, replaceIndex) {
+    for (const row of intent.frequencies || []) {
+      if (row?.max_count == null) continue;
+      if (countToken(row.token, replaceIndex, candidate) > row.max_count) return false;
+    }
+    return true;
+  }
+
+  function markChange(index, prev, slot) {
+    const position = index + 1;
+    if (!prev || prev.recipe_version_id !== slot.recipe_version_id) changed.add(position);
+    else changed.delete(position);
+  }
+
+  function eligibleFor(index, slotOverride, participantIds) {
+    return features.filter(
+      (feature) =>
+        assessMealEligibility(feature.entry, participantIds, constraints, tastes).eligible &&
+        passesPoolFilters(feature, intent, slotOverride)
     );
-    const pool = rankEligible(eligible, participant_ids, context.tastes || [], intent);
+  }
+
+  for (let index = 0; index < intent.dinner_count; index += 1) {
+    const slotOverride = slotOverrideFor(intent, index);
+    const participant_ids = slotParticipants(intent, index);
+    const prev = previousAt(previous, index);
+    const already = prev?.recipe_version_id && mealSatisfiesSlot(prev, slotOverride);
+    if (prev?.recipe_version_id && (Object.keys(slotOverride).length === 0 || already)) {
+      slots.push({
+        ...prev,
+        position: index + 1,
+        participant_ids,
+        result: prev.result || "recommended",
+      });
+      if (prev.recipe_slug) {
+        used.slugs.add(prev.recipe_slug);
+        const entry = catalog.find((item) => item.concept.concept_id === prev.recipe_slug);
+        if (entry) remember(used, featuresOf(entry));
+      }
+      continue;
+    }
+    const eligible = eligibleFor(index, slotOverride, participant_ids);
+    const pool = rankEligible(eligible, participant_ids, tastes, intent, slotOverride);
     pool.ranked.forEach((row) => row.unscored?.forEach((key) => unscored.add(key)));
-    const picked = eligible.length
-      ? pickFeature(pool.ranked, used, recent, pool.active)
-      : { feature: null, reason: "no_eligible_meal", preference_tier: 0, preference_relaxed: false };
+    const legal = pool.ranked.filter((row) => respectsMax(row.feature, slots.length));
+    const picked = legal.length
+      ? pickFeature(legal, used, recent, pool.active, { cueBound: Boolean(slotOverride.intent_cue) })
+      : {
+          feature: null,
+          reason: eligible.length ? "frequency_cap" : "no_eligible_meal",
+          preference_tier: 0,
+          preference_relaxed: false,
+        };
     if (picked.feature) remember(used, picked.feature);
     const slot = publicSlot(index + 1, participant_ids, picked);
+    if (prev?.scheduled_date) slot.scheduled_date = prev.scheduled_date;
     if (slot.preference_relaxed) {
       preference_relaxations.push({
         position: slot.position,
@@ -364,7 +519,66 @@ export function planDinners(intent, context = {}) {
       });
     }
     slots.push(slot);
+    markChange(index, prev, slot);
   }
+
+  for (const row of intent.frequencies || []) {
+    if (row?.min_count == null || row.min_count <= 0 || !row.token) continue;
+    let guard = intent.dinner_count + 2;
+    while (countToken(row.token) < row.min_count && guard > 0) {
+      guard -= 1;
+      const before = countToken(row.token);
+      let replaced = false;
+      for (let index = slots.length - 1; index >= 0 && !replaced; index -= 1) {
+        const current = featureBySlug(slots[index]?.recipe_slug);
+        if (current && mealMatchesCategory(current, row.token)) continue;
+        const slotOverride = slotOverrideFor(intent, index);
+        const participant_ids = slotParticipants(intent, index);
+        const taken = new Set(
+          slots.filter((_, slotIndex) => slotIndex !== index).map((slot) => slot.recipe_slug).filter(Boolean)
+        );
+        const options = features.filter(
+          (feature) =>
+            !taken.has(feature.slug) &&
+            assessMealEligibility(feature.entry, participant_ids, constraints, tastes).eligible &&
+            passesPoolFilters(feature, intent, slotOverride) &&
+            mealMatchesCategory(feature, row.token) &&
+            !replacementDropsSlotRule(slotOverride, feature) &&
+            respectsMax(feature, index)
+        );
+        if (!options.length) continue;
+        options.sort((a, b) => {
+          const delta =
+            scoreFeature(b, participant_ids, tastes, intent, slotOverride).total -
+            scoreFeature(a, participant_ids, tastes, intent, slotOverride).total;
+          return delta || a.slug.localeCompare(b.slug);
+        });
+        const slot = publicSlot(index + 1, participant_ids, {
+          feature: options[0],
+          reason: null,
+          preference_tier: 0,
+          preference_relaxed: false,
+        });
+        const prev = previousAt(previous, index);
+        if (prev?.scheduled_date) slot.scheduled_date = prev.scheduled_date;
+        slots[index] = slot;
+        markChange(index, prev, slot);
+        replaced = true;
+      }
+      if (!replaced || countToken(row.token) <= before) {
+        constrained_requests.push({
+          field: "frequency",
+          token: row.token,
+          min_count: row.min_count,
+          placed: countToken(row.token),
+          reason: "insufficient_eligible",
+          invented: false,
+        });
+        break;
+      }
+    }
+  }
+
   return {
     ok: true,
     model: null,
@@ -375,6 +589,7 @@ export function planDinners(intent, context = {}) {
     unscored_hints: [...unscored],
     preference_relaxations,
     slots,
+    changed_positions: [...changed].sort((a, b) => a - b),
   };
 }
 

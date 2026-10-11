@@ -9,6 +9,7 @@
  */
 
 import { QUICK_MAX_MINUTES } from "./constants.js";
+import { mealMatchesExcludedTerm } from "../weave/negation.js";
 
 function has(list, value) {
   return Boolean(value) && list.includes(value);
@@ -87,7 +88,8 @@ export function matchExplicitCriteria(meal, criteria, context = {}) {
     matched.push("explicit_ingredient");
   }
   if (criteria.exclude_ingredients.length) {
-    if (overlaps(criteria.exclude_ingredients, ingredientPresent)) {
+    const excludedTerm = criteria.exclude_ingredients.some((term) => mealMatchesExcludedTerm(meal, term));
+    if (overlaps(criteria.exclude_ingredients, ingredientPresent) || excludedTerm) {
       return { pass: false, code: "explicit_exclude_ingredient", detail: null, matched };
     }
     matched.push("explicit_exclude_ingredient");

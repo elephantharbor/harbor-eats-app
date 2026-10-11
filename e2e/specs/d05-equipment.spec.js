@@ -11,10 +11,14 @@ test("Butter Chicken recipe API carries the pressure cooker from canonical equip
   expect(recipe.equipment.some((/** @type {string} */ e) => /pressure cooker/i.test(e))).toBe(true);
 });
 
-test("D-05 health is served, makes no provider call, gateway off, no consumer UI", async ({ request }) => {
+test("D-05 health follows the environment's configured flags", async ({ request }) => {
   const res = await request.get(`${base}/api/ai/health`);
   expect(res.status()).toBe(200);
   const body = await res.json();
-  expect(body).toMatchObject({ ok: true, gateway_enabled: false, provider_configured: false, consumer_ui: false });
+  expect(body.ok).toBe(true);
   expect(body.tasks).toHaveLength(8);
+  const consumerTaskOn = body.tasks.some(
+    (task) => (task.id === "planning_intent" || task.id === "discovery_intent") && task.enabled === true
+  );
+  expect(body.consumer_ui).toBe(Boolean(body.gateway_enabled) && Boolean(body.provider_configured) && consumerTaskOn);
 });

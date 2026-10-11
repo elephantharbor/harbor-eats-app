@@ -19,6 +19,7 @@ import {
   SOFT_KEYS,
   TEXTURE_FILTERS,
 } from "./constants.js";
+import { INTENT_CUES } from "../weave/constants.js";
 
 const SLUG_RE = /^[a-z0-9]+(?:[-_][a-z0-9]+)*$/;
 
@@ -196,6 +197,8 @@ export function emptyQuery() {
     soft_provided: false,
     limit: DISCOVERY_DEFAULT_LIMIT,
     offset: 0,
+    intent_cues: [],
+    prefer_max_minutes: null,
   };
 }
 
@@ -281,6 +284,22 @@ export function normalizeQuery(input = {}) {
   const offset = normalizeOffset(input.offset);
   if (!offset.ok) return offset;
 
+  let intent_cues = [];
+  if (input.intent_cues != null) {
+    const cues = normalizeSlugList(input.intent_cues, "intent_cues", { enum: INTENT_CUES });
+    if (!cues.ok) return fail("intent_cues_invalid");
+    if (cues.value.length > 4) return fail("intent_cues_invalid");
+    intent_cues = cues.value;
+  }
+  let prefer_max_minutes = null;
+  if (input.prefer_max_minutes != null) {
+    if (typeof input.prefer_max_minutes !== "number" || !Number.isInteger(input.prefer_max_minutes)) {
+      return fail("prefer_max_minutes_invalid");
+    }
+    if (input.prefer_max_minutes < 5 || input.prefer_max_minutes > 240) return fail("prefer_max_minutes_invalid");
+    prefer_max_minutes = input.prefer_max_minutes;
+  }
+
   return {
     ok: true,
     query: {
@@ -291,6 +310,8 @@ export function normalizeQuery(input = {}) {
       soft_provided,
       limit: limit.value,
       offset: offset.value,
+      intent_cues,
+      prefer_max_minutes,
     },
   };
 }
@@ -323,6 +344,8 @@ export function canonicalQuery(query) {
       : null,
     limit: query.limit,
     offset: query.offset,
+    intent_cues: [...(query.intent_cues || [])],
+    prefer_max_minutes: query.prefer_max_minutes ?? null,
   };
 }
 

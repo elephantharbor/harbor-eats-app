@@ -13,13 +13,16 @@ export { createOpenAIProvider } from "./providers/openai.js";
 export { PRICING_VERSION, MODEL_PRICING, MODEL_OUTPUT_CEILINGS } from "./pricing.js";
 
 import { unconfiguredProvider } from "./providers/contract.js";
+import { createFakeProvider } from "./providers/fake.js";
 import { createOpenAIProvider } from "./providers/openai.js";
 /**
  * Resolve the runtime provider. AI_PROVIDER=openai AND a non-empty OPENAI_API_KEY secret =>
- * the OpenAI adapter; anything else => an unconfigured provider that never calls out.
+ * the OpenAI adapter. AI_PROVIDER=fake (tests) => the fake provider. Anything else =>
+ * an unconfigured provider that never calls out.
  */
 export function resolveProvider(env = {}) {
   const id = String(env.AI_PROVIDER || "none");
+  if (id === "fake") return env.AI_FAKE_PROVIDER || createFakeProvider({ script: env.AI_FAKE_SCRIPT });
   if (id === "openai" && typeof env.OPENAI_API_KEY === "string" && env.OPENAI_API_KEY.trim()) return createOpenAIProvider({ env });
   return unconfiguredProvider(id);
 }

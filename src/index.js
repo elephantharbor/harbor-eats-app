@@ -6,7 +6,7 @@ import { aiHealth, resolveProvider, handleAiSmoke } from "./ai/index.js";
  */
 
 import { effortLabel } from "./lib/classification.js";
-import { constraintRowsFromKeys, filterEligibleOptions } from "./lib/eligibility.js";
+import { constraintRowsFromKeys, filterEligibleOptions, isKnownRestrictionKey } from "./lib/eligibility.js";
 import {
   catalogReadsFromD1,
   coverageFromMeals,
@@ -46,6 +46,7 @@ import { buildTasteProfile } from "./lib/taste-model.js";
 import { routeTasteRequest } from "./lib/taste-profile.js";
 import { routeDinnerPlanRequest } from "./lib/dinner-plan-routes.js";
 import { routeDiscoveryRequest } from "./discovery/http.js";
+import { routeWeaveRequest } from "./weave/routes.js";
 import {
   getConceptBySlug,
   getRecipeVersion,
@@ -381,6 +382,9 @@ async function setConstraints(env, member_id, body, session) {
       const status = r.status || "prohibited";
       if (status !== "prohibited" && status !== "permitted") {
         return err("invalid_constraint_status", 400, { rule_key });
+      }
+      if (!isKnownRestrictionKey(rule_key)) {
+        return err("unknown_restriction", 400, { rule_key });
       }
       const constraint_id = r.constraint_id || id("cr");
       await env.DB.prepare(
@@ -2474,6 +2478,12 @@ export default {
         {
           const dinnerRes = await routeDinnerPlanRequest(env, request, path, url, { writeOrigin });
           if (dinnerRes) return dinnerRes;
+        }
+
+        // D-06 weave interpret (planning + discovery NLP).
+        {
+          const weaveRes = await routeWeaveRequest(env, request, path, { writeOrigin });
+          if (weaveRes) return weaveRes;
         }
 
         // D-07 catalog discovery. Read-only search. Plan writes stay on dinner-plan mutations.

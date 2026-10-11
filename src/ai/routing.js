@@ -18,6 +18,20 @@ export const MODEL_ALIASES = Object.freeze({
   strong: "gpt-6.1-sol",
 });
 
+/**
+ * Reasoning efforts each concrete model accepts on the Responses API.
+ * `minimal` is not in either set: gpt-6-luna returns HTTP 400
+ * (`param: reasoning.effort`). Luna also accepts `none`; Sol does not.
+ */
+export const MODEL_REASONING_EFFORTS = Object.freeze({
+  "gpt-6-luna": Object.freeze(["none", "low", "medium", "high", "xhigh", "max"]),
+  "gpt-6.1-sol": Object.freeze(["low", "medium", "high", "xhigh", "max"]),
+});
+
+export function reasoningEffortsForModel(model) {
+  return MODEL_REASONING_EFFORTS[model] || null;
+}
+
 /** Models that must never be called, whatever config or code says. */
 export const MODEL_DENYLIST = Object.freeze(["gpt-6-astra"]);
 

@@ -8,7 +8,7 @@
 import { createGenerationService } from "./gateway.js";
 import { createD1Store } from "./store.js";
 
-const SMOKE_INPUT = Object.freeze({ meal: "Weeknight tomato pasta", reasons: ["quick", "few ingredients"] });
+const SMOKE_INPUT = Object.freeze({ meal: "Weeknight tomato pasta", reasons: ["quick", "few ingredients"], cache_bust: null });
 
 function safeEqual(a, b) {
   const x = new TextEncoder().encode(String(a));
@@ -24,8 +24,10 @@ export async function handleAiSmoke(request, env, provider) {
   if (!safeEqual(request.headers.get("x-ai-smoke-token") || "", token)) return { status: 403, body: { error: "forbidden" } };
   if (!env.DB) return { status: 503, body: { error: "d1_unbound" } };
   const service = createGenerationService({ provider, store: createD1Store(env.DB), env });
-  const nonce = new URL(request.url).searchParams.get("nonce") || ""; // vary to bypass cache on purpose
-  const input = nonce ? { ...SMOKE_INPUT, reasons: [...SMOKE_INPUT.reasons, `n${String(nonce).replace(/[^a-z0-9]/gi, "").slice(0, 12)}`] } : SMOKE_INPUT;
+  const nonce = new URL(request.url).searchParams.get("nonce") || ""; // vary cache key only; not sent to the model as a meal reason
+  const input = nonce
+    ? { ...SMOKE_INPUT, cache_bust: String(nonce).replace(/[^a-z0-9]/gi, "").slice(0, 12) }
+    : SMOKE_INPUT;
   const r = await service.run("explanation", input, { householdId: "ai_smoke", fallback: null });
   return { status: 200, body: { ok: r.ok, error: r.error ?? null, source: r.source ?? null, model: r.model ?? null, prompt_version: r.prompt_version ?? null, output: r.ok ? r.output : null } };
 }

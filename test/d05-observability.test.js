@@ -39,8 +39,8 @@ describe("per-task reasoning effort + explanation cap", () => {
     for (const t of Object.values(TASKS)) expect(REASONING_EFFORTS).toContain(t.reasoning_effort);
     expect(TASKS.explanation.reasoning_effort).toBe("none");
     expect(TASKS.explanation.limits.max_output_tokens).toBe(300);
-    expect(TASKS.discovery_intent.limits.max_output_tokens).toBe(250);
-    expect(TASKS.planning_intent.limits.max_output_tokens).toBe(400);
+    expect(TASKS.discovery_intent.limits.max_output_tokens).toBe(320);
+    expect(TASKS.planning_intent.limits.max_output_tokens).toBe(560);
     expect(TASKS.recipe_draft.limits.max_output_tokens).toBe(1500);
   });
   it("adapter sends reasoning: {effort}, keeps strict json_schema", () => {
@@ -52,7 +52,7 @@ describe("per-task reasoning effort + explanation cap", () => {
   });
   it("gateway passes explanation reasoning effort none and cap 300 on the wire", async () => {
     const { service, sent } = run(completed());
-    expect((await service.run("explanation", { meal: MEAL, reasons: ["quick"] })).ok).toBe(true);
+    expect((await service.run("explanation", { meal: MEAL, reasons: ["quick"], cache_bust: null })).ok).toBe(true);
     expect(sent).toHaveLength(1);
     expect(sent[0]).toMatchObject({ model: "gpt-6-luna", max_output_tokens: 300, reasoning: { effort: "none" } });
   });
@@ -61,7 +61,7 @@ describe("per-task reasoning effort + explanation cap", () => {
 describe("output_limit", () => {
   it("incomplete/max_output_tokens => output_limit, one attempt, usage + metadata recorded", async () => {
     const { service, store, fetchImpl } = run({ id: "resp_inc", status: "incomplete", model: "gpt-6-luna", incomplete_details: { reason: "max_output_tokens" }, usage: { input_tokens: 124, output_tokens: 300, output_tokens_details: { reasoning_tokens: 250 } } });
-    const r = await service.run("explanation", { meal: MEAL, reasons: ["quick"] });
+    const r = await service.run("explanation", { meal: MEAL, reasons: ["quick"], cache_bust: null });
     expect(r.error).toBe("output_limit");
     expect(fetchImpl).toHaveBeenCalledTimes(1);
     const row = store.usage.at(-1);
@@ -73,26 +73,34 @@ describe("output_limit", () => {
 describe("usage metadata on every call", () => {
   it("success: requested/reported model, status, all tokens, pricing, cost, request ids", async () => {
     const { service, store } = run(completed());
-    await service.run("explanation", { meal: MEAL, reasons: ["quick"] });
+    await service.run("explanation", { meal: MEAL, reasons: ["quick"], cache_bust: null });
     const m = meta(store);
     const cost = costUsd("gpt-6-luna", { input_tokens: 130, cached_input_tokens: 10, output_tokens: 60 });
     expect(m).toEqual({
       requested_model: "gpt-6-luna", reported_model: "gpt-6-luna-2026-10-01", http_status: 200, response_status: "completed", incomplete_reason: null,
       error_code: null, error_detail: null, reasoning_effort: "none", max_output_tokens: 300,
       input_tokens: 130, cached_input_tokens: 10, reasoning_tokens: 0, output_tokens: 60,
-      pricing_version: PRICING_VERSION, estimated_cost_usd: cost, request_id: "req_abc123", response_id: "resp_ok1",
+      pricing_version: PRICING_VERSION, estimated_cost_usd: cost, attempts: 1, attempt_latencies_ms: [0],
+      request_id: "req_abc123", response_id: "resp_ok1",
+      error_message: null, error_type: null, error_param: null,
     });
     expect(store.usage.at(-1).status).toBe("ok");
   });
-  it("HTTP 400 failure still records metadata with code/detail", async () => {
-    const { service, store } = run({ error: { message: "bad param " + KEY } }, { status: 400 });
-    const r = await service.run("explanation", { meal: MEAL, reasons: ["quick"] });
-    expect(r.error).toBe("provider_outage");
-    expect(meta(store)).toMatchObject({ http_status: 400, error_code: "provider_outage", error_detail: "status_400", request_id: "req_abc123", requested_model: "gpt-6-luna" });
+  it("HTTP 400 is provider_config, not retried, and records sanitized error message/type/param", async () => {
+    const { service, store, fetchImpl } = run({ error: { message: "bad param " + KEY, type: "invalid_request_error", param: "reasoning.effort" } }, { status: 400 });
+    const r = await service.run("explanation", { meal: MEAL, reasons: ["quick"], cache_bust: null });
+    expect(r.error).toBe("provider_config");
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    expect(store.usage.at(-1).attempts).toBe(1);
+    const m = meta(store);
+    expect(m).toMatchObject({ http_status: 400, error_code: "provider_config", error_detail: "status_400", error_type: "invalid_request_error", error_param: "reasoning.effort", request_id: "req_abc123", requested_model: "gpt-6-luna" });
+    expect(m.error_message).toMatch(/bad param/);
+    expect(m.error_message).not.toMatch(/sk-/);
+    expect(JSON.stringify(m)).not.toContain(KEY);
   });
   it("schema failure records malformed_output with schema detail", async () => {
     const { service, store } = run({ ...completed(), output: [{ type: "message", content: [{ type: "output_text", text: '{"nope":1}' }] }] });
-    const r = await service.run("explanation", { meal: MEAL, reasons: ["quick"] });
+    const r = await service.run("explanation", { meal: MEAL, reasons: ["quick"], cache_bust: null });
     expect(r.error).toBe("malformed_output");
     const m = meta(store);
     expect(m.error_code).toBe("malformed_output");
@@ -102,7 +110,7 @@ describe("usage metadata on every call", () => {
   it("never stores prompts, outputs, reasoning text, the key or household input", async () => {
     for (const body of [completed(), { status: "incomplete", incomplete_details: { reason: "max_output_tokens" }, usage }, { error: { message: KEY } }]) {
       const { service, store } = run(body, { status: body.error ? 401 : 200 });
-      await service.run("explanation", { meal: MEAL, reasons: ["quick"] });
+      await service.run("explanation", { meal: MEAL, reasons: ["quick"], cache_bust: null });
       const j = store.usage.at(-1).usage_metadata_json;
       for (const bad of [KEY, SECRET_OUTPUT, SECRET_REASONING, MEAL, "Private"]) expect(j).not.toContain(bad);
       expect(() => JSON.parse(j)).not.toThrow();
@@ -110,7 +118,7 @@ describe("usage metadata on every call", () => {
   });
   it("hostile provider strings are sanitized/truncated", async () => {
     const { service, store } = run({ ...completed(), id: "x".repeat(500), model: 'luna"<script>' + KEY });
-    await service.run("explanation", { meal: MEAL, reasons: ["quick"] });
+    await service.run("explanation", { meal: MEAL, reasons: ["quick"], cache_bust: null });
     const m = meta(store);
     expect(m.response_id.length).toBeLessThanOrEqual(80);
     expect(m.reported_model).not.toMatch(/[<>"]/);

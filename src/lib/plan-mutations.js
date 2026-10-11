@@ -258,7 +258,38 @@ export function createDinnerPlan(input, ctx = {}) {
   const plan = blankPlan(input, ctx, parsed.intent);
   /** @type {object[]} */
   const unfilled = [];
-  if (input.fill === "planner") {
+  if (input.fill === "from_preview" && Array.isArray(input.preview_slots)) {
+    if (input.preview_slots.length !== counted.dinner_count) {
+      return fail("meal_count_mismatch", 400);
+    }
+    for (const slot of input.preview_slots) {
+      if (slot.result !== "recommended" || !slot.recipe_version_id) {
+        unfilled.push({ position: slot.position, reason: slot.reason, result: "constrained" });
+        continue;
+      }
+      const built = buildMeal(
+        {
+          kind: "recipe",
+          recipe_version_id: slot.recipe_version_id,
+          participant_ids: slot.participant_ids,
+          scheduled_date: parsed.intent.scheduled_dates?.[slot.position - 1] ?? null,
+        },
+        slot.position,
+        participant_ids,
+        ctx
+      );
+      if (!built.ok) return built;
+      plan.meals.push(built.meal);
+    }
+    plan.planner = {
+      model: null,
+      source: "weave_preview",
+      constrained_requests: [],
+      unscored_hints: [],
+      catalog_size: ctx.catalog?.length || 0,
+      preference_relaxations: [],
+    };
+  } else if (input.fill === "planner") {
     const planned = planDinners(parsed.intent, ctx);
     for (const slot of planned.slots) {
       if (slot.result !== "recommended" || !slot.recipe_version_id) {

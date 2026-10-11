@@ -8,7 +8,7 @@
  * errors too (refusal / incomplete still cost tokens).
  */
 import { AiError } from "../errors.js";
-import { resolveAlias, assertModelAllowed, isDeniedModel } from "../routing.js";
+import { resolveAlias, assertModelAllowed, isDeniedModel, reasoningEffortsForModel } from "../routing.js";
 import { outputCeiling } from "../pricing.js";
 
 export const OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses";
@@ -66,6 +66,13 @@ export function buildResponsesRequest(req) {
   const model = assertModelAllowed(req.model);
   const ceiling = outputCeiling(model);
   const max = Math.min(Number(req.max_output_tokens) || ceiling, ceiling || Infinity);
+  const effort = req.reasoning_effort ? String(req.reasoning_effort) : "";
+  if (effort) {
+    const allowed = reasoningEffortsForModel(model);
+    if (allowed && !allowed.includes(effort)) {
+      throw new AiError("provider_config", `reasoning_effort:${effort}`);
+    }
+  }
   return {
     model,
     input: [
@@ -73,7 +80,7 @@ export function buildResponsesRequest(req) {
       { role: "user", content: String(req.user || "") },
     ],
     max_output_tokens: max,
-    ...(req.reasoning_effort ? { reasoning: { effort: String(req.reasoning_effort) } } : {}),
+    ...(effort ? { reasoning: { effort } } : {}),
     store: false,
     text: {
       format: {
@@ -121,8 +128,26 @@ function err(code, detail, usage, providerMeta) {
 
 const safeStr = (v, n = 80) => (v == null ? null : String(v).replace(/[^\w.:-]/g, "").slice(0, n) || null);
 
+/**
+ * Diagnosable OpenAI error text. Truncated, secrets stripped, and long quoted
+ * spans (schema or prompt echoes) collapsed so the 400 reason survives without
+ * storing request content.
+ */
+function safeErrorField(value, max) {
+  if (value == null) return null;
+  let s = String(value);
+  s = s.replace(/sk-[A-Za-z0-9_-]+/gi, "");
+  s = s.replace(/\bBearer\s+\S+/gi, "");
+  s = s.replace(/"[^"]{40,}"/g, '"…"');
+  s = s.replace(/'[^']{40,}'/g, "'…'");
+  s = s.replace(/[^\w\s.,:;_'"()/=+-]/g, "");
+  s = s.replace(/\s+/g, " ").trim().slice(0, max);
+  return s || null;
+}
+
 /** Safe, non-content provider metadata (no prompt, output, reasoning text or key). */
 export function providerMetadata(res, json) {
+  const apiError = json?.error && typeof json.error === "object" ? json.error : null;
   return {
     http_status: Number(res?.status) || null,
     response_status: safeStr(json?.status, 20),
@@ -130,6 +155,9 @@ export function providerMetadata(res, json) {
     reported_model: safeStr(json?.model, 64),
     request_id: safeStr(res?.headers?.get?.("x-request-id"), 80),
     response_id: safeStr(json?.id, 80),
+    error_message: safeErrorField(apiError?.message, 160),
+    error_type: safeErrorField(apiError?.type, 64),
+    error_param: safeErrorField(apiError?.param, 80),
   };
 }
 
@@ -173,8 +201,9 @@ export function createOpenAIProvider({ env = {}, fetchImpl = (...a) => globalThi
       const usage = parseUsage(json?.usage);
       const pm = providerMetadata(res, json);
       if (res.status === 429) throw err("rate_limited", "status_429", usage, pm);
+      if (res.status === 400) throw err("provider_config", "status_400", usage, pm);
       if (res.status >= 500) throw err("provider_outage", `status_${res.status}`, usage, pm);
-      if (!res.ok) throw err("provider_outage", `status_${res.status}`, usage, pm); // 400/401/403/404: config problem, no detail echoed
+      if (!res.ok) throw err("provider_outage", `status_${res.status}`, usage, pm); // 401/403/404: config problem, no body echo
       if (json?.error) throw err("provider_outage", "response_error", usage, pm);
       if (json?.status === "incomplete" && json?.incomplete_details?.reason === "max_output_tokens") throw err("output_limit", "incomplete:max_output_tokens", usage, pm);
       if (json?.status === "incomplete") throw err("malformed_output", `incomplete:${String(json?.incomplete_details?.reason || "unknown").slice(0, 40)}`, usage, pm);

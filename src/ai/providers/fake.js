@@ -16,6 +16,7 @@ export function createFakeProvider({ script = null, id = "fake" } = {}) {
       const step = typeof script === "function" ? script(req, i) : Array.isArray(script) ? script[Math.min(i, script.length - 1)] : { text: "{}" };
       i += 1;
       if (step?.throw) throw Object.assign(new Error(step.throw.message || "fake"), step.throw);
+      if (step?.delay_ms) await new Promise((resolve) => setTimeout(resolve, step.delay_ms));
       if (step?.hang) {
         await new Promise((resolve, reject) => {
           signal?.addEventListener("abort", () => reject(Object.assign(new Error("aborted"), { name: "AbortError" })));
