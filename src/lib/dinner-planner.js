@@ -518,7 +518,9 @@ export function planDinners(intent, context = {}) {
         effort_level: prev.effort_level || current?.effort_level || null,
         minutes: prev.total_minutes ?? current?.minutes ?? null,
       };
-      const easier = legal.filter((row) => isEasierReplacement(row.feature, baseline));
+      const easier = legal.filter(
+        (row) => isEasierReplacement(row.feature, baseline) && !used.slugs.has(row.feature.slug)
+      );
       if (!easier.length) {
         slots.push({
           ...prev,

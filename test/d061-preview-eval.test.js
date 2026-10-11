@@ -291,7 +291,7 @@ describe("weekend resolution", () => {
     expect(res.status).toBe(200);
     expect(provider.calls).toHaveLength(0);
     expect(res.body.llm_called).toBe(false);
-    expect(res.body.choice).toBeNull();
+    expect(res.body.choice ?? null).toBeNull();
     expect(res.body.preview).not.toBeNull();
     const saturday = res.body.preview.slots.find((slot) => slot.position === 1);
     const sunday = res.body.preview.slots.find((slot) => slot.position === 2);

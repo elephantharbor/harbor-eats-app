@@ -283,6 +283,7 @@ export function resolveDeterministicPlan({ text = "", dinnerPlan = null } = {}) 
   if (scoped) patch.intent_cue = scoped.cue;
   if (!scoped && !weekend && !Object.keys(patch).length) return null;
   const rows = datesFromPlanMeals(meals);
+  const easierDay = Boolean(named && patch.effort === "easy");
   // An undated plan has no days to imply. The chooser lists every dinner.
   if (!rows.length) {
     const asked = scoped?.weekday || named || "weekend";
@@ -301,6 +302,8 @@ export function resolveDeterministicPlan({ text = "", dinnerPlan = null } = {}) 
       },
     };
   }
+  // Dated vegetarian or special requests still go to the model. Easier days do not.
+  if (!scoped && !weekend && !easierDay) return null;
   const pool = scoped
     ? rows.filter((row) => row.weekday === scoped.weekday)
     : weekend
