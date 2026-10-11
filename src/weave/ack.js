@@ -9,7 +9,7 @@ const CUE_LABELS = Object.freeze({
   light: "Not too heavy",
   comforting: "Comforting",
   summery: "Summery",
-  special: "Special",
+  special: "Something special",
   restaurant_like: "Restaurant-style",
   weeknight: "Weeknight",
 });
@@ -188,6 +188,43 @@ function appendMissing(text, phrases) {
     next = next ? `${next} · ${phrase}` : phrase;
   }
   return next.slice(0, 120);
+}
+
+const REQUEST_FLAVOR_WORDS = Object.freeze([
+  "zesty",
+  "lemony",
+  "lemon",
+  "limey",
+  "citrusy",
+  "citrus",
+  "bright",
+  "herby",
+  "smoky",
+  "spicy",
+  "tangy",
+  "garlicky",
+]);
+
+function withRequestFlavors(text, userText) {
+  const source = String(userText || "").toLowerCase();
+  const missing = REQUEST_FLAVOR_WORDS.filter(
+    (word) => new RegExp(`\\b${word}\\b`).test(source) && !String(text || "").toLowerCase().includes(word)
+  );
+  if (!missing.length) return text;
+  const lead = missing.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(", ");
+  const body = String(text || "").trim();
+  if (/^fish\b/i.test(body)) return `${lead} ${body.charAt(0).toLowerCase()}${body.slice(1)}`.slice(0, 120);
+  if (!body) return lead.slice(0, 120);
+  return `${lead} · ${body}`.slice(0, 120);
+}
+
+/** A trailing cue chip reads as a sentence ending, not another bullet. */
+function polishAcknowledgement(text) {
+  return String(text || "")
+    .replace(/ · Special\b/g, ", something special")
+    .replace(/ · Something special\b/g, ", something special")
+    .replace(/\s{2,}/g, " ")
+    .trim();
 }
 
 const SHELLFISH_TOKENS = new Set(["shrimp", "prawn", "prawns", "shellfish", "crab", "lobster", "scallop"]);
@@ -388,15 +425,15 @@ export function reconcileAcknowledgement({
   const suggestions = refinement?.suggestions || [];
   const phrases = detailPhrases(state, task);
   const portioned = task === "planning_intent" && portionSummary(state).length > 0;
+  const finish = (text, source) => {
+    const flavored = task === "discovery_intent" ? withRequestFlavors(text, userText) : text;
+    const polished = polishAcknowledgement(flavored);
+    const acknowledgement_source = polished === String(modelAck || "").trim() ? source : "reconciled";
+    return { acknowledgement: polished, acknowledgement_source, suggestions };
+  };
   if (!notes.refinement && !notes.dinnerCountDefaulted && !portioned && shouldKeepModelAcknowledgement(modelAck, conflicts, dropped, removedTokens, userText)) {
     const capped = withFrequencyCaps(String(modelAck).trim(), state);
-    const text = appendMissing(capped, phrases);
-    const source = text === String(modelAck).trim() ? "model" : "reconciled";
-    return { acknowledgement: text, acknowledgement_source: source, suggestions };
+    return finish(appendMissing(capped, phrases), "model");
   }
-  return {
-    acknowledgement: appendMissing(reconciledAcknowledgement(task, state, conflicts, notes), phrases),
-    acknowledgement_source: "reconciled",
-    suggestions,
-  };
+  return finish(appendMissing(reconciledAcknowledgement(task, state, conflicts, notes), phrases), "reconciled");
 }

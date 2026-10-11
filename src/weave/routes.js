@@ -692,9 +692,44 @@ export async function routeWeaveRequest(env, request, path) {
     estimatedCost = Number(gen.estimated_cost_usd) || 0;
     if (!gen.ok || isEmptyDiscoveryDelta(gen.output)) {
       const unavailable = UNAVAILABLE_GATEWAY.has(gen.error);
-      const extracted = unavailable ? keywordDiscoveryInput(text) : null;
+      const extracted = keywordDiscoveryInput(text);
+      const base = extracted.state;
+      if (extracted.text) base.text_residue = extracted.text;
+      const conflictPass = detectDiscoveryConflicts(base, { participantIds, constraints, tastes, userText: text });
+      if (conflictPass.conflicts.length) {
+        const repaired = conflictPass.repaired;
+        const mapped = discoveryStateToQuery(repaired, {});
+        const ran = await runDiscoveryForQuery(env, session, mapped.ok ? mapped.query : normalizeQuery({}).query, client.context, preloaded);
+        if (ran.error) return ran.error;
+        const ack = reconcileAcknowledgement({
+          task: "discovery_intent",
+          modelAck: "",
+          state: repaired,
+          conflicts: conflictPass.conflicts,
+          dropped: [],
+          removedTokens: conflictPass.removed,
+          userText: text,
+        });
+        return json({
+          ok: true,
+          task: "discovery_intent",
+          source: "fallback",
+          fallback_code: gen.error || "empty_delta",
+          ...ack,
+          state: repaired,
+          chips: buildDiscoveryChips(repaired),
+          conflicts: conflictPass.conflicts,
+          dropped: [],
+          suggestions: (ran.payload.total || 0) === 0 ? [...NO_RESULTS_SUGGESTIONS] : ack.suggestions || [],
+          ...latencyFields({ routeStarted, providerMs, deterministicMs: null }),
+          metadata: { estimated_cost_usd: estimatedCost },
+          ...ran.payload,
+          acknowledgement: ack.acknowledgement,
+          acknowledgement_source: "reconciled",
+        });
+      }
       const normText = normalizeFindText(text).slice(0, 200);
-      const q = extracted
+      const q = extracted.text || (extracted.state.ingredients || []).length || (extracted.state.protein_groups || []).length
         ? discoveryStateToQuery(extracted.state, { text: extracted.text || undefined })
         : normalizeQuery({ text: normText });
       const ran = await runDiscoveryForQuery(env, session, q.ok ? q.query : normalizeQuery({}).query, client.context, preloaded);
@@ -707,8 +742,8 @@ export async function routeWeaveRequest(env, request, path) {
         source: "fallback",
         fallback_code: gen.error || "empty_delta",
         acknowledgement_source: emptyAck ? "reconciled" : null,
-        state: extracted ? extracted.state : priorDiscovery,
-        chips: extracted ? buildDiscoveryChips(extracted.state) : [],
+        state: unavailable ? extracted.state : priorDiscovery,
+        chips: unavailable ? buildDiscoveryChips(extracted.state) : [],
         conflicts: [],
         dropped: [],
         suggestions: gentle ? [] : emptyAck ? [...NO_RESULTS_SUGGESTIONS] : [],

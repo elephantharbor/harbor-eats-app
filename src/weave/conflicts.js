@@ -29,7 +29,8 @@ const HAZARDS = [
     alternative: { kind: "drop" },
   },
   {
-    tokens: ["steak", "beef", "pork", "lamb", "bacon", "sausage", "meat"],
+    tokens: ["steak", "steaks", "beef", "pork", "lamb", "bacon", "sausage", "meat"],
+    canon: { steaks: "steak" },
     limits: ["no_meat"],
     alternative: { kind: "drop" },
   },
@@ -39,13 +40,13 @@ const HAZARDS = [
     alternative: { kind: "drop" },
   },
   {
-    tokens: ["peanut", "peanuts", "nuts", "almond", "walnut", "cashew", "pecan", "hazelnut", "pistachio"],
-    canon: { peanuts: "peanut" },
+    tokens: ["peanut", "peanuts", "satay", "nuts", "almond", "walnut", "cashew", "pecan", "hazelnut", "pistachio"],
+    canon: { peanuts: "peanut", satay: "peanut" },
     limits: ["no_nuts"],
     alternative: { kind: "drop" },
   },
   {
-    tokens: ["dairy", "cheese", "milk", "yogurt"],
+    tokens: ["dairy", "cheese", "milk", "yogurt", "yoghurt", "butter", "cream"],
     limits: ["no_dairy"],
     alternative: { kind: "drop" },
   },

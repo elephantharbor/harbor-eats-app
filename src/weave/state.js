@@ -266,6 +266,13 @@ function applyCueSideEffects(state) {
   }
 }
 
+/** Words the user says that mean a closed intent cue. */
+const CUE_ALIASES = new Map([
+  ["not too heavy", "light"],
+  ["heartier", "filling"],
+  ["hearty", "filling"],
+]);
+
 const PORTION_COUNT_WORDS = Object.freeze([
   "one",
   "two",
@@ -292,14 +299,20 @@ export function parsePortionCounts(text) {
   const norm = String(text || "").toLowerCase();
   if (!norm) return null;
   const countAlt = [...PORTION_COUNT_WORDS, "\\d{1,2}"].join("|");
-  const cueAlt = INTENT_CUES.join("|");
+  const aliasAlt = [...CUE_ALIASES.keys()]
+    .sort((a, b) => b.length - a.length)
+    .map((phrase) => phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
+    .join("|");
+  const cueAlt = `${aliasAlt}|${INTENT_CUES.join("|")}`;
   const re = new RegExp(`\\b(${countAlt})\\s+(${cueAlt})\\b`, "g");
   const portions = [];
   for (const match of norm.matchAll(re)) {
     const raw = match[1];
     const count = /^\d+$/.test(raw) ? Number(raw) : PORTION_COUNT_WORDS.indexOf(raw) + 1;
     if (!Number.isInteger(count) || count < 1 || count > 14) continue;
-    portions.push({ cue: match[2], count });
+    const cue = CUE_ALIASES.get(match[2]) || match[2];
+    if (!INTENT_CUES.includes(cue)) continue;
+    portions.push({ cue, count });
   }
   if (portions.length < 2) return null;
   if (new Set(portions.map((row) => row.cue)).size < 2) return null;
@@ -323,6 +336,35 @@ function applyPortionOverlay(state, text) {
     }
   }
   state.slots = next;
+  return true;
+}
+
+/** Weekday refinements the cached model delta may have omitted. */
+function applyTextRefinements(state, text, context) {
+  const norm = String(text || "").toLowerCase();
+  if (!norm) return false;
+  const day = WEEKDAYS.find((weekday) => new RegExp(`\\b${weekday}\\b`).test(norm));
+  if (!day) return false;
+  const vegetarian = /\b(vegetarian|vegan|plant-based|plant based|plant)\b/.test(norm);
+  const easier = /\b(easier|easy)\b/.test(norm);
+  if (!vegetarian && !easier) return false;
+  const hit = (context.dates || []).find((row) => row.weekday === day);
+  const patch = {
+    weekday: day,
+    date: hit?.date || null,
+    position: hit?.position ?? null,
+    category: vegetarian ? "plant" : null,
+    effort: !vegetarian && easier ? "easy" : null,
+  };
+  const key = slotKey(patch);
+  const existing = (state.slots || []).find((row) => slotKey(row) === key) || { ...patch };
+  const merged = mergeSlot(existing, patch);
+  merged.weekday = day;
+  if (hit?.date) merged.date = hit.date;
+  if (hit?.position != null) merged.position = hit.position;
+  const rest = (state.slots || []).filter((row) => slotKey(row) !== key);
+  rest.push(merged);
+  state.slots = rest.sort((a, b) => (a.position || 0) - (b.position || 0));
   return true;
 }
 
@@ -440,6 +482,7 @@ export function applyPlanningDelta(prior, delta, context = {}) {
   postValidatePlanning(state, context.vocabulary, dropped);
   const portioned = applyPortionOverlay(state, context.user_text);
   if (portioned) dinner_count_defaulted = false;
+  applyTextRefinements(state, context.user_text, context);
   return { state, dropped, dinner_count_defaulted, portioned };
 }
 
