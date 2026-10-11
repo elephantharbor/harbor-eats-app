@@ -326,15 +326,22 @@ const ADJECTIVE_STOP = new Set([
   "shrimp",
 ]);
 
-const STARTERS = Object.freeze([
-  { id: "plan_three_easy", task: "planning_intent", text: "Plan three easy dinners", requires: [] },
-  { id: "plan_fish_twice", task: "planning_intent", text: "Fish twice this week", requires: ["finfish"] },
-  { id: "plan_lighter", task: "planning_intent", text: "Three lighter dinners", requires: [] },
-  { id: "find_fresh", task: "discovery_intent", text: "Something fresh", requires: [] },
-  { id: "find_lighter", task: "discovery_intent", text: "Something lighter", requires: [] },
-  { id: "find_cozy", task: "discovery_intent", text: "Something cozy", requires: [] },
-  { id: "find_shrimp", task: "discovery_intent", text: "Shrimp tacos", requires: ["shellfish"] },
-  { id: "plan_weeknight", task: "planning_intent", text: "Keep this week easy", requires: [] },
+/** One entry per slot wins: the first row whose limits the table can eat. */
+const STARTER_POOL = Object.freeze([
+  { slot: "A", task: "planning_intent", id: "plan_three_easy", text: "Plan three easy dinners this week.", requires: [] },
+  { slot: "B", task: "planning_intent", id: "plan_fish_twice", text: "Fish twice this week.", requires: ["finfish"] },
+  { slot: "B", task: "planning_intent", id: "plan_two_veggie", text: "Make two of them vegetarian.", requires: [], hideWhen: ["no_meat"] },
+  { slot: "C", task: "planning_intent", id: "plan_lighter", text: "Plan three lighter, veggie-forward dinners.", requires: [] },
+  { slot: "D", task: "planning_intent", id: "plan_special", text: "Make one night something special.", requires: [] },
+  { slot: "D", task: "planning_intent", id: "plan_weeknight", text: "Keep weeknights simple.", requires: [] },
+  { slot: "A", task: "discovery_intent", id: "find_cozy", text: "Something cozy", requires: [] },
+  { slot: "A", task: "discovery_intent", id: "find_summery", text: "Something summery", requires: [] },
+  { slot: "B", task: "discovery_intent", id: "find_fish", text: "Easy fish dinner", requires: ["finfish"] },
+  { slot: "B", task: "discovery_intent", id: "find_tofu", text: "Spicy, with tofu", requires: [] },
+  { slot: "C", task: "discovery_intent", id: "find_lighter", text: "Something lighter and veggie-forward", requires: [] },
+  { slot: "C", task: "discovery_intent", id: "find_fresh_filling", text: "Fresh but filling", requires: [] },
+  { slot: "D", task: "discovery_intent", id: "find_shrimp", text: "Garlicky shrimp", requires: ["shellfish"] },
+  { slot: "D", task: "discovery_intent", id: "find_lemony", text: "Bright and lemony", requires: [] },
 ]);
 
 const WEEKDAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
@@ -631,11 +638,19 @@ const HEALTHY_CUE_WORD = Object.freeze({
   restaurant_like: "restaurant-style",
 });
 
+const CONTRAST_TAILS = Object.freeze({
+  filling: "that still fill you up",
+  hearty: "that still feel hearty",
+  cozy: "that still feel cozy",
+  comforting: "that still feel comforting",
+  indulgent: "with a little indulgence",
+});
+
 function mappingAck(task, state, applied) {
   const healthy = applied.some((row) => row.id === "healthy" && row.polarity !== "avoid");
   if (!healthy) return null;
   const extra = (state.intent_cues || [])
-    .filter((cue) => cue !== "light" && cue !== "special" && HEALTHY_CUE_WORD[cue])
+    .filter((cue) => cue !== "light" && cue !== "special" && HEALTHY_CUE_WORD[cue] && !CONTRAST_TAILS[cue])
     .map((cue) => HEALTHY_CUE_WORD[cue]);
   const lead = ["lighter", ...extra, "veggie-forward"].join(", ");
   const fish = (state.frequencies || []).find((row) => row.token === "fish" && row.min_count === 2 && row.max_count === 2);
@@ -644,7 +659,8 @@ function mappingAck(task, state, applied) {
     const head = count ? `${count === 3 ? "Three" : count} ${lead} dinners` : `${lead.charAt(0).toUpperCase()}${lead.slice(1)} dinners`;
     return fish ? `${head}, with fish twice.` : `${head}.`;
   }
-  return `Here are some ${lead} ideas.`;
+  const tail = (state.intent_cues || []).map((cue) => CONTRAST_TAILS[cue]).find(Boolean);
+  return `Here are some lighter, veggie-forward ideas${tail ? ` ${tail}` : ""}.`;
 }
 
 /**
@@ -971,29 +987,36 @@ export function semanticScoreForMeal(meal, rankTokens) {
   return Math.max(-0.25, Math.min(0.25, total));
 }
 
+function starterAllowed(row, blocked) {
+  if (row.requires?.includes("finfish") && blocked.has("no_finfish")) return false;
+  if (row.requires?.includes("shellfish") && (blocked.has("no_shellfish") || blocked.has("no_finfish"))) return false;
+  if (row.requires?.includes("meat") && (blocked.has("no_meat") || blocked.has("no_poultry"))) return false;
+  if (row.requires?.includes("dairy") && blocked.has("no_dairy")) return false;
+  if (row.requires?.includes("nuts") && blocked.has("no_nuts")) return false;
+  if ((row.hideWhen || []).some((id) => blocked.has(id))) return false;
+  return true;
+}
+
 export function householdSafeStarterPrompts({ limits = [] } = {}) {
   const blocked = new Set(limits || []);
-  return STARTERS.filter((row) => {
-    if (row.requires.includes("finfish") && blocked.has("no_finfish")) return false;
-    if (row.requires.includes("shellfish") && (blocked.has("no_shellfish") || blocked.has("no_finfish"))) return false;
-    if (row.requires.includes("meat") && (blocked.has("no_meat") || blocked.has("no_poultry"))) return false;
-    if (row.requires.includes("dairy") && blocked.has("no_dairy")) return false;
-    if (row.requires.includes("nuts") && blocked.has("no_nuts")) return false;
-    return true;
-  }).map(({ id, task, text }) => ({ id, task, text }));
+  const out = [];
+  for (const task of ["planning_intent", "discovery_intent"]) {
+    const slots = [];
+    for (const row of STARTER_POOL) {
+      if (row.task === task && !slots.includes(row.slot)) slots.push(row.slot);
+    }
+    for (const slot of slots) {
+      const pick = STARTER_POOL.find((row) => row.task === task && row.slot === slot && starterAllowed(row, blocked));
+      if (pick) out.push({ id: pick.id, task: pick.task, text: pick.text });
+    }
+  }
+  return out;
 }
 
 function weekdayOf(date) {
   const d = new Date(`${date}T12:00:00Z`);
   if (Number.isNaN(d.getTime())) return null;
   return WEEKDAYS[d.getUTCDay() === 0 ? 6 : d.getUTCDay() - 1];
-}
-
-function addDays(date, days) {
-  const d = new Date(`${date}T12:00:00Z`);
-  if (Number.isNaN(d.getTime())) return null;
-  d.setUTCDate(d.getUTCDate() + days);
-  return d.toISOString().slice(0, 10);
 }
 
 function candidateFrom(row) {
@@ -1036,10 +1059,13 @@ export function dayScopedSoftCue(text) {
 }
 
 /** Move a day-targeted cue off the plan and onto that slot only. */
-export function scopeDayTargetedCue(state, text, dates = []) {
+export function scopeDayTargetedCue(state, text, dates = [], priorCues = []) {
   const scoped = dayScopedSoftCue(text);
   if (!scoped || !state) return false;
-  state.intent_cues = (state.intent_cues || []).filter((cue) => cue !== scoped.cue);
+  const already = new Set(priorCues || []);
+  if (!already.has(scoped.cue)) {
+    state.intent_cues = (state.intent_cues || []).filter((cue) => cue !== scoped.cue);
+  }
   const hit = (dates || []).find((row) => row.weekday === scoped.weekday) || null;
   const position = hit?.position ?? null;
   const matches = (slot) => {
@@ -1064,19 +1090,11 @@ export function scopeDayTargetedCue(state, text, dates = []) {
  * The model must not guess a slot. Weekend language, or a weekday that is
  * not a single date in range, returns candidate slots and no target.
  */
-export function ambiguousTarget({ text = "", dates = [], dinnerCount = null, today = null } = {}) {
+export function ambiguousTarget({ text = "", dates = [], dinnerCount: _dinnerCount = null, today: _today = null } = {}) {
   const named = WEEKDAYS.find((day) => new RegExp(`\\b${day}\\b`, "i").test(text));
   const weekend = /\b(?:the\s+)?weekend\b/i.test(text);
   if (!named && !weekend) return null;
-  let rows = (dates || []).filter((row) => row && (row.date || row.weekday || row.position));
-  if (!rows.length && today && dinnerCount) {
-    const count = Math.min(Math.max(Number(dinnerCount) || 0, 1), 14);
-    rows = [];
-    for (let position = 1; position <= count; position += 1) {
-      const date = addDays(today, position - 1);
-      rows.push({ position, date, weekday: weekdayOf(date) });
-    }
-  }
+  const rows = (dates || []).filter((row) => row && (row.date || row.weekday || row.position));
   const pool = weekend ? rows.filter((row) => WEEKEND.has(row.weekday)) : rows.filter((row) => row.weekday === named);
   if (pool.length < 2) return null;
   const candidates = pool.map(candidateFrom);

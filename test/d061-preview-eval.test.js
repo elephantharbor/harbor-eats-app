@@ -13,9 +13,10 @@ import { renderPrompt } from "../src/ai/prompts.js";
 import { createFakeProvider } from "../src/ai/providers/fake.js";
 import { TASKS } from "../src/ai/tasks.js";
 import { createMemberSession } from "../src/lib/session.js";
-import { reconcileAcknowledgement } from "../src/weave/ack.js";
+import { buildDiscoveryChips, buildPlanningChips, reconcileAcknowledgement } from "../src/weave/ack.js";
+import { applyNegationOverlay } from "../src/weave/negation.js";
 import { routeWeaveRequest } from "../src/weave/routes.js";
-import { applySharedSemantics, dayScopedSoftCue, deriveCatalogCookingMethods, excludedByFrying } from "../src/weave/semantics.js";
+import { applySharedSemantics, dayScopedSoftCue, deriveCatalogCookingMethods, excludedByFrying, householdSafeStarterPrompts } from "../src/weave/semantics.js";
 import { applyDiscoveryDelta, emptyDiscoveryState, emptyPlanningState } from "../src/weave/state.js";
 
 const fixedNow = () => new Date("2026-10-10T15:00:30.000Z");
@@ -234,43 +235,48 @@ describe("day-targeted soft cue", () => {
 });
 
 describe("weekend resolution", () => {
-  it("targets the one weekend dinner on an undated plan without a provider call", async () => {
+  it("opens the chooser for every dinner when the plan has no dates", async () => {
     const sqlite = migrate();
     seedHousehold(sqlite);
-    const meals = [
-      { position: 1, slug: "miso-ginger-salmon", title: "Miso-Ginger Salmon" },
-      { position: 2, slug: "cashew-pesto-pasta", title: "Cashew Pesto Pasta" },
-      { position: 3, slug: "teriyaki-tofu-bowls", title: "Teriyaki Tofu Bowls" },
-    ];
+    const meals = Array.from({ length: 7 }, (_, index) => ({
+      position: index + 1,
+      slug: index === 1 ? "cashew-pesto-pasta" : "miso-ginger-salmon",
+      title: index === 1 ? "Cashew Pesto Pasta" : "Miso-Ginger Salmon",
+    }));
     seedPlan(sqlite, { meals });
     const db = asD1(sqlite);
     const session = await createMemberSession(db, { household_id: "hh_eval", member_id: "m_a" });
     const provider = throwingProvider();
     const res = await post(planEnv(db, provider), session.session_token, "/api/plan/interpret", {
-      text: "go easier on the weekend",
+      text: "make the weekend easier",
       dinner_plan_id: "dp_eval",
-      state: { ...emptyPlanningState(), dinner_count: 3 },
+      state: { ...emptyPlanningState(), dinner_count: 7 },
     });
     expect(res.status).toBe(200);
     expect(provider.calls).toHaveLength(0);
     expect(res.body.llm_called).toBe(false);
-    expect(res.body.acknowledgement).toBeTruthy();
-    expect(res.body.preview?.slots).toHaveLength(3);
-    expect(res.body.telemetry?.route).toBe("deterministic");
-    expect(res.body.state.slots.filter((slot) => slot.effort === "easy")).toEqual([
-      expect.objectContaining({ position: 1, weekday: "sunday", effort: "easy" }),
+    expect(res.body.preview).toBeNull();
+    expect(res.body.changed_positions).toEqual([]);
+    expect(res.body.choice?.reason).toBe("weekend_undated");
+    expect(res.body.choice?.add_days).toBe(true);
+    expect(res.body.choice?.multi).toBe(true);
+    expect(res.body.choice?.candidates.map((row) => row.position)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(res.body.choice?.candidates.map((row) => row.label)).toEqual([
+      "Dinner 1", "Dinner 2", "Dinner 3", "Dinner 4", "Dinner 5", "Dinner 6", "Dinner 7",
     ]);
-    expect(res.body.preview.slots.find((slot) => slot.position === 2).recipe_slug).toBe("cashew-pesto-pasta");
-    expect(res.body.preview.slots.find((slot) => slot.position === 3).recipe_slug).toBe("teriyaki-tofu-bowls");
+    expect(res.body.acknowledgement).toMatch(/don't have days yet/);
+    expect(res.body.acknowledgement).toMatch(/Which ones are the weekend/);
+    expect(res.body.state.slots || []).toEqual([]);
+    expect(res.body.state.pending_slot).toMatchObject({ effort: "easy" });
   });
 
-  it("opens the chooser when more than one dinner is on the weekend", async () => {
+  it("applies easier to every dated weekend dinner and leaves weekdays alone", async () => {
     const sqlite = migrate();
     seedHousehold(sqlite);
     seedPlan(sqlite, {
       meals: [
-        { position: 1, date: "2026-10-17", slug: "miso-ginger-salmon", title: "Miso-Ginger Salmon" },
-        { position: 2, date: "2026-10-18", slug: "cashew-pesto-pasta", title: "Cashew Pesto Pasta" },
+        { position: 1, date: "2026-10-17", slug: "cashew-pesto-pasta", title: "Cashew Pesto Pasta" },
+        { position: 2, date: "2026-10-18", slug: "coconut-chickpea-curry", title: "Coconut Chickpea Curry" },
         { position: 3, date: "2026-10-19", slug: "teriyaki-tofu-bowls", title: "Teriyaki Tofu Bowls" },
       ],
     });
@@ -284,11 +290,21 @@ describe("weekend resolution", () => {
     });
     expect(res.status).toBe(200);
     expect(provider.calls).toHaveLength(0);
-    expect(res.body.preview).toBeNull();
-    expect(res.body.choice?.candidates.map((row) => row.position)).toEqual([1, 2]);
-    expect(res.body.choice?.multi).toBe(true);
-    expect(res.body.state.pending_slot).toMatchObject({ effort: "easy" });
-    expect(res.body.acknowledgement).toBeTruthy();
+    expect(res.body.llm_called).toBe(false);
+    expect(res.body.choice).toBeNull();
+    expect(res.body.preview).not.toBeNull();
+    const saturday = res.body.preview.slots.find((slot) => slot.position === 1);
+    const sunday = res.body.preview.slots.find((slot) => slot.position === 2);
+    expect(saturday.effort_level).toBe("easy");
+    expect(saturday.total_minutes).toBeLessThan(25);
+    expect(sunday.effort_level).toBe("easy");
+    expect(sunday.total_minutes).toBeLessThanOrEqual(40);
+    expect(sunday.recipe_slug).not.toBe("coconut-chickpea-curry");
+    expect(res.body.preview.slots.find((slot) => slot.position === 3).recipe_slug).toBe("teriyaki-tofu-bowls");
+    expect(res.body.changed_positions).toEqual(expect.arrayContaining([1, 2]));
+    expect(res.body.changed_positions).not.toContain(3);
+    expect(res.body.acknowledgement).toMatch(/Saturday/);
+    expect(res.body.acknowledgement).toMatch(/Sunday/);
     expect(res.body.telemetry?.route).toBe("deterministic");
   });
 
@@ -386,9 +402,11 @@ describe("acknowledgements and telemetry", () => {
         { id: "filling", polarity: "prefer" },
       ],
     }), { user_text: "Healthy but filling" });
-    expect(healthy.semantic.primary_ack.toLowerCase()).toMatch(/filling/);
+    expect(healthy.semantic.primary_ack.toLowerCase()).toMatch(/that still fill you up/);
     expect(healthy.semantic.primary_ack.toLowerCase()).toMatch(/lighter/);
     expect(healthy.semantic.primary_ack.toLowerCase()).not.toMatch(/\bhealthy\b/);
+    const healthyLabels = buildDiscoveryChips(healthy.state).map((chip) => chip.label);
+    expect(healthyLabels).toEqual(expect.arrayContaining(["Lighter", "Veggie-forward", "Filling"]));
 
     const shrimp = reconcileAcknowledgement({
       task: "discovery_intent",
@@ -449,6 +467,178 @@ describe("acknowledgements and telemetry", () => {
     expect(res.body.acknowledgement.toLowerCase()).toMatch(/broader/);
     expect(res.body.acknowledgement.toLowerCase()).not.toContain("snorfblat");
     expect(res.body.acknowledgement).not.toBe("Got it.");
+  });
+});
+
+describe("opus review notes", () => {
+  it("keeps a plan-wide lighter cue and adds a Friday chip", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite);
+    const meals = [
+      { position: 1, date: "2026-10-12", slug: "miso-ginger-salmon", title: "Miso-Ginger Salmon" },
+      { position: 4, date: "2026-10-16", slug: "smoky-lentil-sweet-potato-stew", title: "Smoky Lentil Sweet Potato Stew" },
+    ];
+    seedPlan(sqlite, { meals });
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_eval", member_id: "m_a" });
+    const provider = throwingProvider();
+    const res = await post(planEnv(db, provider), session.session_token, "/api/plan/interpret", {
+      text: "lighten up Friday",
+      dinner_plan_id: "dp_eval",
+      state: { ...emptyPlanningState(), dinner_count: 2, intent_cues: ["light", "cozy"] },
+    });
+    expect(res.status).toBe(200);
+    expect(provider.calls).toHaveLength(0);
+    expect(res.body.state.intent_cues).toEqual(expect.arrayContaining(["light", "cozy"]));
+    const labels = buildPlanningChips(res.body.state).map((chip) => chip.label);
+    expect(labels).toContain("Lighter");
+    expect(labels).toContain("Fri: lighter");
+  });
+
+  it("offers Add days and every dinner when Friday is not on an undated plan", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite);
+    seedPlan(sqlite, {
+      meals: [
+        { position: 1, slug: "miso-ginger-salmon", title: "Miso-Ginger Salmon" },
+        { position: 2, slug: "cashew-pesto-pasta", title: "Cashew Pesto Pasta" },
+        { position: 3, slug: "teriyaki-tofu-bowls", title: "Teriyaki Tofu Bowls" },
+      ],
+    });
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_eval", member_id: "m_a" });
+    const provider = throwingProvider();
+    const res = await post(planEnv(db, provider), session.session_token, "/api/plan/interpret", {
+      text: "lighten up Friday",
+      dinner_plan_id: "dp_eval",
+      state: { ...emptyPlanningState(), dinner_count: 3 },
+    });
+    expect(res.status).toBe(200);
+    expect(provider.calls).toHaveLength(0);
+    expect(res.body.preview).toBeNull();
+    expect(res.body.changed_positions).toEqual([]);
+    expect(res.body.choice?.reason).toBe("day_absent");
+    expect(res.body.choice?.add_days).toBe(true);
+    expect(res.body.choice?.asked).toBe("friday");
+    expect(res.body.choice?.candidates.map((row) => row.position)).toEqual([1, 2, 3]);
+    expect(res.body.acknowledgement).toMatch(/no Friday in this plan/i);
+    expect(res.body.acknowledgement).toMatch(/Which dinner did you mean/);
+  });
+
+  it("replans Tuesday only when the replacement is easier in effort and time", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite);
+    seedPlan(sqlite, {
+      meals: [
+        { position: 1, date: "2026-10-14", slug: "coconut-chickpea-curry", title: "Coconut Chickpea Curry" },
+        { position: 2, date: "2026-10-13", slug: "cashew-pesto-pasta", title: "Cashew Pesto Pasta" },
+      ],
+    });
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_eval", member_id: "m_a" });
+    const provider = throwingProvider();
+    const res = await post(planEnv(db, provider), session.session_token, "/api/plan/interpret", {
+      text: "Make Tuesday easier",
+      dinner_plan_id: "dp_eval",
+      state: { ...emptyPlanningState(), dinner_count: 2 },
+    });
+    expect(res.status).toBe(200);
+    expect(provider.calls).toHaveLength(0);
+    const tuesday = res.body.preview.slots.find((slot) => slot.position === 2);
+    expect(tuesday.recipe_slug).not.toBe("cashew-pesto-pasta");
+    expect(tuesday.effort_level).toBe("easy");
+    expect(tuesday.total_minutes).toBeLessThan(25);
+    expect(res.body.preview.slots.find((slot) => slot.position === 1).recipe_slug).toBe("coconut-chickpea-curry");
+  });
+
+  it("says nothing easier is available instead of picking a longer easy dinner", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite);
+    seedPlan(sqlite, {
+      meals: [
+        { position: 1, date: "2026-10-12", slug: "miso-ginger-salmon", title: "Miso-Ginger Salmon" },
+        { position: 2, date: "2026-10-13", slug: "cashew-pesto-pasta", title: "Cashew Pesto Pasta" },
+      ],
+    });
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_eval", member_id: "m_a" });
+    const provider = throwingProvider();
+    const res = await post(planEnv(db, provider), session.session_token, "/api/plan/interpret", {
+      text: "Make Tuesday easier",
+      dinner_plan_id: "dp_eval",
+      state: { ...emptyPlanningState(), dinner_count: 2 },
+    });
+    expect(res.status).toBe(200);
+    expect(provider.calls).toHaveLength(0);
+    expect(res.body.preview.slots.find((slot) => slot.position === 2).recipe_slug).toBe("cashew-pesto-pasta");
+    expect(res.body.preview.slots.find((slot) => slot.position === 1).recipe_slug).toBe("miso-ginger-salmon");
+    expect(res.body.changed_positions).not.toContain(2);
+    expect(res.body.acknowledgement).toMatch(/Nothing easier is available for Tuesday/);
+  });
+
+  it("does not turn deep or heavy into exclusion chips", () => {
+    const deep = emptyDiscoveryState();
+    applySharedSemantics(deep, { text: "crispy but not deep fried", concepts: [], task: "discovery_intent" });
+    applyNegationOverlay(deep, "crispy but not deep fried");
+    expect(deep.exclude_terms || []).not.toContain("deep");
+    expect(buildDiscoveryChips(deep).map((chip) => chip.label)).not.toContain("No deep");
+    const heavy = emptyDiscoveryState();
+    applyNegationOverlay(heavy, "something cozy but not heavy");
+    expect(heavy.exclude_terms || []).not.toContain("heavy");
+    const mushrooms = emptyDiscoveryState();
+    applyNegationOverlay(mushrooms, "no mushrooms");
+    expect(mushrooms.exclude_terms).toEqual(["mushrooms"]);
+    const fried = emptyDiscoveryState();
+    applyNegationOverlay(fried, "nothing fried");
+    expect(fried.exclude_terms).toEqual(["fried"]);
+    const heavyAck = reconcileAcknowledgement({
+      task: "discovery_intent",
+      modelAck: "",
+      state: { ...heavy, intent_cues: ["cozy", "light"] },
+      conflicts: [],
+      dropped: [],
+      removedTokens: [],
+      userText: "something cozy but not too heavy",
+    });
+    expect(heavyAck.acknowledgement.toLowerCase()).not.toMatch(/\bno heavy\b/);
+    const deepAck = reconcileAcknowledgement({
+      task: "discovery_intent",
+      modelAck: "Got it.",
+      state: deep,
+      conflicts: [],
+      dropped: [],
+      removedTokens: [],
+      userText: "crispy but not deep fried",
+    });
+    expect(deepAck.acknowledgement.toLowerCase()).not.toMatch(/\bno deep\b/);
+    expect(deepAck.acknowledgement.toLowerCase()).toMatch(/deep-fried/);
+  });
+
+  it("shows a veggie-forward chip for something healthy", () => {
+    const applied = applyDiscoveryDelta(null, discoveryDelta({
+      concepts: [{ id: "healthy", polarity: "prefer" }],
+    }), { user_text: "Something healthy" });
+    const labels = buildDiscoveryChips(applied.state).map((chip) => chip.label);
+    expect(labels).toContain("Lighter");
+    expect(labels).toContain("Veggie-forward");
+    expect(applied.semantic.primary_ack).toBe("Here are some lighter, veggie-forward ideas.");
+  });
+
+  it("aligns starters with the card and sends the shrimp label", () => {
+    const clear = householdSafeStarterPrompts({ limits: [] });
+    expect(clear.filter((row) => row.task === "planning_intent").map((row) => row.id)).toEqual([
+      "plan_three_easy", "plan_fish_twice", "plan_lighter", "plan_special",
+    ]);
+    expect(clear.filter((row) => row.task === "discovery_intent").map((row) => row.id)).toEqual([
+      "find_cozy", "find_fish", "find_lighter", "find_shrimp",
+    ]);
+    expect(clear.find((row) => row.id === "find_shrimp").text).toBe("Garlicky shrimp");
+    expect(clear.find((row) => row.id === "plan_special").text).toBe("Make one night something special.");
+    const noFish = householdSafeStarterPrompts({ limits: ["no_finfish"] });
+    expect(noFish.map((row) => row.id)).not.toContain("find_shrimp");
+    expect(noFish.map((row) => row.id)).toContain("find_tofu");
+    expect(noFish.map((row) => row.id)).toContain("find_lemony");
+    expect(noFish.map((row) => row.id)).toContain("plan_two_veggie");
   });
 });
 

@@ -78,6 +78,7 @@ export function removePlanningChip(state, chipId) {
     next.slots = (next.slots || []).filter((s) => {
       if (kind === "special" && s.special) return !targets(s);
       if (kind === "effort" && s.effort === "easy") return !targets(s);
+      if (kind === "cue" && s.intent_cue) return !targets(s);
       return true;
     });
     return next;
@@ -86,8 +87,9 @@ export function removePlanningChip(state, chipId) {
     next.exclude_cooking = [];
     return next;
   }
-  if (chipId === "semantic:vegetable_forward") {
-    next.semantic_rank = (next.semantic_rank || []).filter((t) => t !== "vegetable_forward");
+  if (chipId.startsWith("semantic:")) {
+    const token = chipId.slice("semantic:".length);
+    next.semantic_rank = (next.semantic_rank || []).filter((t) => t !== token);
     return next;
   }
   return next;
@@ -149,6 +151,11 @@ export function removeDiscoveryChip(state, chipId) {
   }
   if (chipId === "exclude_cooking") {
     next.exclude_cooking = [];
+    return next;
+  }
+  if (chipId.startsWith("semantic:")) {
+    const token = chipId.slice("semantic:".length);
+    next.semantic_rank = (next.semantic_rank || []).filter((t) => t !== token);
     return next;
   }
   return next;

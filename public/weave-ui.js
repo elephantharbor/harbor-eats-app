@@ -124,7 +124,7 @@
         esc(label) +
         "</button>";
     }
-    if (choice.reason === "undated" || choice.reason === "weekend_undated") {
+    if (choice.add_days || choice.reason === "undated" || choice.reason === "weekend_undated") {
       html += '<button type="button" class="btn btn-quiet btn-sm weave-choice__dates">Add days</button>';
     }
     html += '<button type="button" class="btn btn-quiet btn-sm weave-choice__cancel">Never mind</button></div></div>';

@@ -417,13 +417,22 @@ describe("backend contracts", () => {
 
   it("hides fish and shrimp starters from a table that cannot have them", () => {
     const open = householdSafeStarterPrompts({ limits: [] }).map((row) => row.id);
-    expect(open).toContain("plan_fish_twice");
-    expect(open).toContain("find_shrimp");
+    expect(open).toEqual([
+      "plan_three_easy", "plan_fish_twice", "plan_lighter", "plan_special",
+      "find_cozy", "find_fish", "find_lighter", "find_shrimp",
+    ]);
+    const shellfishFree = householdSafeStarterPrompts({ limits: ["no_shellfish"] }).map((row) => row.id);
+    expect(shellfishFree).toContain("find_fish");
+    expect(shellfishFree).toContain("find_lemony");
+    expect(shellfishFree).not.toContain("find_shrimp");
     const closed = householdSafeStarterPrompts({ limits: ["no_shellfish", "no_finfish"] }).map((row) => row.id);
     expect(closed).not.toContain("plan_fish_twice");
     expect(closed).not.toContain("find_shrimp");
-    expect(closed).toContain("plan_lighter");
-    expect(closed).toContain("find_fresh");
+    expect(closed).not.toContain("find_fish");
+    expect(closed).toContain("plan_two_veggie");
+    expect(closed).toContain("find_tofu");
+    expect(closed).toContain("find_lemony");
+    expect(householdSafeStarterPrompts({ limits: [] }).find((row) => row.id === "find_shrimp").text).toBe("Garlicky shrimp");
   });
 });
 

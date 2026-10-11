@@ -447,6 +447,7 @@ export function planDinners(intent, context = {}) {
   const preference_relaxations = [];
   const previous = context.previous_slots || null;
   const changed = new Set();
+  const noEasier = new Set();
   const tastes = context.tastes || [];
   const constraints = context.constraints || [];
 
@@ -510,7 +511,28 @@ export function planDinners(intent, context = {}) {
     const eligible = eligibleFor(index, slotOverride, participant_ids);
     const pool = rankEligible(eligible, participant_ids, tastes, intent, slotOverride);
     pool.ranked.forEach((row) => row.unscored?.forEach((key) => unscored.add(key)));
-    const legal = pool.ranked.filter((row) => respectsMax(row.feature, slots.length));
+    let legal = pool.ranked.filter((row) => respectsMax(row.feature, slots.length));
+    if (slotOverride.effort === "easy" && prev?.recipe_slug) {
+      const current = featureBySlug(prev.recipe_slug);
+      const baseline = {
+        effort_level: prev.effort_level || current?.effort_level || null,
+        minutes: prev.total_minutes ?? current?.minutes ?? null,
+      };
+      const easier = legal.filter((row) => isEasierReplacement(row.feature, baseline));
+      if (!easier.length) {
+        slots.push({
+          ...prev,
+          position: index + 1,
+          participant_ids,
+          result: prev.result || "recommended",
+        });
+        used.slugs.add(prev.recipe_slug);
+        if (current) remember(used, current);
+        noEasier.add(index + 1);
+        continue;
+      }
+      legal = easier;
+    }
     const picked = legal.length
       ? pickFeature(legal, used, recent, pool.active, { cueBound: Boolean(slotOverride.intent_cue) })
       : {
@@ -603,7 +625,24 @@ export function planDinners(intent, context = {}) {
     preference_relaxations,
     slots,
     changed_positions: [...changed].sort((a, b) => a - b),
+    no_easier_positions: [...noEasier].sort((a, b) => a - b),
   };
+}
+
+const EFFORT_RANK = Object.freeze({ easy: 0, moderate: 1, involved: 2 });
+
+/** A replacement is easier only when effort and time are not worse, and one of them improves. */
+function isEasierReplacement(feature, current) {
+  const nextEffort = EFFORT_RANK[feature?.effort_level];
+  const currentEffort = EFFORT_RANK[current?.effort_level];
+  const nextMinutes = typeof feature?.minutes === "number" ? feature.minutes : null;
+  const currentMinutes = typeof current?.minutes === "number" ? current.minutes : null;
+  const effortWorse = currentEffort != null && nextEffort != null && nextEffort > currentEffort;
+  const timeWorse = currentMinutes != null && nextMinutes != null && nextMinutes > currentMinutes;
+  if (effortWorse || timeWorse) return false;
+  const effortBetter = currentEffort != null && nextEffort != null && nextEffort < currentEffort;
+  const timeBetter = currentMinutes != null && nextMinutes != null && nextMinutes < currentMinutes;
+  return effortBetter || timeBetter;
 }
 
 /**

@@ -142,8 +142,8 @@ These three are server-owned. They do not call Luna.
 
 `ambiguousTarget({ text, dates, dinnerCount, today })` runs before `service.run` on `POST /api/plan/interpret`.
 
-- A day-targeted soft cue (`lighten up Friday`, `make Friday lighter`) on an existing plan applies only to that slot (`intent_cue`), never the plan-wide cue list. Exactly one match replans that slot and answers `Friday's now lighter: {title}.` More than one match, or no match, opens the chooser. Luna is not called.
-- Weekend language on an existing plan is the same shape. Dates are the plan's dates, or, when the plan is undated, today plus the dinner count. Exactly one weekend dinner is targeted directly. Two or more open the chooser with `pending_slot` set. None returns the chooser or an Add days acknowledgement. The result is never a silent empty delta.
+- A day-targeted soft cue (`lighten up Friday`, `make Friday lighter`) on an existing plan applies only to that slot (`intent_cue`). A plan-wide cue that was already on the plan stays. The slot chip reads `Fri: lighter`. Exactly one dated match replans that slot and answers `Friday's now lighter: {title}.` An undated plan never invents a weekday: the chooser lists every dinner, with Add days, and nothing else changes. Luna is not called.
+- Weekend language uses real plan dates only. Dated Saturday and Sunday are both updated, with no chooser. An undated plan opens the chooser for every dinner (`Dinner 1` through `Dinner N`) and does not replan. A dated plan with no weekend dinner asks which dinners were meant. The result is never a silent empty delta, and `fallbackDatesForUndatedPlan` is not used to pick a day.
 - Other named weekdays with exactly one date still return null from `ambiguousTarget` and may continue to Luna. Two or more return `{ reason: "ambiguous_day", prompt, candidates }` and `state.pending_slot` holds the inferred patch.
 - Choosing days posts `POST /api/plan/apply` with every selected position. That apply, and `POST /api/plan/interpret` with `target_position` or `target_positions`, replays `pending_slot` and does not call a provider.
 - The route responds `source: "deterministic"`, `llm_called: false`. A direct hit includes a preview. A chooser sets `choice` and `pending_slot`.
@@ -158,18 +158,26 @@ These three are server-owned. They do not call Luna.
 
 `householdSafeStarterPrompts({ limits })` filters a fixed list by the union of prohibited hard-limit ids (`rulesFromLegacyKeys` on each diner’s `constraint_rule`). `GET /api/weave/starters` is session-authenticated and returns `{ ok, llm_called: false, starters: [{ id, task, text }] }`.
 
+One eligible entry wins each slot, four at most. The clear table is the first row of each slot. A shellfish-free table swaps `find_shrimp` for `find_lemony`. A no-fish table swaps `plan_fish_twice` for `plan_two_veggie`, and Find uses tofu and lemony in place of fish and shrimp.
+
 | id | task | text | withheld when |
 | --- | --- | --- | --- |
-| `plan_three_easy` | planning | Plan three easy dinners | — |
-| `plan_fish_twice` | planning | Fish twice this week | `no_finfish` |
-| `plan_lighter` | planning | Three lighter dinners | — |
-| `find_fresh` | discovery | Something fresh | — |
-| `find_lighter` | discovery | Something lighter | — |
+| `plan_three_easy` | planning | Plan three easy dinners this week. | — |
+| `plan_fish_twice` | planning | Fish twice this week. | `no_finfish` |
+| `plan_two_veggie` | planning | Make two of them vegetarian. | `no_meat` |
+| `plan_lighter` | planning | Plan three lighter, veggie-forward dinners. | — |
+| `plan_special` | planning | Make one night something special. | — |
+| `plan_weeknight` | planning | Keep weeknights simple. | fallback for slot D |
 | `find_cozy` | discovery | Something cozy | — |
-| `find_shrimp` | discovery | Shrimp tacos | `no_shellfish` |
-| `plan_weeknight` | planning | Keep this week easy | — |
+| `find_summery` | discovery | Something summery | fallback for slot A |
+| `find_fish` | discovery | Easy fish dinner | `no_finfish` |
+| `find_tofu` | discovery | Spicy, with tofu | fallback for slot B |
+| `find_lighter` | discovery | Something lighter and veggie-forward | — |
+| `find_fresh_filling` | discovery | Fresh but filling | fallback for slot C |
+| `find_shrimp` | discovery | Garlicky shrimp | `no_shellfish` or `no_finfish` |
+| `find_lemony` | discovery | Bright and lemony | fallback for slot D |
 
-A starter that requires meat, dairy, or nuts is withheld for `no_meat` / `no_poultry`, `no_dairy`, or `no_nuts`. The current list uses only finfish and shellfish. The function never suggests fish or shrimp to a table that cannot have them.
+A starter that requires meat, dairy, or nuts is withheld for `no_meat` / `no_poultry`, `no_dairy`, or `no_nuts`. The click text is the sentence above, so the shrimp starter sends “Garlicky shrimp”. The function never suggests fish or shrimp to a table that cannot have them.
 
 ## 10. What this release does not do
 

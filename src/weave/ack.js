@@ -73,6 +73,19 @@ function weekdayShort(weekday) {
   return capitalize(String(weekday || "").slice(0, 3));
 }
 
+const RANK_CHIPS = Object.freeze({
+  vegetable_forward: "Veggie-forward",
+  crispy_non_fry: "Crispy",
+});
+
+function pushRankChips(chips, state) {
+  for (const token of state?.semantic_rank || []) {
+    const label = RANK_CHIPS[token];
+    if (!label || chips.some((chip) => chip.id === `semantic:${token}`)) continue;
+    chips.push({ id: `semantic:${token}`, label });
+  }
+}
+
 export function displayForToken(token, field) {
   const term = getTasteTerm(token);
   if (term?.display_name) return term.display_name;
@@ -146,10 +159,17 @@ export function buildPlanningChips(state) {
     } else if (slot.effort === "easy" && slot.position) {
       chips.push({ id: `slot:p${slot.position}:effort`, label: `Dinner ${slot.position}: easy` });
     }
+    if (slot.intent_cue) {
+      const word = slot.intent_cue === "light" ? "lighter" : cuePhrase(slot.intent_cue);
+      const label = slot.weekday
+        ? `${weekdayShort(slot.weekday)}: ${word}`
+        : slot.position
+          ? `Dinner ${slot.position}: ${word}`
+          : word;
+      chips.push({ id: `slot:${slot.weekday || `p${slot.position}`}:cue`, label });
+    }
   }
-  if ((state.semantic_rank || []).includes("vegetable_forward") && !(state.intent_cues || []).includes("light")) {
-    chips.push({ id: "semantic:vegetable_forward", label: "Veggie-forward" });
-  }
+  pushRankChips(chips, state);
   if (state.special_count != null && state.special_count > 0 && !(state.slots || []).some((s) => s.special)) {
     const label = state.special_count === 1 ? "Something special" : `${state.special_count} special nights`;
     chips.push({ id: "special_count", label });
@@ -174,6 +194,7 @@ export function buildDiscoveryChips(state) {
   for (const cue of state.intent_cues || []) chips.push({ id: `cue:${cue}`, label: CUE_LABELS[cue] || cue });
   if ((state.exclude_cooking || []).length === 3) chips.push({ id: "exclude_cooking", label: "Nothing fried" });
   else if ((state.exclude_cooking || []).includes("deep")) chips.push({ id: "exclude_cooking", label: "Nothing deep-fried" });
+  pushRankChips(chips, state);
   if (state.quick) chips.push({ id: "quick", label: "Quick" });
   if (state.effort_levels?.includes("easy")) chips.push({ id: "effort:easy", label: "Easy" });
   return chips;
@@ -493,6 +514,14 @@ function dayLabel(slot, previous) {
 export function refinementAcknowledgement({ preview, previousSlots, slots }) {
   const previous = previousSlots || [];
   if (!previous.length) return null;
+  const missing = preview?.no_easier_positions || [];
+  if (missing.length) {
+    const position = missing[0];
+    const requested = (slots || []).find((row) => Number(row.position) === Number(position));
+    const prev = previous.find((row) => Number(row.position) === Number(position));
+    const day = dayLabel(requested, prev) || `Dinner ${position}`;
+    return { text: `Nothing easier is available for ${day}.`, suggestions: [] };
+  }
   const changed = preview?.changed_positions || [];
   const cued = (slots || []).filter((slot) => slot?.intent_cue);
   if (cued.length && !portionSummary({ slots }).length && preview?.slots) {

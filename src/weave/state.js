@@ -441,6 +441,7 @@ function applyTextRefinements(state, text, context) {
  */
 export function applyPlanningDelta(prior, delta, context = {}) {
   const dropped = [];
+  const priorCues = [...(prior?.intent_cues || [])];
   const state = cloneState({ ...emptyPlanningState(), ...(prior || {}) });
   for (const field of delta.clear || []) {
     if (field === "slots") state.slots = [];
@@ -554,7 +555,7 @@ export function applyPlanningDelta(prior, delta, context = {}) {
     concepts: portioned ? [] : (delta.concepts || []),
     task: "planning_intent",
   });
-  if (!portioned) scopeDayTargetedCue(state, context.user_text, context.dates || []);
+  if (!portioned) scopeDayTargetedCue(state, context.user_text, context.dates || [], priorCues);
   return { state, dropped, dinner_count_defaulted, portioned, semantic };
 }
 
