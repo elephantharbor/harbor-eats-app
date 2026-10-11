@@ -19,6 +19,20 @@
     return String(s || "").replace(/'/g, "’");
   }
 
+  const COUNT_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen"];
+
+  function countWord(n) {
+    return COUNT_WORDS[n] || String(n);
+  }
+
+  function dinnersLabel(n) {
+    return n + (n === 1 ? " dinner" : " dinners");
+  }
+
+  function dinnersNow(n) {
+    return countWord(n) + (n === 1 ? " dinner now" : " dinners now");
+  }
+
   /** A plan-count turn that built a plan finishes on plan review; the review strip picks it up here. */
   let planHandoff = null;
 
@@ -37,16 +51,24 @@
     find_lemony: { label: "Bright and lemony", fill: "Bright and lemony" },
   };
 
+  /** Refetched on every mount: limits and diners can change between visits. */
   let weaveStarterRows = null;
-  async function prefetchWeaveStarters() {
-    if (weaveStarterRows) return weaveStarterRows;
-    try {
-      const body = await fetch("/api/weave/starters", { credentials: "include" }).then((r) => r.json());
-      weaveStarterRows = body.starters || [];
-    } catch {
-      weaveStarterRows = [];
-    }
-    return weaveStarterRows;
+  let weaveStarterFetch = null;
+  function prefetchWeaveStarters() {
+    if (weaveStarterFetch) return weaveStarterFetch;
+    weaveStarterFetch = fetch("/api/weave/starters", { credentials: "include" })
+      .then((r) => r.json())
+      .then((body) => {
+        weaveStarterRows = body?.ok === false ? [] : body?.starters || [];
+      })
+      .catch(() => {
+        weaveStarterRows = [];
+      })
+      .then(() => {
+        weaveStarterFetch = null;
+        return weaveStarterRows;
+      });
+    return weaveStarterFetch;
   }
 
   function startersFromApi(task) {
@@ -84,6 +106,8 @@
     if (!t) return false;
     if (t.split(/\s+/).length > 2) return false;
     if (/\b(something|cozy|easy|heavy|fresh|spicy|not|too|but|with|and)\b/.test(t)) return false;
+    if (/\b(no|nothing|without|avoid|less|never)\b/.test(t)) return false;
+    if (/\b(light|lighter|healthy|healthier|filling|hearty|comforting|summery|special|indulgent)\b/.test(t)) return false;
     return true;
   }
 
@@ -123,9 +147,6 @@
         return [];
       },
       conflictCopy(data) {
-        const c = data.conflicts?.[0];
-        if (!c) return data.acknowledgement;
-        if (c.code === "slot_ambiguous") return "Your dinners don’t have days yet. Which one should be easier?";
         return data.acknowledgement;
       },
       liveAnnouncement(ctrl) {
@@ -329,16 +350,28 @@
       async resolveChoice(positions, ctrl, ui) {
         const p = plan();
         const choice = ctrl.choice;
-        if (!choice || !positions.length) return;
+        if (!choice || !positions.length || ctrl.choiceApplying) return;
+        ctrl.choiceApplying = true;
+        ctrl.choicePicked = positions.slice();
+        ui.render?.();
+        const threadTimer = setTimeout(() => ui.host?.classList.add("is-thread"), 400);
         const t0 = performance.now();
         let data = null;
-        data = await apiPost("/api/plan/apply", {
-          state: weaveState,
-          slot_choice: { positions },
-          dinner_plan_id: p?.dinner_plan_id,
-          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-          participant_ids: deps.activeMemberIds(),
-        });
+        try {
+          data = await apiPost("/api/plan/apply", {
+            state: weaveState,
+            slot_choice: { positions },
+            dinner_plan_id: p?.dinner_plan_id,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            participant_ids: deps.activeMemberIds(),
+          });
+        } catch {
+          data = null;
+        } finally {
+          clearTimeout(threadTimer);
+          ui.host?.classList.remove("is-thread");
+          ctrl.choiceApplying = false;
+        }
         deps?.track?.("weave_slot_chosen", {
           reason: choice.reason,
           multi: !!choice.multi,
@@ -346,7 +379,12 @@
           provider_calls: 0,
           latency_ms: Math.round(performance.now() - t0),
         });
-        if (!data?.ok) return;
+        if (!data?.ok) {
+          if (!choice.multi) ctrl.choicePicked = [];
+          ui.render?.();
+          ui.announce?.("Couldn’t change that just now.");
+          return;
+        }
         weaveState = data.state;
         ctrl.choice = null;
         ctrl.choiceCopy = null;
@@ -354,23 +392,30 @@
         await adapter.applyResult(data, ctrl);
         ui.settleWith({ ...data, echo: ctrl.echo });
       },
+      choiceStillValid(choice) {
+        const p = plan();
+        if (!p) return false;
+        const ids = new Set((p.meals || []).map((m) => m.meal_id));
+        return (choice.candidates || []).every((row) => !row.meal_id || ids.has(row.meal_id));
+      },
       onChoiceChip(btn, ctrl, ui) {
         const pos = Number(btn.getAttribute("data-choice-position"));
         const choice = ctrl.choice;
-        if (!choice || !Number.isInteger(pos)) return;
+        if (!choice || !Number.isInteger(pos) || ctrl.choiceApplying) return;
         if (choice.multi) {
           const picked = new Set(ctrl.choicePicked || []);
           if (picked.has(pos)) picked.delete(pos);
           else picked.add(pos);
           ctrl.choicePicked = [...picked];
           ui.render();
+          ui.host?.querySelector('.weave-choice__chip[data-choice-position="' + pos + '"]')?.focus({ preventScroll: true });
           return;
         }
         void adapter.resolveChoice([pos], ctrl, ui);
       },
       onChoiceApply(ctrl, ui) {
         const picked = ctrl.choicePicked || [];
-        if (!picked.length) return;
+        if (!picked.length || ctrl.choiceApplying) return;
         void adapter.resolveChoice(picked, ctrl, ui);
       },
       onChoiceCancel(ctrl, ui) {
@@ -420,6 +465,7 @@
           ctrl.choice = res.choice;
           ctrl.choiceCopy = res.choice_copy;
           ctrl.choicePicked = [];
+          ctrl.choiceFocused = false;
           ctrl.state = "settled";
           ui.render();
           ui.persist();
@@ -428,8 +474,10 @@
       async onStepperUndo(ctrl, ui) {
         const snap = ctrl.stepperUndo;
         if (!snap || ctrl.stepper?.busy) return;
+        if (ctrl.stepperUndoTimer) clearTimeout(ctrl.stepperUndoTimer);
         ctrl.stepper = { busy: true, count: snap.from };
         ui.render();
+        let restored = false;
         try {
           await deps.mutateDinnerPlan({ op: "set_count", meal_count: snap.from });
           await deps.mutateDinnerPlan({
@@ -438,6 +486,7 @@
             recipe_version_id: snap.recipe_version_id,
             participant_ids: deps.activeMemberIds(),
           });
+          restored = true;
           deps?.track?.("weave_count_stepped", {
             from: snap.to,
             to: snap.from,
@@ -445,16 +494,26 @@
             provider_calls: 0,
             latency_ms: 0,
           });
+        } catch {
+          restored = false;
         } finally {
           ctrl.stepperUndo = null;
-          ctrl.notice = null;
-          ctrl.stepper = { count: snap.from, bump: true };
-          ctrl.chips = (ctrl.chips || []).map((c) =>
-            c.id === "dinner_count" ? { ...c, label: snap.from + (snap.from === 1 ? " dinner" : " dinners") } : c
-          );
+          const count = plan()?.meal_count ?? (restored ? snap.from : snap.to);
+          ctrl.stepper = { count, bump: true };
+          ctrl.chips = (ctrl.chips || []).map((c) => (c.id === "dinner_count" ? { ...c, label: dinnersLabel(count) } : c));
+          if (restored) {
+            ctrl.notice = null;
+            ctrl.reply = typo(`${countWord(snap.from)} dinners again — ${snap.title} is back.`);
+            ui.announce(`${snap.from} dinners. ${snap.title} is back.`);
+          } else {
+            ctrl.notice = { kind: "alert", style: "error", text: "Couldn't change that just now." };
+          }
+          ctrl.restoreStatic = true;
+          ctrl.state = "settled";
           ui.render();
           ui.persist();
           deps.renderPlanReview();
+          ui.host?.querySelector('.weave-stepper__btn[data-step="-1"]')?.focus({ preventScroll: true });
         }
       },
       async onCountStep(delta, ctrl, ui) {
@@ -464,14 +523,13 @@
         const to = from + delta;
         const min = deps.minAllowedMealCount?.() ?? 1;
         if (to < min || to > 14) {
-          if (to < min) {
-            ctrl.notice = {
-              kind: "status",
-              style: "info",
-              text: "Dinners you've already cooked stay on the plan.",
-            };
-            ui.render();
-          }
+          ctrl.notice = {
+            kind: "status",
+            style: "info",
+            text: to > 14 ? "Plans go up to 14 dinners." : "Dinners you've already cooked stay on the plan.",
+          };
+          ui.render();
+          ui.announce(typo(ctrl.notice.text));
           return;
         }
         const pressed = document.activeElement;
@@ -522,16 +580,16 @@
             });
             removeSkeleton();
             const title = slot.title || "a new dinner";
-            ctrl.reply = typo(`${to === 1 ? "One" : to} dinner${to === 1 ? "" : "s"} now — ${title} joins the lineup.`);
+            ctrl.reply = typo(`${dinnersNow(to)} — ${title} joins the lineup.`);
             ui.announce(`${to} dinners. Added ${title}.`);
           } else {
             await deps.mutateDinnerPlan({ op: "remove_meal", meal_id: removedMeal.meal_id });
             await deps.mutateDinnerPlan({ op: "set_count", meal_count: to });
             const title = removedMeal.title || "that dinner";
-            const line = typo(`${to === 1 ? "One" : to} dinner${to === 1 ? "" : "s"} now — ${title} is off the plan.`);
+            const line = typo(`${dinnersNow(to)} — ${title} is off the plan.`);
             ctrl.notice = {
               kind: "status",
-              style: "info",
+              style: "reply",
               text: line,
               actions: '<button type="button" class="btn btn-quiet btn-sm weave-undo-step">Undo</button>',
             };
@@ -539,12 +597,16 @@
             ctrl.stepperUndo = {
               from,
               to,
+              title,
               recipe_version_id: removedMeal.recipe_version_id,
             };
             ctrl.stepperUndoTimer = setTimeout(() => {
               ctrl.stepperUndo = null;
               ctrl.notice = null;
-              ui.render();
+              const typing = ui.host?.ownerDocument.activeElement?.closest?.(".weave-composer");
+              if (typing) ui.host.querySelector(".weave-notice")?.remove();
+              else ui.render();
+              ui.persist();
             }, 6000);
             ui.announce(`${to} dinners. Removed ${title}.`);
           }
@@ -577,7 +639,9 @@
           ctrl.stepper = { count: plan()?.meal_count ?? to, bump: false };
           ui.render();
           ui.persist();
-          if (pressed?.focus) pressed.focus({ preventScroll: true });
+          const step = pressed?.getAttribute?.("data-step");
+          const again = step ? ui.host?.querySelector('.weave-stepper__btn[data-step="' + step + '"]') : null;
+          (again || pressed)?.focus?.({ preventScroll: true });
         }
       },
       async applyResult(data, ctrl, opts) {

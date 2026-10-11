@@ -124,8 +124,12 @@
     measure,
     reveal,
     afterSubmit(strip) {
+      let ran = false;
       const done = () => {
-        if (!strip) return;
+        if (!strip || ran) return;
+        ran = true;
+        // Once the result has landed the adapter owns focus and scroll.
+        if (!strip.classList.contains("is-working")) return;
         const r = strip.getBoundingClientRect();
         const viewBottom = vv ? vv.offsetTop + vv.height : global.innerHeight;
         if (r.top < (vv ? vv.offsetTop : 0) || r.top > viewBottom - 40) {

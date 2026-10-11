@@ -83,10 +83,13 @@
     if (!choice) return "";
     const copy = ctrl.choiceCopy || {};
     const qid = "weaveChoiceQ-" + esc(ctrl.adapter.kind);
+    const applying = !!ctrl.choiceApplying;
     let html =
       '<div class="weave-choice" role="group" aria-labelledby="' +
       qid +
-      '">';
+      '"' +
+      (applying ? ' aria-busy="true"' : "") +
+      ">";
     if (copy.context) html += '<p class="weave-choice__context">' + esc(typo(copy.context)) + "</p>";
     html += '<p class="weave-reply weave-choice__question" id="' + qid + '" tabindex="-1">' + esc(typo(copy.question || "Which dinner did you mean?")) + "</p>";
     html += '<div class="weave-choice__chips">';
@@ -99,25 +102,32 @@
         esc(String(row.position)) +
         '"' +
         (choice.multi ? ' aria-pressed="' + (pressed ? "true" : "false") + '"' : "") +
+        (applying && !pressed ? ' aria-disabled="true"' : "") +
         ' aria-label="' +
         esc(row.label + ", " + (row.title || "")) +
-        '"><strong>' +
+        '"><strong class="weave-choice__label">' +
         esc(row.label) +
-        "</strong> " +
+        '</strong><span class="weave-choice__title">' +
         esc(row.title || "") +
-        "</button>";
+        "</span></button>";
     });
     html += "</div>";
+    html += '<div class="weave-choice__actions">';
     if (choice.multi && (ctrl.choicePicked || []).length) {
       const n = ctrl.choicePicked.length;
       const words = ["one", "two", "three", "four"];
-      const label = n <= 4 ? "Go with these " + words[n - 1] : "Go with these " + n;
-      html += '<button type="button" class="btn btn-primary btn-sm weave-choice__apply">' + esc(label) + "</button>";
+      const label = n === 1 ? "Go with this one" : n <= 4 ? "Go with these " + words[n - 1] : "Go with these " + n;
+      html +=
+        '<button type="button" class="btn btn-primary btn-sm weave-choice__apply"' +
+        (applying ? ' aria-disabled="true"' : "") +
+        ">" +
+        esc(label) +
+        "</button>";
     }
     if (choice.reason === "undated" || choice.reason === "weekend_undated") {
       html += '<button type="button" class="btn btn-quiet btn-sm weave-choice__dates">Add days</button>';
     }
-    html += '<button type="button" class="btn btn-quiet btn-sm weave-choice__cancel">Never mind</button></div>';
+    html += '<button type="button" class="btn btn-quiet btn-sm weave-choice__cancel">Never mind</button></div></div>';
     return html;
   }
 
@@ -215,6 +225,7 @@
           if (!raw) continue;
           const parsed = JSON.parse(raw);
           if (!parsed.at || Date.now() - parsed.at > STORAGE_TTL_MS) continue;
+          if (parsed.adapter && parsed.adapter !== adapter.kind) continue;
           data = parsed;
           break;
         }
@@ -228,10 +239,12 @@
       ctrl.chips = data.chips || [];
       ctrl.next = data.next || [];
       ctrl.notice = data.notice || null;
-      ctrl.choice = data.choice || null;
-      ctrl.choiceCopy = data.choiceCopy || null;
-      ctrl.choicePicked = data.choicePicked || [];
+      const choiceOk = !!data.choice && (!adapter.choiceStillValid || adapter.choiceStillValid(data.choice));
+      ctrl.choice = choiceOk ? data.choice : null;
+      ctrl.choiceCopy = choiceOk ? data.choiceCopy || null : null;
+      ctrl.choicePicked = choiceOk ? data.choicePicked || [] : [];
       adapter.setState?.(data.stateRef);
+      if (data.choice && !choiceOk) adapter.clearPendingSlot?.();
       ctrl.state = "settled";
       render();
       return true;
@@ -359,15 +372,49 @@
         });
         html += "</div>";
       }
-      if ((ctrl.state === "idle" || ctrl.state === "composing") && !ctrl.notice && adapter.starters?.().length) {
-        html += '<div class="weave-starters" role="group" aria-label="Ideas">';
-        adapter.starters().forEach((s) => {
-          html += '<button type="button" class="chip-tog weave-starter" data-weave-starter="' + esc(s.fill) + '">' + esc(s.label) + "</button>";
-        });
-        html += "</div>";
-      }
+      if (wantsStarters()) html += startersHtml();
       body.innerHTML = html;
       bindInner();
+    }
+
+    function wantsStarters() {
+      return (ctrl.state === "idle" || ctrl.state === "composing") && !ctrl.notice && !!adapter.starters?.().length;
+    }
+
+    function startersHtml() {
+      let html = '<div class="weave-starters" role="group" aria-label="Ideas">';
+      adapter.starters().forEach((s) => {
+        html += '<button type="button" class="chip-tog weave-starter" data-weave-starter="' + esc(s.fill) + '">' + esc(s.label) + "</button>";
+      });
+      return html + "</div>";
+    }
+
+    function bindStarters(scope) {
+      scope.querySelectorAll("[data-weave-starter]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          ctrl.draft = btn.getAttribute("data-weave-starter") || "";
+          ctrl.state = "composing";
+          render();
+          focusField(true);
+          adapter.onComposerInput?.(ctrl.draft);
+        });
+      });
+    }
+
+    /** Starters arrive after the first paint; add them in place so a focused field keeps its keyboard. */
+    function paintStarters() {
+      if (ctrl.fallback) return;
+      const existing = body.querySelector(".weave-starters");
+      if (!wantsStarters()) {
+        existing?.remove();
+        return;
+      }
+      const tmp = body.ownerDocument.createElement("div");
+      tmp.innerHTML = startersHtml();
+      const node = tmp.firstElementChild;
+      if (existing) existing.replaceWith(node);
+      else body.appendChild(node);
+      bindStarters(node);
     }
 
     function renderComposer(collapsed, value) {
@@ -471,8 +518,10 @@
           if (!field.value.trim() && adapter.defaultCollapsed && form) {
             const collapse = () => form.classList.add("weave-composer--collapsed");
             if (global.FlavorWeaveKeyboard?.isOpen?.()) {
-              global.FlavorWeaveKeyboard.onChange((open) => {
-                if (!open) collapse();
+              const off = global.FlavorWeaveKeyboard.onChange((open) => {
+                if (open) return;
+                off();
+                if (!field.value.trim()) collapse();
               });
             } else {
               collapse();
@@ -525,15 +574,7 @@
         focusField(true);
       });
       body.querySelector(".weave-cancel")?.addEventListener("click", cancel);
-      body.querySelectorAll("[data-weave-starter]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          ctrl.draft = btn.getAttribute("data-weave-starter") || "";
-          ctrl.state = "composing";
-          render();
-          focusField(true);
-          adapter.onComposerInput?.(ctrl.draft);
-        });
-      });
+      bindStarters(body);
       const stepUi = { host, render, persist, announce };
       body.querySelectorAll("[data-weave-suggest]").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -549,17 +590,20 @@
       });
       body.querySelectorAll("[data-step]").forEach((btn) => {
         btn.addEventListener("click", () => {
-          if (btn.getAttribute("aria-disabled") === "true") return;
+          // A disabled end still answers (the limit line); in-flight taps do nothing.
+          if (ctrl.stepper?.busy) return;
           void adapter.onCountStep?.(Number(btn.getAttribute("data-step")), ctrl, stepUi);
         });
       });
       const choiceUi = { host, body, persist, announce, settleWith, render };
       body.querySelectorAll(".weave-choice__chip").forEach((btn) => {
         btn.addEventListener("click", () => {
+          if (ctrl.choiceApplying) return;
           void adapter.onChoiceChip?.(btn, ctrl, choiceUi);
         });
       });
       body.querySelector(".weave-choice__apply")?.addEventListener("click", () => {
+        if (ctrl.choiceApplying) return;
         void adapter.onChoiceApply?.(ctrl, choiceUi);
       });
       body.querySelector(".weave-choice__cancel")?.addEventListener("click", () => {
@@ -569,7 +613,10 @@
         adapter.onChoiceAddDays?.(ctrl);
       });
       const q = body.querySelector(".weave-choice__question");
-      if (q && ctrl.choice && !ctrl.restoreStatic) q.focus({ preventScroll: true });
+      if (q && ctrl.choice && !ctrl.restoreStatic && !ctrl.choiceFocused) {
+        ctrl.choiceFocused = true;
+        q.focus({ preventScroll: true });
+      }
       body.querySelector(".weave-composer--collapsed")?.addEventListener("click", (e) => {
         if (e.target.closest("button")) return;
         expand();
@@ -664,6 +711,7 @@
       ctrl.choice = data.choice || data.ambiguous_target || null;
       ctrl.choiceCopy = data.choice_copy || adapter.choiceCopy?.(ctrl.choice, data) || null;
       ctrl.choicePicked = [];
+      ctrl.choiceFocused = false;
       if (ctrl.choice) {
         ctrl.reply = "";
         ctrl.next = [];
@@ -715,6 +763,7 @@
       render();
       notify();
       announce("Weaving that together…");
+      global.FlavorWeaveKeyboard?.afterSubmit?.(host);
       ctrl.timers.push(
         setTimeout(() => {
           const label = body.querySelector(".weave-working__label");
@@ -781,7 +830,6 @@
           if (outcome?.failed) throw new Error("apply_failed");
         }
         settleWith(data);
-        global.FlavorWeaveKeyboard?.afterSubmit?.(host);
       } catch (e) {
         if (e?.name === "AbortError" && signal.reason !== "timeout") return;
         ctrl.failures += 1;
@@ -829,7 +877,7 @@
       ctrl.next = adapter.initialNext?.() || [];
       render();
     }
-    void adapter.prefetchStarters?.();
+    Promise.resolve(adapter.prefetchStarters?.()).then(paintStarters, () => {});
 
     const weaveUi = { host, render, persist, announce, settleWith };
     return {
