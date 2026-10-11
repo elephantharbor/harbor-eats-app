@@ -759,17 +759,19 @@
   var consumerUi = false;
   var paintedConsumerUi = null;
 
-  fetch("/api/health", { credentials: "same-origin" })
-    .then(function (r) {
-      return r.ok ? r.json() : null;
-    })
-    .then(function (body) {
-      consumerUi = !!(body && body.consumer_ui);
-      repaintFindForAi();
-    })
-    .catch(function () {
-      consumerUi = false;
-    });
+  if (typeof fetch === "function") {
+    fetch("/api/health", { credentials: "same-origin" })
+      .then(function (r) {
+        return r.ok ? r.json() : null;
+      })
+      .then(function (body) {
+        consumerUi = !!(body && body.consumer_ui);
+        repaintFindForAi();
+      })
+      .catch(function () {
+        consumerUi = false;
+      });
+  }
 
   function repaintFindForAi() {
     const rootEl = document.getElementById("findRoot");
