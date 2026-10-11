@@ -420,7 +420,7 @@ describe("G4 refinement acknowledgements", () => {
       dinner_plan_id: "dp_easy",
     });
     expect(res.body.changed_positions).toEqual([]);
-    expect(res.body.acknowledgement).toMatch(/Tuesday's already one of the easiest options/);
+    expect(res.body.acknowledgement).toMatch(/Tuesday's already one of the easiest/);
     expect(res.body.suggestions?.some((line) => /swap tuesday/i.test(line))).toBe(true);
   });
 
@@ -438,7 +438,7 @@ describe("G4 refinement acknowledgements", () => {
       removedTokens: [],
       userText: "Pasta no more than once.",
     });
-    expect(ack.acknowledgement).toMatch(/Pasta ≤1/);
+    expect(ack.acknowledgement).toMatch(/pasta once at most/);
   });
 });
 

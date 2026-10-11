@@ -246,10 +246,10 @@ describe("I2 portion counts", () => {
       removedTokens: [],
       userText: "two cozy dinners and one light one",
     });
-    expect(ack.acknowledgement).toMatch(/3 dinners/);
-    expect(ack.acknowledgement).toMatch(/2 cozy/);
-    expect(ack.acknowledgement).toMatch(/1 light/);
-    expect(ack.acknowledgement).not.toMatch(/4 dinners/);
+    expect(ack.acknowledgement).toMatch(/three dinners/);
+    expect(ack.acknowledgement).toMatch(/two cozy/);
+    expect(ack.acknowledgement).toMatch(/one light/);
+    expect(ack.acknowledgement).not.toMatch(/four dinners/);
   });
 
   it("scores each slot's cue instead of both cues on every dinner", () => {
@@ -353,9 +353,9 @@ describe("I3 refinement no-op for every slot field", () => {
       },
     ];
     const cases = [
-      [{ cuisine: "mexican" }, /Wednesday's already mexican/],
+      [{ cuisine: "mexican" }, /Wednesday's already Mexican/],
       [{ max_minutes: 30 }, /Wednesday's already under 30 min/],
-      [{ ingredient: "mushrooms" }, /Wednesday's already mushrooms/],
+      [{ ingredient: "mushrooms" }, /Wednesday already has mushrooms/],
       [{ meal_style: "tacos" }, /Wednesday's already tacos/],
       [{ ingredient_complexity: "simple" }, /Wednesday's already simple/],
     ];
@@ -373,7 +373,7 @@ describe("I3 refinement no-op for every slot field", () => {
       previousSlots: [{ position: 2, scheduled_date: "2026-10-13", recipe_version_id: "rv2", effort_level: "easy", title: "Pork" }],
       slots: [{ position: 2, weekday: "tuesday", effort: "easy" }],
     });
-    expect(easy.text).toMatch(/Tuesday's already one of the easiest options/);
+    expect(easy.text).toMatch(/Tuesday's already one of the easiest/);
   });
 });
 

@@ -288,7 +288,7 @@ describe("K3 acknowledgement punctuation", () => {
       removedTokens: ["shrimp"],
       userText: "shrimp, something special",
     });
-    expect(joined.acknowledgement).toMatch(/left that out, something special/);
+    expect(joined.acknowledgement).toBe("Shellfish doesn't work for everyone at your table, so we left it out. Something special is still on.");
     expect(joined.acknowledgement).not.toMatch(/\.,/);
 
     const stored = reconcileAcknowledgement({

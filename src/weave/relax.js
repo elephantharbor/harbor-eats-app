@@ -48,7 +48,7 @@ export function discoveryRelaxations(state) {
   const softened = dropSoft(timed.state);
   if (timed.changed) steps.push({ state: timed.state, relaxed: "the time limit" });
   if (softened.changed) {
-    const relaxed = timed.changed ? "the time limit and the extra preferences" : "the extra preferences";
+    const relaxed = timed.changed ? "the time limit and the extras" : "the extras";
     steps.push({ state: softened.state, relaxed });
   }
   return steps;

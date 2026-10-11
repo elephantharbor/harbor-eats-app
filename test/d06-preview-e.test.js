@@ -139,8 +139,8 @@ describe("E1 empty acknowledgement", () => {
     });
     expect(ack.acknowledgement_source).toBe("reconciled");
     expect(ack.acknowledgement).not.toBe(text);
-    expect(ack.acknowledgement).toMatch(/3 dinners/);
-    expect(ack.acknowledgement).toMatch(/Easy leaning/);
+    expect(ack.acknowledgement).toMatch(/three dinners/);
+    expect(ack.acknowledgement).toMatch(/mostly easy/);
   });
 });
 
@@ -245,7 +245,7 @@ describe("E4 missing dinner count", () => {
       dinnerCountUsual: false,
     });
     expect(ack.acknowledgement_source).toBe("reconciled");
-    expect(ack.acknowledgement).toMatch(/Planned 3 dinners/);
+    expect(ack.acknowledgement).toMatch(/three dinners to start/);
     const usual = reconcileAcknowledgement({
       task: "planning_intent",
       modelAck: "",
@@ -256,7 +256,7 @@ describe("E4 missing dinner count", () => {
       dinnerCountDefaulted: true,
       dinnerCountUsual: true,
     });
-    expect(usual.acknowledgement).toMatch(/4 dinners, your usual/);
+    expect(usual.acknowledgement).toMatch(/your usual four dinners/);
   });
 });
 
@@ -486,7 +486,7 @@ describe("plan interpret route", () => {
     expect(res.status).toBe(200);
     expect(res.body.fallback_code).toBeNull();
     expect(res.body.state.dinner_count).toBe(3);
-    expect(res.body.acknowledgement).toMatch(/Planned 3 dinners/);
+    expect(res.body.acknowledgement).toMatch(/three dinners to start/);
     expect(provider.calls).toHaveLength(1);
     expect(res.body.deterministic_latency_ms).toBeNull();
   });
