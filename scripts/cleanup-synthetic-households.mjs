@@ -19,7 +19,7 @@
  *  - all deletes go in ONE `wrangler d1 execute --file` (D1 applies a file atomically), children before parents.
  *  - ai_usage rows are kept by default (spend audit; they have no FK). ai_limit_counters buckets keyed by the
  *    targets' household_key are deleted (the global/spend buckets are untouched).
- *  - after --apply, it runs an orphan check across all household/member/plan/dinner_plan references.
+ *  - after --apply, it runs an orphan check scoped to the deleted household/member/plan/dinner_plan ids (lean D1 reads).
  */
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync, mkdtempSync } from "node:fs";
@@ -142,23 +142,24 @@ if (opt("--sql-out")) writeFileSync(opt("--sql-out"), sql + "\n");
 if (!apply) { console.log("\nDRY-RUN: nothing deleted. Re-run with --apply."); process.exit(0); }
 if (env === "production" && !flag("--i-understand-production")) die("production --apply needs --i-understand-production");
 
+const snap = (() => { const r = q([`SELECT member_id id FROM member WHERE household_id IN ${IN}`, `SELECT plan_id id FROM plan WHERE household_id IN ${IN}`, `SELECT dinner_plan_id id FROM dinner_plan WHERE household_id IN ${IN}`].join("; "));
+  return { members: r[0].map((x) => x.id), plans: r[1].map((x) => x.id), dinner_plans: r[2].map((x) => x.id) }; })();
 console.log("time-travel bookmark (before):\n" + wr(["d1", "time-travel", "info", DB, "--json"]).trim());
 const f = join(mkdtempSync(join(tmpdir(), "cleanup-")), "delete.sql"); writeFileSync(f, sql + "\n");
 console.log(wr(["d1", "execute", DB, "--remote", "--yes", "--file", f]).split("\n").filter((l) => /rows|changes|Executed|success/i.test(l)).join("\n"));
 
-// ---- orphan check
+// ---- orphan check, scoped to the deleted ids (keeps D1 row reads small)
+const lst = (xs) => `(${(xs.length ? xs : ["__none__"]).map(lit).join(",")})`;
+const MBX = lst(snap.members), PLX = lst(snap.plans), DPX = lst(snap.dinner_plans);
 const orphan = [
-  ...["member", "member_session", "recovery_token", "constraint_rule", "invite", "diner_taste", "diner_practical_hint", "preference_evidence", "targeted_feedback", "plan", "selection", "cook", "rating", "meal_vote", "share_choice", "recipe", "recipe_package_version", "dinner_plan", "dinner_plan_participant", "dinner_plan_rating", "dinner_plan_vote"]
-    .map((t) => `SELECT '${t}.household_id' t, count(*) n FROM ${t} x WHERE x.household_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM household h WHERE h.household_id = x.household_id)`),
+  ...["member", "member_session", "recovery_token", "constraint_rule", "invite", "diner_taste", "diner_practical_hint", "preference_evidence", "targeted_feedback", "plan", "selection", "cook", "rating", "meal_vote", "share_choice", "recipe", "recipe_package_version", "dinner_plan", "dinner_plan_participant", "dinner_plan_rating", "dinner_plan_vote", "event", "client_error", "household"]
+    .map((t) => `SELECT '${t}.household_id' t, count(*) n FROM ${t} WHERE household_id IN ${IN}`),
   ...["member_session", "recovery_token", "rating", "meal_vote", "diner_taste", "diner_practical_hint", "dinner_plan_participant", "dinner_plan_rating", "dinner_plan_vote"]
-    .map((t) => `SELECT '${t}.member_id' t, count(*) n FROM ${t} x WHERE x.member_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM member m WHERE m.member_id = x.member_id)`),
+    .map((t) => `SELECT '${t}.member_id' t, count(*) n FROM ${t} WHERE member_id IN ${MBX}`),
   ...["meal_option", "selection", "cook", "rating", "meal_vote", "shopped_plan_line"]
-    .map((t) => `SELECT '${t}.plan_id' t, count(*) n FROM ${t} x WHERE x.plan_id IS NOT NULL AND NOT EXISTS (SELECT 1 FROM plan p WHERE p.plan_id = x.plan_id)`),
+    .map((t) => `SELECT '${t}.plan_id' t, count(*) n FROM ${t} WHERE plan_id IN ${PLX}`),
   ...["dinner_plan_meal", "dinner_shop_line", "dinner_shop_delta", "dinner_plan_rating", "dinner_plan_vote"]
-    .map((t) => `SELECT '${t}.dinner_plan_id' t, count(*) n FROM ${t} x WHERE NOT EXISTS (SELECT 1 FROM dinner_plan d WHERE d.dinner_plan_id = x.dinner_plan_id)`),
-  `SELECT 'event.household_id(targets)' t, count(*) n FROM event WHERE household_id IN ${IN}`,
-  `SELECT 'client_error.household_id(targets)' t, count(*) n FROM client_error WHERE household_id IN ${IN}`,
-  `SELECT 'household(targets)' t, count(*) n FROM household WHERE household_id IN ${IN}`,
+    .map((t) => `SELECT '${t}.dinner_plan_id' t, count(*) n FROM ${t} WHERE dinner_plan_id IN ${DPX}`),
 ];
 const res = q(orphan.join("; ")).map((r) => r[0]);
 const bad2 = res.filter((r) => r.n > 0);
