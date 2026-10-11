@@ -1,5 +1,6 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
+import fs from "node:fs";
 import path from "node:path";
 import { skipToChoices, reachTonightChoices } from "./helpers.js";
 
@@ -84,7 +85,20 @@ async function openFindForWeave(page) {
   await expect(page.locator("#discChips [data-disc-chip='easy']")).toBeVisible({ timeout: 60000 });
 }
 
-const ART = "/opt/cursor/artifacts/screenshots";
+/**
+ * Hosted runs have no /opt/cursor/artifacts directory. E2E_SCREENSHOT_DIR
+ * wins when set; otherwise Playwright's own output path.
+ * @param {import('@playwright/test').TestInfo} testInfo
+ * @param {string} filename
+ */
+function screenshotFile(testInfo, filename) {
+  const dir = process.env.E2E_SCREENSHOT_DIR;
+  if (dir) {
+    fs.mkdirSync(dir, { recursive: true });
+    return path.join(dir, filename);
+  }
+  return testInfo.outputPath(filename);
+}
 
 /** @param {import('@playwright/test').Page} page */
 async function openPlanCount(page) {
@@ -107,7 +121,7 @@ test.describe("D-06 Weave UX", () => {
     await page.evaluate(() => localStorage.clear());
   });
 
-  test("NL plan: three easy dinners, fish twice", async ({ page }) => {
+  test("NL plan: three easy dinners, fish twice", async ({ page }, testInfo) => {
     await page.route("**/api/plan/interpret", async (route) => {
       await route.fulfill({
         status: 200,
@@ -166,7 +180,7 @@ test.describe("D-06 Weave UX", () => {
     await field.fill("Plan three easy dinners this week. Fish twice.");
     await page.locator(".weave-composer__submit").click();
     await expect(page.locator(".view.is-active[data-view='planReview']")).toBeVisible({ timeout: 60000 });
-    await page.screenshot({ path: path.join(ART, "d06-plan-settled.png"), fullPage: true });
+    await page.screenshot({ path: screenshotFile(testInfo, "d06-plan-settled.png"), fullPage: true });
   });
 
   test("chip removal makes no interpret call", async ({ page }) => {
@@ -218,7 +232,7 @@ test.describe("D-06 Weave UX", () => {
     expect(interpretCalls).toBe(0);
   });
 
-  test("NL Find cozy but not too heavy", async ({ page }) => {
+  test("NL Find cozy but not too heavy", async ({ page }, testInfo) => {
     await skipToChoices(page);
     await page.route("**/api/discovery/interpret", async (route) => {
       await route.fulfill({
@@ -244,7 +258,7 @@ test.describe("D-06 Weave UX", () => {
     await field.fill("Something cozy but not too heavy");
     await page.locator(".weave-composer__submit").click();
     await expect(page.locator(".weave-echo")).toContainText("cozy");
-    await page.screenshot({ path: path.join(ART, "d06-find-nl.png"), fullPage: true });
+    await page.screenshot({ path: screenshotFile(testInfo, "d06-find-nl.png"), fullPage: true });
   });
 
   test("bypass salmon makes no interpret call", async ({ page }) => {
@@ -470,9 +484,9 @@ test.describe("D-06 Weave phone", () => {
     viewport: { width: 390, height: 844 },
   });
 
-  test("phone viewport plan composer", async ({ page }) => {
+  test("phone viewport plan composer", async ({ page }, testInfo) => {
     await openPlanCount(page);
     await expect(page.locator(".weave-composer")).toBeVisible();
-    await page.screenshot({ path: path.join(ART, "d06-plan-phone.png"), fullPage: true });
+    await page.screenshot({ path: screenshotFile(testInfo, "d06-plan-phone.png"), fullPage: true });
   });
 });

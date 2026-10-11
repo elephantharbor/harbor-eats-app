@@ -20,8 +20,15 @@ export function discoveryStateToQuery(state, opts = {}) {
     "diet",
   ];
   for (const key of listFields) {
+    if (key === "exclude_ingredients") continue;
     if ((state[key] || []).length) criteria[key] = state[key];
   }
+  const excluded = [...(state.exclude_ingredients || [])];
+  for (const term of state.exclude_terms || []) {
+    const slug = String(term || "").trim().toLowerCase();
+    if (slug && !excluded.includes(slug)) excluded.push(slug);
+  }
+  if (excluded.length) criteria.exclude_ingredients = excluded;
   if (state.max_minutes != null && state.max_minutes_hard) criteria.max_minutes = state.max_minutes;
   if (state.quick === true) criteria.quick = true;
   if (state.different === true) criteria.different = true;

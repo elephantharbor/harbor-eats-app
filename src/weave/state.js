@@ -60,6 +60,7 @@ export function emptyDiscoveryState() {
     flavors: [],
     ingredients: [],
     exclude_ingredients: [],
+    exclude_terms: [],
     methods: [],
     equipment: [],
     textures: [],

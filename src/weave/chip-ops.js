@@ -124,6 +124,11 @@ export function removeDiscoveryChip(state, chipId) {
     next.exclude_ingredients = (next.exclude_ingredients || []).filter((t) => t !== slug);
     return next;
   }
+  if (chipId.startsWith("exclude_term:")) {
+    const slug = chipId.slice(13);
+    next.exclude_terms = (next.exclude_terms || []).filter((t) => t !== slug);
+    return next;
+  }
   if (chipId.startsWith("protein:")) {
     const slug = chipId.slice(8);
     next.protein_groups = (next.protein_groups || []).filter((t) => t !== slug);

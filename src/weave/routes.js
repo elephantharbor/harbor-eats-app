@@ -20,8 +20,9 @@ import { projectDiscoveryMeal } from "../discovery/meal.js";
 import { runDiscoveryPipeline } from "../discovery/pipeline.js";
 import { resolveDiscoveryContext, selectionFor, publicContext, normalizeClientContext } from "../discovery/context.js";
 import { loadDiscoveryRecentSlugs } from "../discovery/http.js";
-import { buildPlanningChips, buildDiscoveryChips, noResultsAcknowledgement, NO_RESULTS_SUGGESTIONS, reconcileAcknowledgement, refinementAcknowledgement, FIND_UNAVAILABLE_ACK, PLAN_PICKER_ACK, planCountFallbackAck, withRelaxation } from "./ack.js";
+import { buildPlanningChips, buildDiscoveryChips, noResultsAcknowledgement, noResultsSuggestions, reconcileAcknowledgement, refinementAcknowledgement, FIND_UNAVAILABLE_ACK, PLAN_PICKER_ACK, planCountFallbackAck, withRelaxation } from "./ack.js";
 import { classifyDiscoveryBypass, bypassDiscoveryPatch, normalizeFindText, keywordDiscoveryInput } from "./bypass.js";
+import { applyNegationOverlay } from "./negation.js";
 import { discoveryRelaxations } from "./relax.js";
 import { detectDiscoveryConflicts, detectPlanningConflicts, frequencyConflicts } from "./conflicts.js";
 import { discoveryStateToQuery } from "./discovery-map.js";
@@ -310,7 +311,7 @@ async function executeDiscovery(env, session, { executedState, clientContext, co
   if (ran.error) return { error: ran.error };
   let suggestions = ack.suggestions || [];
   if ((ran.payload.total || 0) === 0) {
-    ack = { acknowledgement: noResultsAcknowledgement(conflicts), acknowledgement_source: "reconciled", suggestions: [...NO_RESULTS_SUGGESTIONS] };
+    ack = { acknowledgement: noResultsAcknowledgement(conflicts, executedState), acknowledgement_source: "reconciled", suggestions: noResultsSuggestions(executedState) };
     suggestions = ack.suggestions;
   }
   return {
@@ -702,6 +703,7 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
       const extracted = keywordDiscoveryInput(text);
       const base = extracted.state;
       if (extracted.text) base.text_residue = extracted.text;
+      applyNegationOverlay(base, text);
       const conflictPass = detectDiscoveryConflicts(base, { participantIds, constraints, tastes, userText: text });
       if (conflictPass.conflicts.length) {
         const repaired = conflictPass.repaired;
@@ -727,7 +729,7 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
           chips: buildDiscoveryChips(repaired),
           conflicts: conflictPass.conflicts,
           dropped: [],
-          suggestions: (ran.payload.total || 0) === 0 ? [...NO_RESULTS_SUGGESTIONS] : ack.suggestions || [],
+          suggestions: (ran.payload.total || 0) === 0 ? noResultsSuggestions(repaired) : ack.suggestions || [],
           ...latencyFields({ routeStarted, providerMs, deterministicMs: null }),
           metadata: { estimated_cost_usd: estimatedCost },
           ...ran.payload,
@@ -736,13 +738,15 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
         });
       }
       const normText = normalizeFindText(text).slice(0, 200);
-      const q = extracted.text || (extracted.state.ingredients || []).length || (extracted.state.protein_groups || []).length
-        ? discoveryStateToQuery(extracted.state, { text: extracted.text || undefined })
+      const searched = extracted.state;
+      const hasFilter = searched.text_residue || (searched.ingredients || []).length || (searched.protein_groups || []).length || (searched.exclude_terms || []).length;
+      const q = hasFilter
+        ? discoveryStateToQuery(searched, { text: searched.text_residue || undefined })
         : normalizeQuery({ text: normText });
       const ran = await runDiscoveryForQuery(env, session, q.ok ? q.query : normalizeQuery({}).query, client.context, preloaded);
       if (ran.error) return ran.error;
       const gentle = unavailable ? FIND_UNAVAILABLE_ACK : null;
-      const emptyAck = gentle || ((ran.payload.total || 0) === 0 ? noResultsAcknowledgement([]) : null);
+      const emptyAck = gentle || ((ran.payload.total || 0) === 0 ? noResultsAcknowledgement([], searched) : null);
       return json({
         ok: true,
         task: "discovery_intent",
@@ -753,7 +757,7 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
         chips: unavailable ? buildDiscoveryChips(extracted.state) : [],
         conflicts: [],
         dropped: [],
-        suggestions: gentle ? [] : emptyAck ? [...NO_RESULTS_SUGGESTIONS] : [],
+        suggestions: gentle ? [] : emptyAck ? noResultsSuggestions(searched) : [],
         ...latencyFields({ routeStarted, providerMs, deterministicMs: null }),
         metadata: { estimated_cost_usd: estimatedCost },
         ...ran.payload,
@@ -763,6 +767,7 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
     const applied = applyDiscoveryDelta(priorDiscovery, gen.output, { vocabulary, today });
     dropped = applied.dropped;
     executedState = applied.state;
+    applyNegationOverlay(executedState, text);
     model = gen.model;
     prompt_version = gen.prompt_version;
     source = gen.source;
@@ -808,9 +813,9 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
   let suggestions = ack.suggestions || [];
   if ((ran.payload.total || 0) === 0) {
     ack = {
-      acknowledgement: noResultsAcknowledgement(conflicts),
+      acknowledgement: noResultsAcknowledgement(conflicts, executedState),
       acknowledgement_source: "reconciled",
-      suggestions: [...NO_RESULTS_SUGGESTIONS],
+      suggestions: noResultsSuggestions(executedState),
     };
     suggestions = ack.suggestions;
   }

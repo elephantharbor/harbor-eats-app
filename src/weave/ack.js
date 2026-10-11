@@ -159,6 +159,9 @@ export function buildDiscoveryChips(state) {
   for (const slug of state.exclude_ingredients || []) {
     chips.push({ id: `exclude:${slug}`, label: `No ${displayForToken(slug).toLowerCase()}` });
   }
+  for (const slug of state.exclude_terms || []) {
+    chips.push({ id: `exclude_term:${slug}`, label: `No ${displayForToken(slug).toLowerCase()}` });
+  }
   for (const slug of state.flavors || []) chips.push({ id: `flavor:${slug}`, label: spokenFlavor(slug) });
   for (const slug of state.protein_groups || []) chips.push({ id: `protein:${slug}`, label: titleToken(slug) });
   for (const cue of state.intent_cues || []) chips.push({ id: `cue:${cue}`, label: CUE_LABELS[cue] || cue });
@@ -201,6 +204,7 @@ function exclusionPhrases(state) {
     if (!parts.some((row) => row.toLowerCase() === phrase.toLowerCase())) parts.push(phrase);
   };
   for (const slug of state?.exclude_ingredients || []) push(displayForToken(slug).toLowerCase());
+  for (const slug of state?.exclude_terms || []) push(spokenToken(slug));
   for (const slug of state?.exclude_categories || []) push(spokenToken(slug));
   for (const row of state?.frequencies || []) {
     if (row.max_count === 0) push(spokenToken(row.token));
@@ -562,11 +566,44 @@ export function withRelaxation(ack, { relaxed, dish }) {
 
 export const NO_RESULTS_SUGGESTIONS = Object.freeze(["Try fish", "Make it easier", "Clear a filter"]);
 
-export function noResultsAcknowledgement(conflicts) {
+function fishCueActive(state) {
+  const proteins = state?.protein_groups || [];
+  if (proteins.includes("fish") || proteins.includes("seafood")) return true;
+  const ingredients = [...(state?.ingredients || []), ...(state?.include_ingredients || [])];
+  if (ingredients.some((slug) => /\bfish\b/.test(String(slug || "")))) return true;
+  if (/\bfish\b/i.test(String(state?.text_residue || ""))) return true;
+  return (state?.frequencies || []).some((row) => row?.token === "fish" && row.max_count !== 0);
+}
+
+function easierCueActive(state) {
+  return state?.keep_it_easy === true || state?.effort === "easy" || (state?.effort_levels || []).includes("easy");
+}
+
+/** Suggestion chips that name a cue the search already has. */
+export function noResultsSuggestions(state) {
+  return NO_RESULTS_SUGGESTIONS.filter((label) => {
+    if (label === "Try fish" && fishCueActive(state)) return false;
+    if (label === "Make it easier" && easierCueActive(state)) return false;
+    return true;
+  });
+}
+
+function tryClause(parts) {
+  if (parts.length === 1) return `Try ${parts[0]}.`;
+  if (parts.length === 2) return `Try ${parts[0]}, or ${parts[1]}.`;
+  return `Try ${parts[0]}, ${parts[1]}, or ${parts[2]}.`;
+}
+
+export function noResultsAcknowledgement(conflicts, state) {
   if (conflicts?.length) {
     return `${worksForEveryone(conflicts)}, so no dinners match that yet. Try something broader.`.slice(0, MAX_ACK);
   }
-  return "No dinners match that. Try fish, something easier, or clear a filter.";
+  const parts = [];
+  if (!fishCueActive(state)) parts.push("fish");
+  if (!easierCueActive(state)) parts.push("something easier");
+  parts.push("clear a filter");
+  if (parts.length === 1) return "No dinners match that. Clear a filter.".slice(0, MAX_ACK);
+  return `No dinners match that. ${tryClause(parts)}`.slice(0, MAX_ACK);
 }
 
 /** A refinement names what moved; standing caps and exclusions ride along as "Still …". */
