@@ -3,30 +3,49 @@
  * Diet labels live on the catalog package; saved meals keep concept tags.
  */
 
-const VEGETARIAN = new Set(["vegetarian", "plant", "plant_based"]);
+const VEGETARIAN = new Set(["vegetarian", "plant", "plant_based", "plant-based", "vegan"]);
+
+function pushTokens(target, list) {
+  for (const value of list || []) {
+    if (value == null || value === "") continue;
+    target.push(String(value).toLowerCase());
+  }
+}
+
+/** Diet words from a saved meal, a catalog concept, or a planner feature. */
+export function dietTokens(meal) {
+  const values = [];
+  pushTokens(values, meal?.tags);
+  pushTokens(values, meal?.chips);
+  pushTokens(values, meal?.vocabulary_tag_ids);
+  pushTokens(values, meal?.dietary_labels);
+  pushTokens(values, meal?.dietary_tags);
+  pushTokens(values, meal?.styles);
+  pushTokens(values, meal?.concept?.tags);
+  pushTokens(values, meal?.concept?.chips);
+  pushTokens(values, meal?.pkg?.dietary_labels);
+  pushTokens(values, meal?.pkg?.dietary_tags);
+  pushTokens(values, meal?.pkg?.vocabulary_tag_ids);
+  if (meal?.entry) pushTokens(values, dietTokens(meal.entry));
+  if (meal?.cuisine) values.push(String(meal.cuisine).toLowerCase());
+  if (meal?.ingredient) values.push(String(meal.ingredient).toLowerCase());
+  if (meal?.primary_ingredient) values.push(String(meal.primary_ingredient).toLowerCase());
+  return values;
+}
+
+export function isPlantMeal(meal) {
+  return dietTokens(meal).some((value) => VEGETARIAN.has(value));
+}
 
 function tokensOf(meal) {
-  return new Set(
-    [
-      ...(meal?.tags || []),
-      ...(meal?.vocabulary_tag_ids || []),
-      ...(meal?.dietary_labels || []),
-      ...(meal?.dietary_tags || []),
-      ...(meal?.styles || []),
-      meal?.cuisine,
-      meal?.ingredient,
-      meal?.primary_ingredient,
-    ]
-      .filter(Boolean)
-      .map((value) => String(value).toLowerCase())
-  );
+  return new Set(dietTokens(meal));
 }
 
 function categoryMatch(meal, token) {
   const cat = String(token || "").toLowerCase();
   if (!cat) return false;
   const tokens = tokensOf(meal);
-  if (cat === "plant") return [...tokens].some((value) => VEGETARIAN.has(value));
+  if (cat === "plant" || cat === "vegetarian" || cat === "plant_based") return isPlantMeal(meal);
   if (tokens.has(cat)) return true;
   const allergens = new Set((meal?.allergens || []).map((value) => String(value).toLowerCase()));
   if (cat === "fish" && allergens.has("finfish")) return true;
@@ -82,8 +101,10 @@ export function enrichPreviousSlots(slots, catalog) {
     return {
       ...slot,
       tags: merge(slot.tags, entry.concept?.tags),
+      chips: merge(slot.chips, entry.concept?.chips),
       vocabulary_tag_ids: merge(slot.vocabulary_tag_ids, entry.pkg?.vocabulary_tag_ids),
       dietary_labels: merge(slot.dietary_labels, entry.pkg?.dietary_labels),
+      dietary_tags: merge(slot.dietary_tags, entry.pkg?.dietary_tags),
       allergens: merge(slot.allergens, entry.pkg?.allergens),
       cuisine: slot.cuisine || entry.concept?.cuisine || null,
       effort_level: slot.effort_level || entry.pkg?.effort_level || null,

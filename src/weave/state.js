@@ -102,6 +102,32 @@ export function weekdayFromDate(dateStr) {
   return names[new Date(Date.UTC(y, m - 1, d)).getUTCDay()];
 }
 
+export function addDays(dateStr, days) {
+  const [y, m, d] = String(dateStr || "").split("-").map(Number);
+  const date = new Date(Date.UTC(y, m - 1, d));
+  if (Number.isNaN(date.getTime())) return null;
+  date.setUTCDate(date.getUTCDate() + days);
+  return date.toISOString().slice(0, 10);
+}
+
+/**
+ * A committed weave plan stores meals with no scheduled_date. Position 1 is
+ * today in the request timezone, then the next nights, so a named weekday
+ * still lands on a slot. This stays off the model context so an existing
+ * cache entry still hits.
+ */
+export function fallbackDatesForUndatedPlan(mealCount, today) {
+  const count = Number(mealCount);
+  if (!parseDate(today) || !Number.isInteger(count) || count < 1) return [];
+  const dates = [];
+  for (let position = 1; position <= Math.min(count, 14); position += 1) {
+    const date = addDays(today, position - 1);
+    if (!date) continue;
+    dates.push({ position, date, weekday: weekdayFromDate(date) });
+  }
+  return dates;
+}
+
 function inDateWindow(dateStr, today) {
   const start = new Date(`${today}T12:00:00Z`);
   start.setUTCDate(start.getUTCDate() - 1);
@@ -271,48 +297,80 @@ const CUE_ALIASES = new Map([
   ["not too heavy", "light"],
   ["heartier", "filling"],
   ["hearty", "filling"],
+  ["quick", "weeknight"],
 ]);
 
 const PORTION_COUNT_WORDS = Object.freeze([
-  "one",
-  "two",
-  "three",
-  "four",
-  "five",
-  "six",
-  "seven",
-  "eight",
-  "nine",
-  "ten",
-  "eleven",
-  "twelve",
-  "thirteen",
-  "fourteen",
+  ["a", 1],
+  ["an", 1],
+  ["one", 1],
+  ["two", 2],
+  ["three", 3],
+  ["four", 4],
+  ["five", 5],
+  ["six", 6],
+  ["seven", 7],
+  ["eight", 8],
+  ["nine", 9],
+  ["ten", 10],
+  ["eleven", 11],
+  ["twelve", 12],
+  ["thirteen", 13],
+  ["fourteen", 14],
 ]);
+
+const PORTION_COUNTS = new Map(PORTION_COUNT_WORDS);
+const PORTION_FILLERS = new Set(["dinner", "dinners", "meal", "meals", "night", "nights"]);
+
+function portionTokens(text) {
+  return String(text || "")
+    .toLowerCase()
+    .replace(/&/g, " & ")
+    .match(/[a-z0-9]+|&/g) || [];
+}
+
+function portionCountAt(token) {
+  if (PORTION_COUNTS.has(token)) return PORTION_COUNTS.get(token);
+  if (/^\d{1,2}$/.test(token || "")) {
+    const count = Number(token);
+    if (count >= 1 && count <= 14) return count;
+  }
+  return null;
+}
+
+function cueAt(tokens, index) {
+  const phrases = [...CUE_ALIASES.entries()].sort((a, b) => b[0].length - a[0].length);
+  for (const [phrase, mapped] of phrases) {
+    const parts = phrase.split(/\s+/);
+    if (tokens.slice(index, index + parts.length).join(" ") !== phrase) continue;
+    if (!INTENT_CUES.includes(mapped)) continue;
+    return { cue: mapped, span: parts.length };
+  }
+  const token = tokens[index];
+  if (INTENT_CUES.includes(token)) return { cue: token, span: 1 };
+  return null;
+}
 
 /**
  * Counts attached to individual cues. "two cozy dinners and one light one"
- * is 3 dinners, not both cues on every slot.
+ * and "two filling dinners plus a light one" are 3 dinners, not both cues
+ * on every slot. Connectors (plus, and, with, &) and articles (a, an, one)
+ * do not have to come from the model.
  * @returns {{ dinner_count: number, portions: { cue: string, count: number }[] }|null}
  */
 export function parsePortionCounts(text) {
-  const norm = String(text || "").toLowerCase();
-  if (!norm) return null;
-  const countAlt = [...PORTION_COUNT_WORDS, "\\d{1,2}"].join("|");
-  const aliasAlt = [...CUE_ALIASES.keys()]
-    .sort((a, b) => b.length - a.length)
-    .map((phrase) => phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
-    .join("|");
-  const cueAlt = `${aliasAlt}|${INTENT_CUES.join("|")}`;
-  const re = new RegExp(`\\b(${countAlt})\\s+(${cueAlt})\\b`, "g");
+  const tokens = portionTokens(text);
+  if (!tokens.length) return null;
   const portions = [];
-  for (const match of norm.matchAll(re)) {
-    const raw = match[1];
-    const count = /^\d+$/.test(raw) ? Number(raw) : PORTION_COUNT_WORDS.indexOf(raw) + 1;
-    if (!Number.isInteger(count) || count < 1 || count > 14) continue;
-    const cue = CUE_ALIASES.get(match[2]) || match[2];
-    if (!INTENT_CUES.includes(cue)) continue;
-    portions.push({ cue, count });
+  for (let i = 0; i < tokens.length; i += 1) {
+    const count = portionCountAt(tokens[i]);
+    if (count == null) continue;
+    let j = i + 1;
+    while (j < tokens.length && PORTION_FILLERS.has(tokens[j])) j += 1;
+    const found = cueAt(tokens, j);
+    if (!found) continue;
+    portions.push({ cue: found.cue, count });
+    i = j + found.span - 1;
   }
   if (portions.length < 2) return null;
   if (new Set(portions.map((row) => row.cue)).size < 2) return null;
@@ -348,7 +406,9 @@ function applyTextRefinements(state, text, context) {
   const vegetarian = /\b(vegetarian|vegan|plant-based|plant based|plant)\b/.test(norm);
   const easier = /\b(easier|easy)\b/.test(norm);
   if (!vegetarian && !easier) return false;
-  const hit = (context.dates || []).find((row) => row.weekday === day);
+  const dated = context.dates || [];
+  const dates = dated.length ? dated : fallbackDatesForUndatedPlan(context.undated_meal_count, context.today);
+  const hit = dates.find((row) => row.weekday === day);
   const patch = {
     weekday: day,
     date: hit?.date || null,

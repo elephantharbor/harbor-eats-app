@@ -176,6 +176,7 @@ export function plannerEntryFromRecord(record) {
       })),
       steps: record.steps,
       dietary_labels: record.dietary_labels,
+      dietary_tags: record.dietary_tags || [],
       allergens: record.allergens,
       vocabulary_tag_ids: record.vocabulary_tag_ids,
       visibility: record.visibility,

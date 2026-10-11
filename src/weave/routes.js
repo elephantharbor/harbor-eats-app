@@ -568,7 +568,13 @@ export async function routeWeaveRequest(env, request, path) {
         metadata: { estimated_cost_usd: Number(gen.estimated_cost_usd) || 0 },
       });
     }
-    const applied = applyPlanningDelta(priorState, gen.output, { ...context, user_text: text });
+    const undatedMealCount =
+      dinnerPlan?.meals?.length && !datesFromPlanMeals(dinnerPlan.meals).length ? dinnerPlan.meals.length : 0;
+    const applied = applyPlanningDelta(priorState, gen.output, {
+      ...context,
+      user_text: text,
+      undated_meal_count: undatedMealCount,
+    });
     const [constraints, tastes, catalogLoad] = await Promise.all([reads.constraints, reads.tastes, reads.catalog]);
     const conflictPass = detectPlanningConflicts(applied.state, {
       participantIds,

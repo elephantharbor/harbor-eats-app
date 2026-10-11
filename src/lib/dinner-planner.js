@@ -17,7 +17,7 @@ import { getTasteTerm } from "./taste-vocabulary.js";
 import { PRACTICAL_HINT_KEYS } from "./cycle2-schema.js";
 import { cueScoreForMeal } from "../weave/cues.js";
 import { PLAN_TOKENS } from "../weave/constants.js";
-import { mealSatisfiesSlot } from "../weave/slot-match.js";
+import { isPlantMeal, mealSatisfiesSlot } from "../weave/slot-match.js";
 
 const TASTE_BAND = 0.5;
 
@@ -210,6 +210,7 @@ function usedFromSlots(slots, catalogBySlug) {
 }
 
 export function mealMatchesCategory(feature, token) {
+  if (token === "plant" || token === "vegetarian" || token === "plant_based") return isPlantMeal(feature);
   if (PLAN_TOKENS.includes(token) && feature.styles.includes(token)) return true;
   if (token === "fish" || token === "seafood" || token === "shellfish") {
     const tags = feature.entry?.pkg?.allergens || [];
@@ -233,6 +234,7 @@ function passesPoolFilters(feature, intent, slotOverride = {}) {
   for (const cat of intent.exclude_categories || []) {
     if (mealMatchesCategory(feature, cat)) return false;
   }
+  if (slotOverride.category && !mealMatchesCategory(feature, slotOverride.category)) return false;
   return true;
 }
 

@@ -218,11 +218,13 @@ function withRequestFlavors(text, userText) {
   return `${lead} · ${body}`.slice(0, 120);
 }
 
-/** A trailing cue chip reads as a sentence ending, not another bullet. */
+/** Join a cue clause without leaving a period sitting against a comma. */
 function polishAcknowledgement(text) {
   return String(text || "")
-    .replace(/ · Special\b/g, ", something special")
-    .replace(/ · Something special\b/g, ", something special")
+    .replace(/\.?\s*·\s*Something special\b/gi, ", something special")
+    .replace(/\.?\s*·\s*Special\b/g, ", something special")
+    .replace(/\.\s*,\s*/g, ", ")
+    .replace(/,\s*,+/g, ",")
     .replace(/\s{2,}/g, " ")
     .trim();
 }
@@ -280,8 +282,9 @@ export function refinementAcknowledgement({ preview, previousSlots, slots }) {
     for (const position of changed) {
       const slot = preview.slots.find((row) => row.position === position);
       const prev = (previousSlots || []).find((row) => row.position === position);
+      const requested = (slots || []).find((row) => Number(row.position) === Number(position));
       if (!slot?.title) continue;
-      const day = dayLabel(slot, prev) || weekdayName(slot.scheduled_date || prev?.scheduled_date);
+      const day = dayLabel(requested, prev) || dayLabel(slot, prev) || weekdayName(slot.scheduled_date || prev?.scheduled_date);
       const when = day ? `${day}'s now` : `Dinner ${position} is now`;
       const mins = slot.total_minutes != null ? `, about ${slot.total_minutes} min` : "";
       bits.push(`${when} ${slot.title}${mins}`);
