@@ -18,6 +18,7 @@ import { discoveryStateToQuery } from "../src/weave/discovery-map.js";
 import { routeWeaveRequest } from "../src/weave/routes.js";
 import {
   applySharedSemantics,
+  explicitFryAvoidance,
   ambiguousTarget,
   applyDinnerCount,
   broadenDiscoveryState,
@@ -538,5 +539,24 @@ describe("count and starter routes", () => {
     expect(starterBody.starters.map((row) => row.id)).not.toContain("find_shrimp");
     expect(starterBody.starters.map((row) => row.id)).toContain("plan_fish_twice");
     expect(provider.calls).toHaveLength(0);
+  });
+});
+
+describe("D-06.1 crispy + baked-not-fried (preview cycle 3 repro)", () => {
+  it("'rather than fried' excludes every frying kind", () => {
+    expect(explicitFryAvoidance("crispy, but baked rather than fried")).toBe("all");
+    expect(explicitFryAvoidance("roasted instead of fried")).toBe("all");
+  });
+  it("a non-fry method in a crispy request ranks instead of hard-filtering", () => {
+    const state = { ...emptyDiscoveryState(), methods: ["bake"], exclude_cooking: ["deep"] };
+    applySharedSemantics(state, { text: "crispy, but baked rather than fried", concepts: [{ id: "deep_fried", polarity: "avoid" }], task: "discovery_intent" });
+    expect(state.methods).toEqual([]);
+    expect([...state.exclude_cooking].sort()).toEqual(["deep", "pan", "shallow"]);
+    expect(state.semantic_rank).toContain("crispy_non_fry");
+  });
+  it("a plain method request without crispy is untouched", () => {
+    const state = { ...emptyDiscoveryState(), methods: ["bake"] };
+    applySharedSemantics(state, { text: "something baked", concepts: [], task: "discovery_intent" });
+    expect(state.methods).toEqual(["bake"]);
   });
 });

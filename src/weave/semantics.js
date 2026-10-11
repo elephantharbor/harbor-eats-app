@@ -559,11 +559,13 @@ const FRY_TERM = /^(?:fried|frying|fry|deep-fried|pan-fried|shallow-fried)$/;
  * "not deep fried" stays deep-only. Any other without/no/not/nothing/never
  * on fry, frying, or fried excludes deep, pan, and shallow.
  */
+const CRISP_METHOD_HINT = /^(?:bake|baked|baking|roast|roasted|roasting|air[_ -]?fr(?:y|ied|yer)|oven|broil(?:ed)?|sheet[_ -]?pan)$/i;
+
 export function explicitFryAvoidance(text) {
   const source = ` ${String(text || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim()} `;
   if (!source.trim()) return null;
   const deepSpan = /\b(?:without|no|not|nothing|never|avoid)\s+deep\s+fr(?:y|ied|ying)\b/;
-  const general = /\b(?:without|no|not|nothing|never|avoid)\s+fr(?:y|ied|ying)\b/;
+  const general = /\b(?:without|no|not|nothing|never|avoid|rather\s+than|instead\s+of)\s+fr(?:y|ied|ying)\b/;
   const rest = source.replace(new RegExp(deepSpan.source, "g"), " ");
   if (general.test(rest)) return "all";
   if (deepSpan.test(source)) return "deep";
@@ -786,7 +788,11 @@ export function applySharedSemantics(state, { text = "", concepts = [], task = "
   if (fryScope === "all") addCooking(state, [...FRYING_KINDS]);
   else if (fryScope === "deep") addCooking(state, ["deep"]);
   if (/\bcrispy\b/i.test(String(text || "")) && !/\bnot\s+crispy\b/i.test(String(text || ""))) {
-    if (fryScope || (state.exclude_cooking || []).length) addRank(state, "crispy_non_fry");
+    if (fryScope || (state.exclude_cooking || []).length) {
+      addRank(state, "crispy_non_fry");
+      // "crispy, baked not fried": the non-fry method is how to get crispy, not a hard filter.
+      if (Array.isArray(state.methods)) state.methods = state.methods.filter((m) => !CRISP_METHOD_HINT.test(String(m || "")));
+    }
   }
   const hasFryExclusion = (state.exclude_cooking || []).length > 0;
   if (hasFryExclusion) stripFryTerms(state);
