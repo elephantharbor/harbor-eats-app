@@ -1,18 +1,26 @@
-/* global window, document, fetch */
+/* global window, document, fetch, location */
 /**
  * D-06 Weave adapters for Plan and Find surfaces.
  */
 (function (global) {
   const Weave = global.FlavorWeaveWeave;
 
-  function apiPost(path, body) {
+  function apiPost(path, body, signal) {
     return fetch(path, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
       body: JSON.stringify({ schema_version: 1, ...body }),
+      signal,
     }).then((r) => r.json());
   }
+
+  function typo(s) {
+    return String(s || "").replace(/'/g, "’");
+  }
+
+  /** A plan-count turn that built a plan finishes on plan review; the review strip picks it up here. */
+  let planHandoff = null;
 
   function classifyLiveSearch(text) {
     const t = String(text || "").trim().toLowerCase();
@@ -57,7 +65,7 @@
         ];
         return starters;
       },
-      suggestions(data) {
+      suggestions() {
         return [];
       },
       conflictCopy(data) {
@@ -69,7 +77,7 @@
       liveAnnouncement(ctrl) {
         const n = ctrl.reply || "";
         const count = ctrl.chips.find((c) => c.id === "dinner_count");
-        return n + (count ? " " + count.label + " ready." : "");
+        return typo(n) + (count ? " " + count.label + " ready." : "");
       },
       setResultBusy(on) {
         const opts = document.getElementById("planCountOptions");
@@ -79,20 +87,27 @@
         const btn = document.getElementById("btnPlanCountSubmit");
         if (btn) btn.hidden = true;
       },
-      onComposerInput(text) {
+      onComposerBlur(text) {
         const btn = document.getElementById("btnPlanCountSubmit");
         if (btn) btn.hidden = !!(text && text.trim());
       },
       scrollToManual() {
-        document.getElementById("planCountOptions")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        const opts = document.getElementById("planCountOptions");
+        opts?.scrollIntoView({ behavior: Weave.REDUCED_MOTION ? "auto" : "smooth", block: "start" });
+        opts?.querySelector(".plan-count-option")?.setAttribute("tabindex", "-1");
+        opts?.querySelector(".plan-count-option")?.focus({ preventScroll: true });
       },
       async interpret(text, { signal }) {
-        return apiPost("/api/plan/interpret", {
-          text,
-          state: weaveState,
-          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-          participant_ids: deps.activeMemberIds(),
-        });
+        return apiPost(
+          "/api/plan/interpret",
+          {
+            text,
+            state: weaveState,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            participant_ids: deps.activeMemberIds(),
+          },
+          signal
+        );
       },
       async applyChip(chipId) {
         return apiPost("/api/plan/apply", {
@@ -112,12 +127,18 @@
           participant_ids: deps.activeMemberIds(),
           entry_point: "plan_dinners",
         });
-        if (!commit?.ok) return;
-        deps.applyDinnerPlan(commit.plan, commit.unfilled);
-        deps.show("planReview", {
-          context: deps.navContextFor("planReview", "planCount", { established: true, mode: "compose", weave: true }),
-        });
-        deps.mountPlanReview();
+        if (!commit?.ok) return { failed: true };
+        planHandoff = { echo: ctrl.echo, data };
+        try {
+          deps.applyDinnerPlan(commit.plan, commit.unfilled);
+          deps.show("planReview", {
+            context: deps.navContextFor("planReview", "planCount", { established: true, mode: "compose", weave: true }),
+          });
+          deps.mountPlanReview();
+        } finally {
+          planHandoff = null;
+        }
+        return { handedOff: true };
       },
     };
     return Weave.mount(host, adapter, deps);
@@ -135,7 +156,7 @@
       regionLabel: "Your request",
       headingVisible: "Your request",
       fieldLabel: "Change your plan",
-      placeholder: plan()?.meal_count === 1 ? "Change anything?" : "Change anything?",
+      placeholder: "Change anything?",
       enterkeyhint: "go",
       submitLabel: "Go",
       defaultExpanded: false,
@@ -154,55 +175,67 @@
       starters() {
         return [];
       },
+      takeHandoff() {
+        return planHandoff;
+      },
+      initialNext() {
+        return adapter.suggestions({ state: { dinner_count: plan()?.meal_count } });
+      },
       suggestions(data) {
         if (Array.isArray(data.suggestions) && data.suggestions.length) return data.suggestions.slice(0, 4);
         const out = [];
         const st = data.state || {};
-        if (st.dinner_count != null && st.dinner_count < 7) out.push("Add another dinner");
-        out.push("Keep everything under 30 min");
-        out.push("Make one more adventurous");
+        const count = st.dinner_count ?? plan()?.meal_count;
+        if (count != null && count > 1) out.push("One more adventurous");
+        out.push("All under 30 min");
+        if (count != null && count < 7) out.push("Add a dinner");
         return out.slice(0, 4);
       },
-      renderUnderstood(chips, ctrl) {
+      conflictCopy(data) {
+        const c = data.conflicts?.[0];
+        if (c?.code === "slot_ambiguous") {
+          const asked = String(data.echo || "").toLowerCase();
+          return /eas(y|ier)/.test(asked)
+            ? "Your dinners don’t have days yet. Which one should be easier?"
+            : "Your dinners don’t have days yet. Which one did you mean?";
+        }
+        return data.acknowledgement;
+      },
+      renderUnderstood(chips) {
         const api = deps.planningApi();
         const prefs = plan()?.intent || {};
         const prefHtml = api ? api.chipHtml(prefs, "active") : "";
-        let html = '<ul class="weave-understood" aria-label="What we understood">';
-        chips.forEach((c) => {
-          if (c.id === "keep_it_easy" || c.id === "keep_ingredients_simple") return;
-          html +=
-            '<li><span class="weave-chip">' +
-            c.label +
-            '</span><button type="button" class="weave-chip__remove" data-chip-id="' +
-            c.id +
-            '" aria-label="Remove ' +
-            c.label +
-            '">×</button></li>';
-        });
-        html += "</ul>";
         const slot = document.getElementById("planReviewPrefs");
         if (slot) {
-          slot.innerHTML = prefHtml;
-          slot.hidden = false;
+          slot.innerHTML = "";
+          slot.hidden = true;
         }
-        return html;
+        const shown = (chips || []).filter((c) => c.id !== "keep_it_easy" && c.id !== "keep_ingredients_simple");
+        return Weave.chipListHtml(shown, prefHtml);
       },
       setResultBusy(on) {
         const list = document.getElementById("planMealCards");
         if (list) list.classList.toggle("weave-dimmed", on);
       },
       liveAnnouncement(ctrl) {
-        return ctrl.reply || "";
+        const p = plan();
+        const ready = ctrl.turn === 0 && p ? " " + p.meal_count + (p.meal_count === 1 ? " dinner" : " dinners") + " ready." : "";
+        return typo(ctrl.reply || "") + ready;
       },
       async interpret(text, { signal }) {
         const p = plan();
-        return apiPost("/api/plan/interpret", {
-          text,
-          state: weaveState,
-          dinner_plan_id: p?.dinner_plan_id,
-          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-          participant_ids: deps.activeMemberIds(),
-        });
+        const res = await apiPost(
+          "/api/plan/interpret",
+          {
+            text,
+            state: weaveState,
+            dinner_plan_id: p?.dinner_plan_id,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            participant_ids: deps.activeMemberIds(),
+          },
+          signal
+        );
+        return res && typeof res === "object" ? { ...res, echo: text } : res;
       },
       async applyChip(chipId) {
         const p = plan();
@@ -290,9 +323,12 @@
         if (classifyLiveSearch(text)) deps.discoveryLiveSearch(text);
       },
       liveAnnouncement(ctrl) {
-        const n = ctrl.reply || "";
+        const n = typo(ctrl.reply || "");
         const total = deps.discoveryTotal?.() || "";
-        return n + (total ? " " + total + " dinners." : "");
+        return n + (total ? " " + total + (total === "1" ? " dinner." : " dinners.") : "");
+      },
+      renderUnderstood() {
+        return "";
       },
       async interpret(text, { signal }) {
         const bypass = classifyLiveSearch(text);
@@ -301,14 +337,17 @@
           return { ok: true, source: "bypass", chips: [], acknowledgement: null, state: weaveState, ...res };
         }
         refine = !!weaveState;
-        const res = await apiPost("/api/discovery/interpret", {
-          text,
-          state: weaveState,
-          mode: deps.discoveryMode(),
-          context: deps.discoveryContext(),
-          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        });
-        return res;
+        return apiPost(
+          "/api/discovery/interpret",
+          {
+            text,
+            state: weaveState,
+            mode: deps.discoveryMode(),
+            context: deps.discoveryContext(),
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          },
+          signal
+        );
       },
       async applyChip(chipId) {
         return apiPost("/api/discovery/apply", {

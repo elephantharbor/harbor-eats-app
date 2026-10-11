@@ -2948,17 +2948,33 @@ button.link-card:hover {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  padding: var(--space-4);
-  margin-bottom: var(--space-4);
+  padding: calc(var(--space-4) + 4px) var(--space-4) var(--space-4);
+  margin: var(--space-5) 0 var(--space-4);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.weave-strip::before {
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.weave-strip.is-working::before {
+  opacity: 0.35;
+}
+
+.weave-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
 .weave-strip__heading {
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   font-weight: var(--weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-text-secondary);
   margin: 0;
 }
@@ -2973,15 +2989,36 @@ button.link-card:hover {
   }
 }
 
+@media (min-width: 768px) {
+  .weave-strip {
+    padding: calc(var(--space-6) + 4px) var(--space-6) var(--space-6);
+  }
+
+  .weave-composer {
+    max-width: 640px;
+  }
+}
+
 .weave-composer {
+  position: relative;
   display: flex;
   align-items: flex-end;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-3);
+  gap: var(--space-3);
+  padding: 6px 6px 6px var(--space-4);
   background: var(--color-surface-quiet);
   border: 1.5px solid var(--color-border-strong);
   border-radius: var(--radius-xl);
   min-height: var(--control-h);
+  transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.weave-composer:hover {
+  border-color: var(--color-text-tertiary);
+}
+
+.weave-composer:focus-within {
+  border-color: var(--color-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-focus) 28%, transparent);
 }
 
 .weave-composer--collapsed {
@@ -2989,27 +3026,48 @@ button.link-card:hover {
   cursor: text;
 }
 
+.weave-composer--collapsed .weave-composer__field {
+  font-size: var(--text-sm);
+}
+
 .weave-composer__field {
   flex: 1;
+  min-width: 0;
+  align-self: center;
   border: none;
   background: transparent;
   font: inherit;
   font-size: var(--text-base);
+  line-height: 1.5;
   color: var(--color-text);
   resize: none;
-  min-height: 1.5em;
-  max-height: 6em;
-  padding: var(--space-2) 0;
+  overflow-y: auto;
+  padding: 7px 0;
+  margin: 0;
 }
 
-.weave-composer__field:focus {
+.weave-composer__field::placeholder {
+  color: var(--color-text-tertiary);
+  opacity: 1;
+}
+
+.weave-composer__field:focus,
+.weave-composer__field:focus-visible {
   outline: none;
+}
+
+.weave-composer__count {
+  align-self: center;
+  flex: none;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
 }
 
 .weave-composer__submit {
   flex: none;
-  width: 44px;
-  height: 44px;
+  width: var(--target-min);
+  height: var(--target-min);
   border: none;
   border-radius: 50%;
   background: var(--color-primary);
@@ -3018,80 +3076,241 @@ button.link-card:hover {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-standard), transform var(--duration-fast) var(--ease-standard);
+}
+
+.weave-composer__submit .icon {
+  width: var(--icon-md);
+  height: var(--icon-md);
+}
+
+.weave-composer__submit:hover {
+  background: var(--color-primary-hover);
+}
+
+.weave-composer__submit:active {
+  background: var(--color-primary-pressed);
+  transform: scale(0.96);
+}
+
+.weave-composer__submit.is-empty {
+  background: var(--color-surface-sunken);
+  color: var(--color-text-tertiary);
+}
+
+.weave-composer--collapsed .weave-composer__submit {
+  width: 36px;
+  height: 36px;
 }
 
 .weave-mark {
   flex: none;
+  align-self: center;
   width: 20px;
   height: 14px;
-  position: relative;
-  margin-bottom: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .weave-mark span {
   display: block;
-  height: 5px;
+  height: 3px;
   border-radius: var(--radius-pill);
-  margin-bottom: 4px;
 }
 
-.weave-mark span:nth-child(1) { background: var(--weave-1); }
-.weave-mark span:nth-child(2) { background: var(--weave-2); }
-.weave-mark span:nth-child(3) { background: var(--weave-3); margin-bottom: 0; }
+.weave-mark span:nth-child(1) { background: var(--weave-1); width: 100%; }
+.weave-mark span:nth-child(2) { background: var(--weave-2); width: 75%; margin-left: 25%; }
+.weave-mark span:nth-child(3) { background: var(--weave-3); width: 88%; }
+
+.weave-working {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--control-h);
+  padding: 0 var(--space-1);
+}
 
 .weave-mark--working {
   width: 44px;
   height: 28px;
+  animation: weave-mark-grow var(--duration-base) var(--ease-emphasized) both;
 }
 
 .weave-mark--working span {
+  height: 5px;
   animation: weave 1.2s ease-in-out infinite;
 }
 
 .weave-mark--working span:nth-child(2) { animation-delay: 150ms; animation-direction: reverse; }
 .weave-mark--working span:nth-child(3) { animation-delay: 300ms; }
 
-.weave-echo {
+@keyframes weave-mark-grow {
+  from { transform: scale(0.45); transform-origin: left center; }
+  to { transform: none; }
+}
+
+.weave-working__copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.weave-working__label {
+  margin: 0;
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+}
+
+.weave-working__slow {
+  margin: 2px 0 0;
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
+}
+
+.weave-thread-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.weave-thread-line span {
+  display: block;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--weave-1) 0 33.3%, var(--weave-2) 33.3% 66.6%, var(--weave-3) 66.6% 100%);
+  animation: weave-thread 1.6s linear infinite;
+}
+
+@keyframes weave-thread {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(250%); }
+}
+
+.weave-echo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   margin: 0;
-  white-space: nowrap;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.weave-echo__text {
+  flex: 0 1 auto;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.weave-echo__edit {
+  flex: none;
+  min-height: 32px;
+  padding-inline: var(--space-2);
 }
 
 .weave-reply {
+  margin: 0;
   font-size: var(--text-md);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-snug);
+  color: var(--color-text);
+  text-wrap: pretty;
+}
+
+.weave-reply.is-fading {
+  animation: fade-in 120ms var(--ease-standard) both;
+}
+
+.weave-word {
+  display: inline-block;
+  opacity: 0;
+  animation: weave-word-in 80ms var(--ease-standard) forwards;
+}
+
+.weave-reply.is-done .weave-word {
+  animation: none;
+  opacity: 1;
+}
+
+@keyframes weave-word-in {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: none; }
+}
+
+.weave-understood-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.weave-understood-row .plan-prefs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
   margin: 0;
 }
 
 .weave-understood {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: 0 var(--space-2);
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+.weave-understood:empty {
+  display: none;
+}
+
 .weave-chip {
   display: inline-flex;
   align-items: center;
-  padding: 0 var(--space-3);
   height: 36px;
+  margin: 4px 0;
+  padding-left: var(--space-3);
   border-radius: var(--radius-pill);
   background: var(--color-structure-soft);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  animation: pop var(--duration-slow) var(--ease-emphasized) both;
 }
 
 .weave-chip__remove {
-  min-width: 44px;
-  min-height: 44px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 36px;
+  padding: 0;
   border: none;
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
   background: transparent;
-  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
   cursor: pointer;
+}
+
+.weave-chip__remove::after {
+  content: "";
+  position: absolute;
+  inset: -4px -2px;
+}
+
+.weave-chip__remove .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.weave-chip__remove:hover {
+  color: var(--color-text);
 }
 
 .weave-starters,
@@ -3101,42 +3320,94 @@ button.link-card:hover {
   gap: var(--space-2);
 }
 
+.weave-starters[hidden],
+.weave-next[hidden] {
+  display: none;
+}
+
+.weave-strip .chip-tog {
+  padding: 0 var(--space-4);
+}
+
+.weave-next__btn {
+  border-color: transparent;
+  background: var(--color-surface-quiet);
+}
+
+.weave-next__btn:hover {
+  border-color: var(--color-border);
+  background: var(--color-surface);
+}
+
+.weave-notice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.weave-notice:focus {
+  outline: none;
+}
+
+.weave-notice:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.weave-notice__text {
+  margin: 0;
+}
+
+.weave-notice__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  margin-left: calc(-1 * var(--space-2));
+}
+
+.weave-notice__actions .btn {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .weave-notice--info {
-  padding: var(--space-3);
   background: var(--color-accent-soft);
   color: var(--color-accent-text);
   border-left: 3px solid var(--color-accent);
 }
 
 .weave-notice--error {
-  padding: var(--space-3);
   background: var(--color-error-soft);
   color: var(--color-error-text);
   border-left: 3px solid var(--color-error);
 }
 
-.weave-thread-line {
-  height: 2px;
-  margin-top: var(--space-2);
-  background: linear-gradient(90deg, var(--weave-1) 0 33.3%, var(--weave-2) 33.3% 66.6%, var(--weave-3) 66.6% 100%);
-  animation: weave-thread 1.6s linear infinite;
-}
-
-@keyframes weave-thread {
-  from { transform: translateX(-30%); }
-  to { transform: translateX(30%); }
-}
-
 .weave-divider-label {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
-  margin: var(--space-4) 0;
+  margin: var(--space-5) 0 var(--space-4);
+}
+
+.weave-divider-label::before,
+.weave-divider-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
 }
 
 .weave-dimmed {
   opacity: 0.55;
   pointer-events: none;
+  transition: opacity var(--duration-base) var(--ease-standard);
 }
 
 .plan-meal-card--changed {
@@ -3150,14 +3421,21 @@ button.link-card:hover {
   left: 0;
   right: 0;
   height: 4px;
+  z-index: 1;
   background: linear-gradient(90deg, var(--weave-1) 0 33.3%, var(--weave-2) 33.3% 66.6%, var(--weave-3) 66.6% 100%);
   transform-origin: left;
-  animation: weave-stripe-draw 360ms var(--ease-standard) forwards;
+  animation:
+    weave-stripe-draw 360ms var(--ease-standard) forwards,
+    weave-stripe-fade var(--duration-slow) var(--ease-standard) var(--weave-stripe-hold) forwards;
 }
 
 @keyframes weave-stripe-draw {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
+}
+
+@keyframes weave-stripe-fade {
+  to { opacity: 0; }
 }
 
 .weave-mood-mark {
@@ -3180,10 +3458,31 @@ button.link-card:hover {
 .weave-mood-mark span:nth-child(3) { background: var(--weave-3); }
 
 @media (prefers-reduced-motion: reduce) {
+  .weave-mark--working,
   .weave-mark--working span,
-  .weave-thread-line,
-  .plan-meal-card--changed::before {
+  .weave-thread-line span,
+  .weave-chip,
+  .weave-word {
     animation: none !important;
+    opacity: 1;
+  }
+
+  .plan-meal-card--changed::before {
+    animation: weave-stripe-fade 1ms linear var(--weave-stripe-hold) forwards !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .weave-mark span,
+  .weave-mood-mark span,
+  .weave-thread-line span,
+  .weave-accent::before,
+  .plan-meal-card--changed::before {
+    background: CanvasText;
+  }
+
+  .weave-chip {
+    border: 1px solid CanvasText;
   }
 }
 
