@@ -421,6 +421,7 @@ describe("acknowledgements and telemetry", () => {
       CATALOG_SOURCE: "d1",
     }, session.session_token, "/api/discovery/interpret", {
       text: "Like a restaurant, but easy",
+      state: null,
     });
     expect(res.status).toBe(200);
     expect(res.body.state.intent_cues).toContain("restaurant_like");
@@ -441,6 +442,7 @@ describe("acknowledgements and telemetry", () => {
       CATALOG_SOURCE: "d1",
     }, session.session_token, "/api/discovery/interpret", {
       text: "Something snorfblat",
+      state: null,
     });
     expect(res.status).toBe(200);
     expect(res.body.total).toBeGreaterThan(0);

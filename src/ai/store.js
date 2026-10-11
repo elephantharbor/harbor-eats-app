@@ -128,12 +128,23 @@ export function createD1Store(db) {
       return { ok: true, held };
     },
     async finishRun({ held, cost, usage, cache }) {
+      const statements = [];
       const spend = (held || []).find((h) => h.name === "daily_budget_usd");
       if (spend) {
         const actual = Math.ceil(Math.max(0, Number(cost) || 0) * MICRO);
-        await this.adjust(spend.key, actual - spend.amount);
+        const delta = actual - spend.amount;
+        // Bind a positive magnitude. A negative bound parameter is rejected by
+        // some D1 drivers, which used to leave the worst-case reservation.
+        if (delta < 0) {
+          statements.push(
+            db.prepare(`UPDATE ai_limit_counters SET count = MAX(0, count - ?) WHERE bucket = ?`).bind(-delta, spend.key)
+          );
+        } else if (delta > 0) {
+          statements.push(
+            db.prepare(`UPDATE ai_limit_counters SET count = count + ? WHERE bucket = ?`).bind(delta, spend.key)
+          );
+        }
       }
-      const statements = [];
       if (usage) {
         statements.push(
           db.prepare(
@@ -161,8 +172,8 @@ export function createD1Store(db) {
         }
         for (const statement of statements) await statement.run();
       } catch {
-        // The spend refund above already committed. A usage or cache write
-        // must not put the worst-case reservation back.
+        // One batch keeps the refund on the same round trip as the usage row.
+        // A failed batch leaves the reservation; the gateway records the miss.
       }
     },
   };
