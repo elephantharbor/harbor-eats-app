@@ -21,7 +21,7 @@ describe("alpha D-04 navigation contracts", () => {
 
   it("back labels name destinations for plan and shop", () => {
     const nav = readFileSync(new URL("../public/nav-context.js", import.meta.url), "utf8");
-    expect(nav).toContain('shopList: "Tonight"');
+    expect(nav).toContain('shopList: "Shopping list"');
     expect(nav).toContain('planReview: "Plan"');
   });
 });

@@ -1,6 +1,12 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
 import { skipToChoices } from "./helpers.js";
+import {
+  mockAlphaAi,
+  seedDinnerPlan,
+  openPlanReviewFromHome,
+  openPlanRecipeFromReview,
+} from "./alpha-helpers.js";
 
 const adaptResponse = {
   ok: true,
@@ -30,56 +36,11 @@ const adaptResponse = {
   },
 };
 
-const explainResponse = {
-  ok: true,
-  text: "Easy on a weeknight, with flavors your table tends to enjoy.",
-  source: "template",
-  basis: "run",
-};
-
-/** @param {import('@playwright/test').Page} page */
-async function mockAlphaAi(page) {
-  await page.route("**/api/recipes/adapt", async (route) => {
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify(adaptResponse),
-    });
-  });
-  await page.route("**/api/explain", async (route) => {
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify(explainResponse),
-    });
-  });
-}
-
-/** @param {import('@playwright/test').Page} page */
-async function seedDinnerPlan(page) {
-  await page.evaluate(async () => {
-    const created = await fetch("/api/dinner-plans", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ meal_count: 1, entry_point: "plan_dinners", fill: "planner" }),
-    }).then((r) => r.json());
-    if (!created.ok) throw new Error("create plan failed: " + JSON.stringify(created));
-  });
-}
-
 /** @param {import('@playwright/test').Page} page */
 async function openPlanRecipe(page) {
-  await seedDinnerPlan(page);
-  await page.goto("/");
-  await page.locator('[data-go="home"][data-nav="home"]').filter({ visible: true }).first().click();
-  await page.getByRole("button", { name: "Finish the plan" }).click();
-  await expect(page.locator(".view.is-active[data-view='planReview']")).toBeVisible({ timeout: 30000 });
-  const mealOpen = page.locator(".view.is-active[data-view='planReview'] [data-action='open-plan-meal']").first();
-  await expect(mealOpen).toHaveCount(1, { timeout: 60000 });
-  await mealOpen.scrollIntoViewIfNeeded();
-  await mealOpen.click({ force: true });
-  await expect(page.locator(".view.is-active[data-view='detail']")).toBeVisible();
+  await seedDinnerPlan(page, { prefs: { keep_it_easy: true, keep_ingredients_simple: false } });
+  await openPlanReviewFromHome(page);
+  await openPlanRecipeFromReview(page);
 }
 
 test.describe("Alpha readiness UI", () => {
@@ -145,9 +106,8 @@ test.describe("Alpha readiness UI", () => {
     await openPlanRecipe(page);
     await page.getByRole("button", { name: /Plan/i }).click();
     const why = page.getByRole("button", { name: "Why this one?" }).first();
-    if (!(await why.isVisible().catch(() => false))) {
-      test.skip();
-    }
+    await expect(why).toBeVisible({ timeout: 15000 });
+    await expect(page.locator("[data-why-reason]").first()).toContainText(/Easy/i);
     await why.click();
     await expect(page.locator("[data-why-reveal]:not([hidden])")).toBeVisible({ timeout: 15000 });
   });

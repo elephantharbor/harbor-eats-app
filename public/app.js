@@ -723,6 +723,52 @@
     return "Cooking for " + count;
   }
 
+  function explanationPayloadForMeal(meal) {
+    const raw = meal && meal.meal_id ? meal : planMealById(meal && meal.id);
+    const m = raw || meal;
+    return {
+      recipe_slug: m && m.recipe_slug,
+      recipe_version_id: m && m.recipe_version_id,
+      row: {
+        effort_level: m && m.effort_level,
+        ingredient_complexity: m && m.ingredient_complexity,
+      },
+      plan: state.dinnerPlan ? { intent: state.dinnerPlan.intent } : null,
+    };
+  }
+
+  function planMealReasonLine(meal) {
+    if (!meal || !window.FlavorWeaveExplanation) return "";
+    const intent = state.dinnerPlan && state.dinnerPlan.intent;
+    if (meal.effort_level === "easy" || (intent && intent.keep_it_easy)) {
+      return window.FlavorWeaveExplanation.joinFacts(["Easy, like you asked"], 40);
+    }
+    if (meal.ingredient_complexity === "simple" || (intent && intent.keep_ingredients_simple)) {
+      return window.FlavorWeaveExplanation.joinFacts(["Simple ingredients"], 40);
+    }
+    return window.FlavorWeaveExplanation.reasonLineFromMeal(meal, null, intent);
+  }
+
+  function explanationBlockHtml(id, meal) {
+    const reason = planMealReasonLine(meal);
+    if (!reason || !window.FlavorWeaveExplanation) return "";
+    return (
+      '<div data-why-wrap>' +
+      window.FlavorWeaveExplanation.disclosureHtml(id, reason, {
+        payload: explanationPayloadForMeal(meal),
+      }) +
+      "</div>"
+    );
+  }
+
+  function bindWhyInScope(root) {
+    if (!root || !window.FlavorWeaveExplanation) return;
+    window.FlavorWeaveExplanation.bindDisclosures(root, {
+      fetchExplanation: fetchMealExplanation,
+      track: track,
+    });
+  }
+
   function discoveryParticipantCount() {
     const resp = Discovery && Discovery.getResponse ? Discovery.getResponse() : null;
     const ids = resp && resp.context && resp.context.participant_ids;
@@ -3638,7 +3684,32 @@
         .join("");
     }
     actions.innerHTML = primary + secondary;
-    insights.hidden = true;
+    if (selected && selected.kind === "recipe") {
+      const reason = planMealReasonLine(selected);
+      const whyHost = document.getElementById("homeWhy");
+      if (reason && whyHost && whyHost.parentElement) {
+        insights.hidden = false;
+        whyHost.parentElement.innerHTML =
+          '<p class="insight__label">Why this one</p>' + (explanationBlockHtml("home-hero", selected) || "");
+        bindWhyInScope(insights);
+        ensureRecipeForMeal(uiMealFromPlanMeal(selected)).then(function (recipe) {
+          if (!recipe) return;
+          const ingCount = document.getElementById("homeIngCount");
+          const stepCount = document.getElementById("homeStepCount");
+          if (ingCount) ingCount.textContent = (recipe.ingredients || []).length + " ingredients";
+          if (stepCount) {
+            stepCount.textContent =
+              (recipe.steps || []).length +
+              " steps" +
+              (recipe.total_minutes ? " (~" + recipe.total_minutes + " min)" : "");
+          }
+        });
+      } else {
+        insights.hidden = true;
+      }
+    } else {
+      insights.hidden = true;
+    }
     renderHomeRatingWait();
   }
 
@@ -4303,21 +4374,7 @@
       " " +
       escapeHtml(planMealDinerLabel(rawForCard)) +
       "</button>";
-    const intent = state.dinnerPlan && state.dinnerPlan.intent;
-    const reasonLine =
-      window.FlavorWeaveExplanation && window.FlavorWeaveExplanation.reasonLineFromMeal(ui, null, intent);
-    const whyBlock = reasonLine
-      ? '<div data-why-wrap>' +
-        window.FlavorWeaveExplanation.disclosureHtml("plan-" + meal.meal_id, reasonLine, {
-          payload: {
-            recipe_slug: meal.recipe_slug,
-            recipe_version_id: meal.recipe_version_id,
-            row: { effort_level: meal.effort_level, ingredient_complexity: meal.ingredient_complexity },
-            plan: state.dinnerPlan ? { intent: state.dinnerPlan.intent } : null,
-          },
-        }) +
-        "</div>"
-      : "";
+    const whyBlock = explanationBlockHtml("plan-" + meal.meal_id, meal);
     const adapted =
       window.FlavorWeaveMealRecipe && window.FlavorWeaveMealRecipe.adaptationChangeCount(rawForCard) > 0
         ? '<span class="badge badge--your-version">Your version</span> '
@@ -4414,12 +4471,7 @@
       })
       .join("");
     list.innerHTML = html;
-    if (window.FlavorWeaveExplanation) {
-      window.FlavorWeaveExplanation.bindDisclosures(list, {
-        fetchExplanation: fetchMealExplanation,
-        track: track,
-      });
-    }
+    bindWhyInScope(list);
     focusPendingPlanMeal();
     fillPrefSlot("planReviewPrefs", plan.intent, "active");
     renderPlanStarIntro();
@@ -4629,6 +4681,7 @@
       dinerSummary = plan.meal_count + " dinners";
     }
     eyebrow.textContent = dinerSummary;
+    eyebrow.setAttribute("aria-label", "Who is eating. " + dinerSummary);
     const lines = shop.lines || [];
     const need = lines.filter(function (l) {
       return l.still_needed && l.list_state === "open";
@@ -4786,8 +4839,32 @@
     if (line.list_state !== "open") {
       actions.push('<button type="button" class="sheet-menu__btn" data-action="shop-set" data-state="open">Still need it</button>');
     }
+    const recipeMealId = (line.meal_ids || []).find(function (id) {
+      const m = planMealById(id);
+      return m && m.kind === "recipe";
+    });
+    if (recipeMealId) {
+      actions.push(
+        '<button type="button" class="sheet-menu__btn" data-action="shop-view-recipe" data-meal-id="' +
+          escapeHtml(recipeMealId) +
+          '">View recipe</button>'
+      );
+    }
     document.getElementById("shopLineActions").innerHTML = actions.join("");
     document.getElementById("shopLineSheet").showModal();
+  }
+
+  function shopEyebrowTargetMealId(plan) {
+    const recipeMeals = (plan.meals || []).filter(function (m) {
+      return m.kind === "recipe";
+    });
+    if (!recipeMeals.length) return null;
+    const hh = householdDinerCount();
+    const exceptions = recipeMeals.filter(function (m) {
+      return dinerCountForPlanMeal(m) !== hh;
+    });
+    if (exceptions.length === 1) return exceptions[0].meal_id;
+    return recipeMeals[0].meal_id;
   }
 
   function renderShopChangesBanner() {
@@ -4937,6 +5014,7 @@
       html += "<p class=\"meta\">" + done.length + " done · Show</p>";
     }
     document.getElementById("tonightPlanSections").innerHTML = html;
+    bindWhyInScope(document.getElementById("tonightPlanSections"));
     document.getElementById("tonightFindMore").hidden = planIsClosed(plan);
     const actionsEl = document.getElementById("choicesActions");
     if (actionsEl) {
@@ -5770,12 +5848,14 @@
             (slot.total_minutes || "—") +
             " min</p>" +
             classificationBadges(slot) +
+            explanationBlockHtml("swap-" + slot.recipe_version_id, slot) +
             '<button type="button" class="btn btn-secondary btn-sm" data-action="swap-use" data-version="' +
             escapeHtml(slot.recipe_version_id) +
             '">Use this</button></div></div>'
           );
         })
         .join("");
+      bindWhyInScope(box);
     }
     showSwapError("");
     state.swapInFlight = false;
@@ -6080,6 +6160,13 @@
     if (shopMore) {
       e.preventDefault();
       openShopLineSheet(shopMore.dataset.shopMore);
+      return true;
+    }
+    const shopRecipe = e.target.closest("[data-action='shop-view-recipe']");
+    if (shopRecipe) {
+      e.preventDefault();
+      document.getElementById("shopLineSheet").close();
+      openPlanMealDetail(shopRecipe.dataset.mealId, "shopList");
       return true;
     }
     const shopSet = e.target.closest("[data-action='shop-set']");
@@ -6527,6 +6614,15 @@
     const go = e.target.closest("[data-go]");
     if (go && !go.disabled && !go.dataset.select) {
       e.preventDefault();
+      if (
+        go.classList.contains("back") &&
+        state.navHistory &&
+        state.navHistory.topOpenDialog &&
+        state.navHistory.topOpenDialog()
+      ) {
+        state.navHistory.handleBack();
+        return;
+      }
       if (go.dataset.go === "detail") {
         state.previewMealId = state.selectedMealId;
         state.activeRecipe = null;
@@ -7499,6 +7595,25 @@
     show(go.dataset.go);
   });
 
+  document.getElementById("btnCookViewRecipe")?.addEventListener("click", function () {
+    const meal = cookingMeal();
+    if (!meal) return;
+    state.dinnerDetailMeal = meal;
+    state.previewMealId = meal.id;
+    show("detail", {
+      context: Nav.contextFor("detail", "cook", {
+        established: householdEstablished(),
+        origin: "cook",
+        source: "dinner_plan",
+      }),
+    });
+  });
+  document.getElementById("shopEyebrow")?.addEventListener("click", function () {
+    const plan = state.dinnerPlan;
+    if (!plan) return;
+    const mealId = shopEyebrowTargetMealId(plan);
+    if (mealId) openParticipantsSheet(mealId);
+  });
   document.getElementById("btnCookChangeRecipe")?.addEventListener("click", function () {
     mountRecipeWeave();
     const sheet = document.getElementById("cookAdaptSheet");
@@ -7644,13 +7759,30 @@
       return;
     }
     if (pathParts[0] === "meal" && pathParts[1]) {
+      const slug = decodeURIComponent(pathParts[1]);
       const from = new URLSearchParams(location.search).get("from");
       const restored = await restoreSession();
-      if (restored && from === "find") {
-        await loadCurrentDinnerPlan();
-        await openDiscoveryRecipe(decodeURIComponent(pathParts[1]));
+      if (!restored) {
+        show("welcome");
         return;
       }
+      await loadCurrentDinnerPlan();
+      if (from === "find") {
+        await openDiscoveryRecipe(slug);
+        return;
+      }
+      const plan = state.dinnerPlan;
+      const planMeal =
+        plan &&
+        (plan.meals || []).find(function (m) {
+          return m.kind === "recipe" && m.recipe_slug === slug;
+        });
+      if (planMeal) {
+        openPlanMealDetail(planMeal.meal_id, "tonightPlan");
+        return;
+      }
+      await openDiscoveryRecipe(slug);
+      return;
     }
     const link = deepLinkTokensFromLocation();
     if (link.recoverToken) {

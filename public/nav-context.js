@@ -21,8 +21,9 @@
     planReview: "Plan",
     planConfirm: "Plan",
     planCount: "Home",
-    shopList: "Tonight",
+    shopList: "Shopping list",
     tonightPlan: "Tonight",
+    cook: "Kitchen",
   };
   // Screens that always live under Home, however you reached them.
   var HOME_CHILDREN = ["demo", "finished", "rate", "loop"];
@@ -68,6 +69,12 @@
       }
       if (o.origin === "tonightPlan" || (from === "choices" && o.source === "tonight_plan")) {
         return { origin: "tonightPlan", source: "dinner_plan" };
+      }
+      if (o.origin === "shopList" || from === "shopList") {
+        return { origin: "shopList", source: "dinner_plan" };
+      }
+      if (from === "cook" || o.origin === "cook") {
+        return { origin: "cook", source: o.source || "dinner_plan" };
       }
       var origin = isSection(from) ? from : o.parent || "home";
       return { origin: origin, source: o.source || (origin === "meals" ? "history" : "round") };
