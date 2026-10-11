@@ -554,6 +554,12 @@ describe("D-06.1 crispy + baked-not-fried (preview cycle 3 repro)", () => {
     expect([...state.exclude_cooking].sort()).toEqual(["deep", "pan", "shallow"]);
     expect(state.semantic_rank).toContain("crispy_non_fry");
   });
+  it("crunchy + oven-baked instead of fried (live repro D4b) drops the method filter", () => {
+    const state = { ...emptyDiscoveryState(), methods: ["oven_baked"], textures: ["crunchy"], exclude_cooking: ["deep", "pan", "shallow"] };
+    applySharedSemantics(state, { text: "crunchy, oven-baked instead of fried", concepts: [], task: "discovery_intent" });
+    expect(state.methods).toEqual([]);
+    expect(state.semantic_rank).toContain("crispy_non_fry");
+  });
   it("a plain method request without crispy is untouched", () => {
     const state = { ...emptyDiscoveryState(), methods: ["bake"] };
     applySharedSemantics(state, { text: "something baked", concepts: [], task: "discovery_intent" });

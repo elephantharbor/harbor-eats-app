@@ -559,7 +559,8 @@ const FRY_TERM = /^(?:fried|frying|fry|deep-fried|pan-fried|shallow-fried)$/;
  * "not deep fried" stays deep-only. Any other without/no/not/nothing/never
  * on fry, frying, or fried excludes deep, pan, and shallow.
  */
-const CRISP_METHOD_HINT = /^(?:bake|baked|baking|roast|roasted|roasting|air[_ -]?fr(?:y|ied|yer)|oven|broil(?:ed)?|sheet[_ -]?pan)$/i;
+const CRISP_WORD = /\b(?:crispy|crisp|crispier|crunchy|crunch)\b/i;
+const CRISP_METHOD_HINT = /^(?:(?:oven[_ -]?)?(?:bake|baked|baking|roast|roasted|roasting)|air[_ -]?fr(?:y|ied|yer)|oven|broil(?:ed)?|sheet[_ -]?pan)$/i;
 
 export function explicitFryAvoidance(text) {
   const source = ` ${String(text || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim()} `;
@@ -787,7 +788,7 @@ export function applySharedSemantics(state, { text = "", concepts = [], task = "
   const fryScope = explicitFryAvoidance(text);
   if (fryScope === "all") addCooking(state, [...FRYING_KINDS]);
   else if (fryScope === "deep") addCooking(state, ["deep"]);
-  if (/\bcrispy\b/i.test(String(text || "")) && !/\bnot\s+crispy\b/i.test(String(text || ""))) {
+  if (CRISP_WORD.test(String(text || "")) && !/\bnot\s+(?:crispy|crunchy|crisp)\b/i.test(String(text || ""))) {
     if (fryScope || (state.exclude_cooking || []).length) {
       addRank(state, "crispy_non_fry");
       // "crispy, baked not fried": the non-fry method is how to get crispy, not a hard filter.
