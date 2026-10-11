@@ -1,5 +1,5 @@
 import { INTENT_CUES, PLAN_TOKENS, WEEKDAYS } from "./constants.js";
-import { applySharedSemantics } from "./semantics.js";
+import { applySharedSemantics, scopeDayTargetedCue } from "./semantics.js";
 
 export const FALLBACK_DINNER_COUNT = 3;
 
@@ -554,6 +554,7 @@ export function applyPlanningDelta(prior, delta, context = {}) {
     concepts: portioned ? [] : (delta.concepts || []),
     task: "planning_intent",
   });
+  if (!portioned) scopeDayTargetedCue(state, context.user_text, context.dates || []);
   return { state, dropped, dinner_count_defaulted, portioned, semantic };
 }
 

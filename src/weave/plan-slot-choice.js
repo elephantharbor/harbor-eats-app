@@ -1,4 +1,5 @@
 import { WEEKDAYS } from "./constants.js";
+import { dayScopedSoftCue } from "./semantics.js";
 import { datesFromPlanMeals } from "./state.js";
 
 const WEEKEND = new Set(["saturday", "sunday"]);
@@ -15,6 +16,7 @@ function slotPatchFromOp(op) {
     "meal_style",
     "ingredient",
     "category",
+    "intent_cue",
   ]) {
     if (op[key] !== undefined && op[key] !== null) patch[key] = op[key];
   }
@@ -224,6 +226,137 @@ export function reresolvePendingSlot({ state, userText, dinnerPlan }) {
   return null;
 }
 
+function weekdayOf(date) {
+  const d = new Date(`${date}T12:00:00Z`);
+  if (Number.isNaN(d.getTime())) return null;
+  return WEEKDAYS[d.getUTCDay() === 0 ? 6 : d.getUTCDay() - 1];
+}
+
+function addDays(date, days) {
+  const d = new Date(`${date}T12:00:00Z`);
+  if (Number.isNaN(d.getTime())) return null;
+  d.setUTCDate(d.getUTCDate() + days);
+  return d.toISOString().slice(0, 10);
+}
+
+/** Slot patch a deterministic chooser can apply without another model call. */
+export function inferSlotPatch(text) {
+  const norm = String(text || "").toLowerCase();
+  const patch = {};
+  if (/\b(?:vegetarian|vegan|plant-based|plant based)\b/.test(norm)) patch.category = "plant";
+  if (/\b(?:easier|easy)\b/.test(norm) && !/\bonly easy\b|\bnothing but easy\b/.test(norm)) patch.effort = "easy";
+  if (/\b(?:lighten(?:\s+up)?|lighter)\b/.test(norm) || /\bgo\s+light\b/.test(norm) || /\blight\s+on\b/.test(norm)) {
+    patch.intent_cue = "light";
+  }
+  if (/\bspecial\b/.test(norm) && !patch.intent_cue) patch.special = true;
+  return patch;
+}
+
+function planRows(meals, today) {
+  const dated = datesFromPlanMeals(meals);
+  if (dated.length) return dated;
+  if (!today || !meals?.length) return [];
+  return meals
+    .slice()
+    .sort((a, b) => (a.position || 0) - (b.position || 0))
+    .map((meal) => {
+      const position = Number(meal.position);
+      if (!Number.isInteger(position)) return null;
+      const date = addDays(today, position - 1);
+      return { position, date, weekday: date ? weekdayOf(date) : null };
+    })
+    .filter((row) => row && row.weekday);
+}
+
+function choiceCandidates(list, meals) {
+  return list.map((row) => {
+    const meal = (meals || []).find((item) => item.position === row.position);
+    return {
+      position: row.position,
+      weekday: row.weekday || null,
+      date: row.date || null,
+      meal_id: meal?.meal_id,
+      label: mealRowLabel(meal || row, list),
+      title: meal?.title || "",
+    };
+  });
+}
+
+/**
+ * Weekend language and a day-targeted soft cue never go to the model.
+ * One match applies. Several matches open the chooser. None asks for days.
+ */
+export function resolveDeterministicPlan({ text = "", dinnerPlan = null, today = null } = {}) {
+  const meals = dinnerPlan?.meals || [];
+  if (!meals.length) return null;
+  const scoped = dayScopedSoftCue(text);
+  const weekend = /\b(?:the\s+)?weekend\b/i.test(String(text || ""));
+  if (!scoped && !weekend) return null;
+  const rows = planRows(meals, today);
+  const patch = inferSlotPatch(text);
+  if (scoped) patch.intent_cue = scoped.cue;
+  const pool = scoped
+    ? rows.filter((row) => row.weekday === scoped.weekday)
+    : rows.filter((row) => WEEKEND.has(row.weekday));
+  if (pool.length === 1) {
+    return { type: "apply", positions: [pool[0].position], patch, rows };
+  }
+  if (pool.length > 1) {
+    return {
+      type: "choice",
+      pending_slot: patch,
+      conflict: {
+        code: "slot_ambiguous",
+        reason: "ambiguous_day",
+        asked: scoped ? scoped.weekday : "weekend",
+        multi: !scoped,
+        prompt: scoped ? "Which dinner did you mean?" : "Which ones are the weekend?",
+        candidates: choiceCandidates(pool, meals),
+      },
+    };
+  }
+  if (!rows.length) {
+    return {
+      type: "message",
+      pending_slot: patch,
+      acknowledgement: "Add days to this plan first.",
+    };
+  }
+  const asked = scoped ? scoped.weekday : "weekend";
+  return {
+    type: "choice",
+    pending_slot: patch,
+    add_days: !scoped,
+    conflict: {
+      code: "slot_ambiguous",
+      reason: scoped ? "day_absent" : "weekend_absent",
+      asked,
+      multi: !scoped,
+      prompt: scoped ? "Which dinner did you mean?" : "Add days, or pick the dinners you mean.",
+      candidates: choiceCandidates(rows, meals),
+    },
+  };
+}
+
+export function applyResolvedPatch(state, { positions, patch, rows }) {
+  const next = JSON.parse(JSON.stringify(state || {}));
+  delete next.pending_slot;
+  if (patch?.intent_cue) {
+    next.intent_cues = (next.intent_cues || []).filter((cue) => cue !== patch.intent_cue);
+  }
+  for (const position of positions || []) {
+    const row = (rows || []).find((item) => Number(item.position) === Number(position));
+    const existing = (next.slots || []).find((slot) => Number(slot.position) === Number(position)) || { position };
+    const merged = { ...existing, position, ...(patch || {}) };
+    if (row?.weekday) merged.weekday = row.weekday;
+    if (row?.date) merged.date = row.date;
+    const rest = (next.slots || []).filter((slot) => Number(slot.position) !== Number(position));
+    rest.push(merged);
+    next.slots = rest.sort((a, b) => (a.position || 0) - (b.position || 0));
+  }
+  return next;
+}
+
 export function choiceCopy(conflict) {
   const reason = conflict?.reason || "undated";
   const asked = conflict?.asked ? String(conflict.asked) : "";
@@ -233,13 +366,15 @@ export function choiceCopy(conflict) {
     day_absent: `There's no ${cap} in this plan.`,
     weekend_undated: "Your dinners don't have days yet.",
     weekend_absent: "There's no weekend in this plan.",
+    ambiguous_day: conflict?.multi ? "More than one dinner matches." : "One dinner needs a pick.",
     multiple: conflict?.candidates?.length === 2 ? `Two dinners could be the ${asked} night.` : `Several dinners could match.`,
   };
   const questionByReason = {
     undated: "Which dinner did you mean?",
     day_absent: "Which dinner did you mean?",
     weekend_undated: "Which ones are the weekend?",
-    weekend_absent: "Which dinners did you mean?",
+    weekend_absent: "Add days, or pick the dinners you mean.",
+    ambiguous_day: conflict?.prompt || "Which dinner did you mean?",
     multiple: "Which dinner did you mean?",
   };
   return {

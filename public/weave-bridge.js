@@ -332,31 +332,20 @@
         if (!choice || !positions.length) return;
         const t0 = performance.now();
         let data = null;
-        if (choice.reason === "ambiguous_day") {
-          data = await apiPost("/api/plan/interpret", {
-            text: ctrl.echo,
-            state: weaveState,
-            target_position: positions[0],
-            dinner_plan_id: p?.dinner_plan_id,
-            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            participant_ids: deps.activeMemberIds(),
-          });
-        } else {
-          data = await apiPost("/api/plan/apply", {
-            state: weaveState,
-            slot_choice: { positions },
-            dinner_plan_id: p?.dinner_plan_id,
-            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            participant_ids: deps.activeMemberIds(),
-          });
-          deps?.track?.("weave_slot_chosen", {
-            reason: choice.reason,
-            multi: !!choice.multi,
-            positions_count: positions.length,
-            provider_calls: 0,
-            latency_ms: Math.round(performance.now() - t0),
-          });
-        }
+        data = await apiPost("/api/plan/apply", {
+          state: weaveState,
+          slot_choice: { positions },
+          dinner_plan_id: p?.dinner_plan_id,
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          participant_ids: deps.activeMemberIds(),
+        });
+        deps?.track?.("weave_slot_chosen", {
+          reason: choice.reason,
+          multi: !!choice.multi,
+          positions_count: positions.length,
+          provider_calls: 0,
+          latency_ms: Math.round(performance.now() - t0),
+        });
         if (!data?.ok) return;
         weaveState = data.state;
         ctrl.choice = null;

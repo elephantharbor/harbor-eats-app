@@ -33,19 +33,22 @@ Surface phrases live in the module. Runtime state stores only the ids below, plu
 | `vegetable_forward` | rank `vegetable_forward` | a vegetarian requirement, a stored diet label | ranking boost |
 | `fish_forward` | rank `fish_forward` | a fish frequency, shellfish, an eligibility change | ranking boost |
 | `healthy` | cue `light` plus rank `vegetable_forward`, `fish_forward`, `fewer_fried` | a health claim, calories, a nutrition score, a hard filter, a fish frequency | preference (derived) |
+| `family` | cue `weeknight`, `keep_it_easy` and `keep_ingredients_simple` when still null, rank `mild` | a hard flavor filter, a kids-only menu, a nutrition claim, a required dish | preference |
 | `fried` | `exclude_cooking` = `deep`, `pan`, `shallow` | baked crispy, roasted crispy, air-fried crispy, stir-fry, a title word alone | hard filter |
 | `deep_fried` | `exclude_cooking` includes `deep` only | pan-fried, shallow-fried, baked crispy, air-fried crispy | hard filter |
 
 Phrase aliases, longest first, override the token default:
 
-- `nothing fried`, `no fried`, `not fried`, `without fried`, `avoid fried` → avoid `fried`
-- `crispy but not deep fried`, `not deep fried`, `nothing deep fried` → avoid `deep_fried`. The first also ranks `crispy_non_fry`
+- `nothing fried`, `no fried`, `not fried`, `without fried`, `avoid fried`, and the same negations on `frying` / `fry` (`without frying`, `no frying`, `not frying`, `nothing frying`) → avoid `fried` (deep, pan, and shallow)
+- `crispy without frying` → avoid `fried` and rank `crispy_non_fry`
+- `crispy but not deep fried`, `not deep fried`, `nothing deep fried` → avoid `deep_fried` only. The first also ranks `crispy_non_fry`
+- `whole family`, `kid friendly`, `family friendly` → `family` (simple, familiar weeknight, mild, easy). Those words are not a literal text search
 - `nothing too heavy`, `not too heavy`, `not heavy` → prefer `light`
 - `nothing too rich`, `not too rich` → avoid `indulgent`, which adds the `light` cue and does not add an indulgent boost
 - `no comfort food` → avoid `comforting` (soft exclusion: rank `avoid_comforting`, drop the comforting cue). It is not a hard filter
 - `comfort food` → prefer `comforting`
 - `restaurant style`, `restaurant like` → `restaurant_like`
-- `kid friendly`, `family friendly`, `weeknight friendly` → `weeknight`
+- `weeknight friendly` → `weeknight`
 - `clean and simple` → `simple` plus `light`
 
 The bare tokens `fried`, `frying`, and `fry` are not a preference. Only an explicit negation phrase, or a model concept with `polarity: avoid`, excludes frying. `healthier`, `healthful`, `wholesome`, and `clean` alias to `healthy`. `clean` is not detox, organic, or a medical diet. A lone `\beasy\b` that is not “only easy” or “nothing but easy” sets `keep_it_easy` when that field is still null. `easier` does not.
@@ -68,13 +71,13 @@ Support status is one of `canonical`, `derived`, `unsupported_soft`, `explicit_h
 - A hard filter is only an explicit cooking exclusion (`fried`, `deep_fried`) or a field the existing delta already wrote: ingredients, proteins, cuisines, diets, frequencies, hard minutes, quick, effort.
 - Cue scores stay clamped to `[-0.40, 0.40]`. Semantic rank adds a separate score clamped to `[-0.25, 0.25]`. Ranking never grants eligibility.
 
-`semantic_rank` tokens, closed: `vegetable_forward`, `fish_forward`, `fewer_fried`, `avoid_comforting`, `adventurous`, `indulgent`, `crispy_non_fry`.
+`semantic_rank` tokens, closed: `vegetable_forward`, `fish_forward`, `fewer_fried`, `avoid_comforting`, `adventurous`, `indulgent`, `crispy_non_fry`, `mild`.
 
 ## 4. Unknown model concepts
 
 `normalizeModelConcepts` lowercases and trims the id, then looks it up in the canonical table or the alias map. A miss increments `unsupported_soft_count` and is dropped. The raw string is not written to state, chips, acknowledgements, or telemetry. It is not a literal text filter and it cannot touch eligibility.
 
-Text of the form “something / really / very / quite &lt;unknown adjective&gt;” is the same kind of miss. Fuzzy vocabulary tokens are stripped from `text_residue`. A leftover noun that is not one of those adjectives, such as a real search word, stays.
+Text of the form “something / really / very / quite &lt;unknown adjective&gt;” is the same kind of miss. Fuzzy vocabulary tokens and leftover soft or descriptive words (`whole family`, `kid`, `friendly`, `eat`, and the same class of filler) are stripped from `text_residue`. They are not a required literal search. A leftover noun that is not one of those words, such as a real ingredient, a dish noun, or an unknown noun like xylophone, stays.
 
 ## 5. Cooking method
 
@@ -108,7 +111,7 @@ A vague adjective alone is not one of these. Zero results stay reserved for a re
 `buildSemanticTelemetry` attaches `telemetry` on interpret, count, and the ambiguous-day response. Fields:
 
 - `task`: `planning_intent`, `discovery_intent`, or null
-- `canonical_intents`: sorted canonical ids only
+- `canonical_intents`: sorted canonical ids from the normalizer, plus any applied `intent_cues` whose id is in that same vocabulary (so a cue written by a list op is not reported as no intent)
 - `unsupported_soft_count`
 - `broadening`
 - `zero_result_reason`: a reason from §6, or null
@@ -139,10 +142,11 @@ These three are server-owned. They do not call Luna.
 
 `ambiguousTarget({ text, dates, dinnerCount, today })` runs before `service.run` on `POST /api/plan/interpret`.
 
-- Weekend language, or a named weekday, with exactly one matching date: returns null. The request continues to Luna.
-- Two or more matching dates: returns `{ reason: "ambiguous_day", prompt: "Which dinner did you mean?", candidates: [{ position, weekday, date, label }] }`.
-- No matching date: returns null. Unrelated dinners are not offered as stand-ins, and the existing count picker or Luna path still runs.
-- The route responds `source: "deterministic"`, `llm_called: false`, `ambiguous_target` set, `preview: null`, and the prior state unchanged.
+- A day-targeted soft cue (`lighten up Friday`, `make Friday lighter`) on an existing plan applies only to that slot (`intent_cue`), never the plan-wide cue list. Exactly one match replans that slot and answers `Friday's now lighter: {title}.` More than one match, or no match, opens the chooser. Luna is not called.
+- Weekend language on an existing plan is the same shape. Dates are the plan's dates, or, when the plan is undated, today plus the dinner count. Exactly one weekend dinner is targeted directly. Two or more open the chooser with `pending_slot` set. None returns the chooser or an Add days acknowledgement. The result is never a silent empty delta.
+- Other named weekdays with exactly one date still return null from `ambiguousTarget` and may continue to Luna. Two or more return `{ reason: "ambiguous_day", prompt, candidates }` and `state.pending_slot` holds the inferred patch.
+- Choosing days posts `POST /api/plan/apply` with every selected position. That apply, and `POST /api/plan/interpret` with `target_position` or `target_positions`, replays `pending_slot` and does not call a provider.
+- The route responds `source: "deterministic"`, `llm_called: false`. A direct hit includes a preview. A chooser sets `choice` and `pending_slot`.
 
 ### Count change
 

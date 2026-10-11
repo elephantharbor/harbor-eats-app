@@ -37,7 +37,7 @@ import {
 import { rulesFromLegacyKeys } from "../lib/legacy-preference-audit.js";
 import { discoveryRelaxations } from "./relax.js";
 import { detectDiscoveryConflicts, detectPlanningConflicts, frequencyConflicts } from "./conflicts.js";
-import { applyPendingSlotChoice, choiceCopy, planSlotChoiceGate, reresolvePendingSlot } from "./plan-slot-choice.js";
+import { applyPendingSlotChoice, applyResolvedPatch, choiceCopy, inferSlotPatch, planSlotChoiceGate, reresolvePendingSlot, resolveDeterministicPlan } from "./plan-slot-choice.js";
 import { discoveryStateToQuery } from "./discovery-map.js";
 import { parsePlannerFromState } from "./plan-map.js";
 import {
@@ -373,17 +373,34 @@ function semanticAck(ack, semantic, conflicts) {
   return { ...ack, acknowledgement: semantic.primary_ack, acknowledgement_source: "reconciled" };
 }
 
-function attachTelemetry(payload, { task, semantic, source, resultCount, zeroReason }) {
+function attachTelemetry(payload, { task, semantic, state, source, resultCount, zeroReason }) {
   return {
     ...payload,
     telemetry: buildSemanticTelemetry({
       task,
       semantic,
+      state: state || payload.state,
       source,
       resultCount,
       zeroReason,
     }),
   };
+}
+
+function nameUnsupportedAck(ack, semantic) {
+  const text = String(ack?.acknowledgement || "");
+  if ((semantic?.unsupported_soft_count || 0) > 0 && (text === "Got it." || text === "")) {
+    return { ...ack, acknowledgement: "Got it — here are some broader ideas.", acknowledgement_source: "reconciled" };
+  }
+  return ack;
+}
+
+function choicePositions(body) {
+  const raw = [
+    ...(Array.isArray(body?.target_positions) ? body.target_positions : []),
+    ...(body?.target_position != null ? [body.target_position] : []),
+  ];
+  return [...new Set(raw.map((value) => Number(value)).filter((value) => Number.isInteger(value) && value >= 1 && value <= 14))];
 }
 
 function latencyFields({ routeStarted, providerMs, deterministicMs }) {
@@ -625,15 +642,100 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
     const priorState = anchor.priorState;
     const context = buildPromptContext({ timezone, participantIds, dinnerPlan, today, usual });
     context.vocabulary = vocabulary;
-    const amb = body.target_position
-      ? null
-      : ambiguousTarget({
-          text,
-          dates: context.dates || datesFromPlanMeals(dinnerPlan?.meals),
-          dinnerCount: priorState?.dinner_count || context.dinner_count_default,
-          today,
-        });
+    const picked = choicePositions(body);
+    if (picked.length) {
+      const pending = priorState?.pending_slot && Object.keys(priorState.pending_slot).length
+        ? priorState.pending_slot
+        : inferSlotPatch(text);
+      if (!pending || !Object.keys(pending).length) {
+        await settleReads();
+        return fail("pending_slot_missing");
+      }
+      const base = { ...(priorState || emptyPlanningState()), pending_slot: pending };
+      if (base.dinner_count == null && dinnerPlan?.meals?.length) base.dinner_count = dinnerPlan.meals.length;
+      const chosen = applyPendingSlotChoice(base, picked);
+      if (!chosen.ok) {
+        await settleReads();
+        return fail(chosen.error);
+      }
+      const [constraints, tastes, catalog] = await Promise.all([reads.constraints, reads.tastes, reads.catalog]);
+      const result = await executePlanning(env, session, {
+        priorState: chosen.state,
+        dinnerPlan,
+        participantIds,
+        preloaded: { constraints, tastes, catalog },
+        routeStarted,
+      });
+      return json(attachTelemetry({ ...result, llm_called: false }, {
+        task: "planning_intent",
+        semantic: {},
+        source: "deterministic",
+        resultCount: result.preview?.slots?.length ?? 0,
+        zeroReason: null,
+      }));
+    }
+    const resolved = resolveDeterministicPlan({ text, dinnerPlan, today });
+    if (resolved?.type === "apply") {
+      const base = { ...(priorState || emptyPlanningState()) };
+      if (base.dinner_count == null && dinnerPlan?.meals?.length) base.dinner_count = dinnerPlan.meals.length;
+      const next = applyResolvedPatch(base, resolved);
+      const [constraints, tastes, catalog] = await Promise.all([reads.constraints, reads.tastes, reads.catalog]);
+      const result = await executePlanning(env, session, {
+        priorState: next,
+        dinnerPlan,
+        participantIds,
+        preloaded: { constraints, tastes, catalog },
+        routeStarted,
+      });
+      return json(attachTelemetry({ ...result, llm_called: false }, {
+        task: "planning_intent",
+        semantic: {},
+        source: "deterministic",
+        resultCount: result.preview?.slots?.length ?? 0,
+        zeroReason: null,
+      }));
+    }
+    if (resolved) {
+      const copy = resolved.conflict ? choiceCopy(resolved.conflict) : null;
+      const held = { ...(priorState || emptyPlanningState()), pending_slot: resolved.pending_slot || inferSlotPatch(text) };
+      const acknowledgement = resolved.acknowledgement
+        || (resolved.add_days ? "There's no weekend in this plan. Add days, or pick the dinners you mean." : null)
+        || (copy ? [copy.context, copy.question].filter(Boolean).join(" ") : resolved.conflict?.prompt || null);
+      await settleReads();
+      return json(attachTelemetry({
+        ok: true,
+        task: "planning_intent",
+        source: "deterministic",
+        llm_called: false,
+        ambiguous_target: resolved.conflict || null,
+        choice: resolved.conflict || null,
+        choice_copy: copy,
+        acknowledgement,
+        acknowledgement_source: "reconciled",
+        state: held,
+        chips: buildPlanningChips(held),
+        conflicts: resolved.conflict ? [resolved.conflict] : [],
+        dropped: [],
+        changed_positions: [],
+        preview: null,
+        fallback_code: null,
+      }, {
+        task: "planning_intent",
+        semantic: {},
+        source: "deterministic",
+        resultCount: 0,
+        zeroReason: null,
+      }));
+    }
+    const amb = ambiguousTarget({
+      text,
+      dates: context.dates || datesFromPlanMeals(dinnerPlan?.meals),
+      dinnerCount: priorState?.dinner_count || context.dinner_count_default,
+      today,
+    });
     if (amb) {
+      const pending = inferSlotPatch(text);
+      const held = { ...(priorState || emptyPlanningState()), pending_slot: pending };
       await settleReads();
       return json(attachTelemetry({
         ok: true,
@@ -641,10 +743,11 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
         source: "deterministic",
         llm_called: false,
         ambiguous_target: amb,
+        choice: amb,
         acknowledgement: amb.prompt,
         acknowledgement_source: "reconciled",
-        state: priorState || emptyPlanningState(),
-        chips: priorState ? buildPlanningChips(priorState) : [],
+        state: held,
+        chips: buildPlanningChips(held),
         conflicts: [],
         dropped: [],
         changed_positions: [],
@@ -715,15 +818,16 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
         });
       }
       await settleReads();
-      return json({
+      const dayish = /\b(?:weekend|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/i.test(text);
+      return json(attachTelemetry({
         ok: true,
         task: "planning_intent",
         source: gen.source || "fallback",
         fallback_code: gen.error || "empty_delta",
-        acknowledgement: null,
-        acknowledgement_source: null,
+        acknowledgement: dayish ? "Which dinner did you mean?" : "Got it.",
+        acknowledgement_source: "reconciled",
         state: priorState || emptyPlanningState(),
-        chips: [],
+        chips: priorState ? buildPlanningChips(priorState) : [],
         conflicts: [],
         dropped: [],
         changed_positions: [],
@@ -731,7 +835,13 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
         model: gen.model ?? null,
         prompt_version: gen.prompt_version ?? null,
         metadata: { estimated_cost_usd: Number(gen.estimated_cost_usd) || 0 },
-      });
+      }, {
+        task: "planning_intent",
+        semantic: {},
+        source: "fallback",
+        resultCount: 0,
+        zeroReason: null,
+      }));
     }
     const undatedMealCount =
       dinnerPlan?.meals?.length && !datesFromPlanMeals(dinnerPlan.meals).length ? dinnerPlan.meals.length : 0;
@@ -760,7 +870,7 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
         model: gen.model,
         prompt_version: gen.prompt_version,
         llm_called: true,
-        acknowledgement: null,
+        acknowledgement: [copy.context, copy.question].filter(Boolean).join(" "),
         acknowledgement_source: "reconciled",
         state: slotGate.state,
         chips: buildPlanningChips(slotGate.state),
@@ -993,7 +1103,7 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
   conflicts = conflictPass.conflicts;
   removed = conflictPass.removed;
   executedState = conflictPass.repaired;
-  let ack = semanticAck(reconcileAcknowledgement({
+  let ack = semanticAck(nameUnsupportedAck(reconcileAcknowledgement({
     task: "discovery_intent",
     modelAck,
     state: executedState,
@@ -1001,7 +1111,7 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
     dropped,
     removedTokens: removed,
     userText: text,
-  }), semantic, conflicts);
+  }), semantic), semantic, conflicts);
   const mapped = discoveryStateToQuery(executedState, {});
   if (!mapped.ok) return fail(mapped.error, mapped.status || 400);
   const t1 = monotonicNow();

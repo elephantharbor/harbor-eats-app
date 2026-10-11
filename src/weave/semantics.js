@@ -43,6 +43,7 @@ export const SEMANTIC_RANK_TOKENS = Object.freeze([
   "adventurous",
   "indulgent",
   "crispy_non_fry",
+  "mild",
 ]);
 
 /**
@@ -173,6 +174,15 @@ export const CANONICAL_CONCEPTS = Object.freeze({
     rank: ["vegetable_forward", "fish_forward", "fewer_fried"],
     not: ["a health claim", "calories", "a nutrition score", "a hard filter", "a fish frequency"],
   },
+  family: {
+    id: "family",
+    support: "canonical",
+    role: "preference",
+    cues: ["weeknight"],
+    preference: { keep_it_easy: true, keep_ingredients_simple: true },
+    rank: ["mild"],
+    not: ["a hard flavor filter", "a kids-only menu", "a nutrition claim", "a required dish"],
+  },
   fried: {
     id: "fried",
     support: "explicit_hard",
@@ -206,8 +216,10 @@ const ALIASES = Object.freeze({
   "restaurant-style": "restaurant_like",
   restaurant_like: "restaurant_like",
   "weeknight-friendly": "weeknight",
-  "kid-friendly": "weeknight",
-  "family-friendly": "weeknight",
+  "kid-friendly": "family",
+  "family-friendly": "family",
+  "whole-family": "family",
+  family: "family",
   quick: "quick",
   simple: "simple",
   indulgent: "indulgent",
@@ -221,14 +233,21 @@ const ALIASES = Object.freeze({
 
 /** Longer phrases win. Polarity overrides the concept default. */
 const PHRASES = Object.freeze([
+  ["crispy without frying", { id: "fried", polarity: "avoid", also: "crispy_non_fry" }],
+  ["crispy without fried", { id: "fried", polarity: "avoid", also: "crispy_non_fry" }],
   ["crispy but not deep fried", { id: "deep_fried", polarity: "avoid", also: "crispy_non_fry" }],
   ["not deep fried", { id: "deep_fried", polarity: "avoid" }],
   ["nothing deep fried", { id: "deep_fried", polarity: "avoid" }],
+  ["without frying", { id: "fried", polarity: "avoid" }],
+  ["nothing frying", { id: "fried", polarity: "avoid" }],
+  ["no frying", { id: "fried", polarity: "avoid" }],
+  ["not frying", { id: "fried", polarity: "avoid" }],
   ["nothing fried", { id: "fried", polarity: "avoid" }],
   ["no fried", { id: "fried", polarity: "avoid" }],
   ["not fried", { id: "fried", polarity: "avoid" }],
   ["without fried", { id: "fried", polarity: "avoid" }],
   ["avoid fried", { id: "fried", polarity: "avoid" }],
+  ["whole family", { id: "family", polarity: "prefer" }],
   ["nothing too heavy", { id: "light", polarity: "prefer" }],
   ["not too heavy", { id: "light", polarity: "prefer" }],
   ["not heavy", { id: "light", polarity: "prefer" }],
@@ -238,8 +257,8 @@ const PHRASES = Object.freeze([
   ["comfort food", { id: "comforting", polarity: "prefer" }],
   ["restaurant style", { id: "restaurant_like", polarity: "prefer" }],
   ["restaurant like", { id: "restaurant_like", polarity: "prefer" }],
-  ["kid friendly", { id: "weeknight", polarity: "prefer" }],
-  ["family friendly", { id: "weeknight", polarity: "prefer" }],
+  ["kid friendly", { id: "family", polarity: "prefer" }],
+  ["family friendly", { id: "family", polarity: "prefer" }],
   ["clean and simple", { id: "simple", polarity: "prefer", also: "light" }],
   ["weeknight friendly", { id: "weeknight", polarity: "prefer" }],
 ]);
@@ -273,6 +292,11 @@ const FUZZY_TOKENS = new Set([
   "restaurant",
   "style",
   "friendly",
+  "family",
+  "kid",
+  "kids",
+  "whole",
+  "mild",
   "food",
   "heavy",
   "rich",
@@ -500,6 +524,21 @@ function addCooking(state, kinds) {
 
 const FRY_TERM = /^(?:fried|frying|fry|deep-fried|pan-fried|shallow-fried)$/;
 
+/**
+ * "not deep fried" stays deep-only. Any other without/no/not/nothing/never
+ * on fry, frying, or fried excludes deep, pan, and shallow.
+ */
+export function explicitFryAvoidance(text) {
+  const source = ` ${String(text || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim()} `;
+  if (!source.trim()) return null;
+  const deepSpan = /\b(?:without|no|not|nothing|never|avoid)\s+deep\s+fr(?:y|ied|ying)\b/;
+  const general = /\b(?:without|no|not|nothing|never|avoid)\s+fr(?:y|ied|ying)\b/;
+  const rest = source.replace(new RegExp(deepSpan.source, "g"), " ");
+  if (general.test(rest)) return "all";
+  if (deepSpan.test(source)) return "deep";
+  return null;
+}
+
 function stripFryTerms(state) {
   for (const field of ["exclude_terms", "methods", "ingredients", "exclude_ingredients"]) {
     if (!Array.isArray(state[field])) continue;
@@ -511,12 +550,68 @@ function residueTokens(residue) {
   return String(residue || "").toLowerCase().match(/[a-z0-9]+(?:-[a-z0-9]+)*/g) || [];
 }
 
+/**
+ * Soft or descriptive leftovers are not a required text search.
+ * A real ingredient or dish noun, including an unknown noun such as a
+ * catalog miss, stays. An unknown adjective is already in dropTokens.
+ */
+const DESCRIPTIVE_RESIDUE = new Set([
+  "a",
+  "all",
+  "an",
+  "and",
+  "but",
+  "can",
+  "could",
+  "dinner",
+  "dinners",
+  "eat",
+  "eating",
+  "eats",
+  "everyone",
+  "families",
+  "family",
+  "food",
+  "for",
+  "friendly",
+  "home",
+  "just",
+  "kid",
+  "kids",
+  "like",
+  "likes",
+  "meal",
+  "meals",
+  "night",
+  "our",
+  "people",
+  "please",
+  "quite",
+  "really",
+  "should",
+  "some",
+  "something",
+  "table",
+  "that",
+  "the",
+  "together",
+  "very",
+  "want",
+  "wants",
+  "week",
+  "whole",
+  "will",
+  "with",
+  "would",
+]);
+
 function stripSoftResidue(state, dropTokens) {
   if (!state.text_residue) return false;
   const drop = dropTokens || new Set();
   const kept = residueTokens(state.text_residue).filter((token) => {
     if (drop.has(token)) return false;
     if (FUZZY_TOKENS.has(token)) return false;
+    if (DESCRIPTIVE_RESIDUE.has(token)) return false;
     if (conceptById(token) || ALIASES[token]) return false;
     return true;
   });
@@ -526,16 +621,30 @@ function stripSoftResidue(state, dropTokens) {
   return changed;
 }
 
+const HEALTHY_CUE_WORD = Object.freeze({
+  filling: "filling",
+  cozy: "cozy",
+  fresh: "fresh",
+  comforting: "comforting",
+  summery: "summery",
+  weeknight: "weeknight",
+  restaurant_like: "restaurant-style",
+});
+
 function mappingAck(task, state, applied) {
   const healthy = applied.some((row) => row.id === "healthy" && row.polarity !== "avoid");
   if (!healthy) return null;
+  const extra = (state.intent_cues || [])
+    .filter((cue) => cue !== "light" && cue !== "special" && HEALTHY_CUE_WORD[cue])
+    .map((cue) => HEALTHY_CUE_WORD[cue]);
+  const lead = ["lighter", ...extra, "veggie-forward"].join(", ");
   const fish = (state.frequencies || []).find((row) => row.token === "fish" && row.min_count === 2 && row.max_count === 2);
   if (task === "planning_intent") {
     const count = state.dinner_count;
-    const head = count ? `${count === 3 ? "Three" : count} lighter, veggie-forward dinners` : "Lighter, veggie-forward dinners";
+    const head = count ? `${count === 3 ? "Three" : count} ${lead} dinners` : `${lead.charAt(0).toUpperCase()}${lead.slice(1)} dinners`;
     return fish ? `${head}, with fish twice.` : `${head}.`;
   }
-  return "Here are some lighter, veggie-forward ideas.";
+  return `Here are some ${lead} ideas.`;
 }
 
 /**
@@ -585,6 +694,12 @@ export function applySharedSemantics(state, { text = "", concepts = [], task = "
   }
   if (text && /\beasy\b/i.test(text) && state.keep_it_easy == null && !/\bonly easy\b|\bnothing but easy\b/i.test(text)) {
     state.keep_it_easy = true;
+  }
+  const fryScope = explicitFryAvoidance(text);
+  if (fryScope === "all") addCooking(state, [...FRYING_KINDS]);
+  else if (fryScope === "deep") addCooking(state, ["deep"]);
+  if (/\bcrispy\b/i.test(String(text || "")) && !/\bnot\s+crispy\b/i.test(String(text || ""))) {
+    if (fryScope || (state.exclude_cooking || []).length) addRank(state, "crispy_non_fry");
   }
   const hasFryExclusion = (state.exclude_cooking || []).length > 0;
   if (hasFryExclusion) stripFryTerms(state);
@@ -686,13 +801,15 @@ export function resultCountBucket(count) {
 export function buildSemanticTelemetry({
   task,
   semantic = {},
+  state = null,
   source = "provider",
   resultCount = null,
   zeroReason = null,
   downstreamSuccess = null,
 } = {}) {
   const allowed = new Set(Object.keys(CANONICAL_CONCEPTS));
-  const intents = uniqueSorted((semantic.canonical_intents || []).filter((id) => allowed.has(id)));
+  const fromCues = (state?.intent_cues || []).filter((id) => allowed.has(id));
+  const intents = uniqueSorted([...(semantic.canonical_intents || []), ...fromCues].filter((id) => allowed.has(id)));
   const route = source === "bypass" ? "bypass" : source === "provider" || source === "cache" ? "provider" : source === "deterministic" ? "deterministic" : "fallback";
   const reason = zeroReason && ZERO_RESULT_REASONS.includes(zeroReason) ? zeroReason : zeroReason == null ? null : "unknown";
   return {
@@ -845,6 +962,11 @@ export function semanticScoreForMeal(meal, rankTokens) {
   if (rank.has("avoid_comforting")) total -= 0.05;
   if (rank.has("indulgent")) total += 0.08;
   if (rank.has("crispy_non_fry") && (cooking.crispy_non_fry || []).length) total += 0.1;
+  if (rank.has("mild")) {
+    const flavors = new Set([...(meal?.flavors || []), ...(meal?.vocabulary_tag_ids || [])]);
+    if (flavors.has("spicy") || flavors.has("hot") || flavors.has("fiery")) total -= 0.08;
+    if (meal?.ingredient_complexity === "simple" || meal?.effort_level === "easy") total += 0.06;
+  }
   if (rank.has("adventurous") && (meal?.ingredient_complexity === "adventurous" || Number(meal?.exploration) >= 0.55)) total += 0.1;
   return Math.max(-0.25, Math.min(0.25, total));
 }
@@ -883,6 +1005,59 @@ function candidateFrom(row) {
     date: row.date || null,
     label,
   };
+}
+
+const DAY_CUE_FORMS = [
+  (day) => `lighten up ${day}`,
+  (day) => `lighten ${day}`,
+  (day) => `lighter on ${day}`,
+  (day) => `lighter ${day}`,
+  (day) => `go light on ${day}`,
+  (day) => `go lighter on ${day}`,
+  (day) => `make ${day} lighter`,
+  (day) => `make ${day} light`,
+  (day) => `keep ${day} lighter`,
+  (day) => `keep ${day} light`,
+  (day) => `${day} lighter`,
+  (day) => `light on ${day}`,
+  (day) => `light ${day}`,
+];
+
+/**
+ * A soft cue aimed at one weekday ("lighten up Friday"), not a plan-wide
+ * "four light dinners".
+ */
+export function dayScopedSoftCue(text) {
+  const norm = ` ${String(text || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim()} `;
+  const day = WEEKDAYS.find((weekday) => norm.includes(` ${weekday} `));
+  if (!day) return null;
+  if (!DAY_CUE_FORMS.some((form) => norm.includes(` ${form(day)} `))) return null;
+  return { weekday: day, cue: "light" };
+}
+
+/** Move a day-targeted cue off the plan and onto that slot only. */
+export function scopeDayTargetedCue(state, text, dates = []) {
+  const scoped = dayScopedSoftCue(text);
+  if (!scoped || !state) return false;
+  state.intent_cues = (state.intent_cues || []).filter((cue) => cue !== scoped.cue);
+  const hit = (dates || []).find((row) => row.weekday === scoped.weekday) || null;
+  const position = hit?.position ?? null;
+  const matches = (slot) => {
+    if (position != null && Number(slot.position) === Number(position)) return true;
+    return slot.weekday === scoped.weekday;
+  };
+  const existing = (state.slots || []).find(matches) || {
+    position,
+    weekday: scoped.weekday,
+    date: hit?.date || null,
+  };
+  const merged = { ...existing, weekday: scoped.weekday, intent_cue: scoped.cue };
+  if (hit?.date) merged.date = hit.date;
+  if (position != null) merged.position = position;
+  const rest = (state.slots || []).filter((slot) => !matches(slot));
+  rest.push(merged);
+  state.slots = rest.sort((a, b) => (a.position || 0) - (b.position || 0));
+  return true;
 }
 
 /**

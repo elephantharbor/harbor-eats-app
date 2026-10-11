@@ -218,6 +218,10 @@ function exclusionPhrases(state) {
   for (const row of state?.frequencies || []) {
     if (row.max_count === 0) push(spokenToken(row.token));
   }
+  const cooking = state?.exclude_cooking || [];
+  if (cooking.includes("deep") && cooking.includes("pan") && cooking.includes("shallow")) push("fried");
+  else if (cooking.length === 1 && cooking.includes("deep")) push("deep-fried");
+  else if (cooking.length) push("fried");
   return parts;
 }
 
@@ -331,6 +335,9 @@ function discoverySentence(state, notes = {}) {
   for (const cue of state.intent_cues || []) {
     if (cue === "special") adjectives.push("a little special");
     else adjectives.push(cue === "light" ? "not too heavy" : cuePhrase(cue));
+  }
+  if ((state.semantic_rank || []).includes("crispy_non_fry") && !adjectives.includes("crispy")) {
+    adjectives.push("crispy");
   }
   if (state.quick) adjectives.push("quick");
   if (state.effort_levels?.includes("easy") || state.keep_it_easy === true) adjectives.push("easy");
@@ -488,6 +495,28 @@ export function refinementAcknowledgement({ preview, previousSlots, slots }) {
   const previous = previousSlots || [];
   if (!previous.length) return null;
   const changed = preview?.changed_positions || [];
+  const cued = (slots || []).filter((slot) => slot?.intent_cue);
+  if (cued.length && !portionSummary({ slots }).length && preview?.slots) {
+    const bits = [];
+    for (const requested of cued) {
+      const slot = preview.slots.find((row) => Number(row.position) === Number(requested.position));
+      const prev = previous.find((row) => Number(row.position) === Number(requested.position));
+      if (!slot?.title) continue;
+      const day = dayLabel(requested, prev) || dayLabel(slot, prev) || weekdayName(slot.scheduled_date || prev?.scheduled_date);
+      const word = requested.intent_cue === "light" ? "lighter" : cuePhrase(requested.intent_cue);
+      const when = day ? `${day}'s now` : `Dinner ${requested.position} is now`;
+      bits.push(`${when} ${word}: ${slot.title}`);
+    }
+    if (bits.length) {
+      let text = "";
+      for (const bit of bits) {
+        const next = text ? `${text} ${sentence(bit)}` : sentence(bit);
+        if (next.length > MAX_ACK) break;
+        text = next;
+      }
+      return { text: text || sentence(bits[0]).slice(0, MAX_ACK), suggestions: [] };
+    }
+  }
   if (changed.length && preview?.slots) {
     const bits = [];
     for (const position of changed) {
@@ -722,7 +751,10 @@ export function reconcileAcknowledgement({
   }
   const base = reconciledAcknowledgement(task, state, conflicts, notes);
   const details = detailPhrases(state, task);
-  return finish(withStillOn(base, [...details.constraints.filter((phrase) => !/^no /.test(phrase)), ...details.cues]), "reconciled");
+  // Ranking cues are not filters. "Not too heavy is still on" only belongs
+  // when that cue was an explicit constraint the conflict left in place.
+  const stillOn = details.constraints.filter((phrase) => !/^no /.test(phrase));
+  return finish(withStillOn(base, stillOn), "reconciled");
 }
 
 /** After a conflict line, say what still stands as its own short sentence. */
