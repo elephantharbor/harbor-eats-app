@@ -789,6 +789,9 @@
       discoveryMode: function () {
         return state.mode;
       },
+      dinerLimits: function () {
+        return d().dinerLimits ? d().dinerLimits() : [];
+      },
       discoveryContext: function () {
         return urlContextForApi();
       },
@@ -838,15 +841,33 @@
     });
   }
 
-  function moodChipHtml(chip) {
+  function moodChipHtml(chip, withMark) {
     return (
       '<button type="button" class="chip-tog is-on weave-mood-chip" data-weave-chip-id="' +
       esc(chip.id) +
-      '" aria-pressed="true">' +
-      '<span class="weave-mood-mark" aria-hidden="true"><span></span><span></span><span></span></span>' +
+      '" aria-label="Remove ' +
+      esc(chip.label) +
+      '">' +
+      (withMark === false ? "" : '<span class="weave-mood-mark" aria-hidden="true"><span></span><span></span><span></span></span>') +
       esc(chip.label) +
       " ×</button>"
     );
+  }
+
+  /** Weave chips with no D-07 control of their own: mood cues and exclusions. */
+  function weaveOnlyChipsHtml() {
+    let html = "";
+    (state.weaveChips || []).forEach(function (chip) {
+      if (!chip.id) return;
+      if (chip.id.indexOf("cue:") === 0) html += moodChipHtml(chip);
+    });
+    (state.weaveChips || []).forEach(function (chip) {
+      if (!chip.id) return;
+      if (chip.id === "exclude_cooking" || chip.id.indexOf("exclude_term:") === 0 || chip.id.indexOf("exclude:") === 0) {
+        html += moodChipHtml(chip, false);
+      }
+    });
+    return html;
   }
 
   function syncSearchClearButton() {
@@ -900,10 +921,7 @@
     }
     const q = state.response.query || {};
     const c = q.criteria || emptyCriteria();
-    let html = "";
-    (state.weaveChips || []).forEach(function (chip) {
-      if (chip.id && chip.id.indexOf("cue:") === 0) html += moodChipHtml(chip);
-    });
+    let html = weaveOnlyChipsHtml();
     const easyOn = c.effort_levels && c.effort_levels.indexOf("easy") >= 0;
     html +=
       '<button type="button" class="chip-tog' +
@@ -1480,6 +1498,12 @@
       const version = use.dataset.version;
       const action = use.dataset.discAction === "use" ? "use_this" : "add_this";
       void Promise.resolve(d().discoveryPick(version, action));
+      return;
+    }
+    const weaveChip = e.target.closest("[data-weave-chip-id]");
+    if (weaveChip) {
+      e.preventDefault();
+      if (weaveFindCtrl && weaveFindCtrl.removeChip) void weaveFindCtrl.removeChip(weaveChip.dataset.weaveChipId);
       return;
     }
     const chip = e.target.closest("[data-disc-chip]");
