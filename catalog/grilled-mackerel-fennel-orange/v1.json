@@ -1,0 +1,437 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-13. Image pass complete. Not certified. Not published. Not imported.",
+  "batch_id": "wave-13-2026-10-11",
+  "batch_label": "wave-13",
+  "mode": "author_batch",
+  "package_revision": "author-r1",
+  "authored_on": "2026-10-11",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Author (catalog factory cloud agent)",
+  "authored_by": "Cursor cloud agent, author role, wave-13",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "grilled-mackerel-fennel-orange",
+    "slug": "grilled-mackerel-fennel-orange",
+    "title": "Grilled Mackerel with Fennel and Orange",
+    "description": "Whole mackerel grilled with fennel wedges and an orange-parsley relish. Olive oil, no butter.",
+    "cuisine": "mediterranean",
+    "meal_format": "grilled",
+    "primary_ingredient": "mackerel",
+    "vocabulary_tag_ids": [
+      "grilled",
+      "citrusy",
+      "fresh",
+      "savory"
+    ],
+    "current_recipe_id": "rcp_grilled-mackerel-fennel-orange",
+    "current_version_id": "rv_grilled-mackerel-fennel-orange_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_grilled-mackerel-fennel-orange",
+    "dish_id": "grilled-mackerel-fennel-orange",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-11",
+      "curator": "Author (catalog factory cloud agent)",
+      "process": "FlavorWeave Catalog Factory wave-13-2026-10-11",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_grilled-mackerel-fennel-orange_v1",
+    "recipe_id": "rcp_grilled-mackerel-fennel-orange",
+    "dish_id": "grilled-mackerel-fennel-orange",
+    "version_number": 1,
+    "package_revision": "author-r1",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. The image pass is complete. Not certified. Not published. kitchen_tested is false.",
+    "title": "Grilled Mackerel with Fennel and Orange",
+    "description": "Whole mackerel grilled with fennel wedges and an orange-parsley relish. Olive oil, no butter.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "mackerel",
+        "name": "mackerel",
+        "display_name": "whole mackerel",
+        "quantity": 4,
+        "unit": "count",
+        "note": "cleaned, about 12 oz each",
+        "preparation": "patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "fennel",
+        "name": "fennel",
+        "display_name": "fennel bulbs",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1/2-inch wedges, fronds saved",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "orange",
+        "name": "orange",
+        "display_name": "orange",
+        "quantity": 2,
+        "unit": "count",
+        "note": "one juiced, one cut into thin rounds",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 2,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "red-pepper-flakes",
+        "name": "red pepper flakes",
+        "display_name": "red pepper flakes",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the grill and make the relish",
+        "body": "Light the grill so it is hot by the end of prep. Toss the fennel with 1 tbsp olive oil and 1/2 tsp salt. Stir the orange juice, chopped parsley, garlic, red pepper flakes, remaining olive oil, and 1/4 tsp salt into a relish. Season the mackerel inside and out with the last 3/4 tsp salt and the pepper, and tuck a few orange rounds and fennel fronds into the cavities. About 15 minutes.",
+        "ingredient_refs": [
+          "fennel",
+          "olive-oil",
+          "kosher-salt",
+          "orange",
+          "parsley",
+          "garlic",
+          "red-pepper-flakes",
+          "mackerel",
+          "black-pepper"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Grill",
+        "body": "Grill the fennel over a cooler spot, turning once, until tender and marked, about 8 minutes. Grill the mackerel over direct heat, about 4 minutes per side, until the flesh is opaque at the bone and 145 F. Cook is 18 minutes with the fennel starting first.",
+        "ingredient_refs": [
+          "fennel",
+          "mackerel"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Serve",
+        "body": "Spoon the relish over the fish and fennel. Serve with lemon wedges.",
+        "ingredient_refs": [
+          "parsley",
+          "orange",
+          "lemon",
+          "mackerel",
+          "fennel"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "relish",
+        "name": "orange parsley relish",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "orange",
+          "parsley",
+          "garlic",
+          "red pepper flakes",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "gas or charcoal grill",
+      "tongs",
+      "instant-read thermometer",
+      "mixing bowl",
+      "knife"
+    ],
+    "methods": [
+      "grill"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 18,
+    "total_time_minutes": 33,
+    "prep_minutes": 15,
+    "cook_minutes": 18,
+    "total_minutes": 33,
+    "time_clock": "Prep 15 includes lighting the grill, which heats for about 10 of those minutes. Cook 18 is the fennel and the fish sharing the grate, fennel on first.",
+    "heat": "A hot grill, fish over direct heat, fennel over a slightly cooler spot.",
+    "doneness": "Mackerel opaque at the bone and 145 F in the thickest part. Fennel tender with grill marks, still a little firm.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Cursor cloud agent, author role, wave-13",
+        "when": "2026-10-11",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. Olive oil only. No dairy, no shellfish, and no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. Fish because of the mackerel.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish is the mackerel. No wheat."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. Olive oil only. No dairy, no shellfish, and no nuts.",
+    "hh001_contract": "No butter and no cream in the relish. Orange, garlic, parsley, and olive oil only.",
+    "vocabulary_tag_ids": [
+      "grilled",
+      "citrusy",
+      "fresh",
+      "savory"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r1_image_pass_complete",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js. Warnings about other methods stay out of the title, description, and steps."
+    },
+    "culinary_hash": "1c95c6e749ec3d5dcb5b1ce17f4045fd571507b634832b0b6b0a2b0df82441aa",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_grilled-mackerel-fennel-orange_v1",
+    "dish_id": "grilled-mackerel-fennel-orange",
+    "recipe_version_id": "rv_grilled-mackerel-fennel-orange_v1",
+    "asset_generated": true,
+    "slot_status": "image_pass_complete",
+    "master_filename": "grilled-mackerel-fennel-orange.webp",
+    "card_filename": "grilled-mackerel-fennel-orange-640.webp",
+    "master_ref": "grilled-mackerel-fennel-orange.webp",
+    "card_ref": "grilled-mackerel-fennel-orange-640.webp",
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "grilled-mackerel-fennel-orange.webp",
+        "spec_catalog_path": "/images/meals/grilled-mackerel-fennel-orange.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "grilled-mackerel-fennel-orange-640.webp",
+        "spec_catalog_path": "/images/meals/grilled-mackerel-fennel-orange-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "dimensions_note": "Center-crop of the 1280x720 GenerateImage JPEG to 4:3, LANCZOS-resized with export_meal_webps.py.",
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_webp_export",
+      "generator": "Grok Bot GenerateImage",
+      "model": "unknown",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "factory/tools/image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generation_date": "2026-10-11",
+      "generation_window": "2026-10-11 13:08-13:15 CT",
+      "regeneration_count": 0
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "package_revision": "author-r1",
+    "rejected_dir": "rejected/",
+    "active_source_jpeg": "img_v1.jpg",
+    "provenance_note": "Original AI image generated with Grok Bot GenerateImage from this package's prompt and plating brief. No stock or web imagery.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "9cb273f9feb0a7b758b24fa79fbe92106e6d1b67ee1c71511e42cd5d90747978",
+      "master_sha256": "5e9d0d781cfd83005774f91a66b25c7f2c74809b7c3b688238e3592e076f5361",
+      "card_sha256": "52009c75d445b78580bbe14205955c71cbcc0a590a3043a9dc08636b57c767ef"
+    },
+    "regeneration_count": 0
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "AWAITING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 includes lighting the grill, which heats for about 10 of those minutes. Cook 18 is the fennel and the fish sharing the grate, fennel on first."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "Master and card WebPs present from the image pass."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One fish, half a fennel bulb, half an orange.",
+    "2": "Two fish, one fennel, one orange.",
+    "4": "As written.",
+    "do_not_scale": [
+      "grill heat",
+      "do not flip the fish more than once"
+    ]
+  },
+  "coverage_contribution": "First mackerel and the first whole grilled fish. Grilled format moves from two meals to three.",
+  "near_duplicate_review": "Swordfish with olives and capers is a steak on the grill. This is a whole fish with fennel and orange, and no olives.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r1_image_pass_complete"
+}

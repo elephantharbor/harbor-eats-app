@@ -1,0 +1,565 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-13. Image pass complete and unchanged. Text revised to author-r2 after the independent audit. Not certified. Not published. Not imported.",
+  "batch_id": "wave-13-2026-10-11",
+  "batch_label": "wave-13",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-11",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Author (catalog factory cloud agent)",
+  "authored_by": "Cursor cloud agent, author role, wave-13",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "sichuan-green-bean-mushroom-stir-fry",
+    "slug": "sichuan-green-bean-mushroom-stir-fry",
+    "title": "Sichuan Green Bean and Mushroom Stir-Fry",
+    "description": "A hot stir-fry of blistered green beans and shiitake in chili bean paste, with steamed rice. No oyster sauce and no nuts.",
+    "cuisine": "chinese",
+    "meal_format": "stir-fry",
+    "primary_ingredient": "green beans",
+    "vocabulary_tag_ids": [
+      "stir-fries",
+      "spicy",
+      "savory",
+      "mushrooms",
+      "crunchy"
+    ],
+    "current_recipe_id": "rcp_sichuan-green-bean-mushroom-stir-fry",
+    "current_version_id": "rv_sichuan-green-bean-mushroom-stir-fry_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_sichuan-green-bean-mushroom-stir-fry",
+    "dish_id": "sichuan-green-bean-mushroom-stir-fry",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-11",
+      "curator": "Author (catalog factory cloud agent)",
+      "process": "FlavorWeave Catalog Factory wave-13-2026-10-11",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_sichuan-green-bean-mushroom-stir-fry_v1",
+    "recipe_id": "rcp_sichuan-green-bean-mushroom-stir-fry",
+    "dish_id": "sichuan-green-bean-mushroom-stir-fry",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Author revision author-r2 splits the water lines only. The image pass files are unchanged. Not certified. Not published. kitchen_tested is false.",
+    "title": "Sichuan Green Bean and Mushroom Stir-Fry",
+    "description": "A hot stir-fry of blistered green beans and shiitake in chili bean paste, with steamed rice. No oyster sauce and no nuts.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "green-beans",
+        "name": "green beans",
+        "display_name": "green beans",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "trimmed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "shiitake",
+        "name": "shiitake mushrooms",
+        "display_name": "shiitake mushrooms",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "ginger",
+        "display_name": "ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1-inch lengths",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rice-vinegar",
+        "name": "rice vinegar",
+        "display_name": "rice vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chili-bean-paste",
+        "name": "chili bean paste",
+        "display_name": "chili bean paste",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": "broad bean and chile paste with soy. No shrimp.",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sesame-oil",
+        "name": "sesame oil",
+        "display_name": "sesame oil",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "cornstarch",
+        "name": "cornstarch",
+        "display_name": "cornstarch",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water for the rice",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "2 1/4 cups. For the rice only.",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "sauce-water",
+        "name": "water",
+        "display_name": "water for the sauce and slurry",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "1/2 cup. Use 2 tbsp of it for the cornstarch slurry and the remaining 6 tbsp in the sauce.",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "long-grain-rice",
+        "name": "long-grain rice",
+        "display_name": "long-grain rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Trim 1 1/2 lb green beans. Slice 8 oz shiitake, 4 garlic cloves, 1 tbsp ginger, and 3 scallions. Measure 1/2 cup water for the sauce and slurry. Stir 2 tbsp of that water with 1 tsp cornstarch into a slurry. Stir the remaining 6 tbsp water with 2 tbsp soy sauce, 1 tbsp rice vinegar, 1 tsp sugar, and 1 1/2 tbsp chili bean paste, then stir in the slurry. Rinse 1 1/2 cups rice. About 15 minutes.",
+        "ingredient_refs": [
+          "green-beans",
+          "shiitake",
+          "garlic",
+          "ginger",
+          "scallions",
+          "soy-sauce",
+          "rice-vinegar",
+          "sugar",
+          "chili-bean-paste",
+          "cornstarch",
+          "sauce-water",
+          "long-grain-rice"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Steam the rice",
+        "body": "Put the 1 1/2 cups rice, 2 1/4 cups water, and 1/2 tsp salt in a saucepan. Bring to a boil, cover, and simmer on low until tender, about 18 minutes. This runs under the stir-fry. Use only the rice water.",
+        "ingredient_refs": [
+          "long-grain-rice",
+          "rice-water",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Stir-fry",
+        "body": "Heat 2 tbsp neutral oil in a wok over high. Stir-fry the green beans in two batches until blistered and tender-crisp, about 4 minutes per batch. Set them aside. Stir-fry the shiitake about 2 minutes. Add the garlic and ginger for 30 seconds, then the sauce from step 1 (the full 1/2 cup water is already in it; add no more water) and the beans. Toss until the sauce clings. Off the heat, add 1 tsp sesame oil and the scallions. The stir-fry is about 12 minutes inside the 20-minute cook clock.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "green-beans",
+          "shiitake",
+          "garlic",
+          "ginger",
+          "chili-bean-paste",
+          "soy-sauce",
+          "sesame-oil",
+          "scallions",
+          "sauce-water"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Serve",
+        "body": "Put the rice in bowls and top with the beans. This step adds no water.",
+        "ingredient_refs": [
+          "long-grain-rice",
+          "green-beans"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "sauce",
+        "name": "chili bean sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "chili bean paste",
+          "soy sauce",
+          "rice vinegar",
+          "sugar",
+          "cornstarch",
+          "water (1/2 cup)"
+        ]
+      },
+      {
+        "component_id": "paste",
+        "name": "chili bean paste",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "chili bean paste"
+        ],
+        "contract": "Broad beans, chile, and soy. No shrimp or shellfish in the paste."
+      },
+      {
+        "component_id": "rice",
+        "name": "steamed rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long-grain rice",
+          "water (2 1/4 cups)"
+        ]
+      }
+    ],
+    "equipment": [
+      "wok or 12-inch skillet",
+      "medium saucepan with a lid",
+      "small bowl",
+      "tongs"
+    ],
+    "methods": [
+      "stir-fry"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": true,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 20,
+    "total_time_minutes": 35,
+    "prep_minutes": 15,
+    "cook_minutes": 20,
+    "total_minutes": 35,
+    "time_clock": "Prep 15 is trimming, slicing, and mixing the sauce with its own 1/2 cup water. Cook 20 starts the rice with its own 2 1/4 cups water and, while it simmers, the stir-fry, which takes about 12 minutes inside that 20.",
+    "heat": "A large pot for rice. A wok or 12-inch skillet over high for the beans.",
+    "doneness": "Beans blistered and tender-crisp, mushrooms softened, sauce glossy and clinging. Rice tender.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Cursor cloud agent, author role, wave-13",
+        "when": "2026-10-11",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      },
+      {
+        "version_number": 1,
+        "who": "Cursor cloud agent, author role, wave-13",
+        "when": "2026-10-11",
+        "from": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard",
+          "package_revision": "author-r1"
+        },
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard",
+          "package_revision": "author-r2"
+        },
+        "reason": "Gate B revision. Replaced the single 2.75-cup water line with two shopping lines: 2 1/4 cups for the rice and 1/2 cup for the sauce and slurry (2 tbsp slurry, 6 tbsp sauce). Every step states the amount it uses. Effort and complexity enums unchanged. Both water ids stay excluded from the D-03 count."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No meat, poultry, fish, shellfish, dairy, or nuts. Sesame oil is allowed. The chili bean paste has no shrimp."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free, vegetarian, and plant_based.",
+    "allergens": [
+      "soy",
+      "wheat",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Soy and wheat are in the soy sauce and the chili bean paste.",
+      "Sesame is the sesame oil."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No meat, poultry, fish, shellfish, dairy, or nuts. Sesame oil is allowed. The chili bean paste has no shrimp.",
+    "hh001_contract": "Chili bean paste is broad beans, chile, and soy only. No shrimp paste and no oyster sauce.",
+    "vocabulary_tag_ids": [
+      "stir-fries",
+      "spicy",
+      "savory",
+      "mushrooms",
+      "crunchy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_text_revision_images_unchanged",
+    "culinary_audit_state": "revised_after_independent_audit_not_recertified",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js. Warnings about other methods stay out of the title, description, and steps."
+    },
+    "culinary_hash": "ad2053de1ea228a93f0ebad230232d81028c432a0f63892a315f695b2cb1a868",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking.",
+    "revision_note": "author-r2 (2026-10-11). Gate B only. Images unchanged. Culinary hash recomputed because the water lines and steps changed. Classification enums unchanged."
+  },
+  "image": {
+    "image_id": "img_sichuan-green-bean-mushroom-stir-fry_v1",
+    "dish_id": "sichuan-green-bean-mushroom-stir-fry",
+    "recipe_version_id": "rv_sichuan-green-bean-mushroom-stir-fry_v1",
+    "asset_generated": true,
+    "slot_status": "image_pass_complete",
+    "master_filename": "sichuan-green-bean-mushroom-stir-fry.webp",
+    "card_filename": "sichuan-green-bean-mushroom-stir-fry-640.webp",
+    "master_ref": "sichuan-green-bean-mushroom-stir-fry.webp",
+    "card_ref": "sichuan-green-bean-mushroom-stir-fry-640.webp",
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "sichuan-green-bean-mushroom-stir-fry.webp",
+        "spec_catalog_path": "/images/meals/sichuan-green-bean-mushroom-stir-fry.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "sichuan-green-bean-mushroom-stir-fry-640.webp",
+        "spec_catalog_path": "/images/meals/sichuan-green-bean-mushroom-stir-fry-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "dimensions_note": "Center-crop of the 1280x720 GenerateImage JPEG to 4:3, LANCZOS-resized with export_meal_webps.py.",
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_webp_export",
+      "generator": "Grok Bot GenerateImage",
+      "model": "unknown",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "factory/tools/image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generation_date": "2026-10-11",
+      "generation_window": "2026-10-11 13:08-13:15 CT",
+      "regeneration_count": 0
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "package_revision": "author-r1",
+    "rejected_dir": "rejected/",
+    "active_source_jpeg": "img_v1.jpg",
+    "provenance_note": "Original AI image generated with Grok Bot GenerateImage from this package's prompt and plating brief. No stock or web imagery.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "1d534e9c9c4ee06a9bc5cf04cb3deeda4daea8793a46f73c0ccb9b41e471d615",
+      "master_sha256": "a66803497cc93021bbfe502687d03ecb82888cf6a859c93a6dc5bc69637d1462",
+      "card_sha256": "382b86903077008e16acdf42fca8d7184fe9278542da5e89dc41e7dd9e9aa865"
+    },
+    "regeneration_count": 0
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "AWAITING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 is trimming, slicing, and mixing the sauce with its own 1/2 cup water. Cook 20 starts the rice with its own 2 1/4 cups water and, while it simmers, the stir-fry, which takes about 12 minutes inside that 20."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "Master and card WebPs present from the image pass."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": true, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of the beans and one serving of rice. Use a smaller skillet so the beans still blister.",
+    "2": "Half. One batch of beans may fit.",
+    "4": "As written, two batches of beans.",
+    "do_not_scale": [
+      "the skillet must stay hot",
+      "do not cover the beans or they steam"
+    ]
+  },
+  "coverage_contribution": "First green-bean lead. A plant Chinese stir-fry with no peanut and no chicken. Stir-fry is not a frying kind.",
+  "near_duplicate_review": "Cashew chicken is poultry and cashews. Peanut noodles are peanuts. Thai basil eggplant is a different vegetable and cuisine. Lomo saltado is beef.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_text_revision_images_unchanged",
+  "revision_note": "author-r2 (2026-10-11). Gate B only. Images unchanged. Culinary hash recomputed because the water lines and steps changed. Classification enums unchanged."
+}

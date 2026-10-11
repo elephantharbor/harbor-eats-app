@@ -119,7 +119,7 @@ describe("Wave-12 HH001 eligibility via loadPublishedCatalog", () => {
     }
     await applyCatalogWrites(sqliteShim(database), loadRecords(), "2026-10-04T00:00:00.000Z");
     const loaded = await loadPublishedCatalog(sqliteShim(database));
-    expect(loaded.count).toBe(75);
+    expect(loaded.count).toBe(85);
     const bySlug = new Map(loaded.planner.map((entry) => [entry.concept.concept_id, entry]));
 
     const eligible = [];

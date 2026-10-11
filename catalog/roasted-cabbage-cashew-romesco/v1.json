@@ -1,0 +1,486 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-13. Image pass complete and unchanged. Text revised to author-r2 after the independent audit. Not certified. Not published. Not imported.",
+  "batch_id": "wave-13-2026-10-11",
+  "batch_label": "wave-13",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-11",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Author (catalog factory cloud agent)",
+  "authored_by": "Cursor cloud agent, author role, wave-13",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "roasted-cabbage-cashew-romesco",
+    "slug": "roasted-cabbage-cashew-romesco",
+    "title": "Roasted Cabbage Steaks with Cashew Romesco",
+    "description": "Thick cabbage steaks roasted in the oven until the cut faces are crisp, with a cashew romesco. Cashews only: no almonds and no dairy.",
+    "cuisine": "spanish",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "green cabbage",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "smoky",
+      "savory",
+      "rich"
+    ],
+    "current_recipe_id": "rcp_roasted-cabbage-cashew-romesco",
+    "current_version_id": "rv_roasted-cabbage-cashew-romesco_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_roasted-cabbage-cashew-romesco",
+    "dish_id": "roasted-cabbage-cashew-romesco",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-11",
+      "curator": "Author (catalog factory cloud agent)",
+      "process": "FlavorWeave Catalog Factory wave-13-2026-10-11",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_roasted-cabbage-cashew-romesco_v1",
+    "recipe_id": "rcp_roasted-cabbage-cashew-romesco",
+    "dish_id": "roasted-cabbage-cashew-romesco",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Author revision author-r2 changes the clock only. The image pass files are unchanged. Not certified. Not published. kitchen_tested is false.",
+    "title": "Roasted Cabbage Steaks with Cashew Romesco",
+    "description": "Thick cabbage steaks roasted in the oven until the cut faces are crisp, with a cashew romesco. Cashews only: no almonds and no dairy.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "green-cabbage",
+        "name": "green cabbage",
+        "display_name": "large green cabbage",
+        "quantity": 1,
+        "unit": "count",
+        "note": "cut into four 3/4-inch steaks",
+        "preparation": "steaks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 6,
+        "unit": "tbsp",
+        "note": "3 tbsp on the cabbage, 3 tbsp in the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "raw-cashews",
+        "name": "cashews",
+        "display_name": "raw cashews",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "the only nut",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "roasted-red-peppers",
+        "name": "roasted red peppers",
+        "display_name": "roasted red peppers",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "drained, from a jar",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 2,
+        "unit": "clove",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "smoked-paprika",
+        "name": "smoked paprika",
+        "display_name": "smoked paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "red-wine-vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "to loosen the sauce if needed",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat the oven",
+        "body": "Turn the oven to 425 F and heat it until it is fully at temperature, about 15 minutes. Do not put the pan in during this preheat. Prep is these 15 minutes.",
+        "ingredient_refs": []
+      },
+      {
+        "step_number": 2,
+        "title": "Cut and oil",
+        "body": "While the oven heats, cut the cabbage into four steaks and brush both faces with 3 tbsp olive oil, 1 tsp salt, and the pepper. Spread the cashews on one side of the sheet pan and the steaks on the rest. Leave the pan on the counter. Cutting and oiling take about 8 minutes of active time inside the preheat. If the oven is not yet at 425 F when the pan is ready, wait. The food goes in only after the oven is hot.",
+        "ingredient_refs": [
+          "green-cabbage",
+          "olive-oil",
+          "kosher-salt",
+          "black-pepper",
+          "raw-cashews"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Roast",
+        "body": "When the oven is at 425 F, put the pan in. Roast 8 minutes, then remove the cashews if they are golden. Continue roasting the cabbage until the cores are tender and the cut faces are crisp and browned, about 22 minutes more. Cook is 30 minutes in a hot oven.",
+        "ingredient_refs": [
+          "green-cabbage",
+          "raw-cashews"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Blend the romesco",
+        "body": "While the cabbage finishes, blend the cashews, roasted red peppers, garlic, smoked paprika, vinegar, the remaining 3 tbsp olive oil, 1/4 tsp salt, and 2 tbsp water until thick and spoonable. This is about 5 minutes of active time inside the roast, not extra prep.",
+        "ingredient_refs": [
+          "raw-cashews",
+          "roasted-red-peppers",
+          "garlic",
+          "smoked-paprika",
+          "red-wine-vinegar",
+          "olive-oil",
+          "kosher-salt",
+          "water"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Spoon romesco over the steaks and scatter the parsley. About 1 minute.",
+        "ingredient_refs": [
+          "green-cabbage",
+          "parsley"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "romesco",
+        "name": "cashew romesco",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "roasted red peppers",
+          "cashews",
+          "garlic",
+          "smoked paprika",
+          "red wine vinegar",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "rimmed sheet pan",
+      "blender or food processor",
+      "knife",
+      "cutting board"
+    ],
+    "methods": [
+      "roast"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "baked",
+        "roasted"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 30,
+    "total_time_minutes": 45,
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "total_minutes": 45,
+    "time_clock": "Prep 15 is a real preheat to 425 F before the pan goes in. Cutting and oiling, about 8 minutes active, happen during that preheat; the pan stays on the counter until the oven is hot. Cook 30 is the roast in a hot oven: 8 minutes with the cashews, then about 22 minutes more. Active time is about 15 minutes across the meal (cutting, the cashew pull, blending the romesco during the roast, and plating). Total 45 is prep 15 plus cook 30. Active time sits inside that total.",
+    "heat": "Oven 425 F.",
+    "doneness": "Cabbage tender at the core, cut faces browned and crisp. Romesco thick enough to spoon, not a broth.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Cursor cloud agent, author role, wave-13",
+        "when": "2026-10-11",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      },
+      {
+        "version_number": 1,
+        "who": "Cursor cloud agent, author role, wave-13",
+        "when": "2026-10-11",
+        "from": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple",
+          "package_revision": "author-r1"
+        },
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple",
+          "package_revision": "author-r2"
+        },
+        "reason": "Gate E revision. Added a real 15-minute preheat to 425 F before the pan goes in. Prep 15 is that preheat; cutting and oiling (about 8 minutes active) happen during it and the pan stays out until the oven is hot. Cook 30 is hot-oven roast time. Active time is about 15 minutes inside the 45-minute total, not a third addend. Effort and complexity enums unchanged."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "cashews_only_ok",
+      "nut_policy_note": "Cashews only. No almonds and no other tree nuts. No peanuts.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. The only nut is cashew, which HH001 allows when that is the whole nut policy. No dairy, no bread, no almonds."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free, vegetarian, and plant_based. Nut policy is cashews only, not a general nut-free claim.",
+    "allergens": [
+      "tree_nut",
+      "cashew"
+    ],
+    "allergen_notes": [
+      "Tree nut and cashew both refer to the cashews. Import maps that pair, with nut_policy cashews_only_ok, to cashew rather than a general nuts tag."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. The only nut is cashew, which HH001 allows when that is the whole nut policy. No dairy, no bread, no almonds.",
+    "hh001_contract": "Romesco is roasted red peppers, cashews, garlic, smoked paprika, red wine vinegar, and olive oil. No almonds, no hazelnuts, no pine nuts, no bread, and no cheese.",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "smoky",
+      "savory",
+      "rich"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_text_revision_images_unchanged",
+    "culinary_audit_state": "revised_after_independent_audit_not_recertified",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js. Warnings about other methods stay out of the title, description, and steps."
+    },
+    "culinary_hash": "c7e1700fa33fbd4a3a9c22b98127c1d3abdd499959df9bd6e76b74775bdd4900",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking.",
+    "active_minutes": 15,
+    "revision_note": "author-r2 (2026-10-11). Gate E only. Images unchanged. Culinary hash recomputed because steps and the clock text changed. Classification enums unchanged."
+  },
+  "image": {
+    "image_id": "img_roasted-cabbage-cashew-romesco_v1",
+    "dish_id": "roasted-cabbage-cashew-romesco",
+    "recipe_version_id": "rv_roasted-cabbage-cashew-romesco_v1",
+    "asset_generated": true,
+    "slot_status": "image_pass_complete",
+    "master_filename": "roasted-cabbage-cashew-romesco.webp",
+    "card_filename": "roasted-cabbage-cashew-romesco-640.webp",
+    "master_ref": "roasted-cabbage-cashew-romesco.webp",
+    "card_ref": "roasted-cabbage-cashew-romesco-640.webp",
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "roasted-cabbage-cashew-romesco.webp",
+        "spec_catalog_path": "/images/meals/roasted-cabbage-cashew-romesco.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "roasted-cabbage-cashew-romesco-640.webp",
+        "spec_catalog_path": "/images/meals/roasted-cabbage-cashew-romesco-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "dimensions_note": "Center-crop of the 1280x720 GenerateImage JPEG to 4:3, LANCZOS-resized with export_meal_webps.py.",
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_webp_export",
+      "generator": "Grok Bot GenerateImage",
+      "model": "unknown",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "factory/tools/image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generation_date": "2026-10-11",
+      "generation_window": "2026-10-11 13:08-13:15 CT",
+      "regeneration_count": 0
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "package_revision": "author-r1",
+    "rejected_dir": "rejected/",
+    "active_source_jpeg": "img_v1.jpg",
+    "provenance_note": "Original AI image generated with Grok Bot GenerateImage from this package's prompt and plating brief. No stock or web imagery.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "4c858bb4a6dfa4b131a7b608f455642c267270847947ab0828866b03f57b7e90",
+      "master_sha256": "f2b3fb3a3228f9c9355ff6032ae516290a091c1ac8d62bf4f1ed143bfb4c2ffc",
+      "card_sha256": "a54ff4e1c57ea4dcf0c92485b85a23ca92cde1fbeb51c7b826c7b27077924153"
+    },
+    "regeneration_count": 0
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "AWAITING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 is a real preheat to 425 F before the pan goes in. Cutting and oiling, about 8 minutes active, happen during that preheat; the pan stays on the counter until the oven is hot. Cook 30 is the roast in a hot oven: 8 minutes with the cashews, then about 22 minutes more. Active time is about 15 minutes across the meal (cutting, the cashew pull, blending the romesco during the roast, and plating). Total 45 is prep 15 plus cook 30. Active time sits inside that total."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "Master and card WebPs present from the image pass."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"baked\", \"roasted\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One steak and a quarter of the sauce. The oven still runs at 425 F.",
+    "2": "Two steaks, half the sauce.",
+    "4": "As written.",
+    "do_not_scale": [
+      "oven temperature",
+      "do not crowd the steaks or they steam"
+    ]
+  },
+  "coverage_contribution": "First roasted cabbage steak. Cashew romesco uses the HH001 cashew exception on purpose, with almonds written out of the contract.",
+  "near_duplicate_review": "Stuffed cabbage is a long bake with lentils. Okonomiyaki is a pancake. Biryani also uses cashews, in rice, not in a pepper sauce.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_text_revision_images_unchanged",
+  "revision_note": "author-r2 (2026-10-11). Gate E only. Images unchanged. Culinary hash recomputed because steps and the clock text changed. Classification enums unchanged."
+}
