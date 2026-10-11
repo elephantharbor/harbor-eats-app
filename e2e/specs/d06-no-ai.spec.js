@@ -2,7 +2,10 @@
 import { test, expect } from "@playwright/test";
 import { skipToChoices } from "./helpers.js";
 
-test("no-AI plan and find do not promise a typed request", async ({ page }) => {
+test("no-AI plan and find do not promise a typed request", async ({ page, request }) => {
+  // Only meaningful where consumer AI is off (local/CI, or a keyless deploy). Hosted preview/prod run with AI on.
+  const health = await request.get("/api/ai/health").then((r) => (r.ok() ? r.json() : {})).catch(() => ({}));
+  test.skip(health?.consumer_ui === true, "target has consumer AI enabled");
   await page.goto("/");
   await skipToChoices(page);
 
