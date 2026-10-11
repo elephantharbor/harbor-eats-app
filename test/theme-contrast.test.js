@@ -100,4 +100,10 @@ describe("FlavorWeave theme tokens", () => {
     const size = css.match(/--text-button:\s*([\d.]+)rem/);
     expect(Number(size[1]) * 16).toBeGreaterThanOrEqual(18.66);
   });
+
+  it("defines alpha readiness weave and version surfaces", () => {
+    expect(css).toContain(".weave-change");
+    expect(css).toContain(".badge--your-version");
+    expect(css).toContain(".ing-changed-label");
+  });
 });

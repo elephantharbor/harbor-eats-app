@@ -13,6 +13,8 @@
     "askTableSheet",
     "planDatesSheet",
     "changeCountSheet",
+    "cookAdaptSheet",
+    "adaptChangesSheet",
     "shopLineSheet",
     "newPlanSheet",
   ];

@@ -710,6 +710,9 @@
                 <div class="badges" id="detailChips">
                   <span class="badge badge--fit" id="detailLockChip">Fits your household</span>
                 </div>
+                <p class="detail-diner-line" id="detailDinerLine" hidden></p>
+                <p class="detail-version-line" id="detailVersionLine" hidden></p>
+                <div id="detailWeaveHost" class="weave-strip weave-strip--recipe" hidden></div>
                 <p class="pick-state" id="detailPickState" aria-live="polite"></p>
                 <div class="tabs" id="detailTabs">
                   <div class="tab-list" role="tablist" aria-label="Recipe sections">
@@ -757,7 +760,11 @@
           <div class="cook">
             <div class="cook__bar">
               <button class="btn btn-quiet btn-sm" type="button" id="btnExitCook" aria-label="Exit kitchen mode"><svg class="icon" aria-hidden="true"><use href="#i-x" /></svg> Exit</button>
-              <span class="cook__meal" id="cookMealTitle">Kitchen mode</span>
+              <div class="cook__bar-copy">
+                <span class="cook__meal" id="cookMealTitle">Kitchen mode</span>
+                <button type="button" class="cook__diner btn-quiet" id="cookDinerLine" hidden>Cooking for 2</button>
+              </div>
+              <button class="btn btn-quiet btn-sm" type="button" id="btnCookChangeRecipe">Change something</button>
               <span class="cook__count" id="cookStepMeta" aria-live="polite">1 / 5</span>
             </div>
             <div class="cook-progress" id="cookProgress" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" aria-label="Cooking step progress"></div>
@@ -992,6 +999,24 @@
         </form>
       </dialog>
 
+      <dialog class="sheet" id="cookAdaptSheet" aria-labelledby="cookAdaptTitle">
+        <form method="dialog" class="sheet__inner" id="cookAdaptForm">
+          <h2 class="card-title" id="cookAdaptTitle">Change something</h2>
+          <div id="cookWeaveHost" class="weave-strip weave-strip--recipe"></div>
+          <button class="btn btn-quiet" type="submit">Close</button>
+        </form>
+      </dialog>
+
+      <dialog class="sheet" id="adaptChangesSheet" aria-labelledby="adaptChangesTitle">
+        <form method="dialog" class="sheet__inner" id="adaptChangesForm">
+          <h2 class="card-title" id="adaptChangesTitle">What changed</h2>
+          <p class="meta" id="adaptChangesAsked" hidden></p>
+          <ul class="adapt-changes-list" id="adaptChangesList"></ul>
+          <button type="button" class="btn btn-secondary" id="btnAdaptBackOriginal">Back to the original</button>
+          <button class="btn btn-quiet" type="submit">Close</button>
+        </form>
+      </dialog>
+
       <dialog class="sheet" id="changeCountSheet" aria-labelledby="changeCountTitle">
         <form method="dialog" class="sheet__inner" id="changeCountForm">
           <h2 class="card-title" id="changeCountTitle">Change the number of dinners</h2>
@@ -1041,8 +1066,11 @@
   <script src="/discovery-relax-bridge.js"></script>
   <script src="/discovery-ui.js"></script>
   <script src="/keyboard.js"></script>
-  <script src="/weave-ui.js?v=41"></script>
-  <script src="/weave-bridge.js?v=41"></script>
+  <script src="/meal-recipe-overlay.js"></script>
+  <script src="/explanation-ui.js"></script>
+  <script src="/weave-ui.js?v=42"></script>
+  <script src="/weave-bridge.js?v=42"></script>
+  <script src="/recipe-weave.js"></script>
   <script src="/app.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
