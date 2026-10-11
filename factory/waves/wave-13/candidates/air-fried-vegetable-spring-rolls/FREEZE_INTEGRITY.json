@@ -1,7 +1,7 @@
 {
-  "FREEZE_INTEGRITY": "FAIL",
-  "candidate_dir": "/workspace/factory/waves/wave-13/candidates/air-fried-vegetable-spring-rolls",
-  "fail_count": 3,
+  "FREEZE_INTEGRITY": "PASS",
+  "candidate_dir": "/workspace/harbor-eats-app/factory/waves/wave-13/candidates/air-fried-vegetable-spring-rolls",
+  "fail_count": 0,
   "checks": [
     {
       "id": "package_file",
@@ -76,17 +76,17 @@
     {
       "id": "provenance_method",
       "result": "PASS",
-      "detail": "pending_original_ai"
+      "detail": "grok_bot_GenerateImage_then_webp_export"
     },
     {
       "id": "provenance_generation_date",
-      "result": "FAIL",
-      "detail": "missing"
+      "result": "PASS",
+      "detail": "2026-10-11"
     },
     {
       "id": "provenance_generator",
       "result": "PASS",
-      "detail": "unassigned_image_pass"
+      "detail": "Grok Bot GenerateImage"
     },
     {
       "id": "provenance_model",
@@ -99,14 +99,24 @@
       "detail": "active refs do not mention rejected/"
     },
     {
-      "id": "image_exists_master",
-      "result": "FAIL",
-      "detail": "missing /workspace/factory/waves/wave-13/candidates/air-fried-vegetable-spring-rolls/air-fried-vegetable-spring-rolls.webp"
+      "id": "image_format_master",
+      "result": "PASS",
+      "detail": "air-fried-vegetable-spring-rolls.webp webp"
     },
     {
-      "id": "image_exists_card",
-      "result": "FAIL",
-      "detail": "missing /workspace/factory/waves/wave-13/candidates/air-fried-vegetable-spring-rolls/air-fried-vegetable-spring-rolls-640.webp"
+      "id": "image_dims_master",
+      "result": "PASS",
+      "detail": "1200x900"
+    },
+    {
+      "id": "image_format_card",
+      "result": "PASS",
+      "detail": "air-fried-vegetable-spring-rolls-640.webp webp"
+    },
+    {
+      "id": "image_dims_card",
+      "result": "PASS",
+      "detail": "640x480"
     },
     {
       "id": "declared_master_dims",

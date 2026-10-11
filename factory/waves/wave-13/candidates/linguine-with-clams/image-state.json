@@ -1,12 +1,26 @@
 {
-  "slot_status": "pending_image_pass",
-  "asset_generated": false,
+  "slot_status": "image_pass_complete",
+  "asset_generated": true,
+  "generation_date": "2026-10-11",
+  "generator": "Grok Bot GenerateImage",
+  "regeneration_count": 0,
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
   "expected_files": [
     "linguine-with-clams.webp",
     "linguine-with-clams-640.webp"
   ],
-  "present_files": [],
+  "present_files": [
+    "linguine-with-clams.webp",
+    "linguine-with-clams-640.webp"
+  ],
   "plating_brief": "image-plating-brief.md",
   "prompt": "image-prompt.md",
-  "note": "The author left this slot for the image pass. Generate original AI art from the prompt and brief, export both WebPs with factory/tools/export_meal_webps.py, then re-run freeze integrity before an auditor starts."
+  "hashes": {
+    "source_jpeg_sha256": "8a2462cc312cf72401d55f7418bf42ca3361c519b046b0102386ca5d61d9e938",
+    "master_sha256": "98c2f9bd742819a85151144b0e61f8972215bcc5be8c8f025dac43dc81e8917d",
+    "card_sha256": "d54a94c9e3c03a500179a5f907c8ccdba3e47e9905b10f85e6f224741ce8b0c8"
+  }
 }

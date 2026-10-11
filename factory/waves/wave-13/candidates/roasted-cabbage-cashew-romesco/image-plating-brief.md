@@ -1,6 +1,6 @@
 # Image / Plating Brief — Roasted Cabbage Steaks with Cashew Romesco
 
-Package `roasted-cabbage-cashew-romesco`, revision `author-r1`. Written before any image exists. Slot status: pending_image_pass. Standard: `factory/IMAGE-SPEC.md` and `factory/tools/image-standards/hero-appeal-amendment.md`.
+Package `roasted-cabbage-cashew-romesco`, revision `author-r1`. Written before any image exists. Image pass complete 2026-10-11. Standard: `factory/IMAGE-SPEC.md` and `factory/tools/image-standards/hero-appeal-amendment.md`.
 
 ## Hero subject
 

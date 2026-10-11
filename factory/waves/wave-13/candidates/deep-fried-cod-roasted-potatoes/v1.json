@@ -1,6 +1,6 @@
 {
   "catalog_contract": "flavorweave-catalog-package",
-  "catalog_contract_note": "Author package for wave-13. Image slot is pending_image_pass. Not certified. Not published. Not imported.",
+  "catalog_contract_note": "Author package for wave-13. Image pass complete. Not certified. Not published. Not imported.",
   "batch_id": "wave-13-2026-10-11",
   "batch_label": "wave-13",
   "mode": "author_batch",
@@ -48,7 +48,7 @@
     "version_number": 1,
     "package_revision": "author-r1",
     "immutable": true,
-    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. The image slot is pending_image_pass. Not certified. Not published. kitchen_tested is false.",
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. The image pass is complete. Not certified. Not published. kitchen_tested is false.",
     "title": "Deep-Fried Cod with Oven-Roasted Potatoes",
     "description": "Cod in a club-soda batter, deep-fried until golden, with oven-roasted potato wedges whose edges are crisp. Lemon, parsley, and vinegar at the table. No butter.",
     "base_servings": 4,
@@ -382,7 +382,7 @@
     ],
     "publication_state": "Draft",
     "publication_status": "draft",
-    "structural_qa_state": "author_r1_image_slot_pending",
+    "structural_qa_state": "author_r1_image_pass_complete",
     "culinary_audit_state": "not_audited",
     "kitchen_tested": false,
     "validation_kind": "author_structural_preflight_only",
@@ -406,48 +406,84 @@
     "image_id": "img_deep-fried-cod-roasted-potatoes_v1",
     "dish_id": "deep-fried-cod-roasted-potatoes",
     "recipe_version_id": "rv_deep-fried-cod-roasted-potatoes_v1",
-    "asset_generated": false,
-    "slot_status": "pending_image_pass",
+    "asset_generated": true,
+    "slot_status": "image_pass_complete",
     "master_filename": "deep-fried-cod-roasted-potatoes.webp",
     "card_filename": "deep-fried-cod-roasted-potatoes-640.webp",
-    "master_ref": null,
-    "card_ref": null,
-    "derivatives": [],
+    "master_ref": "deep-fried-cod-roasted-potatoes.webp",
+    "card_ref": "deep-fried-cod-roasted-potatoes-640.webp",
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "deep-fried-cod-roasted-potatoes.webp",
+        "spec_catalog_path": "/images/meals/deep-fried-cod-roasted-potatoes.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "deep-fried-cod-roasted-potatoes-640.webp",
+        "spec_catalog_path": "/images/meals/deep-fried-cod-roasted-potatoes-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
     "dimensions": {
       "master_width": 1200,
       "master_height": 900,
       "card_width": 640,
       "card_height": 480
     },
-    "dimensions_note": "Targets for the image pass. No WebP file is in this directory yet.",
+    "dimensions_note": "Center-crop of the 1280x720 GenerateImage JPEG to 4:3, LANCZOS-resized with export_meal_webps.py.",
     "generation": {
-      "method": "pending_original_ai",
-      "generator": "unassigned_image_pass",
+      "method": "grok_bot_GenerateImage_then_webp_export",
+      "generator": "Grok Bot GenerateImage",
       "model": "unknown",
       "prompt_file": "image-prompt.md",
       "plating_brief_file": "image-plating-brief.md",
       "external_image_api_called": false,
       "stock_or_web_photo_used": false,
-      "house_quality_reference": "factory/tools/image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+      "house_quality_reference": "factory/tools/image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generation_date": "2026-10-11",
+      "generation_window": "2026-10-11 13:08-13:15 CT",
+      "regeneration_count": 0
     },
-    "qa_state": "pending_image_pass",
-    "recipe_fidelity_state": "pending_image_pass",
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
     "rights": "not_cleared_for_external_release",
-    "provenance": "pending_original_ai",
+    "provenance": "ai_illustration",
     "package_revision": "author-r1",
-    "rejected_dir": "rejected/"
+    "rejected_dir": "rejected/",
+    "active_source_jpeg": "img_v1.jpg",
+    "provenance_note": "Original AI image generated with Grok Bot GenerateImage from this package's prompt and plating brief. No stock or web imagery.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "50d97b3910962f17f9b58d39615ecd03ef673a9f94516ff1ff33d31e9489b9d6",
+      "master_sha256": "126902a6a170c1d922bd3daccb95fd19f00947a635f35172b7925032921f596f",
+      "card_sha256": "7f53bcce1b5b11b454de73d56810f4f5ab800f414689b76239bb9797f686c3c9"
+    },
+    "regeneration_count": 0
   },
   "catalog_confidence": {
     "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
     "culinary_audit": "NOT_RUN",
     "dietary_audit": "NOT_RUN",
-    "image_fidelity": "PENDING_ASSET",
-    "provenance": "KNOWN_TEXT",
-    "image_rights_provenance": "PENDING_ORIGINAL_AI",
+    "image_fidelity": "AWAITING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
     "kitchen_tested": false,
     "household_cooks": 0,
     "household_completed_ratings": 0,
-    "image_provenance": "PENDING_GROK_BOT"
+    "image_provenance": "PRESENT_AI"
   },
   "curator_preflight": [
     {
@@ -462,8 +498,8 @@
     },
     {
       "check": "image",
-      "result": "pending_image_pass",
-      "detail": "Plating brief and prompt are written. WebP files are not in this directory."
+      "result": "pass",
+      "detail": "Master and card WebPs present from the image pass."
     },
     {
       "check": "cooking",
@@ -484,5 +520,5 @@
   "coverage_contribution": "British 1 to 2, and the first HH001 British meal. Cod moves from tacos to a deep-fried plate. Potatoes are roasted crisp, not a second fry.",
   "near_duplicate_review": "Compared with crispy fish tacos: same species, different format, and those tacos are a stovetop legacy package. Compared with Cajun catfish: blackened, not deep-fried. Compared with Thai fish cakes: a paste cake, not a battered fillet.",
   "recommendation_eligible": false,
-  "structural_qa_state": "author_r1_image_slot_pending"
+  "structural_qa_state": "author_r1_image_pass_complete"
 }

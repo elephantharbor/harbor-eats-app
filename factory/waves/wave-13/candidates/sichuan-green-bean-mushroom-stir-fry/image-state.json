@@ -1,12 +1,26 @@
 {
-  "slot_status": "pending_image_pass",
-  "asset_generated": false,
+  "slot_status": "image_pass_complete",
+  "asset_generated": true,
+  "generation_date": "2026-10-11",
+  "generator": "Grok Bot GenerateImage",
+  "regeneration_count": 0,
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
   "expected_files": [
     "sichuan-green-bean-mushroom-stir-fry.webp",
     "sichuan-green-bean-mushroom-stir-fry-640.webp"
   ],
-  "present_files": [],
+  "present_files": [
+    "sichuan-green-bean-mushroom-stir-fry.webp",
+    "sichuan-green-bean-mushroom-stir-fry-640.webp"
+  ],
   "plating_brief": "image-plating-brief.md",
   "prompt": "image-prompt.md",
-  "note": "The author left this slot for the image pass. Generate original AI art from the prompt and brief, export both WebPs with factory/tools/export_meal_webps.py, then re-run freeze integrity before an auditor starts."
+  "hashes": {
+    "source_jpeg_sha256": "1d534e9c9c4ee06a9bc5cf04cb3deeda4daea8793a46f73c0ccb9b41e471d615",
+    "master_sha256": "a66803497cc93021bbfe502687d03ecb82888cf6a859c93a6dc5bc69637d1462",
+    "card_sha256": "382b86903077008e16acdf42fca8d7184fe9278542da5e89dc41e7dd9e9aa865"
+  }
 }

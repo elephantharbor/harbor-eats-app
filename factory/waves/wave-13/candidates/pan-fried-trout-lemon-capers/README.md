@@ -2,7 +2,7 @@
 
 Trout fillets pan-fried in olive oil, with a lemon and caper pan sauce made with vegetable broth. No butter.
 
-Author package for FlavorWeave Catalog Factory wave-13-2026-10-11. package_revision `author-r1`. kitchen_tested is false. Not certified. Not published. Not imported. Image slot: pending_image_pass.
+Author package for FlavorWeave Catalog Factory wave-13-2026-10-11. package_revision `author-r1`. kitchen_tested is false. Not certified. Not published. Not imported. Image pass complete (2026-10-11, Grok Bot GenerateImage).
 
 ## Identity
 

@@ -1,6 +1,6 @@
 {
   "catalog_contract": "flavorweave-catalog-package",
-  "catalog_contract_note": "Author package for wave-13. Image slot is pending_image_pass. Not certified. Not published. Not imported.",
+  "catalog_contract_note": "Author package for wave-13. Image pass complete. Not certified. Not published. Not imported.",
   "batch_id": "wave-13-2026-10-11",
   "batch_label": "wave-13",
   "mode": "author_batch",
@@ -48,7 +48,7 @@
     "version_number": 1,
     "package_revision": "author-r1",
     "immutable": true,
-    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. The image slot is pending_image_pass. Not certified. Not published. kitchen_tested is false.",
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. The image pass is complete. Not certified. Not published. kitchen_tested is false.",
     "title": "Linguine with Clams",
     "description": "Littleneck clams steamed open in garlic and white wine, tossed with linguine, parsley, and lemon. No cheese and no butter.",
     "base_servings": 4,
@@ -281,7 +281,7 @@
     ],
     "publication_state": "Draft",
     "publication_status": "draft",
-    "structural_qa_state": "author_r1_image_slot_pending",
+    "structural_qa_state": "author_r1_image_pass_complete",
     "culinary_audit_state": "not_audited",
     "kitchen_tested": false,
     "validation_kind": "author_structural_preflight_only",
@@ -305,48 +305,84 @@
     "image_id": "img_linguine-with-clams_v1",
     "dish_id": "linguine-with-clams",
     "recipe_version_id": "rv_linguine-with-clams_v1",
-    "asset_generated": false,
-    "slot_status": "pending_image_pass",
+    "asset_generated": true,
+    "slot_status": "image_pass_complete",
     "master_filename": "linguine-with-clams.webp",
     "card_filename": "linguine-with-clams-640.webp",
-    "master_ref": null,
-    "card_ref": null,
-    "derivatives": [],
+    "master_ref": "linguine-with-clams.webp",
+    "card_ref": "linguine-with-clams-640.webp",
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "linguine-with-clams.webp",
+        "spec_catalog_path": "/images/meals/linguine-with-clams.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "linguine-with-clams-640.webp",
+        "spec_catalog_path": "/images/meals/linguine-with-clams-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
     "dimensions": {
       "master_width": 1200,
       "master_height": 900,
       "card_width": 640,
       "card_height": 480
     },
-    "dimensions_note": "Targets for the image pass. No WebP file is in this directory yet.",
+    "dimensions_note": "Center-crop of the 1280x720 GenerateImage JPEG to 4:3, LANCZOS-resized with export_meal_webps.py.",
     "generation": {
-      "method": "pending_original_ai",
-      "generator": "unassigned_image_pass",
+      "method": "grok_bot_GenerateImage_then_webp_export",
+      "generator": "Grok Bot GenerateImage",
       "model": "unknown",
       "prompt_file": "image-prompt.md",
       "plating_brief_file": "image-plating-brief.md",
       "external_image_api_called": false,
       "stock_or_web_photo_used": false,
-      "house_quality_reference": "factory/tools/image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+      "house_quality_reference": "factory/tools/image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generation_date": "2026-10-11",
+      "generation_window": "2026-10-11 13:08-13:15 CT",
+      "regeneration_count": 0
     },
-    "qa_state": "pending_image_pass",
-    "recipe_fidelity_state": "pending_image_pass",
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
     "rights": "not_cleared_for_external_release",
-    "provenance": "pending_original_ai",
+    "provenance": "ai_illustration",
     "package_revision": "author-r1",
-    "rejected_dir": "rejected/"
+    "rejected_dir": "rejected/",
+    "active_source_jpeg": "img_v1.jpg",
+    "provenance_note": "Original AI image generated with Grok Bot GenerateImage from this package's prompt and plating brief. No stock or web imagery.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "8a2462cc312cf72401d55f7418bf42ca3361c519b046b0102386ca5d61d9e938",
+      "master_sha256": "98c2f9bd742819a85151144b0e61f8972215bcc5be8c8f025dac43dc81e8917d",
+      "card_sha256": "d54a94c9e3c03a500179a5f907c8ccdba3e47e9905b10f85e6f224741ce8b0c8"
+    },
+    "regeneration_count": 0
   },
   "catalog_confidence": {
     "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
     "culinary_audit": "NOT_RUN",
     "dietary_audit": "NOT_RUN",
-    "image_fidelity": "PENDING_ASSET",
-    "provenance": "KNOWN_TEXT",
-    "image_rights_provenance": "PENDING_ORIGINAL_AI",
+    "image_fidelity": "AWAITING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
     "kitchen_tested": false,
     "household_cooks": 0,
     "household_completed_ratings": 0,
-    "image_provenance": "PENDING_GROK_BOT"
+    "image_provenance": "PRESENT_AI"
   },
   "curator_preflight": [
     {
@@ -361,8 +397,8 @@
     },
     {
       "check": "image",
-      "result": "pending_image_pass",
-      "detail": "Plating brief and prompt are written. WebP files are not in this directory."
+      "result": "pass",
+      "detail": "Master and card WebPs present from the image pass."
     },
     {
       "check": "cooking",
@@ -383,5 +419,5 @@
   "coverage_contribution": "First clam dish. Shellfish was shrimp, mussels, and scallops. A pasta with no dairy.",
   "near_duplicate_review": "Lemon garlic shrimp pasta is a different shellfish and often a different sauce shape. Mussels are a tomato one-pot, not linguine.",
   "recommendation_eligible": false,
-  "structural_qa_state": "author_r1_image_slot_pending"
+  "structural_qa_state": "author_r1_image_pass_complete"
 }

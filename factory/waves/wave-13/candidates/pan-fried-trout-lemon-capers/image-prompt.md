@@ -1,6 +1,6 @@
 # Image prompt — Pan-Fried Trout with Lemon and Capers
 
-Status: pending_image_pass. package_revision `author-r1`. Do not treat this file as a finished asset. The image pass generates an original AI image from this prompt, then exports WebPs with `factory/tools/export_meal_webps.py`.
+Status: image pass complete. package_revision `author-r1`. The active image was generated from this prompt on 2026-10-11 with Grok Bot GenerateImage and exported with `factory/tools/export_meal_webps.py`.
 
 Prompt:
 

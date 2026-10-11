@@ -1,6 +1,6 @@
 # Image / Plating Brief — Sichuan Green Bean and Mushroom Stir-Fry
 
-Package `sichuan-green-bean-mushroom-stir-fry`, revision `author-r1`. Written before any image exists. Slot status: pending_image_pass. Standard: `factory/IMAGE-SPEC.md` and `factory/tools/image-standards/hero-appeal-amendment.md`.
+Package `sichuan-green-bean-mushroom-stir-fry`, revision `author-r1`. Written before any image exists. Image pass complete 2026-10-11. Standard: `factory/IMAGE-SPEC.md` and `factory/tools/image-standards/hero-appeal-amendment.md`.
 
 ## Hero subject
 

@@ -2,7 +2,7 @@
 
 Thick cabbage steaks roasted in the oven until the cut faces are crisp, with a cashew romesco. Cashews only: no almonds and no dairy.
 
-Author package for FlavorWeave Catalog Factory wave-13-2026-10-11. package_revision `author-r1`. kitchen_tested is false. Not certified. Not published. Not imported. Image slot: pending_image_pass.
+Author package for FlavorWeave Catalog Factory wave-13-2026-10-11. package_revision `author-r1`. kitchen_tested is false. Not certified. Not published. Not imported. Image pass complete (2026-10-11, Grok Bot GenerateImage).
 
 ## Identity
 

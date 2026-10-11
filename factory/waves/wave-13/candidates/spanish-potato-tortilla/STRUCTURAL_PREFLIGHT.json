@@ -1,9 +1,9 @@
 {
-  "dir": "/workspace/factory/waves/wave-13/candidates/spanish-potato-tortilla",
+  "dir": "/workspace/harbor-eats-app/factory/waves/wave-13/candidates/spanish-potato-tortilla",
   "slug": "spanish-potato-tortilla",
-  "STRUCTURAL_PREFLIGHT": "PASS",
+  "STRUCTURAL_PREFLIGHT": "FAIL",
   "hh001_eligible": true,
-  "fail_count": 0,
+  "fail_count": 1,
   "checks": [
     {
       "id": "package_json",
@@ -77,8 +77,8 @@
     },
     {
       "id": "image_slot",
-      "result": "PASS",
-      "detail": "pending_image_pass"
+      "result": "FAIL",
+      "detail": "asset_generated true is an image-pass concern; structural preflight expects a pending slot unless freeze integrity is the gate"
     },
     {
       "id": "d03_sidecar",

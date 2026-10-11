@@ -1,12 +1,26 @@
 {
-  "slot_status": "pending_image_pass",
-  "asset_generated": false,
+  "slot_status": "image_pass_complete",
+  "asset_generated": true,
+  "generation_date": "2026-10-11",
+  "generator": "Grok Bot GenerateImage",
+  "regeneration_count": 0,
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
   "expected_files": [
     "deep-fried-cod-roasted-potatoes.webp",
     "deep-fried-cod-roasted-potatoes-640.webp"
   ],
-  "present_files": [],
+  "present_files": [
+    "deep-fried-cod-roasted-potatoes.webp",
+    "deep-fried-cod-roasted-potatoes-640.webp"
+  ],
   "plating_brief": "image-plating-brief.md",
   "prompt": "image-prompt.md",
-  "note": "The author left this slot for the image pass. Generate original AI art from the prompt and brief, export both WebPs with factory/tools/export_meal_webps.py, then re-run freeze integrity before an auditor starts."
+  "hashes": {
+    "source_jpeg_sha256": "50d97b3910962f17f9b58d39615ecd03ef673a9f94516ff1ff33d31e9489b9d6",
+    "master_sha256": "126902a6a170c1d922bd3daccb95fd19f00947a635f35172b7925032921f596f",
+    "card_sha256": "7f53bcce1b5b11b454de73d56810f4f5ab800f414689b76239bb9797f686c3c9"
+  }
 }

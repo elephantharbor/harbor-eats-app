@@ -2,7 +2,7 @@
 
 Cod in a club-soda batter, deep-fried until golden, with oven-roasted potato wedges whose edges are crisp. Lemon, parsley, and vinegar at the table. No butter.
 
-Author package for FlavorWeave Catalog Factory wave-13-2026-10-11. package_revision `author-r1`. kitchen_tested is false. Not certified. Not published. Not imported. Image slot: pending_image_pass.
+Author package for FlavorWeave Catalog Factory wave-13-2026-10-11. package_revision `author-r1`. kitchen_tested is false. Not certified. Not published. Not imported. Image pass complete (2026-10-11, Grok Bot GenerateImage).
 
 ## Identity
 

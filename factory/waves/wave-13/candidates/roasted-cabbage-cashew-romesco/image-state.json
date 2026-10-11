@@ -1,12 +1,26 @@
 {
-  "slot_status": "pending_image_pass",
-  "asset_generated": false,
+  "slot_status": "image_pass_complete",
+  "asset_generated": true,
+  "generation_date": "2026-10-11",
+  "generator": "Grok Bot GenerateImage",
+  "regeneration_count": 0,
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
   "expected_files": [
     "roasted-cabbage-cashew-romesco.webp",
     "roasted-cabbage-cashew-romesco-640.webp"
   ],
-  "present_files": [],
+  "present_files": [
+    "roasted-cabbage-cashew-romesco.webp",
+    "roasted-cabbage-cashew-romesco-640.webp"
+  ],
   "plating_brief": "image-plating-brief.md",
   "prompt": "image-prompt.md",
-  "note": "The author left this slot for the image pass. Generate original AI art from the prompt and brief, export both WebPs with factory/tools/export_meal_webps.py, then re-run freeze integrity before an auditor starts."
+  "hashes": {
+    "source_jpeg_sha256": "4c858bb4a6dfa4b131a7b608f455642c267270847947ab0828866b03f57b7e90",
+    "master_sha256": "f2b3fb3a3228f9c9355ff6032ae516290a091c1ac8d62bf4f1ed143bfb4c2ffc",
+    "card_sha256": "a54ff4e1c57ea4dcf0c92485b85a23ca92cde1fbeb51c7b826c7b27077924153"
+  }
 }

@@ -2,7 +2,7 @@
 
 A hot stir-fry of blistered green beans and shiitake in chili bean paste, with steamed rice. No oyster sauce and no nuts.
 
-Author package for FlavorWeave Catalog Factory wave-13-2026-10-11. package_revision `author-r1`. kitchen_tested is false. Not certified. Not published. Not imported. Image slot: pending_image_pass.
+Author package for FlavorWeave Catalog Factory wave-13-2026-10-11. package_revision `author-r1`. kitchen_tested is false. Not certified. Not published. Not imported. Image pass complete (2026-10-11, Grok Bot GenerateImage).
 
 ## Identity
 

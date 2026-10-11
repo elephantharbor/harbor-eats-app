@@ -1,12 +1,26 @@
 {
-  "slot_status": "pending_image_pass",
-  "asset_generated": false,
+  "slot_status": "image_pass_complete",
+  "asset_generated": true,
+  "generation_date": "2026-10-11",
+  "generator": "Grok Bot GenerateImage",
+  "regeneration_count": 0,
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
   "expected_files": [
     "seared-duck-breast-cherry.webp",
     "seared-duck-breast-cherry-640.webp"
   ],
-  "present_files": [],
+  "present_files": [
+    "seared-duck-breast-cherry.webp",
+    "seared-duck-breast-cherry-640.webp"
+  ],
   "plating_brief": "image-plating-brief.md",
   "prompt": "image-prompt.md",
-  "note": "The author left this slot for the image pass. Generate original AI art from the prompt and brief, export both WebPs with factory/tools/export_meal_webps.py, then re-run freeze integrity before an auditor starts."
+  "hashes": {
+    "source_jpeg_sha256": "0ef570e4addc470a3dfb1c5076ba098305bf3324c72c4d79e1577b25e74335a1",
+    "master_sha256": "d298c1b38f288eae0947d615736447376582dfb299fb9bae07543170ba2a7f67",
+    "card_sha256": "9d83da4ec820d1479b4abed1e66c04949c54ef20c4bfa005bc4d13155a8f7773"
+  }
 }
