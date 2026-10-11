@@ -2,6 +2,7 @@
  * Alpha readiness AI routes: recipe adaptation advice and recommendation explanations.
  */
 
+import { createHash } from "node:crypto";
 import { createD1Store, createGenerationService, resolveProvider } from "./index.js";
 import { requireSession } from "../lib/auth.js";
 import {
@@ -12,6 +13,7 @@ import {
 import {
   ADAPTATION_FALLBACK_REFUSAL,
   ADAPTATION_SAFETY_REFUSAL,
+  equipmentUnsupportedResponse,
   reconcileEquipmentUnsupported,
   validateAdaptationSafety,
 } from "../lib/meal-adaptation.js";
@@ -35,8 +37,49 @@ const ADAPT_FALLBACK = {
   kind: "unsupported",
 };
 
-function adaptationFallback() {
-  return respond(ADAPT_FALLBACK);
+function providerUsage(gen) {
+  if (gen?.source === "provider") return { provider_calls: 1 };
+  const attempts = Number(gen?.metadata?.attempts);
+  if (Number.isFinite(attempts) && attempts > 0) return { provider_calls: 1 };
+  return { provider_calls: 0 };
+}
+
+function adaptationFallback(text, meal, gen) {
+  const usage = providerUsage(gen);
+  const blocked = equipmentUnsupportedResponse(text, meal);
+  if (blocked) return respond({ ...blocked, usage });
+  return respond({ ...ADAPT_FALLBACK, source: "fallback", usage });
+}
+
+function adviceWithoutApply(validated, gen) {
+  const notes = (validated.value.step_notes || []).filter((note) => note && note.step_number);
+  const source = gen?.source === "cache" ? "cache" : "provider";
+  if (notes.length) {
+    return respond({
+      ok: true,
+      support: "advice",
+      acknowledgement: validated.value.acknowledgement,
+      kind: "prep",
+      ingredient_ops: [],
+      step_notes: notes,
+      equipment_supported: validated.value.equipment_supported !== false,
+      flavor_impact: validated.value.flavor_impact ?? null,
+      warning: validated.value.warning ?? null,
+      source,
+      usage: providerUsage(gen),
+    });
+  }
+  return respond({
+    ok: true,
+    support: "unsupported",
+    acknowledgement: validated.value.acknowledgement || ADAPTATION_FALLBACK_REFUSAL,
+    kind: "unsupported",
+    ingredient_ops: [],
+    step_notes: [],
+    equipment_supported: false,
+    source,
+    usage: providerUsage(gen),
+  });
 }
 
 function withIngredientIds(ingredients) {
@@ -169,6 +212,8 @@ export async function routeAlphaAiRequest(env, request, path) {
         steps: loaded.version.steps,
       }),
     };
+    const blocked = equipmentUnsupportedResponse(body.text, pinMeal);
+    if (blocked) return respond(blocked);
     let modelOutput;
     let support = "advice";
     let gen;
@@ -187,20 +232,13 @@ export async function routeAlphaAiRequest(env, request, path) {
         },
       });
     } catch {
-      return adaptationFallback();
+      return adaptationFallback(body.text, pinMeal);
     }
-    if (!gen?.ok || gen.output == null) return adaptationFallback();
+    if (!gen?.ok || gen.output == null) return adaptationFallback(body.text, pinMeal, gen);
     modelOutput = gen.output;
     modelOutput = reconcileEquipmentUnsupported(body.text, pinMeal, modelOutput);
     const validated = postValidateRecipeAdaptation(modelOutput);
-    if (!validated.ok) {
-      return respond({
-        ok: true,
-        support: "fallback",
-        acknowledgement: ADAPTATION_FALLBACK_REFUSAL,
-        kind: "unsupported",
-      });
-    }
+    if (!validated.ok) return adaptationFallback(body.text, pinMeal, gen);
     const safety = validateAdaptationSafety(validated.value, pinMeal, ctx);
     if (!safety.ok) {
       return respond({
@@ -209,14 +247,27 @@ export async function routeAlphaAiRequest(env, request, path) {
         acknowledgement: ADAPTATION_SAFETY_REFUSAL,
         kind: validated.value.kind,
         ingredient_ops: [],
+        source: gen.source === "cache" ? "cache" : "provider",
+        usage: providerUsage(gen),
       });
     }
+    const kept = safety.override?.ops || [];
+    if (!kept.length) return adviceWithoutApply(validated, gen);
     if (validated.value.support === "unsupported") support = "unsupported";
+    const source = gen.source === "cache" ? "cache" : "provider";
     return respond({
       ok: true,
       support,
       ...validated.value,
+      ingredient_ops: kept.map((op) => ({
+        op: op.op,
+        from_id: op.from_id,
+        to_name: op.to_name,
+        policy: op.policy,
+      })),
       override: safety.override,
+      source,
+      usage: providerUsage(gen),
       recipe_slug: loaded.slug,
     });
   }
@@ -242,11 +293,19 @@ export async function routeAlphaAiRequest(env, request, path) {
     const loaded = await loadRecipeShape(env, slug, versionId);
     if (loaded.error) return loaded.error;
     const tastes = await householdTastes(env.DB, auth.session.household_id);
-    const packet = buildExplanationPacket({
+    let packet = buildExplanationPacket({
       recipe: authoritativeRecipe(loaded, meal),
       intent: plan?.intent || {},
       tastes,
     });
+    if (body.cache_bust) {
+      packet = {
+        ...packet,
+        evidence_fingerprint: createHash("sha256")
+          .update(`${packet.evidence_fingerprint}|${String(body.cache_bust).slice(0, 48)}`)
+          .digest("hex"),
+      };
+    }
     const templateText = packet.template || explanationColdTemplate();
     if (packet.strength === "weak" || packet.basis === "cold") {
       return respond({ ok: true, text: templateText, source: "template", basis: packet.basis });
@@ -272,18 +331,32 @@ export async function routeAlphaAiRequest(env, request, path) {
       return respond({ ok: true, text: templateText, source: "fallback", basis: packet.basis });
     }
     if (!gen?.ok || gen.output == null) {
-      return respond({ ok: true, text: templateText, source: "fallback", basis: packet.basis });
+      return respond({
+        ok: true,
+        text: templateText,
+        source: "fallback",
+        basis: packet.basis,
+        usage: providerUsage(gen),
+      });
     }
     const checked = postValidateExplanation(gen.output, packet);
     if (!checked.ok) {
-      return respond({ ok: true, text: templateText, source: "fallback", basis: packet.basis });
+      return respond({
+        ok: true,
+        text: templateText,
+        source: "fallback",
+        basis: packet.basis,
+        usage: providerUsage(gen),
+      });
     }
+    const source = gen.source === "cache" ? "cache" : "provider";
     return respond({
       ok: true,
       text: checked.value.text,
       used_fact_ids: checked.value.used_fact_ids,
-      source: gen.source === "cache" ? "cache" : "provider",
+      source,
       basis: packet.basis,
+      usage: providerUsage(gen),
     });
   }
 

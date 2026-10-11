@@ -86,7 +86,7 @@ export const PROMPTS = Object.freeze({
   },
   explanation: {
     version: "explanation@2",
-    system: `${SYSTEM}\n\nTask explanation. Phrase only the supplied facts. used_fact_ids must list fact ids you relied on.`,
+    system: `${SYSTEM}\n\nTask explanation. Phrase only the supplied facts in one or two natural sentences. Do not glue facts together with a semicolon or a semicolon fragment. used_fact_ids must list fact ids you relied on.`,
     user: "Facts: {{facts}}\nBasis: {{basis}}\nAllowed phrases: {{allowed_phrases}}",
   },
   semantic_search_assist: { version: "semantic_search_assist@1", system: SYSTEM, user: "Suggest alternate search phrasings and facet hints for the query.\nQuery: {{text}}" },

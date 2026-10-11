@@ -7,6 +7,7 @@ import { DatabaseSync } from "node:sqlite";
 import { describe, expect, it } from "vitest";
 import { createFakeProvider } from "../src/ai/providers/fake.js";
 import { routeAlphaAiRequest } from "../src/ai/alpha-routes.js";
+import { PRESSURE_COOKER_UNSUPPORTED } from "../src/lib/meal-adaptation.js";
 import { canonicalIngredient } from "../src/lib/ingredient-identity.js";
 import { plannerCatalog } from "../src/lib/dinner-planner.js";
 import { getConceptBySlug } from "../src/lib/recipe-store.js";
@@ -146,6 +147,90 @@ describe("alpha routes through the fake provider", () => {
     expect(provider.calls[0].schema_name).toBe("recipe_adaptation");
   });
 
+  it("skips the provider when the cook asks to drop the pressure cooker", async () => {
+    const concept = getConceptBySlug("miso-ginger-salmon");
+    const previous = concept.current_version.equipment;
+    concept.current_version.equipment = ["pressure cooker"];
+    try {
+      const sqlite = migrate();
+      seedHousehold(sqlite);
+      const db = asD1(sqlite);
+      const session = await createMemberSession(db, { household_id: "hh_alpha", member_id: "m_a" });
+      const provider = createFakeProvider({
+        script: [{ json: { acknowledgement: "Use a pot.", support: "advice", kind: "method", ingredient_ops: [], step_notes: [], equipment_supported: true, flavor_impact: "similar", warning: null } }],
+      });
+      const res = await postJson(envFor(db, provider), session.session_token, "/api/recipes/adapt", {
+        text: "Make this without the pressure cooker.",
+        recipe_slug: "miso-ginger-salmon",
+      });
+      expect(res.status).toBe(200);
+      expect(res.body.support).toBe("unsupported");
+      expect(res.body.acknowledgement).toBe(PRESSURE_COOKER_UNSUPPORTED);
+      expect(res.body.ingredient_ops).toEqual([]);
+      expect(res.body.usage.provider_calls).toBe(0);
+      expect(provider.calls).toHaveLength(0);
+    } finally {
+      concept.current_version.equipment = previous;
+    }
+  });
+
+  it("keeps the pressure-cooker refusal when the gateway would have fallen back", async () => {
+    const concept = getConceptBySlug("miso-ginger-salmon");
+    const previous = concept.current_version.equipment;
+    concept.current_version.equipment = ["pressure cooker"];
+    try {
+      const sqlite = migrate();
+      seedHousehold(sqlite);
+      const db = asD1(sqlite);
+      const session = await createMemberSession(db, { household_id: "hh_alpha", member_id: "m_a" });
+      const provider = createFakeProvider({ script: [{ json: { acknowledgement: "should not run" } }] });
+      const res = await postJson(
+        envFor(db, provider, { AI_TASKS_ENABLED: "planning_intent,discovery_intent" }),
+        session.session_token,
+        "/api/recipes/adapt",
+        { text: "Make this without the pressure cooker.", recipe_slug: "miso-ginger-salmon" }
+      );
+      expect(res.status).toBe(200);
+      expect(res.body.support).toBe("unsupported");
+      expect(res.body.acknowledgement).toBe(PRESSURE_COOKER_UNSUPPORTED);
+      expect(res.body.usage.provider_calls).toBe(0);
+      expect(provider.calls).toHaveLength(0);
+    } finally {
+      concept.current_version.equipment = previous;
+    }
+  });
+
+  it("does not offer Apply when the replace source is missing", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite);
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_alpha", member_id: "m_a" });
+    const provider = createFakeProvider({
+      script: [{
+        json: {
+          acknowledgement: "Parsley works here.",
+          kind: "substitution",
+          support: "advice",
+          ingredient_ops: [{ op: "replace", from_id: null, to_name: "parsley", policy: "keep_scaled" }],
+          step_notes: [],
+          equipment_supported: true,
+          flavor_impact: "similar",
+          warning: null,
+        },
+      }],
+    });
+    const res = await postJson(envFor(db, provider), session.session_token, "/api/recipes/adapt", {
+      text: "use parsley",
+      recipe_slug: "miso-ginger-salmon",
+    });
+    expect(res.status).toBe(200);
+    expect(res.body.ingredient_ops).toEqual([]);
+    expect(res.body.override).toBeUndefined();
+    expect(res.body.support).toBe("unsupported");
+    expect(provider.calls).toHaveLength(1);
+    expect(res.body.usage.provider_calls).toBe(1);
+  });
+
   it("rejects peanuts for every active diner when the request has no meal", async () => {
     const sqlite = migrate();
     seedHousehold(sqlite, { nuts: true });
@@ -209,6 +294,7 @@ describe("alpha routes through the fake provider", () => {
     expect(res.status).toBe(200);
     expect(res.body.support).toBe("fallback");
     expect(res.body.acknowledgement).toBe(FALLBACK_ACK);
+    expect(res.body.usage.provider_calls).toBe(1);
     expect(provider.calls.length).toBeGreaterThan(0);
   });
 
@@ -289,5 +375,6 @@ describe("alpha routes through the fake provider", () => {
     expect(res.body.source).toBe("fallback");
     expect(res.body.text).not.toMatch(/smoky/i);
     expect(res.body.packet).toBeUndefined();
+    expect(res.body.usage.provider_calls).toBe(1);
   });
 });

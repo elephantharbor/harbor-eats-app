@@ -198,6 +198,35 @@ export function reconcileEquipmentUnsupported(text, meal, modelOutput) {
 }
 
 /**
+ * Deterministic refusal when this recipe needs a pressure cooker and the
+ * cook asked to skip it. Null when the provider may still run.
+ * @param {string} text
+ * @param {object} meal
+ */
+export function equipmentUnsupportedResponse(text, meal) {
+  const probe = reconcileEquipmentUnsupported(text, meal, {
+    acknowledgement: "",
+    support: "advice",
+    kind: "substitution",
+    ingredient_ops: [{ op: "replace", from_id: "x", to_name: "y" }],
+    step_notes: [{ step_number: 1, note: "keep" }],
+    equipment_supported: true,
+  });
+  if (probe.support !== "unsupported") return null;
+  return {
+    ok: true,
+    support: "unsupported",
+    acknowledgement: PRESSURE_COOKER_UNSUPPORTED,
+    kind: "unsupported",
+    ingredient_ops: [],
+    step_notes: [],
+    equipment_supported: false,
+    source: "deterministic",
+    usage: { provider_calls: 0 },
+  };
+}
+
+/**
  * @param {object} modelOutput
  * @param {object} meal
  * @param {object} ctx
@@ -235,10 +264,13 @@ export function validateAdaptationSafety(modelOutput, meal, ctx) {
         return { ok: false, status: "rejected_safety", blocked: decision.blocked };
       }
     }
-    if (fromId) {
-      const pin = (meal.pinned_ingredients || []).find((i) => i.ingredient_id === fromId);
+    const needsSource = raw.op === "replace" || raw.op === "remove";
+    if (needsSource || fromId) {
+      const pin = fromId
+        ? (meal.pinned_ingredients || []).find((item) => item.ingredient_id === fromId)
+        : null;
       if (!pin) {
-        dropped.push(fromId);
+        dropped.push(fromId ?? null);
         continue;
       }
     }

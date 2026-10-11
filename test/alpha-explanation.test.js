@@ -1,5 +1,7 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { createFakeProvider, createGenerationService, createMemoryStore } from "../src/ai/index.js";
+import { renderPrompt } from "../src/ai/prompts.js";
 import {
   buildExplanationPacket,
   explanationColdTemplate,
@@ -11,6 +13,52 @@ describe("recommendation explanations", () => {
     const packet = buildExplanationPacket({ row: { effort_level: "easy" }, intent: {} });
     expect(packet.strength).toBe("weak");
     expect(packet.template).toBeTruthy();
+  });
+
+  it("rejects a semicolon fragment and keeps a two-sentence explanation", () => {
+    const packet = buildExplanationPacket({
+      recipe: { effort_level: "moderate", ingredient_complexity: "standard", total_minutes: 52 },
+      intent: { keep_it_easy: true, keep_ingredients_simple: true },
+    });
+    expect(packet.strength).toBe("strong");
+    const glued = postValidateExplanation(
+      { text: "easy on a weeknight; simple ingredients", used_fact_ids: ["easy", "simple"] },
+      packet
+    );
+    expect(glued.ok).toBe(false);
+    expect(glued.reason).toBe("semicolon_fragment");
+    const spoken = postValidateExplanation(
+      { text: "This is easy on a weeknight. It keeps to simple ingredients.", used_fact_ids: ["easy", "simple"] },
+      packet
+    );
+    expect(spoken.ok).toBe(true);
+  });
+
+  it("a moderate recipe with no household facts stays weak", () => {
+    const packet = buildExplanationPacket({
+      recipe: { effort_level: "moderate", ingredient_complexity: "standard", total_minutes: 52 },
+      intent: {},
+      tastes: [],
+    });
+    expect(packet.basis).toBe("cold");
+    expect(packet.strength).toBe("weak");
+  });
+
+  it("explanation@2 asks for one or two natural sentences", () => {
+    const prompt = renderPrompt("explanation", { facts: [], basis: "run", allowed_phrases: [] });
+    expect(prompt.version).toBe("explanation@2");
+    expect(prompt.system).toMatch(/one or two natural sentences/i);
+    expect(prompt.system).toMatch(/semicolon/i);
+  });
+
+  it("the live eval counts advice and explanation provider calls", () => {
+    const script = readFileSync(new URL("../scripts/eval-alpha-live.mjs", import.meta.url), "utf8");
+    expect(script).toContain('fill: "planner"');
+    expect(script).toContain("usage?.provider_calls");
+    expect(script).toContain('source === "provider"');
+    expect(script).toMatch(/explain-weak[\s\S]*pressure-cooker-butter-chicken[\s\S]*cache_bust/);
+    expect(script).toMatch(/explain-keep-it-easy[\s\S]*keep_it_easy: true, keep_ingredients_simple: true[\s\S]*cache_bust/);
+    expect(script).toContain('data.source !== "template"');
   });
 
   it("cold basis template has no learned voice", () => {

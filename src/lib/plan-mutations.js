@@ -11,6 +11,7 @@ import { assertDinerCountValid } from "./diner-count.js";
 import {
   ADAPTATION_FALLBACK_REFUSAL,
   ADAPTATION_SAFETY_REFUSAL,
+  canonicalIngredientKey,
   effectivePinnedIngredients,
   effectiveRecipeView,
   validateAdaptationSafety,
@@ -375,10 +376,18 @@ function markStarted(plan, now) {
   if (!plan.shopping_started_at) plan.shopping_started_at = now;
 }
 
+function shopIngredientName(item) {
+  const key = canonicalIngredientKey(item?.name || item?.display_name || String(item?.ingredient_id || "").replace(/-/g, " "));
+  return key || item?.name || "";
+}
+
 function mealsForShopping(plan) {
   return (plan.meals || []).map((meal) => ({
     ...meal,
-    pinned_ingredients: effectivePinnedIngredients(meal),
+    pinned_ingredients: (effectivePinnedIngredients(meal) || []).map((item) => ({
+      ...item,
+      name: shopIngredientName(item),
+    })),
   }));
 }
 
@@ -642,7 +651,7 @@ function applyAdaptation(plan, action, ctx) {
     });
   }
   const override = checked.override;
-  if (!override?.ops) return fail("adaptation_not_applicable", 409, { acknowledgement: ADAPTATION_FALLBACK_REFUSAL });
+  if (!override?.ops?.length) return fail("adaptation_not_applicable", 409, { acknowledgement: ADAPTATION_FALLBACK_REFUSAL });
   meal.adaptation = {
     recipe_version_id: meal.recipe_version_id,
     override_json: override,

@@ -8,9 +8,10 @@
  *     --i-understand-this-costs-money
  *
  * Optional: --max-calls 15 (cannot exceed 15) --delay 1500
- * Counts a response as a provider call when source is "provider".
- * Repair retries inside one response still count as one observed call;
- * the script never issues more than 15 AI route requests.
+ * Counts a provider-source call from usage.provider_calls, else source "provider".
+ * Adaptation advice and explanation both report that. Cache, template, and
+ * deterministic refusals count as zero. Repair retries inside one response
+ * still count as one observed call. The script stops at 15 provider calls.
  */
 import { parseArgs } from "node:util";
 
@@ -136,7 +137,7 @@ async function setPlanIntent(cookie, prefs) {
   const created = await api("/api/dinner-plans", {
     method: "POST",
     cookie,
-    body: { meal_count: 1, entry_point: "plan_dinners", fill: "manual", data_origin: "synthetic" },
+    body: { meal_count: 1, entry_point: "plan_dinners", fill: "planner", data_origin: "synthetic" },
   });
   if (!created.data?.plan?.dinner_plan_id) die(`plan create failed: ${created.status} ${JSON.stringify(created.data)}`);
   const id = created.data.plan.dinner_plan_id;
@@ -220,7 +221,7 @@ const CASES = [
     task: "explanation",
     cookie: () => noNuts.cookie,
     path: "/api/explain",
-    body: { recipe_slug: "miso-ginger-salmon" },
+    body: { recipe_slug: "pressure-cooker-butter-chicken", cache_bust: `weak-${Date.now()}` },
     pass: (data) => data?.source === "template" && !/you (tend|love)/i.test(data.text || ""),
   },
   {
@@ -235,10 +236,15 @@ const CASES = [
     id: "explain-keep-it-easy",
     task: "explanation",
     cookie: () => open.cookie,
-    prepare: () => setPlanIntent(open.cookie, { keep_it_easy: true, keep_ingredients_simple: false }),
+    prepare: () => setPlanIntent(open.cookie, { keep_it_easy: true, keep_ingredients_simple: true }),
     path: "/api/explain",
-    body: { recipe_slug: "pressure-cooker-butter-chicken" },
-    pass: (data) => data?.ok === true && /easy/i.test(data.text || "") && !/you (tend|love)/i.test(data.text || "") && !/smoky/i.test(data.text || ""),
+    body: { recipe_slug: "pressure-cooker-butter-chicken", cache_bust: `easy-${Date.now()}` },
+    pass: (data) =>
+      data?.ok === true &&
+      data.source !== "template" &&
+      /easy/i.test(data.text || "") &&
+      !/you (tend|love)/i.test(data.text || "") &&
+      !/smoky/i.test(data.text || ""),
   },
 ];
 
@@ -265,7 +271,9 @@ for (const item of CASES) {
   const res = await api(item.path, { method: "POST", cookie: item.cookie(), body: item.body });
   const model = res.data?.model || res.data?.metadata?.requested_model || null;
   if (model && /sol|astra/i.test(String(model))) die(`case ${item.id} used ${model}; Luna only`);
-  if (res.data?.source === "provider") calls += 1;
+  const reported = Number(res.data?.usage?.provider_calls);
+  if (Number.isFinite(reported) && reported > 0) calls += reported;
+  else if (res.data?.source === "provider") calls += 1;
   if (calls > MAX_PROVIDER_CALLS) die(`provider calls ${calls} exceeded ${MAX_PROVIDER_CALLS}`);
   const row = {
     id: item.id,
@@ -290,5 +298,5 @@ console.log(JSON.stringify({
   max_provider_calls: MAX_PROVIDER_CALLS,
   failed: failed.map((row) => row.id),
 }));
-console.log("Reminder: provider_calls counts source=provider responses. Verify ai_usage before treating that count as spend.");
+console.log("Reminder: provider_calls counts usage.provider_calls, else source=provider, for adaptation and explanation. Verify ai_usage before treating that count as spend.");
 process.exit(failed.length || calls > MAX_PROVIDER_CALLS ? 1 : 0);

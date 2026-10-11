@@ -166,6 +166,7 @@ export function postValidateExplanation(output, packet) {
   const digits = text.match(/\d+/g) || [];
   const allowedNums = new Set(packet.allowed_numbers || []);
   if (digits.some((digit) => !allowedNums.has(digit))) return { ok: false, reason: "digit" };
+  if (/;/.test(text)) return { ok: false, reason: "semicolon_fragment" };
   const phraseBlob = (packet.facts || []).map((fact) => fact.phrase).join("\n");
   for (const term of listVocabulary()) {
     if (textMentionsTerm(text, term) && !textMentionsTerm(phraseBlob, term)) {
