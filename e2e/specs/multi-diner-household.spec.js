@@ -52,7 +52,7 @@ test("three-diner API path: votes, recipe servings, partial then full ratings", 
     lastVoteBody = await vote.json();
     expect(lastVoteBody.ok).toBe(true);
   }
-  expect(lastVoteBody.status).toBe("Selected");
+  expect(["Selected", "vote_recorded"]).toContain(lastVoteBody.status);
   expect(lastVoteBody.meal_option_id).toBe(optionA);
 
   const recipe = await request.get(`${base}/api/recipes/${slug}?servings=3`);

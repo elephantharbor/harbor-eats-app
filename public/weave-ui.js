@@ -27,16 +27,30 @@
     return String(s || "").replace(/'/g, "’");
   }
 
-  function stepperHtml(count) {
+  function stepperHtml(count, opts) {
+    const o = opts || {};
     const n = Number(count) || 0;
     const label = n === 1 ? "1 dinner" : n + " dinners";
+    const busy = !!o.busy;
+    const minusOff = busy || o.disabledMinus;
+    const plusOff = busy || o.disabledPlus;
     return (
-      '<div class="weave-stepper" role="group" aria-label="Number of dinners">' +
-      '<button type="button" class="weave-stepper__btn" data-step="-1" aria-label="One fewer dinner"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button>' +
-      '<output class="weave-stepper__value">' +
+      '<div class="weave-stepper' +
+      (busy ? " is-busy" : "") +
+      '" role="group" aria-label="Number of dinners"' +
+      (busy ? ' aria-busy="true"' : "") +
+      ">" +
+      '<button type="button" class="weave-stepper__btn" data-step="-1" aria-label="One fewer dinner"' +
+      (minusOff ? ' aria-disabled="true"' : "") +
+      '><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button>' +
+      '<output class="weave-stepper__value' +
+      (o.bump ? " is-bump" : "") +
+      '">' +
       esc(label) +
       "</output>" +
-      '<button type="button" class="weave-stepper__btn" data-step="1" aria-label="One more dinner"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>' +
+      '<button type="button" class="weave-stepper__btn" data-step="1" aria-label="One more dinner"' +
+      (plusOff ? ' aria-disabled="true"' : "") +
+      '><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>' +
       "</div>"
     );
   }
@@ -46,7 +60,9 @@
     let html = '<div class="weave-understood-row"><ul class="weave-understood" aria-label="What we understood">';
     (chips || []).forEach((c) => {
       if (options.stepper && c.id === "dinner_count") {
-        html += '<li class="weave-chip weave-chip--stepper">' + stepperHtml(options.stepperCount ?? parseInt(c.label, 10)) + "</li>";
+        const st = options.stepperState || {};
+        const n = st.count ?? options.stepperCount ?? parseInt(c.label, 10);
+        html += '<li class="weave-chip weave-chip--stepper">' + stepperHtml(n, st) + "</li>";
         return;
       }
       html +=
@@ -177,7 +193,9 @@
         at: Date.now(),
       };
       try {
-        sessionStorage.setItem("fw_weave:" + key, JSON.stringify(payload));
+        const blob = JSON.stringify(payload);
+        sessionStorage.setItem("fw_weave:" + key, blob);
+        if (adapter.kind === "planRefine") sessionStorage.setItem("fw_weave:plan_review", blob);
       } catch {
         /* ignore */
       }
@@ -186,22 +204,24 @@
     }
 
     function restoreFromCache() {
-      const key = adapter.historyKey?.();
-      if (!key) return false;
-      let raw = null;
+      const keys = [];
+      const primary = adapter.historyKey?.();
+      if (primary) keys.push(primary);
+      if (!keys.includes("plan_review")) keys.push("plan_review");
+      let data = null;
       try {
-        raw = sessionStorage.getItem("fw_weave:" + key);
+        for (const key of keys) {
+          const raw = sessionStorage.getItem("fw_weave:" + key);
+          if (!raw) continue;
+          const parsed = JSON.parse(raw);
+          if (!parsed.at || Date.now() - parsed.at > STORAGE_TTL_MS) continue;
+          data = parsed;
+          break;
+        }
       } catch {
         return false;
       }
-      if (!raw) return false;
-      let data;
-      try {
-        data = JSON.parse(raw);
-      } catch {
-        return false;
-      }
-      if (!data.at || Date.now() - data.at > STORAGE_TTL_MS) return false;
+      if (!data) return false;
       ctrl.restoreStatic = true;
       ctrl.echo = data.echo || "";
       ctrl.reply = data.reply || "";
@@ -448,11 +468,22 @@
         });
         field.addEventListener("blur", () => {
           adapter.onComposerBlur?.(field.value);
+          if (!field.value.trim() && adapter.defaultCollapsed && form) {
+            const collapse = () => form.classList.add("weave-composer--collapsed");
+            if (global.FlavorWeaveKeyboard?.isOpen?.()) {
+              global.FlavorWeaveKeyboard.onChange((open) => {
+                if (!open) collapse();
+              });
+            } else {
+              collapse();
+            }
+          }
         });
         field.addEventListener("input", () => {
           ctrl.draft = field.value;
           autogrow(field);
           syncComposerChrome(field);
+          global.FlavorWeaveKeyboard?.reveal?.(form);
           adapter.onComposerInput?.(ctrl.draft);
         });
         field.addEventListener("keydown", (e) => {
@@ -503,10 +534,11 @@
           adapter.onComposerInput?.(ctrl.draft);
         });
       });
+      const stepUi = { host, render, persist, announce };
       body.querySelectorAll("[data-weave-suggest]").forEach((btn) => {
         btn.addEventListener("click", () => {
           const text = btn.getAttribute("data-weave-suggest") || "";
-          if (adapter.onSuggest?.(text, ctrl)) return;
+          if (adapter.onSuggest?.(text, ctrl, stepUi)) return;
           void submit(text);
         });
       });
@@ -518,7 +550,7 @@
       body.querySelectorAll("[data-step]").forEach((btn) => {
         btn.addEventListener("click", () => {
           if (btn.getAttribute("aria-disabled") === "true") return;
-          void adapter.onCountStep?.(Number(btn.getAttribute("data-step")), ctrl);
+          void adapter.onCountStep?.(Number(btn.getAttribute("data-step")), ctrl, stepUi);
         });
       });
       const choiceUi = { host, body, persist, announce, settleWith, render };
@@ -551,6 +583,15 @@
         const text = ctrl.draft || ctrl.echo;
         ctrl.notice = null;
         if (text) void submit(text);
+      });
+      body.querySelector(".weave-undo-step")?.addEventListener("click", () => {
+        void adapter.onStepperUndo?.(ctrl, stepUi);
+      });
+      body.querySelector(".weave-retry-step")?.addEventListener("click", () => {
+        const delta = ctrl.stepperRetryDelta;
+        ctrl.notice = null;
+        ctrl.stepperRetryDelta = null;
+        if (delta) void adapter.onCountStep?.(delta, ctrl, stepUi);
       });
       body.querySelector(".weave-manual")?.addEventListener("click", () => adapter.scrollToManual?.());
     }
@@ -688,7 +729,12 @@
       deps?.track?.("weave_submitted", { task: adapter.task, surface: adapter.surface, turn_index: ctrl.turn });
       const t0 = performance.now();
       try {
-        const data = await adapter.interpret(text, { signal });
+        let data;
+        try {
+          data = await adapter.interpret(text, { signal });
+        } finally {
+          clearTimers();
+        }
         if (signal.aborted) throw Object.assign(new Error("aborted"), { name: "AbortError" });
         const total = Math.round(performance.now() - t0);
         deps?.track?.("weave_result", {
@@ -698,7 +744,7 @@
           total_latency_ms: total,
         });
         if (!data.ok) throw new Error(data.error || "failed");
-        if (data.fallback_code && !data.preview && !data.results) {
+        if (data.fallback_code && !data.preview && !data.results && !data.choice) {
           const gentle =
             data.fallback_code === "rate_limited" ||
             data.fallback_code === "budget_exceeded" ||
@@ -720,20 +766,22 @@
           if (gentle) adapter.scrollToManual?.();
           return;
         }
-        clearTimers();
-        const outcome = await adapter.applyResult(data, ctrl);
-        ctrl.failures = 0;
-        if (outcome?.handedOff) {
-          ctrl.echo = "";
-          ctrl.state = "idle";
-          setBusy(false);
-          clearCache();
-          render();
-          notify();
-          return;
+        if (!data.choice) {
+          const outcome = await adapter.applyResult(data, ctrl);
+          ctrl.failures = 0;
+          if (outcome?.handedOff) {
+            ctrl.echo = "";
+            ctrl.state = "idle";
+            setBusy(false);
+            clearCache();
+            render();
+            notify();
+            return;
+          }
+          if (outcome?.failed) throw new Error("apply_failed");
         }
-        if (outcome?.failed) throw new Error("apply_failed");
         settleWith(data);
+        global.FlavorWeaveKeyboard?.afterSubmit?.(host);
       } catch (e) {
         if (e?.name === "AbortError" && signal.reason !== "timeout") return;
         ctrl.failures += 1;
@@ -783,6 +831,7 @@
     }
     void adapter.prefetchStarters?.();
 
+    const weaveUi = { host, render, persist, announce, settleWith };
     return {
       ctrl,
       submit,
@@ -791,6 +840,9 @@
       clearCache,
       restoreFromCache,
       render,
+      reresolveAfterDates() {
+        return adapter.reresolveAfterDates?.(ctrl, weaveUi);
+      },
       onState(fn) {
         ctrl.listeners.add(fn);
         return () => ctrl.listeners.delete(fn);

@@ -258,14 +258,14 @@
         if (count != null && count < 14) out.push("Add a dinner");
         return out.slice(0, 4);
       },
-      onSuggest(text, ctrl) {
+      onSuggest(text, ctrl, ui) {
         if (text === "Add a dinner") {
-          void adapter.onCountStep(1, ctrl);
+          void adapter.onCountStep(1, ctrl, ui);
           return true;
         }
         return false;
       },
-      renderUnderstood(chips) {
+      renderUnderstood(chips, ctrl) {
         const api = deps.planningApi();
         const prefs = plan()?.intent || {};
         const prefHtml = api ? api.chipHtml(prefs, "active") : "";
@@ -276,8 +276,19 @@
         }
         const shown = (chips || []).filter((c) => c.id !== "keep_it_easy" && c.id !== "keep_ingredients_simple");
         const p = plan();
-        const stepper = p && p.meal_count > 1 ? { stepper: true, stepperCount: p.meal_count } : null;
-        return Weave.chipListHtml(shown, prefHtml, stepper);
+        const min = deps.minAllowedMealCount?.() ?? 1;
+        const count = ctrl?.stepper?.count ?? p?.meal_count;
+        const stepperState =
+          p && p.meal_count > 1
+            ? {
+                count,
+                busy: !!ctrl?.stepper?.busy,
+                bump: !!ctrl?.stepper?.bump,
+                disabledMinus: count <= min,
+                disabledPlus: count >= 14,
+              }
+            : null;
+        return Weave.chipListHtml(shown, prefHtml, stepperState ? { stepper: true, stepperState } : null);
       },
       setResultBusy(on) {
         const list = document.getElementById("planMealCards");
@@ -301,6 +312,7 @@
           },
           signal
         );
+        if (res?.state) weaveState = res.state;
         return res && typeof res === "object" ? { ...res, echo: text } : res;
       },
       async applyChip(chipId) {
@@ -396,34 +408,122 @@
         heading?.focus({ preventScroll: true });
       },
       onChoiceAddDays() {
-        document.getElementById("planDatesSheet")?.querySelector("button")?.click();
+        deps.openPlanDatesSheet?.();
       },
-      async onCountStep(delta, ctrl) {
+      async reresolveAfterDates(ctrl, ui) {
+        if (!ctrl?.choice && !weaveState?.pending_slot) return;
         const p = plan();
-        if (!p) return;
-        const from = p.meal_count;
-        const to = from + delta;
-        if (to < 1 || to > 14) return;
-        const t0 = performance.now();
-        const data = await apiPost("/api/plan/count", {
+        if (!p || !ctrl.echo) return;
+        const res = await apiPost("/api/plan/reresolve-slot", {
           state: weaveState,
-          dinner_count: to,
+          text: ctrl.echo,
           dinner_plan_id: p.dinner_plan_id,
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
           participant_ids: deps.activeMemberIds(),
         });
-        deps?.track?.("weave_count_stepped", {
-          from,
-          to,
-          direction: delta > 0 ? "+" : "-",
-          provider_calls: 0,
-          latency_ms: Math.round(performance.now() - t0),
-        });
-        if (!data?.ok) return;
-        weaveState = data.state;
-        if (delta > 0) {
-          const slot = (data.preview?.slots || []).find((s) => s.position === to);
-          if (slot?.recipe_version_id) {
+        if (!res?.ok || res.action === "noop") return;
+        if (res.action === "apply" && res.positions?.length) {
+          await adapter.resolveChoice(res.positions, ctrl, ui);
+          return;
+        }
+        if (res.action === "choice") {
+          weaveState = res.state || weaveState;
+          ctrl.choice = res.choice;
+          ctrl.choiceCopy = res.choice_copy;
+          ctrl.choicePicked = [];
+          ctrl.state = "settled";
+          ui.render();
+          ui.persist();
+        }
+      },
+      async onStepperUndo(ctrl, ui) {
+        const snap = ctrl.stepperUndo;
+        if (!snap || ctrl.stepper?.busy) return;
+        ctrl.stepper = { busy: true, count: snap.from };
+        ui.render();
+        try {
+          await deps.mutateDinnerPlan({ op: "set_count", meal_count: snap.from });
+          await deps.mutateDinnerPlan({
+            op: "add_meal",
+            kind: "recipe",
+            recipe_version_id: snap.recipe_version_id,
+            participant_ids: deps.activeMemberIds(),
+          });
+          deps?.track?.("weave_count_stepped", {
+            from: snap.to,
+            to: snap.from,
+            direction: "undo",
+            provider_calls: 0,
+            latency_ms: 0,
+          });
+        } finally {
+          ctrl.stepperUndo = null;
+          ctrl.notice = null;
+          ctrl.stepper = { count: snap.from, bump: true };
+          ctrl.chips = (ctrl.chips || []).map((c) =>
+            c.id === "dinner_count" ? { ...c, label: snap.from + (snap.from === 1 ? " dinner" : " dinners") } : c
+          );
+          ui.render();
+          ui.persist();
+          deps.renderPlanReview();
+        }
+      },
+      async onCountStep(delta, ctrl, ui) {
+        const p = plan();
+        if (!p || ctrl.stepper?.busy || !ui) return;
+        const from = p.meal_count;
+        const to = from + delta;
+        const min = deps.minAllowedMealCount?.() ?? 1;
+        if (to < min || to > 14) {
+          if (to < min) {
+            ctrl.notice = {
+              kind: "status",
+              style: "info",
+              text: "Dinners you've already cooked stay on the plan.",
+            };
+            ui.render();
+          }
+          return;
+        }
+        const pressed = document.activeElement;
+        ctrl.stepperUndo = null;
+        if (ctrl.stepperUndoTimer) clearTimeout(ctrl.stepperUndoTimer);
+        ctrl.stepper = { busy: true, count: to, bump: true };
+        ctrl.notice = null;
+        ctrl.stepperRetryDelta = delta;
+        host.classList.add("is-stepping");
+        const threadTimer = setTimeout(() => host.classList.add("is-thread"), 400);
+        let removeSkeleton = function () {};
+        if (delta > 0) removeSkeleton = deps.insertPlanMealSkeleton?.(to) || removeSkeleton;
+        let removedMeal = null;
+        if (delta < 0) {
+          const meals = (p.meals || []).slice().sort((a, b) => b.position - a.position);
+          removedMeal = meals.find((m) => m.state === "planned" && !m.starred);
+          if (!removedMeal) {
+            ctrl.stepper = { count: from };
+            host.classList.remove("is-stepping", "is-thread");
+            clearTimeout(threadTimer);
+            ui.render();
+            return;
+          }
+          await deps.fadeRemovePlanMealCard?.(removedMeal.meal_id);
+        }
+        ui.render();
+
+        const t0 = performance.now();
+        try {
+          const data = await apiPost("/api/plan/count", {
+            state: weaveState,
+            dinner_count: to,
+            dinner_plan_id: p.dinner_plan_id,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            participant_ids: deps.activeMemberIds(),
+          });
+          if (!data?.ok) throw new Error("count_failed");
+          weaveState = data.state;
+          if (delta > 0) {
+            const slot = (data.preview?.slots || []).find((s) => s.position === to);
+            if (!slot?.recipe_version_id) throw new Error("no_slot");
             await deps.mutateDinnerPlan({ op: "set_count", meal_count: to });
             await deps.mutateDinnerPlan({
               op: "add_meal",
@@ -431,25 +531,73 @@
               recipe_version_id: slot.recipe_version_id,
               participant_ids: deps.activeMemberIds(),
             });
+            removeSkeleton();
+            const title = slot.title || "a new dinner";
+            ctrl.reply = typo(`${to === 1 ? "One" : to} dinner${to === 1 ? "" : "s"} now — ${title} joins the lineup.`);
+            ui.announce(`${to} dinners. Added ${title}.`);
+          } else {
+            await deps.mutateDinnerPlan({ op: "remove_meal", meal_id: removedMeal.meal_id });
+            await deps.mutateDinnerPlan({ op: "set_count", meal_count: to });
+            const title = removedMeal.title || "that dinner";
+            const line = typo(`${to === 1 ? "One" : to} dinner${to === 1 ? "" : "s"} now — ${title} is off the plan.`);
+            ctrl.notice = {
+              kind: "status",
+              style: "info",
+              text: line,
+              actions: '<button type="button" class="btn btn-quiet btn-sm weave-undo-step">Undo</button>',
+            };
+            ctrl.reply = "";
+            ctrl.stepperUndo = {
+              from,
+              to,
+              recipe_version_id: removedMeal.recipe_version_id,
+            };
+            ctrl.stepperUndoTimer = setTimeout(() => {
+              ctrl.stepperUndo = null;
+              ctrl.notice = null;
+              ui.render();
+            }, 6000);
+            ui.announce(`${to} dinners. Removed ${title}.`);
           }
-        } else {
-          const meals = (p.meals || []).slice().sort((a, b) => b.position - a.position);
-          const removable = meals.find((m) => m.state === "planned" && !m.starred);
-          if (!removable) return;
-          await deps.mutateDinnerPlan({ op: "remove_meal", meal_id: removable.meal_id });
-          await deps.mutateDinnerPlan({ op: "set_count", meal_count: to });
+          deps?.track?.("weave_count_stepped", {
+            from,
+            to,
+            direction: delta > 0 ? "+" : "-",
+            provider_calls: 0,
+            latency_ms: Math.round(performance.now() - t0),
+          });
+          ctrl.chips = data.chips || ctrl.chips;
+          ctrl.restoreStatic = true;
+          ctrl.state = "settled";
+          ctrl.stepperRetryDelta = null;
+          deps.renderPlanReviewPartial?.(delta > 0 ? [to] : []);
+          if (delta <= 0) deps.renderPlanReview();
+        } catch {
+          removeSkeleton();
+          ctrl.stepper = { count: from };
+          ctrl.notice = {
+            kind: "alert",
+            style: "error",
+            text: "Couldn't change that just now.",
+            actions: '<button type="button" class="btn btn-quiet btn-sm weave-retry-step">Try again</button>',
+          };
+          deps.renderPlanReview();
+        } finally {
+          host.classList.remove("is-stepping", "is-thread");
+          clearTimeout(threadTimer);
+          ctrl.stepper = { count: plan()?.meal_count ?? to, bump: false };
+          ui.render();
+          ui.persist();
+          if (pressed?.focus) pressed.focus({ preventScroll: true });
         }
-        ctrl.chips = data.chips || ctrl.chips;
-        ctrl.reply = data.acknowledgement || ctrl.reply;
-        ctrl.restoreStatic = true;
-        ctrl.state = "settled";
-        deps.renderPlanReview();
       },
       async applyResult(data, ctrl, opts) {
         weaveState = data.state;
+        if (opts?.chipOnly) return;
         const p = plan();
-        if (!p || !data.preview) return;
         const changed = data.changed_positions || [];
+        const slots = data.preview?.slots || [];
+        if (!p || (!changed.length && !slots.length)) return;
         if (!opts?.chipOnly && changed.length) {
           for (const pos of changed) {
             const meal = (p.meals || []).find((m) => m.position === pos);
@@ -470,7 +618,9 @@
         }
       },
     };
-    return Weave.mount(host, adapter, deps);
+    const api = Weave.mount(host, adapter, deps);
+    if (api) global.FlavorWeavePlanReview = api;
+    return api;
   }
 
   function findMount(deps) {

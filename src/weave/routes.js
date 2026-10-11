@@ -37,7 +37,7 @@ import {
 import { rulesFromLegacyKeys } from "../lib/legacy-preference-audit.js";
 import { discoveryRelaxations } from "./relax.js";
 import { detectDiscoveryConflicts, detectPlanningConflicts, frequencyConflicts } from "./conflicts.js";
-import { applyPendingSlotChoice, choiceCopy, planSlotChoiceGate } from "./plan-slot-choice.js";
+import { applyPendingSlotChoice, choiceCopy, planSlotChoiceGate, reresolvePendingSlot } from "./plan-slot-choice.js";
 import { discoveryStateToQuery } from "./discovery-map.js";
 import { parsePlannerFromState } from "./plan-map.js";
 import {
@@ -407,8 +407,11 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
   const isFindApply = path === "/api/discovery/apply" && request.method === "POST";
   const isPlanCommit = path === "/api/plan/commit" && request.method === "POST";
   const isPlanCount = path === "/api/plan/count" && request.method === "POST";
+  const isPlanReresolve = path === "/api/plan/reresolve-slot" && request.method === "POST";
   const isStarters = path === "/api/weave/starters" && request.method === "GET";
-  if (!isPlanInterpret && !isFindInterpret && !isPlanApply && !isFindApply && !isPlanCommit && !isPlanCount && !isStarters) return null;
+  if (!isPlanInterpret && !isFindInterpret && !isPlanApply && !isFindApply && !isPlanCommit && !isPlanCount && !isPlanReresolve && !isStarters) {
+    return null;
+  }
 
   const auth = await requireSession(env.DB, request);
   if (auth.error) return auth.error;
@@ -471,6 +474,37 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
       resultCount: result.preview?.slots?.length ?? 0,
       zeroReason: null,
     }));
+  }
+
+  if (isPlanReresolve) {
+    const priorState = body.state || emptyPlanningState();
+    if (!body.dinner_plan_id) return fail("dinner_plan_id_required");
+    const dinnerPlan = await loadDinnerPlan(env.DB, body.dinner_plan_id);
+    if (!dinnerPlan || dinnerPlan.household_id !== session.household_id) return fail("forbidden_cross_household", 403);
+    const resolved = reresolvePendingSlot({
+      state: priorState,
+      userText: body.text || "",
+      dinnerPlan,
+    });
+    if (!resolved) {
+      return json({ ok: true, llm_called: false, action: "noop" });
+    }
+    if (resolved.type === "apply") {
+      return json({
+        ok: true,
+        llm_called: false,
+        action: "apply",
+        positions: resolved.positions,
+      });
+    }
+    return json({
+      ok: true,
+      llm_called: false,
+      action: "choice",
+      choice: resolved.conflict,
+      choice_copy: resolved.choice_copy,
+      state: resolved.state,
+    });
   }
 
   if (isPlanApply) {

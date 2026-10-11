@@ -853,7 +853,7 @@ export function householdSafeStarterPrompts({ limits = [] } = {}) {
   const blocked = new Set(limits || []);
   return STARTERS.filter((row) => {
     if (row.requires.includes("finfish") && blocked.has("no_finfish")) return false;
-    if (row.requires.includes("shellfish") && blocked.has("no_shellfish")) return false;
+    if (row.requires.includes("shellfish") && (blocked.has("no_shellfish") || blocked.has("no_finfish"))) return false;
     if (row.requires.includes("meat") && (blocked.has("no_meat") || blocked.has("no_poultry"))) return false;
     if (row.requires.includes("dairy") && blocked.has("no_dairy")) return false;
     if (row.requires.includes("nuts") && blocked.has("no_nuts")) return false;

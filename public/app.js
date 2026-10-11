@@ -3478,6 +3478,10 @@
         focusPendingPlanMeal();
       },
       mountPlanReview: mountPlanReviewWeave,
+      openPlanDatesSheet: openPlanDatesSheet,
+      minAllowedMealCount: minAllowedMealCount,
+      insertPlanMealSkeleton: insertPlanMealSkeleton,
+      fadeRemovePlanMealCard: fadeRemovePlanMealCard,
       dinerLimits: function () {
         const ids = new Set();
         const mids = activeMemberIds();
@@ -3524,11 +3528,24 @@
       return;
     }
     if (host) host.hidden = false;
+    const plan = state.dinnerPlan;
+    if (state.weavePlanReview && state.weavePlanReviewPlanId === plan?.dinner_plan_id) {
+      window.FlavorWeavePlanReview = state.weavePlanReview;
+      state.weavePlanReview.render?.();
+      return;
+    }
     const B = window.FlavorWeaveWeaveBridge;
     if (!B) return;
     const prefs = document.getElementById("planReviewPrefs");
     if (prefs) prefs.hidden = true;
+    state.weavePlanReviewPlanId = plan?.dinner_plan_id || null;
     state.weavePlanReview = B.planMountReview(weaveDepsForPlan());
+    if (state.weavePlanReview) {
+      window.FlavorWeavePlanReview = state.weavePlanReview;
+    }
+    if (state.weavePlanReview?.restoreFromCache && !state.weavePlanReview.ctrl?.echo && !state.weavePlanReview.ctrl?.choice) {
+      state.weavePlanReview.restoreFromCache();
+    }
   }
 
   function renderPlanReviewPartial(changed) {
@@ -4964,6 +4981,43 @@
     }
     document.getElementById("planDatesSheet").close();
     renderActiveDinnerSurfaces();
+    if (state.weavePlanReview?.reresolveAfterDates) {
+      await state.weavePlanReview.reresolveAfterDates();
+    }
+  }
+
+  function insertPlanMealSkeleton(position) {
+    const list = document.getElementById("planMealCards");
+    if (!list) return function () {};
+    const el = document.createElement("article");
+    el.className = "plan-meal-card plan-meal-card--skeleton skeleton";
+    el.setAttribute("role", "listitem");
+    el.dataset.skeletonPosition = String(position);
+    list.appendChild(el);
+    return function removeSkeleton() {
+      el.remove();
+    };
+  }
+
+  function fadeRemovePlanMealCard(mealId) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    return new Promise(function (resolve) {
+      const el = document.querySelector('.plan-meal-card[data-meal-id="' + mealId + '"]');
+      if (!el) {
+        resolve();
+        return;
+      }
+      if (reduced) {
+        el.remove();
+        resolve();
+        return;
+      }
+      el.classList.add("plan-meal-card--removing");
+      setTimeout(function () {
+        el.remove();
+        resolve();
+      }, 120);
+    });
   }
 
   function openChangeCountSheet() {

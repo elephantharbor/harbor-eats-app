@@ -3350,6 +3350,24 @@ button.link-card:hover {
   min-width: 5.5rem;
   text-align: center;
 }
+.weave-stepper__value.is-bump {
+  animation: weave-stepper-bump var(--duration-fast) var(--ease-standard);
+}
+@keyframes weave-stepper-bump {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.weave-strip.is-thread::before {
+  animation:
+    weave-stripe-draw 360ms var(--ease-standard) forwards,
+    weave-stripe-fade var(--duration-slow) var(--ease-standard) var(--weave-stripe-hold) forwards;
+}
 .weave-choice__context {
   margin: 0 0 var(--space-1);
   font-size: var(--text-sm);
@@ -3480,6 +3498,23 @@ html[data-keyboard="open"] .toast {
   transition: opacity var(--duration-base) var(--ease-standard);
 }
 
+.plan-meal-card--skeleton {
+  min-height: 120px;
+  margin-bottom: var(--space-4);
+}
+.plan-meal-card--removing {
+  opacity: 0;
+  max-height: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  transition:
+    opacity 120ms var(--ease-standard),
+    max-height var(--duration-base) var(--ease-standard),
+    margin var(--duration-base) var(--ease-standard),
+    padding var(--duration-base) var(--ease-standard);
+}
 .plan-meal-card--changed {
   position: relative;
 }
@@ -3532,13 +3567,20 @@ html[data-keyboard="open"] .toast {
   .weave-mark--working span,
   .weave-thread-line span,
   .weave-chip,
-  .weave-word {
+  .weave-word,
+  .weave-stepper__value.is-bump {
     animation: none !important;
     opacity: 1;
   }
 
-  .plan-meal-card--changed::before {
+  .plan-meal-card--changed::before,
+  .weave-strip.is-thread::before {
     animation: weave-stripe-fade 1ms linear var(--weave-stripe-hold) forwards !important;
+  }
+
+  .plan-meal-card--removing {
+    transition: none;
+    display: none;
   }
 }
 
