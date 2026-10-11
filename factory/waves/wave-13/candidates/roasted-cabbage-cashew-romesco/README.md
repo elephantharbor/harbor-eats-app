@@ -2,7 +2,7 @@
 
 Thick cabbage steaks roasted in the oven until the cut faces are crisp, with a cashew romesco. Cashews only: no almonds and no dairy.
 
-Author package for FlavorWeave Catalog Factory wave-13-2026-10-11. package_revision `author-r1`. kitchen_tested is false. Not certified. Not published. Not imported. Image pass complete (2026-10-11, Grok Bot GenerateImage).
+Author package for FlavorWeave Catalog Factory wave-13-2026-10-11. package_revision `author-r2`. kitchen_tested is false. Not certified. Not published. Not imported. Image pass complete (2026-10-11, Grok Bot GenerateImage) and unchanged by this revision.
 
 ## Identity
 
@@ -13,8 +13,9 @@ Author package for FlavorWeave Catalog Factory wave-13-2026-10-11. package_revis
 - Meal format: composed-plate
 - Primary ingredient: green cabbage
 - Servings: 4
-- Time: prep 15 + cook 30 = 45 minutes
-- Time clock: Prep 15, and the oven is turned to 425 F at the start so it is hot when the pan goes in. Cook 30 is the roast. Cashews share the oven for the first 8 minutes. The sauce is blended while the cabbage finishes.
+- Time: prep 15 + cook 30 = 45 minutes. Active about 15 minutes inside that total.
+- Time clock: Prep 15 is a real preheat to 425 F before the pan goes in. Cutting and oiling, about 8 minutes active, happen during that preheat; the pan stays on the counter until the oven is hot. Cook 30 is the roast in a hot oven: 8 minutes with the cashews, then about 22 minutes more. Active time is about 15 minutes across the meal (cutting, the cashew pull, blending the romesco during the roast, and plating). Total 45 is prep 15 plus cook 30. Active time sits inside that total.
+- Revision: author-r2, gate E. Images unchanged. Effort stays moderate and complexity stays simple.
 - effort_level: moderate
 - ingredient_complexity: simple
 - Methods: roast

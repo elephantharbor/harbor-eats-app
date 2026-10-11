@@ -1,10 +1,10 @@
 {
   "catalog_contract": "flavorweave-catalog-package",
-  "catalog_contract_note": "Author package for wave-13. Image pass complete. Not certified. Not published. Not imported.",
+  "catalog_contract_note": "Author package for wave-13. Image pass complete and unchanged. Text revised to author-r2 after the independent audit. Not certified. Not published. Not imported.",
   "batch_id": "wave-13-2026-10-11",
   "batch_label": "wave-13",
   "mode": "author_batch",
-  "package_revision": "author-r1",
+  "package_revision": "author-r2",
   "authored_on": "2026-10-11",
   "authored_timezone": "America/Chicago",
   "curator_role": "Author (catalog factory cloud agent)",
@@ -47,9 +47,9 @@
     "recipe_id": "rcp_sichuan-green-bean-mushroom-stir-fry",
     "dish_id": "sichuan-green-bean-mushroom-stir-fry",
     "version_number": 1,
-    "package_revision": "author-r1",
+    "package_revision": "author-r2",
     "immutable": true,
-    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. The image pass is complete. Not certified. Not published. kitchen_tested is false.",
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Author revision author-r2 splits the water lines only. The image pass files are unchanged. Not certified. Not published. kitchen_tested is false.",
     "title": "Sichuan Green Bean and Mushroom Stir-Fry",
     "description": "A hot stir-fry of blistered green beans and shiitake in chili bean paste, with steamed rice. No oyster sauce and no nuts.",
     "base_servings": 4,
@@ -187,12 +187,23 @@
         "role": "component"
       },
       {
-        "ingredient_id": "water",
+        "ingredient_id": "rice-water",
         "name": "water",
-        "display_name": "water",
-        "quantity": 2.75,
+        "display_name": "water for the rice",
+        "quantity": 2.25,
         "unit": "cup",
-        "note": "2 1/4 cups for the rice; of the remaining 1/2 cup, 2 tbsp goes into the cornstarch slurry and the rest into the sauce",
+        "note": "2 1/4 cups. For the rice only.",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "sauce-water",
+        "name": "water",
+        "display_name": "water for the sauce and slurry",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "1/2 cup. Use 2 tbsp of it for the cornstarch slurry and the remaining 6 tbsp in the sauce.",
         "preparation": null,
         "optional": false,
         "role": "liquid"
@@ -224,7 +235,7 @@
       {
         "step_number": 1,
         "title": "Prep",
-        "body": "Trim the beans, slice the mushrooms, garlic, ginger, and scallions. Stir together the soy sauce, rice vinegar, sugar, chili bean paste, cornstarch, and water. Rinse the rice. About 15 minutes.",
+        "body": "Trim 1 1/2 lb green beans. Slice 8 oz shiitake, 4 garlic cloves, 1 tbsp ginger, and 3 scallions. Measure 1/2 cup water for the sauce and slurry. Stir 2 tbsp of that water with 1 tsp cornstarch into a slurry. Stir the remaining 6 tbsp water with 2 tbsp soy sauce, 1 tbsp rice vinegar, 1 tsp sugar, and 1 1/2 tbsp chili bean paste, then stir in the slurry. Rinse 1 1/2 cups rice. About 15 minutes.",
         "ingredient_refs": [
           "green-beans",
           "shiitake",
@@ -236,24 +247,24 @@
           "sugar",
           "chili-bean-paste",
           "cornstarch",
-          "water",
+          "sauce-water",
           "long-grain-rice"
         ]
       },
       {
         "step_number": 2,
         "title": "Steam the rice",
-        "body": "Put the rice, 2 1/4 cups of the water, and the salt in a saucepan. Bring to a boil, cover, and simmer on low until tender, about 18 minutes. This runs under the stir-fry.",
+        "body": "Put the 1 1/2 cups rice, 2 1/4 cups water, and 1/2 tsp salt in a saucepan. Bring to a boil, cover, and simmer on low until tender, about 18 minutes. This runs under the stir-fry. Use only the rice water.",
         "ingredient_refs": [
           "long-grain-rice",
-          "water",
+          "rice-water",
           "kosher-salt"
         ]
       },
       {
         "step_number": 3,
         "title": "Stir-fry",
-        "body": "Heat the neutral oil in a wok over high. Stir-fry the green beans in two batches until blistered and tender-crisp, about 4 minutes per batch. Set them aside. Stir-fry the shiitake about 2 minutes. Add the garlic and ginger for 30 seconds, then the chili bean sauce and the beans. Toss until the sauce clings. Off the heat, add the sesame oil and scallions. The stir-fry is about 12 minutes inside the 20-minute cook clock.",
+        "body": "Heat 2 tbsp neutral oil in a wok over high. Stir-fry the green beans in two batches until blistered and tender-crisp, about 4 minutes per batch. Set them aside. Stir-fry the shiitake about 2 minutes. Add the garlic and ginger for 30 seconds, then the sauce from step 1 (the full 1/2 cup water is already in it; add no more water) and the beans. Toss until the sauce clings. Off the heat, add 1 tsp sesame oil and the scallions. The stir-fry is about 12 minutes inside the 20-minute cook clock.",
         "ingredient_refs": [
           "neutral-oil",
           "green-beans",
@@ -263,13 +274,14 @@
           "chili-bean-paste",
           "soy-sauce",
           "sesame-oil",
-          "scallions"
+          "scallions",
+          "sauce-water"
         ]
       },
       {
         "step_number": 4,
         "title": "Serve",
-        "body": "Put rice in bowls and top with the beans.",
+        "body": "Put the rice in bowls and top with the beans. This step adds no water.",
         "ingredient_refs": [
           "long-grain-rice",
           "green-beans"
@@ -287,7 +299,8 @@
           "soy sauce",
           "rice vinegar",
           "sugar",
-          "cornstarch"
+          "cornstarch",
+          "water (1/2 cup)"
         ]
       },
       {
@@ -306,7 +319,8 @@
         "made_in_recipe": true,
         "store_bought": false,
         "ingredients": [
-          "long-grain rice"
+          "long-grain rice",
+          "water (2 1/4 cups)"
         ]
       }
     ],
@@ -332,7 +346,7 @@
     "prep_minutes": 15,
     "cook_minutes": 20,
     "total_minutes": 35,
-    "time_clock": "Prep 15 is trimming, slicing, and mixing the sauce. Cook 20 starts the rice and, while it simmers, the stir-fry, which takes about 12 minutes inside that 20.",
+    "time_clock": "Prep 15 is trimming, slicing, and mixing the sauce with its own 1/2 cup water. Cook 20 starts the rice with its own 2 1/4 cups water and, while it simmers, the stir-fry, which takes about 12 minutes inside that 20.",
     "heat": "A large pot for rice. A wok or 12-inch skillet over high for the beans.",
     "doneness": "Beans blistered and tender-crisp, mushrooms softened, sauce glossy and clinging. Rice tender.",
     "effort_level": "involved",
@@ -348,6 +362,22 @@
           "ingredient_complexity": "standard"
         },
         "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      },
+      {
+        "version_number": 1,
+        "who": "Cursor cloud agent, author role, wave-13",
+        "when": "2026-10-11",
+        "from": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard",
+          "package_revision": "author-r1"
+        },
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard",
+          "package_revision": "author-r2"
+        },
+        "reason": "Gate B revision. Replaced the single 2.75-cup water line with two shopping lines: 2 1/4 cups for the rice and 1/2 cup for the sauce and slurry (2 tbsp slurry, 6 tbsp sauce). Every step states the amount it uses. Effort and complexity enums unchanged. Both water ids stay excluded from the D-03 count."
       }
     ],
     "classification_sidecar": "d03-classification.json",
@@ -391,8 +421,8 @@
     ],
     "publication_state": "Draft",
     "publication_status": "draft",
-    "structural_qa_state": "author_r1_image_pass_complete",
-    "culinary_audit_state": "not_audited",
+    "structural_qa_state": "author_r2_text_revision_images_unchanged",
+    "culinary_audit_state": "revised_after_independent_audit_not_recertified",
     "kitchen_tested": false,
     "validation_kind": "author_structural_preflight_only",
     "provenance": "original_ai_assisted",
@@ -408,8 +438,9 @@
       "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
       "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js. Warnings about other methods stay out of the title, description, and steps."
     },
-    "culinary_hash": "6aeb591877f40ebf3375d6a238fa7c44424d7577d4241896c2f7113e6b7dedfd",
-    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+    "culinary_hash": "ad2053de1ea228a93f0ebad230232d81028c432a0f63892a315f695b2cb1a868",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking.",
+    "revision_note": "author-r2 (2026-10-11). Gate B only. Images unchanged. Culinary hash recomputed because the water lines and steps changed. Classification enums unchanged."
   },
   "image": {
     "image_id": "img_sichuan-green-bean-mushroom-stir-fry_v1",
@@ -498,7 +529,7 @@
     {
       "check": "times",
       "result": "pass_with_stated_clock",
-      "detail": "Prep 15 is trimming, slicing, and mixing the sauce. Cook 20 starts the rice and, while it simmers, the stir-fry, which takes about 12 minutes inside that 20."
+      "detail": "Prep 15 is trimming, slicing, and mixing the sauce with its own 1/2 cup water. Cook 20 starts the rice with its own 2 1/4 cups water and, while it simmers, the stir-fry, which takes about 12 minutes inside that 20."
     },
     {
       "check": "kitchen_tested",
@@ -529,5 +560,6 @@
   "coverage_contribution": "First green-bean lead. A plant Chinese stir-fry with no peanut and no chicken. Stir-fry is not a frying kind.",
   "near_duplicate_review": "Cashew chicken is poultry and cashews. Peanut noodles are peanuts. Thai basil eggplant is a different vegetable and cuisine. Lomo saltado is beef.",
   "recommendation_eligible": false,
-  "structural_qa_state": "author_r1_image_pass_complete"
+  "structural_qa_state": "author_r2_text_revision_images_unchanged",
+  "revision_note": "author-r2 (2026-10-11). Gate B only. Images unchanged. Culinary hash recomputed because the water lines and steps changed. Classification enums unchanged."
 }

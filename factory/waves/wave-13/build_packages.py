@@ -485,7 +485,7 @@ add({
     "heat": "Oven 425 F.",
     "doneness": "Cabbage tender at the core, cut faces browned and crisp. Romesco thick enough to spoon, not a broth.",
     "equipment": ["rimmed sheet pan", "blender or food processor", "knife", "cutting board"],
-    "clock": "Prep 15, and the oven is turned to 425 F at the start so it is hot when the pan goes in. Cook 30 is the roast. Cashews share the oven for the first 8 minutes. The sauce is blended while the cabbage finishes.",
+    "clock": "Prep 15 is a real preheat to 425 F before the pan goes in. Cutting and oiling, about 8 minutes active, happen during that preheat; the pan stays on the counter until the oven is hot. Cook 30 is the roast in a hot oven: 8 minutes with the cashews, then about 22 minutes more. Active time is about 15 minutes across the meal (cutting, the cashew pull, blending the romesco during the roast, and plating). Total 45 is prep 15 plus cook 30. Active time sits inside that total.",
     "hh001": True,
     "hh_reason": "Plant-based. The only nut is cashew, which HH001 allows when that is the whole nut policy. No dairy, no bread, no almonds.",
     "hh_contract": "Romesco is roasted red peppers, cashews, garlic, smoked paprika, red wine vinegar, and olive oil. No almonds, no hazelnuts, no pine nuts, no bread, and no cheese.",
@@ -529,10 +529,11 @@ add({
         ing("water", "water", 2, "tbsp", role="liquid", note="to loosen the sauce if needed"),
     ],
     "steps": [
-        step(1, "Heat the oven", "Turn the oven to 425 F. Cut the cabbage into four steaks and brush both faces with 3 tbsp olive oil, 1 tsp salt, and the pepper. Spread the cashews on one side of the sheet pan and the steaks on the rest.", ["green-cabbage", "olive-oil", "kosher-salt", "black-pepper", "raw-cashews"]),
-        step(2, "Roast", "Roast 8 minutes, then remove the cashews if they are golden. Continue roasting the cabbage until the cores are tender and the cut faces are crisp and browned, about 22 minutes more. Cook is 30 minutes.", ["green-cabbage", "raw-cashews"]),
-        step(3, "Blend the romesco", "Blend the cashews, roasted red peppers, garlic, smoked paprika, vinegar, remaining 3 tbsp olive oil, 1/4 tsp salt, and the water until thick and spoonable. Prep plus this blend is the 15-minute prep, overlapping the roast.", ["raw-cashews", "roasted-red-peppers", "garlic", "smoked-paprika", "red-wine-vinegar", "olive-oil", "kosher-salt", "water"]),
-        step(4, "Serve", "Spoon romesco over the steaks and scatter the parsley.", ["green-cabbage", "parsley"]),
+        step(1, "Preheat the oven", "Turn the oven to 425 F and heat it until it is fully at temperature, about 15 minutes. Do not put the pan in during this preheat. Prep is these 15 minutes.", []),
+        step(2, "Cut and oil", "While the oven heats, cut the cabbage into four steaks and brush both faces with 3 tbsp olive oil, 1 tsp salt, and the pepper. Spread the cashews on one side of the sheet pan and the steaks on the rest. Leave the pan on the counter. Cutting and oiling take about 8 minutes of active time inside the preheat. If the oven is not yet at 425 F when the pan is ready, wait. The food goes in only after the oven is hot.", ["green-cabbage", "olive-oil", "kosher-salt", "black-pepper", "raw-cashews"]),
+        step(3, "Roast", "When the oven is at 425 F, put the pan in. Roast 8 minutes, then remove the cashews if they are golden. Continue roasting the cabbage until the cores are tender and the cut faces are crisp and browned, about 22 minutes more. Cook is 30 minutes in a hot oven.", ["green-cabbage", "raw-cashews"]),
+        step(4, "Blend the romesco", "While the cabbage finishes, blend the cashews, roasted red peppers, garlic, smoked paprika, vinegar, the remaining 3 tbsp olive oil, 1/4 tsp salt, and 2 tbsp water until thick and spoonable. This is about 5 minutes of active time inside the roast, not extra prep.", ["raw-cashews", "roasted-red-peppers", "garlic", "smoked-paprika", "red-wine-vinegar", "olive-oil", "kosher-salt", "water"]),
+        step(5, "Serve", "Spoon romesco over the steaks and scatter the parsley. About 1 minute.", ["green-cabbage", "parsley"]),
     ],
     "brief": {
         "hero": "Two cabbage steaks with blackened crisp rims and a thick rust-red cashew romesco spooned across the center, cashew flecks visible in the sauce.",
@@ -569,7 +570,7 @@ add({
     "heat": "A large pot for rice. A wok or 12-inch skillet over high for the beans.",
     "doneness": "Beans blistered and tender-crisp, mushrooms softened, sauce glossy and clinging. Rice tender.",
     "equipment": ["wok or 12-inch skillet", "medium saucepan with a lid", "small bowl", "tongs"],
-    "clock": "Prep 15 is trimming, slicing, and mixing the sauce. Cook 20 starts the rice and, while it simmers, the stir-fry, which takes about 12 minutes inside that 20.",
+    "clock": "Prep 15 is trimming, slicing, and mixing the sauce with its own 1/2 cup water. Cook 20 starts the rice with its own 2 1/4 cups water and, while it simmers, the stir-fry, which takes about 12 minutes inside that 20.",
     "hh001": True,
     "hh_reason": "Plant-based. No meat, poultry, fish, shellfish, dairy, or nuts. Sesame oil is allowed. The chili bean paste has no shrimp.",
     "hh_contract": "Chili bean paste is broad beans, chile, and soy only. No shrimp paste and no oyster sauce.",
@@ -589,9 +590,9 @@ add({
     "effort_why": "High heat in a wok is continuous attention, score 2. Rice on the other burner is coordination 1. Total 6, involved. The attention floor would have required at least moderate anyway.",
     "complexity_why": "Eleven counted items, band 0. Chili bean paste is the one specialty-store or well-stocked-grocery item, burden 1, and it is not also scored as unfamiliar pantry. Flavor breadth 2 for the paste, aromatics, and sauce. Chinese cooking adds no points.",
     "components": [
-        {"component_id": "sauce", "name": "chili bean sauce", "made_in_recipe": True, "store_bought": False, "ingredients": ["chili bean paste", "soy sauce", "rice vinegar", "sugar", "cornstarch"]},
+        {"component_id": "sauce", "name": "chili bean sauce", "made_in_recipe": True, "store_bought": False, "ingredients": ["chili bean paste", "soy sauce", "rice vinegar", "sugar", "cornstarch", "water (1/2 cup)"]},
         {"component_id": "paste", "name": "chili bean paste", "made_in_recipe": False, "store_bought": True, "ingredients": ["chili bean paste"], "contract": "Broad beans, chile, and soy. No shrimp or shellfish in the paste."},
-        {"component_id": "rice", "name": "steamed rice", "made_in_recipe": True, "store_bought": False, "ingredients": ["long-grain rice"]},
+        {"component_id": "rice", "name": "steamed rice", "made_in_recipe": True, "store_bought": False, "ingredients": ["long-grain rice", "water (2 1/4 cups)"]},
     ],
     "coverage": "First green-bean lead. A plant Chinese stir-fry with no peanut and no chicken. Stir-fry is not a frying kind.",
     "near": "Cashew chicken is poultry and cashews. Peanut noodles are peanuts. Thai basil eggplant is a different vegetable and cuisine. Lomo saltado is beef.",
@@ -614,15 +615,16 @@ add({
         ing("sesame-oil", "sesame oil", 1, "tsp", role="fat"),
         ing("neutral-oil", "neutral oil", 2, "tbsp", role="fat"),
         ing("cornstarch", "cornstarch", 1, "tsp", role="component"),
-        ing("water", "water", 2.75, "cup", role="liquid", note="2 1/4 cups for the rice; of the remaining 1/2 cup, 2 tbsp goes into the cornstarch slurry and the rest into the sauce"),
+        ing("rice-water", "water", 2.25, "cup", role="liquid", display="water for the rice", note="2 1/4 cups. For the rice only."),
+        ing("sauce-water", "water", 0.5, "cup", role="liquid", display="water for the sauce and slurry", note="1/2 cup. Use 2 tbsp of it for the cornstarch slurry and the remaining 6 tbsp in the sauce."),
         ing("long-grain-rice", "long-grain rice", 1.5, "cup"),
         ing("kosher-salt", "kosher salt", 0.5, "tsp", role="seasoning", note="for the rice"),
     ],
     "steps": [
-        step(1, "Prep", "Trim the beans, slice the mushrooms, garlic, ginger, and scallions. Stir together the soy sauce, rice vinegar, sugar, chili bean paste, cornstarch, and water. Rinse the rice. About 15 minutes.", ["green-beans", "shiitake", "garlic", "ginger", "scallions", "soy-sauce", "rice-vinegar", "sugar", "chili-bean-paste", "cornstarch", "water", "long-grain-rice"]),
-        step(2, "Steam the rice", "Put the rice, 2 1/4 cups of the water, and the salt in a saucepan. Bring to a boil, cover, and simmer on low until tender, about 18 minutes. This runs under the stir-fry.", ["long-grain-rice", "water", "kosher-salt"]),
-        step(3, "Stir-fry", "Heat the neutral oil in a wok over high. Stir-fry the green beans in two batches until blistered and tender-crisp, about 4 minutes per batch. Set them aside. Stir-fry the shiitake about 2 minutes. Add the garlic and ginger for 30 seconds, then the chili bean sauce and the beans. Toss until the sauce clings. Off the heat, add the sesame oil and scallions. The stir-fry is about 12 minutes inside the 20-minute cook clock.", ["neutral-oil", "green-beans", "shiitake", "garlic", "ginger", "chili-bean-paste", "soy-sauce", "sesame-oil", "scallions"]),
-        step(4, "Serve", "Put rice in bowls and top with the beans.", ["long-grain-rice", "green-beans"]),
+        step(1, "Prep", "Trim 1 1/2 lb green beans. Slice 8 oz shiitake, 4 garlic cloves, 1 tbsp ginger, and 3 scallions. Measure 1/2 cup water for the sauce and slurry. Stir 2 tbsp of that water with 1 tsp cornstarch into a slurry. Stir the remaining 6 tbsp water with 2 tbsp soy sauce, 1 tbsp rice vinegar, 1 tsp sugar, and 1 1/2 tbsp chili bean paste, then stir in the slurry. Rinse 1 1/2 cups rice. About 15 minutes.", ["green-beans", "shiitake", "garlic", "ginger", "scallions", "soy-sauce", "rice-vinegar", "sugar", "chili-bean-paste", "cornstarch", "sauce-water", "long-grain-rice"]),
+        step(2, "Steam the rice", "Put the 1 1/2 cups rice, 2 1/4 cups water, and 1/2 tsp salt in a saucepan. Bring to a boil, cover, and simmer on low until tender, about 18 minutes. This runs under the stir-fry. Use only the rice water.", ["long-grain-rice", "rice-water", "kosher-salt"]),
+        step(3, "Stir-fry", "Heat 2 tbsp neutral oil in a wok over high. Stir-fry the green beans in two batches until blistered and tender-crisp, about 4 minutes per batch. Set them aside. Stir-fry the shiitake about 2 minutes. Add the garlic and ginger for 30 seconds, then the sauce from step 1 (the full 1/2 cup water is already in it; add no more water) and the beans. Toss until the sauce clings. Off the heat, add 1 tsp sesame oil and the scallions. The stir-fry is about 12 minutes inside the 20-minute cook clock.", ["neutral-oil", "green-beans", "shiitake", "garlic", "ginger", "chili-bean-paste", "soy-sauce", "sesame-oil", "scallions", "sauce-water"]),
+        step(4, "Serve", "Put the rice in bowls and top with the beans. This step adds no water.", ["long-grain-rice", "green-beans"]),
     ],
     "brief": {
         "hero": "A mound of blistered green beans and dark shiitake in a reddish sauce, scallions on top, with white rice visible at the edge of the bowl.",
@@ -962,7 +964,7 @@ add({
 })
 
 
-EXCLUDE_COUNT = {"kosher-salt", "black-pepper", "water", "olive-oil", "neutral-oil", "sesame-oil"}
+EXCLUDE_COUNT = {"kosher-salt", "black-pepper", "water", "rice-water", "sauce-water", "olive-oil", "neutral-oil", "sesame-oil"}
 
 
 def counted_ids(meal):
@@ -1379,6 +1381,10 @@ def write_image_state(directory, meal):
 def main():
     if len(MEALS) != 10:
         raise SystemExit(f"expected 10 meals, got {len(MEALS)}")
+    if any((OUT / meal["slug"] / "v1.json").exists() for meal in MEALS):
+        raise SystemExit(
+            "Refusing to overwrite wave-13 candidates. Image files and later revisions live in those directories. Edit v1.json in place."
+        )
     hh = 0
     for meal in MEALS:
         doc = package(meal)

@@ -1,6 +1,25 @@
 # Wave-13 preflight
 
-Author role only. No images were generated. No package was copied into `catalog/`. Nothing was imported, deployed, or published.
+Author role only. No package was copied into `catalog/`. Nothing was imported, deployed, or published.
+
+## Author revision author-r2
+
+After the independent audit (`f2f95a9`), two meals were revised in place. Images were not regenerated. The other eight recipes were not edited.
+
+- `roasted-cabbage-cashew-romesco`: gate E. A 15-minute preheat to 425 F finishes before the pan goes in. Prep 15 is that preheat. Cook 30 is the hot-oven roast. Active time is about 15 minutes inside the 45-minute total.
+- `sichuan-green-bean-mushroom-stir-fry`: gate B. Water is two shopping lines, 2 1/4 cups for the rice and 1/2 cup for the sauce and slurry. Each step states the amount it uses.
+
+Rerun after that revision:
+
+`python3 factory/tools/freeze_integrity.py` on each candidate: **PASS 10/10**.
+
+`node factory/tools/structural_preflight.mjs factory/waves/wave-13/candidates`: **PASS 10/10**. HH001-eligible: 8.
+
+This is not a recertification. The audit files under `audit/` still record the author-r1 verdicts.
+
+## Original author run
+
+No images had been generated yet on the first author freeze. That record is below. The image pass and the author-r2 rerun above supersede the freeze FAIL.
 
 Base catalog SHA for the coverage inventory: `b28f03e`.
 
