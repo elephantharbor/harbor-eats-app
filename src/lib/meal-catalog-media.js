@@ -6,7 +6,25 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const defaultCatalogRoot = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "catalog");
+function catalogRootFromModule() {
+  try {
+    const url = import.meta.url;
+    if (typeof url === "string" && url) {
+      return join(dirname(fileURLToPath(url)), "..", "..", "catalog");
+    }
+  } catch {
+    // The worker bundle has no module URL. Fall through to the process directory.
+  }
+  try {
+    if (typeof process !== "undefined" && typeof process.cwd === "function") {
+      const candidate = join(process.cwd(), "catalog");
+      if (existsSync(candidate)) return candidate;
+    }
+  } catch {
+    // No filesystem in this runtime.
+  }
+  return null;
+}
 
 export const LEGACY_CATALOG_CONTRACT = "flavorweave-legacy-catalog-package";
 export const FACTORY_CATALOG_CONTRACT = "flavorweave-catalog-package";
@@ -15,10 +33,17 @@ export const FACTORY_CATALOG_CONTRACT = "flavorweave-catalog-package";
  * @param {string} [catalogRoot]
  * @returns {{ slug: string, title: string, recipe_version_id: string }[]}
  */
-export function listPublishedMealMedia(catalogRoot = defaultCatalogRoot) {
+export function listPublishedMealMedia(catalogRoot = catalogRootFromModule()) {
   /** @type {{ slug: string, title: string, recipe_version_id: string }[]} */
   const meals = [];
-  for (const entry of readdirSync(catalogRoot, { withFileTypes: true })) {
+  if (!catalogRoot) return meals;
+  let entries;
+  try {
+    entries = readdirSync(catalogRoot, { withFileTypes: true });
+  } catch {
+    return meals;
+  }
+  for (const entry of entries) {
     if (!entry.isDirectory() || entry.name === "legacy-24") continue;
     const dir = join(catalogRoot, entry.name);
     const v1Path = join(dir, "v1.json");

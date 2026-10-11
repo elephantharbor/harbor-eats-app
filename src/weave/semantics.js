@@ -6,8 +6,9 @@
  * evidence, or a health claim.
  */
 
-import { getTasteTerm, listVocabulary } from "../lib/taste-vocabulary.js";
+import { CLASSIFICATION_BACKFILL } from "../lib/classification-backfill.js";
 import { listPublishedMealMedia } from "../lib/meal-catalog-media.js";
+import { getTasteTerm, listVocabulary } from "../lib/taste-vocabulary.js";
 import { INTENT_CUES } from "./constants.js";
 
 export const SUPPORT_STATUS = Object.freeze([
@@ -599,7 +600,14 @@ function catalogTerms() {
     rememberTerm(terms, term.display_name);
     for (const synonym of term.synonyms || []) rememberTerm(terms, synonym);
   }
-  for (const meal of listPublishedMealMedia()) {
+  for (const slug of Object.keys(CLASSIFICATION_BACKFILL)) rememberTerm(terms, slug);
+  let meals = [];
+  try {
+    meals = listPublishedMealMedia();
+  } catch {
+    meals = [];
+  }
+  for (const meal of meals) {
     rememberTerm(terms, meal.slug);
     rememberTerm(terms, meal.title);
   }
