@@ -130,6 +130,8 @@ export function buildPlanningChips(state) {
   for (const slug of state.cuisines || []) chips.push({ id: `cuisine:${slug}`, label: displayForToken(slug) });
   for (const slug of state.meal_styles || []) chips.push({ id: `style:${slug}`, label: displayForToken(slug) });
   for (const cue of state.intent_cues || []) chips.push({ id: `cue:${cue}`, label: CUE_LABELS[cue] || cue });
+  if ((state.exclude_cooking || []).length === 3) chips.push({ id: "exclude_cooking", label: "No fried" });
+  else if ((state.exclude_cooking || []).includes("deep")) chips.push({ id: "exclude_cooking", label: "No deep-fried" });
   for (const slot of state.slots || []) {
     if (slot.special) {
       const label = slot.weekday
@@ -165,6 +167,8 @@ export function buildDiscoveryChips(state) {
   for (const slug of state.flavors || []) chips.push({ id: `flavor:${slug}`, label: spokenFlavor(slug) });
   for (const slug of state.protein_groups || []) chips.push({ id: `protein:${slug}`, label: titleToken(slug) });
   for (const cue of state.intent_cues || []) chips.push({ id: `cue:${cue}`, label: CUE_LABELS[cue] || cue });
+  if ((state.exclude_cooking || []).length === 3) chips.push({ id: "exclude_cooking", label: "No fried" });
+  else if ((state.exclude_cooking || []).includes("deep")) chips.push({ id: "exclude_cooking", label: "No deep-fried" });
   if (state.quick) chips.push({ id: "quick", label: "Quick" });
   if (state.effort_levels?.includes("easy")) chips.push({ id: "effort:easy", label: "Easy" });
   return chips;

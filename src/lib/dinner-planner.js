@@ -16,6 +16,8 @@ import { canonicalIngredient } from "./ingredient-identity.js";
 import { getTasteTerm } from "./taste-vocabulary.js";
 import { PRACTICAL_HINT_KEYS } from "./cycle2-schema.js";
 import { cueScoreForMeal } from "../weave/cues.js";
+import { proteinGroupsFromSignals } from "../discovery/meal.js";
+import { deriveCookingMethod, excludedByFrying, semanticScoreForMeal } from "../weave/semantics.js";
 import { PLAN_TOKENS } from "../weave/constants.js";
 import { isPlantMeal, mealSatisfiesSlot } from "../weave/slot-match.js";
 
@@ -69,7 +71,16 @@ export function featuresOf(entry) {
     exploration: entry.pkg.exploration ?? entry.concept.exploration ?? 0,
     vocabulary_tag_ids: entry.pkg.vocabulary_tag_ids || [],
     equipment: entry.pkg.equipment || [],
-    methods: entry.concept.current_version?.methods || [],
+    methods: [...(entry.pkg.methods || []), ...(entry.concept.current_version?.methods || [])],
+    cooking: deriveCookingMethod({
+      methods: [...(entry.pkg.methods || []), ...(entry.concept.current_version?.methods || [])],
+      steps: entry.pkg.steps || [],
+      description: entry.pkg.description || "",
+      title: entry.pkg.title || entry.concept.title || "",
+    }),
+    dietary_labels: [...(entry.pkg.dietary_labels || []), ...(entry.pkg.dietary_tags || []), ...(entry.concept.tags || [])],
+    eligibility_tags: entry.concept.tags || [],
+    protein_groups: proteinGroupsFromSignals([...(entry.concept.tags || []), ...(entry.pkg.allergens || [])]),
     entry,
   };
 }
@@ -235,6 +246,7 @@ function passesPoolFilters(feature, intent, slotOverride = {}) {
     if (mealMatchesCategory(feature, cat)) return false;
   }
   if (slotOverride.category && !mealMatchesCategory(feature, slotOverride.category)) return false;
+  if ((intent.exclude_cooking || []).length && excludedByFrying(feature, intent.exclude_cooking)) return false;
   return true;
 }
 
@@ -298,7 +310,8 @@ function scoreFeature(feature, participantIds, tastes, intent, slotOverride = {}
   const hints = hintBoost(feature, intent);
   const cues = slotOverride.intent_cue ? [slotOverride.intent_cue] : intent.intent_cues || [];
   const cue = cueScoreForMeal(feature, cues, { keep_it_easy: intent.keep_it_easy });
-  let total = taste.score + hints.boost + cue;
+  const semantic = semanticScoreForMeal(feature, intent.semantic_rank);
+  let total = taste.score + hints.boost + cue + semantic;
   if (slotOverride.special === true) {
     total += (feature.exploration || 0) >= 0.55 ? 0.25 : (feature.exploration || 0) * 0.1;
   }

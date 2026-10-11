@@ -111,6 +111,7 @@ function discoveryDelta(overrides = {}) {
     keep_it_easy: null,
     keep_ingredients_simple: null,
     list_ops: [],
+    concepts: [],
     ...overrides,
   };
 }
@@ -133,6 +134,7 @@ function planningDelta(overrides = {}) {
     list_ops: [],
     frequency_ops: [],
     slot_ops: [],
+    concepts: [],
     ...overrides,
   };
 }

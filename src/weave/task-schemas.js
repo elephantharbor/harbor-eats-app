@@ -49,6 +49,18 @@ const frequencyOpSchema = {
   },
 };
 
+const conceptSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["id", "polarity"],
+  properties: {
+    id: str(32),
+    polarity: { type: "string", enum: ["prefer", "avoid"] },
+  },
+};
+
+const conceptsField = { type: "array", maxItems: 4, items: conceptSchema };
+
 const slotOpSchema = {
   type: "object",
   additionalProperties: false,
@@ -114,6 +126,7 @@ export const planningIntentOutputSchema = {
     "list_ops",
     "frequency_ops",
     "slot_ops",
+    "concepts",
   ],
   properties: {
     acknowledgement: str(120),
@@ -132,6 +145,7 @@ export const planningIntentOutputSchema = {
     list_ops: { type: "array", maxItems: 4, items: listOpSchema(true) },
     frequency_ops: { type: "array", maxItems: 3, items: frequencyOpSchema },
     slot_ops: { type: "array", maxItems: 3, items: slotOpSchema },
+    concepts: conceptsField,
   },
 };
 
@@ -161,6 +175,7 @@ export const discoveryIntentOutputSchema = {
     "keep_it_easy",
     "keep_ingredients_simple",
     "list_ops",
+    "concepts",
   ],
   properties: {
     acknowledgement: str(120),
@@ -173,6 +188,7 @@ export const discoveryIntentOutputSchema = {
     keep_it_easy: nul({ type: "boolean" }),
     keep_ingredients_simple: nul({ type: "boolean" }),
     list_ops: { type: "array", maxItems: 6, items: listOpSchema(false) },
+    concepts: conceptsField,
   },
 };
 
@@ -181,6 +197,7 @@ export function postValidatePlanningDelta(output) {
   // The model's acknowledgement is optional. An empty string is valid;
   // the route composes one from the applied intent. Never burn a retry on it.
   let acknowledgement = ack;
+  if (ack && /\b(healthy|healthier|nutritious|low-calorie|low calorie)\b/i.test(ack)) acknowledgement = "";
   if (ack && /\b(allergen[- ]?free|safe for|guaranteed|certified)\b/i.test(ack)) acknowledgement = "Got it.";
   return { ok: true, value: { ...output, acknowledgement } };
 }

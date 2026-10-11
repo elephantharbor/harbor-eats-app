@@ -33,6 +33,7 @@ function expandCases() {
         list_ops: [],
         frequency_ops: [],
         slot_ops: [],
+        concepts: [],
       },
       expect: { dinner_count: n },
     });
@@ -52,6 +53,7 @@ function expandCases() {
         keep_it_easy: null,
         keep_ingredients_simple: null,
         list_ops: [{ field: "intent_cues", "op": "add", "value": cue }],
+        concepts: [],
       },
       expect: { intent_cues: [cue] },
     });
@@ -87,6 +89,7 @@ function expandCases() {
         list_ops: [],
         frequency_ops: [],
         slot_ops: [],
+        concepts: [],
       },
       expect: { dinner_count: n },
     });
@@ -106,9 +109,9 @@ function expandCases() {
 const allCases = expandCases();
 
 describe("D-06 intent corpus", () => {
-  it(`has ${allCases.length} semantic cases (target 40–60)`, () => {
+  it(`has ${allCases.length} semantic cases`, () => {
     expect(allCases.length).toBeGreaterThanOrEqual(40);
-    expect(allCases.length).toBeLessThanOrEqual(60);
+    expect(allCases.length).toBeLessThanOrEqual(120);
   });
 
   for (const c of allCases) {
@@ -125,7 +128,12 @@ describe("D-06 intent corpus", () => {
       const task = c.task === "planning_intent" ? TASKS.planning_intent : TASKS.discovery_intent;
       const schemaOk = validateSchema(task.output_schema, c.delta);
       expect(schemaOk.ok).toBe(c.expect?.schema_valid !== false);
-      const ctx = { today: "2026-10-10", vocabulary: vocab, ...(c.context || {}) };
+      const ctx = {
+        today: "2026-10-10",
+        vocabulary: vocab,
+        user_text: c.apply_text ? c.text : undefined,
+        ...(c.context || {}),
+      };
       const applied =
         c.task === "planning_intent"
           ? applyPlanningDelta(c.state || null, c.delta, ctx)
@@ -143,6 +151,14 @@ describe("D-06 intent corpus", () => {
         }
       }
       if (c.expect?.intent_cues) expect(state.intent_cues).toEqual(c.expect.intent_cues);
+      if (c.expect?.semantic_rank) expect(state.semantic_rank).toEqual(c.expect.semantic_rank);
+      if (c.expect?.exclude_cooking) expect(state.exclude_cooking).toEqual(c.expect.exclude_cooking);
+      if (c.expect?.unsupported_soft) expect(applied.semantic.unsupported_soft_count).toBeGreaterThan(0);
+      if (c.expect?.broadening) expect(applied.semantic.broadening).toBe(true);
+      if (c.expect?.no_literal) {
+        const blob = JSON.stringify(state);
+        for (const word of c.expect.no_literal) expect(blob.toLowerCase()).not.toContain(String(word).toLowerCase());
+      }
       if (c.expect?.slot_effort) {
         const slot = state.slots.find((s) => s.weekday === c.expect.slot_weekday);
         expect(slot?.effort).toBe(c.expect.slot_effort);

@@ -24,6 +24,17 @@ import { loadDiscoveryRecentSlugs } from "../discovery/http.js";
 import { buildPlanningChips, buildDiscoveryChips, noResultsAcknowledgement, noResultsSuggestions, reconcileAcknowledgement, refinementAcknowledgement, FIND_UNAVAILABLE_ACK, PLAN_PICKER_ACK, planCountFallbackAck, withRelaxation } from "./ack.js";
 import { classifyDiscoveryBypass, bypassDiscoveryPatch, normalizeFindText, keywordDiscoveryInput } from "./bypass.js";
 import { applyNegationOverlay } from "./negation.js";
+import {
+  ambiguousTarget,
+  applyDinnerCount,
+  applySharedSemantics,
+  broadenDiscoveryState,
+  buildSemanticTelemetry,
+  canBroadenZero,
+  classifyZeroResult,
+  householdSafeStarterPrompts,
+} from "./semantics.js";
+import { rulesFromLegacyKeys } from "../lib/legacy-preference-audit.js";
 import { discoveryRelaxations } from "./relax.js";
 import { detectDiscoveryConflicts, detectPlanningConflicts, frequencyConflicts } from "./conflicts.js";
 import { discoveryStateToQuery } from "./discovery-map.js";
@@ -335,6 +346,41 @@ async function executeDiscovery(env, session, { executedState, clientContext, co
   };
 }
 
+function tableLimitIds(participantIds, constraints) {
+  const ids = new Set();
+  for (const memberId of participantIds || []) {
+    const keys = [];
+    for (const row of constraints || []) {
+      if (row.member_id && row.member_id !== memberId) continue;
+      if ((row.status || "prohibited") === "permitted") continue;
+      if (row.rule_key) keys.push(row.rule_key);
+    }
+    for (const rule of rulesFromLegacyKeys(keys)) {
+      if (rule.status === "prohibited") ids.add(rule.id);
+    }
+  }
+  return [...ids];
+}
+
+function semanticAck(ack, semantic, conflicts) {
+  if (!semantic?.force_ack || !semantic.primary_ack) return ack;
+  if ((conflicts || []).length) return ack;
+  return { ...ack, acknowledgement: semantic.primary_ack, acknowledgement_source: "reconciled" };
+}
+
+function attachTelemetry(payload, { task, semantic, source, resultCount, zeroReason }) {
+  return {
+    ...payload,
+    telemetry: buildSemanticTelemetry({
+      task,
+      semantic,
+      source,
+      resultCount,
+      zeroReason,
+    }),
+  };
+}
+
 function latencyFields({ routeStarted, providerMs, deterministicMs }) {
   const total = Math.max(0, Date.now() - routeStarted);
   const provider = Number(providerMs) || 0;
@@ -355,7 +401,9 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
   const isPlanApply = path === "/api/plan/apply" && request.method === "POST";
   const isFindApply = path === "/api/discovery/apply" && request.method === "POST";
   const isPlanCommit = path === "/api/plan/commit" && request.method === "POST";
-  if (!isPlanInterpret && !isFindInterpret && !isPlanApply && !isFindApply && !isPlanCommit) return null;
+  const isPlanCount = path === "/api/plan/count" && request.method === "POST";
+  const isStarters = path === "/api/weave/starters" && request.method === "GET";
+  if (!isPlanInterpret && !isFindInterpret && !isPlanApply && !isFindApply && !isPlanCommit && !isPlanCount && !isStarters) return null;
 
   const auth = await requireSession(env.DB, request);
   if (auth.error) return auth.error;
@@ -382,6 +430,43 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
       : Promise.resolve({ recent_slugs: [], recent_source: null }),
   };
   const settleReads = () => Promise.allSettled([reads.constraints, reads.tastes, reads.catalog, reads.recent]);
+
+  if (isStarters) {
+    const constraints = await reads.constraints;
+    return json({
+      ok: true,
+      llm_called: false,
+      starters: householdSafeStarterPrompts({ limits: tableLimitIds(participantIds, constraints) }),
+    });
+  }
+
+  if (isPlanCount) {
+    const counted = applyDinnerCount(body.state || emptyPlanningState(), body.dinner_count);
+    if (!counted.ok) {
+      await settleReads();
+      return fail(counted.error);
+    }
+    let dinnerPlan = null;
+    if (body.dinner_plan_id) {
+      dinnerPlan = await loadDinnerPlan(env.DB, body.dinner_plan_id);
+      if (!dinnerPlan || dinnerPlan.household_id !== session.household_id) return fail("forbidden_cross_household", 403);
+    }
+    const [constraints, tastes, catalog] = await Promise.all([reads.constraints, reads.tastes, reads.catalog]);
+    const result = await executePlanning(env, session, {
+      priorState: counted.state,
+      dinnerPlan,
+      participantIds,
+      preloaded: { constraints, tastes, catalog },
+      routeStarted,
+    });
+    return json(attachTelemetry({ ...result, llm_called: false }, {
+      task: "planning_intent",
+      semantic: {},
+      source: "deterministic",
+      resultCount: result.preview?.slots?.length ?? 0,
+      zeroReason: null,
+    }));
+  }
 
   if (isPlanApply) {
     let priorState = body.state || emptyPlanningState();
@@ -496,6 +581,37 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
     const priorState = anchor.priorState;
     const context = buildPromptContext({ timezone, participantIds, dinnerPlan, today, usual });
     context.vocabulary = vocabulary;
+    const amb = ambiguousTarget({
+      text,
+      dates: context.dates || datesFromPlanMeals(dinnerPlan?.meals),
+      dinnerCount: priorState?.dinner_count || context.dinner_count_default,
+      today,
+    });
+    if (amb) {
+      await settleReads();
+      return json(attachTelemetry({
+        ok: true,
+        task: "planning_intent",
+        source: "deterministic",
+        llm_called: false,
+        ambiguous_target: amb,
+        acknowledgement: amb.prompt,
+        acknowledgement_source: "reconciled",
+        state: priorState || emptyPlanningState(),
+        chips: priorState ? buildPlanningChips(priorState) : [],
+        conflicts: [],
+        dropped: [],
+        changed_positions: [],
+        preview: null,
+        fallback_code: null,
+      }, {
+        task: "planning_intent",
+        semantic: {},
+        source: "deterministic",
+        resultCount: 0,
+        zeroReason: null,
+      }));
+    }
     const runInput = { text, state: priorState, context, vocabulary };
     const gen = await service.run("planning_intent", runInput, { householdId: session.household_id, fallback: null });
     const providerMs = Number(gen.provider_latency_ms) || 0;
@@ -626,7 +742,7 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
     const deterministicMs = null;
     const conflicts = [...conflictPass.conflicts, ...frequencyConflicts(preview)];
     const refinement = refinementAcknowledgement({ preview, previousSlots, slots: executed.slots });
-    const ack = reconcileAcknowledgement({
+    const ack = semanticAck(reconcileAcknowledgement({
       task: "planning_intent",
       modelAck: gen.output.acknowledgement,
       state: executed,
@@ -637,8 +753,8 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
       dinnerCountDefaulted: applied.dinner_count_defaulted === true,
       dinnerCountUsual: usual.usual === true,
       refinement,
-    });
-    return json({
+    }), applied.semantic, conflicts);
+    return json(attachTelemetry({
       ok: true,
       task: "planning_intent",
       source: gen.source,
@@ -655,7 +771,13 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
       ...latencyFields({ routeStarted, providerMs, deterministicMs }),
       fallback_code: null,
       metadata: { estimated_cost_usd: Number(gen.estimated_cost_usd) || 0 },
-    });
+    }, {
+      task: "planning_intent",
+      semantic: applied.semantic,
+      source: gen.source,
+      resultCount: preview?.slots?.length ?? 0,
+      zeroReason: null,
+    }));
   }
 
   if (!isFindInterpret) {
@@ -691,6 +813,7 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
   let modelAck = "";
   let estimatedCost = 0;
   let providerMs = 0;
+  let semantic = {};
   if (bypass.bypass && bypass.reason === "lexicon") {
     executedState = bypassDiscoveryPatch(text);
   } else if (bypass.bypass && bypass.reason === "empty") {
@@ -705,6 +828,7 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
       const base = extracted.state;
       if (extracted.text) base.text_residue = extracted.text;
       applyNegationOverlay(base, text);
+      semantic = applySharedSemantics(base, { text, concepts: [], task: "discovery_intent" });
       const conflictPass = detectDiscoveryConflicts(base, { participantIds, constraints, tastes, userText: text });
       if (conflictPass.conflicts.length) {
         const repaired = conflictPass.repaired;
@@ -765,10 +889,15 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
         acknowledgement: emptyAck,
       });
     }
-    const applied = applyDiscoveryDelta(priorDiscovery, gen.output, { vocabulary, today });
+    const applied = applyDiscoveryDelta(priorDiscovery, gen.output, { vocabulary, today, user_text: text });
     dropped = applied.dropped;
     executedState = applied.state;
     applyNegationOverlay(executedState, text);
+    semantic = applySharedSemantics(executedState, {
+      text,
+      concepts: gen.output?.concepts || [],
+      task: "discovery_intent",
+    });
     model = gen.model;
     prompt_version = gen.prompt_version;
     source = gen.source;
@@ -778,7 +907,7 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
   conflicts = conflictPass.conflicts;
   removed = conflictPass.removed;
   executedState = conflictPass.repaired;
-  let ack = reconcileAcknowledgement({
+  let ack = semanticAck(reconcileAcknowledgement({
     task: "discovery_intent",
     modelAck,
     state: executedState,
@@ -786,12 +915,35 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
     dropped,
     removedTokens: removed,
     userText: text,
-  });
+  }), semantic, conflicts);
   const mapped = discoveryStateToQuery(executedState, {});
   if (!mapped.ok) return fail(mapped.error, mapped.status || 400);
   const t1 = monotonicNow();
   let ran = await runDiscoveryForQuery(env, session, mapped.query, client.context, preloaded);
   if (ran.error) return ran.error;
+  if ((ran.payload.total || 0) === 0) {
+    const reason = classifyZeroResult({
+      total: 0,
+      excludedCounts: ran.payload.excluded_counts,
+      state: executedState,
+      semantic,
+      catalogSize: ran.payload.catalog_size,
+    });
+    if (canBroadenZero({ reason, state: executedState, semantic })) {
+      const broadened = broadenDiscoveryState(executedState);
+      const againQuery = discoveryStateToQuery(broadened.state, {});
+      if (againQuery.ok) {
+        const again = await runDiscoveryForQuery(env, session, againQuery.query, client.context, preloaded);
+        if (again.error) return again.error;
+        if ((again.payload.total || 0) > 0) {
+          executedState = broadened.state;
+          ran = again;
+          semantic = { ...semantic, broadening: true };
+          ack = semanticAck(ack, semantic, conflicts);
+        }
+      }
+    }
+  }
   if ((ran.payload.total || 0) === 0 && conflicts.length) {
     for (const step of discoveryRelaxations(executedState)) {
       const relaxedQuery = discoveryStateToQuery(step.state, {});
@@ -820,7 +972,16 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
     };
     suggestions = ack.suggestions;
   }
-  return json({
+  const zeroReason = (ran.payload.total || 0) === 0
+    ? classifyZeroResult({
+      total: 0,
+      excludedCounts: ran.payload.excluded_counts,
+      state: executedState,
+      semantic,
+      catalogSize: ran.payload.catalog_size,
+    })
+    : null;
+  return json(attachTelemetry({
     ok: true,
     task: "discovery_intent",
     source,
@@ -836,7 +997,13 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
     fallback_code,
     metadata: { estimated_cost_usd: estimatedCost },
     ...ran.payload,
-  });
+  }, {
+    task: "discovery_intent",
+    semantic,
+    source,
+    resultCount: ran.payload.total,
+    zeroReason,
+  }));
 }
 
 function contextTimezone(timezone) {

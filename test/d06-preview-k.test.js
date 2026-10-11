@@ -136,6 +136,7 @@ function planningDelta(overrides = {}) {
     list_ops: [],
     frequency_ops: [],
     slot_ops: [],
+    concepts: [],
     ...overrides,
   };
 }

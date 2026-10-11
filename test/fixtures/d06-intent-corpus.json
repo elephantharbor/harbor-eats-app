@@ -1,10 +1,65 @@
 {
   "households": {
-    "clear": { "members": ["a", "b"], "limits": { "a": [], "b": [] } },
-    "dairy": { "members": ["a", "b"], "limits": { "a": ["no_dairy"], "b": [] } },
-    "shellfish": { "members": ["a"], "limits": { "a": ["no_shellfish"] } },
-    "mixed": { "members": ["a", "b"], "limits": { "a": ["no_finfish"], "b": ["no_meat"] } },
-    "allergen": { "members": ["a", "b"], "limits": { "a": ["no_nuts"], "b": ["no_shellfish"] } }
+    "clear": {
+      "members": [
+        "a",
+        "b"
+      ],
+      "limits": {
+        "a": [],
+        "b": []
+      }
+    },
+    "dairy": {
+      "members": [
+        "a",
+        "b"
+      ],
+      "limits": {
+        "a": [
+          "no_dairy"
+        ],
+        "b": []
+      }
+    },
+    "shellfish": {
+      "members": [
+        "a"
+      ],
+      "limits": {
+        "a": [
+          "no_shellfish"
+        ]
+      }
+    },
+    "mixed": {
+      "members": [
+        "a",
+        "b"
+      ],
+      "limits": {
+        "a": [
+          "no_finfish"
+        ],
+        "b": [
+          "no_meat"
+        ]
+      }
+    },
+    "allergen": {
+      "members": [
+        "a",
+        "b"
+      ],
+      "limits": {
+        "a": [
+          "no_nuts"
+        ],
+        "b": [
+          "no_shellfish"
+        ]
+      }
+    }
   },
   "cases": [
     {
@@ -30,9 +85,14 @@
         "special_count": null,
         "list_ops": [],
         "frequency_ops": [],
-        "slot_ops": []
+        "slot_ops": [],
+        "concepts": []
       },
-      "expect": { "schema_valid": true, "dinner_count": 3, "keep_it_easy": true }
+      "expect": {
+        "schema_valid": true,
+        "dinner_count": 3,
+        "keep_it_easy": true
+      }
     },
     {
       "id": "plan-effort-easy",
@@ -57,9 +117,13 @@
         "special_count": null,
         "list_ops": [],
         "frequency_ops": [],
-        "slot_ops": []
+        "slot_ops": [],
+        "concepts": []
       },
-      "expect": { "keep_it_easy": true, "effort": null }
+      "expect": {
+        "keep_it_easy": true,
+        "effort": null
+      }
     },
     {
       "id": "plan-fish-twice",
@@ -83,10 +147,26 @@
         "ingredient_complexity_hard": null,
         "special_count": null,
         "list_ops": [],
-        "frequency_ops": [{ "op": "set", "token": "fish", "min_count": 2, "max_count": 2 }],
-        "slot_ops": []
+        "frequency_ops": [
+          {
+            "op": "set",
+            "token": "fish",
+            "min_count": 2,
+            "max_count": 2
+          }
+        ],
+        "slot_ops": [],
+        "concepts": []
       },
-      "expect": { "frequencies": [{ "token": "fish", "min_count": 2, "max_count": 2 }] }
+      "expect": {
+        "frequencies": [
+          {
+            "token": "fish",
+            "min_count": 2,
+            "max_count": 2
+          }
+        ]
+      }
     },
     {
       "id": "plan-pasta-max-once",
@@ -110,10 +190,25 @@
         "ingredient_complexity_hard": null,
         "special_count": null,
         "list_ops": [],
-        "frequency_ops": [{ "op": "set", "token": "pasta", "min_count": null, "max_count": 1 }],
-        "slot_ops": []
+        "frequency_ops": [
+          {
+            "op": "set",
+            "token": "pasta",
+            "min_count": null,
+            "max_count": 1
+          }
+        ],
+        "slot_ops": [],
+        "concepts": []
       },
-      "expect": { "frequencies": [{ "token": "pasta", "max_count": 1 }] }
+      "expect": {
+        "frequencies": [
+          {
+            "token": "pasta",
+            "max_count": 1
+          }
+        ]
+      }
     },
     {
       "id": "plan-tuesday-easy",
@@ -122,7 +217,16 @@
       "text": "Make Tuesday easier.",
       "state": null,
       "household": "clear",
-      "context": { "today": "2026-10-10", "dates": [{ "position": 2, "date": "2026-10-13", "weekday": "tuesday" }] },
+      "context": {
+        "today": "2026-10-10",
+        "dates": [
+          {
+            "position": 2,
+            "date": "2026-10-13",
+            "weekday": "tuesday"
+          }
+        ]
+      },
       "delta": {
         "acknowledgement": "Tuesday easy.",
         "clear": [],
@@ -154,9 +258,14 @@
             "ingredient": null,
             "category": null
           }
-        ]
+        ],
+        "concepts": []
       },
-      "expect": { "slot_weekday": "tuesday", "slot_effort": "easy", "effort": null }
+      "expect": {
+        "slot_weekday": "tuesday",
+        "slot_effort": "easy",
+        "effort": null
+      }
     },
     {
       "id": "plan-fuzzy-not-heavy",
@@ -179,11 +288,22 @@
         "ingredient_complexity": null,
         "ingredient_complexity_hard": null,
         "special_count": null,
-        "list_ops": [{ "field": "intent_cues", "op": "add", "value": "light" }],
+        "list_ops": [
+          {
+            "field": "intent_cues",
+            "op": "add",
+            "value": "light"
+          }
+        ],
         "frequency_ops": [],
-        "slot_ops": []
+        "slot_ops": [],
+        "concepts": []
       },
-      "expect": { "intent_cues": ["light"] }
+      "expect": {
+        "intent_cues": [
+          "light"
+        ]
+      }
     },
     {
       "id": "find-salmon-bypass",
@@ -191,7 +311,12 @@
       "kind": "bypass",
       "text": "salmon",
       "household": "clear",
-      "expect": { "bypass": true, "ingredients": ["salmon"] }
+      "expect": {
+        "bypass": true,
+        "ingredients": [
+          "salmon"
+        ]
+      }
     },
     {
       "id": "find-korean-bypass",
@@ -199,7 +324,9 @@
       "kind": "bypass",
       "text": "korean",
       "household": "clear",
-      "expect": { "bypass": true }
+      "expect": {
+        "bypass": true
+      }
     },
     {
       "id": "find-cozy-easy",
@@ -218,9 +345,21 @@
         "different": null,
         "keep_it_easy": true,
         "keep_ingredients_simple": null,
-        "list_ops": [{ "field": "intent_cues", "op": "add", "value": "cozy" }]
+        "list_ops": [
+          {
+            "field": "intent_cues",
+            "op": "add",
+            "value": "cozy"
+          }
+        ],
+        "concepts": []
       },
-      "expect": { "intent_cues": ["cozy"], "keep_it_easy": true }
+      "expect": {
+        "intent_cues": [
+          "cozy"
+        ],
+        "keep_it_easy": true
+      }
     },
     {
       "id": "find-shrimp-tonight",
@@ -239,9 +378,18 @@
         "different": null,
         "keep_it_easy": null,
         "keep_ingredients_simple": null,
-        "list_ops": [{ "field": "ingredients", "op": "add", "value": "shrimp" }]
+        "list_ops": [
+          {
+            "field": "ingredients",
+            "op": "add",
+            "value": "shrimp"
+          }
+        ],
+        "concepts": []
       },
-      "expect": { "schema_valid": true }
+      "expect": {
+        "schema_valid": true
+      }
     },
     {
       "id": "plan-shrimp-nights",
@@ -265,10 +413,27 @@
         "ingredient_complexity_hard": null,
         "special_count": null,
         "list_ops": [],
-        "frequency_ops": [{ "op": "set", "token": "shrimp", "min_count": 2, "max_count": 2 }],
-        "slot_ops": []
+        "frequency_ops": [
+          {
+            "op": "set",
+            "token": "shrimp",
+            "min_count": 2,
+            "max_count": 2
+          }
+        ],
+        "slot_ops": [],
+        "concepts": []
       },
-      "expect": { "dinner_count": 2, "frequencies": [{ "token": "shrimp", "min_count": 2, "max_count": 2 }] }
+      "expect": {
+        "dinner_count": 2,
+        "frequencies": [
+          {
+            "token": "shrimp",
+            "min_count": 2,
+            "max_count": 2
+          }
+        ]
+      }
     },
     {
       "id": "plan-tuesday-shellfish",
@@ -277,7 +442,16 @@
       "text": "Make Tuesday easier.",
       "state": null,
       "household": "shellfish",
-      "context": { "today": "2026-10-10", "dates": [{ "position": 2, "date": "2026-10-13", "weekday": "tuesday" }] },
+      "context": {
+        "today": "2026-10-10",
+        "dates": [
+          {
+            "position": 2,
+            "date": "2026-10-13",
+            "weekday": "tuesday"
+          }
+        ]
+      },
       "delta": {
         "acknowledgement": "Tuesday easy.",
         "clear": [],
@@ -309,9 +483,13 @@
             "ingredient": null,
             "category": null
           }
-        ]
+        ],
+        "concepts": []
       },
-      "expect": { "slot_weekday": "tuesday", "slot_effort": "easy" }
+      "expect": {
+        "slot_weekday": "tuesday",
+        "slot_effort": "easy"
+      }
     },
     {
       "id": "find-peanut-shrimp",
@@ -331,11 +509,22 @@
         "keep_it_easy": null,
         "keep_ingredients_simple": null,
         "list_ops": [
-          { "field": "ingredients", "op": "add", "value": "shrimp" },
-          { "field": "protein_groups", "op": "add", "value": "shellfish" }
-        ]
+          {
+            "field": "ingredients",
+            "op": "add",
+            "value": "shrimp"
+          },
+          {
+            "field": "protein_groups",
+            "op": "add",
+            "value": "shellfish"
+          }
+        ],
+        "concepts": []
       },
-      "expect": { "schema_valid": true }
+      "expect": {
+        "schema_valid": true
+      }
     },
     {
       "id": "find-prawn-stir",
@@ -355,11 +544,22 @@
         "keep_it_easy": null,
         "keep_ingredients_simple": null,
         "list_ops": [
-          { "field": "flavors", "op": "add", "value": "spicy" },
-          { "field": "ingredients", "op": "add", "value": "shrimp" }
-        ]
+          {
+            "field": "flavors",
+            "op": "add",
+            "value": "spicy"
+          },
+          {
+            "field": "ingredients",
+            "op": "add",
+            "value": "shrimp"
+          }
+        ],
+        "concepts": []
       },
-      "expect": { "schema_valid": true }
+      "expect": {
+        "schema_valid": true
+      }
     },
     {
       "id": "find-steak-hearty",
@@ -378,9 +578,20 @@
         "different": null,
         "keep_it_easy": null,
         "keep_ingredients_simple": null,
-        "list_ops": [{ "field": "intent_cues", "op": "add", "value": "filling" }]
+        "list_ops": [
+          {
+            "field": "intent_cues",
+            "op": "add",
+            "value": "filling"
+          }
+        ],
+        "concepts": []
       },
-      "expect": { "intent_cues": ["filling"] }
+      "expect": {
+        "intent_cues": [
+          "filling"
+        ]
+      }
     },
     {
       "id": "plan-salmon-mixed",
@@ -403,11 +614,20 @@
         "ingredient_complexity": null,
         "ingredient_complexity_hard": null,
         "special_count": null,
-        "list_ops": [{ "field": "include_ingredients", "op": "add", "value": "salmon" }],
+        "list_ops": [
+          {
+            "field": "include_ingredients",
+            "op": "add",
+            "value": "salmon"
+          }
+        ],
         "frequency_ops": [],
-        "slot_ops": []
+        "slot_ops": [],
+        "concepts": []
       },
-      "expect": { "dinner_count": 2 }
+      "expect": {
+        "dinner_count": 2
+      }
     },
     {
       "id": "find-creamy-cozy",
@@ -427,11 +647,24 @@
         "keep_it_easy": null,
         "keep_ingredients_simple": null,
         "list_ops": [
-          { "field": "textures", "op": "add", "value": "creamy" },
-          { "field": "intent_cues", "op": "add", "value": "cozy" }
-        ]
+          {
+            "field": "textures",
+            "op": "add",
+            "value": "creamy"
+          },
+          {
+            "field": "intent_cues",
+            "op": "add",
+            "value": "cozy"
+          }
+        ],
+        "concepts": []
       },
-      "expect": { "intent_cues": ["cozy"] }
+      "expect": {
+        "intent_cues": [
+          "cozy"
+        ]
+      }
     },
     {
       "id": "find-cheese-night",
@@ -450,9 +683,1323 @@
         "different": null,
         "keep_it_easy": null,
         "keep_ingredients_simple": null,
-        "list_ops": []
+        "list_ops": [],
+        "concepts": []
       },
-      "expect": { "schema_valid": true }
+      "expect": {
+        "schema_valid": true
+      }
+    },
+    {
+      "id": "find-sem-healthy",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Something healthy",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "healthy",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "light"
+        ],
+        "semantic_rank": [
+          "fewer_fried",
+          "fish_forward",
+          "vegetable_forward"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "light",
+          "vegetable_forward",
+          "fish_forward",
+          "fewer_fried"
+        ],
+        "eligibility_kept": true,
+        "ack_includes": [
+          "lighter",
+          "veggie-forward"
+        ],
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-healthier",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Something healthier for dinner",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": []
+      },
+      "expect": {
+        "intent_cues": [
+          "light"
+        ],
+        "semantic_rank": [
+          "fewer_fried",
+          "fish_forward",
+          "vegetable_forward"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "light",
+          "fewer_fried"
+        ],
+        "eligibility_kept": true,
+        "ack_includes": [
+          "lighter"
+        ],
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-light",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Something light",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "light",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "light"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "light"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-fresh",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Something fresh",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "fresh",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "fresh"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "fresh"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-filling",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Something filling",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "filling",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "filling"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "filling"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-comforting",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Something comforting",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "comforting",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "comforting"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "comforting"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-comfort-food",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Comfort food tonight",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": []
+      },
+      "expect": {
+        "intent_cues": [
+          "comforting"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "comforting"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-hearty",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Something hearty",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "hearty",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "filling"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "filling"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-summery",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Something summery",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "summery",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "summery"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "summery"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-special",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Something special",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "special",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "special"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "special"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-restaurant-easy",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Restaurant-style but easy",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "restaurant_like",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "restaurant_like"
+        ],
+        "keep_it_easy": true
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "restaurant_like"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-clean-simple",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Clean and simple",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": []
+      },
+      "expect": {
+        "intent_cues": [
+          "light"
+        ],
+        "keep_ingredients_simple": true
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "light"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-nothing-fried",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Fish but nothing fried",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [
+          {
+            "field": "protein_groups",
+            "op": "add",
+            "value": "fish"
+          }
+        ],
+        "concepts": [
+          {
+            "id": "fried",
+            "polarity": "avoid"
+          }
+        ]
+      },
+      "expect": {
+        "exclude_cooking": [
+          "deep",
+          "pan",
+          "shallow"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "exclude_frying"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-nothing-heavy",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Nothing too heavy",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": []
+      },
+      "expect": {
+        "intent_cues": [
+          "light"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "light"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-not-rich",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Not too rich",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": []
+      },
+      "expect": {
+        "intent_cues": [
+          "light"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "light"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-no-comfort",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "No comfort food tonight",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "comforting",
+            "polarity": "avoid"
+          }
+        ]
+      },
+      "expect": {
+        "semantic_rank": [
+          "avoid_comforting"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "avoid_comforting"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-crispy-not-deep",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Crispy but not deep fried",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "deep_fried",
+            "polarity": "avoid"
+          }
+        ]
+      },
+      "expect": {
+        "exclude_cooking": [
+          "deep"
+        ],
+        "semantic_rank": [
+          "crispy_non_fry"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "exclude_deep",
+          "crispy_non_fry"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-healthy-filling",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Healthy but filling",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "healthy",
+            "polarity": "prefer"
+          },
+          {
+            "id": "filling",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "filling",
+          "light"
+        ],
+        "semantic_rank": [
+          "fewer_fried",
+          "fish_forward",
+          "vegetable_forward"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "light",
+          "filling"
+        ],
+        "eligibility_kept": true,
+        "ack_includes": [
+          "lighter"
+        ],
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-fresh-easy-fish",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Fresh and easy with fish",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [
+          {
+            "field": "protein_groups",
+            "op": "add",
+            "value": "fish"
+          }
+        ],
+        "concepts": [
+          {
+            "id": "fresh",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "fresh"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "fresh"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-cozy-not-heavy",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Cozy but not heavy",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "cozy",
+            "polarity": "prefer"
+          },
+          {
+            "id": "light",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "cozy",
+          "light"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "cozy",
+          "light"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "plan-sem-healthy-weeknight",
+      "task": "planning_intent",
+      "kind": "semantic",
+      "text": "Healthy weeknight dinners",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "dinner_count": null,
+        "date_start": null,
+        "date_end": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "effort": null,
+        "ingredient_complexity": null,
+        "ingredient_complexity_hard": null,
+        "special_count": null,
+        "list_ops": [],
+        "frequency_ops": [],
+        "slot_ops": [],
+        "concepts": [
+          {
+            "id": "healthy",
+            "polarity": "prefer"
+          },
+          {
+            "id": "weeknight",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "light",
+          "weeknight"
+        ],
+        "semantic_rank": [
+          "fewer_fried",
+          "fish_forward",
+          "vegetable_forward"
+        ],
+        "keep_it_easy": true
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "light",
+          "weeknight"
+        ],
+        "eligibility_kept": true,
+        "ack_includes": [
+          "lighter"
+        ],
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "plan-sem-three-lighter",
+      "task": "planning_intent",
+      "kind": "semantic",
+      "text": "Three lighter dinners this week",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "dinner_count": 3,
+        "date_start": null,
+        "date_end": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "effort": null,
+        "ingredient_complexity": null,
+        "ingredient_complexity_hard": null,
+        "special_count": null,
+        "list_ops": [],
+        "frequency_ops": [],
+        "slot_ops": [],
+        "concepts": [
+          {
+            "id": "light",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "dinner_count": 3,
+        "intent_cues": [
+          "light"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "light"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "plan-sem-friday-special-easy",
+      "task": "planning_intent",
+      "kind": "semantic",
+      "text": "Make Friday special but keep the rest easy",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "dinner_count": null,
+        "date_start": null,
+        "date_end": null,
+        "keep_it_easy": true,
+        "keep_ingredients_simple": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "effort": null,
+        "ingredient_complexity": null,
+        "ingredient_complexity_hard": null,
+        "special_count": null,
+        "list_ops": [],
+        "frequency_ops": [],
+        "slot_ops": [
+          {
+            "target_kind": "weekday",
+            "target": "friday",
+            "op": "set",
+            "effort": null,
+            "ingredient_complexity": null,
+            "max_minutes": null,
+            "max_minutes_hard": null,
+            "special": true,
+            "cuisine": null,
+            "meal_style": null,
+            "ingredient": null,
+            "category": null
+          }
+        ],
+        "concepts": []
+      },
+      "expect": {
+        "keep_it_easy": true
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      },
+      "context": {
+        "dates": [
+          {
+            "position": 5,
+            "date": "2026-10-16",
+            "weekday": "friday"
+          }
+        ]
+      }
+    },
+    {
+      "id": "find-sem-unknown-snorfblat",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Something snorfblat",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": "snorfblat",
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "snorfblat",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "unsupported_soft": true,
+        "broadening": true,
+        "no_literal": [
+          "snorfblat"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "snorfblat",
+          "unsupported"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-unknown-zephyrous",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Something zephyrous",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [],
+        "concepts": [
+          {
+            "id": "zephyrous",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "unsupported_soft": true,
+        "broadening": true,
+        "no_literal": [
+          "zephyrous"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "zephyrous"
+        ]
+      }
+    },
+    {
+      "id": "plan-sem-unknown-quixotic",
+      "task": "planning_intent",
+      "kind": "semantic",
+      "text": "Three quixotic dinners",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "dinner_count": 3,
+        "date_start": null,
+        "date_end": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "effort": null,
+        "ingredient_complexity": null,
+        "ingredient_complexity_hard": null,
+        "special_count": null,
+        "list_ops": [],
+        "frequency_ops": [],
+        "slot_ops": [],
+        "concepts": [
+          {
+            "id": "quixotic",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "dinner_count": 3,
+        "unsupported_soft": true,
+        "broadening": true,
+        "no_literal": [
+          "quixotic"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "quixotic"
+        ]
+      }
+    },
+    {
+      "id": "plan-sem-healthy-fish-twice",
+      "task": "planning_intent",
+      "kind": "semantic",
+      "text": "Three healthy dinners, fish twice",
+      "state": null,
+      "household": "clear",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "dinner_count": 3,
+        "date_start": null,
+        "date_end": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "effort": null,
+        "ingredient_complexity": null,
+        "ingredient_complexity_hard": null,
+        "special_count": null,
+        "list_ops": [],
+        "frequency_ops": [
+          {
+            "op": "set",
+            "token": "fish",
+            "min_count": 2,
+            "max_count": 2
+          }
+        ],
+        "slot_ops": [],
+        "concepts": [
+          {
+            "id": "healthy",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "dinner_count": 3,
+        "frequencies": [
+          {
+            "token": "fish",
+            "min_count": 2,
+            "max_count": 2
+          }
+        ],
+        "intent_cues": [
+          "light"
+        ],
+        "semantic_rank": [
+          "fewer_fried",
+          "fish_forward",
+          "vegetable_forward"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "light",
+          "fish_frequency"
+        ],
+        "eligibility_kept": true,
+        "ack_includes": [
+          "lighter",
+          "fish twice"
+        ],
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
+    },
+    {
+      "id": "find-sem-healthy-shrimp",
+      "task": "discovery_intent",
+      "kind": "semantic",
+      "text": "Something healthy with shrimp",
+      "state": null,
+      "household": "shellfish",
+      "apply_text": true,
+      "delta": {
+        "acknowledgement": "",
+        "clear": [],
+        "text_residue": null,
+        "max_minutes": null,
+        "max_minutes_hard": null,
+        "quick": null,
+        "different": null,
+        "keep_it_easy": null,
+        "keep_ingredients_simple": null,
+        "list_ops": [
+          {
+            "field": "ingredients",
+            "op": "add",
+            "value": "shrimp"
+          }
+        ],
+        "concepts": [
+          {
+            "id": "healthy",
+            "polarity": "prefer"
+          }
+        ]
+      },
+      "expect": {
+        "intent_cues": [
+          "light"
+        ],
+        "semantic_rank": [
+          "fewer_fried",
+          "fish_forward",
+          "vegetable_forward"
+        ]
+      },
+      "usefulness": {
+        "non_empty": true,
+        "direction": [
+          "light"
+        ],
+        "eligibility_kept": true,
+        "ack_excludes": [
+          "healthy"
+        ]
+      }
     }
   ]
 }

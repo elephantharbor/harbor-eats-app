@@ -39,8 +39,8 @@ describe("per-task reasoning effort + explanation cap", () => {
     for (const t of Object.values(TASKS)) expect(REASONING_EFFORTS).toContain(t.reasoning_effort);
     expect(TASKS.explanation.reasoning_effort).toBe("none");
     expect(TASKS.explanation.limits.max_output_tokens).toBe(300);
-    expect(TASKS.discovery_intent.limits.max_output_tokens).toBe(320);
-    expect(TASKS.planning_intent.limits.max_output_tokens).toBe(560);
+    expect(TASKS.discovery_intent.limits.max_output_tokens).toBe(360);
+    expect(TASKS.planning_intent.limits.max_output_tokens).toBe(600);
     expect(TASKS.recipe_draft.limits.max_output_tokens).toBe(1500);
   });
   it("adapter sends reasoning: {effort}, keeps strict json_schema", () => {

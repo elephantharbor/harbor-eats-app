@@ -82,6 +82,7 @@ describe("OpenAI adapter: request shape + Structured Outputs", () => {
         list_ops: [],
         frequency_ops: [],
         slot_ops: [],
+        concepts: [],
       }),
     }));
     const r = await provider.generate(req({ response_schema: TASKS.planning_intent.output_schema }));
@@ -210,8 +211,8 @@ describe("ceilings, retries, no escalation", () => {
   it("max_output_tokens = min(task cap, model ceiling); lower task caps unchanged", () => {
     expect(MODEL_OUTPUT_CEILINGS).toEqual({ "gpt-6-luna": 600, "gpt-6.1-sol": 1500 });
     expect(effectiveMaxOutputTokens(TASKS.explanation.limits.max_output_tokens, "gpt-6-luna")).toBe(300);
-    expect(effectiveMaxOutputTokens(TASKS.discovery_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(320);
-    expect(effectiveMaxOutputTokens(TASKS.planning_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(560);
+    expect(effectiveMaxOutputTokens(TASKS.discovery_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(360);
+    expect(effectiveMaxOutputTokens(TASKS.planning_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(600);
     expect(effectiveMaxOutputTokens(TASKS.concept_generation.limits.max_output_tokens, "gpt-6-luna")).toBe(600);
     expect(effectiveMaxOutputTokens(TASKS.recipe_draft.limits.max_output_tokens, "gpt-6.1-sol")).toBe(1500);
     expect(effectiveMaxOutputTokens(5000, "gpt-6.1-sol")).toBe(1500);

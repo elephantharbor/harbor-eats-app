@@ -10,6 +10,7 @@ import { matchExplicitCriteria } from "./criteria.js";
 import { matchMealText } from "./match.js";
 import { applyNoveltyDiversityRecency } from "./novelty.js";
 import { cueScoreForMeal } from "../weave/cues.js";
+import { semanticScoreForMeal } from "../weave/semantics.js";
 import { reasonCodesFor } from "./reasons.js";
 import { softPreferenceFor } from "./soft-prefs.js";
 import { scoreDiscoveryTaste } from "./taste.js";
@@ -176,11 +177,12 @@ export function stageTasteRanking(state, deps) {
     row.cue_score = cues.length
       ? cueScoreForMeal(row.meal, cues, { keep_it_easy: state.context.soft?.keep_it_easy, prefer_max_minutes: preferMax })
       : 0;
+    row.semantic_score = semanticScoreForMeal(row.meal, state.query.semantic_rank);
     if (row.cue_score > 0) row.intent_cue = true;
   }
   state.rows.sort((a, b) =>
     a.preference_tier - b.preference_tier
-    || (b.taste_score + b.cue_score) - (a.taste_score + a.cue_score)
+    || (b.taste_score + b.cue_score + (b.semantic_score || 0)) - (a.taste_score + a.cue_score + (a.semantic_score || 0))
     || b.match_score - a.match_score
     || a.meal.recipe_slug.localeCompare(b.meal.recipe_slug)
   );
