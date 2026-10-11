@@ -169,7 +169,7 @@ describe("H2 unavailable gateway fallback", () => {
       text: "steak date night",
     });
     expect(res.status).toBe(200);
-    expect(res.body.acknowledgement).toBe("Here's what I found for that.");
+    expect(res.body.acknowledgement).toBe("Showing dinners that match your words.");
     expect(res.body.acknowledgement).not.toMatch(BANNED);
     expect(res.body.suggestions || []).not.toEqual(expect.arrayContaining(["Try fish"]));
     expect(res.body.results.map((row) => row.title)).toContain("Steak Night");
@@ -393,5 +393,28 @@ describe("H5 corpus profiles and paced live eval", () => {
     expect(src).toContain('"max-calls"');
     expect(src).toMatch(/delay/);
     expect(src).toMatch(/setTimeout/);
+  });
+});
+
+describe("UX pass: plan commit", () => {
+  it("saves a language-built plan for the session's household", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite);
+    for (const slug of ["one", "two", "three"]) seedMeal(sqlite, { slug: `meal-${slug}`, title: `Meal ${slug}`, allergen: null, ingredient: "chicken" });
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_h", member_id: "m_a" });
+    const env = envFor(db, createFakeProvider({ script: [] }), { AI_GLOBAL_PER_DAY: "0" });
+    const planned = await postWeave(env, session.session_token, "/api/plan/interpret", { text: "Plan three easy dinners this week." });
+    expect(planned.body.preview?.slots?.length).toBe(3);
+    const committed = await postWeave(env, session.session_token, "/api/plan/commit", {
+      state: planned.body.state,
+      preview: planned.body.preview,
+      entry_point: "plan_dinners",
+    });
+    expect(committed.status).toBe(200);
+    expect(committed.body.ok).toBe(true);
+    const row = sqlite.prepare("SELECT household_id, data_origin FROM dinner_plan WHERE dinner_plan_id = ?").get(committed.body.plan.dinner_plan_id);
+    expect(row.household_id).toBe("hh_h");
+    expect(["household", "synthetic", "unproven"]).toContain(row.data_origin);
   });
 });

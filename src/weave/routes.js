@@ -346,7 +346,7 @@ function latencyFields({ routeStarted, providerMs, deterministicMs }) {
   };
 }
 
-export async function routeWeaveRequest(env, request, path) {
+export async function routeWeaveRequest(env, request, path, deps = {}) {
   const routeStarted = Date.now();
   const isPlanInterpret = path === "/api/plan/interpret" && request.method === "POST";
   const isFindInterpret = path === "/api/discovery/interpret" && request.method === "POST";
@@ -444,12 +444,13 @@ export async function routeWeaveRequest(env, request, path) {
       household_member_ids: householdIds,
       constraints,
       tastes,
-      data_origin: "weave",
+      data_origin: deps.writeOrigin ? await deps.writeOrigin(env, session.household_id, request, body) : "unproven",
       catalog: catalogLoad.ok ? catalogLoad.planner : null,
       versions: catalogLoad.ok ? catalogLoad.versionsById : null,
     };
     const created = createDinnerPlan(
       {
+        household_id: session.household_id,
         meal_count: weaveState.dinner_count,
         entry_point: body.entry_point || "plan_dinners",
         participant_ids: participantIds,

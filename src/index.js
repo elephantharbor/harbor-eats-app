@@ -2482,7 +2482,7 @@ export default {
 
         // D-06 weave interpret (planning + discovery NLP).
         {
-          const weaveRes = await routeWeaveRequest(env, request, path);
+          const weaveRes = await routeWeaveRequest(env, request, path, { writeOrigin });
           if (weaveRes) return weaveRes;
         }
 
