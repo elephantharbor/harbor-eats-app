@@ -89,6 +89,7 @@ function planningDelta(overrides = {}) {
     list_ops: [],
     frequency_ops: [],
     slot_ops: [],
+    concepts: [],
     ...overrides,
   };
 }
@@ -272,8 +273,8 @@ describe("E5 prompt cache, effort, and the planning clock", () => {
       state: { dinner_count: 4 },
       context: { today: "2026-10-16", vocabulary: { ingredients: ["cod"] } },
     });
-    expect(first.version).toBe("planning_intent@3");
-    expect(PROMPTS.discovery_intent.version).toBe("discovery_intent@3");
+    expect(first.version).toBe("planning_intent@4");
+    expect(PROMPTS.discovery_intent.version).toBe("discovery_intent@4");
     expect(first.system).toBe(second.system);
     expect(first.system.length).toBeGreaterThanOrEqual(4096);
     expect(PROMPTS.discovery_intent.system.length).toBeGreaterThanOrEqual(4096);
@@ -377,10 +378,10 @@ describe("E7 token cost", () => {
 
 describe("E8 service worker cache", () => {
   it("bumps the cache version and keeps the shell hash in step", () => {
-    expect(readSw().version).toBe("fw-sw-v28");
+    expect(readSw().version).toBe("fw-sw-v45");
     const check = checkSwInvariant();
     expect(check.ok, check.problems.join("; ")).toBe(true);
-    expect(check.version).toBe("fw-sw-v28");
+    expect(check.version).toBe("fw-sw-v45");
   });
 });
 

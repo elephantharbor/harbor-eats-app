@@ -29,11 +29,13 @@ export function discoveryStateToQuery(state, opts = {}) {
     if (slug && !excluded.includes(slug)) excluded.push(slug);
   }
   if (excluded.length) criteria.exclude_ingredients = excluded;
+  if ((state.exclude_cooking || []).length) criteria.exclude_cooking = state.exclude_cooking;
   if (state.max_minutes != null && state.max_minutes_hard) criteria.max_minutes = state.max_minutes;
   if (state.quick === true) criteria.quick = true;
   if (state.different === true) criteria.different = true;
   const input = { criteria };
   if ((state.intent_cues || []).length) input.intent_cues = state.intent_cues;
+  if ((state.semantic_rank || []).length) input.semantic_rank = state.semantic_rank;
   if (state.max_minutes != null && !state.max_minutes_hard) input.prefer_max_minutes = state.max_minutes;
   if (opts.text) input.text = opts.text;
   if (state.text_residue) input.text = state.text_residue;

@@ -20,6 +20,7 @@ import {
   TEXTURE_FILTERS,
 } from "./constants.js";
 import { INTENT_CUES } from "../weave/constants.js";
+import { FRYING_KINDS, SEMANTIC_RANK_TOKENS } from "../weave/semantics.js";
 
 const SLUG_RE = /^[a-z0-9]+(?:[-_][a-z0-9]+)*$/;
 
@@ -101,6 +102,7 @@ const LIST_ENUMS = Object.freeze({
   protein_groups: PROTEIN_GROUP_FILTERS,
   diet: DIET_FILTERS,
   textures: TEXTURE_FILTERS,
+  exclude_cooking: FRYING_KINDS,
 });
 
 /**
@@ -180,6 +182,7 @@ export function emptyCriteria() {
     diet: [],
     textures: [],
     different: false,
+    exclude_cooking: [],
   };
 }
 
@@ -199,6 +202,7 @@ export function emptyQuery() {
     offset: 0,
     intent_cues: [],
     prefer_max_minutes: null,
+    semantic_rank: [],
   };
 }
 
@@ -299,6 +303,12 @@ export function normalizeQuery(input = {}) {
     if (input.prefer_max_minutes < 5 || input.prefer_max_minutes > 240) return fail("prefer_max_minutes_invalid");
     prefer_max_minutes = input.prefer_max_minutes;
   }
+  let semantic_rank = [];
+  if (input.semantic_rank != null) {
+    const rank = normalizeSlugList(input.semantic_rank, "semantic_rank", { enum: SEMANTIC_RANK_TOKENS });
+    if (!rank.ok) return fail("semantic_rank_invalid");
+    semantic_rank = rank.value;
+  }
 
   return {
     ok: true,
@@ -312,6 +322,7 @@ export function normalizeQuery(input = {}) {
       offset: offset.value,
       intent_cues,
       prefer_max_minutes,
+      semantic_rank,
     },
   };
 }
@@ -338,6 +349,7 @@ export function canonicalQuery(query) {
       diet: [...criteria.diet],
       textures: [...criteria.textures],
       different: criteria.different,
+      exclude_cooking: [...(criteria.exclude_cooking || [])],
     },
     soft: query.soft_provided
       ? { keep_it_easy: query.soft.keep_it_easy, keep_ingredients_simple: query.soft.keep_ingredients_simple }
@@ -346,6 +358,7 @@ export function canonicalQuery(query) {
     offset: query.offset,
     intent_cues: [...(query.intent_cues || [])],
     prefer_max_minutes: query.prefer_max_minutes ?? null,
+    semantic_rank: [...(query.semantic_rank || [])],
   };
 }
 

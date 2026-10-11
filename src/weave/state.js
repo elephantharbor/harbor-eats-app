@@ -1,4 +1,5 @@
 import { INTENT_CUES, PLAN_TOKENS, WEEKDAYS } from "./constants.js";
+import { applySharedSemantics, scopeDayTargetedCue } from "./semantics.js";
 
 export const FALLBACK_DINNER_COUNT = 3;
 
@@ -43,6 +44,8 @@ export function emptyPlanningState() {
     frequencies: [],
     intent_cues: [],
     slots: [],
+    exclude_cooking: [],
+    semantic_rank: [],
   };
 }
 
@@ -69,6 +72,8 @@ export function emptyDiscoveryState() {
     protein_groups: [],
     diet: [],
     intent_cues: [],
+    exclude_cooking: [],
+    semantic_rank: [],
   };
 }
 
@@ -436,6 +441,7 @@ function applyTextRefinements(state, text, context) {
  */
 export function applyPlanningDelta(prior, delta, context = {}) {
   const dropped = [];
+  const priorCues = [...(prior?.intent_cues || [])];
   const state = cloneState({ ...emptyPlanningState(), ...(prior || {}) });
   for (const field of delta.clear || []) {
     if (field === "slots") state.slots = [];
@@ -483,6 +489,7 @@ export function applyPlanningDelta(prior, delta, context = {}) {
       state.frequencies = rest.sort((a, b) => a.token.localeCompare(b.token));
     }
   }
+  const slotTargets = [];
   for (const op of delta.slot_ops || []) {
     if (op.op === "clear") {
       const resolved = resolveSlotTarget(op, context, state);
@@ -499,6 +506,7 @@ export function applyPlanningDelta(prior, delta, context = {}) {
       dropped.push({ field: "slot_ops", value: "slot_target_unresolved" });
       continue;
     }
+    slotTargets.push(resolved);
     const key = slotKey(resolved);
     const existing = (state.slots || []).find((s) => slotKey(s) === key) || { ...resolved };
     const merged = mergeSlot(existing, {
@@ -544,7 +552,13 @@ export function applyPlanningDelta(prior, delta, context = {}) {
   const portioned = applyPortionOverlay(state, context.user_text);
   if (portioned) dinner_count_defaulted = false;
   applyTextRefinements(state, context.user_text, context);
-  return { state, dropped, dinner_count_defaulted, portioned };
+  const semantic = applySharedSemantics(state, {
+    text: portioned ? "" : (context.user_text || ""),
+    concepts: portioned ? [] : (delta.concepts || []),
+    task: "planning_intent",
+  });
+  if (!portioned) scopeDayTargetedCue(state, context.user_text, context.dates || [], priorCues, slotTargets);
+  return { state, dropped, dinner_count_defaulted, portioned, semantic };
 }
 
 export function applyDiscoveryDelta(prior, delta, context = {}) {
@@ -586,7 +600,12 @@ export function applyDiscoveryDelta(prior, delta, context = {}) {
   if (delta.max_minutes != null && delta.max_minutes_hard == null) state.max_minutes_hard = true;
   for (const op of delta.list_ops || []) applyListOp(state, op.field, op.op, op.value);
   postValidateDiscovery(state, context.vocabulary, dropped);
-  return { state, dropped };
+  const semantic = applySharedSemantics(state, {
+    text: context.user_text || "",
+    concepts: delta.concepts || [],
+    task: "discovery_intent",
+  });
+  return { state, dropped, semantic };
 }
 
 export function isEmptyPlanningDelta(delta) {
@@ -609,6 +628,7 @@ export function isEmptyPlanningDelta(delta) {
   if ((delta.list_ops || []).length) return false;
   if ((delta.frequency_ops || []).length) return false;
   if ((delta.slot_ops || []).length) return false;
+  if ((delta.concepts || []).length) return false;
   return true;
 }
 
@@ -626,5 +646,6 @@ export function isEmptyDiscoveryDelta(delta) {
   if (hasScalar) return false;
   if ((delta.clear || []).length) return false;
   if ((delta.list_ops || []).length) return false;
+  if ((delta.concepts || []).length) return false;
   return true;
 }

@@ -133,6 +133,7 @@ function discoveryDelta(overrides = {}) {
     keep_it_easy: null,
     keep_ingredients_simple: null,
     list_ops: [],
+    concepts: [],
     ...overrides,
   };
 }

@@ -11,6 +11,7 @@ import {
   LAND_PROTEIN_TOKENS,
   SHELLFISH_SIGNAL_TOKENS,
 } from "./constants.js";
+import { deriveCookingMethod } from "../weave/semantics.js";
 
 function classifyTags(ids) {
   /** @type {string[]} */
@@ -127,6 +128,14 @@ export function projectDiscoveryMeal(entry) {
     ingredient_complexity: pkg.ingredient_complexity || null,
     methods: unique([...(pkg.methods || []), ...(concept.current_version?.methods || [])]),
     equipment: unique(pkg.equipment || []),
+    steps: pkg.steps || [],
+    description: pkg.description || concept.description || "",
+    cooking: deriveCookingMethod({
+      methods: [...(pkg.methods || []), ...(concept.current_version?.methods || [])],
+      steps: pkg.steps || [],
+      description: pkg.description || concept.description || "",
+      title: pkg.title || concept.title || "",
+    }),
     exploration: Number.isFinite(concept.exploration) ? concept.exploration : Number(pkg.exploration) || 0,
     entry,
   };
@@ -175,6 +184,14 @@ export function discoveryMeal(partial) {
     ingredient_complexity: partial.ingredient_complexity || null,
     methods: unique(partial.methods || []),
     equipment: unique(partial.equipment || []),
+    steps: partial.steps || [],
+    description: partial.description || "",
+    cooking: partial.cooking || deriveCookingMethod({
+      methods: partial.methods || [],
+      steps: partial.steps || [],
+      description: partial.description || "",
+      title: partial.title || partial.recipe_slug || "",
+    }),
     exploration: partial.exploration == null ? 0 : partial.exploration,
     entry: partial.entry || null,
   };

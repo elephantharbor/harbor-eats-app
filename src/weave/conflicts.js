@@ -73,7 +73,7 @@ function limitIdsForToken(token) {
   return [];
 }
 
-function dinerLimitIds(participantIds, constraints) {
+export function dinerLimitIds(participantIds, constraints) {
   const ids = new Set();
   for (const memberId of participantIds || []) {
     const keys = [];

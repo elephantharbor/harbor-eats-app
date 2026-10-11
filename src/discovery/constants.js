@@ -63,6 +63,7 @@ export const EXCLUSION_CODES = Object.freeze([
   "explicit_flavor",
   "explicit_ingredient",
   "explicit_exclude_ingredient",
+  "explicit_exclude_cooking",
   "explicit_method",
   "explicit_equipment",
   "explicit_protein",
@@ -122,6 +123,7 @@ export const CRITERIA_LIST_FIELDS = Object.freeze([
   "protein_groups",
   "diet",
   "textures",
+  "exclude_cooking",
 ]);
 
 export const EFFORT_FILTERS = EFFORT_LEVELS;
@@ -185,6 +187,7 @@ export const QUERY_KEYS = Object.freeze([
   "offset",
   "intent_cues",
   "prefer_max_minutes",
+  "semantic_rank",
 ]);
 
 export const CRITERIA_KEYS = Object.freeze([
@@ -192,6 +195,7 @@ export const CRITERIA_KEYS = Object.freeze([
   "max_minutes",
   "quick",
   "different",
+  "exclude_cooking",
 ]);
 
 export const SOFT_KEYS = Object.freeze(["keep_it_easy", "keep_ingredients_simple"]);

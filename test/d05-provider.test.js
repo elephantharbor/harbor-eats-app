@@ -82,6 +82,7 @@ describe("OpenAI adapter: request shape + Structured Outputs", () => {
         list_ops: [],
         frequency_ops: [],
         slot_ops: [],
+        concepts: [],
       }),
     }));
     const r = await provider.generate(req({ response_schema: TASKS.planning_intent.output_schema }));
@@ -210,8 +211,8 @@ describe("ceilings, retries, no escalation", () => {
   it("max_output_tokens = min(task cap, model ceiling); lower task caps unchanged", () => {
     expect(MODEL_OUTPUT_CEILINGS).toEqual({ "gpt-6-luna": 600, "gpt-6.1-sol": 1500 });
     expect(effectiveMaxOutputTokens(TASKS.explanation.limits.max_output_tokens, "gpt-6-luna")).toBe(300);
-    expect(effectiveMaxOutputTokens(TASKS.discovery_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(320);
-    expect(effectiveMaxOutputTokens(TASKS.planning_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(560);
+    expect(effectiveMaxOutputTokens(TASKS.discovery_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(360);
+    expect(effectiveMaxOutputTokens(TASKS.planning_intent.limits.max_output_tokens, "gpt-6-luna")).toBe(600);
     expect(effectiveMaxOutputTokens(TASKS.concept_generation.limits.max_output_tokens, "gpt-6-luna")).toBe(600);
     expect(effectiveMaxOutputTokens(TASKS.recipe_draft.limits.max_output_tokens, "gpt-6.1-sol")).toBe(1500);
     expect(effectiveMaxOutputTokens(5000, "gpt-6.1-sol")).toBe(1500);
@@ -338,7 +339,7 @@ describe("kill switch, config, secrecy", () => {
     expect(fetchImpl).not.toHaveBeenCalled();
   });
   it("committed configs: prod gateway OFF or D-06 tasks only, preview OFF or allowed sets, limits present, no astra/secret", () => {
-    for (const [env, budget, global] of [["preview", "0.25", "50"], ["production", "1.00", "100"]]) {
+    for (const [env, budget, global] of [["preview", "0.25", "250"], ["production", "1.00", "100"]]) {
       const vars = validateAiVars(readFileSync(`deploy/pages/${env}/wrangler.toml`, "utf8"));
       // Production: OFF, or ON with exactly the D-06 tasks (enabled 2026-10-10, Thomas). Preview may also run the D-05 explanation smoke.
       const onPair = [vars.AI_GATEWAY_ENABLED, vars.AI_TASKS_ENABLED];
@@ -408,6 +409,24 @@ describe("internal smoke endpoint (token-gated, disabled by default)", () => {
     expect(provider.calls).toHaveLength(1);
     expect(provider.calls[0].max_output_tokens).toBe(300);
     expect(provider.calls[0].reasoning_effort).toBe("none");
+  });
+  it("smoke nonce never reaches model reasons or user-facing output", async () => {
+    const db = new DatabaseSync(":memory:");
+    db.exec(readFileSync("migrations/0014_ai_gateway.sql", "utf8"));
+    db.exec(readFileSync("migrations/0015_ai_provider_limits.sql", "utf8"));
+    const DB = { prepare(sql) { let a = []; const api = { bind(...x) { a = x; return api; }, async run() { db.prepare(sql).run(...a); return {}; }, async first() { return db.prepare(sql).get(...a) ?? null; } }; return api; } };
+    const provider = createFakeProvider({ script: [{ json: { text: "Quick and simple." } }] });
+    const nonce = "ns2-smoke-fixture-nonce";
+    const req = new Request(`https://x.test/api/ai/internal/smoke?nonce=${nonce}`, {
+      method: "POST",
+      headers: { "x-ai-smoke-token": "tok" },
+    });
+    const on = await handleAiSmoke(req, { ...ON, AI_TASKS_ENABLED: "explanation", AI_SMOKE_TOKEN: "tok", DB }, provider);
+    expect(on.body.ok).toBe(true);
+    const input = provider.calls[0]?.input || {};
+    expect(JSON.stringify(input)).not.toContain(nonce);
+    expect(JSON.stringify(on.body.output || {})).not.toContain(nonce);
+    expect(input.cache_bust).not.toBe(nonce);
   });
   it("live smoke script is never wired into CI or npm test", () => {
     const pkg = readFileSync("package.json", "utf8");

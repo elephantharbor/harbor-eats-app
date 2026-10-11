@@ -25,6 +25,8 @@ export function planningStateToPlannerInput(state, { participant_ids, entry_poin
     include_ingredients: [...(state.include_ingredients || [])],
     cuisines: [...(state.cuisines || [])],
     intent_cues: [...(state.intent_cues || [])],
+    exclude_cooking: [...(state.exclude_cooking || [])],
+    semantic_rank: [...(state.semantic_rank || [])],
     special_count: state.special_count,
     weave_slots: [...(state.slots || [])],
     date_start: state.date_start,

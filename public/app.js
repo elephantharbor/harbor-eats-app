@@ -180,6 +180,7 @@
     const sessionMember = snap.session && snap.session.member_id;
     if (sessionMember) state.meId = sessionMember;
     if (Array.isArray(snap.constraints) && state.members.length) {
+      state.householdConstraintRows = snap.constraints;
       const me = meMember();
       state.primaryConstraints = keysFromConstraintRows(
         snap.constraints.filter(function (c) {
@@ -3477,7 +3478,25 @@
         focusPendingPlanMeal();
       },
       mountPlanReview: mountPlanReviewWeave,
+      openPlanDatesSheet: openPlanDatesSheet,
+      minAllowedMealCount: minAllowedMealCount,
+      insertPlanMealSkeleton: insertPlanMealSkeleton,
+      fadeRemovePlanMealCard: fadeRemovePlanMealCard,
+      dinerLimits: dinerLimitIds,
     };
+  }
+
+  /** Seafood limit ids for the diners at the table; Weave hides fish prompts from them. */
+  function dinerLimitIds() {
+    const ids = new Set();
+    const mids = activeMemberIds();
+    for (const row of state.householdConstraintRows || []) {
+      if (row.member_id && mids.indexOf(row.member_id) < 0) continue;
+      if (row.status === "permitted") continue;
+      if (row.rule_key === "fish" || row.rule_key === "finfish") ids.add("no_finfish");
+      if (row.rule_key === "shellfish") ids.add("no_shellfish");
+    }
+    return [...ids];
   }
 
   function mountPlanCountWeave() {
@@ -3512,11 +3531,24 @@
       return;
     }
     if (host) host.hidden = false;
+    const plan = state.dinnerPlan;
+    if (state.weavePlanReview && state.weavePlanReviewPlanId === plan?.dinner_plan_id) {
+      window.FlavorWeavePlanReview = state.weavePlanReview;
+      state.weavePlanReview.render?.();
+      return;
+    }
     const B = window.FlavorWeaveWeaveBridge;
     if (!B) return;
     const prefs = document.getElementById("planReviewPrefs");
     if (prefs) prefs.hidden = true;
+    state.weavePlanReviewPlanId = plan?.dinner_plan_id || null;
     state.weavePlanReview = B.planMountReview(weaveDepsForPlan());
+    if (state.weavePlanReview) {
+      window.FlavorWeavePlanReview = state.weavePlanReview;
+    }
+    if (state.weavePlanReview?.restoreFromCache && !state.weavePlanReview.ctrl?.echo && !state.weavePlanReview.ctrl?.choice) {
+      state.weavePlanReview.restoreFromCache();
+    }
   }
 
   function renderPlanReviewPartial(changed) {
@@ -4952,6 +4984,43 @@
     }
     document.getElementById("planDatesSheet").close();
     renderActiveDinnerSurfaces();
+    if (state.weavePlanReview?.reresolveAfterDates) {
+      await state.weavePlanReview.reresolveAfterDates();
+    }
+  }
+
+  function insertPlanMealSkeleton(position) {
+    const list = document.getElementById("planMealCards");
+    if (!list) return function () {};
+    const el = document.createElement("article");
+    el.className = "plan-meal-card plan-meal-card--skeleton skeleton";
+    el.setAttribute("role", "listitem");
+    el.dataset.skeletonPosition = String(position);
+    list.appendChild(el);
+    return function removeSkeleton() {
+      el.remove();
+    };
+  }
+
+  function fadeRemovePlanMealCard(mealId) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    return new Promise(function (resolve) {
+      const el = document.querySelector('.plan-meal-card[data-meal-id="' + mealId + '"]');
+      if (!el) {
+        resolve();
+        return;
+      }
+      if (reduced) {
+        el.remove();
+        resolve();
+        return;
+      }
+      el.classList.add("plan-meal-card--removing");
+      setTimeout(function () {
+        el.remove();
+        resolve();
+      }, 120);
+    });
   }
 
   function openChangeCountSheet() {
@@ -6933,6 +7002,7 @@
       planMealById: planMealById,
       planMealTitle: planMealTitle,
       activeMembers: activeMembers,
+      dinerLimits: dinerLimitIds,
       memberName: function (id) {
         const m = state.members.find(function (x) {
           return x.id === id;

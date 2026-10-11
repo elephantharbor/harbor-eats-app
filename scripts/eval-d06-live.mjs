@@ -103,7 +103,7 @@ async function ensureHousehold(key) {
   const ids = idsFor(key);
   const created = await api("/api/households", {
     method: "POST",
-    body: { display_name: `D06 eval ${key} ${runId}`, data_origin: "synthetic", timezone: "America/Chicago", servings_default: spec.members.length },
+    body: { display_name: `[synthetic] d06-eval ${key} ${runId}`, data_origin: "synthetic", timezone: "America/Chicago", servings_default: spec.members.length },
   });
   if (!created.data?.household_id) throw new Error(`household create failed for ${key}: ${created.status} ${JSON.stringify(created.data)}`);
   const householdId = created.data.household_id;

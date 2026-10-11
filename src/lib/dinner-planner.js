@@ -16,6 +16,8 @@ import { canonicalIngredient } from "./ingredient-identity.js";
 import { getTasteTerm } from "./taste-vocabulary.js";
 import { PRACTICAL_HINT_KEYS } from "./cycle2-schema.js";
 import { cueScoreForMeal } from "../weave/cues.js";
+import { proteinGroupsFromSignals } from "../discovery/meal.js";
+import { deriveCookingMethod, excludedByFrying, semanticScoreForMeal } from "../weave/semantics.js";
 import { PLAN_TOKENS } from "../weave/constants.js";
 import { isPlantMeal, mealSatisfiesSlot } from "../weave/slot-match.js";
 
@@ -69,7 +71,16 @@ export function featuresOf(entry) {
     exploration: entry.pkg.exploration ?? entry.concept.exploration ?? 0,
     vocabulary_tag_ids: entry.pkg.vocabulary_tag_ids || [],
     equipment: entry.pkg.equipment || [],
-    methods: entry.concept.current_version?.methods || [],
+    methods: [...(entry.pkg.methods || []), ...(entry.concept.current_version?.methods || [])],
+    cooking: deriveCookingMethod({
+      methods: [...(entry.pkg.methods || []), ...(entry.concept.current_version?.methods || [])],
+      steps: entry.pkg.steps || [],
+      description: entry.pkg.description || "",
+      title: entry.pkg.title || entry.concept.title || "",
+    }),
+    dietary_labels: [...(entry.pkg.dietary_labels || []), ...(entry.pkg.dietary_tags || []), ...(entry.concept.tags || [])],
+    eligibility_tags: entry.concept.tags || [],
+    protein_groups: proteinGroupsFromSignals([...(entry.concept.tags || []), ...(entry.pkg.allergens || [])]),
     entry,
   };
 }
@@ -235,6 +246,7 @@ function passesPoolFilters(feature, intent, slotOverride = {}) {
     if (mealMatchesCategory(feature, cat)) return false;
   }
   if (slotOverride.category && !mealMatchesCategory(feature, slotOverride.category)) return false;
+  if ((intent.exclude_cooking || []).length && excludedByFrying(feature, intent.exclude_cooking)) return false;
   return true;
 }
 
@@ -298,7 +310,8 @@ function scoreFeature(feature, participantIds, tastes, intent, slotOverride = {}
   const hints = hintBoost(feature, intent);
   const cues = slotOverride.intent_cue ? [slotOverride.intent_cue] : intent.intent_cues || [];
   const cue = cueScoreForMeal(feature, cues, { keep_it_easy: intent.keep_it_easy });
-  let total = taste.score + hints.boost + cue;
+  const semantic = semanticScoreForMeal(feature, intent.semantic_rank);
+  let total = taste.score + hints.boost + cue + semantic;
   if (slotOverride.special === true) {
     total += (feature.exploration || 0) >= 0.55 ? 0.25 : (feature.exploration || 0) * 0.1;
   }
@@ -434,6 +447,7 @@ export function planDinners(intent, context = {}) {
   const preference_relaxations = [];
   const previous = context.previous_slots || null;
   const changed = new Set();
+  const noEasier = new Set();
   const tastes = context.tastes || [];
   const constraints = context.constraints || [];
 
@@ -497,7 +511,30 @@ export function planDinners(intent, context = {}) {
     const eligible = eligibleFor(index, slotOverride, participant_ids);
     const pool = rankEligible(eligible, participant_ids, tastes, intent, slotOverride);
     pool.ranked.forEach((row) => row.unscored?.forEach((key) => unscored.add(key)));
-    const legal = pool.ranked.filter((row) => respectsMax(row.feature, slots.length));
+    let legal = pool.ranked.filter((row) => respectsMax(row.feature, slots.length));
+    if (slotOverride.effort === "easy" && prev?.recipe_slug) {
+      const current = featureBySlug(prev.recipe_slug);
+      const baseline = {
+        effort_level: prev.effort_level || current?.effort_level || null,
+        minutes: prev.total_minutes ?? current?.minutes ?? null,
+      };
+      const easier = legal.filter(
+        (row) => isEasierReplacement(row.feature, baseline) && !used.slugs.has(row.feature.slug)
+      );
+      if (!easier.length) {
+        slots.push({
+          ...prev,
+          position: index + 1,
+          participant_ids,
+          result: prev.result || "recommended",
+        });
+        used.slugs.add(prev.recipe_slug);
+        if (current) remember(used, current);
+        noEasier.add(index + 1);
+        continue;
+      }
+      legal = easier;
+    }
     const picked = legal.length
       ? pickFeature(legal, used, recent, pool.active, { cueBound: Boolean(slotOverride.intent_cue) })
       : {
@@ -590,7 +627,24 @@ export function planDinners(intent, context = {}) {
     preference_relaxations,
     slots,
     changed_positions: [...changed].sort((a, b) => a - b),
+    no_easier_positions: [...noEasier].sort((a, b) => a - b),
   };
+}
+
+const EFFORT_RANK = Object.freeze({ easy: 0, moderate: 1, involved: 2 });
+
+/** A replacement is easier only when effort and time are not worse, and one of them improves. */
+function isEasierReplacement(feature, current) {
+  const nextEffort = EFFORT_RANK[feature?.effort_level];
+  const currentEffort = EFFORT_RANK[current?.effort_level];
+  const nextMinutes = typeof feature?.minutes === "number" ? feature.minutes : null;
+  const currentMinutes = typeof current?.minutes === "number" ? current.minutes : null;
+  const effortWorse = currentEffort != null && nextEffort != null && nextEffort > currentEffort;
+  const timeWorse = currentMinutes != null && nextMinutes != null && nextMinutes > currentMinutes;
+  if (effortWorse || timeWorse) return false;
+  const effortBetter = currentEffort != null && nextEffort != null && nextEffort < currentEffort;
+  const timeBetter = currentMinutes != null && nextMinutes != null && nextMinutes < currentMinutes;
+  return effortBetter || timeBetter;
 }
 
 /**

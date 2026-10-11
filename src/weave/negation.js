@@ -3,6 +3,7 @@
  * when the model listed fried as something to include. "not too heavy"
  * stays a light cue and is not an exclusion.
  */
+import { getTasteTerm } from "../lib/taste-vocabulary.js";
 
 const NEGATION_RE = /\b(?:nothing|without|avoid|not|no)\s+(?!too\b)([a-z][a-z0-9]*(?:-[a-z0-9]+)*)/gi;
 
@@ -44,6 +45,52 @@ const INCLUSION_FIELDS = [
 ];
 
 const RESIDUE_MARKERS = new Set(["nothing", "no", "not", "without", "avoid", "but"]);
+
+/** Modifiers belong to a cue or a method phrase. They are not exclusions. */
+const NEGATION_MODIFIERS = new Set([
+  "air",
+  "crispy",
+  "deep",
+  "heavy",
+  "light",
+  "lighter",
+  "mild",
+  "pan",
+  "rich",
+  "shallow",
+  "too",
+]);
+
+const COOKING_METHODS = new Set([
+  "bake",
+  "baked",
+  "baking",
+  "broil",
+  "broiled",
+  "fry",
+  "fried",
+  "frying",
+  "grill",
+  "grilled",
+  "grilling",
+  "poach",
+  "poached",
+  "roast",
+  "roasted",
+  "roasting",
+  "saute",
+  "sauteed",
+  "steam",
+  "steamed",
+]);
+
+function isRealExclusion(token) {
+  const word = String(token || "").toLowerCase();
+  if (!word || NEGATION_MODIFIERS.has(word) || NEGATION_SKIP.has(word)) return false;
+  if (COOKING_METHODS.has(word)) return true;
+  const term = getTasteTerm(word);
+  return Boolean(term && (term.category === "ingredient" || term.category === "meal_style" || term.category === "flavor"));
+}
 
 const TOKEN_RE = /[a-z0-9]+/g;
 
@@ -145,8 +192,8 @@ function stripResidue(residue, forms, state) {
  */
 export function applyNegationOverlay(state, text) {
   if (!state || typeof state !== "object") return [];
-  const terms = parseNegations(text);
-  const all = [...(state.exclude_terms || [])];
+  const terms = parseNegations(text).filter(isRealExclusion);
+  const all = [...(state.exclude_terms || [])].filter((term) => isRealExclusion(term) || !parseNegations(text).includes(term));
   for (const term of terms) {
     if (!all.includes(term)) all.push(term);
   }

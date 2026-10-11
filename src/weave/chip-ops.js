@@ -69,17 +69,27 @@ export function removePlanningChip(state, chipId) {
   if (chipId.startsWith("slot:")) {
     const rest = chipId.slice(5);
     const [day, kind] = rest.split(":");
+    const position = /^p\d+$/.test(day || "") ? Number(day.slice(1)) : null;
+    const targets = (s) => {
+      if (position != null) return !s.weekday && Number(s.position) === position;
+      if (day && s.weekday) return s.weekday === day;
+      return true;
+    };
     next.slots = (next.slots || []).filter((s) => {
-      if (kind === "special" && s.special) {
-        if (day && s.weekday) return s.weekday !== day;
-        return false;
-      }
-      if (kind === "effort" && s.effort === "easy") {
-        if (day && s.weekday) return s.weekday !== day;
-        return false;
-      }
+      if (kind === "special" && s.special) return !targets(s);
+      if (kind === "effort" && s.effort === "easy") return !targets(s);
+      if (kind === "cue" && s.intent_cue) return !targets(s);
       return true;
     });
+    return next;
+  }
+  if (chipId === "exclude_cooking") {
+    next.exclude_cooking = [];
+    return next;
+  }
+  if (chipId.startsWith("semantic:")) {
+    const token = chipId.slice("semantic:".length);
+    next.semantic_rank = (next.semantic_rank || []).filter((t) => t !== token);
     return next;
   }
   return next;
@@ -137,6 +147,15 @@ export function removeDiscoveryChip(state, chipId) {
   if (chipId.startsWith("cue:")) {
     const cue = chipId.slice(4);
     next.intent_cues = (next.intent_cues || []).filter((t) => t !== cue);
+    return next;
+  }
+  if (chipId === "exclude_cooking") {
+    next.exclude_cooking = [];
+    return next;
+  }
+  if (chipId.startsWith("semantic:")) {
+    const token = chipId.slice("semantic:".length);
+    next.semantic_rank = (next.semantic_rank || []).filter((t) => t !== token);
     return next;
   }
   return next;

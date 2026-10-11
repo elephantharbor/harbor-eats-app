@@ -6,12 +6,12 @@ const CUE_LABELS = Object.freeze({
   cozy: "Cozy",
   fresh: "Fresh",
   filling: "Filling",
-  light: "Not too heavy",
+  light: "Lighter",
   comforting: "Comforting",
   summery: "Summery",
   special: "Something special",
   restaurant_like: "Restaurant-style",
-  weeknight: "Quick",
+  weeknight: "Weeknight-friendly",
 });
 
 /** How a cue reads in front of "dinners" ("three cozy dinners"). `special` reads as its own clause. */
@@ -23,7 +23,7 @@ const CUE_ADJECTIVES = Object.freeze({
   comforting: "comforting",
   summery: "summery",
   restaurant_like: "restaurant-style",
-  weeknight: "quick",
+  weeknight: "weeknight",
 });
 
 const PLAN_TOKEN_NOUNS = Object.freeze({
@@ -71,6 +71,19 @@ function withoutPeriod(text) {
 
 function weekdayShort(weekday) {
   return capitalize(String(weekday || "").slice(0, 3));
+}
+
+const RANK_CHIPS = Object.freeze({
+  vegetable_forward: "Veggie-forward",
+  crispy_non_fry: "Crispy",
+});
+
+function pushRankChips(chips, state) {
+  for (const token of state?.semantic_rank || []) {
+    const label = RANK_CHIPS[token];
+    if (!label || chips.some((chip) => chip.id === `semantic:${token}`)) continue;
+    chips.push({ id: `semantic:${token}`, label });
+  }
 }
 
 export function displayForToken(token, field) {
@@ -130,6 +143,8 @@ export function buildPlanningChips(state) {
   for (const slug of state.cuisines || []) chips.push({ id: `cuisine:${slug}`, label: displayForToken(slug) });
   for (const slug of state.meal_styles || []) chips.push({ id: `style:${slug}`, label: displayForToken(slug) });
   for (const cue of state.intent_cues || []) chips.push({ id: `cue:${cue}`, label: CUE_LABELS[cue] || cue });
+  if ((state.exclude_cooking || []).length === 3) chips.push({ id: "exclude_cooking", label: "Nothing fried" });
+  else if ((state.exclude_cooking || []).includes("deep")) chips.push({ id: "exclude_cooking", label: "Nothing deep-fried" });
   for (const slot of state.slots || []) {
     if (slot.special) {
       const label = slot.weekday
@@ -141,8 +156,20 @@ export function buildPlanningChips(state) {
     }
     if (slot.effort === "easy" && slot.weekday) {
       chips.push({ id: `slot:${slot.weekday}:effort`, label: `${weekdayShort(slot.weekday)}: easy` });
+    } else if (slot.effort === "easy" && slot.position) {
+      chips.push({ id: `slot:p${slot.position}:effort`, label: `Dinner ${slot.position}: easy` });
+    }
+    if (slot.intent_cue) {
+      const word = slot.intent_cue === "light" ? "lighter" : cuePhrase(slot.intent_cue);
+      const label = slot.weekday
+        ? `${weekdayShort(slot.weekday)}: ${word}`
+        : slot.position
+          ? `Dinner ${slot.position}: ${word}`
+          : word;
+      chips.push({ id: `slot:${slot.weekday || `p${slot.position}`}:cue`, label });
     }
   }
+  pushRankChips(chips, state);
   if (state.special_count != null && state.special_count > 0 && !(state.slots || []).some((s) => s.special)) {
     const label = state.special_count === 1 ? "Something special" : `${state.special_count} special nights`;
     chips.push({ id: "special_count", label });
@@ -165,6 +192,9 @@ export function buildDiscoveryChips(state) {
   for (const slug of state.flavors || []) chips.push({ id: `flavor:${slug}`, label: spokenFlavor(slug) });
   for (const slug of state.protein_groups || []) chips.push({ id: `protein:${slug}`, label: titleToken(slug) });
   for (const cue of state.intent_cues || []) chips.push({ id: `cue:${cue}`, label: CUE_LABELS[cue] || cue });
+  if ((state.exclude_cooking || []).length === 3) chips.push({ id: "exclude_cooking", label: "Nothing fried" });
+  else if ((state.exclude_cooking || []).includes("deep")) chips.push({ id: "exclude_cooking", label: "Nothing deep-fried" });
+  pushRankChips(chips, state);
   if (state.quick) chips.push({ id: "quick", label: "Quick" });
   if (state.effort_levels?.includes("easy")) chips.push({ id: "effort:easy", label: "Easy" });
   return chips;
@@ -209,11 +239,15 @@ function exclusionPhrases(state) {
   for (const row of state?.frequencies || []) {
     if (row.max_count === 0) push(spokenToken(row.token));
   }
+  const cooking = state?.exclude_cooking || [];
+  const fried = cooking.length === 1 && cooking.includes("deep") ? "nothing deep-fried" : cooking.length ? "nothing fried" : null;
+  if (fried) parts.push(fried);
   return parts;
 }
 
 function cuePhrase(cue) {
   if (cue === "special") return "something special";
+  if (cue === "weeknight") return "weeknight-friendly";
   return CUE_ADJECTIVES[cue] || String(cue).replace(/_/g, " ");
 }
 
@@ -269,7 +303,7 @@ function planningSentence(state, notes = {}) {
   const portions = portionSummary(state);
   const adjectives = portions.length
     ? []
-    : (state.intent_cues || []).filter((cue) => cue !== "special").map(cuePhrase);
+    : (state.intent_cues || []).filter((cue) => cue !== "special").map((cue) => (cue === "weeknight" ? "weeknight" : cuePhrase(cue)));
   adjectives.unshift(...(state.cuisines || []).map(spokenToken));
   const count = state.dinner_count;
   const noun = count === 1 ? "dinner" : "dinners";
@@ -321,6 +355,9 @@ function discoverySentence(state, notes = {}) {
   for (const cue of state.intent_cues || []) {
     if (cue === "special") adjectives.push("a little special");
     else adjectives.push(cue === "light" ? "not too heavy" : cuePhrase(cue));
+  }
+  if ((state.semantic_rank || []).includes("crispy_non_fry") && !adjectives.includes("crispy")) {
+    adjectives.push("crispy");
   }
   if (state.quick) adjectives.push("quick");
   if (state.effort_levels?.includes("easy") || state.keep_it_easy === true) adjectives.push("easy");
@@ -477,7 +514,37 @@ function dayLabel(slot, previous) {
 export function refinementAcknowledgement({ preview, previousSlots, slots }) {
   const previous = previousSlots || [];
   if (!previous.length) return null;
+  const missing = preview?.no_easier_positions || [];
+  if (missing.length) {
+    const position = missing[0];
+    const requested = (slots || []).find((row) => Number(row.position) === Number(position));
+    const prev = previous.find((row) => Number(row.position) === Number(position));
+    const day = dayLabel(requested, prev) || `Dinner ${position}`;
+    return { text: `Nothing easier is available for ${day}.`, suggestions: [] };
+  }
   const changed = preview?.changed_positions || [];
+  const cued = (slots || []).filter((slot) => slot?.intent_cue);
+  if (cued.length && !portionSummary({ slots }).length && preview?.slots) {
+    const bits = [];
+    for (const requested of cued) {
+      const slot = preview.slots.find((row) => Number(row.position) === Number(requested.position));
+      const prev = previous.find((row) => Number(row.position) === Number(requested.position));
+      if (!slot?.title) continue;
+      const day = dayLabel(requested, prev) || dayLabel(slot, prev) || weekdayName(slot.scheduled_date || prev?.scheduled_date);
+      const word = requested.intent_cue === "light" ? "lighter" : cuePhrase(requested.intent_cue);
+      const when = day ? `${day}'s now` : `Dinner ${requested.position} is now`;
+      bits.push(`${when} ${word}: ${slot.title}`);
+    }
+    if (bits.length) {
+      let text = "";
+      for (const bit of bits) {
+        const next = text ? `${text} ${sentence(bit)}` : sentence(bit);
+        if (next.length > MAX_ACK) break;
+        text = next;
+      }
+      return { text: text || sentence(bits[0]).slice(0, MAX_ACK), suggestions: [] };
+    }
+  }
   if (changed.length && preview?.slots) {
     const bits = [];
     for (const position of changed) {
@@ -580,9 +647,10 @@ function easierCueActive(state) {
 }
 
 /** Suggestion chips that name a cue the search already has. */
-export function noResultsSuggestions(state) {
+export function noResultsSuggestions(state, limits) {
+  const blocked = new Set(limits || []);
   return NO_RESULTS_SUGGESTIONS.filter((label) => {
-    if (label === "Try fish" && fishCueActive(state)) return false;
+    if (label === "Try fish" && (fishCueActive(state) || blocked.has("no_finfish"))) return false;
     if (label === "Make it easier" && easierCueActive(state)) return false;
     return true;
   });
@@ -632,6 +700,18 @@ export function reconciledAcknowledgement(task, state, conflicts, notes = {}) {
     const fish = hard.some((row) => row.alternative?.kind === "category" && row.alternative.token === "fish");
     if (fish && task === "planning_intent") return `${head}, so these dinners are fish.`.slice(0, MAX_ACK);
     if (fish) return `${head}, so we looked for fish instead.`.slice(0, MAX_ACK);
+    const special = (state?.intent_cues || []).includes("special") || (state?.slots || []).some((s) => s.special);
+    if (special && task === "discovery_intent") {
+      return `${head}, so here are some special dinners without it.`.slice(0, MAX_ACK);
+    }
+    if (special && task === "planning_intent") {
+      const dated = (state?.slots || []).find((s) => s.special && s.weekday);
+      if (dated?.weekday) {
+        const day = dated.weekday.charAt(0).toUpperCase() + dated.weekday.slice(1);
+        return `${head}, so ${day}'s still special, just without it.`.slice(0, MAX_ACK);
+      }
+      return `${head}, so we left it out — still one special night.`.slice(0, MAX_ACK);
+    }
     const pronoun = conflictLabels(hard).length > 1 ? "them" : "it";
     return `${head}, so we left ${pronoun} out.`.slice(0, MAX_ACK);
   }
@@ -699,7 +779,10 @@ export function reconcileAcknowledgement({
   }
   const base = reconciledAcknowledgement(task, state, conflicts, notes);
   const details = detailPhrases(state, task);
-  return finish(withStillOn(base, [...details.constraints.filter((phrase) => !/^no /.test(phrase)), ...details.cues]), "reconciled");
+  // Ranking cues are not filters. "Not too heavy is still on" only belongs
+  // when that cue was an explicit constraint the conflict left in place.
+  const stillOn = details.constraints.filter((phrase) => !/^(no|nothing) /.test(phrase));
+  return finish(withStillOn(base, stillOn), "reconciled");
 }
 
 /** After a conflict line, say what still stands as its own short sentence. */

@@ -34,6 +34,8 @@ const PLANNING_PREFIX = [
   "Make Tuesday easier: one slot_op, target_kind weekday, target tuesday, effort easy, every other slot field null. Do not set global effort. Do not emit slot_ops for the other nights.",
   "Make Friday special: one slot_op, target friday, special true, other fields null. The server maps that weekday onto the plan date and position. You do not number the nights yourself when context.dates is present.",
   "intent_cues are only cozy, fresh, filling, light, comforting, summery, special, restaurant_like, weeknight. not too heavy is light. cozy stays cozy. Do not put a cue in meal_styles.",
+  "concepts is an array of up to four {id, polarity} objects. polarity is prefer or avoid. Use id healthy, light, hearty, fresh, comforting, cozy, filling, summery, special, restaurant_like, weeknight, quick, simple, adventurous, indulgent, vegetable_forward, fish_forward, fried, or deep_fried when the user is being vague. Unknown adjectives still go in concepts, never in text_residue, frequencies, or ingredients. An empty concepts array is correct when no vague word was said.",
+  "healthy is only a concept id. Do not say a meal is healthy, nutritious, or low-calorie. nothing fried is concepts avoid fried. crispy but not deep fried is concepts avoid deep_fried. fish twice stays a frequency, not a concept. Do not guess a weekday when the user says weekend or the day is missing from context dates; leave slot_ops empty.",
   "Schema reminder. acknowledgement string. clear array. dinner_count integer or null. date_start string or null. date_end string or null. keep_it_easy boolean or null. keep_ingredients_simple boolean or null. max_minutes integer or null. max_minutes_hard boolean or null. effort easy, moderate, involved, or null. ingredient_complexity simple, standard, adventurous, or null. ingredient_complexity_hard boolean or null. special_count integer or null.",
   "list_ops items are {field, op, value}. frequency_ops items are {op, token, min_count, max_count}. slot_ops items are {target_kind, target, op, effort, ingredient_complexity, max_minutes, max_minutes_hard, special, cuisine, meal_style, ingredient, category}. Every key is present. Use null for a slot field you are not changing.",
   "Worked shapes, stable and exhaustive, so the prefix does not depend on the household. Three easy dinners: dinner_count 3, keep_it_easy true, other scalars null, arrays empty. Four dinners with fish twice and pasta at most once: dinner_count 4, frequency_ops fish min 2 max 2 and pasta min null max 1. Keep it easy with no count: dinner_count null, keep_it_easy true. Not too heavy: list_ops add intent_cues light, dinner_count null.",
@@ -47,6 +49,8 @@ const DISCOVERY_PREFIX = [
   "Null scalars and empty op arrays mean unchanged. acknowledgement may be an empty string. The server writes the sentence the household sees. Do not copy the user's sentence into acknowledgement.",
   "list_ops add or remove one value on cuisines, meal_styles, flavors, ingredients, exclude_ingredients, methods, equipment, textures, effort_levels, ingredient_complexities, protein_groups, diet, or intent_cues.",
   "intent_cues are only cozy, fresh, filling, light, comforting, summery, special, restaurant_like, weeknight. not too heavy is light. fresh and easy with fish is intent_cues fresh plus ingredients or protein fish, and keep_it_easy true when easy is a lean rather than the only effort.",
+  "concepts is an array of up to four {id, polarity} objects. polarity is prefer or avoid. Subjective words use id healthy, light, hearty, fresh, comforting, cozy, filling, summery, special, restaurant_like, weeknight, quick, simple, adventurous, indulgent, vegetable_forward, fish_forward, fried, or deep_fried. Unknown adjectives go in concepts and not in text_residue. Do not put a concept id into ingredients.",
+  "Do not write the word healthy in acknowledgement. nothing fried is concepts avoid fried, not an ingredient. crispy but not deep fried is concepts avoid deep_fried. A bare lexicon word is handled before you run.",
   "quick true means the user asked for quick. max_minutes with max_minutes_hard true is a stated minute cap. different true is a novelty ask. keep_it_easy and keep_ingredients_simple are soft leans, not hard filters.",
   "text_residue is a short leftover noun phrase or null. Do not put the whole utterance there. Do not put function words there.",
   "A single lexicon word such as salmon or korean is handled before you run. When you do run, map the phrase onto list_ops and cues. Do not invent slugs.",
@@ -63,12 +67,12 @@ const DISCOVERY_PREFIX = [
 
 export const PROMPTS = Object.freeze({
   planning_intent: {
-    version: "planning_intent@3",
+    version: "planning_intent@4",
     system: `${SYSTEM}\n\n${PLANNING_PREFIX}`,
     user: "Request: {{text}}\nState: {{state}}\nContext: {{context}}",
   },
   discovery_intent: {
-    version: "discovery_intent@3",
+    version: "discovery_intent@4",
     system: `${SYSTEM}\n\n${DISCOVERY_PREFIX}`,
     user: "Request: {{text}}\nState: {{state}}\nContext: {{context}}",
   },

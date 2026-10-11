@@ -111,6 +111,7 @@ function discoveryDelta(overrides = {}) {
     keep_it_easy: null,
     keep_ingredients_simple: null,
     list_ops: [],
+    concepts: [],
     ...overrides,
   };
 }
@@ -133,6 +134,7 @@ function planningDelta(overrides = {}) {
     list_ops: [],
     frequency_ops: [],
     slot_ops: [],
+    concepts: [],
     ...overrides,
   };
 }
@@ -368,10 +370,10 @@ describe("J4 acknowledgement wording", () => {
 });
 
 describe("J5 service worker shell", () => {
-  it("keeps fw-sw-v28 while the shell hash still matches", () => {
+  it("keeps fw-sw-v45 while the shell hash still matches", () => {
     const check = checkSwInvariant();
     expect(check.ok, check.problems.join("; ")).toBe(true);
-    expect(readSw().version).toBe("fw-sw-v28");
-    expect(check.version).toBe("fw-sw-v28");
+    expect(readSw().version).toBe("fw-sw-v45");
+    expect(check.version).toBe("fw-sw-v45");
   });
 });

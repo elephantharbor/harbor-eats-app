@@ -77,6 +77,7 @@ const DISCOVERY_DELTA = {
   keep_it_easy: true,
   keep_ingredients_simple: null,
   list_ops: [{ field: "intent_cues", op: "add", value: "cozy" }],
+  concepts: [],
 };
 
 async function postInterpret(env, token, body) {
@@ -110,7 +111,7 @@ describe("/api/discovery/interpret", () => {
     expect(res.body.error).toBeUndefined();
     expect(res.body.ok).toBe(true);
     expect(res.body.source).toBe("provider");
-    expect(res.body.state.intent_cues).toEqual(["cozy"]);
+    expect(res.body.state.intent_cues).toEqual(["cozy", "light"]);
     expect(res.body.fallback_code).toBeNull();
     expect(provider.calls).toHaveLength(1);
     expect(provider.calls[0].schema_name).toBe("discovery_intent");

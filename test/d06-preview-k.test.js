@@ -136,6 +136,7 @@ function planningDelta(overrides = {}) {
     list_ops: [],
     frequency_ops: [],
     slot_ops: [],
+    concepts: [],
     ...overrides,
   };
 }
@@ -170,7 +171,7 @@ async function postWeave(env, token, body) {
 }
 
 describe("K1 Wednesday vegetarian on a committed plan", () => {
-  it("explains a cache hit when the only vegetarian signal is the dish chip and the meals are undated", async () => {
+  it("opens the chooser for every dinner when Wednesday is named on an undated plan", async () => {
     vi.useFakeTimers({ toFake: ["Date"] });
     vi.setSystemTime(new Date("2026-10-12T18:00:00Z"));
     const sqlite = migrate();
@@ -197,17 +198,21 @@ describe("K1 Wednesday vegetarian on a committed plan", () => {
     const first = await postWeave(env, session.session_token);
     const second = await postWeave(env, session.session_token);
     expect(first.status).toBe(200);
-    expect(first.body.acknowledgement).toMatch(/Wednesday's already vegetarian/);
-    expect(first.body.acknowledgement).not.toBe("4 dinners");
+    expect(first.body.llm_called).toBe(false);
+    expect(provider.calls).toHaveLength(0);
+    expect(first.body.preview).toBeNull();
     expect(first.body.changed_positions).toEqual([]);
-    expect(second.body.source).toBe("cache");
-    expect(provider.calls).toHaveLength(1);
-    expect(second.body.acknowledgement).toMatch(/Wednesday's already vegetarian/);
+    expect(first.body.choice?.reason).toBe("day_absent");
+    expect(first.body.choice?.add_days).toBe(true);
+    expect(first.body.choice?.candidates.map((row) => row.position)).toEqual([1, 2, 3, 4]);
+    expect(first.body.acknowledgement).toMatch(/no Wednesday in this plan/);
+    expect(first.body.acknowledgement).toMatch(/Which dinner did you mean/);
+    expect(second.body.preview).toBeNull();
     expect(second.body.changed_positions).toEqual([]);
-    expect(second.body.preview.slots[2].recipe_slug).toBe("wednesday-quesadilla");
+    expect(second.body.state.pending_slot).toMatchObject({ category: "plant" });
   });
 
-  it("replaces a Wednesday that is not vegetarian when the cached delta has no slot", async () => {
+  it("does not replace a dinner when Wednesday is only implied", async () => {
     vi.useFakeTimers({ toFake: ["Date"] });
     vi.setSystemTime(new Date("2026-10-12T18:00:00Z"));
     const sqlite = migrate();
@@ -228,10 +233,12 @@ describe("K1 Wednesday vegetarian on a committed plan", () => {
     const provider = createFakeProvider({ script: [{ json: planningDelta() }] });
     const res = await postWeave(envFor(db, provider), session.session_token);
     expect(res.status).toBe(200);
-    expect(res.body.changed_positions).toEqual([3]);
-    expect(res.body.preview.slots[2].recipe_slug).toBe("tofu-bowl");
-    expect(res.body.acknowledgement).toMatch(/Wednesday's now Tofu Bowl/);
-    expect(res.body.acknowledgement).not.toBe("4 dinners");
+    expect(provider.calls).toHaveLength(0);
+    expect(res.body.preview).toBeNull();
+    expect(res.body.changed_positions).toEqual([]);
+    expect(res.body.choice?.reason).toBe("day_absent");
+    expect(res.body.choice?.candidates.map((row) => row.label)).toEqual(["Dinner 1", "Dinner 2", "Dinner 3", "Dinner 4"]);
+    expect(res.body.acknowledgement).toMatch(/no Wednesday in this plan/);
   });
 });
 
@@ -288,7 +295,7 @@ describe("K3 acknowledgement punctuation", () => {
       removedTokens: ["shrimp"],
       userText: "shrimp, something special",
     });
-    expect(joined.acknowledgement).toBe("Shellfish doesn't work for everyone at your table, so we left it out. Something special is still on.");
+    expect(joined.acknowledgement).toBe("Shellfish doesn't work for everyone at your table, so we left it out — still one special night.");
     expect(joined.acknowledgement).not.toMatch(/\.,/);
 
     const stored = reconcileAcknowledgement({

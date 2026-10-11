@@ -53,7 +53,15 @@ export function createD1Store(db) {
       return Boolean(row);
     },
     async adjust(key, delta) {
-      await db.prepare(`UPDATE ai_limit_counters SET count = MAX(0, count + ?) WHERE bucket = ?`).bind(delta, key).run();
+      const amount = Number(delta) || 0;
+      if (!amount) return;
+      // Bind a positive magnitude. Some D1 drivers reject a negative bound
+      // parameter, which used to leave the worst-case reservation in place.
+      if (amount < 0) {
+        await db.prepare(`UPDATE ai_limit_counters SET count = MAX(0, count - ?) WHERE bucket = ?`).bind(-amount, key).run();
+        return;
+      }
+      await db.prepare(`UPDATE ai_limit_counters SET count = count + ? WHERE bucket = ?`).bind(amount, key).run();
     },
     async counterValue(key) {
       const row = await db.prepare(`SELECT count FROM ai_limit_counters WHERE bucket = ?`).bind(key).first();
@@ -110,7 +118,7 @@ export function createD1Store(db) {
         if (!row) {
           if (held.length) {
             await db.batch(
-              held.map((h) => db.prepare(`UPDATE ai_limit_counters SET count = MAX(0, count + ?) WHERE bucket = ?`).bind(-h.amount, h.key))
+              held.map((h) => db.prepare(`UPDATE ai_limit_counters SET count = MAX(0, count - ?) WHERE bucket = ?`).bind(h.amount, h.key))
             );
           }
           return { ok: false, code: valid[i].code, name: valid[i].name };
@@ -123,10 +131,19 @@ export function createD1Store(db) {
       const statements = [];
       const spend = (held || []).find((h) => h.name === "daily_budget_usd");
       if (spend) {
-        const actual = Math.ceil(Math.max(0, cost || 0) * MICRO);
-        statements.push(
-          db.prepare(`UPDATE ai_limit_counters SET count = MAX(0, count + ?) WHERE bucket = ?`).bind(actual - spend.amount, spend.key)
-        );
+        const actual = Math.ceil(Math.max(0, Number(cost) || 0) * MICRO);
+        const delta = actual - spend.amount;
+        // Bind a positive magnitude. A negative bound parameter is rejected by
+        // some D1 drivers, which used to leave the worst-case reservation.
+        if (delta < 0) {
+          statements.push(
+            db.prepare(`UPDATE ai_limit_counters SET count = MAX(0, count - ?) WHERE bucket = ?`).bind(-delta, spend.key)
+          );
+        } else if (delta > 0) {
+          statements.push(
+            db.prepare(`UPDATE ai_limit_counters SET count = count + ? WHERE bucket = ?`).bind(delta, spend.key)
+          );
+        }
       }
       if (usage) {
         statements.push(
@@ -148,11 +165,16 @@ export function createD1Store(db) {
         );
       }
       if (!statements.length) return;
-      if (typeof db.batch === "function") {
-        await db.batch(statements);
-        return;
+      try {
+        if (typeof db.batch === "function") {
+          await db.batch(statements);
+          return;
+        }
+        for (const statement of statements) await statement.run();
+      } catch {
+        // One batch keeps the refund on the same round trip as the usage row.
+        // A failed batch leaves the reservation; the gateway records the miss.
       }
-      for (const statement of statements) await statement.run();
     },
   };
 }

@@ -3313,6 +3313,114 @@ button.link-card:hover {
   color: var(--color-text);
 }
 
+.weave-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 36px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-structure-soft);
+}
+.weave-stepper__btn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+.weave-stepper__btn::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+}
+.weave-stepper__btn:hover {
+  color: var(--color-text);
+}
+.weave-stepper__btn[aria-disabled="true"] {
+  color: var(--color-text-tertiary);
+  cursor: default;
+}
+.weave-stepper__value {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  min-width: 5.5rem;
+  text-align: center;
+}
+.weave-stepper__value.is-bump {
+  animation: weave-stepper-bump var(--duration-fast) var(--ease-standard);
+}
+@keyframes weave-stepper-bump {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.weave-strip.is-thread::before {
+  animation:
+    weave-stripe-draw 360ms var(--ease-standard) forwards,
+    weave-stripe-fade var(--duration-slow) var(--ease-standard) var(--weave-stripe-hold) forwards;
+}
+.weave-choice__context {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+.weave-choice__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-2) 0;
+}
+.weave-choice__chip {
+  min-height: 44px;
+  max-width: 100%;
+  min-width: 0;
+  gap: var(--space-2);
+  text-align: left;
+}
+.weave-choice__label {
+  flex: none;
+  white-space: nowrap;
+}
+.weave-choice__title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: var(--weight-medium);
+}
+.weave-choice__chip[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: default;
+}
+.weave-choice__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+html[data-keyboard-owner="weave"] .tabbar,
+html[data-keyboard-owner="weave"] .sticky-actions {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: none;
+}
+.tabbar,
+.sticky-actions {
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+html[data-keyboard="open"] .toast {
+  bottom: calc(var(--kb-inset, 0px) + var(--space-4));
+}
 .weave-starters,
 .weave-next {
   display: flex;
@@ -3387,6 +3495,32 @@ button.link-card:hover {
   border-left: 3px solid var(--color-error);
 }
 
+/* A stepper result reads as the reply, with its Undo inline. */
+.weave-notice--reply {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-1);
+  padding: 0;
+  color: var(--color-text);
+}
+
+.weave-notice--reply .weave-notice__text {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+  text-wrap: pretty;
+}
+
+.weave-notice--reply .weave-notice__actions {
+  margin-left: 0;
+}
+
+.weave-notice--reply .weave-notice__actions .btn {
+  min-height: 32px;
+  padding-inline: var(--space-2);
+  color: var(--color-primary-text);
+}
+
 .weave-divider-label {
   display: flex;
   align-items: center;
@@ -3410,6 +3544,23 @@ button.link-card:hover {
   transition: opacity var(--duration-base) var(--ease-standard);
 }
 
+.plan-meal-card--skeleton {
+  min-height: 120px;
+  margin-bottom: var(--space-4);
+}
+.plan-meal-card--removing {
+  opacity: 0;
+  max-height: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  transition:
+    opacity 120ms var(--ease-standard),
+    max-height var(--duration-base) var(--ease-standard),
+    margin var(--duration-base) var(--ease-standard),
+    padding var(--duration-base) var(--ease-standard);
+}
 .plan-meal-card--changed {
   position: relative;
 }
@@ -3462,13 +3613,20 @@ button.link-card:hover {
   .weave-mark--working span,
   .weave-thread-line span,
   .weave-chip,
-  .weave-word {
+  .weave-word,
+  .weave-stepper__value.is-bump {
     animation: none !important;
     opacity: 1;
   }
 
-  .plan-meal-card--changed::before {
+  .plan-meal-card--changed::before,
+  .weave-strip.is-thread::before {
     animation: weave-stripe-fade 1ms linear var(--weave-stripe-hold) forwards !important;
+  }
+
+  .plan-meal-card--removing {
+    transition: none;
+    display: none;
   }
 }
 
@@ -3483,6 +3641,15 @@ button.link-card:hover {
 
   .weave-chip {
     border: 1px solid CanvasText;
+  }
+
+  .weave-choice__chip {
+    border-color: CanvasText;
+  }
+
+  .weave-choice__chip[aria-pressed="true"],
+  .weave-choice__chip.is-on {
+    border-width: 2px;
   }
 }
 

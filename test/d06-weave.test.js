@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { classifyDiscoveryBypass } from "../src/weave/bypass.js";
-import { removePlanningChip } from "../src/weave/chip-ops.js";
+import { removeDiscoveryChip, removePlanningChip } from "../src/weave/chip-ops.js";
 import { applyPlanningDelta } from "../src/weave/state.js";
 import { reconcileAcknowledgement } from "../src/weave/ack.js";
 import { cueScoreForMeal } from "../src/weave/cues.js";
@@ -55,6 +55,34 @@ describe("D-06 weave", () => {
     );
     expect(st.frequencies).toHaveLength(0);
     expect(st.dinner_count).toBe(3);
+  });
+
+  it("removes only the tapped undated easy slot", () => {
+    const st = removePlanningChip(
+      {
+        dinner_count: 3,
+        slots: [
+          { position: 1, effort: "easy" },
+          { position: 3, effort: "easy" },
+          { weekday: "tue", effort: "easy" },
+        ],
+      },
+      "slot:p3:effort"
+    );
+    expect(st.slots).toEqual([
+      { position: 1, effort: "easy" },
+      { weekday: "tue", effort: "easy" },
+    ]);
+  });
+
+  it("removes the fried and veggie-forward chips", () => {
+    const st = removePlanningChip(
+      { dinner_count: 3, exclude_cooking: ["deep", "pan", "air"], semantic_rank: ["vegetable_forward", "light"] },
+      "exclude_cooking"
+    );
+    expect(st.exclude_cooking).toEqual([]);
+    expect(removePlanningChip(st, "semantic:vegetable_forward").semantic_rank).toEqual(["light"]);
+    expect(removeDiscoveryChip({ exclude_cooking: ["deep"] }, "exclude_cooking").exclude_cooking).toEqual([]);
   });
 
   it("scores intent cues deterministically", () => {

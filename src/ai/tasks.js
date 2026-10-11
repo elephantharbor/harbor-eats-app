@@ -61,7 +61,7 @@ export const TASKS = Object.freeze({
     input_schema: planningIntentInputSchema,
     output_schema: planningIntentOutputSchema,
     post_validate: postValidatePlanningDelta,
-    limits: { max_output_tokens: 560, timeout_ms: 8000 },
+    limits: { max_output_tokens: 600, timeout_ms: 8000 },
   }),
   discovery_intent: task("discovery_intent", {
     reasoning_effort: "none",
@@ -72,7 +72,7 @@ export const TASKS = Object.freeze({
     output_schema: discoveryIntentOutputSchema,
     post_validate: postValidateDiscoveryDelta,
     // One shot inside the interpret user budget. A timed-out call is not retried.
-    limits: { max_output_tokens: 320, timeout_ms: 6000 },
+    limits: { max_output_tokens: 360, timeout_ms: 6000 },
   }),
   feedback_extraction: task("feedback_extraction", {
     reasoning_effort: "low",

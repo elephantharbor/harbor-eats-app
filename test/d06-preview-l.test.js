@@ -102,6 +102,7 @@ function discoveryDelta(overrides = {}) {
       { field: "methods", op: "add", value: "fried" },
       { field: "ingredients", op: "add", value: "fried" },
     ],
+    concepts: [{ id: "fried", polarity: "avoid" }],
     ...overrides,
   };
 }
@@ -230,12 +231,12 @@ describe("fish but nothing fried", () => {
     const titles = res.body.results.map((row) => row.title);
     expect(titles).toContain("Baked Cod");
     expect(titles).toContain("Fish on Friday");
+    expect(titles).toContain("Air-Fryer Salmon");
     expect(titles).not.toContain("Pan-Fried Fish");
-    expect(titles).not.toContain("Air-Fryer Salmon");
     expect(res.body.state.methods || []).not.toContain("fried");
-    expect(res.body.state.exclude_terms).toContain("fried");
+    expect(res.body.state.exclude_cooking).toEqual(["deep", "pan", "shallow"]);
     expect(res.body.query.criteria.methods || []).not.toContain("fried");
-    expect(res.body.query.criteria.exclude_ingredients).toContain("fried");
+    expect(res.body.query.criteria.exclude_ingredients || []).not.toContain("fried");
     expect(res.body.total).toBeGreaterThan(0);
   });
 
@@ -251,7 +252,8 @@ describe("fish but nothing fried", () => {
     const titles = res.body.results.map((row) => row.title);
     expect(titles).toContain("Baked Cod");
     expect(titles).not.toContain("Pan-Fried Fish");
-    expect(res.body.query.criteria.exclude_ingredients).toContain("fried");
+    expect(res.body.state.exclude_cooking).toEqual(["deep", "pan", "shallow"]);
+    expect(res.body.query.criteria.exclude_ingredients || []).not.toContain("fried");
     expect(res.body.query.criteria.methods || []).not.toContain("fried");
   });
 

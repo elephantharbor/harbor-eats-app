@@ -2,7 +2,10 @@
 import { test, expect } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { skipToChoices, reachTonightChoices } from "./helpers.js";
+
+const repoRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 /** @param {import('@playwright/test').Page} page */
 async function skipToChoicesNoShellfish(page) {
@@ -12,7 +15,7 @@ async function skipToChoicesNoShellfish(page) {
 /** @param {import('@playwright/test').Page} page */
 async function skipToChoicesShellfish(page) {
   await page.getByRole("button", { name: "Get started" }).click();
-  await page.locator("#hhName").fill("E2E Kitchen");
+  await page.locator("#hhName").fill("[synthetic] E2E Kitchen");
   await page.locator("#ownerName").fill("Alex");
   await page.locator("#btnCreateHh").click();
   await page.locator("#newMemberName").fill("Partner");
@@ -106,6 +109,14 @@ const consumerUiPages = new WeakSet();
 async function showConsumerComposer(page) {
   if (consumerUiPages.has(page)) return;
   consumerUiPages.add(page);
+  const weaveUi = fs.readFileSync(path.join(repoRoot, "public/weave-ui.js"), "utf8");
+  const weaveBridge = fs.readFileSync(path.join(repoRoot, "public/weave-bridge.js"), "utf8");
+  await page.route("**/weave-ui.js*", async (route) => {
+    await route.fulfill({ status: 200, contentType: "text/javascript; charset=utf-8", body: weaveUi });
+  });
+  await page.route("**/weave-bridge.js*", async (route) => {
+    await route.fulfill({ status: 200, contentType: "text/javascript; charset=utf-8", body: weaveBridge });
+  });
   await page.route("**/api/health", async (route) => {
     const res = await route.fetch();
     const body = await res.json();
@@ -396,10 +407,6 @@ test.describe("D-06 Weave UX", () => {
 
   test("Back from recipe restores weave without new interpret calls", async ({ page }) => {
     let interpretCalls = 0;
-    await page.route("**/api/plan/interpret", async (route) => {
-      interpretCalls += 1;
-      await route.continue();
-    });
     await page.route("**/api/discovery/interpret", async (route) => {
       interpretCalls += 1;
       const body = JSON.parse(route.request().postData() || "{}");
@@ -430,24 +437,28 @@ test.describe("D-06 Weave UX", () => {
     const planSnap = await seedDatedThreeMealPlan(page);
     await page.locator('[data-go="home"][data-nav="home"]').filter({ visible: true }).first().click();
     await page.waitForTimeout(500);
-    await page.evaluate(
-      ({ planId, echo, reply }) => {
-        sessionStorage.setItem(
-          "fw_weave:dinner_plan_id:" + planId,
-          JSON.stringify({
-            adapter: "planRefine",
-            echo,
-            reply,
-            chips: [{ id: "dinner_count", label: "3 dinners" }],
-            next: [],
-            stateRef: { dinner_count: 3 },
-            at: Date.now(),
-          })
-        );
-      },
-      { planId: planSnap.dinner_plan_id, echo: "Plan three easy dinners", reply: "Got it — three dinners." }
-    );
+    await page.route("**/api/plan/interpret", async (route) => {
+      interpretCalls += 1;
+      const body = JSON.parse(route.request().postData() || "{}");
+      if (!body.dinner_plan_id) return route.continue();
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          ok: true,
+          source: "provider",
+          acknowledgement: "Got it — three dinners.",
+          state: { dinner_count: 3 },
+          chips: [{ id: "dinner_count", label: "3 dinners" }],
+          changed_positions: [],
+          preview: null,
+        }),
+      });
+    });
     await openPlanReview(page);
+    await page.locator("#planReviewWeaveHost .weave-composer").click();
+    await page.locator("#planReviewWeaveHost .weave-composer__field").fill("Plan three easy dinners");
+    await page.locator("#planReviewWeaveHost .weave-composer__submit").click();
     await expect(page.locator("#planReviewWeaveHost .weave-echo")).toContainText("Plan three easy dinners", { timeout: 15000 });
     const planInterpretBefore = interpretCalls;
     const firstMeal = planSnap.meals[0];
@@ -455,7 +466,9 @@ test.describe("D-06 Weave UX", () => {
     await expect(page.locator(".view.is-active[data-view='detail']")).toBeVisible({ timeout: 30000 });
     await page.locator('[data-view="detail"] [data-back="detail"]').click();
     await expect(page.locator(".view.is-active[data-view='planReview']")).toBeVisible({ timeout: 30000 });
-    await expect(page.locator("#planReviewWeaveHost .weave-echo")).toContainText("Plan three easy dinners");
+    await expect(page.locator("#planReviewWeaveHost .weave-echo")).toContainText("Plan three easy dinners", {
+      timeout: 15000,
+    });
     expect(interpretCalls).toBe(planInterpretBefore);
 
     await openFindForWeave(page);

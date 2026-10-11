@@ -27,9 +27,44 @@
     return String(s || "").replace(/'/g, "’");
   }
 
-  function chipListHtml(chips, extraHtml) {
+  function stepperHtml(count, opts) {
+    const o = opts || {};
+    const n = Number(count) || 0;
+    const label = n === 1 ? "1 dinner" : n + " dinners";
+    const busy = !!o.busy;
+    const minusOff = busy || o.disabledMinus;
+    const plusOff = busy || o.disabledPlus;
+    return (
+      '<div class="weave-stepper' +
+      (busy ? " is-busy" : "") +
+      '" role="group" aria-label="Number of dinners"' +
+      (busy ? ' aria-busy="true"' : "") +
+      ">" +
+      '<button type="button" class="weave-stepper__btn" data-step="-1" aria-label="One fewer dinner"' +
+      (minusOff ? ' aria-disabled="true"' : "") +
+      '><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button>' +
+      '<output class="weave-stepper__value' +
+      (o.bump ? " is-bump" : "") +
+      '">' +
+      esc(label) +
+      "</output>" +
+      '<button type="button" class="weave-stepper__btn" data-step="1" aria-label="One more dinner"' +
+      (plusOff ? ' aria-disabled="true"' : "") +
+      '><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>' +
+      "</div>"
+    );
+  }
+
+  function chipListHtml(chips, extraHtml, opts) {
+    const options = opts || {};
     let html = '<div class="weave-understood-row"><ul class="weave-understood" aria-label="What we understood">';
     (chips || []).forEach((c) => {
+      if (options.stepper && c.id === "dinner_count") {
+        const st = options.stepperState || {};
+        const n = st.count ?? options.stepperCount ?? parseInt(c.label, 10);
+        html += '<li class="weave-chip weave-chip--stepper">' + stepperHtml(n, st) + "</li>";
+        return;
+      }
       html +=
         '<li class="weave-chip"><span class="weave-chip__label">' +
         esc(c.label) +
@@ -40,6 +75,59 @@
         '"><svg class="icon" aria-hidden="true"><use href="#i-x" /></svg></button></li>';
     });
     html += "</ul>" + (extraHtml || "") + "</div>";
+    return html;
+  }
+
+  function choiceHtml(ctrl) {
+    const choice = ctrl.choice;
+    if (!choice) return "";
+    const copy = ctrl.choiceCopy || {};
+    const qid = "weaveChoiceQ-" + esc(ctrl.adapter.kind);
+    const applying = !!ctrl.choiceApplying;
+    let html =
+      '<div class="weave-choice" role="group" aria-labelledby="' +
+      qid +
+      '"' +
+      (applying ? ' aria-busy="true"' : "") +
+      ">";
+    if (copy.context) html += '<p class="weave-choice__context">' + esc(typo(copy.context)) + "</p>";
+    html += '<p class="weave-reply weave-choice__question" id="' + qid + '" tabindex="-1">' + esc(typo(copy.question || "Which dinner did you mean?")) + "</p>";
+    html += '<div class="weave-choice__chips">';
+    (choice.candidates || []).forEach((row) => {
+      const pressed = (ctrl.choicePicked || []).includes(row.position);
+      html +=
+        '<button type="button" class="chip-tog weave-choice__chip' +
+        (pressed ? " is-on" : "") +
+        '" data-choice-position="' +
+        esc(String(row.position)) +
+        '"' +
+        (choice.multi ? ' aria-pressed="' + (pressed ? "true" : "false") + '"' : "") +
+        (applying && !pressed ? ' aria-disabled="true"' : "") +
+        ' aria-label="' +
+        esc(row.label + ", " + (row.title || "")) +
+        '"><strong class="weave-choice__label">' +
+        esc(row.label) +
+        '</strong><span class="weave-choice__title">' +
+        esc(row.title || "") +
+        "</span></button>";
+    });
+    html += "</div>";
+    html += '<div class="weave-choice__actions">';
+    if (choice.multi && (ctrl.choicePicked || []).length) {
+      const n = ctrl.choicePicked.length;
+      const words = ["one", "two", "three", "four"];
+      const label = n === 1 ? "Go with this one" : n <= 4 ? "Go with these " + words[n - 1] : "Go with these " + n;
+      html +=
+        '<button type="button" class="btn btn-primary btn-sm weave-choice__apply"' +
+        (applying ? ' aria-disabled="true"' : "") +
+        ">" +
+        esc(label) +
+        "</button>";
+    }
+    if (choice.add_days || choice.reason === "undated" || choice.reason === "weekend_undated") {
+      html += '<button type="button" class="btn btn-quiet btn-sm weave-choice__dates">Add days</button>';
+    }
+    html += '<button type="button" class="btn btn-quiet btn-sm weave-choice__cancel">Never mind</button></div></div>';
     return html;
   }
 
@@ -65,6 +153,10 @@
       turn: 0,
       failures: 0,
       draft: "",
+      choice: null,
+      choiceCopy: null,
+      choicePicked: [],
+      turnSnapshot: null,
       listeners: new Set(),
     };
 
@@ -105,10 +197,15 @@
         next: ctrl.next,
         notice: ctrl.notice && ctrl.notice.kind === "status" ? { kind: "status", style: ctrl.notice.style, text: ctrl.notice.text } : null,
         stateRef: adapter.getState(),
+        choice: ctrl.choice,
+        choiceCopy: ctrl.choiceCopy,
+        choicePicked: ctrl.choicePicked,
         at: Date.now(),
       };
       try {
-        sessionStorage.setItem("fw_weave:" + key, JSON.stringify(payload));
+        const blob = JSON.stringify(payload);
+        sessionStorage.setItem("fw_weave:" + key, blob);
+        if (adapter.kind === "planRefine") sessionStorage.setItem("fw_weave:plan_review", blob);
       } catch {
         /* ignore */
       }
@@ -117,29 +214,37 @@
     }
 
     function restoreFromCache() {
-      const key = adapter.historyKey?.();
-      if (!key) return false;
-      let raw = null;
+      const keys = [];
+      const primary = adapter.historyKey?.();
+      if (primary) keys.push(primary);
+      if (!keys.includes("plan_review")) keys.push("plan_review");
+      let data = null;
       try {
-        raw = sessionStorage.getItem("fw_weave:" + key);
+        for (const key of keys) {
+          const raw = sessionStorage.getItem("fw_weave:" + key);
+          if (!raw) continue;
+          const parsed = JSON.parse(raw);
+          if (!parsed.at || Date.now() - parsed.at > STORAGE_TTL_MS) continue;
+          if (parsed.adapter && parsed.adapter !== adapter.kind) continue;
+          data = parsed;
+          break;
+        }
       } catch {
         return false;
       }
-      if (!raw) return false;
-      let data;
-      try {
-        data = JSON.parse(raw);
-      } catch {
-        return false;
-      }
-      if (!data.at || Date.now() - data.at > STORAGE_TTL_MS) return false;
+      if (!data) return false;
       ctrl.restoreStatic = true;
       ctrl.echo = data.echo || "";
       ctrl.reply = data.reply || "";
       ctrl.chips = data.chips || [];
       ctrl.next = data.next || [];
       ctrl.notice = data.notice || null;
+      const choiceOk = !!data.choice && (!adapter.choiceStillValid || adapter.choiceStillValid(data.choice));
+      ctrl.choice = choiceOk ? data.choice : null;
+      ctrl.choiceCopy = choiceOk ? data.choiceCopy || null : null;
+      ctrl.choicePicked = choiceOk ? data.choicePicked || [] : [];
       adapter.setState?.(data.stateRef);
+      if (data.choice && !choiceOk) adapter.clearPendingSlot?.();
       ctrl.state = "settled";
       render();
       return true;
@@ -227,7 +332,8 @@
           (working ? "" : '<button type="button" class="btn btn-quiet btn-sm weave-echo__edit">Edit</button>') +
           "</p>";
       }
-      if (ctrl.reply && shown) html += replyHtml();
+      if (ctrl.choice && shown) html += choiceHtml(ctrl);
+      else if (ctrl.reply && shown) html += replyHtml();
       if (ctrl.notice) {
         const role = ctrl.notice.kind === "alert" ? "alert" : "status";
         html +=
@@ -257,22 +363,58 @@
       } else if (shown && ctrl.chips.length) {
         html += chipListHtml(ctrl.chips);
       }
-      if (shown && ctrl.next.length) {
+      if (shown && ctrl.choice) {
+        /* Next hides while the chooser is open */
+      } else if (shown && ctrl.next.length) {
         html += '<div class="weave-next" role="group" aria-label="Try next"' + (ctrl.draft ? " hidden" : "") + ">";
         ctrl.next.forEach((s) => {
           html += '<button type="button" class="chip-tog weave-next__btn" data-weave-suggest="' + esc(s) + '">' + esc(s) + "</button>";
         });
         html += "</div>";
       }
-      if ((ctrl.state === "idle" || ctrl.state === "composing") && !ctrl.notice && adapter.starters?.().length) {
-        html += '<div class="weave-starters" role="group" aria-label="Ideas">';
-        adapter.starters().forEach((s) => {
-          html += '<button type="button" class="chip-tog weave-starter" data-weave-starter="' + esc(s.fill) + '">' + esc(s.label) + "</button>";
-        });
-        html += "</div>";
-      }
+      if (wantsStarters()) html += startersHtml();
       body.innerHTML = html;
       bindInner();
+    }
+
+    function wantsStarters() {
+      return (ctrl.state === "idle" || ctrl.state === "composing") && !ctrl.notice && !!adapter.starters?.().length;
+    }
+
+    function startersHtml() {
+      let html = '<div class="weave-starters" role="group" aria-label="Ideas">';
+      adapter.starters().forEach((s) => {
+        html += '<button type="button" class="chip-tog weave-starter" data-weave-starter="' + esc(s.fill) + '">' + esc(s.label) + "</button>";
+      });
+      return html + "</div>";
+    }
+
+    function bindStarters(scope) {
+      scope.querySelectorAll("[data-weave-starter]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          ctrl.draft = btn.getAttribute("data-weave-starter") || "";
+          ctrl.state = "composing";
+          render();
+          focusField(true);
+          adapter.onComposerInput?.(ctrl.draft);
+        });
+      });
+    }
+
+    /** Starters arrive after the first paint; add them in place so a focused field keeps its keyboard. */
+    function paintStarters() {
+      if (ctrl.fallback) return;
+      const existing = body.querySelector(".weave-starters");
+      if (!wantsStarters()) {
+        existing?.remove();
+        return;
+      }
+      const tmp = body.ownerDocument.createElement("div");
+      tmp.innerHTML = startersHtml();
+      const node = tmp.firstElementChild;
+      if (existing) existing.replaceWith(node);
+      else body.appendChild(node);
+      bindStarters(node);
     }
 
     function renderComposer(collapsed, value) {
@@ -344,6 +486,16 @@
     }
 
     function expand() {
+      const form = body.querySelector(".weave-composer");
+      const field = fieldEl();
+      if (form && field) {
+        form.classList.remove("weave-composer--collapsed");
+        ctrl.state = "composing";
+        const next = body.querySelector(".weave-next");
+        if (next) next.hidden = true;
+        field.focus({ preventScroll: true });
+        return;
+      }
       ctrl.state = "composing";
       render();
       focusField(true);
@@ -363,11 +515,24 @@
         });
         field.addEventListener("blur", () => {
           adapter.onComposerBlur?.(field.value);
+          if (!field.value.trim() && adapter.defaultCollapsed && form) {
+            const collapse = () => form.classList.add("weave-composer--collapsed");
+            if (global.FlavorWeaveKeyboard?.isOpen?.()) {
+              const off = global.FlavorWeaveKeyboard.onChange((open) => {
+                if (open) return;
+                off();
+                if (!field.value.trim()) collapse();
+              });
+            } else {
+              collapse();
+            }
+          }
         });
         field.addEventListener("input", () => {
           ctrl.draft = field.value;
           autogrow(field);
           syncComposerChrome(field);
+          global.FlavorWeaveKeyboard?.reveal?.(form);
           adapter.onComposerInput?.(ctrl.draft);
         });
         field.addEventListener("keydown", (e) => {
@@ -409,18 +574,13 @@
         focusField(true);
       });
       body.querySelector(".weave-cancel")?.addEventListener("click", cancel);
-      body.querySelectorAll("[data-weave-starter]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          ctrl.draft = btn.getAttribute("data-weave-starter") || "";
-          ctrl.state = "composing";
-          render();
-          focusField(true);
-          adapter.onComposerInput?.(ctrl.draft);
-        });
-      });
+      bindStarters(body);
+      const stepUi = { host, render, persist, announce };
       body.querySelectorAll("[data-weave-suggest]").forEach((btn) => {
         btn.addEventListener("click", () => {
-          void submit(btn.getAttribute("data-weave-suggest") || "");
+          const text = btn.getAttribute("data-weave-suggest") || "";
+          if (adapter.onSuggest?.(text, ctrl, stepUi)) return;
+          void submit(text);
         });
       });
       body.querySelectorAll("[data-chip-id]").forEach((btn) => {
@@ -428,6 +588,35 @@
           void removeChip(btn.getAttribute("data-chip-id"));
         });
       });
+      body.querySelectorAll("[data-step]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // A disabled end still answers (the limit line); in-flight taps do nothing.
+          if (ctrl.stepper?.busy) return;
+          void adapter.onCountStep?.(Number(btn.getAttribute("data-step")), ctrl, stepUi);
+        });
+      });
+      const choiceUi = { host, body, persist, announce, settleWith, render };
+      body.querySelectorAll(".weave-choice__chip").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (ctrl.choiceApplying) return;
+          void adapter.onChoiceChip?.(btn, ctrl, choiceUi);
+        });
+      });
+      body.querySelector(".weave-choice__apply")?.addEventListener("click", () => {
+        if (ctrl.choiceApplying) return;
+        void adapter.onChoiceApply?.(ctrl, choiceUi);
+      });
+      body.querySelector(".weave-choice__cancel")?.addEventListener("click", () => {
+        void adapter.onChoiceCancel?.(ctrl, choiceUi);
+      });
+      body.querySelector(".weave-choice__dates")?.addEventListener("click", () => {
+        adapter.onChoiceAddDays?.(ctrl);
+      });
+      const q = body.querySelector(".weave-choice__question");
+      if (q && ctrl.choice && !ctrl.restoreStatic && !ctrl.choiceFocused) {
+        ctrl.choiceFocused = true;
+        q.focus({ preventScroll: true });
+      }
       body.querySelector(".weave-composer--collapsed")?.addEventListener("click", (e) => {
         if (e.target.closest("button")) return;
         expand();
@@ -441,6 +630,15 @@
         const text = ctrl.draft || ctrl.echo;
         ctrl.notice = null;
         if (text) void submit(text);
+      });
+      body.querySelector(".weave-undo-step")?.addEventListener("click", () => {
+        void adapter.onStepperUndo?.(ctrl, stepUi);
+      });
+      body.querySelector(".weave-retry-step")?.addEventListener("click", () => {
+        const delta = ctrl.stepperRetryDelta;
+        ctrl.notice = null;
+        ctrl.stepperRetryDelta = null;
+        if (delta) void adapter.onCountStep?.(delta, ctrl, stepUi);
       });
       body.querySelector(".weave-manual")?.addEventListener("click", () => adapter.scrollToManual?.());
     }
@@ -510,7 +708,25 @@
       ctrl.reply = data.acknowledgement || "";
       ctrl.next = adapter.suggestions?.(data) || [];
       ctrl.notice = null;
-      if (data.conflicts?.length) {
+      ctrl.choice = data.choice || data.ambiguous_target || null;
+      ctrl.choiceCopy = data.choice_copy || adapter.choiceCopy?.(ctrl.choice, data) || null;
+      ctrl.choicePicked = [];
+      ctrl.choiceFocused = false;
+      if (ctrl.choice) {
+        ctrl.reply = "";
+        ctrl.next = [];
+        setBusy(false);
+        ctrl.state = "settled";
+        render();
+        const ctx = ctrl.choiceCopy?.context || "";
+        const q = ctrl.choiceCopy?.question || "";
+        const n = (ctrl.choice.candidates || []).length;
+        announce(typo([ctx, q, n + " choices."].filter(Boolean).join(" ")));
+        persist();
+        notify();
+        return;
+      }
+      if (data.conflicts?.length && data.conflicts[0]?.code !== "slot_ambiguous") {
         const line = adapter.conflictCopy?.(data) || ctrl.reply;
         ctrl.notice = line ? { kind: "status", style: "info", text: line } : null;
         ctrl.reply = "";
@@ -524,6 +740,19 @@
       ctrl.turn += 1;
       ctrl.restoreStatic = false;
       ctrl.notice = null;
+      ctrl.turnSnapshot = {
+        echo: ctrl.echo,
+        reply: ctrl.reply,
+        chips: ctrl.chips,
+        next: ctrl.next,
+        choice: ctrl.choice,
+        choiceCopy: ctrl.choiceCopy,
+        stateRef: adapter.getState?.(),
+      };
+      adapter.clearPendingSlot?.();
+      ctrl.choice = null;
+      ctrl.choiceCopy = null;
+      ctrl.choicePicked = [];
       ctrl.echo = text;
       ctrl.draft = "";
       ctrl.state = "working";
@@ -534,6 +763,7 @@
       render();
       notify();
       announce("Weaving that together…");
+      global.FlavorWeaveKeyboard?.afterSubmit?.(host);
       ctrl.timers.push(
         setTimeout(() => {
           const label = body.querySelector(".weave-working__label");
@@ -548,7 +778,12 @@
       deps?.track?.("weave_submitted", { task: adapter.task, surface: adapter.surface, turn_index: ctrl.turn });
       const t0 = performance.now();
       try {
-        const data = await adapter.interpret(text, { signal });
+        let data;
+        try {
+          data = await adapter.interpret(text, { signal });
+        } finally {
+          clearTimers();
+        }
         if (signal.aborted) throw Object.assign(new Error("aborted"), { name: "AbortError" });
         const total = Math.round(performance.now() - t0);
         deps?.track?.("weave_result", {
@@ -558,7 +793,7 @@
           total_latency_ms: total,
         });
         if (!data.ok) throw new Error(data.error || "failed");
-        if (data.fallback_code && !data.preview && !data.results) {
+        if (data.fallback_code && !data.preview && !data.results && !data.choice) {
           const gentle =
             data.fallback_code === "rate_limited" ||
             data.fallback_code === "budget_exceeded" ||
@@ -580,19 +815,20 @@
           if (gentle) adapter.scrollToManual?.();
           return;
         }
-        clearTimers();
-        const outcome = await adapter.applyResult(data, ctrl);
-        ctrl.failures = 0;
-        if (outcome?.handedOff) {
-          ctrl.echo = "";
-          ctrl.state = "idle";
-          setBusy(false);
-          clearCache();
-          render();
-          notify();
-          return;
+        if (!data.choice) {
+          const outcome = await adapter.applyResult(data, ctrl);
+          ctrl.failures = 0;
+          if (outcome?.handedOff) {
+            ctrl.echo = "";
+            ctrl.state = "idle";
+            setBusy(false);
+            clearCache();
+            render();
+            notify();
+            return;
+          }
+          if (outcome?.failed) throw new Error("apply_failed");
         }
-        if (outcome?.failed) throw new Error("apply_failed");
         settleWith(data);
       } catch (e) {
         if (e?.name === "AbortError" && signal.reason !== "timeout") return;
@@ -641,7 +877,9 @@
       ctrl.next = adapter.initialNext?.() || [];
       render();
     }
+    Promise.resolve(adapter.prefetchStarters?.()).then(paintStarters, () => {});
 
+    const weaveUi = { host, render, persist, announce, settleWith };
     return {
       ctrl,
       submit,
@@ -650,6 +888,9 @@
       clearCache,
       restoreFromCache,
       render,
+      reresolveAfterDates() {
+        return adapter.reresolveAfterDates?.(ctrl, weaveUi);
+      },
       onState(fn) {
         ctrl.listeners.add(fn);
         return () => ctrl.listeners.delete(fn);
@@ -657,5 +898,5 @@
     };
   }
 
-  global.FlavorWeaveWeave = { mount, chipListHtml, REDUCED_MOTION: REDUCED };
+  global.FlavorWeaveWeave = { mount, chipListHtml, stepperHtml, choiceHtml, REDUCED_MOTION: REDUCED };
 })(window);
