@@ -43,14 +43,47 @@ function resolveIngredientId(name, catalog) {
   return canonicalIngredient(name).ingredient_id;
 }
 
+/** Qualifiers on a catalog line, not a different ingredient ("peanut butter" is not butter). */
+const FORM_MODIFIERS = new Set([
+  "fresh",
+  "dried",
+  "dry",
+  "flat",
+  "leaf",
+  "chopped",
+  "minced",
+  "ground",
+  "whole",
+  "raw",
+  "frozen",
+  "canned",
+  "baby",
+  "large",
+  "small",
+  "italian",
+  "curly",
+]);
+
+function catalogNameAligns(want, candidate) {
+  const name = normalizeName(candidate);
+  if (!want || !name) return false;
+  if (name === want) return true;
+  if (!name.endsWith(` ${want}`)) return false;
+  const prefix = name.slice(0, -(want.length + 1)).trim();
+  if (!prefix) return false;
+  if (FORM_MODIFIERS.has(prefix)) return true;
+  return prefix.split(" ").every((word) => FORM_MODIFIERS.has(word));
+}
+
 function catalogKnowsIngredient(name, catalog) {
   const keys = nameKeys(name);
   if (!keys.size) return false;
   for (const entry of catalog || plannerCatalog()) {
     for (const ing of entry.pkg?.ingredients || []) {
-      if (keys.has(normalizeName(ing.name))) return true;
       const slug = normalizeName(String(ing.ingredient_id || "").replace(/-/g, " "));
-      if (slug && keys.has(slug)) return true;
+      for (const key of keys) {
+        if (catalogNameAligns(key, ing.name) || (slug && catalogNameAligns(key, slug))) return true;
+      }
     }
   }
   return false;

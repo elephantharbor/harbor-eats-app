@@ -60,11 +60,13 @@ test.describe("Alpha readiness UI", () => {
   });
 
   test("adaptation apply shows your version and undo toast", async ({ page }) => {
+    await openPlanRecipe(page);
     const fromId = await page.evaluate(async () => {
       const res = await fetch("/api/dinner-plans/current", { credentials: "include" }).then((r) => r.json());
       const meal = res.plan && res.plan.meals && res.plan.meals[0];
-      const ing = meal && meal.pinned_ingredients && meal.pinned_ingredients[0];
-      return ing ? ing.ingredient_id : "salt";
+      const ingredients = (meal && meal.pinned_ingredients) || [];
+      const ing = ingredients.find((item) => item.ingredient_id) || ingredients[0];
+      return ing ? ing.ingredient_id : null;
     });
     await page.unroute("**/api/recipes/adapt");
     await page.route("**/api/recipes/adapt", async (route) => {
@@ -91,7 +93,6 @@ test.describe("Alpha readiness UI", () => {
         body: JSON.stringify(body),
       });
     });
-    await openPlanRecipe(page);
     const weave = page.locator("#detailWeaveHost .weave-composer__field");
     await weave.click();
     await weave.fill("I don't have cilantro");

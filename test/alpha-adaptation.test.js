@@ -149,6 +149,33 @@ describe("recipe adaptation", () => {
     expect(dairy.ok).toBe(false);
   });
 
+  it("treats a catalog herb under a form qualifier as known", () => {
+    const herbCatalog = [
+      {
+        pkg: {
+          ingredients: [
+            { name: "fresh parsley", ingredient_id: "fresh-parsley" },
+            { name: "flat-leaf parsley", ingredient_id: "flat-leaf-parsley" },
+            { name: "peanut butter", ingredient_id: "peanut-butter" },
+          ],
+        },
+      },
+    ];
+    const parsley = validateAdaptationSafety(swap("parsley"), restrictedMeal, {
+      constraints: [],
+      tastes: [],
+      catalog: herbCatalog,
+    });
+    expect(parsley.ok).toBe(true);
+    const unknown = validateAdaptationSafety(swap("nut"), restrictedMeal, {
+      constraints: [{ member_id: "a", rule_key: "nuts", status: "prohibited" }],
+      tastes: [],
+      catalog: herbCatalog,
+    });
+    expect(unknown.ok).toBe(false);
+    expect(unknown.status).toBe("rejected_safety");
+  });
+
   it("fails closed on an unknown ingredient", () => {
     const out = validateAdaptationSafety(swap("zzqx-powder"), restrictedMeal, {
       constraints: [],
