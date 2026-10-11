@@ -200,6 +200,70 @@ describe("alpha routes through the fake provider", () => {
     }
   });
 
+  it("keeps omit chipotle powder when the model uses the shown name", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite);
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_alpha", member_id: "m_a" });
+    const provider = createFakeProvider({
+      script: [{
+        json: {
+          acknowledgement: "Leaving the chipotle out.",
+          kind: "omit",
+          support: "advice",
+          ingredient_ops: [{ op: "remove", from_id: "chipotle powder", to_name: null, policy: "omit" }],
+          step_notes: [],
+          equipment_supported: true,
+          flavor_impact: "milder",
+          warning: null,
+        },
+      }],
+    });
+    const res = await postJson(envFor(db, provider), session.session_token, "/api/recipes/adapt", {
+      text: "omit chipotle powder",
+      recipe_slug: "crispy-chipotle-tofu-tacos",
+    });
+    expect(res.status).toBe(200);
+    expect(res.body.support).toBe("advice");
+    expect(res.body.ingredient_ops).toEqual([
+      expect.objectContaining({ op: "remove", from_id: "chipotle powder", policy: "omit" }),
+    ]);
+    expect(res.body.override.ops).toHaveLength(1);
+    expect(provider.calls).toHaveLength(1);
+  });
+
+  it("returns advice when the recipe already uses the air fryer", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite);
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_alpha", member_id: "m_a" });
+    const provider = createFakeProvider({
+      script: [{
+        json: {
+          acknowledgement: "This version already uses the air fryer.",
+          kind: "equipment",
+          support: "advice",
+          ingredient_ops: [],
+          step_notes: [],
+          equipment_supported: true,
+          flavor_impact: "similar",
+          warning: null,
+        },
+      }],
+    });
+    const res = await postJson(envFor(db, provider), session.session_token, "/api/recipes/adapt", {
+      text: "I want to use the air fryer.",
+      recipe_slug: "crispy-chipotle-tofu-tacos",
+    });
+    expect(res.status).toBe(200);
+    expect(res.body.support).toBe("advice");
+    expect(res.body.equipment_supported).toBe(true);
+    expect(res.body.acknowledgement).toBe("This version already uses the air fryer.");
+    expect(res.body.ingredient_ops).toEqual([]);
+    expect(res.body.override).toBeUndefined();
+    expect(provider.calls).toHaveLength(1);
+  });
+
   it("does not offer Apply when the replace source is missing", async () => {
     const sqlite = migrate();
     seedHousehold(sqlite);

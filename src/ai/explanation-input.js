@@ -1,4 +1,4 @@
-/** Normalize legacy smoke/tests input into explanation@2 packet shape. */
+/** Normalize legacy smoke/tests input into the explanation packet shape. */
 export function normalizeExplanationInput(input) {
   if (input && Array.isArray(input.facts)) return input;
   const reasons = (input && input.reasons) || [];

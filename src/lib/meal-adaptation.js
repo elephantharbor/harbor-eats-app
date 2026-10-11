@@ -81,6 +81,24 @@ export function canonicalIngredientKey(value) {
   return core;
 }
 
+/**
+ * The model is shown `ingredient_id || name`. A later pin may store only the
+ * slug, so a source matches the id or the normalized name.
+ * @param {object} item
+ * @param {string|null|undefined} fromId
+ */
+export function ingredientMatchesSource(item, fromId) {
+  if (fromId == null || fromId === "") return false;
+  const want = normalizeName(fromId);
+  if (!want) return false;
+  const shown = item?.ingredient_id || item?.name || item?.display_name;
+  for (const value of [item?.ingredient_id, item?.name, item?.display_name, shown]) {
+    if (value == null || value === "") continue;
+    if (value === fromId || normalizeName(value) === want) return true;
+  }
+  return false;
+}
+
 function keysForIngredient(name, id) {
   const keys = new Set();
   const add = (value) => {
@@ -127,10 +145,10 @@ export function effectiveRecipeView(meal) {
   const steps = structuredClone(base.steps || []);
   for (const op of override.ops || []) {
     if (op.op === "remove") {
-      ingredients = ingredients.filter((ing) => ing.ingredient_id !== op.from_id);
+      ingredients = ingredients.filter((ing) => !ingredientMatchesSource(ing, op.from_id));
     } else if (op.op === "replace") {
       ingredients = ingredients.map((ing) => {
-        if (ing.ingredient_id !== op.from_id) return ing;
+        if (!ingredientMatchesSource(ing, op.from_id)) return ing;
         const canon = canonicalIngredient(op.to_name || ing.name);
         return {
           ...ing,
@@ -266,9 +284,7 @@ export function validateAdaptationSafety(modelOutput, meal, ctx) {
     }
     const needsSource = raw.op === "replace" || raw.op === "remove";
     if (needsSource || fromId) {
-      const pin = fromId
-        ? (meal.pinned_ingredients || []).find((item) => item.ingredient_id === fromId)
-        : null;
+      const pin = (meal.pinned_ingredients || []).find((item) => ingredientMatchesSource(item, fromId));
       if (!pin) {
         dropped.push(fromId ?? null);
         continue;

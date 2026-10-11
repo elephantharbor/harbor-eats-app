@@ -172,7 +172,7 @@ const CASES = [
     task: "recipe_adaptation",
     cookie: () => open.cookie,
     path: "/api/recipes/adapt",
-    body: { text: "Swap the cilantro for parsley.", recipe_slug: "miso-ginger-salmon" },
+    body: { text: "Swap the cilantro for parsley.", recipe_slug: "pumpkin-pinto-bean-chili" },
     pass: (data) => data?.support === "advice" && (data.ingredient_ops || data.override?.ops || []).some((op) => /parsley/i.test(op.to_name || "") && op.policy === "keep_scaled"),
   },
   {

@@ -44,9 +44,9 @@ describe("recommendation explanations", () => {
     expect(packet.strength).toBe("weak");
   });
 
-  it("explanation@2 asks for one or two natural sentences", () => {
+  it("explanation@3 asks for one or two natural sentences", () => {
     const prompt = renderPrompt("explanation", { facts: [], basis: "run", allowed_phrases: [] });
-    expect(prompt.version).toBe("explanation@2");
+    expect(prompt.version).toBe("explanation@3");
     expect(prompt.system).toMatch(/one or two natural sentences/i);
     expect(prompt.system).toMatch(/semicolon/i);
   });
@@ -56,6 +56,7 @@ describe("recommendation explanations", () => {
     expect(script).toContain('fill: "planner"');
     expect(script).toContain("usage?.provider_calls");
     expect(script).toContain('source === "provider"');
+    expect(script).toMatch(/adapt-cilantro-parsley[\s\S]*pumpkin-pinto-bean-chili/);
     expect(script).toMatch(/explain-weak[\s\S]*pressure-cooker-butter-chicken[\s\S]*cache_bust/);
     expect(script).toMatch(/explain-keep-it-easy[\s\S]*keep_it_easy: true, keep_ingredients_simple: true[\s\S]*cache_bust/);
     expect(script).toContain('data.source !== "template"');

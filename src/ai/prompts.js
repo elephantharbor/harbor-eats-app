@@ -80,12 +80,12 @@ export const PROMPTS = Object.freeze({
   concept_generation: { version: "concept_generation@1", system: SYSTEM, user: "Propose meal concepts for the brief. They are drafts for human review.\nBrief: {{text}}\nContext: {{context}}" },
   recipe_draft: { version: "recipe_draft@1", system: SYSTEM, user: "Draft a recipe for the concept. It is an unreviewed draft.\nConcept: {{text}}" },
   recipe_adaptation: {
-    version: "recipe_adaptation@2",
+    version: "recipe_adaptation@3",
     system: `${SYSTEM}\n\nTask recipe_adaptation. Return structured ops only. Never output quantities, servings, or safety claims.`,
     user: "Request: {{text}}\nRecipe: {{recipe}}",
   },
   explanation: {
-    version: "explanation@2",
+    version: "explanation@3",
     system: `${SYSTEM}\n\nTask explanation. Phrase only the supplied facts in one or two natural sentences. Do not glue facts together with a semicolon or a semicolon fragment. used_fact_ids must list fact ids you relied on.`,
     user: "Facts: {{facts}}\nBasis: {{basis}}\nAllowed phrases: {{allowed_phrases}}",
   },

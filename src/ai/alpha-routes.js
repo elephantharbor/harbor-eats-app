@@ -54,19 +54,33 @@ function adaptationFallback(text, meal, gen) {
 function adviceWithoutApply(validated, gen) {
   const notes = (validated.value.step_notes || []).filter((note) => note && note.step_number);
   const source = gen?.source === "cache" ? "cache" : "provider";
+  const usage = providerUsage(gen);
+  const shared = {
+    ok: true,
+    acknowledgement: validated.value.acknowledgement,
+    ingredient_ops: [],
+    flavor_impact: validated.value.flavor_impact ?? null,
+    warning: validated.value.warning ?? null,
+    source,
+    usage,
+  };
   if (notes.length) {
     return respond({
-      ok: true,
+      ...shared,
       support: "advice",
-      acknowledgement: validated.value.acknowledgement,
       kind: "prep",
-      ingredient_ops: [],
       step_notes: notes,
       equipment_supported: validated.value.equipment_supported !== false,
-      flavor_impact: validated.value.flavor_impact ?? null,
-      warning: validated.value.warning ?? null,
-      source,
-      usage: providerUsage(gen),
+    });
+  }
+  const proposed = validated.value.ingredient_ops || [];
+  if (proposed.length === 0 && validated.value.support !== "unsupported" && validated.value.equipment_supported === true) {
+    return respond({
+      ...shared,
+      support: "advice",
+      kind: validated.value.kind || "equipment",
+      step_notes: [],
+      equipment_supported: true,
     });
   }
   return respond({
@@ -78,7 +92,7 @@ function adviceWithoutApply(validated, gen) {
     step_notes: [],
     equipment_supported: false,
     source,
-    usage: providerUsage(gen),
+    usage,
   });
 }
 

@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { createFakeProvider, createGenerationService, createMemoryStore, TASKS } from "../src/ai/index.js";
+import { renderPrompt } from "../src/ai/prompts.js";
 import { postValidateRecipeAdaptation } from "../src/ai/adaptation-schema.js";
 import {
   ADAPTATION_SAFETY_REFUSAL,
@@ -8,6 +9,7 @@ import {
   canonicalIngredientKey,
   equipmentUnsupportedResponse,
   effectiveRecipeView,
+  ingredientMatchesSource,
   validateAdaptationSafety,
 } from "../src/lib/meal-adaptation.js";
 import { applyPlanMutation, createDinnerPlan } from "../src/lib/plan-mutations.js";
@@ -104,6 +106,11 @@ describe("recipe adaptation", () => {
     expect(r.ok).toBe(true);
     expect(r.output.kind).toBe("substitution");
     expect(TASKS.recipe_adaptation.executable).toBe(true);
+  });
+
+  it("uses recipe_adaptation@3 so a stale cache entry misses", () => {
+    expect(renderPrompt("recipe_adaptation", { text: "omit chipotle", recipe: {} }).version).toBe("recipe_adaptation@3");
+    expect(TASKS.recipe_adaptation.prompt_version).toBe("recipe_adaptation@3");
   });
 
   it("preview and production enable adaptation and explanation with per-task caps", () => {
@@ -328,6 +335,91 @@ describe("recipe adaptation", () => {
     );
     expect(applied.ok).toBe(false);
     expect(planMeal.adaptation).toBeFalsy();
+  });
+
+  it("applies omit chipotle powder when the model names the ingredient", () => {
+    const meal = {
+      kind: "recipe",
+      recipe_slug: "crispy-chipotle-tofu-tacos",
+      title: "Crispy Chipotle Tofu Tacos",
+      participant_ids: ["a"],
+      pinned_ingredients: [
+        { ingredient_id: "chipotle-powder", name: "chipotle powder", quantity: 1, unit: "tsp" },
+        { name: "cilantro", quantity: 0.25, unit: "cup" },
+      ],
+    };
+    const ctx = { constraints: [], tastes: [], catalog: plannerCatalog() };
+    expect(ingredientMatchesSource(meal.pinned_ingredients[0], "chipotle powder")).toBe(true);
+    expect(ingredientMatchesSource(meal.pinned_ingredients[1], "cilantro")).toBe(true);
+    const removed = validateAdaptationSafety(
+      {
+        ingredient_ops: [{ op: "remove", from_id: "chipotle powder", to_name: null, policy: "omit" }],
+        acknowledgement: "Leaving the chipotle out.",
+        kind: "omit",
+        support: "advice",
+      },
+      meal,
+      ctx
+    );
+    expect(removed.ok).toBe(true);
+    expect(removed.override.ops).toHaveLength(1);
+    expect(removed.override.ops[0].op).toBe("remove");
+    const swapped = validateAdaptationSafety(
+      {
+        ingredient_ops: [{ op: "replace", from_id: "cilantro", to_name: "parsley", policy: "keep_scaled" }],
+        acknowledgement: "Parsley works.",
+        kind: "substitution",
+        support: "advice",
+      },
+      meal,
+      ctx
+    );
+    expect(swapped.override.ops.map((op) => op.to_name)).toEqual(["parsley"]);
+
+    const planCtx = {
+      now: "2026-10-04T12:00:00.000Z",
+      actor_member_id: "a",
+      household_member_ids: ["a"],
+      constraints: [],
+      data_origin: "household",
+      tastes: [],
+      catalog: plannerCatalog(),
+      id: (p) => `${p}_1`,
+    };
+    const versionId = plannerCatalog().find((row) => row.concept.concept_id === "crispy-chipotle-tofu-tacos").pkg.recipe_version_id;
+    const created = createDinnerPlan(
+      {
+        entry_point: "plan_dinners",
+        meal_count: 1,
+        fill: "manual",
+        meals: [{ kind: "recipe", recipe_version_id: versionId }],
+        participant_ids: ["a"],
+      },
+      planCtx
+    );
+    const planMeal = created.plan.meals[0];
+    const applied = applyPlanMutation(
+      created.plan,
+      {
+        op: "apply_adaptation",
+        meal_id: planMeal.meal_id,
+        adaptation: {
+          support: "advice",
+          override_json: {
+            acknowledgement: "Leaving the chipotle out.",
+            kind: "omit",
+            support: "advice",
+            ops: [{ op: "remove", from_id: "chipotle powder", to_name: null, policy: "omit" }],
+          },
+        },
+      },
+      planCtx
+    );
+    expect(applied.ok).toBe(true);
+    const pin = applied.plan.meals[0].pinned_ingredients;
+    expect(pin.some((item) => /chipotle powder/i.test(item.name))).toBe(true);
+    const view = effectiveRecipeView(applied.plan.meals[0]);
+    expect(view.ingredients.some((item) => /chipotle powder/i.test(item.name || ""))).toBe(false);
   });
 
   it("merges parsley and fresh-parsley onto one shopping key", () => {
