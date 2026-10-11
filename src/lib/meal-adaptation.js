@@ -4,6 +4,7 @@
 
 import { assessMealEligibility, plannerCatalog } from "./dinner-planner.js";
 import { canonicalIngredient } from "./ingredient-identity.js";
+import { classifySubstituteName } from "./preference-concepts.js";
 
 const PRESSURE_COOKER_UNSUPPORTED =
   "That pressure cooker is doing most of the work in this version. I'd stick with the original method for this recipe.";
@@ -15,16 +16,44 @@ function normalizeName(value) {
     .replace(/[^a-z0-9]+/g, " ");
 }
 
+function nameKeys(name) {
+  const keys = new Set();
+  const add = (value) => {
+    const n = normalizeName(value);
+    if (n) keys.add(n);
+  };
+  add(name);
+  const canon = canonicalIngredient(name);
+  add(canon.display_name);
+  add(String(canon.ingredient_id || "").replace(/-/g, " "));
+  for (const key of [...keys]) {
+    if (key.endsWith("s") && !key.endsWith("ss") && key.length > 3) keys.add(key.slice(0, -1));
+  }
+  return keys;
+}
+
 function resolveIngredientId(name, catalog) {
-  const n = normalizeName(name);
-  if (!n) return null;
+  const keys = nameKeys(name);
+  if (!keys.size) return null;
   for (const entry of catalog || plannerCatalog()) {
     for (const ing of entry.pkg?.ingredients || []) {
-      if (normalizeName(ing.name) === n) return ing.ingredient_id || canonicalIngredient(ing.name).ingredient_id;
+      if (keys.has(normalizeName(ing.name))) return ing.ingredient_id || canonicalIngredient(ing.name).ingredient_id;
     }
   }
-  const canon = canonicalIngredient(name);
-  return canon.ingredient_id;
+  return canonicalIngredient(name).ingredient_id;
+}
+
+function catalogKnowsIngredient(name, catalog) {
+  const keys = nameKeys(name);
+  if (!keys.size) return false;
+  for (const entry of catalog || plannerCatalog()) {
+    for (const ing of entry.pkg?.ingredients || []) {
+      if (keys.has(normalizeName(ing.name))) return true;
+      const slug = normalizeName(String(ing.ingredient_id || "").replace(/-/g, " "));
+      if (slug && keys.has(slug)) return true;
+    }
+  }
+  return false;
 }
 
 /**
@@ -130,26 +159,37 @@ export function validateAdaptationSafety(modelOutput, meal, ctx) {
   for (const raw of modelOutput.ingredient_ops || []) {
     const fromId = raw.from_id;
     const toName = raw.to_name;
-    if (fromId) {
-      const pin = (meal.pinned_ingredients || []).find((i) => i.ingredient_id === fromId);
-      if (!pin) {
-        dropped.push(fromId);
-        continue;
-      }
-    }
     if (toName) {
+      const signals = classifySubstituteName(toName);
+      const inCatalog = catalogKnowsIngredient(toName, catalog);
+      if (!signals.known && !inCatalog) {
+        const participants = meal.participant_ids?.length ? meal.participant_ids : [null];
+        return {
+          ok: false,
+          status: "rejected_safety",
+          blocked: participants.map((member_id) => ({ member_id, limit_ids: ["unknown_ingredient"] })),
+        };
+      }
+      const tags = [...new Set([...signals.tags, ...signals.allergens, ...signals.diet_tokens])];
       const synthetic = {
-        concept: { concept_id: meal.recipe_slug, title: meal.title, tags: [] },
+        concept: { concept_id: meal.recipe_slug, title: toName, tags },
         pkg: {
-          title: meal.title,
+          title: toName,
           ingredients: [{ name: toName, ingredient_id: resolveIngredientId(toName, catalog) }],
-          allergens: [],
-          vocabulary_tag_ids: [],
+          allergens: signals.allergens,
+          vocabulary_tag_ids: signals.ingredient_slugs,
         },
       };
       const decision = assessMealEligibility(synthetic, meal.participant_ids, ctx.constraints || [], ctx.tastes || []);
       if (!decision.eligible) {
         return { ok: false, status: "rejected_safety", blocked: decision.blocked };
+      }
+    }
+    if (fromId) {
+      const pin = (meal.pinned_ingredients || []).find((i) => i.ingredient_id === fromId);
+      if (!pin) {
+        dropped.push(fromId);
+        continue;
       }
     }
     ops.push({

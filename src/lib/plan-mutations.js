@@ -606,25 +606,30 @@ function applyAdaptation(plan, action, ctx) {
   if (meal.kind !== "recipe") return fail("illegal_transition", 409);
   if (!["planned", "selected"].includes(meal.state)) return fail("outcome_locked", 409);
   const payload = action.adaptation || action.override;
-  if (!payload || payload.support === "unsupported" || payload.status === "rejected_safety") {
+  if (
+    !payload ||
+    payload.support === "unsupported" ||
+    payload.support === "rejected_safety" ||
+    payload.support === "fallback" ||
+    payload.status === "rejected_safety"
+  ) {
     return fail("adaptation_not_applicable", 409);
   }
-  let override = payload.override_json || payload;
-  if (!override.ops && (payload.ingredient_ops || payload.ops)) {
-    const checked = validateAdaptationSafety(
-      {
-        ingredient_ops: payload.ingredient_ops || payload.ops || [],
-        step_notes: payload.step_notes || [],
-        acknowledgement: payload.acknowledgement || "",
-        kind: payload.kind,
-        support: payload.support || "advice",
-      },
-      meal,
-      ctx
-    );
-    if (!checked.ok) return fail("adaptation_not_applicable", 409, { status: checked.status });
-    override = checked.override;
-  }
+  const incoming = payload.override_json || payload;
+  const ops = incoming.ops || payload.ingredient_ops || payload.ops || [];
+  const checked = validateAdaptationSafety(
+    {
+      ingredient_ops: ops,
+      step_notes: incoming.step_notes || payload.step_notes || [],
+      acknowledgement: incoming.acknowledgement || payload.acknowledgement || "",
+      kind: incoming.kind || payload.kind,
+      support: incoming.support || payload.support || "advice",
+    },
+    meal,
+    ctx
+  );
+  if (!checked.ok) return fail("adaptation_not_applicable", 409, { status: checked.status, blocked: checked.blocked });
+  const override = checked.override;
   if (!override?.ops) return fail("adaptation_not_applicable", 409);
   meal.adaptation = {
     recipe_version_id: meal.recipe_version_id,

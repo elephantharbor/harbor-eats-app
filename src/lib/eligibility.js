@@ -15,7 +15,7 @@
 /** @typedef {{ meal_option_id?: string, name?: string, attributes_json?: string|object|null, tags?: string[] }} MealOption */
 /** @typedef {{ prohibited: Set<string>, permitted: Set<string> }} DietProfile */
 
-const RULE_TO_TAGS = {
+export const RULE_TO_TAGS = {
   dairy: ["dairy", "milk", "cheese", "butter", "yogurt"],
   // "No meat" covers poultry as well; "No poultry" exists for diners who still eat red meat.
   meat: ["meat", "beef", "pork", "lamb", "bacon", "sausage", "poultry", "chicken", "turkey", "duck"],

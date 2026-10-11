@@ -21,13 +21,68 @@ describe("recommendation explanations", () => {
 
   it("post_validate rejects mushroom without fact", () => {
     const packet = buildExplanationPacket({
-      row: { primary_reason: "taste_like", taste_hits: [{ display_name: "ginger" }] },
+      recipe: { vocabulary_tag_ids: ["japanese"], recipe_slug: "miso-ginger-salmon" },
+      tastes: [
+        {
+          member_id: "a",
+          vocabulary_slug: "japanese",
+          rank: "love",
+          stance: "explicit",
+          data_origin: "household",
+        },
+      ],
     });
     const bad = postValidateExplanation(
       { text: "You love mushrooms.", used_fact_ids: ["taste_like"] },
       packet
     );
     expect(bad.ok).toBe(false);
+  });
+
+  it("never yields smoky wording unless a fact says smoky", () => {
+    const forged = buildExplanationPacket({
+      row: {
+        taste_hits: [
+          { agreement: true, display_name: "Smoky" },
+          { agreement: true, display_name: "Savory" },
+        ],
+        primary_reason: "taste_love",
+        effort_level: "easy",
+      },
+    });
+    expect(JSON.stringify(forged.facts)).not.toMatch(/smoky/i);
+    const packet = buildExplanationPacket({
+      recipe: { effort_level: "easy", vocabulary_tag_ids: ["japanese"], recipe_slug: "miso-ginger-salmon" },
+      tastes: [
+        {
+          member_id: "a",
+          vocabulary_slug: "japanese",
+          rank: "like",
+          stance: "explicit",
+          data_origin: "household",
+        },
+      ],
+    });
+    expect(packet.facts.some((fact) => /smoky/i.test(fact.phrase))).toBe(false);
+    const bad = postValidateExplanation(
+      { text: "Smoky, savory dinners fit tonight.", used_fact_ids: packet.facts.map((fact) => fact.id) },
+      packet
+    );
+    expect(bad.ok).toBe(false);
+    expect(bad.reason).toBe("unsupported_term");
+    const grounded = buildExplanationPacket({
+      recipe: { vocabulary_tag_ids: ["smoky"], recipe_slug: "test" },
+      tastes: [
+        { member_id: "a", vocabulary_slug: "smoky", rank: "love", stance: "explicit", data_origin: "household" },
+        { member_id: "b", vocabulary_slug: "smoky", rank: "like", stance: "explicit", data_origin: "household" },
+      ],
+    });
+    expect(grounded.facts.some((fact) => /smoky/i.test(fact.phrase))).toBe(true);
+    const ok = postValidateExplanation(
+      { text: "Smoky is the flavor showing up here.", used_fact_ids: ["taste_agreement"] },
+      grounded
+    );
+    expect(ok.ok).toBe(true);
   });
 
   it("fingerprint change is stable per facts", () => {

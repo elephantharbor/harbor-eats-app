@@ -13,10 +13,56 @@ import {
   reconcileEquipmentUnsupported,
   validateAdaptationSafety,
 } from "../lib/meal-adaptation.js";
-import { loadDinnerPlan, householdConstraints, householdTastes } from "../lib/dinner-plan-store.js";
+import {
+  findCurrentDinnerPlanId,
+  householdConstraints,
+  householdMemberIds,
+  householdTastes,
+  loadDinnerPlan,
+} from "../lib/dinner-plan-store.js";
 import { catalogReadsFromD1, loadPublishedCatalog } from "../lib/catalog-runtime.js";
+import { canonicalIngredient } from "../lib/ingredient-identity.js";
+import { projectLegacyConcept } from "../lib/recipe-package.js";
 import { getConceptBySlug, getRecipeVersion } from "../lib/recipe-store.js";
 import { postValidateRecipeAdaptation } from "./adaptation-schema.js";
+
+const ADAPT_FALLBACK = {
+  ok: true,
+  support: "fallback",
+  acknowledgement: "We're not sure that would work here, so we'd keep the original.",
+  kind: "unsupported",
+};
+
+function adaptationFallback() {
+  return respond(ADAPT_FALLBACK);
+}
+
+function withIngredientIds(ingredients) {
+  return (ingredients || []).map((ing) => ({
+    ...ing,
+    ingredient_id: ing.ingredient_id || canonicalIngredient(ing.name).ingredient_id,
+  }));
+}
+
+function authoritativeRecipe(loaded, meal) {
+  const version = loaded?.version || {};
+  const recipe = {
+    recipe_version_id: meal?.recipe_version_id || version.recipe_version_id || null,
+    recipe_slug: meal?.recipe_slug || loaded?.slug || null,
+    effort_level: meal?.effort_level || version.effort_level || null,
+    ingredient_complexity: meal?.ingredient_complexity || version.ingredient_complexity || null,
+    total_minutes: version.total_minutes ?? null,
+    vocabulary_tag_ids: [...(meal?.vocabulary_tag_ids || version.vocabulary_tag_ids || [])],
+  };
+  if (!recipe.vocabulary_tag_ids.length && loaded?.concept?.current_version) {
+    const projected = projectLegacyConcept(loaded.concept);
+    recipe.vocabulary_tag_ids = projected.vocabulary_tag_ids || [];
+    recipe.effort_level = recipe.effort_level || projected.effort_level || null;
+    recipe.ingredient_complexity = recipe.ingredient_complexity || projected.ingredient_complexity || null;
+    if (recipe.total_minutes == null) recipe.total_minutes = projected.total_minutes ?? null;
+  }
+  return recipe;
+}
 
 function respond(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -83,26 +129,31 @@ export async function routeAlphaAiRequest(env, request, path) {
     if (body === null) return fail("invalid_json");
     const loaded = await loadRecipeShape(env, body.recipe_slug, body.recipe_version_id);
     if (loaded.error) return loaded.error;
-    const [constraints, tastes] = await Promise.all([
+    const [constraints, tastes, members] = await Promise.all([
       householdConstraints(env.DB, auth.session.household_id),
       householdTastes(env.DB, auth.session.household_id),
+      householdMemberIds(env.DB, auth.session.household_id),
     ]);
     const ctx = { constraints, tastes, catalog: null };
     if (catalogReadsFromD1(env)) {
       const cat = await loadPublishedCatalog(env.DB);
       if (cat.ok) ctx.catalog = cat.planner;
     }
-    const meal = body.meal_id
-      ? (await loadDinnerPlan(env.DB, body.dinner_plan_id))?.meals?.find((m) => m.meal_id === body.meal_id)
-      : null;
-    const pinMeal = meal || {
+    let meal = null;
+    if (body.meal_id && body.dinner_plan_id) {
+      const plan = await loadDinnerPlan(env.DB, body.dinner_plan_id);
+      if (plan && plan.household_id !== auth.session.household_id) return fail("forbidden_cross_household", 403);
+      meal = plan?.meals?.find((row) => row.meal_id === body.meal_id) || null;
+    }
+    const pinMeal = {
       kind: "recipe",
-      recipe_slug: loaded.slug,
-      recipe_version_id: loaded.version.recipe_version_id,
-      title: loaded.concept.title,
-      pinned_ingredients: loaded.version.ingredients,
-      pinned_steps: loaded.version.steps,
-      participant_ids: body.participant_ids || [],
+      recipe_slug: meal?.recipe_slug || loaded.slug,
+      recipe_version_id: meal?.recipe_version_id || loaded.version.recipe_version_id,
+      title: meal?.title || loaded.concept.title,
+      pinned_ingredients: withIngredientIds(meal?.pinned_ingredients || loaded.version.ingredients),
+      pinned_steps: meal?.pinned_steps || loaded.version.steps,
+      equipment: meal?.equipment || loaded.version.equipment || [],
+      participant_ids: meal?.participant_ids?.length ? meal.participant_ids : members,
     };
     const provider = resolveProvider(env);
     const service = createGenerationService({ provider, store: createD1Store(env.DB), env });
@@ -118,20 +169,26 @@ export async function routeAlphaAiRequest(env, request, path) {
     };
     let modelOutput;
     let support = "advice";
+    let gen;
     try {
-      const gen = await service.run("recipe_adaptation", runInput, {
+      gen = await service.run("recipe_adaptation", runInput, {
         householdId: auth.session.household_id,
-        fallback: null,
+        fallback: {
+          acknowledgement: ADAPT_FALLBACK.acknowledgement,
+          kind: ADAPT_FALLBACK.kind,
+          support: "unsupported",
+          ingredient_ops: [],
+          step_notes: [],
+          equipment_supported: false,
+          flavor_impact: null,
+          warning: null,
+        },
       });
-      modelOutput = gen.output;
     } catch {
-      return respond({
-        ok: true,
-        support: "fallback",
-        acknowledgement: "We're not sure that would work here, so we'd keep the original.",
-        kind: "unsupported",
-      });
+      return adaptationFallback();
     }
+    if (!gen?.ok || gen.output == null) return adaptationFallback();
+    modelOutput = gen.output;
     modelOutput = reconcileEquipmentUnsupported(body.text, pinMeal, modelOutput);
     const validated = postValidateRecipeAdaptation(modelOutput);
     if (!validated.ok) {
@@ -167,15 +224,30 @@ export async function routeAlphaAiRequest(env, request, path) {
     if (auth.error) return auth.error;
     const body = await readJson(request);
     if (body === null) return fail("invalid_json");
+    let plan = null;
+    if (body.dinner_plan_id) {
+      plan = await loadDinnerPlan(env.DB, body.dinner_plan_id);
+      if (!plan) return fail("plan_not_found", 404);
+      if (plan.household_id !== auth.session.household_id) return fail("forbidden_cross_household", 403);
+    } else {
+      const currentId = await findCurrentDinnerPlanId(env.DB, auth.session.household_id);
+      plan = currentId ? await loadDinnerPlan(env.DB, currentId) : null;
+    }
+    const meal = body.meal_id && plan ? plan.meals.find((row) => row.meal_id === body.meal_id) || null : null;
+    const slug = meal?.recipe_slug || body.recipe_slug;
+    const versionId = meal?.recipe_version_id || body.recipe_version_id;
+    if (!slug && !versionId) return fail("recipe_required");
+    const loaded = await loadRecipeShape(env, slug, versionId);
+    if (loaded.error) return loaded.error;
+    const tastes = await householdTastes(env.DB, auth.session.household_id);
     const packet = buildExplanationPacket({
-      row: body.row || body,
-      plan: body.plan,
-      intent: body.intent,
-      recipe_version_id: body.recipe_version_id,
+      recipe: authoritativeRecipe(loaded, meal),
+      intent: plan?.intent || {},
+      tastes,
     });
+    const templateText = packet.template || explanationColdTemplate();
     if (packet.strength === "weak" || packet.basis === "cold") {
-      const text = packet.template || explanationColdTemplate();
-      return respond({ ok: true, text, source: "template", basis: packet.basis, packet });
+      return respond({ ok: true, text: templateText, source: "template", basis: packet.basis });
     }
     const provider = resolveProvider(env);
     const service = createGenerationService({ provider, store: createD1Store(env.DB), env });
@@ -188,35 +260,29 @@ export async function routeAlphaAiRequest(env, request, path) {
       allowed_numbers: packet.allowed_numbers,
       evidence_fingerprint: packet.evidence_fingerprint,
     };
+    let gen;
     try {
-      const gen = await service.run("explanation", runInput, {
+      gen = await service.run("explanation", runInput, {
         householdId: auth.session.household_id,
-        fallback: { text: packet.template || explanationColdTemplate(), used_fact_ids: [] },
-      });
-      const checked = postValidateExplanation(gen.output, packet);
-      if (!checked.ok) {
-        return respond({
-          ok: true,
-          text: packet.template || explanationColdTemplate(),
-          source: "fallback",
-          basis: packet.basis,
-        });
-      }
-      return respond({
-        ok: true,
-        text: checked.value.text,
-        used_fact_ids: checked.value.used_fact_ids,
-        source: gen.from_cache ? "cache" : "provider",
-        basis: packet.basis,
+        fallback: { text: templateText, used_fact_ids: [] },
       });
     } catch {
-      return respond({
-        ok: true,
-        text: packet.template || explanationColdTemplate(),
-        source: "fallback",
-        basis: packet.basis,
-      });
+      return respond({ ok: true, text: templateText, source: "fallback", basis: packet.basis });
     }
+    if (!gen?.ok || gen.output == null) {
+      return respond({ ok: true, text: templateText, source: "fallback", basis: packet.basis });
+    }
+    const checked = postValidateExplanation(gen.output, packet);
+    if (!checked.ok) {
+      return respond({ ok: true, text: templateText, source: "fallback", basis: packet.basis });
+    }
+    return respond({
+      ok: true,
+      text: checked.value.text,
+      used_fact_ids: checked.value.used_fact_ids,
+      source: gen.source === "cache" ? "cache" : "provider",
+      basis: packet.basis,
+    });
   }
 
   return null;

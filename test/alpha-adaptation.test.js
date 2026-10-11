@@ -1,7 +1,8 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { createFakeProvider, createGenerationService, createMemoryStore, TASKS } from "../src/ai/index.js";
 import { postValidateRecipeAdaptation } from "../src/ai/adaptation-schema.js";
-import { validateAdaptationSafety, effectivePinnedIngredients } from "../src/lib/meal-adaptation.js";
+import { validateAdaptationSafety } from "../src/lib/meal-adaptation.js";
 import { applyPlanMutation, createDinnerPlan } from "../src/lib/plan-mutations.js";
 import { plannerCatalog } from "../src/lib/dinner-planner.js";
 
@@ -94,25 +95,128 @@ describe("recipe adaptation", () => {
     expect(TASKS.recipe_adaptation.executable).toBe(true);
   });
 
-  it("rejects peanuts for no_nuts household", () => {
-    const meal = {
-      kind: "recipe",
-      recipe_slug: "test",
-      title: "Test",
-      participant_ids: ["a"],
-      pinned_ingredients: [{ ingredient_id: "cashew", name: "cashews" }],
+  it("preview and production enable adaptation and explanation with per-task caps", () => {
+    for (const file of ["deploy/pages/preview/wrangler.toml", "deploy/pages/production/wrangler.toml"]) {
+      const text = readFileSync(file, "utf8");
+      const match = text.match(/AI_TASKS_ENABLED = "([^"]+)"/);
+      const tasks = match[1].split(",");
+      expect(tasks).toEqual(expect.arrayContaining(["planning_intent", "discovery_intent", "recipe_adaptation", "explanation"]));
+    }
+    expect(TASKS.recipe_adaptation.reasoning_effort).toBe("none");
+    expect(TASKS.recipe_adaptation.limits.max_output_tokens).toBe(520);
+    expect(TASKS.recipe_adaptation.allowed_models).toEqual(["fast-small"]);
+    expect(TASKS.explanation.reasoning_effort).toBe("none");
+    expect(TASKS.explanation.limits.max_output_tokens).toBe(300);
+    expect(TASKS.explanation.allowed_models).toEqual(["fast-small"]);
+  });
+
+  const restrictedMeal = {
+    kind: "recipe",
+    recipe_slug: "test",
+    title: "Test",
+    participant_ids: ["a"],
+    pinned_ingredients: [{ ingredient_id: "cashew", name: "cashews" }],
+  };
+
+  function swap(toName) {
+    return {
+      ingredient_ops: [{ op: "replace", from_id: "cashew", to_name: toName, policy: "keep_scaled" }],
+      step_notes: [],
+      acknowledgement: "Try this instead.",
+      kind: "substitution",
+      support: "advice",
     };
-    const out = validateAdaptationSafety(
-      {
-          ingredient_ops: [{ op: "replace", from_id: "cashew", to_name: "shrimp", policy: "keep_scaled" }],
-        step_notes: [],
-        acknowledgement: "Try peanuts.",
-        kind: "substitution",
-        support: "advice",
-      },
-      meal,
-      { constraints: [{ member_id: "a", rule_key: "shellfish", status: "prohibited" }], tastes: [], catalog: plannerCatalog() }
-    );
+  }
+
+  it("rejects peanuts, shrimp, and dairy for restricted diners", () => {
+    const peanut = validateAdaptationSafety(swap("peanuts"), restrictedMeal, {
+      constraints: [{ member_id: "a", rule_key: "nuts", status: "prohibited" }],
+      tastes: [],
+      catalog: plannerCatalog(),
+    });
+    expect(peanut.ok).toBe(false);
+    const shrimp = validateAdaptationSafety(swap("shrimp"), restrictedMeal, {
+      constraints: [{ member_id: "a", rule_key: "shellfish", status: "prohibited" }],
+      tastes: [],
+      catalog: plannerCatalog(),
+    });
+    expect(shrimp.ok).toBe(false);
+    const dairy = validateAdaptationSafety(swap("butter"), restrictedMeal, {
+      constraints: [{ member_id: "a", rule_key: "dairy", status: "prohibited" }],
+      tastes: [],
+      catalog: plannerCatalog(),
+    });
+    expect(dairy.ok).toBe(false);
+  });
+
+  it("fails closed on an unknown ingredient", () => {
+    const out = validateAdaptationSafety(swap("zzqx-powder"), restrictedMeal, {
+      constraints: [],
+      tastes: [],
+      catalog: plannerCatalog(),
+    });
     expect(out.ok).toBe(false);
+    expect(out.status).toBe("rejected_safety");
+  });
+
+  it("allows cashews under HH001-style nut rules", () => {
+    const out = validateAdaptationSafety(swap("cashews"), restrictedMeal, {
+      constraints: [
+        { member_id: "a", rule_key: "dairy", status: "prohibited" },
+        { member_id: "a", rule_key: "meat", status: "prohibited" },
+        { member_id: "a", rule_key: "poultry", status: "prohibited" },
+        { member_id: "a", rule_key: "shellfish", status: "prohibited" },
+        { member_id: "a", rule_key: "nuts", status: "prohibited" },
+        { member_id: "a", rule_key: "cashew", status: "permitted" },
+      ],
+      tastes: [],
+      catalog: plannerCatalog(),
+    });
+    expect(out.ok).toBe(true);
+  });
+
+  it("rejects a peanut swap again when the plan applies a prepared override", () => {
+    const ctx = {
+      now: "2026-10-04T12:00:00.000Z",
+      actor_member_id: "a",
+      household_member_ids: ["a"],
+      constraints: [{ member_id: "a", rule_key: "nuts", status: "prohibited" }],
+      data_origin: "household",
+      tastes: [],
+      catalog: plannerCatalog(),
+      id: (p) => `${p}_1`,
+    };
+    const created = createDinnerPlan(
+      {
+        entry_point: "plan_dinners",
+        meal_count: 1,
+        fill: "manual",
+        meals: [{ kind: "recipe", recipe_version_id: plannerCatalog()[0].pkg.recipe_version_id }],
+        participant_ids: ["a"],
+      },
+      ctx
+    );
+    const meal = created.plan.meals[0];
+    const fromId = meal.pinned_ingredients[0].ingredient_id || "salt";
+    const applied = applyPlanMutation(
+      created.plan,
+      {
+        op: "apply_adaptation",
+        meal_id: meal.meal_id,
+        adaptation: {
+          support: "advice",
+          override_json: {
+            acknowledgement: "Peanuts work.",
+            kind: "substitution",
+            support: "advice",
+            ops: [{ op: "replace", from_id: fromId, to_name: "peanuts", policy: "keep_scaled" }],
+          },
+        },
+      },
+      ctx
+    );
+    expect(applied.ok).toBe(false);
+    expect(applied.error).toBe("adaptation_not_applicable");
+    expect(meal.adaptation).toBeFalsy();
   });
 });

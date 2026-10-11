@@ -343,10 +343,12 @@ describe("kill switch, config, secrecy", () => {
   it("committed configs: prod gateway OFF or D-06 tasks only, preview OFF or allowed sets, limits present, no astra/secret", () => {
     for (const [env, budget, global] of [["preview", "0.25", "250"], ["production", "1.00", "100"]]) {
       const vars = validateAiVars(readFileSync(`deploy/pages/${env}/wrangler.toml`, "utf8"));
-      // Production: OFF, or ON with exactly the D-06 tasks (enabled 2026-10-10, Thomas). Preview may also run the D-05 explanation smoke.
+      // Production: OFF, D-06 tasks, or those plus the alpha Luna tasks.
+      // Preview may also run the D-05 explanation smoke.
+      const alphaTasks = "planning_intent,discovery_intent,recipe_adaptation,explanation";
       const onPair = [vars.AI_GATEWAY_ENABLED, vars.AI_TASKS_ENABLED];
-      if (env === "production") expect([["0", ""], ["1", "planning_intent,discovery_intent"]]).toContainEqual(onPair);
-      else expect([["0", ""], ["1", "explanation"], ["1", "planning_intent,discovery_intent"]]).toContainEqual(onPair);
+      if (env === "production") expect([["0", ""], ["1", "planning_intent,discovery_intent"], ["1", alphaTasks]]).toContainEqual(onPair);
+      else expect([["0", ""], ["1", "explanation"], ["1", "planning_intent,discovery_intent"], ["1", alphaTasks]]).toContainEqual(onPair);
       expect(vars).toMatchObject({ AI_PROVIDER: "openai", AI_DAILY_BUDGET_USD: budget, AI_GLOBAL_PER_DAY: global, AI_HOUSEHOLD_PER_MINUTE: "5", AI_HOUSEHOLD_PER_DAY: "30", AI_SOL_HOUSEHOLD_PER_DAY: "5" });
     }
     expect(() => validateAiVars('AI_PROVIDER = "openai"')).toThrow(/missing AI_DAILY_BUDGET_USD/);
