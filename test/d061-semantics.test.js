@@ -152,6 +152,17 @@ describe("cooking method", () => {
     const tofu = cookingOf("crispy-chipotle-tofu-tacos");
     expect(tofu.cooking.frying).toEqual([]);
     expect(tofu.cooking.crispy_non_fry).toContain("air_fried");
+    const titledTofu = deriveCookingMethod({ title: "Crispy Chipotle Tofu Tacos", methods: [], description: "", steps: [] });
+    expect(titledTofu.frying).toEqual([]);
+    expect(titledTofu.crispy_non_fry.length).toBeGreaterThan(0);
+    const gnocchi = deriveCookingMethod({
+      title: "Sheet-Pan Crispy Gnocchi with Brussels Sprouts and Apples",
+      description: "Gnocchi roasted until golden.",
+      methods: [],
+      steps: [],
+    });
+    expect(gnocchi.frying).toEqual([]);
+    expect(gnocchi.crispy_non_fry.length).toBeGreaterThan(0);
     expect(excludedByFrying({ cooking: tofu.cooking }, ["deep", "pan", "shallow"])).toBe(false);
 
     const fishTacos = cookingOf("crispy-fish-tacos-cabbage-slaw");
@@ -227,7 +238,7 @@ describe("unknown concepts and broadening", () => {
     expect(schema.ok).toBe(true);
   });
 
-  it("broadens an unknown adjective into a non-empty Find page and leaves a real noun in residue", () => {
+  it("broadens an unknown adjective and drops residue that is not a catalog term", () => {
     const applied = applyDiscoveryDelta(null, discoveryDelta({
       text_residue: "snorfblat",
       concepts: [{ id: "snorfblat", polarity: "prefer" }],
@@ -243,7 +254,11 @@ describe("unknown concepts and broadening", () => {
     expect(page.total).toBeGreaterThan(0);
 
     const noun = applyDiscoveryDelta(null, discoveryDelta({ text_residue: "xylophone" }), { user_text: "xylophone" });
-    expect(noun.state.text_residue).toBe("xylophone");
+    expect(noun.state.text_residue).toBeNull();
+    expect(noun.semantic.unsupported_soft_count).toBeGreaterThan(0);
+    expect(noun.semantic.broadening).toBe(true);
+    const salmon = applyDiscoveryDelta(null, discoveryDelta({ text_residue: "salmon" }), { user_text: "salmon" });
+    expect(salmon.state.text_residue).toBe("salmon");
   });
 });
 

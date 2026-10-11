@@ -489,6 +489,7 @@ export function applyPlanningDelta(prior, delta, context = {}) {
       state.frequencies = rest.sort((a, b) => a.token.localeCompare(b.token));
     }
   }
+  const slotTargets = [];
   for (const op of delta.slot_ops || []) {
     if (op.op === "clear") {
       const resolved = resolveSlotTarget(op, context, state);
@@ -505,6 +506,7 @@ export function applyPlanningDelta(prior, delta, context = {}) {
       dropped.push({ field: "slot_ops", value: "slot_target_unresolved" });
       continue;
     }
+    slotTargets.push(resolved);
     const key = slotKey(resolved);
     const existing = (state.slots || []).find((s) => slotKey(s) === key) || { ...resolved };
     const merged = mergeSlot(existing, {
@@ -555,7 +557,7 @@ export function applyPlanningDelta(prior, delta, context = {}) {
     concepts: portioned ? [] : (delta.concepts || []),
     task: "planning_intent",
   });
-  if (!portioned) scopeDayTargetedCue(state, context.user_text, context.dates || [], priorCues);
+  if (!portioned) scopeDayTargetedCue(state, context.user_text, context.dates || [], priorCues, slotTargets);
   return { state, dropped, dinner_count_defaulted, portioned, semantic };
 }
 

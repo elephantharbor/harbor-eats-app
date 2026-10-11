@@ -6,7 +6,8 @@
  * evidence, or a health claim.
  */
 
-import { getTasteTerm } from "../lib/taste-vocabulary.js";
+import { getTasteTerm, listVocabulary } from "../lib/taste-vocabulary.js";
+import { listPublishedMealMedia } from "../lib/meal-catalog-media.js";
 import { INTENT_CUES } from "./constants.js";
 
 export const SUPPORT_STATUS = Object.freeze([
@@ -454,7 +455,29 @@ function phraseHits(text) {
       found.push(resolveConcept(light, "prefer", "derived"));
     }
   }
+  if (audienceFamily(norm)) {
+    const family = conceptById("family");
+    if (family) found.push(resolveConcept(family, "prefer", family.support));
+  }
   return { found, norm };
+}
+
+/**
+ * Family, kids, grown-ups, and everyone-will-eat are one concept.
+ * The match is who the dinner is for, not a fixed sentence.
+ */
+function audienceFamily(norm) {
+  const text = ` ${String(norm || "")} `;
+  const audience = text.match(/\b(?:kids?|children|child|famil(?:y|ies)|grown[\s-]?ups?|adults?|everyone|everybody)\b/g) || [];
+  if (!audience.length) return false;
+  if (audience.length >= 2) return true;
+  return /\b(?:eat|eats|eating|friendly|both|for)\b/.test(text);
+}
+
+function explicitlyWholePlan(text) {
+  const norm = ` ${String(text || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim()} `;
+  if (norm.includes(" whole plan ")) return true;
+  return /\b(?:all|every)\b/.test(norm) && /\b(?:dinner|dinners|meal|meals|night|nights|plan|week)\b/.test(norm);
 }
 
 function tokenHits(norm) {
@@ -557,10 +580,48 @@ function residueTokens(residue) {
   return String(residue || "").toLowerCase().match(/[a-z0-9]+(?:-[a-z0-9]+)*/g) || [];
 }
 
+let catalogTermIndex = null;
+
+function rememberTerm(terms, value) {
+  for (const token of String(value || "").toLowerCase().match(/[a-z0-9]+/g) || []) {
+    if (token.length < 3 || DESCRIPTIVE_RESIDUE.has(token) || FUZZY_TOKENS.has(token)) continue;
+    terms.add(token);
+  }
+}
+
+/** Ingredient, dish, and format terms from the taste vocabulary and the catalog index. */
+function catalogTerms() {
+  if (catalogTermIndex) return catalogTermIndex;
+  const terms = new Set();
+  for (const term of listVocabulary()) {
+    if (!term.active || (term.category !== "ingredient" && term.category !== "meal_style")) continue;
+    rememberTerm(terms, term.slug);
+    rememberTerm(terms, term.display_name);
+    for (const synonym of term.synonyms || []) rememberTerm(terms, synonym);
+  }
+  for (const meal of listPublishedMealMedia()) {
+    rememberTerm(terms, meal.slug);
+    rememberTerm(terms, meal.title);
+  }
+  catalogTermIndex = terms;
+  return terms;
+}
+
+function isCatalogTerm(token) {
+  const terms = catalogTerms();
+  const word = String(token || "").toLowerCase();
+  if (!word) return false;
+  if (terms.has(word)) return true;
+  if (word.endsWith("es") && terms.has(word.slice(0, -2))) return true;
+  if (word.endsWith("s") && terms.has(word.slice(0, -1))) return true;
+  const pieces = word.split("-").filter(Boolean);
+  return pieces.length > 1 && pieces.every((piece) => isCatalogTerm(piece));
+}
+
 /**
- * Soft or descriptive leftovers are not a required text search.
- * A real ingredient or dish noun, including an unknown noun such as a
- * catalog miss, stays. An unknown adjective is already in dropTokens.
+ * Leftover text is a required literal match only when every token is a
+ * catalog ingredient, dish, or format term. Anything else is unsupported
+ * soft and dropped so the search can broaden.
  */
 const DESCRIPTIVE_RESIDUE = new Set([
   "a",
@@ -613,19 +674,21 @@ const DESCRIPTIVE_RESIDUE = new Set([
 ]);
 
 function stripSoftResidue(state, dropTokens) {
-  if (!state.text_residue) return false;
+  if (!state.text_residue) return { changed: false, unsupported: 0 };
   const drop = dropTokens || new Set();
-  const kept = residueTokens(state.text_residue).filter((token) => {
-    if (drop.has(token)) return false;
-    if (FUZZY_TOKENS.has(token)) return false;
-    if (DESCRIPTIVE_RESIDUE.has(token)) return false;
-    if (conceptById(token) || ALIASES[token]) return false;
-    return true;
-  });
+  const kept = [];
+  let unsupported = 0;
+  for (const token of residueTokens(state.text_residue)) {
+    if (drop.has(token) || FUZZY_TOKENS.has(token) || DESCRIPTIVE_RESIDUE.has(token) || conceptById(token) || ALIASES[token]) {
+      continue;
+    }
+    if (isCatalogTerm(token)) kept.push(token);
+    else unsupported += 1;
+  }
   const next = kept.length ? kept.join(" ").slice(0, 40) : null;
   const changed = next !== state.text_residue;
   state.text_residue = next;
-  return changed;
+  return { changed, unsupported };
 }
 
 const HEALTHY_CUE_WORD = Object.freeze({
@@ -720,6 +783,7 @@ export function applySharedSemantics(state, { text = "", concepts = [], task = "
   const hasFryExclusion = (state.exclude_cooking || []).length > 0;
   if (hasFryExclusion) stripFryTerms(state);
   const stripped = stripSoftResidue(state, dropTokens);
+  const unsupportedTotal = unsupported + stripped.unsupported;
   const explicitHard = applied
     .filter((row) => row.role === "hard_filter" || row.support === "explicit_hard")
     .map((row) => row.id);
@@ -728,8 +792,8 @@ export function applySharedSemantics(state, { text = "", concepts = [], task = "
   return {
     applied,
     canonical_intents: canonical,
-    unsupported_soft_count: unsupported,
-    broadening: unsupported > 0 || stripped,
+    unsupported_soft_count: unsupportedTotal,
+    broadening: unsupportedTotal > 0 || stripped.changed,
     explicit_hard: uniqueSorted(explicitHard),
     primary_ack: primary,
     force_ack: Boolean(primary),
@@ -770,9 +834,8 @@ export function hasExplicitHardFilters(state) {
  */
 export function broadenDiscoveryState(state) {
   const next = JSON.parse(JSON.stringify(state || {}));
-  const before = next.text_residue;
-  stripSoftResidue(next);
-  return { state: next, broadened: next.text_residue !== before };
+  const stripped = stripSoftResidue(next);
+  return { state: next, broadened: stripped.changed };
 }
 
 export function classifyZeroResult({ total, excluded = [], excludedCounts = null, state = {}, semantic = {}, catalogSize = 0 } = {}) {
@@ -910,6 +973,11 @@ export function deriveCookingMethod(source = {}) {
     if (METHOD_FRY[method]) meta.frying.push(METHOD_FRY[method]);
     if (METHOD_CRISP[method]) meta.crispy_non_fry.push(METHOD_CRISP[method]);
     if (method === "stir_fry" || method === "stir-fry") meta.stir_fry = true;
+  }
+  const titleAndDescription = `${source.title || ""}\n${source.description || ""}`;
+  if (!meta.frying.length && meta.crispy_non_fry.length === 0 && CRISP.test(titleAndDescription) && !/\bnot\s+crisp(?:y|ed)?\b/i.test(titleAndDescription)) {
+    const titled = classifyEvidence(titleAndDescription);
+    if (!titled.frying.length) meta.crispy_non_fry.push("crispy");
   }
   meta.frying = uniqueSorted(meta.frying);
   meta.crispy_non_fry = uniqueSorted(meta.crispy_non_fry);
@@ -1058,31 +1126,67 @@ export function dayScopedSoftCue(text) {
   return { weekday: day, cue: "light" };
 }
 
-/** Move a day-targeted cue off the plan and onto that slot only. */
-export function scopeDayTargetedCue(state, text, dates = [], priorCues = []) {
-  const scoped = dayScopedSoftCue(text);
-  if (!scoped || !state) return false;
-  const already = new Set(priorCues || []);
-  if (!already.has(scoped.cue)) {
-    state.intent_cues = (state.intent_cues || []).filter((cue) => cue !== scoped.cue);
-  }
-  const hit = (dates || []).find((row) => row.weekday === scoped.weekday) || null;
-  const position = hit?.position ?? null;
+function placeSlotCue(state, target, cue) {
   const matches = (slot) => {
-    if (position != null && Number(slot.position) === Number(position)) return true;
-    return slot.weekday === scoped.weekday;
+    if (target.position != null && Number(slot.position) === Number(target.position)) return true;
+    if (target.date && slot.date === target.date) return true;
+    if (target.weekday && slot.weekday === target.weekday) return true;
+    return false;
   };
   const existing = (state.slots || []).find(matches) || {
-    position,
-    weekday: scoped.weekday,
-    date: hit?.date || null,
+    position: target.position ?? null,
+    weekday: target.weekday || null,
+    date: target.date || null,
   };
-  const merged = { ...existing, weekday: scoped.weekday, intent_cue: scoped.cue };
-  if (hit?.date) merged.date = hit.date;
-  if (position != null) merged.position = position;
+  const merged = { ...existing, intent_cue: cue };
+  if (target.weekday) merged.weekday = target.weekday;
+  if (target.date) merged.date = target.date;
+  if (target.position != null) merged.position = target.position;
   const rest = (state.slots || []).filter((slot) => !matches(slot));
   rest.push(merged);
   state.slots = rest.sort((a, b) => (a.position || 0) - (b.position || 0));
+}
+
+/**
+ * Move a day-targeted cue off the plan and onto the targeted slot or slots.
+ * A recognized phrase and a model slot target share this path. "All", "every",
+ * or "the whole plan" keeps a new cue on the plan.
+ */
+export function scopeDayTargetedCue(state, text, dates = [], priorCues = [], targets = []) {
+  if (!state) return false;
+  const scoped = dayScopedSoftCue(text);
+  if (scoped) {
+    const already = new Set(priorCues || []);
+    if (!already.has(scoped.cue)) {
+      state.intent_cues = (state.intent_cues || []).filter((cue) => cue !== scoped.cue);
+    }
+    const hit = (dates || []).find((row) => row.weekday === scoped.weekday) || null;
+    placeSlotCue(state, {
+      position: hit?.position ?? null,
+      weekday: scoped.weekday,
+      date: hit?.date || null,
+    }, scoped.cue);
+    return true;
+  }
+  if (explicitlyWholePlan(text)) return false;
+  const aimed = (targets || []).filter((row) => row && (row.weekday || row.position != null || row.date));
+  if (!aimed.length) return false;
+  const prior = new Set(priorCues || []);
+  const added = (state.intent_cues || []).filter((cue) => !prior.has(cue));
+  if (!added.length) return false;
+  const cue = added[0];
+  state.intent_cues = (state.intent_cues || []).filter((item) => item !== cue);
+  for (const target of aimed) {
+    const existing = (state.slots || []).find((slot) => {
+      if (target.position != null && Number(slot.position) === Number(target.position)) return true;
+      if (target.weekday && slot.weekday === target.weekday) return true;
+      return false;
+    });
+    // `special` already lives on the slot flag. A second intent cue would
+    // hide the minutes acknowledgement for that dinner.
+    if (cue === "special" && existing?.special === true) continue;
+    placeSlotCue(state, target, cue);
+  }
   return true;
 }
 

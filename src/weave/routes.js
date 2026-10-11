@@ -1089,11 +1089,17 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
     dropped = applied.dropped;
     executedState = applied.state;
     applyNegationOverlay(executedState, text);
+    const fromDelta = applied.semantic || {};
     semantic = applySharedSemantics(executedState, {
       text,
       concepts: gen.output?.concepts || [],
       task: "discovery_intent",
     });
+    semantic = {
+      ...semantic,
+      unsupported_soft_count: (semantic.unsupported_soft_count || 0) + (fromDelta.unsupported_soft_count || 0),
+      broadening: semantic.broadening === true || fromDelta.broadening === true,
+    };
     model = gen.model;
     prompt_version = gen.prompt_version;
     source = gen.source;

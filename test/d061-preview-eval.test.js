@@ -17,7 +17,7 @@ import { buildDiscoveryChips, buildPlanningChips, reconcileAcknowledgement } fro
 import { applyNegationOverlay } from "../src/weave/negation.js";
 import { routeWeaveRequest } from "../src/weave/routes.js";
 import { applySharedSemantics, dayScopedSoftCue, deriveCatalogCookingMethods, excludedByFrying, householdSafeStarterPrompts } from "../src/weave/semantics.js";
-import { applyDiscoveryDelta, emptyDiscoveryState, emptyPlanningState } from "../src/weave/state.js";
+import { applyDiscoveryDelta, applyPlanningDelta, emptyDiscoveryState, emptyPlanningState } from "../src/weave/state.js";
 
 const fixedNow = () => new Date("2026-10-10T15:00:30.000Z");
 
@@ -346,7 +346,8 @@ describe("family language and frying negations", () => {
     expect(applied.state.semantic_rank).toContain("mild");
     expect(applied.semantic.canonical_intents).toContain("family");
     const noun = applyDiscoveryDelta(null, discoveryDelta({ text_residue: "xylophone" }), { user_text: "xylophone" });
-    expect(noun.state.text_residue).toBe("xylophone");
+    expect(noun.state.text_residue).toBeNull();
+    expect(noun.semantic.broadening).toBe(true);
   });
 
   it("treats without frying as every frying method and boosts crispy non-fry meals", () => {
@@ -639,6 +640,127 @@ describe("opus review notes", () => {
     expect(noFish.map((row) => row.id)).toContain("find_tofu");
     expect(noFish.map((row) => row.id)).toContain("find_lemony");
     expect(noFish.map((row) => row.id)).toContain("plan_two_veggie");
+  });
+});
+
+function bareSlot(target, targetKind = "weekday") {
+  return {
+    target_kind: targetKind,
+    target,
+    op: "set",
+    effort: null,
+    ingredient_complexity: null,
+    max_minutes: null,
+    max_minutes_hard: null,
+    special: null,
+    cuisine: null,
+    meal_style: null,
+    ingredient: null,
+    category: null,
+  };
+}
+
+function planningModelDelta(extra = {}) {
+  return {
+    acknowledgement: "Got it — four light dinners.",
+    clear: [],
+    dinner_count: null,
+    date_start: null,
+    date_end: null,
+    keep_it_easy: null,
+    keep_ingredients_simple: null,
+    max_minutes: null,
+    max_minutes_hard: null,
+    effort: null,
+    ingredient_complexity: null,
+    ingredient_complexity_hard: null,
+    special_count: null,
+    list_ops: [],
+    frequency_ops: [],
+    slot_ops: [],
+    concepts: [],
+    ...extra,
+  };
+}
+
+describe("model delta normalization", () => {
+  it("scopes a model light cue onto the Friday slot the delta named", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite);
+    const meals = [
+      { position: 1, date: "2026-10-12", slug: "miso-ginger-salmon", title: "Miso-Ginger Salmon" },
+      { position: 2, date: "2026-10-13", slug: "cashew-pesto-pasta", title: "Cashew Pesto Pasta" },
+      { position: 3, date: "2026-10-14", slug: "teriyaki-tofu-bowls", title: "Teriyaki Tofu Bowls" },
+      { position: 4, date: "2026-10-16", slug: "smoky-lentil-sweet-potato-stew", title: "Smoky Lentil Sweet Potato Stew" },
+    ];
+    seedPlan(sqlite, { meals });
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_eval", member_id: "m_a" });
+    const provider = createFakeProvider({
+      script: [{
+        json: planningModelDelta({
+          list_ops: [{ field: "intent_cues", op: "add", value: "light" }],
+          slot_ops: [bareSlot("friday")],
+        }),
+      }],
+    });
+    const res = await post(planEnv(db, provider), session.session_token, "/api/plan/interpret", {
+      text: "can Friday be a lighter one",
+      dinner_plan_id: "dp_eval",
+      state: { ...emptyPlanningState(), dinner_count: 4 },
+    });
+    expect(res.status).toBe(200);
+    expect(provider.calls).toHaveLength(1);
+    expect(res.body.state.intent_cues || []).not.toContain("light");
+    expect(res.body.state.slots.filter((slot) => slot.intent_cue === "light")).toEqual([
+      expect.objectContaining({ position: 4, weekday: "friday", intent_cue: "light" }),
+    ]);
+    expect(res.body.changed_positions).toEqual([4]);
+    expect(res.body.acknowledgement).toMatch(/^Friday's now lighter: .+\.$/);
+    expect(res.body.acknowledgement).not.toMatch(/four light dinners/i);
+    expect(res.body.preview.slots.find((slot) => slot.position === 1).recipe_slug).toBe("miso-ginger-salmon");
+  });
+
+  it("scopes a concept cue from the delta and leaves an explicit whole-plan cue in place", () => {
+    const dates = [{ position: 2, date: "2026-10-13", weekday: "tuesday" }];
+    const scoped = applyPlanningDelta(emptyPlanningState(), planningModelDelta({
+      acknowledgement: "",
+      concepts: [{ id: "cozy", polarity: "prefer" }],
+      slot_ops: [bareSlot("tuesday")],
+    }), { user_text: "could Tuesday feel a bit cozier", dates, today: "2026-10-12" });
+    expect(scoped.state.intent_cues).not.toContain("cozy");
+    expect(scoped.state.slots).toEqual([
+      expect.objectContaining({ weekday: "tuesday", position: 2, intent_cue: "cozy" }),
+    ]);
+
+    const planWide = applyPlanningDelta(emptyPlanningState(), planningModelDelta({
+      acknowledgement: "",
+      list_ops: [{ field: "intent_cues", op: "add", value: "light" }],
+      slot_ops: [bareSlot("friday")],
+    }), {
+      user_text: "make every dinner lighter",
+      dates: [{ position: 4, date: "2026-10-16", weekday: "friday" }],
+      today: "2026-10-12",
+    });
+    expect(planWide.state.intent_cues).toContain("light");
+    expect(planWide.state.slots.find((slot) => slot.intent_cue === "light")).toBeUndefined();
+  });
+
+  it("drops grown-ups residue unless the words are catalog terms and maps the table to family", () => {
+    const applied = applyDiscoveryDelta(null, discoveryDelta({
+      acknowledgement: "Got it.",
+      text_residue: "grown ups",
+    }), { user_text: "something the kids and the grown-ups will both eat" });
+    expect(applied.state.text_residue).toBeNull();
+    expect(applied.state.intent_cues).toContain("weeknight");
+    expect(applied.state.keep_it_easy).toBe(true);
+    expect(applied.state.keep_ingredients_simple).toBe(true);
+    expect(applied.state.semantic_rank).toContain("mild");
+    expect(applied.semantic.unsupported_soft_count).toBeGreaterThan(0);
+    expect(applied.semantic.broadening).toBe(true);
+    expect(applied.semantic.canonical_intents).toContain("family");
+    const salmon = applyDiscoveryDelta(null, discoveryDelta({ text_residue: "salmon" }), { user_text: "salmon" });
+    expect(salmon.state.text_residue).toBe("salmon");
   });
 });
 

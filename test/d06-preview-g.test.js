@@ -297,10 +297,9 @@ describe("G3 conflicts across every positive request", () => {
     const res = await postWeave(envFor(db, provider), session.session_token, "/api/discovery/interpret", {
       text: "Xylophone please.",
     });
-    expect(res.body.total).toBe(0);
-    expect(res.body.acknowledgement.toLowerCase()).toMatch(/no dinners match/);
-    expect(res.body.acknowledgement).not.toMatch(/got it/i);
-    expect(res.body.suggestions?.length).toBeGreaterThan(0);
+    expect(res.body.state.text_residue).toBeNull();
+    expect(res.body.total).toBeGreaterThan(0);
+    expect(res.body.acknowledgement.toLowerCase()).toMatch(/broader ideas/);
   });
 });
 

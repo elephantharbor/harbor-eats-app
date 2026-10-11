@@ -42,7 +42,7 @@ Phrase aliases, longest first, override the token default:
 - `nothing fried`, `no fried`, `not fried`, `without fried`, `avoid fried`, and the same negations on `frying` / `fry` (`without frying`, `no frying`, `not frying`, `nothing frying`) → avoid `fried` (deep, pan, and shallow)
 - `crispy without frying` → avoid `fried` and rank `crispy_non_fry`
 - `crispy but not deep fried`, `not deep fried`, `nothing deep fried` → avoid `deep_fried` only. The first also ranks `crispy_non_fry`
-- `whole family`, `kid friendly`, `family friendly` → `family` (simple, familiar weeknight, mild, easy). Those words are not a literal text search
+- Family, kids, grown-ups, and everyone-will-eat map to `family` from who the dinner is for (simple, familiar weeknight, mild, easy), not from a fixed sentence list. Those words are not a literal text search
 - `nothing too heavy`, `not too heavy`, `not heavy` → prefer `light`
 - `nothing too rich`, `not too rich` → avoid `indulgent`, which adds the `light` cue and does not add an indulgent boost
 - `no comfort food` → avoid `comforting` (soft exclusion: rank `avoid_comforting`, drop the comforting cue). It is not a hard filter
@@ -77,7 +77,7 @@ Support status is one of `canonical`, `derived`, `unsupported_soft`, `explicit_h
 
 `normalizeModelConcepts` lowercases and trims the id, then looks it up in the canonical table or the alias map. A miss increments `unsupported_soft_count` and is dropped. The raw string is not written to state, chips, acknowledgements, or telemetry. It is not a literal text filter and it cannot touch eligibility.
 
-Text of the form “something / really / very / quite &lt;unknown adjective&gt;” is the same kind of miss. Fuzzy vocabulary tokens and leftover soft or descriptive words (`whole family`, `kid`, `friendly`, `eat`, and the same class of filler) are stripped from `text_residue`. They are not a required literal search. A leftover noun that is not one of those words, such as a real ingredient, a dish noun, or an unknown noun like xylophone, stays.
+Text of the form “something / really / very / quite &lt;unknown adjective&gt;” is the same kind of miss. Leftover `text_residue` is a required literal match only when each token is a catalog ingredient, dish, or format term from the taste vocabulary or the published meal index. Anything else, including “grown ups” or an unknown noun, is dropped, counted as `unsupported_soft`, and broadened. Family, kids, grown-ups, and everyone-will-eat map to the `family` concept from who the dinner is for, not from a fixed sentence list.
 
 ## 5. Cooking method
 
@@ -86,7 +86,7 @@ Text of the form “something / really / very / quite &lt;unknown adjective&gt;�
 Frying kinds, the only ones a hard exclusion may name: `deep`, `pan`, `shallow`.
 
 - Method tokens `deep_fry`, `pan_fry`, `shallow_fry`, `fry`, `fried` map to those kinds. Unqualified instruction “fry / fried / frying”, after stir-fry and air-fry spans are removed, is pan, or shallow when the same evidence says shallow or that the oil shimmers.
-- `air_fry` and baked, roasted, or oven evidence that is also crispy map to `crispy_non_fry` (`air_fried`, `baked`, `roasted`). Those dishes are not excluded by “nothing fried”.
+- `air_fry` and baked, roasted, or oven evidence that is also crispy map to `crispy_non_fry` (`air_fried`, `baked`, `roasted`). A title or description that says crispy, and is not fried, counts as crispy texture even when the method line never says bake or air-fry. Those dishes are not excluded by “nothing fried”.
 - Stir-fry is recorded and is not a frying exclusion. A negated “no / not / without / never … fried” span is removed before the scan, so “No fried egg” on a stir-fry does not classify the dish as fried.
 
 When `exclude_cooking` is set, the words fried, frying, fry, deep-fried, pan-fried, and shallow-fried are stripped from `exclude_terms`, `methods`, `ingredients`, and `exclude_ingredients` so a title search cannot drop an air-fried dish. Chips: all three kinds → `Nothing fried`; deep without the other two → `Nothing deep-fried`.
@@ -127,7 +127,7 @@ No utterance, acknowledgement, residue, or unknown string.
 
 1. Eligibility is not on this object and is never changed. A semantic score cannot make an ineligible meal eligible.
 2. Explicit hard lists stay: ingredients, include ingredients, protein groups, cuisines, meal styles, `exclude_cooking`, excluded ingredients and terms and categories, diet, methods, equipment, effort levels, frequencies, a hard minute cap, `quick`, and `effort`.
-3. Residue already classified as an unsupported soft adjective may be dropped. A leftover noun, such as a word the catalog does not contain, stays. That miss is `no_catalog_match`, not a broaden.
+3. Residue that is not a catalog ingredient, dish, or format term is dropped as unsupported soft and may be broadened. A real catalog term stays, and a miss on that term is `no_catalog_match`.
 4. Ranking cues and `semantic_rank` stay, because they do not filter.
 
 `canBroadenZero` is true only for `unsupported_soft_intent` or `no_catalog_match`, only when step 2 found nothing hard, and only when the normalizer already counted an unsupported-soft concept or set `broadening`. The discovery interpret route may rerun the pipeline after that drop. If the rerun is non-empty, `semantic.broadening` is true. Broadening never writes `diner_taste`.
@@ -142,7 +142,7 @@ These three are server-owned. They do not call Luna.
 
 `ambiguousTarget({ text, dates, dinnerCount, today })` runs before `service.run` on `POST /api/plan/interpret`.
 
-- A day-targeted soft cue (`lighten up Friday`, `make Friday lighter`) on an existing plan applies only to that slot (`intent_cue`). A plan-wide cue that was already on the plan stays. The slot chip reads `Fri: lighter`. Exactly one dated match replans that slot and answers `Friday's now lighter: {title}.` An undated plan never invents a weekday: the chooser lists every dinner, with Add days, and nothing else changes. Luna is not called.
+- A day-targeted soft cue on an existing plan applies only to that slot (`intent_cue`). Recognized wording such as `lighten up Friday` is scoped before Luna. After Luna, the same slot path runs whenever the delta names a target day or slot and this turn adds a soft cue, unless the text says all, every, or the whole plan. A plan-wide cue that was already on the plan stays. The slot chip reads `Fri: lighter`. Exactly one dated match replans that slot and answers `Friday's now lighter: {title}.` An undated plan never invents a weekday: the chooser lists every dinner, with Add days, and nothing else changes.
 - Weekend language uses real plan dates only. Dated Saturday and Sunday are both updated, with no chooser. An undated plan opens the chooser for every dinner (`Dinner 1` through `Dinner N`) and does not replan. A dated plan with no weekend dinner asks which dinners were meant. The result is never a silent empty delta, and `fallbackDatesForUndatedPlan` is not used to pick a day.
 - Other named weekdays with exactly one date still return null from `ambiguousTarget` and may continue to Luna. Two or more return `{ reason: "ambiguous_day", prompt, candidates }` and `state.pending_slot` holds the inferred patch.
 - Choosing days posts `POST /api/plan/apply` with every selected position. That apply, and `POST /api/plan/interpret` with `target_position` or `target_positions`, replays `pending_slot` and does not call a provider.
