@@ -26,6 +26,14 @@ export function estimateInputTokens(prompt) {
   return Math.ceil((prompt.system.length + prompt.user.length) / 3) + 64;
 }
 
+/**
+ * planning_intent and discovery_intent must answer or fall back inside one
+ * user-visible wait. A timeout already spent that budget, so it is not retried.
+ * Creative tasks keep the single timeout retry and their own longer caps.
+ */
+const INTERPRET_TASKS = new Set(["planning_intent", "discovery_intent"]);
+const INTERPRET_USER_BUDGET_MS = 6000;
+
 /** Whitelist of non-content provider metadata fields allowed into usage_metadata_json. */
 const PROVIDER_META_KEYS = ["http_status", "response_status", "incomplete_reason", "reported_model", "request_id", "response_id", "error_message", "error_type", "error_param"];
 const PROVIDER_META_LIMITS = { error_message: 160, error_type: 64, error_param: 80 };
@@ -167,8 +175,22 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
     };
     const spent = () => costUsd(model, { input_tokens: inTok, cached_input_tokens: cachedTok, output_tokens: outTok, cache_write_tokens: writeTok });
     let result = null;
+    const attemptLatencies = [];
+    const interpret = INTERPRET_TASKS.has(task.id);
     while (attempts <= maxRetries) {
+      const elapsed = Math.max(0, now().getTime() - started);
+      let timeoutMs = Math.min(task.limits.timeout_ms, maxTimeoutMs);
+      if (interpret) {
+        const remaining = INTERPRET_USER_BUDGET_MS - elapsed;
+        if (remaining <= 0) break;
+        timeoutMs = Math.min(timeoutMs, remaining);
+      }
+      if (!(timeoutMs > 0)) break;
       attempts += 1;
+      const attemptStarted = now().getTime();
+      const finishAttempt = () => {
+        attemptLatencies.push(Math.max(0, now().getTime() - attemptStarted));
+      };
       try {
         const res = await callWithTimeout({
           model: wireModel,
@@ -179,7 +201,8 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
           response_schema: task.output_schema,
           temperature: task.cost_class === "creative" ? 0.7 : 0,
           reasoning_effort: task.reasoning_effort,
-        }, Math.min(task.limits.timeout_ms, maxTimeoutMs));
+        }, timeoutMs);
+        finishAttempt();
         addUsage(res.usage);
         meta = safeProviderMeta(res.metadata);
         errCode = null; errDetail = null;
@@ -195,14 +218,18 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
         result = post.value;
         break;
       } catch (error) {
+        finishAttempt();
         const norm = error instanceof AiError ? error : normalizeError(error);
         addUsage(error?.usage);
         lastCode = norm.code;
         errCode = norm.code;
         errDetail = norm.detail ? String(norm.detail).slice(0, 120) : null;
         meta = safeProviderMeta(error?.provider_meta) || meta;
-        // Only transient timeout/outage get the single retry (same model). 429, refusals, incomplete: stop.
+        // Malformed output still gets the one repair retry. A timeout on an
+        // interpret task already used the user budget. Outage may retry only
+        // while that budget remains. Creative tasks still retry a timeout once.
         if (norm.code !== "timeout" && norm.code !== "provider_outage") break;
+        if (interpret && norm.code === "timeout") break;
       }
     }
     providerLatency = Math.max(0, now().getTime() - started);
@@ -223,6 +250,8 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
       output_tokens: outTok,
       pricing_version: PRICING_VERSION,
       estimated_cost_usd: cost,
+      attempts,
+      attempt_latencies_ms: attemptLatencies,
       request_id: meta?.request_id ?? null,
       response_id: meta?.response_id ?? null,
       error_message: meta?.error_message ?? null,

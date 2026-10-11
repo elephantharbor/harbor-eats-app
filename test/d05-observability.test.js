@@ -80,7 +80,8 @@ describe("usage metadata on every call", () => {
       requested_model: "gpt-6-luna", reported_model: "gpt-6-luna-2026-10-01", http_status: 200, response_status: "completed", incomplete_reason: null,
       error_code: null, error_detail: null, reasoning_effort: "none", max_output_tokens: 300,
       input_tokens: 130, cached_input_tokens: 10, reasoning_tokens: 0, output_tokens: 60,
-      pricing_version: PRICING_VERSION, estimated_cost_usd: cost, request_id: "req_abc123", response_id: "resp_ok1",
+      pricing_version: PRICING_VERSION, estimated_cost_usd: cost, attempts: 1, attempt_latencies_ms: [0],
+      request_id: "req_abc123", response_id: "resp_ok1",
       error_message: null, error_type: null, error_param: null,
     });
     expect(store.usage.at(-1).status).toBe("ok");

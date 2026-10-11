@@ -17,6 +17,7 @@ import { getTasteTerm } from "./taste-vocabulary.js";
 import { PRACTICAL_HINT_KEYS } from "./cycle2-schema.js";
 import { cueScoreForMeal } from "../weave/cues.js";
 import { PLAN_TOKENS } from "../weave/constants.js";
+import { mealSatisfiesSlot } from "../weave/slot-match.js";
 
 const TASTE_BAND = 0.5;
 
@@ -245,6 +246,7 @@ const SLOT_OVERRIDE_KEYS = [
   "meal_style",
   "ingredient",
   "category",
+  "intent_cue",
 ];
 
 /** Position match only. An unmatched slot must not fall through onto slots[index]. */
@@ -292,7 +294,8 @@ function scoreFeature(feature, participantIds, tastes, intent, slotOverride = {}
     (tastes || []).filter((row) => participantIds.includes(row.member_id))
   );
   const hints = hintBoost(feature, intent);
-  const cue = cueScoreForMeal(feature, intent.intent_cues || [], { keep_it_easy: intent.keep_it_easy });
+  const cues = slotOverride.intent_cue ? [slotOverride.intent_cue] : intent.intent_cues || [];
+  const cue = cueScoreForMeal(feature, cues, { keep_it_easy: intent.keep_it_easy });
   let total = taste.score + hints.boost + cue;
   if (slotOverride.special === true) {
     total += (feature.exploration || 0) >= 0.55 ? 0.25 : (feature.exploration || 0) * 0.1;
@@ -329,7 +332,7 @@ function rankEligible(eligible, participantIds, tastes, intent, slotOverride = {
   return { ranked, active };
 }
 
-function pickFeature(ranked, used, recent, tiered) {
+function pickFeature(ranked, used, recent, tiered, opts = {}) {
   const unused = ranked.filter((row) => !used.slugs.has(row.feature.slug));
   if (!unused.length) {
     return {
@@ -346,7 +349,10 @@ function pickFeature(ranked, used, recent, tiered) {
     pool = unused.filter((row) => row.requirement === bestRequirement && row.preference === bestPreference);
   }
   const best = pool[0].total;
-  const band = pool.filter((row) => row.total >= best - TASTE_BAND);
+  // A slot cue is clamped to 0.4, inside the usual 0.5 diversity band, so
+  // diversity would ignore it. Hold the band tight when the slot named a cue.
+  const bandWidth = opts.cueBound ? 0.05 : TASTE_BAND;
+  const band = pool.filter((row) => row.total >= best - bandWidth);
   const diverse = band.find((row) => !conflicts(row.feature, used) && !recent.has(row.feature.slug))
     || band.find((row) => !conflicts(row.feature, used));
   const chosen = diverse || pool[0];
@@ -471,7 +477,8 @@ export function planDinners(intent, context = {}) {
     const slotOverride = slotOverrideFor(intent, index);
     const participant_ids = slotParticipants(intent, index);
     const prev = previousAt(previous, index);
-    if (prev?.recipe_version_id && Object.keys(slotOverride).length === 0) {
+    const already = prev?.recipe_version_id && mealSatisfiesSlot(prev, slotOverride);
+    if (prev?.recipe_version_id && (Object.keys(slotOverride).length === 0 || already)) {
       slots.push({
         ...prev,
         position: index + 1,
@@ -490,7 +497,7 @@ export function planDinners(intent, context = {}) {
     pool.ranked.forEach((row) => row.unscored?.forEach((key) => unscored.add(key)));
     const legal = pool.ranked.filter((row) => respectsMax(row.feature, slots.length));
     const picked = legal.length
-      ? pickFeature(legal, used, recent, pool.active)
+      ? pickFeature(legal, used, recent, pool.active, { cueBound: Boolean(slotOverride.intent_cue) })
       : {
           feature: null,
           reason: eligible.length ? "frequency_cap" : "no_eligible_meal",

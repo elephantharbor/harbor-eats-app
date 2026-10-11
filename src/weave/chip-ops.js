@@ -43,6 +43,7 @@ export function removePlanningChip(state, chipId) {
     const token = chipId.slice(8);
     next.frequencies = (next.frequencies || []).filter((f) => f.token !== token);
     next.exclude_categories = (next.exclude_categories || []).filter((t) => t !== token);
+    next.exclude_ingredients = (next.exclude_ingredients || []).filter((t) => t !== token);
     return next;
   }
   if (chipId.startsWith("include:")) {
@@ -116,6 +117,16 @@ export function removeDiscoveryChip(state, chipId) {
   if (chipId.startsWith("flavor:")) {
     const slug = chipId.slice(7);
     next.flavors = (next.flavors || []).filter((t) => t !== slug);
+    return next;
+  }
+  if (chipId.startsWith("exclude:")) {
+    const slug = chipId.slice(8);
+    next.exclude_ingredients = (next.exclude_ingredients || []).filter((t) => t !== slug);
+    return next;
+  }
+  if (chipId.startsWith("protein:")) {
+    const slug = chipId.slice(8);
+    next.protein_groups = (next.protein_groups || []).filter((t) => t !== slug);
     return next;
   }
   if (chipId.startsWith("cue:")) {

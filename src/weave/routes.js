@@ -37,6 +37,7 @@ import {
 } from "./state.js";
 import { buildWeaveVocabulary } from "./vocabulary.js";
 import { removeDiscoveryChip, removePlanningChip } from "./chip-ops.js";
+import { enrichPreviousSlots } from "./slot-match.js";
 import { createDinnerPlan } from "../lib/plan-mutations.js";
 import { saveDinnerPlan } from "../lib/dinner-plan-store.js";
 
@@ -119,6 +120,12 @@ function previousSlotsFromMeals(meals) {
     effort_level: meal.effort_level || null,
     ingredient_complexity: meal.ingredient_complexity || null,
     participant_ids: meal.participant_ids || [],
+    tags: meal.tags || [],
+    vocabulary_tag_ids: meal.vocabulary_tag_ids || [],
+    dietary_labels: meal.dietary_labels || [],
+    allergens: meal.allergens || [],
+    cuisine: meal.cuisine || null,
+    total_minutes: meal.total_minutes ?? null,
     result: meal.recipe_version_id ? "recommended" : "constrained",
   }));
 }
@@ -246,7 +253,7 @@ async function executePlanning(env, session, { priorState, dinnerPlan, participa
     const loaded = preloaded?.catalog || (await loadPublishedCatalog(env.DB));
     if (loaded.ok) catalog = loaded.planner;
   }
-  const previousSlots = previousSlotsFromMeals(dinnerPlan?.meals);
+  const previousSlots = enrichPreviousSlots(previousSlotsFromMeals(dinnerPlan?.meals), catalog);
   const preview = planDinners(parsed.intent, {
     catalog,
     constraints,
@@ -561,7 +568,7 @@ export async function routeWeaveRequest(env, request, path) {
         metadata: { estimated_cost_usd: Number(gen.estimated_cost_usd) || 0 },
       });
     }
-    const applied = applyPlanningDelta(priorState, gen.output, context);
+    const applied = applyPlanningDelta(priorState, gen.output, { ...context, user_text: text });
     const [constraints, tastes, catalogLoad] = await Promise.all([reads.constraints, reads.tastes, reads.catalog]);
     const conflictPass = detectPlanningConflicts(applied.state, {
       participantIds,
@@ -599,7 +606,7 @@ export async function routeWeaveRequest(env, request, path) {
       });
     }
     const catalog = catalogLoad?.ok ? catalogLoad.planner : null;
-    const previousSlots = previousSlotsFromMeals(dinnerPlan?.meals);
+    const previousSlots = enrichPreviousSlots(previousSlotsFromMeals(dinnerPlan?.meals), catalog);
     const preview = planDinners(parsed.intent, {
       catalog,
       constraints,

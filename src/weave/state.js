@@ -266,6 +266,66 @@ function applyCueSideEffects(state) {
   }
 }
 
+const PORTION_COUNT_WORDS = Object.freeze([
+  "one",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
+  "ten",
+  "eleven",
+  "twelve",
+  "thirteen",
+  "fourteen",
+]);
+
+/**
+ * Counts attached to individual cues. "two cozy dinners and one light one"
+ * is 3 dinners, not both cues on every slot.
+ * @returns {{ dinner_count: number, portions: { cue: string, count: number }[] }|null}
+ */
+export function parsePortionCounts(text) {
+  const norm = String(text || "").toLowerCase();
+  if (!norm) return null;
+  const countAlt = [...PORTION_COUNT_WORDS, "\\d{1,2}"].join("|");
+  const cueAlt = INTENT_CUES.join("|");
+  const re = new RegExp(`\\b(${countAlt})\\s+(${cueAlt})\\b`, "g");
+  const portions = [];
+  for (const match of norm.matchAll(re)) {
+    const raw = match[1];
+    const count = /^\d+$/.test(raw) ? Number(raw) : PORTION_COUNT_WORDS.indexOf(raw) + 1;
+    if (!Number.isInteger(count) || count < 1 || count > 14) continue;
+    portions.push({ cue: match[2], count });
+  }
+  if (portions.length < 2) return null;
+  if (new Set(portions.map((row) => row.cue)).size < 2) return null;
+  const dinner_count = portions.reduce((sum, row) => sum + row.count, 0);
+  if (dinner_count < 1 || dinner_count > 14) return null;
+  return { dinner_count, portions };
+}
+
+function applyPortionOverlay(state, text) {
+  const parsed = parsePortionCounts(text);
+  if (!parsed) return false;
+  state.dinner_count = parsed.dinner_count;
+  state.intent_cues = [];
+  const next = [];
+  let position = 1;
+  for (const portion of parsed.portions) {
+    for (let i = 0; i < portion.count; i += 1) {
+      const existing = (state.slots || []).find((slot) => Number(slot.position) === position) || { position };
+      next.push({ ...existing, position, intent_cue: portion.cue });
+      position += 1;
+    }
+  }
+  state.slots = next;
+  return true;
+}
+
 /**
  * @param {object|null} prior
  * @param {object} delta model output
@@ -378,7 +438,9 @@ export function applyPlanningDelta(prior, delta, context = {}) {
   autoFrequencies(state);
   applyCueSideEffects(state);
   postValidatePlanning(state, context.vocabulary, dropped);
-  return { state, dropped, dinner_count_defaulted };
+  const portioned = applyPortionOverlay(state, context.user_text);
+  if (portioned) dinner_count_defaulted = false;
+  return { state, dropped, dinner_count_defaulted, portioned };
 }
 
 export function applyDiscoveryDelta(prior, delta, context = {}) {

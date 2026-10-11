@@ -144,14 +144,17 @@ describe("D-05 gateway behaviour", () => {
     const r = await service.run("explanation", { meal: "Sabich", reasons: ["quick"], cache_bust: null }, { fallback: "Quick weeknight pick." });
     expect(r).toMatchObject({ ok: false, error: "malformed_output", fallback: "Quick weeknight pick." });
   });
-  it("timeout is enforced, retried once (bounded), normalized and falls back", async () => {
+  it("timeout is enforced once for discovery and falls back inside the user budget", async () => {
     const provider = createFakeProvider({ script: [{ hang: true }] });
     const store = createMemoryStore();
     const service = createGenerationService({ provider, store, env: ON, maxTimeoutMs: 20 });
     const r = await service.run("discovery_intent", DISC_IN("thai"), { fallback: "FB" });
     expect(r).toMatchObject({ ok: false, error: "timeout", fallback: "FB" });
-    expect(provider.calls).toHaveLength(TASKS.discovery_intent.limits.max_retries + 1);
+    expect(provider.calls).toHaveLength(1);
     expect(store.usage.at(-1).status).toBe("fallback:timeout");
+    const meta = JSON.parse(store.usage.at(-1).usage_metadata_json);
+    expect(meta.attempts).toBe(1);
+    expect(meta.attempt_latencies_ms).toHaveLength(1);
   });
   it("rate limit (429) and outage (5xx) are normalized", async () => {
     const a = svc({ script: [{ throw: { status: 429 } }] });

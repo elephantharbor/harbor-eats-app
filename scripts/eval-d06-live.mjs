@@ -146,6 +146,7 @@ async function ensureHousehold(key) {
 const sessions = new Map();
 let spent = 0;
 let calls = 0;
+let requests = 0;
 const results = [];
 
 function wait(ms) {
@@ -174,8 +175,8 @@ for (const c of corpus.cases) {
     console.log(JSON.stringify({ id: c.id, skipped: true, reason: "max_calls", calls, max_calls: maxCalls }));
     continue;
   }
-  if (calls > 0 && delayMs > 0) await wait(delayMs);
-  calls += 1;
+  if (requests > 0 && delayMs > 0) await wait(delayMs);
+  requests += 1;
   if (!sessions.has(c.household)) sessions.set(c.household, await ensureHousehold(c.household));
   const session = sessions.get(c.household);
   const path = c.task === "planning_intent" ? "/api/plan/interpret" : "/api/discovery/interpret";
@@ -187,6 +188,7 @@ for (const c of corpus.cases) {
     timezone: "America/Chicago",
   };
   const res = await api(path, { method: "POST", cookie: session.cookie, body });
+  if (res.data?.source === "provider") calls += 1;
   const rowCost = costOf(res.data);
   spent += rowCost;
   const row = {

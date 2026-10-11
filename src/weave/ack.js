@@ -1,5 +1,6 @@
 import { getTasteTerm } from "../lib/taste-vocabulary.js";
 import { AUTHORITY_CLAIMS } from "./constants.js";
+import { mealSatisfiesSlot } from "./slot-match.js";
 
 const CUE_LABELS = Object.freeze({
   cozy: "Cozy",
@@ -43,6 +44,9 @@ export function buildPlanningChips(state) {
   for (const slug of state.include_ingredients || []) {
     chips.push({ id: `include:${slug}`, label: displayForToken(slug) });
   }
+  for (const slug of state.exclude_ingredients || []) {
+    chips.push({ id: `exclude:${slug}`, label: `No ${displayForToken(slug).toLowerCase()}` });
+  }
   for (const slug of state.cuisines || []) chips.push({ id: `cuisine:${slug}`, label: displayForToken(slug) });
   for (const slug of state.meal_styles || []) chips.push({ id: `style:${slug}`, label: displayForToken(slug) });
   for (const cue of state.intent_cues || []) chips.push({ id: `cue:${cue}`, label: CUE_LABELS[cue] || cue });
@@ -67,7 +71,11 @@ export function buildDiscoveryChips(state) {
   if (state.keep_ingredients_simple === true) chips.push({ id: "keep_ingredients_simple", label: "Simple ingredients" });
   for (const slug of state.ingredients || []) chips.push({ id: `ingredient:${slug}`, label: displayForToken(slug) });
   for (const slug of state.cuisines || []) chips.push({ id: `cuisine:${slug}`, label: displayForToken(slug) });
-  for (const slug of state.flavors || []) chips.push({ id: `flavor:${slug}`, label: displayForToken(slug) });
+  for (const slug of state.exclude_ingredients || []) {
+    chips.push({ id: `exclude:${slug}`, label: `No ${displayForToken(slug).toLowerCase()}` });
+  }
+  for (const slug of state.flavors || []) chips.push({ id: `flavor:${slug}`, label: spokenFlavor(slug) });
+  for (const slug of state.protein_groups || []) chips.push({ id: `protein:${slug}`, label: titleToken(slug) });
   for (const cue of state.intent_cues || []) chips.push({ id: `cue:${cue}`, label: CUE_LABELS[cue] || cue });
   if (state.quick) chips.push({ id: "quick", label: "Quick" });
   if (state.effort_levels?.includes("easy")) chips.push({ id: "effort:easy", label: "Only easy" });
@@ -86,6 +94,60 @@ function frequencyPhrases(state) {
   return parts;
 }
 
+function spokenFlavor(slug) {
+  const term = getTasteTerm(slug);
+  if (!term) return slug;
+  const extra = (term.synonyms || []).find((word) => {
+    const lower = String(word).toLowerCase();
+    return lower && !term.slug.includes(lower) && !term.display_name.toLowerCase().includes(lower);
+  });
+  if (!extra) return term.display_name;
+  return `${extra.charAt(0).toUpperCase()}${extra.slice(1)} and ${term.display_name.toLowerCase()}`;
+}
+
+function titleToken(slug) {
+  const display = displayForToken(slug);
+  if (display !== slug) return display;
+  return slug.charAt(0).toUpperCase() + slug.slice(1);
+}
+
+function exclusionPhrases(state) {
+  const parts = [];
+  const push = (label) => {
+    const phrase = `No ${label}`;
+    if (!parts.some((row) => row.toLowerCase() === phrase.toLowerCase())) parts.push(phrase);
+  };
+  for (const slug of state?.exclude_ingredients || []) push(displayForToken(slug).toLowerCase());
+  for (const slug of state?.exclude_categories || []) push(displayForToken(slug, "exclude_categories").toLowerCase());
+  for (const row of state?.frequencies || []) {
+    if (row.max_count === 0) push(displayForToken(row.token).toLowerCase());
+  }
+  return parts;
+}
+
+function appliedCuePhrases(state) {
+  const parts = [];
+  for (const slug of state?.flavors || []) parts.push(spokenFlavor(slug));
+  for (const slug of state?.protein_groups || []) parts.push(titleToken(slug));
+  for (const cue of state?.intent_cues || []) parts.push(CUE_LABELS[cue] || cue);
+  return parts;
+}
+
+export function portionSummary(state) {
+  const slots = [...(state?.slots || [])]
+    .filter((slot) => slot?.intent_cue)
+    .sort((a, b) => (a.position || 0) - (b.position || 0));
+  if (slots.length < 2) return [];
+  const rows = [];
+  for (const slot of slots) {
+    const last = rows[rows.length - 1];
+    if (last && last.cue === slot.intent_cue) last.count += 1;
+    else rows.push({ cue: slot.intent_cue, count: 1 });
+  }
+  if (new Set(rows.map((row) => row.cue)).size < 2) return [];
+  return rows;
+}
+
 function phrasePartsPlanning(state, notes = {}) {
   const parts = [];
   if (state.dinner_count != null) {
@@ -95,8 +157,37 @@ function phrasePartsPlanning(state, notes = {}) {
   }
   if (state.keep_it_easy === true) parts.push("Easy leaning");
   parts.push(...frequencyPhrases(state));
-  for (const cue of state.intent_cues || []) parts.push(CUE_LABELS[cue] || cue);
+  const portions = portionSummary(state);
+  if (portions.length) {
+    for (const row of portions) parts.push(`${row.count} ${row.cue}`);
+  } else {
+    for (const cue of state.intent_cues || []) parts.push(CUE_LABELS[cue] || cue);
+  }
+  parts.push(...exclusionPhrases(state));
   return parts;
+}
+
+function detailPhrases(state, task) {
+  const phrases = [...exclusionPhrases(state)];
+  if (task === "planning_intent") {
+    if (!portionSummary(state).length) {
+      for (const cue of state?.intent_cues || []) phrases.push(CUE_LABELS[cue] || cue);
+    }
+  } else {
+    phrases.push(...appliedCuePhrases(state));
+  }
+  return phrases;
+}
+
+function appendMissing(text, phrases) {
+  let next = String(text || "");
+  for (const phrase of phrases) {
+    if (!phrase) continue;
+    if (next.toLowerCase().includes(phrase.toLowerCase())) continue;
+    if (next.length + phrase.length + 3 > 120) continue;
+    next = next ? `${next} · ${phrase}` : phrase;
+  }
+  return next.slice(0, 120);
 }
 
 const SHELLFISH_TOKENS = new Set(["shrimp", "prawn", "prawns", "shellfish", "crab", "lobster", "scallop"]);
@@ -161,18 +252,44 @@ export function refinementAcknowledgement({ preview, previousSlots, slots }) {
     if (bits.length) return { text: bits.join(". ").slice(0, 120), suggestions: [] };
   }
   for (const slot of slots || []) {
-    if (slot.effort !== "easy") continue;
     const prev =
       (previousSlots || []).find((row) => row.position === slot.position) ||
       (previousSlots || []).find((row) => weekdayName(row.scheduled_date)?.toLowerCase() === slot.weekday);
     if (!prev) continue;
     const position = slot.position || prev.position;
     if (changed.includes(position)) continue;
-    if (prev.effort_level !== "easy" && prev.effort !== "easy") continue;
+    if (!mealSatisfiesSlot(prev, slot)) continue;
     const day = dayLabel(slot, prev) || "That night";
+    const other = Boolean(
+      slot.category ||
+        slot.cuisine ||
+        slot.meal_style ||
+        slot.ingredient ||
+        slot.ingredient_complexity ||
+        slot.max_minutes != null ||
+        slot.special === true
+    );
+    if (slot.effort === "easy" && !other) {
+      return {
+        text: `${day}'s already one of the easiest options`,
+        suggestions: [`Swap ${day} for a different easy dinner`],
+      };
+    }
+    const bits = [];
+    if (slot.category) bits.push(slot.category === "plant" ? "vegetarian" : displayForToken(slot.category).toLowerCase());
+    if (slot.cuisine) bits.push(displayForToken(slot.cuisine).toLowerCase());
+    if (slot.meal_style) bits.push(displayForToken(slot.meal_style).toLowerCase());
+    if (slot.ingredient) bits.push(displayForToken(slot.ingredient).toLowerCase());
+    if (slot.effort === "easy") bits.push("easy");
+    else if (slot.effort) bits.push(slot.effort);
+    if (slot.ingredient_complexity) bits.push(slot.ingredient_complexity);
+    if (slot.max_minutes != null) bits.push(`under ${slot.max_minutes} min`);
+    if (slot.special === true) bits.push("special");
+    if (!bits.length) continue;
+    const why = bits.join(" and ");
     return {
-      text: `${day}'s already one of the easiest options`,
-      suggestions: [`Swap ${day} for a different easy dinner`],
+      text: `${day}'s already ${why}`,
+      suggestions: [`Swap ${day} for a different ${why} dinner`],
     };
   }
   return null;
@@ -269,13 +386,16 @@ export function reconcileAcknowledgement({
     refinement: refinement || null,
   };
   const suggestions = refinement?.suggestions || [];
-  if (!notes.refinement && !notes.dinnerCountDefaulted && shouldKeepModelAcknowledgement(modelAck, conflicts, dropped, removedTokens, userText)) {
-    const text = withFrequencyCaps(String(modelAck).trim(), state);
+  const phrases = detailPhrases(state, task);
+  const portioned = task === "planning_intent" && portionSummary(state).length > 0;
+  if (!notes.refinement && !notes.dinnerCountDefaulted && !portioned && shouldKeepModelAcknowledgement(modelAck, conflicts, dropped, removedTokens, userText)) {
+    const capped = withFrequencyCaps(String(modelAck).trim(), state);
+    const text = appendMissing(capped, phrases);
     const source = text === String(modelAck).trim() ? "model" : "reconciled";
     return { acknowledgement: text, acknowledgement_source: source, suggestions };
   }
   return {
-    acknowledgement: reconciledAcknowledgement(task, state, conflicts, notes),
+    acknowledgement: appendMissing(reconciledAcknowledgement(task, state, conflicts, notes), phrases),
     acknowledgement_source: "reconciled",
     suggestions,
   };
