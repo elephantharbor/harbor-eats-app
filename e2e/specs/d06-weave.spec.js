@@ -100,8 +100,27 @@ function screenshotFile(testInfo, filename) {
   return testInfo.outputPath(filename);
 }
 
+const consumerUiPages = new WeakSet();
+
+/** Local wrangler has the gateway off. Weave specs still exercise the composer, so health reports it on. */
+async function showConsumerComposer(page) {
+  if (consumerUiPages.has(page)) return;
+  consumerUiPages.add(page);
+  await page.route("**/api/health", async (route) => {
+    const res = await route.fetch();
+    const body = await res.json();
+    body.consumer_ui = true;
+    await route.fulfill({
+      status: res.status(),
+      contentType: "application/json",
+      body: JSON.stringify(body),
+    });
+  });
+}
+
 /** @param {import('@playwright/test').Page} page */
 async function openPlanCount(page) {
+  await showConsumerComposer(page);
   await page.goto("/");
   await skipToChoices(page);
   await page.locator('[data-go="home"][data-nav="home"]').filter({ visible: true }).first().click();
@@ -117,6 +136,7 @@ async function weaveField(page) {
 test.describe("D-06 Weave UX", () => {
   test.beforeEach(async ({ context, page }) => {
     await context.clearCookies();
+    await showConsumerComposer(page);
     await page.goto("/");
     await page.evaluate(() => localStorage.clear());
   });

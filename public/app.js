@@ -128,7 +128,19 @@
   const analyticsLog = [];
 
   // —— Persistence API (same-origin /api/*; graceful fallback if unbound) ——
-  const API = { available: null, householdId: null, planId: null };
+  const API = { available: null, householdId: null, planId: null, consumerUi: null };
+  const aiGate = { consumerUi: null };
+  aiGate.ready = new Promise(function (resolve) {
+    aiGate._resolve = resolve;
+  });
+  window.FlavorWeaveAi = aiGate;
+
+  function settleConsumerUi(on) {
+    if (aiGate.consumerUi != null) return;
+    aiGate.consumerUi = !!on;
+    API.consumerUi = aiGate.consumerUi;
+    aiGate._resolve(aiGate.consumerUi);
+  }
   /** Recovery hints only — session is HttpOnly cookie (not localStorage). */
   const LS_HH = "he_household_id";
   const LS_MEMBER = "he_member_id";
@@ -303,12 +315,18 @@
     if (API.available !== null) return API.available;
     try {
       const r = await fetch("/api/health", { method: "GET", credentials: "same-origin" });
-      if (!r.ok) { API.available = false; return false; }
+      if (!r.ok) {
+        API.available = false;
+        settleConsumerUi(false);
+        return false;
+      }
       const j = await r.json();
       API.available = !!(j && j.ok && j.d1 === "ok");
+      settleConsumerUi(!!(j && j.consumer_ui));
       return API.available;
     } catch (_) {
       API.available = false;
+      settleConsumerUi(false);
       return false;
     }
   }
@@ -3468,7 +3486,32 @@
     state.weavePlanCount = B.planMountCount(weaveDepsForPlan());
   }
 
+  function applyPlanCountComposer() {
+    const ai = !!(window.FlavorWeaveAi && window.FlavorWeaveAi.consumerUi);
+    const lede = document.getElementById("planCountLede");
+    const divider = document.getElementById("planCountDivider");
+    const host = document.getElementById("planWeaveHost");
+    if (lede) {
+      lede.textContent = ai ? "Tell us what the week needs, or choose how many below." : "Choose how many dinners.";
+    }
+    if (divider) divider.hidden = !ai;
+    if (host) host.hidden = !ai;
+    if (ai) mountPlanCountWeave();
+  }
+
   function mountPlanReviewWeave() {
+    const gate = window.FlavorWeaveAi;
+    if (gate && gate.consumerUi == null && gate.ready) {
+      gate.ready.then(mountPlanReviewWeave);
+      return;
+    }
+    const ai = !!(gate && gate.consumerUi);
+    const host = document.getElementById("planReviewWeaveHost");
+    if (!ai) {
+      if (host) host.hidden = true;
+      return;
+    }
+    if (host) host.hidden = false;
     const B = window.FlavorWeaveWeaveBridge;
     if (!B) return;
     const prefs = document.getElementById("planReviewPrefs");
@@ -3538,7 +3581,9 @@
     state.planCountValue = null;
     fillPrefSlot("planCountPrefs", draftPrefs(), "draft");
     syncPlanCountSubmit();
-    mountPlanCountWeave();
+    const gate = window.FlavorWeaveAi;
+    if (gate && gate.consumerUi == null && gate.ready) gate.ready.then(applyPlanCountComposer);
+    else applyPlanCountComposer();
   }
 
   function syncPlanCountSubmit() {

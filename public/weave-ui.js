@@ -559,7 +559,13 @@
         });
         if (!data.ok) throw new Error(data.error || "failed");
         if (data.fallback_code && !data.preview && !data.results) {
-          const gentle = data.fallback_code === "rate_limited" || data.fallback_code === "budget_exceeded" || data.fallback_code === "provider_outage" || data.fallback_code === "provider_config";
+          const gentle =
+            data.fallback_code === "rate_limited" ||
+            data.fallback_code === "budget_exceeded" ||
+            data.fallback_code === "provider_outage" ||
+            data.fallback_code === "provider_config" ||
+            data.fallback_code === "disabled" ||
+            data.fallback_code === "provider_unconfigured";
           showNotice(
             gentle
               ? { kind: "status", style: "info", text: data.acknowledgement || "Typing a request isn’t available right now. Choose how many below." }

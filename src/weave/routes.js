@@ -1,6 +1,7 @@
 /**
  * D-06 weave routes: interpret, deterministic apply, plan commit.
  */
+import { UNAVAILABLE_GATEWAY_CODES } from "../ai/errors.js";
 import { createD1Store, createGenerationService, resolveProvider } from "../ai/index.js";
 import { catalogReadsFromD1, loadPublishedCatalog } from "../lib/catalog-runtime.js";
 import {
@@ -63,7 +64,7 @@ async function readJson(request) {
 }
 
 const TZ_RE = /^[A-Za-z0-9_+\-/]{1,64}$/;
-const UNAVAILABLE_GATEWAY = new Set(["rate_limited", "budget_exceeded", "provider_outage", "provider_config"]);
+const UNAVAILABLE_GATEWAY = new Set(UNAVAILABLE_GATEWAY_CODES);
 const DINNER_COUNT_WORDS = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"];
 
 function parseDinnerCount(text) {

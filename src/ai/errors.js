@@ -13,6 +13,16 @@ export const AI_ERROR_CODES = Object.freeze([
   "provider_unconfigured",
 ]);
 
+/** Gateway or provider cannot run a consumer task. Callers use the manual fallback. */
+export const UNAVAILABLE_GATEWAY_CODES = Object.freeze([
+  "rate_limited",
+  "budget_exceeded",
+  "provider_outage",
+  "provider_config",
+  "disabled",
+  "provider_unconfigured",
+]);
+
 export class AiError extends Error {
   /** @param {string} code @param {string} [detail] */
   constructor(code, detail) {

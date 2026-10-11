@@ -2,6 +2,8 @@
  * Preview-eval cycle 4 defects H2–H6. Each case fails on the pre-fix behavior.
  */
 import { readFileSync, readdirSync } from "node:fs";
+import { UNAVAILABLE_GATEWAY_CODES } from "../src/ai/errors.js";
+import { PLAN_PICKER_ACK } from "../src/weave/ack.js";
 import { DatabaseSync } from "node:sqlite";
 import { describe, expect, it } from "vitest";
 import { createFakeProvider } from "../src/ai/providers/fake.js";
@@ -224,8 +226,52 @@ describe("H2 unavailable gateway fallback", () => {
     expect(res.body.acknowledgement).toMatch(/choose how many/i);
     expect(res.body.acknowledgement).not.toMatch(BANNED);
     const ui = readFileSync(new URL("../public/weave-ui.js", import.meta.url), "utf8");
-    expect(ui).toContain("rate_limited");
+    for (const code of UNAVAILABLE_GATEWAY_CODES) expect(ui).toContain(code);
     expect(ui).toMatch(/draft = text/);
+  });
+
+  it("treats a disabled gateway as the count picker, and still plans a counted request", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite);
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_h", member_id: "m_a" });
+    const env = envFor(db, createFakeProvider({ script: [] }), { AI_GATEWAY_ENABLED: "0", CATALOG_SOURCE: undefined });
+    const picker = await postWeave(env, session.session_token, "/api/plan/interpret", { text: "Make Wednesday vegetarian" });
+    expect(picker.body.fallback_code).toBe("disabled");
+    expect(picker.body.preview).toBeNull();
+    expect(picker.body.acknowledgement).toBe(PLAN_PICKER_ACK);
+    const counted = await postWeave(env, session.session_token, "/api/plan/interpret", { text: "Plan three easy dinners this week." });
+    expect(counted.body.fallback_code).toBe("disabled");
+    expect(counted.body.state?.dinner_count).toBe(3);
+    expect(counted.body.preview?.slots?.length).toBe(3);
+  });
+
+  it("treats a missing provider the same way", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite);
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_h", member_id: "m_a" });
+    const res = await postWeave(envFor(db, createFakeProvider({ script: [] }), { AI_PROVIDER: "none", CATALOG_SOURCE: undefined }), session.session_token, "/api/plan/interpret", {
+      text: "something warm",
+    });
+    expect(res.body.fallback_code).toBe("provider_unconfigured");
+    expect(res.body.preview).toBeNull();
+    expect(res.body.acknowledgement).toMatch(/choose how many/i);
+  });
+
+  it("keeps Find on the keyword fallback when the gateway is disabled", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite);
+    seedMeal(sqlite, { slug: "steak-night", title: "Steak Night", allergen: null, ingredient: "beef", minutes: 40, flavor: "citrusy" });
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_h", member_id: "m_a" });
+    const res = await postWeave(envFor(db, createFakeProvider({ script: [] }), { AI_GATEWAY_ENABLED: "0" }), session.session_token, "/api/discovery/interpret", {
+      text: "steak date night",
+    });
+    expect(res.status).toBe(200);
+    expect(res.body.fallback_code).toBe("disabled");
+    expect(res.body.acknowledgement).toBe("Showing dinners that match your words.");
+    expect(res.body.results.map((row) => row.title)).toContain("Steak Night");
   });
 });
 
