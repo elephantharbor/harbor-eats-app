@@ -89,7 +89,7 @@ Frying kinds, the only ones a hard exclusion may name: `deep`, `pan`, `shallow`.
 - `air_fry` and baked, roasted, or oven evidence that is also crispy map to `crispy_non_fry` (`air_fried`, `baked`, `roasted`). Those dishes are not excluded by “nothing fried”.
 - Stir-fry is recorded and is not a frying exclusion. A negated “no / not / without / never … fried” span is removed before the scan, so “No fried egg” on a stir-fry does not classify the dish as fried.
 
-When `exclude_cooking` is set, the words fried, frying, fry, deep-fried, pan-fried, and shallow-fried are stripped from `exclude_terms`, `methods`, `ingredients`, and `exclude_ingredients` so a title search cannot drop an air-fried dish. Chips: all three kinds → `No fried`; deep without the other two → `No deep-fried`.
+When `exclude_cooking` is set, the words fried, frying, fry, deep-fried, pan-fried, and shallow-fried are stripped from `exclude_terms`, `methods`, `ingredients`, and `exclude_ingredients` so a title search cannot drop an air-fried dish. Chips: all three kinds → `Nothing fried`; deep without the other two → `Nothing deep-fried`.
 
 ## 6. Zero-result reasons
 

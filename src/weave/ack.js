@@ -130,8 +130,8 @@ export function buildPlanningChips(state) {
   for (const slug of state.cuisines || []) chips.push({ id: `cuisine:${slug}`, label: displayForToken(slug) });
   for (const slug of state.meal_styles || []) chips.push({ id: `style:${slug}`, label: displayForToken(slug) });
   for (const cue of state.intent_cues || []) chips.push({ id: `cue:${cue}`, label: CUE_LABELS[cue] || cue });
-  if ((state.exclude_cooking || []).length === 3) chips.push({ id: "exclude_cooking", label: "No fried" });
-  else if ((state.exclude_cooking || []).includes("deep")) chips.push({ id: "exclude_cooking", label: "No deep-fried" });
+  if ((state.exclude_cooking || []).length === 3) chips.push({ id: "exclude_cooking", label: "Nothing fried" });
+  else if ((state.exclude_cooking || []).includes("deep")) chips.push({ id: "exclude_cooking", label: "Nothing deep-fried" });
   for (const slot of state.slots || []) {
     if (slot.special) {
       const label = slot.weekday
@@ -172,8 +172,8 @@ export function buildDiscoveryChips(state) {
   for (const slug of state.flavors || []) chips.push({ id: `flavor:${slug}`, label: spokenFlavor(slug) });
   for (const slug of state.protein_groups || []) chips.push({ id: `protein:${slug}`, label: titleToken(slug) });
   for (const cue of state.intent_cues || []) chips.push({ id: `cue:${cue}`, label: CUE_LABELS[cue] || cue });
-  if ((state.exclude_cooking || []).length === 3) chips.push({ id: "exclude_cooking", label: "No fried" });
-  else if ((state.exclude_cooking || []).includes("deep")) chips.push({ id: "exclude_cooking", label: "No deep-fried" });
+  if ((state.exclude_cooking || []).length === 3) chips.push({ id: "exclude_cooking", label: "Nothing fried" });
+  else if ((state.exclude_cooking || []).includes("deep")) chips.push({ id: "exclude_cooking", label: "Nothing deep-fried" });
   if (state.quick) chips.push({ id: "quick", label: "Quick" });
   if (state.effort_levels?.includes("easy")) chips.push({ id: "effort:easy", label: "Easy" });
   return chips;
@@ -219,9 +219,8 @@ function exclusionPhrases(state) {
     if (row.max_count === 0) push(spokenToken(row.token));
   }
   const cooking = state?.exclude_cooking || [];
-  if (cooking.includes("deep") && cooking.includes("pan") && cooking.includes("shallow")) push("fried");
-  else if (cooking.length === 1 && cooking.includes("deep")) push("deep-fried");
-  else if (cooking.length) push("fried");
+  const fried = cooking.length === 1 && cooking.includes("deep") ? "nothing deep-fried" : cooking.length ? "nothing fried" : null;
+  if (fried) parts.push(fried);
   return parts;
 }
 
@@ -753,7 +752,7 @@ export function reconcileAcknowledgement({
   const details = detailPhrases(state, task);
   // Ranking cues are not filters. "Not too heavy is still on" only belongs
   // when that cue was an explicit constraint the conflict left in place.
-  const stillOn = details.constraints.filter((phrase) => !/^no /.test(phrase));
+  const stillOn = details.constraints.filter((phrase) => !/^(no|nothing) /.test(phrase));
   return finish(withStillOn(base, stillOn), "reconciled");
 }
 

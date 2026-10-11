@@ -365,7 +365,7 @@ describe("acknowledgements and telemetry", () => {
       removedTokens: [],
       userText: "nothing fried",
     });
-    expect(fried.acknowledgement.toLowerCase()).toMatch(/no fried/);
+    expect(fried.acknowledgement.toLowerCase()).toMatch(/nothing fried/);
     expect(fried.acknowledgement).not.toBe("Got it.");
 
     const crispy = reconcileAcknowledgement({
@@ -378,7 +378,7 @@ describe("acknowledgements and telemetry", () => {
       userText: "crispy without frying",
     });
     expect(crispy.acknowledgement.toLowerCase()).toMatch(/crispy/);
-    expect(crispy.acknowledgement.toLowerCase()).toMatch(/no fried/);
+    expect(crispy.acknowledgement.toLowerCase()).toMatch(/nothing fried/);
 
     const healthy = applyDiscoveryDelta(null, discoveryDelta({
       concepts: [
