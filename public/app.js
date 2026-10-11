@@ -3778,11 +3778,15 @@
     state.previewMealId = state.dinnerDetailMeal.id;
     state.activeRecipe = null;
     const disc = Discovery && Discovery.getState ? Discovery.getState() : { mode: "standalone" };
+    const restore = Discovery && Discovery.captureState ? Discovery.captureState() : {};
     if (Discovery && Discovery.captureState) {
-      const snap = Discovery.captureState();
-      history.replaceState({ find: snap }, "", location.pathname + location.search);
+      history.replaceState({ fw: 1, view: "find", restore }, "", location.pathname + location.search);
     }
-    history.pushState({ fromFind: true }, "", "/meal/" + encodeURIComponent(slug) + "?from=find");
+    history.pushState(
+      { fw: 1, view: "detail", origin: "find", restore },
+      "",
+      "/meal/" + encodeURIComponent(slug) + "?from=find"
+    );
     show("detail", {
       context: Nav.contextFor("detail", "find", {
         established: householdEstablished(),

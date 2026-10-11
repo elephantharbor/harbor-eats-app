@@ -87,15 +87,16 @@
       }
       var st = hooks.getState();
       if (st.view === "detail" || st.view === "cook") {
-        restoreTaskParent({
-          view: st.view,
-          origin: (st.navContext && st.navContext.detail && st.navContext.detail.origin) || st.navContext[st.view]?.origin,
-          restore: (history.state && history.state.restore) || {},
-        });
         if (history.state && history.state.fw) {
           popping = true;
           history.back();
+          return true;
         }
+        restoreTaskParent({
+          view: st.view,
+          origin: (st.navContext && st.navContext.detail && st.navContext.detail.origin) || (st.navContext[st.view] && st.navContext[st.view].origin),
+          restore: (history.state && history.state.restore) || {},
+        });
         return true;
       }
       if (history.state && history.state.fw && history.state.origin) {
@@ -123,10 +124,21 @@
       }
       if (event.state && event.state.fw) {
         var v = event.state.view;
-        hooks.show(v, { context: event.state.restore, skipHistory: true, force: true });
-        if (v === "find" && hooks.getFindRestore && event.state.restore) {
-          root.Discovery && root.Discovery.restoreFromHistory && root.Discovery.restoreFromHistory(event.state.restore);
+        if (v === "find") {
+          hooks.show("find", {
+            context: hooks.Nav.contextFor("find", "detail", {
+              mode: (event.state.restore && event.state.restore.mode) || "standalone",
+              origin: "find",
+            }),
+            skipHistory: true,
+            force: true,
+          });
+          if (event.state.restore && root.Discovery && root.Discovery.restoreFromHistory) {
+            root.Discovery.restoreFromHistory(event.state.restore);
+          }
+          return;
         }
+        hooks.show(v, { context: event.state.restore, skipHistory: true, force: true });
       }
     }
 
