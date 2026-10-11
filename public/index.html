@@ -948,6 +948,14 @@
         <form method="dialog" class="sheet__inner" id="participantsForm">
           <h2 class="card-title" id="participantsTitle">Who’s eating?</h2>
           <div class="check-grid" id="participantsTiles"></div>
+          <div class="weave-stepper" role="group" aria-label="Guests" id="participantsGuestRow">
+            <span class="field__label">Guests</span>
+            <button type="button" class="btn btn-quiet btn-sm" id="btnGuestFewer" aria-label="One fewer guest">−</button>
+            <span id="participantsGuestCount" aria-live="polite">0</span>
+            <button type="button" class="btn btn-quiet btn-sm" id="btnGuestMore" aria-label="One more guest">+</button>
+          </div>
+          <p class="meta" id="participantsGuestNote" hidden>We only check limits for people in your kitchen.</p>
+          <p class="meta" id="participantsCookingSummary" aria-live="polite"></p>
           <p class="meta" id="participantsInvited" hidden></p>
           <p class="meta" id="participantsHint" hidden>Someone has to eat it.</p>
           <div class="sheet__actions">
@@ -1027,6 +1035,7 @@
   <script src="/meal-media.js"></script>
   <script src="/meal-identity.js"></script>
   <script src="/nav-context.js"></script>
+  <script src="/nav-history.js"></script>
   <script src="/taste-ui.js"></script>
   <script src="/planning-ui.js"></script>
   <script src="/discovery-relax-bridge.js"></script>

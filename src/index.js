@@ -47,6 +47,7 @@ import { routeTasteRequest } from "./lib/taste-profile.js";
 import { routeDinnerPlanRequest } from "./lib/dinner-plan-routes.js";
 import { routeDiscoveryRequest } from "./discovery/http.js";
 import { routeWeaveRequest } from "./weave/routes.js";
+import { routeAlphaAiRequest } from "./ai/alpha-routes.js";
 import {
   getConceptBySlug,
   getRecipeVersion,
@@ -2479,6 +2480,12 @@ export default {
         {
           const dinnerRes = await routeDinnerPlanRequest(env, request, path, url, { writeOrigin });
           if (dinnerRes) return dinnerRes;
+        }
+
+        // Alpha: recipe adaptation advice + recommendation explanations.
+        {
+          const alphaAiRes = await routeAlphaAiRequest(env, request, path);
+          if (alphaAiRes) return alphaAiRes;
         }
 
         // D-06 weave interpret (planning + discovery NLP).

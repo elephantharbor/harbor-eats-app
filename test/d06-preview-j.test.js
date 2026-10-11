@@ -370,10 +370,10 @@ describe("J4 acknowledgement wording", () => {
 });
 
 describe("J5 service worker shell", () => {
-  it("keeps fw-sw-v46 while the shell hash still matches", () => {
+  it("keeps fw-sw-v47 while the shell hash still matches", () => {
     const check = checkSwInvariant();
     expect(check.ok, check.problems.join("; ")).toBe(true);
-    expect(readSw().version).toBe("fw-sw-v46");
-    expect(check.version).toBe("fw-sw-v46");
+    expect(readSw().version).toBe("fw-sw-v47");
+    expect(check.version).toBe("fw-sw-v47");
   });
 });

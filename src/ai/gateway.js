@@ -13,6 +13,7 @@
  */
 import { AiError, normalizeError } from "./errors.js";
 import { getTask } from "./tasks.js";
+import { normalizeExplanationInput } from "./explanation-input.js";
 import { renderPrompt } from "./prompts.js";
 import { routeModels, resolveAlias, isDeniedModel } from "./routing.js";
 import { PRICING_VERSION, costUsd, worstCaseCostUsd, effectiveMaxOutputTokens } from "./pricing.js";
@@ -108,7 +109,8 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
       await record(task, { status: "fallback:provider_unconfigured", household_key: hk });
       return fail("provider_unconfigured", fallback);
     }
-    const inputCheck = validateSchema(task.input_schema, input);
+    const normalizedInput = task.id === "explanation" ? normalizeExplanationInput(input) : input;
+    const inputCheck = validateSchema(task.input_schema, normalizedInput);
     if (!inputCheck.ok) return fail("invalid_input", fallback);
 
     // Selection by task class only: models[0], never escalated.
@@ -119,7 +121,7 @@ export function createGenerationService({ provider, store, env = {}, now = () =>
       await record(task, { status: "fallback:disabled", model: "denied", household_key: hk });
       return fail("disabled", fallback);
     }
-    const safeInput = redactValue(input);
+    const safeInput = redactValue(normalizedInput);
     // Interpretation inputs are household-free: no member ids, names, allergens, tastes,
     // or constraint rows. A date list or dinner-count default can differ per plan and
     // only partitions the cache. Conflicts and eligibility are recomputed after every

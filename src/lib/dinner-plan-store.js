@@ -88,12 +88,12 @@ export async function loadDinnerPlan(db, dinnerPlanId) {
     [dinnerPlanId]
   );
   if (!plan) return null;
-  const [meals, participants, ratings, lines, deltas, votes] = await Promise.all([
+  const [meals, participants, ratings, lines, deltas, votes, adaptations] = await Promise.all([
     bindAll(
       db,
       `SELECT meal_id, dinner_plan_id, position, kind, state, scheduled_date, recipe_slug,
               recipe_id, recipe_version_id, version_number, cooked_recipe_version_id, title,
-              base_servings, pinned_ingredients_json, pinned_steps_json, allergens_json,
+              base_servings, guest_count, pinned_ingredients_json, pinned_steps_json, allergens_json,
               vocabulary_json, tags_json, effort_level, ingredient_complexity, data_origin
        FROM dinner_plan_meal WHERE dinner_plan_id = ? ORDER BY position`,
       [dinnerPlanId]
@@ -133,6 +133,12 @@ export async function loadDinnerPlan(db, dinnerPlanId) {
        FROM dinner_plan_vote WHERE dinner_plan_id = ?`,
       [dinnerPlanId]
     ),
+    bindAll(
+      db,
+      `SELECT meal_id, dinner_plan_id, household_id, recipe_version_id, override_json, created_at, updated_at
+       FROM dinner_meal_adaptation WHERE dinner_plan_id = ?`,
+      [dinnerPlanId]
+    ),
   ]);
   const byMeal = new Map();
   for (const meal of meals) {
@@ -156,9 +162,21 @@ export async function loadDinnerPlan(db, dinnerPlanId) {
       tags: parse(meal.tags_json, []),
       effort_level: meal.effort_level || null,
       ingredient_complexity: meal.ingredient_complexity || null,
+      guest_count: meal.guest_count ?? 0,
       participant_ids: [],
+      adaptation: null,
       ratings: [],
     });
+  }
+  for (const row of adaptations || []) {
+    const meal = byMeal.get(row.meal_id);
+    if (!meal) continue;
+    meal.adaptation = {
+      recipe_version_id: row.recipe_version_id,
+      override_json: parse(row.override_json, {}),
+      created_at: row.created_at,
+      updated_at: row.updated_at,
+    };
   }
   for (const row of participants) {
     const meal = byMeal.get(row.meal_id);
@@ -276,15 +294,16 @@ export async function saveDinnerPlan(db, plan) {
   add("DELETE FROM dinner_shop_delta WHERE dinner_plan_id = ?", [plan.dinner_plan_id]);
   add("DELETE FROM dinner_shop_line WHERE dinner_plan_id = ?", [plan.dinner_plan_id]);
   add("DELETE FROM dinner_plan_vote WHERE dinner_plan_id = ?", [plan.dinner_plan_id]);
+  add("DELETE FROM dinner_meal_adaptation WHERE dinner_plan_id = ?", [plan.dinner_plan_id]);
   add("DELETE FROM dinner_plan_meal WHERE dinner_plan_id = ?", [plan.dinner_plan_id]);
   for (const meal of plan.meals || []) {
     add(
       `INSERT INTO dinner_plan_meal
         (meal_id, dinner_plan_id, position, kind, state, scheduled_date, recipe_slug, recipe_id,
-         recipe_version_id, version_number, cooked_recipe_version_id, title, base_servings,
+         recipe_version_id, version_number, cooked_recipe_version_id, title, base_servings, guest_count,
          pinned_ingredients_json, pinned_steps_json, allergens_json, vocabulary_json, tags_json,
          effort_level, ingredient_complexity, data_origin, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         meal.meal_id,
         plan.dinner_plan_id,
@@ -299,6 +318,7 @@ export async function saveDinnerPlan(db, plan) {
         meal.cooked_recipe_version_id,
         meal.title,
         meal.base_servings,
+        meal.guest_count ?? 0,
         json(meal.pinned_ingredients),
         json(meal.pinned_steps),
         json(meal.allergens || []),
@@ -316,6 +336,22 @@ export async function saveDinnerPlan(db, plan) {
         `INSERT INTO dinner_plan_participant (meal_id, member_id, household_id, active)
          VALUES (?, ?, ?, 1)`,
         [meal.meal_id, memberId, plan.household_id]
+      );
+    }
+    if (meal.adaptation?.override_json) {
+      add(
+        `INSERT INTO dinner_meal_adaptation
+          (meal_id, dinner_plan_id, household_id, recipe_version_id, override_json, created_at, updated_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        [
+          meal.meal_id,
+          plan.dinner_plan_id,
+          plan.household_id,
+          meal.adaptation.recipe_version_id || meal.recipe_version_id,
+          json(meal.adaptation.override_json),
+          meal.adaptation.created_at || plan.updated_at,
+          meal.adaptation.updated_at || plan.updated_at,
+        ]
       );
     }
     for (const rating of meal.ratings || []) {

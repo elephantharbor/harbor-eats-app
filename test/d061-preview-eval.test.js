@@ -802,7 +802,7 @@ describe("spend settlement", () => {
     const sqlite = migrate();
     const db = asD1RejectingNegativeBinds(sqlite);
     const store = createD1Store(db);
-    const provider = createFakeProvider({ script: [{ json: { text: "Fits the evening." } }] });
+    const provider = createFakeProvider({ script: [{ json: { text: "Fits the evening.", used_fact_ids: ["legacy_0"] } }] });
     const service = createGenerationService({
       provider,
       store,

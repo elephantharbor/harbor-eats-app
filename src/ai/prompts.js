@@ -79,8 +79,16 @@ export const PROMPTS = Object.freeze({
   feedback_extraction: { version: "feedback_extraction@1", system: SYSTEM, user: "Extract structured feedback themes from this comment about a cooked meal.\nMeal: {{meal}}\nComment: {{text}}" },
   concept_generation: { version: "concept_generation@1", system: SYSTEM, user: "Propose meal concepts for the brief. They are drafts for human review.\nBrief: {{text}}\nContext: {{context}}" },
   recipe_draft: { version: "recipe_draft@1", system: SYSTEM, user: "Draft a recipe for the concept. It is an unreviewed draft.\nConcept: {{text}}" },
-  recipe_adaptation: { version: "recipe_adaptation@1", system: SYSTEM, user: "Suggest an adaptation of the recipe for the request. Draft only.\nRecipe: {{recipe}}\nRequest: {{text}}" },
-  explanation: { version: "explanation@1", system: SYSTEM, user: "Explain in one or two friendly sentences why this meal fits, using only these deterministic reasons.\nMeal: {{meal}}\nReasons: {{reasons}}" },
+  recipe_adaptation: {
+    version: "recipe_adaptation@2",
+    system: `${SYSTEM}\n\nTask recipe_adaptation. Return structured ops only. Never output quantities, servings, or safety claims.`,
+    user: "Request: {{text}}\nRecipe: {{recipe}}",
+  },
+  explanation: {
+    version: "explanation@2",
+    system: `${SYSTEM}\n\nTask explanation. Phrase only the supplied facts. used_fact_ids must list fact ids you relied on.`,
+    user: "Facts: {{facts}}\nBasis: {{basis}}\nAllowed phrases: {{allowed_phrases}}",
+  },
   semantic_search_assist: { version: "semantic_search_assist@1", system: SYSTEM, user: "Suggest alternate search phrasings and facet hints for the query.\nQuery: {{text}}" },
 });
 

@@ -409,16 +409,29 @@
   }
 
   function persistEvent(event, props) {
+    const p = props || {};
     apiPost("/api/events", {
       event_name: event,
-      household_id: API.householdId || state.householdId || (props && props.household_id) || null,
-      member_id: (props && (props.member_id || props.person_id || props.inviter_id)) || null,
-      plan_id: (props && props.plan_id) || API.planId || PLAN_ID,
-      meal_option_id: (props && props.meal_option_id) || null,
-      invite_code: (props && props.invite_code) || null,
-      share_object_id: (props && props.share_object_id) || null,
-      channel: (props && props.channel) || null,
-      attribution_last_touch: (props && props.attribution_last_touch) || state.lastTouch || null,
+      household_id: API.householdId || state.householdId || p.household_id || null,
+      member_id: p.member_id || p.person_id || p.inviter_id || null,
+      plan_id: p.plan_id || API.planId || PLAN_ID,
+      meal_option_id: p.meal_option_id || p.meal_id || null,
+      invite_code: p.invite_code || null,
+      share_object_id: p.share_object_id || null,
+      channel: p.channel || null,
+      attribution_last_touch: p.attribution_last_touch || state.lastTouch || null,
+      dinner_plan_id: p.dinner_plan_id || (state.dinnerPlan && state.dinnerPlan.dinner_plan_id) || null,
+      meal_id: p.meal_id || null,
+      meal_count: p.meal_count,
+      source: p.source,
+      op: p.op,
+      recipe_slug: p.recipe_slug,
+      kind: p.kind,
+      support: p.support,
+      op_count: p.op_count,
+      line_count: p.line_count,
+      diner_count: p.diner_count,
+      basis: p.basis,
     }).catch(function () {});
   }
 
@@ -563,6 +576,8 @@
     mealOptionsMealId: null,
     participantsMealId: null,
     participantsDraft: null,
+    participantsGuestDraft: 0,
+    detailViewingServings: null,
     swapReplacePosition: null,
     changeCountValue: null,
     changeCountRemoveMealId: null,
@@ -660,7 +675,19 @@
     return "your kitchen";
   }
 
-  function servingCountForMeal() {
+  function dinerCountForPlanMeal(meal) {
+    if (!meal) return activeMemberCount();
+    const participants = (meal.participant_ids || []).length;
+    const guests = Math.max(0, Number(meal.guest_count) || 0);
+    const total = participants + guests;
+    if (total < 1) return activeMemberCount();
+    return Math.min(8, total);
+  }
+
+  function servingCountForMeal(meal) {
+    const raw = meal || (state.dinnerCookMealId && planMealById(state.dinnerCookMealId));
+    if (raw && raw.participant_ids) return dinerCountForPlanMeal(raw);
+    if (state.detailViewingServings != null) return state.detailViewingServings;
     return activeMemberCount();
   }
 
@@ -1622,6 +1649,10 @@
     if (name === "planReview") renderPlanReview();
     if (name === "planConfirm") renderPlanConfirm();
     if (name === "shopList") {
+      track("shopping_opened", {
+        dinner_plan_id: state.dinnerPlan && state.dinnerPlan.dinner_plan_id,
+        line_count: ((state.dinnerShop && state.dinnerShop.lines) || (state.dinnerPlan && state.dinnerPlan.shop_lines) || []).length,
+      });
       refreshDinnerShopping().then(function () {
         renderShopList();
       });
@@ -3039,6 +3070,27 @@
       return null;
     }
     applyDinnerPlan(res.plan);
+    const planEditOps = {
+      add_meal: true,
+      remove_meal: true,
+      swap_meal: true,
+      set_participants: true,
+      set_guest_count: true,
+      set_count: true,
+    };
+    if (planEditOps[payload.op]) {
+      track("plan_edited", { op: payload.op, dinner_plan_id: res.plan.dinner_plan_id });
+    }
+    if (payload.op === "select_meal") {
+      const m = (res.plan.meals || []).find(function (x) {
+        return x.meal_id === payload.meal_id;
+      });
+      track("dinner_selected", {
+        dinner_plan_id: res.plan.dinner_plan_id,
+        meal_id: payload.meal_id,
+        recipe_slug: m && m.recipe_slug,
+      });
+    }
     if (state.view === "shopList") await refreshDinnerShopping();
     if (affectsList) {
       const participantNoop =
@@ -4916,8 +4968,10 @@
     await refreshMembersFromServer();
     state.participantsMealId = mealId;
     state.participantsDraft = (meal.participant_ids || activeMemberIds()).slice();
+    state.participantsGuestDraft = Math.max(0, Number(meal.guest_count) || 0);
     document.getElementById("participantsTitle").textContent = "Who’s eating Dinner " + meal.position + "?";
     renderParticipantsTiles();
+    syncParticipantsGuestUi();
     document.getElementById("participantsSheet").showModal();
   }
 
@@ -4929,17 +4983,40 @@
     if (btn) btn.disabled = !ok;
   }
 
+  function syncParticipantsGuestUi() {
+    const guestEl = document.getElementById("participantsGuestCount");
+    const summary = document.getElementById("participantsCookingSummary");
+    const note = document.getElementById("participantsGuestNote");
+    if (!guestEl) return;
+    guestEl.textContent = String(state.participantsGuestDraft || 0);
+    const diners = (state.participantsDraft || []).length + (state.participantsGuestDraft || 0);
+    if (summary) summary.textContent = "Cooking for " + diners;
+    if (note) note.hidden = !(state.participantsGuestDraft > 0);
+  }
+
   async function saveParticipantsSheet() {
     const mealId = state.participantsMealId;
     if (!mealId || !state.participantsDraft || !state.participantsDraft.length) return;
-    const res = await mutateDinnerPlan({
+    const meal = planMealById(mealId);
+    const resP = await mutateDinnerPlan({
       op: "set_participants",
       meal_id: mealId,
       participant_ids: state.participantsDraft,
     });
-    if (res) {
+    if (!resP) return;
+    const resG = await mutateDinnerPlan({
+      op: "set_guest_count",
+      meal_id: mealId,
+      guest_count: state.participantsGuestDraft || 0,
+    });
+    if (resG) {
       document.getElementById("participantsSheet").close();
       renderActiveDinnerSurfaces();
+      if (meal) {
+        toast(
+          "Dinner " + meal.position + " is now for " + dinerCountForPlanMeal(planMealById(mealId)) + ". Shopping list updated."
+        );
+      }
     }
   }
 
@@ -6012,9 +6089,10 @@
         if (
           state.view === "detail" &&
           state.navContext.detail &&
-          state.navContext.detail.origin === "find"
+          state.navContext.detail.origin === "find" &&
+          state.navHistory
         ) {
-          history.back();
+          state.navHistory.handleBack();
           return;
         }
         if (Discovery) {
@@ -6144,7 +6222,7 @@
       id: mid,
       name,
       initial: name[0].toUpperCase(),
-      status: "Invited",
+      status: "Active",
     });
     state.ratings[mid] = { score: null, note: "" };
     input.value = "";
@@ -6158,10 +6236,30 @@
         member_id: mid,
         display_name: name,
         role: "member",
-        status: "invited",
+        status: "active",
       });
     }
   });
+
+  const btnGuestFewer = document.getElementById("btnGuestFewer");
+  const btnGuestMore = document.getElementById("btnGuestMore");
+  if (btnGuestFewer) {
+    btnGuestFewer.addEventListener("click", function () {
+      state.participantsGuestDraft = Math.max(0, (state.participantsGuestDraft || 0) - 1);
+      syncParticipantsGuestUi();
+    });
+  }
+  if (btnGuestMore) {
+    btnGuestMore.addEventListener("click", function () {
+      const diners = (state.participantsDraft || []).length + (state.participantsGuestDraft || 0);
+      if (diners >= 8) {
+        toast("Recipes go up to 8.");
+        return;
+      }
+      state.participantsGuestDraft = Math.min(6, (state.participantsGuestDraft || 0) + 1);
+      syncParticipantsGuestUi();
+    });
+  }
 
   document.getElementById("btnSkipTaste").addEventListener("click", () => {
     state.tastePicks = [];
@@ -6979,6 +7077,20 @@
       document.getElementById("btnChangeCountApply").disabled = false;
     }
   });
+
+  if (window.FlavorWeaveNavHistory) {
+    state.navHistory = window.FlavorWeaveNavHistory.create({
+      getState: function () {
+        return { view: state.view, navContext: state.navContext };
+      },
+      show: show,
+      Nav: Nav,
+      getFindRestore: function () {
+        return Discovery && Discovery.captureState ? Discovery.captureState() : null;
+      },
+    });
+    state.navHistory.init();
+  }
 
   if (Discovery) {
     Discovery.init({

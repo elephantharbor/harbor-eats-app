@@ -18,10 +18,10 @@
     settings: "Settings",
     finished: "Back",
     taste: "Back",
-    planReview: "Back",
-    planConfirm: "Back",
-    planCount: "Back",
-    shopList: "Back",
+    planReview: "Plan",
+    planConfirm: "Plan",
+    planCount: "Home",
+    shopList: "Tonight",
     tonightPlan: "Tonight",
   };
   // Screens that always live under Home, however you reached them.
@@ -106,6 +106,9 @@
     if (view === "detail" && ctx && ctx.origin === "find") return "find";
     if (view === "detail" && ctx && ctx.origin === "planReview") return "planReview";
     if (view === "detail" && ctx && ctx.origin === "tonightPlan") return "choices";
+    if (view === "detail" && ctx && ctx.origin === "shopList") return "shopList";
+    if (view === "detail" && ctx && ctx.origin === "cook") return "cook";
+    if (view === "cook") return "detail";
     return (ctx && ctx.origin) || "home";
   }
 
