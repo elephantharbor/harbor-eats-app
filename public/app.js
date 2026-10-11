@@ -3482,18 +3482,21 @@
       minAllowedMealCount: minAllowedMealCount,
       insertPlanMealSkeleton: insertPlanMealSkeleton,
       fadeRemovePlanMealCard: fadeRemovePlanMealCard,
-      dinerLimits: function () {
-        const ids = new Set();
-        const mids = activeMemberIds();
-        for (const row of state.householdConstraintRows || []) {
-          if (row.member_id && mids.indexOf(row.member_id) < 0) continue;
-          if (row.status === "permitted") continue;
-          if (row.rule_key === "finfish") ids.add("no_finfish");
-          if (row.rule_key === "shellfish") ids.add("no_shellfish");
-        }
-        return [...ids];
-      },
+      dinerLimits: dinerLimitIds,
     };
+  }
+
+  /** Seafood limit ids for the diners at the table; Weave hides fish prompts from them. */
+  function dinerLimitIds() {
+    const ids = new Set();
+    const mids = activeMemberIds();
+    for (const row of state.householdConstraintRows || []) {
+      if (row.member_id && mids.indexOf(row.member_id) < 0) continue;
+      if (row.status === "permitted") continue;
+      if (row.rule_key === "fish" || row.rule_key === "finfish") ids.add("no_finfish");
+      if (row.rule_key === "shellfish") ids.add("no_shellfish");
+    }
+    return [...ids];
   }
 
   function mountPlanCountWeave() {
@@ -6999,6 +7002,7 @@
       planMealById: planMealById,
       planMealTitle: planMealTitle,
       activeMembers: activeMembers,
+      dinerLimits: dinerLimitIds,
       memberName: function (id) {
         const m = state.members.find(function (x) {
           return x.id === id;
