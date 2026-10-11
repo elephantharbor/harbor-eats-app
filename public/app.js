@@ -180,6 +180,7 @@
     const sessionMember = snap.session && snap.session.member_id;
     if (sessionMember) state.meId = sessionMember;
     if (Array.isArray(snap.constraints) && state.members.length) {
+      state.householdConstraintRows = snap.constraints;
       const me = meMember();
       state.primaryConstraints = keysFromConstraintRows(
         snap.constraints.filter(function (c) {
@@ -3477,6 +3478,17 @@
         focusPendingPlanMeal();
       },
       mountPlanReview: mountPlanReviewWeave,
+      dinerLimits: function () {
+        const ids = new Set();
+        const mids = activeMemberIds();
+        for (const row of state.householdConstraintRows || []) {
+          if (row.member_id && mids.indexOf(row.member_id) < 0) continue;
+          if (row.status === "permitted") continue;
+          if (row.rule_key === "finfish") ids.add("no_finfish");
+          if (row.rule_key === "shellfish") ids.add("no_shellfish");
+        }
+        return [...ids];
+      },
     };
   }
 

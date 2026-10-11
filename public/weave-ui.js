@@ -27,9 +27,28 @@
     return String(s || "").replace(/'/g, "’");
   }
 
-  function chipListHtml(chips, extraHtml) {
+  function stepperHtml(count) {
+    const n = Number(count) || 0;
+    const label = n === 1 ? "1 dinner" : n + " dinners";
+    return (
+      '<div class="weave-stepper" role="group" aria-label="Number of dinners">' +
+      '<button type="button" class="weave-stepper__btn" data-step="-1" aria-label="One fewer dinner"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button>' +
+      '<output class="weave-stepper__value">' +
+      esc(label) +
+      "</output>" +
+      '<button type="button" class="weave-stepper__btn" data-step="1" aria-label="One more dinner"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>' +
+      "</div>"
+    );
+  }
+
+  function chipListHtml(chips, extraHtml, opts) {
+    const options = opts || {};
     let html = '<div class="weave-understood-row"><ul class="weave-understood" aria-label="What we understood">';
     (chips || []).forEach((c) => {
+      if (options.stepper && c.id === "dinner_count") {
+        html += '<li class="weave-chip weave-chip--stepper">' + stepperHtml(options.stepperCount ?? parseInt(c.label, 10)) + "</li>";
+        return;
+      }
       html +=
         '<li class="weave-chip"><span class="weave-chip__label">' +
         esc(c.label) +
@@ -40,6 +59,49 @@
         '"><svg class="icon" aria-hidden="true"><use href="#i-x" /></svg></button></li>';
     });
     html += "</ul>" + (extraHtml || "") + "</div>";
+    return html;
+  }
+
+  function choiceHtml(ctrl) {
+    const choice = ctrl.choice;
+    if (!choice) return "";
+    const copy = ctrl.choiceCopy || {};
+    const qid = "weaveChoiceQ-" + esc(ctrl.adapter.kind);
+    let html =
+      '<div class="weave-choice" role="group" aria-labelledby="' +
+      qid +
+      '">';
+    if (copy.context) html += '<p class="weave-choice__context">' + esc(typo(copy.context)) + "</p>";
+    html += '<p class="weave-reply weave-choice__question" id="' + qid + '" tabindex="-1">' + esc(typo(copy.question || "Which dinner did you mean?")) + "</p>";
+    html += '<div class="weave-choice__chips">';
+    (choice.candidates || []).forEach((row) => {
+      const pressed = (ctrl.choicePicked || []).includes(row.position);
+      html +=
+        '<button type="button" class="chip-tog weave-choice__chip' +
+        (pressed ? " is-on" : "") +
+        '" data-choice-position="' +
+        esc(String(row.position)) +
+        '"' +
+        (choice.multi ? ' aria-pressed="' + (pressed ? "true" : "false") + '"' : "") +
+        ' aria-label="' +
+        esc(row.label + ", " + (row.title || "")) +
+        '"><strong>' +
+        esc(row.label) +
+        "</strong> " +
+        esc(row.title || "") +
+        "</button>";
+    });
+    html += "</div>";
+    if (choice.multi && (ctrl.choicePicked || []).length) {
+      const n = ctrl.choicePicked.length;
+      const words = ["one", "two", "three", "four"];
+      const label = n <= 4 ? "Go with these " + words[n - 1] : "Go with these " + n;
+      html += '<button type="button" class="btn btn-primary btn-sm weave-choice__apply">' + esc(label) + "</button>";
+    }
+    if (choice.reason === "undated" || choice.reason === "weekend_undated") {
+      html += '<button type="button" class="btn btn-quiet btn-sm weave-choice__dates">Add days</button>';
+    }
+    html += '<button type="button" class="btn btn-quiet btn-sm weave-choice__cancel">Never mind</button></div>';
     return html;
   }
 
@@ -65,6 +127,10 @@
       turn: 0,
       failures: 0,
       draft: "",
+      choice: null,
+      choiceCopy: null,
+      choicePicked: [],
+      turnSnapshot: null,
       listeners: new Set(),
     };
 
@@ -105,6 +171,9 @@
         next: ctrl.next,
         notice: ctrl.notice && ctrl.notice.kind === "status" ? { kind: "status", style: ctrl.notice.style, text: ctrl.notice.text } : null,
         stateRef: adapter.getState(),
+        choice: ctrl.choice,
+        choiceCopy: ctrl.choiceCopy,
+        choicePicked: ctrl.choicePicked,
         at: Date.now(),
       };
       try {
@@ -139,6 +208,9 @@
       ctrl.chips = data.chips || [];
       ctrl.next = data.next || [];
       ctrl.notice = data.notice || null;
+      ctrl.choice = data.choice || null;
+      ctrl.choiceCopy = data.choiceCopy || null;
+      ctrl.choicePicked = data.choicePicked || [];
       adapter.setState?.(data.stateRef);
       ctrl.state = "settled";
       render();
@@ -227,7 +299,8 @@
           (working ? "" : '<button type="button" class="btn btn-quiet btn-sm weave-echo__edit">Edit</button>') +
           "</p>";
       }
-      if (ctrl.reply && shown) html += replyHtml();
+      if (ctrl.choice && shown) html += choiceHtml(ctrl);
+      else if (ctrl.reply && shown) html += replyHtml();
       if (ctrl.notice) {
         const role = ctrl.notice.kind === "alert" ? "alert" : "status";
         html +=
@@ -257,7 +330,9 @@
       } else if (shown && ctrl.chips.length) {
         html += chipListHtml(ctrl.chips);
       }
-      if (shown && ctrl.next.length) {
+      if (shown && ctrl.choice) {
+        /* Next hides while the chooser is open */
+      } else if (shown && ctrl.next.length) {
         html += '<div class="weave-next" role="group" aria-label="Try next"' + (ctrl.draft ? " hidden" : "") + ">";
         ctrl.next.forEach((s) => {
           html += '<button type="button" class="chip-tog weave-next__btn" data-weave-suggest="' + esc(s) + '">' + esc(s) + "</button>";
@@ -344,6 +419,16 @@
     }
 
     function expand() {
+      const form = body.querySelector(".weave-composer");
+      const field = fieldEl();
+      if (form && field) {
+        form.classList.remove("weave-composer--collapsed");
+        ctrl.state = "composing";
+        const next = body.querySelector(".weave-next");
+        if (next) next.hidden = true;
+        field.focus({ preventScroll: true });
+        return;
+      }
       ctrl.state = "composing";
       render();
       focusField(true);
@@ -420,7 +505,9 @@
       });
       body.querySelectorAll("[data-weave-suggest]").forEach((btn) => {
         btn.addEventListener("click", () => {
-          void submit(btn.getAttribute("data-weave-suggest") || "");
+          const text = btn.getAttribute("data-weave-suggest") || "";
+          if (adapter.onSuggest?.(text, ctrl)) return;
+          void submit(text);
         });
       });
       body.querySelectorAll("[data-chip-id]").forEach((btn) => {
@@ -428,6 +515,29 @@
           void removeChip(btn.getAttribute("data-chip-id"));
         });
       });
+      body.querySelectorAll("[data-step]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (btn.getAttribute("aria-disabled") === "true") return;
+          void adapter.onCountStep?.(Number(btn.getAttribute("data-step")), ctrl);
+        });
+      });
+      const choiceUi = { host, body, persist, announce, settleWith, render };
+      body.querySelectorAll(".weave-choice__chip").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          void adapter.onChoiceChip?.(btn, ctrl, choiceUi);
+        });
+      });
+      body.querySelector(".weave-choice__apply")?.addEventListener("click", () => {
+        void adapter.onChoiceApply?.(ctrl, choiceUi);
+      });
+      body.querySelector(".weave-choice__cancel")?.addEventListener("click", () => {
+        void adapter.onChoiceCancel?.(ctrl, choiceUi);
+      });
+      body.querySelector(".weave-choice__dates")?.addEventListener("click", () => {
+        adapter.onChoiceAddDays?.(ctrl);
+      });
+      const q = body.querySelector(".weave-choice__question");
+      if (q && ctrl.choice && !ctrl.restoreStatic) q.focus({ preventScroll: true });
       body.querySelector(".weave-composer--collapsed")?.addEventListener("click", (e) => {
         if (e.target.closest("button")) return;
         expand();
@@ -510,7 +620,24 @@
       ctrl.reply = data.acknowledgement || "";
       ctrl.next = adapter.suggestions?.(data) || [];
       ctrl.notice = null;
-      if (data.conflicts?.length) {
+      ctrl.choice = data.choice || data.ambiguous_target || null;
+      ctrl.choiceCopy = data.choice_copy || adapter.choiceCopy?.(ctrl.choice, data) || null;
+      ctrl.choicePicked = [];
+      if (ctrl.choice) {
+        ctrl.reply = "";
+        ctrl.next = [];
+        setBusy(false);
+        ctrl.state = "settled";
+        render();
+        const ctx = ctrl.choiceCopy?.context || "";
+        const q = ctrl.choiceCopy?.question || "";
+        const n = (ctrl.choice.candidates || []).length;
+        announce(typo([ctx, q, n + " choices."].filter(Boolean).join(" ")));
+        persist();
+        notify();
+        return;
+      }
+      if (data.conflicts?.length && data.conflicts[0]?.code !== "slot_ambiguous") {
         const line = adapter.conflictCopy?.(data) || ctrl.reply;
         ctrl.notice = line ? { kind: "status", style: "info", text: line } : null;
         ctrl.reply = "";
@@ -524,6 +651,19 @@
       ctrl.turn += 1;
       ctrl.restoreStatic = false;
       ctrl.notice = null;
+      ctrl.turnSnapshot = {
+        echo: ctrl.echo,
+        reply: ctrl.reply,
+        chips: ctrl.chips,
+        next: ctrl.next,
+        choice: ctrl.choice,
+        choiceCopy: ctrl.choiceCopy,
+        stateRef: adapter.getState?.(),
+      };
+      adapter.clearPendingSlot?.();
+      ctrl.choice = null;
+      ctrl.choiceCopy = null;
+      ctrl.choicePicked = [];
       ctrl.echo = text;
       ctrl.draft = "";
       ctrl.state = "working";
@@ -641,6 +781,7 @@
       ctrl.next = adapter.initialNext?.() || [];
       render();
     }
+    void adapter.prefetchStarters?.();
 
     return {
       ctrl,
@@ -657,5 +798,5 @@
     };
   }
 
-  global.FlavorWeaveWeave = { mount, chipListHtml, REDUCED_MOTION: REDUCED };
+  global.FlavorWeaveWeave = { mount, chipListHtml, stepperHtml, choiceHtml, REDUCED_MOTION: REDUCED };
 })(window);

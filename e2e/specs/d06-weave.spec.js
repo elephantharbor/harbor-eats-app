@@ -12,7 +12,7 @@ async function skipToChoicesNoShellfish(page) {
 /** @param {import('@playwright/test').Page} page */
 async function skipToChoicesShellfish(page) {
   await page.getByRole("button", { name: "Get started" }).click();
-  await page.locator("#hhName").fill("E2E Kitchen");
+  await page.locator("#hhName").fill("[synthetic] E2E Kitchen");
   await page.locator("#ownerName").fill("Alex");
   await page.locator("#btnCreateHh").click();
   await page.locator("#newMemberName").fill("Partner");

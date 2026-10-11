@@ -410,6 +410,24 @@ describe("internal smoke endpoint (token-gated, disabled by default)", () => {
     expect(provider.calls[0].max_output_tokens).toBe(300);
     expect(provider.calls[0].reasoning_effort).toBe("none");
   });
+  it("smoke nonce never reaches model reasons or user-facing output", async () => {
+    const db = new DatabaseSync(":memory:");
+    db.exec(readFileSync("migrations/0014_ai_gateway.sql", "utf8"));
+    db.exec(readFileSync("migrations/0015_ai_provider_limits.sql", "utf8"));
+    const DB = { prepare(sql) { let a = []; const api = { bind(...x) { a = x; return api; }, async run() { db.prepare(sql).run(...a); return {}; }, async first() { return db.prepare(sql).get(...a) ?? null; } }; return api; } };
+    const provider = createFakeProvider({ script: [{ json: { text: "Quick and simple." } }] });
+    const nonce = "ns2-smoke-fixture-nonce";
+    const req = new Request(`https://x.test/api/ai/internal/smoke?nonce=${nonce}`, {
+      method: "POST",
+      headers: { "x-ai-smoke-token": "tok" },
+    });
+    const on = await handleAiSmoke(req, { ...ON, AI_TASKS_ENABLED: "explanation", AI_SMOKE_TOKEN: "tok", DB }, provider);
+    expect(on.body.ok).toBe(true);
+    const input = provider.calls[0]?.input || {};
+    expect(JSON.stringify(input)).not.toContain(nonce);
+    expect(JSON.stringify(on.body.output || {})).not.toContain(nonce);
+    expect(input.cache_bust).not.toBe(nonce);
+  });
   it("live smoke script is never wired into CI or npm test", () => {
     const pkg = readFileSync("package.json", "utf8");
     const ci = readFileSync(".github/workflows/ci.yml", "utf8") + readFileSync(".github/workflows/hosted-e2e.yml", "utf8");

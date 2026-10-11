@@ -37,6 +37,7 @@ import {
 import { rulesFromLegacyKeys } from "../lib/legacy-preference-audit.js";
 import { discoveryRelaxations } from "./relax.js";
 import { detectDiscoveryConflicts, detectPlanningConflicts, frequencyConflicts } from "./conflicts.js";
+import { applyPendingSlotChoice, choiceCopy, planSlotChoiceGate } from "./plan-slot-choice.js";
 import { discoveryStateToQuery } from "./discovery-map.js";
 import { parsePlannerFromState } from "./plan-map.js";
 import {
@@ -323,7 +324,11 @@ async function executeDiscovery(env, session, { executedState, clientContext, co
   if (ran.error) return { error: ran.error };
   let suggestions = ack.suggestions || [];
   if ((ran.payload.total || 0) === 0) {
-    ack = { acknowledgement: noResultsAcknowledgement(conflicts, executedState), acknowledgement_source: "reconciled", suggestions: noResultsSuggestions(executedState) };
+    ack = {
+      acknowledgement: noResultsAcknowledgement(conflicts, executedState),
+      acknowledgement_source: "reconciled",
+      suggestions: noResultsSuggestions(executedState, tableLimitIds(preloaded?.memberIds || [], preloaded?.constraints || [])),
+    };
     suggestions = ack.suggestions;
   }
   return {
@@ -470,6 +475,11 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
 
   if (isPlanApply) {
     let priorState = body.state || emptyPlanningState();
+    if (body.slot_choice?.positions?.length) {
+      const chosen = applyPendingSlotChoice(priorState, body.slot_choice.positions);
+      if (!chosen.ok) return fail(chosen.error);
+      priorState = chosen.state;
+    }
     if (body.chip_id) priorState = removePlanningChip(priorState, body.chip_id);
     let dinnerPlan = null;
     if (body.dinner_plan_id) {
@@ -581,12 +591,14 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
     const priorState = anchor.priorState;
     const context = buildPromptContext({ timezone, participantIds, dinnerPlan, today, usual });
     context.vocabulary = vocabulary;
-    const amb = ambiguousTarget({
-      text,
-      dates: context.dates || datesFromPlanMeals(dinnerPlan?.meals),
-      dinnerCount: priorState?.dinner_count || context.dinner_count_default,
-      today,
-    });
+    const amb = body.target_position
+      ? null
+      : ambiguousTarget({
+          text,
+          dates: context.dates || datesFromPlanMeals(dinnerPlan?.meals),
+          dinnerCount: priorState?.dinner_count || context.dinner_count_default,
+          today,
+        });
     if (amb) {
       await settleReads();
       return json(attachTelemetry({
@@ -693,7 +705,47 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
       ...context,
       user_text: text,
       undated_meal_count: undatedMealCount,
+      target_position: body.target_position,
     });
+    const slotGate = planSlotChoiceGate({
+      priorState,
+      appliedState: applied.state,
+      delta: gen.output,
+      dinnerPlan,
+      userText: text,
+    });
+    if (slotGate) {
+      const copy = choiceCopy(slotGate.conflict);
+      const [constraints, tastes] = await Promise.all([reads.constraints, reads.tastes]);
+      void constraints;
+      void tastes;
+      return json(attachTelemetry({
+        ok: true,
+        task: "planning_intent",
+        source: gen.source,
+        model: gen.model,
+        prompt_version: gen.prompt_version,
+        llm_called: true,
+        acknowledgement: null,
+        acknowledgement_source: "reconciled",
+        state: slotGate.state,
+        chips: buildPlanningChips(slotGate.state),
+        conflicts: [slotGate.conflict],
+        choice: slotGate.conflict,
+        choice_copy: copy,
+        dropped: applied.dropped,
+        changed_positions: [],
+        preview: null,
+        fallback_code: null,
+        metadata: { estimated_cost_usd: Number(gen.estimated_cost_usd) || 0 },
+      }, {
+        task: "planning_intent",
+        semantic: applied.semantic || {},
+        source: gen.source || "provider",
+        resultCount: 0,
+        zeroReason: null,
+      }));
+    }
     const [constraints, tastes, catalogLoad] = await Promise.all([reads.constraints, reads.tastes, reads.catalog]);
     const conflictPass = detectPlanningConflicts(applied.state, {
       participantIds,

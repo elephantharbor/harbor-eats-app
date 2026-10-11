@@ -3313,6 +3313,76 @@ button.link-card:hover {
   color: var(--color-text);
 }
 
+.weave-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 36px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-structure-soft);
+}
+.weave-stepper__btn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+.weave-stepper__btn::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+}
+.weave-stepper__btn:hover {
+  color: var(--color-text);
+}
+.weave-stepper__btn[aria-disabled="true"] {
+  color: var(--color-text-tertiary);
+  cursor: default;
+}
+.weave-stepper__value {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  min-width: 5.5rem;
+  text-align: center;
+}
+.weave-choice__context {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+.weave-choice__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-2) 0;
+}
+.weave-choice__chip {
+  min-height: 44px;
+  max-width: 100%;
+  text-align: left;
+}
+.weave-choice__chip strong {
+  margin-right: var(--space-1);
+}
+html[data-keyboard-owner="weave"] .tabbar,
+html[data-keyboard-owner="weave"] .sticky-actions {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: none;
+}
+.tabbar,
+.sticky-actions {
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+html[data-keyboard="open"] .toast {
+  bottom: calc(var(--kb-inset, 0px) + var(--space-4));
+}
 .weave-starters,
 .weave-next {
   display: flex;

@@ -6,12 +6,12 @@ const CUE_LABELS = Object.freeze({
   cozy: "Cozy",
   fresh: "Fresh",
   filling: "Filling",
-  light: "Not too heavy",
+  light: "Lighter",
   comforting: "Comforting",
   summery: "Summery",
   special: "Something special",
   restaurant_like: "Restaurant-style",
-  weeknight: "Quick",
+  weeknight: "Weeknight-friendly",
 });
 
 /** How a cue reads in front of "dinners" ("three cozy dinners"). `special` reads as its own clause. */
@@ -23,7 +23,7 @@ const CUE_ADJECTIVES = Object.freeze({
   comforting: "comforting",
   summery: "summery",
   restaurant_like: "restaurant-style",
-  weeknight: "quick",
+  weeknight: "weeknight",
 });
 
 const PLAN_TOKEN_NOUNS = Object.freeze({
@@ -143,7 +143,12 @@ export function buildPlanningChips(state) {
     }
     if (slot.effort === "easy" && slot.weekday) {
       chips.push({ id: `slot:${slot.weekday}:effort`, label: `${weekdayShort(slot.weekday)}: easy` });
+    } else if (slot.effort === "easy" && slot.position) {
+      chips.push({ id: `slot:p${slot.position}:effort`, label: `Dinner ${slot.position}: easy` });
     }
+  }
+  if ((state.semantic_rank || []).includes("vegetable_forward") && !(state.intent_cues || []).includes("light")) {
+    chips.push({ id: "semantic:vegetable_forward", label: "Veggie-forward" });
   }
   if (state.special_count != null && state.special_count > 0 && !(state.slots || []).some((s) => s.special)) {
     const label = state.special_count === 1 ? "Something special" : `${state.special_count} special nights`;
@@ -218,6 +223,7 @@ function exclusionPhrases(state) {
 
 function cuePhrase(cue) {
   if (cue === "special") return "something special";
+  if (cue === "weeknight") return "weeknight-friendly";
   return CUE_ADJECTIVES[cue] || String(cue).replace(/_/g, " ");
 }
 
@@ -273,7 +279,7 @@ function planningSentence(state, notes = {}) {
   const portions = portionSummary(state);
   const adjectives = portions.length
     ? []
-    : (state.intent_cues || []).filter((cue) => cue !== "special").map(cuePhrase);
+    : (state.intent_cues || []).filter((cue) => cue !== "special").map((cue) => (cue === "weeknight" ? "weeknight" : cuePhrase(cue)));
   adjectives.unshift(...(state.cuisines || []).map(spokenToken));
   const count = state.dinner_count;
   const noun = count === 1 ? "dinner" : "dinners";
@@ -584,9 +590,10 @@ function easierCueActive(state) {
 }
 
 /** Suggestion chips that name a cue the search already has. */
-export function noResultsSuggestions(state) {
+export function noResultsSuggestions(state, limits) {
+  const blocked = new Set(limits || []);
   return NO_RESULTS_SUGGESTIONS.filter((label) => {
-    if (label === "Try fish" && fishCueActive(state)) return false;
+    if (label === "Try fish" && (fishCueActive(state) || blocked.has("no_finfish"))) return false;
     if (label === "Make it easier" && easierCueActive(state)) return false;
     return true;
   });
@@ -636,6 +643,18 @@ export function reconciledAcknowledgement(task, state, conflicts, notes = {}) {
     const fish = hard.some((row) => row.alternative?.kind === "category" && row.alternative.token === "fish");
     if (fish && task === "planning_intent") return `${head}, so these dinners are fish.`.slice(0, MAX_ACK);
     if (fish) return `${head}, so we looked for fish instead.`.slice(0, MAX_ACK);
+    const special = (state?.intent_cues || []).includes("special") || (state?.slots || []).some((s) => s.special);
+    if (special && task === "discovery_intent") {
+      return `${head}, so here are some special dinners without it.`.slice(0, MAX_ACK);
+    }
+    if (special && task === "planning_intent") {
+      const dated = (state?.slots || []).find((s) => s.special && s.weekday);
+      if (dated?.weekday) {
+        const day = dated.weekday.charAt(0).toUpperCase() + dated.weekday.slice(1);
+        return `${head}, so ${day}'s still special, just without it.`.slice(0, MAX_ACK);
+      }
+      return `${head}, so we left it out — still one special night.`.slice(0, MAX_ACK);
+    }
     const pronoun = conflictLabels(hard).length > 1 ? "them" : "it";
     return `${head}, so we left ${pronoun} out.`.slice(0, MAX_ACK);
   }

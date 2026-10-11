@@ -117,7 +117,7 @@ export async function advanceCookToRate(page) {
 /** @param {import('@playwright/test').Page} page */
 export async function skipToChoices(page) {
   await page.getByRole("button", { name: "Get started" }).click();
-  await page.locator("#hhName").fill("E2E Kitchen");
+  await page.locator("#hhName").fill("[synthetic] E2E Kitchen");
   await page.locator("#ownerName").fill("Alex");
   await page.locator("#btnCreateHh").click();
   await page.locator("#newMemberName").fill("Partner");
@@ -138,15 +138,16 @@ export async function skipToChoices(page) {
 export async function apiCreateHousehold(request, name, keys = ["dairy"]) {
   const base = process.env.PLAYWRIGHT_BASE_URL || "http://127.0.0.1:8787";
   const member_id = `owner-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+  const display = String(name || "").startsWith("[synthetic]") ? name : `[synthetic] ${name}`;
   const hh = await request.post(`${base}/api/households`, {
-    data: { display_name: name },
+    data: { display_name: display, data_origin: "synthetic" },
   });
   const body = await hh.json();
   expectStatus(hh, 201, "POST /api/households", body);
   const household_id = body.household_id;
   if (!household_id) throw new Error(`apiCreateHousehold: no household_id in ${JSON.stringify(body)}`);
   const mem = await request.post(`${base}/api/households/${household_id}/members`, {
-    data: { member_id, display_name: "Owner", role: "owner", status: "active" },
+    data: { member_id, display_name: "Owner", role: "owner", status: "active", data_origin: "synthetic" },
   });
   expectStatus(mem, 201, `POST /api/households/${household_id}/members`, await safeJson(mem));
   const sess = await request.post(`${base}/api/sessions`, {
