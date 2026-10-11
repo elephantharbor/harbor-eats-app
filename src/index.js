@@ -197,6 +197,7 @@ async function handleHealth(env, url) {
     catalog_runtime_meals,
     catalog_coverage,
     alpha_metrics,
+    consumer_ui: aiHealth(env, resolveProvider(env)).consumer_ui,
     ts: nowIso(),
   });
 }

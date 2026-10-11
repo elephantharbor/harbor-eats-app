@@ -709,12 +709,24 @@
     }
     html += '</div><p class="lede" id="discLede">' + esc(lede) + '</p>';
     html += '<p class="disc-table meta" id="discTableNote"></p></div></header>';
-    if (mode === "standalone") {
+    if (mode === "standalone" && consumerUi) {
       html +=
         '<input type="search" id="discSearch" class="sr-only" tabindex="-1" aria-hidden="true" autocomplete="off" value="' +
         esc((resp && resp.query && resp.query.text) || "") +
         '" />';
       html += '<div id="discWeaveHost"></div>';
+    } else if (mode === "standalone") {
+      html += '<div class="disc-search-row" role="search" aria-label="Find dinners"><label class="sr-only" for="discSearch">Search dinners</label>';
+      html += '<svg class="icon disc-search-icon" aria-hidden="true"><use href="#i-search" /></svg>';
+      html +=
+        '<input type="search" id="discSearch" class="disc-search" placeholder="Try salmon, tacos, or Thai" autocomplete="off" value="' +
+        esc((resp && resp.query && resp.query.text) || "") +
+        '" />';
+      const searchHasText = !!(resp && resp.query && resp.query.text);
+      html +=
+        '<button type="button" class="disc-search-clear" id="discSearchClear" aria-label="Clear search"' +
+        (searchHasText ? "" : " hidden") +
+        ">×</button></div>";
     } else {
       html += '<div class="disc-search-row" role="search" aria-label="Find dinners"><label class="sr-only" for="discSearch">Search dinners</label>';
       html += '<svg class="icon disc-search-icon" aria-hidden="true"><use href="#i-search" /></svg>';
@@ -729,11 +741,12 @@
     html += '<div class="disc-progress" id="discProgress" hidden></div>';
     html += '<div class="disc-main" id="discMain" aria-live="polite"></div>';
     rootEl.innerHTML = html;
+    paintedConsumerUi = consumerUi;
     paintChips();
     paintMain();
     paintTableNote();
     syncSearchClearButton();
-    if (mode === "standalone") {
+    if (mode === "standalone" && consumerUi) {
       try {
         mountFindWeave();
       } catch (err) {
@@ -743,6 +756,30 @@
   }
 
   var weaveFindCtrl = null;
+  var consumerUi = false;
+  var paintedConsumerUi = null;
+
+  if (typeof fetch === "function") {
+    fetch("/api/health", { credentials: "same-origin" })
+      .then(function (r) {
+        return r.ok ? r.json() : null;
+      })
+      .then(function (body) {
+        consumerUi = !!(body && body.consumer_ui);
+        repaintFindForAi();
+      })
+      .catch(function () {
+        consumerUi = false;
+      });
+  }
+
+  function repaintFindForAi() {
+    const rootEl = document.getElementById("findRoot");
+    if (!rootEl || !rootEl.dataset.discMode || paintedConsumerUi === consumerUi) return;
+    rootEl.dataset.discMode = "";
+    weaveFindCtrl = null;
+    paint();
+  }
 
   function mountFindWeave() {
     const B = root.FlavorWeaveWeaveBridge;
