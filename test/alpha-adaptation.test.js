@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { createFakeProvider, createGenerationService, createMemoryStore, TASKS } from "../src/ai/index.js";
 import { postValidateRecipeAdaptation } from "../src/ai/adaptation-schema.js";
-import { validateAdaptationSafety } from "../src/lib/meal-adaptation.js";
+import { ADAPTATION_SAFETY_REFUSAL, canonicalIngredientKey, validateAdaptationSafety } from "../src/lib/meal-adaptation.js";
 import { applyPlanMutation, createDinnerPlan } from "../src/lib/plan-mutations.js";
 import { plannerCatalog } from "../src/lib/dinner-planner.js";
 
@@ -149,31 +149,36 @@ describe("recipe adaptation", () => {
     expect(dairy.ok).toBe(false);
   });
 
-  it("treats a catalog herb under a form qualifier as known", () => {
+  it("treats parsley and cilantro as known herbs after descriptor stripping", () => {
     const herbCatalog = [
       {
         pkg: {
           ingredients: [
             { name: "fresh parsley", ingredient_id: "fresh-parsley" },
-            { name: "flat-leaf parsley", ingredient_id: "flat-leaf-parsley" },
-            { name: "peanut butter", ingredient_id: "peanut-butter" },
+            { name: "fresh cilantro", ingredient_id: "fresh-cilantro" },
           ],
         },
       },
     ];
-    const parsley = validateAdaptationSafety(swap("parsley"), restrictedMeal, {
+    expect(canonicalIngredientKey("flat-leaf parsley")).toBe("parsley");
+    expect(canonicalIngredientKey("fresh-parsley")).toBe("parsley");
+    for (const name of ["parsley", "fresh parsley", "flat-leaf parsley", "cilantro"]) {
+      const out = validateAdaptationSafety(swap(name), restrictedMeal, {
+        constraints: [],
+        tastes: [],
+        catalog: herbCatalog,
+      });
+      expect(out.ok, name).toBe(true);
+      expect(out.override.ops[0].to_name).toBe(name);
+    }
+    const madeUp = validateAdaptationSafety(swap("zzqx-powder"), restrictedMeal, {
       constraints: [],
       tastes: [],
       catalog: herbCatalog,
     });
-    expect(parsley.ok).toBe(true);
-    const unknown = validateAdaptationSafety(swap("nut"), restrictedMeal, {
-      constraints: [{ member_id: "a", rule_key: "nuts", status: "prohibited" }],
-      tastes: [],
-      catalog: herbCatalog,
-    });
-    expect(unknown.ok).toBe(false);
-    expect(unknown.status).toBe("rejected_safety");
+    expect(madeUp.ok).toBe(false);
+    expect(madeUp.status).toBe("rejected_safety");
+    expect(madeUp.blocked[0].limit_ids).toEqual(["unknown_ingredient"]);
   });
 
   it("fails closed on an unknown ingredient", () => {
@@ -244,6 +249,16 @@ describe("recipe adaptation", () => {
     );
     expect(applied.ok).toBe(false);
     expect(applied.error).toBe("adaptation_not_applicable");
+    expect(applied.status).toBe(409);
+    expect(applied.acknowledgement).toBe(ADAPTATION_SAFETY_REFUSAL);
     expect(meal.adaptation).toBeFalsy();
+  });
+
+  it("shows the safety refusal when the client cannot apply a swap", () => {
+    const app = readFileSync(new URL("../public/app.js", import.meta.url), "utf8");
+    const toastFn = app.slice(app.indexOf("function dinnerPlanErrorToast"), app.indexOf("function swapFailureCopy"));
+    expect(toastFn).toContain('code === "adaptation_not_applicable"');
+    expect(toastFn).toContain(ADAPTATION_SAFETY_REFUSAL);
+    expect(toastFn).toContain("res.acknowledgement");
   });
 });

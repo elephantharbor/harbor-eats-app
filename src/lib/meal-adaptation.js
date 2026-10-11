@@ -9,6 +9,12 @@ import { classifySubstituteName } from "./preference-concepts.js";
 const PRESSURE_COOKER_UNSUPPORTED =
   "That pressure cooker is doing most of the work in this version. I'd stick with the original method for this recipe.";
 
+export const ADAPTATION_SAFETY_REFUSAL =
+  "That swap doesn't work for everyone eating this dinner, so we'd leave it out.";
+
+export const ADAPTATION_FALLBACK_REFUSAL =
+  "We're not sure that would work here, so we'd keep the original.";
+
 function normalizeName(value) {
   return String(value || "")
     .trim()
@@ -16,73 +22,84 @@ function normalizeName(value) {
     .replace(/[^a-z0-9]+/g, " ");
 }
 
-function nameKeys(name) {
-  const keys = new Set();
-  const add = (value) => {
-    const n = normalizeName(value);
-    if (n) keys.add(n);
-  };
-  add(name);
-  const canon = canonicalIngredient(name);
-  add(canon.display_name);
-  add(String(canon.ingredient_id || "").replace(/-/g, " "));
-  for (const key of [...keys]) {
-    if (key.endsWith("s") && !key.endsWith("ss") && key.length > 3) keys.add(key.slice(0, -1));
-  }
-  return keys;
-}
-
 function resolveIngredientId(name, catalog) {
-  const keys = nameKeys(name);
-  if (!keys.size) return null;
+  const want = keysForIngredient(name);
+  if (!want.size) return null;
   for (const entry of catalog || plannerCatalog()) {
     for (const ing of entry.pkg?.ingredients || []) {
-      if (keys.has(normalizeName(ing.name))) return ing.ingredient_id || canonicalIngredient(ing.name).ingredient_id;
+      const keys = keysForIngredient(ing.name, ing.ingredient_id);
+      for (const key of want) {
+        if (keys.has(key)) return ing.ingredient_id || canonicalIngredient(ing.name).ingredient_id;
+      }
     }
   }
   return canonicalIngredient(name).ingredient_id;
 }
 
-/** Qualifiers on a catalog line, not a different ingredient ("peanut butter" is not butter). */
-const FORM_MODIFIERS = new Set([
+/** Preparation and form words. They are not a different ingredient. */
+const DESCRIPTOR_WORDS = new Set([
   "fresh",
   "dried",
   "dry",
-  "flat",
-  "leaf",
   "chopped",
   "minced",
+  "diced",
+  "sliced",
+  "grated",
   "ground",
   "whole",
   "raw",
   "frozen",
   "canned",
-  "baby",
+  "finely",
+  "roughly",
+  "packed",
   "large",
   "small",
-  "italian",
-  "curly",
+  "baby",
 ]);
 
-function catalogNameAligns(want, candidate) {
-  const name = normalizeName(candidate);
-  if (!want || !name) return false;
-  if (name === want) return true;
-  if (!name.endsWith(` ${want}`)) return false;
-  const prefix = name.slice(0, -(want.length + 1)).trim();
-  if (!prefix) return false;
-  if (FORM_MODIFIERS.has(prefix)) return true;
-  return prefix.split(" ").every((word) => FORM_MODIFIERS.has(word));
+/**
+ * Importer-style identity: "fresh parsley", "flat-leaf parsley", and id
+ * "fresh-parsley" share the key "parsley". "peanut butter" stays intact.
+ * @param {string} value
+ */
+export function canonicalIngredientKey(value) {
+  const words = normalizeName(value).split(" ").filter(Boolean);
+  /** @type {string[]} */
+  const kept = [];
+  for (let i = 0; i < words.length; i += 1) {
+    if (words[i] === "flat" && words[i + 1] === "leaf") {
+      i += 1;
+      continue;
+    }
+    if (DESCRIPTOR_WORDS.has(words[i])) continue;
+    kept.push(words[i]);
+  }
+  const core = (kept.length ? kept : words).join(" ");
+  if (core.endsWith("s") && !core.endsWith("ss") && core.length > 3) return core.slice(0, -1);
+  return core;
+}
+
+function keysForIngredient(name, id) {
+  const keys = new Set();
+  const add = (value) => {
+    const key = canonicalIngredientKey(value);
+    if (key) keys.add(key);
+  };
+  add(name);
+  if (id) add(String(id).replace(/-/g, " "));
+  return keys;
 }
 
 function catalogKnowsIngredient(name, catalog) {
-  const keys = nameKeys(name);
-  if (!keys.size) return false;
+  const want = keysForIngredient(name);
+  if (!want.size) return false;
   for (const entry of catalog || plannerCatalog()) {
     for (const ing of entry.pkg?.ingredients || []) {
-      const slug = normalizeName(String(ing.ingredient_id || "").replace(/-/g, " "));
-      for (const key of keys) {
-        if (catalogNameAligns(key, ing.name) || (slug && catalogNameAligns(key, slug))) return true;
+      const keys = keysForIngredient(ing.name, ing.ingredient_id);
+      for (const key of want) {
+        if (keys.has(key)) return true;
       }
     }
   }

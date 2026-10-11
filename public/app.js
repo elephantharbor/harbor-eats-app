@@ -3361,6 +3361,11 @@
     else if (code === "meal_count_too_small") toast("Remove a dinner first, then lower the number.");
     else if (code === "forbidden_cross_household" || code === "plan_not_found") toast("This plan isn’t in your kitchen.");
     else if (code === "unknown_recipe") toast("That dinner isn’t on the menu anymore. Pick another.");
+    else if (code === "adaptation_not_applicable")
+      toast(
+        (res && res.acknowledgement) ||
+          "That swap doesn't work for everyone eating this dinner, so we'd leave it out."
+      );
     else toast("We couldn’t reach the kitchen. Try again.");
   }
 

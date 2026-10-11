@@ -81,10 +81,6 @@
       var dlg = topOpenDialog();
       if (dlg) {
         dlg.close();
-        if (history.state && history.state.fw && history.state.transient) {
-          popping = true;
-          history.back();
-        }
         return true;
       }
       var st = hooks.getState();

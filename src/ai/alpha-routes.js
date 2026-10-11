@@ -10,6 +10,8 @@ import {
   postValidateExplanation,
 } from "../lib/explanation-packet.js";
 import {
+  ADAPTATION_FALLBACK_REFUSAL,
+  ADAPTATION_SAFETY_REFUSAL,
   reconcileEquipmentUnsupported,
   validateAdaptationSafety,
 } from "../lib/meal-adaptation.js";
@@ -29,7 +31,7 @@ import { postValidateRecipeAdaptation } from "./adaptation-schema.js";
 const ADAPT_FALLBACK = {
   ok: true,
   support: "fallback",
-  acknowledgement: "We're not sure that would work here, so we'd keep the original.",
+  acknowledgement: ADAPTATION_FALLBACK_REFUSAL,
   kind: "unsupported",
 };
 
@@ -195,7 +197,7 @@ export async function routeAlphaAiRequest(env, request, path) {
       return respond({
         ok: true,
         support: "fallback",
-        acknowledgement: "We're not sure that would work here, so we'd keep the original.",
+        acknowledgement: ADAPTATION_FALLBACK_REFUSAL,
         kind: "unsupported",
       });
     }
@@ -204,7 +206,7 @@ export async function routeAlphaAiRequest(env, request, path) {
       return respond({
         ok: true,
         support: "rejected_safety",
-        acknowledgement: "That swap doesn't work for everyone eating this dinner, so we'd leave it out.",
+        acknowledgement: ADAPTATION_SAFETY_REFUSAL,
         kind: validated.value.kind,
         ingredient_ops: [],
       });

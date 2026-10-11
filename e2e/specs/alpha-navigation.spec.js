@@ -106,6 +106,7 @@ test.describe("Alpha D-04 navigation", () => {
       document.querySelector('[data-action="swap-meal"]')?.click();
     });
     await expect(page.locator("#swapSheet[open]")).toBeVisible();
+    await page.waitForFunction(() => history.state && history.state.transient === "swapSheet");
     await page.locator('section[data-view="planReview"] .back[data-back="planReview"]').dispatchEvent("click");
     await expect(page.locator("#swapSheet[open]")).toHaveCount(0);
     await expect(page.locator(".view.is-active[data-view='planReview']")).toBeVisible();

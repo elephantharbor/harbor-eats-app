@@ -8,7 +8,13 @@
 import { assessMealEligibility, planDinners, plannerCatalog, swapSlot } from "./dinner-planner.js";
 import { neededLines } from "./ingredient-identity.js";
 import { assertDinerCountValid } from "./diner-count.js";
-import { effectivePinnedIngredients, effectiveRecipeView, validateAdaptationSafety } from "./meal-adaptation.js";
+import {
+  ADAPTATION_FALLBACK_REFUSAL,
+  ADAPTATION_SAFETY_REFUSAL,
+  effectivePinnedIngredients,
+  effectiveRecipeView,
+  validateAdaptationSafety,
+} from "./meal-adaptation.js";
 import {
   ENTRY_POINTS,
   MEAL_KINDS,
@@ -613,7 +619,7 @@ function applyAdaptation(plan, action, ctx) {
     payload.support === "fallback" ||
     payload.status === "rejected_safety"
   ) {
-    return fail("adaptation_not_applicable", 409);
+    return fail("adaptation_not_applicable", 409, { acknowledgement: ADAPTATION_FALLBACK_REFUSAL });
   }
   const incoming = payload.override_json || payload;
   const ops = incoming.ops || payload.ingredient_ops || payload.ops || [];
@@ -628,9 +634,15 @@ function applyAdaptation(plan, action, ctx) {
     meal,
     ctx
   );
-  if (!checked.ok) return fail("adaptation_not_applicable", 409, { status: checked.status, blocked: checked.blocked });
+  if (!checked.ok) {
+    return fail("adaptation_not_applicable", 409, {
+      safety_status: checked.status,
+      blocked: checked.blocked,
+      acknowledgement: checked.status === "rejected_safety" ? ADAPTATION_SAFETY_REFUSAL : ADAPTATION_FALLBACK_REFUSAL,
+    });
+  }
   const override = checked.override;
-  if (!override?.ops) return fail("adaptation_not_applicable", 409);
+  if (!override?.ops) return fail("adaptation_not_applicable", 409, { acknowledgement: ADAPTATION_FALLBACK_REFUSAL });
   meal.adaptation = {
     recipe_version_id: meal.recipe_version_id,
     override_json: override,
