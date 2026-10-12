@@ -201,6 +201,27 @@ async function safeJson(res) {
  * @param {import('@playwright/test').APIResponse} res
  * @param {number|number[]} expected
  */
+/**
+ * Slow begin_cook so a recipe redraw can land before the kitchen confirms.
+ * Used by E2E_COOK_DELAY_MS. Other mutations are not delayed.
+ * @param {import('@playwright/test').Page} page
+ * @param {number|string} ms
+ */
+export async function delayCookMutations(page, ms) {
+  const wait = Number(ms) || 0;
+  if (wait <= 0) return;
+  await page.route("**/api/dinner-plans/**/mutations", async (route) => {
+    let body = {};
+    try {
+      body = route.request().postDataJSON() || {};
+    } catch (_) {
+      body = {};
+    }
+    if (body.op === "begin_cook") await new Promise((resolve) => setTimeout(resolve, wait));
+    await route.continue();
+  });
+}
+
 export function expectStatus(res, expected, label, body) {
   const ok = Array.isArray(expected) ? expected : [expected];
   if (!ok.includes(res.status())) {

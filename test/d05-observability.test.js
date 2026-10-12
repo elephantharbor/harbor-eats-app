@@ -29,7 +29,10 @@ function run(body, { status = 200, headers = [["x-request-id", "req_abc123"]] } 
 const usage = { input_tokens: 130, output_tokens: 60, input_tokens_details: { cached_tokens: 10 }, output_tokens_details: { reasoning_tokens: 0 } };
 const completed = (text = SECRET_OUTPUT) => ({
   id: "resp_ok1", status: "completed", model: "gpt-6-luna-2026-10-01",
-  output: [{ type: "reasoning", summary: [{ text: SECRET_REASONING }] }, { type: "message", content: [{ type: "output_text", text: JSON.stringify({ text }) }] }],
+  output: [
+    { type: "reasoning", summary: [{ text: SECRET_REASONING }] },
+    { type: "message", content: [{ type: "output_text", text: JSON.stringify({ text, used_fact_ids: ["legacy_0"] }) }] },
+  ],
   usage,
 });
 const meta = (store) => JSON.parse(store.usage.at(-1).usage_metadata_json);

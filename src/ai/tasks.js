@@ -13,6 +13,12 @@ import {
   postValidateDiscoveryDelta,
   postValidatePlanningDelta,
 } from "../weave/task-schemas.js";
+import {
+  postValidateRecipeAdaptation,
+  recipeAdaptationInputSchema,
+  recipeAdaptationOutputSchema,
+} from "./adaptation-schema.js";
+import { postValidateExplanation } from "./explanation-validate.js";
 
 const str = (max) => ({ type: "string", maxLength: max });
 const strList = (max, items = 120) => ({ type: "array", maxItems: max, items: str(items) });
@@ -111,30 +117,69 @@ export const TASKS = Object.freeze({
     limits: { max_output_tokens: 1500, timeout_ms: 30000 },
   }),
   recipe_adaptation: task("recipe_adaptation", {
-    reasoning_effort: "low",
-    cost_class: "creative",
-    allowed_models: ["balanced", "strong"],
-    cache: { enabled: false, ttl_seconds: 0 },
-    input_schema: { type: "object", required: ["text", "recipe"], properties: { text: str(300), recipe: str(120) } },
-    output_schema: { type: "object", required: ["suggestion", "status"], properties: { suggestion: str(600), status: { type: "string", enum: ["draft_unreviewed"] } } },
-    limits: { max_output_tokens: 600, timeout_ms: 15000 },
+    reasoning_effort: "none",
+    executable: true,
+    cost_class: "cheap",
+    allowed_models: ["fast-small"],
+    input_schema: recipeAdaptationInputSchema,
+    output_schema: recipeAdaptationOutputSchema,
+    post_validate: postValidateRecipeAdaptation,
+    limits: { max_output_tokens: 520, timeout_ms: 8000 },
   }),
   explanation: task("explanation", {
     reasoning_effort: "none",
     executable: true,
     cost_class: "standard",
-    allowed_models: ["fast-small", "balanced"],
+    allowed_models: ["fast-small"],
     input_schema: {
       type: "object",
-      required: ["meal", "reasons", "cache_bust"],
-      properties: { meal: str(120), reasons: strList(6, 60), cache_bust: { type: ["string", "null"], maxLength: 16 } },
+      additionalProperties: false,
+      required: [
+        "recipe_version_id",
+        "basis",
+        "strength",
+        "facts",
+        "allowed_phrases",
+        "allowed_numbers",
+        "evidence_fingerprint",
+      ],
+      properties: {
+        recipe_version_id: { type: ["string", "null"], maxLength: 80 },
+        basis: { type: "string", enum: ["learned", "onboarding", "run", "cold"] },
+        strength: { type: "string", enum: ["strong", "weak"] },
+        facts: {
+          type: "array",
+          maxItems: 6,
+          items: {
+            type: "object",
+            additionalProperties: false,
+            required: ["id", "kind", "phrase"],
+            properties: {
+              id: str(40),
+              kind: str(40),
+              phrase: str(60),
+            },
+          },
+        },
+        allowed_phrases: strList(6, 60),
+        allowed_numbers: { type: "array", maxItems: 4, items: str(12) },
+        evidence_fingerprint: str(80),
+      },
     },
-    output_schema: { type: "object", required: ["text"], additionalProperties: false, properties: { text: str(280) } },
-    post_validate: (output) => {
-      const check = stripAuthorityClaims(output.text);
-      return check.ok ? { ok: true, value: output } : { ok: false, reason: check.reason };
+    output_schema: {
+      type: "object",
+      additionalProperties: false,
+      required: ["text", "used_fact_ids"],
+      properties: {
+        text: str(220),
+        used_fact_ids: { type: "array", maxItems: 4, items: str(40) },
+      },
     },
-    // 300 (was 120): s1 smoke exhausted 120 tokens -> incomplete. Luna ceiling (600) still applies.
+    post_validate: (output, input) => {
+      const check = stripAuthorityClaims(output.text || "");
+      if (!check.ok) return check;
+      return postValidateExplanation(output, input || { facts: [] });
+    },
     limits: { max_output_tokens: 300, timeout_ms: 5000 },
   }),
   semantic_search_assist: task("semantic_search_assist", {

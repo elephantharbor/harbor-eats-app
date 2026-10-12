@@ -20,6 +20,8 @@ import {
   TASTE_REMOVE,
 } from "./cycle2-schema.js";
 import { learningRows } from "./evidence-origin.js";
+import { RULE_TO_TAGS } from "./eligibility.js";
+import { CATALOG_ALLERGEN_TOKENS, FACTORY_PACKAGE_ALLERGEN_TOKENS } from "./factory-package-tokens.js";
 import { getTasteTerm } from "./taste-vocabulary.js";
 
 const NUT_SPECIFICS = [
@@ -62,6 +64,129 @@ const INGREDIENT_LIMITS = {
   "arctic-char": ["no_finfish"],
   swordfish: ["no_finfish"],
 };
+
+function addLexiconKey(map, key, value) {
+  const norm = String(key || "").trim().toLowerCase();
+  if (!norm) return;
+  const forms = new Set([
+    norm,
+    norm.replace(/[-\s]+/g, "_"),
+    norm.replace(/[_-]+/g, " "),
+    norm.replace(/[_\s]+/g, "-"),
+  ]);
+  for (const form of forms) {
+    if (!map.has(form)) map.set(form, value);
+  }
+}
+
+function allergenTokenFor(rule, word) {
+  const slug = String(word || "").trim().toLowerCase().replace(/[-\s]+/g, "_");
+  if (ALLERGEN_LIMITS[slug]) return slug;
+  if (rule === "fish") return "finfish";
+  if (rule === "dairy") return "dairy";
+  if (rule === "shellfish") return "shellfish";
+  if (rule === "poultry") return "poultry";
+  if (rule === "meat") {
+    if (slug === "poultry" || slug === "chicken" || slug === "turkey" || slug === "duck") return "poultry";
+    return "meat";
+  }
+  if (rule === "nuts") return "nuts";
+  return null;
+}
+
+function buildSubstituteLexicon() {
+  const allergens = new Map();
+  const ingredients = new Map();
+  const diet = new Map();
+  const tags = new Map();
+  for (const key of Object.keys(ALLERGEN_LIMITS)) addLexiconKey(allergens, key, key);
+  for (const key of Object.keys(INGREDIENT_LIMITS)) addLexiconKey(ingredients, key, key);
+  for (const token of FACTORY_PACKAGE_ALLERGEN_TOKENS) {
+    addLexiconKey(allergens, token, token === "tree_nut" ? "nuts" : token);
+  }
+  for (const token of CATALOG_ALLERGEN_TOKENS) {
+    addLexiconKey(allergens, token, token);
+  }
+  for (const [rule, words] of Object.entries(RULE_TO_TAGS)) {
+    for (const word of words) {
+      addLexiconKey(diet, word, rule);
+      const allergen = allergenTokenFor(rule, word);
+      if (allergen) addLexiconKey(allergens, word, allergen);
+      addLexiconKey(tags, word, word);
+    }
+  }
+  return { allergens, ingredients, diet, tags };
+}
+
+const SUBSTITUTE_LEXICON = buildSubstituteLexicon();
+
+function singularizeToken(token) {
+  if (token.endsWith("ies") && token.length > 4) return `${token.slice(0, -3)}y`;
+  if (token.endsWith("s") && !token.endsWith("ss") && token.length > 3) return token.slice(0, -1);
+  return token;
+}
+
+function substituteCandidates(name) {
+  const cleaned = String(name || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+  const words = cleaned.split(/\s+/).filter(Boolean);
+  const set = new Set();
+  const add = (value) => {
+    if (!value) return;
+    set.add(value);
+    set.add(value.replace(/ /g, "_"));
+    set.add(value.replace(/ /g, "-"));
+    const singular = singularizeToken(value);
+    set.add(singular);
+    set.add(singular.replace(/ /g, "_"));
+    set.add(singular.replace(/ /g, "-"));
+  };
+  add(cleaned);
+  for (const word of words) add(word);
+  for (let i = 0; i < words.length - 1; i += 1) {
+    add(`${singularizeToken(words[i])} ${singularizeToken(words[i + 1])}`);
+  }
+  return set;
+}
+
+/**
+ * Allergen and diet tokens for a proposed substitute.
+ * Unknown names stay unknown so callers can fail closed.
+ * @param {string} name
+ */
+export function classifySubstituteName(name) {
+  const candidates = substituteCandidates(name);
+  const allergens = new Set();
+  const ingredient_slugs = new Set();
+  const diet_tokens = new Set();
+  const tags = new Set();
+  let known = false;
+  for (const token of candidates) {
+    if (SUBSTITUTE_LEXICON.allergens.has(token)) {
+      known = true;
+      allergens.add(SUBSTITUTE_LEXICON.allergens.get(token));
+    }
+    if (SUBSTITUTE_LEXICON.ingredients.has(token)) {
+      known = true;
+      ingredient_slugs.add(SUBSTITUTE_LEXICON.ingredients.get(token));
+    }
+    if (SUBSTITUTE_LEXICON.diet.has(token)) {
+      known = true;
+      diet_tokens.add(SUBSTITUTE_LEXICON.diet.get(token));
+    }
+    if (SUBSTITUTE_LEXICON.tags.has(token)) tags.add(SUBSTITUTE_LEXICON.tags.get(token));
+  }
+  return {
+    known,
+    allergens: [...allergens],
+    ingredient_slugs: [...ingredient_slugs],
+    diet_tokens: [...diet_tokens],
+    tags: [...tags],
+  };
+}
 
 /**
  * @typedef {{ id: string, status?: string, substance?: string|null }} HardRule

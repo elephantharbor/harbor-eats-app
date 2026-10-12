@@ -22,7 +22,7 @@ CATALOG_SOURCE = "d1"
 # Gateway stays OFF until the key is set and the preview smoke passes: see docs/D05-DECISION-CARD.md.
 AI_PROVIDER = "openai"
 AI_GATEWAY_ENABLED = "1"
-AI_TASKS_ENABLED = "planning_intent,discovery_intent"
+AI_TASKS_ENABLED = "planning_intent,discovery_intent,recipe_adaptation,explanation"
 AI_DAILY_BUDGET_USD = "0.25"
 AI_GLOBAL_PER_DAY = "250"
 AI_HOUSEHOLD_PER_MINUTE = "5"

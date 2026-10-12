@@ -140,6 +140,7 @@
     const ctrl = {
       adapter,
       deps,
+      pendingAdaptation: null,
       state: "idle",
       echo: "",
       reply: "",
@@ -161,6 +162,7 @@
     };
 
     host.className = "weave-strip weave-accent";
+    host._weaveCtrl = ctrl;
     host.setAttribute("aria-label", adapter.regionLabel || "Your request");
     host.innerHTML =
       '<p class="weave-strip__heading">' +
@@ -200,6 +202,7 @@
         choice: ctrl.choice,
         choiceCopy: ctrl.choiceCopy,
         choicePicked: ctrl.choicePicked,
+        extra: adapter.serializeExtra?.(ctrl),
         at: Date.now(),
       };
       try {
@@ -244,6 +247,7 @@
       ctrl.choiceCopy = choiceOk ? data.choiceCopy || null : null;
       ctrl.choicePicked = choiceOk ? data.choicePicked || [] : [];
       adapter.setState?.(data.stateRef);
+      adapter.deserializeExtra?.(ctrl, data.extra);
       if (data.choice && !choiceOk) adapter.clearPendingSlot?.();
       ctrl.state = "settled";
       render();
@@ -334,6 +338,7 @@
       }
       if (ctrl.choice && shown) html += choiceHtml(ctrl);
       else if (ctrl.reply && shown) html += replyHtml();
+      if (shown && adapter.renderAfterReply) html += adapter.renderAfterReply(ctrl) || "";
       if (ctrl.notice) {
         const role = ctrl.notice.kind === "alert" ? "alert" : "status";
         html +=

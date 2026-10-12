@@ -7,6 +7,7 @@
  */
 
 import { scaleIngredientQuantity } from "./recipe-scaling.js";
+import { dinerCountForMeal } from "./diner-count.js";
 
 const PREP_WORDS = new Set([
   "diced",
@@ -115,8 +116,9 @@ export function canonicalIngredient(name, note = null) {
   };
 }
 
-function perServing(item) {
-  return item.unit === "serving" || /for serving/i.test(String(item.note || item.raw_quantity || ""));
+function isPerDinerLine(item) {
+  const raw = String(item.raw_quantity ?? item.quantity ?? "").trim().toLowerCase();
+  return item.unit === "serving" || raw === "for serving";
 }
 
 /**
@@ -124,10 +126,11 @@ function perServing(item) {
  * Numeric quantities stay numeric so cups are not snapped to a display step.
  * @param {object} item
  * @param {number} ratio
+ * @param {number} dinerCount
  */
-export function scaleIngredientRecord(item, ratio) {
-  if (perServing(item)) {
-    return { ...item, quantity: item.quantity, unparsed: item.quantity == null };
+export function scaleIngredientRecord(item, ratio, dinerCount) {
+  if (isPerDinerLine(item)) {
+    return { ...item, quantity: dinerCount, unit: item.unit || "serving", unparsed: false };
   }
   if (typeof item.quantity === "number" && Number.isFinite(item.quantity)) {
     return { ...item, quantity: roundQuantity(item.quantity * ratio), unparsed: false };
@@ -140,7 +143,8 @@ export function scaleIngredientRecord(item, ratio) {
 
 export function scaleForDiners(ingredients, baseServings, dinerCount) {
   const ratio = servingRatio(baseServings, dinerCount);
-  return (ingredients || []).map((item) => scaleIngredientRecord(item, ratio));
+  const diners = Math.max(1, Math.min(8, Number(dinerCount) || 1));
+  return (ingredients || []).map((item) => scaleIngredientRecord(item, ratio, diners));
 }
 
 function joinPrep(values) {
@@ -204,7 +208,8 @@ export function contributionsFromMeals(meals) {
   for (const meal of meals || []) {
     if (!meal || meal.kind !== "recipe") continue;
     if (meal.state === "skipped" || meal.state === "abandoned") continue;
-    const diners = (meal.participant_ids || []).length;
+    const diners = dinerCountForMeal(meal);
+    if (!diners) continue;
     const scaled = scaleForDiners(meal.pinned_ingredients || [], meal.base_servings, diners);
     for (const item of scaled) {
       const canon = canonicalIngredient(item.name, item.note || null);

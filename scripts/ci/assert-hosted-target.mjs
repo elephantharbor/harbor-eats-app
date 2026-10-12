@@ -1,7 +1,13 @@
 #!/usr/bin/env node
 /** Guard for .github/workflows/hosted-e2e.yml. `--health` also checks /api/health. */
+import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { assertHostedE2ETarget, checkHealthBinding } from "../deploy/environments.mjs";
+
+function catalogMealCount() {
+  const meta = JSON.parse(readFileSync(new URL("../../release/release-metadata.json", import.meta.url), "utf8"));
+  return meta.catalog_runtime_meals;
+}
 
 export async function assertTarget(baseUrl, { health = false, fetchImpl = fetch, requireBindingVars = false } = {}) {
   const origin = assertHostedE2ETarget(baseUrl);
@@ -9,7 +15,7 @@ export async function assertTarget(baseUrl, { health = false, fetchImpl = fetch,
   const res = await fetchImpl(`${origin}/api/health`);
   if (!res.ok) throw new Error(`/api/health -> ${res.status}`);
   const body = await res.json();
-  const r = checkHealthBinding("preview", body, { expectedMeals: 75 });
+  const r = checkHealthBinding("preview", body, { expectedMeals: catalogMealCount() });
   // Until the next deploy ships DEPLOY_ENV/D1_DATABASE_ID vars, only the var checks may be absent.
   const problems = r.problems.filter(
     (p) => requireBindingVars || !(p.startsWith("deploy_env=null") || p.startsWith("d1_database_id=null"))

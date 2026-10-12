@@ -16,6 +16,8 @@ const KEY = "sk-test-NEVER-LEAK-0123456789abcdef";
 const fixedNow = () => new Date("2026-10-10T15:00:30.000Z");
 const ON = { AI_GATEWAY_ENABLED: "1", AI_TASKS_ENABLED: "explanation,recipe_draft,concept_generation,discovery_intent", AI_DAILY_BUDGET_USD: "5", AI_PROVIDER: "openai" };
 const EXPL = (i = 0) => ({ meal: `meal ${i}`, reasons: ["quick"], cache_bust: i ? String(i) : null });
+const EXPL_OUT = (text = "Quick.", ids = ["legacy_0"]) => ({ text, used_fact_ids: ids });
+const SMOKE_OUT = { text: "Quick and simple.", used_fact_ids: ["quick", "simple"] };
 
 function okBody(obj, usage = { input_tokens: 120, output_tokens: 30, input_tokens_details: { cached_tokens: 20 } }) {
   return { id: "resp_1", status: "completed", model: "gpt-6-luna", output: [{ type: "message", content: [{ type: "output_text", text: JSON.stringify(obj) }] }], usage };
@@ -41,7 +43,7 @@ afterEach(() => vi.restoreAllMocks());
 
 describe("OpenAI adapter: request shape + Structured Outputs", () => {
   it("POSTs the Responses API with Bearer auth, no org/project header, strict json_schema", async () => {
-    const { provider, fetchImpl } = openai(() => ({ body: okBody({ text: "Quick." }) }));
+    const { provider, fetchImpl } = openai(() => ({ body: okBody(EXPL_OUT("Quick.")) }));
     const r = await provider.generate(req());
     const c = fetchImpl.calls[0];
     expect(c.url).toBe("https://api.openai.com/v1/responses");
@@ -53,8 +55,8 @@ describe("OpenAI adapter: request shape + Structured Outputs", () => {
     expect(c.body).toMatchObject({ model: "gpt-6-luna", max_output_tokens: 120, store: false });
     expect(c.body.input).toEqual([{ role: "system", content: "S" }, { role: "user", content: "U" }]);
     expect(c.body.text.format).toMatchObject({ type: "json_schema", name: "explanation", strict: true });
-    expect(c.body.text.format.schema).toEqual({ type: "object", properties: { text: { type: "string" } }, required: ["text"], additionalProperties: false });
-    expect(JSON.parse(r.text)).toEqual({ text: "Quick." });
+    expect(c.body.text.format.schema.required).toContain("used_fact_ids");
+    expect(JSON.parse(r.text)).toEqual(EXPL_OUT("Quick."));
     expect(r.metadata.request_id).toBe("req_x");
     expect(r.metadata.response_id).toBe("resp_1");
   });
@@ -195,7 +197,7 @@ describe("pricing", () => {
     expect(worstCaseCostUsd("gpt-6-luna", 1000, 600)).toBeCloseTo((1000 * 0.125 + 600 * 0.5) / 1e6, 9);
   });
   it("usage rows carry provider-reported tokens, real cost and pricing_version", async () => {
-    const { provider } = openai(() => ({ body: okBody({ text: "Fast and simple." }, { input_tokens: 300, output_tokens: 40, input_tokens_details: { cached_tokens: 100 } }) }));
+    const { provider } = openai(() => ({ body: okBody(EXPL_OUT("Fast and simple."), { input_tokens: 300, output_tokens: 40, input_tokens_details: { cached_tokens: 100 } }) }));
     const store = createMemoryStore();
     const service = createGenerationService({ provider, store, env: ON, now: fixedNow });
     expect((await service.run("explanation", EXPL(), { householdId: "hh_1" })).ok).toBe(true);
@@ -252,7 +254,7 @@ describe("ceilings, retries, no escalation", () => {
 });
 
 describe("single limiter (UTC windows, D1/counter backed)", () => {
-  const text = () => ({ json: { text: "Fits." } });
+  const text = () => ({ json: EXPL_OUT("Fits.") });
   const make = (env = {}, store = createMemoryStore(), now = fixedNow) => {
     const provider = createFakeProvider({ script: text });
     return { service: createGenerationService({ provider, store, env: { ...ON, ...env }, now }), provider, store };
@@ -333,7 +335,7 @@ describe("single limiter (UTC windows, D1/counter backed)", () => {
 
 describe("kill switch, config, secrecy", () => {
   it("kill switch: AI_GATEWAY_ENABLED=0 => no fetch even with a key", async () => {
-    const { provider, fetchImpl } = openai(() => ({ body: okBody({ text: "x" }) }));
+    const { provider, fetchImpl } = openai(() => ({ body: okBody(EXPL_OUT("x")) }));
     const service = createGenerationService({ provider, store: createMemoryStore(), env: { ...ON, AI_GATEWAY_ENABLED: "0" }, now: fixedNow });
     expect((await service.run("explanation", EXPL())).error).toBe("disabled");
     expect(fetchImpl).not.toHaveBeenCalled();
@@ -341,10 +343,12 @@ describe("kill switch, config, secrecy", () => {
   it("committed configs: prod gateway OFF or D-06 tasks only, preview OFF or allowed sets, limits present, no astra/secret", () => {
     for (const [env, budget, global] of [["preview", "0.25", "250"], ["production", "1.00", "100"]]) {
       const vars = validateAiVars(readFileSync(`deploy/pages/${env}/wrangler.toml`, "utf8"));
-      // Production: OFF, or ON with exactly the D-06 tasks (enabled 2026-10-10, Thomas). Preview may also run the D-05 explanation smoke.
+      // Production: OFF, D-06 tasks, or those plus the alpha Luna tasks.
+      // Preview may also run the D-05 explanation smoke.
+      const alphaTasks = "planning_intent,discovery_intent,recipe_adaptation,explanation";
       const onPair = [vars.AI_GATEWAY_ENABLED, vars.AI_TASKS_ENABLED];
-      if (env === "production") expect([["0", ""], ["1", "planning_intent,discovery_intent"]]).toContainEqual(onPair);
-      else expect([["0", ""], ["1", "explanation"], ["1", "planning_intent,discovery_intent"]]).toContainEqual(onPair);
+      if (env === "production") expect([["0", ""], ["1", "planning_intent,discovery_intent"], ["1", alphaTasks]]).toContainEqual(onPair);
+      else expect([["0", ""], ["1", "explanation"], ["1", "planning_intent,discovery_intent"], ["1", alphaTasks]]).toContainEqual(onPair);
       expect(vars).toMatchObject({ AI_PROVIDER: "openai", AI_DAILY_BUDGET_USD: budget, AI_GLOBAL_PER_DAY: global, AI_HOUSEHOLD_PER_MINUTE: "5", AI_HOUSEHOLD_PER_DAY: "30", AI_SOL_HOUSEHOLD_PER_DAY: "5" });
     }
     expect(() => validateAiVars('AI_PROVIDER = "openai"')).toThrow(/missing AI_DAILY_BUDGET_USD/);
@@ -364,7 +368,7 @@ describe("kill switch, config, secrecy", () => {
   it("the key never appears in logs, usage rows, results or error details", async () => {
     const logs = [];
     const consoleSpies = ["log", "warn", "error", "info", "debug"].map((m) => vi.spyOn(console, m).mockImplementation((...a) => logs.push(a)));
-    const responders = [() => ({ status: 401, body: { error: { message: `bad key ${KEY}` } } }), () => ({ status: 429, body: {} }), () => ({ body: okBody({ text: "ok" }) })];
+    const responders = [() => ({ status: 401, body: { error: { message: `bad key ${KEY}` } } }), () => ({ status: 429, body: {} }), () => ({ body: okBody(EXPL_OUT("ok")) })];
     for (const responder of responders) {
       const { provider } = openai(responder);
       const store = createMemoryStore();
@@ -391,7 +395,7 @@ describe("kill switch, config, secrecy", () => {
 describe("internal smoke endpoint (token-gated, disabled by default)", () => {
   const request = (headers = {}) => new Request("https://x.test/api/ai/internal/smoke", { method: "POST", headers });
   it("404 without AI_SMOKE_TOKEN, 403 on wrong token, no provider call", async () => {
-    const provider = createFakeProvider({ script: [{ json: { text: "x" } }] });
+    const provider = createFakeProvider({ script: [{ json: EXPL_OUT("x") }] });
     expect((await handleAiSmoke(request(), {}, provider)).status).toBe(404);
     expect((await handleAiSmoke(request({ "x-ai-smoke-token": "nope" }), { AI_SMOKE_TOKEN: "right-token" }, provider)).status).toBe(403);
     expect(provider.calls).toHaveLength(0);
@@ -401,7 +405,7 @@ describe("internal smoke endpoint (token-gated, disabled by default)", () => {
     db.exec(readFileSync("migrations/0014_ai_gateway.sql", "utf8"));
     db.exec(readFileSync("migrations/0015_ai_provider_limits.sql", "utf8"));
     const DB = { prepare(sql) { let a = []; const api = { bind(...x) { a = x; return api; }, async run() { db.prepare(sql).run(...a); return {}; }, async first() { return db.prepare(sql).get(...a) ?? null; } }; return api; } };
-    const provider = createFakeProvider({ script: [{ json: { text: "Quick and simple." } }] });
+    const provider = createFakeProvider({ script: [{ json: SMOKE_OUT }] });
     const off = await handleAiSmoke(request({ "x-ai-smoke-token": "tok" }), { AI_SMOKE_TOKEN: "tok", DB }, provider);
     expect(off.body).toMatchObject({ ok: false, error: "disabled" });
     const on = await handleAiSmoke(request({ "x-ai-smoke-token": "tok" }), { ...ON, AI_TASKS_ENABLED: "explanation", AI_SMOKE_TOKEN: "tok", DB }, provider);
@@ -415,7 +419,7 @@ describe("internal smoke endpoint (token-gated, disabled by default)", () => {
     db.exec(readFileSync("migrations/0014_ai_gateway.sql", "utf8"));
     db.exec(readFileSync("migrations/0015_ai_provider_limits.sql", "utf8"));
     const DB = { prepare(sql) { let a = []; const api = { bind(...x) { a = x; return api; }, async run() { db.prepare(sql).run(...a); return {}; }, async first() { return db.prepare(sql).get(...a) ?? null; } }; return api; } };
-    const provider = createFakeProvider({ script: [{ json: { text: "Quick and simple." } }] });
+    const provider = createFakeProvider({ script: [{ json: SMOKE_OUT }] });
     const nonce = "ns2-smoke-fixture-nonce";
     const req = new Request(`https://x.test/api/ai/internal/smoke?nonce=${nonce}`, {
       method: "POST",
@@ -426,7 +430,7 @@ describe("internal smoke endpoint (token-gated, disabled by default)", () => {
     const input = provider.calls[0]?.input || {};
     expect(JSON.stringify(input)).not.toContain(nonce);
     expect(JSON.stringify(on.body.output || {})).not.toContain(nonce);
-    expect(input.cache_bust).not.toBe(nonce);
+    expect(input.evidence_fingerprint || "").not.toBe(nonce);
   });
   it("live smoke script is never wired into CI or npm test", () => {
     const pkg = readFileSync("package.json", "utf8");

@@ -409,16 +409,29 @@
   }
 
   function persistEvent(event, props) {
+    const p = props || {};
     apiPost("/api/events", {
       event_name: event,
-      household_id: API.householdId || state.householdId || (props && props.household_id) || null,
-      member_id: (props && (props.member_id || props.person_id || props.inviter_id)) || null,
-      plan_id: (props && props.plan_id) || API.planId || PLAN_ID,
-      meal_option_id: (props && props.meal_option_id) || null,
-      invite_code: (props && props.invite_code) || null,
-      share_object_id: (props && props.share_object_id) || null,
-      channel: (props && props.channel) || null,
-      attribution_last_touch: (props && props.attribution_last_touch) || state.lastTouch || null,
+      household_id: API.householdId || state.householdId || p.household_id || null,
+      member_id: p.member_id || p.person_id || p.inviter_id || null,
+      plan_id: p.plan_id || API.planId || PLAN_ID,
+      meal_option_id: p.meal_option_id || p.meal_id || null,
+      invite_code: p.invite_code || null,
+      share_object_id: p.share_object_id || null,
+      channel: p.channel || null,
+      attribution_last_touch: p.attribution_last_touch || state.lastTouch || null,
+      dinner_plan_id: p.dinner_plan_id || (state.dinnerPlan && state.dinnerPlan.dinner_plan_id) || null,
+      meal_id: p.meal_id || null,
+      meal_count: p.meal_count,
+      source: p.source,
+      op: p.op,
+      recipe_slug: p.recipe_slug,
+      kind: p.kind,
+      support: p.support,
+      op_count: p.op_count,
+      line_count: p.line_count,
+      diner_count: p.diner_count,
+      basis: p.basis,
     }).catch(function () {});
   }
 
@@ -551,6 +564,8 @@
     dinnerUnfilled: [],
     dinnerDetailMeal: null,
     dinnerCookMealId: null,
+    // begin_cook has been sent and not yet confirmed. Does not relabel the recipe CTA.
+    dinnerCookPendingId: null,
     planCountGroup: null,
     planCountValue: null,
     planReviewMode: "multi",
@@ -563,6 +578,8 @@
     mealOptionsMealId: null,
     participantsMealId: null,
     participantsDraft: null,
+    participantsGuestDraft: 0,
+    detailViewingServings: null,
     swapReplacePosition: null,
     changeCountValue: null,
     changeCountRemoveMealId: null,
@@ -660,8 +677,133 @@
     return "your kitchen";
   }
 
-  function servingCountForMeal() {
+  function dinerCountForPlanMeal(meal) {
+    if (!meal) return activeMemberCount();
+    const participants = (meal.participant_ids || []).length;
+    const guests = Math.max(0, Number(meal.guest_count) || 0);
+    const total = participants + guests;
+    if (total < 1) return activeMemberCount();
+    return Math.min(8, total);
+  }
+
+  function servingCountForMeal(meal) {
+    const raw = meal || (state.dinnerCookMealId && planMealById(state.dinnerCookMealId));
+    if (raw && raw.participant_ids) return dinerCountForPlanMeal(raw);
+    if (state.detailViewingServings != null) return state.detailViewingServings;
     return activeMemberCount();
+  }
+
+  function householdDinerCount() {
+    return activeMemberCount();
+  }
+
+  function shopCookingHeadline(mealCount, householdCount, exceptions) {
+    const base = mealCount + " dinners · cooking for " + householdCount;
+    if (!exceptions.length) return base;
+    if (exceptions.length > 2) return base + " · amounts match each dinner";
+    return (
+      base +
+      exceptions
+        .map(function (row) {
+          return ", " + row.label + " for " + row.count;
+        })
+        .join("")
+    );
+  }
+
+  function dinerExceptionCopy(input) {
+    if (input.dinerCount === input.householdCount) return null;
+    const guests = Math.max(0, Number(input.guestCount) || 0);
+    if (guests > 0) return "For " + input.dinerCount + " · " + guests + (guests === 1 ? " guest" : " guests");
+    const eating = input.eatingNames || [];
+    const absent = input.absentNames || [];
+    if (eating.length === 1 && input.dinerCount === 1) return "For 1 · just " + eating[0];
+    if (absent.length === 1) return "For " + input.dinerCount + " · " + absent[0] + "’s out";
+    return "For " + input.dinerCount;
+  }
+
+  function planMealDinerException(raw) {
+    if (!raw) return null;
+    const n = dinerCountForPlanMeal(raw);
+    const hh = householdDinerCount();
+    const eatingIds = raw.participant_ids || [];
+    const eatingNames = eatingIds
+      .map(function (id) {
+        const m = state.members.find(function (x) {
+          return x.id === id;
+        });
+        return m ? m.name : "";
+      })
+      .filter(Boolean);
+    const absentNames = activeMembers()
+      .filter(function (m) {
+        return eatingIds.indexOf(m.id) < 0;
+      })
+      .map(function (m) {
+        return m.name;
+      });
+    return dinerExceptionCopy({
+      householdCount: hh,
+      dinerCount: n,
+      guestCount: Math.max(0, Number(raw.guest_count) || 0),
+      eatingNames: eatingNames,
+      absentNames: absentNames,
+    });
+  }
+
+  function planMealDinerLabel(raw) {
+    const exc = planMealDinerException(raw);
+    return exc || "For " + dinerCountForPlanMeal(raw);
+  }
+
+  function cookingForLabel(count) {
+    return "Cooking for " + count;
+  }
+
+  function explanationPayloadForMeal(meal) {
+    const raw = meal && meal.meal_id ? meal : planMealById(meal && meal.id);
+    const m = raw || meal;
+    return {
+      recipe_slug: m && m.recipe_slug,
+      recipe_version_id: m && m.recipe_version_id,
+      row: {
+        effort_level: m && m.effort_level,
+        ingredient_complexity: m && m.ingredient_complexity,
+      },
+      plan: state.dinnerPlan ? { intent: state.dinnerPlan.intent } : null,
+    };
+  }
+
+  function planMealReasonLine(meal) {
+    if (!meal || !window.FlavorWeaveExplanation) return "";
+    const intent = state.dinnerPlan && state.dinnerPlan.intent;
+    if (meal.effort_level === "easy" || (intent && intent.keep_it_easy)) {
+      return window.FlavorWeaveExplanation.joinFacts(["Easy, like you asked"], 40);
+    }
+    if (meal.ingredient_complexity === "simple" || (intent && intent.keep_ingredients_simple)) {
+      return window.FlavorWeaveExplanation.joinFacts(["Simple ingredients"], 40);
+    }
+    return window.FlavorWeaveExplanation.reasonLineFromMeal(meal, null, intent);
+  }
+
+  function explanationBlockHtml(id, meal) {
+    const reason = planMealReasonLine(meal);
+    if (!reason || !window.FlavorWeaveExplanation) return "";
+    return (
+      '<div data-why-wrap>' +
+      window.FlavorWeaveExplanation.disclosureHtml(id, reason, {
+        payload: explanationPayloadForMeal(meal),
+      }) +
+      "</div>"
+    );
+  }
+
+  function bindWhyInScope(root) {
+    if (!root || !window.FlavorWeaveExplanation) return;
+    window.FlavorWeaveExplanation.bindDisclosures(root, {
+      fetchExplanation: fetchMealExplanation,
+      track: track,
+    });
   }
 
   function discoveryParticipantCount() {
@@ -832,7 +974,12 @@
     const loaded = await fetchRecipeForMeal(meal);
     if (loaded) {
       loaded._mealId = meal.id;
-      state.activeRecipe = loaded;
+      const raw = meal.dinner_plan ? planMealById(meal.id) : null;
+      if (raw && window.FlavorWeaveMealRecipe) {
+        state.activeRecipe = window.FlavorWeaveMealRecipe.mergeIntoRecipe(loaded, raw);
+      } else {
+        state.activeRecipe = loaded;
+      }
     }
     return loaded;
   }
@@ -855,11 +1002,23 @@
 
   function toast(msg, opts) {
     const html = opts && opts.html;
-    if (html) toastEl.innerHTML = msg;
+    const duration = (opts && opts.duration) || (opts && opts.undo ? 6000 : 2200);
+    if (html || (opts && opts.undo)) toastEl.innerHTML = html ? msg : msg;
     else toastEl.textContent = msg;
     toastEl.classList.add("show");
     clearTimeout(toast._t);
-    toast._t = setTimeout(() => toastEl.classList.remove("show"), 2200);
+    toast._undo = opts && opts.undo ? opts.undo : null;
+    toast._t = setTimeout(function () {
+      toastEl.classList.remove("show");
+      toast._undo = null;
+    }, duration);
+  }
+
+  function toastUndo(message, undoFn) {
+    toast(
+      message + ' <button type="button" class="btn btn-quiet btn-sm toast-undo">Undo</button>',
+      { html: true, undo: undoFn, duration: 6000 }
+    );
   }
 
   function syncAvatars() {
@@ -1605,6 +1764,9 @@
       });
     }
     if (name === "cook") {
+      // Entering the kitchen confirms the session, even if begin_cook
+      // is still on the wire. A pending id alone does not.
+      if (state.dinnerCookPendingId) confirmCookSession(state.dinnerCookPendingId);
       ensureRecipeForMeal(cookingMeal()).then(function () {
         renderCook();
       });
@@ -1622,6 +1784,10 @@
     if (name === "planReview") renderPlanReview();
     if (name === "planConfirm") renderPlanConfirm();
     if (name === "shopList") {
+      track("shopping_opened", {
+        dinner_plan_id: state.dinnerPlan && state.dinnerPlan.dinner_plan_id,
+        line_count: ((state.dinnerShop && state.dinnerShop.lines) || (state.dinnerPlan && state.dinnerPlan.shop_lines) || []).length,
+      });
       refreshDinnerShopping().then(function () {
         renderShopList();
       });
@@ -1643,6 +1809,7 @@
       syncHouseholdChrome();
     }
     updateDebug();
+    if (state.navHistory && state.navHistory.armInAppBack) state.navHistory.armInAppBack();
   }
 
   function homeStage(meal) {
@@ -1918,6 +2085,36 @@
     return true;
   }
 
+  function planMealId(meal) {
+    return meal && (meal.id || meal.meal_id);
+  }
+
+  /**
+   * Resume only after cooking has actually started: the server says so,
+   * or the kitchen is open for this meal. An in-flight begin_cook
+   * (dinnerCookPendingId) must not relabel the recipe button.
+   */
+  function mealIsActiveCook(meal) {
+    if (!meal) return false;
+    const id = planMealId(meal);
+    if (id && state.dinnerCookMealId === id) return true;
+    if (meal.state === "cooking") return true;
+    const raw = id ? planMealById(id) : null;
+    return !!(raw && raw.state === "cooking");
+  }
+
+  function confirmCookSession(mealId) {
+    if (!mealId) return;
+    state.dinnerCookMealId = mealId;
+    if (state.dinnerCookPendingId === mealId) state.dinnerCookPendingId = null;
+  }
+
+  function resumeStepNumber(meal) {
+    const id = planMealId(meal);
+    if (id && state.dinnerCookMealId === id) return Math.max(1, (Number(state.cookStep) || 0) + 1);
+    return 1;
+  }
+
   function syncDetailActions(meal) {
     if (syncDiscoveryDetailActions(meal)) return;
     const cookBtn = document.getElementById("btnStartCook");
@@ -1945,10 +2142,10 @@
     }
     if (cookBtn) {
       cookBtn.hidden = pick.action === "none";
-      if (rawPlan && rawPlan.state === "cooking") {
+      if (mealIsActiveCook(meal)) {
         cookBtn.dataset.action = "cook";
         cookBtn.dataset.go = "cook";
-        cookBtn.innerHTML = "Back to the kitchen " + icon("arrow-right", "icon--forward");
+        cookBtn.innerHTML = "Resume step " + resumeStepNumber(meal) + " " + icon("arrow-right", "icon--forward");
       } else if (pick.action === "choose") {
         cookBtn.dataset.action = "choose";
         delete cookBtn.dataset.go;
@@ -2028,11 +2225,25 @@
         const lines = meal.discoveryWhyLines || [];
         whyEl.textContent = lines.join("\n");
         whyEl.hidden = !lines.length;
-      } else {
+      } else if (meal.historical) {
         whyEl.hidden = false;
-        whyEl.textContent = meal.historical
-          ? (meal.avg_score != null ? "Your table rated it " + Number(meal.avg_score).toFixed(1) + "/10." : "Cooked here before.")
-          : pers.line || "Clears your household’s hard limits.";
+        whyEl.textContent =
+          meal.avg_score != null
+            ? "Your table rated it " + Number(meal.avg_score).toFixed(1) + "/10."
+            : "Cooked here before.";
+      } else {
+        const row = meal.discoveryRow || discoveryResultRow(meal.recipe_slug);
+        const intent = state.dinnerPlan && state.dinnerPlan.intent;
+        const reason =
+          window.FlavorWeaveExplanation &&
+          window.FlavorWeaveExplanation.reasonLineFromMeal(meal, row, intent);
+        if (reason) {
+          whyEl.hidden = false;
+          whyEl.textContent = reason;
+        } else {
+          whyEl.hidden = true;
+          whyEl.textContent = "";
+        }
       }
     }
     let serves = recipe.requested_servings || recipe.servings;
@@ -2052,15 +2263,80 @@
             ? '<span class="badge badge--fit" id="detailLockChip">Fits everyone eating</span>'
             : '<span class="badge badge--fit" id="detailLockChip">Fits ' + escapeHtml(householdCopy("fit")) + "</span>",
       ];
+      const rawPlan = meal.dinner_plan ? planMealById(meal.id) : null;
+      if (rawPlan && window.FlavorWeaveMealRecipe && window.FlavorWeaveMealRecipe.adaptationChangeCount(rawPlan) > 0) {
+        badges.push('<span class="badge badge--your-version">Your version</span>');
+      }
       const label = meal.historical ? "" : persLabel(pers);
       if (label) badges.push('<span class="badge badge--match">' + escapeHtml(label) + "</span>");
       if (recipe.total_minutes) badges.push('<span class="badge badge--time">' + icon("clock") + recipe.total_minutes + " min</span>");
+      while (badges.length > 3) {
+        const timeIdx = badges.findIndex(function (b) {
+          return b.indexOf("badge--time") >= 0;
+        });
+        if (timeIdx >= 0) badges.splice(timeIdx, 1);
+        else if (badges.some(function (b) {
+          return b.indexOf("badge--match") >= 0;
+        })) {
+          const matchIdx = badges.findIndex(function (b) {
+            return b.indexOf("badge--match") >= 0;
+          });
+          badges.splice(matchIdx, 1);
+        } else badges.pop();
+      }
       chipsEl.innerHTML = badges.join("");
+    }
+    const dinerLine = document.getElementById("detailDinerLine");
+    const versionLine = document.getElementById("detailVersionLine");
+    const weaveHost = document.getElementById("detailWeaveHost");
+    const rawPlanMeal = meal.dinner_plan ? planMealById(meal.id) : null;
+    if (dinerLine) {
+      if (rawPlanMeal) {
+        dinerLine.hidden = false;
+        dinerLine.innerHTML =
+          cookingForLabel(dinerCountForPlanMeal(rawPlanMeal)) +
+          ' · <button type="button" class="btn btn-quiet btn-sm" data-action="open-participants" data-meal-id="' +
+          escapeHtml(rawPlanMeal.meal_id) +
+          '">Change</button>';
+      } else if (meal.discovery && !meal.dinner_plan) {
+        const n = state.detailViewingServings != null ? state.detailViewingServings : activeMemberCount();
+        dinerLine.hidden = false;
+        dinerLine.innerHTML =
+          'Cooking for <span class="guest-stepper" role="group" aria-label="Viewing count">' +
+          '<button type="button" class="btn btn-quiet btn-sm" data-action="detail-servings-down" aria-label="One fewer">−</button> ' +
+          String(n) +
+          ' <button type="button" class="btn btn-quiet btn-sm" data-action="detail-servings-up" aria-label="One more">+</button></span>';
+      } else {
+        dinerLine.hidden = true;
+      }
+    }
+    if (versionLine) {
+      const changes = rawPlanMeal && window.FlavorWeaveMealRecipe
+        ? window.FlavorWeaveMealRecipe.adaptationChangeCount(rawPlanMeal)
+        : 0;
+      if (changes > 0) {
+        versionLine.hidden = false;
+        versionLine.innerHTML =
+          "Your version · " +
+          changes +
+          (changes === 1 ? " change" : " changes") +
+          ' · <button type="button" class="btn btn-quiet btn-sm" data-action="see-adapt-changes" data-meal-id="' +
+          escapeHtml(rawPlanMeal.meal_id) +
+          '">See what changed</button>';
+      } else {
+        versionLine.hidden = true;
+      }
+    }
+    if (weaveHost) {
+      const showWeave = !meal.historical && recipe && recipe.recipe_version_id;
+      weaveHost.hidden = !showWeave;
+      if (showWeave) {
+        mountRecipeWeave();
+      }
     }
     if (statsEl) {
       const effortLevel = recipe.effort_level || recipe.effort || meal.effort;
       const stats = [
-        ["users", serves + (serves === 1 ? " serving" : " servings"), "Serves"],
         ["clock", (recipe.total_minutes || "—") + " minutes", "Total time"],
       ];
       if (!meal.discovery) {
@@ -2075,20 +2351,31 @@
         .join("");
     }
     if (servingsNote) {
-      if (meal.discovery && discoveryParticipantCount() == null && recipe.base_servings != null) {
-        servingsNote.textContent = "Written for " + recipe.base_servings + ".";
-      } else {
-        servingsNote.textContent =
-          recipe.base_servings && recipe.base_servings !== serves
-            ? "Scaled for " + serves + " (written for " + recipe.base_servings + ")."
-            : "Amounts for " + serves + ".";
+      const dinerN = rawPlanMeal ? dinerCountForPlanMeal(rawPlanMeal) : serves;
+      servingsNote.textContent = cookingForLabel(dinerN);
+      if (recipe.base_servings && recipe.base_servings !== dinerN) {
+        servingsNote.textContent += " · Recipe written for " + recipe.base_servings + " — amounts adjusted.";
       }
     }
+    const changedIds = recipe._changedIngredientIds;
+    const changedSteps = recipe._changedStepNumbers;
     if (ingEl) {
       ingEl.innerHTML = (recipe.ingredients || [])
         .map(function (i) {
           const note = i.note ? ` <span class="ing-note">${escapeHtml(i.note)}</span>` : "";
-          return `<li><span class="qty">${escapeHtml(i.quantity || "")}</span><span>${escapeHtml(i.name)}${note}</span></li>`;
+          const id = i.ingredient_id || i.name;
+          const changed = changedIds && changedIds.has && changedIds.has(id);
+          return (
+            '<li class="' +
+            (changed ? "is-changed" : "") +
+            '"><span class="qty">' +
+            escapeHtml(i.quantity || "") +
+            "</span><span>" +
+            escapeHtml(i.name) +
+            note +
+            (changed ? '<span class="ing-changed-label">Changed</span>' : "") +
+            "</span></li>"
+          );
         })
         .join("");
     }
@@ -2096,7 +2383,20 @@
     if (stepsEl) {
       stepsEl.innerHTML = (recipe.steps || [])
         .map(function (s, idx) {
-          return `<li data-n="${idx + 1}"><div><strong>${escapeHtml(s.title)}</strong>${s.body ? `<p>${escapeHtml(s.body)}</p>` : ""}</div></li>`;
+          const num = s.step_number || idx + 1;
+          const changed = changedSteps && changedSteps.has && changedSteps.has(num);
+          return (
+            '<li class="' +
+            (changed ? "is-changed" : "") +
+            '" data-n="' +
+            (idx + 1) +
+            '"><div><strong>' +
+            escapeHtml(s.title) +
+            "</strong>" +
+            (changed ? '<span class="ing-changed-label">Changed</span>' : "") +
+            (s.body ? "<p>" + escapeHtml(s.body) + "</p>" : "") +
+            "</div></li>"
+          );
         })
         .join("");
     }
@@ -2159,10 +2459,29 @@
     const steps = cookSteps();
     const i = state.cookStep;
     const cookMeal = document.getElementById("cookMealTitle");
+    const cookDiner = document.getElementById("cookDinerLine");
     const meal = cookingMeal();
+    const raw = meal && meal.dinner_plan ? planMealById(meal.id) : null;
     if (cookMeal) {
-      cookMeal.textContent = (state.activeRecipe && state.activeRecipe._mealId === (meal && meal.id) && state.activeRecipe.title) || (meal && meal.title) || "Kitchen mode";
+      let title =
+        (state.activeRecipe && state.activeRecipe._mealId === (meal && meal.id) && state.activeRecipe.title) ||
+        (meal && meal.title) ||
+        "Kitchen mode";
+      if (raw && window.FlavorWeaveMealRecipe && window.FlavorWeaveMealRecipe.adaptationChangeCount(raw) > 0) {
+        title += " · Your version";
+      }
+      cookMeal.textContent = title;
     }
+    if (cookDiner) {
+      if (raw) {
+        cookDiner.hidden = false;
+        cookDiner.textContent = cookingForLabel(dinerCountForPlanMeal(raw));
+        cookDiner.dataset.mealId = raw.meal_id;
+      } else {
+        cookDiner.hidden = true;
+      }
+    }
+    mountRecipeWeave();
     if (!steps.length) {
       document.getElementById("cookStepTitle").textContent = "Recipe not loaded";
       document.getElementById("cookStepBody").textContent =
@@ -2209,6 +2528,7 @@
         if (plan) {
           state.dinnerRateMealId = cooking.id;
           state.dinnerCookMealId = null;
+          state.dinnerCookPendingId = null;
           initPlanRatingsForMeal(cooking.id);
           show("rate");
         }
@@ -3039,6 +3359,29 @@
       return null;
     }
     applyDinnerPlan(res.plan);
+    const planEditOps = {
+      add_meal: true,
+      remove_meal: true,
+      swap_meal: true,
+      set_participants: true,
+      set_guest_count: true,
+      apply_adaptation: true,
+      clear_adaptation: true,
+      set_count: true,
+    };
+    if (planEditOps[payload.op]) {
+      track("plan_edited", { op: payload.op, dinner_plan_id: res.plan.dinner_plan_id });
+    }
+    if (payload.op === "select_meal") {
+      const m = (res.plan.meals || []).find(function (x) {
+        return x.meal_id === payload.meal_id;
+      });
+      track("dinner_selected", {
+        dinner_plan_id: res.plan.dinner_plan_id,
+        meal_id: payload.meal_id,
+        recipe_slug: m && m.recipe_slug,
+      });
+    }
     if (state.view === "shopList") await refreshDinnerShopping();
     if (affectsList) {
       const participantNoop =
@@ -3090,6 +3433,11 @@
     else if (code === "meal_count_too_small") toast("Remove a dinner first, then lower the number.");
     else if (code === "forbidden_cross_household" || code === "plan_not_found") toast("This plan isn’t in your kitchen.");
     else if (code === "unknown_recipe") toast("That dinner isn’t on the menu anymore. Pick another.");
+    else if (code === "adaptation_not_applicable")
+      toast(
+        (res && res.acknowledgement) ||
+          "That swap doesn't work for everyone eating this dinner, so we'd leave it out."
+      );
     else toast("We couldn’t reach the kitchen. Try again.");
   }
 
@@ -3223,6 +3571,8 @@
       position: meal.position,
       scheduled_date: meal.scheduled_date,
       participant_ids: meal.participant_ids || [],
+      guest_count: meal.guest_count || 0,
+      adaptation: meal.adaptation || null,
       pinned_ingredients: meal.pinned_ingredients,
       pinned_steps: meal.pinned_steps,
       effort_level: meal.effort_level || null,
@@ -3255,6 +3605,7 @@
 
   function cookingMeal() {
     if (state.dinnerCookMealId) return mealById(state.dinnerCookMealId);
+    if (state.dinnerCookPendingId) return mealById(state.dinnerCookPendingId);
     return mealById(state.cookingMealId || state.selectedMealId);
   }
 
@@ -3411,7 +3762,32 @@
         .join("");
     }
     actions.innerHTML = primary + secondary;
-    insights.hidden = true;
+    if (selected && selected.kind === "recipe") {
+      const reason = planMealReasonLine(selected);
+      const whyHost = document.getElementById("homeWhy");
+      if (reason && whyHost && whyHost.parentElement) {
+        insights.hidden = false;
+        whyHost.parentElement.innerHTML =
+          '<p class="insight__label">Why this one</p>' + (explanationBlockHtml("home-hero", selected) || "");
+        bindWhyInScope(insights);
+        ensureRecipeForMeal(uiMealFromPlanMeal(selected)).then(function (recipe) {
+          if (!recipe) return;
+          const ingCount = document.getElementById("homeIngCount");
+          const stepCount = document.getElementById("homeStepCount");
+          if (ingCount) ingCount.textContent = (recipe.ingredients || []).length + " ingredients";
+          if (stepCount) {
+            stepCount.textContent =
+              (recipe.steps || []).length +
+              " steps" +
+              (recipe.total_minutes ? " (~" + recipe.total_minutes + " min)" : "");
+          }
+        });
+      } else {
+        insights.hidden = true;
+      }
+    } else {
+      insights.hidden = true;
+    }
     renderHomeRatingWait();
   }
 
@@ -3726,11 +4102,15 @@
     state.previewMealId = state.dinnerDetailMeal.id;
     state.activeRecipe = null;
     const disc = Discovery && Discovery.getState ? Discovery.getState() : { mode: "standalone" };
+    const restore = Discovery && Discovery.captureState ? Discovery.captureState() : {};
     if (Discovery && Discovery.captureState) {
-      const snap = Discovery.captureState();
-      history.replaceState({ find: snap }, "", location.pathname + location.search);
+      history.replaceState({ fw: 1, view: "find", restore }, "", location.pathname + location.search);
     }
-    history.pushState({ fromFind: true }, "", "/meal/" + encodeURIComponent(slug) + "?from=find");
+    history.pushState(
+      { fw: 1, view: "detail", origin: "find", restore },
+      "",
+      "/meal/" + encodeURIComponent(slug) + "?from=find"
+    );
     show("detail", {
       context: Nav.contextFor("detail", "find", {
         established: householdEstablished(),
@@ -4056,6 +4436,27 @@
       );
     }
     const canSwap = meal.state === "planned" || meal.state === "selected";
+    const rawForCard = meal;
+    const dinerExc = planMealDinerException(rawForCard);
+    const dinerBtn =
+      '<button type="button" class="plan-meal-diner' +
+      (dinerExc ? " is-exception" : "") +
+      '" data-action="open-participants" data-meal-id="' +
+      escapeHtml(meal.meal_id) +
+      '" aria-label="For ' +
+      dinerCountForPlanMeal(rawForCard) +
+      ", change who's eating Dinner " +
+      meal.position +
+      '">' +
+      icon("users") +
+      " " +
+      escapeHtml(planMealDinerLabel(rawForCard)) +
+      "</button>";
+    const whyBlock = explanationBlockHtml("plan-" + meal.meal_id, meal);
+    const adapted =
+      window.FlavorWeaveMealRecipe && window.FlavorWeaveMealRecipe.adaptationChangeCount(rawForCard) > 0
+        ? '<span class="badge badge--your-version">Your version</span> '
+        : "";
     return (
       '<article class="plan-meal-card" role="listitem" data-meal-id="' +
       escapeHtml(meal.meal_id) +
@@ -4068,10 +4469,14 @@
       '">' +
       escapeHtml(planMealTitle(meal)) +
       "</button></h2>" +
+      adapted +
       (swapped ? '<span class="badge badge--match">Swapped in</span> ' : "") +
       classificationBadges(meal) +
       (showStateBadge ? planMealStateBadge(meal) : "") +
-      '<p class="card-kicker">Why this one</p><p class="meta">Fits everyone’s limits</p>' +
+      '<div class="plan-meal-meta">' +
+      dinerBtn +
+      "</div>" +
+      whyBlock +
       '<div class="plan-meal-card__actions">' +
       (canSwap
         ? '<button type="button" class="btn btn-secondary btn-sm" data-action="swap-meal" data-meal-id="' +
@@ -4098,6 +4503,11 @@
       const btn = document.querySelector('.plan-meal-card[data-meal-id="' + mealId + '"] .plan-meal-title');
       if (btn) btn.focus();
     });
+  }
+
+  async function fetchMealExplanation(payload) {
+    const res = await apiPost("/api/explain", payload);
+    return res && res.ok ? res : { text: payload.template || "", source: "fallback" };
   }
 
   function renderPlanReview() {
@@ -4139,6 +4549,7 @@
       })
       .join("");
     list.innerHTML = html;
+    bindWhyInScope(list);
     focusPendingPlanMeal();
     fillPrefSlot("planReviewPrefs", plan.intent, "active");
     renderPlanStarIntro();
@@ -4324,11 +4735,24 @@
     if (!plan || !shop) return;
     if (planShoppingStarted()) ensureShopLineSnapshotForTags();
     const eyebrow = document.getElementById("shopEyebrow");
-    if (plan.meal_count === 1 && plan.meals && plan.meals[0]) {
-      eyebrow.textContent = "For " + planMealTitle(plan.meals[0]);
-    } else {
-      eyebrow.textContent = "For " + plan.meal_count + " dinners";
-    }
+    const recipeMeals = (plan.meals || []).filter(function (m) {
+      return m.kind === "recipe";
+    });
+    const hh = householdDinerCount();
+    const exceptions = recipeMeals.filter(function (m) {
+      return dinerCountForPlanMeal(m) !== hh;
+    });
+    const dinerSummary = recipeMeals.length
+      ? shopCookingHeadline(
+          plan.meal_count,
+          hh,
+          exceptions.map(function (m) {
+            return { label: planMealLabel(m), count: dinerCountForPlanMeal(m) };
+          })
+        )
+      : plan.meal_count + " dinners";
+    eyebrow.textContent = dinerSummary;
+    eyebrow.setAttribute("aria-label", "Who is eating. " + dinerSummary);
     const lines = shop.lines || [];
     const need = lines.filter(function (l) {
       return l.still_needed && l.list_state === "open";
@@ -4486,8 +4910,32 @@
     if (line.list_state !== "open") {
       actions.push('<button type="button" class="sheet-menu__btn" data-action="shop-set" data-state="open">Still need it</button>');
     }
+    const recipeMealId = (line.meal_ids || []).find(function (id) {
+      const m = planMealById(id);
+      return m && m.kind === "recipe";
+    });
+    if (recipeMealId) {
+      actions.push(
+        '<button type="button" class="sheet-menu__btn" data-action="shop-view-recipe" data-meal-id="' +
+          escapeHtml(recipeMealId) +
+          '">View recipe</button>'
+      );
+    }
     document.getElementById("shopLineActions").innerHTML = actions.join("");
     document.getElementById("shopLineSheet").showModal();
+  }
+
+  function shopEyebrowTargetMealId(plan) {
+    const recipeMeals = (plan.meals || []).filter(function (m) {
+      return m.kind === "recipe";
+    });
+    if (!recipeMeals.length) return null;
+    const hh = householdDinerCount();
+    const exceptions = recipeMeals.filter(function (m) {
+      return dinerCountForPlanMeal(m) !== hh;
+    });
+    if (exceptions.length === 1) return exceptions[0].meal_id;
+    return recipeMeals[0].meal_id;
   }
 
   function renderShopChangesBanner() {
@@ -4637,6 +5085,7 @@
       html += "<p class=\"meta\">" + done.length + " done · Show</p>";
     }
     document.getElementById("tonightPlanSections").innerHTML = html;
+    bindWhyInScope(document.getElementById("tonightPlanSections"));
     document.getElementById("tonightFindMore").hidden = planIsClosed(plan);
     const actionsEl = document.getElementById("choicesActions");
     if (actionsEl) {
@@ -4670,6 +5119,170 @@
     if (state.view === "planReview") renderPlanReview();
     if (state.view === "planConfirm") renderPlanConfirm();
     if (state.view === "shopList") renderShopList();
+  }
+
+  async function applyAdaptationFromAdvice(rawMeal, advice, scopeLabel) {
+    if (!rawMeal || !advice) return;
+    const before = rawMeal.adaptation ? JSON.stringify(rawMeal.adaptation) : null;
+    const adaptationPayload = advice.override
+      ? {
+          support: advice.support || "advice",
+          acknowledgement: advice.acknowledgement || advice.override.acknowledgement,
+          kind: advice.kind || advice.override.kind,
+          override_json: advice.override,
+        }
+      : {
+          support: advice.support || "advice",
+          acknowledgement: advice.acknowledgement,
+          kind: advice.kind,
+          ingredient_ops: advice.ingredient_ops || [],
+          step_notes: advice.step_notes || [],
+        };
+    const plan = await mutateDinnerPlan({
+      op: "apply_adaptation",
+      meal_id: rawMeal.meal_id,
+      adaptation: adaptationPayload,
+    });
+    if (!plan) return;
+    track("adaptation_applied", {
+      meal_id: rawMeal.meal_id,
+      recipe_slug: rawMeal.recipe_slug,
+      kind: advice.kind,
+      op_count: (advice.ingredient_ops || []).length,
+    });
+    const uiMeal = mealById(rawMeal.meal_id);
+    state.activeRecipe = null;
+    await ensureRecipeForMeal(uiMeal);
+    renderDetail();
+    renderPlanReview();
+    renderTonightPlan();
+    if (state.view === "cook") renderCook();
+    const msg = "Applied to " + scopeLabel + ". Shopping list updated.";
+    toastUndo(msg, async function () {
+      await mutateDinnerPlan({ op: "clear_adaptation", meal_id: rawMeal.meal_id });
+      track("adaptation_undone", { meal_id: rawMeal.meal_id, recipe_slug: rawMeal.recipe_slug });
+      state.activeRecipe = null;
+      await ensureRecipeForMeal(mealById(rawMeal.meal_id));
+      renderDetail();
+      renderPlanReview();
+    });
+    const focusEl = document.getElementById("detailVersionLine");
+    if (focusEl && !focusEl.hidden) focusEl.focus({ preventScroll: true });
+  }
+
+  function openAdaptChangesSheet(mealId) {
+    const raw = planMealById(mealId);
+    if (!raw) return;
+    const summaries = window.FlavorWeaveMealRecipe
+      ? window.FlavorWeaveMealRecipe.adaptationOpSummaries(raw)
+      : [];
+    const title = document.getElementById("adaptChangesTitle");
+    const asked = document.getElementById("adaptChangesAsked");
+    const list = document.getElementById("adaptChangesList");
+    if (title) title.textContent = "What changed in Dinner " + raw.position;
+    const ack = raw.adaptation && raw.adaptation.override_json && raw.adaptation.override_json.acknowledgement;
+    if (asked) {
+      asked.textContent = ack ? 'You asked: "' + ack + '"' : "";
+      asked.hidden = !ack;
+    }
+    if (list) {
+      list.innerHTML = summaries
+        .map(function (s) {
+          return (
+            '<li><div><strong>' +
+            escapeHtml(s.title) +
+            "</strong><p class=\"meta\">" +
+            escapeHtml(s.detail) +
+            '</p></div><button type="button" class="btn btn-quiet btn-sm" data-adapt-undo-op="' +
+            s.index +
+            '" data-meal-id="' +
+            escapeHtml(raw.meal_id) +
+            '">Undo</button></li>'
+          );
+        })
+        .join("");
+    }
+    state.adaptChangesMealId = mealId;
+    state.adaptChangesOpener = document.activeElement;
+    document.getElementById("adaptChangesSheet").showModal();
+  }
+
+  async function undoAdaptationOp(mealId, opIndex) {
+    const raw = planMealById(mealId);
+    if (!raw || !raw.adaptation || !raw.adaptation.override_json) return;
+    const ops = (raw.adaptation.override_json.ops || []).slice();
+    ops.splice(opIndex, 1);
+    if (!ops.length) {
+      await mutateDinnerPlan({ op: "clear_adaptation", meal_id: mealId });
+    } else {
+      const next = Object.assign({}, raw.adaptation.override_json, { ops });
+      await mutateDinnerPlan({
+        op: "apply_adaptation",
+        meal_id: mealId,
+        adaptation: { override_json: next, support: "advice" },
+      });
+    }
+    track("adaptation_undone", { meal_id: mealId, recipe_slug: raw.recipe_slug });
+    state.activeRecipe = null;
+    await ensureRecipeForMeal(mealById(mealId));
+    renderDetail();
+    renderPlanReview();
+    openAdaptChangesSheet(mealId);
+  }
+
+  async function clearAllAdaptation(mealId) {
+    const raw = planMealById(mealId);
+    if (!raw || !raw.adaptation) return;
+    await mutateDinnerPlan({ op: "clear_adaptation", meal_id: mealId });
+    document.getElementById("adaptChangesSheet").close();
+    toastUndo("Back to the original recipe.", async function () {
+      if (raw.adaptation) {
+        await mutateDinnerPlan({
+          op: "apply_adaptation",
+          meal_id: mealId,
+          adaptation: { override_json: raw.adaptation.override_json, support: "advice" },
+        });
+      }
+      state.activeRecipe = null;
+      await ensureRecipeForMeal(mealById(mealId));
+      renderDetail();
+    });
+    state.activeRecipe = null;
+    await ensureRecipeForMeal(mealById(mealId));
+    renderDetail();
+    renderPlanReview();
+  }
+
+  function mountRecipeWeave() {
+    const RW = window.FlavorWeaveRecipeAdapt;
+    if (!RW || state.recipeWeaveReady) return;
+    state.recipeWeaveReady = true;
+    const deps = {
+      currentMeal: function () {
+        return state.view === "cook" ? cookingMeal() : detailMeal();
+      },
+      currentRecipe: function () {
+        return state.activeRecipe;
+      },
+      getDinnerPlan: function () {
+        return state.dinnerPlan;
+      },
+      planMealById: planMealById,
+      activeMemberIds: activeMemberIds,
+      dinerCountForMeal: function (meal) {
+        const raw = meal && meal.dinner_plan ? planMealById(meal.id) : meal;
+        return dinerCountForPlanMeal(raw || meal);
+      },
+      adaptationChangeCount: function (raw) {
+        return window.FlavorWeaveMealRecipe ? window.FlavorWeaveMealRecipe.adaptationChangeCount(raw) : 0;
+      },
+      applyAdaptationFromAdvice: applyAdaptationFromAdvice,
+      openParticipants: openParticipantsSheet,
+      track: track,
+    };
+    RW.mountDetail(deps);
+    RW.mountCookSheet(deps);
+    RW.bindWeaveActions(deps);
   }
 
   function planMealById(mealId) {
@@ -4833,11 +5446,10 @@
   }
 
   function renderParticipantsTiles() {
-    const me = meMember();
     document.getElementById("participantsTiles").innerHTML = activeMembers()
       .map(function (m) {
         const on = state.participantsDraft.indexOf(m.id) >= 0;
-        const label = me && m.id === me.id ? "You" : m.name;
+        const label = m.name;
         return (
           '<button type="button" class="check-tile' +
           (on ? " is-on" : "") +
@@ -4916,8 +5528,10 @@
     await refreshMembersFromServer();
     state.participantsMealId = mealId;
     state.participantsDraft = (meal.participant_ids || activeMemberIds()).slice();
+    state.participantsGuestDraft = Math.max(0, Number(meal.guest_count) || 0);
     document.getElementById("participantsTitle").textContent = "Who’s eating Dinner " + meal.position + "?";
     renderParticipantsTiles();
+    syncParticipantsGuestUi();
     document.getElementById("participantsSheet").showModal();
   }
 
@@ -4929,17 +5543,40 @@
     if (btn) btn.disabled = !ok;
   }
 
+  function syncParticipantsGuestUi() {
+    const guestEl = document.getElementById("participantsGuestCount");
+    const summary = document.getElementById("participantsCookingSummary");
+    const note = document.getElementById("participantsGuestNote");
+    if (!guestEl) return;
+    guestEl.textContent = String(state.participantsGuestDraft || 0);
+    const diners = (state.participantsDraft || []).length + (state.participantsGuestDraft || 0);
+    if (summary) summary.textContent = "Cooking for " + diners;
+    if (note) note.hidden = !(state.participantsGuestDraft > 0);
+  }
+
   async function saveParticipantsSheet() {
     const mealId = state.participantsMealId;
     if (!mealId || !state.participantsDraft || !state.participantsDraft.length) return;
-    const res = await mutateDinnerPlan({
+    const meal = planMealById(mealId);
+    const resP = await mutateDinnerPlan({
       op: "set_participants",
       meal_id: mealId,
       participant_ids: state.participantsDraft,
     });
-    if (res) {
+    if (!resP) return;
+    const resG = await mutateDinnerPlan({
+      op: "set_guest_count",
+      meal_id: mealId,
+      guest_count: state.participantsGuestDraft || 0,
+    });
+    if (resG) {
       document.getElementById("participantsSheet").close();
       renderActiveDinnerSurfaces();
+      if (meal) {
+        toast(
+          "Dinner " + meal.position + " is now for " + dinerCountForPlanMeal(planMealById(mealId)) + ". Shopping list updated."
+        );
+      }
     }
   }
 
@@ -5281,12 +5918,14 @@
             (slot.total_minutes || "—") +
             " min</p>" +
             classificationBadges(slot) +
+            explanationBlockHtml("swap-" + slot.recipe_version_id, slot) +
             '<button type="button" class="btn btn-secondary btn-sm" data-action="swap-use" data-version="' +
             escapeHtml(slot.recipe_version_id) +
             '">Use this</button></div></div>'
           );
         })
         .join("");
+      bindWhyInScope(box);
     }
     showSwapError("");
     state.swapInFlight = false;
@@ -5415,6 +6054,40 @@
         state.swapInFlight = false;
         swapUse.disabled = false;
       }
+      return true;
+    }
+    const openPart = e.target.closest("[data-action='open-participants']");
+    if (openPart) {
+      e.preventDefault();
+      openParticipantsSheet(openPart.dataset.mealId);
+      return true;
+    }
+    const seeAdapt = e.target.closest("[data-action='see-adapt-changes']");
+    if (seeAdapt) {
+      e.preventDefault();
+      openAdaptChangesSheet(seeAdapt.dataset.mealId);
+      return true;
+    }
+    const adaptUndo = e.target.closest("[data-adapt-undo-op]");
+    if (adaptUndo) {
+      e.preventDefault();
+      void undoAdaptationOp(adaptUndo.dataset.mealId, Number(adaptUndo.dataset.adaptUndoOp));
+      return true;
+    }
+    const servDown = e.target.closest("[data-action='detail-servings-down']");
+    if (servDown) {
+      e.preventDefault();
+      state.detailViewingServings = Math.max(1, (state.detailViewingServings || activeMemberCount()) - 1);
+      state.activeRecipe = null;
+      ensureRecipeForMeal(detailMeal()).then(renderDetail);
+      return true;
+    }
+    const servUp = e.target.closest("[data-action='detail-servings-up']");
+    if (servUp) {
+      e.preventDefault();
+      state.detailViewingServings = Math.min(8, (state.detailViewingServings || activeMemberCount()) + 1);
+      state.activeRecipe = null;
+      ensureRecipeForMeal(detailMeal()).then(renderDetail);
       return true;
     }
     const mealMore = e.target.closest("[data-action='meal-more']");
@@ -5559,6 +6232,13 @@
       openShopLineSheet(shopMore.dataset.shopMore);
       return true;
     }
+    const shopRecipe = e.target.closest("[data-action='shop-view-recipe']");
+    if (shopRecipe) {
+      e.preventDefault();
+      document.getElementById("shopLineSheet").close();
+      openPlanMealDetail(shopRecipe.dataset.mealId, "shopList");
+      return true;
+    }
     const shopSet = e.target.closest("[data-action='shop-set']");
     if (shopSet) {
       e.preventDefault();
@@ -5687,6 +6367,7 @@
       });
       if (meal) {
         state.dinnerCookMealId = meal.meal_id;
+        state.dinnerCookPendingId = null;
         state.dinnerDetailMeal = uiMealFromPlanMeal(meal);
         show("cook");
       }
@@ -6004,6 +6685,15 @@
     const go = e.target.closest("[data-go]");
     if (go && !go.disabled && !go.dataset.select) {
       e.preventDefault();
+      if (
+        go.classList.contains("back") &&
+        state.navHistory &&
+        state.navHistory.topOpenDialog &&
+        state.navHistory.topOpenDialog()
+      ) {
+        state.navHistory.handleBack();
+        return;
+      }
       if (go.dataset.go === "detail") {
         state.previewMealId = state.selectedMealId;
         state.activeRecipe = null;
@@ -6012,9 +6702,10 @@
         if (
           state.view === "detail" &&
           state.navContext.detail &&
-          state.navContext.detail.origin === "find"
+          state.navContext.detail.origin === "find" &&
+          state.navHistory
         ) {
-          history.back();
+          state.navHistory.handleBack();
           return;
         }
         if (Discovery) {
@@ -6144,7 +6835,7 @@
       id: mid,
       name,
       initial: name[0].toUpperCase(),
-      status: "Invited",
+      status: "Active",
     });
     state.ratings[mid] = { score: null, note: "" };
     input.value = "";
@@ -6158,10 +6849,30 @@
         member_id: mid,
         display_name: name,
         role: "member",
-        status: "invited",
+        status: "active",
       });
     }
   });
+
+  const btnGuestFewer = document.getElementById("btnGuestFewer");
+  const btnGuestMore = document.getElementById("btnGuestMore");
+  if (btnGuestFewer) {
+    btnGuestFewer.addEventListener("click", function () {
+      state.participantsGuestDraft = Math.max(0, (state.participantsGuestDraft || 0) - 1);
+      syncParticipantsGuestUi();
+    });
+  }
+  if (btnGuestMore) {
+    btnGuestMore.addEventListener("click", function () {
+      const diners = (state.participantsDraft || []).length + (state.participantsGuestDraft || 0);
+      if (diners >= 8) {
+        toast("Recipes go up to 8.");
+        return;
+      }
+      state.participantsGuestDraft = Math.min(6, (state.participantsGuestDraft || 0) + 1);
+      syncParticipantsGuestUi();
+    });
+  }
 
   document.getElementById("btnSkipTaste").addEventListener("click", () => {
     state.tastePicks = [];
@@ -6551,6 +7262,7 @@
       if (leave) {
         await mutateDinnerPlan({ op: "exit_cook", meal_id: cooking.id });
         state.dinnerCookMealId = null;
+        state.dinnerCookPendingId = null;
         show("choices");
         renderTonightPlan();
       }
@@ -6578,12 +7290,34 @@
       return false;
     }
     if (meal.dinner_plan && state.dinnerPlan) {
-      state.dinnerCookMealId = mealId;
+      const raw = planMealById(mealId);
+      const confirmed = state.dinnerCookMealId === mealId;
+      const serverCooking = !!(raw && raw.state === "cooking") || meal.state === "cooking";
+      if (confirmed || serverCooking) {
+        confirmCookSession(mealId);
+        if (navigate !== false) show("cook");
+        return true;
+      }
+      // Same meal already waiting on begin_cook: don't send it twice or reset the step.
+      if (state.dinnerCookPendingId === mealId) {
+        if (navigate !== false) show("cook");
+        return true;
+      }
+      state.cookStep = 0;
+      state.dinnerCookPendingId = mealId;
       mutateDinnerPlan({ op: "begin_cook", meal_id: mealId }).then(function (plan) {
-        if (plan) {
-          state.cookStep = 0;
-          if (navigate !== false) show("cook");
+        if (state.dinnerCookPendingId === mealId) state.dinnerCookPendingId = null;
+        if (!plan) {
+          const still = planMealById(mealId);
+          if (state.dinnerCookMealId === mealId && !(still && still.state === "cooking")) {
+            state.dinnerCookMealId = null;
+            if (state.view === "detail") renderDetail();
+          }
+          return;
         }
+        confirmCookSession(mealId);
+        if (navigate !== false && state.view !== "cook") show("cook");
+        else if (state.view === "detail") renderDetail();
       });
       return true;
     }
@@ -6613,12 +7347,18 @@
       });
       return;
     }
-    if (act === "choose") {
-      e.stopImmediatePropagation();
+    if (act === "choose" || !act) {
       const meal = detailMeal();
-      if (meal) selectMeal(meal.id);
-      renderDetail();
-      return;
+      const pick = detailPickState(meal);
+      // The shell button says "Start cooking" until the recipe paints.
+      // On a slow round trip that click must choose, not open the kitchen
+      // or mark a cook that has not started.
+      if (act === "choose" || pick.action === "choose") {
+        e.stopImmediatePropagation();
+        if (meal) selectMeal(meal.id);
+        renderDetail();
+        return;
+      }
     }
     if (!startCooking(false)) e.stopImmediatePropagation();
   });
@@ -6941,10 +7681,57 @@
   });
 
   toastEl.addEventListener("click", function (e) {
+    const undo = e.target.closest(".toast-undo");
+    if (undo && toast._undo) {
+      e.preventDefault();
+      void toast._undo();
+      toastEl.classList.remove("show");
+      toast._undo = null;
+      return;
+    }
     const go = e.target.closest("[data-go]");
     if (!go) return;
     e.preventDefault();
     show(go.dataset.go);
+  });
+
+  document.getElementById("btnCookViewRecipe")?.addEventListener("click", function () {
+    const meal = cookingMeal();
+    if (!meal) return;
+    state.dinnerDetailMeal = meal;
+    state.previewMealId = meal.id;
+    show("detail", {
+      context: Nav.contextFor("detail", "cook", {
+        established: householdEstablished(),
+        origin: "cook",
+        source: "dinner_plan",
+      }),
+    });
+  });
+  document.getElementById("shopEyebrow")?.addEventListener("click", function () {
+    const plan = state.dinnerPlan;
+    if (!plan) return;
+    const mealId = shopEyebrowTargetMealId(plan);
+    if (mealId) openParticipantsSheet(mealId);
+  });
+  document.getElementById("btnCookChangeRecipe")?.addEventListener("click", function () {
+    mountRecipeWeave();
+    const sheet = document.getElementById("cookAdaptSheet");
+    if (sheet) sheet.showModal();
+    const field = document.querySelector("#cookWeaveHost .weave-composer__field");
+    if (field) field.focus();
+  });
+  document.getElementById("cookDinerLine")?.addEventListener("click", function () {
+    const id = document.getElementById("cookDinerLine").dataset.mealId;
+    if (id) openParticipantsSheet(id);
+  });
+  document.getElementById("btnAdaptBackOriginal")?.addEventListener("click", function () {
+    if (state.adaptChangesMealId) void clearAllAdaptation(state.adaptChangesMealId);
+  });
+  document.getElementById("adaptChangesSheet")?.addEventListener("close", function () {
+    const opener = state.adaptChangesOpener;
+    state.adaptChangesOpener = null;
+    if (opener && opener.focus) opener.focus({ preventScroll: true });
   });
 
   document.getElementById("planDatesForm").addEventListener("submit", function (e) {
@@ -6979,6 +7766,20 @@
       document.getElementById("btnChangeCountApply").disabled = false;
     }
   });
+
+  if (window.FlavorWeaveNavHistory) {
+    state.navHistory = window.FlavorWeaveNavHistory.create({
+      getState: function () {
+        return { view: state.view, navContext: state.navContext };
+      },
+      show: show,
+      Nav: Nav,
+      getFindRestore: function () {
+        return Discovery && Discovery.captureState ? Discovery.captureState() : null;
+      },
+    });
+    state.navHistory.init();
+  }
 
   if (Discovery) {
     Discovery.init({
@@ -7030,12 +7831,15 @@
     window.addEventListener("popstate", function (ev) {
       const parts = location.pathname.replace(/\/+$/, "").split("/").filter(Boolean);
       if (parts[0] === "find") {
-        const mode = (ev.state && ev.state.find && ev.state.find.mode) || "standalone";
+        const landed = ev.state || {};
+        if (landed.fwGuard || landed.transient) return;
+        if (landed.fw && landed.view && landed.view !== "find") return;
+        const mode = (landed.find && landed.find.mode) || "standalone";
         show("find", {
           context: Nav.contextFor("find", "detail", {
             established: householdEstablished(),
             mode: mode,
-            origin: (ev.state && ev.state.find && ev.state.find.urlContext && ev.state.find.urlContext.origin) || "find",
+            origin: (landed.find && landed.find.urlContext && landed.find.urlContext.origin) || "find",
           }),
         });
         Discovery.restoreFromHistory(ev.state);
@@ -7058,13 +7862,30 @@
       return;
     }
     if (pathParts[0] === "meal" && pathParts[1]) {
+      const slug = decodeURIComponent(pathParts[1]);
       const from = new URLSearchParams(location.search).get("from");
       const restored = await restoreSession();
-      if (restored && from === "find") {
-        await loadCurrentDinnerPlan();
-        await openDiscoveryRecipe(decodeURIComponent(pathParts[1]));
+      if (!restored) {
+        show("welcome");
         return;
       }
+      await loadCurrentDinnerPlan();
+      if (from === "find") {
+        await openDiscoveryRecipe(slug);
+        return;
+      }
+      const plan = state.dinnerPlan;
+      const planMeal =
+        plan &&
+        (plan.meals || []).find(function (m) {
+          return m.kind === "recipe" && m.recipe_slug === slug;
+        });
+      if (planMeal) {
+        openPlanMealDetail(planMeal.meal_id, "tonightPlan");
+        return;
+      }
+      await openDiscoveryRecipe(slug);
+      return;
     }
     const link = deepLinkTokensFromLocation();
     if (link.recoverToken) {
