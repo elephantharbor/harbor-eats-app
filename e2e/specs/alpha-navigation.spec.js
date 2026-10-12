@@ -61,6 +61,14 @@ test.describe("Alpha D-04 navigation", () => {
     await expect(page.locator(".view.is-active[data-view='detail']")).toBeVisible();
     await page.getByRole("button", { name: "Back to Kitchen" }).click();
     await expect(page.locator(".view.is-active[data-view='cook']")).toBeVisible();
+    const next = page.locator("#btnNextStep");
+    if ((await next.innerText()) === "Next") await next.click();
+    await page.goBack();
+    await expect(page.locator(".view.is-active[data-view='detail']")).toBeVisible();
+    await expect(page.locator("#btnStartCook")).toContainText(/Resume step [12]/);
+    await page.locator("#btnStartCook").click();
+    await expect(page.locator(".view.is-active[data-view='cook']")).toBeVisible();
+    await expect(page.locator("#cookStepMeta")).toHaveText(/^[12] \/ /);
   });
 
   test("deep link meal in active plan names Tonight parent", async ({ page }) => {
@@ -97,6 +105,19 @@ test.describe("Alpha D-04 navigation", () => {
     await page.goto("/meal/" + encodeURIComponent(otherSlug));
     await expect(page.locator(".view.is-active[data-view='detail']")).toBeVisible({ timeout: 30000 });
     await expect(page.getByRole("button", { name: "Back to Find" })).toBeVisible();
+  });
+
+  test("system Back closes the swap sheet and stays on the plan", async ({ page }) => {
+    await seedDinnerPlan(page);
+    await openPlanReviewFromHome(page);
+    await page.evaluate(() => {
+      document.querySelector('[data-action="swap-meal"]')?.click();
+    });
+    await expect(page.locator("#swapSheet[open]")).toBeVisible();
+    await page.waitForFunction(() => history.state && history.state.transient === "swapSheet");
+    await page.goBack();
+    await expect(page.locator("#swapSheet[open]")).toHaveCount(0);
+    await expect(page.locator(".view.is-active[data-view='planReview']")).toBeVisible();
   });
 
   test("task Back closes swap sheet before leaving plan review", async ({ page }) => {

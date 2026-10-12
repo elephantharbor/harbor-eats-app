@@ -3,7 +3,7 @@ import { DatabaseSync } from "node:sqlite";
 import { describe, expect, it } from "vitest";
 import { plannerCatalog } from "../src/lib/dinner-planner.js";
 import { scaleForDiners, neededLines } from "../src/lib/ingredient-identity.js";
-import { dinerCountForMeal } from "../src/lib/diner-count.js";
+import { dinerCountForMeal, dinerExceptionCopy, shopCookingHeadline } from "../src/lib/diner-count.js";
 import { applyPlanMutation, createDinnerPlan } from "../src/lib/plan-mutations.js";
 
 function loadMigrations(db) {
@@ -11,6 +11,55 @@ function loadMigrations(db) {
   const files = readdirSync(dir).filter((f) => f.endsWith(".sql")).sort();
   for (const file of files) db.exec(readFileSync(`${dir}/${file}`, "utf8"));
 }
+
+describe("diner exception and shop headline", () => {
+  it("names up to two dinners that differ, and the one person who is out", () => {
+    expect(shopCookingHeadline({ mealCount: 3, householdCount: 2, exceptions: [] })).toBe(
+      "3 dinners · cooking for 2"
+    );
+    expect(
+      shopCookingHeadline({
+        mealCount: 3,
+        householdCount: 2,
+        exceptions: [
+          { label: "Fri", count: 4 },
+          { label: "Sat", count: 1 },
+        ],
+      })
+    ).toBe("3 dinners · cooking for 2, Fri for 4, Sat for 1");
+    expect(
+      shopCookingHeadline({
+        mealCount: 4,
+        householdCount: 2,
+        exceptions: [
+          { label: "Fri", count: 4 },
+          { label: "Sat", count: 1 },
+          { label: "Sun", count: 3 },
+        ],
+      })
+    ).toBe("4 dinners · cooking for 2 · amounts match each dinner");
+    expect(
+      dinerExceptionCopy({
+        householdCount: 3,
+        dinerCount: 2,
+        eatingNames: ["Renata", "Tom"],
+        absentNames: ["Sam"],
+      })
+    ).toBe("For 2 · Sam’s out");
+    expect(
+      dinerExceptionCopy({
+        householdCount: 2,
+        dinerCount: 1,
+        eatingNames: ["Renata"],
+        absentNames: ["Tom"],
+      })
+    ).toBe("For 1 · just Renata");
+    expect(
+      dinerExceptionCopy({ householdCount: 2, dinerCount: 4, guestCount: 2, eatingNames: ["Renata", "Tom"] })
+    ).toBe("For 4 · 2 guests");
+    expect(dinerExceptionCopy({ householdCount: 2, dinerCount: 2, eatingNames: ["Renata", "Tom"] })).toBeNull();
+  });
+});
 
 describe("alpha diner scaling", () => {
   it("for serving lines scale to diner count", () => {

@@ -15,6 +15,7 @@ import {
   ADAPTATION_SAFETY_REFUSAL,
   equipmentUnsupportedResponse,
   reconcileEquipmentUnsupported,
+  requestedSubstituteConflict,
   validateAdaptationSafety,
 } from "../lib/meal-adaptation.js";
 import {
@@ -228,6 +229,8 @@ export async function routeAlphaAiRequest(env, request, path) {
     };
     const blocked = equipmentUnsupportedResponse(body.text, pinMeal);
     if (blocked) return respond(blocked);
+    const substituteBlocked = requestedSubstituteConflict(body.text, pinMeal, ctx);
+    if (substituteBlocked) return respond(substituteBlocked);
     let modelOutput;
     let support = "advice";
     let gen;

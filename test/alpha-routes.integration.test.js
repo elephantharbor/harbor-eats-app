@@ -295,6 +295,67 @@ describe("alpha routes through the fake provider", () => {
     expect(res.body.usage.provider_calls).toBe(1);
   });
 
+  it("refuses swap cashews for peanuts before the provider when a diner avoids nuts", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite, { nuts: true });
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_alpha", member_id: "m_a" });
+    const provider = createFakeProvider({
+      script: [{
+        json: {
+          acknowledgement: "Peanuts would be crunchy.",
+          kind: "substitution",
+          support: "advice",
+          ingredient_ops: [{ op: "replace", from_id: "cashew", to_name: "peanuts", policy: "keep_scaled" }],
+          step_notes: [],
+          equipment_supported: true,
+          flavor_impact: "richer",
+          warning: null,
+        },
+      }],
+    });
+    const res = await postJson(envFor(db, provider), session.session_token, "/api/recipes/adapt", {
+      text: "swap cashews for peanuts",
+      recipe_slug: "miso-ginger-salmon",
+    });
+    expect(res.status).toBe(200);
+    expect(res.body.support).toBe("rejected_safety");
+    expect(res.body.acknowledgement).toMatch(/doesn't work for everyone/i);
+    expect(res.body.ingredient_ops).toEqual([]);
+    expect(res.body.blocked[0].display_name).toBe("Peanuts");
+    expect(res.body.usage.provider_calls).toBe(0);
+    expect(res.body.source).toBe("deterministic");
+    expect(provider.calls).toHaveLength(0);
+  });
+
+  it("still asks the provider to swap toward a substitute the table can eat", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite, { nuts: true });
+    const db = asD1(sqlite);
+    const session = await createMemberSession(db, { household_id: "hh_alpha", member_id: "m_a" });
+    const provider = createFakeProvider({
+      script: [{
+        json: {
+          acknowledgement: "Parsley works here.",
+          kind: "substitution",
+          support: "advice",
+          ingredient_ops: [{ op: "replace", from_id: "cilantro", to_name: "parsley", policy: "keep_scaled" }],
+          step_notes: [],
+          equipment_supported: true,
+          flavor_impact: "similar",
+          warning: null,
+        },
+      }],
+    });
+    const res = await postJson(envFor(db, provider), session.session_token, "/api/recipes/adapt", {
+      text: "swap cilantro for parsley",
+      recipe_slug: "miso-ginger-salmon",
+    });
+    expect(res.status).toBe(200);
+    expect(res.body.support).not.toBe("rejected_safety");
+    expect(provider.calls).toHaveLength(1);
+  });
+
   it("rejects peanuts for every active diner when the request has no meal", async () => {
     const sqlite = migrate();
     seedHousehold(sqlite, { nuts: true });
@@ -323,7 +384,8 @@ describe("alpha routes through the fake provider", () => {
     expect(res.status).toBe(200);
     expect(res.body.support).toBe("rejected_safety");
     expect(res.body.ingredient_ops).toEqual([]);
-    expect(provider.calls).toHaveLength(1);
+    expect(res.body.usage.provider_calls).toBe(0);
+    expect(provider.calls).toHaveLength(0);
   });
 
   it.each([

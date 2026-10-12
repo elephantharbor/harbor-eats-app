@@ -27,9 +27,45 @@ export function dinerCountForMeal(meal) {
 }
 
 /**
- * @param {number} guestCount
- * @param {number} participantCount
+ * Shopping header. The household count is the quiet default. Up to two
+ * dinners that differ are named; more than that collapses to one line.
+ * @param {{ mealCount: number, householdCount: number, exceptions?: { label: string, count: number }[] }} input
  */
+export function shopCookingHeadline({ mealCount, householdCount, exceptions = [] }) {
+  const base = `${mealCount} dinners · cooking for ${householdCount}`;
+  if (!exceptions.length) return base;
+  if (exceptions.length > 2) return `${base} · amounts match each dinner`;
+  return base + exceptions.map((row) => `, ${row.label} for ${row.count}`).join("");
+}
+
+/**
+ * Plan-card exception copy. Null when the dinner matches the household.
+ * Names the one person who is out. Never names a limit.
+ * @param {{
+ *   householdCount: number,
+ *   dinerCount: number,
+ *   guestCount?: number,
+ *   eatingNames?: string[],
+ *   absentNames?: string[],
+ * }} input
+ */
+export function dinerExceptionCopy({
+  householdCount,
+  dinerCount,
+  guestCount = 0,
+  eatingNames = [],
+  absentNames = [],
+}) {
+  if (dinerCount === householdCount) return null;
+  const guests = Math.max(0, Number(guestCount) || 0);
+  if (guests > 0) {
+    return `For ${dinerCount} · ${guests} ${guests === 1 ? "guest" : "guests"}`;
+  }
+  if (eatingNames.length === 1 && dinerCount === 1) return `For 1 · just ${eatingNames[0]}`;
+  if (absentNames.length === 1) return `For ${dinerCount} · ${absentNames[0]}’s out`;
+  return `For ${dinerCount}`;
+}
+
 export function assertDinerCountValid(participantCount, guestCount = 0) {
   const guests = Math.min(MAX_GUEST_COUNT, Math.max(0, Math.floor(Number(guestCount) || 0)));
   const participants = Math.max(0, Math.floor(Number(participantCount) || 0));

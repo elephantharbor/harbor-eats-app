@@ -695,23 +695,58 @@
     return activeMemberCount();
   }
 
+  function shopCookingHeadline(mealCount, householdCount, exceptions) {
+    const base = mealCount + " dinners · cooking for " + householdCount;
+    if (!exceptions.length) return base;
+    if (exceptions.length > 2) return base + " · amounts match each dinner";
+    return (
+      base +
+      exceptions
+        .map(function (row) {
+          return ", " + row.label + " for " + row.count;
+        })
+        .join("")
+    );
+  }
+
+  function dinerExceptionCopy(input) {
+    if (input.dinerCount === input.householdCount) return null;
+    const guests = Math.max(0, Number(input.guestCount) || 0);
+    if (guests > 0) return "For " + input.dinerCount + " · " + guests + (guests === 1 ? " guest" : " guests");
+    const eating = input.eatingNames || [];
+    const absent = input.absentNames || [];
+    if (eating.length === 1 && input.dinerCount === 1) return "For 1 · just " + eating[0];
+    if (absent.length === 1) return "For " + input.dinerCount + " · " + absent[0] + "’s out";
+    return "For " + input.dinerCount;
+  }
+
   function planMealDinerException(raw) {
     if (!raw) return null;
     const n = dinerCountForPlanMeal(raw);
     const hh = householdDinerCount();
-    if (n === hh) return null;
-    const guests = Math.max(0, Number(raw.guest_count) || 0);
-    const parts = (raw.participant_ids || []).length;
-    if (guests > 0) return "For " + n + " · " + guests + (guests === 1 ? " guest" : " guests");
-    if (parts === 1 && n === 1) {
-      const mid = (raw.participant_ids || [])[0];
-      const m = state.members.find(function (x) {
-        return x.id === mid;
+    const eatingIds = raw.participant_ids || [];
+    const eatingNames = eatingIds
+      .map(function (id) {
+        const m = state.members.find(function (x) {
+          return x.id === id;
+        });
+        return m ? m.name : "";
+      })
+      .filter(Boolean);
+    const absentNames = activeMembers()
+      .filter(function (m) {
+        return eatingIds.indexOf(m.id) < 0;
+      })
+      .map(function (m) {
+        return m.name;
       });
-      return "For 1 · just " + (m ? m.name : "one person");
-    }
-    if (parts < hh) return "For " + n + " · someone's out";
-    return "For " + n;
+    return dinerExceptionCopy({
+      householdCount: hh,
+      dinerCount: n,
+      guestCount: Math.max(0, Number(raw.guest_count) || 0),
+      eatingNames: eatingNames,
+      absentNames: absentNames,
+    });
   }
 
   function planMealDinerLabel(raw) {
@@ -1769,6 +1804,7 @@
       syncHouseholdChrome();
     }
     updateDebug();
+    if (state.navHistory && state.navHistory.armInAppBack) state.navHistory.armInAppBack();
   }
 
   function homeStage(meal) {
@@ -2074,7 +2110,8 @@
       if (rawPlan && rawPlan.state === "cooking") {
         cookBtn.dataset.action = "cook";
         cookBtn.dataset.go = "cook";
-        cookBtn.innerHTML = "Back to the kitchen " + icon("arrow-right", "icon--forward");
+        const stepNo = Math.max(1, (state.dinnerCookMealId === meal.id ? state.cookStep : 0) + 1);
+        cookBtn.innerHTML = "Resume step " + stepNo + " " + icon("arrow-right", "icon--forward");
       } else if (pick.action === "choose") {
         cookBtn.dataset.action = "choose";
         delete cookBtn.dataset.go;
@@ -4669,22 +4706,15 @@
     const exceptions = recipeMeals.filter(function (m) {
       return dinerCountForPlanMeal(m) !== hh;
     });
-    let dinerSummary = "";
-    if (recipeMeals.length) {
-      const counts = recipeMeals.map(function (m) {
-        return dinerCountForPlanMeal(m);
-      });
-      const mode = counts.sort()[0];
-      dinerSummary = plan.meal_count + " dinners · cooking for " + mode;
-      if (exceptions.length === 1 && exceptions.length <= 2) {
-        const ex = exceptions[0];
-        dinerSummary += ", " + planMealLabel(ex) + " for " + dinerCountForPlanMeal(ex);
-      } else if (exceptions.length > 2) {
-        dinerSummary += " · amounts match each dinner";
-      }
-    } else {
-      dinerSummary = plan.meal_count + " dinners";
-    }
+    const dinerSummary = recipeMeals.length
+      ? shopCookingHeadline(
+          plan.meal_count,
+          hh,
+          exceptions.map(function (m) {
+            return { label: planMealLabel(m), count: dinerCountForPlanMeal(m) };
+          })
+        )
+      : plan.meal_count + " dinners";
     eyebrow.textContent = dinerSummary;
     eyebrow.setAttribute("aria-label", "Who is eating. " + dinerSummary);
     const lines = shop.lines || [];
@@ -5380,11 +5410,10 @@
   }
 
   function renderParticipantsTiles() {
-    const me = meMember();
     document.getElementById("participantsTiles").innerHTML = activeMembers()
       .map(function (m) {
         const on = state.participantsDraft.indexOf(m.id) >= 0;
-        const label = me && m.id === me.id ? "You" : m.name;
+        const label = m.name;
         return (
           '<button type="button" class="check-tile' +
           (on ? " is-on" : "") +
@@ -7223,7 +7252,13 @@
       return false;
     }
     if (meal.dinner_plan && state.dinnerPlan) {
+      const raw = planMealById(mealId);
+      const resuming = raw && raw.state === "cooking";
       state.dinnerCookMealId = mealId;
+      if (resuming) {
+        if (navigate !== false) show("cook");
+        return true;
+      }
       mutateDinnerPlan({ op: "begin_cook", meal_id: mealId }).then(function (plan) {
         if (plan) {
           state.cookStep = 0;
@@ -7736,12 +7771,15 @@
     window.addEventListener("popstate", function (ev) {
       const parts = location.pathname.replace(/\/+$/, "").split("/").filter(Boolean);
       if (parts[0] === "find") {
-        const mode = (ev.state && ev.state.find && ev.state.find.mode) || "standalone";
+        const landed = ev.state || {};
+        if (landed.fwGuard || landed.transient) return;
+        if (landed.fw && landed.view && landed.view !== "find") return;
+        const mode = (landed.find && landed.find.mode) || "standalone";
         show("find", {
           context: Nav.contextFor("find", "detail", {
             established: householdEstablished(),
             mode: mode,
-            origin: (ev.state && ev.state.find && ev.state.find.urlContext && ev.state.find.urlContext.origin) || "find",
+            origin: (landed.find && landed.find.urlContext && landed.find.urlContext.origin) || "find",
           }),
         });
         Discovery.restoreFromHistory(ev.state);

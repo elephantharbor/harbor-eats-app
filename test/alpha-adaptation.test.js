@@ -5,6 +5,8 @@ import { renderPrompt } from "../src/ai/prompts.js";
 import { postValidateRecipeAdaptation } from "../src/ai/adaptation-schema.js";
 import {
   ADAPTATION_SAFETY_REFUSAL,
+  requestedSubstituteConflict,
+  requestedSubstituteTargets,
   PRESSURE_COOKER_UNSUPPORTED,
   canonicalIngredientKey,
   equipmentUnsupportedResponse,
@@ -207,6 +209,52 @@ describe("recipe adaptation", () => {
     });
     expect(out.ok).toBe(false);
     expect(out.status).toBe("rejected_safety");
+  });
+
+  it("names the substitute the cook asked to put in", () => {
+    expect(requestedSubstituteTargets("swap cashews for peanuts")).toEqual(["peanuts"]);
+    expect(requestedSubstituteTargets("use peanuts instead of cashews")).toEqual(["peanuts"]);
+    expect(requestedSubstituteTargets("omit the peanuts")).toEqual([]);
+    expect(requestedSubstituteTargets("Can I use the air fryer?")).toEqual([]);
+    expect(requestedSubstituteTargets("Make this less spicy.")).toEqual([]);
+  });
+
+  it("refuses a requested peanut swap before any model output when a diner avoids nuts", () => {
+    const meal = {
+      kind: "recipe",
+      recipe_slug: "vegetable-biryani-cashews",
+      title: "Vegetable biryani",
+      participant_ids: ["a"],
+      pinned_ingredients: [{ ingredient_id: "cashew", name: "cashews" }],
+    };
+    const ctx = {
+      constraints: [{ member_id: "a", rule_key: "nuts", status: "prohibited" }],
+      tastes: [],
+      catalog: plannerCatalog(),
+    };
+    const refused = requestedSubstituteConflict("swap cashews for peanuts", meal, ctx);
+    expect(refused).toMatchObject({
+      ok: true,
+      support: "rejected_safety",
+      acknowledgement: ADAPTATION_SAFETY_REFUSAL,
+      ingredient_ops: [],
+      source: "deterministic",
+      usage: { provider_calls: 0 },
+      blocked: [{ display_name: "Peanuts" }],
+    });
+    expect(requestedSubstituteConflict("swap peanuts for sunflower seeds", meal, ctx)).toBeNull();
+    expect(requestedSubstituteConflict("swap walnuts for cashews", meal, {
+      constraints: [
+        { member_id: "a", rule_key: "nuts", status: "prohibited" },
+        { member_id: "a", rule_key: "cashew", status: "permitted" },
+      ],
+      tastes: [],
+      catalog: plannerCatalog(),
+    })).toBeNull();
+    expect(requestedSubstituteConflict("swap cashews for peanuts", {
+      ...meal,
+      participant_ids: ["b"],
+    }, ctx)).toBeNull();
   });
 
   it("allows cashews under HH001-style nut rules", () => {

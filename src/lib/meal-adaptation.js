@@ -244,6 +244,116 @@ export function equipmentUnsupportedResponse(text, meal) {
   };
 }
 
+const EQUIPMENT_PHRASE =
+  /\b(?:air fryer|pressure cooker|instant pot|slow cooker|dutch oven|sheet pan|skillet|oven|grill|stove|stovetop|microwave|broiler|pan)\b/i;
+
+function cleanIngredientPhrase(value) {
+  let text = String(value || "")
+    .replace(/[.?!].*$/s, "")
+    .replace(/\b(?:please|thanks|thank you)\b/gi, "")
+    .trim();
+  text = text.replace(/^(?:the|some|a bit of|a|an|my|our|extra)\s+/i, "").trim();
+  text = text.split(/\s+(?:and|but|so|because|if|while|then)\s+/i)[0].trim();
+  text = text.replace(/^(?:the|some|a|an)\s+/i, "").trim();
+  return text.replace(/\s+/g, " ");
+}
+
+function pushTarget(found, value) {
+  const cleaned = cleanIngredientPhrase(value);
+  if (!cleaned) return;
+  if (/^(?:less|more|fewer|it|this|that|the original)$/i.test(cleaned)) return;
+  if (EQUIPMENT_PHRASE.test(cleaned)) return;
+  if (found.some((item) => item.toLowerCase() === cleaned.toLowerCase())) return;
+  found.push(cleaned);
+}
+
+/**
+ * Ingredient the cook asked to put in. The thing being removed is not a target.
+ * "swap cashews for peanuts" → peanuts. "omit peanuts" → none.
+ * @param {string} text
+ * @returns {string[]}
+ */
+export function requestedSubstituteTargets(text) {
+  const raw = String(text || "").replace(/\s+/g, " ").trim();
+  if (!raw) return [];
+  /** @type {string[]} */
+  const found = [];
+  const swap = raw.match(/\b(?:swap|replace|trade)\s+(?:out\s+)?(.+?)\s+(?:for|with|to)\s+(.+)$/i);
+  if (swap) pushTarget(found, swap[2]);
+  const useInstead = raw.match(/\b(?:use|try|add|put)\s+(.+?)\s+instead of\b/i);
+  if (useInstead) pushTarget(found, useInstead[1]);
+  const insteadUse = raw.match(/\binstead of\s+.+?(?:,)?\s+(?:use|try|add|put)\s+(.+)$/i);
+  if (insteadUse) pushTarget(found, insteadUse[1]);
+  const substitute = raw.match(/\bsubstitute\s+(.+?)\s+for\s+/i);
+  if (substitute) pushTarget(found, substitute[1]);
+  const swapIn = raw.match(/\bswap\s+in\s+(.+)$/i);
+  if (swapIn) pushTarget(found, swapIn[1]);
+  if (!found.length) {
+    const bare = raw.match(/\b(?:use|add|try)\s+(.+)$/i);
+    if (bare) pushTarget(found, bare[1]);
+  }
+  return found;
+}
+
+function displayIngredient(name) {
+  const cleaned = String(name || "").trim();
+  if (!cleaned) return "That ingredient";
+  return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+}
+
+function unknownOnly(safety) {
+  const rows = safety?.blocked || [];
+  if (!rows.length) return false;
+  return rows.every((row) => {
+    const ids = row.limit_ids || [];
+    return ids.length > 0 && ids.every((id) => id === "unknown_ingredient");
+  });
+}
+
+/**
+ * Safety refusal when the cook names a substitute that conflicts with a diner
+ * at this table. Null when the provider may still run. Unknown names are left
+ * for the model; only a known limit conflict stops the call.
+ * @param {string} text
+ * @param {object} meal
+ * @param {object} ctx
+ */
+export function requestedSubstituteConflict(text, meal, ctx) {
+  const targets = requestedSubstituteTargets(text);
+  if (!targets.length) return null;
+  for (const name of targets) {
+    const safety = validateAdaptationSafety(
+      {
+        ingredient_ops: [{ op: "add", to_name: name, policy: "to_taste" }],
+        step_notes: [],
+        acknowledgement: "",
+        kind: "substitution",
+        support: "advice",
+      },
+      meal,
+      ctx
+    );
+    if (safety.ok || safety.status !== "rejected_safety" || unknownOnly(safety)) continue;
+    return {
+      ok: true,
+      support: "rejected_safety",
+      acknowledgement: ADAPTATION_SAFETY_REFUSAL,
+      kind: "substitution",
+      ingredient_ops: [],
+      step_notes: [],
+      blocked: [
+        {
+          display_name: displayIngredient(name),
+          ingredient_id: canonicalIngredient(name).ingredient_id,
+        },
+      ],
+      source: "deterministic",
+      usage: { provider_calls: 0 },
+    };
+  }
+  return null;
+}
+
 /**
  * @param {object} modelOutput
  * @param {object} meal

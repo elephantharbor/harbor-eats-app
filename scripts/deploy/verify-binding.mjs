@@ -4,10 +4,39 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { checkHealthBinding } from "./environments.mjs";
 
-export async function verifyBinding(env, baseUrl, { fetchImpl = fetch, expectedMeals } = {}) {
-  const res = await fetchImpl(new URL("/api/health", baseUrl).href, { headers: { accept: "application/json" } });
+const DEFAULT_404_ATTEMPTS = 3;
+const DEFAULT_404_DELAY_MS = 400;
+
+function sleepDefault(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * Cloudflare can answer 404 for a few hundred milliseconds after a deploy
+ * while the new deployment is attached. Retry only that status.
+ */
+async function fetchRetry404(fetchImpl, url, init, { attempts, delayMs, sleep }) {
+  const tries = Math.max(1, attempts);
+  let res;
+  for (let i = 0; i < tries; i += 1) {
+    res = await fetchImpl(url, init);
+    if (res?.status !== 404 || i === tries - 1) return res;
+    await sleep(delayMs);
+  }
+  return res;
+}
+
+export async function verifyBinding(env, baseUrl, {
+  fetchImpl = fetch,
+  expectedMeals,
+  attempts = DEFAULT_404_ATTEMPTS,
+  delayMs = DEFAULT_404_DELAY_MS,
+  sleep = sleepDefault,
+} = {}) {
+  const get = (url, init) => fetchRetry404(fetchImpl, url, init, { attempts, delayMs, sleep });
+  const res = await get(new URL("/api/health", baseUrl).href, { headers: { accept: "application/json" } });
   if (!res.ok) return { ok: false, problems: [`GET /api/health -> ${res.status}`] };
-  const sw = await fetchImpl(new URL("/sw.js", baseUrl).href);
+  const sw = await get(new URL("/sw.js", baseUrl).href);
   const result = checkHealthBinding(env, await res.json(), { expectedMeals });
   const meta = JSON.parse(readFileSync(new URL("../../release/release-metadata.json", import.meta.url), "utf8"));
   const swText = sw.ok ? await sw.text() : "";
