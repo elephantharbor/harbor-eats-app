@@ -1,6 +1,6 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
-import { skipToChoices } from "./helpers.js";
+import { delayCookMutations, skipToChoices } from "./helpers.js";
 import {
   mockAlphaAi,
   seedDinnerPlan,
@@ -13,6 +13,7 @@ import {
 
 test.describe("Alpha D-04 navigation", () => {
   test.beforeEach(async ({ context, page }) => {
+    if (process.env.E2E_COOK_DELAY_MS) await delayCookMutations(page, process.env.E2E_COOK_DELAY_MS);
     await context.clearCookies();
     await page.goto("/");
     await page.evaluate(() => localStorage.clear());
@@ -105,6 +106,53 @@ test.describe("Alpha D-04 navigation", () => {
     await page.waitForTimeout(400);
     await expect(page.locator("#btnStartCook")).toContainText(/Resume step [12]/);
     await expect(page.locator("#btnStartCook")).not.toContainText("Start cooking");
+  });
+
+  test("Start cooking stays up until begin_cook confirms, then the kitchen opens", async ({ page }) => {
+    await seedDinnerPlan(page, { finalize: true });
+    let releaseCook = function () {};
+    const held = new Promise(function (resolve) {
+      releaseCook = resolve;
+    });
+    await page.route("**/api/dinner-plans/**/mutations", async (route) => {
+      let body = {};
+      try {
+        body = route.request().postDataJSON() || {};
+      } catch (_) {
+        body = {};
+      }
+      if (body.op === "begin_cook") await held;
+      await route.continue();
+    });
+    await page.goto("/");
+    await page.locator('[data-go="choices"]').filter({ visible: true }).first().click();
+    await page.locator('[data-action="pick-for-tonight"]').first().click({ force: true });
+    await page.evaluate(() => {
+      document.querySelector('[data-action="cook-plan-meal"]')?.click();
+    });
+    await expect(page.locator(".view.is-active[data-view='detail']")).toBeVisible({ timeout: 30000 });
+    await expect(page.locator("#btnStartCook")).toContainText("Start cooking");
+    // Fire begin_cook but do not follow data-go, so the recipe can redraw
+    // before the kitchen opens.
+    await page.evaluate(() => {
+      const btn = document.getElementById("btnStartCook");
+      btn.addEventListener("click", (e) => e.stopPropagation(), { once: true });
+    });
+    await page.locator("#btnStartCook").click();
+    await expect(page.locator(".view.is-active[data-view='detail']")).toBeVisible();
+    await page.locator(".view.is-active[data-view='detail'] .back").click();
+    await expect(page.locator(".view.is-active[data-view='choices']")).toBeVisible();
+    await page.evaluate(() => {
+      document.querySelector('[data-action="cook-plan-meal"]')?.click();
+    });
+    await expect(page.locator(".view.is-active[data-view='detail']")).toBeVisible({ timeout: 30000 });
+    await expect(page.locator("#btnStartCook")).toContainText("Start cooking");
+    await expect(page.locator("#btnStartCook")).not.toContainText("Resume");
+    await page.locator("#btnStartCook").click();
+    await expect(page.locator(".view.is-active[data-view='cook']")).toBeVisible({ timeout: 30000 });
+    releaseCook();
+    await page.waitForTimeout(400);
+    await expect(page.locator(".view.is-active[data-view='cook']")).toBeVisible();
   });
 
   test("deep link meal in active plan names Tonight parent", async ({ page }) => {

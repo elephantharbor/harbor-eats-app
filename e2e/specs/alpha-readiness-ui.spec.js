@@ -1,6 +1,6 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
-import { skipToChoices } from "./helpers.js";
+import { delayCookMutations, skipToChoices } from "./helpers.js";
 import {
   mockAlphaAi,
   seedDinnerPlan,
@@ -45,6 +45,7 @@ async function openPlanRecipe(page) {
 
 test.describe("Alpha readiness UI", () => {
   test.beforeEach(async ({ context, page }) => {
+    if (process.env.E2E_COOK_DELAY_MS) await delayCookMutations(page, process.env.E2E_COOK_DELAY_MS);
     await context.clearCookies();
     await page.goto("/");
     await page.evaluate(() => localStorage.clear());

@@ -564,6 +564,8 @@
     dinnerUnfilled: [],
     dinnerDetailMeal: null,
     dinnerCookMealId: null,
+    // begin_cook has been sent and not yet confirmed. Does not relabel the recipe CTA.
+    dinnerCookPendingId: null,
     planCountGroup: null,
     planCountValue: null,
     planReviewMode: "multi",
@@ -1762,6 +1764,9 @@
       });
     }
     if (name === "cook") {
+      // Entering the kitchen confirms the session, even if begin_cook
+      // is still on the wire. A pending id alone does not.
+      if (state.dinnerCookPendingId) confirmCookSession(state.dinnerCookPendingId);
       ensureRecipeForMeal(cookingMeal()).then(function () {
         renderCook();
       });
@@ -2085,9 +2090,9 @@
   }
 
   /**
-   * The kitchen session is the source of truth for "still cooking".
-   * A plan GET that started before begin_cook returns must not put
-   * "Start cooking" back on the recipe.
+   * Resume only after cooking has actually started: the server says so,
+   * or the kitchen is open for this meal. An in-flight begin_cook
+   * (dinnerCookPendingId) must not relabel the recipe button.
    */
   function mealIsActiveCook(meal) {
     if (!meal) return false;
@@ -2096,6 +2101,12 @@
     if (meal.state === "cooking") return true;
     const raw = id ? planMealById(id) : null;
     return !!(raw && raw.state === "cooking");
+  }
+
+  function confirmCookSession(mealId) {
+    if (!mealId) return;
+    state.dinnerCookMealId = mealId;
+    if (state.dinnerCookPendingId === mealId) state.dinnerCookPendingId = null;
   }
 
   function resumeStepNumber(meal) {
@@ -2517,6 +2528,7 @@
         if (plan) {
           state.dinnerRateMealId = cooking.id;
           state.dinnerCookMealId = null;
+          state.dinnerCookPendingId = null;
           initPlanRatingsForMeal(cooking.id);
           show("rate");
         }
@@ -3593,6 +3605,7 @@
 
   function cookingMeal() {
     if (state.dinnerCookMealId) return mealById(state.dinnerCookMealId);
+    if (state.dinnerCookPendingId) return mealById(state.dinnerCookPendingId);
     return mealById(state.cookingMealId || state.selectedMealId);
   }
 
@@ -6354,6 +6367,7 @@
       });
       if (meal) {
         state.dinnerCookMealId = meal.meal_id;
+        state.dinnerCookPendingId = null;
         state.dinnerDetailMeal = uiMealFromPlanMeal(meal);
         show("cook");
       }
@@ -7248,6 +7262,7 @@
       if (leave) {
         await mutateDinnerPlan({ op: "exit_cook", meal_id: cooking.id });
         state.dinnerCookMealId = null;
+        state.dinnerCookPendingId = null;
         show("choices");
         renderTonightPlan();
       }
@@ -7276,15 +7291,22 @@
     }
     if (meal.dinner_plan && state.dinnerPlan) {
       const raw = planMealById(mealId);
-      const already = state.dinnerCookMealId === mealId;
+      const confirmed = state.dinnerCookMealId === mealId;
       const serverCooking = !!(raw && raw.state === "cooking") || meal.state === "cooking";
-      if (!already && !serverCooking) state.cookStep = 0;
-      state.dinnerCookMealId = mealId;
-      if (already || serverCooking) {
+      if (confirmed || serverCooking) {
+        confirmCookSession(mealId);
         if (navigate !== false) show("cook");
         return true;
       }
+      // Same meal already waiting on begin_cook: don't send it twice or reset the step.
+      if (state.dinnerCookPendingId === mealId) {
+        if (navigate !== false) show("cook");
+        return true;
+      }
+      state.cookStep = 0;
+      state.dinnerCookPendingId = mealId;
       mutateDinnerPlan({ op: "begin_cook", meal_id: mealId }).then(function (plan) {
+        if (state.dinnerCookPendingId === mealId) state.dinnerCookPendingId = null;
         if (!plan) {
           const still = planMealById(mealId);
           if (state.dinnerCookMealId === mealId && !(still && still.state === "cooking")) {
@@ -7293,7 +7315,8 @@
           }
           return;
         }
-        if (navigate !== false) show("cook");
+        confirmCookSession(mealId);
+        if (navigate !== false && state.view !== "cook") show("cook");
         else if (state.view === "detail") renderDetail();
       });
       return true;
@@ -7324,12 +7347,18 @@
       });
       return;
     }
-    if (act === "choose") {
-      e.stopImmediatePropagation();
+    if (act === "choose" || !act) {
       const meal = detailMeal();
-      if (meal) selectMeal(meal.id);
-      renderDetail();
-      return;
+      const pick = detailPickState(meal);
+      // The shell button says "Start cooking" until the recipe paints.
+      // On a slow round trip that click must choose, not open the kitchen
+      // or mark a cook that has not started.
+      if (act === "choose" || pick.action === "choose") {
+        e.stopImmediatePropagation();
+        if (meal) selectMeal(meal.id);
+        renderDetail();
+        return;
+      }
     }
     if (!startCooking(false)) e.stopImmediatePropagation();
   });
