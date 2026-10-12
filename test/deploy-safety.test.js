@@ -189,9 +189,23 @@ describe("hosted E2E target guard", () => {
   it("health step refuses a preview reporting prod D1", async () => {
     const fetchImpl = async () => ({
       ok: true,
-      json: async () => ({ ok: true, d1: "ok", catalog_source: "d1", catalog_runtime_meals: 75, deploy_env: "preview", d1_database_id: PROD_D1_ID }),
+      json: async () => ({ ok: true, d1: "ok", catalog_source: "d1", catalog_runtime_meals: 85, deploy_env: "preview", d1_database_id: PROD_D1_ID }),
     });
     await expect(assertTarget("https://harbor-eats-cycle1-preview.pages.dev", { health: true, fetchImpl })).rejects.toThrow(/D1/);
+  });
+  it("health step expects the catalog meal count recorded for this release", async () => {
+    const fetchImpl = async () => ({
+      ok: true,
+      json: async () => ({
+        ok: true,
+        d1: "ok",
+        catalog_source: "d1",
+        catalog_runtime_meals: 75,
+        deploy_env: "preview",
+        d1_database_id: "65bc636d-7048-4e58-900b-9066edf6509f",
+      }),
+    });
+    await expect(assertTarget("https://abc.harbor-eats-cycle1-preview.pages.dev", { health: true, fetchImpl })).rejects.toThrow(/catalog_runtime_meals=75 expected 85/);
   });
 });
 
