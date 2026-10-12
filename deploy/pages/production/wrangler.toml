@@ -20,10 +20,11 @@ DEPLOY_ENV = "production"
 D1_DATABASE_ID = "23aa3db3-1090-471b-8c8a-b6fe71f5c053"
 CATALOG_SOURCE = "d1"
 # D-05 AI gateway (non-secret). OPENAI_API_KEY is a Pages SECRET, never in this file.
-# Enabled for D-06 (planning_intent, discovery_intent) on 2026-10-10 after the key was set and preview gates passed.
+# planning_intent and discovery_intent enabled 2026-10-10.
+# recipe_adaptation and explanation enabled for alpha readiness (Luna, per-task caps).
 AI_PROVIDER = "openai"
 AI_GATEWAY_ENABLED = "1"
-AI_TASKS_ENABLED = "planning_intent,discovery_intent"
+AI_TASKS_ENABLED = "planning_intent,discovery_intent,recipe_adaptation,explanation"
 AI_DAILY_BUDGET_USD = "1.00"
 AI_GLOBAL_PER_DAY = "100"
 AI_HOUSEHOLD_PER_MINUTE = "5"

@@ -65,7 +65,8 @@ describe("D-05 task registry", () => {
     expect(MODEL_PRICING[modelForTask(TASKS.discovery_intent)].input).toBeLessThan(MODEL_PRICING[modelForTask(TASKS.recipe_draft)].input);
   });
   it("creative drafts are never cached and draft outputs are marked unreviewed", () => {
-    for (const id of ["concept_generation", "recipe_draft", "recipe_adaptation"]) expect(TASKS[id].cache.enabled).toBe(false);
+    for (const id of ["concept_generation", "recipe_draft"]) expect(TASKS[id].cache.enabled).toBe(false);
+    expect(TASKS.recipe_adaptation.executable).toBe(true);
     expect(TASKS.recipe_draft.output_schema.properties.status.enum).toEqual(["draft_unreviewed"]);
   });
   it("prompts never request chain-of-thought and declare deterministic authority", () => {
@@ -73,7 +74,7 @@ describe("D-05 task registry", () => {
       expect(p.system).toMatch(/never decide allergens/);
       expect(`${p.system} ${p.user}`).not.toMatch(/step by step|think|reasoning:/i);
     }
-    expect(renderPrompt("explanation", { meal: "Stew", reasons: ["quick"] }).user).toContain('["quick"]');
+    expect(renderPrompt("explanation", { facts: [{ id: "easy", kind: "easy", phrase: "easy" }], basis: "run", allowed_phrases: ["easy"] }).user).toContain("easy");
   });
 });
 
@@ -142,8 +143,16 @@ describe("D-05 gateway behaviour", () => {
   });
   it("explanation post-validation rejects allergen / eligibility claims", async () => {
     const { service } = svc({ script: [{ json: { text: "This is nut-free and safe for your family." } }] });
-    const r = await service.run("explanation", { meal: "Sabich", reasons: ["quick"], cache_bust: null }, { fallback: "Quick weeknight pick." });
-    expect(r).toMatchObject({ ok: false, error: "malformed_output", fallback: "Quick weeknight pick." });
+    const r = await service.run(
+      "explanation",
+      { meal: "Sabich", reasons: ["quick"], cache_bust: null },
+      { fallback: { text: "Quick weeknight pick.", used_fact_ids: ["legacy_0"] } }
+    );
+    expect(r).toMatchObject({
+      ok: false,
+      error: "malformed_output",
+      fallback: { text: "Quick weeknight pick.", used_fact_ids: ["legacy_0"] },
+    });
   });
   it("timeout is enforced once for discovery and falls back inside the user budget", async () => {
     const provider = createFakeProvider({ script: [{ hang: true }] });

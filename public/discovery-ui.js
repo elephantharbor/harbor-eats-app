@@ -664,6 +664,15 @@
     if (d().hydrateMealMedia) d().hydrateMealMedia(root || document);
   }
 
+  function discoveryBackName() {
+    const origin = state.backOrigin || "";
+    if (origin === "planReview" || origin === "planConfirm") return "Plan";
+    if (origin === "choices" || origin === "tonightPlan") return "Tonight";
+    if (origin === "shopList") return "Shopping list";
+    if (origin === "home") return "Home";
+    return "Back";
+  }
+
   function paint() {
     const rootEl = document.getElementById("findRoot");
     if (!rootEl) return;
@@ -698,7 +707,13 @@
           : "Every option fits everyone at this dinner.";
     let html = '<header class="page-head disc-head"><div class="page-head__copy">';
     if (mode !== "standalone") {
-      html += '<button type="button" class="back disc-back" data-disc-back><span class="back__label">Back</span></button>';
+      const backName = discoveryBackName();
+      html +=
+        '<button type="button" class="back disc-back" data-disc-back aria-label="Back to ' +
+        esc(backName) +
+        '"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> <span class="back__label">' +
+        esc(backName) +
+        "</span></button>";
     }
     if (mode === "replace_plan_meal") {
       html += '<p class="eyebrow" id="discEyebrow">' + esc(replaceCopy.eyebrow) + "</p>";
@@ -1403,6 +1418,7 @@
       participant_ids: o.participant_ids,
     };
     state.backEntry = o.entry || "nav";
+    state.backOrigin = o.origin || (state.mode === "standalone" ? "" : "home");
     state.entry = o.entry || "nav";
     state.softTouched = false;
     state.forceResults = false;

@@ -48,7 +48,7 @@ jobs:
         run: node scripts/ci/assert-hosted-target.mjs "$PLAYWRIGHT_BASE_URL"
       - name: Preflight (E2E mode contract)
         run: npm run preflight:e2e
-      - name: Health assertion (preview binding + 75 meals)
+      - name: Health assertion (preview binding + catalog meal count)
         run: node scripts/ci/assert-hosted-target.mjs "$PLAYWRIGHT_BASE_URL" --health
       - run: npx playwright install chromium --with-deps
       - name: Playwright (hosted)

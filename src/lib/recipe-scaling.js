@@ -48,8 +48,22 @@ function formatAmount(n, unitHint = "") {
     /\b(each|whole|small|large|medium|clove|lime|avocado|fillet|tortilla|onion|egg)\b/.test(u) ||
     /\b(each|whole|small|large|medium)\b/.test(unitHint);
   if (roundWhole) {
-    const rounded = Math.max(1, Math.round(n));
-    return String(rounded);
+    if (n > 0 && n < 0.5) {
+      const map = [
+        [0.25, "¼"],
+        [0.5, "½"],
+        [0.75, "¾"],
+        [1 / 3, "⅓"],
+        [2 / 3, "⅔"],
+      ];
+      for (const [f, ch] of map) {
+        if (Math.abs(n - f) < 0.06) return ch;
+      }
+      return n.toFixed(2).replace(/\.?0+$/, "");
+    }
+    const rounded = Math.round(n);
+    if (rounded < 1 && n > 0) return "1";
+    return String(Math.max(0, rounded));
   }
   const tspish = /\b(tsp|tbsp|teaspoon|tablespoon)\b/.test(u);
   const step = tspish ? 0.25 : 0.5;
@@ -103,15 +117,19 @@ function applyUnitGrammar(amountFormatted, rest) {
  * @param {number} ratio
  * @param {string} [ingredientName]
  */
-export function scaleIngredientQuantity(quantity, ratio, ingredientName = "") {
+export function scaleIngredientQuantity(quantity, ratio, ingredientName = "", dinerCount = null) {
+  const q = String(quantity || "").trim();
+  if (q.toLowerCase() === "for serving" && dinerCount != null) {
+    return `${dinerCount} serving${dinerCount === 1 ? "" : "s"}`;
+  }
   if (!quantity || ratio === 1) return quantity;
-  const q = String(quantity).trim();
-  if (/for serving/i.test(q)) return q;
+  if (/^for serving$/i.test(q)) return q;
 
   const parenCount = q.match(/^(\d+)\s*\([^)]+\)\s*(.*)$/i);
   if (parenCount) {
-    const scaled = Math.max(1, Math.round(Number(parenCount[1]) * ratio));
-    return `${scaled} (${parenCount[2].trim()})`.trim();
+    const scaled = Math.round(Number(parenCount[1]) * ratio);
+    const count = scaled < 1 && scaled > 0 ? formatAmount(scaled, parenCount[2]) : String(Math.max(1, scaled));
+    return `${count} (${parenCount[2].trim()})`.trim();
   }
 
   const leading = q.match(/^([\d½¼¾⅓⅔⅛./\s]+)\s*(.*)$/);
@@ -128,24 +146,26 @@ export function scaleIngredientQuantity(quantity, ratio, ingredientName = "") {
 
 /**
  * @param {import('./recipe-store.js').RecipeVersion} version
- * @param {number} targetServings
+ * @param {number} targetServings diner count for this view
  */
 export function scaleRecipeVersion(version, targetServings) {
-  const baseServings = version.servings || 4;
+  const baseServings = version.base_servings ?? version.servings ?? 4;
   const requested = Math.max(1, Math.min(8, Number(targetServings) || baseServings));
-  if (requested === baseServings) {
-    return {
-      ...version,
-      base_servings: baseServings,
-      requested_servings: requested,
-      scale_factor: 1,
-    };
-  }
   const ratio = requested / baseServings;
-  const ingredients = (version.ingredients || []).map((ing) => ({
-    ...ing,
-    quantity: scaleIngredientQuantity(ing.quantity, ratio, ing.name),
-  }));
+  const ingredients = (version.ingredients || []).map((ing) => {
+    const unit = String(ing.unit || "").toLowerCase();
+    const raw = String(ing.quantity || "").trim();
+    if (unit === "serving" || /^for serving$/i.test(raw)) {
+      return {
+        ...ing,
+        quantity: `${requested} serving${requested === 1 ? "" : "s"}`,
+      };
+    }
+    return {
+      ...ing,
+      quantity: scaleIngredientQuantity(ing.quantity, ratio, ing.name, requested),
+    };
+  });
   return {
     ...version,
     servings: requested,

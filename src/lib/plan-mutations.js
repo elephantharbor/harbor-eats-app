@@ -7,6 +7,15 @@
 
 import { assessMealEligibility, planDinners, plannerCatalog, swapSlot } from "./dinner-planner.js";
 import { neededLines } from "./ingredient-identity.js";
+import { assertDinerCountValid } from "./diner-count.js";
+import {
+  ADAPTATION_FALLBACK_REFUSAL,
+  ADAPTATION_SAFETY_REFUSAL,
+  canonicalIngredientKey,
+  effectivePinnedIngredients,
+  effectiveRecipeView,
+  validateAdaptationSafety,
+} from "./meal-adaptation.js";
 import {
   ENTRY_POINTS,
   MEAL_KINDS,
@@ -150,6 +159,8 @@ function blankMeal(ctx, position, kind) {
     effort_level: null,
     ingredient_complexity: null,
     participant_ids: [],
+    guest_count: 0,
+    adaptation: null,
     ratings: [],
   };
 }
@@ -168,16 +179,18 @@ function recipeLocked(meal) {
  */
 export function resolvedRecipe(meal, latest) {
   if (!meal || meal.kind !== "recipe") return null;
+  const effective = effectiveRecipeView(meal);
   return {
     recipe_version_id: meal.recipe_version_id,
     recipe_id: meal.recipe_id,
     version_number: meal.version_number,
     title: meal.title,
-    ingredients: meal.pinned_ingredients,
-    steps: meal.pinned_steps,
+    ingredients: effective?.ingredients || meal.pinned_ingredients,
+    steps: effective?.steps || meal.pinned_steps,
     base_servings: meal.base_servings,
     catalog_version_id: latest?.pkg?.recipe_version_id || latest?.recipe_version_id || null,
-    using_pin: true,
+    using_pin: !effective?.adapted,
+    adapted: Boolean(effective?.adapted),
   };
 }
 
@@ -363,9 +376,24 @@ function markStarted(plan, now) {
   if (!plan.shopping_started_at) plan.shopping_started_at = now;
 }
 
+function shopIngredientName(item) {
+  const key = canonicalIngredientKey(item?.name || item?.display_name || String(item?.ingredient_id || "").replace(/-/g, " "));
+  return key || item?.name || "";
+}
+
+function mealsForShopping(plan) {
+  return (plan.meals || []).map((meal) => ({
+    ...meal,
+    pinned_ingredients: (effectivePinnedIngredients(meal) || []).map((item) => ({
+      ...item,
+      name: shopIngredientName(item),
+    })),
+  }));
+}
+
 function syncShopping(plan, previousLines, ctx) {
   const now = ctx.now;
-  const needed = neededLines(plan.meals);
+  const needed = neededLines(mealsForShopping(plan));
   if (!shoppingHasStarted(plan)) {
     plan.shop_lines = needed.map((item) => ({
       line_id: shopLineId(plan.dinner_plan_id, item.ingredient_id, item.unit),
@@ -524,6 +552,7 @@ function swapMeal(plan, action, ctx) {
   meal.state = kept.state;
   meal.scheduled_date = kept.scheduled_date;
   meal.participant_ids = kept.participant_ids;
+  meal.adaptation = null;
   return { ok: true };
 }
 
@@ -572,6 +601,71 @@ function adoptVersion(plan, action, ctx) {
   const decision = checkEligibility(entry, meal.participant_ids, ctx);
   if (!decision.eligible) return fail("hard_limit_blocked", 409, { blocked: decision.blocked });
   applyPin(meal, entry);
+  meal.adaptation = null;
+  return { ok: true };
+}
+
+function setGuestCount(plan, action) {
+  const meal = findMeal(plan, action.meal_id);
+  if (!meal) return fail("meal_not_found", 404);
+  const valid = assertDinerCountValid((meal.participant_ids || []).length, action.guest_count);
+  if (!valid.ok) return valid;
+  if (meal.guest_count === valid.guest_count) return { ok: true, skip_ingredient_sync: true };
+  meal.guest_count = valid.guest_count;
+  return { ok: true };
+}
+
+function applyAdaptation(plan, action, ctx) {
+  const meal = findMeal(plan, action.meal_id);
+  if (!meal) return fail("meal_not_found", 404);
+  if (meal.kind !== "recipe") return fail("illegal_transition", 409);
+  if (!["planned", "selected"].includes(meal.state)) return fail("outcome_locked", 409);
+  const payload = action.adaptation || action.override;
+  if (
+    !payload ||
+    payload.support === "unsupported" ||
+    payload.support === "rejected_safety" ||
+    payload.support === "fallback" ||
+    payload.status === "rejected_safety"
+  ) {
+    return fail("adaptation_not_applicable", 409, { acknowledgement: ADAPTATION_FALLBACK_REFUSAL });
+  }
+  const incoming = payload.override_json || payload;
+  const ops = incoming.ops || payload.ingredient_ops || payload.ops || [];
+  const checked = validateAdaptationSafety(
+    {
+      ingredient_ops: ops,
+      step_notes: incoming.step_notes || payload.step_notes || [],
+      acknowledgement: incoming.acknowledgement || payload.acknowledgement || "",
+      kind: incoming.kind || payload.kind,
+      support: incoming.support || payload.support || "advice",
+    },
+    meal,
+    ctx
+  );
+  if (!checked.ok) {
+    return fail("adaptation_not_applicable", 409, {
+      safety_status: checked.status,
+      blocked: checked.blocked,
+      acknowledgement: checked.status === "rejected_safety" ? ADAPTATION_SAFETY_REFUSAL : ADAPTATION_FALLBACK_REFUSAL,
+    });
+  }
+  const override = checked.override;
+  if (!override?.ops?.length) return fail("adaptation_not_applicable", 409, { acknowledgement: ADAPTATION_FALLBACK_REFUSAL });
+  meal.adaptation = {
+    recipe_version_id: meal.recipe_version_id,
+    override_json: override,
+    created_at: ctx.now,
+    updated_at: ctx.now,
+  };
+  return { ok: true };
+}
+
+function clearAdaptation(plan, action) {
+  const meal = findMeal(plan, action.meal_id);
+  if (!meal) return fail("meal_not_found", 404);
+  if (!meal.adaptation) return { ok: true, skip_ingredient_sync: true };
+  meal.adaptation = null;
   return { ok: true };
 }
 
@@ -778,6 +872,12 @@ function dispatch(plan, action, ctx) {
       return swapMeal(plan, action, ctx);
     case "set_participants":
       return setParticipants(plan, action, ctx);
+    case "set_guest_count":
+      return setGuestCount(plan, action);
+    case "apply_adaptation":
+      return applyAdaptation(plan, action, ctx);
+    case "clear_adaptation":
+      return clearAdaptation(plan, action);
     case "set_leftovers":
       return convertNonRecipe(plan, action, "leftovers");
     case "set_eating_out":

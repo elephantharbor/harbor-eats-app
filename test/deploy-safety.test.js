@@ -131,6 +131,45 @@ describe("post-deploy binding check", () => {
     );
     expect((await verifyBinding("preview", "https://x.harbor-eats-cycle1-preview.pages.dev", { fetchImpl: stale })).ok).toBe(false);
   });
+  it("retries a 404 right after deploy, and does not retry other failures", async () => {
+    const meta = JSON.parse(read("release/release-metadata.json"));
+    const sleep = vi.fn(async () => {});
+    let healthHits = 0;
+    const flaky = vi.fn(async (url) => {
+      if (String(url).endsWith("/api/health")) {
+        healthHits += 1;
+        if (healthHits === 1) return { ok: false, status: 404, json: async () => ({}) };
+        return { ok: true, status: 200, json: async () => good("preview") };
+      }
+      return { ok: true, status: 200, text: async () => `const CACHE_VERSION = "${meta.sw_cache_version}";` };
+    });
+    const recovered = await verifyBinding("preview", "https://x.harbor-eats-cycle1-preview.pages.dev", {
+      fetchImpl: flaky,
+      expectedMeals: 75,
+      sleep,
+    });
+    expect(recovered.ok).toBe(true);
+    expect(healthHits).toBe(2);
+    expect(sleep).toHaveBeenCalledTimes(1);
+
+    const down = vi.fn(async () => ({ ok: false, status: 404, json: async () => ({}), text: async () => "" }));
+    const gaveUp = await verifyBinding("preview", "https://x.harbor-eats-cycle1-preview.pages.dev", {
+      fetchImpl: down,
+      sleep,
+      attempts: 3,
+    });
+    expect(gaveUp.ok).toBe(false);
+    expect(gaveUp.problems.join()).toMatch(/404/);
+    expect(down).toHaveBeenCalledTimes(3);
+
+    const serverError = vi.fn(async () => ({ ok: false, status: 500, json: async () => ({}) }));
+    const noRetry = await verifyBinding("preview", "https://x.harbor-eats-cycle1-preview.pages.dev", {
+      fetchImpl: serverError,
+      sleep: vi.fn(async () => {}),
+    });
+    expect(noRetry.ok).toBe(false);
+    expect(serverError).toHaveBeenCalledTimes(1);
+  });
 });
 
 describe("hosted E2E target guard", () => {
@@ -150,9 +189,23 @@ describe("hosted E2E target guard", () => {
   it("health step refuses a preview reporting prod D1", async () => {
     const fetchImpl = async () => ({
       ok: true,
-      json: async () => ({ ok: true, d1: "ok", catalog_source: "d1", catalog_runtime_meals: 75, deploy_env: "preview", d1_database_id: PROD_D1_ID }),
+      json: async () => ({ ok: true, d1: "ok", catalog_source: "d1", catalog_runtime_meals: 85, deploy_env: "preview", d1_database_id: PROD_D1_ID }),
     });
     await expect(assertTarget("https://harbor-eats-cycle1-preview.pages.dev", { health: true, fetchImpl })).rejects.toThrow(/D1/);
+  });
+  it("health step expects the catalog meal count recorded for this release", async () => {
+    const fetchImpl = async () => ({
+      ok: true,
+      json: async () => ({
+        ok: true,
+        d1: "ok",
+        catalog_source: "d1",
+        catalog_runtime_meals: 75,
+        deploy_env: "preview",
+        d1_database_id: "65bc636d-7048-4e58-900b-9066edf6509f",
+      }),
+    });
+    await expect(assertTarget("https://abc.harbor-eats-cycle1-preview.pages.dev", { health: true, fetchImpl })).rejects.toThrow(/catalog_runtime_meals=75 expected 85/);
   });
 });
 
