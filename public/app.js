@@ -2080,6 +2080,30 @@
     return true;
   }
 
+  function planMealId(meal) {
+    return meal && (meal.id || meal.meal_id);
+  }
+
+  /**
+   * The kitchen session is the source of truth for "still cooking".
+   * A plan GET that started before begin_cook returns must not put
+   * "Start cooking" back on the recipe.
+   */
+  function mealIsActiveCook(meal) {
+    if (!meal) return false;
+    const id = planMealId(meal);
+    if (id && state.dinnerCookMealId === id) return true;
+    if (meal.state === "cooking") return true;
+    const raw = id ? planMealById(id) : null;
+    return !!(raw && raw.state === "cooking");
+  }
+
+  function resumeStepNumber(meal) {
+    const id = planMealId(meal);
+    if (id && state.dinnerCookMealId === id) return Math.max(1, (Number(state.cookStep) || 0) + 1);
+    return 1;
+  }
+
   function syncDetailActions(meal) {
     if (syncDiscoveryDetailActions(meal)) return;
     const cookBtn = document.getElementById("btnStartCook");
@@ -2107,11 +2131,10 @@
     }
     if (cookBtn) {
       cookBtn.hidden = pick.action === "none";
-      if (rawPlan && rawPlan.state === "cooking") {
+      if (mealIsActiveCook(meal)) {
         cookBtn.dataset.action = "cook";
         cookBtn.dataset.go = "cook";
-        const stepNo = Math.max(1, (state.dinnerCookMealId === meal.id ? state.cookStep : 0) + 1);
-        cookBtn.innerHTML = "Resume step " + stepNo + " " + icon("arrow-right", "icon--forward");
+        cookBtn.innerHTML = "Resume step " + resumeStepNumber(meal) + " " + icon("arrow-right", "icon--forward");
       } else if (pick.action === "choose") {
         cookBtn.dataset.action = "choose";
         delete cookBtn.dataset.go;
@@ -7253,17 +7276,25 @@
     }
     if (meal.dinner_plan && state.dinnerPlan) {
       const raw = planMealById(mealId);
-      const resuming = raw && raw.state === "cooking";
+      const already = state.dinnerCookMealId === mealId;
+      const serverCooking = !!(raw && raw.state === "cooking") || meal.state === "cooking";
+      if (!already && !serverCooking) state.cookStep = 0;
       state.dinnerCookMealId = mealId;
-      if (resuming) {
+      if (already || serverCooking) {
         if (navigate !== false) show("cook");
         return true;
       }
       mutateDinnerPlan({ op: "begin_cook", meal_id: mealId }).then(function (plan) {
-        if (plan) {
-          state.cookStep = 0;
-          if (navigate !== false) show("cook");
+        if (!plan) {
+          const still = planMealById(mealId);
+          if (state.dinnerCookMealId === mealId && !(still && still.state === "cooking")) {
+            state.dinnerCookMealId = null;
+            if (state.view === "detail") renderDetail();
+          }
+          return;
         }
+        if (navigate !== false) show("cook");
+        else if (state.view === "detail") renderDetail();
       });
       return true;
     }

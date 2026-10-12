@@ -71,6 +71,42 @@ test.describe("Alpha D-04 navigation", () => {
     await expect(page.locator("#cookStepMeta")).toHaveText(/^[12] \/ /);
   });
 
+  test("Resume stays up while the cook-start response is still in flight", async ({ page }) => {
+    await seedDinnerPlan(page, { finalize: true });
+    let releaseCook = function () {};
+    const held = new Promise(function (resolve) {
+      releaseCook = resolve;
+    });
+    await page.route("**/api/dinner-plans/**/mutations", async (route) => {
+      let body = {};
+      try {
+        body = route.request().postDataJSON() || {};
+      } catch (_) {
+        body = {};
+      }
+      if (body.op === "begin_cook") await held;
+      await route.continue();
+    });
+    await page.goto("/");
+    await page.locator('[data-go="choices"]').filter({ visible: true }).first().click();
+    await page.locator('[data-action="pick-for-tonight"]').first().click({ force: true });
+    await page.evaluate(() => {
+      document.querySelector('[data-action="cook-plan-meal"]')?.click();
+    });
+    await expect(page.locator(".view.is-active[data-view='detail']")).toBeVisible({ timeout: 30000 });
+    await page.locator("#btnStartCook").click();
+    await expect(page.locator(".view.is-active[data-view='cook']")).toBeVisible({ timeout: 30000 });
+    const next = page.locator("#btnNextStep");
+    if ((await next.innerText()) === "Next") await next.click();
+    await page.goBack();
+    await expect(page.locator(".view.is-active[data-view='detail']")).toBeVisible();
+    await expect(page.locator("#btnStartCook")).toContainText(/Resume step [12]/);
+    releaseCook();
+    await page.waitForTimeout(400);
+    await expect(page.locator("#btnStartCook")).toContainText(/Resume step [12]/);
+    await expect(page.locator("#btnStartCook")).not.toContainText("Start cooking");
+  });
+
   test("deep link meal in active plan names Tonight parent", async ({ page }) => {
     await seedDinnerPlan(page);
     const slug = await page.evaluate(async () => {
