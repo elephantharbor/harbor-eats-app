@@ -1,0 +1,565 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "basque-hake-salsa-verde",
+    "slug": "basque-hake-salsa-verde",
+    "title": "Basque Hake in Salsa Verde with Peas and Potatoes",
+    "description": "Hake fillets gently cooked in a Basque green sauce of olive oil, garlic, white wine, and plenty of parsley, thickened lightly with flour, with sweet peas, served over boiled potatoes.",
+    "cuisine": "spanish",
+    "meal_format": "fish-in-sauce",
+    "primary_ingredient": "hake",
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "savory",
+      "fresh",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_basque-hake-salsa-verde",
+    "current_version_id": "rv_basque-hake-salsa-verde_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_basque-hake-salsa-verde",
+    "dish_id": "basque-hake-salsa-verde",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_basque-hake-salsa-verde_v1",
+    "recipe_id": "rcp_basque-hake-salsa-verde",
+    "dish_id": "basque-hake-salsa-verde",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Basque Hake in Salsa Verde with Peas and Potatoes",
+    "description": "Hake fillets gently cooked in a Basque green sauce of olive oil, garlic, white wine, and plenty of parsley, thickened lightly with flour, with sweet peas, served over boiled potatoes.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "hake",
+        "name": "hake fillets",
+        "display_name": "skinless hake fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 6 oz each; cod is the same-shopping swap",
+        "preparation": "patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1/2 tsp fish, 1 tsp potato pot",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 5,
+        "unit": "clove",
+        "note": null,
+        "preparation": "very thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "white-wine",
+        "name": "dry white wine",
+        "display_name": "dry white wine",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "sauce-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "packed leaves",
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "peas",
+        "name": "frozen peas",
+        "display_name": "frozen peas",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled, cut into 1 1/2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potato-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "for the potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Peel and cut the potatoes. Slice the garlic very thin, chop the parsley, and cut the lemon into wedges. Season the fish with 1/2 tsp salt.",
+        "ingredient_refs": [
+          "potatoes",
+          "garlic",
+          "parsley",
+          "lemon",
+          "hake",
+          "kosher-salt"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil the potatoes",
+        "body": "Put the potatoes in a 4-quart pot with 6 cups water and 1 tsp salt. Bring to a boil over high heat and cook until tender, about 15 minutes, then drain. This runs inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "potatoes",
+          "potato-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the green sauce",
+        "body": "Warm the olive oil and garlic together in a 12-inch skillet over medium-low until the garlic turns pale gold, about 4 minutes. Stir in the flour for 1 minute. Whisk in the wine and simmer 2 minutes, then add 1 cup water and three-quarters of the parsley and simmer until lightly thickened, about 4 minutes.",
+        "ingredient_refs": [
+          "olive-oil",
+          "garlic",
+          "flour",
+          "white-wine",
+          "sauce-water",
+          "parsley"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Cook the fish",
+        "body": "Lay the hake in the sauce and add the peas around it. Cover and simmer gently, shaking the pan now and then so the sauce stays smooth, until the fish is opaque and reads 145 F, about 8 minutes.",
+        "ingredient_refs": [
+          "hake",
+          "peas"
+        ],
+        "clock_minutes": 9,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Finish",
+        "body": "Scatter the remaining parsley and spoon sauce over the fish.",
+        "ingredient_refs": [
+          "parsley"
+        ],
+        "clock_minutes": 1,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Spoon potatoes into shallow bowls, set a fillet on top, ladle over the sauce and peas, and add a lemon wedge.",
+        "ingredient_refs": [
+          "potatoes",
+          "hake",
+          "peas",
+          "lemon"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "salsa-verde",
+        "name": "Basque green sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "olive oil",
+          "garlic",
+          "flour",
+          "white wine",
+          "water",
+          "parsley"
+        ]
+      },
+      {
+        "component_id": "fish",
+        "name": "hake with peas",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "hake",
+          "peas"
+        ]
+      },
+      {
+        "component_id": "potatoes",
+        "name": "boiled potatoes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "potatoes",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet with lid",
+      "4-quart pot",
+      "fish spatula",
+      "colander"
+    ],
+    "methods": [
+      "simmer",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 25,
+    "total_time_minutes": 35,
+    "prep_minutes": 10,
+    "cook_minutes": 25,
+    "total_minutes": 35,
+    "time_clock": "Prep 10 + cook 25 = 35 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The potatoes boil inside steps 3 to 5 (step 2 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-low in a 12-inch skillet with a lid for the garlic and sauce; a covered gentle simmer for the fish. A 4-quart pot at a boil for the potatoes.",
+    "doneness": "Garlic pale gold, never brown. Sauce lightly thickened and green. Fish opaque and flaking, 145 F. Potatoes tender.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: olive oil, garlic, wine, flour, water, parsley, peas, and fish.",
+    "allergens": [
+      "finfish",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Finfish is the hake.",
+      "Wheat from the 1 tbsp flour that thickens the sauce.",
+      "No egg, milk, soy, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "No clams (the traditional garnish is omitted for HH001); olive oil only.",
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "savory",
+      "fresh",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'spanish' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "alcohol_note": "1/2 cup dry white wine simmers about 10 minutes; some alcohol remains.",
+    "culinary_hash": "ff71ba43627042cb4c1ec971c58ddc61a7d8fd3b7082c848cfdf1c9d80053eae",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_basque-hake-salsa-verde_v1",
+    "dish_id": "basque-hake-salsa-verde",
+    "recipe_version_id": "rv_basque-hake-salsa-verde_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "basque-hake-salsa-verde.webp",
+    "card_ref": "basque-hake-salsa-verde-640.webp",
+    "master_filename": "basque-hake-salsa-verde.webp",
+    "card_filename": "basque-hake-salsa-verde-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "basque-hake-salsa-verde.webp",
+        "spec_catalog_path": "/images/meals/basque-hake-salsa-verde.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "basque-hake-salsa-verde-640.webp",
+        "spec_catalog_path": "/images/meals/basque-hake-salsa-verde-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "058fbaf764fee377d060dffa87c6b39aa20c9e33367f7a3e2f1509d3c8351d16",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "058fbaf764fee377d060dffa87c6b39aa20c9e33367f7a3e2f1509d3c8351d16",
+      "master_sha256": "2efb5d98945cf79b10108976b53a35ad64fcedf351da83f68144923ecbced716",
+      "card_sha256": "2eededaed42af3d512f4683009746c27a5d02eb16b8e263a1222e5d033903164"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "058fbaf764fee377d060dffa87c6b39aa20c9e33367f7a3e2f1509d3c8351d16",
+      "basque-hake-salsa-verde.webp": "2efb5d98945cf79b10108976b53a35ad64fcedf351da83f68144923ecbced716",
+      "basque-hake-salsa-verde-640.webp": "2eededaed42af3d512f4683009746c27a5d02eb16b8e263a1222e5d033903164"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 25 = 35 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The potatoes boil inside steps 3 to 5 (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "basque-hake-salsa-verde.webp 1200x900 and basque-hake-salsa-verde-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One fillet and a quarter of the sauce in an 8-inch covered skillet.",
+    "2": "Half of everything in a 10-inch covered skillet.",
+    "4": "As written.",
+    "do_not_scale": [
+      "keep the garlic over medium-low; it must not brown at any scale"
+    ]
+  },
+  "coverage_contribution": "First Basque dish and the first Spanish fish main (paella is a closed rice cluster). Hake 0 to 1. HH001 gentle fish braise.",
+  "near_duplicate_review": "Compared with spanish-sopa-de-ajo-egg: a fish main in a green parsley-wine sauce, not a garlic bread soup. Compared with pan-seared-halibut-lemon-butter-corn: no butter; white fish simmered in a green sauce. Compared with moroccan-chermoula-fish-tagine in this wave: a light green wine sauce with peas; no spices, olives, or preserved lemon. Compared with argentine-chimichurri-steak-potatoes in this wave: cooked green sauce on fish, not raw herb sauce on beef.",
+  "not_duplicate_of": "Not merluza with clams; clams are omitted for HH001.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

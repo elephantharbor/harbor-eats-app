@@ -1,0 +1,714 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "turkish-iskender-kebab",
+    "slug": "turkish-iskender-kebab",
+    "title": "Turkish İskender Kebab: Sliced Lamb over Pide with Tomato Sauce, Brown Butter, and Yogurt",
+    "description": "A home version of the Bursa classic: thin slices of seared, marinated lamb laid over cubes of toasted pide, ladled with a warm buttery tomato sauce, finished at the table with sizzling brown butter, and served with cool garlic yogurt and blistered green peppers and tomatoes.",
+    "cuisine": "turkish",
+    "meal_format": "meat-over-bread",
+    "primary_ingredient": "lamb",
+    "vocabulary_tag_ids": [
+      "rich",
+      "savory",
+      "smoky",
+      "tangy",
+      "middle-eastern"
+    ],
+    "current_recipe_id": "rcp_turkish-iskender-kebab",
+    "current_version_id": "rv_turkish-iskender-kebab_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_turkish-iskender-kebab",
+    "dish_id": "turkish-iskender-kebab",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_turkish-iskender-kebab_v1",
+    "recipe_id": "rcp_turkish-iskender-kebab",
+    "dish_id": "turkish-iskender-kebab",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Turkish İskender Kebab: Sliced Lamb over Pide with Tomato Sauce, Brown Butter, and Yogurt",
+    "description": "A home version of the Bursa classic: thin slices of seared, marinated lamb laid over cubes of toasted pide, ladled with a warm buttery tomato sauce, finished at the table with sizzling brown butter, and served with cool garlic yogurt and blistered green peppers and tomatoes.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "lamb",
+        "name": "boneless lamb leg steaks",
+        "display_name": "boneless lamb leg steaks",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "very cold, sliced thin (1/8 inch)",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "small yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "grated, juice squeezed out and kept",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "2 tbsp marinade, 1 tbsp vegetables",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "paprika",
+        "name": "sweet paprika",
+        "display_name": "sweet paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.25,
+        "unit": "tsp",
+        "note": "1 1/2 tsp lamb, 1/2 tsp sauce, 1/4 tsp yogurt",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "pide",
+        "name": "Turkish pide bread",
+        "display_name": "Turkish pide bread whose label lists wheat flour, water, yeast, salt, and oil only",
+        "quantity": 1,
+        "unit": "loaf",
+        "note": "about 1 lb; plain flatbread is the swap",
+        "preparation": "cut into 1-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "crushed-tomatoes",
+        "name": "canned crushed tomatoes",
+        "display_name": "canned crushed tomatoes",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sauce-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 6,
+        "unit": "tbsp",
+        "note": "2 tbsp sauce, 4 tbsp brown butter",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "yogurt",
+        "name": "plain whole-milk yogurt",
+        "display_name": "plain whole-milk yogurt",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-peppers",
+        "name": "long green Turkish or Italian frying peppers",
+        "display_name": "long green Turkish or Italian frying peppers",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cherry-tomatoes",
+        "name": "cherry tomatoes",
+        "display_name": "cherry tomatoes",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Marinate the lamb",
+        "body": "Slice the very cold lamb thin, 1/8 inch thick. Grate the onion and squeeze its juice over the lamb, discarding the pulp. Add 2 tbsp olive oil, the paprika, cumin, oregano, 1 1/2 tsp salt, and the pepper and toss.",
+        "ingredient_refs": [
+          "lamb",
+          "onion",
+          "olive-oil",
+          "paprika",
+          "cumin",
+          "oregano",
+          "kosher-salt",
+          "black-pepper"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Marinate while prepping",
+        "body": "Let the lamb marinate 30 minutes. Meanwhile cube the pide, grate the garlic and stir it into the yogurt with 1/4 tsp salt, and chop the parsley (overlap stated).",
+        "ingredient_refs": [
+          "lamb",
+          "pide",
+          "garlic",
+          "yogurt",
+          "kosher-salt",
+          "parsley"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the tomato sauce",
+        "body": "Melt 2 tbsp butter in a 1-quart saucepan over medium, stir in the tomato paste for 1 minute, then add the crushed tomatoes, 1/2 cup water, the sugar, and 1/2 tsp salt. Simmer until slightly thickened, about 8 minutes. Keep warm.",
+        "ingredient_refs": [
+          "butter",
+          "tomato-paste",
+          "crushed-tomatoes",
+          "sauce-water",
+          "sugar",
+          "kosher-salt"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Preheat the broiler and toast",
+        "body": "Preheat the broiler on high for 5 minutes. Spread the pide cubes on one side of a rimmed sheet pan and the peppers and cherry tomatoes, tossed with 1 tbsp olive oil, on the other. Broil until the bread is crisp at the edges and the vegetables blister, about 5 minutes, turning once.",
+        "ingredient_refs": [
+          "pide",
+          "green-peppers",
+          "cherry-tomatoes",
+          "olive-oil"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Sear the lamb",
+        "body": "Heat a 12-inch cast-iron skillet over high until smoking. Sear the lamb in three batches in a single layer until browned at the edges, about 1 minute per side.",
+        "ingredient_refs": [
+          "lamb"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Brown the butter",
+        "body": "Melt 4 tbsp butter in an 8-inch skillet over medium and cook, swirling, until nutty brown and foaming, about 3 minutes.",
+        "ingredient_refs": [
+          "butter"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Assemble and serve",
+        "body": "Divide the pide cubes among plates, ladle some tomato sauce over them, and lay the lamb on top. Spoon more sauce over the lamb, pour the sizzling brown butter over everything, and add a big spoonful of garlic yogurt, the blistered peppers and tomatoes, and parsley.",
+        "ingredient_refs": [
+          "pide",
+          "crushed-tomatoes",
+          "lamb",
+          "butter",
+          "yogurt",
+          "green-peppers",
+          "cherry-tomatoes",
+          "parsley"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "lamb",
+        "name": "seared marinated lamb",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "lamb leg steaks",
+          "onion juice",
+          "olive oil",
+          "paprika",
+          "cumin",
+          "oregano"
+        ]
+      },
+      {
+        "component_id": "pide",
+        "name": "toasted pide",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "pide"
+        ]
+      },
+      {
+        "component_id": "sauce",
+        "name": "tomato-butter sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomato paste",
+          "crushed tomatoes",
+          "butter",
+          "water",
+          "sugar"
+        ]
+      },
+      {
+        "component_id": "yogurt",
+        "name": "garlic yogurt",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "yogurt",
+          "garlic"
+        ]
+      },
+      {
+        "component_id": "vegetables",
+        "name": "blistered peppers and tomatoes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long green peppers",
+          "cherry tomatoes"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch cast-iron skillet",
+      "rimmed sheet pan",
+      "1-quart saucepan",
+      "8-inch skillet",
+      "mixing bowl"
+    ],
+    "methods": [
+      "sear",
+      "simmer",
+      "broil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 66,
+    "total_time_minutes": 81,
+    "prep_minutes": 15,
+    "cook_minutes": 66,
+    "total_minutes": 81,
+    "time_clock": "Prep 15 + cook 66 = 81 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The lamb marinates for the 30 minutes of step 2, while the pide is cubed, the garlic yogurt is mixed, and the parsley is chopped.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 4 (Preheat the broiler and toast) and it states the preheat. The lamb marinates for the 30 minutes of step 2, while the pide is cubed, the garlic yogurt is mixed, and the parsley is chopped.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Broiler preheated on high for 5 minutes for the pide and vegetables. High in a 12-inch cast-iron skillet for the lamb. Medium in a 1-quart saucepan for the tomato sauce and in an 8-inch skillet for the brown butter.",
+    "doneness": "Lamb seared and browned at the edges, slightly pink inside (145 F). Pide crisp at the edges. Butter nutty brown and foaming.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains lamb (meat), butter, and yogurt (dairy)."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: contains lamb, butter, and yogurt.",
+    "allergens": [
+      "meat",
+      "milk",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the lamb.",
+      "Milk from the butter and yogurt.",
+      "Wheat from the pide.",
+      "The pide is a store-bought hard contract: the label lists wheat flour, water, yeast, salt, and oil, with no egg, milk, or sesame (no nigella or sesame topping).",
+      "No egg, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains lamb (meat), butter, and yogurt (dairy).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "rich",
+      "savory",
+      "smoky",
+      "tangy",
+      "middle-eastern"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'turkish' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook lamb slices to at least 145 F.",
+    "culinary_hash": "35dec9544effa5a3c92dfef636bb5918acac853d6922418a69126bb0a43592b5",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_turkish-iskender-kebab_v2",
+    "dish_id": "turkish-iskender-kebab",
+    "recipe_version_id": "rv_turkish-iskender-kebab_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "turkish-iskender-kebab.webp",
+    "card_ref": "turkish-iskender-kebab-640.webp",
+    "master_filename": "turkish-iskender-kebab.webp",
+    "card_filename": "turkish-iskender-kebab-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "turkish-iskender-kebab.webp",
+        "spec_catalog_path": "/images/meals/turkish-iskender-kebab.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "turkish-iskender-kebab-640.webp",
+        "spec_catalog_path": "/images/meals/turkish-iskender-kebab-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "fd5e52d8c720f15ac99e94b0032c8cc42b3ef8f4aa516bcc9d5fbd2edd386b94",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "fd5e52d8c720f15ac99e94b0032c8cc42b3ef8f4aa516bcc9d5fbd2edd386b94",
+      "master_sha256": "ac2a031779672555d978bf3b5d3c8d409533888ee21a88158c9bf61d318fc61d",
+      "card_sha256": "5679ffc93f214717fcd24917d2ed3d201dd8b22bf84d114c182a76405e8ebc82"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "fd5e52d8c720f15ac99e94b0032c8cc42b3ef8f4aa516bcc9d5fbd2edd386b94",
+      "turkish-iskender-kebab.webp": "ac2a031779672555d978bf3b5d3c8d409533888ee21a88158c9bf61d318fc61d",
+      "turkish-iskender-kebab-640.webp": "5679ffc93f214717fcd24917d2ed3d201dd8b22bf84d114c182a76405e8ebc82"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "creator_self_review_before_audit",
+      "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's self-review: v1 yogurt had green herb flecks (reads as tzatziki, which the brief excludes) and a pan pouring in mid-air.",
+      "prompt_change": "v2 prompt = v1 prompt verbatim plus one 'Regeneration clarifier:' sentence inserted before the quality-reference sentence; the Styling line was also changed. See the 'Regeneration v2 prompt addition' section of image-prompt.md.",
+      "clarifier_sentence": "Regeneration clarifier: the yogurt is plain, smooth, pure white with no herbs, no cucumber and no green flecks; nothing is being poured and no pan floats in the air; the butter is already on the plate.",
+      "styling_change": {
+        "v1": "Styling: Optional: a small copper pan of brown butter mid-pour in soft focus (no hands).",
+        "v2": "Styling: a small copper pan of brown butter resting on the table in soft focus."
+      }
+    },
+    "superseded": [
+      {
+        "image_id": "img_turkish-iskender-kebab_v1",
+        "source_file": "img_v1.jpg",
+        "sha256": "8d2b106998587209073c6db513db87ede7b553ceabdadf053931b24ec6dbd439",
+        "generate_image_attachment_hash": "8d2b106998587209073c6db513db87ede7b553ceabdadf053931b24ec6dbd439",
+        "moved_to_rejected": "rejected/img_v1-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "v1 yogurt had green herb flecks (reads as tzatziki, which the brief excludes) and a pan pouring in mid-air."
+      }
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 66 = 81 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The lamb marinates for the 30 minutes of step 2, while the pide is cubed, the garlic yogurt is mixed, and the parsley is chopped."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 4 (Preheat the broiler and toast) and it states the preheat. The lamb marinates for the 30 minutes of step 2, while the pide is cubed, the garlic yogurt is mixed, and the parsley is chopped."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "turkish-iskender-kebab.webp 1200x900 and turkish-iskender-kebab-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything; sear in an 8-inch skillet.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "sear in batches so the lamb browns at every scale"
+    ]
+  },
+  "coverage_contribution": "First Turkish meat main (turkish-lahmacun is a flatbread). Meat-over-bread with a butter-tomato sauce is a new format.",
+  "near_duplicate_review": "Compared with turkish-lahmacun: sliced lamb over cubed bread with tomato sauce, butter, and yogurt, not a thin spiced-meat flatbread. Compared with greek-chicken-souvlaki: lamb over sauced bread cubes, not chicken skewers in pita. Compared with persian-lamb-koobideh-saffron-rice in this wave: sliced lamb on bread with butter and yogurt, not ground kebabs over rice. Compared with sabich-pita-sandwiches: a plated meat dish, not a stuffed pita.",
+  "not_duplicate_of": "Not a döner wrap (sandwiches are well covered).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "E"
+}

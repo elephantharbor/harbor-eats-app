@@ -1,0 +1,643 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "cuban-sandwiches",
+    "slug": "cuban-sandwiches",
+    "title": "Cuban Sandwiches with Mojo Pork Tenderloin, Ham, Swiss, and Pickles",
+    "description": "Pork tenderloin marinated in garlicky citrus mojo and roasted, then sliced and layered on Cuban bread with ham, Swiss cheese, dill pickles, and yellow mustard. Pressed in a buttered skillet under a heavy pan until crisp and melty.",
+    "cuisine": "cuban",
+    "meal_format": "pressed-sandwich",
+    "primary_ingredient": "pork",
+    "vocabulary_tag_ids": [
+      "sandwiches",
+      "crispy",
+      "tangy",
+      "savory"
+    ],
+    "current_recipe_id": "rcp_cuban-sandwiches",
+    "current_version_id": "rv_cuban-sandwiches_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_cuban-sandwiches",
+    "dish_id": "cuban-sandwiches",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_cuban-sandwiches_v1",
+    "recipe_id": "rcp_cuban-sandwiches",
+    "dish_id": "cuban-sandwiches",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Cuban Sandwiches with Mojo Pork Tenderloin, Ham, Swiss, and Pickles",
+    "description": "Pork tenderloin marinated in garlicky citrus mojo and roasted, then sliced and layered on Cuban bread with ham, Swiss cheese, dill pickles, and yellow mustard. Pressed in a buttered skillet under a heavy pan until crisp and melty.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "pork",
+        "name": "pork tenderloin",
+        "display_name": "pork tenderloin",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "1 large or 2 small",
+        "preparation": "silverskin trimmed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "orange-juice",
+        "name": "fresh orange juice",
+        "display_name": "fresh orange juice",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lime-juice",
+        "name": "fresh lime juice",
+        "display_name": "fresh lime juice",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 5,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bread",
+        "name": "Cuban bread",
+        "display_name": "large Cuban bread whose label lists wheat flour, water, yeast, salt, sugar, and lard or oil only",
+        "quantity": 1,
+        "unit": "loaf",
+        "note": "about 24 inches; cut into 4 lengths",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ham",
+        "name": "thinly sliced deli ham",
+        "display_name": "thinly sliced ham whose label lists pork, water, salt, sugar, and curing agents only",
+        "quantity": 0.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "swiss",
+        "name": "sliced Swiss cheese",
+        "display_name": "Swiss cheese",
+        "quantity": 8,
+        "unit": "slice",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pickles",
+        "name": "dill pickle sandwich slices",
+        "display_name": "dill pickle sandwich slices whose label lists cucumbers, vinegar, salt, and dill",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mustard",
+        "name": "yellow mustard",
+        "display_name": "yellow mustard",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "softened",
+        "optional": false,
+        "role": "fat"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Marinate the pork",
+        "body": "Whisk the orange juice, lime juice, garlic, oregano, cumin, olive oil, and salt. Coat the pork in the mojo in a bowl.",
+        "ingredient_refs": [
+          "orange-juice",
+          "lime-juice",
+          "garlic",
+          "oregano",
+          "cumin",
+          "olive-oil",
+          "kosher-salt",
+          "pork"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Preheat and marinate",
+        "body": "Preheat the oven to 425 F. The pork marinates while the oven heats fully, about 30 minutes.",
+        "ingredient_refs": [
+          "pork"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Roast",
+        "body": "Set the pork on a rimmed sheet pan, pour over a little of the mojo, and roast until it reads 145 F, about 22 minutes. Rest 5 minutes, then slice thin.",
+        "ingredient_refs": [
+          "pork"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Assemble",
+        "body": "Cut the bread into 4 lengths and split each. Spread mustard on both cut sides. Layer Swiss, ham, sliced pork, pickles, and more Swiss, and close. Butter the outsides.",
+        "ingredient_refs": [
+          "bread",
+          "mustard",
+          "swiss",
+          "ham",
+          "pork",
+          "pickles",
+          "butter"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Press",
+        "body": "Heat a 12-inch skillet over medium-low. Press 2 sandwiches at a time under a heavy skillet, about 4 minutes per side, until flattened, deep golden, and the cheese melts.",
+        "ingredient_refs": [
+          "bread"
+        ],
+        "clock_minutes": 17,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Cut each sandwich on the diagonal and serve hot.",
+        "ingredient_refs": [
+          "bread"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "pork",
+        "name": "mojo pork",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "pork tenderloin",
+          "orange juice",
+          "lime juice",
+          "garlic",
+          "oregano",
+          "cumin",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "bread",
+        "name": "Cuban bread",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "Cuban bread"
+        ]
+      },
+      {
+        "component_id": "ham",
+        "name": "sliced ham",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "ham"
+        ]
+      },
+      {
+        "component_id": "assembly",
+        "name": "fillings and press",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "Swiss cheese",
+          "dill pickles",
+          "yellow mustard",
+          "butter"
+        ]
+      }
+    ],
+    "equipment": [
+      "rimmed sheet pan",
+      "12-inch skillet",
+      "heavy skillet or foil-wrapped brick for pressing",
+      "mixing bowl",
+      "instant-read thermometer",
+      "serrated knife"
+    ],
+    "methods": [
+      "roast",
+      "griddle"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "baked",
+        "roasted"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 8,
+    "cook_time_minutes": 87,
+    "total_time_minutes": 95,
+    "prep_minutes": 8,
+    "cook_minutes": 87,
+    "total_minutes": 95,
+    "time_clock": "Prep 8 + cook 87 = 95 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The pork marinates for 30 minutes while the oven preheats (step 2).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 2 (Preheat and marinate) and it states the preheat. The pork marinates for 30 minutes while the oven preheats (step 2).",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "Oven preheated to 425 F for the pork. Medium-low in a 12-inch skillet with a heavy pan on top to press the sandwiches.",
+    "doneness": "Pork 145 F with a 3-minute rest. Bread flattened, deep golden, and crisp; cheese fully melted.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains pork and ham (meat) and Swiss cheese and butter (dairy)."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: contains pork, ham, Swiss cheese, and butter.",
+    "allergens": [
+      "meat",
+      "milk",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the pork tenderloin and ham.",
+      "Milk from the Swiss cheese and butter.",
+      "Wheat from the Cuban bread.",
+      "The Cuban bread is a store-bought hard contract: the label lists wheat flour, water, yeast, salt, sugar, and lard or oil, with no egg, soy, milk, or sesame.",
+      "The ham is a store-bought hard contract: the label lists pork, water, salt, sugar, and curing agents, with no soy, wheat, or milk.",
+      "The pickles' label lists cucumbers, vinegar, salt, and dill. Contains mustard (not a FlavorWeave token). No egg, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains pork and ham (meat) and Swiss cheese and butter (dairy).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "sandwiches",
+      "crispy",
+      "tangy",
+      "savory"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'cuban' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook pork tenderloin to 145 F and rest 3 minutes.",
+    "culinary_hash": "0b0c973d837e76104b7774be8701be11a15a592b47b4e71c5c0bf632746ac48f",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_cuban-sandwiches_v2",
+    "dish_id": "cuban-sandwiches",
+    "recipe_version_id": "rv_cuban-sandwiches_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "cuban-sandwiches.webp",
+    "card_ref": "cuban-sandwiches-640.webp",
+    "master_filename": "cuban-sandwiches.webp",
+    "card_filename": "cuban-sandwiches-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "cuban-sandwiches.webp",
+        "spec_catalog_path": "/images/meals/cuban-sandwiches.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "cuban-sandwiches-640.webp",
+        "spec_catalog_path": "/images/meals/cuban-sandwiches-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "4cc7d4bea0ac17839fdabccae1272eb48692c975803a1852efa73b9c5145544f",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "4cc7d4bea0ac17839fdabccae1272eb48692c975803a1852efa73b9c5145544f",
+      "master_sha256": "81097f328aa9d8ed30adbcb83a29f75abd34ed31e6b59b71989dae5816ab555d",
+      "card_sha256": "515d1bbaa5586eb46132c696f606f0c601a5a1d7b768b7d98516bfc3a57f9db7"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "4cc7d4bea0ac17839fdabccae1272eb48692c975803a1852efa73b9c5145544f",
+      "cuban-sandwiches.webp": "81097f328aa9d8ed30adbcb83a29f75abd34ed31e6b59b71989dae5816ab555d",
+      "cuban-sandwiches-640.webp": "515d1bbaa5586eb46132c696f606f0c601a5a1d7b768b7d98516bfc3a57f9db7"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "audit_r1_gate_K",
+      "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: plantain chips not in the recipe; pork read as shredded/pulled instead of thin-sliced tenderloin.",
+      "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "audit_r1_gate_K",
+        "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: plantain chips not in the recipe; pork read as shredded/pulled instead of thin-sliced tenderloin.",
+        "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_cuban-sandwiches_v1",
+        "active_source_jpeg": "img_v1.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "fd3e68948cb0b60488f8e793c62bc1559a92cdbe75a0280c98acac82bfac3da8",
+          "master_sha256": "bf262c002a361dc20a52c75145657383ad7ef0f2c786230bfb42477e70c01893",
+          "card_sha256": "6467bb7e590ed8c53b7805b6fd43299072947b7f204b87b33d845204414bef2d"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "cuban-sandwiches.webp": {
+            "rejected_path": "rejected/cuban-sandwiches-replaced-20261015155800.webp",
+            "sha256": "bf262c002a361dc20a52c75145657383ad7ef0f2c786230bfb42477e70c01893"
+          },
+          "cuban-sandwiches-640.webp": {
+            "rejected_path": "rejected/cuban-sandwiches-640-replaced-20261015155800.webp",
+            "sha256": "6467bb7e590ed8c53b7805b6fd43299072947b7f204b87b33d845204414bef2d"
+          },
+          "img_v1.jpg": {
+            "rejected_path": "rejected/img_v1-replaced-20261015155800.jpg",
+            "sha256": "fd3e68948cb0b60488f8e793c62bc1559a92cdbe75a0280c98acac82bfac3da8"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "Audit r1 gate K FAIL (plantain chips not in the recipe; pork read as shredded/pulled instead of thin-sliced tenderloin)"
+      }
+    ],
+    "regenerated_for_audit": "audit-r1"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 8 + cook 87 = 95 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The pork marinates for 30 minutes while the oven preheats (step 2)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 2 (Preheat and marinate) and it states the preheat. The pork marinates for 30 minutes while the oven preheats (step 2)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "cuban-sandwiches.webp 1200x900 and cuban-sandwiches-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"baked\", \"roasted\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of the pork (or a small tenderloin) and one sandwich.",
+    "2": "Half of everything.",
+    "4": "As written; 4 sandwiches pressed two at a time.",
+    "do_not_scale": [
+      "press over medium-low at every scale so the cheese melts before the bread burns"
+    ]
+  },
+  "coverage_contribution": "Cuban 1 to 2 (slow-cooker-ropa-vieja is the other). A pressed hot sandwich, distinct from the catalog's cheesesteaks and chicken sandwiches.",
+  "near_duplicate_review": "Compared with philly-cheesesteaks: roasted mojo pork with ham, pickles, and mustard, pressed flat, not griddled shaved beef in a soft roll. Compared with crispy-skillet-chicken-sandwiches: pork and ham, pressed, no fried chicken. Compared with tomato-soup-grilled-cheese: a loaded meat sandwich, no soup.",
+  "not_duplicate_of": "Not a medianoche (sweet egg bread) to keep the bread egg-free.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

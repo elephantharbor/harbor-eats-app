@@ -1,0 +1,659 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "thai-crispy-barramundi-tamarind",
+    "slug": "thai-crispy-barramundi-tamarind",
+    "title": "Thai Crispy Barramundi with Three-Flavor Tamarind Sauce",
+    "description": "Barramundi pieces dredged in rice flour and cornstarch and deep-fried until shatteringly crisp, then spooned with a Thai three-flavor sauce (sweet, sour, and spicy) of tamarind, palm or brown sugar, fish sauce, garlic, shallots, and chiles. Served with jasmine rice and cucumber.",
+    "cuisine": "thai",
+    "meal_format": "fried-fish-plate",
+    "primary_ingredient": "barramundi",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "tangy",
+      "spicy",
+      "savory",
+      "thai"
+    ],
+    "current_recipe_id": "rcp_thai-crispy-barramundi-tamarind",
+    "current_version_id": "rv_thai-crispy-barramundi-tamarind_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_thai-crispy-barramundi-tamarind",
+    "dish_id": "thai-crispy-barramundi-tamarind",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_thai-crispy-barramundi-tamarind_v1",
+    "recipe_id": "rcp_thai-crispy-barramundi-tamarind",
+    "dish_id": "thai-crispy-barramundi-tamarind",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Thai Crispy Barramundi with Three-Flavor Tamarind Sauce",
+    "description": "Barramundi pieces dredged in rice flour and cornstarch and deep-fried until shatteringly crisp, then spooned with a Thai three-flavor sauce (sweet, sour, and spicy) of tamarind, palm or brown sugar, fish sauce, garlic, shallots, and chiles. Served with jasmine rice and cucumber.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "barramundi",
+        "name": "barramundi fillets",
+        "display_name": "skinless barramundi fillets",
+        "quantity": 1.75,
+        "unit": "lb",
+        "note": "cod or snapper are the same-shopping swaps",
+        "preparation": "cut into 2-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-flour",
+        "name": "white rice flour",
+        "display_name": "white rice flour",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cornstarch",
+        "name": "cornstarch",
+        "display_name": "cornstarch",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fry-oil",
+        "name": "neutral oil for frying",
+        "display_name": "neutral oil for frying",
+        "quantity": 6,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "sauce-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "shallots",
+        "name": "shallots",
+        "display_name": "shallots",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-chiles",
+        "name": "red Thai or Fresno chiles",
+        "display_name": "red Thai or Fresno chiles",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tamarind",
+        "name": "tamarind concentrate",
+        "display_name": "tamarind concentrate",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "palm or light brown sugar",
+        "display_name": "palm or light brown sugar",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fish-sauce",
+        "name": "fish sauce",
+        "display_name": "fish sauce (anchovy and salt; label lists no shrimp or shellfish)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sauce-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "English cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "side"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "leaves",
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "lime",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the rice. Cut the fish into 2-inch pieces and pat very dry. Slice the shallots and chiles, mince the garlic, slice the cucumber, and cut the limes into wedges. Whisk the rice flour, cornstarch, and salt in a wide bowl.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "barramundi",
+          "shallots",
+          "red-chiles",
+          "garlic",
+          "cucumber",
+          "lime",
+          "rice-flour",
+          "cornstarch",
+          "kosher-salt"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the rice",
+        "body": "Combine the rice and 2 cups water in a 2-quart saucepan, bring to a boil over high heat, cover, turn to low, and cook 15 minutes; then rest covered off the heat 5 minutes. This runs inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "rice-water"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the sauce and heat the oil",
+        "body": "Pour the 6 cups oil into a 5-quart Dutch oven (no more than half full), clip on a thermometer, and heat over medium-high to 350 F; it takes roughly the whole step to get there. Meanwhile, heat 1 tbsp oil in a 1-quart saucepan over medium and cook the shallots, garlic, and chiles until fragrant and lightly golden, about 3 minutes. Add the tamarind, sugar, fish sauce, and 1/4 cup water and simmer until glossy and syrupy, about 4 minutes.",
+        "ingredient_refs": [
+          "fry-oil",
+          "sauce-oil",
+          "shallots",
+          "garlic",
+          "red-chiles",
+          "tamarind",
+          "brown-sugar",
+          "fish-sauce",
+          "sauce-water"
+        ],
+        "clock_minutes": 13,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Deep-fry the fish",
+        "body": "Toss the fish in the coating and shake off the excess. Deep-fry in 3 batches, keeping the oil between 340 F and 360 F, until deep golden and crisp and the fish reads 145 F, about 4 minutes per batch. Drain on the rack.",
+        "ingredient_refs": [
+          "barramundi",
+          "rice-flour",
+          "fry-oil"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Fluff the rice. Pile the fish on a platter, spoon the warm sauce over it, and scatter cilantro. Serve with the rice, cucumber, and lime wedges. Let the oil cool completely before discarding.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "barramundi",
+          "cilantro",
+          "cucumber",
+          "lime"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "fish",
+        "name": "crispy barramundi",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "barramundi",
+          "rice flour",
+          "cornstarch",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "sauce",
+        "name": "three-flavor tamarind sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tamarind",
+          "brown sugar",
+          "fish sauce",
+          "garlic",
+          "shallots",
+          "chiles",
+          "water"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "jasmine rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "5-quart Dutch oven",
+      "deep-fry thermometer",
+      "spider or slotted spoon",
+      "1-quart saucepan",
+      "2-quart saucepan with lid",
+      "wire rack set over a sheet pan"
+    ],
+    "methods": [
+      "deep-fry",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [
+        "deep"
+      ],
+      "crispy_non_fry": [
+        "baked"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 34,
+    "total_time_minutes": 46,
+    "prep_minutes": 12,
+    "cook_minutes": 34,
+    "total_minutes": 46,
+    "time_clock": "Prep 12 + cook 34 = 46 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap). The oil heats during step 3.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "6 cups oil at 350 F in a 5-quart Dutch oven; hold between 340 F and 360 F. A small saucepan at medium for the sauce. Low covered heat for the rice.",
+    "doneness": "Coating deep golden and crisp; fish opaque inside and 145 F. Sauce glossy and syrupy, coating a spoon.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: fish, rice flour, cornstarch, oil, tamarind, sugar, fish sauce, and aromatics.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish from the barramundi and the fish sauce (anchovy).",
+      "The fish sauce label lists only anchovy, salt, and sugar, with no shrimp or other shellfish.",
+      "The coating is rice flour and cornstarch, with no wheat.",
+      "No egg, milk, soy, wheat, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Fish sauce is anchovy and salt only: the label lists no shrimp or shellfish. No oyster sauce.",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "tangy",
+      "spicy",
+      "savory",
+      "thai"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'thai' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Deep-frying: use a heavy 5-quart Dutch oven no more than half full, keep a lid nearby, never leave the oil unattended, and let it cool completely before discarding.",
+    "culinary_hash": "f4367755fcf5b956a332a38cb37cbe879f8178470836c6607a5b5de2b6915f83",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_thai-crispy-barramundi-tamarind_v2",
+    "dish_id": "thai-crispy-barramundi-tamarind",
+    "recipe_version_id": "rv_thai-crispy-barramundi-tamarind_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "thai-crispy-barramundi-tamarind.webp",
+    "card_ref": "thai-crispy-barramundi-tamarind-640.webp",
+    "master_filename": "thai-crispy-barramundi-tamarind.webp",
+    "card_filename": "thai-crispy-barramundi-tamarind-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "thai-crispy-barramundi-tamarind.webp",
+        "spec_catalog_path": "/images/meals/thai-crispy-barramundi-tamarind.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "thai-crispy-barramundi-tamarind-640.webp",
+        "spec_catalog_path": "/images/meals/thai-crispy-barramundi-tamarind-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "68358143c8b3a9f59ffd1d57ca5325c5f95ebca515fc5be1e2e565e604e2fc67",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "68358143c8b3a9f59ffd1d57ca5325c5f95ebca515fc5be1e2e565e604e2fc67",
+      "master_sha256": "507f421d4d46c27976a1533ed4c61d32f1f38a30b38bb029048f3830993e63f7",
+      "card_sha256": "f3582d981e42d7a94aaa7e978b0659b2d9b769aede921b60c9e7462296f05cc0"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "68358143c8b3a9f59ffd1d57ca5325c5f95ebca515fc5be1e2e565e604e2fc67",
+      "thai-crispy-barramundi-tamarind.webp": "507f421d4d46c27976a1533ed4c61d32f1f38a30b38bb029048f3830993e63f7",
+      "thai-crispy-barramundi-tamarind-640.webp": "f3582d981e42d7a94aaa7e978b0659b2d9b769aede921b60c9e7462296f05cc0"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "creator_self_review_before_audit",
+      "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's self-review: v1 pieces read as long breaded chicken tenders.",
+      "prompt_change": "v2 prompt = v1 prompt verbatim plus one 'Regeneration clarifier:' sentence inserted before the quality-reference sentence. See the 'Regeneration v2 prompt addition' section of image-prompt.md.",
+      "clarifier_sentence": "Regeneration clarifier: the pieces are chunky bite-size irregular fish nuggets with a thin crisp cornstarch crust, and on one or two broken pieces the flaky white fish flesh is visible so it clearly reads as fish; not long breaded strips or chicken tenders."
+    },
+    "superseded": [
+      {
+        "image_id": "img_thai-crispy-barramundi-tamarind_v1",
+        "source_file": "img_v1.jpg",
+        "sha256": "fae30077aa470b06174d761b0e7e7ee21c441e445b1a2320e0b726557c991501",
+        "generate_image_attachment_hash": "fae30077aa470b06174d761b0e7e7ee21c441e445b1a2320e0b726557c991501",
+        "moved_to_rejected": "rejected/img_v1-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "v1 pieces read as long breaded chicken tenders."
+      }
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 34 = 46 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap). The oil heats during step 3."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "thai-crispy-barramundi-tamarind.webp 1200x900 and thai-crispy-barramundi-tamarind-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"deep\"], \"crispy_non_fry\": [\"baked\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of the fish and sauce; fry in a 3-quart pot with 4 cups oil.",
+    "2": "Half the fish and sauce; same pot and oil.",
+    "4": "As written.",
+    "do_not_scale": [
+      "oil depth and temperature stay the same at every scale; fry in batches"
+    ]
+  },
+  "coverage_contribution": "Second Thai fish main (thai-fish-cakes-cucumber-relish is the other); first whole-piece fried fish with a tamarind sauce. Barramundi 0 to 1. Gluten-free deep-fried fish. HH001.",
+  "near_duplicate_review": "Compared with deep-fried-cod-roasted-potatoes: rice-flour coating, a tamarind sauce, rice; no batter or chips. Compared with crispy-fish-tacos-cabbage-slaw: no tortillas or slaw. Compared with thai-fish-cakes-cucumber-relish: whole crisp fish pieces with tamarind sauce and rice, not minced curry-paste fish cakes.",
+  "not_duplicate_of": "Not pla rad prik with a whole fish; fillet pieces keep it home-cookable.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

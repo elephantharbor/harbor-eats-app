@@ -1,0 +1,641 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "punjabi-rajma-chawal",
+    "slug": "punjabi-rajma-chawal",
+    "title": "Punjabi Rajma Chawal: Kidney Bean Curry with Basmati Rice",
+    "description": "Red kidney beans simmered in a deeply browned onion, ginger, garlic, and tomato masala until the gravy turns thick and glossy, finished with garam masala and lemon. Served over steamed basmati with cilantro.",
+    "cuisine": "indian",
+    "meal_format": "curry-over-rice",
+    "primary_ingredient": "kidney beans",
+    "vocabulary_tag_ids": [
+      "curries",
+      "savory",
+      "spicy",
+      "rich",
+      "indian"
+    ],
+    "current_recipe_id": "rcp_punjabi-rajma-chawal",
+    "current_version_id": "rv_punjabi-rajma-chawal_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_punjabi-rajma-chawal",
+    "dish_id": "punjabi-rajma-chawal",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_punjabi-rajma-chawal_v1",
+    "recipe_id": "rcp_punjabi-rajma-chawal",
+    "dish_id": "punjabi-rajma-chawal",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Punjabi Rajma Chawal: Kidney Bean Curry with Basmati Rice",
+    "description": "Red kidney beans simmered in a deeply browned onion, ginger, garlic, and tomato masala until the gravy turns thick and glossy, finished with garam masala and lemon. Served over steamed basmati with cilantro.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "kidney-beans",
+        "name": "canned red kidney beans",
+        "display_name": "15-oz cans red kidney beans",
+        "quantity": 2,
+        "unit": "can",
+        "note": null,
+        "preparation": "drained and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "large yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 5,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-chile",
+        "name": "green chile",
+        "display_name": "serrano or Indian green chile",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "slit lengthwise",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "crushed-tomatoes",
+        "name": "canned crushed tomatoes",
+        "display_name": "canned crushed tomatoes",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cumin-seeds",
+        "name": "cumin seeds",
+        "display_name": "cumin seeds",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bay-leaf",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-coriander",
+        "name": "ground coriander",
+        "display_name": "ground coriander",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chili-powder",
+        "name": "Kashmiri or mild red chili powder",
+        "display_name": "Kashmiri or mild red chili powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garam-masala",
+        "name": "garam masala",
+        "display_name": "garam masala",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 1/2 tsp curry, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "bean-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for the curry",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "basmati-rice",
+        "name": "basmati rice",
+        "display_name": "basmati rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "half juiced, half cut into wedges",
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Finely chop the onion, mince the garlic, grate the ginger, and slit the chile. Drain and rinse the beans. Rinse the rice until the rinse runs clear. Chop the cilantro. Juice half the lemon and cut the other half into wedges.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "garlic",
+          "ginger",
+          "green-chile",
+          "kidney-beans",
+          "basmati-rice",
+          "cilantro",
+          "lemon"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the rice",
+        "body": "Combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan. Bring to a boil over high heat, cover, turn to low, and cook 12 minutes; then leave it covered off the heat to rest 10 minutes. The covered cooking and rest run inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "basmati-rice",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Brown the masala base",
+        "body": "Heat the oil in a 4-quart heavy pot over medium. Add the cumin seeds and bay leaves and let them sizzle a few seconds. Add the onion and cook, stirring often, until deep golden-brown, about 12 minutes. Add the garlic, ginger, and chile and cook 1 minute. Stir in the coriander, turmeric, and chili powder for a few seconds.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "cumin-seeds",
+          "bay-leaf",
+          "yellow-onion",
+          "garlic",
+          "ginger",
+          "green-chile",
+          "ground-coriander",
+          "turmeric",
+          "chili-powder"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Cook the tomatoes",
+        "body": "Add the crushed tomatoes and 1 1/2 tsp salt. Cook, stirring and scraping the bottom, until the masala thickens and oil shines at the edges, about 7 minutes.",
+        "ingredient_refs": [
+          "crushed-tomatoes",
+          "kosher-salt"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Simmer the beans",
+        "body": "Add the beans and 1 1/2 cups water. Simmer, partly covered and stirring now and then, 15 minutes. Crush about a quarter of the beans against the side of the pot to thicken the gravy, stir in the garam masala and lemon juice, and simmer 2 minutes more.",
+        "ingredient_refs": [
+          "kidney-beans",
+          "bean-water",
+          "garam-masala",
+          "lemon"
+        ],
+        "clock_minutes": 17,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Remove the bay leaves and chile if you like. Fluff the rice, spoon the rajma over it, and finish with cilantro and lemon wedges.",
+        "ingredient_refs": [
+          "bay-leaf",
+          "green-chile",
+          "basmati-rice",
+          "kidney-beans",
+          "cilantro",
+          "lemon"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "rajma",
+        "name": "kidney bean curry",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "kidney beans",
+          "onion",
+          "ginger",
+          "garlic",
+          "green chile",
+          "tomatoes",
+          "spices"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "steamed basmati",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "basmati rice",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "4-quart heavy pot",
+      "2-quart saucepan with lid",
+      "wooden spoon",
+      "potato masher or large spoon"
+    ],
+    "methods": [
+      "saute",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 44,
+    "total_time_minutes": 56,
+    "prep_minutes": 12,
+    "cook_minutes": 44,
+    "total_minutes": 56,
+    "time_clock": "Prep 12 + cook 44 = 56 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 5 (step 2 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium heat in a heavy 4-quart pot for the masala, then a gentle simmer. Low covered heat for the rice.",
+    "doneness": "Onions deep golden-brown before the tomatoes go in. Masala thick with oil shining at the edges. Beans soft enough to crush against the pot; gravy coats a spoon. Rice tender and separate.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional plant_based and dairy_free: the masala is oil, aromatics, spices, tomatoes, and beans. No ghee and no cream.",
+    "allergens": [],
+    "allergen_notes": [
+      "No FlavorWeave allergen tokens: no egg, milk, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Oil only, no ghee, butter, or cream. Canned beans are plain kidney beans in water and salt.",
+    "vocabulary_tag_ids": [
+      "curries",
+      "savory",
+      "spicy",
+      "rich",
+      "indian"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'indian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "fc59d11c58b18db534405986e450397c69f2379bde4351f5d8a3f385a3d7a29a",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_punjabi-rajma-chawal_v1",
+    "dish_id": "punjabi-rajma-chawal",
+    "recipe_version_id": "rv_punjabi-rajma-chawal_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "punjabi-rajma-chawal.webp",
+    "card_ref": "punjabi-rajma-chawal-640.webp",
+    "master_filename": "punjabi-rajma-chawal.webp",
+    "card_filename": "punjabi-rajma-chawal-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "punjabi-rajma-chawal.webp",
+        "spec_catalog_path": "/images/meals/punjabi-rajma-chawal.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "punjabi-rajma-chawal-640.webp",
+        "spec_catalog_path": "/images/meals/punjabi-rajma-chawal-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "51a0df559baba8516345b8b718d9e4f16360f2d83ba11dee8ce981b48ae05df5",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "51a0df559baba8516345b8b718d9e4f16360f2d83ba11dee8ce981b48ae05df5",
+      "master_sha256": "77262da134971033fd1b77a1c1fa2650747f07ab1e6ac859a62c1a004c7254e8",
+      "card_sha256": "a60f0b6244736eab1b28c08278df0118cab0533f1e99ba85992f6200c334a73b"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "51a0df559baba8516345b8b718d9e4f16360f2d83ba11dee8ce981b48ae05df5",
+      "punjabi-rajma-chawal.webp": "77262da134971033fd1b77a1c1fa2650747f07ab1e6ac859a62c1a004c7254e8",
+      "punjabi-rajma-chawal-640.webp": "a60f0b6244736eab1b28c08278df0118cab0533f1e99ba85992f6200c334a73b"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 44 = 56 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 5 (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "punjabi-rajma-chawal.webp 1200x900 and punjabi-rajma-chawal-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything; use a 2-quart pot and brown the onion about 8 minutes.",
+    "2": "Half of everything in a 3-quart pot.",
+    "4": "As written.",
+    "do_not_scale": [
+      "browning the onions: do not shorten for a larger batch, brown until deep golden"
+    ]
+  },
+  "coverage_contribution": "Kidney beans 0 to 1 as a lead. North Indian home cooking beyond the restaurant curries (butter chicken, saag paneer, coconut chickpea curry). HH001 plant dinner that is not chickpea, lentil, or coconut.",
+  "near_duplicate_review": "Compared with pumpkin-pinto-bean-chili: an onion-tomato masala with garam masala, served over basmati; no chili powder blend, no pumpkin. Compared with coconut-chickpea-curry: kidney beans, no coconut. Compared with ghanaian-red-red-plantains: kidney beans in an Indian masala, not black-eyed peas in palm-oil tomato stew. Compared with vegetable-biryani-cashews: a bean curry over plain rice, not a layered spiced rice.",
+  "not_duplicate_of": "Not chana masala or dal (chickpea and lentil leads are closed).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

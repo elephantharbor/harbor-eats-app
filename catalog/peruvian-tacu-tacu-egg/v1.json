@@ -1,0 +1,700 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "peruvian-tacu-tacu-egg",
+    "slug": "peruvian-tacu-tacu-egg",
+    "title": "Peruvian Tacu Tacu with a Pan-Fried Egg and Salsa Criolla",
+    "description": "A crisp-crusted cake of rice and canary beans seasoned with onion, garlic, and ají amarillo, pan-fried until golden, topped with a runny pan-fried egg and a tangy salsa criolla of red onion, ají, and lime.",
+    "cuisine": "peruvian",
+    "meal_format": "rice-and-bean-cake",
+    "primary_ingredient": "rice and beans",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "savory",
+      "tangy",
+      "spicy"
+    ],
+    "current_recipe_id": "rcp_peruvian-tacu-tacu-egg",
+    "current_version_id": "rv_peruvian-tacu-tacu-egg_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_peruvian-tacu-tacu-egg",
+    "dish_id": "peruvian-tacu-tacu-egg",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_peruvian-tacu-tacu-egg_v1",
+    "recipe_id": "rcp_peruvian-tacu-tacu-egg",
+    "dish_id": "peruvian-tacu-tacu-egg",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Peruvian Tacu Tacu with a Pan-Fried Egg and Salsa Criolla",
+    "description": "A crisp-crusted cake of rice and canary beans seasoned with onion, garlic, and ají amarillo, pan-fried until golden, topped with a runny pan-fried egg and a tangy salsa criolla of red onion, ají, and lime.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "beans",
+        "name": "canned canary (mayocoba) beans",
+        "display_name": "15-oz cans canary (mayocoba) or pinto beans",
+        "quantity": 2,
+        "unit": "can",
+        "note": null,
+        "preparation": "drained, 1/4 cup liquid reserved",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "red onions",
+        "display_name": "medium red onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": "1 for the cakes, 1 for the salsa",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "aji-paste",
+        "name": "ají amarillo paste",
+        "display_name": "ají amarillo paste whose label lists only peppers, salt, and acid",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "2 tbsp cakes, 1 tbsp salsa",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1/2 tsp rice, 1 tsp cakes, 1/2 tsp salsa",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "1 tbsp aromatics, the rest for the cakes and eggs",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "limes",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 2,
+        "unit": "count",
+        "note": "juiced, about 1/4 cup",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Rinse the rice",
+        "body": "Rinse the rice in a sieve until the rinse runs nearly clear.",
+        "ingredient_refs": [
+          "rice"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the rice",
+        "body": "Combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan, bring to a boil over high heat, cover, turn to low, and cook 15 minutes.",
+        "ingredient_refs": [
+          "rice",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Prep",
+        "body": "While the rice cooks, finely chop one onion for the cakes and slice the other into thin half-moons for the salsa. Mince the garlic, chop the cilantro, and juice the limes. Drain the beans, reserving 1/4 cup of their liquid. (overlap stated)",
+        "ingredient_refs": [
+          "onion",
+          "garlic",
+          "cilantro",
+          "limes",
+          "beans"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Cool the rice",
+        "body": "Spread the hot rice on a rimmed sheet pan to cool and steam off, about 10 minutes.",
+        "ingredient_refs": [
+          "rice"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Make the salsa criolla",
+        "body": "While the rice cools, toss the sliced onion with the lime juice, 1 tbsp ají paste, 1/2 tsp salt, and half the cilantro (overlap stated).",
+        "ingredient_refs": [
+          "onion",
+          "limes",
+          "aji-paste",
+          "kosher-salt",
+          "cilantro"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Season the bean base",
+        "body": "Heat 1 tbsp oil in a 12-inch nonstick skillet over medium. Cook the chopped onion until soft, about 5 minutes; add the garlic, 2 tbsp ají paste, and oregano for 1 minute. Add the beans and their reserved liquid and 1 tsp salt and mash coarsely, about 2 minutes. Scrape into a bowl, fold in the rice, and shape into 4 thick oval cakes. Wipe the skillet.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "onion",
+          "garlic",
+          "aji-paste",
+          "oregano",
+          "beans",
+          "kosher-salt",
+          "rice"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Pan-fry the cakes",
+        "body": "Heat 3 tbsp oil in the skillet over medium-high. Pan-fry 2 cakes at a time until deep golden and crisp, about 4 minutes per side, adding oil as needed. Keep warm on plates.",
+        "ingredient_refs": [
+          "neutral-oil"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 8,
+        "title": "Pan-fry the eggs",
+        "body": "Lower the heat to medium, add a little oil, and pan-fry the eggs until the whites set and the yolks stay runny, about 3 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "eggs"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 9,
+        "title": "Serve",
+        "body": "Top each cake with an egg and a heap of salsa criolla, and scatter the remaining cilantro.",
+        "ingredient_refs": [
+          "eggs",
+          "onion",
+          "cilantro"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "tacu",
+        "name": "tacu tacu cakes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rice",
+          "canary beans",
+          "onion",
+          "garlic",
+          "ají amarillo",
+          "oregano"
+        ]
+      },
+      {
+        "component_id": "salsa",
+        "name": "salsa criolla",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "red onion",
+          "ají",
+          "lime",
+          "cilantro"
+        ]
+      },
+      {
+        "component_id": "eggs",
+        "name": "pan-fried eggs",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "eggs"
+        ]
+      }
+    ],
+    "equipment": [
+      "2-quart saucepan with lid",
+      "12-inch nonstick skillet",
+      "mixing bowl",
+      "rimmed sheet pan",
+      "wide spatula",
+      "potato masher"
+    ],
+    "methods": [
+      "pan-fry",
+      "simmer",
+      "saute"
+    ],
+    "cooking": {
+      "frying": [
+        "pan"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 2,
+    "cook_time_minutes": 63,
+    "total_time_minutes": 65,
+    "prep_minutes": 2,
+    "cook_minutes": 63,
+    "total_minutes": 65,
+    "time_clock": "Prep 2 + cook 63 = 65 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Prep runs while the rice cooks (step 3 states the overlap); the salsa criolla is mixed while the rice cools (step 5 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        6,
+        7,
+        8,
+        9
+      ],
+      "overlap_steps": [
+        3,
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Low covered heat for the rice. Medium in a 12-inch nonstick skillet for the aromatics, then medium-high to pan-fry the cakes. Medium for the eggs.",
+    "doneness": "Cakes deep golden and crisp on both sides, hot through. Egg whites set with runny yolks. Onions in the salsa crisp and tangy.",
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Eggs are allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and vegetarian: rice, beans, aromatics, ají paste, oil, eggs, onion, and lime. Not plant_based because of the eggs.",
+    "allergens": [
+      "egg"
+    ],
+    "allergen_notes": [
+      "Egg from the pan-fried eggs.",
+      "The ají amarillo paste label lists peppers, salt, and acid only.",
+      "No milk, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Eggs are allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Oil only. Ají amarillo paste label lists no milk or shellfish.",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "savory",
+      "tangy",
+      "spicy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'peruvian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "0cf563bbb88677594af2f9fd72fbe22f641a76478f60a569ce796ce3b4a2ad9f",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_peruvian-tacu-tacu-egg_v4",
+    "dish_id": "peruvian-tacu-tacu-egg",
+    "recipe_version_id": "rv_peruvian-tacu-tacu-egg_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "peruvian-tacu-tacu-egg.webp",
+    "card_ref": "peruvian-tacu-tacu-egg-640.webp",
+    "master_filename": "peruvian-tacu-tacu-egg.webp",
+    "card_filename": "peruvian-tacu-tacu-egg-640.webp",
+    "active_source_jpeg": "img_v4.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "peruvian-tacu-tacu-egg.webp",
+        "spec_catalog_path": "/images/meals/peruvian-tacu-tacu-egg.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "peruvian-tacu-tacu-egg-640.webp",
+        "spec_catalog_path": "/images/meals/peruvian-tacu-tacu-egg-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v4.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "fc090ce3760b431ac6c623aad75f640f5c76771e6576bac851de2678383bd726",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 3,
+    "file_hashes": {
+      "source_jpeg_sha256": "fc090ce3760b431ac6c623aad75f640f5c76771e6576bac851de2678383bd726",
+      "master_sha256": "7a9fc47890a6de7b8afbf550276d5e6fac8886649ffdc8d1c885988cd90ba037",
+      "card_sha256": "de4d7b17e3a75f98cbfa2e391ebc6b9ea17331899433f60878205bb1c63b16c8"
+    },
+    "asset_sha256": {
+      "img_v4.jpg": "fc090ce3760b431ac6c623aad75f640f5c76771e6576bac851de2678383bd726",
+      "peruvian-tacu-tacu-egg.webp": "7a9fc47890a6de7b8afbf550276d5e6fac8886649ffdc8d1c885988cd90ba037",
+      "peruvian-tacu-tacu-egg-640.webp": "de4d7b17e3a75f98cbfa2e391ebc6b9ea17331899433f60878205bb1c63b16c8"
+    },
+    "regeneration": {
+      "version": 4,
+      "basis": "audit_r1_gate_K",
+      "summary": "Active hero is an audit r1 regeneration (img_v4.jpg). Audit r1 gate K FAIL on the previous hero: salsa criolla showed yellow pepper strips not in the recipe; cake read near-black like black beans instead of canary/pinto.",
+      "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt') with the v4 changes in image-prompt.md 'Final prompt (v4)' (no side bowl or sauce dish)."
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "creator_self_review_before_audit",
+        "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's self-review: v1 cake was a round disc; the brief calls for an oval, not a burger patty.",
+        "prompt_change": "v2 prompt = v1 prompt verbatim plus one 'Regeneration clarifier:' sentence inserted before the quality-reference sentence. See the 'Regeneration v2 prompt addition' section of image-prompt.md.",
+        "clarifier_sentence": "Regeneration clarifier: the cake is clearly elongated, an omelet-like oval about twice as long as it is wide, folded-looking and tall, with whole beans and rice grains visible in the crust; it is not a flat round disc."
+      },
+      {
+        "version": 3,
+        "basis": "audit_r1_gate_K",
+        "summary": "Active hero is an audit r1 regeneration (img_v3.jpg). Audit r1 gate K FAIL on the previous hero: salsa criolla showed yellow pepper strips not in the recipe; cake read near-black like black beans instead of canary/pinto.",
+        "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+      },
+      {
+        "version": 4,
+        "basis": "audit_r1_gate_K",
+        "summary": "Active hero is an audit r1 regeneration (img_v4.jpg). Audit r1 gate K FAIL on the previous hero: salsa criolla showed yellow pepper strips not in the recipe; cake read near-black like black beans instead of canary/pinto.",
+        "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt') with the v4 changes in image-prompt.md 'Final prompt (v4)' (no side bowl or sauce dish)."
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_peruvian-tacu-tacu-egg_v1",
+        "source_file": "img_v1.jpg",
+        "sha256": "0ba276f0986703d0ba59e8f05f4932555eee4e506f59b238bfcf6ec2e756ab66",
+        "generate_image_attachment_hash": "0ba276f0986703d0ba59e8f05f4932555eee4e506f59b238bfcf6ec2e756ab66",
+        "moved_to_rejected": "rejected/img_v1-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "v1 cake was a round disc; the brief calls for an oval, not a burger patty."
+      },
+      {
+        "image_id": "img_peruvian-tacu-tacu-egg_v2",
+        "active_source_jpeg": "img_v2.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "99dda1ec4fb5aafc132892d9c5627734ac6fd5975421b2bbb2b13c402c25163f",
+          "master_sha256": "cd1a74e8a9f15413fedd5d3556ed462278c9906f38cc5cffdf5cf83376eadf13",
+          "card_sha256": "98b45a9d1cbe6ca49a93471aae595fa80b32006db04141ac10cbb01afeed7203"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "peruvian-tacu-tacu-egg.webp": {
+            "rejected_path": "rejected/peruvian-tacu-tacu-egg-replaced-20261015155816.webp",
+            "sha256": "cd1a74e8a9f15413fedd5d3556ed462278c9906f38cc5cffdf5cf83376eadf13"
+          },
+          "peruvian-tacu-tacu-egg-640.webp": {
+            "rejected_path": "rejected/peruvian-tacu-tacu-egg-640-replaced-20261015155816.webp",
+            "sha256": "98b45a9d1cbe6ca49a93471aae595fa80b32006db04141ac10cbb01afeed7203"
+          },
+          "img_v2.jpg": {
+            "rejected_path": "rejected/img_v2-replaced-20261015155816.jpg",
+            "sha256": "99dda1ec4fb5aafc132892d9c5627734ac6fd5975421b2bbb2b13c402c25163f"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "Audit r1 gate K FAIL (salsa criolla showed yellow pepper strips not in the recipe; cake read near-black like black beans instead of canary/pinto)"
+      },
+      {
+        "image_id": "img_peruvian-tacu-tacu-egg_v3",
+        "active_source_jpeg": "img_v3.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "9da021ce30dac98ed2d62c7723397e01e44c82dbf391dd4184d478fce411d2f0",
+          "master_sha256": "ed70ccf7ccb5591a3f463a28224783ea86d278f9183e269d7f2cad5c85865209",
+          "card_sha256": "f452c7f46ff85547c47127a63c9ced2715ba35e60875280de4fae7648b96f3a2"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "peruvian-tacu-tacu-egg.webp": {
+            "rejected_path": "rejected/peruvian-tacu-tacu-egg-replaced-20261015160218.webp",
+            "sha256": "ed70ccf7ccb5591a3f463a28224783ea86d278f9183e269d7f2cad5c85865209"
+          },
+          "peruvian-tacu-tacu-egg-640.webp": {
+            "rejected_path": "rejected/peruvian-tacu-tacu-egg-640-replaced-20261015160218.webp",
+            "sha256": "f452c7f46ff85547c47127a63c9ced2715ba35e60875280de4fae7648b96f3a2"
+          },
+          "img_v3.jpg": {
+            "rejected_path": "rejected/img_v3-replaced-20261015160218.jpg",
+            "sha256": "9da021ce30dac98ed2d62c7723397e01e44c82dbf391dd4184d478fce411d2f0"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "v3 (audit r1 prompt) included 'a small bowl of ají sauce', a prop the recipe doesn't have (the recipe has ají amarillo paste only inside the salsa criolla). Thomas's decision: regenerate as v4 with no side bowl."
+      }
+    ],
+    "regenerated_for_audit": "audit-r1"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 2 + cook 63 = 65 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Prep runs while the rice cooks (step 3 states the overlap); the salsa criolla is mixed while the rice cools (step 5 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "peruvian-tacu-tacu-egg.webp 1200x900 and peruvian-tacu-tacu-egg-640.webp 640x480 exported from img_v4.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"pan\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One cake: a quarter of everything in an 8-inch nonstick skillet.",
+    "2": "Half of everything; cook 2 cakes.",
+    "4": "As written; 4 cakes in two batches.",
+    "do_not_scale": [
+      "cool the rice before mixing at any scale so the cakes hold"
+    ]
+  },
+  "coverage_contribution": "Peruvian 3 to 4 (peruvian-lomo-saltado, peruvian-ceviche-sweet-potato-corn, and ají de gallina in this wave are the others) but the first vegetarian Peruvian plate. Crisp rice-and-bean cake, a new format. HH001 egg plate.",
+  "near_duplicate_review": "Compared with dominican-mangu-eggs-pickled-onions in this wave: a crisp rice-and-bean cake, not a plantain mash; ají heat. Compared with chipotle-lime-black-bean-bowls: the rice and beans are fused into a pan-fried crust, no bowl assembly, no black beans. Compared with skillet-shakshuka: no tomato sauce.",
+  "not_duplicate_of": "Not huevos rancheros (egg bakes and tortilla-egg plates are closed).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

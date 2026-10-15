@@ -1,0 +1,34 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "portuguese-grilled-sardines-potatoes.webp",
+    "portuguese-grilled-sardines-potatoes-640.webp"
+  ],
+  "present_files": [
+    "portuguese-grilled-sardines-potatoes.webp",
+    "portuguese-grilled-sardines-potatoes-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "a5f2277e2df18e1d6329b87636cda930e61e8901f9c74651ffece8a1b5b4a502",
+    "portuguese-grilled-sardines-potatoes.webp": "af5600049c8038f8427a03f293b5a0a5459e96453a9f1ff80552dc5bdc96d41a",
+    "portuguese-grilled-sardines-potatoes-640.webp": "a53b768c494ae58a7ed5059b6ee035fb47cda528673db21a0824ff94d6e61862"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "audit_r1_gate_K",
+    "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: bread on a side plate not in the recipe; 3 sardines instead of 4; whole instead of halved potatoes.",
+    "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+  },
+  "package_revision": "author-r3",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

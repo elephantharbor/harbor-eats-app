@@ -1,0 +1,39 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "turkish-iskender-kebab.webp",
+    "turkish-iskender-kebab-640.webp"
+  ],
+  "present_files": [
+    "turkish-iskender-kebab.webp",
+    "turkish-iskender-kebab-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "fd5e52d8c720f15ac99e94b0032c8cc42b3ef8f4aa516bcc9d5fbd2edd386b94",
+    "turkish-iskender-kebab.webp": "ac2a031779672555d978bf3b5d3c8d409533888ee21a88158c9bf61d318fc61d",
+    "turkish-iskender-kebab-640.webp": "5679ffc93f214717fcd24917d2ed3d201dd8b22bf84d114c182a76405e8ebc82"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "creator_self_review_before_audit",
+    "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's self-review: v1 yogurt had green herb flecks (reads as tzatziki, which the brief excludes) and a pan pouring in mid-air.",
+    "prompt_change": "v2 prompt = v1 prompt verbatim plus one 'Regeneration clarifier:' sentence inserted before the quality-reference sentence; the Styling line was also changed. See the 'Regeneration v2 prompt addition' section of image-prompt.md.",
+    "clarifier_sentence": "Regeneration clarifier: the yogurt is plain, smooth, pure white with no herbs, no cucumber and no green flecks; nothing is being poured and no pan floats in the air; the butter is already on the plate.",
+    "styling_change": {
+      "v1": "Styling: Optional: a small copper pan of brown butter mid-pour in soft focus (no hands).",
+      "v2": "Styling: a small copper pan of brown butter resting on the table in soft focus."
+    }
+  },
+  "package_revision": "author-r3",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

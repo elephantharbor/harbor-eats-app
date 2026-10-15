@@ -1,0 +1,632 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "irish-beef-stew",
+    "slug": "irish-beef-stew",
+    "title": "Irish Beef and Stout Stew with Potatoes and Carrots",
+    "description": "Chunks of beef chuck browned and slowly simmered in Irish stout with onions, carrots, potatoes, tomato paste, and thyme until the meat is spoon-tender and the gravy is dark and glossy. Served with crusty bread.",
+    "cuisine": "irish",
+    "meal_format": "stew-with-bread",
+    "primary_ingredient": "beef",
+    "vocabulary_tag_ids": [
+      "stews",
+      "rich",
+      "savory",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_irish-beef-stew",
+    "current_version_id": "rv_irish-beef-stew_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_irish-beef-stew",
+    "dish_id": "irish-beef-stew",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_irish-beef-stew_v1",
+    "recipe_id": "rcp_irish-beef-stew",
+    "dish_id": "irish-beef-stew",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Irish Beef and Stout Stew with Potatoes and Carrots",
+    "description": "Chunks of beef chuck browned and slowly simmered in Irish stout with onions, carrots, potatoes, tomato paste, and thyme until the meat is spoon-tender and the gravy is dark and glossy. Served with crusty bread.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "beef",
+        "name": "boneless beef chuck",
+        "display_name": "boneless beef chuck",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 1 1/2-inch cubes, patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onions",
+        "name": "yellow onions",
+        "display_name": "medium yellow onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "stout",
+        "name": "Irish stout (brewed with barley)",
+        "display_name": "Irish stout (brewed with barley)",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "such as one 12-oz bottle",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "stew-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "for the stew",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "thyme",
+        "name": "fresh thyme",
+        "display_name": "sprigs fresh thyme",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bay",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "brown sugar",
+        "display_name": "brown sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1 1/2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 1 1/2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "bread",
+        "name": "crusty bread",
+        "display_name": "crusty bread whose label lists no milk, butter, egg, soy, or sesame",
+        "quantity": 1,
+        "unit": "loaf",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Cube the beef, pat it dry, season with 1 1/2 tsp salt and the pepper, and toss with the flour. Chop the onions, mince the garlic, cut the carrots and potatoes, and chop the parsley.",
+        "ingredient_refs": [
+          "beef",
+          "kosher-salt",
+          "black-pepper",
+          "flour",
+          "onions",
+          "garlic",
+          "carrots",
+          "potatoes",
+          "parsley"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the beef",
+        "body": "Heat 2 tbsp oil in a 6-quart Dutch oven over medium-high. Brown the beef in three batches, about 5 minutes per batch, adding the last 1 tbsp oil as needed. Transfer to a bowl.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "beef"
+        ],
+        "clock_minutes": 17,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the onions",
+        "body": "Lower the heat to medium. Cook the onions until soft and browned, about 6 minutes, scraping up the browned bits. Add the garlic and tomato paste and cook 2 minutes.",
+        "ingredient_refs": [
+          "onions",
+          "garlic",
+          "tomato-paste"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer the beef",
+        "body": "Pour in the stout and scrape the bottom, then add 2 cups water, the thyme, bay leaves, brown sugar, 1 tsp salt, and the beef with its juices. Bring to a boil, cover, and simmer gently 1 1/2 hours.",
+        "ingredient_refs": [
+          "stout",
+          "stew-water",
+          "thyme",
+          "bay",
+          "brown-sugar",
+          "kosher-salt",
+          "beef"
+        ],
+        "clock_minutes": 93,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Add the vegetables",
+        "body": "Add the carrots and potatoes, cover, and simmer until they and the beef are tender, about 45 minutes. Uncover for the last 10 of those minutes to thicken the gravy.",
+        "ingredient_refs": [
+          "carrots",
+          "potatoes"
+        ],
+        "clock_minutes": 46,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Slice the bread",
+        "body": "While the stew simmers, slice the bread (overlap stated).",
+        "ingredient_refs": [
+          "bread"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Remove the thyme stems and bay leaves. Ladle the stew into bowls, scatter the parsley, and serve with bread.",
+        "ingredient_refs": [
+          "thyme",
+          "bay",
+          "beef",
+          "parsley",
+          "bread"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "stew",
+        "name": "beef and stout stew",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "beef chuck",
+          "flour",
+          "stout",
+          "onions",
+          "carrots",
+          "potatoes",
+          "tomato paste",
+          "thyme",
+          "bay",
+          "water"
+        ]
+      },
+      {
+        "component_id": "bread",
+        "name": "crusty bread",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "crusty bread"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart Dutch oven with lid",
+      "tongs",
+      "wooden spoon"
+    ],
+    "methods": [
+      "sear",
+      "braise",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 18,
+    "cook_time_minutes": 166,
+    "total_time_minutes": 184,
+    "prep_minutes": 18,
+    "cook_minutes": 166,
+    "total_minutes": 184,
+    "time_clock": "Prep 18 + cook 166 = 184 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. One-pot stovetop stew; the bread is sliced during the simmer (step 6 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "overlap_steps": [
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high in a 6-quart Dutch oven to brown, then a covered gentle simmer on the stovetop.",
+    "doneness": "Beef spoon-tender. Potatoes and carrots soft. Gravy dark, glossy, and thick enough to coat a spoon.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains beef (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: beef, stout, vegetables, flour, oil, water, and bread whose label lists no milk or butter.",
+    "allergens": [
+      "meat",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the beef.",
+      "Wheat from the flour and crusty bread.",
+      "Contains gluten (barley) from the stout, which is brewed with malted barley.",
+      "The bread is a store-bought hard contract: the label lists no milk, butter, egg, soy, or sesame.",
+      "No egg, milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains beef (meat).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "stews",
+      "rich",
+      "savory",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'irish' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids.",
+      "gluten": "Barley (in the stout) has no FlavorWeave allergen token. It is disclosed in allergen_notes as 'Contains gluten (barley)'; carried as a wave-15 open item for the importer."
+    },
+    "alcohol_note": "1 1/2 cups Irish stout simmers for about 2 1/2 hours; most but not all alcohol cooks off.",
+    "culinary_hash": "e99d8410767ed63070f6a8e4c80f93c9ad7b7e62882ddf52c5d51835f3f0b1af",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_irish-beef-stew_v1",
+    "dish_id": "irish-beef-stew",
+    "recipe_version_id": "rv_irish-beef-stew_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "irish-beef-stew.webp",
+    "card_ref": "irish-beef-stew-640.webp",
+    "master_filename": "irish-beef-stew.webp",
+    "card_filename": "irish-beef-stew-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "irish-beef-stew.webp",
+        "spec_catalog_path": "/images/meals/irish-beef-stew.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "irish-beef-stew-640.webp",
+        "spec_catalog_path": "/images/meals/irish-beef-stew-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "55c0b9d568ab32a247e1f376d11304802b2b5e52db14921a58aacbcb49e15b50",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "55c0b9d568ab32a247e1f376d11304802b2b5e52db14921a58aacbcb49e15b50",
+      "master_sha256": "f3e5a603ee7a037b3cd102cbd057b4008c2c64f96d9cba0fffda5695d93b003a",
+      "card_sha256": "22e73ff6776a7752f6ed761b46d38f7fb5733ea98d792d9f42b8a4f9131dfddd"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "55c0b9d568ab32a247e1f376d11304802b2b5e52db14921a58aacbcb49e15b50",
+      "irish-beef-stew.webp": "f3e5a603ee7a037b3cd102cbd057b4008c2c64f96d9cba0fffda5695d93b003a",
+      "irish-beef-stew-640.webp": "22e73ff6776a7752f6ed761b46d38f7fb5733ea98d792d9f42b8a4f9131dfddd"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 18 + cook 166 = 184 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. One-pot stovetop stew; the bread is sliced during the simmer (step 6 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "irish-beef-stew.webp 1200x900 and irish-beef-stew-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Half a pound of beef and a quarter of the vegetables in a 2-quart covered saucepan.",
+    "2": "Half of everything in a 4-quart pot.",
+    "4": "As written.",
+    "do_not_scale": [
+      "brown the beef in batches at every scale"
+    ]
+  },
+  "coverage_contribution": "First Irish dish. A classic dark beef stew; stews are not among the heavy clusters (soups are).",
+  "near_duplicate_review": "Compared with cottage-pie: whole beef chunks in a stout gravy, not minced beef under mash. Compared with german-beef-rouladen in this wave: cubed stewing beef with potatoes in the pot, not stuffed rolls. Compared with slow-cooker-ropa-vieja: dark stout gravy, potatoes, and carrots, not shredded beef in tomato and peppers.",
+  "not_duplicate_of": "Not beef bourguignon (red-wine braise; stroganoff and goulash are closed and this keeps one beef-stew slot).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "E"
+}

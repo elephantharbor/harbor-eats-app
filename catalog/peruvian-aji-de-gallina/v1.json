@@ -1,0 +1,695 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "peruvian-aji-de-gallina",
+    "slug": "peruvian-aji-de-gallina",
+    "title": "Peruvian Ají de Gallina: Creamy Ají Amarillo Chicken with Rice and Potatoes",
+    "description": "Poached, shredded chicken folded into a silky golden sauce of ají amarillo, onion, garlic, milk-soaked bread, ground walnuts, and Parmesan. Served over white rice with boiled yellow potatoes, halved eggs, and black olives.",
+    "cuisine": "peruvian",
+    "meal_format": "stew-over-rice",
+    "primary_ingredient": "chicken",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "creamy",
+      "rich",
+      "spicy"
+    ],
+    "current_recipe_id": "rcp_peruvian-aji-de-gallina",
+    "current_version_id": "rv_peruvian-aji-de-gallina_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_peruvian-aji-de-gallina",
+    "dish_id": "peruvian-aji-de-gallina",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_peruvian-aji-de-gallina_v1",
+    "recipe_id": "rcp_peruvian-aji-de-gallina",
+    "dish_id": "peruvian-aji-de-gallina",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Peruvian Ají de Gallina: Creamy Ají Amarillo Chicken with Rice and Potatoes",
+    "description": "Poached, shredded chicken folded into a silky golden sauce of ají amarillo, onion, garlic, milk-soaked bread, ground walnuts, and Parmesan. Served over white rice with boiled yellow potatoes, halved eggs, and black olives.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "chicken",
+        "name": "boneless skinless chicken breasts",
+        "display_name": "boneless skinless chicken breasts",
+        "quantity": 1.75,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "poach-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "for poaching; reserve 1 cup broth",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "onions",
+        "name": "yellow onions",
+        "display_name": "medium yellow onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": "half of 1 for the poach, the rest chopped for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 3,
+        "unit": "tsp",
+        "note": "1 tsp poach, 1 tsp sauce, 1 tsp potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bread",
+        "name": "white sandwich bread",
+        "display_name": "white sandwich bread whose label lists wheat flour, water, yeast, sugar, oil, and salt only",
+        "quantity": 4,
+        "unit": "slice",
+        "note": null,
+        "preparation": "crusts removed, torn",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "evaporated-milk",
+        "name": "evaporated milk",
+        "display_name": "12-oz can evaporated milk",
+        "quantity": 1,
+        "unit": "can",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "walnuts",
+        "name": "walnut halves",
+        "display_name": "walnut halves",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parmesan",
+        "name": "grated Parmesan",
+        "display_name": "grated Parmesan",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "aji-paste",
+        "name": "ají amarillo paste",
+        "display_name": "ají amarillo paste",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "small yellow potatoes",
+        "display_name": "small yellow potatoes",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potato-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "for the potatoes and eggs",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "olives",
+        "name": "black olives",
+        "display_name": "black olives",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "Peruvian botija or kalamata",
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Cut one onion in half; keep one half for the poach and chop the other half with the second onion. Mince the garlic. Tear the crustless bread into the evaporated milk to soak. Rinse the rice and chop the parsley.",
+        "ingredient_refs": [
+          "onions",
+          "garlic",
+          "bread",
+          "evaporated-milk",
+          "rice",
+          "parsley"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Poach the chicken",
+        "body": "Put the chicken, 6 cups water, the onion half, and 1 tsp salt in a 4-quart pot. Bring to a bare simmer over medium-high and poach until the chicken reads 165 F, about 18 minutes. Lift out, reserve 1 cup of the broth, and shred the chicken finely with two forks.",
+        "ingredient_refs": [
+          "chicken",
+          "poach-water",
+          "onions",
+          "kosher-salt"
+        ],
+        "clock_minutes": 28,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the rice",
+        "body": "Combine the rice and 2 1/4 cups water in a 2-quart saucepan, bring to a boil over high heat, cover, turn to low, and cook 15 minutes; then rest covered off the heat. This runs inside step 2 (overlap stated).",
+        "ingredient_refs": [
+          "rice",
+          "rice-water"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Boil the potatoes and eggs",
+        "body": "Put the potatoes in a 3-quart saucepan with 6 cups water and 1 tsp salt and boil until tender, about 18 minutes; add the eggs for the last 10 minutes. Drain, cool the eggs under the cold tap, peel, and halve. Halve the potatoes. This runs inside step 2 (overlap stated).",
+        "ingredient_refs": [
+          "potatoes",
+          "potato-water",
+          "kosher-salt",
+          "eggs"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Blend the base",
+        "body": "Blend the soaked bread and milk with the walnuts until smooth, about 1 minute.",
+        "ingredient_refs": [
+          "bread",
+          "evaporated-milk",
+          "walnuts"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Make the sauce",
+        "body": "Heat the oil in a 12-inch skillet over medium. Cook the chopped onion until soft and golden, about 8 minutes; add the garlic, ají paste, and cumin for 2 minutes. Stir in the bread-walnut mixture, 1 tsp salt, and enough of the 1 cup reserved broth to loosen, and simmer, stirring, until thick and smooth, about 5 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "onions",
+          "garlic",
+          "aji-paste",
+          "cumin",
+          "bread",
+          "kosher-salt"
+        ],
+        "clock_minutes": 16,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Combine",
+        "body": "Fold in the shredded chicken and Parmesan and simmer 3 minutes until the sauce coats the chicken.",
+        "ingredient_refs": [
+          "chicken",
+          "parmesan"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 8,
+        "title": "Serve",
+        "body": "Spoon the ají de gallina over the rice with potato halves and egg halves alongside, and top with olives and parsley.",
+        "ingredient_refs": [
+          "chicken",
+          "rice",
+          "potatoes",
+          "eggs",
+          "olives",
+          "parsley"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "chicken",
+        "name": "poached shredded chicken",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "chicken breasts",
+          "onion",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "sauce",
+        "name": "ají sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ají amarillo paste",
+          "onion",
+          "garlic",
+          "bread",
+          "evaporated milk",
+          "walnuts",
+          "Parmesan",
+          "cumin"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rice",
+          "water"
+        ]
+      },
+      {
+        "component_id": "garnish",
+        "name": "potatoes, eggs, olives",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "yellow potatoes",
+          "eggs",
+          "black olives"
+        ]
+      }
+    ],
+    "equipment": [
+      "4-quart pot",
+      "12-inch skillet",
+      "3-quart saucepan",
+      "2-quart saucepan with lid",
+      "blender",
+      "two forks"
+    ],
+    "methods": [
+      "poach",
+      "saute",
+      "simmer",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 52,
+    "total_time_minutes": 62,
+    "prep_minutes": 10,
+    "cook_minutes": 52,
+    "total_minutes": 62,
+    "time_clock": "Prep 10 + cook 52 = 62 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Rice, potatoes, and eggs cook inside the chicken poach (steps 3 and 4 state the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        5,
+        6,
+        7,
+        8
+      ],
+      "overlap_steps": [
+        3,
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "A bare simmer in a 4-quart pot for the chicken. Medium in a 12-inch skillet for the sauce. A 3-quart saucepan at a boil for the potatoes and eggs. Low covered heat for the rice.",
+    "doneness": "Chicken 165 F, shredded into fine strands. Sauce thick, smooth, and golden, coating the chicken. Potatoes tender. Eggs cooked 10 minutes.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "tree_nuts_present",
+      "nut_policy_note": "Contains walnuts, ground into the sauce.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains chicken (poultry), milk, Parmesan (dairy), and walnuts (tree nuts)."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: contains chicken, milk, and Parmesan.",
+    "allergens": [
+      "poultry",
+      "milk",
+      "wheat",
+      "tree_nut",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Poultry from the chicken.",
+      "Milk from the evaporated milk and Parmesan.",
+      "Wheat from the white sandwich bread.",
+      "Tree nuts from the walnuts.",
+      "Egg from the halved hard-cooked eggs.",
+      "The bread is a store-bought hard contract: the label lists wheat flour, water, yeast, sugar, oil, and salt, with no soy, sesame, or egg.",
+      "No soy, sesame, fish, shellfish, or peanuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains chicken (poultry), milk, Parmesan (dairy), and walnuts (tree nuts).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "creamy",
+      "rich",
+      "spicy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'peruvian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook chicken to 165 F.",
+    "culinary_hash": "ae621aa95120fa0756c35e22590c2b218a1c18ecee03417775a4ac9c8eea059a",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_peruvian-aji-de-gallina_v1",
+    "dish_id": "peruvian-aji-de-gallina",
+    "recipe_version_id": "rv_peruvian-aji-de-gallina_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "peruvian-aji-de-gallina.webp",
+    "card_ref": "peruvian-aji-de-gallina-640.webp",
+    "master_filename": "peruvian-aji-de-gallina.webp",
+    "card_filename": "peruvian-aji-de-gallina-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "peruvian-aji-de-gallina.webp",
+        "spec_catalog_path": "/images/meals/peruvian-aji-de-gallina.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "peruvian-aji-de-gallina-640.webp",
+        "spec_catalog_path": "/images/meals/peruvian-aji-de-gallina-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "adffd2d47db7c8dc41e36f71e0999450d3e8f13add10da9c03752fbde058c50a",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "adffd2d47db7c8dc41e36f71e0999450d3e8f13add10da9c03752fbde058c50a",
+      "master_sha256": "dc862116f40349c390d976788d39b7d23c6e0a28d2d0ed3fdda08611a414cb84",
+      "card_sha256": "f7042151e5769386d961af550a2b510ca8848b57d64aa937e85c02f7dfaec346"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "adffd2d47db7c8dc41e36f71e0999450d3e8f13add10da9c03752fbde058c50a",
+      "peruvian-aji-de-gallina.webp": "dc862116f40349c390d976788d39b7d23c6e0a28d2d0ed3fdda08611a414cb84",
+      "peruvian-aji-de-gallina-640.webp": "f7042151e5769386d961af550a2b510ca8848b57d64aa937e85c02f7dfaec346"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 52 = 62 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Rice, potatoes, and eggs cook inside the chicken poach (steps 3 and 4 state the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "peruvian-aji-de-gallina.webp 1200x900 and peruvian-aji-de-gallina-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One breast and a quarter of the sauce; blend in a small blender cup.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "Peruvian poultry main (peruvian-lomo-saltado is beef and the ceviche is fish). Walnut-thickened chile sauce is new. Tree-nut-present comfort food.",
+  "near_duplicate_review": "Compared with peruvian-tacu-tacu-egg in this wave: a creamy chicken stew, not a crisp rice-and-bean cake. Compared with hungarian-chicken-paprikash: ají-walnut-bread sauce, shredded chicken, rice and potatoes; no paprika or sour cream. Compared with pressure-cooker-butter-chicken: thickened with bread and walnuts, no tomato.",
+  "not_duplicate_of": "Not pollo a la brasa (a roast chicken would echo sheet-pan-lemon-herb-chicken).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

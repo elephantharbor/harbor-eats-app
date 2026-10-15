@@ -1,0 +1,614 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "thai-khao-man-gai",
+    "slug": "thai-khao-man-gai",
+    "title": "Thai Khao Man Gai: Poached Chicken and Garlic-Ginger Rice with Soybean Sauce",
+    "description": "Bangkok's hawker classic: chicken thighs gently poached with ginger and cilantro stems, jasmine rice cooked in the poaching broth with garlic and ginger, and a punchy sauce of fermented soybean paste, ginger, garlic, chile, and vinegar. Served with cucumber and a cup of the broth.",
+    "cuisine": "thai",
+    "meal_format": "rice-plate",
+    "primary_ingredient": "chicken",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "savory",
+      "fresh",
+      "tender",
+      "thai"
+    ],
+    "current_recipe_id": "rcp_thai-khao-man-gai",
+    "current_version_id": "rv_thai-khao-man-gai_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_thai-khao-man-gai",
+    "dish_id": "thai-khao-man-gai",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_thai-khao-man-gai_v1",
+    "recipe_id": "rcp_thai-khao-man-gai",
+    "dish_id": "thai-khao-man-gai",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Thai Khao Man Gai: Poached Chicken and Garlic-Ginger Rice with Soybean Sauce",
+    "description": "Bangkok's hawker classic: chicken thighs gently poached with ginger and cilantro stems, jasmine rice cooked in the poaching broth with garlic and ginger, and a punchy sauce of fermented soybean paste, ginger, garlic, chile, and vinegar. Served with cucumber and a cup of the broth.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "chicken",
+        "name": "bone-in skin-on chicken thighs",
+        "display_name": "bone-in skin-on chicken thighs",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "about 6 thighs",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "poach-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 10,
+        "unit": "cup",
+        "note": "for poaching",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "piece fresh ginger",
+        "quantity": 4,
+        "unit": "inch",
+        "note": "2 inches sliced for the poach, 1 inch minced for the rice, 1 inch minced for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 1,
+        "unit": "bunch",
+        "note": "stems for the poach, leaves to garnish",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "2 tsp poach, 1 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 8,
+        "unit": "clove",
+        "note": "5 for the rice, 3 for the sauce",
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed and drained well",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soybean-paste",
+        "name": "Thai fermented soybean paste (tao jiao)",
+        "display_name": "Thai fermented soybean paste (tao jiao)",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "vinegar",
+        "name": "white vinegar",
+        "display_name": "white vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bird-chiles",
+        "name": "Thai bird chiles",
+        "display_name": "Thai bird chiles",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "English cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "side"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the rice well and let it drain. Slice 2 inches of the ginger and mince the remaining 2 inches. Cut the cilantro stems from the leaves. Mince the garlic, slice the chiles, and slice the cucumber.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "ginger",
+          "cilantro",
+          "garlic",
+          "bird-chiles",
+          "cucumber"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Poach the chicken",
+        "body": "Put the chicken, 10 cups water, the sliced ginger, cilantro stems, and 2 tsp salt in a 6-quart stockpot. Bring to a bare simmer over medium-high, then lower the heat so only a few bubbles break the surface. Poach until the thickest thigh reads 175 F, about 30 minutes. Lift the chicken onto a plate and strain the broth.",
+        "ingredient_refs": [
+          "chicken",
+          "poach-water",
+          "ginger",
+          "cilantro",
+          "kosher-salt"
+        ],
+        "clock_minutes": 40,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Toast the rice",
+        "body": "Heat the oil in a 3-quart saucepan over medium. Cook 5 cloves of garlic and 1 inch of minced ginger until fragrant and pale gold, about 1 minute. Add the drained rice and 1 tsp salt and stir 2 minutes to coat.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "garlic",
+          "ginger",
+          "jasmine-rice",
+          "kosher-salt"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Cook the rice in broth",
+        "body": "Add 2 1/2 cups of the strained broth, bring to a boil, cover, turn to low, and cook 15 minutes; then rest covered off the heat 10 minutes.",
+        "ingredient_refs": [
+          "jasmine-rice"
+        ],
+        "clock_minutes": 27,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Make the sauce and rest the chicken",
+        "body": "While the rice cooks, stir the soybean paste, soy sauce, vinegar, sugar, the last 3 cloves of garlic, the last inch of ginger, and the chiles together. Keep the remaining broth hot over low. The chicken rests meanwhile (overlap stated).",
+        "ingredient_refs": [
+          "soybean-paste",
+          "soy-sauce",
+          "vinegar",
+          "sugar",
+          "garlic",
+          "ginger",
+          "bird-chiles"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Slice and serve",
+        "body": "Slice the chicken off the bone into thick pieces, skin on. Pack rice onto each plate, fan the chicken beside it, and add cucumber and cilantro leaves. Serve with the sauce and a small cup of hot broth.",
+        "ingredient_refs": [
+          "chicken",
+          "jasmine-rice",
+          "cucumber",
+          "cilantro"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "chicken",
+        "name": "poached chicken",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "chicken thighs",
+          "ginger",
+          "cilantro stems",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "garlic-ginger rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "garlic",
+          "ginger",
+          "poaching broth"
+        ]
+      },
+      {
+        "component_id": "sauce",
+        "name": "soybean dipping sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "fermented soybean paste",
+          "ginger",
+          "garlic",
+          "chile",
+          "soy sauce",
+          "vinegar",
+          "sugar"
+        ]
+      },
+      {
+        "component_id": "sides",
+        "name": "cucumber and broth",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cucumber",
+          "broth",
+          "cilantro"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart stockpot",
+      "3-quart saucepan with lid",
+      "fine-mesh strainer",
+      "small mixing bowl",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "poach",
+      "saute",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 76,
+    "total_time_minutes": 88,
+    "prep_minutes": 12,
+    "cook_minutes": 76,
+    "total_minutes": 88,
+    "time_clock": "Prep 12 + cook 76 = 88 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The chicken rests and the sauce is mixed while the rice cooks (step 5 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "overlap_steps": [
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "A bare simmer in a 6-quart pot for the chicken, never a rolling boil. Medium in a 3-quart saucepan to toast the rice, then low and covered.",
+    "doneness": "Chicken 175 F at the thickest part of the thigh, juicy and just set. Rice tender, glossy, and fragrant. Broth clear.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains chicken (poultry)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: chicken, rice, aromatics, and a soy-based sauce.",
+    "allergens": [
+      "poultry",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Poultry from the chicken and its broth.",
+      "Soy from the fermented soybean paste and soy sauce; wheat from the soy sauce and the soybean paste, which is brewed with wheat.",
+      "No egg, milk, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains chicken (poultry).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "savory",
+      "fresh",
+      "tender",
+      "thai"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'thai' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook chicken thighs to at least 165 F (175 F for the best texture). Cool and refrigerate leftover broth within 2 hours.",
+    "culinary_hash": "8aeaabaa3deee59c8bdbb2fbc6b1bd67de090a6d1fa25a2ceb78cc7813e06744",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_thai-khao-man-gai_v1",
+    "dish_id": "thai-khao-man-gai",
+    "recipe_version_id": "rv_thai-khao-man-gai_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "thai-khao-man-gai.webp",
+    "card_ref": "thai-khao-man-gai-640.webp",
+    "master_filename": "thai-khao-man-gai.webp",
+    "card_filename": "thai-khao-man-gai-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "thai-khao-man-gai.webp",
+        "spec_catalog_path": "/images/meals/thai-khao-man-gai.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "thai-khao-man-gai-640.webp",
+        "spec_catalog_path": "/images/meals/thai-khao-man-gai-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "2baedbd1a54eca07118dc247623a20db345fc8205cc2b96297b9d3d31f2316e7",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "2baedbd1a54eca07118dc247623a20db345fc8205cc2b96297b9d3d31f2316e7",
+      "master_sha256": "d58e3e8d60baa1d10fbeb145a8aaa8a86acab4178fda40e8bfd58c653d5cfb00",
+      "card_sha256": "bb1349046bd9f65314ce8598c3d45f6eaa0f6275a33fc65e03447278490b59f1"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "2baedbd1a54eca07118dc247623a20db345fc8205cc2b96297b9d3d31f2316e7",
+      "thai-khao-man-gai.webp": "d58e3e8d60baa1d10fbeb145a8aaa8a86acab4178fda40e8bfd58c653d5cfb00",
+      "thai-khao-man-gai-640.webp": "bb1349046bd9f65314ce8598c3d45f6eaa0f6275a33fc65e03447278490b59f1"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 76 = 88 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The chicken rests and the sauce is mixed while the rice cooks (step 5 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "thai-khao-man-gai.webp 1200x900 and thai-khao-man-gai-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Two thighs in a 3-quart pot with 4 cups water; a quarter of the rice.",
+    "2": "Half the chicken and rice; keep the 6-quart pot.",
+    "4": "As written.",
+    "do_not_scale": [
+      "bring the chicken to a bare simmer only at every scale"
+    ]
+  },
+  "coverage_contribution": "Thai poultry main beyond larb (thai-turkey-larb-lettuce-wraps). Poached chicken is a new technique for the catalog. Light, non-fried, non-coconut chicken and rice.",
+  "near_duplicate_review": "Compared with vietnamese-chicken-pho: poached chicken over broth-cooked rice with a sauce, not a noodle soup. Compared with sheet-pan-lemon-herb-chicken: poached, not roasted. Compared with filipino-chicken-adobo: no vinegar-soy braise.",
+  "not_duplicate_of": "Not Hainanese chicken rice under another name: this is the Thai version with tao jiao sauce. Not a rice bowl (bowls are closed): the plate is chicken, rice, sauce, and broth served separately.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

@@ -1,0 +1,672 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "japanese-vegetable-curry-rice",
+    "slug": "japanese-vegetable-curry-rice",
+    "title": "Japanese Vegetable Curry Rice with a Homemade Roux",
+    "description": "A mild, glossy Japanese-style curry made from scratch: onions cooked until sweet, then potatoes, carrots, and mushrooms simmered and thickened with a toasted flour-and-oil curry roux, with grated apple and a dash of soy and ketchup for depth. Served over short-grain rice.",
+    "cuisine": "japanese",
+    "meal_format": "curry-over-rice",
+    "primary_ingredient": "potatoes and carrots",
+    "vocabulary_tag_ids": [
+      "curries",
+      "savory",
+      "rich",
+      "tender",
+      "japanese"
+    ],
+    "current_recipe_id": "rcp_japanese-vegetable-curry-rice",
+    "current_version_id": "rv_japanese-vegetable-curry-rice_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_japanese-vegetable-curry-rice",
+    "dish_id": "japanese-vegetable-curry-rice",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_japanese-vegetable-curry-rice_v1",
+    "recipe_id": "rcp_japanese-vegetable-curry-rice",
+    "dish_id": "japanese-vegetable-curry-rice",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Japanese Vegetable Curry Rice with a Homemade Roux",
+    "description": "A mild, glossy Japanese-style curry made from scratch: onions cooked until sweet, then potatoes, carrots, and mushrooms simmered and thickened with a toasted flour-and-oil curry roux, with grated apple and a dash of soy and ketchup for depth. Served over short-grain rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "onions",
+        "name": "yellow onions",
+        "display_name": "medium yellow onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 1 1/2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1-inch rolling-cut pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mushrooms",
+        "name": "cremini mushrooms",
+        "display_name": "cremini mushrooms",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": "halved",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "apple",
+        "name": "apple",
+        "display_name": "small Fuji or Gala apple",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "peeled and finely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "curry-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "for the curry",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ketchup",
+        "name": "ketchup",
+        "display_name": "ketchup whose label lists no honey",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 5,
+        "unit": "tbsp",
+        "note": "1 tbsp onions, 4 tbsp roux",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "curry-powder",
+        "name": "mild curry powder",
+        "display_name": "mild curry powder",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garam-masala",
+        "name": "garam masala",
+        "display_name": "garam masala",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "Japanese short-grain rice",
+        "display_name": "Japanese short-grain rice",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.5,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the rice until the rinse runs nearly clear. Slice the onions, cut the potatoes and carrots, halve the mushrooms, grate the apple, and slice the scallions.",
+        "ingredient_refs": [
+          "rice",
+          "onions",
+          "potatoes",
+          "carrots",
+          "mushrooms",
+          "apple",
+          "scallions"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the rice",
+        "body": "Combine the rice and 2 1/2 cups water in a 2-quart saucepan, bring to a boil over high heat, cover, turn to low, and cook 15 minutes; then rest covered off the heat 10 minutes. This runs inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "rice",
+          "rice-water"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the onions",
+        "body": "Heat 1 tbsp oil in a 5-quart Dutch oven over medium. Cook the onions, stirring now and then, until soft and lightly golden, about 10 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "onions"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer the vegetables",
+        "body": "Add the potatoes, carrots, mushrooms, apple, 4 cups water, and 1 1/2 tsp salt. Bring to a boil, then simmer partly covered until the potatoes and carrots are tender, about 15 minutes.",
+        "ingredient_refs": [
+          "potatoes",
+          "carrots",
+          "mushrooms",
+          "apple",
+          "curry-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 17,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Make the roux",
+        "body": "While the vegetables simmer, heat 4 tbsp oil in an 8-inch skillet over medium-low, whisk in the flour, and cook, whisking, until the color of peanut butter, about 8 minutes. Whisk in the curry powder and garam masala for 30 seconds and take off the heat (overlap stated).",
+        "ingredient_refs": [
+          "neutral-oil",
+          "flour",
+          "curry-powder",
+          "garam-masala"
+        ],
+        "clock_minutes": 9,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Thicken the curry",
+        "body": "Ladle about 1 cup of the simmering liquid into the roux and whisk smooth, then stir it back into the pot with the soy sauce and ketchup. Simmer, stirring, until glossy and thick, about 5 minutes.",
+        "ingredient_refs": [
+          "soy-sauce",
+          "ketchup"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Fluff the rice, pack it to one side of each plate, ladle the curry alongside, and top with scallions.",
+        "ingredient_refs": [
+          "rice",
+          "scallions"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "curry",
+        "name": "vegetable curry",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "onion",
+          "potatoes",
+          "carrots",
+          "mushrooms",
+          "apple",
+          "water",
+          "soy sauce",
+          "ketchup"
+        ]
+      },
+      {
+        "component_id": "roux",
+        "name": "curry roux",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "flour",
+          "oil",
+          "curry powder",
+          "garam masala"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "short-grain rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "short-grain rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "5-quart Dutch oven",
+      "8-inch skillet",
+      "2-quart saucepan with lid",
+      "whisk",
+      "box grater"
+    ],
+    "methods": [
+      "saute",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 14,
+    "cook_time_minutes": 38,
+    "total_time_minutes": 52,
+    "prep_minutes": 14,
+    "cook_minutes": 38,
+    "total_minutes": 52,
+    "time_clock": "Prep 14 + cook 38 = 52 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap). The roux toasts during the vegetable simmer (step 5 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "overlap_steps": [
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium in a 5-quart Dutch oven for the onions, a gentle simmer for the vegetables. Medium-low in a small skillet for the roux. Low covered heat for the rice.",
+    "doneness": "Onions soft and lightly golden. Potatoes and carrots tender when pierced. Curry glossy, thick enough to coat a spoon. Rice tender and slightly sticky.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional plant_based: vegetables, flour-and-oil roux, curry powder, apple, soy sauce, ketchup, and rice.",
+    "allergens": [
+      "wheat",
+      "soy"
+    ],
+    "allergen_notes": [
+      "Wheat from the flour in the roux and from the soy sauce.",
+      "Soy from the soy sauce.",
+      "No egg, milk, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "The roux is made with oil, not butter; no boxed roux blocks (they often contain milk, beef, or pork fat). Ketchup label lists no honey.",
+    "vocabulary_tag_ids": [
+      "curries",
+      "savory",
+      "rich",
+      "tender",
+      "japanese"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'japanese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "334ed8a1e388036ed3f6169dc801aab6c016fcb669bcd1e14e8cad5659eb12d1",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_japanese-vegetable-curry-rice_v2",
+    "dish_id": "japanese-vegetable-curry-rice",
+    "recipe_version_id": "rv_japanese-vegetable-curry-rice_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "japanese-vegetable-curry-rice.webp",
+    "card_ref": "japanese-vegetable-curry-rice-640.webp",
+    "master_filename": "japanese-vegetable-curry-rice.webp",
+    "card_filename": "japanese-vegetable-curry-rice-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "japanese-vegetable-curry-rice.webp",
+        "spec_catalog_path": "/images/meals/japanese-vegetable-curry-rice.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "japanese-vegetable-curry-rice-640.webp",
+        "spec_catalog_path": "/images/meals/japanese-vegetable-curry-rice-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "ab074e77ee7d03717dcc577a47269a52ac5219e44d4ac7cbc7666c6141e9ad33",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "ab074e77ee7d03717dcc577a47269a52ac5219e44d4ac7cbc7666c6141e9ad33",
+      "master_sha256": "05dd28d837023151c524796e5c834a8ba934de97d1ee038d79f9f4c67919bdb3",
+      "card_sha256": "4b31710010221d5b1554377ba1a4ce6252b2358daf88a6b892d92f4f54db4972"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "ab074e77ee7d03717dcc577a47269a52ac5219e44d4ac7cbc7666c6141e9ad33",
+      "japanese-vegetable-curry-rice.webp": "05dd28d837023151c524796e5c834a8ba934de97d1ee038d79f9f4c67919bdb3",
+      "japanese-vegetable-curry-rice-640.webp": "4b31710010221d5b1554377ba1a4ce6252b2358daf88a6b892d92f4f54db4972"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "audit_r1_gate_K",
+      "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: fukujinzuke pickle dish not in the recipe (and undisclosed soy/wheat).",
+      "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "audit_r1_gate_K",
+        "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: fukujinzuke pickle dish not in the recipe (and undisclosed soy/wheat).",
+        "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_japanese-vegetable-curry-rice_v1",
+        "active_source_jpeg": "img_v1.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "0da17ad420a6287b551d8b5635631d231ac9b2a9669757f67ddfe211c6a745eb",
+          "master_sha256": "b0677d716ea24af20f7543b32306adaa9e81e1b2b753dc7e777b0ce525ef7fb7",
+          "card_sha256": "1e02b6f67b6045bfb8ca9da740caeb3107512753cc206630ea5cbbdf2f11f3bf"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "japanese-vegetable-curry-rice.webp": {
+            "rejected_path": "rejected/japanese-vegetable-curry-rice-replaced-20261015155805.webp",
+            "sha256": "b0677d716ea24af20f7543b32306adaa9e81e1b2b753dc7e777b0ce525ef7fb7"
+          },
+          "japanese-vegetable-curry-rice-640.webp": {
+            "rejected_path": "rejected/japanese-vegetable-curry-rice-640-replaced-20261015155805.webp",
+            "sha256": "1e02b6f67b6045bfb8ca9da740caeb3107512753cc206630ea5cbbdf2f11f3bf"
+          },
+          "img_v1.jpg": {
+            "rejected_path": "rejected/img_v1-replaced-20261015155805.jpg",
+            "sha256": "0da17ad420a6287b551d8b5635631d231ac9b2a9669757f67ddfe211c6a745eb"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "Audit r1 gate K FAIL (fukujinzuke pickle dish not in the recipe (and undisclosed soy/wheat))"
+      }
+    ],
+    "regenerated_for_audit": "audit-r1"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 14 + cook 38 = 52 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap). The roux toasts during the vegetable simmer (step 5 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "japanese-vegetable-curry-rice.webp 1200x900 and japanese-vegetable-curry-rice-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 2-quart saucepan; the roux in a 6-inch skillet.",
+    "2": "Half of everything in a 3-quart pot.",
+    "4": "As written.",
+    "do_not_scale": [
+      "roux ratio: always equal parts flour and oil, about 1 tbsp of each per cup of water"
+    ]
+  },
+  "coverage_contribution": "Japanese 6 to 7 (gyudon, okonomiyaki, shogayaki, miso-ginger salmon, miso-mushroom ramen, and teriyaki tofu bowls); first Japanese curry and the first plant-based Japanese rice plate. A mild, kid-friendly HH001 curry without coconut or legumes.",
+  "near_duplicate_review": "Compared with punjabi-rajma-chawal in this wave: no beans; a mild roux-thickened sauce with potatoes and carrots. Compared with coconut-chickpea-curry: no coconut, no chickpeas. Compared with teriyaki-tofu-bowls: a curry, not a glazed protein bowl. Compared with pressure-cooker-butter-chicken: plant-based, roux-thickened, no cream or tomato.",
+  "not_duplicate_of": "Not katsu curry (dredged cutlets are closed).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

@@ -1,0 +1,35 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "thai-crispy-barramundi-tamarind.webp",
+    "thai-crispy-barramundi-tamarind-640.webp"
+  ],
+  "present_files": [
+    "thai-crispy-barramundi-tamarind.webp",
+    "thai-crispy-barramundi-tamarind-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "68358143c8b3a9f59ffd1d57ca5325c5f95ebca515fc5be1e2e565e604e2fc67",
+    "thai-crispy-barramundi-tamarind.webp": "507f421d4d46c27976a1533ed4c61d32f1f38a30b38bb029048f3830993e63f7",
+    "thai-crispy-barramundi-tamarind-640.webp": "f3582d981e42d7a94aaa7e978b0659b2d9b769aede921b60c9e7462296f05cc0"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "creator_self_review_before_audit",
+    "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's self-review: v1 pieces read as long breaded chicken tenders.",
+    "prompt_change": "v2 prompt = v1 prompt verbatim plus one 'Regeneration clarifier:' sentence inserted before the quality-reference sentence. See the 'Regeneration v2 prompt addition' section of image-prompt.md.",
+    "clarifier_sentence": "Regeneration clarifier: the pieces are chunky bite-size irregular fish nuggets with a thin crisp cornstarch crust, and on one or two broken pieces the flaky white fish flesh is visible so it clearly reads as fish; not long breaded strips or chicken tenders."
+  },
+  "package_revision": "author-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

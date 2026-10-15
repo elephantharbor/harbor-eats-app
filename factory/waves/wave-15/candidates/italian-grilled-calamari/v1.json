@@ -1,0 +1,574 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "italian-grilled-calamari",
+    "slug": "italian-grilled-calamari",
+    "title": "Italian Grilled Calamari with Tomato-Caper Salad and Grilled Bread",
+    "description": "Cleaned squid tubes and tentacles marinated briefly in olive oil, garlic, lemon zest, and chile flakes, grilled fast over high heat until tender and lightly charred, and tossed with a salad of cherry tomatoes, capers, red onion, parsley, and arugula. Served with grilled garlic bread.",
+    "cuisine": "italian",
+    "meal_format": "grilled-seafood-plate",
+    "primary_ingredient": "squid",
+    "vocabulary_tag_ids": [
+      "grilled",
+      "smoky",
+      "fresh",
+      "citrusy",
+      "italian"
+    ],
+    "current_recipe_id": "rcp_italian-grilled-calamari",
+    "current_version_id": "rv_italian-grilled-calamari_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_italian-grilled-calamari",
+    "dish_id": "italian-grilled-calamari",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_italian-grilled-calamari_v1",
+    "recipe_id": "rcp_italian-grilled-calamari",
+    "dish_id": "italian-grilled-calamari",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Italian Grilled Calamari with Tomato-Caper Salad and Grilled Bread",
+    "description": "Cleaned squid tubes and tentacles marinated briefly in olive oil, garlic, lemon zest, and chile flakes, grilled fast over high heat until tender and lightly charred, and tossed with a salad of cherry tomatoes, capers, red onion, parsley, and arugula. Served with grilled garlic bread.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "squid",
+        "name": "cleaned squid tubes and tentacles",
+        "display_name": "cleaned squid tubes and tentacles",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "tubes scored lightly on one side, patted very dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "3 tbsp squid, 3 tbsp salad, 2 tbsp bread",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": "2 grated for the squid, 2 halved for rubbing the bread",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemons",
+        "name": "lemons",
+        "display_name": "lemons",
+        "quantity": 2,
+        "unit": "count",
+        "note": "zest of 1 for the squid; juice of 1 for the salad",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "chili-flakes",
+        "name": "crushed red chile flakes",
+        "display_name": "crushed red chile flakes",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1 tsp squid, 1/2 tsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cherry-tomatoes",
+        "name": "cherry tomatoes",
+        "display_name": "cherry tomatoes",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "halved",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "capers",
+        "name": "capers",
+        "display_name": "capers",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "small red onion",
+        "quantity": 0.25,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "leaves",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "arugula",
+        "name": "baby arugula",
+        "display_name": "baby arugula",
+        "quantity": 3,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bread",
+        "name": "crusty bread",
+        "display_name": "crusty bread whose label lists no milk, butter, egg, soy, or sesame",
+        "quantity": 1,
+        "unit": "loaf",
+        "note": null,
+        "preparation": "cut into thick slices",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep the squid",
+        "body": "Pat the squid very dry. Score the tubes lightly in a crosshatch on one side. Grate 2 garlic cloves and zest 1 lemon, then toss the squid with 3 tbsp olive oil, the grated garlic, zest, chile flakes, and 1 tsp salt.",
+        "ingredient_refs": [
+          "squid",
+          "garlic",
+          "lemons",
+          "olive-oil",
+          "chili-flakes",
+          "kosher-salt"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Preheat the grill",
+        "body": "Preheat the grill on high, lid closed, for 10 minutes, then clean and oil the grate.",
+        "ingredient_refs": [
+          "olive-oil"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the salad and marinate",
+        "body": "While the grill heats and the squid marinates, halve the tomatoes, rinse the capers, slice the onion, and toss them with the parsley, the juice of the second lemon, 3 tbsp olive oil, and 1/2 tsp salt. Halve the last 2 garlic cloves and slice the bread (overlap stated).",
+        "ingredient_refs": [
+          "cherry-tomatoes",
+          "capers",
+          "red-onion",
+          "parsley",
+          "lemons",
+          "olive-oil",
+          "kosher-salt",
+          "garlic",
+          "bread"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Grill the bread",
+        "body": "Brush the bread with 2 tbsp olive oil and grill until marked, about 1 minute per side. Rub the hot slices with the cut garlic.",
+        "ingredient_refs": [
+          "bread",
+          "olive-oil",
+          "garlic"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Grill the squid",
+        "body": "Grill the tubes scored side down and the tentacles in a grill basket until opaque and lightly charred, 1 to 2 minutes per side. Do not overcook.",
+        "ingredient_refs": [
+          "squid"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Toss and serve",
+        "body": "Slice the tubes into thick rings and toss with the tentacles, the tomato salad, and the arugula. Serve at once with the garlic bread.",
+        "ingredient_refs": [
+          "squid",
+          "cherry-tomatoes",
+          "arugula",
+          "bread"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "calamari",
+        "name": "grilled calamari",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "squid",
+          "olive oil",
+          "garlic",
+          "lemon zest",
+          "chile flakes"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "tomato-caper salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cherry tomatoes",
+          "capers",
+          "red onion",
+          "parsley",
+          "arugula",
+          "lemon juice",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "bread",
+        "name": "grilled garlic bread",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "crusty bread",
+          "garlic",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "outdoor grill or grill pan",
+      "grill basket or perforated grill pan for tentacles",
+      "mixing bowls",
+      "grill tongs",
+      "serrated knife"
+    ],
+    "methods": [
+      "grill"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 22,
+    "total_time_minutes": 34,
+    "prep_minutes": 12,
+    "cook_minutes": 22,
+    "total_minutes": 34,
+    "time_clock": "Prep 12 + cook 22 = 34 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The squid marinates 15 minutes while the salad is made and the grill preheats (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 2 (Preheat the grill) and it states the preheat. The squid marinates 15 minutes while the salad is made and the grill preheats (step 3 states the overlap).",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "Grill preheated on high for 10 minutes, about 500 F at the grate.",
+    "doneness": "Squid opaque, lightly charred, and tender after 1 to 2 minutes per side; overcooking makes it rubbery. Bread marked and crisp at the edges.",
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": true,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains squid (shellfish: a mollusk)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: squid, olive oil, vegetables, capers, and bread whose label lists no milk or butter.",
+    "allergens": [
+      "shellfish",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Shellfish from the squid (a mollusk; most shellfish-allergy guidance includes squid).",
+      "Wheat from the bread.",
+      "The bread is a store-bought hard contract: the label lists no milk, butter, egg, soy, or sesame.",
+      "No egg, milk, soy, sesame, finfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains squid (shellfish: a mollusk).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "grilled",
+      "smoky",
+      "fresh",
+      "citrusy",
+      "italian"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'italian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Buy squid cleaned by the fish counter or frozen-cleaned; keep it cold until grilling.",
+    "culinary_hash": "ac8e89189b923c922fab068331c03f4a3125253183a61d83111c2e2ebc34936b",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_italian-grilled-calamari_v1",
+    "dish_id": "italian-grilled-calamari",
+    "recipe_version_id": "rv_italian-grilled-calamari_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "italian-grilled-calamari.webp",
+    "card_ref": "italian-grilled-calamari-640.webp",
+    "master_filename": "italian-grilled-calamari.webp",
+    "card_filename": "italian-grilled-calamari-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "italian-grilled-calamari.webp",
+        "spec_catalog_path": "/images/meals/italian-grilled-calamari.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "italian-grilled-calamari-640.webp",
+        "spec_catalog_path": "/images/meals/italian-grilled-calamari-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "3fa1ca1993e90e8b2d7611b7139ebcef2109832ddc414bb6e9d0b5fa04eeaa93",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "3fa1ca1993e90e8b2d7611b7139ebcef2109832ddc414bb6e9d0b5fa04eeaa93",
+      "master_sha256": "607d1031492463c5278565e898ee600955c0f1bd0dd1de2342d471be0cecf8e6",
+      "card_sha256": "b1c805a357af49fca797d53882873c56c2bd4845711451c7ceda67f5d7b50cc8"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "3fa1ca1993e90e8b2d7611b7139ebcef2109832ddc414bb6e9d0b5fa04eeaa93",
+      "italian-grilled-calamari.webp": "607d1031492463c5278565e898ee600955c0f1bd0dd1de2342d471be0cecf8e6",
+      "italian-grilled-calamari-640.webp": "b1c805a357af49fca797d53882873c56c2bd4845711451c7ceda67f5d7b50cc8"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 22 = 34 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The squid marinates 15 minutes while the salad is made and the grill preheats (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 2 (Preheat the grill) and it states the preheat. The squid marinates 15 minutes while the salad is made and the grill preheats (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "italian-grilled-calamari.webp 1200x900 and italian-grilled-calamari-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything; a grill pan works well indoors.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "grill hot and fast at every scale; 1 to 2 minutes per side"
+    ]
+  },
+  "coverage_contribution": "First squid dish. A light Italian seafood grill plate distinct from the catalog's Italian pasta and clam dishes.",
+  "near_duplicate_review": "Compared with linguine-with-clams: grilled squid with salad and bread, no pasta. Compared with garlic-tomato-mussels: grilled, not steamed; squid, not mussels. Compared with grilled-swordfish-olive-caper: tender squid with a raw tomato-caper salad, not a finfish steak.",
+  "not_duplicate_of": "Not fried calamari (a battered appetizer).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

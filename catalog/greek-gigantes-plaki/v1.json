@@ -1,0 +1,637 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "greek-gigantes-plaki",
+    "slug": "greek-gigantes-plaki",
+    "title": "Greek Gigantes Plaki: Baked Giant Beans in Tomato and Dill",
+    "description": "Giant white beans baked in a thick tomato sauce with onion, carrot, celery, garlic, dill, and parsley until the top caramelizes at the edges. Served warm with crusty bread and a simple cucumber salad.",
+    "cuisine": "greek",
+    "meal_format": "baked-beans-and-bread",
+    "primary_ingredient": "giant white beans",
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "savory",
+      "tender",
+      "rich",
+      "mediterranean"
+    ],
+    "current_recipe_id": "rcp_greek-gigantes-plaki",
+    "current_version_id": "rv_greek-gigantes-plaki_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_greek-gigantes-plaki",
+    "dish_id": "greek-gigantes-plaki",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_greek-gigantes-plaki_v1",
+    "recipe_id": "rcp_greek-gigantes-plaki",
+    "dish_id": "greek-gigantes-plaki",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Greek Gigantes Plaki: Baked Giant Beans in Tomato and Dill",
+    "description": "Giant white beans baked in a thick tomato sauce with onion, carrot, celery, garlic, dill, and parsley until the top caramelizes at the edges. Served warm with crusty bread and a simple cucumber salad.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "giant-beans",
+        "name": "canned or jarred giant white beans",
+        "display_name": "24-oz jars giant white beans (gigantes) or large lima beans",
+        "quantity": 2,
+        "unit": "jar",
+        "note": null,
+        "preparation": "drained and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "large yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrot",
+        "name": "carrot",
+        "display_name": "carrot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "celery",
+        "name": "celery",
+        "display_name": "celery ribs",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "crushed-tomatoes",
+        "name": "canned crushed tomatoes",
+        "display_name": "28-oz can crushed tomatoes",
+        "quantity": 1,
+        "unit": "can",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dill",
+        "name": "fresh dill",
+        "display_name": "fresh dill",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1 tsp beans, 1/2 tsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "6 tbsp beans, 2 tbsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.75,
+        "unit": "tsp",
+        "note": "1 1/2 tsp beans, 1/4 tsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bake-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "English cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "side"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "small red onion",
+        "quantity": 0.25,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "side"
+      },
+      {
+        "ingredient_id": "red-wine-vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bread",
+        "name": "crusty bread",
+        "display_name": "crusty bread whose label lists no milk, butter, egg, or honey",
+        "quantity": 1,
+        "unit": "loaf",
+        "note": "store-bought; required: the ingredient list shows no milk, butter, egg, honey, soy, or sesame",
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Drain and rinse the beans. Chop the onion, dice the carrot and celery, mince the garlic, and chop the dill and parsley. Slice the cucumber and red onion.",
+        "ingredient_refs": [
+          "giant-beans",
+          "yellow-onion",
+          "carrot",
+          "celery",
+          "garlic",
+          "dill",
+          "parsley",
+          "cucumber",
+          "red-onion"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the sauce",
+        "body": "Preheat the oven to 375 F. Heat 4 tbsp olive oil in a 12-inch oven-safe skillet over medium. Cook the onion, carrot, and celery until soft, about 8 minutes; add the garlic and tomato paste for 1 minute.",
+        "ingredient_refs": [
+          "olive-oil",
+          "yellow-onion",
+          "carrot",
+          "celery",
+          "garlic",
+          "tomato-paste"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer the sauce",
+        "body": "Add the crushed tomatoes, 1/2 cup water, 1 tsp oregano, and 1 1/2 tsp salt to the skillet and simmer 6 minutes. Fold in the beans, dill, and most of the parsley, then drizzle the top with 2 tbsp olive oil.",
+        "ingredient_refs": [
+          "crushed-tomatoes",
+          "bake-water",
+          "oregano",
+          "kosher-salt",
+          "giant-beans",
+          "dill",
+          "parsley",
+          "olive-oil"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Bake",
+        "body": "Bake uncovered until thick, bubbling, and caramelized at the edges, about 35 minutes. Rest 5 minutes.",
+        "ingredient_refs": [
+          "giant-beans"
+        ],
+        "clock_minutes": 40,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Make the salad",
+        "body": "While the beans bake, toss the cucumber and red onion with the vinegar, 2 tbsp olive oil, 1/2 tsp oregano, and 1/4 tsp salt (overlap stated).",
+        "ingredient_refs": [
+          "cucumber",
+          "red-onion",
+          "red-wine-vinegar",
+          "olive-oil",
+          "oregano",
+          "kosher-salt"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Scatter the remaining parsley over the beans and serve warm with the cucumber salad and bread.",
+        "ingredient_refs": [
+          "parsley",
+          "giant-beans",
+          "cucumber",
+          "bread"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "gigantes",
+        "name": "baked giant beans",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "giant beans",
+          "tomatoes",
+          "onion",
+          "carrot",
+          "celery",
+          "garlic",
+          "dill",
+          "parsley",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "cucumber salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cucumber",
+          "red onion",
+          "vinegar",
+          "olive oil",
+          "oregano"
+        ]
+      },
+      {
+        "component_id": "bread",
+        "name": "crusty bread",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "crusty bread"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch oven-safe skillet or 9x13-inch baking dish",
+      "mixing bowl",
+      "oven mitts"
+    ],
+    "methods": [
+      "saute",
+      "bake"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 60,
+    "total_time_minutes": 72,
+    "prep_minutes": 12,
+    "cook_minutes": 60,
+    "total_minutes": 72,
+    "time_clock": "Prep 12 + cook 60 = 72 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The cucumber salad is made during the bake (step 5 states the overlap); the oven preheats during steps 2 and 3.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "overlap_steps": [
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 2 (Start the sauce) and it states the preheat. The cucumber salad is made during the bake (step 5 states the overlap); the oven preheats during steps 2 and 3.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium in a 12-inch oven-safe skillet for the sauce, then an oven preheated to 375 F for the bake.",
+    "doneness": "Sauce thick and jammy, edges caramelized and bubbling, beans creamy inside.",
+    "effort_level": "easy",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional plant_based: beans, vegetables, herbs, olive oil, and bread whose label lists no milk, butter, egg, or honey.",
+    "allergens": [
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Wheat from the crusty bread.",
+      "The bread is a store-bought hard contract: the label lists no milk, butter, egg, honey, soy, or sesame.",
+      "No egg, milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "No feta. The bread is a store-bought hard contract with no milk, butter, egg, or honey.",
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "savory",
+      "tender",
+      "rich",
+      "mediterranean"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'greek' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "cc5bf565ee7e38f71169cfacf741eab7cc61b3127fd67d3423b2b3c6fd5ebf09",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_greek-gigantes-plaki_v1",
+    "dish_id": "greek-gigantes-plaki",
+    "recipe_version_id": "rv_greek-gigantes-plaki_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "greek-gigantes-plaki.webp",
+    "card_ref": "greek-gigantes-plaki-640.webp",
+    "master_filename": "greek-gigantes-plaki.webp",
+    "card_filename": "greek-gigantes-plaki-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "greek-gigantes-plaki.webp",
+        "spec_catalog_path": "/images/meals/greek-gigantes-plaki.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "greek-gigantes-plaki-640.webp",
+        "spec_catalog_path": "/images/meals/greek-gigantes-plaki-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "a4366902231c989b568fbdb66ad3dff30bea3f2ce43413a1c725de43c806b8b7",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "a4366902231c989b568fbdb66ad3dff30bea3f2ce43413a1c725de43c806b8b7",
+      "master_sha256": "cfee4f9690cb2662d4f56e015e081d1e43e1e9ebb3615c3a7e8604b0846791b5",
+      "card_sha256": "a5b42de7087615877a7b35345af1c202e21cc722a49f7588d679b38df8de15ec"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "a4366902231c989b568fbdb66ad3dff30bea3f2ce43413a1c725de43c806b8b7",
+      "greek-gigantes-plaki.webp": "cfee4f9690cb2662d4f56e015e081d1e43e1e9ebb3615c3a7e8604b0846791b5",
+      "greek-gigantes-plaki-640.webp": "a5b42de7087615877a7b35345af1c202e21cc722a49f7588d679b38df8de15ec"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 60 = 72 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The cucumber salad is made during the bake (step 5 states the overlap); the oven preheats during steps 2 and 3."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 2 (Start the sauce) and it states the preheat. The cucumber salad is made during the bake (step 5 states the overlap); the oven preheats during steps 2 and 3."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "greek-gigantes-plaki.webp 1200x900 and greek-gigantes-plaki-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 6-inch oven-safe skillet; bake about 25 minutes.",
+    "2": "Half of everything in a 10-inch oven-safe skillet or 8x8-inch dish.",
+    "4": "As written.",
+    "do_not_scale": [
+      "oven temperature stays 375 F at every scale"
+    ]
+  },
+  "coverage_contribution": "Giant or butter beans 0 to 1. A Greek plant main beyond greek-spanakopita (pastry) and greek-gemista-stuffed-vegetables. Easy, mostly hands-off HH001 bake.",
+  "near_duplicate_review": "Compared with pumpkin-pinto-bean-chili: a baked tomato-dill casserole of giant white beans; no chili spice. Compared with punjabi-rajma-chawal in this wave: Greek herbs, baked, with bread, not a spiced curry over rice. Compared with white-bean-kale-soup: a thick baked dish, not a soup. Compared with tuscan-panzanella-white-beans: a hot baked bean casserole, not a bread salad.",
+  "not_duplicate_of": "Not fasolada (bean soups are at 10).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

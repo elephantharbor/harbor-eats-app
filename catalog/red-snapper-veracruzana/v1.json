@@ -1,0 +1,604 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "red-snapper-veracruzana",
+    "slug": "red-snapper-veracruzana",
+    "title": "Red Snapper a la Veracruzana with White Rice",
+    "description": "Red snapper fillets simmered in a Veracruz-style tomato sauce with green olives, capers, pickled jalapeños, garlic, bay, and oregano. Served with white rice and lime.",
+    "cuisine": "mexican",
+    "meal_format": "fish-in-sauce",
+    "primary_ingredient": "red snapper",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "savory",
+      "fresh",
+      "tender",
+      "mexican"
+    ],
+    "current_recipe_id": "rcp_red-snapper-veracruzana",
+    "current_version_id": "rv_red-snapper-veracruzana_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_red-snapper-veracruzana",
+    "dish_id": "red-snapper-veracruzana",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_red-snapper-veracruzana_v1",
+    "recipe_id": "rcp_red-snapper-veracruzana",
+    "dish_id": "red-snapper-veracruzana",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Red Snapper a la Veracruzana with White Rice",
+    "description": "Red snapper fillets simmered in a Veracruz-style tomato sauce with green olives, capers, pickled jalapeños, garlic, bay, and oregano. Served with white rice and lime.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "snapper",
+        "name": "red snapper fillets",
+        "display_name": "skin-on red snapper fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 6 oz each",
+        "preparation": "patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "Roma tomatoes",
+        "display_name": "Roma tomatoes",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "white-onion",
+        "name": "white onion",
+        "display_name": "medium white onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olives",
+        "name": "pitted Manzanilla olives",
+        "display_name": "pitted Manzanilla olives",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "halved",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "capers",
+        "name": "capers",
+        "display_name": "capers",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jalapenos",
+        "name": "pickled jalapeño slices",
+        "display_name": "pickled jalapeño slices",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bay",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oregano",
+        "name": "dried Mexican oregano",
+        "display_name": "dried Mexican oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1/2 tsp fish, 1/2 tsp sauce, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "long-grain-rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "lime",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Chop the tomatoes, slice the onion and garlic, halve the olives, and rinse the capers and rice. Season the fish on both sides with 1/2 tsp salt. Chop the parsley and cut the limes into wedges.",
+        "ingredient_refs": [
+          "tomatoes",
+          "white-onion",
+          "garlic",
+          "olives",
+          "capers",
+          "long-grain-rice",
+          "snapper",
+          "kosher-salt",
+          "parsley",
+          "lime"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the rice",
+        "body": "Combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan. Bring to a boil over high heat, cover, turn to low, and cook 15 minutes; then rest covered off the heat 10 minutes. This runs inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "long-grain-rice",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the sauce",
+        "body": "Heat the olive oil in a 12-inch skillet over medium. Cook the onion until soft, about 5 minutes; add the garlic for 1 minute. Add the tomatoes, bay leaves, oregano, and 1/2 tsp salt and simmer, stirring, until the tomatoes collapse into a chunky sauce, about 8 minutes.",
+        "ingredient_refs": [
+          "olive-oil",
+          "white-onion",
+          "garlic",
+          "tomatoes",
+          "bay",
+          "oregano",
+          "kosher-salt"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Add the briny trio",
+        "body": "Stir in the olives, capers, and pickled jalapeños and simmer 2 minutes.",
+        "ingredient_refs": [
+          "olives",
+          "capers",
+          "jalapenos"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Simmer the fish",
+        "body": "Nestle the fillets skin side down into the sauce and spoon sauce over the tops. Cover and simmer over medium-low until the fish is opaque, flakes, and reads 145 F, about 8 minutes.",
+        "ingredient_refs": [
+          "snapper"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Remove the bay leaves. Fluff the rice, plate a fillet with plenty of sauce beside it, and finish with parsley and lime wedges.",
+        "ingredient_refs": [
+          "bay",
+          "long-grain-rice",
+          "snapper",
+          "parsley",
+          "lime"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "veracruzana",
+        "name": "Veracruz tomato-olive sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomatoes",
+          "onion",
+          "garlic",
+          "olives",
+          "capers",
+          "pickled jalapenos",
+          "bay",
+          "oregano"
+        ]
+      },
+      {
+        "component_id": "fish",
+        "name": "simmered snapper",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "red snapper"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rice",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet with lid",
+      "2-quart saucepan with lid",
+      "fish spatula"
+    ],
+    "methods": [
+      "simmer",
+      "braise"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 33,
+    "total_time_minutes": 45,
+    "prep_minutes": 12,
+    "cook_minutes": 33,
+    "total_minutes": 45,
+    "time_clock": "Prep 12 + cook 33 = 45 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium in a 12-inch skillet for the sauce, then a covered medium-low simmer for the fish. Low covered heat for the rice.",
+    "doneness": "Sauce chunky and saucy, tomatoes softened. Fish opaque and flaking, 145 F at the thickest part. Rice tender.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: tomato, olive, caper, and oil sauce. Fish because of the snapper.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish is the red snapper.",
+      "No egg, milk, soy, wheat, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Olive oil only; no butter or stock cube.",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "savory",
+      "fresh",
+      "tender",
+      "mexican"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'mexican' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "07a97d55751d69c0f4ce902f2a08c608d0bfb78523d017e4bea32f62cb3ba7e4",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_red-snapper-veracruzana_v1",
+    "dish_id": "red-snapper-veracruzana",
+    "recipe_version_id": "rv_red-snapper-veracruzana_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "red-snapper-veracruzana.webp",
+    "card_ref": "red-snapper-veracruzana-640.webp",
+    "master_filename": "red-snapper-veracruzana.webp",
+    "card_filename": "red-snapper-veracruzana-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "red-snapper-veracruzana.webp",
+        "spec_catalog_path": "/images/meals/red-snapper-veracruzana.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "red-snapper-veracruzana-640.webp",
+        "spec_catalog_path": "/images/meals/red-snapper-veracruzana-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "c1dc63b7d0ca585526f5680afc2408c4888202aa15fd948dcbf590f8453d205b",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "c1dc63b7d0ca585526f5680afc2408c4888202aa15fd948dcbf590f8453d205b",
+      "master_sha256": "90346d93986542073f974452e024e3d8a661d858204d8295b069fa21274fb415",
+      "card_sha256": "2e97c0ae107c050620494baf4dfe3fef33b007417592a8c47ce48801712ff288"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "c1dc63b7d0ca585526f5680afc2408c4888202aa15fd948dcbf590f8453d205b",
+      "red-snapper-veracruzana.webp": "90346d93986542073f974452e024e3d8a661d858204d8295b069fa21274fb415",
+      "red-snapper-veracruzana-640.webp": "2e97c0ae107c050620494baf4dfe3fef33b007417592a8c47ce48801712ff288"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 33 = 45 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "red-snapper-veracruzana.webp 1200x900 and red-snapper-veracruzana-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One fillet and a quarter of the sauce in an 8-inch skillet.",
+    "2": "Half of everything in a 10-inch skillet.",
+    "4": "As written.",
+    "do_not_scale": [
+      "keep the fish in one layer; use two skillets rather than stacking"
+    ]
+  },
+  "coverage_contribution": "First Mexican fish main that is not a taco (crispy-fish-tacos-cabbage-slaw is the only other Mexican fish dish). Red snapper as a fillet in sauce. HH001 fish dinner with no frying.",
+  "near_duplicate_review": "Compared with crispy-fish-tacos-cabbage-slaw: no batter, no tortillas. Compared with grilled-swordfish-olive-caper: simmered in a tomato sauce, not grilled with a relish. Compared with garlic-tomato-mussels: finfish fillets, briny Veracruz sauce, rice not bread. Compared with filipino-fish-sinigang: thick tomato sauce, not sour broth. Compared with herbed-polenta-tomato-stew: a fish main in a briny sauce, not a vegetable stew over polenta.",
+  "not_duplicate_of": "Not Italian acqua pazza or Moroccan fish tagine (no potatoes, no chermoula).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

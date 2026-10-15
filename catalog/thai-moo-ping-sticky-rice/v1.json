@@ -1,0 +1,660 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "thai-moo-ping-sticky-rice",
+    "slug": "thai-moo-ping-sticky-rice",
+    "title": "Thai Moo Ping: Grilled Pork Skewers with Sticky Rice and Jaew Dipping Sauce",
+    "description": "Bangkok street-style pork skewers: thin slices of pork shoulder marinated in garlic, cilantro stems, white pepper, palm sugar, soy sauce, fish sauce, and coconut milk, grilled and basted until caramelized. Served with steamed sticky rice, cucumber, and a tangy chile-lime jaew sauce with toasted rice powder.",
+    "cuisine": "thai",
+    "meal_format": "skewers-with-rice",
+    "primary_ingredient": "pork",
+    "vocabulary_tag_ids": [
+      "grilled",
+      "smoky",
+      "savory",
+      "tangy",
+      "thai"
+    ],
+    "current_recipe_id": "rcp_thai-moo-ping-sticky-rice",
+    "current_version_id": "rv_thai-moo-ping-sticky-rice_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_thai-moo-ping-sticky-rice",
+    "dish_id": "thai-moo-ping-sticky-rice",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_thai-moo-ping-sticky-rice_v1",
+    "recipe_id": "rcp_thai-moo-ping-sticky-rice",
+    "dish_id": "thai-moo-ping-sticky-rice",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Thai Moo Ping: Grilled Pork Skewers with Sticky Rice and Jaew Dipping Sauce",
+    "description": "Bangkok street-style pork skewers: thin slices of pork shoulder marinated in garlic, cilantro stems, white pepper, palm sugar, soy sauce, fish sauce, and coconut milk, grilled and basted until caramelized. Served with steamed sticky rice, cucumber, and a tangy chile-lime jaew sauce with toasted rice powder.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "pork",
+        "name": "boneless pork shoulder",
+        "display_name": "boneless pork shoulder",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "very cold, sliced thin (1/8 inch)",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 1,
+        "unit": "bunch",
+        "note": "stems for the marinade, leaves for the jaew and garnish",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "white-pepper",
+        "name": "ground white pepper",
+        "display_name": "ground white pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "palm-sugar",
+        "name": "palm sugar or light brown sugar",
+        "display_name": "palm sugar or light brown sugar",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fish-sauce",
+        "name": "fish sauce",
+        "display_name": "fish sauce whose label lists anchovy, salt, and sugar only",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "2 tbsp marinade, 1 tbsp jaew",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "coconut-milk",
+        "name": "canned coconut milk",
+        "display_name": "canned coconut milk",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "1/3 cup marinade, the rest for basting",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "sticky-rice",
+        "name": "Thai glutinous (sticky) rice",
+        "display_name": "Thai glutinous (sticky) rice",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soak-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "hot from the tap, for soaking the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "steam-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 8,
+        "unit": "cup",
+        "note": "for the steamer pot",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "toasting-rice",
+        "name": "uncooked jasmine or sticky rice",
+        "display_name": "uncooked jasmine or sticky rice",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for toasted rice powder",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "limes",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 2,
+        "unit": "count",
+        "note": "juiced, about 1/4 cup",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "chili-flakes",
+        "name": "Thai dried chile flakes",
+        "display_name": "Thai dried chile flakes",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "shallot",
+        "name": "shallot",
+        "display_name": "shallot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "English cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "side"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep the marinade",
+        "body": "Pound or finely mince the garlic and the cilantro stems with the white pepper to a coarse paste. Stir in the palm sugar, soy sauce, 2 tbsp fish sauce, 1/3 cup coconut milk, and the oil. Slice the very cold pork thin, 1/8 inch thick, and toss it in the marinade. Rinse the sticky rice until the rinse runs clear and cover it with 6 cups hot tap water.",
+        "ingredient_refs": [
+          "garlic",
+          "cilantro",
+          "white-pepper",
+          "palm-sugar",
+          "soy-sauce",
+          "fish-sauce",
+          "coconut-milk",
+          "neutral-oil",
+          "pork",
+          "sticky-rice",
+          "soak-water"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Marinate and soak",
+        "body": "Refrigerate the pork and leave the rice to soak for 1 hour. Soak 12 bamboo skewers in a tray at the same time.",
+        "ingredient_refs": [
+          "pork",
+          "sticky-rice"
+        ],
+        "clock_minutes": 60,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Steam the sticky rice",
+        "body": "Bring 8 cups water to a boil in a 5-quart pot. Drain the rice, spread it in a cheesecloth-lined steamer basket, set it over the pot, cover, and steam 25 minutes, flipping the mass of rice halfway, until translucent and chewy. This runs inside steps 4 to 6 (overlap stated).",
+        "ingredient_refs": [
+          "steam-water",
+          "sticky-rice"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Make the jaew and thread the skewers",
+        "body": "Toast 1 tbsp uncooked rice in a dry 8-inch skillet over medium, shaking, until deep golden, about 5 minutes; grind to a coarse powder. Stir 1 tbsp fish sauce, the lime juice, chile flakes, shallot, toasted rice powder, and chopped cilantro leaves together. Thread the pork onto the skewers, bunching it slightly. Discard the marinade.",
+        "ingredient_refs": [
+          "toasting-rice",
+          "fish-sauce",
+          "limes",
+          "chili-flakes",
+          "shallot",
+          "cilantro",
+          "pork"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Preheat the grill",
+        "body": "Preheat the grill on medium-high, lid closed, for 10 minutes, then clean and oil the grate. Slice the cucumber meanwhile.",
+        "ingredient_refs": [
+          "cucumber"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Grill",
+        "body": "Grill the skewers, turning every 2 minutes and basting with the remaining coconut milk, until caramelized, charred at the edges, and 145 F, about 10 minutes.",
+        "ingredient_refs": [
+          "pork",
+          "coconut-milk"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Pack the sticky rice into small baskets or bowls and serve with the skewers, cucumber, and jaew for dipping.",
+        "ingredient_refs": [
+          "sticky-rice",
+          "pork",
+          "cucumber"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "moo-ping",
+        "name": "grilled pork skewers",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "pork shoulder",
+          "garlic",
+          "cilantro stems",
+          "white pepper",
+          "palm sugar",
+          "soy sauce",
+          "fish sauce",
+          "coconut milk"
+        ]
+      },
+      {
+        "component_id": "sticky-rice",
+        "name": "steamed sticky rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "glutinous rice",
+          "water"
+        ]
+      },
+      {
+        "component_id": "jaew",
+        "name": "jaew dipping sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "fish sauce",
+          "lime",
+          "chile flakes",
+          "toasted rice powder",
+          "shallot",
+          "cilantro"
+        ]
+      },
+      {
+        "component_id": "cucumber",
+        "name": "cucumber",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cucumber"
+        ]
+      }
+    ],
+    "equipment": [
+      "outdoor grill or grill pan",
+      "12 bamboo skewers, soaked 30 minutes",
+      "steamer basket or bamboo steamer with a lid set over a 5-quart pot",
+      "cheesecloth or a clean thin towel",
+      "8-inch skillet",
+      "mortar and pestle or spice grinder",
+      "mixing bowls"
+    ],
+    "methods": [
+      "grill",
+      "steam"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 102,
+    "total_time_minutes": 122,
+    "prep_minutes": 20,
+    "cook_minutes": 102,
+    "total_minutes": 122,
+    "time_clock": "Prep 20 + cook 102 = 122 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The pork marinates and the sticky rice soaks at the same time (step 2). The rice steams inside steps 4 to 6 (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 5 (Preheat the grill) and it states the preheat. The pork marinates and the sticky rice soaks at the same time (step 2). The rice steams inside steps 4 to 6 (step 3 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Grill preheated on medium-high for 10 minutes, about 425 F at the grate. A covered steamer over a steady boil for the sticky rice. A dry 8-inch skillet over medium to toast the rice for the jaew.",
+    "doneness": "Pork caramelized and charred at the edges and 145 F. Sticky rice translucent, chewy, and tender all the way through.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains pork (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: the creaminess in the marinade is coconut milk. Fish sauce is a seasoning, so the fish label is not used.",
+    "allergens": [
+      "meat",
+      "finfish",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the pork.",
+      "Finfish from the fish sauce (anchovy).",
+      "Soy and wheat from the soy sauce.",
+      "The fish sauce label lists anchovy, salt, and sugar, with no shrimp or shellfish.",
+      "Coconut (coconut milk) is not a FlavorWeave allergen token; diners avoiding coconut should skip this dish.",
+      "No egg, milk, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains pork (meat).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "grilled",
+      "smoky",
+      "savory",
+      "tangy",
+      "thai"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'thai' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids.",
+      "coconut": "Coconut (coconut milk in the marinade) has no FlavorWeave allergen token. It is disclosed in allergen_notes; carried as a wave-15 open item for the importer."
+    },
+    "food_safety_note": "Cook pork to at least 145 F. Discard the marinade once the pork is threaded; baste with the separate coconut-milk mixture.",
+    "culinary_hash": "af014ba222504361c636a43a0d8cc3bad205810ade51f33da75b4978b3e0ae61",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_thai-moo-ping-sticky-rice_v1",
+    "dish_id": "thai-moo-ping-sticky-rice",
+    "recipe_version_id": "rv_thai-moo-ping-sticky-rice_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "thai-moo-ping-sticky-rice.webp",
+    "card_ref": "thai-moo-ping-sticky-rice-640.webp",
+    "master_filename": "thai-moo-ping-sticky-rice.webp",
+    "card_filename": "thai-moo-ping-sticky-rice-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "thai-moo-ping-sticky-rice.webp",
+        "spec_catalog_path": "/images/meals/thai-moo-ping-sticky-rice.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "thai-moo-ping-sticky-rice-640.webp",
+        "spec_catalog_path": "/images/meals/thai-moo-ping-sticky-rice-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "d8a898006398d20e52875ff7788b9d417c512b905c81274fe2e29457500fca70",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "d8a898006398d20e52875ff7788b9d417c512b905c81274fe2e29457500fca70",
+      "master_sha256": "15d56c98763d0948243569c34ea2cd5bddcb1de0c929e849cbc864cbf77044b8",
+      "card_sha256": "4e505402980ccb2b54a9addc269ed2f28d6711a7aa31d1dd1e93398970c86c1b"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "d8a898006398d20e52875ff7788b9d417c512b905c81274fe2e29457500fca70",
+      "thai-moo-ping-sticky-rice.webp": "15d56c98763d0948243569c34ea2cd5bddcb1de0c929e849cbc864cbf77044b8",
+      "thai-moo-ping-sticky-rice-640.webp": "4e505402980ccb2b54a9addc269ed2f28d6711a7aa31d1dd1e93398970c86c1b"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 20 + cook 102 = 122 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The pork marinates and the sticky rice soaks at the same time (step 2). The rice steams inside steps 4 to 6 (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 5 (Preheat the grill) and it states the preheat. The pork marinates and the sticky rice soaks at the same time (step 2). The rice steams inside steps 4 to 6 (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "thai-moo-ping-sticky-rice.webp 1200x900 and thai-moo-ping-sticky-rice-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything on 3 skewers; a grill pan works well.",
+    "2": "Half of everything.",
+    "4": "As written; 12 skewers.",
+    "do_not_scale": [
+      "soak the sticky rice at least 1 hour at every scale"
+    ]
+  },
+  "coverage_contribution": "First sticky rice. Thai pork skewers distinct from the catalog's Thai curries, larb, and fish cakes. Street-food grill night.",
+  "near_duplicate_review": "Compared with nigerian-beef-suya-skewers: pork with a sweet coconut-soy marinade and sticky rice, not beef with peanut spice. Compared with vietnamese-bun-cha: skewered grilled pork with sticky rice and jaew, not patties in a dipping broth with noodles. Compared with hawaiian-huli-huli-chicken in this wave: pork skewers with sticky rice and a chile-lime sauce, not glazed chicken thighs with pineapple.",
+  "not_duplicate_of": "Not satay (peanut sauce would echo maafe and the suya).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "E"
+}

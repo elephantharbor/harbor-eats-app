@@ -1,0 +1,584 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "bengali-mustard-fish",
+    "slug": "bengali-mustard-fish",
+    "title": "Bengali Shorshe Maach: Haddock in Mustard-Seed Sauce with Rice",
+    "description": "Turmeric-rubbed haddock seared lightly and simmered in a pungent Bengali sauce of freshly ground yellow and brown mustard seeds, green chiles, and nigella seeds, finished with a drizzle of mustard oil. Served with plain basmati rice.",
+    "cuisine": "bengali",
+    "meal_format": "fish-in-sauce",
+    "primary_ingredient": "haddock",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "savory",
+      "tangy",
+      "tender",
+      "indian"
+    ],
+    "current_recipe_id": "rcp_bengali-mustard-fish",
+    "current_version_id": "rv_bengali-mustard-fish_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_bengali-mustard-fish",
+    "dish_id": "bengali-mustard-fish",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_bengali-mustard-fish_v1",
+    "recipe_id": "rcp_bengali-mustard-fish",
+    "dish_id": "bengali-mustard-fish",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Bengali Shorshe Maach: Haddock in Mustard-Seed Sauce with Rice",
+    "description": "Turmeric-rubbed haddock seared lightly and simmered in a pungent Bengali sauce of freshly ground yellow and brown mustard seeds, green chiles, and nigella seeds, finished with a drizzle of mustard oil. Served with plain basmati rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "haddock",
+        "name": "haddock fillets",
+        "display_name": "skinless haddock fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 6 oz each; cod is the same-shopping swap",
+        "preparation": "each cut in half crosswise",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "1/2 tsp fish, 1/2 tsp sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1/2 tsp fish, 1/2 tsp sauce, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "yellow-mustard",
+        "name": "yellow mustard seeds",
+        "display_name": "yellow mustard seeds",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "brown-mustard",
+        "name": "brown mustard seeds",
+        "display_name": "brown mustard seeds",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soak-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "for soaking the seeds",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "green-chiles",
+        "name": "Indian green chiles or serranos",
+        "display_name": "Indian green chiles or serranos",
+        "quantity": 4,
+        "unit": "count",
+        "note": "2 ground into the paste, 2 slit",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "nigella",
+        "name": "nigella seeds",
+        "display_name": "nigella seeds",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "mustard-oil",
+        "name": "mustard oil labeled for cooking",
+        "display_name": "mustard oil labeled for cooking",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "2 tbsp cooking, 1 tbsp to finish; neutral oil is the swap",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "sauce-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "basmati-rice",
+        "name": "basmati rice",
+        "display_name": "basmati rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Soak and prep",
+        "body": "Soak the yellow and brown mustard seeds in 1/3 cup water for 10 minutes. Meanwhile, rinse the rice, cut the fillets in half, rub them with 1/2 tsp turmeric and 1/2 tsp salt, slit 2 chiles, and chop the cilantro.",
+        "ingredient_refs": [
+          "yellow-mustard",
+          "brown-mustard",
+          "soak-water",
+          "basmati-rice",
+          "haddock",
+          "turmeric",
+          "kosher-salt",
+          "green-chiles",
+          "cilantro"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the rice",
+        "body": "Combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan. Bring to a boil over high heat, cover, turn to low, and cook 12 minutes; then rest covered off the heat 10 minutes. This runs inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "basmati-rice",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Grind the mustard paste",
+        "body": "Grind the soaked seeds with their 1/3 cup soaking water, 2 green chiles, 1/2 tsp turmeric, and 1/2 tsp salt in a spice grinder or small blender to a smooth paste, about 2 minutes, scraping down once.",
+        "ingredient_refs": [
+          "yellow-mustard",
+          "brown-mustard",
+          "soak-water",
+          "green-chiles",
+          "turmeric",
+          "kosher-salt"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Sear the fish",
+        "body": "Heat 2 tbsp mustard oil in a 12-inch nonstick skillet over medium-high until it just starts to smoke, then lower the heat to medium. Sear the fish until lightly golden, about 2 minutes per side, and transfer to a plate.",
+        "ingredient_refs": [
+          "mustard-oil",
+          "haddock"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Simmer in the sauce",
+        "body": "Add the nigella seeds and slit chiles to the oil for 15 seconds. Stir the mustard paste with 3/4 cup water and pour it into the skillet; bring just to a simmer over medium-low without boiling. Return the fish, cover, and simmer gently until it flakes and reads 145 F, about 6 minutes. Drizzle the remaining 1 tbsp mustard oil over the top.",
+        "ingredient_refs": [
+          "nigella",
+          "green-chiles",
+          "sauce-water",
+          "haddock",
+          "mustard-oil"
+        ],
+        "clock_minutes": 9,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Fluff the rice and serve the fish and sauce beside it, scattered with cilantro.",
+        "ingredient_refs": [
+          "basmati-rice",
+          "haddock",
+          "cilantro"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "shorshe",
+        "name": "mustard-seed sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "yellow mustard seeds",
+          "brown mustard seeds",
+          "green chiles",
+          "nigella seeds",
+          "turmeric",
+          "mustard oil",
+          "water"
+        ]
+      },
+      {
+        "component_id": "fish",
+        "name": "seared haddock",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "haddock",
+          "turmeric",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "basmati rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "basmati rice",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch nonstick skillet with lid",
+      "2-quart saucepan with lid",
+      "spice grinder or small blender",
+      "small bowl"
+    ],
+    "methods": [
+      "sear",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 24,
+    "total_time_minutes": 36,
+    "prep_minutes": 12,
+    "cook_minutes": 24,
+    "total_minutes": 36,
+    "time_clock": "Prep 12 + cook 24 = 36 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap). The mustard seeds soak during prep.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high in a 12-inch nonstick skillet to sear the fish, then a gentle medium-low simmer. Low covered heat for the rice.",
+    "doneness": "Fish lightly golden, opaque, flaking, and 145 F. Sauce creamy-looking, mustard-yellow, and coating the fish without splitting.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: fish, mustard seeds, chiles, spices, oil, and water.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish is the haddock.",
+      "Contains mustard (seeds and oil). Mustard is not a FlavorWeave allergen token; it is named here for diners who avoid it.",
+      "No egg, milk, soy, wheat, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "No yogurt or poppy-seed paste in the sauce; oil only.",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "savory",
+      "tangy",
+      "tender",
+      "indian"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'bengali' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "ad14f076a570757537e0f18f64f281ad0c87a99e13b702a1a13422645398d9bf",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_bengali-mustard-fish_v1",
+    "dish_id": "bengali-mustard-fish",
+    "recipe_version_id": "rv_bengali-mustard-fish_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "bengali-mustard-fish.webp",
+    "card_ref": "bengali-mustard-fish-640.webp",
+    "master_filename": "bengali-mustard-fish.webp",
+    "card_filename": "bengali-mustard-fish-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "bengali-mustard-fish.webp",
+        "spec_catalog_path": "/images/meals/bengali-mustard-fish.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "bengali-mustard-fish-640.webp",
+        "spec_catalog_path": "/images/meals/bengali-mustard-fish-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "c0442572d0729d64f713a571dc6ed2faf9c7ff128973b79d39cd4528e22593e9",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "c0442572d0729d64f713a571dc6ed2faf9c7ff128973b79d39cd4528e22593e9",
+      "master_sha256": "cd52f75ca80d22969d905074c1ef4596c17b63897a65d8b206b9ec70e567f5f5",
+      "card_sha256": "69c3b19698e8410ecd30e2b54cfc9b228251c9337d0d41cf8622423a8be3b729"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "c0442572d0729d64f713a571dc6ed2faf9c7ff128973b79d39cd4528e22593e9",
+      "bengali-mustard-fish.webp": "cd52f75ca80d22969d905074c1ef4596c17b63897a65d8b206b9ec70e567f5f5",
+      "bengali-mustard-fish-640.webp": "69c3b19698e8410ecd30e2b54cfc9b228251c9337d0d41cf8622423a8be3b729"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 24 = 36 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap). The mustard seeds soak during prep."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "bengali-mustard-fish.webp 1200x900 and bengali-mustard-fish-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One fillet and a quarter of the sauce in an 8-inch covered skillet.",
+    "2": "Half of everything in a 10-inch covered skillet.",
+    "4": "As written.",
+    "do_not_scale": [
+      "keep the sauce below a boil at any scale so the mustard does not turn bitter"
+    ]
+  },
+  "coverage_contribution": "First Bengali dish and first Indian fish main. Mustard-seed sauce is new to the catalog. Haddock 0 to 1. HH001 fish dinner.",
+  "near_duplicate_review": "Compared with senegalese-fish-yassa: a ground-mustard-seed sauce with nigella, not prepared mustard with caramelized onions and lemon. Compared with vietnamese-turmeric-dill-fish: turmeric rub but a pungent mustard sauce with rice, no dill or noodles. Compared with pressure-cooker-butter-chicken: fish, no cream or tomato.",
+  "not_duplicate_of": "Not Goan fish curry (coconut curries are closed).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

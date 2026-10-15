@@ -1,0 +1,625 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "cobb-salad",
+    "slug": "cobb-salad",
+    "title": "Classic Cobb Salad with Seared Chicken, Bacon, Egg, and Blue Cheese",
+    "description": "Crisp romaine arranged in rows of sliced pan-seared chicken, crisp bacon, hard-cooked eggs, avocado, cherry tomatoes, and crumbled blue cheese, dressed with a sharp red-wine and Dijon vinaigrette.",
+    "cuisine": "american",
+    "meal_format": "composed-salad",
+    "primary_ingredient": "chicken",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "fresh",
+      "crunchy",
+      "rich",
+      "american"
+    ],
+    "current_recipe_id": "rcp_cobb-salad",
+    "current_version_id": "rv_cobb-salad_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_cobb-salad",
+    "dish_id": "cobb-salad",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_cobb-salad_v1",
+    "recipe_id": "rcp_cobb-salad",
+    "dish_id": "cobb-salad",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Classic Cobb Salad with Seared Chicken, Bacon, Egg, and Blue Cheese",
+    "description": "Crisp romaine arranged in rows of sliced pan-seared chicken, crisp bacon, hard-cooked eggs, avocado, cherry tomatoes, and crumbled blue cheese, dressed with a sharp red-wine and Dijon vinaigrette.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "chicken",
+        "name": "boneless skinless chicken breasts",
+        "display_name": "large boneless skinless chicken breasts",
+        "quantity": 2,
+        "unit": "count",
+        "note": "about 1 1/2 lb, halved horizontally into cutlets",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bacon",
+        "name": "thick-cut bacon",
+        "display_name": "thick-cut bacon strips whose label lists pork, salt, sugar, and curing agents only",
+        "quantity": 6,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "egg-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "for the eggs",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "romaine",
+        "name": "romaine hearts",
+        "display_name": "romaine hearts",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "avocado",
+        "name": "ripe avocados",
+        "display_name": "ripe avocados",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cherry-tomatoes",
+        "name": "cherry tomatoes",
+        "display_name": "cherry tomatoes",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "halved",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "blue-cheese",
+        "name": "crumbled blue cheese",
+        "display_name": "crumbled blue cheese",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "chives",
+        "name": "chives",
+        "display_name": "chives",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "snipped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "red-wine-vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dijon",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "7 tbsp vinaigrette, 1 tbsp chicken",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1 tsp chicken, 1/2 tsp vinaigrette",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Halve the chicken breasts horizontally and season with 1 tsp salt and 1/2 tsp pepper. Chop the romaine, halve the tomatoes, and snip the chives. Grate the garlic. Shake the vinegar, Dijon, garlic, 7 tbsp olive oil, 1/2 tsp salt, and 1/4 tsp pepper in a jar.",
+        "ingredient_refs": [
+          "chicken",
+          "kosher-salt",
+          "black-pepper",
+          "romaine",
+          "cherry-tomatoes",
+          "chives",
+          "garlic",
+          "red-wine-vinegar",
+          "dijon",
+          "olive-oil"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the eggs",
+        "body": "Bring 6 cups water to a boil in a 3-quart saucepan. Lower in the eggs and cook at a gentle boil 10 minutes, then move them to a bowl of ice to cool for 5 minutes. This runs inside steps 3 and 4 (overlap stated).",
+        "ingredient_refs": [
+          "egg-water",
+          "eggs"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Crisp the bacon",
+        "body": "Lay the bacon in a cold 12-inch skillet and cook over medium, turning, until crisp, about 10 minutes. Drain on towels and pour off all but 1 tbsp fat.",
+        "ingredient_refs": [
+          "bacon"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Sear the chicken",
+        "body": "Add 1 tbsp olive oil to the skillet and raise the heat to medium-high. Sear the chicken until golden and it reads 165 F, about 4 minutes per side. Rest 5 minutes.",
+        "ingredient_refs": [
+          "olive-oil",
+          "chicken"
+        ],
+        "clock_minutes": 13,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Slice and arrange",
+        "body": "Peel and quarter the eggs, slice the chicken, crumble the bacon, and dice the avocado. Spread the romaine on a platter and arrange the chicken, bacon, eggs, avocado, tomatoes, and blue cheese in neat rows on top.",
+        "ingredient_refs": [
+          "eggs",
+          "chicken",
+          "bacon",
+          "avocado",
+          "romaine",
+          "cherry-tomatoes",
+          "blue-cheese"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Scatter the chives and drizzle with some of the vinaigrette; pass the rest.",
+        "ingredient_refs": [
+          "chives",
+          "red-wine-vinegar"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "chicken",
+        "name": "seared chicken",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "chicken breasts",
+          "salt",
+          "pepper"
+        ]
+      },
+      {
+        "component_id": "bacon",
+        "name": "crisp bacon",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "bacon"
+        ]
+      },
+      {
+        "component_id": "eggs",
+        "name": "hard-cooked eggs",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "eggs",
+          "water"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "composed salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "romaine",
+          "avocado",
+          "cherry tomatoes",
+          "blue cheese",
+          "chives"
+        ]
+      },
+      {
+        "component_id": "vinaigrette",
+        "name": "red wine vinaigrette",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "red wine vinegar",
+          "Dijon",
+          "olive oil",
+          "garlic"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "3-quart saucepan",
+      "mixing bowl",
+      "small jar or bowl for vinaigrette",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "sear",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "crispy"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 14,
+    "cook_time_minutes": 36,
+    "total_time_minutes": 50,
+    "prep_minutes": 14,
+    "cook_minutes": 36,
+    "total_minutes": 50,
+    "time_clock": "Prep 14 + cook 36 = 50 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The eggs cook and cool inside steps 3 and 4 (step 2 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium in a 12-inch skillet for the bacon, then medium-high for the chicken. A 3-quart saucepan at a gentle boil for the eggs.",
+    "doneness": "Bacon crisp. Chicken golden outside and 165 F inside. Eggs cooked 10 minutes, yolks just set.",
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains chicken (poultry), bacon (meat), and blue cheese (dairy)."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: contains chicken, bacon, and blue cheese.",
+    "allergens": [
+      "poultry",
+      "meat",
+      "egg",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Poultry from the chicken.",
+      "Meat from the bacon.",
+      "Egg from the hard-cooked eggs.",
+      "Milk from the blue cheese.",
+      "The bacon is a store-bought hard contract: the label lists pork, salt, sugar, and curing agents, with no soy, wheat, or milk.",
+      "Dijon mustard is used; mustard is not a FlavorWeave token. No soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains chicken (poultry), bacon (meat), and blue cheese (dairy).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "fresh",
+      "crunchy",
+      "rich",
+      "american"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'american' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook chicken to 165 F. Chill the cooked eggs before peeling and keep the salad refrigerated if it is not served at once.",
+    "culinary_hash": "103f8a7ed5a52d1d7881cae9625ebf71ae7173d163cbe73a570030f767b2a7a7",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_cobb-salad_v1",
+    "dish_id": "cobb-salad",
+    "recipe_version_id": "rv_cobb-salad_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "cobb-salad.webp",
+    "card_ref": "cobb-salad-640.webp",
+    "master_filename": "cobb-salad.webp",
+    "card_filename": "cobb-salad-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "cobb-salad.webp",
+        "spec_catalog_path": "/images/meals/cobb-salad.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "cobb-salad-640.webp",
+        "spec_catalog_path": "/images/meals/cobb-salad-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "941f7b8480a6b53fb38af2d5dc6db5c3f304db7ecc99f3979aee2926504f6551",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "941f7b8480a6b53fb38af2d5dc6db5c3f304db7ecc99f3979aee2926504f6551",
+      "master_sha256": "a4f5c6ae28da8a85475d0b937fcd14c81c84f1cb084292b474b94509a899dbab",
+      "card_sha256": "9a8b469a83453a941384fbfc191f4efba07b3c0f2910ad537127c5c6ade360fa"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "941f7b8480a6b53fb38af2d5dc6db5c3f304db7ecc99f3979aee2926504f6551",
+      "cobb-salad.webp": "a4f5c6ae28da8a85475d0b937fcd14c81c84f1cb084292b474b94509a899dbab",
+      "cobb-salad-640.webp": "9a8b469a83453a941384fbfc191f4efba07b3c0f2910ad537127c5c6ade360fa"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 14 + cook 36 = 50 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The eggs cook and cool inside steps 3 and 4 (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "cobb-salad.webp 1200x900 and cobb-salad-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"crispy\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One chicken breast half, 2 bacon slices, and 1 egg.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "First main-course composed salad with poultry (salade-nicoise-seared-tuna is the fish one). A no-oven American classic.",
+  "near_duplicate_review": "Compared with salade-nicoise-seared-tuna: chicken, bacon, avocado, and blue cheese, not tuna, green beans, and potatoes. Compared with greek-chicken-souvlaki: a salad plate, not grilled skewers with pita.",
+  "not_duplicate_of": "Not chicken Caesar (a thinner idea that would echo the Cobb).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

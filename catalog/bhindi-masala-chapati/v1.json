@@ -1,0 +1,625 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "bhindi-masala-chapati",
+    "slug": "bhindi-masala-chapati",
+    "title": "Bhindi Masala: Crisp-Edged Spiced Okra with Homemade Chapati",
+    "description": "Okra cut into coins and seared in a wide skillet until browned at the edges and not slimy, then tossed with onion, tomato, cumin, and warm spices. Served with soft whole-wheat chapatis cooked on a dry skillet.",
+    "cuisine": "indian",
+    "meal_format": "skillet-and-flatbread",
+    "primary_ingredient": "okra",
+    "vocabulary_tag_ids": [
+      "savory",
+      "spicy",
+      "tender",
+      "indian"
+    ],
+    "current_recipe_id": "rcp_bhindi-masala-chapati",
+    "current_version_id": "rv_bhindi-masala-chapati_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_bhindi-masala-chapati",
+    "dish_id": "bhindi-masala-chapati",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_bhindi-masala-chapati_v1",
+    "recipe_id": "rcp_bhindi-masala-chapati",
+    "dish_id": "bhindi-masala-chapati",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Bhindi Masala: Crisp-Edged Spiced Okra with Homemade Chapati",
+    "description": "Okra cut into coins and seared in a wide skillet until browned at the edges and not slimy, then tossed with onion, tomato, cumin, and warm spices. Served with soft whole-wheat chapatis cooked on a dry skillet.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "okra",
+        "name": "fresh okra",
+        "display_name": "fresh okra",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "rinsed, dried completely, trimmed, cut into 1/2-inch coins",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "medium yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "plum tomatoes",
+        "display_name": "plum tomatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-chile",
+        "name": "serrano chile",
+        "display_name": "serrano chile",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cumin-seeds",
+        "name": "cumin seeds",
+        "display_name": "cumin seeds",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-coriander",
+        "name": "ground coriander",
+        "display_name": "ground coriander",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chili-powder",
+        "name": "mild red chili powder",
+        "display_name": "mild red chili powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garam-masala",
+        "name": "garam masala",
+        "display_name": "garam masala",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "juiced, about 2 tbsp",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.75,
+        "unit": "tsp",
+        "note": "1 1/4 tsp okra, 1/2 tsp dough",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "2 tbsp okra, 1 tbsp masala, 1 tbsp dough",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "wheat-flour",
+        "name": "whole-wheat flour",
+        "display_name": "whole-wheat flour",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "plus 2 tbsp for rolling",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dough-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "for the dough, warm",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Make the dough",
+        "body": "In a mixing bowl stir the 2 cups whole-wheat flour with 1/2 tsp salt and 1 tbsp oil. Add 3/4 cup warm water a little at a time, mixing to a soft dough. Knead 5 minutes until smooth, cover with a damp towel, and set aside.",
+        "ingredient_refs": [
+          "wheat-flour",
+          "kosher-salt",
+          "neutral-oil",
+          "dough-water"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Prep the okra and aromatics",
+        "body": "Rinse the okra and dry it completely on towels (dry okra stays crisp-edged). Trim the stems and cut into 1/2-inch coins. Slice the onion, chop the tomatoes and chile, mince the garlic, grate the ginger, chop the cilantro, and juice the lemon. The dough rests meanwhile.",
+        "ingredient_refs": [
+          "okra",
+          "yellow-onion",
+          "tomatoes",
+          "green-chile",
+          "garlic",
+          "ginger",
+          "cilantro",
+          "lemon"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 3,
+        "title": "Sear the okra",
+        "body": "Heat 2 tbsp oil in a 12-inch skillet over medium-high. Add the okra in a single layer and cook uncovered, stirring every 2 or 3 minutes, until browned at the edges and no longer sticky, about 12 minutes. Transfer to a plate.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "okra"
+        ],
+        "clock_minutes": 13,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Build the masala",
+        "body": "Lower the heat to medium and add 1 tbsp oil to the skillet. Add the cumin seeds for a few seconds, then the onion, and cook until soft and lightly golden, about 6 minutes. Add the garlic, ginger, and chile for 1 minute, then the turmeric, coriander, and chili powder. Add the tomatoes and cook until they break down, about 3 minutes. Return the okra with 1 1/4 tsp salt and toss 2 minutes. Stir in the garam masala and lemon juice and cover off the heat.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "cumin-seeds",
+          "yellow-onion",
+          "garlic",
+          "ginger",
+          "green-chile",
+          "turmeric",
+          "ground-coriander",
+          "chili-powder",
+          "tomatoes",
+          "okra",
+          "kosher-salt",
+          "garam-masala",
+          "lemon"
+        ],
+        "clock_minutes": 13,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Cook the chapatis",
+        "body": "Heat a dry 10-inch cast-iron skillet over medium-high. Divide the dough into 8 balls and roll each into a thin 7-inch round, dusting with the extra flour. Cook one at a time, about 1 minute per side, until blistered with light brown spots, pressing the edges with a folded towel so the round puffs. Stack in a towel to keep soft.",
+        "ingredient_refs": [
+          "wheat-flour"
+        ],
+        "clock_minutes": 16,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Spoon the okra onto plates, scatter the cilantro, and serve with the warm chapatis.",
+        "ingredient_refs": [
+          "okra",
+          "cilantro",
+          "wheat-flour"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "bhindi",
+        "name": "okra masala",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "okra",
+          "onion",
+          "tomatoes",
+          "garlic",
+          "ginger",
+          "green chile",
+          "spices",
+          "lemon"
+        ]
+      },
+      {
+        "component_id": "chapati",
+        "name": "whole-wheat chapatis",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "whole-wheat flour",
+          "water",
+          "salt",
+          "oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "10-inch cast-iron skillet",
+      "rolling pin",
+      "mixing bowl",
+      "kitchen towels"
+    ],
+    "methods": [
+      "sear",
+      "saute",
+      "griddle"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "crispy"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 25,
+    "cook_time_minutes": 44,
+    "total_time_minutes": 69,
+    "prep_minutes": 25,
+    "cook_minutes": 44,
+    "total_minutes": 69,
+    "time_clock": "Prep 25 + cook 44 = 69 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The chapati dough rests during steps 2 to 4; no separate rest time is needed.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        2
+      ],
+      "cook_steps": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high in an uncovered 12-inch skillet for the okra; medium for the masala. A dry 10-inch cast-iron skillet over medium-high for the chapatis.",
+    "doneness": "Okra browned at the edges, tender, and no longer sticky or stringy. Onion soft and lightly golden; tomatoes broken down. Chapatis blistered with light brown spots, soft and pliable.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional plant_based and dairy_free: okra, vegetables, spices, oil, and a flour-and-water chapati dough.",
+    "allergens": [
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Wheat from the whole-wheat flour in the chapatis.",
+      "No egg, milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Chapatis are made with oil, not ghee or butter, and are not brushed with butter.",
+    "vocabulary_tag_ids": [
+      "savory",
+      "spicy",
+      "tender",
+      "indian"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'indian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "49ca68722ab3d5a9e60088cd4adbaf398434f27372946a280657ee585b6fe4b4",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_bhindi-masala-chapati_v1",
+    "dish_id": "bhindi-masala-chapati",
+    "recipe_version_id": "rv_bhindi-masala-chapati_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "bhindi-masala-chapati.webp",
+    "card_ref": "bhindi-masala-chapati-640.webp",
+    "master_filename": "bhindi-masala-chapati.webp",
+    "card_filename": "bhindi-masala-chapati-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "bhindi-masala-chapati.webp",
+        "spec_catalog_path": "/images/meals/bhindi-masala-chapati.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "bhindi-masala-chapati-640.webp",
+        "spec_catalog_path": "/images/meals/bhindi-masala-chapati-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "d9fe6c40930a50a19279fb6bb097be175fc53a989b50d392a8cff956762e68d1",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "d9fe6c40930a50a19279fb6bb097be175fc53a989b50d392a8cff956762e68d1",
+      "master_sha256": "c38f98e94596dd9db23dd6385900c07de8ee3db4f6033a0c7cbe9207cd3345a6",
+      "card_sha256": "8132312ed48471c897221cff9109fa12a7abe7fae914ebcaa7efd27602471e04"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "d9fe6c40930a50a19279fb6bb097be175fc53a989b50d392a8cff956762e68d1",
+      "bhindi-masala-chapati.webp": "c38f98e94596dd9db23dd6385900c07de8ee3db4f6033a0c7cbe9207cd3345a6",
+      "bhindi-masala-chapati-640.webp": "8132312ed48471c897221cff9109fa12a7abe7fae914ebcaa7efd27602471e04"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 25 + cook 44 = 69 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The chapati dough rests during steps 2 to 4; no separate rest time is needed."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "bhindi-masala-chapati.webp 1200x900 and bhindi-masala-chapati-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"crispy\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of the okra in a 10-inch skillet and a quarter of the dough (2 chapatis).",
+    "2": "Half of everything; okra still in a 12-inch skillet so it browns.",
+    "4": "As written.",
+    "do_not_scale": [
+      "do not crowd the okra: brown it in batches if the skillet is smaller than 12 inches"
+    ]
+  },
+  "coverage_contribution": "Okra 0 to 1 as a primary ingredient. A dry vegetable sabzi with bread, a format the catalog's Indian meals (curries, biryani, paratha) lack. HH001 plant dinner with no legumes.",
+  "near_duplicate_review": "Compared with aloo-paratha-kachumber-chutney: the vegetable is the main and the bread is plain chapati, not stuffed paratha. Compared with saag-paneer: dry okra, no cheese, no greens puree. Compared with sichuan-green-bean-mushroom-stir-fry: Indian masala on seared okra, no soy.",
+  "not_duplicate_of": "Not aloo gobi (potato-cauliflower would echo the paratha's potato).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

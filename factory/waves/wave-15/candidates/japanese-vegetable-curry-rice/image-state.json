@@ -1,0 +1,34 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "japanese-vegetable-curry-rice.webp",
+    "japanese-vegetable-curry-rice-640.webp"
+  ],
+  "present_files": [
+    "japanese-vegetable-curry-rice.webp",
+    "japanese-vegetable-curry-rice-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "ab074e77ee7d03717dcc577a47269a52ac5219e44d4ac7cbc7666c6141e9ad33",
+    "japanese-vegetable-curry-rice.webp": "05dd28d837023151c524796e5c834a8ba934de97d1ee038d79f9f4c67919bdb3",
+    "japanese-vegetable-curry-rice-640.webp": "4b31710010221d5b1554377ba1a4ce6252b2358daf88a6b892d92f4f54db4972"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "audit_r1_gate_K",
+    "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: fukujinzuke pickle dish not in the recipe (and undisclosed soy/wheat).",
+    "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+  },
+  "package_revision": "author-r3",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

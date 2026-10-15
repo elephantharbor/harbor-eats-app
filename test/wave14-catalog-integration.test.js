@@ -41,9 +41,9 @@ describe("Wave-14 certified catalog integration", () => {
     });
   }
 
-  it("all 50 are published with media in the 135-meal catalog", () => {
+  it("all 50 are published with media in the catalog", () => {
     const published = listPublishedMealMedia();
-    expect(published).toHaveLength(135);
+    expect(published).toHaveLength(185);
     const slugs = new Set(published.map((r) => r.slug));
     for (const slug of WAVE14) expect(slugs.has(slug), slug).toBe(true);
   });

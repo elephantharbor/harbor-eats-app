@@ -1,0 +1,576 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "new-mexican-carne-adovada",
+    "slug": "new-mexican-carne-adovada",
+    "title": "New Mexican Carne Adovada with Warm Flour Tortillas",
+    "description": "Cubes of pork shoulder slowly braised in the oven in a brick-red sauce of dried New Mexico red chiles, garlic, oregano, cumin, and a splash of vinegar until spoon-tender. Served with warm flour tortillas, shredded cabbage, and lime.",
+    "cuisine": "new-mexican",
+    "meal_format": "braise-with-tortillas",
+    "primary_ingredient": "pork",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "smoky",
+      "rich",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_new-mexican-carne-adovada",
+    "current_version_id": "rv_new-mexican-carne-adovada_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_new-mexican-carne-adovada",
+    "dish_id": "new-mexican-carne-adovada",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_new-mexican-carne-adovada_v1",
+    "recipe_id": "rcp_new-mexican-carne-adovada",
+    "dish_id": "new-mexican-carne-adovada",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "New Mexican Carne Adovada with Warm Flour Tortillas",
+    "description": "Cubes of pork shoulder slowly braised in the oven in a brick-red sauce of dried New Mexico red chiles, garlic, oregano, cumin, and a splash of vinegar until spoon-tender. Served with warm flour tortillas, shredded cabbage, and lime.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "pork",
+        "name": "boneless pork shoulder",
+        "display_name": "boneless pork shoulder",
+        "quantity": 3,
+        "unit": "lb",
+        "note": null,
+        "preparation": "trimmed, cut into 1 1/2-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "nm-chiles",
+        "name": "dried New Mexico red chiles",
+        "display_name": "dried New Mexico red chiles",
+        "quantity": 12,
+        "unit": "count",
+        "note": null,
+        "preparation": "stemmed and seeded",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soak-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "for soaking and blending the chiles",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "oregano",
+        "name": "dried Mexican oregano",
+        "display_name": "dried Mexican oregano",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "vinegar",
+        "name": "apple cider vinegar",
+        "display_name": "apple cider vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tortillas",
+        "name": "flour tortillas",
+        "display_name": "8-inch flour tortillas whose label lists wheat flour, water, oil, salt, and leavening only",
+        "quantity": 12,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cabbage",
+        "name": "green cabbage",
+        "display_name": "small head green cabbage",
+        "quantity": 0.25,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely shredded",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "limes",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Stem and seed the chiles. Trim and cube the pork and season with 1 tsp salt. Shred the cabbage, chop the cilantro, and cut the limes into wedges.",
+        "ingredient_refs": [
+          "nm-chiles",
+          "pork",
+          "kosher-salt",
+          "cabbage",
+          "cilantro",
+          "limes"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Soak the chiles",
+        "body": "Bring the chiles and 3 cups water to a simmer in a 2-quart saucepan over medium, then turn off the heat and soak until soft, about 15 minutes.",
+        "ingredient_refs": [
+          "nm-chiles",
+          "soak-water"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Preheat and blend the sauce",
+        "body": "Preheat the oven to 325 F. Blend the chiles and their soaking liquid with the garlic, oregano, cumin, vinegar, and 1 1/2 tsp salt until very smooth, about 2 minutes. Strain into the Dutch oven, pressing on the solids.",
+        "ingredient_refs": [
+          "nm-chiles",
+          "garlic",
+          "oregano",
+          "cumin",
+          "vinegar",
+          "kosher-salt"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Combine",
+        "body": "Stir the pork into the sauce in the 5-quart Dutch oven and bring to a simmer on the stovetop over medium.",
+        "ingredient_refs": [
+          "pork"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Braise",
+        "body": "Cover and braise in the oven until the pork falls apart under a spoon, about 2 1/2 hours, stirring once halfway and uncovering for the last 15 minutes to thicken the sauce.",
+        "ingredient_refs": [
+          "pork"
+        ],
+        "clock_minutes": 150,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Warm the tortillas",
+        "body": "During the last minutes of the braise, warm the tortillas one at a time in a dry 10-inch skillet over medium, about 20 seconds per side, and stack them in a towel (overlap stated).",
+        "ingredient_refs": [
+          "tortillas"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Spoon the carne adovada into bowls and serve with the tortillas, shredded cabbage, cilantro, and lime wedges.",
+        "ingredient_refs": [
+          "pork",
+          "tortillas",
+          "cabbage",
+          "cilantro",
+          "limes"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "adovada",
+        "name": "red chile pork",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "pork shoulder",
+          "dried New Mexico chiles",
+          "garlic",
+          "oregano",
+          "cumin",
+          "vinegar",
+          "water"
+        ]
+      },
+      {
+        "component_id": "tortillas",
+        "name": "flour tortillas",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "flour tortillas"
+        ]
+      },
+      {
+        "component_id": "garnish",
+        "name": "cabbage and lime",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cabbage",
+          "lime",
+          "cilantro"
+        ]
+      }
+    ],
+    "equipment": [
+      "5-quart Dutch oven with lid",
+      "2-quart saucepan",
+      "blender",
+      "fine-mesh strainer",
+      "10-inch skillet"
+    ],
+    "methods": [
+      "braise",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 184,
+    "total_time_minutes": 199,
+    "prep_minutes": 15,
+    "cook_minutes": 184,
+    "total_minutes": 199,
+    "time_clock": "Prep 15 + cook 184 = 199 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven heats while the chile sauce is blended (step 3 states the preheat). The cabbage and tortillas are readied during the braise (step 6 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "overlap_steps": [
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 3 (Preheat and blend the sauce) and it states the preheat. The oven heats while the chile sauce is blended (step 3 states the preheat). The cabbage and tortillas are readied during the braise (step 6 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven preheated to 325 F for a covered braise in a 5-quart Dutch oven. Medium on the stovetop to soak the chiles.",
+    "doneness": "Pork falls apart under a spoon. Sauce thick, glossy, and brick-red, clinging to the meat.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains pork (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: pork, dried chiles, spices, vinegar, water, tortillas whose label lists no milk, and vegetables.",
+    "allergens": [
+      "meat",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the pork.",
+      "Wheat from the flour tortillas.",
+      "The tortillas are a store-bought hard contract: the label lists wheat flour, water, oil, salt, and leavening, with no milk or soy.",
+      "No egg, milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains pork (meat).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "smoky",
+      "rich",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'new-mexican' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "c9353f3ad4136ae645b9cd0636b2005e6bbed13dd94c57c4306b3263017b4019",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_new-mexican-carne-adovada_v1",
+    "dish_id": "new-mexican-carne-adovada",
+    "recipe_version_id": "rv_new-mexican-carne-adovada_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "new-mexican-carne-adovada.webp",
+    "card_ref": "new-mexican-carne-adovada-640.webp",
+    "master_filename": "new-mexican-carne-adovada.webp",
+    "card_filename": "new-mexican-carne-adovada-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "new-mexican-carne-adovada.webp",
+        "spec_catalog_path": "/images/meals/new-mexican-carne-adovada.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "new-mexican-carne-adovada-640.webp",
+        "spec_catalog_path": "/images/meals/new-mexican-carne-adovada-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "7a5abb5f1ea3ba0c5acc583af749f392b64e0bf7ff1f47c3208ed167952fd4e6",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "7a5abb5f1ea3ba0c5acc583af749f392b64e0bf7ff1f47c3208ed167952fd4e6",
+      "master_sha256": "887da8ed07e3aa8900a6cc37521bd7eb385cb34716458dcff8e734691648232c",
+      "card_sha256": "2705b87c45be59e73abd0cfa0fe778e6b00c76d3ee67868e751ab5b2a0250ee9"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "7a5abb5f1ea3ba0c5acc583af749f392b64e0bf7ff1f47c3208ed167952fd4e6",
+      "new-mexican-carne-adovada.webp": "887da8ed07e3aa8900a6cc37521bd7eb385cb34716458dcff8e734691648232c",
+      "new-mexican-carne-adovada-640.webp": "2705b87c45be59e73abd0cfa0fe778e6b00c76d3ee67868e751ab5b2a0250ee9"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 184 = 199 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven heats while the chile sauce is blended (step 3 states the preheat). The cabbage and tortillas are readied during the braise (step 6 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 3 (Preheat and blend the sauce) and it states the preheat. The oven heats while the chile sauce is blended (step 3 states the preheat). The cabbage and tortillas are readied during the braise (step 6 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "new-mexican-carne-adovada.webp 1200x900 and new-mexican-carne-adovada-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 2-quart covered oven-safe saucepan; braise about 2 hours.",
+    "2": "Half of everything in a 3-quart Dutch oven.",
+    "4": "As written.",
+    "do_not_scale": [
+      "oven temperature stays 325 F at every scale"
+    ]
+  },
+  "coverage_contribution": "First New Mexican dish. A dried-red-chile braise, distinct from the catalog's chipotle and pozole dishes.",
+  "near_duplicate_review": "Compared with mushroom-hominy-pozole-rojo: a thick pork chile braise with tortillas, not a hominy soup. Compared with slow-cooker-ropa-vieja: red-chile pork cubes in the oven, not shredded beef in tomato. Compared with jamaican-jerk-pork-chops: braised in dried-chile sauce, not grilled jerk chops.",
+  "not_duplicate_of": "Not carnitas or al pastor (tacos are closed); served as a braise with tortillas on the side.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "E"
+}

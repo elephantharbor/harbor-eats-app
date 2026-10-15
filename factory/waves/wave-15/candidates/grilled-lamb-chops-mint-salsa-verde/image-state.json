@@ -1,0 +1,35 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "grilled-lamb-chops-mint-salsa-verde.webp",
+    "grilled-lamb-chops-mint-salsa-verde-640.webp"
+  ],
+  "present_files": [
+    "grilled-lamb-chops-mint-salsa-verde.webp",
+    "grilled-lamb-chops-mint-salsa-verde-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "e52a9bdb3606dd19b094b8bd0a119a25f106593be919e24b2a0393a05e3aedb9",
+    "grilled-lamb-chops-mint-salsa-verde.webp": "1eb869222037318a7ad1f562ffab11bca345fadd84adba2d08fc2744a08bff5e",
+    "grilled-lamb-chops-mint-salsa-verde-640.webp": "11ea22d98c9100af57e30cbbc187ac7fee7ae3246c24152b045564868b278f78"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "creator_self_review_before_audit",
+    "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's self-review: v1 showed frenched/rib-style chops; the plating brief excludes a frenched rack.",
+    "prompt_change": "v2 prompt = v1 prompt verbatim plus one 'Regeneration clarifier:' sentence inserted before the quality-reference sentence. See the 'Regeneration v2 prompt addition' section of image-prompt.md.",
+    "clarifier_sentence": "Regeneration clarifier: the chops are compact, thick, squarish loin chops like miniature T-bone steaks, with a small T-shaped bone in the middle and a fat cap on one side; there are NO long thin protruding rib bones and no frenched bones anywhere."
+  },
+  "package_revision": "author-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

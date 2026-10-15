@@ -1,0 +1,609 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "argentine-chimichurri-steak-potatoes",
+    "slug": "argentine-chimichurri-steak-potatoes",
+    "title": "Argentine Grilled Strip Steak with Chimichurri, Grilled Potatoes, and Ensalada Criolla",
+    "description": "Thick strip steaks seasoned simply with coarse salt and grilled over high heat, sliced and spooned with sharp chimichurri of parsley, oregano, garlic, red wine vinegar, chile, and olive oil. Served with par-boiled grilled potatoes and a tomato and onion salad.",
+    "cuisine": "argentine",
+    "meal_format": "grilled-plate",
+    "primary_ingredient": "beef",
+    "vocabulary_tag_ids": [
+      "grilled",
+      "herbaceous",
+      "smoky",
+      "tangy"
+    ],
+    "current_recipe_id": "rcp_argentine-chimichurri-steak-potatoes",
+    "current_version_id": "rv_argentine-chimichurri-steak-potatoes_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_argentine-chimichurri-steak-potatoes",
+    "dish_id": "argentine-chimichurri-steak-potatoes",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_argentine-chimichurri-steak-potatoes_v1",
+    "recipe_id": "rcp_argentine-chimichurri-steak-potatoes",
+    "dish_id": "argentine-chimichurri-steak-potatoes",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Argentine Grilled Strip Steak with Chimichurri, Grilled Potatoes, and Ensalada Criolla",
+    "description": "Thick strip steaks seasoned simply with coarse salt and grilled over high heat, sliced and spooned with sharp chimichurri of parsley, oregano, garlic, red wine vinegar, chile, and olive oil. Served with par-boiled grilled potatoes and a tomato and onion salad.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "steaks",
+        "name": "New York strip steaks",
+        "display_name": "New York strip steaks, about 1 1/4 inches thick",
+        "quantity": 2,
+        "unit": "count",
+        "note": "about 1 lb each",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "coarse-salt",
+        "name": "coarse sea salt",
+        "display_name": "coarse sea salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 1/2 tsp steak, 1/2 tsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "packed leaves",
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "oregano",
+        "name": "fresh oregano",
+        "display_name": "fresh oregano",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-wine-vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "1/4 cup chimichurri, the rest salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chili-flakes",
+        "name": "crushed red chile flakes",
+        "display_name": "crushed red chile flakes",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "1/2 cup chimichurri, 2 tbsp potatoes, 2 tbsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": "1 tbsp pot, 1/2 tsp chimichurri",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "medium Yukon Gold potatoes",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "halved lengthwise",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potato-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 8,
+        "unit": "cup",
+        "note": "for the potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "ripe tomatoes",
+        "display_name": "ripe tomatoes",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "white-onion",
+        "name": "white onion",
+        "display_name": "medium white onion",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-pepper",
+        "name": "green bell pepper",
+        "display_name": "green bell pepper",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Make the chimichurri",
+        "body": "Stir the parsley, oregano, garlic, 1/4 cup vinegar, chile flakes, 1/2 cup olive oil, and 1/2 tsp kosher salt together and set aside. Season the steaks with 1 1/2 tsp coarse salt and leave them at room temperature. Halve the potatoes; cut the tomatoes and slice the onion and pepper.",
+        "ingredient_refs": [
+          "parsley",
+          "oregano",
+          "garlic",
+          "red-wine-vinegar",
+          "chili-flakes",
+          "olive-oil",
+          "kosher-salt",
+          "steaks",
+          "coarse-salt",
+          "potatoes",
+          "tomatoes",
+          "white-onion",
+          "green-pepper"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Par-boil the potatoes",
+        "body": "Put the potatoes in a 4-quart pot with 8 cups water and 1 tbsp kosher salt, bring to a boil over high heat, about 10 minutes, and cook until just tender, about 12 minutes. Drain, steam dry 2 minutes, and toss with 2 tbsp olive oil.",
+        "ingredient_refs": [
+          "potatoes",
+          "potato-water",
+          "kosher-salt",
+          "olive-oil"
+        ],
+        "clock_minutes": 26,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Dress the salad",
+        "body": "While the potatoes cook, toss the tomatoes, onion, and pepper with the remaining vinegar, 2 tbsp olive oil, and 1/2 tsp coarse salt (overlap stated).",
+        "ingredient_refs": [
+          "tomatoes",
+          "white-onion",
+          "green-pepper",
+          "red-wine-vinegar",
+          "olive-oil",
+          "coarse-salt"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Preheat the grill",
+        "body": "Preheat the grill on high, lid closed, for 10 minutes, then clean and oil the grate.",
+        "ingredient_refs": [
+          "olive-oil"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Grill",
+        "body": "Grill the potatoes cut side down until marked and crisp, about 6 minutes, turning once. At the same time, grill the steaks until 130 F for medium-rare, about 5 minutes per side. Rest the steaks 5 minutes.",
+        "ingredient_refs": [
+          "potatoes",
+          "steaks"
+        ],
+        "clock_minutes": 16,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Slice the steaks against the grain, spoon over plenty of chimichurri, and serve with the potatoes and ensalada criolla.",
+        "ingredient_refs": [
+          "steaks",
+          "parsley",
+          "potatoes",
+          "tomatoes"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "steak",
+        "name": "grilled strip steak",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "strip steaks",
+          "coarse salt"
+        ]
+      },
+      {
+        "component_id": "chimichurri",
+        "name": "chimichurri",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "parsley",
+          "oregano",
+          "garlic",
+          "red wine vinegar",
+          "chile flakes",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "potatoes",
+        "name": "grilled potatoes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "potatoes",
+          "water",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "ensalada criolla",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomatoes",
+          "onion",
+          "green pepper",
+          "vinegar",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "outdoor grill",
+      "4-quart pot",
+      "colander",
+      "grill tongs",
+      "instant-read thermometer",
+      "cutting board",
+      "mixing bowls"
+    ],
+    "methods": [
+      "grill",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 55,
+    "total_time_minutes": 70,
+    "prep_minutes": 15,
+    "cook_minutes": 55,
+    "total_minutes": 70,
+    "time_clock": "Prep 15 + cook 55 = 70 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The chimichurri rests while the potatoes boil (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 4 (Preheat the grill) and it states the preheat. The chimichurri rests while the potatoes boil (step 3 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Grill preheated on high for 10 minutes, about 500 F at the grate. A 4-quart pot at a boil for the potatoes.",
+    "doneness": "Steaks 130 F for medium-rare (USDA safe minimum is 145 F with a 3-minute rest). Potatoes tender inside with dark grill marks.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains beef (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: beef, herbs, vinegar, olive oil, potatoes, and vegetables.",
+    "allergens": [
+      "meat"
+    ],
+    "allergen_notes": [
+      "Meat from the beef.",
+      "No egg, milk, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains beef (meat).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "grilled",
+      "herbaceous",
+      "smoky",
+      "tangy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'argentine' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "USDA safe minimum for whole beef cuts is 145 F with a 3-minute rest; 130 F medium-rare is a diner's choice.",
+    "culinary_hash": "d74fc2ccef3536ca8f488f6c4e263d3c75931334ca562733e6b35e361dae5c93",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_argentine-chimichurri-steak-potatoes_v1",
+    "dish_id": "argentine-chimichurri-steak-potatoes",
+    "recipe_version_id": "rv_argentine-chimichurri-steak-potatoes_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "argentine-chimichurri-steak-potatoes.webp",
+    "card_ref": "argentine-chimichurri-steak-potatoes-640.webp",
+    "master_filename": "argentine-chimichurri-steak-potatoes.webp",
+    "card_filename": "argentine-chimichurri-steak-potatoes-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "argentine-chimichurri-steak-potatoes.webp",
+        "spec_catalog_path": "/images/meals/argentine-chimichurri-steak-potatoes.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "argentine-chimichurri-steak-potatoes-640.webp",
+        "spec_catalog_path": "/images/meals/argentine-chimichurri-steak-potatoes-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "9cbf892f6fd89f89d4613141db7d3ba860fd3bd1605e9a9726ee118937aea21c",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "9cbf892f6fd89f89d4613141db7d3ba860fd3bd1605e9a9726ee118937aea21c",
+      "master_sha256": "8bab415d81ec0a48ea4734cd6a1f9bbeb2b1753a49718697843f404ee16e5ce3",
+      "card_sha256": "7a64d1e162ab9d45efc5a44793e67656c04c0f3b107d8ad85a27e75634c6f193"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "9cbf892f6fd89f89d4613141db7d3ba860fd3bd1605e9a9726ee118937aea21c",
+      "argentine-chimichurri-steak-potatoes.webp": "8bab415d81ec0a48ea4734cd6a1f9bbeb2b1753a49718697843f404ee16e5ce3",
+      "argentine-chimichurri-steak-potatoes-640.webp": "7a64d1e162ab9d45efc5a44793e67656c04c0f3b107d8ad85a27e75634c6f193"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 55 = 70 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The chimichurri rests while the potatoes boil (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 4 (Preheat the grill) and it states the preheat. The chimichurri rests while the potatoes boil (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "argentine-chimichurri-steak-potatoes.webp 1200x900 and argentine-chimichurri-steak-potatoes-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One steak, a quarter of the potatoes and salad.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "grill preheat stays 10 minutes on high at every scale"
+    ]
+  },
+  "coverage_contribution": "First Argentine meal. Chimichurri is a new sauce for the catalog. A strip-steak grill plate distinct from the existing flank and au-poivre steaks.",
+  "near_duplicate_review": "Compared with steak-au-poivre-smashed-potatoes: grilled, a raw herb-vinegar sauce, no cream or pepper crust, grilled not smashed potatoes. Compared with gochujang-grilled-flank-steak: salt-only strip steak with chimichurri, no gochujang. Compared with grilled-lamb-chops-mint-salsa-verde in this wave: beef with parsley-oregano chimichurri, not lamb with mint salsa verde.",
+  "not_duplicate_of": "Not a full asado with chorizo and morcilla (too many cuts for a weeknight).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

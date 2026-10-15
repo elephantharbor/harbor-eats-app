@@ -1,0 +1,671 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "lebanese-baked-kibbeh",
+    "slug": "lebanese-baked-kibbeh",
+    "title": "Lebanese Baked Kibbeh with Pine Nuts, Yogurt-Cucumber Salad, and Fattoush-Style Greens",
+    "description": "A tray of kibbeh bil sanieh: a shell of fine bulgur kneaded with ground lamb, onion, and seven-spice layered around a filling of spiced lamb, onion, and toasted pine nuts, scored into diamonds, drizzled with olive oil, and baked until crisp-edged. Served with a garlicky yogurt-cucumber salad and a lemony tomato-cucumber salad.",
+    "cuisine": "lebanese",
+    "meal_format": "baked-tray",
+    "primary_ingredient": "lamb and bulgur",
+    "vocabulary_tag_ids": [
+      "savory",
+      "crispy",
+      "herbaceous",
+      "fresh",
+      "middle-eastern"
+    ],
+    "current_recipe_id": "rcp_lebanese-baked-kibbeh",
+    "current_version_id": "rv_lebanese-baked-kibbeh_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_lebanese-baked-kibbeh",
+    "dish_id": "lebanese-baked-kibbeh",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_lebanese-baked-kibbeh_v1",
+    "recipe_id": "rcp_lebanese-baked-kibbeh",
+    "dish_id": "lebanese-baked-kibbeh",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Lebanese Baked Kibbeh with Pine Nuts, Yogurt-Cucumber Salad, and Fattoush-Style Greens",
+    "description": "A tray of kibbeh bil sanieh: a shell of fine bulgur kneaded with ground lamb, onion, and seven-spice layered around a filling of spiced lamb, onion, and toasted pine nuts, scored into diamonds, drizzled with olive oil, and baked until crisp-edged. Served with a garlicky yogurt-cucumber salad and a lemony tomato-cucumber salad.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "bulgur",
+        "name": "fine (#1) bulgur",
+        "display_name": "fine (#1) bulgur",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soak-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "cold, for soaking the bulgur",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "ground-lamb",
+        "name": "lean ground lamb",
+        "display_name": "lean ground lamb",
+        "quantity": 2,
+        "unit": "lb",
+        "note": "1 1/4 lb for the shell, 3/4 lb for the filling",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onions",
+        "name": "yellow onions",
+        "display_name": "medium yellow onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": "1 quartered for the shell, 1 finely chopped for the filling",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "seven-spice",
+        "name": "Lebanese seven-spice (baharat)",
+        "display_name": "Lebanese seven-spice whose label lists spices only",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "2 tsp shell, 1 tsp filling",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.75,
+        "unit": "tsp",
+        "note": "1 1/2 tsp shell, 1/2 tsp filling, 1/4 tsp yogurt salad, 1/2 tsp tomato salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "ice-cold, for the shell",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "pine-nuts",
+        "name": "pine nuts",
+        "display_name": "pine nuts",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "1 tbsp filling, 1/4 cup top, 3 tbsp tomato salad",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "yogurt",
+        "name": "plain whole-milk yogurt",
+        "display_name": "plain whole-milk yogurt",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cucumbers",
+        "name": "Persian cucumbers",
+        "display_name": "Persian cucumbers",
+        "quantity": 4,
+        "unit": "count",
+        "note": "2 for each salad",
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mint",
+        "name": "dried mint",
+        "display_name": "dried mint",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "Roma tomatoes",
+        "display_name": "Roma tomatoes",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "juiced, about 3 tbsp",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sumac",
+        "name": "ground sumac",
+        "display_name": "ground sumac",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the bulgur and soak it in 2 cups cold water. Quarter one onion and finely chop the other. Dice the cucumbers and tomatoes, chop the parsley, grate the garlic, and juice the lemon.",
+        "ingredient_refs": [
+          "bulgur",
+          "soak-water",
+          "onions",
+          "cucumbers",
+          "tomatoes",
+          "parsley",
+          "garlic",
+          "lemon"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Make the filling",
+        "body": "While the bulgur soaks, toast the pine nuts in a dry 10-inch skillet over medium until golden, about 3 minutes, and set aside. Add 1 tbsp olive oil and the chopped onion and cook until soft, about 5 minutes. Add 3/4 lb lamb, 1 tsp seven-spice, and 1/2 tsp salt and cook, breaking it up, until browned, about 7 minutes. Stir in the pine nuts and cool slightly.",
+        "ingredient_refs": [
+          "pine-nuts",
+          "olive-oil",
+          "onions",
+          "ground-lamb",
+          "seven-spice",
+          "kosher-salt"
+        ],
+        "clock_minutes": 16,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the shell",
+        "body": "Drain the bulgur in a fine strainer and press out as much liquid as possible. Pulse the quartered onion in a food processor until fine, then add 1 1/4 lb lamb, the bulgur, 2 tsp seven-spice, 1 1/2 tsp salt, and 3 tbsp ice-cold water and process to a smooth, sticky paste, about 1 minute, working in two batches if needed.",
+        "ingredient_refs": [
+          "bulgur",
+          "onions",
+          "ground-lamb",
+          "seven-spice",
+          "kosher-salt",
+          "ice-water"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Preheat and layer",
+        "body": "Preheat the oven to 400 F. Oil a 9x13-inch dish. With wet hands, press half the shell mixture into an even layer on the bottom. Spread the filling over it. Flatten the remaining shell mixture into patties in your palms and lay them over the filling, pressing the seams together and smoothing with wet hands.",
+        "ingredient_refs": [
+          "olive-oil",
+          "ground-lamb"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Score and bake",
+        "body": "Score the top into diamonds with a knife, cutting down to the filling, and press a small hole in the center of each. Pour 1/4 cup olive oil over the top and bake until deep golden-brown with crisp edges and 160 F inside, about 35 minutes. Rest 10 minutes.",
+        "ingredient_refs": [
+          "ground-lamb",
+          "olive-oil"
+        ],
+        "clock_minutes": 50,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Make the salads",
+        "body": "During the bake, stir the yogurt with half the cucumbers, the garlic, mint, and 1/4 tsp salt. Toss the tomatoes, remaining cucumbers, parsley, lemon juice, 3 tbsp olive oil, sumac, and 1/2 tsp salt (overlap stated).",
+        "ingredient_refs": [
+          "yogurt",
+          "cucumbers",
+          "garlic",
+          "mint",
+          "kosher-salt",
+          "tomatoes",
+          "parsley",
+          "lemon",
+          "olive-oil",
+          "sumac"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Cut along the scored lines and serve squares or diamonds of kibbeh with the yogurt salad and tomato salad.",
+        "ingredient_refs": [
+          "ground-lamb",
+          "yogurt",
+          "tomatoes"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "shell",
+        "name": "kibbeh shell",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "fine bulgur",
+          "ground lamb",
+          "onion",
+          "seven-spice",
+          "salt",
+          "water"
+        ]
+      },
+      {
+        "component_id": "filling",
+        "name": "lamb and pine-nut filling",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ground lamb",
+          "onion",
+          "pine nuts",
+          "seven-spice",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "yogurt-salad",
+        "name": "yogurt-cucumber salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "yogurt",
+          "cucumber",
+          "garlic",
+          "mint"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "tomato-cucumber salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomatoes",
+          "cucumber",
+          "parsley",
+          "lemon",
+          "olive oil",
+          "sumac"
+        ]
+      }
+    ],
+    "equipment": [
+      "9x13-inch baking dish",
+      "10-inch skillet",
+      "food processor",
+      "large mixing bowls",
+      "fine-mesh strainer"
+    ],
+    "methods": [
+      "saute",
+      "bake"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "baked"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 102,
+    "total_time_minutes": 114,
+    "prep_minutes": 12,
+    "cook_minutes": 102,
+    "total_minutes": 114,
+    "time_clock": "Prep 12 + cook 102 = 114 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The bulgur soaks while the filling cooks (step 2). The salads are made during the bake (step 6 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "overlap_steps": [
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 4 (Preheat and layer) and it states the preheat. The bulgur soaks while the filling cooks (step 2). The salads are made during the bake (step 6 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium in a 10-inch skillet for the filling. Oven preheated to 400 F for the tray.",
+    "doneness": "Top deep golden-brown with crisp edges, layers holding together when cut, 160 F inside.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "tree_nuts_present",
+      "nut_policy_note": "Contains pine nuts in the filling.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains lamb (meat), yogurt (dairy), and pine nuts (tree nuts)."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: contains lamb, yogurt, and pine nuts.",
+    "allergens": [
+      "meat",
+      "wheat",
+      "tree_nut",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Meat from the lamb.",
+      "Wheat from the bulgur.",
+      "Tree nuts from the pine nuts.",
+      "Milk from the yogurt.",
+      "The seven-spice blend is a store-bought hard contract: the label lists spices only, with no wheat or nuts.",
+      "No egg, soy, sesame, fish, shellfish, or peanuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains lamb (meat), yogurt (dairy), and pine nuts (tree nuts).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "savory",
+      "crispy",
+      "herbaceous",
+      "fresh",
+      "middle-eastern"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'lebanese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook ground lamb to 160 F.",
+    "culinary_hash": "5abcc990c09c71ea4fdcff09ebe92370d317a592ca9d06cd69bbf89ef3994c9b",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_lebanese-baked-kibbeh_v1",
+    "dish_id": "lebanese-baked-kibbeh",
+    "recipe_version_id": "rv_lebanese-baked-kibbeh_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "lebanese-baked-kibbeh.webp",
+    "card_ref": "lebanese-baked-kibbeh-640.webp",
+    "master_filename": "lebanese-baked-kibbeh.webp",
+    "card_filename": "lebanese-baked-kibbeh-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "lebanese-baked-kibbeh.webp",
+        "spec_catalog_path": "/images/meals/lebanese-baked-kibbeh.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "lebanese-baked-kibbeh-640.webp",
+        "spec_catalog_path": "/images/meals/lebanese-baked-kibbeh-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "dbb3cc9ddcc2403a3b26fa3fbe871ac6323210610bc4348b595fe9c82967f75e",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "dbb3cc9ddcc2403a3b26fa3fbe871ac6323210610bc4348b595fe9c82967f75e",
+      "master_sha256": "4699cbf5a2ee0319b2a554c14205d922e1bda67a5d41cd0081489486e842640c",
+      "card_sha256": "5637a7233fbd564988375754884c0544ecc6501bdde74e24aff25753d8272b60"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "dbb3cc9ddcc2403a3b26fa3fbe871ac6323210610bc4348b595fe9c82967f75e",
+      "lebanese-baked-kibbeh.webp": "4699cbf5a2ee0319b2a554c14205d922e1bda67a5d41cd0081489486e842640c",
+      "lebanese-baked-kibbeh-640.webp": "5637a7233fbd564988375754884c0544ecc6501bdde74e24aff25753d8272b60"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 102 = 114 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The bulgur soaks while the filling cooks (step 2). The salads are made during the bake (step 6 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 4 (Preheat and layer) and it states the preheat. The bulgur soaks while the filling cooks (step 2). The salads are made during the bake (step 6 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "lebanese-baked-kibbeh.webp 1200x900 and lebanese-baked-kibbeh-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"baked\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 5x7-inch dish; bake about 25 minutes.",
+    "2": "Half of everything in an 8x8-inch dish; bake about 30 minutes.",
+    "4": "As written.",
+    "do_not_scale": [
+      "oven temperature stays 400 F at every scale"
+    ]
+  },
+  "coverage_contribution": "Lebanese 1 to 2 (lebanese-samke-harra-bulgur is the other) and the first Lebanese meat main. Baked layered kibbeh is a new format.",
+  "near_duplicate_review": "Compared with lebanese-samke-harra-bulgur: a lamb-and-bulgur bake with pine nuts and yogurt salad, not fish with tahini. Compared with spiced-lamb-meatballs: layered baked kibbeh with a bulgur shell, not meatballs. Compared with south-african-bobotie: bulgur-and-lamb layers with pine nuts, not a curried mince under an egg custard. Compared with persian-lamb-koobideh-saffron-rice in this wave: baked with bulgur, not grilled kebabs.",
+  "not_duplicate_of": "Not fried kibbeh balls (deep-fried stuffed shells are fiddly and close to the closed dumpling format).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "E"
+}

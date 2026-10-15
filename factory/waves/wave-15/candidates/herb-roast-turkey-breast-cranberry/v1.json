@@ -1,0 +1,619 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "herb-roast-turkey-breast-cranberry",
+    "slug": "herb-roast-turkey-breast-cranberry",
+    "title": "Herb-Butter Roast Turkey Breast with Cranberry-Orange Sauce and Roasted Vegetables",
+    "description": "A boneless turkey breast roast rubbed under and over the skin with garlic, sage, thyme, and rosemary butter, roasted over potatoes, carrots, and red onion until golden and juicy. Served sliced with a quick fresh cranberry-orange sauce.",
+    "cuisine": "american",
+    "meal_format": "roast-dinner",
+    "primary_ingredient": "turkey",
+    "vocabulary_tag_ids": [
+      "savory",
+      "herbaceous",
+      "tangy",
+      "tender",
+      "american"
+    ],
+    "current_recipe_id": "rcp_herb-roast-turkey-breast-cranberry",
+    "current_version_id": "rv_herb-roast-turkey-breast-cranberry_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_herb-roast-turkey-breast-cranberry",
+    "dish_id": "herb-roast-turkey-breast-cranberry",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_herb-roast-turkey-breast-cranberry_v1",
+    "recipe_id": "rcp_herb-roast-turkey-breast-cranberry",
+    "dish_id": "herb-roast-turkey-breast-cranberry",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Herb-Butter Roast Turkey Breast with Cranberry-Orange Sauce and Roasted Vegetables",
+    "description": "A boneless turkey breast roast rubbed under and over the skin with garlic, sage, thyme, and rosemary butter, roasted over potatoes, carrots, and red onion until golden and juicy. Served sliced with a quick fresh cranberry-orange sauce.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "turkey",
+        "name": "boneless skin-on turkey breast roast",
+        "display_name": "boneless skin-on turkey breast roast",
+        "quantity": 3,
+        "unit": "lb",
+        "note": "tied, or tie it at 2-inch intervals",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "softened",
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sage",
+        "name": "fresh sage",
+        "display_name": "fresh sage",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "thyme",
+        "name": "fresh thyme leaves",
+        "display_name": "fresh thyme leaves",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rosemary",
+        "name": "fresh rosemary",
+        "display_name": "fresh rosemary",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 3,
+        "unit": "tsp",
+        "note": "2 tsp turkey, 1 tsp vegetables",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "small Yukon Gold potatoes",
+        "display_name": "small Yukon Gold potatoes",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "halved",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 2-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "cranberries",
+        "name": "fresh or frozen cranberries",
+        "display_name": "fresh or frozen cranberries",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "orange",
+        "name": "orange",
+        "display_name": "orange",
+        "quantity": 1,
+        "unit": "count",
+        "note": "zest and juice (about 1/3 cup)",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 0.66,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cranberry-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat and prep",
+        "body": "Preheat the oven to 375 F. Mash the butter with the garlic, sage, thyme, rosemary, 2 tsp salt, and the pepper. Loosen the turkey skin with your fingers and spread half the butter under it and the rest over the top; tie the roast if needed. Halve the potatoes, cut the carrots, and wedge the onion, then toss with the olive oil and 1 tsp salt. Zest and juice the orange.",
+        "ingredient_refs": [
+          "butter",
+          "garlic",
+          "sage",
+          "thyme",
+          "rosemary",
+          "kosher-salt",
+          "black-pepper",
+          "turkey",
+          "potatoes",
+          "carrots",
+          "red-onion",
+          "olive-oil",
+          "orange"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Arrange",
+        "body": "Spread the vegetables in a large roasting pan and set the turkey skin side up in the middle.",
+        "ingredient_refs": [
+          "potatoes",
+          "turkey"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Roast",
+        "body": "Roast until the thickest part of the turkey reads 160 F and the skin is golden, about 1 hour 15 minutes, stirring the vegetables once halfway.",
+        "ingredient_refs": [
+          "turkey",
+          "potatoes"
+        ],
+        "clock_minutes": 75,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Rest",
+        "body": "Move the turkey to a board, tent loosely with foil, and rest 15 minutes. Return the vegetables to the oven while it rests if they need more color.",
+        "ingredient_refs": [
+          "turkey",
+          "potatoes"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Make the cranberry sauce",
+        "body": "During the roast, simmer the cranberries, sugar, orange juice and zest, and 1/2 cup water in a 2-quart saucepan over medium, stirring, until most berries burst and the sauce thickens, about 12 minutes. Cool to warm (overlap stated).",
+        "ingredient_refs": [
+          "cranberries",
+          "sugar",
+          "orange",
+          "cranberry-water"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Carve and serve",
+        "body": "Remove the twine, slice the turkey 1/2 inch thick, and serve with the roasted vegetables and cranberry sauce, spooning the pan juices over the slices.",
+        "ingredient_refs": [
+          "turkey",
+          "potatoes",
+          "carrots",
+          "cranberries"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "turkey",
+        "name": "herb-butter roast turkey breast",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "turkey breast",
+          "butter",
+          "garlic",
+          "sage",
+          "thyme",
+          "rosemary"
+        ]
+      },
+      {
+        "component_id": "vegetables",
+        "name": "roasted vegetables",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "potatoes",
+          "carrots",
+          "red onion",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "cranberry",
+        "name": "cranberry-orange sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cranberries",
+          "orange",
+          "sugar",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "large roasting pan or rimmed sheet pan",
+      "2-quart saucepan",
+      "kitchen twine",
+      "small mixing bowl",
+      "instant-read thermometer",
+      "carving board"
+    ],
+    "methods": [
+      "roast",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 98,
+    "total_time_minutes": 118,
+    "prep_minutes": 20,
+    "cook_minutes": 98,
+    "total_minutes": 118,
+    "time_clock": "Prep 20 + cook 98 = 118 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The cranberry sauce cooks during the roast (step 5 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "overlap_steps": [
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The cranberry sauce cooks during the roast (step 5 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven preheated to 375 F. A 2-quart saucepan at a simmer for the cranberry sauce.",
+    "doneness": "Turkey 160 F at the thickest part before resting (rises to about 165 F). Skin golden. Vegetables tender and browned. Cranberries burst and the sauce thick.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains turkey (poultry) and butter (dairy)."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: contains turkey and butter.",
+    "allergens": [
+      "poultry",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Poultry from the turkey.",
+      "Milk from the butter.",
+      "No egg, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains turkey (poultry) and butter (dairy).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "savory",
+      "herbaceous",
+      "tangy",
+      "tender",
+      "american"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'american' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook turkey to 165 F (remove at 160 F and rest 15 minutes; the temperature rises). Use a thermometer in the thickest part.",
+    "culinary_hash": "de62d99998e8bc64c908973a01980fd97309873cdec6b4adcdd2d787a4601ca8",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_herb-roast-turkey-breast-cranberry_v1",
+    "dish_id": "herb-roast-turkey-breast-cranberry",
+    "recipe_version_id": "rv_herb-roast-turkey-breast-cranberry_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "herb-roast-turkey-breast-cranberry.webp",
+    "card_ref": "herb-roast-turkey-breast-cranberry-640.webp",
+    "master_filename": "herb-roast-turkey-breast-cranberry.webp",
+    "card_filename": "herb-roast-turkey-breast-cranberry-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "herb-roast-turkey-breast-cranberry.webp",
+        "spec_catalog_path": "/images/meals/herb-roast-turkey-breast-cranberry.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "herb-roast-turkey-breast-cranberry-640.webp",
+        "spec_catalog_path": "/images/meals/herb-roast-turkey-breast-cranberry-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "ee44e49a94fe7d4a1691d20e0bcb2d2a6598fe89d201047e00244694a463f813",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "ee44e49a94fe7d4a1691d20e0bcb2d2a6598fe89d201047e00244694a463f813",
+      "master_sha256": "627a321a4b35a3423abc6c0e8107c90b87ce506c401b606026170d7b698e56ac",
+      "card_sha256": "42a4cde60ea3263475d305110809275b10f77a9b960d2a289e7d0de860daa335"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "ee44e49a94fe7d4a1691d20e0bcb2d2a6598fe89d201047e00244694a463f813",
+      "herb-roast-turkey-breast-cranberry.webp": "627a321a4b35a3423abc6c0e8107c90b87ce506c401b606026170d7b698e56ac",
+      "herb-roast-turkey-breast-cranberry-640.webp": "42a4cde60ea3263475d305110809275b10f77a9b960d2a289e7d0de860daa335"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 20 + cook 98 = 118 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The cranberry sauce cooks during the roast (step 5 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The cranberry sauce cooks during the roast (step 5 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "herb-roast-turkey-breast-cranberry.webp 1200x900 and herb-roast-turkey-breast-cranberry-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Use a 1-lb turkey tenderloin with a quarter of the butter and vegetables; roast about 30 minutes.",
+    "2": "Use a 1 1/2-lb breast half; roast about 50 minutes.",
+    "4": "As written.",
+    "do_not_scale": [
+      "go by temperature, not time, at every scale"
+    ]
+  },
+  "coverage_contribution": "First whole-roast poultry centerpiece (turkey coverage was meatloaf, larb, and sloppy joes). A holiday-style dinner sized for a weeknight.",
+  "near_duplicate_review": "Compared with glazed-turkey-meatloaf: a whole roasted breast with herb butter, not ground turkey. Compared with sheet-pan-lemon-herb-chicken: turkey breast roast with cranberry sauce, not chicken pieces with lemon. Compared with seared-duck-breast-cherry: a slow roast with vegetables, not seared duck with a cherry pan sauce.",
+  "not_duplicate_of": "Not a whole turkey (a holiday-only, 4-hour project).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "E"
+}
