@@ -1,0 +1,601 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "greek-gemista-stuffed-vegetables",
+    "slug": "greek-gemista-stuffed-vegetables",
+    "title": "Greek Gemista: Herb-and-Rice Stuffed Tomatoes and Peppers",
+    "description": "Big tomatoes and bell peppers hollowed out and filled with rice simmered in their own tomato pulp with onion, garlic, parsley, mint, and oregano, then slow-baked with olive oil and potato wedges until the vegetables slump, the rice is tender, and the tops and potatoes are caramelized.",
+    "cuisine": "greek",
+    "meal_format": "baked-vegetables",
+    "primary_ingredient": "tomatoes",
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "savory",
+      "tender",
+      "fresh",
+      "mediterranean"
+    ],
+    "current_recipe_id": "rcp_greek-gemista-stuffed-vegetables",
+    "current_version_id": "rv_greek-gemista-stuffed-vegetables_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_greek-gemista-stuffed-vegetables",
+    "dish_id": "greek-gemista-stuffed-vegetables",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_greek-gemista-stuffed-vegetables_v1",
+    "recipe_id": "rcp_greek-gemista-stuffed-vegetables",
+    "dish_id": "greek-gemista-stuffed-vegetables",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Greek Gemista: Herb-and-Rice Stuffed Tomatoes and Peppers",
+    "description": "Big tomatoes and bell peppers hollowed out and filled with rice simmered in their own tomato pulp with onion, garlic, parsley, mint, and oregano, then slow-baked with olive oil and potato wedges until the vegetables slump, the rice is tender, and the tops and potatoes are caramelized.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "tomatoes",
+        "name": "beefsteak tomatoes",
+        "display_name": "large ripe beefsteak tomatoes",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "tops cut off and kept, pulp scooped out and grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bell-peppers",
+        "name": "bell peppers",
+        "display_name": "red, yellow, or green bell peppers",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "tops cut off and kept, seeds removed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "large yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "medium-grain-rice",
+        "name": "medium-grain rice",
+        "display_name": "medium-grain rice (Arborio or Carolina)",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "uncooked",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "mint",
+        "name": "mint leaves",
+        "display_name": "mint leaves",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "dried-oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "yukon-potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 1-inch wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pan-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "poured into the roasting pan",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "3 tbsp filling, 5 tbsp pan and tops",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "1 1/2 tsp filling, 1/2 tsp inside the vegetables, 1/2 tsp potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat and hollow",
+        "body": "Turn the oven on to 375 F to preheat with a rack in the lower-middle position. Cut the tops off the tomatoes and peppers and keep them as lids. Scoop the tomato pulp into a bowl, leaving 1/4-inch walls, and grate or finely chop the pulp. Seed the peppers. Sprinkle the insides of all 8 vegetables with 1/2 tsp salt and set them in the roasting pan. Grate the onion, mince the garlic, and chop the parsley and mint.",
+        "ingredient_refs": [
+          "tomatoes",
+          "bell-peppers",
+          "kosher-salt",
+          "yellow-onion",
+          "garlic",
+          "parsley",
+          "mint"
+        ],
+        "clock_minutes": 25,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the filling base",
+        "body": "Heat 3 tbsp olive oil in a 10-inch skillet over medium. Cook the onion until soft, 4 minutes; add the garlic for 1 minute.",
+        "ingredient_refs": [
+          "olive-oil",
+          "yellow-onion",
+          "garlic"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer the rice",
+        "body": "Add the rice, tomato paste, tomato pulp, sugar, oregano, 1 1/2 tsp salt, and the pepper. Simmer, stirring, 7 minutes, until the rice is partly softened and has absorbed some juice (it finishes in the oven). Stir in the parsley and mint. While it simmers, toss the potato wedges with 2 tbsp olive oil and 1/2 tsp salt and tuck them between the vegetables (overlap stated).",
+        "ingredient_refs": [
+          "medium-grain-rice",
+          "tomato-paste",
+          "tomatoes",
+          "sugar",
+          "dried-oregano",
+          "kosher-salt",
+          "black-pepper",
+          "parsley",
+          "mint",
+          "yukon-potatoes",
+          "olive-oil"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Fill",
+        "body": "Spoon the filling into the vegetables to about 3/4 full, spooning in any juices so the rice sits in liquid. Replace the lids, pour 1 cup water into the pan around the vegetables, and drizzle the remaining 3 tbsp olive oil over the tops.",
+        "ingredient_refs": [
+          "medium-grain-rice",
+          "tomatoes",
+          "bell-peppers",
+          "pan-water",
+          "olive-oil"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Bake",
+        "body": "Cover the pan with foil and bake in the preheated 375 F oven 40 minutes. Uncover, baste the tops with pan juices, and bake 25 minutes more, until the rice is fully tender, the vegetables slump, and the tops and potatoes are browned.",
+        "ingredient_refs": [
+          "tomatoes",
+          "bell-peppers",
+          "yukon-potatoes"
+        ],
+        "clock_minutes": 65,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Rest and serve",
+        "body": "Rest 5 minutes, then serve 2 stuffed vegetables per person with potatoes and a spoonful of pan juices.",
+        "ingredient_refs": [
+          "tomatoes",
+          "bell-peppers",
+          "yukon-potatoes"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "filling",
+        "name": "herbed tomato rice filling",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "medium-grain rice",
+          "tomato pulp",
+          "onion",
+          "garlic",
+          "tomato paste",
+          "parsley",
+          "mint",
+          "oregano",
+          "sugar",
+          "olive oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "vegetables",
+        "name": "stuffed tomatoes and peppers with potatoes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomatoes",
+          "bell peppers",
+          "potatoes",
+          "water",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "9 x 13-inch or larger roasting pan",
+      "10-inch skillet",
+      "foil",
+      "box grater",
+      "spoon or melon baller"
+    ],
+    "methods": [
+      "saute",
+      "simmer",
+      "bake"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 25,
+    "cook_time_minutes": 85,
+    "total_time_minutes": 110,
+    "prep_minutes": 25,
+    "cook_minutes": 85,
+    "total_minutes": 110,
+    "time_clock": "Prep 25 + cook 85 = 110 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0 and has heated 40 minutes when the pan goes in. The potato prep runs inside the filling simmer (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Preheat and hollow) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0 and has heated 40 minutes when the pan goes in. The potato prep runs inside the filling simmer (step 3 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven preheated to 375 F. Covered bake, then uncovered to caramelize.",
+    "doneness": "Rice fully tender all the way through (taste one); peppers soft and slumped; tomato caps and potato edges browned; pan juices mostly reduced and syrupy.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and plant_based: rice, vegetables, herbs, and olive oil.",
+    "allergens": [],
+    "allergen_notes": [
+      "No FlavorWeave allergen tokens: no egg, milk, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "No feta on top and no ground meat in the filling; no pine nuts.",
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "savory",
+      "tender",
+      "fresh",
+      "mediterranean"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'greek' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "586fd96f8bb2cfac7cf0e34cf1607c638b7bfef95b7a1793afd30cf0eb4ae3ac",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_greek-gemista-stuffed-vegetables_v1",
+    "dish_id": "greek-gemista-stuffed-vegetables",
+    "recipe_version_id": "rv_greek-gemista-stuffed-vegetables_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "greek-gemista-stuffed-vegetables.webp",
+    "card_ref": "greek-gemista-stuffed-vegetables-640.webp",
+    "master_filename": "greek-gemista-stuffed-vegetables.webp",
+    "card_filename": "greek-gemista-stuffed-vegetables-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "greek-gemista-stuffed-vegetables.webp",
+        "spec_catalog_path": "/images/meals/greek-gemista-stuffed-vegetables.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "greek-gemista-stuffed-vegetables-640.webp",
+        "spec_catalog_path": "/images/meals/greek-gemista-stuffed-vegetables-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "97e71cca1c34ce6c6b085de79eca479d78f1fa03029c7f03961666d316116c00",
+      "master_sha256": "b74c74d731ea525c35956267568142a297a8a00cc602fe315e2d885a1d38b224",
+      "card_sha256": "919c45c60366ae4731aba81307f94dd13bf979e16166c840b650b7ccc5cd1fd6"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "97e71cca1c34ce6c6b085de79eca479d78f1fa03029c7f03961666d316116c00",
+      "greek-gemista-stuffed-vegetables.webp": "b74c74d731ea525c35956267568142a297a8a00cc602fe315e2d885a1d38b224",
+      "greek-gemista-stuffed-vegetables-640.webp": "919c45c60366ae4731aba81307f94dd13bf979e16166c840b650b7ccc5cd1fd6"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 25 + cook 85 = 110 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0 and has heated 40 minutes when the pan goes in. The potato prep runs inside the filling simmer (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Preheat and hollow) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0 and has heated 40 minutes when the pan goes in. The potato prep runs inside the filling simmer (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "greek-gemista-stuffed-vegetables.webp 1200x900 and greek-gemista-stuffed-vegetables-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make 2 vegetables with a quarter of the filling in a small dish; the bake time is the same.",
+    "2": "Half in an 8 x 8-inch dish; the bake time is the same.",
+    "4": "As written; 8 stuffed vegetables.",
+    "do_not_scale": [
+      "rice must be submerged in juices for the covered bake; keep the 1 cup pan water for any batch size above 2"
+    ]
+  },
+  "coverage_contribution": "Greek appears only as greek-chicken-souvlaki; this is the first Greek oven dish and first Greek plant main. A plant main with rice inside vegetables, a format the catalog lacks. HH001 long-cook make-ahead.",
+  "near_duplicate_review": "Compared with lentil-stuffed-cabbage: hollowed tomatoes and peppers with raw-rice filling, not rolled leaves with lentils. Compared with herbed-polenta-tomato-stew: baked stuffed vegetables, no polenta. Compared with greek-chicken-souvlaki: plant-based oven dish. Ratatouille and moussaka were rejected in this wave.",
+  "not_duplicate_of": "Not dolmades (vine leaves). Not a casserole.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

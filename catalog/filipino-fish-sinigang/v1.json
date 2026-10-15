@@ -1,0 +1,580 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "filipino-fish-sinigang",
+    "slug": "filipino-fish-sinigang",
+    "title": "Filipino Fish Sinigang with Tamarind Broth",
+    "description": "A bright, sour tamarind broth simmered with tomato, onion, daikon, and green beans, then finished by gently poaching chunks of red snapper and wilting bok choy. Served with steamed jasmine rice.",
+    "cuisine": "filipino",
+    "meal_format": "soup",
+    "primary_ingredient": "red-snapper",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "fresh",
+      "savory",
+      "soups"
+    ],
+    "current_recipe_id": "rcp_filipino-fish-sinigang",
+    "current_version_id": "rv_filipino-fish-sinigang_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_filipino-fish-sinigang",
+    "dish_id": "filipino-fish-sinigang",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_filipino-fish-sinigang_v1",
+    "recipe_id": "rcp_filipino-fish-sinigang",
+    "dish_id": "filipino-fish-sinigang",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Filipino Fish Sinigang with Tamarind Broth",
+    "description": "A bright, sour tamarind broth simmered with tomato, onion, daikon, and green beans, then finished by gently poaching chunks of red snapper and wilting bok choy. Served with steamed jasmine rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "snapper-fillets",
+        "name": "red snapper",
+        "display_name": "skin-on red snapper fillets",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 2-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soup-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 8,
+        "unit": "cup",
+        "note": "for the broth",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "tamarind-paste",
+        "name": "tamarind paste",
+        "display_name": "tamarind paste",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "seedless concentrate",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tamarind-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "hot, to loosen the tamarind",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "Roma tomatoes",
+        "display_name": "Roma tomatoes",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "quartered",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 2,
+        "unit": "inch",
+        "note": null,
+        "preparation": "sliced into coins",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "daikon",
+        "name": "daikon radish",
+        "display_name": "daikon radish",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": "peeled, halved lengthwise, sliced 1/4 inch",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-beans",
+        "name": "green beans",
+        "display_name": "green beans",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": "trimmed, cut into 2-inch lengths",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bok-choy",
+        "name": "baby bok choy",
+        "display_name": "baby bok choy",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved lengthwise",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "serrano",
+        "name": "serrano chiles",
+        "display_name": "serrano chiles",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "left whole",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fish-sauce",
+        "name": "fish sauce",
+        "display_name": "fish sauce",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Quarter the tomatoes, cut the onion into wedges, and slice the ginger. Peel and slice the daikon; trim and cut the green beans; halve the bok choy. Cut the snapper into 2-inch pieces, sprinkle with the salt, and refrigerate. In a small bowl stir the tamarind paste into 1/2 cup hot water until smooth. Rinse the rice.",
+        "ingredient_refs": [
+          "tomatoes",
+          "yellow-onion",
+          "ginger",
+          "daikon",
+          "green-beans",
+          "bok-choy",
+          "snapper-fillets",
+          "kosher-salt",
+          "tamarind-paste",
+          "tamarind-water",
+          "jasmine-rice"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the broth",
+        "body": "Put 8 cups water, the tomatoes, onion, and ginger in a 6-quart pot. Cover and bring to a boil over high heat, about 10 minutes.",
+        "ingredient_refs": [
+          "soup-water",
+          "tomatoes",
+          "yellow-onion",
+          "ginger"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer the vegetables",
+        "body": "Uncover, reduce to medium-low, and simmer 10 minutes, until the tomatoes slump. Add the daikon and simmer 8 minutes more. Meanwhile combine the rice and 2 1/4 cups water in a 2-quart saucepan, bring to a boil, cover, cook on low 15 minutes, and rest covered off the heat; this runs inside the broth simmer and step 4 (overlap stated).",
+        "ingredient_refs": [
+          "daikon",
+          "jasmine-rice",
+          "rice-water"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Sour and season",
+        "body": "Strain the tamarind mixture (the paste loosened in its 1/2 cup water) into the pot through a fine-mesh strainer, pressing on the solids. Add the fish sauce, the whole serranos, and the green beans; simmer 4 minutes.",
+        "ingredient_refs": [
+          "tamarind-paste",
+          "tamarind-water",
+          "fish-sauce",
+          "serrano",
+          "green-beans"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Poach the fish and serve",
+        "body": "Lower the heat so the broth barely bubbles. Slip in the snapper and the bok choy and poach 5 to 6 minutes, without stirring, until the fish is opaque, just flaking, and 145 F. Taste for sourness and salt. Ladle into deep bowls and serve the rice alongside.",
+        "ingredient_refs": [
+          "snapper-fillets",
+          "bok-choy",
+          "jasmine-rice"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "sinigang-broth",
+        "name": "tamarind fish sinigang",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "water",
+          "tamarind paste",
+          "tomatoes",
+          "onion",
+          "ginger",
+          "daikon",
+          "green beans",
+          "red snapper",
+          "bok choy",
+          "fish sauce",
+          "serrano"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "steamed jasmine rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart pot",
+      "2-quart saucepan with lid",
+      "small bowl",
+      "fine-mesh strainer"
+    ],
+    "methods": [
+      "simmer",
+      "poach"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 39,
+    "total_time_minutes": 51,
+    "prep_minutes": 12,
+    "cook_minutes": 39,
+    "total_minutes": 51,
+    "time_clock": "Prep 12 + cook 39 = 51 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered inside the broth simmer (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "High to boil, then a gentle medium-low simmer. The fish poaches below a boil.",
+    "doneness": "Daikon translucent and tender; green beans bright and tender-crisp; snapper opaque and just flaking, 145 F; bok choy wilted but green.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. Fish because of the snapper and the fish sauce.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish is the red snapper and the fish sauce (anchovy).",
+      "No egg, milk, soy, wheat, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "Broth is tamarind and water with a measured amount of fish sauce. No pork, no shrimp, no bouillon cube.",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "fresh",
+      "savory",
+      "soups"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'filipino' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "94c66e799d5614c0efb62c017759fab8f8f7d20add5a422ffbcc95d58bf361d0",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_filipino-fish-sinigang_v1",
+    "dish_id": "filipino-fish-sinigang",
+    "recipe_version_id": "rv_filipino-fish-sinigang_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "filipino-fish-sinigang.webp",
+    "card_ref": "filipino-fish-sinigang-640.webp",
+    "master_filename": "filipino-fish-sinigang.webp",
+    "card_filename": "filipino-fish-sinigang-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "filipino-fish-sinigang.webp",
+        "spec_catalog_path": "/images/meals/filipino-fish-sinigang.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "filipino-fish-sinigang-640.webp",
+        "spec_catalog_path": "/images/meals/filipino-fish-sinigang-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "ee5e52ff4c4ea2ec9b2b0ec20758219c97e03ba411c31b8b6ccd9790809ae7c6",
+      "master_sha256": "261434cfa31e8bd6632d3efe35d89e5a70b33791ce5048b49b0c660e396839c4",
+      "card_sha256": "fe55009b9c959002a9fa8a4e1ea24af1de18437f7b2a868b660ac5fdf81b3d26"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "ee5e52ff4c4ea2ec9b2b0ec20758219c97e03ba411c31b8b6ccd9790809ae7c6",
+      "filipino-fish-sinigang.webp": "261434cfa31e8bd6632d3efe35d89e5a70b33791ce5048b49b0c660e396839c4",
+      "filipino-fish-sinigang-640.webp": "fe55009b9c959002a9fa8a4e1ea24af1de18437f7b2a868b660ac5fdf81b3d26"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 39 = 51 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered inside the broth simmer (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "filipino-fish-sinigang.webp 1200x900 and filipino-fish-sinigang-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 2-quart pot; simmer times stay the same.",
+    "2": "Half in a 4-quart pot.",
+    "4": "As written.",
+    "do_not_scale": [
+      "poach time for the fish stays 5 to 6 minutes"
+    ]
+  },
+  "coverage_contribution": "Filipino 1 to 2 (adobo is chicken). First sour broth and first fish soup in the catalog. Red snapper is a new species. HH001 soup.",
+  "near_duplicate_review": "Compared with vietnamese-chicken-pho and miso-mushroom-ramen: no noodles, no spiced or miso stock; a sour tamarind broth with fish. Compared with brazilian-fish-moqueca: clear broth, no coconut, no peppers. Compared with vietnamese-turmeric-dill-fish: poached in broth, not seared with turmeric. Compared with korean-soft-tofu-stew: no tofu, no gochugaru.",
+  "not_duplicate_of": "Not pork sinigang (wave-14 already carries several pork mains; this one is HH001 fish).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

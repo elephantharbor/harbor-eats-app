@@ -1,0 +1,557 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "ghanaian-red-red-plantains",
+    "slug": "ghanaian-red-red-plantains",
+    "title": "Ghanaian Red-Red: Black-Eyed Pea Stew with Spiced Roasted Plantains",
+    "description": "Black-eyed peas simmered in a vivid red stew of red palm oil, tomato, onion, ginger, garlic, and Scotch bonnet, served with oven-roasted ripe plantains tossed in ginger and cayenne (a baked take on kelewele).",
+    "cuisine": "ghanaian",
+    "meal_format": "stew",
+    "primary_ingredient": "black-eyed-peas",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "savory",
+      "rich",
+      "stews"
+    ],
+    "current_recipe_id": "rcp_ghanaian-red-red-plantains",
+    "current_version_id": "rv_ghanaian-red-red-plantains_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_ghanaian-red-red-plantains",
+    "dish_id": "ghanaian-red-red-plantains",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_ghanaian-red-red-plantains_v1",
+    "recipe_id": "rcp_ghanaian-red-red-plantains",
+    "dish_id": "ghanaian-red-red-plantains",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Ghanaian Red-Red: Black-Eyed Pea Stew with Spiced Roasted Plantains",
+    "description": "Black-eyed peas simmered in a vivid red stew of red palm oil, tomato, onion, ginger, garlic, and Scotch bonnet, served with oven-roasted ripe plantains tossed in ginger and cayenne (a baked take on kelewele).",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "black-eyed-peas",
+        "name": "black-eyed peas",
+        "display_name": "15-oz cans black-eyed peas",
+        "quantity": 2,
+        "unit": "can",
+        "note": null,
+        "preparation": "drained and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-palm-oil",
+        "name": "red palm oil",
+        "display_name": "red palm oil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "large yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "crushed-tomatoes",
+        "name": "crushed tomatoes",
+        "display_name": "14-oz can crushed tomatoes",
+        "quantity": 14,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated; 1 1/2 tbsp stew, 1/2 tbsp plantains",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scotch-bonnet",
+        "name": "Scotch bonnet chile",
+        "display_name": "Scotch bonnet chile",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "pierced twice, left whole",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "stew-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "for the stew",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "plantains",
+        "name": "ripe plantains",
+        "display_name": "ripe yellow-black plantains",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "peeled, cut into 3/4-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cayenne",
+        "name": "cayenne",
+        "display_name": "cayenne",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "for the plantains",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 1/2 tsp stew, 1/2 tsp plantains",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat and prep",
+        "body": "Turn the oven on to 425 F to preheat and line a sheet pan with parchment. Dice the onion, mince the garlic, grate the ginger, and drain the peas. Peel and chunk the plantains and toss them with the oil, 1/2 tbsp ginger, the cayenne, and 1/2 tsp salt.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "garlic",
+          "ginger",
+          "black-eyed-peas",
+          "plantains",
+          "neutral-oil",
+          "cayenne",
+          "kosher-salt"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Roast the plantains",
+        "body": "Spread the plantains on the pan and roast in the preheated 425 F oven 25 to 28 minutes, flipping once, until caramelized at the edges. Runs inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "plantains"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 3,
+        "title": "Build the stew base",
+        "body": "Warm the red palm oil in the Dutch oven over medium. Cook the onion until soft, 5 minutes; add the remaining ginger and the garlic for 1 minute, then the tomato paste for 1 minute, stirring.",
+        "ingredient_refs": [
+          "red-palm-oil",
+          "yellow-onion",
+          "ginger",
+          "garlic",
+          "tomato-paste"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer",
+        "body": "Add the crushed tomatoes, 1 cup water, the Scotch bonnet, and 1 1/2 tsp salt. Simmer 10 minutes, then add the peas and simmer 10 minutes more, stirring now and then and mashing a few peas to thicken.",
+        "ingredient_refs": [
+          "crushed-tomatoes",
+          "stew-water",
+          "scotch-bonnet",
+          "kosher-salt",
+          "black-eyed-peas"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Remove the Scotch bonnet. Serve the red-red in bowls with the roasted plantains alongside.",
+        "ingredient_refs": [
+          "scotch-bonnet",
+          "black-eyed-peas",
+          "plantains"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "stew",
+        "name": "black-eyed pea red stew",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "black-eyed peas",
+          "red palm oil",
+          "onion",
+          "crushed tomatoes",
+          "tomato paste",
+          "ginger",
+          "garlic",
+          "Scotch bonnet",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "plantains",
+        "name": "spiced roasted plantains",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ripe plantains",
+          "ginger",
+          "cayenne",
+          "oil",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "5-quart Dutch oven",
+      "rimmed sheet pan",
+      "parchment",
+      "medium bowl"
+    ],
+    "methods": [
+      "saute",
+      "simmer",
+      "roast"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 30,
+    "total_time_minutes": 45,
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "total_minutes": 45,
+    "time_clock": "Prep 15 + cook 30 = 45 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0 and has heated 15 minutes when the plantains go in; they roast inside the stew steps (step 2 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [
+        2
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0 and has heated 15 minutes when the plantains go in; they roast inside the stew steps (step 2 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven preheated to 425 F for the plantains. Medium sauté; medium-low simmer.",
+    "doneness": "Stew thick and glossy with a little red oil on top; peas creamy. Plantains caramelized at the edges and soft through.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and plant_based.",
+    "allergens": [],
+    "allergen_notes": [
+      "No FlavorWeave allergen tokens.",
+      "Red palm oil: choose a sustainably certified (RSPO) brand."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "No smoked fish or shrimp powder (common additions); palm oil and neutral oil only.",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "savory",
+      "rich",
+      "stews"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'ghanaian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "c297f580f22d428c8dbf32bd54205b63716094b954e6d8fd21f412e0b5b8ed95",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_ghanaian-red-red-plantains_v1",
+    "dish_id": "ghanaian-red-red-plantains",
+    "recipe_version_id": "rv_ghanaian-red-red-plantains_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "ghanaian-red-red-plantains.webp",
+    "card_ref": "ghanaian-red-red-plantains-640.webp",
+    "master_filename": "ghanaian-red-red-plantains.webp",
+    "card_filename": "ghanaian-red-red-plantains-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "ghanaian-red-red-plantains.webp",
+        "spec_catalog_path": "/images/meals/ghanaian-red-red-plantains.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "ghanaian-red-red-plantains-640.webp",
+        "spec_catalog_path": "/images/meals/ghanaian-red-red-plantains-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "643a69591d14b822f138ab676842e4897a42bb49aa1752418dbb4b343ae66dc9",
+      "master_sha256": "437edd67e0cd3530938391d9953a677fccbc1003470f65ca3f855667aa3590e2",
+      "card_sha256": "4c0b860f356f0bd4831f720e2ec2ebcf7c9d1111c7201ed99f0678cf861c6f25"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "643a69591d14b822f138ab676842e4897a42bb49aa1752418dbb4b343ae66dc9",
+      "ghanaian-red-red-plantains.webp": "437edd67e0cd3530938391d9953a677fccbc1003470f65ca3f855667aa3590e2",
+      "ghanaian-red-red-plantains-640.webp": "4c0b860f356f0bd4831f720e2ec2ebcf7c9d1111c7201ed99f0678cf861c6f25"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 30 = 45 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0 and has heated 15 minutes when the plantains go in; they roast inside the stew steps (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0 and has heated 15 minutes when the plantains go in; they roast inside the stew steps (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "ghanaian-red-red-plantains.webp 1200x900 and ghanaian-red-red-plantains-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make the full stew; it keeps 4 days. Roast one plantain per person.",
+    "2": "Full stew, 2 plantains.",
+    "4": "As written.",
+    "do_not_scale": [
+      "Scotch bonnet heat: pierce it and leave it whole for medium heat"
+    ]
+  },
+  "coverage_contribution": "Ghanaian 0 to 1. Black-eyed peas 0 to 1. A second West African dish (yassa is fish; this is plant). Plantains also appear in the arepas in this wave, in a different role (stuffed versus side); flagged for the auditor.",
+  "near_duplicate_review": "Compared with pumpkin-pinto-bean-chili and smoky-lentil-sweet-potato-stew: palm-oil tomato stew with black-eyed peas and plantains. Compared with coconut-chickpea-curry: no coconut, no curry spices. Compared with the arepas in this wave: a stew plate, plantains roasted as a side.",
+  "not_duplicate_of": "Not jollof (rejected). Not Nigerian ewa agoyin.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

@@ -1,0 +1,27 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "glazed-turkey-meatloaf.webp",
+    "glazed-turkey-meatloaf-640.webp"
+  ],
+  "present_files": [
+    "glazed-turkey-meatloaf.webp",
+    "glazed-turkey-meatloaf-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "8bd1a4b75058559b0a64767431977597542a5e5a3ce73736800667cf500dc93c",
+    "glazed-turkey-meatloaf.webp": "dee71cce4cba4d0287c98cd7df8fe75125d9f6bfb6e463e2070c79b322d8fbb6",
+    "glazed-turkey-meatloaf-640.webp": "7f29d2e57bebd9b86c195b1d5f19b27dd29ee070cfe81465f623cbd6f5fe22cf"
+  },
+  "package_revision": "freeze-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

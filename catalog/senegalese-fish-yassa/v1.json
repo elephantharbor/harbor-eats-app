@@ -1,0 +1,585 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "senegalese-fish-yassa",
+    "slug": "senegalese-fish-yassa",
+    "title": "Senegalese Fish Yassa with Lemon-Mustard Onions and Rice",
+    "description": "Broiled tilapia fillets under a heap of onions slowly cooked down in a lemon, Dijon, and garlic marinade until soft, golden, and jammy, with a whole habanero for gentle heat. Served over white rice with parsley and lemon.",
+    "cuisine": "west-african",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "tilapia",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "citrusy",
+      "savory",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_senegalese-fish-yassa",
+    "current_version_id": "rv_senegalese-fish-yassa_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_senegalese-fish-yassa",
+    "dish_id": "senegalese-fish-yassa",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_senegalese-fish-yassa_v1",
+    "recipe_id": "rcp_senegalese-fish-yassa",
+    "dish_id": "senegalese-fish-yassa",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Senegalese Fish Yassa with Lemon-Mustard Onions and Rice",
+    "description": "Broiled tilapia fillets under a heap of onions slowly cooked down in a lemon, Dijon, and garlic marinade until soft, golden, and jammy, with a whole habanero for gentle heat. Served over white rice with parsley and lemon.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "tilapia-fillets",
+        "name": "tilapia",
+        "display_name": "tilapia fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 6 oz each, 1 1/2 lb total",
+        "preparation": "patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onions",
+        "name": "yellow onions",
+        "display_name": "large yellow onions",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 2 lb",
+        "preparation": "halved and thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemons",
+        "name": "lemons",
+        "display_name": "lemons",
+        "quantity": 4,
+        "unit": "count",
+        "note": "3 juiced (about 1/2 cup), 1 cut into wedges",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dijon-mustard",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "habanero",
+        "name": "habanero chile",
+        "display_name": "habanero chile",
+        "quantity": 1,
+        "unit": "count",
+        "note": "removed before serving; gives gentle heat",
+        "preparation": "pierced twice with a knife, left whole",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bay-leaves",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "1 tsp marinade, 1 tsp onions, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "3 tbsp onions, 1 tbsp sheet pan",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onion-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for the onion sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "long-grain-rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Marinate and slice",
+        "body": "Juice 3 lemons (about 1/2 cup) and cut the fourth into wedges. In a large bowl whisk the lemon juice, Dijon, garlic, 1 tsp salt, and the pepper. Put the fish in a shallow dish, spoon 3 tbsp of the marinade over it, turn to coat, and refrigerate. Thinly slice the onions and toss them in the remaining marinade. Rinse the rice and chop the parsley.",
+        "ingredient_refs": [
+          "lemons",
+          "dijon-mustard",
+          "garlic",
+          "kosher-salt",
+          "black-pepper",
+          "tilapia-fillets",
+          "yellow-onions",
+          "long-grain-rice",
+          "parsley"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the rice",
+        "body": "Combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan. Bring to a boil over high heat, cover, reduce to low, and cook 15 minutes; then leave it covered off the heat for 10 minutes. The covered cooking and rest run inside steps 3 and 4 (overlap stated).",
+        "ingredient_refs": [
+          "long-grain-rice",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook down the onions",
+        "body": "Heat 3 tbsp oil in a 12-inch skillet over medium-high. Lift the onions out of the marinade with tongs (keep the liquid) and cook, stirring every minute or two, until soft and browned at the edges, about 10 minutes. Add the reserved marinade, 1/2 cup water, the bay leaves, the habanero, and 1 tsp salt. Simmer over medium-low, partly covered and stirring every few minutes, until the onions are jammy and the sauce is thick and glossy, about 20 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "yellow-onions",
+          "onion-water",
+          "bay-leaves",
+          "habanero",
+          "kosher-salt",
+          "lemons",
+          "dijon-mustard",
+          "garlic"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Broil the fish",
+        "body": "When the onions have about 12 minutes left, set an oven rack 6 inches below the broiler and turn the broiler to high; let it heat 5 minutes. Brush a foil-lined sheet pan with 1 tbsp oil, lay the fillets on it, and broil 6 to 7 minutes, without turning, until opaque, flaking, 145 F in the center, and lightly browned at the edges. This runs inside the last 12 minutes of step 3 (overlap stated).",
+        "ingredient_refs": [
+          "neutral-oil",
+          "tilapia-fillets"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Remove the bay leaves and habanero. Fluff the rice and divide it among plates. Set a fillet on each, heap the onions and their sauce over the fish, and finish with parsley and a lemon wedge.",
+        "ingredient_refs": [
+          "bay-leaves",
+          "habanero",
+          "long-grain-rice",
+          "tilapia-fillets",
+          "yellow-onions",
+          "parsley",
+          "lemons"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "yassa-onions",
+        "name": "lemon-mustard yassa onions",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "onions",
+          "lemon juice",
+          "Dijon mustard",
+          "garlic",
+          "habanero",
+          "bay leaves",
+          "water",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "broiled-fish",
+        "name": "broiled tilapia",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tilapia",
+          "marinade",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "steamed white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long-grain white rice",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "2-quart saucepan with lid",
+      "rimmed sheet pan",
+      "foil",
+      "large bowl",
+      "shallow dish"
+    ],
+    "methods": [
+      "simmer",
+      "broil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 36,
+    "total_time_minutes": 51,
+    "prep_minutes": 15,
+    "cook_minutes": 36,
+    "total_minutes": 51,
+    "time_clock": "Prep 15 + cook 36 = 51 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The broiler heats inside the onion simmer (step 4 states the overlap), and the rice cooks covered inside steps 3 and 4.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        5
+      ],
+      "overlap_steps": [
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 4 (Broil the fish) and it states the preheat. The broiler heats inside the onion simmer (step 4 states the overlap), and the rice cooks covered inside steps 3 and 4.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high then medium-low skillet for the onions. Broiler on high, rack 6 inches below, for the fish. Low covered simmer for the rice.",
+    "doneness": "Onions very soft, golden, and jammy with a thick, glossy sauce. Fish opaque, flaking, and 145 F, lightly browned at the edges. Rice tender and dry.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: the sauce is onions, lemon, mustard, garlic, oil, and water. Fish because of the tilapia.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish is the tilapia.",
+      "Dijon mustard is not a FlavorWeave allergen token; no egg, milk, soy, wheat, sesame, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "Oil, lemon, and Dijon only. No butter and no stock cube. Fish is tilapia.",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "citrusy",
+      "savory",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'west-african' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "3263d5fbd0041e0772a3482af39526178aee588c392c87c6d741a2ba1d9e9cf7",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_senegalese-fish-yassa_v1",
+    "dish_id": "senegalese-fish-yassa",
+    "recipe_version_id": "rv_senegalese-fish-yassa_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "senegalese-fish-yassa.webp",
+    "card_ref": "senegalese-fish-yassa-640.webp",
+    "master_filename": "senegalese-fish-yassa.webp",
+    "card_filename": "senegalese-fish-yassa-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "senegalese-fish-yassa.webp",
+        "spec_catalog_path": "/images/meals/senegalese-fish-yassa.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "senegalese-fish-yassa-640.webp",
+        "spec_catalog_path": "/images/meals/senegalese-fish-yassa-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "b8af5dcc08df359603b0f21cdbe1d62f8f9696d08db68c86c45899cd09e749de",
+      "master_sha256": "dce053baec49caf774f7ec3c74ca3c399dae5cff0975bcccf016de9153709c04",
+      "card_sha256": "007e3fc6d0181c7883a940e627431fb8ceffc15fc036efcd53dd606fc36c3733"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "b8af5dcc08df359603b0f21cdbe1d62f8f9696d08db68c86c45899cd09e749de",
+      "senegalese-fish-yassa.webp": "dce053baec49caf774f7ec3c74ca3c399dae5cff0975bcccf016de9153709c04",
+      "senegalese-fish-yassa-640.webp": "007e3fc6d0181c7883a940e627431fb8ceffc15fc036efcd53dd606fc36c3733"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 36 = 51 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The broiler heats inside the onion simmer (step 4 states the overlap), and the rice cooks covered inside steps 3 and 4."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 4 (Broil the fish) and it states the preheat. The broiler heats inside the onion simmer (step 4 states the overlap), and the rice cooks covered inside steps 3 and 4."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "senegalese-fish-yassa.webp 1200x900 and senegalese-fish-yassa-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One fillet, one large onion, a quarter of the marinade, 1/3 cup rice. A 10-inch skillet; onions take about 20 minutes total.",
+    "2": "Half of everything in a 10-inch skillet.",
+    "4": "As written.",
+    "do_not_scale": [
+      "the onions must cook down until jammy; do not shorten for a smaller batch by raising the heat"
+    ]
+  },
+  "coverage_contribution": "West African 0 to 1 (deferred in wave-12 for rice-format and chicken-load reasons; this is fish, not jollof and not chicken yassa). Tilapia is a new species. HH001 gains a fish dinner that is not tomato, not coconut, and not fried.",
+  "near_duplicate_review": "Compared with Brazilian moqueca: no coconut, no tomato, not a stew. Compared with pan-fried trout with lemon and capers: broiled fish under a slow-cooked onion sauce, no flour, no capers. Compared with grilled swordfish olive-caper: no grill, no olives.",
+  "not_duplicate_of": "Not jollof rice (rice formats saturated). Not chicken yassa (chicken load).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

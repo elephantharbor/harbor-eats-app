@@ -1,0 +1,584 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "bangers-and-mash-onion-gravy",
+    "slug": "bangers-and-mash-onion-gravy",
+    "title": "Bangers and Mash with Onion Gravy",
+    "description": "The British pub classic: plump pork sausages browned slowly in a skillet, served on fluffy buttery mashed potatoes and smothered in a rich, glossy onion gravy made in the same pan, finished with chives.",
+    "cuisine": "british",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "pork-sausage",
+    "vocabulary_tag_ids": [
+      "savory",
+      "rich",
+      "creamy",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_bangers-and-mash-onion-gravy",
+    "current_version_id": "rv_bangers-and-mash-onion-gravy_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_bangers-and-mash-onion-gravy",
+    "dish_id": "bangers-and-mash-onion-gravy",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_bangers-and-mash-onion-gravy_v1",
+    "recipe_id": "rcp_bangers-and-mash-onion-gravy",
+    "dish_id": "bangers-and-mash-onion-gravy",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Bangers and Mash with Onion Gravy",
+    "description": "The British pub classic: plump pork sausages browned slowly in a skillet, served on fluffy buttery mashed potatoes and smothered in a rich, glossy onion gravy made in the same pan, finished with chives.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "pork-sausages",
+        "name": "pork sausages",
+        "display_name": "fresh pork sausages (British bangers or mild Italian) whose label lists no egg, soy, milk, or sesame",
+        "quantity": 8,
+        "unit": "count",
+        "note": "about 2 lb; store-bought; required: the ingredient list shows no egg, soy, milk, or sesame",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yukon-potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled, cut into 2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potato-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 12,
+        "unit": "cup",
+        "note": "3 quarts, for the potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "milk",
+        "name": "whole milk",
+        "display_name": "whole milk",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "warmed",
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "yellow-onions",
+        "name": "yellow onions",
+        "display_name": "large yellow onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved and thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "beef-stock",
+        "name": "low-sodium beef stock",
+        "display_name": "low-sodium beef stock",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "fresh-thyme",
+        "name": "fresh thyme",
+        "display_name": "fresh thyme",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": "leaves",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dijon-mustard",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chives",
+        "name": "chives",
+        "display_name": "chives",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "snipped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 3,
+        "unit": "tsp",
+        "note": "2 tsp potato water, 3/4 tsp mash, 1/4 tsp onions",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep and start the potatoes",
+        "body": "Peel and chunk the potatoes and put them in a 5-quart pot with 12 cups (3 quarts) cold water and 2 tsp salt over high heat. Slice the onions and snip the chives.",
+        "ingredient_refs": [
+          "yukon-potatoes",
+          "potato-water",
+          "kosher-salt",
+          "yellow-onions",
+          "chives"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the sausages",
+        "body": "Heat the oil in a 12-inch skillet over medium-low. Cook the sausages, turning every few minutes, until browned all over and 160 F inside, about 14 minutes. Move to a plate.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "pork-sausages"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Boil the potatoes",
+        "body": "Meanwhile, once the 3 quarts of water boil, cook the potatoes until they fall apart when pierced, about 20 minutes. Runs inside steps 2 and 4 (overlap stated).",
+        "ingredient_refs": [
+          "potato-water",
+          "yukon-potatoes"
+        ],
+        "clock_minutes": 25,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Make the onion gravy",
+        "body": "In the sausage fat over medium, cook the onions with 1/4 tsp salt, stirring, until soft and deep golden, 10 minutes. Sprinkle in the flour and stir 1 minute, then whisk in the stock, thyme, and Dijon and simmer until it coats a spoon, 3 minutes. Return the sausages to warm through.",
+        "ingredient_refs": [
+          "yellow-onions",
+          "kosher-salt",
+          "flour",
+          "beef-stock",
+          "fresh-thyme",
+          "dijon-mustard",
+          "pork-sausages"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Mash",
+        "body": "Drain the potatoes, return them to the warm pot, and mash with the butter, warm milk, 3/4 tsp salt, and the pepper until fluffy.",
+        "ingredient_refs": [
+          "yukon-potatoes",
+          "butter",
+          "milk",
+          "kosher-salt",
+          "black-pepper"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Spoon mash onto plates, lay two sausages on each, smother with onion gravy, and scatter chives.",
+        "ingredient_refs": [
+          "yukon-potatoes",
+          "pork-sausages",
+          "yellow-onions",
+          "chives"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "sausages",
+        "name": "browned pork sausages with onion gravy",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "pork sausages",
+          "onions",
+          "flour",
+          "beef stock",
+          "thyme",
+          "Dijon",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "mash",
+        "name": "buttery mashed potatoes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "potatoes",
+          "water",
+          "butter",
+          "milk",
+          "chives",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "5-quart pot",
+      "potato masher or ricer",
+      "colander",
+      "whisk",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "sear",
+      "boil",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 36,
+    "total_time_minutes": 51,
+    "prep_minutes": 15,
+    "cook_minutes": 36,
+    "total_minutes": 51,
+    "time_clock": "Prep 15 + cook 36 = 51 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The potatoes heat and boil inside the sausage and gravy steps (step 3 states the overlap). No oven.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-low skillet for the sausages; medium for the onions and gravy; steady boil for the potatoes.",
+    "doneness": "Sausages browned all over and 160 F inside. Onions soft and deep golden. Gravy coats a spoon. Potatoes fall apart when pierced.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains pork (meat) and dairy."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: contains pork, butter, and milk.",
+    "allergens": [
+      "meat",
+      "milk",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the pork sausages.",
+      "Milk from the butter and milk.",
+      "Wheat from the flour in the gravy; British-style bangers also often contain wheat rusk.",
+      "The sausages are a store-bought hard contract: the label lists no egg, soy, milk, or sesame.",
+      "No egg, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains pork (meat) and dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "savory",
+      "rich",
+      "creamy",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'british' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "f7e4e8e870ea016da57fa7aa6db084d5e3d19a493ec06bca1381d91fd6f47822",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_bangers-and-mash-onion-gravy_v1",
+    "dish_id": "bangers-and-mash-onion-gravy",
+    "recipe_version_id": "rv_bangers-and-mash-onion-gravy_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "bangers-and-mash-onion-gravy.webp",
+    "card_ref": "bangers-and-mash-onion-gravy-640.webp",
+    "master_filename": "bangers-and-mash-onion-gravy.webp",
+    "card_filename": "bangers-and-mash-onion-gravy-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "bangers-and-mash-onion-gravy.webp",
+        "spec_catalog_path": "/images/meals/bangers-and-mash-onion-gravy.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "bangers-and-mash-onion-gravy-640.webp",
+        "spec_catalog_path": "/images/meals/bangers-and-mash-onion-gravy-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "534a2cfc455fbd87937384f4d41bcb0185b764b5362946a6ebfade1fad756542",
+      "master_sha256": "09b40ab7062cdfc793957f5fb0d37c60bb9cfebed56b7f75c6673d819c0a0318",
+      "card_sha256": "4869ab2df32b841c0373bf1c8d0b7d8d48c4dbeeae8f29f280ea69a839b7c214"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "534a2cfc455fbd87937384f4d41bcb0185b764b5362946a6ebfade1fad756542",
+      "bangers-and-mash-onion-gravy.webp": "09b40ab7062cdfc793957f5fb0d37c60bb9cfebed56b7f75c6673d819c0a0318",
+      "bangers-and-mash-onion-gravy-640.webp": "4869ab2df32b841c0373bf1c8d0b7d8d48c4dbeeae8f29f280ea69a839b7c214"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 36 = 51 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The potatoes heat and boil inside the sausage and gravy steps (step 3 states the overlap). No oven."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "bangers-and-mash-onion-gravy.webp 1200x900 and bangers-and-mash-onion-gravy-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "2 sausages, a quarter of the potatoes and gravy.",
+    "2": "Half.",
+    "4": "As written; 8 sausages fit a 12-inch skillet.",
+    "do_not_scale": [
+      "brown sausages slowly; high heat splits the casings"
+    ]
+  },
+  "coverage_contribution": "British comfort food; first sausage-and-mash plate. A cozy fall dinner.",
+  "near_duplicate_review": "Compared with cottage-pie: whole sausages on mash with gravy, not a minced-meat pie. Compared with baked-ziti-italian-sausage: no pasta or tomato. Compared with deep-fried-cod-roasted-potatoes: pork and mash, no frying.",
+  "not_duplicate_of": "Not toad-in-the-hole (batter). Not bratwurst with sauerkraut.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

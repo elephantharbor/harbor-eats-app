@@ -1,0 +1,27 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "portuguese-piri-piri-chicken.webp",
+    "portuguese-piri-piri-chicken-640.webp"
+  ],
+  "present_files": [
+    "portuguese-piri-piri-chicken.webp",
+    "portuguese-piri-piri-chicken-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "d630249b442c62dd4e9affdb8011117f273ae59bfde4bb5e8b9f63bb9c1d39f4",
+    "portuguese-piri-piri-chicken.webp": "36704350e72a36ba8b264ea5f56c96e24e4d1d923c8069ac72cd182d2b2f789e",
+    "portuguese-piri-piri-chicken-640.webp": "6e414956054559de4f95cebf14ce9e4554cde9d0c5bd0ca77026536d36d18905"
+  },
+  "package_revision": "freeze-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

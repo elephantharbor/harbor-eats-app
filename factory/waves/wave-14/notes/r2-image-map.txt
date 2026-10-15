@@ -1,0 +1,16 @@
+chiles-rellenos-ranchero a6b26b83df880ff33f6576f65c95128ddabc7fe7a196731c6df912a226b23eff
+japanese-gyudon dbaddc0a422c91f80b0766ca3d7d1cbc233e44698427525cb82fc90b13161769
+vietnamese-bun-cha 3b7bef2c9d3b345010c015ce04fc8c020086439db636f6ce768bffbedee2743d
+lebanese-samke-harra-bulgur 8febbc4d8428c38759837df97ece19c8a26bbbdaf8f64dc99684446f36d6f928
+peruvian-ceviche-sweet-potato-corn 2506e788d27972f10be6e6031fe40d251ff87a88610f6b08c2c61b7eee97b253
+new-england-clam-chowder 37e620c653c9e65903e2b160069c37e7dd420e7f961f5ea1d6df9531abe1daae
+greek-spanakopita 2b5262d0b3260a59189f1d2d58bcf648075bd5843c04029c51653edd95150f98
+
+## Superseded after audit r2 (added 2026-10-15, after audit r3)
+
+- lebanese-samke-harra-bulgur: the r2 img_v2 hashes above are SUPERSEDED (audit r2 gate K FAIL). Active source is now img_v3.jpg; see v1.json image.superseded[1] (old) and image.file_hashes / asset_sha256 (active).
+    superseded: {"file_hashes": {"source_jpeg_sha256": "8febbc4d8428c38759837df97ece19c8a26bbbdaf8f64dc99684446f36d6f928", "master_sha256": "1444f5d3cb1b2cdc23531c5dc20d8a1818e65b9b5faf93299ff1e11c92d9ed91", "card_sha256": "29f0027ae4d585d7c4c2b1c97785b70261fc459e7d638c65320e1245ca98911a"}}
+    active:     {"source_jpeg_sha256": "473b04f3c719888369e7a98e962bf50346cf82e5efadd7df275a105037e18754", "master_sha256": "9df52a04e9320b9e1fdf8655f92d3b740584ad43c06a178a2889439458fec313", "card_sha256": "da92c7e91b9e3b531a2a0b6a659289b69c58c353b14e35e5a875dc0b3fa66f81"}
+- new-england-clam-chowder: the r2 img_v2 hashes above are SUPERSEDED (audit r2 gate K FAIL). Active source is now img_v3.jpg; see v1.json image.superseded[1] (old) and image.file_hashes / asset_sha256 (active).
+    superseded: {"file_hashes": {"source_jpeg_sha256": "37e620c653c9e65903e2b160069c37e7dd420e7f961f5ea1d6df9531abe1daae", "master_sha256": "7b72fd64ca653ff90e940e77597eca22f22dbec9627c742e5b81c2f79a1a7bc2", "card_sha256": "e5cdb17ebb66572453c3f2c85a96d51cd85d0550cee9d7c73a32e0585a588adb"}}
+    active:     {"source_jpeg_sha256": "8230e0160a221dd21993be3fc7e5f1c406d07dc6b4baa39f3cdd65837d96ca9c", "master_sha256": "5c2530ec0f4befa715baa0aab9a748573dfe33fd96ec2f2beb7041e0798a10a0", "card_sha256": "ad92a5293b90a83336deb62c1ff87d968e441f49a30d3632a363d42920a301fd"}

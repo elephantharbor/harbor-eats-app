@@ -1,0 +1,27 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "turkey-sloppy-joes.webp",
+    "turkey-sloppy-joes-640.webp"
+  ],
+  "present_files": [
+    "turkey-sloppy-joes.webp",
+    "turkey-sloppy-joes-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "c6d6b8a0dc4a13e894b64e6d0676586620ab3e733247d1d6eac5153f4946ed58",
+    "turkey-sloppy-joes.webp": "40b337ddf6a892fa2a61a99c3e1f6a11e37707a062bda4dd3378a86d53aa4bdb",
+    "turkey-sloppy-joes-640.webp": "d33ecdb0a9b59fac41a2512d7a2bb68b7dce78885f05313b2796eb8d1fda8043"
+  },
+  "package_revision": "freeze-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

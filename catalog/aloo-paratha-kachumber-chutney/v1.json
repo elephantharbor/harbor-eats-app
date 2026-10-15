@@ -1,0 +1,668 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "aloo-paratha-kachumber-chutney",
+    "slug": "aloo-paratha-kachumber-chutney",
+    "title": "Aloo Paratha with Cilantro-Mint Chutney and Kachumber Salad",
+    "description": "Whole-wheat flatbreads stuffed with a spiced potato filling of green chile, ginger, cumin, amchur, and cilantro, rolled thin and cooked on a hot cast-iron pan with oil until blistered and crisp-flecked. Served with a bright cilantro-mint chutney and a cucumber, tomato, and onion kachumber.",
+    "cuisine": "indian",
+    "meal_format": "stuffed-flatbread",
+    "primary_ingredient": "potatoes",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "herbaceous",
+      "savory",
+      "crispy",
+      "indian"
+    ],
+    "current_recipe_id": "rcp_aloo-paratha-kachumber-chutney",
+    "current_version_id": "rv_aloo-paratha-kachumber-chutney_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_aloo-paratha-kachumber-chutney",
+    "dish_id": "aloo-paratha-kachumber-chutney",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_aloo-paratha-kachumber-chutney_v1",
+    "recipe_id": "rcp_aloo-paratha-kachumber-chutney",
+    "dish_id": "aloo-paratha-kachumber-chutney",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Aloo Paratha with Cilantro-Mint Chutney and Kachumber Salad",
+    "description": "Whole-wheat flatbreads stuffed with a spiced potato filling of green chile, ginger, cumin, amchur, and cilantro, rolled thin and cooked on a hot cast-iron pan with oil until blistered and crisp-flecked. Served with a bright cilantro-mint chutney and a cucumber, tomato, and onion kachumber.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "whole-wheat-flour",
+        "name": "whole-wheat flour",
+        "display_name": "whole-wheat flour (atta preferred)",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "plus 1/4 cup for rolling",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dough-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1.25,
+        "unit": "cup",
+        "note": "room temperature, for the dough",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "russet-potatoes",
+        "name": "russet potatoes",
+        "display_name": "russet potatoes",
+        "quantity": 1.75,
+        "unit": "lb",
+        "note": "about 3 medium",
+        "preparation": "peeled, cut into 2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potato-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 8,
+        "unit": "cup",
+        "note": "for boiling the potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "green-chiles",
+        "name": "green chiles",
+        "display_name": "serrano or Indian green chiles",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "2 minced for the filling, 1 for the chutney",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "1/2 cup chopped for the filling, 1 1/2 cups loosely packed for the chutney",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "mint",
+        "name": "mint leaves",
+        "display_name": "mint leaves, loosely packed",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cumin-seeds",
+        "name": "cumin seeds",
+        "display_name": "cumin seeds",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": "toasted in a dry pan and crushed",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "amchur",
+        "name": "amchur",
+        "display_name": "amchur (dry mango powder)",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garam-masala",
+        "name": "garam masala",
+        "display_name": "garam masala",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lemons",
+        "name": "lemons",
+        "display_name": "lemons",
+        "quantity": 2,
+        "unit": "count",
+        "note": "juiced, about 1/4 cup; half for the chutney, half for the salad",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "chutney-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "for blending the chutney",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "English cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced 1/4 inch",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "Roma tomatoes",
+        "display_name": "Roma tomatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "seeded and diced 1/4 inch",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 6,
+        "unit": "tbsp",
+        "note": "1 tbsp dough, about 5 tbsp for brushing on the pan",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 3,
+        "unit": "tsp",
+        "note": "1 tsp dough, 1 tsp potato water, 3/4 tsp filling, 1/4 tsp chutney and salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Make the dough and prep",
+        "body": "In a large bowl mix the 3 cups flour with 1 tsp salt and 1 tbsp oil, then add the 1 1/4 cups water gradually, kneading into a soft, smooth dough, about 8 minutes. Cover and let it rest. Peel and chunk the potatoes, mince 2 chiles, grate the ginger, chop 1/2 cup cilantro, and juice the lemons. Toast and crush the cumin seeds.",
+        "ingredient_refs": [
+          "whole-wheat-flour",
+          "kosher-salt",
+          "neutral-oil",
+          "dough-water",
+          "russet-potatoes",
+          "green-chiles",
+          "ginger",
+          "cilantro",
+          "lemons",
+          "cumin-seeds"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil the potatoes",
+        "body": "Put the potatoes in a 4-quart pot with 8 cups cold water and 1 tsp salt. Bring to a boil over high and cook until fork-tender, about 20 minutes total. The dough rests during the boil (overlap stated).",
+        "ingredient_refs": [
+          "russet-potatoes",
+          "potato-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the chutney and salad",
+        "body": "While the potatoes boil, blend the remaining cilantro, the mint, the remaining chile, half the lemon juice, 3 tbsp water, and a pinch of salt until smooth. Toss the cucumber, tomatoes, and red onion with the rest of the lemon juice and a pinch of salt. Runs inside step 2 (overlap stated).",
+        "ingredient_refs": [
+          "cilantro",
+          "mint",
+          "green-chiles",
+          "lemons",
+          "chutney-water",
+          "kosher-salt",
+          "cucumber",
+          "tomatoes",
+          "red-onion"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Make the filling",
+        "body": "Drain the potatoes well and return them to the warm pot for 1 minute to steam dry. Mash until completely smooth with no lumps, then mix in the minced chiles, ginger, chopped cilantro, cumin, amchur, garam masala, and 3/4 tsp salt. Spread on a plate to cool and divide into 8 portions.",
+        "ingredient_refs": [
+          "russet-potatoes",
+          "green-chiles",
+          "ginger",
+          "cilantro",
+          "cumin-seeds",
+          "amchur",
+          "garam-masala",
+          "kosher-salt"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Roll and cook the parathas",
+        "body": "Heat the cast-iron pan over medium-high. Divide the dough into 8 balls. Flatten one into a 4-inch round, set a filling portion in the center, gather the edges up and pinch to seal, then flatten and roll gently on a floured board into a 7-inch round. Cook on the dry pan 1 minute until spotted, flip, brush the top with oil, flip again and press with a spatula until golden and puffed, about 1 minute per side more. Roll the next paratha while each one cooks; keep finished breads wrapped in a towel.",
+        "ingredient_refs": [
+          "whole-wheat-flour",
+          "neutral-oil",
+          "russet-potatoes"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Serve the parathas hot, cut in halves or quarters, with the chutney and kachumber alongside.",
+        "ingredient_refs": [
+          "whole-wheat-flour",
+          "cucumber",
+          "cilantro"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "dough",
+        "name": "whole-wheat dough",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "whole-wheat flour",
+          "water",
+          "salt",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "filling",
+        "name": "spiced potato filling",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "potatoes",
+          "green chiles",
+          "ginger",
+          "cilantro",
+          "cumin seeds",
+          "amchur",
+          "garam masala",
+          "salt",
+          "water"
+        ]
+      },
+      {
+        "component_id": "chutney",
+        "name": "cilantro-mint chutney",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cilantro",
+          "mint",
+          "green chile",
+          "lemon",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "kachumber",
+        "name": "kachumber salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cucumber",
+          "tomato",
+          "red onion",
+          "lemon",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "4-quart pot",
+      "large cast-iron skillet or tawa",
+      "rolling pin",
+      "large bowl",
+      "blender or mini food processor",
+      "colander"
+    ],
+    "methods": [
+      "boil",
+      "griddle"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "crispy"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 18,
+    "cook_time_minutes": 47,
+    "total_time_minutes": 65,
+    "prep_minutes": 18,
+    "cook_minutes": 47,
+    "total_minutes": 65,
+    "time_clock": "Prep 18 + cook 47 = 65 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The dough rests inside the potato boil; the chutney and kachumber are made during the potato boil (step 3 states the overlap). Rolling and cooking alternate in step 6.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Steady boil for the potatoes. Medium-high dry cast-iron pan or tawa for the parathas, brushed with oil once flipped.",
+    "doneness": "Potatoes fork-tender and dry before mashing. Parathas puffed in places, golden-brown spotted on both sides, no raw dough at the edges.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and plant_based: oil, not ghee; no yogurt.",
+    "allergens": [
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Wheat from the whole-wheat flour.",
+      "No egg, milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "Oil instead of ghee or butter, and no yogurt raita: the chutney is herbs, chile, lemon, and water.",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "herbaceous",
+      "savory",
+      "crispy",
+      "indian"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'indian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "2720c0c9206d5f66657d63df532891c36b074b7fb567986f2df33dacbc26d1c5",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_aloo-paratha-kachumber-chutney_v1",
+    "dish_id": "aloo-paratha-kachumber-chutney",
+    "recipe_version_id": "rv_aloo-paratha-kachumber-chutney_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "aloo-paratha-kachumber-chutney.webp",
+    "card_ref": "aloo-paratha-kachumber-chutney-640.webp",
+    "master_filename": "aloo-paratha-kachumber-chutney.webp",
+    "card_filename": "aloo-paratha-kachumber-chutney-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "aloo-paratha-kachumber-chutney.webp",
+        "spec_catalog_path": "/images/meals/aloo-paratha-kachumber-chutney.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "aloo-paratha-kachumber-chutney-640.webp",
+        "spec_catalog_path": "/images/meals/aloo-paratha-kachumber-chutney-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "01afa33ca1149212b18a026928dfe763f7f179cffafa645bc2f88d69e78533a1",
+      "master_sha256": "384c9960eaadfe94c13036ccfacefe587ba608fe10673dfceaf5541279aebd11",
+      "card_sha256": "dd8f66d04f9a721a21be89da76c880b63b85d66d1c77eeb881cd27012947f20e"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "01afa33ca1149212b18a026928dfe763f7f179cffafa645bc2f88d69e78533a1",
+      "aloo-paratha-kachumber-chutney.webp": "384c9960eaadfe94c13036ccfacefe587ba608fe10673dfceaf5541279aebd11",
+      "aloo-paratha-kachumber-chutney-640.webp": "dd8f66d04f9a721a21be89da76c880b63b85d66d1c77eeb881cd27012947f20e"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 18 + cook 47 = 65 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The dough rests inside the potato boil; the chutney and kachumber are made during the potato boil (step 3 states the overlap). Rolling and cooking alternate in step 6."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "aloo-paratha-kachumber-chutney.webp 1200x900 and aloo-paratha-kachumber-chutney-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"crispy\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of the dough and filling (2 parathas), a quarter of the chutney and salad.",
+    "2": "Half of everything.",
+    "4": "As written; 8 parathas.",
+    "do_not_scale": [
+      "dough hydration varies by flour: add water a tablespoon at a time"
+    ]
+  },
+  "coverage_contribution": "Indian is well covered by curries; this adds the first Indian bread-led main and the first stuffed flatbread from South Asia. A potato main. HH001 plant handheld.",
+  "near_duplicate_review": "Compared with coconut-chickpea-curry, saag-paneer, and vegetable-biryani-cashews: no curry or rice, the bread is the dish. Compared with turkish-lahmacun: stuffed and sealed bread, not a topped flatbread; no meat. Compared with the arepas in this wave: wheat dough, stuffed before cooking, different spice profile.",
+  "not_duplicate_of": "Not dosa (fermented batter) and not a curry with naan.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

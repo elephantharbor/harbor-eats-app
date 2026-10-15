@@ -1,0 +1,632 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "tomato-goat-cheese-galette",
+    "slug": "tomato-goat-cheese-galette",
+    "title": "Rustic Tomato and Goat Cheese Galette with Lemony Arugula",
+    "description": "A free-form all-butter pastry folded around a Dijon-brushed base of creamy goat cheese and ricotta, topped with salted, drained ripe tomato slices, garlic, and thyme, baked until bronzed and finished with a drizzle of honey. Served with a lemony arugula and Parmesan salad.",
+    "cuisine": "french",
+    "meal_format": "savory-tart",
+    "primary_ingredient": "tomatoes",
+    "vocabulary_tag_ids": [
+      "fresh",
+      "creamy",
+      "crispy",
+      "tangy",
+      "herbaceous"
+    ],
+    "current_recipe_id": "rcp_tomato-goat-cheese-galette",
+    "current_version_id": "rv_tomato-goat-cheese-galette_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_tomato-goat-cheese-galette",
+    "dish_id": "tomato-goat-cheese-galette",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_tomato-goat-cheese-galette_v1",
+    "recipe_id": "rcp_tomato-goat-cheese-galette",
+    "dish_id": "tomato-goat-cheese-galette",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Rustic Tomato and Goat Cheese Galette with Lemony Arugula",
+    "description": "A free-form all-butter pastry folded around a Dijon-brushed base of creamy goat cheese and ricotta, topped with salted, drained ripe tomato slices, garlic, and thyme, baked until bronzed and finished with a drizzle of honey. Served with a lemony arugula and Parmesan salad.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "cold unsalted butter",
+        "display_name": "cold unsalted butter",
+        "quantity": 10,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "cubed",
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "ice-water",
+        "name": "water",
+        "display_name": "ice-cold water",
+        "quantity": 5,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "ripe tomatoes",
+        "display_name": "ripe tomatoes, mixed colors",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "sliced 1/4 inch thick",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "goat-cheese",
+        "name": "fresh goat cheese",
+        "display_name": "fresh goat cheese",
+        "quantity": 4,
+        "unit": "oz",
+        "note": null,
+        "preparation": "softened",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ricotta",
+        "name": "whole-milk ricotta",
+        "display_name": "whole-milk ricotta",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dijon",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "thyme",
+        "name": "fresh thyme leaves",
+        "display_name": "fresh thyme leaves",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "egg",
+        "name": "egg",
+        "display_name": "large egg",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "beaten",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "honey",
+        "name": "honey",
+        "display_name": "honey",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "arugula",
+        "name": "baby arugula",
+        "display_name": "baby arugula",
+        "quantity": 5,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "juiced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parmesan",
+        "name": "vegetarian Parmesan-style cheese",
+        "display_name": "vegetarian Parmesan-style cheese (microbial rennet)",
+        "quantity": 1,
+        "unit": "oz",
+        "note": null,
+        "preparation": "shaved",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1/2 tsp pastry, 3/4 tsp tomatoes, pinch salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Make the pastry",
+        "body": "Pulse the flour and 1/2 tsp salt with the cold butter until the butter is pea-size. Drizzle in the 5 tbsp ice-cold water, pulsing, until the dough just clumps. Press into a disk and wrap.",
+        "ingredient_refs": [
+          "flour",
+          "kosher-salt",
+          "butter",
+          "ice-water"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Chill, preheat, and drain",
+        "body": "Chill the dough 30 minutes. Meanwhile preheat the oven to 400 F, lay the tomato slices on paper towels, sprinkle with 3/4 tsp salt, and let drain. Mix the goat cheese, ricotta, garlic, half the thyme, and the pepper.",
+        "ingredient_refs": [
+          "tomatoes",
+          "kosher-salt",
+          "goat-cheese",
+          "ricotta",
+          "garlic",
+          "thyme",
+          "black-pepper"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 3,
+        "title": "Assemble",
+        "body": "Roll the dough on parchment into a 13-inch round and slide onto the baking sheet. Brush with the Dijon, leaving a 2-inch border, spread the cheese, and shingle the blotted tomatoes on top. Fold the border over in pleats and brush the pastry with the egg.",
+        "ingredient_refs": [
+          "flour",
+          "dijon",
+          "goat-cheese",
+          "tomatoes",
+          "egg"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 4,
+        "title": "Bake",
+        "body": "Bake until the crust is deep golden and crisp underneath, 40 minutes. Scatter with the remaining thyme and drizzle with honey.",
+        "ingredient_refs": [
+          "flour",
+          "thyme",
+          "honey"
+        ],
+        "clock_minutes": 40,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Toss the salad",
+        "body": "While the galette bakes, whisk the lemon juice, olive oil, and a pinch of salt; toss with the arugula just before serving and top with the shaved cheese (overlap stated).",
+        "ingredient_refs": [
+          "lemon",
+          "olive-oil",
+          "kosher-salt",
+          "arugula",
+          "parmesan"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Rest and serve",
+        "body": "Cool the galette 10 minutes on the sheet, cut into wedges, and serve with the salad.",
+        "ingredient_refs": [
+          "tomatoes",
+          "arugula"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "pastry",
+        "name": "all-butter pastry",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "flour",
+          "butter",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "filling",
+        "name": "goat cheese and tomato filling",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "goat cheese",
+          "ricotta",
+          "dijon",
+          "garlic",
+          "tomatoes",
+          "thyme",
+          "honey",
+          "egg"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "arugula salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "arugula",
+          "lemon",
+          "parmesan-style cheese",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "food processor or large bowl and pastry cutter",
+      "rolling pin",
+      "rimmed baking sheet",
+      "parchment paper",
+      "paper towels",
+      "salad bowl"
+    ],
+    "methods": [
+      "bake"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "baked"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 52,
+    "cook_time_minutes": 50,
+    "total_time_minutes": 102,
+    "prep_minutes": 52,
+    "cook_minutes": 50,
+    "total_minutes": 102,
+    "time_clock": "Prep 52 + cook 50 = 102 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven preheats and the tomatoes drain during the dough chill (step 2). The salad is tossed during the bake (step 5 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        2,
+        3
+      ],
+      "cook_steps": [
+        4,
+        6
+      ],
+      "overlap_steps": [
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 2 (Chill, preheat, and drain) and it states the preheat. The oven preheats and the tomatoes drain during the dough chill (step 2). The salad is tossed during the bake (step 5 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "400 F oven.",
+    "doneness": "Crust deep golden and crisp underneath; tomatoes slumped and juices thickened.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains butter and cheeses (dairy)."
+    },
+    "dietary_labels": [
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional vegetarian. The Parmesan is specified as a vegetarian (microbial rennet) Parmesan-style cheese.",
+    "allergens": [
+      "wheat",
+      "milk",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Wheat from the flour.",
+      "Milk from the butter, goat cheese, ricotta, and Parmesan-style cheese.",
+      "Egg in the egg wash.",
+      "No soy, sesame, fish, shellfish, meat, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains butter and cheeses (dairy).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "fresh",
+      "creamy",
+      "crispy",
+      "tangy",
+      "herbaceous"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'french' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "5785a101a6a295b0d582cbaa8a2840e6fd7936ba443a8365c39f0877b84ff458",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_tomato-goat-cheese-galette_v1",
+    "dish_id": "tomato-goat-cheese-galette",
+    "recipe_version_id": "rv_tomato-goat-cheese-galette_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "tomato-goat-cheese-galette.webp",
+    "card_ref": "tomato-goat-cheese-galette-640.webp",
+    "master_filename": "tomato-goat-cheese-galette.webp",
+    "card_filename": "tomato-goat-cheese-galette-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "tomato-goat-cheese-galette.webp",
+        "spec_catalog_path": "/images/meals/tomato-goat-cheese-galette.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "tomato-goat-cheese-galette-640.webp",
+        "spec_catalog_path": "/images/meals/tomato-goat-cheese-galette-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "dcc8e67be923943b4d0f3cc803704a041af3ef54f05b028f2d9987ee74c2f9ec",
+      "master_sha256": "516cd6d5a1cd6272f2a72aa57a21b1cb069d5f9d587ddfcecff4eca93145f82b",
+      "card_sha256": "678e5b06e2e5b483451e85cf405b21ab70e4d79585f23aa9bb5b295d2798e6ce"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "dcc8e67be923943b4d0f3cc803704a041af3ef54f05b028f2d9987ee74c2f9ec",
+      "tomato-goat-cheese-galette.webp": "516cd6d5a1cd6272f2a72aa57a21b1cb069d5f9d587ddfcecff4eca93145f82b",
+      "tomato-goat-cheese-galette-640.webp": "678e5b06e2e5b483451e85cf405b21ab70e4d79585f23aa9bb5b295d2798e6ce"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 52 + cook 50 = 102 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven preheats and the tomatoes drain during the dough chill (step 2). The salad is tossed during the bake (step 5 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 2 (Chill, preheat, and drain) and it states the preheat. The oven preheats and the tomatoes drain during the dough chill (step 2). The salad is tossed during the bake (step 5 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "tomato-goat-cheese-galette.webp 1200x900 and tomato-goat-cheese-galette-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"baked\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Bake the full galette; leftovers keep a day.",
+    "2": "Bake the full galette.",
+    "4": "As written.",
+    "do_not_scale": [
+      "pastry"
+    ]
+  },
+  "coverage_contribution": "Vegetarian summer tart; savory pastry; tomato-led (the catalog has no tomato tart).",
+  "near_duplicate_review": "Compared with sheet-pan-margherita-pizza: a buttery folded pastry with goat cheese, not a pizza. Compared with potato-leek-gratin and herb-vegetable-pot-pie: open tomato tart. Compared with the greek spanakopita in this wave: short butter pastry, tomato and goat cheese, not phyllo and spinach.",
+  "not_duplicate_of": "Not quiche. Not tomato pie with mayonnaise.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

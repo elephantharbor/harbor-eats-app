@@ -1,0 +1,27 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "slow-cooker-ropa-vieja.webp",
+    "slow-cooker-ropa-vieja-640.webp"
+  ],
+  "present_files": [
+    "slow-cooker-ropa-vieja.webp",
+    "slow-cooker-ropa-vieja-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "6c10e024c64a34324af253dc7fdea380a3f333acc30d801f0f26caba54c93da9",
+    "slow-cooker-ropa-vieja.webp": "8eeba4590f1ea93285dd93107e2cea6a92bb1533165f95a8420e9d1c4e3c2173",
+    "slow-cooker-ropa-vieja-640.webp": "9c6d18009f15d59eca9de55b47544203c4eb55efcd8c53377db6504234fff59c"
+  },
+  "package_revision": "freeze-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

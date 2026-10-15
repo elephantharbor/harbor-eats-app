@@ -1,0 +1,600 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "nigerian-beef-suya-skewers",
+    "slug": "nigerian-beef-suya-skewers",
+    "title": "Nigerian Beef Suya Skewers with Tomato-Onion Salad and Rice",
+    "description": "Thin strips of beef coated in yaji, a smoky, spicy ground-peanut spice blend with ginger, garlic, paprika, and cayenne, grilled hot on skewers and served with sliced tomato, red onion, cabbage, lime, and steamed jasmine rice.",
+    "cuisine": "nigerian",
+    "meal_format": "plate",
+    "primary_ingredient": "beef",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "smoky",
+      "grilled",
+      "savory"
+    ],
+    "current_recipe_id": "rcp_nigerian-beef-suya-skewers",
+    "current_version_id": "rv_nigerian-beef-suya-skewers_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_nigerian-beef-suya-skewers",
+    "dish_id": "nigerian-beef-suya-skewers",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_nigerian-beef-suya-skewers_v1",
+    "recipe_id": "rcp_nigerian-beef-suya-skewers",
+    "dish_id": "nigerian-beef-suya-skewers",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Nigerian Beef Suya Skewers with Tomato-Onion Salad and Rice",
+    "description": "Thin strips of beef coated in yaji, a smoky, spicy ground-peanut spice blend with ginger, garlic, paprika, and cayenne, grilled hot on skewers and served with sliced tomato, red onion, cabbage, lime, and steamed jasmine rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "beef-sirloin",
+        "name": "beef sirloin steak",
+        "display_name": "beef sirloin steak",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "sliced 1/4 inch thick against the grain",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "roasted-peanuts",
+        "name": "roasted unsalted peanuts",
+        "display_name": "roasted unsalted peanuts",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ground-ginger",
+        "name": "ground ginger",
+        "display_name": "ground ginger",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic-powder",
+        "name": "garlic powder",
+        "display_name": "garlic powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "onion-powder",
+        "name": "onion powder",
+        "display_name": "onion powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "smoked-paprika",
+        "name": "smoked paprika",
+        "display_name": "smoked paprika",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cayenne",
+        "name": "cayenne pepper",
+        "display_name": "cayenne pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "use 1/2 tsp for milder heat",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "ripe tomatoes",
+        "display_name": "ripe tomatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced into rings",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cabbage",
+        "name": "green cabbage",
+        "display_name": "green cabbage",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "finely shredded",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lime",
+        "name": "lime",
+        "display_name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1 tsp yaji, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Make yaji and prep",
+        "body": "Grind the peanuts in a spice grinder or mini processor to a coarse powder (pulse; stop before it turns to butter). Mix with the ginger, garlic powder, onion powder, paprika, cayenne, and 1 tsp salt. Toss the beef with the oil and 3/4 of the yaji and thread onto 8 metal skewers. Slice the tomatoes and onion, shred the cabbage, and cut the lime.",
+        "ingredient_refs": [
+          "roasted-peanuts",
+          "ground-ginger",
+          "garlic-powder",
+          "onion-powder",
+          "smoked-paprika",
+          "cayenne",
+          "kosher-salt",
+          "beef-sirloin",
+          "neutral-oil",
+          "tomatoes",
+          "red-onion",
+          "cabbage",
+          "lime"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the rice",
+        "body": "Rinse the rice until the rinse runs clear. Bring it to a boil with the 2.25 cups water and 1/2 tsp salt in the saucepan, cover, simmer on low 15 minutes, then rest off heat 10 minutes.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 25,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Preheat the grill",
+        "body": "While the rice simmers, preheat the grill or grill pan to high for 10 minutes and oil the grates (overlap stated).",
+        "ingredient_refs": [
+          "neutral-oil"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Grill the suya",
+        "body": "Grill the skewers over high heat, turning once, until charred at the edges and cooked to at least medium, 3 to 4 minutes per side. Sprinkle with the remaining yaji.",
+        "ingredient_refs": [
+          "beef-sirloin",
+          "roasted-peanuts"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Serve the skewers over the rice with the tomato, onion, cabbage, and lime wedges.",
+        "ingredient_refs": [
+          "beef-sirloin",
+          "jasmine-rice",
+          "tomatoes",
+          "red-onion",
+          "cabbage",
+          "lime"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "yaji",
+        "name": "yaji suya spice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "roasted peanuts",
+          "ground ginger",
+          "garlic powder",
+          "onion powder",
+          "smoked paprika",
+          "cayenne",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "suya",
+        "name": "grilled beef suya",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "beef sirloin",
+          "oil",
+          "yaji"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "tomato, onion, and cabbage",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomatoes",
+          "red onion",
+          "cabbage",
+          "lime"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "jasmine rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "outdoor grill or grill pan",
+      "8 metal skewers",
+      "spice grinder or mini food processor",
+      "2-quart saucepan with lid",
+      "tongs"
+    ],
+    "methods": [
+      "grill",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 36,
+    "total_time_minutes": 56,
+    "prep_minutes": 20,
+    "cook_minutes": 36,
+    "total_minutes": 56,
+    "time_clock": "Prep 20 + cook 36 = 56 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The grill preheats while the rice cooks (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 3 (Preheat the grill) and it states the preheat. The grill preheats while the rice cooks (step 3 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "High direct grill heat (or a grill pan on high); low simmer for the rice.",
+    "doneness": "Beef charred at the edges and cooked to at least medium (about 140 F in thicker pieces). Rice tender with no liquid left.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "peanuts_present",
+      "nut_policy_note": "Contains peanuts in the yaji spice coating; there is no peanut-free version of this dish.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains beef (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free.",
+    "allergens": [
+      "meat",
+      "peanut"
+    ],
+    "allergen_notes": [
+      "Meat from the beef.",
+      "Peanut from the ground roasted peanuts in the yaji coating; this is essential to suya.",
+      "No egg, milk, soy, wheat, sesame, fish, shellfish, or tree nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains beef (meat).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "spicy",
+      "smoky",
+      "grilled",
+      "savory"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'nigerian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "1cb22b8d33eb73209660f704b5f90abd3261b53d58e401ee5687caf891508fc8",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_nigerian-beef-suya-skewers_v1",
+    "dish_id": "nigerian-beef-suya-skewers",
+    "recipe_version_id": "rv_nigerian-beef-suya-skewers_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "nigerian-beef-suya-skewers.webp",
+    "card_ref": "nigerian-beef-suya-skewers-640.webp",
+    "master_filename": "nigerian-beef-suya-skewers.webp",
+    "card_filename": "nigerian-beef-suya-skewers-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "nigerian-beef-suya-skewers.webp",
+        "spec_catalog_path": "/images/meals/nigerian-beef-suya-skewers.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "nigerian-beef-suya-skewers-640.webp",
+        "spec_catalog_path": "/images/meals/nigerian-beef-suya-skewers-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "026d67ea2040a37f979a42ef936eb855ceacb89029853d44ddfe63d403229eff",
+      "master_sha256": "98636e8ac66d246d060e1b9116631ca55ac8e782e3a3f735d8b966a52fbec375",
+      "card_sha256": "bccffe3bf79dfa96ed2a2b223d789ebf30a7a292d6e98578286981f74466d2ca"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "026d67ea2040a37f979a42ef936eb855ceacb89029853d44ddfe63d403229eff",
+      "nigerian-beef-suya-skewers.webp": "98636e8ac66d246d060e1b9116631ca55ac8e782e3a3f735d8b966a52fbec375",
+      "nigerian-beef-suya-skewers-640.webp": "bccffe3bf79dfa96ed2a2b223d789ebf30a7a292d6e98578286981f74466d2ca"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 20 + cook 36 = 56 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The grill preheats while the rice cooks (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 3 (Preheat the grill) and it states the preheat. The grill preheats while the rice cooks (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "nigerian-beef-suya-skewers.webp 1200x900 and nigerian-beef-suya-skewers-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Quarter; grind the full yaji and store the rest airtight.",
+    "2": "Half.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "Nigerian / West African grilled meat (the catalog has no Nigerian dish). Grilled beef. Peanut used as a defining ingredient (allergen coverage).",
+  "near_duplicate_review": "Compared with gochujang-grilled-flank-steak and greek-chicken-souvlaki: thin beef skewers with a West African peanut-spice coating. Compared with the bún chả and piri-piri in this wave: beef, peanut yaji, no sauce or marinade.",
+  "not_duplicate_of": "Not satay (no peanut sauce). Not jollof rice (rejected).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

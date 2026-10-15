@@ -1,0 +1,543 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "japanese-gyudon",
+    "slug": "japanese-gyudon",
+    "title": "Gyudon: Japanese Simmered Beef and Onion Rice Bowl",
+    "description": "A 25-minute Japanese comfort bowl: thinly sliced beef and sweet onion simmered in a gingery soy, mirin, and sugar broth until tender, ladled with its juices over steamed short-grain rice and topped with scallions and pickled red ginger.",
+    "cuisine": "japanese",
+    "meal_format": "rice-bowl",
+    "primary_ingredient": "beef",
+    "vocabulary_tag_ids": [
+      "savory",
+      "umami",
+      "tender",
+      "bowls",
+      "japanese"
+    ],
+    "current_recipe_id": "rcp_japanese-gyudon",
+    "current_version_id": "rv_japanese-gyudon_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_japanese-gyudon",
+    "dish_id": "japanese-gyudon",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_japanese-gyudon_v1",
+    "recipe_id": "rcp_japanese-gyudon",
+    "dish_id": "japanese-gyudon",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Gyudon: Japanese Simmered Beef and Onion Rice Bowl",
+    "description": "A 25-minute Japanese comfort bowl: thinly sliced beef and sweet onion simmered in a gingery soy, mirin, and sugar broth until tender, ladled with its juices over steamed short-grain rice and topped with scallions and pickled red ginger.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "shaved-beef",
+        "name": "thinly shaved beef",
+        "display_name": "thinly shaved ribeye or chuck",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "large yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced 1/4 inch",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "mirin",
+        "name": "mirin",
+        "display_name": "mirin",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "simmer-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "for the simmering broth",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "beni-shoga",
+        "name": "pickled red ginger",
+        "display_name": "pickled red ginger (beni shoga)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "short-grain-rice",
+        "name": "short-grain white rice",
+        "display_name": "short-grain white rice",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed until the rinse runs clear",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.33,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Start the rice and prep",
+        "body": "Combine the rinsed rice and 2 1/3 cups water in a 2-quart saucepan, bring to a boil, cover, and cook on low 15 minutes, then rest covered; it cooks inside this prep and the simmering (overlap stated). Slice the onion and scallions and grate the ginger.",
+        "ingredient_refs": [
+          "short-grain-rice",
+          "rice-water",
+          "yellow-onion",
+          "scallions",
+          "ginger"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Simmer the onion",
+        "body": "In a 10-inch skillet combine 1 cup water, the soy sauce, mirin, sugar, and ginger and bring to a simmer over medium. Add the onion and simmer until soft, 6 minutes.",
+        "ingredient_refs": [
+          "simmer-water",
+          "soy-sauce",
+          "mirin",
+          "sugar",
+          "ginger",
+          "yellow-onion"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Add the beef",
+        "body": "Add the beef, separating the slices with chopsticks, and simmer gently, skimming any foam, until just cooked through, 3 to 4 minutes.",
+        "ingredient_refs": [
+          "shaved-beef"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Rest the rice and serve",
+        "body": "Take the rice off the heat and let it rest covered 4 minutes, then fluff it and divide among deep bowls. Ladle the beef, onion, and some broth over the rice and top with scallions and pickled ginger.",
+        "ingredient_refs": [
+          "short-grain-rice",
+          "shaved-beef",
+          "yellow-onion",
+          "scallions",
+          "beni-shoga"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "beef",
+        "name": "simmered beef and onion",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "shaved beef",
+          "onion",
+          "soy sauce",
+          "mirin",
+          "sugar",
+          "ginger",
+          "water"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "short-grain rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "short-grain rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "10-inch skillet or shallow saucepan",
+      "2-quart saucepan with lid"
+    ],
+    "methods": [
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 8,
+    "cook_time_minutes": 17,
+    "total_time_minutes": 25,
+    "prep_minutes": 8,
+    "cook_minutes": 17,
+    "total_minutes": 25,
+    "time_clock": "Prep 8 + cook 17 = 25 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered inside the prep and simmering (step 1 states the overlap); step 4 counts its 4-minute rest plus portioning (7). Prep 8 + cook 17 = 25. Total under 30 minutes.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium simmer for the onion; gentle simmer for the beef.",
+    "doneness": "Onion soft and translucent; beef just cooked through and tender, with no pink.",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains beef (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free.",
+    "allergens": [
+      "meat",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the beef.",
+      "Soy and wheat from the soy sauce.",
+      "No egg, milk, sesame, fish (no dashi), shellfish, or nuts. Mirin contains a little alcohol."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains beef (meat).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "savory",
+      "umami",
+      "tender",
+      "bowls",
+      "japanese"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'japanese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "alcohol_note": "Mirin (sweet rice wine) is simmered in the sauce; some alcohol remains. Aji-mirin or 1 tsp sugar per tbsp mirin can be swapped by the cook.",
+    "culinary_hash": "e2ab94044143f8b79fef9be9987cbdf657d5ec1ab9721412fcb05ddb4203dd17",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_japanese-gyudon_v2",
+    "dish_id": "japanese-gyudon",
+    "recipe_version_id": "rv_japanese-gyudon_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "japanese-gyudon.webp",
+    "card_ref": "japanese-gyudon-640.webp",
+    "master_filename": "japanese-gyudon.webp",
+    "card_filename": "japanese-gyudon-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "japanese-gyudon.webp",
+        "spec_catalog_path": "/images/meals/japanese-gyudon.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "japanese-gyudon-640.webp",
+        "spec_catalog_path": "/images/meals/japanese-gyudon-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "dbaddc0a422c91f80b0766ca3d7d1cbc233e44698427525cb82fc90b13161769",
+      "master_sha256": "7fcb3e679e3a9e09cc46bcd97fce0dc0390a592e3149d68fa44d8c9249ef9b4a",
+      "card_sha256": "adc56a05f7b1a89be6b671b6ac46174489d83ee7c7e3c19a3b6af71940261ce2"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "dbaddc0a422c91f80b0766ca3d7d1cbc233e44698427525cb82fc90b13161769",
+      "japanese-gyudon.webp": "7fcb3e679e3a9e09cc46bcd97fce0dc0390a592e3149d68fa44d8c9249ef9b4a",
+      "japanese-gyudon-640.webp": "adc56a05f7b1a89be6b671b6ac46174489d83ee7c7e3c19a3b6af71940261ce2"
+    },
+    "superseded": [
+      {
+        "image_id": "img_japanese-gyudon_v1",
+        "active_source_jpeg": "img_v1.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "6e913e4a8f9b3d8f2b436867e8ed5d0aa7a33dee4495d1d465342153b632eb73",
+          "master_sha256": "89ee7f17fc51f144b9a8ff310ca8f474f5d15f664b570bdcc4d2e1047fa55060",
+          "card_sha256": "50dc6e1101a207106db7370240f7e7188429c91cc574a393d207564d32dace79"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "japanese-gyudon.webp": {
+            "rejected_path": "rejected/japanese-gyudon-replaced-20261015103153.webp",
+            "sha256": "89ee7f17fc51f144b9a8ff310ca8f474f5d15f664b570bdcc4d2e1047fa55060"
+          },
+          "japanese-gyudon-640.webp": {
+            "rejected_path": "rejected/japanese-gyudon-640-replaced-20261015103153.webp",
+            "sha256": "50dc6e1101a207106db7370240f7e7188429c91cc574a393d207564d32dace79"
+          },
+          "img_v1.jpg": {
+            "rejected_path": "rejected/img_v1-replaced-20261015103153.jpg",
+            "sha256": "6e913e4a8f9b3d8f2b436867e8ed5d0aa7a33dee4495d1d465342153b632eb73"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "Audit r1 gate K FAIL (wide paper-thin shaved beef ribbons, no crumbles)"
+      }
+    ],
+    "regenerated_for_audit": "audit-r1"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 8 + cook 17 = 25 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered inside the prep and simmering (step 1 states the overlap); step 4 counts its 4-minute rest plus portioning (7). Prep 8 + cook 17 = 25. Total under 30 minutes."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "japanese-gyudon.webp 1200x900 and japanese-gyudon-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "4 oz beef, a quarter of the sauce.",
+    "2": "Half.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "Under-30 band (25 minutes) and easy. A simmered (not stir-fried) rice bowl.",
+  "near_duplicate_review": "Compared with teriyaki-tofu-bowls: beef simmered in broth. Compared with the pork-shogayaki in this wave: simmered in a sweet broth, not seared and glazed; beef. Compared with peruvian-lomo-saltado: no stir-fry, no fries.",
+  "not_duplicate_of": "Not sukiyaki (hot pot). Not bulgogi.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

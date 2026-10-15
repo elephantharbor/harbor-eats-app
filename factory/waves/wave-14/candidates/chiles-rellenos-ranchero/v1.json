@@ -1,0 +1,692 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "chiles-rellenos-ranchero",
+    "slug": "chiles-rellenos-ranchero",
+    "title": "Cheese Chiles Rellenos with Ranchero Sauce and Rice",
+    "description": "Broiler-blistered poblano chiles stuffed with melting Monterey Jack, dipped in a cloud-light whipped egg batter, and shallow-fried until golden and puffed. Served on a chunky tomato-jalapeño ranchero sauce with cilantro-lime rice and a drizzle of crema.",
+    "cuisine": "mexican",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "poblanos",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "rich",
+      "smoky",
+      "mexican"
+    ],
+    "current_recipe_id": "rcp_chiles-rellenos-ranchero",
+    "current_version_id": "rv_chiles-rellenos-ranchero_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_chiles-rellenos-ranchero",
+    "dish_id": "chiles-rellenos-ranchero",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_chiles-rellenos-ranchero_v1",
+    "recipe_id": "rcp_chiles-rellenos-ranchero",
+    "dish_id": "chiles-rellenos-ranchero",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Cheese Chiles Rellenos with Ranchero Sauce and Rice",
+    "description": "Broiler-blistered poblano chiles stuffed with melting Monterey Jack, dipped in a cloud-light whipped egg batter, and shallow-fried until golden and puffed. Served on a chunky tomato-jalapeño ranchero sauce with cilantro-lime rice and a drizzle of crema.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "poblanos",
+        "name": "poblano chiles",
+        "display_name": "large, straight poblano chiles",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "monterey-jack",
+        "name": "Monterey Jack cheese",
+        "display_name": "Monterey Jack cheese",
+        "quantity": 10,
+        "unit": "oz",
+        "note": null,
+        "preparation": "cut into 4 thick sticks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "eggs",
+        "display_name": "large eggs",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "separated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "for dredging",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "fire-roasted-tomatoes",
+        "name": "fire-roasted diced tomatoes",
+        "display_name": "28-oz can fire-roasted diced tomatoes",
+        "quantity": 28,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "white-onion",
+        "name": "white onion",
+        "display_name": "white onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jalapeno",
+        "name": "jalapeño",
+        "display_name": "jalapeño",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "seeded and minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dried-oregano",
+        "name": "dried Mexican oregano",
+        "display_name": "dried Mexican oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sauce-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for the ranchero sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "long-grain-rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "lime",
+        "name": "lime",
+        "display_name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": "zested and juiced",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "crema",
+        "name": "Mexican crema",
+        "display_name": "Mexican crema",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "2 cups for shallow-frying, 2 tbsp sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "3/4 tsp sauce, 3/4 tsp rice, 1/4 tsp egg whites, pinch over the fried chiles",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat the broiler and prep",
+        "body": "Set a rack 4 inches below the broiler and turn the broiler on high to preheat for 5 minutes. Dice the onion, mince the garlic and jalapeño, cut the cheese into sticks, separate the eggs, and chop the cilantro.",
+        "ingredient_refs": [
+          "white-onion",
+          "garlic",
+          "jalapeno",
+          "monterey-jack",
+          "eggs",
+          "cilantro"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Blister and steam the chiles",
+        "body": "Broil the poblanos on the sheet pan, turning every 2 to 3 minutes, until blackened and blistered all over, about 10 minutes. Move them to a bowl, cover with a plate, and let them steam 10 minutes.",
+        "ingredient_refs": [
+          "poblanos"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Start the rice",
+        "body": "While the chiles broil, combine the rice, 2 1/4 cups water, and 3/4 tsp salt in a 2-quart saucepan. Boil, cover, cook on low 15 minutes, and rest covered. Runs inside steps 2 and 4 (overlap stated).",
+        "ingredient_refs": [
+          "long-grain-rice",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Make the ranchero sauce",
+        "body": "While the chiles steam, heat 2 tbsp oil in a 10-inch skillet over medium. Cook the onion, garlic, and jalapeño 4 minutes. Add the tomatoes, 1/2 cup water, the oregano, and 3/4 tsp salt and simmer, stirring now and then, until thick but spoonable, 8 minutes. Keep warm. Runs inside the steam in step 2 and step 5 (overlap stated).",
+        "ingredient_refs": [
+          "neutral-oil",
+          "white-onion",
+          "garlic",
+          "jalapeno",
+          "fire-roasted-tomatoes",
+          "sauce-water",
+          "dried-oregano",
+          "kosher-salt"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Peel and stuff",
+        "body": "Rub the skins off the chiles with your fingers (do not rinse). Cut a slit down one side of each, gently pull out the seed pod, and slide in a cheese stick; close the slit and secure with a toothpick. Dredge each chile in the flour and tap off the excess.",
+        "ingredient_refs": [
+          "poblanos",
+          "monterey-jack",
+          "flour"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 6,
+        "title": "Batter and shallow-fry",
+        "body": "Heat 2 cups oil in a 12-inch heavy skillet to 350 F, about 6 minutes. While it heats, whip the egg whites with 1/4 tsp salt to stiff peaks, then fold in the yolks. Holding each chile by the stem, coat it in batter and lay it in the oil. Shallow-fry in 2 batches of 2 chiles, 2 to 3 minutes per side, spooning oil over the top, until deep golden and puffed. Drain on a rack and sprinkle with a pinch of salt. Remove the toothpicks.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "eggs",
+          "kosher-salt",
+          "poblanos"
+        ],
+        "clock_minutes": 16,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Fluff the rice with the lime zest, lime juice, and half the cilantro. Spoon ranchero sauce onto each plate, set a chile on top, drizzle with crema, scatter the remaining cilantro, and serve with the rice.",
+        "ingredient_refs": [
+          "long-grain-rice",
+          "lime",
+          "cilantro",
+          "fire-roasted-tomatoes",
+          "poblanos",
+          "crema"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "chiles",
+        "name": "cheese-stuffed battered poblanos",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "poblanos",
+          "Monterey Jack",
+          "eggs",
+          "flour",
+          "oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "ranchero",
+        "name": "ranchero sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "fire-roasted tomatoes",
+          "onion",
+          "garlic",
+          "jalapeño",
+          "oregano",
+          "water",
+          "oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "cilantro-lime rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long-grain rice",
+          "water",
+          "cilantro",
+          "lime",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "crema",
+        "name": "Mexican crema",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "Mexican crema"
+        ]
+      }
+    ],
+    "equipment": [
+      "rimmed sheet pan",
+      "large bowl with a plate to cover",
+      "12-inch heavy skillet",
+      "10-inch skillet",
+      "2-quart saucepan with lid",
+      "stand or hand mixer",
+      "instant-read or clip-on thermometer",
+      "wire rack",
+      "paper towels"
+    ],
+    "methods": [
+      "broil",
+      "shallow-fry",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [
+        "shallow"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 41,
+    "total_time_minutes": 61,
+    "prep_minutes": 20,
+    "cook_minutes": 41,
+    "total_minutes": 61,
+    "time_clock": "Prep 20 + cook 41 = 61 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The broiler is turned on in step 1 and heats 5 minutes before the chiles go under it. Step 2 counts the 10-minute broil and the 10-minute covered steam (20). The rice and ranchero sauce cook inside the broil and steam (steps 3 and 4 state the overlap). Step 6 counts about 6 minutes to bring the oil to 350 F plus two frying batches of 2 to 3 minutes per side (16). Serving takes 5. Prep 20 + cook 41 = 61.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        5
+      ],
+      "cook_steps": [
+        2,
+        6,
+        7
+      ],
+      "overlap_steps": [
+        3,
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Preheat the broiler and prep) and it states the preheat. The broiler is turned on in step 1 and heats 5 minutes before the chiles go under it. Step 2 counts the 10-minute broil and the 10-minute covered steam (20). The rice and ranchero sauce cook inside the broil and steam (steps 3 and 4 state the overlap). Step 6 counts about 6 minutes to bring the oil to 350 F plus two frying batches of 2 to 3 minutes per side (16). Serving takes 5. Prep 20 + cook 41 = 61.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Broiler on high, rack 4 inches below, to blister the chiles. Medium skillet for the sauce. Oil at 350 F in a 12-inch skillet, about 1/2 inch deep, for shallow-frying.",
+    "doneness": "Poblano skins blackened and blistered all over; batter deep golden and puffed; cheese fully melted inside.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains dairy (Monterey Jack and crema)."
+    },
+    "dietary_labels": [
+      "vegetarian"
+    ],
+    "dietary_label_note": "Vegetarian (contains eggs and dairy). Not dairy_free.",
+    "allergens": [
+      "egg",
+      "milk",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Egg from the batter.",
+      "Milk from the Monterey Jack and Mexican crema.",
+      "Wheat from the flour dredge.",
+      "No soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains dairy (Monterey Jack and crema).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "spicy",
+      "rich",
+      "smoky",
+      "mexican"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'mexican' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "9e90939eb27191cc190045d7ec63bbf787e2dde82d67bfbe4b25454dcc6a9028",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_chiles-rellenos-ranchero_v2",
+    "dish_id": "chiles-rellenos-ranchero",
+    "recipe_version_id": "rv_chiles-rellenos-ranchero_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "chiles-rellenos-ranchero.webp",
+    "card_ref": "chiles-rellenos-ranchero-640.webp",
+    "master_filename": "chiles-rellenos-ranchero.webp",
+    "card_filename": "chiles-rellenos-ranchero-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "chiles-rellenos-ranchero.webp",
+        "spec_catalog_path": "/images/meals/chiles-rellenos-ranchero.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "chiles-rellenos-ranchero-640.webp",
+        "spec_catalog_path": "/images/meals/chiles-rellenos-ranchero-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "a6b26b83df880ff33f6576f65c95128ddabc7fe7a196731c6df912a226b23eff",
+      "master_sha256": "43cc2e342107da88335e8d7cb128311182b5cfbea93927897deb2dd7c2bf563d",
+      "card_sha256": "b81a2dd98d9eae083af57f3bdd81651437aa45585dd47d0b4c2fe81991ac0b37"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "a6b26b83df880ff33f6576f65c95128ddabc7fe7a196731c6df912a226b23eff",
+      "chiles-rellenos-ranchero.webp": "43cc2e342107da88335e8d7cb128311182b5cfbea93927897deb2dd7c2bf563d",
+      "chiles-rellenos-ranchero-640.webp": "b81a2dd98d9eae083af57f3bdd81651437aa45585dd47d0b4c2fe81991ac0b37"
+    },
+    "superseded": [
+      {
+        "image_id": "img_chiles-rellenos-ranchero_v1",
+        "active_source_jpeg": "img_v1.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "439df305640efaca8aae8c3962b13e4d92dacb116b488e4d9724eb29d1cf8098",
+          "master_sha256": "fb975176b83bd4d55db493dbe0fa6126ac210bd0e05b358d28356ce6bf877021",
+          "card_sha256": "0fc33f48c1b7b7c3c7d5713d4c59b26b8ea6f3a2a012e1c4f1ad1902e4e5e299"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "chiles-rellenos-ranchero.webp": {
+            "rejected_path": "rejected/chiles-rellenos-ranchero-replaced-20261015103150.webp",
+            "sha256": "fb975176b83bd4d55db493dbe0fa6126ac210bd0e05b358d28356ce6bf877021"
+          },
+          "chiles-rellenos-ranchero-640.webp": {
+            "rejected_path": "rejected/chiles-rellenos-ranchero-640-replaced-20261015103150.webp",
+            "sha256": "0fc33f48c1b7b7c3c7d5713d4c59b26b8ea6f3a2a012e1c4f1ad1902e4e5e299"
+          },
+          "img_v1.jpg": {
+            "rejected_path": "rejected/img_v1-replaced-20261015103150.jpg",
+            "sha256": "439df305640efaca8aae8c3962b13e4d92dacb116b488e4d9724eb29d1cf8098"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "Audit r1 gate K FAIL (puffed whipped-egg batter (capeado), no crumb coating)"
+      }
+    ],
+    "regenerated_for_audit": "audit-r1"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 20 + cook 41 = 61 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The broiler is turned on in step 1 and heats 5 minutes before the chiles go under it. Step 2 counts the 10-minute broil and the 10-minute covered steam (20). The rice and ranchero sauce cook inside the broil and steam (steps 3 and 4 state the overlap). Step 6 counts about 6 minutes to bring the oil to 350 F plus two frying batches of 2 to 3 minutes per side (16). Serving takes 5. Prep 20 + cook 41 = 61."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Preheat the broiler and prep) and it states the preheat. The broiler is turned on in step 1 and heats 5 minutes before the chiles go under it. Step 2 counts the 10-minute broil and the 10-minute covered steam (20). The rice and ranchero sauce cook inside the broil and steam (steps 3 and 4 state the overlap). Step 6 counts about 6 minutes to bring the oil to 350 F plus two frying batches of 2 to 3 minutes per side (16). Serving takes 5. Prep 20 + cook 41 = 61."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "chiles-rellenos-ranchero.webp 1200x900 and chiles-rellenos-ranchero-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"shallow\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One chile, a quarter of the batter (1 egg), a quarter of the sauce and rice.",
+    "2": "Two chiles with 2 eggs.",
+    "4": "As written; fry 2 at a time.",
+    "do_not_scale": [
+      "oil depth stays about 1/2 inch whatever the batch size"
+    ]
+  },
+  "coverage_contribution": "First stuffed chile. A vegetarian Mexican main beyond tacos, quesadillas, and bowls. Poblanos are a new primary ingredient.",
+  "near_duplicate_review": "Compared with black-bean-quesadillas and chicken-enchiladas-verdes: whole battered chiles, no tortillas. Compared with greek-gemista in this wave: battered and shallow-fried, cheese-filled, Mexican sauce. Compared with shallow-fried-green-tomatoes: whole stuffed chiles in egg batter, a full main.",
+  "not_duplicate_of": "Not chiles en nogada (walnut sauce, meat filling).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

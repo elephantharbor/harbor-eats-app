@@ -1,0 +1,27 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "pork-shogayaki.webp",
+    "pork-shogayaki-640.webp"
+  ],
+  "present_files": [
+    "pork-shogayaki.webp",
+    "pork-shogayaki-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "6126dc39c890fdfcb125fd1f1be74d8fc22ca7d528b7ab019af0a96027263617",
+    "pork-shogayaki.webp": "db69060465523b8733ae43ea73a761b07d5578a8a775cedac0f32175c10d5e6c",
+    "pork-shogayaki-640.webp": "beb551cb3601c4a579317a3038f855521383febb936cbf05d4dce7e3ea1bc834"
+  },
+  "package_revision": "freeze-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

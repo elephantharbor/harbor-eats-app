@@ -1,0 +1,27 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "chicken-andouille-gumbo.webp",
+    "chicken-andouille-gumbo-640.webp"
+  ],
+  "present_files": [
+    "chicken-andouille-gumbo.webp",
+    "chicken-andouille-gumbo-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "6b29327c1e2442b549953ffe4629d24e48e96febb680c44f65ffa7e57625b6ff",
+    "chicken-andouille-gumbo.webp": "ec8eb5b593cf35802b98e2b1aa2362a21493e80fc86de4f8044057fb43167eec",
+    "chicken-andouille-gumbo-640.webp": "3a37ea79c80cb765ca39a98b3644d46b4240374d9fc6faeb8860dce4a2ca000c"
+  },
+  "package_revision": "freeze-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

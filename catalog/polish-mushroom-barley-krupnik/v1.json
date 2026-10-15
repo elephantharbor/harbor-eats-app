@@ -1,0 +1,599 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "polish-mushroom-barley-krupnik",
+    "slug": "polish-mushroom-barley-krupnik",
+    "title": "Polish Krupnik: Mushroom and Barley Soup with Dill",
+    "description": "A hearty Polish barley soup built on dried porcini and fresh cremini mushrooms, with carrot, parsnip, celery, and potato, scented with bay and allspice and finished with plenty of fresh dill.",
+    "cuisine": "polish",
+    "meal_format": "soup",
+    "primary_ingredient": "mushrooms",
+    "vocabulary_tag_ids": [
+      "umami",
+      "herbaceous",
+      "savory",
+      "soups",
+      "mushrooms"
+    ],
+    "current_recipe_id": "rcp_polish-mushroom-barley-krupnik",
+    "current_version_id": "rv_polish-mushroom-barley-krupnik_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_polish-mushroom-barley-krupnik",
+    "dish_id": "polish-mushroom-barley-krupnik",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_polish-mushroom-barley-krupnik_v1",
+    "recipe_id": "rcp_polish-mushroom-barley-krupnik",
+    "dish_id": "polish-mushroom-barley-krupnik",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Polish Krupnik: Mushroom and Barley Soup with Dill",
+    "description": "A hearty Polish barley soup built on dried porcini and fresh cremini mushrooms, with carrot, parsnip, celery, and potato, scented with bay and allspice and finished with plenty of fresh dill.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "dried-porcini",
+        "name": "dried porcini mushrooms",
+        "display_name": "dried porcini mushrooms",
+        "quantity": 0.5,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soak-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "boiling, to soak the porcini",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cremini",
+        "name": "cremini mushrooms",
+        "display_name": "cremini mushrooms",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pearl-barley",
+        "name": "pearl barley",
+        "display_name": "pearl barley",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsnip",
+        "name": "parsnip",
+        "display_name": "parsnip",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "celery",
+        "name": "celery",
+        "display_name": "celery ribs",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "medium Yukon Gold potatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cubed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bay-leaves",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "allspice",
+        "name": "whole allspice berries",
+        "display_name": "whole allspice berries",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dill",
+        "name": "fresh dill",
+        "display_name": "fresh dill",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "soup-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 9,
+        "unit": "cup",
+        "note": "for the soup",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Soak and prep",
+        "body": "Pour 1 cup boiling water over the porcini in a small bowl and soak 15 minutes. Meanwhile dice the onion, carrots, parsnip, celery, and potatoes, slice the cremini, mince the garlic, rinse the barley, and chop the dill. Lift out the porcini, chop them, and strain the 1 cup soaking water through a fine-mesh strainer to remove grit.",
+        "ingredient_refs": [
+          "soak-water",
+          "dried-porcini",
+          "yellow-onion",
+          "carrots",
+          "parsnip",
+          "celery",
+          "potatoes",
+          "cremini",
+          "garlic",
+          "pearl-barley",
+          "dill"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Sauté",
+        "body": "Heat the oil in the soup pot over medium. Cook the onion, carrots, parsnip, and celery 5 minutes. Add the cremini and porcini and cook until the mushrooms release their liquid and brown lightly, 6 minutes; add the garlic for 1 minute.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "yellow-onion",
+          "carrots",
+          "parsnip",
+          "celery",
+          "cremini",
+          "dried-porcini",
+          "garlic"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer the barley",
+        "body": "Add the barley, the 1 cup strained porcini water, 9 cups water, the bay leaves, allspice, 2 1/2 tsp salt, and the pepper. Bring to a boil, then simmer partly covered 25 minutes.",
+        "ingredient_refs": [
+          "pearl-barley",
+          "soak-water",
+          "soup-water",
+          "bay-leaves",
+          "allspice",
+          "kosher-salt",
+          "black-pepper"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Add the potatoes",
+        "body": "Add the potatoes and simmer until they and the barley are tender, 15 minutes.",
+        "ingredient_refs": [
+          "potatoes",
+          "pearl-barley"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Finish",
+        "body": "Remove the bay leaves and allspice berries. Stir in most of the dill, taste for salt, and serve topped with the rest.",
+        "ingredient_refs": [
+          "bay-leaves",
+          "allspice",
+          "dill"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "soup",
+        "name": "mushroom barley soup",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "pearl barley",
+          "porcini",
+          "cremini",
+          "carrots",
+          "parsnip",
+          "celery",
+          "potatoes",
+          "onion",
+          "garlic",
+          "dill",
+          "bay",
+          "allspice",
+          "water",
+          "oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "7-quart soup pot",
+      "small heatproof bowl",
+      "fine-mesh strainer"
+    ],
+    "methods": [
+      "saute",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 59,
+    "total_time_minutes": 74,
+    "prep_minutes": 15,
+    "cook_minutes": 59,
+    "total_minutes": 74,
+    "time_clock": "Prep 15 + cook 59 = 74 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The dried porcini soak during the prep. Linear stovetop clock.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium sauté; medium-low simmer.",
+    "doneness": "Barley tender with a slight chew; potatoes and root vegetables tender; broth lightly thickened by the barley.",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and plant_based. Barley contains gluten; no gluten-free claim.",
+    "allergens": [],
+    "allergen_notes": [
+      "Contains gluten (barley).",
+      "No FlavorWeave allergen tokens: barley is not a wheat token and FlavorWeave has no gluten token (recorded in runtime_enum_gaps). Not gluten-free."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "Water and porcini broth, oil only; no sour cream or butter.",
+    "vocabulary_tag_ids": [
+      "umami",
+      "herbaceous",
+      "savory",
+      "soups",
+      "mushrooms"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'polish' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids.",
+      "gluten": "Pearl barley contains gluten. FlavorWeave has no gluten allergen token, so the package carries a contains-gluten note instead; recorded as a wave-14 open item for the importer."
+    },
+    "culinary_hash": "ce03efb174d1866bf546b6909fade805c7fba513849e334dc2412f84aab22e39",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_polish-mushroom-barley-krupnik_v1",
+    "dish_id": "polish-mushroom-barley-krupnik",
+    "recipe_version_id": "rv_polish-mushroom-barley-krupnik_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "polish-mushroom-barley-krupnik.webp",
+    "card_ref": "polish-mushroom-barley-krupnik-640.webp",
+    "master_filename": "polish-mushroom-barley-krupnik.webp",
+    "card_filename": "polish-mushroom-barley-krupnik-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "polish-mushroom-barley-krupnik.webp",
+        "spec_catalog_path": "/images/meals/polish-mushroom-barley-krupnik.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "polish-mushroom-barley-krupnik-640.webp",
+        "spec_catalog_path": "/images/meals/polish-mushroom-barley-krupnik-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "a1c3f284ef55c2e326e9791683b2f2b0b2a0a38ec0f634b06ffa4f38ade65a8d",
+      "master_sha256": "13a45f631b4cf514bd205386ce4ef6518f49b2daa22d6063a99c3f920a32273b",
+      "card_sha256": "9d5bf3713e1ffb28b9f1082f86df76c0eee4eb686cd9297809d7e4c1cf769530"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "a1c3f284ef55c2e326e9791683b2f2b0b2a0a38ec0f634b06ffa4f38ade65a8d",
+      "polish-mushroom-barley-krupnik.webp": "13a45f631b4cf514bd205386ce4ef6518f49b2daa22d6063a99c3f920a32273b",
+      "polish-mushroom-barley-krupnik-640.webp": "9d5bf3713e1ffb28b9f1082f86df76c0eee4eb686cd9297809d7e4c1cf769530"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 59 = 74 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The dried porcini soak during the prep. Linear stovetop clock."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "polish-mushroom-barley-krupnik.webp 1200x900 and polish-mushroom-barley-krupnik-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make the full pot; it keeps 4 days and thickens (add water when reheating).",
+    "2": "Full pot.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "Polish 0 to 1. Barley 0 to 1. An easy, cheap plant soup for HH001.",
+  "near_duplicate_review": "Compared with miso-mushroom-ramen: barley soup, no noodles or miso. Compared with white-bean-kale-soup: grain-thickened mushroom broth. Compared with the borscht in this wave: no beets, mushroom-led.",
+  "not_duplicate_of": "Not pierogi (rejected). Not cream of mushroom soup.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

@@ -32,7 +32,18 @@ DENIAL_SNIPPETS = (
     "images are not generated",
     "image_provenance\": \"missing\"",
     "image_provenance\":\"missing\"",
+    # Added 2026-10-15 after wave-14 audit r1: pending/unfinished-image phrasings the
+    # catalog-package skill forbids once WebPs exist (README "not, yet", prompt status, etc.).
+    "not, yet",
+    "freeze integrity fails until",
+    "freeze integrity is expected to fail until",
+    "pending_image_pass",
+    "not a finished asset",
+    "image_slot_pending",
+    "webp master and card are not",
 )
+# Package text files scanned for the same denial snippets (not only the package JSON).
+DENIAL_TEXT_FILES = ("README.md", "image-prompt.md", "image-plating-brief.md", "image-state.json")
 
 def fail(checks, code, detail):
     checks.append({"id": code, "result": "FAIL", "detail": detail})
@@ -209,6 +220,11 @@ def main(argv):
         hits.append("image_fidelity=BLOCKED_NO_IMAGE")
     if str(conf.get("image_rights_provenance", "")).upper() == "UNKNOWN_NO_ASSET":
         hits.append("image_rights_provenance=UNKNOWN_NO_ASSET")
+    for name in DENIAL_TEXT_FILES:
+        p = root / name
+        if p.is_file():
+            text = p.read_text(errors="replace").lower()
+            hits.extend(f"{name}: {s}" for s in DENIAL_SNIPPETS if s in text)
     if hits:
         fail(checks, "no_denial_strings", "; ".join(hits))
     else:

@@ -1,0 +1,704 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "burmese-mohinga-fish-noodle-soup",
+    "slug": "burmese-mohinga-fish-noodle-soup",
+    "title": "Burmese Mohinga: Catfish and Lemongrass Noodle Soup",
+    "description": "Myanmar's national breakfast, perfect for dinner: a turmeric-gold catfish broth fragrant with lemongrass, ginger, and garlic, thickened with toasted chickpea flour and ground rice, poured over thin rice noodles and finished with boiled egg, lime, cilantro, and chile.",
+    "cuisine": "burmese",
+    "meal_format": "noodle-soup",
+    "primary_ingredient": "catfish",
+    "vocabulary_tag_ids": [
+      "savory",
+      "umami",
+      "herbaceous",
+      "soups",
+      "rice-noodles"
+    ],
+    "current_recipe_id": "rcp_burmese-mohinga-fish-noodle-soup",
+    "current_version_id": "rv_burmese-mohinga-fish-noodle-soup_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_burmese-mohinga-fish-noodle-soup",
+    "dish_id": "burmese-mohinga-fish-noodle-soup",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_burmese-mohinga-fish-noodle-soup_v1",
+    "recipe_id": "rcp_burmese-mohinga-fish-noodle-soup",
+    "dish_id": "burmese-mohinga-fish-noodle-soup",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Burmese Mohinga: Catfish and Lemongrass Noodle Soup",
+    "description": "Myanmar's national breakfast, perfect for dinner: a turmeric-gold catfish broth fragrant with lemongrass, ginger, and garlic, thickened with toasted chickpea flour and ground rice, poured over thin rice noodles and finished with boiled egg, lime, cilantro, and chile.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "catfish",
+        "name": "catfish fillets",
+        "display_name": "catfish fillets",
+        "quantity": 1.25,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "broth-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 8,
+        "unit": "cup",
+        "note": "for poaching the fish and the broth",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "lemongrass",
+        "name": "lemongrass",
+        "display_name": "stalks lemongrass",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "2 bruised and cut into lengths, 1 tender core minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 2,
+        "unit": "inch",
+        "note": null,
+        "preparation": "1 inch sliced, 1 inch chopped",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 5,
+        "unit": "clove",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "shallots",
+        "name": "shallots",
+        "display_name": "shallots",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "peeled",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "paprika",
+        "name": "sweet paprika",
+        "display_name": "sweet paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chickpea-flour",
+        "name": "chickpea flour",
+        "display_name": "chickpea (besan) flour",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "toasted and ground for the broth",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "slurry-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "cold, for the flour slurry",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "fish-sauce",
+        "name": "fish sauce",
+        "display_name": "fish sauce",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rice-noodles",
+        "name": "thin rice noodles",
+        "display_name": "thin rice vermicelli",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "noodle-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 16,
+        "unit": "cup",
+        "note": "4 quarts, for the noodles",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "eggs",
+        "display_name": "large eggs",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "egg-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "for boiling the eggs",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "limes",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "chile-flakes",
+        "name": "red chile flakes",
+        "display_name": "red chile flakes",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Bruise 2 lemongrass stalks with the back of a knife and cut into 3-inch lengths; mince the tender core of the third. Slice 1 inch of ginger; chop the other inch. Blend the minced lemongrass, chopped ginger, garlic, shallots, turmeric, and paprika into a coarse paste. Toast the 2 tbsp rice in a dry skillet until golden, grind it fine, and toast the chickpea flour in the same skillet, stirring, until fragrant, 3 minutes. Whisk both into 1 cup cold water until smooth.",
+        "ingredient_refs": [
+          "lemongrass",
+          "ginger",
+          "garlic",
+          "shallots",
+          "turmeric",
+          "paprika",
+          "jasmine-rice",
+          "chickpea-flour",
+          "slurry-water"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Poach the fish",
+        "body": "Bring 8 cups water, the lemongrass lengths, sliced ginger, and 1 tsp salt to a simmer in the soup pot. Add the catfish and poach gently until it flakes, 8 to 10 minutes. Lift out the fish and flake it; strain and keep the broth.",
+        "ingredient_refs": [
+          "broth-water",
+          "lemongrass",
+          "ginger",
+          "kosher-salt",
+          "catfish"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the paste",
+        "body": "Rinse and dry the pot. Heat the oil over medium and cook the aromatic paste, stirring, until it darkens and smells sweet, 6 to 8 minutes. Stir in half the flaked fish and mash it into the paste.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "lemongrass",
+          "catfish"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Thicken the broth",
+        "body": "Pour in the strained broth, bring to a simmer, and whisk in the flour slurry (the toasted flours in their 1 cup water). Simmer on medium-low, stirring often, 15 minutes, until lightly thickened and silky. Add the fish sauce and the remaining flaked fish.",
+        "ingredient_refs": [
+          "slurry-water",
+          "chickpea-flour",
+          "jasmine-rice",
+          "fish-sauce",
+          "catfish"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Boil the eggs",
+        "body": "During the broth simmer, lower the eggs into 6 cups boiling water in the 2-quart saucepan, boil 10 minutes, cool under running tap, peel, and halve. Runs inside step 4 (overlap stated).",
+        "ingredient_refs": [
+          "eggs",
+          "egg-water"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Cook the noodles",
+        "body": "Also during the simmer, cook the noodles in 16 cups (4 quarts) boiling water in the 6- to 8-quart pot until tender, 3 to 4 minutes, and drain. Runs inside step 4 (overlap stated).",
+        "ingredient_refs": [
+          "rice-noodles",
+          "noodle-water"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Divide the noodles among deep bowls, ladle the hot broth and fish over them, and top with egg halves, cilantro, chile flakes, and lime wedges.",
+        "ingredient_refs": [
+          "rice-noodles",
+          "catfish",
+          "eggs",
+          "cilantro",
+          "chile-flakes",
+          "limes"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "broth",
+        "name": "catfish lemongrass broth",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "catfish",
+          "lemongrass",
+          "ginger",
+          "garlic",
+          "shallots",
+          "turmeric",
+          "paprika",
+          "chickpea flour",
+          "jasmine rice",
+          "fish sauce",
+          "water",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "noodles",
+        "name": "rice noodles",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "thin rice noodles",
+          "water"
+        ]
+      },
+      {
+        "component_id": "eggs",
+        "name": "hard-boiled eggs",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "eggs",
+          "water"
+        ]
+      },
+      {
+        "component_id": "garnish",
+        "name": "lime, cilantro, chile",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "limes",
+          "cilantro",
+          "chile flakes"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart soup pot",
+      "second 6- to 8-quart pot for the noodles",
+      "2-quart saucepan",
+      "small dry skillet",
+      "blender or mortar",
+      "fine-mesh strainer",
+      "slotted spoon"
+    ],
+    "methods": [
+      "poach",
+      "simmer",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 43,
+    "total_time_minutes": 63,
+    "prep_minutes": 20,
+    "cook_minutes": 43,
+    "total_minutes": 63,
+    "time_clock": "Prep 20 + cook 43 = 63 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The eggs boil and the noodles cook inside the broth simmer (steps 5 and 6 state the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        7
+      ],
+      "overlap_steps": [
+        5,
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Gentle poach for the fish; medium sauté for the aromatics; medium-low simmer for the broth; rolling boil for noodles and eggs.",
+    "doneness": "Catfish opaque and flaking (145 F). Broth lightly thickened and silky. Noodles tender. Eggs hard-boiled with set yolks.",
+    "effort_level": "involved",
+    "ingredient_complexity": "adventurous",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "adventurous"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish and eggs are allowed. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. Fish because of the catfish and fish sauce.",
+    "allergens": [
+      "finfish",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Finfish from the catfish and the fish sauce.",
+      "Egg from the hard-boiled eggs.",
+      "Chickpea flour carries no FlavorWeave token.",
+      "No milk, soy, wheat, sesame, shellfish (no shrimp paste), or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish and eggs are allowed. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "No shrimp paste; the fish sauce is the anchovy-and-salt kind. No fried crackers.",
+    "vocabulary_tag_ids": [
+      "savory",
+      "umami",
+      "herbaceous",
+      "soups",
+      "rice-noodles"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'burmese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "b44c3c53b1b6e4cff84b7b35772a3d9add1a0adff9af81b52c6c44a8660fe50c",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_burmese-mohinga-fish-noodle-soup_v1",
+    "dish_id": "burmese-mohinga-fish-noodle-soup",
+    "recipe_version_id": "rv_burmese-mohinga-fish-noodle-soup_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "burmese-mohinga-fish-noodle-soup.webp",
+    "card_ref": "burmese-mohinga-fish-noodle-soup-640.webp",
+    "master_filename": "burmese-mohinga-fish-noodle-soup.webp",
+    "card_filename": "burmese-mohinga-fish-noodle-soup-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "burmese-mohinga-fish-noodle-soup.webp",
+        "spec_catalog_path": "/images/meals/burmese-mohinga-fish-noodle-soup.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "burmese-mohinga-fish-noodle-soup-640.webp",
+        "spec_catalog_path": "/images/meals/burmese-mohinga-fish-noodle-soup-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "10c905764f67ed44c687e1bf494782860121bc5b10178ae8d707cd63a3b896e0",
+      "master_sha256": "75130aae8114fe6cb182dd965b3e84dcf87f890c1a8ea2fd416eeb0cb0091b51",
+      "card_sha256": "8ace25e0bf4bff70bf377dde758769c95108b1394100e0ccfb564fb653b97a07"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "10c905764f67ed44c687e1bf494782860121bc5b10178ae8d707cd63a3b896e0",
+      "burmese-mohinga-fish-noodle-soup.webp": "75130aae8114fe6cb182dd965b3e84dcf87f890c1a8ea2fd416eeb0cb0091b51",
+      "burmese-mohinga-fish-noodle-soup-640.webp": "8ace25e0bf4bff70bf377dde758769c95108b1394100e0ccfb564fb653b97a07"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 20 + cook 43 = 63 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The eggs boil and the noodles cook inside the broth simmer (steps 5 and 6 state the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "burmese-mohinga-fish-noodle-soup.webp 1200x900 and burmese-mohinga-fish-noodle-soup-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make the full broth; it keeps 2 days. Cook noodles and eggs to order.",
+    "2": "Full broth.",
+    "4": "As written.",
+    "do_not_scale": [
+      "whisk the flour into cold water before it meets the hot broth"
+    ]
+  },
+  "coverage_contribution": "Burmese 0 to 1. Adventurous complexity is rare in the catalog; this adds one HH001 adventurous soup. Thickened fish broth is a new format.",
+  "near_duplicate_review": "Compared with vietnamese-chicken-pho and vietnamese-turmeric-dill-fish: a thick turmeric-chickpea fish broth, not clear pho or seared fish with dill. Compared with filipino-fish-sinigang in this wave: thickened and spiced, not a clear sour broth. Compared with cajun-blackened-catfish: catfish poached into soup, not blackened.",
+  "not_duplicate_of": "Not laksa (coconut, shrimp; batch D). Not khao soi.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

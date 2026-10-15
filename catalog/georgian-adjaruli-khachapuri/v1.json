@@ -1,0 +1,604 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "georgian-adjaruli-khachapuri",
+    "slug": "georgian-adjaruli-khachapuri",
+    "title": "Georgian Adjaruli Khachapuri: Cheese Bread Boats with Egg",
+    "description": "Boat-shaped yeasted breads filled with a molten blend of mozzarella and feta, baked until the crust is burnished, then finished with a soft-baked egg in the center and a pat of butter to swirl in at the table. Served with a cucumber, tomato, and dill salad.",
+    "cuisine": "georgian",
+    "meal_format": "stuffed-flatbread",
+    "primary_ingredient": "cheese",
+    "vocabulary_tag_ids": [
+      "rich",
+      "creamy",
+      "savory",
+      "fresh"
+    ],
+    "current_recipe_id": "rcp_georgian-adjaruli-khachapuri",
+    "current_version_id": "rv_georgian-adjaruli-khachapuri_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_georgian-adjaruli-khachapuri",
+    "dish_id": "georgian-adjaruli-khachapuri",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_georgian-adjaruli-khachapuri_v1",
+    "recipe_id": "rcp_georgian-adjaruli-khachapuri",
+    "dish_id": "georgian-adjaruli-khachapuri",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Georgian Adjaruli Khachapuri: Cheese Bread Boats with Egg",
+    "description": "Boat-shaped yeasted breads filled with a molten blend of mozzarella and feta, baked until the crust is burnished, then finished with a soft-baked egg in the center and a pat of butter to swirl in at the table. Served with a cucumber, tomato, and dill salad.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "flour",
+        "name": "bread flour",
+        "display_name": "bread flour",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "plus 2 tbsp for shaping",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "instant-yeast",
+        "name": "instant yeast",
+        "display_name": "instant yeast",
+        "quantity": 2.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dough-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "warm, about 105 F, for the dough",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "mozzarella",
+        "name": "low-moisture mozzarella",
+        "display_name": "low-moisture mozzarella",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": "shredded",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "feta",
+        "name": "feta cheese",
+        "display_name": "feta cheese",
+        "quantity": 6,
+        "unit": "oz",
+        "note": null,
+        "preparation": "crumbled",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "eggs",
+        "display_name": "large eggs",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "cut into 4 pats",
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "cucumbers",
+        "name": "Persian cucumbers",
+        "display_name": "Persian cucumbers",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "ripe tomatoes",
+        "display_name": "ripe tomatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 0.25,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dill",
+        "name": "fresh dill",
+        "display_name": "fresh dill",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "1 tbsp dough, 2 tbsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.75,
+        "unit": "tsp",
+        "note": "1 1/2 tsp dough, 1/4 tsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Make the dough",
+        "body": "Whisk the flour, yeast, sugar, and 1 1/2 tsp salt in a large bowl. Add 1 cup warm water and 1 tbsp olive oil and knead 8 minutes into a smooth, slightly tacky dough.",
+        "ingredient_refs": [
+          "flour",
+          "instant-yeast",
+          "sugar",
+          "kosher-salt",
+          "dough-water",
+          "olive-oil"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Rise and preheat",
+        "body": "Cover and let rise in a warm place 60 minutes, until doubled. After 30 minutes of rising, put a sheet pan on the lower-middle rack and turn the oven on to 475 F to preheat. Meanwhile mix the mozzarella and feta in a medium bowl.",
+        "ingredient_refs": [
+          "flour",
+          "mozzarella",
+          "feta"
+        ],
+        "clock_minutes": 60,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 3,
+        "title": "Shape the boats",
+        "body": "Divide the dough into 4 pieces. On parchment, roll each into a 10 x 7-inch oval. Roll the long edges inward toward the center to form raised sides and pinch and twist the ends into points to make a boat. Fill each with a quarter of the cheese.",
+        "ingredient_refs": [
+          "flour",
+          "mozzarella",
+          "feta"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Bake",
+        "body": "Slide the parchment onto the hot sheet pan and bake in the preheated 475 F oven until the crust is golden and the cheese bubbles, 14 to 15 minutes.",
+        "ingredient_refs": [
+          "flour",
+          "mozzarella"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Make the salad",
+        "body": "While the breads bake, toss the cucumbers, tomatoes, red onion, and dill with 2 tbsp olive oil and 1/4 tsp salt. Runs inside step 4 (overlap stated).",
+        "ingredient_refs": [
+          "cucumbers",
+          "tomatoes",
+          "red-onion",
+          "dill",
+          "olive-oil",
+          "kosher-salt"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Add the eggs",
+        "body": "Make a well in each boat's cheese with a spoon, crack an egg into each well, and bake 3 to 4 minutes more, until the white is just set and the yolk still runny.",
+        "ingredient_refs": [
+          "eggs",
+          "mozzarella"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Butter and serve",
+        "body": "Set a pat of butter beside each egg and serve at once with the salad; at the table, swirl the egg and butter into the hot cheese and tear off the crust to dip.",
+        "ingredient_refs": [
+          "butter",
+          "eggs",
+          "cucumbers"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "dough",
+        "name": "yeasted dough",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "flour",
+          "instant yeast",
+          "sugar",
+          "water",
+          "olive oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "filling",
+        "name": "cheese filling with egg and butter",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "mozzarella",
+          "feta",
+          "eggs",
+          "butter"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "cucumber-tomato-dill salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cucumbers",
+          "tomatoes",
+          "red onion",
+          "dill",
+          "olive oil",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "large bowl",
+      "rimmed sheet pan",
+      "parchment",
+      "rolling pin",
+      "medium bowl",
+      "small bowl"
+    ],
+    "methods": [
+      "bake"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 70,
+    "cook_time_minutes": 31,
+    "total_time_minutes": 101,
+    "prep_minutes": 70,
+    "cook_minutes": 31,
+    "total_minutes": 101,
+    "time_clock": "Prep 70 + cook 31 = 101 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The dough rises 60 minutes (prep). The oven is turned on to preheat 30 minutes into the rise and has heated 40 minutes when the breads go in. The salad is made inside the bake (step 5 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        2
+      ],
+      "cook_steps": [
+        3,
+        4,
+        6,
+        7
+      ],
+      "overlap_steps": [
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 2 (Rise and preheat) and it states the preheat. The dough rises 60 minutes (prep). The oven is turned on to preheat 30 minutes into the rise and has heated 40 minutes when the breads go in. The salad is made inside the bake (step 5 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven preheated to 475 F with a sheet pan inside, lower-middle rack.",
+    "doneness": "Crust deep golden; cheese bubbling; egg white just set and yolk still runny.",
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains dairy (mozzarella, feta, butter)."
+    },
+    "dietary_labels": [
+      "vegetarian"
+    ],
+    "dietary_label_note": "Vegetarian (contains eggs and dairy). Not dairy_free.",
+    "allergens": [
+      "wheat",
+      "milk",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Wheat from the flour.",
+      "Milk from the mozzarella, feta, and butter.",
+      "Egg from the eggs baked into the center.",
+      "Runny-yolk eggs are not recommended for pregnant or immunocompromised diners; bake 2 minutes longer for set yolks."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains dairy (mozzarella, feta, butter).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "rich",
+      "creamy",
+      "savory",
+      "fresh"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'georgian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "42d9606119c47509ceda103b131511c2c4656e9c0d4487dd0b80ba4c47f7c73d",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_georgian-adjaruli-khachapuri_v1",
+    "dish_id": "georgian-adjaruli-khachapuri",
+    "recipe_version_id": "rv_georgian-adjaruli-khachapuri_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "georgian-adjaruli-khachapuri.webp",
+    "card_ref": "georgian-adjaruli-khachapuri-640.webp",
+    "master_filename": "georgian-adjaruli-khachapuri.webp",
+    "card_filename": "georgian-adjaruli-khachapuri-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "georgian-adjaruli-khachapuri.webp",
+        "spec_catalog_path": "/images/meals/georgian-adjaruli-khachapuri.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "georgian-adjaruli-khachapuri-640.webp",
+        "spec_catalog_path": "/images/meals/georgian-adjaruli-khachapuri-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "f2e931d7d2b04d45bf3aa802a8f739cfc04aeac00fbb4c315026643b67aa7dbd",
+      "master_sha256": "191fe25096bc0ca58d6d24d3abe9d252fc04990519a9afa73e3a7e9e04e3fc14",
+      "card_sha256": "89378b222b1b32a54aee020b4958f97103beac5839cf7ca1afcdd2d9c4cd4f92"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "f2e931d7d2b04d45bf3aa802a8f739cfc04aeac00fbb4c315026643b67aa7dbd",
+      "georgian-adjaruli-khachapuri.webp": "191fe25096bc0ca58d6d24d3abe9d252fc04990519a9afa73e3a7e9e04e3fc14",
+      "georgian-adjaruli-khachapuri-640.webp": "89378b222b1b32a54aee020b4958f97103beac5839cf7ca1afcdd2d9c4cd4f92"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 70 + cook 31 = 101 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The dough rises 60 minutes (prep). The oven is turned on to preheat 30 minutes into the rise and has heated 40 minutes when the breads go in. The salad is made inside the bake (step 5 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 2 (Rise and preheat) and it states the preheat. The dough rises 60 minutes (prep). The oven is turned on to preheat 30 minutes into the rise and has heated 40 minutes when the breads go in. The salad is made inside the bake (step 5 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "georgian-adjaruli-khachapuri.webp 1200x900 and georgian-adjaruli-khachapuri-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make the full dough and freeze 3 portions after the rise, or make 1 boat with a quarter of the filling.",
+    "2": "Make 2 boats; freeze the remaining dough.",
+    "4": "As written; 4 boats on one sheet pan.",
+    "do_not_scale": [
+      "add the egg only in the last 3 to 4 minutes"
+    ]
+  },
+  "coverage_contribution": "Georgian 0 to 1. First cheese bread boat; a vegetarian weekend project for dairy-eating households.",
+  "near_duplicate_review": "Compared with sheet-pan-margherita-pizza: an enclosed boat with an egg, no tomato sauce. Compared with turkish-lahmacun: thick cheese-filled bread, no meat. Compared with the aloo-paratha and arepas in this wave: yeasted, cheese-filled, open-topped.",
+  "not_duplicate_of": "Not a calzone. Not pide (Turkish).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

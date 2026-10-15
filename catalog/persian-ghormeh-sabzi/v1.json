@@ -1,0 +1,627 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "persian-ghormeh-sabzi",
+    "slug": "persian-ghormeh-sabzi",
+    "title": "Persian Ghormeh Sabzi: Herb and Lamb Stew with Dried Lime",
+    "description": "Iran's beloved herb stew: lamb shoulder braised with a mountain of slow-cooked parsley, cilantro, scallions, and fenugreek, kidney beans, turmeric, and whole dried limes that lend a deep, sour, almost smoky tang. Served with fluffy steamed basmati.",
+    "cuisine": "persian",
+    "meal_format": "stew-over-rice",
+    "primary_ingredient": "lamb",
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "tangy",
+      "savory",
+      "stews",
+      "middle-eastern"
+    ],
+    "current_recipe_id": "rcp_persian-ghormeh-sabzi",
+    "current_version_id": "rv_persian-ghormeh-sabzi_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_persian-ghormeh-sabzi",
+    "dish_id": "persian-ghormeh-sabzi",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_persian-ghormeh-sabzi_v1",
+    "recipe_id": "rcp_persian-ghormeh-sabzi",
+    "dish_id": "persian-ghormeh-sabzi",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Persian Ghormeh Sabzi: Herb and Lamb Stew with Dried Lime",
+    "description": "Iran's beloved herb stew: lamb shoulder braised with a mountain of slow-cooked parsley, cilantro, scallions, and fenugreek, kidney beans, turmeric, and whole dried limes that lend a deep, sour, almost smoky tang. Served with fluffy steamed basmati.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "lamb-shoulder",
+        "name": "boneless lamb shoulder",
+        "display_name": "boneless lamb shoulder",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "trimmed, cut into 1 1/2-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "large yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "about 2 large bunches",
+        "preparation": "washed, dried, finely chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "washed, dried, finely chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 8,
+        "unit": "count",
+        "note": null,
+        "preparation": "green and white parts finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "fenugreek",
+        "name": "dried fenugreek leaves",
+        "display_name": "dried fenugreek leaves (methi)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dried-limes",
+        "name": "dried limes",
+        "display_name": "dried limes (limoo amani)",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "pierced 3 times each with a knife",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kidney-beans",
+        "name": "red kidney beans",
+        "display_name": "15-oz can red kidney beans",
+        "quantity": 1,
+        "unit": "can",
+        "note": null,
+        "preparation": "drained and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "juiced, about 3 tbsp",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "stew-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 5,
+        "unit": "cup",
+        "note": "for the braise",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "basmati-rice",
+        "name": "basmati rice",
+        "display_name": "basmati rice",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed until the rinse runs clear",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 12,
+        "unit": "cup",
+        "note": "for parboiling the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 7,
+        "unit": "tbsp",
+        "note": "3 tbsp lamb, 2 tbsp herbs, 2 tbsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 4.5,
+        "unit": "tsp",
+        "note": "2 tsp stew, 2 1/2 tsp rice water",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Wash and thoroughly dry the parsley, cilantro, and scallions, then chop them very finely (a food processor in short pulses works). Dice the onion. Cube the lamb and pat it dry. Pierce the dried limes. Rinse the basmati until the rinse runs clear and leave it in the strainer. Drain and rinse the beans, and juice the lemon.",
+        "ingredient_refs": [
+          "parsley",
+          "cilantro",
+          "scallions",
+          "yellow-onion",
+          "lamb-shoulder",
+          "dried-limes",
+          "basmati-rice",
+          "kidney-beans",
+          "lemon"
+        ],
+        "clock_minutes": 25,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the lamb",
+        "body": "Heat 3 tbsp oil in the Dutch oven over medium-high. Brown the lamb in two batches, 4 minutes per batch. Add the onion and cook until golden, 5 minutes, then stir in the turmeric and pepper for 30 seconds.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "lamb-shoulder",
+          "yellow-onion",
+          "turmeric",
+          "black-pepper"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "First simmer",
+        "body": "Add the 5 cups water and 2 tsp salt, scraping up the browned bits. Bring to a boil, cover, and simmer on low 30 minutes.",
+        "ingredient_refs": [
+          "stew-water",
+          "kosher-salt",
+          "lamb-shoulder"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Cook down the herbs",
+        "body": "While the lamb simmers, heat 2 tbsp oil in a 12-inch skillet over medium-low. Add the chopped parsley, cilantro, and scallions and cook, stirring every minute or so, until they darken to deep green and smell toasty, about 15 minutes; stir in the fenugreek for the last minute. Do not let them scorch. Runs inside step 3 (overlap stated).",
+        "ingredient_refs": [
+          "neutral-oil",
+          "parsley",
+          "cilantro",
+          "scallions",
+          "fenugreek"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Braise with the limes and beans",
+        "body": "Stir the herbs, dried limes, and beans into the lamb. Cover and simmer on low 60 minutes, stirring occasionally and pressing the limes against the side of the pot after 30 minutes, until the lamb is fork-tender and the stew is thick with oil glistening on top.",
+        "ingredient_refs": [
+          "parsley",
+          "dried-limes",
+          "kidney-beans",
+          "lamb-shoulder"
+        ],
+        "clock_minutes": 60,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Parboil and steam the rice",
+        "body": "During the braise, bring 12 cups water and 2 1/2 tsp salt to a boil in a large pot. Add the rice and boil 6 minutes until just tender outside and firm in the center; drain. Return the pot to medium heat with 2 tbsp oil, mound the rice in, poke 4 holes with a spoon handle, wrap the lid in a kitchen towel, cover, and steam on low 30 minutes. Runs inside step 5 (overlap stated).",
+        "ingredient_refs": [
+          "rice-water",
+          "kosher-salt",
+          "basmati-rice",
+          "neutral-oil"
+        ],
+        "clock_minutes": 45,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Finish and serve",
+        "body": "Stir in the lemon juice and taste for salt and sourness. Serve the stew beside the fluffed rice, one dried lime per bowl (squeeze it for more tang, but do not eat the shell).",
+        "ingredient_refs": [
+          "lemon",
+          "lamb-shoulder",
+          "basmati-rice",
+          "dried-limes"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "stew",
+        "name": "lamb and herb stew",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "lamb shoulder",
+          "onion",
+          "turmeric",
+          "parsley",
+          "cilantro",
+          "scallions",
+          "fenugreek",
+          "dried limes",
+          "kidney beans",
+          "lemon",
+          "water",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "steamed basmati",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "basmati rice",
+          "water",
+          "salt",
+          "oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart Dutch oven with lid",
+      "12-inch skillet",
+      "large pot with lid",
+      "fine-mesh strainer",
+      "kitchen towel"
+    ],
+    "methods": [
+      "saute",
+      "braise",
+      "boil",
+      "steam"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 25,
+    "cook_time_minutes": 108,
+    "total_time_minutes": 133,
+    "prep_minutes": 25,
+    "cook_minutes": 108,
+    "total_minutes": 133,
+    "time_clock": "Prep 25 + cook 108 = 133 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The herbs cook in a separate skillet inside the first lamb simmer (step 4 states the overlap). The rice is parboiled and steamed inside the final simmer (step 6 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        5,
+        7
+      ],
+      "overlap_steps": [
+        4,
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high to brown the lamb; low covered simmer for the braise; medium-low to cook down the herbs. Boil then low steam for the rice.",
+    "doneness": "Lamb fork-tender; herbs cooked down to a very dark green; sauce thick with a layer of glossy oil on top. Rice long, separate, and fluffy.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains lamb (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: the rice is steamed with oil, not butter.",
+    "allergens": [
+      "meat"
+    ],
+    "allergen_notes": [
+      "Meat from the lamb.",
+      "No egg, milk, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains lamb (meat).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "tangy",
+      "savory",
+      "stews",
+      "middle-eastern"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'persian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "f9ddff4d3f837373d04436555acf78a81cd34514e56d7139b48d7cf843f2a9a0",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_persian-ghormeh-sabzi_v1",
+    "dish_id": "persian-ghormeh-sabzi",
+    "recipe_version_id": "rv_persian-ghormeh-sabzi_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "persian-ghormeh-sabzi.webp",
+    "card_ref": "persian-ghormeh-sabzi-640.webp",
+    "master_filename": "persian-ghormeh-sabzi.webp",
+    "card_filename": "persian-ghormeh-sabzi-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "persian-ghormeh-sabzi.webp",
+        "spec_catalog_path": "/images/meals/persian-ghormeh-sabzi.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "persian-ghormeh-sabzi-640.webp",
+        "spec_catalog_path": "/images/meals/persian-ghormeh-sabzi-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "2b94dbbbc5a7b39516ae52b47c68142dc9d84477231dd1ab45005184bc636acf",
+      "master_sha256": "329b426b15a0fc7bd243cf4443fba5d2db2033200c4c64f48d7a62f547a7cb66",
+      "card_sha256": "b9e3f436f4c9bcfd3007914033653b05cac2a511f5c3638a39d643982a7c056e"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "2b94dbbbc5a7b39516ae52b47c68142dc9d84477231dd1ab45005184bc636acf",
+      "persian-ghormeh-sabzi.webp": "329b426b15a0fc7bd243cf4443fba5d2db2033200c4c64f48d7a62f547a7cb66",
+      "persian-ghormeh-sabzi-640.webp": "b9e3f436f4c9bcfd3007914033653b05cac2a511f5c3638a39d643982a7c056e"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 25 + cook 108 = 133 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The herbs cook in a separate skillet inside the first lamb simmer (step 4 states the overlap). The rice is parboiled and steamed inside the final simmer (step 6 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "persian-ghormeh-sabzi.webp 1200x900 and persian-ghormeh-sabzi-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make the full pot; it improves overnight and freezes well.",
+    "2": "Make the full pot.",
+    "4": "As written.",
+    "do_not_scale": [
+      "herb volume shrinks by about 80 percent; do not cut it when scaling down"
+    ]
+  },
+  "coverage_contribution": "Persian 0 to 1. First lamb shoulder (lamb appeared only as ground lamb). Dried lime is a new flavor (sour-smoky). A herb-led stew.",
+  "near_duplicate_review": "Compared with spiced-lamb-meatballs: braised shoulder cubes in an herb stew, not ground lamb. Compared with pumpkin-pinto-bean-chili and smoky-lentil-sweet-potato-stew: herb-and-dried-lime base, no chiles or tomato. Compared with saag-paneer: herbs, not spinach; lamb, not cheese.",
+  "not_duplicate_of": "Not khoresh gheymeh (split pea, tomato). Not a tagine.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

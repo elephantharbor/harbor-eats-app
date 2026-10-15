@@ -1,0 +1,588 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "xian-cumin-lamb-stir-fry",
+    "slug": "xian-cumin-lamb-stir-fry",
+    "title": "Xi'an Cumin Lamb Stir-Fry with Jasmine Rice",
+    "description": "Thin slices of lamb seared hard in a wok with whole cumin seeds, dried chile flakes, Sichuan peppercorn, garlic, ginger, and onion until crisp-edged and fragrant, finished with scallions and cilantro. A bold, dry-spiced northwestern Chinese stir-fry over rice.",
+    "cuisine": "chinese",
+    "meal_format": "rice-plate",
+    "primary_ingredient": "lamb",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "savory",
+      "smoky",
+      "stir-fries",
+      "chinese"
+    ],
+    "current_recipe_id": "rcp_xian-cumin-lamb-stir-fry",
+    "current_version_id": "rv_xian-cumin-lamb-stir-fry_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_xian-cumin-lamb-stir-fry",
+    "dish_id": "xian-cumin-lamb-stir-fry",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_xian-cumin-lamb-stir-fry_v1",
+    "recipe_id": "rcp_xian-cumin-lamb-stir-fry",
+    "dish_id": "xian-cumin-lamb-stir-fry",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Xi'an Cumin Lamb Stir-Fry with Jasmine Rice",
+    "description": "Thin slices of lamb seared hard in a wok with whole cumin seeds, dried chile flakes, Sichuan peppercorn, garlic, ginger, and onion until crisp-edged and fragrant, finished with scallions and cilantro. A bold, dry-spiced northwestern Chinese stir-fry over rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "lamb",
+        "name": "thin-sliced lamb",
+        "display_name": "store-bought thin-sliced lamb (hot-pot slices, or lamb shoulder sliced 1/8 inch thick by the butcher)",
+        "quantity": 1.25,
+        "unit": "lb",
+        "note": "Buy it already sliced. Frozen hot-pot slices are thawed in the refrigerator the day before; thawing is outside the cooking clock.",
+        "preparation": "slices separated; long pieces cut into 2-inch lengths",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cornstarch",
+        "name": "cornstarch",
+        "display_name": "cornstarch",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cumin-seeds",
+        "name": "cumin seeds",
+        "display_name": "cumin seeds",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "half left whole, half coarsely crushed",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chile-flakes",
+        "name": "red chile flakes",
+        "display_name": "red chile flakes",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sichuan-peppercorns",
+        "name": "Sichuan peppercorns",
+        "display_name": "Sichuan peppercorns",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": "toasted and ground",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into thin wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 2-inch lengths",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "roughly chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Start the rice and prep",
+        "body": "Combine the rinsed rice and 2 1/4 cups water in a 2-quart saucepan, bring to a boil, cover, and cook on low 15 minutes, then rest covered; it cooks inside this prep and the stir-fry (overlap stated). Separate the lamb slices, cut any long pieces into 2-inch lengths, and toss with the soy sauce, cornstarch, and 1/2 tsp salt. Crush half the cumin. Toast and grind the Sichuan peppercorns. Cut the onion, garlic, ginger, scallions, and cilantro.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "rice-water",
+          "lamb",
+          "soy-sauce",
+          "cornstarch",
+          "kosher-salt",
+          "cumin-seeds",
+          "sichuan-peppercorns",
+          "red-onion",
+          "garlic",
+          "ginger",
+          "scallions",
+          "cilantro"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Sear the lamb",
+        "body": "Heat the wok over very high heat until smoking, add 1 tbsp oil, and spread half the lamb in one layer. Sear 1 minute without moving, then stir-fry 1 minute until browned and crisp at the edges. Lift out and repeat with 1 tbsp oil and the rest of the lamb.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "lamb"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Toast the spices and onion",
+        "body": "Add the last 1 tbsp oil, the onion, garlic, and ginger and stir-fry 2 minutes. Add the whole and crushed cumin, chile flakes, and Sichuan pepper and toss 30 seconds until fragrant.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "red-onion",
+          "garlic",
+          "ginger",
+          "cumin-seeds",
+          "chile-flakes",
+          "sichuan-peppercorns"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Combine",
+        "body": "Return the lamb with the scallions and the remaining 1/4 tsp salt and toss 1 minute over high heat. Take off the heat and toss in the cilantro.",
+        "ingredient_refs": [
+          "lamb",
+          "scallions",
+          "kosher-salt",
+          "cilantro"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Fluff the rice and pile the lamb beside or over it.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "lamb"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "lamb",
+        "name": "cumin lamb stir-fry",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "lamb",
+          "soy sauce",
+          "cornstarch",
+          "cumin seeds",
+          "chile flakes",
+          "Sichuan peppercorns",
+          "onion",
+          "garlic",
+          "ginger",
+          "scallions",
+          "cilantro",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "jasmine rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "wok or 12-inch carbon-steel or cast-iron skillet",
+      "2-quart saucepan with lid",
+      "medium bowl",
+      "spider or slotted spoon"
+    ],
+    "methods": [
+      "stir-fry"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "crispy"
+      ],
+      "stir_fry": true,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 15,
+    "total_time_minutes": 27,
+    "prep_minutes": 12,
+    "cook_minutes": 15,
+    "total_minutes": 27,
+    "time_clock": "Prep 12 + cook 15 = 27 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered inside the prep and stir-fry (step 1 states the overlap). The lamb is bought thin-sliced, so there is no partial-freeze or slicing step to count. Total under 30 minutes.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Very high wok heat to sear the lamb in two batches; high for the aromatics.",
+    "doneness": "Lamb browned and crisp at the edges, just cooked through; onion crisp-tender; spices toasted but not burnt.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains lamb (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free.",
+    "allergens": [
+      "meat",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the lamb.",
+      "Soy and wheat from the soy sauce.",
+      "No egg, milk, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains lamb (meat).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "spicy",
+      "savory",
+      "smoky",
+      "stir-fries",
+      "chinese"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'chinese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "e3c06555574accaf9a44a7fd11486b34a3ab4b9e6fe054e5d673a4d9f4f2aef6",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_xian-cumin-lamb-stir-fry_v1",
+    "dish_id": "xian-cumin-lamb-stir-fry",
+    "recipe_version_id": "rv_xian-cumin-lamb-stir-fry_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "xian-cumin-lamb-stir-fry.webp",
+    "card_ref": "xian-cumin-lamb-stir-fry-640.webp",
+    "master_filename": "xian-cumin-lamb-stir-fry.webp",
+    "card_filename": "xian-cumin-lamb-stir-fry-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "xian-cumin-lamb-stir-fry.webp",
+        "spec_catalog_path": "/images/meals/xian-cumin-lamb-stir-fry.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "xian-cumin-lamb-stir-fry-640.webp",
+        "spec_catalog_path": "/images/meals/xian-cumin-lamb-stir-fry-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "3f8227ed36ee74b0621d58df76517ebbe1d185ac48e471fef59649ca1187a687",
+      "master_sha256": "26298d860924c7c02de6d04afb4faffc1353c8a39bc61d37d547436ed7282869",
+      "card_sha256": "7eb1b6e7c27277eb48985f45303708f549f3e88efecad9291947f933a3f20259"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "3f8227ed36ee74b0621d58df76517ebbe1d185ac48e471fef59649ca1187a687",
+      "xian-cumin-lamb-stir-fry.webp": "26298d860924c7c02de6d04afb4faffc1353c8a39bc61d37d547436ed7282869",
+      "xian-cumin-lamb-stir-fry-640.webp": "7eb1b6e7c27277eb48985f45303708f549f3e88efecad9291947f933a3f20259"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 15 = 27 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered inside the prep and stir-fry (step 1 states the overlap). The lamb is bought thin-sliced, so there is no partial-freeze or slicing step to count. Total under 30 minutes."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "xian-cumin-lamb-stir-fry.webp 1200x900 and xian-cumin-lamb-stir-fry-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"crispy\"], \"stir_fry\": true, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "6 oz lamb in one batch; a quarter of the spices.",
+    "2": "Half the recipe in one batch.",
+    "4": "As written; sear in two batches.",
+    "do_not_scale": [
+      "never crowd the wok; sear in batches of about 10 oz"
+    ]
+  },
+  "coverage_contribution": "Under-30 band (27 minutes). Sliced lamb is a new lamb form (the catalog has only ground lamb). Northwestern Chinese dry-spice profile is new.",
+  "near_duplicate_review": "Compared with sichuan-green-bean-mushroom-stir-fry: lamb main, cumin-led, no green beans. Compared with cashew-chicken-stir-fry: no nuts, no sauce, dry-spiced. Compared with spiced-lamb-meatballs: sliced and wok-seared, not ground.",
+  "not_duplicate_of": "Not Mongolian beef (sweet sauce). Not the persian-ghormeh-sabzi in this wave (braised lamb shoulder).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

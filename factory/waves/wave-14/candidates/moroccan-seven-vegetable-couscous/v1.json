@@ -1,0 +1,670 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "moroccan-seven-vegetable-couscous",
+    "slug": "moroccan-seven-vegetable-couscous",
+    "title": "Moroccan Seven-Vegetable Couscous",
+    "description": "Fluffy couscous crowned with a fragrant ras el hanout broth of carrots, turnips, butternut squash, cabbage, zucchini, tomato, and onion, simmered until tender with ginger, turmeric, cinnamon, and plump raisins. Served with harissa for heat.",
+    "cuisine": "moroccan",
+    "meal_format": "grain-and-broth",
+    "primary_ingredient": "vegetables",
+    "vocabulary_tag_ids": [
+      "savory",
+      "spicy",
+      "tender",
+      "stews"
+    ],
+    "current_recipe_id": "rcp_moroccan-seven-vegetable-couscous",
+    "current_version_id": "rv_moroccan-seven-vegetable-couscous_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_moroccan-seven-vegetable-couscous",
+    "dish_id": "moroccan-seven-vegetable-couscous",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_moroccan-seven-vegetable-couscous_v1",
+    "recipe_id": "rcp_moroccan-seven-vegetable-couscous",
+    "dish_id": "moroccan-seven-vegetable-couscous",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Moroccan Seven-Vegetable Couscous",
+    "description": "Fluffy couscous crowned with a fragrant ras el hanout broth of carrots, turnips, butternut squash, cabbage, zucchini, tomato, and onion, simmered until tender with ginger, turmeric, cinnamon, and plump raisins. Served with harissa for heat.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "couscous",
+        "name": "couscous",
+        "display_name": "couscous",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "couscous-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1.75,
+        "unit": "cup",
+        "note": "boiling, for the couscous",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved lengthwise, cut into 3-inch lengths",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "turnips",
+        "name": "turnips",
+        "display_name": "medium turnips",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "peeled, quartered",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "butternut-squash",
+        "name": "butternut squash",
+        "display_name": "butternut squash",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled, cut into 2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-cabbage",
+        "name": "green cabbage",
+        "display_name": "small green cabbage",
+        "quantity": 0.25,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 2 wedges, core attached",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "zucchini",
+        "name": "zucchini",
+        "display_name": "zucchini",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved, cut into 3-inch lengths",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "Roma tomatoes",
+        "display_name": "Roma tomatoes",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "grated, skins discarded",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ras-el-hanout",
+        "name": "ras el hanout",
+        "display_name": "ras el hanout",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "ground ginger",
+        "display_name": "ground ginger",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cinnamon-stick",
+        "name": "cinnamon stick",
+        "display_name": "cinnamon stick",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "raisins",
+        "name": "golden raisins",
+        "display_name": "golden raisins",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "half tied in a bundle, half chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "harissa",
+        "name": "harissa paste",
+        "display_name": "harissa paste",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "for serving",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "broth-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "for the broth",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "3 tbsp broth, 1 tbsp couscous",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.75,
+        "unit": "tsp",
+        "note": "2 1/4 tsp broth, 1/2 tsp couscous",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Cut the onion into wedges. Peel and cut the carrots, turnips, and squash; cut the cabbage into 2 wedges and the zucchini into lengths. Grate the tomatoes on a box grater and discard the skins. Tie half the cilantro into a bundle and chop the rest.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "carrots",
+          "turnips",
+          "butternut-squash",
+          "green-cabbage",
+          "zucchini",
+          "tomatoes",
+          "cilantro"
+        ],
+        "clock_minutes": 25,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Sauté the base",
+        "body": "Heat 3 tbsp olive oil in the Dutch oven over medium. Cook the onion 4 minutes, then stir in the ras el hanout, ginger, turmeric, and pepper for 30 seconds and add the grated tomatoes.",
+        "ingredient_refs": [
+          "olive-oil",
+          "yellow-onion",
+          "ras-el-hanout",
+          "ginger",
+          "turmeric",
+          "black-pepper",
+          "tomatoes"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer the hard vegetables",
+        "body": "Add 6 cups water, 2 1/4 tsp salt, the cinnamon stick, the cilantro bundle, the carrots, turnips, and cabbage. Bring to a boil, then simmer partly covered 25 minutes.",
+        "ingredient_refs": [
+          "broth-water",
+          "kosher-salt",
+          "cinnamon-stick",
+          "cilantro",
+          "carrots",
+          "turnips",
+          "green-cabbage"
+        ],
+        "clock_minutes": 25,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Add the soft vegetables",
+        "body": "Add the squash, zucchini, and raisins and simmer until everything is tender, 15 minutes.",
+        "ingredient_refs": [
+          "butternut-squash",
+          "zucchini",
+          "raisins"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Steam the couscous",
+        "body": "During that last simmer, put the couscous in a heatproof bowl with 1 tbsp olive oil and 1/2 tsp salt, pour over 1 3/4 cups boiling water, cover with a plate, and let it stand 10 minutes; fluff with a fork. Runs inside step 4 (overlap stated).",
+        "ingredient_refs": [
+          "couscous",
+          "olive-oil",
+          "kosher-salt",
+          "couscous-water"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Remove the cilantro bundle and cinnamon stick. Mound the couscous on a platter or in wide bowls, arrange the vegetables on top, ladle over the broth, and scatter the chopped cilantro. Thin the harissa with a ladle of broth and serve alongside.",
+        "ingredient_refs": [
+          "cilantro",
+          "cinnamon-stick",
+          "couscous",
+          "carrots",
+          "harissa"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "broth",
+        "name": "seven-vegetable broth",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "onion",
+          "carrots",
+          "turnips",
+          "butternut squash",
+          "cabbage",
+          "zucchini",
+          "tomatoes",
+          "ras el hanout",
+          "ginger",
+          "turmeric",
+          "cinnamon",
+          "raisins",
+          "cilantro",
+          "water",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "couscous",
+        "name": "steamed couscous",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "couscous",
+          "water",
+          "oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "harissa",
+        "name": "harissa",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "harissa paste"
+        ]
+      }
+    ],
+    "equipment": [
+      "7-quart Dutch oven",
+      "medium heatproof bowl with a plate to cover",
+      "fork",
+      "ladle"
+    ],
+    "methods": [
+      "saute",
+      "simmer",
+      "steam"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 25,
+    "cook_time_minutes": 48,
+    "total_time_minutes": 73,
+    "prep_minutes": 25,
+    "cook_minutes": 48,
+    "total_minutes": 73,
+    "time_clock": "Prep 25 + cook 48 = 73 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The couscous steams inside the final simmer (step 5 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "overlap_steps": [
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium sauté; medium-low simmer; couscous steamed off the heat.",
+    "doneness": "Carrots and turnips tender; squash soft but holding its shape; zucchini just tender; couscous fluffy and separate.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and plant_based.",
+    "allergens": [
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Wheat from the couscous.",
+      "Harissa is chiles, garlic, and spices with no FlavorWeave tokens.",
+      "No egg, milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "Oil instead of smen or butter in the couscous; no almonds; chickpeas omitted by design.",
+    "vocabulary_tag_ids": [
+      "savory",
+      "spicy",
+      "tender",
+      "stews"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'moroccan' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "0ad75bbbcb8468e31c92d5a334042ac9578b3637b45cbd8ef531ec14a73ca471",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_moroccan-seven-vegetable-couscous_v1",
+    "dish_id": "moroccan-seven-vegetable-couscous",
+    "recipe_version_id": "rv_moroccan-seven-vegetable-couscous_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "moroccan-seven-vegetable-couscous.webp",
+    "card_ref": "moroccan-seven-vegetable-couscous-640.webp",
+    "master_filename": "moroccan-seven-vegetable-couscous.webp",
+    "card_filename": "moroccan-seven-vegetable-couscous-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "moroccan-seven-vegetable-couscous.webp",
+        "spec_catalog_path": "/images/meals/moroccan-seven-vegetable-couscous.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "moroccan-seven-vegetable-couscous-640.webp",
+        "spec_catalog_path": "/images/meals/moroccan-seven-vegetable-couscous-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "0b2c99eea76ec49fc2344db3cf2c59603dfce6a2f26732f73a82d7ac5fe22a57",
+      "master_sha256": "4c113da6df253790b600e9cc8387656c85914f7ad49ca009f62e6b3bca2eb6d2",
+      "card_sha256": "9bf55e59c127561925d4fb9a1eaa0289629fd796124bd287699e60022feb4351"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "0b2c99eea76ec49fc2344db3cf2c59603dfce6a2f26732f73a82d7ac5fe22a57",
+      "moroccan-seven-vegetable-couscous.webp": "4c113da6df253790b600e9cc8387656c85914f7ad49ca009f62e6b3bca2eb6d2",
+      "moroccan-seven-vegetable-couscous-640.webp": "9bf55e59c127561925d4fb9a1eaa0289629fd796124bd287699e60022feb4351"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 25 + cook 48 = 73 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The couscous steams inside the final simmer (step 5 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "moroccan-seven-vegetable-couscous.webp 1200x900 and moroccan-seven-vegetable-couscous-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make the full broth; refrigerate; make couscous to order (1/3 cup per person).",
+    "2": "Full broth, half the couscous.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "First couscous main. Turnips 0 to 1. A vegetable-led Moroccan dinner without chickpeas (moroccan-chickpea-skillet covers those).",
+  "near_duplicate_review": "Compared with moroccan-chickpea-skillet: a broth over couscous with seven vegetables, no chickpeas. Compared with harissa-roasted-carrots-feta: braised in broth, no feta. Compared with herbed-polenta-tomato-stew: couscous and a spiced broth, not polenta.",
+  "not_duplicate_of": "Not a tagine (rejected fish tagine; this is a broth couscous).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}
