@@ -205,7 +205,7 @@ describe("hosted E2E target guard", () => {
         d1_database_id: "65bc636d-7048-4e58-900b-9066edf6509f",
       }),
     });
-    await expect(assertTarget("https://abc.harbor-eats-cycle1-preview.pages.dev", { health: true, fetchImpl })).rejects.toThrow(/catalog_runtime_meals=75 expected 185/);
+    await expect(assertTarget("https://abc.harbor-eats-cycle1-preview.pages.dev", { health: true, fetchImpl })).rejects.toThrow(/catalog_runtime_meals=75 expected 200/);
   });
 });
 

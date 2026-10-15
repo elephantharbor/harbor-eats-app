@@ -1,0 +1,705 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-16, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-16-2026-10-15",
+  "batch_label": "wave-16",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-16",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "sichuan-mapo-tofu-shiitake",
+    "slug": "sichuan-mapo-tofu-shiitake",
+    "title": "Sichuan Mapo Tofu with Shiitake and Jasmine Rice",
+    "description": "Soft tofu cubes simmered in a glossy, numbing-hot sauce of broad bean chili paste, fermented black beans, garlic, ginger, and toasted Sichuan peppercorn, with finely chopped shiitake for a meaty bite. Served over jasmine rice with scallions.",
+    "cuisine": "chinese",
+    "meal_format": "sauce-over-rice",
+    "primary_ingredient": "tofu",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "umami",
+      "savory",
+      "chinese",
+      "tofu"
+    ],
+    "current_recipe_id": "rcp_sichuan-mapo-tofu-shiitake",
+    "current_version_id": "rv_sichuan-mapo-tofu-shiitake_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_sichuan-mapo-tofu-shiitake",
+    "dish_id": "sichuan-mapo-tofu-shiitake",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-16-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_sichuan-mapo-tofu-shiitake_v1",
+    "recipe_id": "rcp_sichuan-mapo-tofu-shiitake",
+    "dish_id": "sichuan-mapo-tofu-shiitake",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Sichuan Mapo Tofu with Shiitake and Jasmine Rice",
+    "description": "Soft tofu cubes simmered in a glossy, numbing-hot sauce of broad bean chili paste, fermented black beans, garlic, ginger, and toasted Sichuan peppercorn, with finely chopped shiitake for a meaty bite. Served over jasmine rice with scallions.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "tofu",
+        "name": "soft or medium tofu",
+        "display_name": "14-oz packages soft or medium tofu",
+        "quantity": 2,
+        "unit": "package",
+        "note": null,
+        "preparation": "drained, cut into 3/4-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "shiitake",
+        "name": "fresh shiitake mushrooms",
+        "display_name": "fresh shiitake mushrooms",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": "stems removed, caps finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "doubanjiang",
+        "name": "Sichuan broad bean chili paste (doubanjiang)",
+        "display_name": "Sichuan broad bean chili paste (doubanjiang) whose label lists broad beans, chiles, salt, and wheat flour, with no shrimp or fish",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "black-beans",
+        "name": "fermented black beans (douchi)",
+        "display_name": "fermented black beans (douchi)",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "rinsed and roughly chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sichuan-pepper",
+        "name": "Sichuan peppercorns",
+        "display_name": "Sichuan peppercorns",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chili-flakes",
+        "name": "Sichuan chili flakes or crushed red pepper",
+        "display_name": "Sichuan chili flakes or crushed red pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sauce-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cornstarch",
+        "name": "cornstarch",
+        "display_name": "cornstarch",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "slurry-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "for the cornstarch slurry",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced, whites and greens separated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the rice until the rinse runs nearly clear. Cut the tofu into 3/4-inch cubes. Stem the shiitake and chop the caps finely. Mince the garlic and ginger, rinse and chop the black beans, and slice the scallions, keeping whites and greens apart. In a small bowl stir the cornstarch into 3 tbsp water.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "tofu",
+          "shiitake",
+          "garlic",
+          "ginger",
+          "black-beans",
+          "scallions",
+          "cornstarch",
+          "slurry-water"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the rice",
+        "body": "Combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan. Bring to a boil over high, about 4 minutes, then cover, turn to low, and cook 15 minutes; leave it covered off the heat to rest 10 minutes. The covered cooking and rest run inside steps 3 to 7 (overlap stated).",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Toast the peppercorns",
+        "body": "Toast the Sichuan peppercorns in a dry 12-inch skillet over medium-low, shaking the pan, until fragrant, about 2 minutes. Tip them into a mortar or spice grinder and grind coarsely.",
+        "ingredient_refs": [
+          "sichuan-pepper"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Brown the shiitake",
+        "body": "Heat the oil in the same skillet over medium-high. Add the chopped shiitake and cook, stirring often, until browned and no longer wet, about 7 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "shiitake"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Build the sauce",
+        "body": "Turn the heat to medium. Stir in the doubanjiang and cook until the oil turns red, about 1 minute. Add the garlic, ginger, black beans, scallion whites, and chili flakes and stir 1 minute. Add 1 cup water, the soy sauce, and the sugar and bring to a simmer, about 1 minute.",
+        "ingredient_refs": [
+          "doubanjiang",
+          "garlic",
+          "ginger",
+          "black-beans",
+          "scallions",
+          "chili-flakes",
+          "sauce-water",
+          "soy-sauce",
+          "sugar"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Simmer the tofu",
+        "body": "Slide in the tofu and gently push it with the back of a spoon so it is coated without breaking. Simmer, spooning the sauce over, until the tofu is hot through, about 6 minutes.",
+        "ingredient_refs": [
+          "tofu"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Thicken",
+        "body": "Stir the slurry (the cornstarch and 3 tbsp water) and pour it in thirds, nudging the tofu between additions, until the sauce turns glossy and coats a spoon, about 1 minute. Sprinkle in half the ground peppercorn.",
+        "ingredient_refs": [
+          "cornstarch",
+          "slurry-water",
+          "sichuan-pepper"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 8,
+        "title": "Serve",
+        "body": "Fluff the rice and spoon it into wide bowls. Spoon the mapo tofu alongside and finish with the remaining ground peppercorn and the scallion greens.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "tofu",
+          "sichuan-pepper",
+          "scallions"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "mapo",
+        "name": "mapo tofu with shiitake",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tofu",
+          "shiitake",
+          "doubanjiang",
+          "fermented black beans",
+          "garlic",
+          "ginger",
+          "Sichuan peppercorn",
+          "chili flakes",
+          "soy sauce",
+          "sugar",
+          "cornstarch",
+          "scallions"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "steamed jasmine rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "2-quart saucepan with lid",
+      "12-inch skillet",
+      "mortar and pestle or spice grinder",
+      "small bowl"
+    ],
+    "methods": [
+      "toast",
+      "saute",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 31,
+    "total_time_minutes": 41,
+    "prep_minutes": 10,
+    "cook_minutes": 31,
+    "total_minutes": 41,
+    "time_clock": "Prep 10 + cook 31 = 41 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 7 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 29 minutes of steps 2 to 7, so the rice is ready as step 8 begins.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Dry 12-inch skillet over medium-low to toast the peppercorns; medium-high to brown the shiitake; medium for the chili bean sauce and a gentle simmer for the tofu. 2-quart saucepan covered on low for the rice.",
+    "doneness": "Shiitake browned and no longer wet. Sauce brick-red with oil beading at the edges. Tofu heated through and intact. Sauce coats a spoon after the slurry. Rice tender with separate grains.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "adventurous",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-16",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "adventurous"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional plant_based and dairy_free: tofu, shiitake, chili bean paste, fermented black beans, soy sauce, aromatics, and oil.",
+    "allergens": [
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Soy from the tofu, fermented black beans, and soy sauce.",
+      "Wheat from the soy sauce and the wheat flour in the doubanjiang.",
+      "No egg, milk, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "No pork and no oyster sauce. The doubanjiang label lists broad beans, chiles, salt, and wheat flour, with no shrimp, fish, or meat.",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "umami",
+      "savory",
+      "chinese",
+      "tofu"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'chinese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "60324cb0cd7a35ed929e22f40290d9e2fe151f23643776ca091a4851e49b8ebc",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_sichuan-mapo-tofu-shiitake_v2",
+    "dish_id": "sichuan-mapo-tofu-shiitake",
+    "recipe_version_id": "rv_sichuan-mapo-tofu-shiitake_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "sichuan-mapo-tofu-shiitake.webp",
+    "card_ref": "sichuan-mapo-tofu-shiitake-640.webp",
+    "master_filename": "sichuan-mapo-tofu-shiitake.webp",
+    "card_filename": "sichuan-mapo-tofu-shiitake-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "sichuan-mapo-tofu-shiitake.webp",
+        "spec_catalog_path": "/images/meals/sichuan-mapo-tofu-shiitake.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "sichuan-mapo-tofu-shiitake-640.webp",
+        "spec_catalog_path": "/images/meals/sichuan-mapo-tofu-shiitake-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "bc90c763b8390bb3eb9dd51abd7e99e7135f0fd042503774d862db91c0c36551",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "bc90c763b8390bb3eb9dd51abd7e99e7135f0fd042503774d862db91c0c36551",
+      "master_sha256": "f6e34e93064a901e3fef88c873548c19c8cd61bb1b1aca612f7791405e11a552",
+      "card_sha256": "ab5b32781269801ee09274ef77dfd2ebecb5103dc64728c3fcf2b7218228b37c"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "bc90c763b8390bb3eb9dd51abd7e99e7135f0fd042503774d862db91c0c36551",
+      "sichuan-mapo-tofu-shiitake.webp": "f6e34e93064a901e3fef88c873548c19c8cd61bb1b1aca612f7791405e11a552",
+      "sichuan-mapo-tofu-shiitake-640.webp": "ab5b32781269801ee09274ef77dfd2ebecb5103dc64728c3fcf2b7218228b37c"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "creator_self_review_before_audit",
+      "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's creator self-review: The tofu looked golden and fried, the sauce read brown, and the shiitake crumbs read as ground meat.",
+      "prompt_change": "v2 prompt is Cora's rewrite of the v1 prompt, recorded verbatim in image-prompt.md 'Active prompt (v2)' (source notes/prompts-v2-selfreview.txt); the v1 prompt is kept under 'Superseded prompt (v1)', and image-plating-brief.md was rebuilt to match v2.",
+      "v2_prompt_sha256": "d9ab0f977842294d3e79da0ab4cec0b58e78a4edaf56dcb5be34e78e431274c5",
+      "changes": [
+        "Tofu described as pure white, soft, unbrowned silken cubes, never golden or fried.",
+        "Sauce described as translucent glossy red chili-bean sauce with a layer of bright red chili oil.",
+        "Shiitake described as small diced dark pieces, clearly mushroom, not crumbled meat.",
+        "Do not include adds golden, browned, seared, or fried tofu and anything that looks like crumbled ground meat.",
+        "The v2 prompt shortens the lighting line and drops the Chipotle Lime Black Bean Bowl quality-reference sentence; it keeps the no text, logos, watermarks, or hands line."
+      ]
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "creator_self_review_before_audit",
+        "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's creator self-review: The tofu looked golden and fried, the sauce read brown, and the shiitake crumbs read as ground meat.",
+        "prompt_change": "v2 prompt is Cora's rewrite of the v1 prompt, recorded verbatim in image-prompt.md 'Active prompt (v2)' (source notes/prompts-v2-selfreview.txt); the v1 prompt is kept under 'Superseded prompt (v1)', and image-plating-brief.md was rebuilt to match v2.",
+        "v2_prompt_sha256": "d9ab0f977842294d3e79da0ab4cec0b58e78a4edaf56dcb5be34e78e431274c5",
+        "changes": [
+          "Tofu described as pure white, soft, unbrowned silken cubes, never golden or fried.",
+          "Sauce described as translucent glossy red chili-bean sauce with a layer of bright red chili oil.",
+          "Shiitake described as small diced dark pieces, clearly mushroom, not crumbled meat.",
+          "Do not include adds golden, browned, seared, or fried tofu and anything that looks like crumbled ground meat.",
+          "The v2 prompt shortens the lighting line and drops the Chipotle Lime Black Bean Bowl quality-reference sentence; it keeps the no text, logos, watermarks, or hands line."
+        ]
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_sichuan-mapo-tofu-shiitake_v1",
+        "source_file": "img_v1.jpg",
+        "sha256": "73949bb83d2c7d9d41e82c555f865f6a06aa122157d96da4a0fb628ec5eb8c07",
+        "generate_image_attachment_hash": "73949bb83d2c7d9d41e82c555f865f6a06aa122157d96da4a0fb628ec5eb8c07",
+        "moved_to_rejected": "rejected/img_v1-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "The tofu looked golden and fried, the sauce read brown, and the shiitake crumbs read as ground meat."
+      }
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 31 = 41 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 7 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 29 minutes of steps 2 to 7, so the rice is ready as step 8 begins."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "sichuan-mapo-tofu-shiitake.webp 1200x900 and sichuan-mapo-tofu-shiitake-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Half a package of tofu with a quarter of the sauce ingredients in a 10-inch skillet; a quarter of the rice and water in a 1-quart saucepan.",
+    "2": "Half of everything; the 12-inch skillet and 2-quart saucepan still work.",
+    "4": "As written.",
+    "do_not_scale": [
+      "Sichuan peppercorn: toast the full 2 tsp but add the ground pepper to taste for smaller batches",
+      "slurry: pour it in thirds and stop when the sauce coats a spoon"
+    ]
+  },
+  "coverage_contribution": "A plant-based HH001 tofu dinner in a sauce-over-rice format. Sichuan flavor (chili bean paste, numbing peppercorn) is represented live only by a dry green bean stir-fry. Tofu leads are tacos, teriyaki bowls, a red curry, and a Korean stew; none is a thickened chili-bean sauce.",
+  "near_duplicate_review": "Compared with korean-soft-tofu-stew: a thick chili-bean sauce spooned over rice, not a brothy gochugaru stew with egg. Compared with sichuan-green-bean-mushroom-stir-fry: soft tofu simmered and thickened in sauce, not dry-fried beans. Compared with teriyaki-tofu-bowls: soft tofu in fermented chili bean sauce, not seared tofu in a sweet glaze. Compared with taiwanese-three-cup-mushrooms: doubanjiang and Sichuan peppercorn, no basil, rice wine, or sesame oil.",
+  "not_duplicate_of": "Not a pork mapo; the shiitake version keeps it HH001.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

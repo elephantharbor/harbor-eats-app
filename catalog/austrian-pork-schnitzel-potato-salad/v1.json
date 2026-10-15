@@ -1,0 +1,649 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-16, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-16-2026-10-15",
+  "batch_label": "wave-16",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-16",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "austrian-pork-schnitzel-potato-salad",
+    "slug": "austrian-pork-schnitzel-potato-salad",
+    "title": "Austrian Pork Schnitzel with Warm Viennese Potato Salad and Lemon",
+    "description": "Pork loin cutlets pounded thin, coated in flour, egg, and fine breadcrumbs, and shallow-fried in oil until puffed and golden, served with lemon wedges and a warm Viennese potato salad of sliced Yukon Gold potatoes, red onion, and chives in a tangy vinegar-mustard dressing.",
+    "cuisine": "austrian",
+    "meal_format": "cutlet-with-potato-salad",
+    "primary_ingredient": "pork loin",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "tangy",
+      "savory"
+    ],
+    "current_recipe_id": "rcp_austrian-pork-schnitzel-potato-salad",
+    "current_version_id": "rv_austrian-pork-schnitzel-potato-salad_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_austrian-pork-schnitzel-potato-salad",
+    "dish_id": "austrian-pork-schnitzel-potato-salad",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-16-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_austrian-pork-schnitzel-potato-salad_v1",
+    "recipe_id": "rcp_austrian-pork-schnitzel-potato-salad",
+    "dish_id": "austrian-pork-schnitzel-potato-salad",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Austrian Pork Schnitzel with Warm Viennese Potato Salad and Lemon",
+    "description": "Pork loin cutlets pounded thin, coated in flour, egg, and fine breadcrumbs, and shallow-fried in oil until puffed and golden, served with lemon wedges and a warm Viennese potato salad of sliced Yukon Gold potatoes, red onion, and chives in a tangy vinegar-mustard dressing.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "pork",
+        "name": "boneless pork loin cutlets",
+        "display_name": "boneless center-cut pork loin cutlets (4 pieces)",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "pounded to 1/4 inch",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "1 1/2 tsp potato water, 1/2 tsp dressing, 1/2 tsp pork",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "breadcrumbs",
+        "name": "plain fine dry breadcrumbs",
+        "display_name": "plain fine dry breadcrumbs whose label lists wheat flour, yeast, and salt only",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "If you cannot find them: before you start, pulse about 6 oz day-old plain bakery bread whose label lists only wheat flour, water, yeast, and salt to fine crumbs in a food processor and dry them in a 12-inch skillet over medium, stirring, about 8 minutes; cool before breading. This adds about 12 minutes before step 1.",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "frying-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "for shallow-frying, about 1/4 inch deep",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "small Yukon Gold potatoes",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled and sliced 1/4 inch thick",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potato-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "for the potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "dressing-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "for the dressing",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "vinegar",
+        "name": "white wine vinegar",
+        "display_name": "white wine vinegar",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "mustard",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dressing-oil",
+        "name": "sunflower or neutral oil",
+        "display_name": "sunflower or neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "for the dressing",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "small red onion",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "chives",
+        "name": "chives",
+        "display_name": "chives",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Peel the potatoes and slice them 1/4 inch thick. Finely chop the red onion, chop the chives, and cut the lemon into wedges. Pound the cutlets between sheets of plastic wrap to an even 1/4 inch and season with 1/2 tsp salt and the pepper.",
+        "ingredient_refs": [
+          "potatoes",
+          "red-onion",
+          "chives",
+          "lemon",
+          "pork",
+          "kosher-salt",
+          "black-pepper"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil the potatoes",
+        "body": "Put the potato slices, 6 cups water, and 1 1/2 tsp salt in a 4-quart pot, cover, and bring to a boil over high, about 9 minutes to come to a boil. Uncover and simmer until just tender, about 8 minutes. Drain in the colander.",
+        "ingredient_refs": [
+          "potatoes",
+          "potato-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Bread the cutlets",
+        "body": "While the potatoes cook (overlap stated): set out 3 shallow dishes with the flour, the eggs beaten smooth, and the breadcrumbs. Dredge each cutlet in flour, dip in egg, and lay it in the crumbs, turning it once without pressing, so the coating stays loose. Set on the rack.",
+        "ingredient_refs": [
+          "flour",
+          "eggs",
+          "breadcrumbs",
+          "pork"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Dress the potatoes",
+        "body": "In a 1-quart saucepan bring 1/3 cup water, the vinegar, mustard, sugar, and 1/2 tsp salt just to a simmer, about 1 minute. Pour it over the warm potatoes in a bowl, add the red onion and dressing oil, and fold gently until creamy-looking.",
+        "ingredient_refs": [
+          "dressing-water",
+          "vinegar",
+          "mustard",
+          "sugar",
+          "kosher-salt",
+          "potatoes",
+          "red-onion",
+          "dressing-oil"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Shallow-fry the schnitzel",
+        "body": "Heat the oil in a 12-inch heavy skillet over medium-high to 340 F, about 5 minutes. Shallow-fry 2 cutlets at a time, swirling the pan so the oil washes over the tops and the crust puffs, until deep golden, about 2 minutes per side and 145 F inside. Drain on the rack and repeat (2 batches).",
+        "ingredient_refs": [
+          "frying-oil",
+          "pork"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Fold the chives into the potato salad. Plate each schnitzel with a lemon wedge and the potato salad alongside.",
+        "ingredient_refs": [
+          "chives",
+          "potatoes",
+          "pork",
+          "lemon"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "schnitzel",
+        "name": "pork schnitzel",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "pork loin cutlets",
+          "salt",
+          "black pepper",
+          "flour",
+          "eggs",
+          "breadcrumbs",
+          "neutral oil",
+          "lemon"
+        ]
+      },
+      {
+        "component_id": "potato-salad",
+        "name": "warm Viennese potato salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "Yukon Gold potatoes",
+          "water",
+          "salt",
+          "vinegar",
+          "Dijon mustard",
+          "sugar",
+          "neutral oil",
+          "red onion",
+          "chives"
+        ]
+      }
+    ],
+    "equipment": [
+      "4-quart pot with lid",
+      "colander",
+      "1-quart saucepan",
+      "12-inch heavy skillet",
+      "meat mallet or heavy pan",
+      "3 shallow dishes",
+      "wire rack set on a sheet pan",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "shallow-fry",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [
+        "shallow"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 38,
+    "total_time_minutes": 50,
+    "prep_minutes": 12,
+    "cook_minutes": 38,
+    "total_minutes": 50,
+    "time_clock": "Prep 12 + cook 38 = 50 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The cutlets are breaded while the potatoes come to a boil and simmer (step 3 runs inside step 2, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "4-quart pot over high, then a simmer, for the potatoes; 1-quart saucepan for the dressing. 12-inch heavy skillet with oil about 1/4 inch deep over medium-high (340 F) for the schnitzel.",
+    "doneness": "Potato slices tender but holding their shape. Schnitzel crust deep golden and puffed away from the meat in places; pork 145 F.",
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-16",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: pork is meat."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: fried in neutral oil, not butter or lard; the breadcrumb label lists no milk or butter.",
+    "allergens": [
+      "meat",
+      "wheat",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Meat from the pork.",
+      "Wheat from the flour and breadcrumbs.",
+      "Egg from the egg wash.",
+      "The breadcrumbs are a store-bought hard contract: the label lists wheat flour, yeast, and salt, with no milk, butter, soy, or sesame. The homemade fallback uses bread whose label lists only wheat flour, water, yeast, and salt.",
+      "Mustard (Dijon) has no FlavorWeave allergen token; disclosed here and in runtime_enum_gaps.",
+      "No milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: pork is meat.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "crispy",
+      "tangy",
+      "savory"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'austrian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids.",
+      "mustard": "Mustard (Dijon) has no FlavorWeave allergen token. Disclosed in allergen_notes; carried as a wave-16 open item for the importer."
+    },
+    "food_safety_note": "Cook pork to 145 F. Shallow-frying: keep the oil at about 1/4 inch, stay at the stove, and keep a lid nearby; let the oil cool before discarding.",
+    "culinary_hash": "c19fa32db70ff90dc3220518bd5f645d3183801a0a9c8cd85085400fc0ac97ec",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_austrian-pork-schnitzel-potato-salad_v1",
+    "dish_id": "austrian-pork-schnitzel-potato-salad",
+    "recipe_version_id": "rv_austrian-pork-schnitzel-potato-salad_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "austrian-pork-schnitzel-potato-salad.webp",
+    "card_ref": "austrian-pork-schnitzel-potato-salad-640.webp",
+    "master_filename": "austrian-pork-schnitzel-potato-salad.webp",
+    "card_filename": "austrian-pork-schnitzel-potato-salad-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "austrian-pork-schnitzel-potato-salad.webp",
+        "spec_catalog_path": "/images/meals/austrian-pork-schnitzel-potato-salad.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "austrian-pork-schnitzel-potato-salad-640.webp",
+        "spec_catalog_path": "/images/meals/austrian-pork-schnitzel-potato-salad-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "3695ec0136d5e7e7b23ba16f026b1d4189f837a250ea9b8df29eed19d6b934e1",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "3695ec0136d5e7e7b23ba16f026b1d4189f837a250ea9b8df29eed19d6b934e1",
+      "master_sha256": "74404e7a2801ea6e72019b4518489c99ca7577ddc38cf77019463fa7b7e685d9",
+      "card_sha256": "a9199763352c472e156d83f308167448defa9ad472db56159284ff6149c16e92"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "3695ec0136d5e7e7b23ba16f026b1d4189f837a250ea9b8df29eed19d6b934e1",
+      "austrian-pork-schnitzel-potato-salad.webp": "74404e7a2801ea6e72019b4518489c99ca7577ddc38cf77019463fa7b7e685d9",
+      "austrian-pork-schnitzel-potato-salad-640.webp": "a9199763352c472e156d83f308167448defa9ad472db56159284ff6149c16e92"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 38 = 50 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The cutlets are breaded while the potatoes come to a boil and simmer (step 3 runs inside step 2, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "austrian-pork-schnitzel-potato-salad.webp 1200x900 and austrian-pork-schnitzel-potato-salad-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"shallow\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One cutlet fried alone in a 10-inch skillet; a quarter of the potatoes in a 2-quart pot with 3 cups water.",
+    "2": "Two cutlets in one batch in the 12-inch skillet; half the potatoes in a 3-quart pot with 4 cups water.",
+    "4": "As written (4 cutlets, 2 batches).",
+    "do_not_scale": [
+      "oil depth: about 1/4 inch whatever the batch, so the cutlets can float and puff",
+      "breading: dredge right before frying, never ahead"
+    ]
+  },
+  "coverage_contribution": "Austria has no meal in the catalog, and no breaded pork cutlet exists (the only breaded cutlet is a chicken sandwich). A meat dinner that is not chicken.",
+  "near_duplicate_review": "Compared with crispy-skillet-chicken-sandwiches: a pounded pork cutlet with a potato salad, not a chicken sandwich. Compared with air-fryer-honey-mustard-pork: breaded and shallow-fried thin cutlets, not a glazed tenderloin. Compared with southern-smothered-pork-chops: crisp breaded cutlets, not chops braised in gravy. Compared with kasespatzle-caramelized-onions: a cutlet and potato salad, not cheese noodles.",
+  "not_duplicate_of": "Not tonkatsu: no panko and no tonkatsu sauce.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "C",
+  "revision_history": [
+    {
+      "from": "author-r2",
+      "to": "author-r3",
+      "when": "2026-10-15",
+      "who": "Grok Bot (Curator, creator role), wave-16",
+      "trigger": "audit r1 note (non-blocking, PASS WITH NOTES)",
+      "scope": "recipe text only; image files unchanged and not regenerated",
+      "from_culinary_hash": "11b939c0b408f8de5f55b2020ac756324b6fa9f9773e1deea776cb4d335d9910",
+      "to_culinary_hash": "c19fa32db70ff90dc3220518bd5f645d3183801a0a9c8cd85085400fc0ac97ec",
+      "changes": [
+        "Breadcrumb ingredient note adds a homemade fallback: about 6 oz day-old plain bakery bread whose label lists only wheat flour, water, yeast, and salt, pulsed and dried in a skillet about 8 minutes (adds about 12 minutes before step 1); allergen note updated."
+      ]
+    }
+  ]
+}

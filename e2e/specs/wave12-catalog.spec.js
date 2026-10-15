@@ -174,7 +174,7 @@ describeHosted("Wave-12 catalog (hosted preview)", () => {
     const health = await request.get(`${base}/api/health`);
     expect(health.ok()).toBe(true);
     const healthBody = await health.json();
-    expect(healthBody.catalog_runtime_meals).toBe(185);
+    expect(healthBody.catalog_runtime_meals).toBe(200);
 
     for (const slug of WAVE12_SLUGS) {
       for (const suffix of ["", "-640"]) {
@@ -190,9 +190,9 @@ describeHosted("Wave-12 catalog (hosted preview)", () => {
     const openHeaders = { ...openHousehold.cookieHeader, "Content-Type": "application/json" };
     const discover75 = await discoverySearchAll(openHousehold.request, base, openHeaders);
     await openHousehold.dispose();
-    expect(discover75.firstBody?.total).toBe(185);
-    expect(discover75.firstBody?.catalog_size).toBe(185);
-    expect(discover75.unique.size).toBe(185);
+    expect(discover75.firstBody?.total).toBe(200);
+    expect(discover75.firstBody?.catalog_size).toBe(200);
+    expect(discover75.unique.size).toBe(200);
     for (const slug of WAVE12_SLUGS) {
       expect(discover75.unique.has(slug)).toBe(true);
     }

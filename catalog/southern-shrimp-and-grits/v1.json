@@ -1,0 +1,577 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-16, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-16-2026-10-15",
+  "batch_label": "wave-16",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-16",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "southern-shrimp-and-grits",
+    "slug": "southern-shrimp-and-grits",
+    "title": "Shrimp and Grits with Smoky Garlic-Lemon Pan Sauce and Cheddar Grits",
+    "description": "Old-fashioned grits simmered in milk and water until creamy, finished with sharp cheddar and butter, and topped with shrimp seared with smoked paprika and cayenne, then tossed with garlic, scallions, and lemon in a buttery pan sauce.",
+    "cuisine": "southern",
+    "meal_format": "shrimp-over-grits",
+    "primary_ingredient": "shrimp",
+    "vocabulary_tag_ids": [
+      "creamy",
+      "smoky",
+      "savory",
+      "american",
+      "shrimp"
+    ],
+    "current_recipe_id": "rcp_southern-shrimp-and-grits",
+    "current_version_id": "rv_southern-shrimp-and-grits_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_southern-shrimp-and-grits",
+    "dish_id": "southern-shrimp-and-grits",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-16-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_southern-shrimp-and-grits_v1",
+    "recipe_id": "rcp_southern-shrimp-and-grits",
+    "dish_id": "southern-shrimp-and-grits",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Shrimp and Grits with Smoky Garlic-Lemon Pan Sauce and Cheddar Grits",
+    "description": "Old-fashioned grits simmered in milk and water until creamy, finished with sharp cheddar and butter, and topped with shrimp seared with smoked paprika and cayenne, then tossed with garlic, scallions, and lemon in a buttery pan sauce.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "grits",
+        "name": "old-fashioned grits",
+        "display_name": "old-fashioned grits (not instant)",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "grits-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "for the grits",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "milk",
+        "name": "whole milk",
+        "display_name": "whole milk",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1 tsp grits, 1/2 tsp shrimp",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cheddar",
+        "name": "sharp cheddar",
+        "display_name": "sharp cheddar",
+        "quantity": 4,
+        "unit": "oz",
+        "note": null,
+        "preparation": "coarsely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "2 tbsp grits, 2 tbsp sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "shrimp",
+        "name": "large shrimp (21-25 per lb)",
+        "display_name": "large shrimp (21-25 per lb), peeled and deveined",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "smoked-paprika",
+        "name": "smoked paprika",
+        "display_name": "smoked paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cayenne",
+        "name": "cayenne",
+        "display_name": "cayenne",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced, whites and greens separated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "juiced, about 3 tbsp",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sauce-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "for the pan sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Pat the shrimp dry and toss with the smoked paprika, cayenne, black pepper, and 1/2 tsp salt. Mince the garlic, slice the scallions keeping whites and greens apart, grate the cheddar, and juice the lemon.",
+        "ingredient_refs": [
+          "shrimp",
+          "smoked-paprika",
+          "cayenne",
+          "black-pepper",
+          "kosher-salt",
+          "garlic",
+          "scallions",
+          "cheddar",
+          "lemon"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the grits",
+        "body": "Combine 3 cups water, the milk, and 1 tsp salt in a 3-quart saucepan and bring to a boil over medium-high, about 7 minutes to come to a boil. Whisk in the grits in a slow stream, turn the heat to low, cover partly, and cook, whisking every 3 minutes so they do not stick, until thick and tender, about 18 minutes. Off the heat stir in the cheddar and 2 tbsp butter.",
+        "ingredient_refs": [
+          "grits-water",
+          "milk",
+          "kosher-salt",
+          "grits",
+          "cheddar",
+          "butter"
+        ],
+        "clock_minutes": 27,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Sear the shrimp",
+        "body": "During the last 8 minutes of the grits (overlap stated): heat the oil in a 12-inch skillet over medium-high. Add the shrimp in one layer and sear 2 minutes, flip, and cook 1 minute. Lower to medium, add 2 tbsp butter, the garlic, and the scallion whites and stir 1 minute. Add 1/3 cup water and the lemon juice and scrape up the browned bits until the sauce is glossy and the shrimp are opaque, about 1 minute.",
+        "ingredient_refs": [
+          "olive-oil",
+          "shrimp",
+          "butter",
+          "garlic",
+          "scallions",
+          "sauce-water",
+          "lemon"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Serve",
+        "body": "Spoon the grits into shallow bowls, top with the shrimp and pan sauce, and scatter the scallion greens.",
+        "ingredient_refs": [
+          "grits",
+          "shrimp",
+          "scallions"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "grits",
+        "name": "cheddar grits",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "grits",
+          "water",
+          "milk",
+          "salt",
+          "cheddar",
+          "butter"
+        ]
+      },
+      {
+        "component_id": "shrimp",
+        "name": "smoky garlic-lemon shrimp",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "shrimp",
+          "smoked paprika",
+          "cayenne",
+          "olive oil",
+          "butter",
+          "garlic",
+          "scallions",
+          "lemon",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "3-quart saucepan with lid",
+      "12-inch skillet",
+      "whisk",
+      "box grater"
+    ],
+    "methods": [
+      "simmer",
+      "sear"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 29,
+    "total_time_minutes": 39,
+    "prep_minutes": 10,
+    "cook_minutes": 29,
+    "total_minutes": 39,
+    "time_clock": "Prep 10 + cook 29 = 39 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The shrimp are seared during the last minutes of the grits (step 3 runs inside step 2, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "3-quart saucepan brought to a boil over medium-high, then low with frequent whisking for the grits. 12-inch skillet over medium-high for the shrimp, medium for the pan sauce.",
+    "doneness": "Grits thick, creamy, and tender with no raw bite. Shrimp pink and opaque throughout (145 F), curled into a loose C. Pan sauce glossy.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-16",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": true,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: shrimp is shellfish, and the grits contain dairy."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: shellfish and dairy.",
+    "allergens": [
+      "shellfish",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Shellfish from the shrimp.",
+      "Milk from the milk, cheddar, and butter.",
+      "No egg, soy, wheat, sesame, fish, or nuts. The grits are corn."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: shrimp is shellfish, and the grits contain dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "creamy",
+      "smoky",
+      "savory",
+      "american",
+      "shrimp"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'southern' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook shrimp to 145 F, until opaque throughout.",
+    "culinary_hash": "b44e874ad95d55b53db7f8c7a9fdd81949a519498f04478a78d954470dd18cf2",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_southern-shrimp-and-grits_v1",
+    "dish_id": "southern-shrimp-and-grits",
+    "recipe_version_id": "rv_southern-shrimp-and-grits_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "southern-shrimp-and-grits.webp",
+    "card_ref": "southern-shrimp-and-grits-640.webp",
+    "master_filename": "southern-shrimp-and-grits.webp",
+    "card_filename": "southern-shrimp-and-grits-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "southern-shrimp-and-grits.webp",
+        "spec_catalog_path": "/images/meals/southern-shrimp-and-grits.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "southern-shrimp-and-grits-640.webp",
+        "spec_catalog_path": "/images/meals/southern-shrimp-and-grits-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "26c512f00d9edc59b5d1b9bd62595de185d2361aa262bbe4dd10ba8c533b3bf1",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "26c512f00d9edc59b5d1b9bd62595de185d2361aa262bbe4dd10ba8c533b3bf1",
+      "master_sha256": "8a8fdbe943660066ef75ef38d8832ebc2c4b9c7b69e3e61fbba39c6e89fc82d8",
+      "card_sha256": "80546723d6b9b8ff38dde5774b433a491abc92c2a31c212db84eb6a38c5b87d0"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "26c512f00d9edc59b5d1b9bd62595de185d2361aa262bbe4dd10ba8c533b3bf1",
+      "southern-shrimp-and-grits.webp": "8a8fdbe943660066ef75ef38d8832ebc2c4b9c7b69e3e61fbba39c6e89fc82d8",
+      "southern-shrimp-and-grits-640.webp": "80546723d6b9b8ff38dde5774b433a491abc92c2a31c212db84eb6a38c5b87d0"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 29 = 39 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The shrimp are seared during the last minutes of the grits (step 3 runs inside step 2, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "southern-shrimp-and-grits.webp 1200x900 and southern-shrimp-and-grits-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything: 1/4 cup grits with 3/4 cup water and 1/4 cup milk in a 1-quart saucepan; shrimp in an 8-inch skillet.",
+    "2": "Half of everything in a 2-quart saucepan and a 10-inch skillet.",
+    "4": "As written.",
+    "do_not_scale": [
+      "grits time: old-fashioned grits need about 18 minutes at any batch size"
+    ]
+  },
+  "coverage_contribution": "A shellfish dinner in a format the catalog lacks: shrimp over a creamy corn porridge. Shrimp leads are a pasta, a sheet-pan boil, and a laksa.",
+  "near_duplicate_review": "Compared with sheet-pan-shrimp-boil: seared shrimp over cheddar grits, not roasted shrimp with corn and sausage. Compared with lemon-garlic-shrimp-pasta: grits, not pasta, and smoked paprika. Compared with herbed-polenta-tomato-stew: cheddar grits topped with shrimp, not polenta under a tomato stew.",
+  "not_duplicate_of": "No bacon or andouille, so it does not echo the shrimp boil.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}
