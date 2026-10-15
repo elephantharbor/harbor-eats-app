@@ -1,0 +1,604 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "ethiopian-atakilt-wat",
+    "slug": "ethiopian-atakilt-wat",
+    "title": "Ethiopian Atakilt Wat: Turmeric Cabbage, Potato, and Carrot with Injera",
+    "description": "A gentle Ethiopian vegetable stew of cabbage, potatoes, and carrots slowly cooked with onion, garlic, ginger, turmeric, and cumin until soft and sweet, served on injera with a quick tomato and green-chile salad.",
+    "cuisine": "ethiopian",
+    "meal_format": "stew-with-flatbread",
+    "primary_ingredient": "cabbage and potatoes",
+    "vocabulary_tag_ids": [
+      "savory",
+      "tender",
+      "fresh"
+    ],
+    "current_recipe_id": "rcp_ethiopian-atakilt-wat",
+    "current_version_id": "rv_ethiopian-atakilt-wat_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_ethiopian-atakilt-wat",
+    "dish_id": "ethiopian-atakilt-wat",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_ethiopian-atakilt-wat_v1",
+    "recipe_id": "rcp_ethiopian-atakilt-wat",
+    "dish_id": "ethiopian-atakilt-wat",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Ethiopian Atakilt Wat: Turmeric Cabbage, Potato, and Carrot with Injera",
+    "description": "A gentle Ethiopian vegetable stew of cabbage, potatoes, and carrots slowly cooked with onion, garlic, ginger, turmeric, and cumin until soft and sweet, served on injera with a quick tomato and green-chile salad.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "onions",
+        "name": "yellow onions",
+        "display_name": "medium yellow onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cabbage",
+        "name": "green cabbage",
+        "display_name": "small head green cabbage",
+        "quantity": 1,
+        "unit": "count",
+        "note": "about 2 lb",
+        "preparation": "cored and cut into 1-inch ribbons",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 1-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1/2-inch coins",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 3/4 tsp stew, 1/4 tsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "stew-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "Roma tomatoes",
+        "display_name": "Roma tomatoes",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jalapeno",
+        "name": "jalapeños",
+        "display_name": "jalapeños",
+        "quantity": 2,
+        "unit": "count",
+        "note": "1 for the stew, 1 for the salad",
+        "preparation": "seeded and sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "small red onion",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "juiced, about 2 tbsp",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "injera",
+        "name": "injera",
+        "display_name": "injera rounds whose label lists teff, wheat flour, water, and leavening only",
+        "quantity": 8,
+        "unit": "count",
+        "note": "store-bought; required: no barley, milk, or egg on the label",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Slice the yellow onions, mince the garlic, grate the ginger, core the cabbage and cut it into ribbons, and cut the potatoes and carrots. Seed and slice the jalapeños. Dice the tomatoes, chop the red onion, and juice the lemon.",
+        "ingredient_refs": [
+          "onions",
+          "garlic",
+          "ginger",
+          "cabbage",
+          "potatoes",
+          "carrots",
+          "jalapeno",
+          "tomatoes",
+          "red-onion",
+          "lemon"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Soften the onions",
+        "body": "Heat the oil in a 5-quart Dutch oven over medium. Cook the onions, stirring now and then, until very soft and pale gold, about 10 minutes. Add the garlic, ginger, turmeric, and cumin and cook 1 minute.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "onions",
+          "garlic",
+          "ginger",
+          "turmeric",
+          "cumin"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Braise the vegetables",
+        "body": "Add the carrots, potatoes, 1 sliced jalapeño, 1 3/4 tsp salt, and 3/4 cup water and stir. Pile the cabbage on top, cover, and cook over medium-low 10 minutes until the cabbage wilts. Stir everything together, cover, and cook until the potatoes are tender and most of the liquid is gone, about 15 minutes more, stirring once.",
+        "ingredient_refs": [
+          "carrots",
+          "potatoes",
+          "jalapeno",
+          "kosher-salt",
+          "stew-water",
+          "cabbage"
+        ],
+        "clock_minutes": 27,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Make the salad",
+        "body": "While the stew braises, toss the tomatoes, the remaining jalapeño, red onion, lemon juice, and 1/4 tsp salt (overlap stated).",
+        "ingredient_refs": [
+          "tomatoes",
+          "jalapeno",
+          "red-onion",
+          "lemon",
+          "kosher-salt"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Lay an injera round on each plate, spoon the atakilt wat and tomato salad on top, and serve the rest of the injera rolled alongside for scooping.",
+        "ingredient_refs": [
+          "injera",
+          "cabbage",
+          "tomatoes"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "atakilt",
+        "name": "atakilt wat",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cabbage",
+          "potatoes",
+          "carrots",
+          "onions",
+          "garlic",
+          "ginger",
+          "turmeric",
+          "cumin",
+          "water"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "tomato and chile salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomatoes",
+          "jalapeño",
+          "red onion",
+          "lemon"
+        ]
+      },
+      {
+        "component_id": "injera",
+        "name": "injera",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "injera"
+        ]
+      }
+    ],
+    "equipment": [
+      "5-quart Dutch oven with lid",
+      "mixing bowl"
+    ],
+    "methods": [
+      "saute",
+      "braise"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 40,
+    "total_time_minutes": 55,
+    "prep_minutes": 15,
+    "cook_minutes": 40,
+    "total_minutes": 55,
+    "time_clock": "Prep 15 + cook 40 = 55 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The tomato salad is made during the braise (step 4 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        5
+      ],
+      "overlap_steps": [
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium in a 5-quart Dutch oven to soften the onions, then a covered medium-low braise.",
+    "doneness": "Onions very soft and sweet. Potatoes and carrots tender when pierced. Cabbage silky and golden with turmeric; little liquid left.",
+    "effort_level": "easy",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional plant_based: vegetables, spices, oil, water, and injera whose label lists no milk, egg, or barley.",
+    "allergens": [
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Wheat from the injera, which is made with teff and wheat flour.",
+      "The injera is a store-bought hard contract: the label lists teff, wheat flour, water, and leavening only, with no barley, milk, or egg.",
+      "No egg, milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Oil only, no niter kibbeh (spiced butter). The injera is a store-bought hard contract: the label lists teff, wheat flour, water, and leavening, with no barley and no milk.",
+    "vocabulary_tag_ids": [
+      "savory",
+      "tender",
+      "fresh"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'ethiopian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "8819900df75ff335545db6f4057eaa77fb0918534db177babade38db4ec9d709",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_ethiopian-atakilt-wat_v1",
+    "dish_id": "ethiopian-atakilt-wat",
+    "recipe_version_id": "rv_ethiopian-atakilt-wat_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "ethiopian-atakilt-wat.webp",
+    "card_ref": "ethiopian-atakilt-wat-640.webp",
+    "master_filename": "ethiopian-atakilt-wat.webp",
+    "card_filename": "ethiopian-atakilt-wat-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "ethiopian-atakilt-wat.webp",
+        "spec_catalog_path": "/images/meals/ethiopian-atakilt-wat.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "ethiopian-atakilt-wat-640.webp",
+        "spec_catalog_path": "/images/meals/ethiopian-atakilt-wat-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "03667acc546baaeed0ec13d5d84893e7a2b4deaa44d2c9f4c250fcdc0b0211ce",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "03667acc546baaeed0ec13d5d84893e7a2b4deaa44d2c9f4c250fcdc0b0211ce",
+      "master_sha256": "09c9cbcb3155f333d3d2552e721d3e0d7218798c1bd3200091c69323c5152236",
+      "card_sha256": "0669146208b0a911e88776ca441a46171a7ea2b084d1f8cd95af2e56b6aa4149"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "03667acc546baaeed0ec13d5d84893e7a2b4deaa44d2c9f4c250fcdc0b0211ce",
+      "ethiopian-atakilt-wat.webp": "09c9cbcb3155f333d3d2552e721d3e0d7218798c1bd3200091c69323c5152236",
+      "ethiopian-atakilt-wat-640.webp": "0669146208b0a911e88776ca441a46171a7ea2b084d1f8cd95af2e56b6aa4149"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 40 = 55 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The tomato salad is made during the braise (step 4 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "ethiopian-atakilt-wat.webp 1200x900 and ethiopian-atakilt-wat-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 2-quart covered saucepan.",
+    "2": "Half of everything in a 3-quart pot.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "Ethiopian 1 to 2 (ethiopian-beef-tibs is the other) and the first Ethiopian plant meal. Cabbage-led stew. Easy HH001 one-pot dinner with no legumes.",
+  "near_duplicate_review": "Compared with ethiopian-beef-tibs: no beef, no berbere; a mild turmeric vegetable braise. Compared with lentil-stuffed-cabbage: braised shredded cabbage with potatoes, not stuffed leaves. Compared with moroccan-seven-vegetable-couscous: dry braise on injera, no broth, no couscous.",
+  "not_duplicate_of": "Not misir wot (lentil-only leads are closed).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

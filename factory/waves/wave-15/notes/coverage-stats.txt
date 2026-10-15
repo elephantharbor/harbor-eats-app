@@ -1,0 +1,13 @@
+cuisine BASE {'american': 18, 'mexican': 7, 'italian-inspired': 7, 'mediterranean': 6, 'japanese': 6, 'french': 5, 'vietnamese': 4, 'indian-inspired': 4, 'spanish': 4, 'thai-inspired': 4, 'british': 3, 'chinese': 3, 'korean': 3, 'greek': 3, 'italian': 3, 'brazilian': 2, 'cajun': 2, 'filipino': 2, 'asian-fusion': 2, 'chinese-inspired': 2, 'caribbean': 2, 'californian': 2, 'north-african': 2, 'moroccan': 2, 'peruvian': 2, 'southern': 2, 'indian': 1, 'italian-american': 1, 'burmese': 1, 'chinese-american': 1, 'chilean': 1, 'scandinavian-inspired': 1, 'colombian': 1, 'egyptian': 1, 'ethiopian': 1, 'georgian': 1, 'ghanaian': 1, 'hungarian': 1, 'german': 1, 'lebanese': 1, 'malaysian': 1, 'nigerian': 1, 'persian': 1, 'polish': 1, 'portuguese': 1, 'southwestern': 1, 'middle-eastern': 1, 'israeli': 1, 'new-american': 1, 'west-african': 1, 'cuban': 1, 'south-african': 1, 'swedish': 1, 'swiss': 1, 'taiwanese': 1, 'japanese-inspired': 1, 'turkish': 1, 'ukrainian': 1, 'venezuelan': 1} 
+   NEW {'indian': 3, 'american': 3, 'thai': 3, 'italian': 2, 'japanese': 2, 'korean': 2, 'mexican': 2, 'peruvian': 2, 'argentine': 1, 'spanish': 1, 'bengali': 1, 'cantonese': 1, 'chinese': 1, 'cuban': 1, 'cypriot': 1, 'dominican': 1, 'egyptian': 1, 'ethiopian': 1, 'filipino': 1, 'german': 1, 'greek': 1, 'mediterranean': 1, 'hawaiian': 1, 'irish': 1, 'kenyan': 1, 'lebanese': 1, 'malian': 1, 'moroccan': 1, 'nepali': 1, 'new-mexican': 1, 'pakistani': 1, 'persian': 1, 'polish': 1, 'portuguese': 1, 'puerto-rican': 1, 'southern': 1, 'swiss': 1, 'taiwanese': 1, 'turkish': 1}
+effort BASE {'moderate': 76, 'involved': 30, 'easy': 29} 
+   NEW {'moderate': 29, 'involved': 16, 'easy': 5}
+complexity BASE {'standard': 71, 'simple': 58, 'adventurous': 6} 
+   NEW {'simple': 26, 'standard': 24}
+time BASE {'46-90': 51, '30-45': 49, 'under 30': 21, 'over 90': 14} 
+   NEW {'46-90': 29, 'over 90': 11, '30-45': 9, 'under 30': 1}
+hh001 BASE {False: 84, True: 51} 
+   NEW {False: 30, True: 20}
+pair BASE {'moderate/standard': 44, 'moderate/simple': 30, 'easy/simple': 23, 'involved/standard': 21, 'easy/standard': 6, 'involved/simple': 5, 'involved/adventurous': 4, 'moderate/adventurous': 2} 
+   NEW {'moderate/simple': 18, 'moderate/standard': 11, 'involved/standard': 10, 'involved/simple': 6, 'easy/standard': 3, 'easy/simple': 2}
+135 50 {'C': 10, 'A': 10, 'B': 10, 'D': 10, 'E': 10}

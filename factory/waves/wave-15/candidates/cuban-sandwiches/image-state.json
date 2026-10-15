@@ -1,0 +1,34 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "cuban-sandwiches.webp",
+    "cuban-sandwiches-640.webp"
+  ],
+  "present_files": [
+    "cuban-sandwiches.webp",
+    "cuban-sandwiches-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "4cc7d4bea0ac17839fdabccae1272eb48692c975803a1852efa73b9c5145544f",
+    "cuban-sandwiches.webp": "81097f328aa9d8ed30adbcb83a29f75abd34ed31e6b59b71989dae5816ab555d",
+    "cuban-sandwiches-640.webp": "515d1bbaa5586eb46132c696f606f0c601a5a1d7b768b7d98516bfc3a57f9db7"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "audit_r1_gate_K",
+    "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: plantain chips not in the recipe; pork read as shredded/pulled instead of thin-sliced tenderloin.",
+    "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+  },
+  "package_revision": "author-r3",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

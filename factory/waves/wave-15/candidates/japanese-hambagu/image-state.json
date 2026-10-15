@@ -1,0 +1,34 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "japanese-hambagu.webp",
+    "japanese-hambagu-640.webp"
+  ],
+  "present_files": [
+    "japanese-hambagu.webp",
+    "japanese-hambagu-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "0f8b8550215802805ad6f9cefc3e5150b3f7b34d2420772047bd8fc276c86f97",
+    "japanese-hambagu.webp": "d5e9cfe39a89a7d8e05d8a8e6045cbe0e3d203c36e613bab38878f7391fc7223",
+    "japanese-hambagu-640.webp": "ae7d8fd1f82f7960a6a6d5a1aef04acc6b6b98c50a43a00108327c97145c4dfd"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "audit_r1_gate_K",
+    "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: miso soup not in the recipe; pink patty interior contradicts the 160 F cooked-through method.",
+    "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+  },
+  "package_revision": "author-r3",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

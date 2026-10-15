@@ -1,0 +1,34 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "dominican-mangu-eggs-pickled-onions.webp",
+    "dominican-mangu-eggs-pickled-onions-640.webp"
+  ],
+  "present_files": [
+    "dominican-mangu-eggs-pickled-onions.webp",
+    "dominican-mangu-eggs-pickled-onions-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "a604ed5e30cbb9c44e190735f20d69872e619c5ba329b3f6ac735ba56772a2cf",
+    "dominican-mangu-eggs-pickled-onions.webp": "f270873ba6efa45b163b133527778fc1b7be3ebbb85eade99823f7e2de294609",
+    "dominican-mangu-eggs-pickled-onions-640.webp": "f2d91855f9011469d7a2c8039c3037c099dd8fbde979ffac0c4d42369c4afffc"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "audit_r1_gate_K",
+    "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: mangú mash read green like guacamole/avocado; coffee cup not in the recipe.",
+    "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+  },
+  "package_revision": "author-r3",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

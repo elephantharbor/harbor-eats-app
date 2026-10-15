@@ -1,0 +1,34 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "peruvian-tacu-tacu-egg.webp",
+    "peruvian-tacu-tacu-egg-640.webp"
+  ],
+  "present_files": [
+    "peruvian-tacu-tacu-egg.webp",
+    "peruvian-tacu-tacu-egg-640.webp"
+  ],
+  "source": "img_v4.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v4.jpg": "fc090ce3760b431ac6c623aad75f640f5c76771e6576bac851de2678383bd726",
+    "peruvian-tacu-tacu-egg.webp": "7a9fc47890a6de7b8afbf550276d5e6fac8886649ffdc8d1c885988cd90ba037",
+    "peruvian-tacu-tacu-egg-640.webp": "de4d7b17e3a75f98cbfa2e391ebc6b9ea17331899433f60878205bb1c63b16c8"
+  },
+  "regeneration_count": 3,
+  "regeneration": {
+    "version": 4,
+    "basis": "audit_r1_gate_K",
+    "summary": "Active hero is an audit r1 regeneration (img_v4.jpg). Audit r1 gate K FAIL on the previous hero: salsa criolla showed yellow pepper strips not in the recipe; cake read near-black like black beans instead of canary/pinto.",
+    "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt') with the v4 changes in image-prompt.md 'Final prompt (v4)' (no side bowl or sauce dish)."
+  },
+  "package_revision": "author-r3",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

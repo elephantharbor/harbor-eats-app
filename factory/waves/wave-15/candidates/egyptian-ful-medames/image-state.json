@@ -1,0 +1,34 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "egyptian-ful-medames.webp",
+    "egyptian-ful-medames-640.webp"
+  ],
+  "present_files": [
+    "egyptian-ful-medames.webp",
+    "egyptian-ful-medames-640.webp"
+  ],
+  "source": "img_v3.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v3.jpg": "f4ac1a52d3537c858b0e6be396b88ab3721340cde1bd8fa53f7373fe0ccbac96",
+    "egyptian-ful-medames.webp": "60a35c2353b0a83e1553f9c7b1c7a19fced5679192f000834236737f26460282",
+    "egyptian-ful-medames-640.webp": "f8b7bb288845a9432262726d9527c7e710f0360eba78a22f81b25cfc9fdbc342"
+  },
+  "regeneration_count": 2,
+  "regeneration": {
+    "version": 3,
+    "basis": "audit_r1_gate_K",
+    "summary": "Active hero is an audit r1 regeneration (img_v3.jpg). Audit r1 gate K FAIL on the previous hero: crumbly granular mash read as browned ground meat; no whole fava beans visible. v2 (from the audit r1 prompt) rejected in Cora's self-review: the crumbly mash still read as ground meat.",
+    "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt') plus the v3 addendum: \"mostly whole, plump, oval, smooth-skinned fava beans partly crushed into a smooth creamy puree (loose bean stew, not crumbly); dozens of identifiable whole beans; absolutely no crumbly or minced texture\"."
+  },
+  "package_revision": "author-r3",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

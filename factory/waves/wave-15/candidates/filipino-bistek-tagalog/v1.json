@@ -1,0 +1,565 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "filipino-bistek-tagalog",
+    "slug": "filipino-bistek-tagalog",
+    "title": "Filipino Bistek Tagalog: Soy-Citrus Beef with Onion Rings and Rice",
+    "description": "Thin slices of sirloin marinated in soy sauce, calamansi or lemon juice, garlic, and black pepper, seared quickly and simmered in the marinade with soft white onion rings until glossy. Served over steamed rice.",
+    "cuisine": "filipino",
+    "meal_format": "rice-plate",
+    "primary_ingredient": "beef",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "savory",
+      "umami",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_filipino-bistek-tagalog",
+    "current_version_id": "rv_filipino-bistek-tagalog_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_filipino-bistek-tagalog",
+    "dish_id": "filipino-bistek-tagalog",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_filipino-bistek-tagalog_v1",
+    "recipe_id": "rcp_filipino-bistek-tagalog",
+    "dish_id": "filipino-bistek-tagalog",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Filipino Bistek Tagalog: Soy-Citrus Beef with Onion Rings and Rice",
+    "description": "Thin slices of sirloin marinated in soy sauce, calamansi or lemon juice, garlic, and black pepper, seared quickly and simmered in the marinade with soft white onion rings until glossy. Served over steamed rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "sirloin",
+        "name": "beef sirloin",
+        "display_name": "beef sirloin",
+        "quantity": 1.75,
+        "unit": "lb",
+        "note": null,
+        "preparation": "very cold, sliced thin (1/4 inch) across the grain",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "citrus",
+        "name": "calamansi juice or fresh lemon juice",
+        "display_name": "calamansi juice or fresh lemon juice",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "about 2 lemons",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": "coarsely ground",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "onions",
+        "name": "white onions",
+        "display_name": "large white onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced into 1/4-inch rings",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "sauce-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.5,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Slice and marinate",
+        "body": "Slice the very cold beef thin, 1/4 inch thick, across the grain. Toss with the soy sauce, citrus juice, garlic, pepper, and sugar in a bowl. Slice the onions into rings, rinse the rice, and slice the scallions.",
+        "ingredient_refs": [
+          "sirloin",
+          "soy-sauce",
+          "citrus",
+          "garlic",
+          "black-pepper",
+          "sugar",
+          "onions",
+          "jasmine-rice",
+          "scallions"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the rice",
+        "body": "Combine the rice and 2 1/2 cups water in a 2-quart saucepan, bring to a boil over high heat, cover, turn to low, and cook 15 minutes; rest covered 10 minutes.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "rice-water"
+        ],
+        "clock_minutes": 28,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Marinate",
+        "body": "The beef marinates at room temperature for the 30 minutes the rice takes (overlap stated).",
+        "ingredient_refs": [
+          "sirloin"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Soften the onions",
+        "body": "Heat 1 tbsp oil in a 12-inch skillet over medium. Cook the onion rings until just softened, about 4 minutes, and transfer to a plate.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "onions"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Sear the beef",
+        "body": "Raise the heat to high and add 1 tbsp oil. Lift the beef from the marinade (keep the marinade) and sear in two batches until browned at the edges, about 1 minute per side, adding the last 1 tbsp oil for the second batch.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "sirloin"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Simmer",
+        "body": "Return all the beef to the skillet with the reserved marinade and 1/3 cup water. Simmer over medium until glossy and slightly thickened, about 3 minutes. Return the onions and toss 1 minute.",
+        "ingredient_refs": [
+          "sirloin",
+          "sauce-water",
+          "onions"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Spoon the beef, onions, and sauce over the rice and scatter the scallions.",
+        "ingredient_refs": [
+          "sirloin",
+          "jasmine-rice",
+          "scallions"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "bistek",
+        "name": "bistek",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "sirloin",
+          "soy sauce",
+          "calamansi or lemon",
+          "garlic",
+          "black pepper",
+          "onions",
+          "water"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "steamed rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "2-quart saucepan with lid",
+      "mixing bowl",
+      "tongs"
+    ],
+    "methods": [
+      "sear",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 46,
+    "total_time_minutes": 61,
+    "prep_minutes": 15,
+    "cook_minutes": 46,
+    "total_minutes": 61,
+    "time_clock": "Prep 15 + cook 46 = 61 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The beef marinates 30 minutes while the rice cooks and rests (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5,
+        6,
+        7
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "High in a 12-inch skillet to sear the beef in batches, medium for the onions, then a brief simmer. Low covered heat for the rice.",
+    "doneness": "Beef browned at the edges and just cooked through, tender. Onion rings softened but holding shape. Sauce slightly thickened and glossy.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains beef (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: beef, soy sauce, citrus, garlic, onion, oil, water, and rice.",
+    "allergens": [
+      "meat",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the beef.",
+      "Soy and wheat from the soy sauce.",
+      "No egg, milk, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains beef (meat).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "savory",
+      "umami",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'filipino' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "2dfcf108fb965940dd4ac25df312f1f3f17bf3c89f43430a37d566ade35d28c6",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_filipino-bistek-tagalog_v1",
+    "dish_id": "filipino-bistek-tagalog",
+    "recipe_version_id": "rv_filipino-bistek-tagalog_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "filipino-bistek-tagalog.webp",
+    "card_ref": "filipino-bistek-tagalog-640.webp",
+    "master_filename": "filipino-bistek-tagalog.webp",
+    "card_filename": "filipino-bistek-tagalog-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "filipino-bistek-tagalog.webp",
+        "spec_catalog_path": "/images/meals/filipino-bistek-tagalog.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "filipino-bistek-tagalog-640.webp",
+        "spec_catalog_path": "/images/meals/filipino-bistek-tagalog-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "ce97ea8795b73186042a38d498ef1052f64bfe5246a9d383e274cd112130db29",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "ce97ea8795b73186042a38d498ef1052f64bfe5246a9d383e274cd112130db29",
+      "master_sha256": "d31266b1e696a8e0f0156e261c0a098bf4c8c02fd43a69ec2ce986ee394de0e7",
+      "card_sha256": "98ef0e22c2cdafee1a11490def2014598bd9478850685fa7ae85b2c561122bcb"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "ce97ea8795b73186042a38d498ef1052f64bfe5246a9d383e274cd112130db29",
+      "filipino-bistek-tagalog.webp": "d31266b1e696a8e0f0156e261c0a098bf4c8c02fd43a69ec2ce986ee394de0e7",
+      "filipino-bistek-tagalog-640.webp": "98ef0e22c2cdafee1a11490def2014598bd9478850685fa7ae85b2c561122bcb"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 46 = 61 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The beef marinates 30 minutes while the rice cooks and rests (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "filipino-bistek-tagalog.webp 1200x900 and filipino-bistek-tagalog-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 10-inch skillet.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "sear in batches so the beef browns instead of steaming"
+    ]
+  },
+  "coverage_contribution": "First Filipino beef dish (filipino-chicken-adobo and filipino-fish-sinigang are the others). Quick soy-citrus beef, a weeknight format.",
+  "near_duplicate_review": "Compared with filipino-chicken-adobo: thin-sliced beef with citrus and onion rings, not vinegar-braised chicken. Compared with japanese-gyudon: seared steak slices in a sour soy-citrus sauce, not simmered beef in a sweet dashi-free broth. Compared with peruvian-lomo-saltado: no fries, tomatoes, or wok stir-fry.",
+  "not_duplicate_of": "Not beef tapa (a cured breakfast cut).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

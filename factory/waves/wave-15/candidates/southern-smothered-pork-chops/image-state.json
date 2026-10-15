@@ -1,0 +1,34 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "southern-smothered-pork-chops.webp",
+    "southern-smothered-pork-chops-640.webp"
+  ],
+  "present_files": [
+    "southern-smothered-pork-chops.webp",
+    "southern-smothered-pork-chops-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "3c1c39c833d4fe9c0ee845c82e58f1f5977d5d14e04c08ac81f04faf879021fd",
+    "southern-smothered-pork-chops.webp": "7e449a22eeadb3cc51d425d7e0e8ac757f8713208bf793c1450e749edcbddb8e",
+    "southern-smothered-pork-chops-640.webp": "da16b4505acce7b2a50469d32e444953436ec30fc807be633369afa0910bb34c"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "audit_r1_gate_K",
+    "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: cornbread not in the recipe (undisclosed wheat/milk/egg).",
+    "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+  },
+  "package_revision": "author-r3",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

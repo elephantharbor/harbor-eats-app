@@ -1,0 +1,2459 @@
+{
+ "wave": "wave-15",
+ "request": "Thomas 2026-10-15 2:30 PM CT: 'Please do 50 more.'",
+ "creator": "Grok Bot (packages); images by Cora via Grok Bot GenerateImage",
+ "docs_written": "2026-10-15T16:02:24-05:00",
+ "package_revision": "author-r2/author-r3",
+ "package_revision_counts": {
+  "author-r3": 20,
+  "author-r2": 30
+ },
+ "candidate_count": 50,
+ "catalog_before": 135,
+ "catalog_after_if_imported": 185,
+ "hh001_count": 20,
+ "hh001_split": {
+  "fish": 8,
+  "plant": 9,
+  "egg": 3
+ },
+ "state": "CERTIFIED 50/50 by the independent auditor (audit r1 31/50 + audit r2 20/20; combined status in audit/r2/AUDIT-r2.json). Approved by Thomas for import to preview and production on Wave-14 terms (2026-10-15 4:09 PM CT). Integrated via harbor-eats-app branch catalog/wave-15-certified-integration.",
+ "audit": {
+  "r1": {
+   "certified": 31,
+   "fail": 19,
+   "records": "audit/r1/ (SUMMARY.md, AUDIT-r1.json, per-slug records)"
+  },
+  "r3_changed_packages": [
+   "argentine-chimichurri-steak-potatoes",
+   "cobb-salad",
+   "cuban-sandwiches",
+   "dominican-mangu-eggs-pickled-onions",
+   "egyptian-ful-medames",
+   "filipino-bistek-tagalog",
+   "hawaiian-huli-huli-chicken",
+   "japanese-hambagu",
+   "japanese-vegetable-curry-rice",
+   "korean-galbi-jjim",
+   "pakistani-chicken-karahi",
+   "persian-lamb-koobideh-saffron-rice",
+   "peruvian-aji-de-gallina",
+   "peruvian-tacu-tacu-egg",
+   "portuguese-grilled-sardines-potatoes",
+   "puerto-rican-pollo-guisado",
+   "southern-smothered-pork-chops",
+   "swiss-raclette-potatoes-pickles",
+   "thai-moo-ping-sticky-rice",
+   "turkish-iskender-kebab"
+  ],
+  "r3_image_regenerations": [
+   "cuban-sandwiches",
+   "dominican-mangu-eggs-pickled-onions",
+   "egyptian-ful-medames",
+   "japanese-hambagu",
+   "japanese-vegetable-curry-rice",
+   "peruvian-tacu-tacu-egg",
+   "portuguese-grilled-sardines-potatoes",
+   "puerto-rican-pollo-guisado",
+   "southern-smothered-pork-chops"
+  ],
+  "r3_text_fixes": {
+   "argentine-chimichurri-steak-potatoes": "E: step 2 restated as about 10 minutes to boil + 12 to cook + 2 to steam-dry, clocked 26 (was 18).",
+   "cobb-salad": "J: 'jammy-yolked hard-cooked eggs' -> 'hard-cooked eggs' (description; README follows). Image kept.",
+   "dominican-mangu-eggs-pickled-onions": "B/E: 6-quart pot (10 cups water kept); step 2 restated as about 12 minutes to boil + 20 to cook, clocked 34 (was 24).",
+   "filipino-bistek-tagalog": "B/E: 'partly frozen 20 minutes' dropped; beef is 'very cold, sliced thin' (no freeze, clock unchanged).",
+   "hawaiian-huli-huli-chicken": "K (text option): '1 lime, cut into wedges, to serve' added to ingredients, serve step, and shopping list. Image kept.",
+   "korean-galbi-jjim": "Auditor note (PASS WITH NOTES): clock note now says the rice cooks inside steps 5 and 6, matching step 7. Image kept.",
+   "pakistani-chicken-karahi": "K (text option): '1 small red onion, thinly sliced, to serve' added to ingredients, prep, serve step, and shopping list; clock note now says the naan warms while the karahi finishes uncovered. Image kept.",
+   "persian-lamb-koobideh-saffron-rice": "B: equipment now 8 flat metal skewers (was 4) for the 8 kebabs; 1-serving scaling 'Half a pound of lamb as 2 kebabs on 2 skewers'.",
+   "peruvian-aji-de-gallina": "B: potato/egg water cut from 8 to 6 cups (ingredient line and step 4) in the 3-quart saucepan.",
+   "swiss-raclette-potatoes-pickles": "B/E: 6-quart pot (10 cups water kept); step 2 restated as about 12 minutes to boil + 18 to cook, clocked 32 (was 24).",
+   "thai-moo-ping-sticky-rice": "B/E: 'partly frozen 20 minutes' dropped; pork is 'very cold, sliced thin' (no freeze, clock unchanged).",
+   "turkish-iskender-kebab": "B/E: 'partly frozen 20 minutes' dropped; lamb is 'very cold, sliced thin'. Heat line names the 1-quart saucepan (sauce) and 8-inch skillet (brown butter); clock note now matches step 2."
+  },
+  "r2": {
+   "certified": 20,
+   "fail": 0,
+   "records": "audit/r2/ (SUMMARY.md, AUDIT-r2.json with combined_final_status, per-slug records)"
+  },
+  "auditor": "independent auditor (Vale role)",
+  "date": "2026-10-15",
+  "certified": true,
+  "certified_revision": "author-r2/author-r3",
+  "notes": "r1 CERTIFIED 31 / FAIL 19. Creator fixed the 19 FAILs plus one galbi-jjim note at author-r3. r2 re-audited those 20: CERTIFIED 20/20. The other 30 carried forward byte-identical. Combined CERTIFIED 50/50 (PASS 6, PASS WITH NOTES 44)."
+ },
+ "structural_preflight": "PASS 50/50 hh001=20 (notes/structural-preflight-author-r3.txt)",
+ "freeze_integrity": "PASS 50/50; 26/26 checks x 50 (notes/freeze-integrity-author-r3.txt)",
+ "structural_qa_state": {
+  "author_r3_preflight_pass_awaiting_vale": 20,
+  "author_r2_preflight_pass_awaiting_vale": 30
+ },
+ "images": {
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "finalized": 50,
+  "source_dimensions": [
+   "1280x720"
+  ],
+  "export": "finalize_images.py center-crops each source to 4:3 and LANCZOS-resizes to the 1200x900 master and 640x480 card WebPs (export_meal_webps.py).",
+  "attachment_map": "notes/image-gen-map.txt: 65 lines (50 v1, 12 v2, 2 v3); full hashes equal the sha256 of the saved source files; the egyptian-ful-medames v2 line (self-review rejected) carries an 8-character prefix only",
+  "regenerated_v2_before_audit": [
+   {
+    "slug": "grilled-lamb-chops-mint-salsa-verde",
+    "active_source": "img_v2.jpg",
+    "rejected_v1": [
+     "rejected/img_v1-selfreview-rejected.jpg"
+    ]
+   },
+   {
+    "slug": "peruvian-tacu-tacu-egg",
+    "active_source": "img_v4.jpg",
+    "rejected_v1": [
+     "rejected/img_v1-selfreview-rejected.jpg",
+     {
+      "peruvian-tacu-tacu-egg.webp": {
+       "rejected_path": "rejected/peruvian-tacu-tacu-egg-replaced-20261015155816.webp",
+       "sha256": "cd1a74e8a9f15413fedd5d3556ed462278c9906f38cc5cffdf5cf83376eadf13"
+      },
+      "peruvian-tacu-tacu-egg-640.webp": {
+       "rejected_path": "rejected/peruvian-tacu-tacu-egg-640-replaced-20261015155816.webp",
+       "sha256": "98b45a9d1cbe6ca49a93471aae595fa80b32006db04141ac10cbb01afeed7203"
+      },
+      "img_v2.jpg": {
+       "rejected_path": "rejected/img_v2-replaced-20261015155816.jpg",
+       "sha256": "99dda1ec4fb5aafc132892d9c5627734ac6fd5975421b2bbb2b13c402c25163f"
+      }
+     },
+     {
+      "peruvian-tacu-tacu-egg.webp": {
+       "rejected_path": "rejected/peruvian-tacu-tacu-egg-replaced-20261015160218.webp",
+       "sha256": "ed70ccf7ccb5591a3f463a28224783ea86d278f9183e269d7f2cad5c85865209"
+      },
+      "peruvian-tacu-tacu-egg-640.webp": {
+       "rejected_path": "rejected/peruvian-tacu-tacu-egg-640-replaced-20261015160218.webp",
+       "sha256": "f452c7f46ff85547c47127a63c9ced2715ba35e60875280de4fae7648b96f3a2"
+      },
+      "img_v3.jpg": {
+       "rejected_path": "rejected/img_v3-replaced-20261015160218.jpg",
+       "sha256": "9da021ce30dac98ed2d62c7723397e01e44c82dbf391dd4184d478fce411d2f0"
+      }
+     }
+    ]
+   },
+   {
+    "slug": "thai-crispy-barramundi-tamarind",
+    "active_source": "img_v2.jpg",
+    "rejected_v1": [
+     "rejected/img_v1-selfreview-rejected.jpg"
+    ]
+   },
+   {
+    "slug": "turkish-iskender-kebab",
+    "active_source": "img_v2.jpg",
+    "rejected_v1": [
+     "rejected/img_v1-selfreview-rejected.jpg"
+    ]
+   }
+  ],
+  "regeneration_basis": "Creator self-review (Cora) against image-plating-brief.md, before any audit. Details: notes/regen-v2-clarifiers.md and each package's image-prompt.md 'Regeneration v2 prompt addition'.",
+  "regenerated_after_audit_r1": [
+   {
+    "slug": "cuban-sandwiches",
+    "active_source": "img_v2.jpg",
+    "rejected": [
+     {
+      "cuban-sandwiches.webp": {
+       "rejected_path": "rejected/cuban-sandwiches-replaced-20261015155800.webp",
+       "sha256": "bf262c002a361dc20a52c75145657383ad7ef0f2c786230bfb42477e70c01893"
+      },
+      "cuban-sandwiches-640.webp": {
+       "rejected_path": "rejected/cuban-sandwiches-640-replaced-20261015155800.webp",
+       "sha256": "6467bb7e590ed8c53b7805b6fd43299072947b7f204b87b33d845204414bef2d"
+      },
+      "img_v1.jpg": {
+       "rejected_path": "rejected/img_v1-replaced-20261015155800.jpg",
+       "sha256": "fd3e68948cb0b60488f8e793c62bc1559a92cdbe75a0280c98acac82bfac3da8"
+      }
+     }
+    ]
+   },
+   {
+    "slug": "dominican-mangu-eggs-pickled-onions",
+    "active_source": "img_v2.jpg",
+    "rejected": [
+     {
+      "dominican-mangu-eggs-pickled-onions.webp": {
+       "rejected_path": "rejected/dominican-mangu-eggs-pickled-onions-replaced-20261015155755.webp",
+       "sha256": "187c3b45dd43ef84fc85081b70fb5d3b5b4f99261dbd6525bed884186a9d95d4"
+      },
+      "dominican-mangu-eggs-pickled-onions-640.webp": {
+       "rejected_path": "rejected/dominican-mangu-eggs-pickled-onions-640-replaced-20261015155755.webp",
+       "sha256": "7472426c2ba32a82d4e35c87d6362f63791c322e7e4c2bb6c44314a1cad98aca"
+      },
+      "img_v1.jpg": {
+       "rejected_path": "rejected/img_v1-replaced-20261015155755.jpg",
+       "sha256": "540d17b27c4305b436ac1885678f09998babaf64c90ee2527ed01be3093db94f"
+      }
+     }
+    ]
+   },
+   {
+    "slug": "egyptian-ful-medames",
+    "active_source": "img_v3.jpg",
+    "rejected": [
+     {
+      "egyptian-ful-medames.webp": {
+       "rejected_path": "rejected/egyptian-ful-medames-replaced-20261015155757.webp",
+       "sha256": "af0eab7bcb663a355f7d07d06b353a7aa474953f06b462bdd9639163329fb837"
+      },
+      "egyptian-ful-medames-640.webp": {
+       "rejected_path": "rejected/egyptian-ful-medames-640-replaced-20261015155757.webp",
+       "sha256": "5098b1025e439de0df24c615ab5ef97530012ae4c0d955a7ec5eef1674f6fc8c"
+      },
+      "img_v1.jpg": {
+       "rejected_path": "rejected/img_v1-replaced-20261015155757.jpg",
+       "sha256": "2c5d3941835684201c360c8ab0db0eee65a044fd020a367e60bf7826ec77110a"
+      }
+     },
+     "rejected/img_v2-selfreview-rejected.jpg"
+    ]
+   },
+   {
+    "slug": "japanese-hambagu",
+    "active_source": "img_v2.jpg",
+    "rejected": [
+     {
+      "japanese-hambagu.webp": {
+       "rejected_path": "rejected/japanese-hambagu-replaced-20261015155803.webp",
+       "sha256": "51e68921ab1a2e7d15a306ae16124ef94395f97c1e1121f26b777ee3280e342d"
+      },
+      "japanese-hambagu-640.webp": {
+       "rejected_path": "rejected/japanese-hambagu-640-replaced-20261015155803.webp",
+       "sha256": "03b7975a957a40b592ad80db46a486d1188802ccdbc3c5eb0b7ca7e30a053aee"
+      },
+      "img_v1.jpg": {
+       "rejected_path": "rejected/img_v1-replaced-20261015155803.jpg",
+       "sha256": "a6782be0c8a19446b77caf03aa6e8e7aadbb8b41e9547e7df069e36b2e809aec"
+      }
+     }
+    ]
+   },
+   {
+    "slug": "japanese-vegetable-curry-rice",
+    "active_source": "img_v2.jpg",
+    "rejected": [
+     {
+      "japanese-vegetable-curry-rice.webp": {
+       "rejected_path": "rejected/japanese-vegetable-curry-rice-replaced-20261015155805.webp",
+       "sha256": "b0677d716ea24af20f7543b32306adaa9e81e1b2b753dc7e777b0ce525ef7fb7"
+      },
+      "japanese-vegetable-curry-rice-640.webp": {
+       "rejected_path": "rejected/japanese-vegetable-curry-rice-640-replaced-20261015155805.webp",
+       "sha256": "1e02b6f67b6045bfb8ca9da740caeb3107512753cc206630ea5cbbdf2f11f3bf"
+      },
+      "img_v1.jpg": {
+       "rejected_path": "rejected/img_v1-replaced-20261015155805.jpg",
+       "sha256": "0da17ad420a6287b551d8b5635631d231ac9b2a9669757f67ddfe211c6a745eb"
+      }
+     }
+    ]
+   },
+   {
+    "slug": "peruvian-tacu-tacu-egg",
+    "active_source": "img_v4.jpg",
+    "rejected": [
+     "rejected/img_v1-selfreview-rejected.jpg",
+     {
+      "peruvian-tacu-tacu-egg.webp": {
+       "rejected_path": "rejected/peruvian-tacu-tacu-egg-replaced-20261015155816.webp",
+       "sha256": "cd1a74e8a9f15413fedd5d3556ed462278c9906f38cc5cffdf5cf83376eadf13"
+      },
+      "peruvian-tacu-tacu-egg-640.webp": {
+       "rejected_path": "rejected/peruvian-tacu-tacu-egg-640-replaced-20261015155816.webp",
+       "sha256": "98b45a9d1cbe6ca49a93471aae595fa80b32006db04141ac10cbb01afeed7203"
+      },
+      "img_v2.jpg": {
+       "rejected_path": "rejected/img_v2-replaced-20261015155816.jpg",
+       "sha256": "99dda1ec4fb5aafc132892d9c5627734ac6fd5975421b2bbb2b13c402c25163f"
+      }
+     },
+     {
+      "peruvian-tacu-tacu-egg.webp": {
+       "rejected_path": "rejected/peruvian-tacu-tacu-egg-replaced-20261015160218.webp",
+       "sha256": "ed70ccf7ccb5591a3f463a28224783ea86d278f9183e269d7f2cad5c85865209"
+      },
+      "peruvian-tacu-tacu-egg-640.webp": {
+       "rejected_path": "rejected/peruvian-tacu-tacu-egg-640-replaced-20261015160218.webp",
+       "sha256": "f452c7f46ff85547c47127a63c9ced2715ba35e60875280de4fae7648b96f3a2"
+      },
+      "img_v3.jpg": {
+       "rejected_path": "rejected/img_v3-replaced-20261015160218.jpg",
+       "sha256": "9da021ce30dac98ed2d62c7723397e01e44c82dbf391dd4184d478fce411d2f0"
+      }
+     }
+    ]
+   },
+   {
+    "slug": "portuguese-grilled-sardines-potatoes",
+    "active_source": "img_v2.jpg",
+    "rejected": [
+     {
+      "portuguese-grilled-sardines-potatoes.webp": {
+       "rejected_path": "rejected/portuguese-grilled-sardines-potatoes-replaced-20261015155813.webp",
+       "sha256": "fe8c8ec9b010ada5b33cac0e5c68c7f32b1544d7c42307d6d36a5101a29c96d7"
+      },
+      "portuguese-grilled-sardines-potatoes-640.webp": {
+       "rejected_path": "rejected/portuguese-grilled-sardines-potatoes-640-replaced-20261015155813.webp",
+       "sha256": "fea6a30b811053e9e6243f6d0ced898407db268a479a5825ba6be729d08ba5f7"
+      },
+      "img_v1.jpg": {
+       "rejected_path": "rejected/img_v1-replaced-20261015155813.jpg",
+       "sha256": "195eedf3dfbce68e8294d451bac86162bbcbb756a4d95098b897b79b69989115"
+      }
+     }
+    ]
+   },
+   {
+    "slug": "puerto-rican-pollo-guisado",
+    "active_source": "img_v2.jpg",
+    "rejected": [
+     {
+      "puerto-rican-pollo-guisado.webp": {
+       "rejected_path": "rejected/puerto-rican-pollo-guisado-replaced-20261015155808.webp",
+       "sha256": "034cd39a41fc1be18e904e3c16b827c87c7c3ccf8d5cd0d70254af2301f324b7"
+      },
+      "puerto-rican-pollo-guisado-640.webp": {
+       "rejected_path": "rejected/puerto-rican-pollo-guisado-640-replaced-20261015155808.webp",
+       "sha256": "1cc2eaa59565cd79e30258a45928c962d354de5650a9d5a4ac3a031b931cf1e1"
+      },
+      "img_v1.jpg": {
+       "rejected_path": "rejected/img_v1-replaced-20261015155808.jpg",
+       "sha256": "5949bd4d385f6e4f85bd5e4ac537d14c3fd54b455dd971bf07bc4666f0f36846"
+      }
+     }
+    ]
+   },
+   {
+    "slug": "southern-smothered-pork-chops",
+    "active_source": "img_v2.jpg",
+    "rejected": [
+     {
+      "southern-smothered-pork-chops.webp": {
+       "rejected_path": "rejected/southern-smothered-pork-chops-replaced-20261015155810.webp",
+       "sha256": "016c3d0ac6d14832aa59581060dae2e58097fa0ff2c1190c4716972b6e33b403"
+      },
+      "southern-smothered-pork-chops-640.webp": {
+       "rejected_path": "rejected/southern-smothered-pork-chops-640-replaced-20261015155810.webp",
+       "sha256": "6eed1d147304f96b7966811010330a4ebe073effe56266ef25c6c4ec19a01f30"
+      },
+      "img_v1.jpg": {
+       "rejected_path": "rejected/img_v1-replaced-20261015155810.jpg",
+       "sha256": "d8ee4250bbf63961f5c73e1a04be88fc13fddba664befa112c9d9a4b8773fd9a"
+      }
+     }
+    ]
+   }
+  ],
+  "audit_r1_prompts": "notes/r1-regen-prompts.txt (tools/briefs_r1.py); each package's image-prompt.md 'Regeneration (audit r1) prompt'",
+  "visual_approval": "Creator self-review only; image fidelity is PENDING_AUDIT."
+ },
+ "auditor_handoff": [
+  "notes/AUDITOR_HANDOFF.md (r1)",
+  "notes/AUDITOR_HANDOFF-r2.md (r2)"
+ ],
+ "next_steps": [
+  "Import / PR / deploy approved by Thomas on Wave-14 terms; see harbor-eats-app DEPLOYMENTS.md for the outcome."
+ ],
+ "candidates": [
+  {
+   "slug": "argentine-chimichurri-steak-potatoes",
+   "title": "Argentine Grilled Strip Steak with Chimichurri, Grilled Potatoes, and Ensalada Criolla",
+   "cuisine": "argentine",
+   "primary": "beef",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 70,
+   "batch": "C",
+   "allergens": [
+    "meat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_argentine-chimichurri-steak-potatoes_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "basque-hake-salsa-verde",
+   "title": "Basque Hake in Salsa Verde with Peas and Potatoes",
+   "cuisine": "spanish",
+   "primary": "hake",
+   "hh001": true,
+   "hh001_kind": "fish",
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 35,
+   "batch": "A",
+   "allergens": [
+    "finfish",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_basque-hake-salsa-verde_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "bengali-mustard-fish",
+   "title": "Bengali Shorshe Maach: Haddock in Mustard-Seed Sauce with Rice",
+   "cuisine": "bengali",
+   "primary": "haddock",
+   "hh001": true,
+   "hh001_kind": "fish",
+   "effort": "moderate",
+   "complexity": "standard",
+   "total_minutes": 36,
+   "batch": "B",
+   "allergens": [
+    "finfish"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_bengali-mustard-fish_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "bhindi-masala-chapati",
+   "title": "Bhindi Masala: Crisp-Edged Spiced Okra with Homemade Chapati",
+   "cuisine": "indian",
+   "primary": "okra",
+   "hh001": true,
+   "hh001_kind": "plant",
+   "effort": "involved",
+   "complexity": "standard",
+   "total_minutes": 69,
+   "batch": "A",
+   "allergens": [
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_bhindi-masala-chapati_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "cantonese-char-siu-pork-rice",
+   "title": "Cantonese Char Siu Pork with Rice and Blanched Gai Lan",
+   "cuisine": "cantonese",
+   "primary": "pork",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "involved",
+   "complexity": "standard",
+   "total_minutes": 187,
+   "batch": "D",
+   "allergens": [
+    "meat",
+    "soy",
+    "wheat",
+    "sesame"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_cantonese-char-siu-pork-rice_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "chinese-egg-foo-young",
+   "title": "Egg Foo Young with Mushroom Gravy and Steamed Rice",
+   "cuisine": "chinese",
+   "primary": "eggs",
+   "hh001": true,
+   "hh001_kind": "egg",
+   "effort": "involved",
+   "complexity": "simple",
+   "total_minutes": 40,
+   "batch": "B",
+   "allergens": [
+    "egg",
+    "soy",
+    "wheat",
+    "sesame"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_chinese-egg-foo-young_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "cobb-salad",
+   "title": "Classic Cobb Salad with Seared Chicken, Bacon, Egg, and Blue Cheese",
+   "cuisine": "american",
+   "primary": "chicken",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "involved",
+   "complexity": "simple",
+   "total_minutes": 50,
+   "batch": "C",
+   "allergens": [
+    "poultry",
+    "meat",
+    "egg",
+    "milk"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_cobb-salad_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "cuban-sandwiches",
+   "title": "Cuban Sandwiches with Mojo Pork Tenderloin, Ham, Swiss, and Pickles",
+   "cuisine": "cuban",
+   "primary": "pork",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "standard",
+   "total_minutes": 95,
+   "batch": "D",
+   "allergens": [
+    "meat",
+    "milk",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v2.jpg",
+   "image_id": "img_cuban-sandwiches_v2",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [
+    "audit_r1_gate_K"
+   ],
+   "audit_r1_regenerated": true,
+   "rejected_sources": [
+    {
+     "cuban-sandwiches.webp": {
+      "rejected_path": "rejected/cuban-sandwiches-replaced-20261015155800.webp",
+      "sha256": "bf262c002a361dc20a52c75145657383ad7ef0f2c786230bfb42477e70c01893"
+     },
+     "cuban-sandwiches-640.webp": {
+      "rejected_path": "rejected/cuban-sandwiches-640-replaced-20261015155800.webp",
+      "sha256": "6467bb7e590ed8c53b7805b6fd43299072947b7f204b87b33d845204414bef2d"
+     },
+     "img_v1.jpg": {
+      "rejected_path": "rejected/img_v1-replaced-20261015155800.jpg",
+      "sha256": "fd3e68948cb0b60488f8e793c62bc1559a92cdbe75a0280c98acac82bfac3da8"
+     }
+    }
+   ],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "cypriot-halloumi-orzo-salad",
+   "title": "Cypriot Grilled Halloumi with Lemon-Herb Orzo Salad",
+   "cuisine": "cypriot",
+   "primary": "halloumi",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 35,
+   "batch": "D",
+   "allergens": [
+    "milk",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_cypriot-halloumi-orzo-salad_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "dominican-mangu-eggs-pickled-onions",
+   "title": "Dominican Mangú with Pan-Fried Eggs and Pickled Red Onions",
+   "cuisine": "dominican",
+   "primary": "green plantains",
+   "hh001": true,
+   "hh001_kind": "egg",
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 59,
+   "batch": "B",
+   "allergens": [
+    "egg"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v2.jpg",
+   "image_id": "img_dominican-mangu-eggs-pickled-onions_v2",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [
+    "audit_r1_gate_K"
+   ],
+   "audit_r1_regenerated": true,
+   "rejected_sources": [
+    {
+     "dominican-mangu-eggs-pickled-onions.webp": {
+      "rejected_path": "rejected/dominican-mangu-eggs-pickled-onions-replaced-20261015155755.webp",
+      "sha256": "187c3b45dd43ef84fc85081b70fb5d3b5b4f99261dbd6525bed884186a9d95d4"
+     },
+     "dominican-mangu-eggs-pickled-onions-640.webp": {
+      "rejected_path": "rejected/dominican-mangu-eggs-pickled-onions-640-replaced-20261015155755.webp",
+      "sha256": "7472426c2ba32a82d4e35c87d6362f63791c322e7e4c2bb6c44314a1cad98aca"
+     },
+     "img_v1.jpg": {
+      "rejected_path": "rejected/img_v1-replaced-20261015155755.jpg",
+      "sha256": "540d17b27c4305b436ac1885678f09998babaf64c90ee2527ed01be3093db94f"
+     }
+    }
+   ],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "egyptian-ful-medames",
+   "title": "Egyptian Ful Medames with Warm Pita, Tomato, and Cucumber",
+   "cuisine": "egyptian",
+   "primary": "fava beans",
+   "hh001": true,
+   "hh001_kind": "plant",
+   "effort": "easy",
+   "complexity": "simple",
+   "total_minutes": 24,
+   "batch": "B",
+   "allergens": [
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v3.jpg",
+   "image_id": "img_egyptian-ful-medames_v3",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [
+    "audit_r1_gate_K"
+   ],
+   "audit_r1_regenerated": true,
+   "rejected_sources": [
+    {
+     "egyptian-ful-medames.webp": {
+      "rejected_path": "rejected/egyptian-ful-medames-replaced-20261015155757.webp",
+      "sha256": "af0eab7bcb663a355f7d07d06b353a7aa474953f06b462bdd9639163329fb837"
+     },
+     "egyptian-ful-medames-640.webp": {
+      "rejected_path": "rejected/egyptian-ful-medames-640-replaced-20261015155757.webp",
+      "sha256": "5098b1025e439de0df24c615ab5ef97530012ae4c0d955a7ec5eef1674f6fc8c"
+     },
+     "img_v1.jpg": {
+      "rejected_path": "rejected/img_v1-replaced-20261015155757.jpg",
+      "sha256": "2c5d3941835684201c360c8ab0db0eee65a044fd020a367e60bf7826ec77110a"
+     }
+    },
+    "rejected/img_v2-selfreview-rejected.jpg"
+   ],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "ethiopian-atakilt-wat",
+   "title": "Ethiopian Atakilt Wat: Turmeric Cabbage, Potato, and Carrot with Injera",
+   "cuisine": "ethiopian",
+   "primary": "cabbage and potatoes",
+   "hh001": true,
+   "hh001_kind": "plant",
+   "effort": "easy",
+   "complexity": "standard",
+   "total_minutes": 55,
+   "batch": "B",
+   "allergens": [
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_ethiopian-atakilt-wat_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "filipino-bistek-tagalog",
+   "title": "Filipino Bistek Tagalog: Soy-Citrus Beef with Onion Rings and Rice",
+   "cuisine": "filipino",
+   "primary": "beef",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 61,
+   "batch": "D",
+   "allergens": [
+    "meat",
+    "soy",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_filipino-bistek-tagalog_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "german-beef-rouladen",
+   "title": "German Beef Rouladen with Mustard Gravy and Boiled Potatoes",
+   "cuisine": "german",
+   "primary": "beef",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "involved",
+   "complexity": "standard",
+   "total_minutes": 147,
+   "batch": "D",
+   "allergens": [
+    "meat",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_german-beef-rouladen_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "greek-gigantes-plaki",
+   "title": "Greek Gigantes Plaki: Baked Giant Beans in Tomato and Dill",
+   "cuisine": "greek",
+   "primary": "giant white beans",
+   "hh001": true,
+   "hh001_kind": "plant",
+   "effort": "easy",
+   "complexity": "standard",
+   "total_minutes": 72,
+   "batch": "A",
+   "allergens": [
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_greek-gigantes-plaki_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "grilled-lamb-chops-mint-salsa-verde",
+   "title": "Grilled Lamb Chops with Mint Salsa Verde and Lemon Pearl Couscous",
+   "cuisine": "mediterranean",
+   "primary": "lamb",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 52,
+   "batch": "D",
+   "allergens": [
+    "meat",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v2.jpg",
+   "image_id": "img_grilled-lamb-chops-mint-salsa-verde_v2",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": true,
+   "regeneration_bases": [
+    "creator_self_review_before_audit"
+   ],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [
+    "rejected/img_v1-selfreview-rejected.jpg"
+   ],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "hawaiian-huli-huli-chicken",
+   "title": "Hawaiian Huli-Huli Chicken with Grilled Pineapple and Rice",
+   "cuisine": "hawaiian",
+   "primary": "chicken",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "involved",
+   "complexity": "simple",
+   "total_minutes": 104,
+   "batch": "C",
+   "allergens": [
+    "poultry",
+    "soy",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_hawaiian-huli-huli-chicken_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "herb-roast-turkey-breast-cranberry",
+   "title": "Herb-Butter Roast Turkey Breast with Cranberry-Orange Sauce and Roasted Vegetables",
+   "cuisine": "american",
+   "primary": "turkey",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 118,
+   "batch": "E",
+   "allergens": [
+    "poultry",
+    "milk"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_herb-roast-turkey-breast-cranberry_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "indian-paneer-tikka",
+   "title": "Paneer Tikka with Peppers and Onions, Mint Chutney, and Naan",
+   "cuisine": "indian",
+   "primary": "paneer",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "standard",
+   "total_minutes": 66,
+   "batch": "D",
+   "allergens": [
+    "milk",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_indian-paneer-tikka_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "irish-beef-stew",
+   "title": "Irish Beef and Stout Stew with Potatoes and Carrots",
+   "cuisine": "irish",
+   "primary": "beef",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 184,
+   "batch": "E",
+   "allergens": [
+    "meat",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "gluten",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_irish-beef-stew_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "italian-chicken-cacciatore",
+   "title": "Italian Chicken Cacciatore with Peppers, Mushrooms, and Crusty Bread",
+   "cuisine": "italian",
+   "primary": "chicken",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 81,
+   "batch": "C",
+   "allergens": [
+    "poultry",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_italian-chicken-cacciatore_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "italian-grilled-calamari",
+   "title": "Italian Grilled Calamari with Tomato-Caper Salad and Grilled Bread",
+   "cuisine": "italian",
+   "primary": "squid",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "involved",
+   "complexity": "simple",
+   "total_minutes": 34,
+   "batch": "D",
+   "allergens": [
+    "shellfish",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_italian-grilled-calamari_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "japanese-hambagu",
+   "title": "Japanese Hambagu: Beef and Pork Hamburg Steaks with Rich Pan Sauce",
+   "cuisine": "japanese",
+   "primary": "ground beef and pork",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 44,
+   "batch": "E",
+   "allergens": [
+    "meat",
+    "egg",
+    "milk",
+    "wheat",
+    "soy"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v2.jpg",
+   "image_id": "img_japanese-hambagu_v2",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [
+    "audit_r1_gate_K"
+   ],
+   "audit_r1_regenerated": true,
+   "rejected_sources": [
+    {
+     "japanese-hambagu.webp": {
+      "rejected_path": "rejected/japanese-hambagu-replaced-20261015155803.webp",
+      "sha256": "51e68921ab1a2e7d15a306ae16124ef94395f97c1e1121f26b777ee3280e342d"
+     },
+     "japanese-hambagu-640.webp": {
+      "rejected_path": "rejected/japanese-hambagu-640-replaced-20261015155803.webp",
+      "sha256": "03b7975a957a40b592ad80db46a486d1188802ccdbc3c5eb0b7ca7e30a053aee"
+     },
+     "img_v1.jpg": {
+      "rejected_path": "rejected/img_v1-replaced-20261015155803.jpg",
+      "sha256": "a6782be0c8a19446b77caf03aa6e8e7aadbb8b41e9547e7df069e36b2e809aec"
+     }
+    }
+   ],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "japanese-vegetable-curry-rice",
+   "title": "Japanese Vegetable Curry Rice with a Homemade Roux",
+   "cuisine": "japanese",
+   "primary": "potatoes and carrots",
+   "hh001": true,
+   "hh001_kind": "plant",
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 52,
+   "batch": "B",
+   "allergens": [
+    "wheat",
+    "soy"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v2.jpg",
+   "image_id": "img_japanese-vegetable-curry-rice_v2",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [
+    "audit_r1_gate_K"
+   ],
+   "audit_r1_regenerated": true,
+   "rejected_sources": [
+    {
+     "japanese-vegetable-curry-rice.webp": {
+      "rejected_path": "rejected/japanese-vegetable-curry-rice-replaced-20261015155805.webp",
+      "sha256": "b0677d716ea24af20f7543b32306adaa9e81e1b2b753dc7e777b0ce525ef7fb7"
+     },
+     "japanese-vegetable-curry-rice-640.webp": {
+      "rejected_path": "rejected/japanese-vegetable-curry-rice-640-replaced-20261015155805.webp",
+      "sha256": "1e02b6f67b6045bfb8ca9da740caeb3107512753cc206630ea5cbbdf2f11f3bf"
+     },
+     "img_v1.jpg": {
+      "rejected_path": "rejected/img_v1-replaced-20261015155805.jpg",
+      "sha256": "0da17ad420a6287b551d8b5635631d231ac9b2a9669757f67ddfe211c6a745eb"
+     }
+    }
+   ],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "kenyan-tilapia-ugali-sukuma",
+   "title": "Kenyan Tilapia in Tomato-Onion Sauce with Ugali and Sukuma Wiki",
+   "cuisine": "kenyan",
+   "primary": "tilapia",
+   "hh001": true,
+   "hh001_kind": "fish",
+   "effort": "involved",
+   "complexity": "simple",
+   "total_minutes": 63,
+   "batch": "A",
+   "allergens": [
+    "finfish"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_kenyan-tilapia-ugali-sukuma_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "korean-braised-mackerel-radish",
+   "title": "Korean Braised Mackerel with Radish (Godeungeo Jorim)",
+   "cuisine": "korean",
+   "primary": "mackerel",
+   "hh001": true,
+   "hh001_kind": "fish",
+   "effort": "moderate",
+   "complexity": "standard",
+   "total_minutes": 44,
+   "batch": "B",
+   "allergens": [
+    "finfish",
+    "soy",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_korean-braised-mackerel-radish_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "korean-galbi-jjim",
+   "title": "Korean Galbi-Jjim: Braised Beef Short Ribs with Radish and Carrots",
+   "cuisine": "korean",
+   "primary": "beef short ribs",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "standard",
+   "total_minutes": 148,
+   "batch": "C",
+   "allergens": [
+    "meat",
+    "soy",
+    "wheat",
+    "sesame"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_korean-galbi-jjim_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "lebanese-baked-kibbeh",
+   "title": "Lebanese Baked Kibbeh with Pine Nuts, Yogurt-Cucumber Salad, and Fattoush-Style Greens",
+   "cuisine": "lebanese",
+   "primary": "lamb and bulgur",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "involved",
+   "complexity": "standard",
+   "total_minutes": 114,
+   "batch": "E",
+   "allergens": [
+    "meat",
+    "wheat",
+    "tree_nut",
+    "milk"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_lebanese-baked-kibbeh_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "malian-chicken-maafe",
+   "title": "Malian Chicken Maafe: Peanut and Tomato Stew with Sweet Potatoes",
+   "cuisine": "malian",
+   "primary": "chicken",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 75,
+   "batch": "C",
+   "allergens": [
+    "poultry",
+    "peanut"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_malian-chicken-maafe_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "maryland-crab-cakes-slaw",
+   "title": "Maryland Crab Cakes with Old Bay Coleslaw and Lemon",
+   "cuisine": "american",
+   "primary": "crab",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 66,
+   "batch": "D",
+   "allergens": [
+    "shellfish",
+    "egg",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_maryland-crab-cakes-slaw_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "mexican-enfrijoladas",
+   "title": "Enfrijoladas: Corn Tortillas in Smoky Pinto Bean Sauce with Zucchini and Poblano",
+   "cuisine": "mexican",
+   "primary": "pinto beans",
+   "hh001": true,
+   "hh001_kind": "plant",
+   "effort": "moderate",
+   "complexity": "standard",
+   "total_minutes": 55,
+   "batch": "B",
+   "allergens": [],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_mexican-enfrijoladas_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "moroccan-chermoula-fish-tagine",
+   "title": "Moroccan Chermoula Fish Tagine with Potatoes, Peppers, and Olives",
+   "cuisine": "moroccan",
+   "primary": "cod",
+   "hh001": true,
+   "hh001_kind": "fish",
+   "effort": "moderate",
+   "complexity": "standard",
+   "total_minutes": 52,
+   "batch": "A",
+   "allergens": [
+    "finfish",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_moroccan-chermoula-fish-tagine_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "nepali-aloo-tama",
+   "title": "Nepali Aloo Tama: Potato, Bamboo Shoot, and Black-Eyed Pea Curry with Rice",
+   "cuisine": "nepali",
+   "primary": "potatoes and bamboo shoots",
+   "hh001": true,
+   "hh001_kind": "plant",
+   "effort": "moderate",
+   "complexity": "standard",
+   "total_minutes": 55,
+   "batch": "B",
+   "allergens": [],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_nepali-aloo-tama_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "new-mexican-carne-adovada",
+   "title": "New Mexican Carne Adovada with Warm Flour Tortillas",
+   "cuisine": "new-mexican",
+   "primary": "pork",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 199,
+   "batch": "E",
+   "allergens": [
+    "meat",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_new-mexican-carne-adovada_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "pakistani-chicken-karahi",
+   "title": "Pakistani Chicken Karahi with Warm Naan",
+   "cuisine": "pakistani",
+   "primary": "chicken",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 55,
+   "batch": "C",
+   "allergens": [
+    "poultry",
+    "wheat",
+    "milk"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_pakistani-chicken-karahi_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "persian-lamb-koobideh-saffron-rice",
+   "title": "Persian Lamb Koobideh Kebabs with Saffron Rice and Grilled Tomatoes",
+   "cuisine": "persian",
+   "primary": "lamb",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "involved",
+   "complexity": "standard",
+   "total_minutes": 67,
+   "batch": "D",
+   "allergens": [
+    "meat",
+    "milk"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_persian-lamb-koobideh-saffron-rice_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "peruvian-aji-de-gallina",
+   "title": "Peruvian Ají de Gallina: Creamy Ají Amarillo Chicken with Rice and Potatoes",
+   "cuisine": "peruvian",
+   "primary": "chicken",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "involved",
+   "complexity": "standard",
+   "total_minutes": 62,
+   "batch": "C",
+   "allergens": [
+    "poultry",
+    "milk",
+    "wheat",
+    "tree_nut",
+    "egg"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_peruvian-aji-de-gallina_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "peruvian-tacu-tacu-egg",
+   "title": "Peruvian Tacu Tacu with a Pan-Fried Egg and Salsa Criolla",
+   "cuisine": "peruvian",
+   "primary": "rice and beans",
+   "hh001": true,
+   "hh001_kind": "egg",
+   "effort": "involved",
+   "complexity": "simple",
+   "total_minutes": 65,
+   "batch": "B",
+   "allergens": [
+    "egg"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v4.jpg",
+   "image_id": "img_peruvian-tacu-tacu-egg_v4",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": true,
+   "regeneration_bases": [
+    "creator_self_review_before_audit",
+    "audit_r1_gate_K",
+    "audit_r1_gate_K"
+   ],
+   "audit_r1_regenerated": true,
+   "rejected_sources": [
+    "rejected/img_v1-selfreview-rejected.jpg",
+    {
+     "peruvian-tacu-tacu-egg.webp": {
+      "rejected_path": "rejected/peruvian-tacu-tacu-egg-replaced-20261015155816.webp",
+      "sha256": "cd1a74e8a9f15413fedd5d3556ed462278c9906f38cc5cffdf5cf83376eadf13"
+     },
+     "peruvian-tacu-tacu-egg-640.webp": {
+      "rejected_path": "rejected/peruvian-tacu-tacu-egg-640-replaced-20261015155816.webp",
+      "sha256": "98b45a9d1cbe6ca49a93471aae595fa80b32006db04141ac10cbb01afeed7203"
+     },
+     "img_v2.jpg": {
+      "rejected_path": "rejected/img_v2-replaced-20261015155816.jpg",
+      "sha256": "99dda1ec4fb5aafc132892d9c5627734ac6fd5975421b2bbb2b13c402c25163f"
+     }
+    },
+    {
+     "peruvian-tacu-tacu-egg.webp": {
+      "rejected_path": "rejected/peruvian-tacu-tacu-egg-replaced-20261015160218.webp",
+      "sha256": "ed70ccf7ccb5591a3f463a28224783ea86d278f9183e269d7f2cad5c85865209"
+     },
+     "peruvian-tacu-tacu-egg-640.webp": {
+      "rejected_path": "rejected/peruvian-tacu-tacu-egg-640-replaced-20261015160218.webp",
+      "sha256": "f452c7f46ff85547c47127a63c9ced2715ba35e60875280de4fae7648b96f3a2"
+     },
+     "img_v3.jpg": {
+      "rejected_path": "rejected/img_v3-replaced-20261015160218.jpg",
+      "sha256": "9da021ce30dac98ed2d62c7723397e01e44c82dbf391dd4184d478fce411d2f0"
+     }
+    }
+   ],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "polish-bigos",
+   "title": "Polish Bigos: Hunter's Stew of Sauerkraut, Cabbage, Kielbasa, and Pork",
+   "cuisine": "polish",
+   "primary": "pork and sauerkraut",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "easy",
+   "complexity": "standard",
+   "total_minutes": 143,
+   "batch": "E",
+   "allergens": [
+    "meat",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "gluten",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_polish-bigos_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "portuguese-grilled-sardines-potatoes",
+   "title": "Portuguese Grilled Sardines with Boiled Potatoes and Charred Pepper Salad",
+   "cuisine": "portuguese",
+   "primary": "sardines",
+   "hh001": true,
+   "hh001_kind": "fish",
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 49,
+   "batch": "A",
+   "allergens": [
+    "finfish"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v2.jpg",
+   "image_id": "img_portuguese-grilled-sardines-potatoes_v2",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [
+    "audit_r1_gate_K"
+   ],
+   "audit_r1_regenerated": true,
+   "rejected_sources": [
+    {
+     "portuguese-grilled-sardines-potatoes.webp": {
+      "rejected_path": "rejected/portuguese-grilled-sardines-potatoes-replaced-20261015155813.webp",
+      "sha256": "fe8c8ec9b010ada5b33cac0e5c68c7f32b1544d7c42307d6d36a5101a29c96d7"
+     },
+     "portuguese-grilled-sardines-potatoes-640.webp": {
+      "rejected_path": "rejected/portuguese-grilled-sardines-potatoes-640-replaced-20261015155813.webp",
+      "sha256": "fea6a30b811053e9e6243f6d0ced898407db268a479a5825ba6be729d08ba5f7"
+     },
+     "img_v1.jpg": {
+      "rejected_path": "rejected/img_v1-replaced-20261015155813.jpg",
+      "sha256": "195eedf3dfbce68e8294d451bac86162bbcbb756a4d95098b897b79b69989115"
+     }
+    }
+   ],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "puerto-rican-pollo-guisado",
+   "title": "Puerto Rican Pollo Guisado with White Rice",
+   "cuisine": "puerto-rican",
+   "primary": "chicken",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "standard",
+   "total_minutes": 79,
+   "batch": "C",
+   "allergens": [
+    "poultry"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v2.jpg",
+   "image_id": "img_puerto-rican-pollo-guisado_v2",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [
+    "audit_r1_gate_K"
+   ],
+   "audit_r1_regenerated": true,
+   "rejected_sources": [
+    {
+     "puerto-rican-pollo-guisado.webp": {
+      "rejected_path": "rejected/puerto-rican-pollo-guisado-replaced-20261015155808.webp",
+      "sha256": "034cd39a41fc1be18e904e3c16b827c87c7c3ccf8d5cd0d70254af2301f324b7"
+     },
+     "puerto-rican-pollo-guisado-640.webp": {
+      "rejected_path": "rejected/puerto-rican-pollo-guisado-640-replaced-20261015155808.webp",
+      "sha256": "1cc2eaa59565cd79e30258a45928c962d354de5650a9d5a4ac3a031b931cf1e1"
+     },
+     "img_v1.jpg": {
+      "rejected_path": "rejected/img_v1-replaced-20261015155808.jpg",
+      "sha256": "5949bd4d385f6e4f85bd5e4ac537d14c3fd54b455dd971bf07bc4666f0f36846"
+     }
+    }
+   ],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "punjabi-rajma-chawal",
+   "title": "Punjabi Rajma Chawal: Kidney Bean Curry with Basmati Rice",
+   "cuisine": "indian",
+   "primary": "kidney beans",
+   "hh001": true,
+   "hh001_kind": "plant",
+   "effort": "moderate",
+   "complexity": "standard",
+   "total_minutes": 56,
+   "batch": "A",
+   "allergens": [],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_punjabi-rajma-chawal_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "red-snapper-veracruzana",
+   "title": "Red Snapper a la Veracruzana with White Rice",
+   "cuisine": "mexican",
+   "primary": "red snapper",
+   "hh001": true,
+   "hh001_kind": "fish",
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 45,
+   "batch": "A",
+   "allergens": [
+    "finfish"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_red-snapper-veracruzana_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "southern-smothered-pork-chops",
+   "title": "Southern Smothered Pork Chops in Onion Gravy with Rice and Green Beans",
+   "cuisine": "southern",
+   "primary": "pork",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "moderate",
+   "complexity": "simple",
+   "total_minutes": 78,
+   "batch": "E",
+   "allergens": [
+    "meat",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v2.jpg",
+   "image_id": "img_southern-smothered-pork-chops_v2",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [
+    "audit_r1_gate_K"
+   ],
+   "audit_r1_regenerated": true,
+   "rejected_sources": [
+    {
+     "southern-smothered-pork-chops.webp": {
+      "rejected_path": "rejected/southern-smothered-pork-chops-replaced-20261015155810.webp",
+      "sha256": "016c3d0ac6d14832aa59581060dae2e58097fa0ff2c1190c4716972b6e33b403"
+     },
+     "southern-smothered-pork-chops-640.webp": {
+      "rejected_path": "rejected/southern-smothered-pork-chops-640-replaced-20261015155810.webp",
+      "sha256": "6eed1d147304f96b7966811010330a4ebe073effe56266ef25c6c4ec19a01f30"
+     },
+     "img_v1.jpg": {
+      "rejected_path": "rejected/img_v1-replaced-20261015155810.jpg",
+      "sha256": "d8ee4250bbf63961f5c73e1a04be88fc13fddba664befa112c9d9a4b8773fd9a"
+     }
+    }
+   ],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "swiss-raclette-potatoes-pickles",
+   "title": "Swiss Raclette Night: Melted Raclette over Potatoes with Cornichons and Pickled Onions",
+   "cuisine": "swiss",
+   "primary": "raclette cheese",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "easy",
+   "complexity": "simple",
+   "total_minutes": 54,
+   "batch": "E",
+   "allergens": [
+    "milk"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_swiss-raclette-potatoes-pickles_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "taiwanese-three-cup-mushrooms",
+   "title": "Taiwanese Three-Cup King Oyster Mushrooms with Jasmine Rice",
+   "cuisine": "taiwanese",
+   "primary": "king oyster mushrooms",
+   "hh001": true,
+   "hh001_kind": "plant",
+   "effort": "moderate",
+   "complexity": "standard",
+   "total_minutes": 39,
+   "batch": "A",
+   "allergens": [
+    "soy",
+    "wheat",
+    "sesame"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_taiwanese-three-cup-mushrooms_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "thai-crispy-barramundi-tamarind",
+   "title": "Thai Crispy Barramundi with Three-Flavor Tamarind Sauce",
+   "cuisine": "thai",
+   "primary": "barramundi",
+   "hh001": true,
+   "hh001_kind": "fish",
+   "effort": "involved",
+   "complexity": "standard",
+   "total_minutes": 46,
+   "batch": "A",
+   "allergens": [
+    "finfish"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v2.jpg",
+   "image_id": "img_thai-crispy-barramundi-tamarind_v2",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": true,
+   "regeneration_bases": [
+    "creator_self_review_before_audit"
+   ],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [
+    "rejected/img_v1-selfreview-rejected.jpg"
+   ],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "thai-khao-man-gai",
+   "title": "Thai Khao Man Gai: Poached Chicken and Garlic-Ginger Rice with Soybean Sauce",
+   "cuisine": "thai",
+   "primary": "chicken",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "involved",
+   "complexity": "standard",
+   "total_minutes": 88,
+   "batch": "C",
+   "allergens": [
+    "poultry",
+    "soy",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r2",
+   "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_thai-khao-man-gai_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "thai-moo-ping-sticky-rice",
+   "title": "Thai Moo Ping: Grilled Pork Skewers with Sticky Rice and Jaew Dipping Sauce",
+   "cuisine": "thai",
+   "primary": "pork",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "involved",
+   "complexity": "standard",
+   "total_minutes": 122,
+   "batch": "E",
+   "allergens": [
+    "meat",
+    "finfish",
+    "soy",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "coconut",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v1.jpg",
+   "image_id": "img_thai-moo-ping-sticky-rice_v1",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": false,
+   "regeneration_bases": [],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [],
+   "kitchen_tested": false
+  },
+  {
+   "slug": "turkish-iskender-kebab",
+   "title": "Turkish İskender Kebab: Sliced Lamb over Pide with Tomato Sauce, Brown Butter, and Yogurt",
+   "cuisine": "turkish",
+   "primary": "lamb",
+   "hh001": false,
+   "hh001_kind": null,
+   "effort": "involved",
+   "complexity": "standard",
+   "total_minutes": 81,
+   "batch": "E",
+   "allergens": [
+    "meat",
+    "milk",
+    "wheat"
+   ],
+   "runtime_enum_gaps": [
+    "allergens",
+    "classification",
+    "cooking",
+    "cuisine",
+    "dietary_labels",
+    "provenance",
+    "publication_state"
+   ],
+   "package_revision": "author-r3",
+   "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+   "active_source": "img_v2.jpg",
+   "image_id": "img_turkish-iskender-kebab_v2",
+   "source_dimensions": {
+    "width": 1280,
+    "height": 720
+   },
+   "regenerated_v2": true,
+   "regeneration_bases": [
+    "creator_self_review_before_audit"
+   ],
+   "audit_r1_regenerated": false,
+   "rejected_sources": [
+    "rejected/img_v1-selfreview-rejected.jpg"
+   ],
+   "kitchen_tested": false
+  }
+ ]
+}

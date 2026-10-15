@@ -1,0 +1,632 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "taiwanese-three-cup-mushrooms",
+    "slug": "taiwanese-three-cup-mushrooms",
+    "title": "Taiwanese Three-Cup King Oyster Mushrooms with Jasmine Rice",
+    "description": "Thick king oyster mushroom rounds seared until deeply browned, then glazed in the classic three-cup sauce of toasted sesame oil, soy sauce, and Shaoxing wine with a heap of ginger, whole garlic cloves, and Thai basil. Served with jasmine rice and blanched bok choy.",
+    "cuisine": "taiwanese",
+    "meal_format": "rice-plate",
+    "primary_ingredient": "king oyster mushrooms",
+    "vocabulary_tag_ids": [
+      "mushrooms",
+      "umami",
+      "savory",
+      "herbaceous"
+    ],
+    "current_recipe_id": "rcp_taiwanese-three-cup-mushrooms",
+    "current_version_id": "rv_taiwanese-three-cup-mushrooms_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_taiwanese-three-cup-mushrooms",
+    "dish_id": "taiwanese-three-cup-mushrooms",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_taiwanese-three-cup-mushrooms_v1",
+    "recipe_id": "rcp_taiwanese-three-cup-mushrooms",
+    "dish_id": "taiwanese-three-cup-mushrooms",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Taiwanese Three-Cup King Oyster Mushrooms with Jasmine Rice",
+    "description": "Thick king oyster mushroom rounds seared until deeply browned, then glazed in the classic three-cup sauce of toasted sesame oil, soy sauce, and Shaoxing wine with a heap of ginger, whole garlic cloves, and Thai basil. Served with jasmine rice and blanched bok choy.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "king-oyster",
+        "name": "king oyster mushrooms",
+        "display_name": "king oyster mushrooms",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 1/2-inch rounds, faces scored in a crosshatch",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "plus 1 tsp for the bok choy",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "piece fresh ginger, peeled",
+        "quantity": 3,
+        "unit": "inch",
+        "note": null,
+        "preparation": "thinly sliced into coins",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 12,
+        "unit": "clove",
+        "note": null,
+        "preparation": "peeled, left whole",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dried-chiles",
+        "name": "dried red chiles",
+        "display_name": "dried red chiles",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "shaoxing",
+        "name": "Shaoxing wine",
+        "display_name": "Shaoxing wine",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "light brown sugar",
+        "display_name": "light brown sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "thai-basil",
+        "name": "Thai basil leaves",
+        "display_name": "Thai basil leaves",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "loosely packed",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 2-inch lengths",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "bok-choy",
+        "name": "baby bok choy",
+        "display_name": "baby bok choy",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "halved lengthwise and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "blanch-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "for blanching",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "for the blanching pot",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the rice. Cut the mushrooms into 1/2-inch rounds and score both cut faces in a shallow crosshatch. Slice the ginger into thin coins, peel the garlic, cut the scallions, and pick the basil leaves. Halve and rinse the bok choy.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "king-oyster",
+          "ginger",
+          "garlic",
+          "scallions",
+          "thai-basil",
+          "bok-choy"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the rice",
+        "body": "Combine the rice and 2 cups water in a 2-quart saucepan, bring to a boil over high heat, cover, turn to low, and cook 15 minutes; then rest covered off the heat 5 minutes. This runs inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "rice-water"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Sear the mushrooms",
+        "body": "Heat the neutral oil in a 12-inch skillet over medium-high. Lay the mushroom rounds in one layer and cook until deeply browned, about 4 minutes per side. Transfer to a plate.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "king-oyster"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Toast the aromatics",
+        "body": "Lower the heat to medium and add 3 tbsp sesame oil. Cook the ginger until the edges curl and brown, about 2 minutes; add the garlic and chiles and cook 1 minute.",
+        "ingredient_refs": [
+          "sesame-oil",
+          "ginger",
+          "garlic",
+          "dried-chiles"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Glaze",
+        "body": "Return the mushrooms, then add the Shaoxing wine, soy sauce, and brown sugar. Simmer, turning the mushrooms, until the sauce reduces to a sticky glaze, about 6 minutes. Off the heat, toss in the scallions and basil until the basil wilts.",
+        "ingredient_refs": [
+          "king-oyster",
+          "shaoxing",
+          "soy-sauce",
+          "brown-sugar",
+          "scallions",
+          "thai-basil"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Blanch the bok choy",
+        "body": "At the start of step 3, set 6 cups water and 1 tsp salt to boil in a covered 4-quart pot over high heat. When it boils, blanch the bok choy 2 minutes, drain, and toss with 1 tsp sesame oil. This runs inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "blanch-water",
+          "kosher-salt",
+          "bok-choy",
+          "sesame-oil"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Fluff the rice and serve the mushrooms with their glaze, garlic, and basil beside the rice and bok choy.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "king-oyster",
+          "bok-choy"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "three-cup",
+        "name": "three-cup mushrooms",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "king oyster mushrooms",
+          "sesame oil",
+          "soy sauce",
+          "Shaoxing wine",
+          "ginger",
+          "garlic",
+          "chiles",
+          "Thai basil"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "jasmine rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water"
+        ]
+      },
+      {
+        "component_id": "bok-choy",
+        "name": "blanched bok choy",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "baby bok choy",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "2-quart saucepan with lid",
+      "4-quart pot with lid",
+      "tongs"
+    ],
+    "methods": [
+      "sear",
+      "braise",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 27,
+    "total_time_minutes": 39,
+    "prep_minutes": 12,
+    "cook_minutes": 27,
+    "total_minutes": 39,
+    "time_clock": "Prep 12 + cook 27 = 39 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap). The bok choy water heats and the bok choy blanches inside steps 3 to 5 (step 6 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "overlap_steps": [
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high in a 12-inch skillet to sear, medium for the aromatics, then a fast reducing simmer. A rolling boil for the bok choy. Low covered heat for the rice.",
+    "doneness": "Mushrooms deeply browned on both cut faces and tender; sauce reduced to a sticky glaze that coats them; basil just wilted. Bok choy bright green and crisp-tender.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional plant_based: mushrooms, aromatics, soy sauce, wine, sesame oil, sugar, basil, rice, and bok choy.",
+    "allergens": [
+      "soy",
+      "wheat",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Soy and wheat from the soy sauce (brewed with wheat).",
+      "Wheat from the Shaoxing wine, which is brewed with wheat.",
+      "Sesame from the toasted sesame oil.",
+      "No egg, milk, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "No oyster sauce and no fish sauce. Mushroom-only three-cup.",
+    "vocabulary_tag_ids": [
+      "mushrooms",
+      "umami",
+      "savory",
+      "herbaceous"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'taiwanese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "alcohol_note": "1/4 cup Shaoxing wine reduces for about 6 minutes; some alcohol remains.",
+    "culinary_hash": "a5d102798f98142debf534ae0a5a8cfdf8975cc78993b1a447815870def48558",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_taiwanese-three-cup-mushrooms_v1",
+    "dish_id": "taiwanese-three-cup-mushrooms",
+    "recipe_version_id": "rv_taiwanese-three-cup-mushrooms_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "taiwanese-three-cup-mushrooms.webp",
+    "card_ref": "taiwanese-three-cup-mushrooms-640.webp",
+    "master_filename": "taiwanese-three-cup-mushrooms.webp",
+    "card_filename": "taiwanese-three-cup-mushrooms-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "taiwanese-three-cup-mushrooms.webp",
+        "spec_catalog_path": "/images/meals/taiwanese-three-cup-mushrooms.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "taiwanese-three-cup-mushrooms-640.webp",
+        "spec_catalog_path": "/images/meals/taiwanese-three-cup-mushrooms-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "13ae45c5a53559ecc827324c9abb20ab7521f100b3577092a5312f5907038d79",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "13ae45c5a53559ecc827324c9abb20ab7521f100b3577092a5312f5907038d79",
+      "master_sha256": "6f875a2565b2c02c8b6bd3f573b30da62a703814e364c47fe8b4b23a080c087b",
+      "card_sha256": "5ef81cda960fa0cfebd475b84b12b197526cde868a0fb212a19343b8b40f5a0e"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "13ae45c5a53559ecc827324c9abb20ab7521f100b3577092a5312f5907038d79",
+      "taiwanese-three-cup-mushrooms.webp": "6f875a2565b2c02c8b6bd3f573b30da62a703814e364c47fe8b4b23a080c087b",
+      "taiwanese-three-cup-mushrooms-640.webp": "5ef81cda960fa0cfebd475b84b12b197526cde868a0fb212a19343b8b40f5a0e"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 27 = 39 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap). The bok choy water heats and the bok choy blanches inside steps 3 to 5 (step 6 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "taiwanese-three-cup-mushrooms.webp 1200x900 and taiwanese-three-cup-mushrooms-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 10-inch skillet.",
+    "2": "Half of everything; keep the 12-inch skillet so the mushrooms sear.",
+    "4": "As written.",
+    "do_not_scale": [
+      "sear the mushrooms in batches if they do not fit in one layer"
+    ]
+  },
+  "coverage_contribution": "Taiwanese 1 to 2 (beef noodle soup is the other). First mushroom-led plate glazed rather than in broth or pasta. HH001 plant dinner without tofu.",
+  "near_duplicate_review": "Compared with miso-mushroom-ramen: seared mushroom rounds in a sticky glaze over rice; no broth, no noodles. Compared with mushroom-walnut-bolognese: a Taiwanese glaze over rice; no pasta. Compared with teriyaki-tofu-bowls: mushrooms, sesame-oil and basil glaze, no tofu. Compared with thai-basil-eggplant-stir-fry: braised glaze in a skillet, mushrooms, Taiwanese three-cup sauce.",
+  "not_duplicate_of": "Not three-cup chicken (poultry load) and not mapo tofu (tofu leads closed).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

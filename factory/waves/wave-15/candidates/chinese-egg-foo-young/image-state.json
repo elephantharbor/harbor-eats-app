@@ -1,0 +1,28 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "chinese-egg-foo-young.webp",
+    "chinese-egg-foo-young-640.webp"
+  ],
+  "present_files": [
+    "chinese-egg-foo-young.webp",
+    "chinese-egg-foo-young-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "d21e422e858dc9e537373c0fcc2f1417480a7d4f8252f3c9c7917d47c320e4cf",
+    "chinese-egg-foo-young.webp": "2558f97f9cf728b2723be3a4d546432710e09e6e202e957ab71d2717429ab9c5",
+    "chinese-egg-foo-young-640.webp": "fe9445f6ea9cd48d748864e6c4a859d51bcaeb851be1fbe3a650ad126f59e918"
+  },
+  "regeneration_count": 0,
+  "package_revision": "author-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

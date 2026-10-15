@@ -1,0 +1,34 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "puerto-rican-pollo-guisado.webp",
+    "puerto-rican-pollo-guisado-640.webp"
+  ],
+  "present_files": [
+    "puerto-rican-pollo-guisado.webp",
+    "puerto-rican-pollo-guisado-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "86a42fdc81937c2c91f1e667f86c7b2278c5eb7b542b7c5ed6ca654652b2869d",
+    "puerto-rican-pollo-guisado.webp": "1740099005225a65dcfe3daeca97c792257adc4196f618033e7913b4841f0c17",
+    "puerto-rican-pollo-guisado-640.webp": "e7dd4e8f32e1651a083815815a16a4ea4ad6a4d531ed25e5d6b5a29590d51e3c"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "audit_r1_gate_K",
+    "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: tostones not in the recipe.",
+    "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+  },
+  "package_revision": "author-r3",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

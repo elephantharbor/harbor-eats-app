@@ -1,0 +1,613 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "portuguese-grilled-sardines-potatoes",
+    "slug": "portuguese-grilled-sardines-potatoes",
+    "title": "Portuguese Grilled Sardines with Boiled Potatoes and Charred Pepper Salad",
+    "description": "Whole cleaned sardines brushed with olive oil and coarse salt and grilled over high heat until the skin blisters, served Lisbon-style with olive-oil boiled potatoes and a salad of charred red peppers, onion, garlic, and vinegar.",
+    "cuisine": "portuguese",
+    "meal_format": "grilled-fish-plate",
+    "primary_ingredient": "sardines",
+    "vocabulary_tag_ids": [
+      "smoky",
+      "fresh",
+      "tangy",
+      "savory"
+    ],
+    "current_recipe_id": "rcp_portuguese-grilled-sardines-potatoes",
+    "current_version_id": "rv_portuguese-grilled-sardines-potatoes_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_portuguese-grilled-sardines-potatoes",
+    "dish_id": "portuguese-grilled-sardines-potatoes",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_portuguese-grilled-sardines-potatoes_v1",
+    "recipe_id": "rcp_portuguese-grilled-sardines-potatoes",
+    "dish_id": "portuguese-grilled-sardines-potatoes",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Portuguese Grilled Sardines with Boiled Potatoes and Charred Pepper Salad",
+    "description": "Whole cleaned sardines brushed with olive oil and coarse salt and grilled over high heat until the skin blisters, served Lisbon-style with olive-oil boiled potatoes and a salad of charred red peppers, onion, garlic, and vinegar.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "sardines",
+        "name": "whole fresh sardines",
+        "display_name": "whole fresh sardines, cleaned and scaled",
+        "quantity": 16,
+        "unit": "count",
+        "note": "about 2 lb total",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "coarse-salt",
+        "name": "coarse sea salt",
+        "display_name": "coarse sea salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 1/2 tsp sardines, 1/2 tsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "2 tbsp sardines, 3 tbsp salad, 3 tbsp potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "red-peppers",
+        "name": "red bell peppers",
+        "display_name": "red bell peppers",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "red onion",
+        "display_name": "medium red onion",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "very thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 2,
+        "unit": "clove",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "small waxy potatoes",
+        "display_name": "small waxy potatoes",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "scrubbed, halved if large",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potato-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 8,
+        "unit": "cup",
+        "note": "for the potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the potato pot",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemons",
+        "display_name": "lemons",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the sardines, pat them dry, and rub with 2 tbsp olive oil and 1 1/2 tsp coarse salt. Scrub the potatoes. Slice the onion and garlic, chop the parsley, and cut the lemons into wedges.",
+        "ingredient_refs": [
+          "sardines",
+          "olive-oil",
+          "coarse-salt",
+          "potatoes",
+          "onion",
+          "garlic",
+          "parsley",
+          "lemon"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil the potatoes",
+        "body": "Put the potatoes in a 4-quart pot with 8 cups water and 1 tbsp kosher salt. Bring to a boil over high heat and cook until tender, about 18 minutes; drain and toss with 3 tbsp olive oil and half the parsley. This runs inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "potatoes",
+          "potato-water",
+          "kosher-salt",
+          "olive-oil",
+          "parsley"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Preheat the grill and char the peppers",
+        "body": "Preheat the grill on high, lid closed, for 10 minutes, then clean and oil the grate. Grill the whole peppers, turning, until blackened all over, about 10 minutes. Seal them in a bowl under a plate for 5 minutes.",
+        "ingredient_refs": [
+          "red-peppers"
+        ],
+        "clock_minutes": 25,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Grill the sardines",
+        "body": "Grill the sardines (in a fish basket if you have one) until the skin chars and blisters and the flesh is opaque at the backbone, about 3 minutes per side.",
+        "ingredient_refs": [
+          "sardines"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Dress the pepper salad",
+        "body": "Peel and seed the peppers and tear into strips. Toss with the onion, garlic, vinegar, 3 tbsp olive oil, and 1/2 tsp coarse salt. The peppers can be peeled while the sardines cook (overlap stated).",
+        "ingredient_refs": [
+          "red-peppers",
+          "onion",
+          "garlic",
+          "vinegar",
+          "olive-oil",
+          "coarse-salt"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Pile the sardines on a platter with the potatoes and pepper salad. Finish with the rest of the parsley and the lemon wedges.",
+        "ingredient_refs": [
+          "sardines",
+          "potatoes",
+          "red-peppers",
+          "parsley",
+          "lemon"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "sardines",
+        "name": "grilled sardines",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "sardines",
+          "olive oil",
+          "coarse salt"
+        ]
+      },
+      {
+        "component_id": "potatoes",
+        "name": "boiled potatoes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "potatoes",
+          "water",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "charred pepper salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "red peppers",
+          "onion",
+          "garlic",
+          "vinegar",
+          "parsley"
+        ]
+      }
+    ],
+    "equipment": [
+      "outdoor grill or grill pan",
+      "4-quart pot",
+      "grill tongs",
+      "fish basket (optional)",
+      "mixing bowl",
+      "colander"
+    ],
+    "methods": [
+      "grill",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 37,
+    "total_time_minutes": 49,
+    "prep_minutes": 12,
+    "cook_minutes": 37,
+    "total_minutes": 49,
+    "time_clock": "Prep 12 + cook 37 = 49 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The potatoes boil inside steps 3 to 5 (step 2 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "overlap_steps": [
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 3 (Preheat the grill and char the peppers) and it states the preheat. The potatoes boil inside steps 3 to 5 (step 2 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Grill preheated on high for 10 minutes, about 500 F at the grate. A 4-quart pot at a steady boil for the potatoes.",
+    "doneness": "Sardine skin charred and blistered, flesh opaque and pulling from the backbone, 145 F. Pepper skins blackened so they peel. Potatoes tender when pierced.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: sardines, potatoes, peppers, olive oil, and vinegar.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish is the sardines.",
+      "No egg, milk, soy, wheat, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Olive oil and vinegar only.",
+    "vocabulary_tag_ids": [
+      "smoky",
+      "fresh",
+      "tangy",
+      "savory"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'portuguese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Buy sardines cleaned (gutted and scaled) by the fish counter; keep them cold until grilling.",
+    "culinary_hash": "a64dbb959b20d61633ca26d9424823e5d6680fe11113967212df82ef640640b1",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_portuguese-grilled-sardines-potatoes_v2",
+    "dish_id": "portuguese-grilled-sardines-potatoes",
+    "recipe_version_id": "rv_portuguese-grilled-sardines-potatoes_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "portuguese-grilled-sardines-potatoes.webp",
+    "card_ref": "portuguese-grilled-sardines-potatoes-640.webp",
+    "master_filename": "portuguese-grilled-sardines-potatoes.webp",
+    "card_filename": "portuguese-grilled-sardines-potatoes-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "portuguese-grilled-sardines-potatoes.webp",
+        "spec_catalog_path": "/images/meals/portuguese-grilled-sardines-potatoes.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "portuguese-grilled-sardines-potatoes-640.webp",
+        "spec_catalog_path": "/images/meals/portuguese-grilled-sardines-potatoes-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "a5f2277e2df18e1d6329b87636cda930e61e8901f9c74651ffece8a1b5b4a502",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "a5f2277e2df18e1d6329b87636cda930e61e8901f9c74651ffece8a1b5b4a502",
+      "master_sha256": "af5600049c8038f8427a03f293b5a0a5459e96453a9f1ff80552dc5bdc96d41a",
+      "card_sha256": "a53b768c494ae58a7ed5059b6ee035fb47cda528673db21a0824ff94d6e61862"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "a5f2277e2df18e1d6329b87636cda930e61e8901f9c74651ffece8a1b5b4a502",
+      "portuguese-grilled-sardines-potatoes.webp": "af5600049c8038f8427a03f293b5a0a5459e96453a9f1ff80552dc5bdc96d41a",
+      "portuguese-grilled-sardines-potatoes-640.webp": "a53b768c494ae58a7ed5059b6ee035fb47cda528673db21a0824ff94d6e61862"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "audit_r1_gate_K",
+      "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: bread on a side plate not in the recipe; 3 sardines instead of 4; whole instead of halved potatoes.",
+      "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "audit_r1_gate_K",
+        "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: bread on a side plate not in the recipe; 3 sardines instead of 4; whole instead of halved potatoes.",
+        "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_portuguese-grilled-sardines-potatoes_v1",
+        "active_source_jpeg": "img_v1.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "195eedf3dfbce68e8294d451bac86162bbcbb756a4d95098b897b79b69989115",
+          "master_sha256": "fe8c8ec9b010ada5b33cac0e5c68c7f32b1544d7c42307d6d36a5101a29c96d7",
+          "card_sha256": "fea6a30b811053e9e6243f6d0ced898407db268a479a5825ba6be729d08ba5f7"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "portuguese-grilled-sardines-potatoes.webp": {
+            "rejected_path": "rejected/portuguese-grilled-sardines-potatoes-replaced-20261015155813.webp",
+            "sha256": "fe8c8ec9b010ada5b33cac0e5c68c7f32b1544d7c42307d6d36a5101a29c96d7"
+          },
+          "portuguese-grilled-sardines-potatoes-640.webp": {
+            "rejected_path": "rejected/portuguese-grilled-sardines-potatoes-640-replaced-20261015155813.webp",
+            "sha256": "fea6a30b811053e9e6243f6d0ced898407db268a479a5825ba6be729d08ba5f7"
+          },
+          "img_v1.jpg": {
+            "rejected_path": "rejected/img_v1-replaced-20261015155813.jpg",
+            "sha256": "195eedf3dfbce68e8294d451bac86162bbcbb756a4d95098b897b79b69989115"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "Audit r1 gate K FAIL (bread on a side plate not in the recipe; 3 sardines instead of 4; whole instead of halved potatoes)"
+      }
+    ],
+    "regenerated_for_audit": "audit-r1"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 37 = 49 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The potatoes boil inside steps 3 to 5 (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 3 (Preheat the grill and char the peppers) and it states the preheat. The potatoes boil inside steps 3 to 5 (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "portuguese-grilled-sardines-potatoes.webp 1200x900 and portuguese-grilled-sardines-potatoes-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "4 sardines, a quarter of the potatoes and salad; a grill pan works well.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "grill preheat stays 10 minutes on high at every scale"
+    ]
+  },
+  "coverage_contribution": "First Portuguese meal. Sardines 0 to 1, an oily small fish. Small whole fish on the grill (roasted-whole-branzino-salmoriglio is the only other whole fish, roasted). HH001 grilled fish.",
+  "near_duplicate_review": "Compared with grilled-swordfish-olive-caper: whole small fish on the bone, potatoes, and a pepper salad; no caper relish. Compared with deep-fried-cod-roasted-potatoes: grilled, not battered; boiled, not roasted potatoes. Compared with roasted-whole-branzino-salmoriglio: small grilled sardines with potatoes and pepper salad, not one large roasted fish. Compared with grilled-mackerel-fennel-orange: whole sardines, potatoes, and charred peppers; no fennel-orange salad.",
+  "not_duplicate_of": "Not bacalhau (salt cod needs a 24-hour soak).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

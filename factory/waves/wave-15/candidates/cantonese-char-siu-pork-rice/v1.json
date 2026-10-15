@@ -1,0 +1,623 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "cantonese-char-siu-pork-rice",
+    "slug": "cantonese-char-siu-pork-rice",
+    "title": "Cantonese Char Siu Pork with Rice and Blanched Gai Lan",
+    "description": "Strips of pork shoulder marinated in hoisin, soy sauce, Shaoxing wine, five-spice, garlic, and honey, roasted on a rack and basted until lacquered and charred at the edges. Sliced over steamed rice with blanched gai lan and a drizzle of the reduced glaze.",
+    "cuisine": "cantonese",
+    "meal_format": "rice-plate",
+    "primary_ingredient": "pork",
+    "vocabulary_tag_ids": [
+      "savory",
+      "umami",
+      "smoky",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_cantonese-char-siu-pork-rice",
+    "current_version_id": "rv_cantonese-char-siu-pork-rice_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_cantonese-char-siu-pork-rice",
+    "dish_id": "cantonese-char-siu-pork-rice",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_cantonese-char-siu-pork-rice_v1",
+    "recipe_id": "rcp_cantonese-char-siu-pork-rice",
+    "dish_id": "cantonese-char-siu-pork-rice",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Cantonese Char Siu Pork with Rice and Blanched Gai Lan",
+    "description": "Strips of pork shoulder marinated in hoisin, soy sauce, Shaoxing wine, five-spice, garlic, and honey, roasted on a rack and basted until lacquered and charred at the edges. Sliced over steamed rice with blanched gai lan and a drizzle of the reduced glaze.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "pork",
+        "name": "boneless pork shoulder",
+        "display_name": "boneless pork shoulder",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut with the grain into strips about 2 inches thick",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "hoisin",
+        "name": "hoisin sauce",
+        "display_name": "hoisin sauce whose label lists sugar, soybeans, wheat, vinegar, sesame, garlic, and chile, with no shellfish",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "2 tbsp marinade, 1 tbsp gai lan",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "shaoxing",
+        "name": "Shaoxing wine",
+        "display_name": "Shaoxing wine",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "honey",
+        "name": "honey",
+        "display_name": "honey",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "3 tbsp marinade, 1 tbsp glaze",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "five-spice",
+        "name": "Chinese five-spice powder",
+        "display_name": "Chinese five-spice powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "pan-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "for the pan under the rack",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.5,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "gai-lan",
+        "name": "gai lan (Chinese broccoli)",
+        "display_name": "gai lan (Chinese broccoli)",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "trimmed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "blanch-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 8,
+        "unit": "cup",
+        "note": "for blanching",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "for the blanching pot",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Marinate",
+        "body": "Whisk the hoisin, 2 tbsp soy sauce, Shaoxing wine, 3 tbsp honey, five-spice, garlic, and sesame oil. Put the pork strips and marinade in a gallon zip-top bag and massage to coat.",
+        "ingredient_refs": [
+          "hoisin",
+          "soy-sauce",
+          "shaoxing",
+          "honey",
+          "five-spice",
+          "garlic",
+          "sesame-oil",
+          "pork"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Rest in the marinade",
+        "body": "Refrigerate 2 hours (up to overnight), turning once. Rinse the rice and trim the gai lan meanwhile.",
+        "ingredient_refs": [
+          "pork",
+          "jasmine-rice",
+          "gai-lan"
+        ],
+        "clock_minutes": 120,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Preheat and make the glaze",
+        "body": "Preheat the oven to 425 F. Lift the pork onto a wire rack set over a rimmed sheet pan and pour 2 cups water into the pan. Boil the leftover marinade with 1 tbsp honey in a 1-quart saucepan for 5 minutes until syrupy.",
+        "ingredient_refs": [
+          "pan-water",
+          "pork",
+          "honey"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Roast",
+        "body": "Roast the pork 15 minutes, turn and brush with glaze, and roast 10 minutes more. Brush again and roast until lacquered, charred at the edges, and 160 F, about 8 minutes. Rest 5 minutes.",
+        "ingredient_refs": [
+          "pork"
+        ],
+        "clock_minutes": 39,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Cook the rice",
+        "body": "When the pork goes in, combine the rice and 2 1/2 cups water in a 2-quart saucepan, bring to a boil over high heat, cover, turn to low, and cook 15 minutes; rest covered 10 minutes. This runs inside step 4 (overlap stated).",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "rice-water"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Blanch the gai lan",
+        "body": "While the pork rests, bring 8 cups water and 1 tsp salt to a boil in a 4-quart pot (start it during the last roast), blanch the gai lan 2 minutes, drain, and drizzle with the oil and 1 tbsp soy sauce (overlap stated).",
+        "ingredient_refs": [
+          "blanch-water",
+          "kosher-salt",
+          "gai-lan",
+          "neutral-oil",
+          "soy-sauce"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Slice the char siu thin and fan it over the rice with the gai lan alongside. Drizzle with the remaining glaze.",
+        "ingredient_refs": [
+          "pork",
+          "jasmine-rice",
+          "gai-lan"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "char-siu",
+        "name": "char siu pork",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "pork shoulder",
+          "hoisin",
+          "soy sauce",
+          "Shaoxing wine",
+          "honey",
+          "five-spice",
+          "garlic",
+          "sesame oil"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "steamed rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water"
+        ]
+      },
+      {
+        "component_id": "gai-lan",
+        "name": "blanched gai lan",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "gai lan",
+          "water",
+          "oil",
+          "soy sauce"
+        ]
+      }
+    ],
+    "equipment": [
+      "rimmed sheet pan with wire rack",
+      "1-quart saucepan",
+      "4-quart pot",
+      "2-quart saucepan with lid",
+      "basting brush",
+      "gallon zip-top bag",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "roast",
+      "boil",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 177,
+    "total_time_minutes": 187,
+    "prep_minutes": 10,
+    "cook_minutes": 177,
+    "total_minutes": 187,
+    "time_clock": "Prep 10 + cook 177 = 187 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The pork marinates 2 hours (step 2). The rice cooks inside step 4 (step 5 states the overlap) and the gai lan blanches during the rest (step 6 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        7
+      ],
+      "overlap_steps": [
+        5,
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 3 (Preheat and make the glaze) and it states the preheat. The pork marinates 2 hours (step 2). The rice cooks inside step 4 (step 5 states the overlap) and the gai lan blanches during the rest (step 6 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven preheated to 425 F with the pork on a rack over a water-filled pan. A 1-quart saucepan at a simmer for the glaze. A 4-quart pot at a boil for the gai lan. Low covered heat for the rice.",
+    "doneness": "Pork 160 F, sticky and lacquered with charred edges. Gai lan bright green and crisp-tender. Glaze syrupy.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains pork (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: pork, hoisin, soy sauce, wine, honey, spices, and vegetables.",
+    "allergens": [
+      "meat",
+      "soy",
+      "wheat",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Meat from the pork.",
+      "Soy and wheat from the soy sauce, the hoisin, and the Shaoxing wine (brewed with wheat).",
+      "Sesame from the hoisin and the sesame oil.",
+      "The hoisin is a store-bought hard contract: the label lists sugar, soybeans, wheat, vinegar, sesame, garlic, and chile, with no shellfish, peanut, or milk.",
+      "No egg, milk, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains pork (meat).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "savory",
+      "umami",
+      "smoky",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'cantonese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook pork to at least 145 F; 160 F gives char siu its classic texture. Boil the leftover marinade 5 minutes before using it as a glaze.",
+    "alcohol_note": "2 tbsp Shaoxing wine in the marinade; some alcohol remains after roasting.",
+    "culinary_hash": "a64156766b74ff7b3d081e0b2a93fc87f11babf68fde90ce798faccb716dffbe",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_cantonese-char-siu-pork-rice_v1",
+    "dish_id": "cantonese-char-siu-pork-rice",
+    "recipe_version_id": "rv_cantonese-char-siu-pork-rice_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "cantonese-char-siu-pork-rice.webp",
+    "card_ref": "cantonese-char-siu-pork-rice-640.webp",
+    "master_filename": "cantonese-char-siu-pork-rice.webp",
+    "card_filename": "cantonese-char-siu-pork-rice-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "cantonese-char-siu-pork-rice.webp",
+        "spec_catalog_path": "/images/meals/cantonese-char-siu-pork-rice.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "cantonese-char-siu-pork-rice-640.webp",
+        "spec_catalog_path": "/images/meals/cantonese-char-siu-pork-rice-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "b6fca45fabee7cfcd483b80eee62e874baca0ca5407a4dee9aa03a567eaab4af",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "b6fca45fabee7cfcd483b80eee62e874baca0ca5407a4dee9aa03a567eaab4af",
+      "master_sha256": "6a8b158accc0d8beae56cec7b5a895b4c4dd6c93a348f8f4f01842f13acf317a",
+      "card_sha256": "49002e85766cdf65725ba449d82ea0ab9429073469cd53d8c436c50cefd9b9cc"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "b6fca45fabee7cfcd483b80eee62e874baca0ca5407a4dee9aa03a567eaab4af",
+      "cantonese-char-siu-pork-rice.webp": "6a8b158accc0d8beae56cec7b5a895b4c4dd6c93a348f8f4f01842f13acf317a",
+      "cantonese-char-siu-pork-rice-640.webp": "49002e85766cdf65725ba449d82ea0ab9429073469cd53d8c436c50cefd9b9cc"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 177 = 187 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The pork marinates 2 hours (step 2). The rice cooks inside step 4 (step 5 states the overlap) and the gai lan blanches during the rest (step 6 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 3 (Preheat and make the glaze) and it states the preheat. The pork marinates 2 hours (step 2). The rice cooks inside step 4 (step 5 states the overlap) and the gai lan blanches during the rest (step 6 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "cantonese-char-siu-pork-rice.webp 1200x900 and cantonese-char-siu-pork-rice-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Half a pound of pork, a quarter of the marinade, rice, and greens.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "keep a little water in the pan below the rack at every scale so drips do not smoke"
+    ]
+  },
+  "coverage_contribution": "First Cantonese roast meat. A sweet glazed pork plate unlike the catalog's braised or stir-fried Chinese dishes.",
+  "near_duplicate_review": "Compared with pork-shogayaki: rack-roasted glazed pork strips with five-spice, not ginger-soy stir-fried slices. Compared with oven-bbq-baby-back-ribs: boneless shoulder with a hoisin-honey glaze, served sliced on rice, not American barbecue ribs. Compared with thai-moo-ping-sticky-rice in this wave: oven-roasted Cantonese glaze with gai lan and rice, not grilled skewers with sticky rice.",
+  "not_duplicate_of": "Not char siu bao (buns are a dumpling-adjacent format and closed).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

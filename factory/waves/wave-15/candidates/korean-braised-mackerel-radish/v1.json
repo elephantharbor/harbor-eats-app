@@ -1,0 +1,585 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "korean-braised-mackerel-radish",
+    "slug": "korean-braised-mackerel-radish",
+    "title": "Korean Braised Mackerel with Radish (Godeungeo Jorim)",
+    "description": "Mackerel fillets braised on a bed of thick radish slices in a spicy, savory sauce of gochugaru, gochujang, soy sauce, garlic, and ginger until the radish turns tender and translucent and soaks up the sauce. Served with short-grain rice.",
+    "cuisine": "korean",
+    "meal_format": "fish-braise",
+    "primary_ingredient": "mackerel",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "savory",
+      "umami",
+      "tender",
+      "korean"
+    ],
+    "current_recipe_id": "rcp_korean-braised-mackerel-radish",
+    "current_version_id": "rv_korean-braised-mackerel-radish_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_korean-braised-mackerel-radish",
+    "dish_id": "korean-braised-mackerel-radish",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_korean-braised-mackerel-radish_v1",
+    "recipe_id": "rcp_korean-braised-mackerel-radish",
+    "dish_id": "korean-braised-mackerel-radish",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Korean Braised Mackerel with Radish (Godeungeo Jorim)",
+    "description": "Mackerel fillets braised on a bed of thick radish slices in a spicy, savory sauce of gochugaru, gochujang, soy sauce, garlic, and ginger until the radish turns tender and translucent and soaks up the sauce. Served with short-grain rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "mackerel",
+        "name": "mackerel fillets",
+        "display_name": "skin-on mackerel fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 5 oz each",
+        "preparation": "halved crosswise",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "radish",
+        "name": "Korean radish",
+        "display_name": "Korean radish or daikon",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled, cut into 1/2-inch half-moons",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "medium yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "thickly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 2-inch lengths",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jalapeno",
+        "name": "jalapeño",
+        "display_name": "jalapeño",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "gochugaru",
+        "name": "gochugaru (Korean chile flakes)",
+        "display_name": "gochugaru (Korean chile flakes)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "gochujang",
+        "name": "gochujang",
+        "display_name": "gochujang whose label lists no barley malt or shellfish",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "braise-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "short-grain rice",
+        "display_name": "short-grain rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the rice. Peel the radish and cut into 1/2-inch half-moons. Slice the onion and jalapeño, cut the scallions, mince the garlic, and grate the ginger. Halve the fillets. Stir the garlic, ginger, gochugaru, gochujang, soy sauce, and sugar into a sauce.",
+        "ingredient_refs": [
+          "rice",
+          "radish",
+          "onion",
+          "jalapeno",
+          "scallions",
+          "garlic",
+          "ginger",
+          "mackerel",
+          "gochugaru",
+          "gochujang",
+          "soy-sauce",
+          "sugar"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the rice",
+        "body": "Combine the rice and 2 cups water in a 2-quart saucepan, bring to a boil over high heat, cover, turn to low, and cook 15 minutes; then rest covered off the heat 10 minutes. This runs inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "rice",
+          "rice-water"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Par-cook the radish",
+        "body": "Lay the radish in a 12-inch braiser, add 1 1/2 cups water and half the sauce, bring to a boil over medium-high, cover, and simmer over medium until the radish starts to soften, about 10 minutes.",
+        "ingredient_refs": [
+          "radish",
+          "braise-water"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Braise the fish",
+        "body": "Lay the mackerel skin side up on the radish, scatter the onion and jalapeño, and spoon the rest of the sauce over the fish. Cover and simmer 8 minutes, basting once.",
+        "ingredient_refs": [
+          "mackerel",
+          "onion",
+          "jalapeno"
+        ],
+        "clock_minutes": 9,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Reduce",
+        "body": "Uncover, add the scallions, and simmer, basting often, until the sauce reduces to a thick glaze and the fish reads 145 F, about 5 minutes.",
+        "ingredient_refs": [
+          "scallions"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Serve the fish and radish with their sauce beside bowls of rice.",
+        "ingredient_refs": [
+          "mackerel",
+          "radish",
+          "rice"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "jorim",
+        "name": "braised mackerel and radish",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "mackerel",
+          "Korean radish",
+          "onion",
+          "scallions",
+          "garlic",
+          "ginger",
+          "gochugaru",
+          "gochujang",
+          "soy sauce",
+          "sugar",
+          "water"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "short-grain rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "short-grain rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch braiser or deep skillet with lid",
+      "2-quart saucepan with lid",
+      "small mixing bowl",
+      "spoon for basting"
+    ],
+    "methods": [
+      "braise",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 32,
+    "total_time_minutes": 44,
+    "prep_minutes": 12,
+    "cook_minutes": 32,
+    "total_minutes": 44,
+    "time_clock": "Prep 12 + cook 32 = 44 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high to boil the radish, then a covered medium simmer in a 12-inch braiser, then uncovered to reduce. Low covered heat for the rice.",
+    "doneness": "Radish tender and translucent at the edges. Fish opaque, flaking, 145 F. Sauce reduced to a thick, spoonable glaze.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: fish, radish, onion, chile seasonings, soy sauce, sugar, and water.",
+    "allergens": [
+      "finfish",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Finfish is the mackerel.",
+      "Soy and wheat from the soy sauce and the gochujang.",
+      "The gochujang is a store-bought hard contract: the label lists rice, chile, soybeans, wheat, and salt, with no barley malt or shellfish.",
+      "No egg, milk, sesame (no sesame oil or seeds are used), shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "No anchovy stock, no fish stock, no MSG blends. Gochujang is a store-bought hard contract: the label lists no shellfish or barley malt.",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "savory",
+      "umami",
+      "tender",
+      "korean"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'korean' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "bbed35b66dc635597c50515e486e766359f779eeb412d7ce025a489a031e959c",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_korean-braised-mackerel-radish_v1",
+    "dish_id": "korean-braised-mackerel-radish",
+    "recipe_version_id": "rv_korean-braised-mackerel-radish_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "korean-braised-mackerel-radish.webp",
+    "card_ref": "korean-braised-mackerel-radish-640.webp",
+    "master_filename": "korean-braised-mackerel-radish.webp",
+    "card_filename": "korean-braised-mackerel-radish-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "korean-braised-mackerel-radish.webp",
+        "spec_catalog_path": "/images/meals/korean-braised-mackerel-radish.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "korean-braised-mackerel-radish-640.webp",
+        "spec_catalog_path": "/images/meals/korean-braised-mackerel-radish-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "ed412930db510ef6effe3c999b2af9628c893920c693dc421bd5db898c61df8c",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "ed412930db510ef6effe3c999b2af9628c893920c693dc421bd5db898c61df8c",
+      "master_sha256": "1459ac38517f9c1011849fcaa90ca13ffaa0627316cc71d248c692f9083dad57",
+      "card_sha256": "88d6e92f28ad1c777168f7ff42971a2307da76cf05e202cbb3f1c2bfd9251a3a"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "ed412930db510ef6effe3c999b2af9628c893920c693dc421bd5db898c61df8c",
+      "korean-braised-mackerel-radish.webp": "1459ac38517f9c1011849fcaa90ca13ffaa0627316cc71d248c692f9083dad57",
+      "korean-braised-mackerel-radish-640.webp": "88d6e92f28ad1c777168f7ff42971a2307da76cf05e202cbb3f1c2bfd9251a3a"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 32 = 44 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "korean-braised-mackerel-radish.webp 1200x900 and korean-braised-mackerel-radish-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One fillet over a quarter of the radish in an 8-inch covered skillet.",
+    "2": "Half of everything in a 10-inch covered skillet.",
+    "4": "As written.",
+    "do_not_scale": [
+      "the radish layer stays about 1/2 inch thick so it cooks through in the time"
+    ]
+  },
+  "coverage_contribution": "First Korean fish main (Korean coverage is gochujang flank steak, kimchi fried rice, and soft tofu stew). Mackerel 1 to 2: a braise, unlike the grilled grilled-mackerel-fennel-orange. HH001 braised fish.",
+  "near_duplicate_review": "Compared with korean-soft-tofu-stew: a reduced fish braise, not a soup. Compared with grilled-mackerel-fennel-orange: braised in a Korean chile glaze on radish, not grilled with a fennel-orange salad. Compared with vietnamese-turmeric-dill-fish: a chile-soy braise with radish, not turmeric-seared fish with dill and noodles. Compared with korean-galbi-jjim in this wave: fish, not braised beef short ribs.",
+  "not_duplicate_of": "Not saba shioyaki (plain grilled mackerel would add little).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

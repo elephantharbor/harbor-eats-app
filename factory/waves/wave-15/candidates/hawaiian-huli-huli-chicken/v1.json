@@ -1,0 +1,591 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "hawaiian-huli-huli-chicken",
+    "slug": "hawaiian-huli-huli-chicken",
+    "title": "Hawaiian Huli-Huli Chicken with Grilled Pineapple and Rice",
+    "description": "Boneless chicken thighs marinated in pineapple juice, soy sauce, brown sugar, ketchup, ginger, and garlic, grilled and turned and basted with the reduced glaze until sticky and charred. Served with grilled pineapple, white rice, and scallions.",
+    "cuisine": "hawaiian",
+    "meal_format": "grilled-plate",
+    "primary_ingredient": "chicken",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "grilled",
+      "smoky",
+      "savory",
+      "american"
+    ],
+    "current_recipe_id": "rcp_hawaiian-huli-huli-chicken",
+    "current_version_id": "rv_hawaiian-huli-huli-chicken_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_hawaiian-huli-huli-chicken",
+    "dish_id": "hawaiian-huli-huli-chicken",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_hawaiian-huli-huli-chicken_v1",
+    "recipe_id": "rcp_hawaiian-huli-huli-chicken",
+    "dish_id": "hawaiian-huli-huli-chicken",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Hawaiian Huli-Huli Chicken with Grilled Pineapple and Rice",
+    "description": "Boneless chicken thighs marinated in pineapple juice, soy sauce, brown sugar, ketchup, ginger, and garlic, grilled and turned and basted with the reduced glaze until sticky and charred. Served with grilled pineapple, white rice, and scallions.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "chicken",
+        "name": "boneless skinless chicken thighs",
+        "display_name": "boneless skinless chicken thighs",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "about 8 thighs",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pineapple-juice",
+        "name": "unsweetened pineapple juice",
+        "display_name": "unsweetened pineapple juice",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "light brown sugar",
+        "display_name": "light brown sugar",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ketchup",
+        "name": "ketchup",
+        "display_name": "ketchup",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pineapple",
+        "name": "fresh pineapple",
+        "display_name": "small ripe pineapple",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "peeled, cored, cut into 1/2-inch rings",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the grate",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "medium-grain white rice",
+        "display_name": "medium-grain white rice",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.5,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "lime",
+        "name": "lime",
+        "display_name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges, to serve",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep the marinade",
+        "body": "Whisk the pineapple juice, soy sauce, brown sugar, ketchup, ginger, and garlic. Pour 3/4 cup into a small bowl and refrigerate it for the glaze. Put the chicken and the rest of the marinade in a gallon zip-top bag.",
+        "ingredient_refs": [
+          "pineapple-juice",
+          "soy-sauce",
+          "brown-sugar",
+          "ketchup",
+          "ginger",
+          "garlic",
+          "chicken"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Marinate",
+        "body": "Refrigerate the chicken 1 hour (up to 4 hours), turning the bag once. Meanwhile, peel, core, and slice the pineapple, rinse the rice, and slice the scallions.",
+        "ingredient_refs": [
+          "chicken",
+          "pineapple",
+          "rice",
+          "scallions"
+        ],
+        "clock_minutes": 60,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the rice",
+        "body": "Combine the rice and 2 1/2 cups water in a 2-quart saucepan, bring to a boil over high heat, cover, turn to low, and cook 18 minutes; rest covered 10 minutes. This runs inside steps 4 to 6 (overlap stated).",
+        "ingredient_refs": [
+          "rice",
+          "rice-water"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Preheat the grill and reduce the glaze",
+        "body": "Preheat the grill on medium-high, lid closed, for 10 minutes. Meanwhile, boil the reserved 3/4 cup marinade in a 1-quart saucepan until syrupy and reduced by about half; it is ready before the grill is hot. Clean and oil the grate.",
+        "ingredient_refs": [
+          "pineapple-juice",
+          "neutral-oil"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Grill the chicken and pineapple",
+        "body": "Grill the chicken, turning every 3 minutes and brushing with the glaze after the first turn, until charred at the edges and 175 F, about 14 minutes. Grill the pineapple rings beside it until marked, about 3 minutes per side. Discard the bag marinade.",
+        "ingredient_refs": [
+          "chicken",
+          "pineapple"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Rest",
+        "body": "Rest the chicken 5 minutes and brush with the last of the glaze.",
+        "ingredient_refs": [
+          "chicken"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Cut the lime into wedges. Slice the chicken and serve over or beside the rice with grilled pineapple, scallions, and lime wedges for squeezing.",
+        "ingredient_refs": [
+          "chicken",
+          "rice",
+          "pineapple",
+          "scallions",
+          "lime"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "chicken",
+        "name": "huli-huli chicken",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "chicken thighs",
+          "pineapple juice",
+          "soy sauce",
+          "brown sugar",
+          "ketchup",
+          "ginger",
+          "garlic"
+        ]
+      },
+      {
+        "component_id": "pineapple",
+        "name": "grilled pineapple",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "pineapple"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "outdoor grill or grill pan",
+      "gallon zip-top bag or shallow dish",
+      "1-quart saucepan",
+      "2-quart saucepan with lid",
+      "grill tongs",
+      "basting brush",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "grill",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 8,
+    "cook_time_minutes": 96,
+    "total_time_minutes": 104,
+    "prep_minutes": 8,
+    "cook_minutes": 96,
+    "total_minutes": 104,
+    "time_clock": "Prep 8 + cook 96 = 104 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The chicken marinates 1 hour (step 2). The rice cooks during steps 4 to 6 (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 4 (Preheat the grill and reduce the glaze) and it states the preheat. The chicken marinates 1 hour (step 2). The rice cooks during steps 4 to 6 (step 3 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Grill preheated on medium-high for 10 minutes, about 425 F at the grate. A 1-quart saucepan at a lively simmer to reduce the glaze. Low covered heat for the rice.",
+    "doneness": "Chicken charred at the edges, glazed, and 175 F. Pineapple with dark grill marks and warmed through. Glaze reduced to a syrup.",
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains chicken (poultry)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: chicken, pineapple, soy sauce, sugar, ketchup, aromatics, and rice.",
+    "allergens": [
+      "poultry",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Poultry from the chicken.",
+      "Soy and wheat from the soy sauce.",
+      "No egg, milk, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains chicken (poultry).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "grilled",
+      "smoky",
+      "savory",
+      "american"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'hawaiian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook chicken to at least 165 F (175 F for juicy thighs). The glaze portion is set aside before any raw chicken touches the marinade; the marinade from the bag is discarded, never reused.",
+    "culinary_hash": "f3a9be9811028566439b9fb92596cdca2f25358fd221a9a5c95f642df152f63a",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_hawaiian-huli-huli-chicken_v1",
+    "dish_id": "hawaiian-huli-huli-chicken",
+    "recipe_version_id": "rv_hawaiian-huli-huli-chicken_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "hawaiian-huli-huli-chicken.webp",
+    "card_ref": "hawaiian-huli-huli-chicken-640.webp",
+    "master_filename": "hawaiian-huli-huli-chicken.webp",
+    "card_filename": "hawaiian-huli-huli-chicken-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "hawaiian-huli-huli-chicken.webp",
+        "spec_catalog_path": "/images/meals/hawaiian-huli-huli-chicken.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "hawaiian-huli-huli-chicken-640.webp",
+        "spec_catalog_path": "/images/meals/hawaiian-huli-huli-chicken-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "063e51f9283de19e2164af8cd3d4dca2d7100288f92dedc9f85182f33acbf07f",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "063e51f9283de19e2164af8cd3d4dca2d7100288f92dedc9f85182f33acbf07f",
+      "master_sha256": "67e4a94ff00357c77e0cec9e1b89bda736531d410cecfd0fedffcc2974e62b97",
+      "card_sha256": "f7f6242f9e83d592b7285bb13f47cb26c3096b9a050841710f0e2995626d4c0c"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "063e51f9283de19e2164af8cd3d4dca2d7100288f92dedc9f85182f33acbf07f",
+      "hawaiian-huli-huli-chicken.webp": "67e4a94ff00357c77e0cec9e1b89bda736531d410cecfd0fedffcc2974e62b97",
+      "hawaiian-huli-huli-chicken-640.webp": "f7f6242f9e83d592b7285bb13f47cb26c3096b9a050841710f0e2995626d4c0c"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 8 + cook 96 = 104 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The chicken marinates 1 hour (step 2). The rice cooks during steps 4 to 6 (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 4 (Preheat the grill and reduce the glaze) and it states the preheat. The chicken marinates 1 hour (step 2). The rice cooks during steps 4 to 6 (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "hawaiian-huli-huli-chicken.webp 1200x900 and hawaiian-huli-huli-chicken-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Two thighs and a quarter of the marinade; grill pan indoors.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "set the glaze portion aside before the chicken goes in, at every scale"
+    ]
+  },
+  "coverage_contribution": "First Hawaiian dish. A sweet glazed grilled chicken distinct from the catalog's savory grilled meats. Family-friendly summer grill.",
+  "near_duplicate_review": "Compared with greek-chicken-souvlaki: a sweet soy-pineapple glaze with rice, not lemon-oregano skewers with pita. Compared with gochujang-grilled-flank-steak: chicken thighs with a pineapple glaze, no gochujang. Compared with thai-moo-ping-sticky-rice in this wave: chicken and pineapple with steamed rice, not pork skewers with sticky rice.",
+  "not_duplicate_of": "Not teriyaki chicken (huli-huli adds pineapple and ketchup and is grill-basted).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

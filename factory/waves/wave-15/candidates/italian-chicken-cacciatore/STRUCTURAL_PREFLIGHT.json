@@ -1,0 +1,89 @@
+{
+  "dir": "/workspace/flavorweave-catalog-factory/wave-15/candidates/italian-chicken-cacciatore",
+  "slug": "italian-chicken-cacciatore",
+  "STRUCTURAL_PREFLIGHT": "PASS",
+  "hh001_eligible": false,
+  "fail_count": 0,
+  "checks": [
+    {
+      "id": "package_json",
+      "result": "PASS",
+      "detail": "v1.json parses"
+    },
+    {
+      "id": "importer_normalize",
+      "result": "PASS",
+      "detail": "rv_italian-chicken-cacciatore_v1"
+    },
+    {
+      "id": "kitchen_tested",
+      "result": "PASS",
+      "detail": "version=false confidence=false"
+    },
+    {
+      "id": "cook_counts",
+      "result": "PASS",
+      "detail": "household cooks and ratings are 0"
+    },
+    {
+      "id": "d03_enums",
+      "result": "PASS",
+      "detail": "moderate / simple"
+    },
+    {
+      "id": "equipment",
+      "result": "PASS",
+      "detail": "3 items"
+    },
+    {
+      "id": "methods",
+      "result": "PASS",
+      "detail": "sear, braise"
+    },
+    {
+      "id": "dietary_eligibility",
+      "result": "PASS",
+      "detail": "none"
+    },
+    {
+      "id": "hh001_contract",
+      "result": "PASS",
+      "detail": "not HH001"
+    },
+    {
+      "id": "no_conditional_claims",
+      "result": "PASS",
+      "detail": "none"
+    },
+    {
+      "id": "ingredient_refs",
+      "result": "PASS",
+      "detail": "14 ingredients referenced"
+    },
+    {
+      "id": "cooking_d061",
+      "result": "PASS",
+      "detail": "none frying=- crisp=- stir=false"
+    },
+    {
+      "id": "plating_brief",
+      "result": "PASS",
+      "detail": "required sections present"
+    },
+    {
+      "id": "image_prompt",
+      "result": "PASS",
+      "detail": "image-prompt.md"
+    },
+    {
+      "id": "image_slot",
+      "result": "PASS",
+      "detail": "asset_generated; files italian-chicken-cacciatore.webp, italian-chicken-cacciatore-640.webp, img_v1.jpg; freeze integrity PASS"
+    },
+    {
+      "id": "d03_sidecar",
+      "result": "PASS",
+      "detail": "moderate / simple"
+    }
+  ]
+}
