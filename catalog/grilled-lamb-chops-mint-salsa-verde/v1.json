@@ -1,0 +1,630 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "grilled-lamb-chops-mint-salsa-verde",
+    "slug": "grilled-lamb-chops-mint-salsa-verde",
+    "title": "Grilled Lamb Chops with Mint Salsa Verde and Lemon Pearl Couscous",
+    "description": "Rosemary-garlic lamb loin chops grilled to a pink center and spooned with a bright mint, parsley, caper, and lemon salsa verde. Served with lemony pearl couscous studded with peas and grilled zucchini.",
+    "cuisine": "mediterranean",
+    "meal_format": "grilled-plate",
+    "primary_ingredient": "lamb",
+    "vocabulary_tag_ids": [
+      "grilled",
+      "herbaceous",
+      "fresh",
+      "citrusy"
+    ],
+    "current_recipe_id": "rcp_grilled-lamb-chops-mint-salsa-verde",
+    "current_version_id": "rv_grilled-lamb-chops-mint-salsa-verde_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_grilled-lamb-chops-mint-salsa-verde",
+    "dish_id": "grilled-lamb-chops-mint-salsa-verde",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_grilled-lamb-chops-mint-salsa-verde_v1",
+    "recipe_id": "rcp_grilled-lamb-chops-mint-salsa-verde",
+    "dish_id": "grilled-lamb-chops-mint-salsa-verde",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Grilled Lamb Chops with Mint Salsa Verde and Lemon Pearl Couscous",
+    "description": "Rosemary-garlic lamb loin chops grilled to a pink center and spooned with a bright mint, parsley, caper, and lemon salsa verde. Served with lemony pearl couscous studded with peas and grilled zucchini.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "lamb-chops",
+        "name": "lamb loin chops",
+        "display_name": "lamb loin chops, about 1 1/4 inches thick",
+        "quantity": 8,
+        "unit": "count",
+        "note": "about 2 1/2 lb",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rosemary",
+        "name": "fresh rosemary",
+        "display_name": "fresh rosemary",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": "3 grated for the chops, 1 grated for the salsa verde",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "2 tbsp chops, 1/2 cup salsa verde, 1 tbsp couscous, 1 tbsp zucchini",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "1 1/2 tsp chops, 1/4 tsp salsa, 1/2 tsp couscous, 1/4 tsp zucchini",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "mint",
+        "name": "fresh mint",
+        "display_name": "fresh mint",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "packed leaves",
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "packed leaves",
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "capers",
+        "name": "capers",
+        "display_name": "capers",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "rinsed and chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemons",
+        "name": "lemons",
+        "display_name": "lemons",
+        "quantity": 2,
+        "unit": "count",
+        "note": "zest and juice: 2 tbsp juice salsa verde, 2 tbsp juice couscous",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pearl-couscous",
+        "name": "pearl (Israeli) couscous",
+        "display_name": "pearl (Israeli) couscous",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "couscous-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "for the couscous",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "peas",
+        "name": "frozen peas",
+        "display_name": "frozen peas",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "zucchini",
+        "name": "zucchini",
+        "display_name": "medium zucchini",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced lengthwise into 1/3-inch planks",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Season the chops and prep",
+        "body": "Rub the chops with the rosemary, 3 grated garlic cloves, 2 tbsp olive oil, 1 1/2 tsp salt, and the pepper. Zest and juice the lemons. Slice the zucchini into planks.",
+        "ingredient_refs": [
+          "lamb-chops",
+          "rosemary",
+          "garlic",
+          "olive-oil",
+          "kosher-salt",
+          "black-pepper",
+          "lemons",
+          "zucchini"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the couscous",
+        "body": "Toast the pearl couscous in 1 tbsp olive oil in a 3-quart saucepan over medium for 2 minutes. Add 2 cups water and 1/2 tsp salt, bring to a boil, cover, and simmer over low until tender, about 10 minutes. Stir in the peas, cover off the heat 3 minutes, then add 2 tbsp lemon juice and the zest.",
+        "ingredient_refs": [
+          "pearl-couscous",
+          "olive-oil",
+          "couscous-water",
+          "kosher-salt",
+          "peas",
+          "lemons"
+        ],
+        "clock_minutes": 16,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the salsa verde",
+        "body": "While the couscous simmers, stir the mint, parsley, capers, the last grated garlic clove, 2 tbsp lemon juice, 1/2 cup olive oil, and 1/4 tsp salt (overlap stated).",
+        "ingredient_refs": [
+          "mint",
+          "parsley",
+          "capers",
+          "garlic",
+          "lemons",
+          "olive-oil",
+          "kosher-salt"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Preheat the grill",
+        "body": "Preheat the grill on high, lid closed, for 10 minutes, then clean and oil the grate. Toss the zucchini with 1 tbsp olive oil and 1/4 tsp salt.",
+        "ingredient_refs": [
+          "zucchini",
+          "olive-oil",
+          "kosher-salt"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Grill",
+        "body": "Grill the chops until 135 F for medium-rare, about 4 minutes per side, and the zucchini beside them until marked and tender-crisp, about 3 minutes per side. Rest the chops 5 minutes.",
+        "ingredient_refs": [
+          "lamb-chops",
+          "zucchini"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Spoon the couscous onto plates with the zucchini, set two chops on top, and spoon the salsa verde over the chops.",
+        "ingredient_refs": [
+          "pearl-couscous",
+          "zucchini",
+          "lamb-chops",
+          "mint"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "lamb",
+        "name": "grilled lamb chops",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "lamb loin chops",
+          "rosemary",
+          "garlic",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "salsa-verde",
+        "name": "mint salsa verde",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "mint",
+          "parsley",
+          "capers",
+          "lemon",
+          "garlic",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "couscous",
+        "name": "lemon pearl couscous",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "pearl couscous",
+          "water",
+          "peas",
+          "lemon"
+        ]
+      },
+      {
+        "component_id": "zucchini",
+        "name": "grilled zucchini",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "zucchini",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "outdoor grill",
+      "3-quart saucepan with lid",
+      "mixing bowls",
+      "grill tongs",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "grill",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 42,
+    "total_time_minutes": 52,
+    "prep_minutes": 10,
+    "cook_minutes": 42,
+    "total_minutes": 52,
+    "time_clock": "Prep 10 + cook 42 = 52 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The salsa verde is made while the couscous simmers (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 4 (Preheat the grill) and it states the preheat. The salsa verde is made while the couscous simmers (step 3 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Grill preheated on high for 10 minutes, about 500 F at the grate. A 3-quart saucepan at a simmer for the couscous.",
+    "doneness": "Chops 135 F for medium-rare (USDA minimum is 145 F with a 3-minute rest). Zucchini marked and tender-crisp. Couscous tender with a slight chew.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains lamb (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: lamb, herbs, capers, olive oil, lemon, couscous, and vegetables.",
+    "allergens": [
+      "meat",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the lamb.",
+      "Wheat from the pearl couscous (semolina).",
+      "No egg, milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains lamb (meat).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "grilled",
+      "herbaceous",
+      "fresh",
+      "citrusy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'mediterranean' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "USDA safe minimum for lamb chops is 145 F with a 3-minute rest; 135 F medium-rare is a diner's choice.",
+    "culinary_hash": "ed22d855193c627dd89fda6fd188ee1fe9490c518da8b0ba3960fbf49ce29721",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_grilled-lamb-chops-mint-salsa-verde_v2",
+    "dish_id": "grilled-lamb-chops-mint-salsa-verde",
+    "recipe_version_id": "rv_grilled-lamb-chops-mint-salsa-verde_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "grilled-lamb-chops-mint-salsa-verde.webp",
+    "card_ref": "grilled-lamb-chops-mint-salsa-verde-640.webp",
+    "master_filename": "grilled-lamb-chops-mint-salsa-verde.webp",
+    "card_filename": "grilled-lamb-chops-mint-salsa-verde-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "grilled-lamb-chops-mint-salsa-verde.webp",
+        "spec_catalog_path": "/images/meals/grilled-lamb-chops-mint-salsa-verde.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "grilled-lamb-chops-mint-salsa-verde-640.webp",
+        "spec_catalog_path": "/images/meals/grilled-lamb-chops-mint-salsa-verde-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "e52a9bdb3606dd19b094b8bd0a119a25f106593be919e24b2a0393a05e3aedb9",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "e52a9bdb3606dd19b094b8bd0a119a25f106593be919e24b2a0393a05e3aedb9",
+      "master_sha256": "1eb869222037318a7ad1f562ffab11bca345fadd84adba2d08fc2744a08bff5e",
+      "card_sha256": "11ea22d98c9100af57e30cbbc187ac7fee7ae3246c24152b045564868b278f78"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "e52a9bdb3606dd19b094b8bd0a119a25f106593be919e24b2a0393a05e3aedb9",
+      "grilled-lamb-chops-mint-salsa-verde.webp": "1eb869222037318a7ad1f562ffab11bca345fadd84adba2d08fc2744a08bff5e",
+      "grilled-lamb-chops-mint-salsa-verde-640.webp": "11ea22d98c9100af57e30cbbc187ac7fee7ae3246c24152b045564868b278f78"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "creator_self_review_before_audit",
+      "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's self-review: v1 showed frenched/rib-style chops; the plating brief excludes a frenched rack.",
+      "prompt_change": "v2 prompt = v1 prompt verbatim plus one 'Regeneration clarifier:' sentence inserted before the quality-reference sentence. See the 'Regeneration v2 prompt addition' section of image-prompt.md.",
+      "clarifier_sentence": "Regeneration clarifier: the chops are compact, thick, squarish loin chops like miniature T-bone steaks, with a small T-shaped bone in the middle and a fat cap on one side; there are NO long thin protruding rib bones and no frenched bones anywhere."
+    },
+    "superseded": [
+      {
+        "image_id": "img_grilled-lamb-chops-mint-salsa-verde_v1",
+        "source_file": "img_v1.jpg",
+        "sha256": "5ba87e35919a6925b5c5be806f52e5839d023c2bd671dd5312412213bd5af0ee",
+        "generate_image_attachment_hash": "5ba87e35919a6925b5c5be806f52e5839d023c2bd671dd5312412213bd5af0ee",
+        "moved_to_rejected": "rejected/img_v1-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "v1 showed frenched/rib-style chops; the plating brief excludes a frenched rack."
+      }
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 42 = 52 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The salsa verde is made while the couscous simmers (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 4 (Preheat the grill) and it states the preheat. The salsa verde is made while the couscous simmers (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "grilled-lamb-chops-mint-salsa-verde.webp 1200x900 and grilled-lamb-chops-mint-salsa-verde-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Two chops and a quarter of the sides.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "grill preheat stays 10 minutes on high at every scale"
+    ]
+  },
+  "coverage_contribution": "First lamb chop. A spring grill plate with a herb sauce; lamb coverage was meatballs and a stir-fry.",
+  "near_duplicate_review": "Compared with spiced-lamb-meatballs: whole grilled chops with a fresh herb sauce, not spiced meatballs. Compared with xian-cumin-lamb-stir-fry: grilled bone-in chops, no cumin or wok. Compared with argentine-chimichurri-steak-potatoes in this wave: lamb, a mint-caper salsa verde, pearl couscous, not beef with chimichurri and potatoes. Compared with persian-lamb-koobideh-saffron-rice in this wave: whole chops, not ground-lamb kebabs.",
+  "not_duplicate_of": "Not a rack of lamb (a roast for special occasions).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

@@ -1,0 +1,590 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "dominican-mangu-eggs-pickled-onions",
+    "slug": "dominican-mangu-eggs-pickled-onions",
+    "title": "Dominican Mangú with Pan-Fried Eggs and Pickled Red Onions",
+    "description": "Green plantains boiled until soft and mashed smooth with olive oil and some of their cooking liquid, topped with quick vinegar-pickled red onions, served with pan-fried eggs and sliced avocado.",
+    "cuisine": "dominican",
+    "meal_format": "mash-plate",
+    "primary_ingredient": "green plantains",
+    "vocabulary_tag_ids": [
+      "savory",
+      "tangy",
+      "creamy"
+    ],
+    "current_recipe_id": "rcp_dominican-mangu-eggs-pickled-onions",
+    "current_version_id": "rv_dominican-mangu-eggs-pickled-onions_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_dominican-mangu-eggs-pickled-onions",
+    "dish_id": "dominican-mangu-eggs-pickled-onions",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_dominican-mangu-eggs-pickled-onions_v1",
+    "recipe_id": "rcp_dominican-mangu-eggs-pickled-onions",
+    "dish_id": "dominican-mangu-eggs-pickled-onions",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Dominican Mangú with Pan-Fried Eggs and Pickled Red Onions",
+    "description": "Green plantains boiled until soft and mashed smooth with olive oil and some of their cooking liquid, topped with quick vinegar-pickled red onions, served with pan-fried eggs and sliced avocado.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "plantains",
+        "name": "green plantains",
+        "display_name": "green (unripe) plantains",
+        "quantity": 6,
+        "unit": "count",
+        "note": null,
+        "preparation": "peeled and cut into 2-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "boil-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 10,
+        "unit": "cup",
+        "note": "for the plantains; reserve 1 cup",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "2 tsp pot, 1/2 tsp onions",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "1/4 cup mash, the rest onions",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "red-onions",
+        "name": "red onions",
+        "display_name": "medium red onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced into thin rings",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "vinegar",
+        "name": "white vinegar",
+        "display_name": "white vinegar",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 8,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "for the eggs",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "avocado",
+        "name": "ripe avocados",
+        "display_name": "ripe avocados",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "side"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Cut the ends off the plantains, slit the skins lengthwise, peel, and cut into 2-inch pieces. Slice the onions into thin rings.",
+        "ingredient_refs": [
+          "plantains",
+          "red-onions"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil the plantains",
+        "body": "Put the plantains in a 6-quart pot with 10 cups water and 2 tsp salt. Bring to a boil over high heat, about 12 minutes, then cook until very tender, about 20 minutes. Reserve 1 cup of the cooking water and drain.",
+        "ingredient_refs": [
+          "plantains",
+          "boil-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 34,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Pickle the onions",
+        "body": "While the plantains boil, warm the remaining olive oil in a 10-inch skillet over medium, add the onions, and cook 3 minutes until just softened. Add the vinegar and 1/2 tsp salt, simmer 1 minute, and take off the heat to turn pink (overlap stated).",
+        "ingredient_refs": [
+          "olive-oil",
+          "red-onions",
+          "vinegar",
+          "kosher-salt"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Mash",
+        "body": "Mash the hot plantains in the pot with 1/4 cup olive oil, adding up to 1 cup reserved cooking water a splash at a time until smooth and fluffy, about 4 minutes. Cover to keep warm.",
+        "ingredient_refs": [
+          "plantains",
+          "olive-oil",
+          "boil-water"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Pan-fry the eggs",
+        "body": "Heat the neutral oil in a 12-inch nonstick skillet over medium. Crack in 4 eggs and pan-fry until the whites set and the edges turn lacy, about 3 minutes; season with pepper. Repeat with the remaining eggs.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "eggs",
+          "black-pepper"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Mound the mangú on plates, top with the pickled onions and their juices, and serve with two eggs and avocado slices each.",
+        "ingredient_refs": [
+          "plantains",
+          "red-onions",
+          "eggs",
+          "avocado"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "mangu",
+        "name": "mangú",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "green plantains",
+          "water",
+          "olive oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "onions",
+        "name": "pickled red onions",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "red onions",
+          "vinegar",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "eggs",
+        "name": "pan-fried eggs",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "eggs",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "avocado",
+        "name": "sliced avocado",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "avocado"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart pot",
+      "10-inch skillet",
+      "12-inch nonstick skillet",
+      "potato masher",
+      "colander"
+    ],
+    "methods": [
+      "boil",
+      "pan-fry",
+      "saute"
+    ],
+    "cooking": {
+      "frying": [
+        "pan"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 49,
+    "total_time_minutes": 59,
+    "prep_minutes": 10,
+    "cook_minutes": 49,
+    "total_minutes": 59,
+    "time_clock": "Prep 10 + cook 49 = 59 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The onions pickle during the plantain boil (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "A 6-quart pot at a boil for the plantains. Medium in a 10-inch skillet for the onions. Medium in a 12-inch nonstick skillet for the eggs.",
+    "doneness": "Plantains fork-tender all the way through. Mash smooth and fluffy. Onions softened and bright pink. Egg whites set, edges lacy, yolks runny or as preferred.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Eggs are allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and vegetarian: plantains, oil, onion, vinegar, eggs, and avocado. Not plant_based because of the eggs.",
+    "allergens": [
+      "egg"
+    ],
+    "allergen_notes": [
+      "Egg from the pan-fried eggs.",
+      "No milk, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Eggs are allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "The mash uses olive oil and cooking liquid, not butter. No salami or fried cheese (traditional tres golpes sides omitted for HH001).",
+    "vocabulary_tag_ids": [
+      "savory",
+      "tangy",
+      "creamy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'dominican' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "81183a551eb3de6ff5f36171f0a37e05a7518056b928367a0e4f216eb2980b0a",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_dominican-mangu-eggs-pickled-onions_v2",
+    "dish_id": "dominican-mangu-eggs-pickled-onions",
+    "recipe_version_id": "rv_dominican-mangu-eggs-pickled-onions_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "dominican-mangu-eggs-pickled-onions.webp",
+    "card_ref": "dominican-mangu-eggs-pickled-onions-640.webp",
+    "master_filename": "dominican-mangu-eggs-pickled-onions.webp",
+    "card_filename": "dominican-mangu-eggs-pickled-onions-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "dominican-mangu-eggs-pickled-onions.webp",
+        "spec_catalog_path": "/images/meals/dominican-mangu-eggs-pickled-onions.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "dominican-mangu-eggs-pickled-onions-640.webp",
+        "spec_catalog_path": "/images/meals/dominican-mangu-eggs-pickled-onions-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "a604ed5e30cbb9c44e190735f20d69872e619c5ba329b3f6ac735ba56772a2cf",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "a604ed5e30cbb9c44e190735f20d69872e619c5ba329b3f6ac735ba56772a2cf",
+      "master_sha256": "f270873ba6efa45b163b133527778fc1b7be3ebbb85eade99823f7e2de294609",
+      "card_sha256": "f2d91855f9011469d7a2c8039c3037c099dd8fbde979ffac0c4d42369c4afffc"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "a604ed5e30cbb9c44e190735f20d69872e619c5ba329b3f6ac735ba56772a2cf",
+      "dominican-mangu-eggs-pickled-onions.webp": "f270873ba6efa45b163b133527778fc1b7be3ebbb85eade99823f7e2de294609",
+      "dominican-mangu-eggs-pickled-onions-640.webp": "f2d91855f9011469d7a2c8039c3037c099dd8fbde979ffac0c4d42369c4afffc"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "audit_r1_gate_K",
+      "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: mangú mash read green like guacamole/avocado; coffee cup not in the recipe.",
+      "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "audit_r1_gate_K",
+        "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: mangú mash read green like guacamole/avocado; coffee cup not in the recipe.",
+        "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_dominican-mangu-eggs-pickled-onions_v1",
+        "active_source_jpeg": "img_v1.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "540d17b27c4305b436ac1885678f09998babaf64c90ee2527ed01be3093db94f",
+          "master_sha256": "187c3b45dd43ef84fc85081b70fb5d3b5b4f99261dbd6525bed884186a9d95d4",
+          "card_sha256": "7472426c2ba32a82d4e35c87d6362f63791c322e7e4c2bb6c44314a1cad98aca"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "dominican-mangu-eggs-pickled-onions.webp": {
+            "rejected_path": "rejected/dominican-mangu-eggs-pickled-onions-replaced-20261015155755.webp",
+            "sha256": "187c3b45dd43ef84fc85081b70fb5d3b5b4f99261dbd6525bed884186a9d95d4"
+          },
+          "dominican-mangu-eggs-pickled-onions-640.webp": {
+            "rejected_path": "rejected/dominican-mangu-eggs-pickled-onions-640-replaced-20261015155755.webp",
+            "sha256": "7472426c2ba32a82d4e35c87d6362f63791c322e7e4c2bb6c44314a1cad98aca"
+          },
+          "img_v1.jpg": {
+            "rejected_path": "rejected/img_v1-replaced-20261015155755.jpg",
+            "sha256": "540d17b27c4305b436ac1885678f09998babaf64c90ee2527ed01be3093db94f"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "Audit r1 gate K FAIL (mangú mash read green like guacamole/avocado; coffee cup not in the recipe)"
+      }
+    ],
+    "regenerated_for_audit": "audit-r1"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 49 = 59 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The onions pickle during the plantain boil (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "dominican-mangu-eggs-pickled-onions.webp 1200x900 and dominican-mangu-eggs-pickled-onions-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"pan\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "2 plantains, a quarter of the onions, and 2 eggs; a 2-quart pot.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "mash the plantains while hot at any scale"
+    ]
+  },
+  "coverage_contribution": "First Dominican meal. Green plantain as the main starch (the catalog's plantains are ripe and sweet). A breakfast-for-dinner HH001 egg plate that is not an egg bake.",
+  "near_duplicate_review": "Compared with ghanaian-red-red-plantains: green plantains mashed savory, eggs, no bean stew. Compared with peruvian-tacu-tacu-egg in this wave: a plantain mash, not a crisp rice-and-bean cake. Compared with skillet-shakshuka: pan-fried eggs beside a mash, not eggs poached in sauce.",
+  "not_duplicate_of": "Not mofongo (garlicky fried-plantain mash with pork cracklings).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

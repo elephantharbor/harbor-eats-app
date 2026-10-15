@@ -1,0 +1,673 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "korean-galbi-jjim",
+    "slug": "korean-galbi-jjim",
+    "title": "Korean Galbi-Jjim: Braised Beef Short Ribs with Radish and Carrots",
+    "description": "Bone-in beef short ribs blanched and slowly braised on the stovetop in soy sauce, grated Asian pear, onion, garlic, and ginger until meltingly tender, with chunks of Korean radish, carrots, and shiitake mushrooms in a glossy, sweet-savory sauce. Served with short-grain rice.",
+    "cuisine": "korean",
+    "meal_format": "braise-with-rice",
+    "primary_ingredient": "beef short ribs",
+    "vocabulary_tag_ids": [
+      "rich",
+      "savory",
+      "umami",
+      "tender",
+      "korean"
+    ],
+    "current_recipe_id": "rcp_korean-galbi-jjim",
+    "current_version_id": "rv_korean-galbi-jjim_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_korean-galbi-jjim",
+    "dish_id": "korean-galbi-jjim",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_korean-galbi-jjim_v1",
+    "recipe_id": "rcp_korean-galbi-jjim",
+    "dish_id": "korean-galbi-jjim",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Korean Galbi-Jjim: Braised Beef Short Ribs with Radish and Carrots",
+    "description": "Bone-in beef short ribs blanched and slowly braised on the stovetop in soy sauce, grated Asian pear, onion, garlic, and ginger until meltingly tender, with chunks of Korean radish, carrots, and shiitake mushrooms in a glossy, sweet-savory sauce. Served with short-grain rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "short-ribs",
+        "name": "bone-in English-cut beef short ribs",
+        "display_name": "bone-in English-cut beef short ribs",
+        "quantity": 4,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "blanch-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 12,
+        "unit": "cup",
+        "note": "for blanching",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "braise-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "for the braise",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "asian-pear",
+        "name": "Asian pear",
+        "display_name": "Asian pear",
+        "quantity": 1,
+        "unit": "count",
+        "note": "Bosc is the swap",
+        "preparation": "peeled and grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "medium yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 8,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "brown sugar",
+        "display_name": "brown sugar",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "mirin",
+        "name": "mirin",
+        "display_name": "mirin",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "radish",
+        "name": "Korean radish",
+        "display_name": "Korean radish or daikon",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled, cut into 2-inch chunks with edges rounded",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "shiitake",
+        "name": "fresh shiitake mushrooms",
+        "display_name": "fresh shiitake mushrooms",
+        "quantity": 6,
+        "unit": "count",
+        "note": null,
+        "preparation": "stems removed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "sesame-seeds",
+        "name": "toasted sesame seeds",
+        "display_name": "toasted sesame seeds",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "short-grain rice",
+        "display_name": "short-grain rice",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.5,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Trim any thick fat caps from the ribs. Grate the pear and onion, mince the garlic, and grate the ginger, then stir them with the soy sauce, brown sugar, mirin, sesame oil, and pepper. Cut the radish and carrots and stem the shiitakes.",
+        "ingredient_refs": [
+          "short-ribs",
+          "asian-pear",
+          "onion",
+          "garlic",
+          "ginger",
+          "soy-sauce",
+          "brown-sugar",
+          "mirin",
+          "sesame-oil",
+          "black-pepper",
+          "radish",
+          "carrots",
+          "shiitake"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Blanch the ribs",
+        "body": "Bring 12 cups water to a boil in an 8-quart stockpot. Add the ribs, return to a boil, and cook 8 minutes. Drain, rinse the ribs, and wipe out any scum.",
+        "ingredient_refs": [
+          "blanch-water",
+          "short-ribs"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Start the braise",
+        "body": "Put the ribs in a 6-quart Dutch oven with the soy-pear sauce and 3 cups water. Bring to a boil, cover, and simmer over medium-low 1 hour.",
+        "ingredient_refs": [
+          "short-ribs",
+          "braise-water",
+          "soy-sauce"
+        ],
+        "clock_minutes": 63,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Skim",
+        "body": "Skim off as much fat from the surface as you can.",
+        "ingredient_refs": [
+          "short-ribs"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Add the vegetables",
+        "body": "Add the radish, carrots, and shiitakes, pushing them under the liquid. Cover and simmer until the radish and carrots are tender and the ribs pull from the bone, about 30 minutes.",
+        "ingredient_refs": [
+          "radish",
+          "carrots",
+          "shiitake"
+        ],
+        "clock_minutes": 31,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Reduce",
+        "body": "Uncover and simmer, basting the ribs and vegetables often, until the sauce reduces to a glossy glaze, about 10 minutes.",
+        "ingredient_refs": [
+          "short-ribs"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Cook the rice",
+        "body": "When the vegetables go in, combine the rice and 2 1/2 cups water in a 2-quart saucepan, bring to a boil over high heat, cover, turn to low, and cook 15 minutes; rest covered 10 minutes. This runs inside steps 5 and 6 (overlap stated).",
+        "ingredient_refs": [
+          "rice",
+          "rice-water"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 8,
+        "title": "Serve",
+        "body": "Pile the ribs and vegetables in a shallow serving bowl, spoon over the glaze, and scatter scallions and sesame seeds. Serve with the rice.",
+        "ingredient_refs": [
+          "short-ribs",
+          "scallions",
+          "sesame-seeds",
+          "rice"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "galbi-jjim",
+        "name": "braised short ribs",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "short ribs",
+          "soy sauce",
+          "Asian pear",
+          "onion",
+          "garlic",
+          "ginger",
+          "brown sugar",
+          "mirin",
+          "sesame oil",
+          "radish",
+          "carrots",
+          "shiitake",
+          "water"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "short-grain rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "8-quart stockpot",
+      "6-quart Dutch oven with lid",
+      "colander",
+      "box grater",
+      "2-quart saucepan with lid",
+      "fat separator or spoon"
+    ],
+    "methods": [
+      "boil",
+      "braise",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 18,
+    "cook_time_minutes": 130,
+    "total_time_minutes": 148,
+    "prep_minutes": 18,
+    "cook_minutes": 130,
+    "total_minutes": 148,
+    "time_clock": "Prep 18 + cook 130 = 148 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 5 and 6 (step 7 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        8
+      ],
+      "overlap_steps": [
+        7
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "A rolling boil in an 8-quart stockpot to blanch, then a covered gentle simmer in a 6-quart Dutch oven, then uncovered to reduce.",
+    "doneness": "Ribs tender enough to pull from the bone with chopsticks. Radish and carrots tender. Sauce reduced to a glossy glaze.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains beef (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: beef, soy sauce, pear, vegetables, sesame oil, and rice.",
+    "allergens": [
+      "meat",
+      "soy",
+      "wheat",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Meat from the beef short ribs.",
+      "Soy and wheat from the soy sauce.",
+      "Sesame from the toasted sesame oil and seeds.",
+      "Traditional chestnuts and jujubes are omitted, so there are no tree nuts. No egg, milk, fish, shellfish, or peanuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains beef (meat).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "rich",
+      "savory",
+      "umami",
+      "tender",
+      "korean"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'korean' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "alcohol_note": "Uses 2 tbsp mirin, which simmers for over an hour; a trace of alcohol may remain.",
+    "culinary_hash": "d299e59b29a7da0880e858908881c3dc193b58b3f29de87489b3678896fead27",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_korean-galbi-jjim_v1",
+    "dish_id": "korean-galbi-jjim",
+    "recipe_version_id": "rv_korean-galbi-jjim_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "korean-galbi-jjim.webp",
+    "card_ref": "korean-galbi-jjim-640.webp",
+    "master_filename": "korean-galbi-jjim.webp",
+    "card_filename": "korean-galbi-jjim-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "korean-galbi-jjim.webp",
+        "spec_catalog_path": "/images/meals/korean-galbi-jjim.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "korean-galbi-jjim-640.webp",
+        "spec_catalog_path": "/images/meals/korean-galbi-jjim-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "602c91e8124ef1d34d01a851b0e8caa5abf7aeba82cd0f05dc9877f991b906cd",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "602c91e8124ef1d34d01a851b0e8caa5abf7aeba82cd0f05dc9877f991b906cd",
+      "master_sha256": "77f5f3370a31b4be3cccea8893f27dcef28cc86813d9e19b03f6708e8b36777b",
+      "card_sha256": "a5ad757cd6ee2a2691a409398308b317e51e204edc542e7bff577e770430a072"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "602c91e8124ef1d34d01a851b0e8caa5abf7aeba82cd0f05dc9877f991b906cd",
+      "korean-galbi-jjim.webp": "77f5f3370a31b4be3cccea8893f27dcef28cc86813d9e19b03f6708e8b36777b",
+      "korean-galbi-jjim-640.webp": "a5ad757cd6ee2a2691a409398308b317e51e204edc542e7bff577e770430a072"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 18 + cook 130 = 148 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 5 and 6 (step 7 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "korean-galbi-jjim.webp 1200x900 and korean-galbi-jjim-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "1 lb ribs and a quarter of the braise in a 3-quart covered saucepan; blanch in a 4-quart pot.",
+    "2": "Half of everything in a 5-quart pot.",
+    "4": "As written.",
+    "do_not_scale": [
+      "blanch the ribs first at every scale for a clean sauce"
+    ]
+  },
+  "coverage_contribution": "Korean braised beef (gochujang-grilled-flank-steak is grilled). Short ribs 0 to 1. A celebration braise.",
+  "near_duplicate_review": "Compared with gochujang-grilled-flank-steak: a slow soy-pear braise of bone-in short ribs, not a grilled gochujang flank. Compared with korean-braised-mackerel-radish in this wave: beef, a sweet soy braise without chile. Compared with japanese-gyudon: bone-in braised ribs with radish and carrots, not quick-simmered sliced beef.",
+  "not_duplicate_of": "Not grilled galbi or bulgogi (grilled Korean beef is closed); this is the braised jjim.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

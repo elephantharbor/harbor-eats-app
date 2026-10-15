@@ -1,0 +1,661 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "indian-paneer-tikka",
+    "slug": "indian-paneer-tikka",
+    "title": "Paneer Tikka with Peppers and Onions, Mint Chutney, and Naan",
+    "description": "Cubes of paneer marinated in thick yogurt, ginger, garlic, Kashmiri chili, garam masala, and lemon, threaded with bell peppers and red onion, and charred under the broiler. Served with a fresh mint-cilantro yogurt chutney, warm naan, and a kachumber salad.",
+    "cuisine": "indian",
+    "meal_format": "skewers-with-flatbread",
+    "primary_ingredient": "paneer",
+    "vocabulary_tag_ids": [
+      "smoky",
+      "spicy",
+      "creamy",
+      "fresh",
+      "indian"
+    ],
+    "current_recipe_id": "rcp_indian-paneer-tikka",
+    "current_version_id": "rv_indian-paneer-tikka_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_indian-paneer-tikka",
+    "dish_id": "indian-paneer-tikka",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_indian-paneer-tikka_v1",
+    "recipe_id": "rcp_indian-paneer-tikka",
+    "dish_id": "indian-paneer-tikka",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Paneer Tikka with Peppers and Onions, Mint Chutney, and Naan",
+    "description": "Cubes of paneer marinated in thick yogurt, ginger, garlic, Kashmiri chili, garam masala, and lemon, threaded with bell peppers and red onion, and charred under the broiler. Served with a fresh mint-cilantro yogurt chutney, warm naan, and a kachumber salad.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "paneer",
+        "name": "paneer",
+        "display_name": "paneer whose label lists milk and an acid only (no rennet)",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 1 1/4-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yogurt",
+        "name": "plain whole-milk Greek yogurt",
+        "display_name": "plain whole-milk Greek yogurt whose label lists milk and cultures only",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "2/3 cup marinade, 1/3 cup chutney",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kashmiri",
+        "name": "Kashmiri chili powder",
+        "display_name": "Kashmiri chili powder",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garam-masala",
+        "name": "garam masala",
+        "display_name": "garam masala",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lemons",
+        "name": "lemons",
+        "display_name": "lemons",
+        "quantity": 2,
+        "unit": "count",
+        "note": "juice of 1 1/2 for marinade, chutney, and salad; the rest in wedges",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 1/4 tsp marinade, 1/4 tsp chutney, 1/2 tsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "bell-peppers",
+        "name": "red and green bell peppers",
+        "display_name": "red and green bell peppers",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1 1/4-inch squares",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onions",
+        "display_name": "medium red onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": "1 1/2 in squares for skewers, 1/2 chopped for the salad",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mint",
+        "name": "fresh mint",
+        "display_name": "fresh mint",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "packed leaves",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "packed leaves and tender stems",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-chile",
+        "name": "serrano chile",
+        "display_name": "serrano chile",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "English cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "side"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "Roma tomatoes",
+        "display_name": "Roma tomatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "side"
+      },
+      {
+        "ingredient_id": "naan",
+        "name": "naan",
+        "display_name": "plain naan whose label lists wheat flour, milk or yogurt, oil, and leavening, with no egg, soy, or sesame",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Marinate the paneer",
+        "body": "Juice the lemons, keeping a few wedges. Whisk 2/3 cup yogurt, the ginger, garlic, Kashmiri chili, garam masala, cumin, 2 tbsp lemon juice, 1 1/4 tsp salt, and the oil. Fold in the paneer cubes, peppers, and the squared onion.",
+        "ingredient_refs": [
+          "lemons",
+          "yogurt",
+          "ginger",
+          "garlic",
+          "kashmiri",
+          "garam-masala",
+          "cumin",
+          "kosher-salt",
+          "neutral-oil",
+          "paneer",
+          "bell-peppers",
+          "red-onion"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Rest",
+        "body": "Marinate 30 minutes at room temperature.",
+        "ingredient_refs": [
+          "paneer"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the chutney and salad",
+        "body": "While the paneer marinates, blend the mint, cilantro, chile, 1/3 cup yogurt, 1 tbsp lemon juice, and 1/4 tsp salt until smooth. Toss the cucumber, tomatoes, chopped onion, the remaining lemon juice, and 1/2 tsp salt (overlap stated).",
+        "ingredient_refs": [
+          "mint",
+          "cilantro",
+          "green-chile",
+          "yogurt",
+          "lemons",
+          "kosher-salt",
+          "cucumber",
+          "tomatoes",
+          "red-onion"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Preheat the broiler and skewer",
+        "body": "Preheat the broiler on high for 5 minutes with a rack 6 inches below the element. Meanwhile thread the paneer, peppers, and onion alternately onto 8 skewers and lay them on a wire rack over a foil-lined sheet pan.",
+        "ingredient_refs": [
+          "paneer",
+          "bell-peppers",
+          "red-onion"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Broil",
+        "body": "Broil, turning once, until the paneer and vegetables are charred in spots, about 5 minutes per side. Warm the naan on the lower oven rack during the last 3 minutes.",
+        "ingredient_refs": [
+          "paneer",
+          "naan"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Serve the skewers with the naan, a bowl of mint chutney, the kachumber, and lemon wedges.",
+        "ingredient_refs": [
+          "paneer",
+          "naan",
+          "mint",
+          "cucumber",
+          "lemons"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "tikka",
+        "name": "paneer tikka",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "paneer",
+          "yogurt",
+          "ginger",
+          "garlic",
+          "Kashmiri chili",
+          "garam masala",
+          "lemon",
+          "bell peppers",
+          "red onion"
+        ]
+      },
+      {
+        "component_id": "chutney",
+        "name": "mint-cilantro chutney",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "mint",
+          "cilantro",
+          "green chile",
+          "yogurt",
+          "lemon"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "kachumber",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cucumber",
+          "tomato",
+          "red onion",
+          "lemon"
+        ]
+      },
+      {
+        "component_id": "naan",
+        "name": "naan",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "naan"
+        ]
+      }
+    ],
+    "equipment": [
+      "rimmed sheet pan with a wire rack",
+      "8 metal or soaked wooden skewers",
+      "mixing bowls",
+      "blender or mortar for the chutney",
+      "foil"
+    ],
+    "methods": [
+      "broil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 51,
+    "total_time_minutes": 66,
+    "prep_minutes": 15,
+    "cook_minutes": 51,
+    "total_minutes": 66,
+    "time_clock": "Prep 15 + cook 51 = 66 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The paneer marinates 30 minutes while the chutney and salad are made (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 4 (Preheat the broiler and skewer) and it states the preheat. The paneer marinates 30 minutes while the chutney and salad are made (step 3 states the overlap).",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "Broiler preheated on high for 5 minutes, with the rack 6 inches below the element.",
+    "doneness": "Paneer edges charred in spots and hot through. Peppers and onion softened and blistered at the edges.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains paneer, yogurt, and naan with milk (dairy)."
+    },
+    "dietary_labels": [
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional vegetarian: paneer is acid-set with no rennet, the yogurt contains no gelatin, and the naan label lists no egg.",
+    "allergens": [
+      "milk",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Milk from the paneer, yogurt, and naan.",
+      "Wheat from the naan.",
+      "The paneer is a store-bought hard contract: the label lists milk and an acid (vinegar, lemon, or citric acid), and no rennet is used.",
+      "The yogurt label lists milk and cultures only, with no gelatin.",
+      "The naan is a store-bought hard contract: the label lists wheat flour, milk or yogurt, oil, and leavening, with no egg, soy, or sesame.",
+      "No egg, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains paneer, yogurt, and naan with milk (dairy).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "smoky",
+      "spicy",
+      "creamy",
+      "fresh",
+      "indian"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'indian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "65e6ce248093402810a60eca10ade7c854e63df002b9c77d933110bb941f1739",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_indian-paneer-tikka_v1",
+    "dish_id": "indian-paneer-tikka",
+    "recipe_version_id": "rv_indian-paneer-tikka_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "indian-paneer-tikka.webp",
+    "card_ref": "indian-paneer-tikka-640.webp",
+    "master_filename": "indian-paneer-tikka.webp",
+    "card_filename": "indian-paneer-tikka-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "indian-paneer-tikka.webp",
+        "spec_catalog_path": "/images/meals/indian-paneer-tikka.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "indian-paneer-tikka-640.webp",
+        "spec_catalog_path": "/images/meals/indian-paneer-tikka-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "8f07b7861fb12c0587ce8b55235213781b6d8a1e669618f0a13c9b4d777893c7",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "8f07b7861fb12c0587ce8b55235213781b6d8a1e669618f0a13c9b4d777893c7",
+      "master_sha256": "248208c9c29d95d1b56915f2aae43b31949adcb28a7a5febed6e512a0cbd605f",
+      "card_sha256": "bc1663f87b35a4022557441eeaf409eb1d53104949c4d739c39e61cd98ffb116"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "8f07b7861fb12c0587ce8b55235213781b6d8a1e669618f0a13c9b4d777893c7",
+      "indian-paneer-tikka.webp": "248208c9c29d95d1b56915f2aae43b31949adcb28a7a5febed6e512a0cbd605f",
+      "indian-paneer-tikka-640.webp": "bc1663f87b35a4022557441eeaf409eb1d53104949c4d739c39e61cd98ffb116"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 51 = 66 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The paneer marinates 30 minutes while the chutney and salad are made (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 4 (Preheat the broiler and skewer) and it states the preheat. The paneer marinates 30 minutes while the chutney and salad are made (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "indian-paneer-tikka.webp 1200x900 and indian-paneer-tikka-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything on 2 skewers.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "keep the rack 6 inches below the broiler at every scale"
+    ]
+  },
+  "coverage_contribution": "Paneer 1 to 2 (saag-paneer is the other) but a broiled, charred format. Vegetarian Indian skewers.",
+  "near_duplicate_review": "Compared with saag-paneer: broiled marinated cubes on skewers, not paneer in a spinach puree. Compared with pakistani-chicken-karahi in this wave: vegetarian broiled skewers with chutney, not a chicken curry. Compared with roasted-cauliflower-shawarma-plate: paneer tikka with mint chutney and naan, not roasted cauliflower with tahini.",
+  "not_duplicate_of": "Not paneer tikka masala (a creamy sauce would echo butter chicken).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

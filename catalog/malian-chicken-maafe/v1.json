@@ -1,0 +1,619 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "malian-chicken-maafe",
+    "slug": "malian-chicken-maafe",
+    "title": "Malian Chicken Maafe: Peanut and Tomato Stew with Sweet Potatoes",
+    "description": "West African groundnut stew: chicken thighs simmered in a rich sauce of peanut butter, tomato paste, onion, garlic, and ginger with a whole Scotch bonnet for gentle heat, sweet potatoes, and carrots. Served over white rice.",
+    "cuisine": "malian",
+    "meal_format": "stew-over-rice",
+    "primary_ingredient": "chicken",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "stews",
+      "rich",
+      "savory"
+    ],
+    "current_recipe_id": "rcp_malian-chicken-maafe",
+    "current_version_id": "rv_malian-chicken-maafe_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_malian-chicken-maafe",
+    "dish_id": "malian-chicken-maafe",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_malian-chicken-maafe_v1",
+    "recipe_id": "rcp_malian-chicken-maafe",
+    "dish_id": "malian-chicken-maafe",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Malian Chicken Maafe: Peanut and Tomato Stew with Sweet Potatoes",
+    "description": "West African groundnut stew: chicken thighs simmered in a rich sauce of peanut butter, tomato paste, onion, garlic, and ginger with a whole Scotch bonnet for gentle heat, sweet potatoes, and carrots. Served over white rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "chicken",
+        "name": "boneless skinless chicken thighs",
+        "display_name": "boneless skinless chicken thighs",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into large pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "large yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "peanut-butter",
+        "name": "natural creamy peanut butter",
+        "display_name": "natural creamy peanut butter whose label lists peanuts and salt only",
+        "quantity": 0.66,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "stew-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "for the stew",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "scotch-bonnet",
+        "name": "Scotch bonnet chile",
+        "display_name": "Scotch bonnet chile",
+        "quantity": 1,
+        "unit": "count",
+        "note": "left whole",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bay",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sweet-potatoes",
+        "name": "sweet potatoes",
+        "display_name": "sweet potatoes",
+        "quantity": 1.25,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled, cut into 1 1/2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Cut the chicken into large pieces and season with 1 tsp salt. Chop the onion, mince the garlic, and grate the ginger. Peel and cut the sweet potatoes and carrots. Rinse the rice and chop the cilantro.",
+        "ingredient_refs": [
+          "chicken",
+          "kosher-salt",
+          "onion",
+          "garlic",
+          "ginger",
+          "sweet-potatoes",
+          "carrots",
+          "rice",
+          "cilantro"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the chicken",
+        "body": "Heat the oil in a 5-quart Dutch oven over medium-high and brown the chicken in two batches, about 3 minutes per side. Transfer to a plate.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "chicken"
+        ],
+        "clock_minutes": 13,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Build the base",
+        "body": "Lower the heat to medium. Cook the onion until soft, about 5 minutes. Add the garlic, ginger, and tomato paste and cook, stirring, until the paste darkens, about 2 minutes.",
+        "ingredient_refs": [
+          "onion",
+          "garlic",
+          "ginger",
+          "tomato-paste"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Add the peanut sauce",
+        "body": "Whisk the peanut butter with 1 cup of the water until smooth, then stir it into the pot with the remaining 3 cups water, 1 tsp salt, the whole Scotch bonnet, and the bay leaves. Return the chicken.",
+        "ingredient_refs": [
+          "peanut-butter",
+          "stew-water",
+          "kosher-salt",
+          "scotch-bonnet",
+          "bay",
+          "chicken"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Simmer",
+        "body": "Bring to a simmer, partly cover, and cook 15 minutes, stirring the bottom often. Add the sweet potatoes and carrots and simmer until tender and the sauce is thick and glossy, about 20 minutes more.",
+        "ingredient_refs": [
+          "sweet-potatoes",
+          "carrots"
+        ],
+        "clock_minutes": 36,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Cook the rice",
+        "body": "When the vegetables go in, combine the rice and 2 1/4 cups water in a 2-quart saucepan, bring to a boil over high heat, cover, turn to low, and cook 15 minutes; then rest covered. This runs inside step 5 (overlap stated).",
+        "ingredient_refs": [
+          "rice",
+          "rice-water"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Remove the Scotch bonnet and bay leaves. Ladle the maafe over or beside the rice and scatter cilantro.",
+        "ingredient_refs": [
+          "scotch-bonnet",
+          "bay",
+          "rice",
+          "cilantro"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "maafe",
+        "name": "peanut stew",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "chicken",
+          "peanut butter",
+          "tomato paste",
+          "onion",
+          "garlic",
+          "ginger",
+          "Scotch bonnet",
+          "sweet potatoes",
+          "carrots",
+          "water"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "5-quart Dutch oven with lid",
+      "2-quart saucepan with lid",
+      "whisk",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "sear",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 14,
+    "cook_time_minutes": 61,
+    "total_time_minutes": 75,
+    "prep_minutes": 14,
+    "cook_minutes": 61,
+    "total_minutes": 75,
+    "time_clock": "Prep 14 + cook 61 = 75 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside step 5 (step 6 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "overlap_steps": [
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high in a 5-quart Dutch oven to brown, medium for the aromatics, then a gentle partly covered simmer, stirring so the peanut sauce does not catch. Low covered heat for the rice.",
+    "doneness": "Chicken 175 F and tender. Sweet potatoes soft. Sauce thick, glossy, and rust-colored, with a little reddish oil at the surface.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "peanuts_present",
+      "nut_policy_note": "Contains peanuts: the sauce is built on peanut butter.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains chicken (poultry) and peanuts."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: chicken, peanut butter, tomato, vegetables, oil, water, and rice.",
+    "allergens": [
+      "poultry",
+      "peanut"
+    ],
+    "allergen_notes": [
+      "Poultry from the chicken.",
+      "Peanut from the natural peanut butter, whose label lists peanuts and salt only.",
+      "No egg, milk, soy, wheat, sesame, fish, shellfish, or tree nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains chicken (poultry) and peanuts.",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "stews",
+      "rich",
+      "savory"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'malian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook chicken to at least 165 F (175 F for tender thighs). Wear gloves or wash hands after handling the Scotch bonnet, and keep it whole so it does not burst.",
+    "culinary_hash": "12d6f505b8792b8614d7e92f904c73bcadaa4e067bd11f818279c09f05be2abd",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_malian-chicken-maafe_v1",
+    "dish_id": "malian-chicken-maafe",
+    "recipe_version_id": "rv_malian-chicken-maafe_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "malian-chicken-maafe.webp",
+    "card_ref": "malian-chicken-maafe-640.webp",
+    "master_filename": "malian-chicken-maafe.webp",
+    "card_filename": "malian-chicken-maafe-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "malian-chicken-maafe.webp",
+        "spec_catalog_path": "/images/meals/malian-chicken-maafe.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "malian-chicken-maafe-640.webp",
+        "spec_catalog_path": "/images/meals/malian-chicken-maafe-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "3739f29d858b519462b0d92a00050d916add99b71dc69aa1252f6fd0e66c299f",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "3739f29d858b519462b0d92a00050d916add99b71dc69aa1252f6fd0e66c299f",
+      "master_sha256": "bec73b40c98cc7b6c2ac43dd52ed0370409e25fea95b5966ca404d7d1a895d19",
+      "card_sha256": "8bf627c4af0c6057f16b8b76371273dacf196aeb75cb3ab3e24e8c48a3ad3df9"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "3739f29d858b519462b0d92a00050d916add99b71dc69aa1252f6fd0e66c299f",
+      "malian-chicken-maafe.webp": "bec73b40c98cc7b6c2ac43dd52ed0370409e25fea95b5966ca404d7d1a895d19",
+      "malian-chicken-maafe-640.webp": "8bf627c4af0c6057f16b8b76371273dacf196aeb75cb3ab3e24e8c48a3ad3df9"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 14 + cook 61 = 75 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside step 5 (step 6 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "malian-chicken-maafe.webp 1200x900 and malian-chicken-maafe-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Two thighs and a quarter of the stew in a 3-quart saucepan.",
+    "2": "Half of everything in a 4-quart pot.",
+    "4": "As written.",
+    "do_not_scale": [
+      "keep the Scotch bonnet whole at every scale"
+    ]
+  },
+  "coverage_contribution": "First Malian meal and first peanut stew. A third West African dish (with ghanaian-red-red-plantains and senegalese-fish-yassa) but the only poultry one. Peanuts-present comfort food.",
+  "near_duplicate_review": "Compared with nigerian-beef-suya-skewers: a peanut stew, not grilled beef with peanut spice. Compared with peanut-noodle-stir-fry: a West African tomato-peanut braise over rice, not noodles. Compared with senegalese-fish-yassa: chicken in peanut sauce, not fish in onion-mustard sauce.",
+  "not_duplicate_of": "Not jollof rice (rice dishes are closed).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

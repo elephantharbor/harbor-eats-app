@@ -1,0 +1,734 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "puerto-rican-pollo-guisado",
+    "slug": "puerto-rican-pollo-guisado",
+    "title": "Puerto Rican Pollo Guisado with White Rice",
+    "description": "Bone-in chicken browned and stewed in fresh sofrito with tomato sauce, homemade sazón of achiote, cumin, coriander, and oregano, potatoes, carrots, and briny olives with pimientos. Served over white rice.",
+    "cuisine": "puerto-rican",
+    "meal_format": "stew-over-rice",
+    "primary_ingredient": "chicken",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "stews",
+      "savory",
+      "herbaceous"
+    ],
+    "current_recipe_id": "rcp_puerto-rican-pollo-guisado",
+    "current_version_id": "rv_puerto-rican-pollo-guisado_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_puerto-rican-pollo-guisado",
+    "dish_id": "puerto-rican-pollo-guisado",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_puerto-rican-pollo-guisado_v1",
+    "recipe_id": "rcp_puerto-rican-pollo-guisado",
+    "dish_id": "puerto-rican-pollo-guisado",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Puerto Rican Pollo Guisado with White Rice",
+    "description": "Bone-in chicken browned and stewed in fresh sofrito with tomato sauce, homemade sazón of achiote, cumin, coriander, and oregano, potatoes, carrots, and briny olives with pimientos. Served over white rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "chicken",
+        "name": "bone-in skin-on chicken thighs",
+        "display_name": "bone-in skin-on chicken thighs",
+        "quantity": 8,
+        "unit": "count",
+        "note": "about 3 lb; skin removed if you prefer",
+        "preparation": "patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "achiote",
+        "name": "ground achiote (annatto)",
+        "display_name": "ground achiote (annatto)",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "coriander",
+        "name": "ground coriander",
+        "display_name": "ground coriander",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic-powder",
+        "name": "garlic powder",
+        "display_name": "garlic powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "2 tsp stew, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "large yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "roughly chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-pepper",
+        "name": "green bell pepper",
+        "display_name": "green bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "roughly chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cubanelle",
+        "name": "cubanelle pepper",
+        "display_name": "cubanelle pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "roughly chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "leaves and tender stems, plus 2 tbsp chopped to garnish",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "2 tbsp stew, 1 tbsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "tomato-sauce",
+        "name": "canned tomato sauce",
+        "display_name": "8-oz can tomato sauce",
+        "quantity": 1,
+        "unit": "can",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 1 1/2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olives",
+        "name": "manzanilla olives stuffed with pimientos",
+        "display_name": "manzanilla olives stuffed with pimientos",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bay",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "stew-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for the stew",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "medium-grain white rice",
+        "display_name": "medium-grain white rice",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.5,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep and make the sofrito",
+        "body": "Stir the achiote, cumin, coriander, oregano, garlic powder, and 2 tsp salt together and rub half over the chicken. Pulse the onion, green pepper, cubanelle, garlic, and 1 cup cilantro in a food processor to a coarse paste. Cut the potatoes and carrots. Rinse the rice.",
+        "ingredient_refs": [
+          "achiote",
+          "cumin",
+          "coriander",
+          "oregano",
+          "garlic-powder",
+          "kosher-salt",
+          "chicken",
+          "onion",
+          "green-pepper",
+          "cubanelle",
+          "garlic",
+          "cilantro",
+          "potatoes",
+          "carrots",
+          "rice"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the chicken",
+        "body": "Heat 2 tbsp olive oil in a 5-quart Dutch oven over medium-high. Brown the chicken in two batches, about 4 minutes per side, and transfer to a plate.",
+        "ingredient_refs": [
+          "olive-oil",
+          "chicken"
+        ],
+        "clock_minutes": 17,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the sofrito",
+        "body": "Lower the heat to medium. Add the sofrito and the rest of the spice mix and cook, scraping the bottom, until fragrant and most of the liquid has cooked off, about 5 minutes. Stir in the tomato sauce for 2 minutes.",
+        "ingredient_refs": [
+          "onion",
+          "achiote",
+          "tomato-sauce"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Add the vegetables",
+        "body": "Add the potatoes, carrots, olives, bay leaves, and 1 1/2 cups water and stir, then nestle in the chicken.",
+        "ingredient_refs": [
+          "potatoes",
+          "carrots",
+          "olives",
+          "bay",
+          "stew-water",
+          "chicken"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Stew",
+        "body": "Bring to a boil, cover, and simmer over medium-low until the chicken reads 175 F near the bone and the potatoes are tender, about 35 minutes. Uncover for the last 8 of those minutes to thicken the sauce.",
+        "ingredient_refs": [
+          "chicken",
+          "potatoes"
+        ],
+        "clock_minutes": 36,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Cook the rice",
+        "body": "When the stew goes on to simmer, combine the rice, 2 1/2 cups water, 1 tbsp olive oil, and 1/2 tsp salt in a 2-quart saucepan. Boil uncovered over high heat until small craters form on the surface and little liquid shows, about 5 minutes, then cover, turn to low, and cook 20 minutes; rest covered 5 minutes. This runs inside step 5 (overlap stated).",
+        "ingredient_refs": [
+          "rice",
+          "rice-water",
+          "olive-oil",
+          "kosher-salt"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Remove the bay leaves. Spoon the rice onto plates, ladle the chicken, vegetables, and sauce beside it, and scatter chopped cilantro.",
+        "ingredient_refs": [
+          "bay",
+          "rice",
+          "chicken",
+          "cilantro"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "sofrito",
+        "name": "sofrito",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "onion",
+          "green pepper",
+          "cubanelle pepper",
+          "garlic",
+          "cilantro"
+        ]
+      },
+      {
+        "component_id": "guisado",
+        "name": "chicken stew",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "chicken",
+          "sofrito",
+          "tomato sauce",
+          "sazón spices",
+          "potatoes",
+          "carrots",
+          "olives",
+          "water"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rice",
+          "water",
+          "salt",
+          "oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "5-quart Dutch oven with lid",
+      "2-quart saucepan with lid",
+      "food processor or knife",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "sear",
+      "braise"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 64,
+    "total_time_minutes": 79,
+    "prep_minutes": 15,
+    "cook_minutes": 64,
+    "total_minutes": 79,
+    "time_clock": "Prep 15 + cook 64 = 79 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside step 5 (step 6 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "overlap_steps": [
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high in a 5-quart Dutch oven to brown, medium for the sofrito, then a covered gentle simmer. Low covered heat for the rice.",
+    "doneness": "Chicken 175 F near the bone and tender. Potatoes and carrots tender when pierced. Sauce brick-orange and thick enough to coat the potatoes.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains chicken (poultry)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: chicken, sofrito, spices, tomato sauce, vegetables, olives, oil, water, and rice.",
+    "allergens": [
+      "poultry"
+    ],
+    "allergen_notes": [
+      "Poultry from the chicken.",
+      "The sazón is homemade from single spices, so there is no MSG blend or hidden wheat.",
+      "No egg, milk, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains chicken (poultry).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "stews",
+      "savory",
+      "herbaceous"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'puerto-rican' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook chicken to at least 165 F (175 F near the bone for tenderness).",
+    "culinary_hash": "8dc780556bb860f4c6448efcbc25bfeb8bb3ff6ae41e306adb1e5b6d72cda647",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_puerto-rican-pollo-guisado_v2",
+    "dish_id": "puerto-rican-pollo-guisado",
+    "recipe_version_id": "rv_puerto-rican-pollo-guisado_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "puerto-rican-pollo-guisado.webp",
+    "card_ref": "puerto-rican-pollo-guisado-640.webp",
+    "master_filename": "puerto-rican-pollo-guisado.webp",
+    "card_filename": "puerto-rican-pollo-guisado-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "puerto-rican-pollo-guisado.webp",
+        "spec_catalog_path": "/images/meals/puerto-rican-pollo-guisado.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "puerto-rican-pollo-guisado-640.webp",
+        "spec_catalog_path": "/images/meals/puerto-rican-pollo-guisado-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "86a42fdc81937c2c91f1e667f86c7b2278c5eb7b542b7c5ed6ca654652b2869d",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "86a42fdc81937c2c91f1e667f86c7b2278c5eb7b542b7c5ed6ca654652b2869d",
+      "master_sha256": "1740099005225a65dcfe3daeca97c792257adc4196f618033e7913b4841f0c17",
+      "card_sha256": "e7dd4e8f32e1651a083815815a16a4ea4ad6a4d531ed25e5d6b5a29590d51e3c"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "86a42fdc81937c2c91f1e667f86c7b2278c5eb7b542b7c5ed6ca654652b2869d",
+      "puerto-rican-pollo-guisado.webp": "1740099005225a65dcfe3daeca97c792257adc4196f618033e7913b4841f0c17",
+      "puerto-rican-pollo-guisado-640.webp": "e7dd4e8f32e1651a083815815a16a4ea4ad6a4d531ed25e5d6b5a29590d51e3c"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "audit_r1_gate_K",
+      "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: tostones not in the recipe.",
+      "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "audit_r1_gate_K",
+        "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: tostones not in the recipe.",
+        "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_puerto-rican-pollo-guisado_v1",
+        "active_source_jpeg": "img_v1.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "5949bd4d385f6e4f85bd5e4ac537d14c3fd54b455dd971bf07bc4666f0f36846",
+          "master_sha256": "034cd39a41fc1be18e904e3c16b827c87c7c3ccf8d5cd0d70254af2301f324b7",
+          "card_sha256": "1cc2eaa59565cd79e30258a45928c962d354de5650a9d5a4ac3a031b931cf1e1"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "puerto-rican-pollo-guisado.webp": {
+            "rejected_path": "rejected/puerto-rican-pollo-guisado-replaced-20261015155808.webp",
+            "sha256": "034cd39a41fc1be18e904e3c16b827c87c7c3ccf8d5cd0d70254af2301f324b7"
+          },
+          "puerto-rican-pollo-guisado-640.webp": {
+            "rejected_path": "rejected/puerto-rican-pollo-guisado-640-replaced-20261015155808.webp",
+            "sha256": "1cc2eaa59565cd79e30258a45928c962d354de5650a9d5a4ac3a031b931cf1e1"
+          },
+          "img_v1.jpg": {
+            "rejected_path": "rejected/img_v1-replaced-20261015155808.jpg",
+            "sha256": "5949bd4d385f6e4f85bd5e4ac537d14c3fd54b455dd971bf07bc4666f0f36846"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "Audit r1 gate K FAIL (tostones not in the recipe)"
+      }
+    ],
+    "regenerated_for_audit": "audit-r1"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 64 = 79 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside step 5 (step 6 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "puerto-rican-pollo-guisado.webp 1200x900 and puerto-rican-pollo-guisado-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Two thighs and a quarter of the stew in a 3-quart saucepan.",
+    "2": "Half of everything in a 4-quart pot.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "First Puerto Rican meal. Sofrito-based Caribbean chicken stew. Kid-friendly, mild, dairy-free.",
+  "near_duplicate_review": "Compared with italian-chicken-cacciatore in this wave: sofrito, achiote, potatoes, carrots, and rice, no wine, mushrooms, or bread. Compared with slow-cooker-ropa-vieja: chicken pieces stewed on the stovetop with potatoes, not shredded beef. Compared with colombian-ajiaco: a thick sofrito stew over rice, not a potato-chicken soup.",
+  "not_duplicate_of": "Not arroz con pollo (rice dishes are closed).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

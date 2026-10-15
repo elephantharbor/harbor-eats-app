@@ -1,0 +1,674 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "southern-smothered-pork-chops",
+    "slug": "southern-smothered-pork-chops",
+    "title": "Southern Smothered Pork Chops in Onion Gravy with Rice and Green Beans",
+    "description": "Bone-in pork chops seasoned and lightly floured, browned, then smothered and braised in a rich brown onion gravy until tender. Served over white rice with garlicky skillet green beans.",
+    "cuisine": "southern",
+    "meal_format": "braise-with-rice",
+    "primary_ingredient": "pork",
+    "vocabulary_tag_ids": [
+      "rich",
+      "savory",
+      "tender",
+      "american"
+    ],
+    "current_recipe_id": "rcp_southern-smothered-pork-chops",
+    "current_version_id": "rv_southern-smothered-pork-chops_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_southern-smothered-pork-chops",
+    "dish_id": "southern-smothered-pork-chops",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_southern-smothered-pork-chops_v1",
+    "recipe_id": "rcp_southern-smothered-pork-chops",
+    "dish_id": "southern-smothered-pork-chops",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Southern Smothered Pork Chops in Onion Gravy with Rice and Green Beans",
+    "description": "Bone-in pork chops seasoned and lightly floured, browned, then smothered and braised in a rich brown onion gravy until tender. Served over white rice with garlicky skillet green beans.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "pork-chops",
+        "name": "bone-in pork chops",
+        "display_name": "bone-in pork chops, 3/4 to 1 inch thick",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 2 1/2 lb",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "paprika",
+        "name": "smoked paprika",
+        "display_name": "smoked paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic-powder",
+        "name": "garlic powder",
+        "display_name": "garlic powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "onion-powder",
+        "name": "onion powder",
+        "display_name": "onion powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 1/2 tsp chops, 1/2 tsp green beans",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "about 1/4 cup for dusting, 3 tbsp for the gravy",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 5,
+        "unit": "tbsp",
+        "note": "4 tbsp chops and gravy, 1 tbsp green beans",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onions",
+        "name": "yellow onions",
+        "display_name": "large yellow onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "gravy-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.5,
+        "unit": "cup",
+        "note": "for the gravy",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "green-beans",
+        "name": "green beans",
+        "display_name": "green beans",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "trimmed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Mix the paprika, garlic powder, onion powder, 1 1/2 tsp salt, and pepper and rub over the chops. Dust the chops lightly in flour, shaking off the excess. Slice the onions and garlic, trim the beans, rinse the rice, and chop the parsley.",
+        "ingredient_refs": [
+          "paprika",
+          "garlic-powder",
+          "onion-powder",
+          "kosher-salt",
+          "black-pepper",
+          "pork-chops",
+          "flour",
+          "onions",
+          "garlic",
+          "green-beans",
+          "rice",
+          "parsley"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the chops",
+        "body": "Heat 2 tbsp oil in a 12-inch skillet over medium-high. Brown the chops until golden, about 3 minutes per side, and transfer to a plate.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "pork-chops"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the onions",
+        "body": "Lower the heat to medium, add 2 tbsp oil and the onions, and cook, scraping up the browned bits, until soft and golden brown, about 10 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "onions"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Make the gravy",
+        "body": "Sprinkle 3 tbsp flour over the onions and stir 2 minutes until it smells toasty. Slowly whisk in 2 1/2 cups water and bring to a simmer, whisking until smooth and thickened.",
+        "ingredient_refs": [
+          "flour",
+          "gravy-water"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Smother and braise",
+        "body": "Return the chops and their juices to the gravy, spoon the onions over them, cover, and simmer over low until tender, about 30 minutes, turning once. The chops will be well above 145 F.",
+        "ingredient_refs": [
+          "pork-chops"
+        ],
+        "clock_minutes": 31,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Cook the rice",
+        "body": "When the chops go back in, combine the rice and 2 1/4 cups water in a 2-quart saucepan, bring to a boil over high heat, cover, turn to low, and cook 15 minutes; rest covered 10 minutes. This runs inside step 5 (overlap stated).",
+        "ingredient_refs": [
+          "rice",
+          "rice-water"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Cook the green beans",
+        "body": "Heat 1 tbsp oil in a 10-inch skillet over medium-high. Cook the green beans, tossing, until blistered and crisp-tender, about 6 minutes; add the garlic and 1/2 tsp salt for 1 minute.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "green-beans",
+          "garlic",
+          "kosher-salt"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 8,
+        "title": "Serve",
+        "body": "Spoon rice onto plates, set a chop on top, smother with onion gravy, and add the green beans. Scatter parsley.",
+        "ingredient_refs": [
+          "rice",
+          "pork-chops",
+          "onions",
+          "green-beans",
+          "parsley"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "chops",
+        "name": "smothered pork chops",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "pork chops",
+          "flour",
+          "paprika",
+          "garlic powder",
+          "onion powder",
+          "onions",
+          "water",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rice",
+          "water"
+        ]
+      },
+      {
+        "component_id": "green-beans",
+        "name": "skillet green beans",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "green beans",
+          "garlic",
+          "oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet with lid",
+      "10-inch skillet",
+      "2-quart saucepan with lid",
+      "shallow dish",
+      "whisk",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "sear",
+      "braise",
+      "saute"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 14,
+    "cook_time_minutes": 64,
+    "total_time_minutes": 78,
+    "prep_minutes": 14,
+    "cook_minutes": 64,
+    "total_minutes": 78,
+    "time_clock": "Prep 14 + cook 64 = 78 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside step 5 (step 6 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        8
+      ],
+      "overlap_steps": [
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high in a 12-inch skillet with a lid to brown, medium to cook the onions and roux, then a covered low simmer. Medium-high in a second skillet for the green beans. Low covered heat for the rice.",
+    "doneness": "Chops 145 F or higher and tender after the braise. Gravy smooth, brown, and thick enough to coat a spoon. Green beans crisp-tender.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains pork (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: pork, flour, oil, onions, water, and rice; no butter or milk in the gravy.",
+    "allergens": [
+      "meat",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the pork.",
+      "Wheat from the flour.",
+      "No egg, milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains pork (meat).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "rich",
+      "savory",
+      "tender",
+      "american"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'southern' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook pork chops to at least 145 F with a 3-minute rest.",
+    "culinary_hash": "8976b0cec525fe28a9065783f8d00a5588a506366934345b9f57b2e894489b00",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_southern-smothered-pork-chops_v2",
+    "dish_id": "southern-smothered-pork-chops",
+    "recipe_version_id": "rv_southern-smothered-pork-chops_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "southern-smothered-pork-chops.webp",
+    "card_ref": "southern-smothered-pork-chops-640.webp",
+    "master_filename": "southern-smothered-pork-chops.webp",
+    "card_filename": "southern-smothered-pork-chops-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "southern-smothered-pork-chops.webp",
+        "spec_catalog_path": "/images/meals/southern-smothered-pork-chops.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "southern-smothered-pork-chops-640.webp",
+        "spec_catalog_path": "/images/meals/southern-smothered-pork-chops-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "3c1c39c833d4fe9c0ee845c82e58f1f5977d5d14e04c08ac81f04faf879021fd",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "3c1c39c833d4fe9c0ee845c82e58f1f5977d5d14e04c08ac81f04faf879021fd",
+      "master_sha256": "7e449a22eeadb3cc51d425d7e0e8ac757f8713208bf793c1450e749edcbddb8e",
+      "card_sha256": "da16b4505acce7b2a50469d32e444953436ec30fc807be633369afa0910bb34c"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "3c1c39c833d4fe9c0ee845c82e58f1f5977d5d14e04c08ac81f04faf879021fd",
+      "southern-smothered-pork-chops.webp": "7e449a22eeadb3cc51d425d7e0e8ac757f8713208bf793c1450e749edcbddb8e",
+      "southern-smothered-pork-chops-640.webp": "da16b4505acce7b2a50469d32e444953436ec30fc807be633369afa0910bb34c"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "audit_r1_gate_K",
+      "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: cornbread not in the recipe (undisclosed wheat/milk/egg).",
+      "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "audit_r1_gate_K",
+        "summary": "Active hero is an audit r1 regeneration (img_v2.jpg). Audit r1 gate K FAIL on the previous hero: cornbread not in the recipe (undisclosed wheat/milk/egg).",
+        "prompt_change": "Brief and prompt revised to Cora's audit r1 prompt (notes/r1-regen-prompts.txt; image-prompt.md 'Regeneration (audit r1) prompt')."
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_southern-smothered-pork-chops_v1",
+        "active_source_jpeg": "img_v1.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "d8ee4250bbf63961f5c73e1a04be88fc13fddba664befa112c9d9a4b8773fd9a",
+          "master_sha256": "016c3d0ac6d14832aa59581060dae2e58097fa0ff2c1190c4716972b6e33b403",
+          "card_sha256": "6eed1d147304f96b7966811010330a4ebe073effe56266ef25c6c4ec19a01f30"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "southern-smothered-pork-chops.webp": {
+            "rejected_path": "rejected/southern-smothered-pork-chops-replaced-20261015155810.webp",
+            "sha256": "016c3d0ac6d14832aa59581060dae2e58097fa0ff2c1190c4716972b6e33b403"
+          },
+          "southern-smothered-pork-chops-640.webp": {
+            "rejected_path": "rejected/southern-smothered-pork-chops-640-replaced-20261015155810.webp",
+            "sha256": "6eed1d147304f96b7966811010330a4ebe073effe56266ef25c6c4ec19a01f30"
+          },
+          "img_v1.jpg": {
+            "rejected_path": "rejected/img_v1-replaced-20261015155810.jpg",
+            "sha256": "d8ee4250bbf63961f5c73e1a04be88fc13fddba664befa112c9d9a4b8773fd9a"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "Audit r1 gate K FAIL (cornbread not in the recipe (undisclosed wheat/milk/egg))"
+      }
+    ],
+    "regenerated_for_audit": "audit-r1"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 14 + cook 64 = 78 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside step 5 (step 6 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "southern-smothered-pork-chops.webp 1200x900 and southern-smothered-pork-chops-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One chop and a quarter of the gravy in a 10-inch covered skillet.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "brown the chops in two batches if they do not fit"
+    ]
+  },
+  "coverage_contribution": "Southern soul food main. Pork chops braised in gravy (jamaican-jerk-pork-chops are grilled).",
+  "near_duplicate_review": "Compared with jamaican-jerk-pork-chops: braised in onion gravy over rice, not jerk-marinated and grilled. Compared with bangers-and-mash-onion-gravy: chops, not sausages; rice, not mash. Compared with air-fryer-honey-mustard-pork: braised in brown gravy, not glazed and air-fried.",
+  "not_duplicate_of": "Not a dredged or breaded cutlet (closed): the chops are dusted with flour only to brown them and are braised soft in gravy.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "E"
+}

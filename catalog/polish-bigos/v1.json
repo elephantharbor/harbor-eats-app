@@ -1,0 +1,626 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "polish-bigos",
+    "slug": "polish-bigos",
+    "title": "Polish Bigos: Hunter's Stew of Sauerkraut, Cabbage, Kielbasa, and Pork",
+    "description": "Poland's slow-simmered hunter's stew of sauerkraut and fresh cabbage with browned pork shoulder, smoked kielbasa, dried porcini, prunes, onion, tomato paste, bay, and allspice, cooked until deep, tangy, and savory. Served with rye bread.",
+    "cuisine": "polish",
+    "meal_format": "stew-with-bread",
+    "primary_ingredient": "pork and sauerkraut",
+    "vocabulary_tag_ids": [
+      "stews",
+      "tangy",
+      "smoky",
+      "rich"
+    ],
+    "current_recipe_id": "rcp_polish-bigos",
+    "current_version_id": "rv_polish-bigos_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_polish-bigos",
+    "dish_id": "polish-bigos",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_polish-bigos_v1",
+    "recipe_id": "rcp_polish-bigos",
+    "dish_id": "polish-bigos",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Polish Bigos: Hunter's Stew of Sauerkraut, Cabbage, Kielbasa, and Pork",
+    "description": "Poland's slow-simmered hunter's stew of sauerkraut and fresh cabbage with browned pork shoulder, smoked kielbasa, dried porcini, prunes, onion, tomato paste, bay, and allspice, cooked until deep, tangy, and savory. Served with rye bread.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "porcini",
+        "name": "dried porcini mushrooms",
+        "display_name": "dried porcini mushrooms",
+        "quantity": 0.5,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "porcini-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "hot, for soaking the porcini",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "pork",
+        "name": "boneless pork shoulder",
+        "display_name": "boneless pork shoulder",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 1-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kielbasa",
+        "name": "smoked Polish kielbasa",
+        "display_name": "smoked kielbasa whose label lists pork, salt, spices, garlic, and curing agents only",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "sliced into 1/2-inch half-moons",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sauerkraut",
+        "name": "sauerkraut",
+        "display_name": "refrigerated sauerkraut whose label lists cabbage and salt only",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "drained, roughly chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cabbage",
+        "name": "green cabbage",
+        "display_name": "medium head green cabbage",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "shredded",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "large yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "prunes",
+        "name": "pitted prunes",
+        "display_name": "pitted prunes",
+        "quantity": 8,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bay",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "allspice",
+        "name": "whole allspice berries",
+        "display_name": "whole allspice berries",
+        "quantity": 6,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "stew-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "for the stew",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "rye-bread",
+        "name": "rye bread",
+        "display_name": "rye bread whose label lists rye flour, wheat flour, water, yeast, salt, and caraway only",
+        "quantity": 1,
+        "unit": "loaf",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Soak and prep",
+        "body": "Soak the porcini in 1 cup hot water for 15 minutes. Meanwhile, cube the pork and season with the salt and pepper, slice the kielbasa, drain and chop the sauerkraut, shred the cabbage, chop the onion, and halve the prunes. Lift out the porcini, chop them, and keep the soaking liquid, leaving any grit behind.",
+        "ingredient_refs": [
+          "porcini",
+          "porcini-water",
+          "pork",
+          "kosher-salt",
+          "black-pepper",
+          "kielbasa",
+          "sauerkraut",
+          "cabbage",
+          "onion",
+          "prunes"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the meats",
+        "body": "Heat the oil in a 6-quart Dutch oven over medium-high. Brown the pork in two batches, about 6 minutes per batch, then brown the kielbasa 3 minutes. Transfer to a bowl.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "pork",
+          "kielbasa"
+        ],
+        "clock_minutes": 16,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the onion and cabbage",
+        "body": "Lower the heat to medium. Cook the onion until soft, about 5 minutes. Add the fresh cabbage and cook, stirring, until wilted, about 6 minutes. Stir in the tomato paste for 1 minute.",
+        "ingredient_refs": [
+          "onion",
+          "cabbage",
+          "tomato-paste"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Combine",
+        "body": "Add the sauerkraut, porcini and their soaking liquid, prunes, bay leaves, allspice, 2 cups water, and the browned meats with their juices.",
+        "ingredient_refs": [
+          "sauerkraut",
+          "porcini",
+          "porcini-water",
+          "prunes",
+          "bay",
+          "allspice",
+          "stew-water",
+          "pork",
+          "kielbasa"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Simmer",
+        "body": "Bring to a boil, cover, and simmer over low, stirring every 20 minutes or so, until the pork is tender and the stew is thick and brown, about 1 1/2 hours. Uncover for the last 15 minutes if it is still loose.",
+        "ingredient_refs": [
+          "pork"
+        ],
+        "clock_minutes": 92,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Slice the bread",
+        "body": "While the stew simmers, slice the rye bread (overlap stated).",
+        "ingredient_refs": [
+          "rye-bread"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Remove the bay leaves and allspice berries if you can find them. Ladle into bowls and serve with rye bread.",
+        "ingredient_refs": [
+          "bay",
+          "allspice",
+          "sauerkraut",
+          "rye-bread"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "bigos",
+        "name": "hunter's stew",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "sauerkraut",
+          "green cabbage",
+          "pork shoulder",
+          "kielbasa",
+          "dried porcini",
+          "prunes",
+          "onion",
+          "tomato paste",
+          "bay",
+          "allspice",
+          "water"
+        ]
+      },
+      {
+        "component_id": "bread",
+        "name": "rye bread",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "rye bread"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart Dutch oven with lid",
+      "small heatproof bowl",
+      "colander",
+      "wooden spoon"
+    ],
+    "methods": [
+      "sear",
+      "saute",
+      "braise"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 18,
+    "cook_time_minutes": 125,
+    "total_time_minutes": 143,
+    "prep_minutes": 18,
+    "cook_minutes": 125,
+    "total_minutes": 143,
+    "time_clock": "Prep 18 + cook 125 = 143 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The porcini soak during prep (step 1). Bread is sliced during the simmer (step 6 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "overlap_steps": [
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high in a 6-quart Dutch oven to brown, medium for the onions and cabbage, then a covered low simmer, stirring occasionally.",
+    "doneness": "Pork tender, cabbage soft and silky, stew thick and brown with very little loose liquid.",
+    "effort_level": "easy",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains pork and kielbasa (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: pork, sausage, cabbage, sauerkraut, mushrooms, prunes, oil, water, and rye bread whose label lists no milk.",
+    "allergens": [
+      "meat",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the pork shoulder and kielbasa.",
+      "Wheat from the rye bread, which also contains wheat flour.",
+      "Contains gluten (rye) from the rye bread.",
+      "The kielbasa is a store-bought hard contract: the label lists pork, salt, spices, garlic, and curing agents, with no milk, soy, or wheat fillers.",
+      "The sauerkraut is a store-bought hard contract: the label lists cabbage and salt only.",
+      "The rye bread is a store-bought hard contract: the label lists rye flour, wheat flour, water, yeast, salt, and caraway, with no milk, egg, soy, or sesame.",
+      "No egg, milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains pork and kielbasa (meat).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "stews",
+      "tangy",
+      "smoky",
+      "rich"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'polish' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids.",
+      "gluten": "Rye (in the bread) has no FlavorWeave allergen token. It is disclosed in allergen_notes as 'Contains gluten (rye)'; carried as a wave-15 open item for the importer."
+    },
+    "culinary_hash": "75045a2f055e168b376ccad66e4b94bcf040ebc11496bd8c0952222755f2398d",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_polish-bigos_v1",
+    "dish_id": "polish-bigos",
+    "recipe_version_id": "rv_polish-bigos_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "polish-bigos.webp",
+    "card_ref": "polish-bigos-640.webp",
+    "master_filename": "polish-bigos.webp",
+    "card_filename": "polish-bigos-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "polish-bigos.webp",
+        "spec_catalog_path": "/images/meals/polish-bigos.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "polish-bigos-640.webp",
+        "spec_catalog_path": "/images/meals/polish-bigos-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "b0dbf260a84a4f6a957bd20870956e3b3ac2d7e676fe71a7c3713856cada41da",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "b0dbf260a84a4f6a957bd20870956e3b3ac2d7e676fe71a7c3713856cada41da",
+      "master_sha256": "7d5fd2d4bd3defca91f8463d31379c2f8f74c5086b8b08215d3b519f928b9c86",
+      "card_sha256": "ef78e1b5271da06d15ea7716554fb9d260706457dbdf117540aa9fb8ae768c1d"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "b0dbf260a84a4f6a957bd20870956e3b3ac2d7e676fe71a7c3713856cada41da",
+      "polish-bigos.webp": "7d5fd2d4bd3defca91f8463d31379c2f8f74c5086b8b08215d3b519f928b9c86",
+      "polish-bigos-640.webp": "ef78e1b5271da06d15ea7716554fb9d260706457dbdf117540aa9fb8ae768c1d"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 18 + cook 125 = 143 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The porcini soak during prep (step 1). Bread is sliced during the simmer (step 6 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "polish-bigos.webp 1200x900 and polish-bigos-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 2-quart covered saucepan.",
+    "2": "Half of everything in a 4-quart pot.",
+    "4": "As written.",
+    "do_not_scale": [
+      "rinse the sauerkraut only if it is very salty; taste first at every scale"
+    ]
+  },
+  "coverage_contribution": "Polish 1 to 2 (polish-mushroom-barley-krupnik is the other) and the first Polish meat main. Sauerkraut 0 to 1.",
+  "near_duplicate_review": "Compared with polish-mushroom-barley-krupnik: a thick sauerkraut-and-meat stew, not a barley soup. Compared with brazilian-feijoada: sauerkraut and cabbage with kielbasa, no beans. Compared with ukrainian-beet-borscht: no beets; a thick stew, not a soup. Compared with irish-beef-stew in this wave: pork, kraut, and sausage, not beef in stout.",
+  "not_duplicate_of": "Not pierogi (dumplings are closed).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "E"
+}

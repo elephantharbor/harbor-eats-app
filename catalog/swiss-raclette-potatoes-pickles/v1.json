@@ -1,0 +1,575 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "swiss-raclette-potatoes-pickles",
+    "slug": "swiss-raclette-potatoes-pickles",
+    "title": "Swiss Raclette Night: Melted Raclette over Potatoes with Cornichons and Pickled Onions",
+    "description": "A home version of the Valais classic: slices of raclette cheese melted under the broiler until bubbling and blistered, scraped over hot boiled new potatoes, and eaten with cornichons, pickled pearl onions, and a crisp green salad with mustard vinaigrette.",
+    "cuisine": "swiss",
+    "meal_format": "melted-cheese-plate",
+    "primary_ingredient": "raclette cheese",
+    "vocabulary_tag_ids": [
+      "rich",
+      "creamy",
+      "tangy",
+      "savory"
+    ],
+    "current_recipe_id": "rcp_swiss-raclette-potatoes-pickles",
+    "current_version_id": "rv_swiss-raclette-potatoes-pickles_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_swiss-raclette-potatoes-pickles",
+    "dish_id": "swiss-raclette-potatoes-pickles",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_swiss-raclette-potatoes-pickles_v1",
+    "recipe_id": "rcp_swiss-raclette-potatoes-pickles",
+    "dish_id": "swiss-raclette-potatoes-pickles",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Swiss Raclette Night: Melted Raclette over Potatoes with Cornichons and Pickled Onions",
+    "description": "A home version of the Valais classic: slices of raclette cheese melted under the broiler until bubbling and blistered, scraped over hot boiled new potatoes, and eaten with cornichons, pickled pearl onions, and a crisp green salad with mustard vinaigrette.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "potatoes",
+        "name": "small new potatoes",
+        "display_name": "small new potatoes",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": "about 24, unpeeled",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potato-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 10,
+        "unit": "cup",
+        "note": "for the potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the pot",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "raclette",
+        "name": "raclette cheese",
+        "display_name": "raclette cheese whose label lists microbial rennet",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "rind trimmed, sliced 1/4 inch thick",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": "coarsely ground",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "paprika",
+        "name": "sweet paprika",
+        "display_name": "sweet paprika",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cornichons",
+        "name": "cornichons",
+        "display_name": "cornichons whose label lists cucumbers, vinegar, salt, and spices only",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pickled-onions",
+        "name": "pickled pearl onions",
+        "display_name": "pickled pearl onions whose label lists onions, vinegar, salt, and spices only",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lettuce",
+        "name": "butter lettuce",
+        "display_name": "heads butter lettuce",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "leaves torn",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dijon",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "vinegar",
+        "name": "white wine vinegar",
+        "display_name": "white wine vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Scrub the potatoes. Trim the rind from the raclette and slice it 1/4 inch thick. Tear the lettuce. Shake the Dijon, vinegar, and olive oil in a jar.",
+        "ingredient_refs": [
+          "potatoes",
+          "raclette",
+          "lettuce",
+          "dijon",
+          "vinegar",
+          "olive-oil"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil the potatoes",
+        "body": "Put the potatoes in a 6-quart pot with 10 cups water and 1 tbsp salt. Bring to a boil over high heat, about 12 minutes, then cook until tender, about 18 minutes. Drain and keep covered.",
+        "ingredient_refs": [
+          "potatoes",
+          "potato-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 32,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Set the table",
+        "body": "While the potatoes boil, put the cornichons and pickled onions in bowls and dress the lettuce (overlap stated).",
+        "ingredient_refs": [
+          "cornichons",
+          "pickled-onions",
+          "lettuce"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Preheat the broiler",
+        "body": "Preheat the broiler on high for 5 minutes with a rack 6 inches below the element.",
+        "ingredient_refs": [
+          "raclette"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Melt the cheese",
+        "body": "Lay the cheese slices in a single layer on a parchment-lined sheet pan (or in 4 small oven-safe dishes) and broil until melted, bubbling, and blistered in spots, 2 to 4 minutes.",
+        "ingredient_refs": [
+          "raclette"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Halve the hot potatoes onto plates, scrape the molten cheese over them, and season with pepper and a pinch of paprika. Serve at once with the cornichons, pickled onions, and salad.",
+        "ingredient_refs": [
+          "potatoes",
+          "raclette",
+          "black-pepper",
+          "paprika",
+          "cornichons",
+          "pickled-onions",
+          "lettuce"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "potatoes",
+        "name": "boiled new potatoes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "new potatoes",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "raclette",
+        "name": "melted raclette",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "raclette cheese",
+          "black pepper",
+          "paprika"
+        ]
+      },
+      {
+        "component_id": "pickles",
+        "name": "cornichons and pickled onions",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "cornichons",
+          "pickled pearl onions"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "green salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "butter lettuce",
+          "Dijon",
+          "white wine vinegar",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart pot",
+      "colander",
+      "rimmed sheet pan or 4 small oven-safe dishes",
+      "mixing bowl",
+      "small jar or bowl for vinaigrette"
+    ],
+    "methods": [
+      "boil",
+      "broil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "baked"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 44,
+    "total_time_minutes": 54,
+    "prep_minutes": 10,
+    "cook_minutes": 44,
+    "total_minutes": 54,
+    "time_clock": "Prep 10 + cook 44 = 54 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The salad and pickles are set out while the potatoes boil (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 4 (Preheat the broiler) and it states the preheat. The salad and pickles are set out while the potatoes boil (step 3 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "A 6-quart pot at a boil for the potatoes. Broiler preheated on high for 5 minutes with the rack 6 inches below the element.",
+    "doneness": "Potatoes tender all the way through. Cheese fully melted, bubbling, and blistered golden in spots.",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains raclette cheese (dairy)."
+    },
+    "dietary_labels": [
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional vegetarian: the raclette is a hard contract made with microbial rennet, and no cured meats are served.",
+    "allergens": [
+      "milk"
+    ],
+    "allergen_notes": [
+      "Milk from the raclette cheese.",
+      "The raclette is a store-bought hard contract: the label lists microbial rennet, not animal rennet.",
+      "The cornichons and pickled onions are store-bought hard contracts: the labels list vegetables, vinegar, salt, and spices only.",
+      "Contains mustard (not a FlavorWeave token). No egg, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains raclette cheese (dairy).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "rich",
+      "creamy",
+      "tangy",
+      "savory"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'swiss' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "2f778f45f104cd796f63cbbea346fd075693b194ca03db358fc8442fa8c85c36",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_swiss-raclette-potatoes-pickles_v1",
+    "dish_id": "swiss-raclette-potatoes-pickles",
+    "recipe_version_id": "rv_swiss-raclette-potatoes-pickles_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "swiss-raclette-potatoes-pickles.webp",
+    "card_ref": "swiss-raclette-potatoes-pickles-640.webp",
+    "master_filename": "swiss-raclette-potatoes-pickles.webp",
+    "card_filename": "swiss-raclette-potatoes-pickles-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "swiss-raclette-potatoes-pickles.webp",
+        "spec_catalog_path": "/images/meals/swiss-raclette-potatoes-pickles.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "swiss-raclette-potatoes-pickles-640.webp",
+        "spec_catalog_path": "/images/meals/swiss-raclette-potatoes-pickles-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "fd9ba54e73df90c0ad7bfb9e246d766314a3def7b259127a504e57e4bc345d7e",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "fd9ba54e73df90c0ad7bfb9e246d766314a3def7b259127a504e57e4bc345d7e",
+      "master_sha256": "90477ac8dc1d37ae7462808887dc4edefcec6c5dc53a95efdc798030034d2dba",
+      "card_sha256": "e98ad42e46ae1e649fab0dd040b08077c751330d5460dce6bf435116fe2b3f92"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "fd9ba54e73df90c0ad7bfb9e246d766314a3def7b259127a504e57e4bc345d7e",
+      "swiss-raclette-potatoes-pickles.webp": "90477ac8dc1d37ae7462808887dc4edefcec6c5dc53a95efdc798030034d2dba",
+      "swiss-raclette-potatoes-pickles-640.webp": "e98ad42e46ae1e649fab0dd040b08077c751330d5460dce6bf435116fe2b3f92"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 44 = 54 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The salad and pickles are set out while the potatoes boil (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 4 (Preheat the broiler) and it states the preheat. The salad and pickles are set out while the potatoes boil (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "swiss-raclette-potatoes-pickles.webp 1200x900 and swiss-raclette-potatoes-pickles-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"baked\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in one small oven-safe dish.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "broil just until bubbling at every scale; overcooked raclette turns oily"
+    ]
+  },
+  "coverage_contribution": "Swiss 1 to 2 (swiss-rosti-smoked-trout is the other). An easy vegetarian cheese dinner; the catalog's other cheese-led dishes are baked or griddled.",
+  "near_duplicate_review": "Compared with potato-leek-gratin: whole boiled potatoes with melted raclette and pickles, not a baked cream gratin. Compared with kasespatzle-caramelized-onions: potatoes, not spaetzle; no onions; pickles alongside. Compared with swiss-rosti-smoked-trout: boiled potatoes with cheese, not a crisp potato cake with fish.",
+  "not_duplicate_of": "Not fondue (needs a fondue set and wine).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "E"
+}

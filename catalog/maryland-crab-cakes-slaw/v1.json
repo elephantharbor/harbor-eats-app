@@ -1,0 +1,579 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "maryland-crab-cakes-slaw",
+    "slug": "maryland-crab-cakes-slaw",
+    "title": "Maryland Crab Cakes with Old Bay Coleslaw and Lemon",
+    "description": "Jumbo lump crab bound lightly with mayonnaise, egg, Dijon, Old Bay, parsley, and crushed saltines, chilled, then pan-fried until golden and crisp outside and barely held together inside. Served with a tangy Old Bay coleslaw and lemon wedges.",
+    "cuisine": "american",
+    "meal_format": "fried-cakes-with-slaw",
+    "primary_ingredient": "crab",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "rich",
+      "tangy",
+      "fresh",
+      "american"
+    ],
+    "current_recipe_id": "rcp_maryland-crab-cakes-slaw",
+    "current_version_id": "rv_maryland-crab-cakes-slaw_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_maryland-crab-cakes-slaw",
+    "dish_id": "maryland-crab-cakes-slaw",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_maryland-crab-cakes-slaw_v1",
+    "recipe_id": "rcp_maryland-crab-cakes-slaw",
+    "dish_id": "maryland-crab-cakes-slaw",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Maryland Crab Cakes with Old Bay Coleslaw and Lemon",
+    "description": "Jumbo lump crab bound lightly with mayonnaise, egg, Dijon, Old Bay, parsley, and crushed saltines, chilled, then pan-fried until golden and crisp outside and barely held together inside. Served with a tangy Old Bay coleslaw and lemon wedges.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "crab",
+        "name": "jumbo lump crabmeat",
+        "display_name": "jumbo lump crabmeat",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "picked over for shell, kept in large lumps",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mayonnaise",
+        "name": "mayonnaise",
+        "display_name": "mayonnaise whose label lists canola or avocado oil, eggs, vinegar, and salt only",
+        "quantity": 0.66,
+        "unit": "cup",
+        "note": "1/3 cup cakes, 1/3 cup slaw",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "egg",
+        "name": "large egg",
+        "display_name": "large egg",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dijon",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "old-bay",
+        "name": "Old Bay seasoning",
+        "display_name": "Old Bay seasoning",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "1 1/2 tsp cakes, 1 tsp slaw",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lemons",
+        "name": "lemons",
+        "display_name": "lemons",
+        "quantity": 2,
+        "unit": "count",
+        "note": "1 juiced (1 tbsp for the cakes), 1 cut into wedges",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "saltines",
+        "name": "saltine crackers",
+        "display_name": "saltine crackers whose label lists wheat flour, oil, salt, and leavening only",
+        "quantity": 12,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely crushed, about 1/2 cup",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "cabbage",
+        "name": "green cabbage",
+        "display_name": "small head green cabbage",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely shredded, about 6 cups",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrot",
+        "name": "carrot",
+        "display_name": "carrot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cider-vinegar",
+        "name": "apple cider vinegar",
+        "display_name": "apple cider vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Mix the binder",
+        "body": "Juice one lemon. Whisk 1/3 cup mayonnaise, the egg, Dijon, 1 1/2 tsp Old Bay, 1 tbsp lemon juice, and the parsley in a large bowl. Crush the saltines finely and stir them in.",
+        "ingredient_refs": [
+          "lemons",
+          "mayonnaise",
+          "egg",
+          "dijon",
+          "old-bay",
+          "parsley",
+          "saltines"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Shape and chill",
+        "body": "Pick over the crab, keeping the lumps whole, and fold it gently into the binder. Shape into 8 loose cakes about 1 inch thick on a parchment-lined sheet pan and chill 30 minutes.",
+        "ingredient_refs": [
+          "crab"
+        ],
+        "clock_minutes": 38,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the slaw",
+        "body": "While the cakes chill, shred the cabbage and grate the carrot. Toss with 1/3 cup mayonnaise, the cider vinegar, sugar, 1 tsp Old Bay, and the salt. Cut the second lemon into wedges (overlap stated).",
+        "ingredient_refs": [
+          "cabbage",
+          "carrot",
+          "mayonnaise",
+          "cider-vinegar",
+          "sugar",
+          "old-bay",
+          "kosher-salt",
+          "lemons"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Pan-fry the cakes",
+        "body": "Heat 2 tbsp oil in a 12-inch nonstick skillet over medium. Pan-fry 4 cakes until deep golden and crisp, about 4 minutes per side, turning once with a wide spatula. Repeat with the rest of the oil and cakes. Check one reads 165 F at the center.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "crab"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Serve two crab cakes each with a heap of slaw and lemon wedges.",
+        "ingredient_refs": [
+          "crab",
+          "cabbage",
+          "lemons"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "crab-cakes",
+        "name": "crab cakes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "lump crab",
+          "mayonnaise",
+          "egg",
+          "Dijon",
+          "Old Bay",
+          "parsley",
+          "saltines",
+          "lemon"
+        ]
+      },
+      {
+        "component_id": "slaw",
+        "name": "Old Bay coleslaw",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cabbage",
+          "carrot",
+          "mayonnaise",
+          "cider vinegar",
+          "sugar",
+          "Old Bay"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch nonstick skillet",
+      "rimmed sheet pan lined with parchment",
+      "two mixing bowls",
+      "wide thin spatula",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "pan-fry"
+    ],
+    "cooking": {
+      "frying": [
+        "pan"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 46,
+    "cook_time_minutes": 20,
+    "total_time_minutes": 66,
+    "prep_minutes": 46,
+    "cook_minutes": 20,
+    "total_minutes": 66,
+    "time_clock": "Prep 46 + cook 20 = 66 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The slaw is mixed while the cakes chill (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        2
+      ],
+      "cook_steps": [
+        4,
+        5
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "Medium in a 12-inch nonstick skillet with a thin layer of oil.",
+    "doneness": "Cakes deep golden and crisp on both sides, hot through (165 F at the center).",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": true,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains crab (shellfish)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: crab, mayonnaise, egg, crackers, spices, oil, and vegetables; no butter.",
+    "allergens": [
+      "shellfish",
+      "egg",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Shellfish from the crab.",
+      "Egg from the egg and the mayonnaise.",
+      "Wheat from the saltine crackers.",
+      "The saltines are a store-bought hard contract: the label lists wheat flour, oil, salt, and leavening, with no milk, soy, or sesame.",
+      "The mayonnaise is a store-bought hard contract: the label lists canola or avocado oil, eggs, vinegar, and salt, with no soy or milk.",
+      "Contains mustard (not a FlavorWeave token). No milk, soy, sesame, finfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains crab (shellfish).",
+    "hh001_contract": "Not applicable (not HH001).",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "rich",
+      "tangy",
+      "fresh",
+      "american"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'american' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Keep the crab cold until shaping and cook the cakes to 165 F at the center.",
+    "culinary_hash": "a82322b75656fbf3cc3ac892f49002676d7b228b71d5576ebe6df5a85a95eeba",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_maryland-crab-cakes-slaw_v1",
+    "dish_id": "maryland-crab-cakes-slaw",
+    "recipe_version_id": "rv_maryland-crab-cakes-slaw_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "maryland-crab-cakes-slaw.webp",
+    "card_ref": "maryland-crab-cakes-slaw-640.webp",
+    "master_filename": "maryland-crab-cakes-slaw.webp",
+    "card_filename": "maryland-crab-cakes-slaw-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "maryland-crab-cakes-slaw.webp",
+        "spec_catalog_path": "/images/meals/maryland-crab-cakes-slaw.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "maryland-crab-cakes-slaw-640.webp",
+        "spec_catalog_path": "/images/meals/maryland-crab-cakes-slaw-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "fd6de896338ecf35fd2c78dbc9e2cf03082de7517ea6dad3e615d0f3556fdbdf",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "fd6de896338ecf35fd2c78dbc9e2cf03082de7517ea6dad3e615d0f3556fdbdf",
+      "master_sha256": "8a2350a5e5294a9ab45886700484130b7cf43c931570007f2496c15389a58d9d",
+      "card_sha256": "e7fdb3b64bcbafa9a3017ed192c769f6c0ff55e08dc4e4fd121c69987f84d924"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "fd6de896338ecf35fd2c78dbc9e2cf03082de7517ea6dad3e615d0f3556fdbdf",
+      "maryland-crab-cakes-slaw.webp": "8a2350a5e5294a9ab45886700484130b7cf43c931570007f2496c15389a58d9d",
+      "maryland-crab-cakes-slaw-640.webp": "e7fdb3b64bcbafa9a3017ed192c769f6c0ff55e08dc4e4fd121c69987f84d924"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 46 + cook 20 = 66 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The slaw is mixed while the cakes chill (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "maryland-crab-cakes-slaw.webp 1200x900 and maryland-crab-cakes-slaw-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"pan\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of the mix makes 2 cakes; a 10-inch skillet.",
+    "2": "Half the mix makes 4 cakes.",
+    "4": "As written; 8 cakes in two batches.",
+    "do_not_scale": [
+      "chill the shaped cakes at least 30 minutes at every scale so they hold"
+    ]
+  },
+  "coverage_contribution": "First crab dish. Chesapeake regional American seafood. Rounds out shellfish beyond shrimp, mussels, clams, and scallops.",
+  "near_duplicate_review": "Compared with thai-fish-cakes-cucumber-relish: lump crab with an Old Bay binder and coleslaw, not curry-paste fish cakes. Compared with seared-scallops-parsnip-puree: pan-fried crab cakes with slaw, no puree. Compared with sheet-pan-shrimp-boil: crab, pan-fried cakes, no corn or sausage.",
+  "not_duplicate_of": "Not crab rangoon or crab dip (appetizers, and the rangoon is a closed dumpling format).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

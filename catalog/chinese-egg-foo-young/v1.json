@@ -1,0 +1,607 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-15, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-15-2026-10-15",
+  "batch_label": "wave-15",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-15",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "chinese-egg-foo-young",
+    "slug": "chinese-egg-foo-young",
+    "title": "Egg Foo Young with Mushroom Gravy and Steamed Rice",
+    "description": "Fluffy pan-fried omelette patties packed with bean sprouts, shiitake mushrooms, carrot, and scallions, served over steamed rice with a glossy brown soy gravy.",
+    "cuisine": "chinese",
+    "meal_format": "omelette-plate",
+    "primary_ingredient": "eggs",
+    "vocabulary_tag_ids": [
+      "savory",
+      "umami",
+      "tender",
+      "chinese"
+    ],
+    "current_recipe_id": "rcp_chinese-egg-foo-young",
+    "current_version_id": "rv_chinese-egg-foo-young_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_chinese-egg-foo-young",
+    "dish_id": "chinese-egg-foo-young",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-15-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_chinese-egg-foo-young_v1",
+    "recipe_id": "rcp_chinese-egg-foo-young",
+    "dish_id": "chinese-egg-foo-young",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Egg Foo Young with Mushroom Gravy and Steamed Rice",
+    "description": "Fluffy pan-fried omelette patties packed with bean sprouts, shiitake mushrooms, carrot, and scallions, served over steamed rice with a glossy brown soy gravy.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 8,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bean-sprouts",
+        "name": "fresh mung bean sprouts",
+        "display_name": "fresh mung bean sprouts",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed and drained",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "shiitake",
+        "name": "shiitake mushrooms",
+        "display_name": "shiitake mushrooms",
+        "quantity": 4,
+        "unit": "oz",
+        "note": null,
+        "preparation": "stems removed, thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrot",
+        "name": "carrot",
+        "display_name": "carrot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into matchsticks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced, greens kept separate",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "1 tbsp vegetables, the rest for the patties",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "white-pepper",
+        "name": "ground white pepper",
+        "display_name": "ground white pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "gravy-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "for the gravy",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cornstarch",
+        "name": "cornstarch",
+        "display_name": "cornstarch",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the rice. Rinse and drain the bean sprouts, slice the shiitakes, cut the carrot into matchsticks, and slice the scallions. Whisk the cornstarch into 1 cup water with the soy sauce and sugar for the gravy.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "bean-sprouts",
+          "shiitake",
+          "carrot",
+          "scallions",
+          "cornstarch",
+          "gravy-water",
+          "soy-sauce",
+          "sugar"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the rice",
+        "body": "Combine the rice and 2 cups water in a 2-quart saucepan, bring to a boil over high heat, cover, turn to low, and cook 15 minutes; then rest covered off the heat 10 minutes. This runs inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "rice-water"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Soften the vegetables",
+        "body": "Heat 1 tbsp oil in a 12-inch nonstick skillet over medium-high. Cook the shiitakes and carrot 3 minutes, add the bean sprouts and scallion whites for 1 minute, and transfer to a bowl to cool slightly. Wipe the skillet.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "shiitake",
+          "carrot",
+          "bean-sprouts",
+          "scallions"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Mix and pan-fry the patties",
+        "body": "Beat the eggs with the salt and white pepper and stir in the vegetables. Heat 1 tbsp oil in the skillet over medium. Ladle in 1/2-cup portions, 3 at a time, nudging stray sprouts back toward the center. Pan-fry until golden and set at the edges, about 2 minutes, flip, and cook 2 minutes more. Repeat with the rest, adding oil as needed, to make 8 patties.",
+        "ingredient_refs": [
+          "eggs",
+          "kosher-salt",
+          "white-pepper",
+          "neutral-oil"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Make the gravy",
+        "body": "Whisk the gravy mixture again and bring it to a simmer in a 1-quart saucepan over medium, whisking, until glossy and thick, about 2 minutes. Stir in the sesame oil.",
+        "ingredient_refs": [
+          "soy-sauce",
+          "cornstarch",
+          "sesame-oil"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Fluff the rice. Set two patties over rice on each plate, spoon the gravy over, and scatter the scallion greens.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "scallions"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "patties",
+        "name": "egg foo young patties",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "eggs",
+          "bean sprouts",
+          "shiitake mushrooms",
+          "carrot",
+          "scallions"
+        ]
+      },
+      {
+        "component_id": "gravy",
+        "name": "soy gravy",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "water",
+          "soy sauce",
+          "cornstarch",
+          "sugar",
+          "sesame oil"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "steamed rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch nonstick skillet",
+      "1-quart saucepan",
+      "2-quart saucepan with lid",
+      "mixing bowl",
+      "1/2-cup measure",
+      "wide spatula"
+    ],
+    "methods": [
+      "pan-fry",
+      "saute",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [
+        "pan"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 28,
+    "total_time_minutes": 40,
+    "prep_minutes": 12,
+    "cook_minutes": 28,
+    "total_minutes": 40,
+    "time_clock": "Prep 12 + cook 28 = 40 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high in a 12-inch nonstick skillet for the vegetables, medium for the patties. A 1-quart saucepan at a simmer for the gravy. Low covered heat for the rice.",
+    "doneness": "Vegetables just softened. Patties puffed, golden-brown on both sides, and set in the center. Gravy glossy and thick enough to coat a spoon.",
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-15",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Eggs are allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and vegetarian: eggs, vegetables, soy sauce, cornstarch, sesame oil, water, and rice. Not plant_based because of the eggs.",
+    "allergens": [
+      "egg",
+      "soy",
+      "wheat",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Egg from the patties.",
+      "Soy and wheat from the soy sauce.",
+      "Sesame from the toasted sesame oil in the gravy.",
+      "No milk, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Eggs are allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "No ham, shrimp, or chicken stock; the gravy uses water and soy sauce. No oyster sauce.",
+    "vocabulary_tag_ids": [
+      "savory",
+      "umami",
+      "tender",
+      "chinese"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'chinese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "da7e49b564f042936dcd81f7a0dc42fd1818f565f242af4e8c305e05d0f96f34",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_chinese-egg-foo-young_v1",
+    "dish_id": "chinese-egg-foo-young",
+    "recipe_version_id": "rv_chinese-egg-foo-young_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "chinese-egg-foo-young.webp",
+    "card_ref": "chinese-egg-foo-young-640.webp",
+    "master_filename": "chinese-egg-foo-young.webp",
+    "card_filename": "chinese-egg-foo-young-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "chinese-egg-foo-young.webp",
+        "spec_catalog_path": "/images/meals/chinese-egg-foo-young.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "chinese-egg-foo-young-640.webp",
+        "spec_catalog_path": "/images/meals/chinese-egg-foo-young-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "d21e422e858dc9e537373c0fcc2f1417480a7d4f8252f3c9c7917d47c320e4cf",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "d21e422e858dc9e537373c0fcc2f1417480a7d4f8252f3c9c7917d47c320e4cf",
+      "master_sha256": "2558f97f9cf728b2723be3a4d546432710e09e6e202e957ab71d2717429ab9c5",
+      "card_sha256": "fe9445f6ea9cd48d748864e6c4a859d51bcaeb851be1fbe3a650ad126f59e918"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "d21e422e858dc9e537373c0fcc2f1417480a7d4f8252f3c9c7917d47c320e4cf",
+      "chinese-egg-foo-young.webp": "2558f97f9cf728b2723be3a4d546432710e09e6e202e957ab71d2717429ab9c5",
+      "chinese-egg-foo-young-640.webp": "fe9445f6ea9cd48d748864e6c4a859d51bcaeb851be1fbe3a650ad126f59e918"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 28 = 40 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests inside steps 3 to 5 (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "chinese-egg-foo-young.webp 1200x900 and chinese-egg-foo-young-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"pan\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "2 eggs and a quarter of the vegetables make 2 patties in a 10-inch skillet.",
+    "2": "Half of everything; 4 patties.",
+    "4": "As written; 8 patties.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "A Chinese-American egg plate distinct from the existing tomato-egg stir-fry. HH001 vegetarian with eggs as the lead, not an egg bake.",
+  "near_duplicate_review": "Compared with chinese-tomato-egg-stir-fry: shaped, pan-fried vegetable omelette patties with gravy, not soft-scrambled eggs with tomato. Compared with spanish-potato-tortilla: small vegetable patties with soy gravy and rice, no potato. Compared with japanese-okonomiyaki: egg patties without batter or cabbage, served with rice and gravy.",
+  "not_duplicate_of": "Not a frittata or egg bake (that cluster is closed).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}
