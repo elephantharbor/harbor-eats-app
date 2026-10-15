@@ -1,0 +1,629 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "venezuelan-black-bean-plantain-arepas",
+    "slug": "venezuelan-black-bean-plantain-arepas",
+    "title": "Venezuelan Arepas with Black Beans, Sweet Plantains, and Avocado",
+    "description": "Golden, crusty corn arepas made from masarepa, seared on a griddle and finished in the oven until they puff, then split and stuffed with cumin-spiced black beans, oven-roasted sweet plantains, and avocado (a plant-based take on domino-style fillings).",
+    "cuisine": "venezuelan",
+    "meal_format": "stuffed-flatbread",
+    "primary_ingredient": "black-beans",
+    "vocabulary_tag_ids": [
+      "savory",
+      "smoky",
+      "creamy",
+      "sandwiches"
+    ],
+    "current_recipe_id": "rcp_venezuelan-black-bean-plantain-arepas",
+    "current_version_id": "rv_venezuelan-black-bean-plantain-arepas_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_venezuelan-black-bean-plantain-arepas",
+    "dish_id": "venezuelan-black-bean-plantain-arepas",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_venezuelan-black-bean-plantain-arepas_v1",
+    "recipe_id": "rcp_venezuelan-black-bean-plantain-arepas",
+    "dish_id": "venezuelan-black-bean-plantain-arepas",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Venezuelan Arepas with Black Beans, Sweet Plantains, and Avocado",
+    "description": "Golden, crusty corn arepas made from masarepa, seared on a griddle and finished in the oven until they puff, then split and stuffed with cumin-spiced black beans, oven-roasted sweet plantains, and avocado (a plant-based take on domino-style fillings).",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "masarepa",
+        "name": "masarepa",
+        "display_name": "precooked white corn meal (masarepa, e.g. P.A.N.)",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dough-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.5,
+        "unit": "cup",
+        "note": "warm, for the dough",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "black-beans",
+        "name": "black beans",
+        "display_name": "15-oz cans black beans",
+        "quantity": 2,
+        "unit": "can",
+        "note": null,
+        "preparation": "drained and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bean-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for the beans",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "small yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-bell-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ground-cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "smoked-paprika",
+        "name": "smoked paprika",
+        "display_name": "smoked paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "plantains",
+        "name": "ripe plantains",
+        "display_name": "very ripe (mostly black) plantains",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "peeled, sliced 1/2 inch on the diagonal",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "avocados",
+        "name": "avocados",
+        "display_name": "avocados",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "leaves picked",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "lime",
+        "name": "lime",
+        "display_name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 5,
+        "unit": "tbsp",
+        "note": "1 tbsp dough, 2 tbsp beans, 1 tbsp plantains, 1 tbsp griddle",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "1 1/2 tsp dough, 3/4 tsp beans, 1/4 tsp plantains",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat and prep",
+        "body": "Turn the oven on to 400 F to preheat, with racks in the upper and lower thirds, and line a rimmed sheet pan with parchment. Dice the onion and bell pepper, mince the garlic, drain and rinse the beans, and peel and slice the plantains.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "red-bell-pepper",
+          "garlic",
+          "black-beans",
+          "plantains"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the beans",
+        "body": "Heat 2 tbsp oil in a 10-inch skillet over medium. Cook the onion and bell pepper, stirring, until soft, 5 minutes. Add the garlic, cumin, and smoked paprika for 30 seconds, then the beans, 1/2 cup water, and 3/4 tsp salt. Simmer, stirring now and then, 10 minutes, mashing about half the beans so the mixture is thick and spoonable. Keep warm on low.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "yellow-onion",
+          "red-bell-pepper",
+          "garlic",
+          "ground-cumin",
+          "smoked-paprika",
+          "black-beans",
+          "bean-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the dough",
+        "body": "While the beans simmer, whisk 1 1/2 tsp salt into 2 1/2 cups warm water in a large bowl, add 1 tbsp oil, and gradually stir in the masarepa. Knead 2 minutes into a soft dough, then rest 5 minutes. Divide into 8 balls and press each into a 3-inch disc about 1/2 inch thick; smooth any cracked edges with a damp finger. Runs inside step 2 (overlap stated).",
+        "ingredient_refs": [
+          "kosher-salt",
+          "dough-water",
+          "neutral-oil",
+          "masarepa"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Roast the plantains",
+        "body": "When the beans are done (the oven has now preheated 20 minutes), toss the plantains with 1 tbsp oil and 1/4 tsp salt on one side of the lined pan and roast on the lower rack 25 to 27 minutes, flipping once, until deeply caramelized. Runs inside steps 5 and 6 (overlap stated).",
+        "ingredient_refs": [
+          "plantains",
+          "neutral-oil",
+          "kosher-salt"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Sear the arepas",
+        "body": "Heat the cast-iron griddle over medium and brush with 1 tbsp oil. Sear the arepas in two batches, 3 minutes per side, until a pale-gold crust forms.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "masarepa"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Bake the arepas",
+        "body": "Move the arepas to the empty side of the sheet pan with the plantains and bake in the 400 F oven 15 minutes, until puffed and hollow-sounding when tapped. The plantains finish at the same time.",
+        "ingredient_refs": [
+          "masarepa",
+          "plantains"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Stuff and serve",
+        "body": "Let the arepas cool 1 minute, then split each one two-thirds of the way around with a serrated knife. Fill with beans, plantains, and avocado slices, tuck in cilantro, and serve with lime wedges.",
+        "ingredient_refs": [
+          "masarepa",
+          "black-beans",
+          "plantains",
+          "avocados",
+          "cilantro",
+          "lime"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "arepas",
+        "name": "masarepa arepas",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "masarepa",
+          "water",
+          "salt",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "beans",
+        "name": "cumin black beans",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "black beans",
+          "onion",
+          "red bell pepper",
+          "garlic",
+          "cumin",
+          "smoked paprika",
+          "water",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "plantains",
+        "name": "roasted sweet plantains",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ripe plantains",
+          "oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "avocado",
+        "name": "avocado and cilantro",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "avocado",
+          "cilantro",
+          "lime"
+        ]
+      }
+    ],
+    "equipment": [
+      "large cast-iron skillet or griddle",
+      "10-inch skillet",
+      "rimmed sheet pan",
+      "parchment",
+      "large bowl",
+      "potato masher"
+    ],
+    "methods": [
+      "sear",
+      "bake",
+      "roast",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 5,
+    "cook_time_minutes": 45,
+    "total_time_minutes": 50,
+    "prep_minutes": 5,
+    "cook_minutes": 45,
+    "total_minutes": 50,
+    "time_clock": "Prep 5 + cook 45 = 50 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on in step 1 at minute 0 and has preheated 20 minutes when the plantains go in at minute 20; the arepas join them at minute 32. Dough-making runs inside the bean simmer.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        5,
+        6,
+        7
+      ],
+      "overlap_steps": [
+        3,
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The oven is turned on in step 1 at minute 0 and has preheated 20 minutes when the plantains go in at minute 20; the arepas join them at minute 32. Dough-making runs inside the bean simmer.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven at 400 F for the plantains and to finish the arepas. Medium cast-iron griddle for the arepa crust. Medium skillet for the beans.",
+    "doneness": "Arepas crusty and spotted gold, puffed, and hollow-sounding when tapped. Plantains deeply caramelized at the edges and soft. Beans thick and spoonable.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and plant_based; masarepa is gluten-free corn, but no gluten-free label is claimed.",
+    "allergens": [],
+    "allergen_notes": [
+      "No FlavorWeave allergen tokens: no egg, milk, soy, wheat, sesame, fish, shellfish, or nuts. Masarepa is precooked corn flour."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "No cheese in or on the arepas; beans cooked in oil, not lard.",
+    "vocabulary_tag_ids": [
+      "savory",
+      "smoky",
+      "creamy",
+      "sandwiches"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'venezuelan' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "f53f5cb12fa151923b532adde4cb2a75693ac256e1bb43cd077501fe79727fc5",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_venezuelan-black-bean-plantain-arepas_v1",
+    "dish_id": "venezuelan-black-bean-plantain-arepas",
+    "recipe_version_id": "rv_venezuelan-black-bean-plantain-arepas_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "venezuelan-black-bean-plantain-arepas.webp",
+    "card_ref": "venezuelan-black-bean-plantain-arepas-640.webp",
+    "master_filename": "venezuelan-black-bean-plantain-arepas.webp",
+    "card_filename": "venezuelan-black-bean-plantain-arepas-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "venezuelan-black-bean-plantain-arepas.webp",
+        "spec_catalog_path": "/images/meals/venezuelan-black-bean-plantain-arepas.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "venezuelan-black-bean-plantain-arepas-640.webp",
+        "spec_catalog_path": "/images/meals/venezuelan-black-bean-plantain-arepas-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "e89630317be356b9245d40060dbb3408c875f77d6ad1c5fc90de807a70ef8585",
+      "master_sha256": "1d0a01663e3733d58608bf19efbec174aa1cf6a1591d858e8c21284137060f73",
+      "card_sha256": "f0ad4e3f8e646315169a8a0457c4641645ff591ac6b1d6f19150383c9144341a"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "e89630317be356b9245d40060dbb3408c875f77d6ad1c5fc90de807a70ef8585",
+      "venezuelan-black-bean-plantain-arepas.webp": "1d0a01663e3733d58608bf19efbec174aa1cf6a1591d858e8c21284137060f73",
+      "venezuelan-black-bean-plantain-arepas-640.webp": "f0ad4e3f8e646315169a8a0457c4641645ff591ac6b1d6f19150383c9144341a"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 5 + cook 45 = 50 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on in step 1 at minute 0 and has preheated 20 minutes when the plantains go in at minute 20; the arepas join them at minute 32. Dough-making runs inside the bean simmer."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The oven is turned on in step 1 at minute 0 and has preheated 20 minutes when the plantains go in at minute 20; the arepas join them at minute 32. Dough-making runs inside the bean simmer."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "venezuelan-black-bean-plantain-arepas.webp 1200x900 and venezuelan-black-bean-plantain-arepas-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of the dough (2 arepas), a quarter of the beans, one small plantain.",
+    "2": "Half of everything.",
+    "4": "As written; 8 arepas.",
+    "do_not_scale": [
+      "dough hydration: add water a tablespoon at a time until no cracks form at the edges of a pressed ball"
+    ]
+  },
+  "coverage_contribution": "Venezuelan 0 to 1. First stuffed-flatbread format and first corn-cake sandwich. A plant-based handheld for HH001. Plantains are a new ingredient.",
+  "near_duplicate_review": "Compared with black-bean-quesadillas: a thick split corn cake, no cheese, no flour tortilla. Compared with chipotle-lime-black-bean-bowls and grilled-peach-burrito-bowl: no rice, no chipotle, plantains and a handheld format. Compared with pupusas (rejected in this wave): split after cooking, not sealed before.",
+  "not_duplicate_of": "Not empanadas (rejected). Not pupusas (rejected).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

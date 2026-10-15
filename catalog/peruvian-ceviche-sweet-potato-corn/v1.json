@@ -1,0 +1,595 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "peruvian-ceviche-sweet-potato-corn",
+    "slug": "peruvian-ceviche-sweet-potato-corn",
+    "title": "Peruvian Ceviche with Sweet Potato and Corn",
+    "description": "Cubes of very fresh flounder cured in lime juice with habanero, garlic, and ginger, folded with paper-thin red onion and cilantro. Served Peruvian-style on lettuce with boiled sweet potato rounds and corn on the cob. The fish is lime-cured, not heat-cooked.",
+    "cuisine": "peruvian",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "flounder",
+    "vocabulary_tag_ids": [
+      "citrusy",
+      "fresh",
+      "tangy",
+      "spicy"
+    ],
+    "current_recipe_id": "rcp_peruvian-ceviche-sweet-potato-corn",
+    "current_version_id": "rv_peruvian-ceviche-sweet-potato-corn_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_peruvian-ceviche-sweet-potato-corn",
+    "dish_id": "peruvian-ceviche-sweet-potato-corn",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_peruvian-ceviche-sweet-potato-corn_v1",
+    "recipe_id": "rcp_peruvian-ceviche-sweet-potato-corn",
+    "dish_id": "peruvian-ceviche-sweet-potato-corn",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Peruvian Ceviche with Sweet Potato and Corn",
+    "description": "Cubes of very fresh flounder cured in lime juice with habanero, garlic, and ginger, folded with paper-thin red onion and cilantro. Served Peruvian-style on lettuce with boiled sweet potato rounds and corn on the cob. The fish is lime-cured, not heat-cooked.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "flounder-fillets",
+        "name": "flounder",
+        "display_name": "skinless flounder fillets sold for raw use",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "sushi or sashimi grade, previously frozen",
+        "preparation": "cut into 1/2-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "limes",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 10,
+        "unit": "count",
+        "note": "about 1 cup juice; 3/4 cup for the cure, the rest to taste",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "large red onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced paper-thin",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onion-soak-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "cold, to soak the onion",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "habanero",
+        "name": "habanero chile",
+        "display_name": "habanero chile",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "seeded and minced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped, plus a few sprigs",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "sweet-potatoes",
+        "name": "sweet potatoes",
+        "display_name": "medium sweet potatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": "about 1 1/2 lb",
+        "preparation": "peeled, cut into 1-inch rounds",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "corn",
+        "name": "corn on the cob",
+        "display_name": "ears of corn",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "husked, cut into 2-inch wheels",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "boiling-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 10,
+        "unit": "cup",
+        "note": "for the sweet potatoes and corn",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "lettuce",
+        "name": "Bibb lettuce",
+        "display_name": "head Bibb or butter lettuce",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "leaves separated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 tsp boiling water, 1 tsp cure",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep and start the pot",
+        "body": "Put 10 cups water and 1 tsp salt in a 5-quart pot over high heat; it comes to a boil during this prep. Peel the sweet potatoes and cut into 1-inch rounds; cut the corn into 2-inch wheels. Slice the onion paper-thin and soak it in 2 cups cold water. Juice the limes (about 1 cup). Seed and mince the habanero, grate the garlic and ginger, chop the cilantro, and separate the lettuce leaves.",
+        "ingredient_refs": [
+          "boiling-water",
+          "kosher-salt",
+          "sweet-potatoes",
+          "corn",
+          "red-onion",
+          "onion-soak-water",
+          "limes",
+          "habanero",
+          "garlic",
+          "ginger",
+          "cilantro",
+          "lettuce"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil the sides",
+        "body": "Add the sweet potatoes to the 10 cups boiling water and cook at a steady boil until tender to a knife, 15 to 18 minutes, adding the corn for the last 6 minutes. Drain and let them sit at room temperature.",
+        "ingredient_refs": [
+          "sweet-potatoes",
+          "corn",
+          "boiling-water"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cut the fish",
+        "body": "While the sweet potatoes boil, cut the cold flounder into 1/2-inch cubes on a clean board and return it to the refrigerator on a plate. Runs inside step 2 (overlap stated).",
+        "ingredient_refs": [
+          "flounder-fillets"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Cure the fish",
+        "body": "With about 12 minutes left on the boil, put the fish in a chilled glass or stainless bowl and toss with 1 tsp salt, the habanero, garlic, and ginger. Pour in 3/4 cup lime juice, stir, and refrigerate 10 minutes, until the cubes are opaque outside and slightly translucent in the center. Drain the onion and fold it in with the cilantro. Taste and add more of the remaining lime juice if needed. Runs inside step 2 (overlap stated).",
+        "ingredient_refs": [
+          "flounder-fillets",
+          "kosher-salt",
+          "habanero",
+          "garlic",
+          "ginger",
+          "limes",
+          "red-onion",
+          "cilantro"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Plate",
+        "body": "Line plates with lettuce leaves. Spoon the ceviche and some of its lime juice onto the lettuce and set sweet potato rounds and corn wheels alongside. Garnish with cilantro sprigs. Serve within 30 minutes of curing.",
+        "ingredient_refs": [
+          "lettuce",
+          "flounder-fillets",
+          "sweet-potatoes",
+          "corn",
+          "cilantro"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "ceviche",
+        "name": "lime-cured flounder ceviche",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "flounder",
+          "lime juice",
+          "habanero",
+          "garlic",
+          "ginger",
+          "red onion",
+          "cilantro",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "sides",
+        "name": "boiled sweet potato and corn",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "sweet potatoes",
+          "corn",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "5-quart pot",
+      "chilled glass or stainless bowl",
+      "small bowl",
+      "citrus juicer",
+      "sharp knife",
+      "colander"
+    ],
+    "methods": [
+      "cure",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 23,
+    "total_time_minutes": 38,
+    "prep_minutes": 15,
+    "cook_minutes": 23,
+    "total_minutes": 38,
+    "time_clock": "Prep 15 + cook 23 = 38 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Cutting and curing the fish run inside the 20-minute boil (steps 3 and 4 state the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        5
+      ],
+      "overlap_steps": [
+        3,
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Boil for the sweet potatoes and corn. No heat on the fish.",
+    "doneness": "Fish opaque on the outside with a slightly translucent center after about 10 minutes in lime. Sweet potato tender to a knife; corn bright yellow and tender.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. Fish because of the flounder.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish is the flounder.",
+      "No egg, milk, soy, wheat, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "Fish only; no shrimp or other shellfish in the ceviche. The fish must be sold for raw use.",
+    "vocabulary_tag_ids": [
+      "citrusy",
+      "fresh",
+      "tangy",
+      "spicy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'peruvian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Lime curing does not kill parasites or bacteria the way heat does. Buy flounder sold for raw consumption (sushi or sashimi grade, previously frozen to parasite-destruction standards), keep it cold, and serve within 30 minutes of curing. Not recommended for pregnant or immunocompromised diners.",
+    "culinary_hash": "f436687cb230d28abf58470495a7fb85eb38bae5426ddc633365901664443eaa",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_peruvian-ceviche-sweet-potato-corn_v2",
+    "dish_id": "peruvian-ceviche-sweet-potato-corn",
+    "recipe_version_id": "rv_peruvian-ceviche-sweet-potato-corn_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "peruvian-ceviche-sweet-potato-corn.webp",
+    "card_ref": "peruvian-ceviche-sweet-potato-corn-640.webp",
+    "master_filename": "peruvian-ceviche-sweet-potato-corn.webp",
+    "card_filename": "peruvian-ceviche-sweet-potato-corn-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "peruvian-ceviche-sweet-potato-corn.webp",
+        "spec_catalog_path": "/images/meals/peruvian-ceviche-sweet-potato-corn.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "peruvian-ceviche-sweet-potato-corn-640.webp",
+        "spec_catalog_path": "/images/meals/peruvian-ceviche-sweet-potato-corn-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "2506e788d27972f10be6e6031fe40d251ff87a88610f6b08c2c61b7eee97b253",
+      "master_sha256": "87f7d7ebcaa0d9b6b9357c61d563ea5086ce420b1d1cb3116dcb68837aad76bb",
+      "card_sha256": "4825169a0e29939ef15e623a5d9d1a484c2379203da5019faa5feaacf4bbe653"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "2506e788d27972f10be6e6031fe40d251ff87a88610f6b08c2c61b7eee97b253",
+      "peruvian-ceviche-sweet-potato-corn.webp": "87f7d7ebcaa0d9b6b9357c61d563ea5086ce420b1d1cb3116dcb68837aad76bb",
+      "peruvian-ceviche-sweet-potato-corn-640.webp": "4825169a0e29939ef15e623a5d9d1a484c2379203da5019faa5feaacf4bbe653"
+    },
+    "superseded": [
+      {
+        "image_id": "img_peruvian-ceviche-sweet-potato-corn_v1",
+        "active_source_jpeg": "img_v1.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "cc40645791962b18c20da1ab2ed28f0d258e27535090ed6012b0429923aac48a",
+          "master_sha256": "b54061c6c1f61d3d8f5432af8e5feb03ab3cd2b2df4a433621a184da15356137",
+          "card_sha256": "3cca4043a986142e465f386ea481e22a1fe420b78b1ef3c5498b3cd9509f8c9d"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "peruvian-ceviche-sweet-potato-corn.webp": {
+            "rejected_path": "rejected/peruvian-ceviche-sweet-potato-corn-replaced-20261015103202.webp",
+            "sha256": "b54061c6c1f61d3d8f5432af8e5feb03ab3cd2b2df4a433621a184da15356137"
+          },
+          "peruvian-ceviche-sweet-potato-corn-640.webp": {
+            "rejected_path": "rejected/peruvian-ceviche-sweet-potato-corn-640-replaced-20261015103202.webp",
+            "sha256": "3cca4043a986142e465f386ea481e22a1fe420b78b1ef3c5498b3cd9509f8c9d"
+          },
+          "img_v1.jpg": {
+            "rejected_path": "rejected/img_v1-replaced-20261015103202.jpg",
+            "sha256": "cc40645791962b18c20da1ab2ed28f0d258e27535090ed6012b0429923aac48a"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "Audit r1 gate K FAIL (no lime half; only tiny sparse minced-chile flecks)"
+      }
+    ],
+    "regenerated_for_audit": "audit-r1"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 23 = 38 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Cutting and curing the fish run inside the 20-minute boil (steps 3 and 4 state the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "peruvian-ceviche-sweet-potato-corn.webp 1200x900 and peruvian-ceviche-sweet-potato-corn-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "6 oz fish, 3 tbsp lime juice, a quarter of the onion and aromatics, one small sweet potato, one corn half.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "cure time stays about 10 minutes regardless of quantity",
+      "keep the fish cold throughout"
+    ]
+  },
+  "coverage_contribution": "Peruvian 1 to 2 (lomo saltado is beef). First no-heat main in the catalog; first lime-cured fish. HH001 fish without frying, tomato, or coconut.",
+  "near_duplicate_review": "Compared with Thai fish cakes: raw-cured cubes, not a cooked paste. Compared with salade nicoise: cured flounder, no seared tuna, no potato-egg salad. Compared with crispy fish tacos: no batter, no tortillas.",
+  "not_duplicate_of": "Not shrimp aguachile (shellfish). Not poke (raw-bowl format rejected in wave-12).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

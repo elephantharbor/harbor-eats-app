@@ -1,0 +1,642 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "swedish-meatballs-lingonberry",
+    "slug": "swedish-meatballs-lingonberry",
+    "title": "Swedish Meatballs in Cream Gravy with Lingonberry and Dill Potatoes",
+    "description": "Tender beef and pork meatballs scented with allspice, browned in butter and simmered in a silky cream gravy with a touch of Dijon, served with boiled potatoes tossed in dill and a spoonful of tart lingonberry jam.",
+    "cuisine": "swedish",
+    "meal_format": "plate",
+    "primary_ingredient": "beef",
+    "vocabulary_tag_ids": [
+      "scandinavian",
+      "rich",
+      "creamy",
+      "savory",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_swedish-meatballs-lingonberry",
+    "current_version_id": "rv_swedish-meatballs-lingonberry_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_swedish-meatballs-lingonberry",
+    "dish_id": "swedish-meatballs-lingonberry",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_swedish-meatballs-lingonberry_v1",
+    "recipe_id": "rcp_swedish-meatballs-lingonberry",
+    "dish_id": "swedish-meatballs-lingonberry",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Swedish Meatballs in Cream Gravy with Lingonberry and Dill Potatoes",
+    "description": "Tender beef and pork meatballs scented with allspice, browned in butter and simmered in a silky cream gravy with a touch of Dijon, served with boiled potatoes tossed in dill and a spoonful of tart lingonberry jam.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "ground-beef",
+        "name": "ground beef",
+        "display_name": "85 percent lean ground beef",
+        "quantity": 0.75,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ground-pork",
+        "name": "ground pork",
+        "display_name": "ground pork",
+        "quantity": 0.75,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "panko",
+        "name": "panko breadcrumbs",
+        "display_name": "panko breadcrumbs",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "milk",
+        "name": "whole milk",
+        "display_name": "whole milk",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "egg",
+        "name": "egg",
+        "display_name": "large egg",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "allspice",
+        "name": "ground allspice",
+        "display_name": "ground allspice",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "2 tbsp browning, 2 tbsp gravy",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "beef-stock",
+        "name": "low-sodium beef stock",
+        "display_name": "low-sodium beef stock",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "heavy-cream",
+        "name": "heavy cream",
+        "display_name": "heavy cream",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "dijon",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lingonberry-jam",
+        "name": "lingonberry jam",
+        "display_name": "lingonberry jam",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "sauce"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "small yellow potatoes",
+        "display_name": "small yellow potatoes",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "halved if large",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potato-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 12,
+        "unit": "cup",
+        "note": "3 quarts, for the potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "dill",
+        "name": "fresh dill",
+        "display_name": "fresh dill",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "2 tsp potatoes, 1 tsp meatballs",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Mix and roll",
+        "body": "Put the potatoes in the 6- to 8-quart pot with 12 cups cold water and 2 tsp salt and set over high heat. Soak the panko in the milk 3 minutes, then mix in the egg, grated onion, allspice, 1 tsp salt, pepper, beef, and pork just until combined. Roll into 24 balls about 1 1/4 inches across.",
+        "ingredient_refs": [
+          "potatoes",
+          "potato-water",
+          "kosher-salt",
+          "panko",
+          "milk",
+          "egg",
+          "yellow-onion",
+          "allspice",
+          "black-pepper",
+          "ground-beef",
+          "ground-pork"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil the potatoes",
+        "body": "Boil the potatoes until tender, about 20 minutes, while the meatballs and gravy cook in steps 3 to 5 (overlap stated). Drain and toss with half the dill.",
+        "ingredient_refs": [
+          "potatoes",
+          "dill"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 3,
+        "title": "Brown the meatballs",
+        "body": "Melt 2 tbsp butter in a 12-inch skillet over medium. Brown the meatballs on all sides, turning, 10 minutes. Transfer to a plate.",
+        "ingredient_refs": [
+          "butter",
+          "ground-beef"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Make the gravy",
+        "body": "Melt 2 tbsp butter in the skillet, whisk in the flour, and cook 1 minute. Whisk in the stock gradually, then the cream and Dijon, and simmer until it coats a spoon, 5 minutes.",
+        "ingredient_refs": [
+          "butter",
+          "flour",
+          "beef-stock",
+          "heavy-cream",
+          "dijon"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Simmer and serve",
+        "body": "Return the meatballs and juices to the gravy and simmer on low until 160 F in the center, 8 minutes. Serve with the dill potatoes, a spoonful of lingonberry jam, and the remaining dill.",
+        "ingredient_refs": [
+          "ground-beef",
+          "potatoes",
+          "lingonberry-jam",
+          "dill"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "meatballs",
+        "name": "meatballs",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ground beef",
+          "ground pork",
+          "panko",
+          "milk",
+          "egg",
+          "onion",
+          "allspice",
+          "salt",
+          "pepper"
+        ]
+      },
+      {
+        "component_id": "gravy",
+        "name": "cream gravy",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "butter",
+          "flour",
+          "beef stock",
+          "cream",
+          "dijon"
+        ]
+      },
+      {
+        "component_id": "potatoes",
+        "name": "dill potatoes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "potatoes",
+          "water",
+          "salt",
+          "dill"
+        ]
+      },
+      {
+        "component_id": "jam",
+        "name": "lingonberry jam",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "lingonberry jam"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "6- to 8-quart pot",
+      "mixing bowl",
+      "whisk",
+      "colander",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "saute",
+      "simmer",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 26,
+    "total_time_minutes": 46,
+    "prep_minutes": 20,
+    "cook_minutes": 26,
+    "total_minutes": 46,
+    "time_clock": "Prep 20 + cook 26 = 46 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The potatoes boil during the meatball and gravy steps (step 2 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [
+        2
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium to brown the meatballs; medium to cook the roux; low simmer for the meatballs in gravy; boil for the potatoes.",
+    "doneness": "Meatballs browned and 160 F in the center. Gravy coats a spoon. Potatoes tender to a knife tip.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains beef and pork (meat) and dairy."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels apply.",
+    "allergens": [
+      "meat",
+      "wheat",
+      "milk",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Meat from the beef and pork.",
+      "Wheat from the panko and flour.",
+      "Milk from the milk, butter, and cream.",
+      "Egg binds the meatballs.",
+      "No soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains beef and pork (meat) and dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "scandinavian",
+      "rich",
+      "creamy",
+      "savory",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'swedish' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "2ed842bee60b6ac1d1c59555905349f1ef1cf4bb71dd138787ee3d93ba67ee54",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_swedish-meatballs-lingonberry_v1",
+    "dish_id": "swedish-meatballs-lingonberry",
+    "recipe_version_id": "rv_swedish-meatballs-lingonberry_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "swedish-meatballs-lingonberry.webp",
+    "card_ref": "swedish-meatballs-lingonberry-640.webp",
+    "master_filename": "swedish-meatballs-lingonberry.webp",
+    "card_filename": "swedish-meatballs-lingonberry-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "swedish-meatballs-lingonberry.webp",
+        "spec_catalog_path": "/images/meals/swedish-meatballs-lingonberry.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "swedish-meatballs-lingonberry-640.webp",
+        "spec_catalog_path": "/images/meals/swedish-meatballs-lingonberry-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "06c518eee6aee0728761782f257c2d8b6c560e4cf9796923e39699e263ad47a2",
+      "master_sha256": "7027f39db52f9b5ca295c58f4a7ad3de6e7cd15790224b9113bcd912e4c6b184",
+      "card_sha256": "0573b8076f7422e5baa1a6ac7c56063d088e47e652323a6e333171fb38e596e6"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "06c518eee6aee0728761782f257c2d8b6c560e4cf9796923e39699e263ad47a2",
+      "swedish-meatballs-lingonberry.webp": "7027f39db52f9b5ca295c58f4a7ad3de6e7cd15790224b9113bcd912e4c6b184",
+      "swedish-meatballs-lingonberry-640.webp": "0573b8076f7422e5baa1a6ac7c56063d088e47e652323a6e333171fb38e596e6"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 20 + cook 26 = 46 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The potatoes boil during the meatball and gravy steps (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "swedish-meatballs-lingonberry.webp 1200x900 and swedish-meatballs-lingonberry-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make the full batch; meatballs reheat well in the gravy.",
+    "2": "Half.",
+    "4": "As written.",
+    "do_not_scale": [
+      "egg"
+    ]
+  },
+  "coverage_contribution": "Swedish (scandinavian tag beyond fish dishes). Comfort plate with a cream sauce. Moderate/standard core.",
+  "near_duplicate_review": "Compared with spiced-lamb-meatballs: beef and pork with allspice in cream gravy and lingonberry, not spiced lamb. Compared with the bangers and mash in this wave: meatballs, cream gravy, boiled dill potatoes.",
+  "not_duplicate_of": "Not Italian meatballs in marinara. Not beef stroganoff.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

@@ -1,0 +1,607 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "french-onion-soup",
+    "slug": "french-onion-soup",
+    "title": "French Onion Soup with Gruyere Toasts and Butter Lettuce Salad",
+    "description": "Three pounds of onions slowly caramelized in butter until deep mahogany, simmered with beef stock, thyme, and a splash of sherry vinegar, then crowned with a toasted baguette slice and bubbling, browned Gruyere under the broiler. A simple Dijon-dressed butter lettuce salad on the side.",
+    "cuisine": "french",
+    "meal_format": "soup",
+    "primary_ingredient": "onion",
+    "vocabulary_tag_ids": [
+      "rich",
+      "savory",
+      "umami",
+      "soups"
+    ],
+    "current_recipe_id": "rcp_french-onion-soup",
+    "current_version_id": "rv_french-onion-soup_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_french-onion-soup",
+    "dish_id": "french-onion-soup",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_french-onion-soup_v1",
+    "recipe_id": "rcp_french-onion-soup",
+    "dish_id": "french-onion-soup",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "French Onion Soup with Gruyere Toasts and Butter Lettuce Salad",
+    "description": "Three pounds of onions slowly caramelized in butter until deep mahogany, simmered with beef stock, thyme, and a splash of sherry vinegar, then crowned with a toasted baguette slice and bubbling, browned Gruyere under the broiler. A simple Dijon-dressed butter lettuce salad on the side.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "yellow-onions",
+        "name": "yellow onions",
+        "display_name": "yellow onions",
+        "quantity": 3,
+        "unit": "lb",
+        "note": null,
+        "preparation": "halved and thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "thyme",
+        "name": "fresh thyme",
+        "display_name": "sprigs fresh thyme",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bay-leaves",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "beef-stock",
+        "name": "low-sodium beef stock",
+        "display_name": "low-sodium beef stock",
+        "quantity": 6,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "sherry-vinegar",
+        "name": "sherry vinegar",
+        "display_name": "sherry vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "baguette",
+        "name": "baguette",
+        "display_name": "1-inch slices baguette",
+        "quantity": 8,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "gruyere",
+        "name": "Gruyere cheese",
+        "display_name": "Gruyere cheese",
+        "quantity": 6,
+        "unit": "oz",
+        "note": null,
+        "preparation": "coarsely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "butter-lettuce",
+        "name": "butter lettuce",
+        "display_name": "heads butter lettuce",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "leaves torn",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dijon",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "red-wine-vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Halve and thinly slice the onions. Slice the baguette, grate the Gruyere, and tear the lettuce. Whisk the Dijon, red wine vinegar, olive oil, and a pinch of salt in the salad bowl.",
+        "ingredient_refs": [
+          "yellow-onions",
+          "baguette",
+          "gruyere",
+          "butter-lettuce",
+          "dijon",
+          "red-wine-vinegar",
+          "olive-oil",
+          "kosher-salt"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Caramelize the onions",
+        "body": "Melt the butter in the Dutch oven over medium. Add the onions and 1 tsp salt and cook, stirring every few minutes and lowering to medium-low once they start to color, until deep brown and jammy, 50 minutes.",
+        "ingredient_refs": [
+          "butter",
+          "yellow-onions",
+          "kosher-salt"
+        ],
+        "clock_minutes": 50,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer the soup",
+        "body": "Stir in the flour for 1 minute, then add the stock, thyme, and bay leaves. Simmer 20 minutes. Discard the thyme stems and bay, and stir in the sherry vinegar and pepper.",
+        "ingredient_refs": [
+          "flour",
+          "beef-stock",
+          "thyme",
+          "bay-leaves",
+          "sherry-vinegar",
+          "black-pepper"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Preheat the broiler",
+        "body": "While the soup simmers, preheat the broiler to high with a rack 6 inches below it (overlap stated).",
+        "ingredient_refs": [],
+        "clock_minutes": 5,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Toast the bread",
+        "body": "Lay the baguette slices on the baking sheet and broil until golden on both sides, 1 1/2 minutes per side.",
+        "ingredient_refs": [
+          "baguette"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Gratinee",
+        "body": "Set the crocks on the baking sheet, ladle in the soup, top each with 2 toasts and the Gruyere, and broil until bubbling and browned in spots, 3 to 4 minutes.",
+        "ingredient_refs": [
+          "baguette",
+          "gruyere"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Dress the salad and serve",
+        "body": "While the cheese broils, toss the lettuce with the dressing (overlap stated). Let the crocks stand 2 minutes and serve with the salad.",
+        "ingredient_refs": [
+          "butter-lettuce",
+          "dijon"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "soup",
+        "name": "onion soup",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "yellow onions",
+          "butter",
+          "thyme",
+          "bay leaves",
+          "flour",
+          "beef stock",
+          "sherry vinegar",
+          "salt",
+          "pepper"
+        ]
+      },
+      {
+        "component_id": "gratinee",
+        "name": "Gruyere toasts",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "baguette",
+          "gruyere"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "butter lettuce salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "butter lettuce",
+          "dijon",
+          "red wine vinegar",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart Dutch oven",
+      "4 oven-safe soup crocks",
+      "rimmed baking sheet",
+      "salad bowl",
+      "ladle"
+    ],
+    "methods": [
+      "saute",
+      "simmer",
+      "broil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 79,
+    "total_time_minutes": 94,
+    "prep_minutes": 15,
+    "cook_minutes": 79,
+    "total_minutes": 94,
+    "time_clock": "Prep 15 + cook 79 = 94 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The broiler preheats during the soup simmer (step 4 states the overlap). The salad is dressed while the cheese broils (step 7 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "overlap_steps": [
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 4 (Preheat the broiler) and it states the preheat. The broiler preheats during the soup simmer (step 4 states the overlap). The salad is dressed while the cheese broils (step 7 states the overlap).",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "Medium, then medium-low, to caramelize the onions; medium-low simmer; broiler on high to toast and melt.",
+    "doneness": "Onions deep brown and jammy. Cheese melted, bubbling, and browned in spots.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains beef stock (meat) and dairy."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels apply (beef stock, butter, cheese).",
+    "allergens": [
+      "meat",
+      "milk",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the beef stock.",
+      "Milk from the butter and Gruyere.",
+      "Wheat from the flour and baguette.",
+      "No wine or other alcohol is used. No egg, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains beef stock (meat) and dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "rich",
+      "savory",
+      "umami",
+      "soups"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'french' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "f8ba0a3c5ae7d1682b05b3ea463d23f4eb49f54e6b47d4d6cacaf36a248cb41b",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_french-onion-soup_v1",
+    "dish_id": "french-onion-soup",
+    "recipe_version_id": "rv_french-onion-soup_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "french-onion-soup.webp",
+    "card_ref": "french-onion-soup-640.webp",
+    "master_filename": "french-onion-soup.webp",
+    "card_filename": "french-onion-soup-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "french-onion-soup.webp",
+        "spec_catalog_path": "/images/meals/french-onion-soup.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "french-onion-soup-640.webp",
+        "spec_catalog_path": "/images/meals/french-onion-soup-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "b9fa151f7dbc089f6d67e2c3b3fcc9f0635f12bd60e017d91bec0ae62c546d29",
+      "master_sha256": "5b6edac052a8b686e2af2790d1f281b5659c83b813f8309b08707e63306deeb8",
+      "card_sha256": "b6cf3ccf9a1c75ff182518de7a4dcecb0b6e01dc44aaf07a5dd62077ed6886d8"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "b9fa151f7dbc089f6d67e2c3b3fcc9f0635f12bd60e017d91bec0ae62c546d29",
+      "french-onion-soup.webp": "5b6edac052a8b686e2af2790d1f281b5659c83b813f8309b08707e63306deeb8",
+      "french-onion-soup-640.webp": "b6cf3ccf9a1c75ff182518de7a4dcecb0b6e01dc44aaf07a5dd62077ed6886d8"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 79 = 94 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The broiler preheats during the soup simmer (step 4 states the overlap). The salad is dressed while the cheese broils (step 7 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 4 (Preheat the broiler) and it states the preheat. The broiler preheats during the soup simmer (step 4 states the overlap). The salad is dressed while the cheese broils (step 7 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "french-onion-soup.webp 1200x900 and french-onion-soup-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make the full soup (it freezes); gratinee one crock.",
+    "2": "Half.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "French (thin in the catalog). A classic broiled soup. Onion-led.",
+  "near_duplicate_review": "Compared with tomato-soup-grilled-cheese: onion broth with the cheese toast floating on top, not tomato soup with a sandwich. Compared with potato-leek-gratin: a soup, not a gratin. Compared with the spanish sopa de ajo in this wave: onion, beef stock, Gruyere, no egg.",
+  "not_duplicate_of": "Not potato-leek soup.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

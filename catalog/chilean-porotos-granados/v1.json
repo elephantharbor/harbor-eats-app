@@ -1,0 +1,601 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "chilean-porotos-granados",
+    "slug": "chilean-porotos-granados",
+    "title": "Chilean Porotos Granados: Bean, Squash, and Corn Stew with Pebre",
+    "description": "Chile's summer stew of cranberry beans, butternut squash that melts into the broth, and sweet corn, seasoned with paprika, oregano, and lots of fresh basil. Topped with pebre, a bright cilantro, tomato, and chile salsa.",
+    "cuisine": "chilean",
+    "meal_format": "stew",
+    "primary_ingredient": "cranberry-beans",
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "fresh",
+      "savory",
+      "stews"
+    ],
+    "current_recipe_id": "rcp_chilean-porotos-granados",
+    "current_version_id": "rv_chilean-porotos-granados_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_chilean-porotos-granados",
+    "dish_id": "chilean-porotos-granados",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_chilean-porotos-granados_v1",
+    "recipe_id": "rcp_chilean-porotos-granados",
+    "dish_id": "chilean-porotos-granados",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Chilean Porotos Granados: Bean, Squash, and Corn Stew with Pebre",
+    "description": "Chile's summer stew of cranberry beans, butternut squash that melts into the broth, and sweet corn, seasoned with paprika, oregano, and lots of fresh basil. Topped with pebre, a bright cilantro, tomato, and chile salsa.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "cranberry-beans",
+        "name": "cranberry beans",
+        "display_name": "15-oz cans cranberry (borlotti) beans",
+        "quantity": 2,
+        "unit": "can",
+        "note": null,
+        "preparation": "drained and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "butternut-squash",
+        "name": "butternut squash",
+        "display_name": "butternut squash",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled, cut into 3/4-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "corn-kernels",
+        "name": "corn kernels",
+        "display_name": "corn kernels",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "fresh or frozen",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sweet-paprika",
+        "name": "sweet paprika",
+        "display_name": "sweet paprika",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dried-oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "basil",
+        "name": "fresh basil",
+        "display_name": "fresh basil",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "torn",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "stew-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "for the stew",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "tomato",
+        "name": "ripe tomato",
+        "display_name": "ripe tomato",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "jalapeno",
+        "name": "jalapeño",
+        "display_name": "jalapeño",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "seeded and minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 0.25,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-wine-vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "3 tbsp stew, 1 tbsp pebre",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 3/4 tsp stew, 1/4 tsp pebre",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Peel and cube the squash. Dice the onion and mince the garlic. Drain and rinse the beans. For the pebre, dice the tomato and red onion, chop the cilantro, and mince the jalapeño.",
+        "ingredient_refs": [
+          "butternut-squash",
+          "yellow-onion",
+          "garlic",
+          "cranberry-beans",
+          "tomato",
+          "red-onion",
+          "cilantro",
+          "jalapeno"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Sauté",
+        "body": "Heat 3 tbsp olive oil in the Dutch oven over medium. Cook the onion until soft, 5 minutes; add the garlic, paprika, and oregano for 1 minute.",
+        "ingredient_refs": [
+          "olive-oil",
+          "yellow-onion",
+          "garlic",
+          "sweet-paprika",
+          "dried-oregano"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer the squash",
+        "body": "Add the squash, 3 cups water, and 1 3/4 tsp salt. Bring to a boil, then simmer partly covered on medium-low until the squash is very soft, 20 minutes. Mash about a third of the squash against the side of the pot to thicken the stew.",
+        "ingredient_refs": [
+          "butternut-squash",
+          "stew-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Make the pebre",
+        "body": "While the squash simmers, stir the tomato, red onion, cilantro, jalapeño, vinegar, 1 tbsp olive oil, and 1/4 tsp salt together. Runs inside step 3 (overlap stated).",
+        "ingredient_refs": [
+          "tomato",
+          "red-onion",
+          "cilantro",
+          "jalapeno",
+          "red-wine-vinegar",
+          "olive-oil",
+          "kosher-salt"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Add beans and corn",
+        "body": "Stir in the beans and corn and simmer 10 minutes, until the corn is tender and the stew is thick.",
+        "ingredient_refs": [
+          "cranberry-beans",
+          "corn-kernels"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Finish and serve",
+        "body": "Off the heat, stir in most of the basil. Ladle into bowls, top with pebre and the remaining basil.",
+        "ingredient_refs": [
+          "basil",
+          "tomato"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "stew",
+        "name": "bean, squash, and corn stew",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cranberry beans",
+          "butternut squash",
+          "corn",
+          "onion",
+          "garlic",
+          "paprika",
+          "oregano",
+          "basil",
+          "water",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "pebre",
+        "name": "pebre",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomato",
+          "cilantro",
+          "jalapeño",
+          "red onion",
+          "red wine vinegar",
+          "oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart Dutch oven",
+      "medium bowl",
+      "potato masher or large spoon"
+    ],
+    "methods": [
+      "saute",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 38,
+    "total_time_minutes": 53,
+    "prep_minutes": 15,
+    "cook_minutes": 38,
+    "total_minutes": 53,
+    "time_clock": "Prep 15 + cook 38 = 53 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Linear stovetop clock; the pebre is made during the squash simmer (step 4 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium sauté; medium-low simmer.",
+    "doneness": "Squash partly collapsed so the stew is thick and orange; corn tender; beans creamy.",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and plant_based.",
+    "allergens": [],
+    "allergen_notes": [
+      "No FlavorWeave allergen tokens."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "Water-based, oil only; no sausage or cheese.",
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "fresh",
+      "savory",
+      "stews"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'chilean' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "f6e13869af1713889356fa4d4c79197aae48cd6b6c7abf73baccc623e476f60e",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_chilean-porotos-granados_v1",
+    "dish_id": "chilean-porotos-granados",
+    "recipe_version_id": "rv_chilean-porotos-granados_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "chilean-porotos-granados.webp",
+    "card_ref": "chilean-porotos-granados-640.webp",
+    "master_filename": "chilean-porotos-granados.webp",
+    "card_filename": "chilean-porotos-granados-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "chilean-porotos-granados.webp",
+        "spec_catalog_path": "/images/meals/chilean-porotos-granados.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "chilean-porotos-granados-640.webp",
+        "spec_catalog_path": "/images/meals/chilean-porotos-granados-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "9afe093948c6805a2f7026cc92f70b0f89e63438f46ae3cf3397446034cf6bd0",
+      "master_sha256": "07d7c0716dc206946be97dfcbfaaf90788ffc7332f370e2162cce2b151e6527b",
+      "card_sha256": "d72cd54c1126d09b3bdf5aaade1e641d9c99783078a454267644d882eb235364"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "9afe093948c6805a2f7026cc92f70b0f89e63438f46ae3cf3397446034cf6bd0",
+      "chilean-porotos-granados.webp": "07d7c0716dc206946be97dfcbfaaf90788ffc7332f370e2162cce2b151e6527b",
+      "chilean-porotos-granados-640.webp": "d72cd54c1126d09b3bdf5aaade1e641d9c99783078a454267644d882eb235364"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 38 = 53 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Linear stovetop clock; the pebre is made during the squash simmer (step 4 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "chilean-porotos-granados.webp 1200x900 and chilean-porotos-granados-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make the full pot; it keeps 4 days.",
+    "2": "Make the full pot or halve it.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "Chilean 0 to 1. An easy plant stew; cranberry beans and a squash-thickened broth are new. HH001 plant.",
+  "near_duplicate_review": "Compared with pumpkin-pinto-bean-chili: no chili powder or tomato base; basil and corn, squash melted in. Compared with white-bean-kale-soup: thick stew with squash and corn. Compared with roasted-butternut-farro-plate: a stew, not a roasted grain plate.",
+  "not_duplicate_of": "Not succotash (side). Not the borscht in this wave.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

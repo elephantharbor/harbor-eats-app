@@ -1,0 +1,682 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "brazilian-feijoada",
+    "slug": "brazilian-feijoada",
+    "title": "Brazilian Feijoada with Rice, Garlicky Collards, Farofa, and Orange",
+    "description": "Brazil's Saturday feast: black beans slowly simmered with smoky bacon, browned pork shoulder, and linguica sausage until thick and inky, served with white rice, quick garlicky collard ribbons, toasty cassava-flour farofa, and fresh orange slices to cut the richness.",
+    "cuisine": "brazilian",
+    "meal_format": "stew-plate",
+    "primary_ingredient": "pork",
+    "vocabulary_tag_ids": [
+      "smoky",
+      "savory",
+      "rich",
+      "stews"
+    ],
+    "current_recipe_id": "rcp_brazilian-feijoada",
+    "current_version_id": "rv_brazilian-feijoada_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_brazilian-feijoada",
+    "dish_id": "brazilian-feijoada",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_brazilian-feijoada_v1",
+    "recipe_id": "rcp_brazilian-feijoada",
+    "dish_id": "brazilian-feijoada",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Brazilian Feijoada with Rice, Garlicky Collards, Farofa, and Orange",
+    "description": "Brazil's Saturday feast: black beans slowly simmered with smoky bacon, browned pork shoulder, and linguica sausage until thick and inky, served with white rice, quick garlicky collard ribbons, toasty cassava-flour farofa, and fresh orange slices to cut the richness.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "black-beans",
+        "name": "dried black beans",
+        "display_name": "dried black beans",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "picked over and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bacon",
+        "name": "thick-cut smoked bacon",
+        "display_name": "thick-cut smoked bacon",
+        "quantity": 6,
+        "unit": "oz",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pork-shoulder",
+        "name": "boneless pork shoulder",
+        "display_name": "boneless pork shoulder",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "1 1/2-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "linguica",
+        "name": "linguica sausage",
+        "display_name": "smoked linguica whose label lists no wheat, milk, or soy",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "store-bought; required: the ingredient list shows no wheat, milk, or soy (some brands add fillers or milk powder)",
+        "preparation": "sliced 1/2 inch",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 8,
+        "unit": "clove",
+        "note": null,
+        "preparation": "4 minced for the beans, 3 sliced for the collards, 1 minced for the farofa",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bay-leaves",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "stew-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 10,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "collards",
+        "name": "collard greens",
+        "display_name": "bunch collard greens",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "stems removed, leaves cut into thin ribbons",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cassava-flour",
+        "name": "cassava flour",
+        "display_name": "coarse cassava meal (farinha de mandioca, toasted or raw), not fine tapioca-style cassava flour",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "oranges",
+        "name": "oranges",
+        "display_name": "oranges",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "peeled and sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "2 tbsp collards, 2 tbsp farofa",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "1 1/2 tsp beans, 1/2 tsp rice, 1/2 tsp collards and farofa",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Pick over and rinse the beans. Dice the bacon and onion, cube the pork, slice the sausage, and prepare the garlic. Strip and ribbon the collards and slice the oranges.",
+        "ingredient_refs": [
+          "black-beans",
+          "bacon",
+          "yellow-onion",
+          "pork-shoulder",
+          "linguica",
+          "garlic",
+          "collards",
+          "oranges"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Render and brown",
+        "body": "Cook the bacon in the Dutch oven over medium-high until the fat renders, 5 minutes. Add the pork in a single layer and sear until browned on two sides, 10 minutes.",
+        "ingredient_refs": [
+          "bacon",
+          "pork-shoulder"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Aromatics",
+        "body": "Add the onion and 4 cloves minced garlic and cook until soft, 4 minutes.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "garlic"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer the beans",
+        "body": "Add the beans, bay leaves, pepper, and the 10 cups water. Bring to a boil, then cover partly and simmer on low, stirring now and then, until the beans are tender, about 90 minutes. Add 1 1/2 tsp salt once the beans are tender.",
+        "ingredient_refs": [
+          "black-beans",
+          "bay-leaves",
+          "black-pepper",
+          "stew-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 90,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Add the sausage",
+        "body": "Add the linguica, mash about 1 cup of beans against the side of the pot to thicken, and simmer uncovered until thick, 30 minutes.",
+        "ingredient_refs": [
+          "linguica",
+          "black-beans"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Cook the rice",
+        "body": "During that simmer, rinse the rice until the rinse runs clear, bring it to a boil with the 2.25 cups water and 1/2 tsp salt in the saucepan, cover, and cook on low 15 minutes; rest 10 minutes (overlap stated).",
+        "ingredient_refs": [
+          "rice",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 25,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Cook the collards",
+        "body": "In the last 10 minutes, heat 2 tbsp olive oil in the 12-inch skillet over medium-high and toss the collards with the sliced garlic and a pinch of salt until bright and just wilted, 3 minutes (overlap stated).",
+        "ingredient_refs": [
+          "olive-oil",
+          "collards",
+          "garlic",
+          "kosher-salt"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 8,
+        "title": "Toast the farofa",
+        "body": "Heat 2 tbsp olive oil in the 10-inch skillet over medium with 1 clove minced garlic, add the cassava flour and a pinch of salt, and stir until golden and sandy, 5 minutes (overlap stated).",
+        "ingredient_refs": [
+          "olive-oil",
+          "garlic",
+          "cassava-flour",
+          "kosher-salt"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 9,
+        "title": "Serve",
+        "body": "Discard the bay leaves. Serve the feijoada with rice, collards, a spoonful of farofa, and orange slices.",
+        "ingredient_refs": [
+          "black-beans",
+          "rice",
+          "collards",
+          "cassava-flour",
+          "oranges"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "feijoada",
+        "name": "black bean and pork stew",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "black beans",
+          "bacon",
+          "pork shoulder",
+          "linguica",
+          "onion",
+          "garlic",
+          "bay leaves",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "linguica",
+        "name": "smoked linguica",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "linguica"
+        ],
+        "contract": "Smoked linguica whose label lists no wheat, milk, or soy."
+      },
+      {
+        "component_id": "rice",
+        "name": "white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long-grain rice",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "collards",
+        "name": "garlicky collards (couve)",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "collard greens",
+          "garlic",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "farofa",
+        "name": "farofa",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cassava flour",
+          "olive oil",
+          "garlic",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "oranges",
+        "name": "orange slices",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "oranges"
+        ]
+      }
+    ],
+    "equipment": [
+      "7-quart Dutch oven",
+      "2-quart saucepan with lid",
+      "12-inch skillet",
+      "10-inch skillet",
+      "potato masher or ladle"
+    ],
+    "methods": [
+      "sear",
+      "simmer",
+      "saute"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 144,
+    "total_time_minutes": 164,
+    "prep_minutes": 20,
+    "cook_minutes": 144,
+    "total_minutes": 164,
+    "time_clock": "Prep 20 + cook 144 = 164 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Unsoaked beans simmer about 2 hours (steps 4 and 5). The rice, collards, and farofa are made during the final 30-minute simmer (steps 6 to 8 state the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        9
+      ],
+      "overlap_steps": [
+        6,
+        7,
+        8
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high to render and brown; low simmer for about 2 hours; medium-high for the collards; medium for the farofa.",
+    "doneness": "Beans creamy and fully tender, liquid thick and dark. Pork shoulder fork-tender. Rice tender. Farofa golden and sandy.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains pork (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: the farofa is toasted in olive oil instead of butter.",
+    "allergens": [
+      "meat"
+    ],
+    "allergen_notes": [
+      "Meat from the bacon, pork shoulder, and linguica.",
+      "The linguica is a store-bought hard contract: smoked linguica whose label lists no wheat, milk, or soy.",
+      "Cassava flour is gluten-free. No egg, milk, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains pork (meat).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "smoky",
+      "savory",
+      "rich",
+      "stews"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'brazilian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "e402be68cee2c0faf6fe734a1c85e83c86722f7f8caae2fe5d92ede8386c66bd",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_brazilian-feijoada_v1",
+    "dish_id": "brazilian-feijoada",
+    "recipe_version_id": "rv_brazilian-feijoada_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "brazilian-feijoada.webp",
+    "card_ref": "brazilian-feijoada-640.webp",
+    "master_filename": "brazilian-feijoada.webp",
+    "card_filename": "brazilian-feijoada-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "brazilian-feijoada.webp",
+        "spec_catalog_path": "/images/meals/brazilian-feijoada.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "brazilian-feijoada-640.webp",
+        "spec_catalog_path": "/images/meals/brazilian-feijoada-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "71f703f09add298dfcd9bdc15a5feabec13cc285de110e5d09bb7aa8d4139040",
+      "master_sha256": "ad95f5231d2d6090fedb5a45c8d443c19103569d2f409f798ede5f52da8caa64",
+      "card_sha256": "f22ae9e567d9e2778bf5321c8264d08fb2f75a2cf01522f26fdeb2b849cdaeef"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "71f703f09add298dfcd9bdc15a5feabec13cc285de110e5d09bb7aa8d4139040",
+      "brazilian-feijoada.webp": "ad95f5231d2d6090fedb5a45c8d443c19103569d2f409f798ede5f52da8caa64",
+      "brazilian-feijoada-640.webp": "f22ae9e567d9e2778bf5321c8264d08fb2f75a2cf01522f26fdeb2b849cdaeef"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 20 + cook 144 = 164 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Unsoaked beans simmer about 2 hours (steps 4 and 5). The rice, collards, and farofa are made during the final 30-minute simmer (steps 6 to 8 state the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "brazilian-feijoada.webp 1200x900 and brazilian-feijoada-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make the full pot; it freezes well.",
+    "2": "Make the full pot and freeze half.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "Brazilian beyond moqueca. A long-simmered weekend bean stew. Black beans as a stew rather than bowls or quesadillas.",
+  "near_duplicate_review": "Compared with brazilian-fish-moqueca: pork and black beans, not a coconut fish stew. Compared with chipotle-lime-black-bean-bowls and black-bean-quesadillas: long-simmered with pork. Compared with the slow-cooker ropa vieja and gumbo in this wave: a bean stew with farofa and collards.",
+  "not_duplicate_of": "Not Cuban black bean soup. Not cassoulet.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

@@ -1,0 +1,673 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "vietnamese-bun-cha",
+    "slug": "vietnamese-bun-cha",
+    "title": "Vietnamese Bún Chả: Grilled Pork Patties with Noodles and Herbs",
+    "description": "Hanoi's lunchtime classic: caramelized pork patties seasoned with shallot, garlic, fish sauce, and sugar, grilled over high heat and served swimming in warm, sweet-tart nước chấm, with cool rice vermicelli, a heap of lettuce and fresh herbs, and quick-pickled carrot.",
+    "cuisine": "vietnamese",
+    "meal_format": "noodle-plate",
+    "primary_ingredient": "pork",
+    "vocabulary_tag_ids": [
+      "smoky",
+      "herbaceous",
+      "tangy",
+      "grilled"
+    ],
+    "current_recipe_id": "rcp_vietnamese-bun-cha",
+    "current_version_id": "rv_vietnamese-bun-cha_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_vietnamese-bun-cha",
+    "dish_id": "vietnamese-bun-cha",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_vietnamese-bun-cha_v1",
+    "recipe_id": "rcp_vietnamese-bun-cha",
+    "dish_id": "vietnamese-bun-cha",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Vietnamese Bún Chả: Grilled Pork Patties with Noodles and Herbs",
+    "description": "Hanoi's lunchtime classic: caramelized pork patties seasoned with shallot, garlic, fish sauce, and sugar, grilled over high heat and served swimming in warm, sweet-tart nước chấm, with cool rice vermicelli, a heap of lettuce and fresh herbs, and quick-pickled carrot.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "ground-pork",
+        "name": "ground pork",
+        "display_name": "ground pork",
+        "quantity": 1.25,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "shallots",
+        "name": "shallots",
+        "display_name": "shallots",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "2 minced for the patties, 2 minced for the sauce",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "fish-sauce",
+        "name": "fish sauce",
+        "display_name": "fish sauce",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "2 tbsp patties, 6 tbsp nước chấm",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "1 tbsp patties, 1/4 cup nước chấm, 1 tsp pickles",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "limes",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 3,
+        "unit": "count",
+        "note": "juiced, about 1/3 cup",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sauce-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "warm, for the nước chấm",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "thai-chiles",
+        "name": "Thai chiles",
+        "display_name": "Thai chiles",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rice-vermicelli",
+        "name": "thin rice vermicelli",
+        "display_name": "thin rice vermicelli (bún)",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "noodle-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 16,
+        "unit": "cup",
+        "note": "4 quarts, for boiling the noodles",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "lettuce",
+        "name": "green leaf lettuce",
+        "display_name": "head green leaf lettuce",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "leaves separated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mint",
+        "name": "mint",
+        "display_name": "mint",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "sprigs",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "sprigs",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "thai-basil",
+        "name": "Thai basil",
+        "display_name": "Thai basil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "sprigs",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "carrot",
+        "name": "carrot",
+        "display_name": "large carrot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into thin matchsticks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-vinegar",
+        "name": "rice vinegar",
+        "display_name": "rice vinegar",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the grates",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "for the pickles",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat and prep",
+        "body": "Turn the grill on to medium-high (about 450 F) to preheat with the lid closed; it heats through this prep. Put 16 cups (4 quarts) water in a 6- to 8-quart pot over high heat. Mix the pork with the shallots, 2 cloves garlic, 2 tbsp fish sauce, 1 tbsp sugar, and the pepper; form 16 small round patties about 2 inches across and 1/2 inch thick. For the nước chấm, stir 1/4 cup sugar into 1 cup warm water until dissolved, then add 6 tbsp fish sauce, the lime juice, the remaining garlic, and the chiles. Toss the carrot with the rice vinegar, 1 tsp sugar, and the salt. Wash and dry the lettuce and herbs and arrange on a platter.",
+        "ingredient_refs": [
+          "noodle-water",
+          "ground-pork",
+          "shallots",
+          "garlic",
+          "fish-sauce",
+          "sugar",
+          "black-pepper",
+          "sauce-water",
+          "limes",
+          "thai-chiles",
+          "carrot",
+          "rice-vinegar",
+          "kosher-salt",
+          "lettuce",
+          "mint",
+          "cilantro",
+          "thai-basil"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Grill the patties",
+        "body": "Brush the hot grates with oil. Grill the patties with the lid open, 4 to 5 minutes per side, until charred in spots and 160 F in the center.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "ground-pork"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the noodles",
+        "body": "While the patties grill, add the noodles to the 4 quarts of boiling water and cook until tender, 3 to 4 minutes. Drain in a colander, rinse under cold running tap until cool, and drain well. Runs inside step 2 (overlap stated).",
+        "ingredient_refs": [
+          "rice-vermicelli",
+          "noodle-water"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Soak and serve",
+        "body": "Divide the nước chấm among 4 bowls, add 4 patties and some pickled carrot to each, and let them sit 2 minutes. Serve each bowl with a nest of noodles and the herb platter; diners dip noodles and herbs into the bowl.",
+        "ingredient_refs": [
+          "fish-sauce",
+          "ground-pork",
+          "carrot",
+          "rice-vermicelli",
+          "lettuce"
+        ],
+        "clock_minutes": 9,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "patties",
+        "name": "grilled pork patties",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ground pork",
+          "shallots",
+          "garlic",
+          "fish sauce",
+          "sugar",
+          "pepper",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "nuoc-cham",
+        "name": "nước chấm",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "fish sauce",
+          "sugar",
+          "lime",
+          "water",
+          "garlic",
+          "Thai chiles"
+        ]
+      },
+      {
+        "component_id": "noodles",
+        "name": "rice vermicelli",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rice vermicelli",
+          "water"
+        ]
+      },
+      {
+        "component_id": "herbs",
+        "name": "herb plate and pickled carrot",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "lettuce",
+          "mint",
+          "cilantro",
+          "Thai basil",
+          "carrot",
+          "rice vinegar",
+          "sugar"
+        ]
+      }
+    ],
+    "equipment": [
+      "gas or charcoal grill, or a grill pan",
+      "6- to 8-quart pot",
+      "colander",
+      "2 mixing bowls",
+      "small saucepan or microwave-safe bowl",
+      "tongs"
+    ],
+    "methods": [
+      "grill",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 19,
+    "total_time_minutes": 39,
+    "prep_minutes": 20,
+    "cook_minutes": 19,
+    "total_minutes": 39,
+    "time_clock": "Prep 20 + cook 19 = 39 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The grill is turned on to preheat in step 1 and heats during the 20-minute prep. The noodle pot is set to boil in step 1 too, and the noodles cook inside the grilling (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The grill is turned on to preheat in step 1 and heats during the 20-minute prep. The noodle pot is set to boil in step 1 too, and the noodles cook inside the grilling (step 3 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Gas grill (or grill pan) preheated to medium-high, about 450 F, clean oiled grates. Rolling boil for the noodles.",
+    "doneness": "Patties charred in spots and 160 F in the center. Noodles tender and springy, rinsed cool.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains pork (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. Contains fish sauce, so finfish is tagged as an allergen; the fish label is not used because fish is a seasoning, not the protein.",
+    "allergens": [
+      "meat",
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Meat from the ground pork.",
+      "Finfish from the fish sauce (anchovy) in the patties and nước chấm.",
+      "No egg, milk, soy, wheat, sesame, shellfish, or nuts; rice vermicelli are wheat-free."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains pork (meat).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "smoky",
+      "herbaceous",
+      "tangy",
+      "grilled"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'vietnamese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "0b62848c730d9db2218f60863ddd21e5f967730fe5cb1503fef0a85586c0bea4",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_vietnamese-bun-cha_v2",
+    "dish_id": "vietnamese-bun-cha",
+    "recipe_version_id": "rv_vietnamese-bun-cha_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "vietnamese-bun-cha.webp",
+    "card_ref": "vietnamese-bun-cha-640.webp",
+    "master_filename": "vietnamese-bun-cha.webp",
+    "card_filename": "vietnamese-bun-cha-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "vietnamese-bun-cha.webp",
+        "spec_catalog_path": "/images/meals/vietnamese-bun-cha.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "vietnamese-bun-cha-640.webp",
+        "spec_catalog_path": "/images/meals/vietnamese-bun-cha-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "3b7bef2c9d3b345010c015ce04fc8c020086439db636f6ce768bffbedee2743d",
+      "master_sha256": "a406a7c38c9c590b32d394af9c714c8f4c2b1b5f7f9f3e932fd60da58fffb7b1",
+      "card_sha256": "a689f27a78ef5e616b3fc9f941f73be3030a289d68e3115d4613d510b8eaa083"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "3b7bef2c9d3b345010c015ce04fc8c020086439db636f6ce768bffbedee2743d",
+      "vietnamese-bun-cha.webp": "a406a7c38c9c590b32d394af9c714c8f4c2b1b5f7f9f3e932fd60da58fffb7b1",
+      "vietnamese-bun-cha-640.webp": "a689f27a78ef5e616b3fc9f941f73be3030a289d68e3115d4613d510b8eaa083"
+    },
+    "superseded": [
+      {
+        "image_id": "img_vietnamese-bun-cha_v1",
+        "active_source_jpeg": "img_v1.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "78d283485c951db4cf1ab4929876dce57209e272fb4735e0f4c13ca56bb5cf19",
+          "master_sha256": "0fc24416da1fa6b627d42c56384262d77ce7f1800bf2580963ce79d03ba2380f",
+          "card_sha256": "1f8403f3d92d997cc2f73a171f701ca11532a8ba21501b84c3ebe2b6190b3fc5"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "vietnamese-bun-cha.webp": {
+            "rejected_path": "rejected/vietnamese-bun-cha-replaced-20261015103156.webp",
+            "sha256": "0fc24416da1fa6b627d42c56384262d77ce7f1800bf2580963ce79d03ba2380f"
+          },
+          "vietnamese-bun-cha-640.webp": {
+            "rejected_path": "rejected/vietnamese-bun-cha-640-replaced-20261015103156.webp",
+            "sha256": "1f8403f3d92d997cc2f73a171f701ca11532a8ba21501b84c3ebe2b6190b3fc5"
+          },
+          "img_v1.jpg": {
+            "rejected_path": "rejected/img_v1-replaced-20261015103156.jpg",
+            "sha256": "78d283485c951db4cf1ab4929876dce57209e272fb4735e0f4c13ca56bb5cf19"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "Audit r1 gate K FAIL (4 to 6 small (about 2-inch) round patties per bowl)"
+      }
+    ],
+    "regenerated_for_audit": "audit-r1"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 20 + cook 19 = 39 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The grill is turned on to preheat in step 1 and heats during the 20-minute prep. The noodle pot is set to boil in step 1 too, and the noodles cook inside the grilling (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The grill is turned on to preheat in step 1 and heats during the 20-minute prep. The noodle pot is set to boil in step 1 too, and the noodles cook inside the grilling (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "vietnamese-bun-cha.webp 1200x900 and vietnamese-bun-cha-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "5 oz pork, a quarter of the sauce, 3 oz noodles.",
+    "2": "Half of everything.",
+    "4": "As written.",
+    "do_not_scale": [
+      "form patties 1/2 inch thick so they char before they dry out"
+    ]
+  },
+  "coverage_contribution": "First grilled pork patty and first dipping-noodle format. Rice noodles (rice-noodles vocabulary term) beyond pho.",
+  "near_duplicate_review": "Compared with vietnamese-chicken-pho: no broth; grilled pork with cold noodles and dipping sauce. Compared with thai-turkey-larb-lettuce-wraps: grilled patties, noodles, sweet-sour sauce. Compared with pork-shogayaki in this wave: grilled ground pork, Vietnamese herbs and noodles.",
+  "not_duplicate_of": "Not bánh mì (rejected). Not a noodle stir-fry (japchae rejected).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

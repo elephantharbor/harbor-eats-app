@@ -1,0 +1,712 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "south-african-bobotie",
+    "slug": "south-african-bobotie",
+    "title": "South African Bobotie with Yellow Rice and Tomato Sambal",
+    "description": "Cape Malay comfort food: gently curried ground beef baked with apricot jam, raisins, and milk-soaked bread under a golden savory egg custard studded with bay leaves. Served with turmeric-and-cinnamon yellow rice and a fresh tomato-onion sambal.",
+    "cuisine": "south-african",
+    "meal_format": "casserole",
+    "primary_ingredient": "beef",
+    "vocabulary_tag_ids": [
+      "savory",
+      "rich",
+      "tender",
+      "tangy"
+    ],
+    "current_recipe_id": "rcp_south-african-bobotie",
+    "current_version_id": "rv_south-african-bobotie_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_south-african-bobotie",
+    "dish_id": "south-african-bobotie",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_south-african-bobotie_v1",
+    "recipe_id": "rcp_south-african-bobotie",
+    "dish_id": "south-african-bobotie",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "South African Bobotie with Yellow Rice and Tomato Sambal",
+    "description": "Cape Malay comfort food: gently curried ground beef baked with apricot jam, raisins, and milk-soaked bread under a golden savory egg custard studded with bay leaves. Served with turmeric-and-cinnamon yellow rice and a fresh tomato-onion sambal.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "ground-beef",
+        "name": "ground beef",
+        "display_name": "85 percent lean ground beef",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onions",
+        "name": "yellow onions",
+        "display_name": "yellow onions",
+        "quantity": 1.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "1 diced for the filling, 1/2 finely diced for the sambal",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "curry-powder",
+        "name": "mild curry powder",
+        "display_name": "mild curry powder",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1/2 tsp filling, 1/2 tsp custard, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "apricot-jam",
+        "name": "apricot jam",
+        "display_name": "apricot jam",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "raisins",
+        "name": "golden raisins",
+        "display_name": "golden raisins",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "1/3 cup filling, the rest for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "white-bread",
+        "name": "white sandwich bread",
+        "display_name": "slices store-bought white sandwich bread whose label lists no soy or sesame",
+        "quantity": 2,
+        "unit": "slice",
+        "note": "store-bought; required: the ingredient list shows no soy (including soy flour or soy lecithin) and no sesame",
+        "preparation": "crusts removed, torn",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "milk",
+        "name": "whole milk",
+        "display_name": "whole milk",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "1/2 cup to soak the bread, 1 cup for the custard",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "eggs",
+        "display_name": "large eggs",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bay-leaves",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "long-grain-rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cinnamon-stick",
+        "name": "cinnamon stick",
+        "display_name": "cinnamon stick",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "ripe tomatoes",
+        "display_name": "ripe tomatoes",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "seeded and diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-wine-vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "1 tbsp filling, 1 tbsp sambal",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "1 1/2 tsp filling, 1/4 tsp custard, 1/2 tsp rice, 1/4 tsp sambal",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat and prep",
+        "body": "Turn the oven on to 350 F to preheat. Soak the torn bread in 1/2 cup milk. Dice the onions (one for the filling, half for the sambal) and mince the garlic. Seed and dice the tomatoes. Whisk the eggs with 1 cup milk, 1/2 tsp turmeric, and 1/4 tsp salt for the custard.",
+        "ingredient_refs": [
+          "white-bread",
+          "milk",
+          "yellow-onions",
+          "garlic",
+          "tomatoes",
+          "eggs",
+          "turmeric",
+          "kosher-salt"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the filling",
+        "body": "Heat the oil in a 12-inch skillet over medium. Cook the filling onion until soft, 5 minutes; add the garlic, curry powder, and 1/2 tsp turmeric for 1 minute. Add the beef, 1 1/2 tsp salt, and the pepper and cook, breaking it up, until no pink remains, 8 minutes. Spoon off excess fat.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "yellow-onions",
+          "garlic",
+          "curry-powder",
+          "turmeric",
+          "ground-beef",
+          "kosher-salt",
+          "black-pepper"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Season and fill the dish",
+        "body": "Squeeze the bread lightly (keep the milk for the custard) and mash it into the beef with the apricot jam, 1/3 cup raisins, and 1 tbsp vinegar. Press into the baking dish and smooth the top. Whisk the squeezed-out milk into the custard and pour it over. Tuck the bay leaves upright into the surface.",
+        "ingredient_refs": [
+          "white-bread",
+          "milk",
+          "ground-beef",
+          "apricot-jam",
+          "raisins",
+          "red-wine-vinegar",
+          "eggs",
+          "bay-leaves"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Bake",
+        "body": "Bake in the preheated 350 F oven until the custard is set, puffed, and golden at the edges, 35 minutes.",
+        "ingredient_refs": [
+          "eggs",
+          "ground-beef"
+        ],
+        "clock_minutes": 35,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Cook the yellow rice",
+        "body": "While the bobotie bakes, combine the rice, 2 1/4 cups water, 1/2 tsp turmeric, the cinnamon stick, the remaining raisins, and 1/2 tsp salt in a 2-quart saucepan. Boil, cover, cook on low 15 minutes, and rest covered 10. Runs inside step 4 (overlap stated).",
+        "ingredient_refs": [
+          "long-grain-rice",
+          "rice-water",
+          "turmeric",
+          "cinnamon-stick",
+          "raisins",
+          "kosher-salt"
+        ],
+        "clock_minutes": 25,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Make the sambal",
+        "body": "Toss the tomatoes with the sambal onion, 1 tbsp vinegar, the sugar, and 1/4 tsp salt. Runs inside step 4 (overlap stated).",
+        "ingredient_refs": [
+          "tomatoes",
+          "yellow-onions",
+          "red-wine-vinegar",
+          "sugar",
+          "kosher-salt"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Rest and serve",
+        "body": "Rest the bobotie 5 minutes, then cut into squares. Remove the cinnamon stick and fluff the rice. Serve with the sambal.",
+        "ingredient_refs": [
+          "ground-beef",
+          "cinnamon-stick",
+          "long-grain-rice",
+          "tomatoes"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "filling",
+        "name": "curried beef filling",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ground beef",
+          "onions",
+          "garlic",
+          "curry powder",
+          "turmeric",
+          "apricot jam",
+          "raisins",
+          "bread",
+          "milk",
+          "vinegar"
+        ]
+      },
+      {
+        "component_id": "bread",
+        "name": "white sandwich bread",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "white sandwich bread"
+        ],
+        "contract": "Store-bought white sandwich bread whose label lists no soy (including soy flour or soy lecithin) and no sesame."
+      },
+      {
+        "component_id": "custard",
+        "name": "egg custard with bay leaves",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "eggs",
+          "milk",
+          "bay leaves",
+          "turmeric"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "yellow rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rice",
+          "turmeric",
+          "cinnamon stick",
+          "raisins",
+          "water"
+        ]
+      },
+      {
+        "component_id": "sambal",
+        "name": "tomato-onion sambal",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomatoes",
+          "onion",
+          "vinegar",
+          "sugar"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "9 x 13-inch baking dish",
+      "2-quart saucepan with lid",
+      "2 bowls",
+      "whisk"
+    ],
+    "methods": [
+      "saute",
+      "bake",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 60,
+    "total_time_minutes": 75,
+    "prep_minutes": 15,
+    "cook_minutes": 60,
+    "total_minutes": 75,
+    "time_clock": "Prep 15 + cook 60 = 75 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0 and has heated 35 minutes when the dish goes in. The rice and sambal are made inside the bake (steps 5 and 6 state the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        7
+      ],
+      "overlap_steps": [
+        5,
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0 and has heated 35 minutes when the dish goes in. The rice and sambal are made inside the bake (steps 5 and 6 state the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven preheated to 350 F. Medium skillet for the beef. Covered low simmer for the rice.",
+    "doneness": "Custard set, puffed, and golden at the edges, with no liquid when the dish is tilted; filling 160 F. Rice tender and yellow.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains beef (meat) and milk."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: contains beef, milk, egg, and wheat.",
+    "allergens": [
+      "meat",
+      "egg",
+      "milk",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the ground beef.",
+      "Egg and milk from the custard and the soaked bread.",
+      "Wheat from the bread.",
+      "The white sandwich bread is a store-bought hard contract: the label lists no soy (including soy flour or soy lecithin) and no sesame.",
+      "No soy, sesame, fish, shellfish, or nuts (traditional almond garnish omitted)."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains beef (meat) and milk.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "savory",
+      "rich",
+      "tender",
+      "tangy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'south-african' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "811bef9977fb17a3a52cad0f9b1759d6e81fe6c3af5baadb8f586d206a8c369b",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_south-african-bobotie_v1",
+    "dish_id": "south-african-bobotie",
+    "recipe_version_id": "rv_south-african-bobotie_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "south-african-bobotie.webp",
+    "card_ref": "south-african-bobotie-640.webp",
+    "master_filename": "south-african-bobotie.webp",
+    "card_filename": "south-african-bobotie-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "south-african-bobotie.webp",
+        "spec_catalog_path": "/images/meals/south-african-bobotie.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "south-african-bobotie-640.webp",
+        "spec_catalog_path": "/images/meals/south-african-bobotie-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "1a717a9ca10aaef3f573b8f0dfd0c9efd19cba0da43449de0a78a1a3fef730dd",
+      "master_sha256": "95783fcab6a10984a2565a1876eda102d119169cb9daf7213de4dfae3ec3403f",
+      "card_sha256": "c1e3aecb7a67611ae27aa5db9d6e6ac470c05cf3eba5070ca2259e9b0e1dee48"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "1a717a9ca10aaef3f573b8f0dfd0c9efd19cba0da43449de0a78a1a3fef730dd",
+      "south-african-bobotie.webp": "95783fcab6a10984a2565a1876eda102d119169cb9daf7213de4dfae3ec3403f",
+      "south-african-bobotie-640.webp": "c1e3aecb7a67611ae27aa5db9d6e6ac470c05cf3eba5070ca2259e9b0e1dee48"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 60 = 75 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0 and has heated 35 minutes when the dish goes in. The rice and sambal are made inside the bake (steps 5 and 6 state the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0 and has heated 35 minutes when the dish goes in. The rice and sambal are made inside the bake (steps 5 and 6 state the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "south-african-bobotie.webp 1200x900 and south-african-bobotie-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make a half batch in an 8 x 8 dish; leftovers reheat well.",
+    "2": "Half batch in an 8 x 8 dish; bake 30 minutes.",
+    "4": "As written.",
+    "do_not_scale": [
+      "custard needs at least 1/2 inch depth to set evenly"
+    ]
+  },
+  "coverage_contribution": "South African 0 to 1. First custard-topped bake; a sweet-savory curry profile the catalog lacks.",
+  "near_duplicate_review": "Compared with cottage-pie: egg custard top instead of potato, curried and fruity. Compared with baked-ziti-italian-sausage: no pasta, no cheese. Compared with spiced-lamb-meatballs: beef bake, not meatballs.",
+  "not_duplicate_of": "Not moussaka (rejected). Not a shepherd's pie.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}
