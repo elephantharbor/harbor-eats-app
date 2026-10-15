@@ -208,8 +208,9 @@ describeHosted("Wave-12 catalog (hosted preview)", () => {
     const hhRequest = hh001.request;
     const hhHeaders = { ...hh001.cookieHeader, "Content-Type": "application/json" };
     const hhSearch = await discoverySearchAll(hhRequest, base, hhHeaders);
-    // Guard against the wave-12 failure class: a restricted household must not see all 85.
-    expect(hhSearch.unique.size).toBeLessThan(85);
+    // Guard against the wave-12 failure class: a restricted household must not see the whole catalog.
+    // Compare with the catalog size measured above, not a literal; HH001 legitimately sees 86 of 185 after Wave-15.
+    expect(hhSearch.unique.size).toBeLessThan(discover75.unique.size);
     for (const blocked of HH001_BLOCKED) {
       expect(hhSearch.slugs).not.toContain(blocked);
     }
