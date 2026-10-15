@@ -39,7 +39,13 @@ function sqliteShim(database) {
           return { success: true };
         },
       });
-      return { bind: (...params) => bound(params) };
+      return {
+        bind: (...params) => {
+          // Mirror D1: more than 100 bound parameters fails ("too many SQL variables").
+          if (params.length > 100) throw new Error(`D1_ERROR: too many SQL variables (${params.length})`);
+          return bound(params);
+        },
+      };
     },
   };
 }
@@ -244,6 +250,7 @@ describe("catalog import", () => {
     expect(again.ok).toBe(true);
     expect(again.unchanged).toHaveLength(160);
     const reloaded = await loadPublishedCatalog(shim);
+    expect(reloaded.ok, reloaded.error || reloaded.detail).toBe(true);
     expect(reloaded.count).toBe(135);
     expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_version").get().c).toBe(160);
     expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_ingredient").get().c).toBe(

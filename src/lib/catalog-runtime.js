@@ -6,6 +6,9 @@
 
 import { isNormallyRecommendable } from "./catalog-publish.js";
 
+/** D1 allows at most 100 bound parameters per statement. */
+export const D1_MAX_IN_PARAMS = 90;
+
 export function catalogReadsFromD1(env) {
   const source = env && (env.CATALOG_SOURCE || env.catalog_source);
   return source === "d1";
@@ -297,21 +300,30 @@ export async function loadPublishedCatalog(db) {
     if (!ids.length) {
       return { ok: true, source: "d1", count: 0, records: [], meals: [], planner: [], versionsById: {} };
     }
-    const placeholders = ids.map(() => "?").join(",");
-    const childSql = [
-      `SELECT * FROM catalog_ingredient WHERE recipe_version_id IN (${placeholders})`,
-      `SELECT * FROM catalog_step WHERE recipe_version_id IN (${placeholders})`,
-      `SELECT * FROM catalog_taste_tag WHERE recipe_version_id IN (${placeholders})`,
-      `SELECT * FROM catalog_dietary_label WHERE recipe_version_id IN (${placeholders})`,
-      `SELECT * FROM catalog_allergen WHERE recipe_version_id IN (${placeholders})`,
-      `SELECT * FROM catalog_equipment WHERE recipe_version_id IN (${placeholders})`,
-      `SELECT * FROM catalog_eligibility_tag WHERE recipe_version_id IN (${placeholders})`,
-      `SELECT * FROM catalog_image_ref WHERE recipe_version_id IN (${placeholders})`,
-      `SELECT * FROM catalog_provenance WHERE recipe_version_id IN (${placeholders})`,
+    // D1 caps bound parameters per statement at 100, so the IN (...) lists are chunked.
+    const chunks = [];
+    for (let i = 0; i < ids.length; i += D1_MAX_IN_PARAMS) chunks.push(ids.slice(i, i + D1_MAX_IN_PARAMS));
+    const childTables = [
+      "catalog_ingredient",
+      "catalog_step",
+      "catalog_taste_tag",
+      "catalog_dietary_label",
+      "catalog_allergen",
+      "catalog_equipment",
+      "catalog_eligibility_tag",
+      "catalog_image_ref",
+      "catalog_provenance",
     ];
-    const childRows = typeof db.batch === "function"
-      ? (await db.batch(childSql.map((sql) => db.prepare(sql).bind(...ids)))).map((result) => result?.results || [])
-      : await Promise.all(childSql.map((sql) => all(db, sql, ...ids)));
+    const queries = [];
+    for (const table of childTables) {
+      for (const chunk of chunks) {
+        queries.push({ sql: `SELECT * FROM ${table} WHERE recipe_version_id IN (${chunk.map(() => "?").join(",")})`, params: chunk });
+      }
+    }
+    const flat = typeof db.batch === "function"
+      ? (await db.batch(queries.map((q) => db.prepare(q.sql).bind(...q.params)))).map((result) => result?.results || [])
+      : await Promise.all(queries.map((q) => all(db, q.sql, ...q.params)));
+    const childRows = childTables.map((_, t) => flat.slice(t * chunks.length, (t + 1) * chunks.length).flat());
     const [ingredients, steps, taste, dietary, allergens, equipment, eligibility, images, provenance] = childRows;
     const children = {
       ingredients: groupBy(ingredients),
