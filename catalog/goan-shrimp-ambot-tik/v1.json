@@ -1,0 +1,639 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-16, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-16-2026-10-15",
+  "batch_label": "wave-16",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-16",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "goan-shrimp-ambot-tik",
+    "slug": "goan-shrimp-ambot-tik",
+    "title": "Goan Shrimp Ambot Tik: Sour-Spicy Red Chile Curry with Basmati Rice",
+    "description": "Shrimp simmered in a brick-red, sour-hot Goan curry built on browned onion and tomato and a paste of Kashmiri chili powder, garlic, ginger, cumin, turmeric, black pepper, tamarind, and cider vinegar. Served over steamed basmati rice with cilantro.",
+    "cuisine": "goan",
+    "meal_format": "curry-over-rice",
+    "primary_ingredient": "shrimp",
+    "vocabulary_tag_ids": [
+      "curries",
+      "spicy",
+      "tangy",
+      "indian",
+      "shrimp"
+    ],
+    "current_recipe_id": "rcp_goan-shrimp-ambot-tik",
+    "current_version_id": "rv_goan-shrimp-ambot-tik_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_goan-shrimp-ambot-tik",
+    "dish_id": "goan-shrimp-ambot-tik",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-16-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_goan-shrimp-ambot-tik_v1",
+    "recipe_id": "rcp_goan-shrimp-ambot-tik",
+    "dish_id": "goan-shrimp-ambot-tik",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Goan Shrimp Ambot Tik: Sour-Spicy Red Chile Curry with Basmati Rice",
+    "description": "Shrimp simmered in a brick-red, sour-hot Goan curry built on browned onion and tomato and a paste of Kashmiri chili powder, garlic, ginger, cumin, turmeric, black pepper, tamarind, and cider vinegar. Served over steamed basmati rice with cilantro.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "shrimp",
+        "name": "large shrimp (21-25 per lb)",
+        "display_name": "large shrimp (21-25 per lb), peeled and deveined",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1/2 tsp shrimp, 1 tsp curry, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chili-powder",
+        "name": "Kashmiri chili powder",
+        "display_name": "Kashmiri chili powder",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tamarind",
+        "name": "tamarind concentrate",
+        "display_name": "tamarind concentrate",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "vinegar",
+        "name": "apple cider vinegar",
+        "display_name": "apple cider vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "large yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato",
+        "name": "plum tomato",
+        "display_name": "large plum tomato",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "curry-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "for the curry",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "basmati-rice",
+        "name": "basmati rice",
+        "display_name": "basmati rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the rice until the rinse runs nearly clear. Pat the shrimp dry and toss with the turmeric and 1/2 tsp salt. In a small bowl stir the chili powder, garlic, ginger, cumin, black pepper, tamarind, vinegar, and sugar into a thick paste. Chop the onion, tomato, and cilantro.",
+        "ingredient_refs": [
+          "basmati-rice",
+          "shrimp",
+          "turmeric",
+          "kosher-salt",
+          "chili-powder",
+          "garlic",
+          "ginger",
+          "cumin",
+          "black-pepper",
+          "tamarind",
+          "vinegar",
+          "sugar",
+          "yellow-onion",
+          "tomato",
+          "cilantro"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the rice",
+        "body": "Combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan. Bring to a boil over high, about 4 minutes, then cover, turn to low, and cook 15 minutes; leave it covered off the heat to rest 10 minutes. The covered cooking and rest run inside steps 3 to 6 (overlap stated).",
+        "ingredient_refs": [
+          "basmati-rice",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Brown the onion and tomato",
+        "body": "Heat the oil in a 12-inch skillet over medium. Cook the onion, stirring often, until deep golden, about 8 minutes. Add the tomato and cook until it collapses, about 3 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "yellow-onion",
+          "tomato"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Cook the paste",
+        "body": "Add the chile paste and cook, stirring constantly, until it darkens to brick red and the oil separates at the edges, about 3 minutes.",
+        "ingredient_refs": [
+          "chili-powder",
+          "garlic",
+          "ginger",
+          "cumin",
+          "black-pepper",
+          "tamarind",
+          "vinegar",
+          "sugar"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Simmer the shrimp",
+        "body": "Stir in 3/4 cup water and 1 tsp salt and bring to a simmer, then simmer 3 minutes. Add the shrimp and simmer, turning them in the sauce, until pink and opaque throughout, about 4 minutes.",
+        "ingredient_refs": [
+          "curry-water",
+          "kosher-salt",
+          "shrimp"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Fluff the rice, spoon the curry over, and scatter the cilantro.",
+        "ingredient_refs": [
+          "basmati-rice",
+          "shrimp",
+          "cilantro"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "curry",
+        "name": "shrimp ambot tik",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "shrimp",
+          "turmeric",
+          "onion",
+          "tomato",
+          "Kashmiri chili powder",
+          "garlic",
+          "ginger",
+          "cumin",
+          "black pepper",
+          "tamarind",
+          "cider vinegar",
+          "sugar",
+          "water"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "steamed basmati",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "basmati rice",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "2-quart saucepan with lid",
+      "12-inch skillet",
+      "small bowl"
+    ],
+    "methods": [
+      "saute",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 30,
+    "total_time_minutes": 40,
+    "prep_minutes": 10,
+    "cook_minutes": 30,
+    "total_minutes": 40,
+    "time_clock": "Prep 10 + cook 30 = 40 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 6 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 30 minutes of steps 2 to 6.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "12-inch skillet over medium for the onion and paste, a gentle simmer for the shrimp. 2-quart saucepan covered on low for the rice.",
+    "doneness": "Onion deep golden. Paste darkened to brick red with oil separating at the edges. Shrimp pink and opaque throughout (145 F). Rice tender and separate.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-16",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": true,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: shrimp is shellfish."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: shrimp, spices, vinegar, tamarind, vegetables, and oil; no coconut milk, cream, or ghee.",
+    "allergens": [
+      "shellfish"
+    ],
+    "allergen_notes": [
+      "Shellfish from the shrimp.",
+      "No egg, milk, soy, wheat, sesame, fish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: shrimp is shellfish.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "curries",
+      "spicy",
+      "tangy",
+      "indian",
+      "shrimp"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'goan' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook shrimp to 145 F, until opaque throughout.",
+    "culinary_hash": "090f393c7fd443d39ab31ac33a925463efd4e269691606bba6edb68dc159dfac",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_goan-shrimp-ambot-tik_v1",
+    "dish_id": "goan-shrimp-ambot-tik",
+    "recipe_version_id": "rv_goan-shrimp-ambot-tik_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "goan-shrimp-ambot-tik.webp",
+    "card_ref": "goan-shrimp-ambot-tik-640.webp",
+    "master_filename": "goan-shrimp-ambot-tik.webp",
+    "card_filename": "goan-shrimp-ambot-tik-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "goan-shrimp-ambot-tik.webp",
+        "spec_catalog_path": "/images/meals/goan-shrimp-ambot-tik.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "goan-shrimp-ambot-tik-640.webp",
+        "spec_catalog_path": "/images/meals/goan-shrimp-ambot-tik-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "cc0f2a0cc43915936ace6ad47e1e61fa630bfb2bd36d82db71963d4024c8758b",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "cc0f2a0cc43915936ace6ad47e1e61fa630bfb2bd36d82db71963d4024c8758b",
+      "master_sha256": "d844a47e5069f493f9c8c6b8ce09a79639dbbe59b04eff29e73ee18bcd8b33ec",
+      "card_sha256": "bd8416d8d3668fcce0365311d2347378e6090bf772c73f0facfe4b1194f59400"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "cc0f2a0cc43915936ace6ad47e1e61fa630bfb2bd36d82db71963d4024c8758b",
+      "goan-shrimp-ambot-tik.webp": "d844a47e5069f493f9c8c6b8ce09a79639dbbe59b04eff29e73ee18bcd8b33ec",
+      "goan-shrimp-ambot-tik-640.webp": "bd8416d8d3668fcce0365311d2347378e6090bf772c73f0facfe4b1194f59400"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 30 = 40 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 6 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 30 minutes of steps 2 to 6."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "goan-shrimp-ambot-tik.webp 1200x900 and goan-shrimp-ambot-tik-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 10-inch skillet; a quarter of the rice and water in a 1-quart saucepan.",
+    "2": "Half of everything; keep the 12-inch skillet and 2-quart saucepan.",
+    "4": "As written.",
+    "do_not_scale": [
+      "browning the onion: about 8 minutes regardless of batch size"
+    ]
+  },
+  "coverage_contribution": "A shrimp curry, which the catalog does not have (shrimp appear only in a pasta, a boil, and a laksa). Goa is new as a label. It is sour and hot with no coconut, so it does not repeat the coconut seafood stews.",
+  "near_duplicate_review": "Compared with malaysian-curry-laksa: a thick tamarind-vinegar curry over rice, not a coconut noodle soup. Compared with brazilian-fish-moqueca: shrimp in a chile-vinegar curry, no coconut milk or peppers. Compared with bengali-mustard-fish: shrimp in a red chile paste, not fish in mustard seed sauce. Compared with coconut-chickpea-curry: shellfish, and no coconut.",
+  "not_duplicate_of": "Not a coconut shrimp curry (xacuti or caldinho).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

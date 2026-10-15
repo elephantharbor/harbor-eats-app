@@ -1,0 +1,594 @@
+{
+  "wave": "wave-16",
+  "round": "r2",
+  "auditor": "independent (Vale role)",
+  "date": "2026-10-15",
+  "combined_status": "15/15 certified (audit gates); no FAIL outstanding",
+  "scope_note": "Certification here is the audit verdict only. Packages still carry certification null; nothing imported, D1 untouched.",
+  "byte_identity_check": "The 10 author-r2 packages (11-12 files each) were diffed recursively against /workspace/wave16-backups/wave-16-author-r2-20261015-1649.tar.gz (the frozen r2 state audited in r1) and against the pre-r3 tarball: identical, preflight and freeze reports included. Content files also match the auditor's own r1 working copies; those copies differ only in the FREEZE_INTEGRITY/STRUCTURAL_PREFLIGHT reports the auditor regenerated in them. notes/pre-r3-file-hashes.sha256 also verifies for all 10.",
+  "counts": {
+    "total": 15,
+    "certified": 15,
+    "fail": 0,
+    "pass_clean": 2,
+    "pass_with_notes": 13,
+    "rejudged_r2": 5,
+    "carried_from_r1": 10,
+    "image_regenerations_required": 0
+  },
+  "candidates": {
+    "austrian-pork-schnitzel-potato-salad": {
+      "title": "Austrian Pork Schnitzel with Warm Viennese Potato Salad and Lemon",
+      "round_judged": "r2",
+      "package_revision": "author-r3",
+      "byte_identical_to_r1": false,
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": [
+        "E: optionally append '(about 62 minutes if you make the crumbs)' to time_clock/README so the total shows both paths. Non-blocking.",
+        "B/D: the fallback needs a food processor, which is not in the equipment list. Add 'food processor (only for the homemade-crumb fallback)', or allow a box grater. About 6 oz of day-old bread dries to roughly 1 1/4-1 1/2 cups of fine crumbs, so it's borderline; 'about 7 oz' would give margin. Keep the crumbs pale when drying, since toasted crumbs brown fast in the fry. All non-blocking.",
+        "B (carried): 2 cups oil \u22483/8 inch vs 'about 1/4 inch'; surplus, non-blocking. G: mustard disclosed."
+      ],
+      "r1_verdict": "PASS WITH NOTES",
+      "r1_failed_gates": [],
+      "culinary_hash": "c19fa32db70ff90dc3220518bd5f645d3183801a0a9c8cd85085400fc0ac97ec",
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `involved` (sidecar score 7), ingredient_complexity `simple` (sidecar score 0, 11 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: 17 ingredients, 6 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Main path clock unchanged: 12 + (18+4+14+2) = 50 with store-bought crumbs. The homemade-crumb fallback (about 12 minutes) is not in the total. Decision: acceptable as a note, not a FAIL. It is a conditional path ('If you cannot find them'), its extra time is stated where the cook reads it ('This adds about 12 minutes before step 1'), and the default path's clock is accurate. The Wave-15 partial-freeze FAILs were different: those were mandatory steps on the main path that the clock silently dropped."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Breadcrumb contract unchanged ('wheat flour, yeast, salt only'), now with a fallback: day-old plain bakery bread whose label lists only wheat flour, water, yeast and salt. That keeps the same allergen boundary (wheat only; no milk, soy, sesame, egg). The allergen note is updated to match."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "Unchanged: pork, not HH001; wheat and egg tokenized; Dijon mustard disclosed in allergen notes and runtime_enum_gaps. The fallback bread adds no new allergen."
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Vocabulary tags ['crispy', 'tangy', 'savory'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Compared with crispy-skillet-chicken-sandwiches: a pounded pork cutlet with a potato salad, not a chicken sandwich. Compared with air-fryer-honey-mustard-pork: breaded and shallow-fried thin cutlets, not a glazed tenderloin. Compared with southern-smothered-pork-chops: crisp breaded cutlets, not chops braised in gravy. Compared with kasespatzle-caramelized-onions: a cutlet and potato salad, not ch Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Viewed at full size against image-plating-brief.md and the recipe: main, sides and garnishes are as briefed; no invented ingredient or side; identity is unambiguous."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Image files byte-identical to r1 (no regeneration): source, master, card and any rejected files are absent from the r2\u2192r3 diff, and hashes still match image.file_hashes. Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r3` consistent across v1.json top level, recipe_version, image, d03 sidecar, image-state, README, brief and prompt; revision_history entry author-r2\u2192author-r3 with from/to culinary_hash. The auditor recomputed culinary_hash (c19fa32db70ff90d\u2026), which matches the field and the history. certification null, kitchen_tested false. FREEZE_INTEGRITY re-run on copies with both tool versions: PASS, 26/26. Structural preflight re-run: PASS."
+        }
+      }
+    },
+    "cambodian-fish-amok": {
+      "title": "Cambodian Fish Amok: Steamed Coconut-Lemongrass Fish Custards with Jasmine Rice",
+      "round_judged": "r2",
+      "package_revision": "author-r3",
+      "byte_identical_to_r1": false,
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": [
+        "C/serving: 6 ramekins for 4 servings averages 1.5 per person, so '1 or 2 ramekins per person' means unequal plates. Optional wording: 'serve 1 1/2 ramekins per person, or 1 each with the extra two to share'. Non-blocking.",
+        "E: about 29 minutes at a boil with 4 cups of water in the wok is fine, but suggest 'check the water when you swap the tiers and top up with boiling water if needed'. Non-blocking.",
+        "K (carried from r1): the green garnish reads as thicker green-bean/scallion lengths than slivered lime leaf, and the custard surface is grainy. Identity reads; the text was correctly not changed to match the image.",
+        "G: coconut disclosed (no importer token); fish-sauce contract unchanged and HH001 still valid."
+      ],
+      "r1_verdict": "FAIL",
+      "r1_failed_gates": [
+        "B"
+      ],
+      "culinary_hash": "f942451e0ebd1da787161d41f1feaf9cb1d1e69a4ffeb302d43b08c753b275d0",
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 5), ingredient_complexity `standard` (sidecar score 3, 14 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "r1 FAIL resolved. Capacity: six 10-oz ramekins hold \u22481.77 L. The \u22481.27-1.33 L mix plus the \u224860 ml coconut-cream topping is \u22481.33-1.39 L, so each is \u224875-79% full; step 3 says 'a scant 1 cup each, about three-quarters full' (a scant cup \u2248 220-235 ml of 296 ml), consistent with the total. Fit: three 4-inch ramekins need a circle of \u22488.6 in; a 12-inch bamboo tier has \u224811 in of usable floor, so three per tier fit with steam gaps. A 12-inch bamboo steamer seated in a 14-inch flat-bottomed wok is the standard pairing; its base sits about 2+ in above the wok floor, and 4 cups of water is \u22481-1.5 in deep, so the water stays below the steamer as step 4 requires. Equipment, heat, steps 3-5, food safety, scaling and do-not-scale lines all name the same vessels; no stale '4 ramekins', '12-ounce', 'basket' or '6-quart pot' strings remain outside revision_history."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "1 serving: a quarter of the mix (\u2248350 ml) in 2 ramekins \u224859% full ('about half full'), one tier, check at 16 minutes: consistent. 2 servings: half (\u2248700 ml) in 3 ramekins \u224879% full, one tier, 22 minutes, no swap: consistent. 4: as written. Do-not-scale fill and steaming-time rules agree with the steps."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 12+5+5 = 22, cook 30+2 = 32, total 54 (matches prep/cook/total fields, time_clock and README). Step 4's 30 minutes = 6 to boil + ~1 to set the steamer + 22 steam + 1 topping; the tier swap at 11 minutes is quick. Rice 4+15+10 = 29 inside 32. PASS."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Fish sauce contract: anchovy, salt (sugar optional), no shrimp/shellfish (e.g. Red Boat-style); plausible and HH001-safe. Coconut milk: plain, no additives contract. Kroeung is made from scratch."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Finfish only; no dairy, shellfish, meat or nuts; egg allowed. HH001 true. Coconut disclosed in allergen notes (no coconut token in the importer); fish sauce tokenized finfish."
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Vocabulary tags ['creamy', 'herbaceous', 'tender', 'cod'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Compared with thai-fish-cakes-cucumber-relish: a soft steamed coconut custard with fish chunks, not fried fish cakes. Compared with brazilian-fish-moqueca: steamed and set with egg, not a stew. Compared with ginger-scallion-fish-packets: fish in a lemongrass-coconut custard in ramekins, not steamed in packets with ginger and scallion. Compared with thai-red-curry-kabocha: a fresh herb paste set in Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Image unchanged (byte-identical to r1). The hero shows two spinach-lined ramekins with rice. The recipe now makes six and serves '1 or 2 ramekins per person', so two ramekins reads as one diner's generous serving: consistent, no regen. The r1 garnish/texture observation stands as a note."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Image files byte-identical to r1 (no regeneration): source, master, card and any rejected files are absent from the r2\u2192r3 diff, and hashes still match image.file_hashes. Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r3` consistent across v1.json top level, recipe_version, image, d03 sidecar, image-state, README, brief and prompt; revision_history entry author-r2\u2192author-r3 with from/to culinary_hash. The auditor recomputed culinary_hash (f942451e0ebd1da7\u2026), which matches the field and the history. certification null, kitchen_tested false. FREEZE_INTEGRITY re-run on copies with both tool versions: PASS, 26/26. Structural preflight re-run: PASS."
+        }
+      }
+    },
+    "cuban-picadillo-rice": {
+      "title": "Cuban Picadillo with Green Olives, Capers, and Raisins over White Rice",
+      "round_judged": "r2",
+      "package_revision": "author-r3",
+      "byte_identical_to_r1": false,
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": [
+        "N/F: as hard rules on the ingredient lines, both are stricter than the allergen boundary needs, and stricter than most US shelf products. Typical canned tomato sauce adds citric acid, spices or natural flavour; most pimiento-stuffed olives use pimiento paste with sodium alginate/guar gum and lactic acid. Consider loosening to the allergen-relevant rule, e.g. 'label lists no wheat, milk, soy, fish or nuts', so shoppers aren't blocked. Non-blocking.",
+        "K (carried, not addressed): olives are sliced rings rather than halved; still reads. Acceptable."
+      ],
+      "r1_verdict": "PASS WITH NOTES",
+      "r1_failed_gates": [],
+      "culinary_hash": "2ccffe55ac66494fbd6cb122094e3b3e1dfa3b6d0bd6810b86d2d1821c91a74b",
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 4), ingredient_complexity `simple` (sidecar score 1, 12 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: 17 ingredients, 6 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Prep 10 + cook 35 = 45 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 6 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 35 minutes of steps 2 to 6."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Label rules now on the ingredient lines: tomato sauce 'whose label lists tomatoes and salt only'; olives 'whose label lists olives, pimiento, water, salt, and vinegar only'. That closes the r1 note (rules were only in the allergen notes). No allergen depends on either."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: **Eligibility:** meat True, poultry False, finfish False, shellfish False, dairy False, vegetarian False, plant-based False, nut_policy `none`; HH001 False (Not HH001: beef is meat.). Labels ['dairy_free'].\n\n**Allergens:** ['meat']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid. Notes: ['Meat from the ground beef.', 'The tomato sauce label lists tomatoes and salt; the olive label lists olives, pimiento, water, salt, and vinegar.', 'No egg, milk, soy, wheat, sesame, fish, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Vocabulary tags ['savory', 'tangy', 'tender'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Compared with slow-cooker-ropa-vieja: ground beef simmered about 15 minutes, not shredded flank braised for hours. Compared with south-african-bobotie: no curry spices and no baked egg custard topping, though both use raisins. Compared with turkey-sloppy-joes: beef with olives, capers, and raisins over rice, not a sweet sauce on buns. Compared with cottage-pie: a skillet hash over rice, not a pota Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Viewed at full size against image-plating-brief.md and the recipe: main, sides and garnishes are as briefed; no invented ingredient or side; identity is unambiguous."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Image files byte-identical to r1 (no regeneration): source, master, card and any rejected files are absent from the r2\u2192r3 diff, and hashes still match image.file_hashes. Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r3` consistent across v1.json top level, recipe_version, image, d03 sidecar, image-state, README, brief and prompt; revision_history entry author-r2\u2192author-r3 with from/to culinary_hash. The auditor recomputed culinary_hash (2ccffe55ac66494f\u2026), which matches the field and the history. certification null, kitchen_tested false. FREEZE_INTEGRITY re-run on copies with both tool versions: PASS, 26/26. Structural preflight re-run: PASS."
+        }
+      }
+    },
+    "goan-shrimp-ambot-tik": {
+      "title": "Goan Shrimp Ambot Tik: Sour-Spicy Red Chile Curry with Basmati Rice",
+      "round_judged": "r1",
+      "package_revision": "author-r2",
+      "byte_identical_to_r1": true,
+      "verdict": "PASS",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": []
+    },
+    "hawaiian-ahi-poke-bowl": {
+      "title": "Hawaiian Shoyu Ahi Poke Bowls with Seasoned Rice, Cucumber, Avocado, and Edamame",
+      "round_judged": "r1",
+      "package_revision": "author-r2",
+      "byte_identical_to_r1": true,
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": [
+        "G/N: the 'previously frozen for parasite control' wording is harmless but not required for tuna (FDA exempts tuna from the parasite-freeze guidance); consider 'sold for raw consumption' alone. E: 5-minute rice rest fine."
+      ]
+    },
+    "indonesian-gado-gado-tempeh": {
+      "title": "Indonesian Gado-Gado with Pan-Fried Tempeh, Eggs, and Peanut Sauce",
+      "round_judged": "r1",
+      "package_revision": "author-r2",
+      "byte_identical_to_r1": true,
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": [
+        "I: third peanut-sauce meal in the catalog (with malian maafe and the peanut noodle bowl); distinct dish. G: peanut token correct; tempeh grain contract present."
+      ]
+    },
+    "jamaican-escovitch-snapper": {
+      "title": "Jamaican Escovitch Fish: Pan-Fried Snapper with Pickled Pepper-Onion Escovitch and Rice",
+      "round_judged": "r2",
+      "package_revision": "author-r3",
+      "byte_identical_to_r1": false,
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": [
+        "B: if you want the wording exact, 'a thin layer, a scant 1/8 inch' matches the arithmetic. Optional; non-blocking.",
+        "K (carried from r1): Scotch bonnet rings read like seeded banana-pepper rings; only a sliver of red skin shows. Non-blocking."
+      ],
+      "r1_verdict": "FAIL",
+      "r1_failed_gates": [
+        "B",
+        "C"
+      ],
+      "culinary_hash": "b3211dac4b00da9f19674cba1a9123c89bf522cad0af52e51b8119621efc7da8",
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 4), ingredient_complexity `standard` (sidecar score 2, 13 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "r1 FAIL resolved by the thin-layer option. 1/2 cup = 7.2 cu in over a 12-inch skillet's \u22489.5-10 in flat base (71-78 sq in) is \u22480.09-0.10 in deep: closer to 3/32-1/10 inch than a full 1/8 (0.125). Decision: acceptable. The quantity, heat line, step 4, scaling and do-not-scale note now agree on one figure. 'About 1/8 inch' is within ordinary cookbook tolerance (\u224820-25% under), and a thin layer is correct for pan-frying dredged fillets. r1 failed a 2.5x shortfall against '1/4 inch', which this is not. The 10-inch line (1/3 cup over an \u22488 in base \u22480.10 in) uses the same ratio, so it is internally consistent."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "r1 FAIL resolved: 1 serving 1/3 cup in a 10-inch skillet; 2 servings the full 1/2 cup in the 12-inch; 4 as written; the do-not-scale note gives both pan sizes. Consistent."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Clock unchanged: 12 + (5+6+17+3) = 43. PASS."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: **Eligibility:** meat False, poultry False, finfish True, shellfish False, dairy False, vegetarian False, plant-based False, nut_policy `none`; HH001 True (Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.). Labels ['dairy_free', 'fish'].\n\n**Allergens:** ['finfish', 'wheat']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid. Notes: ['Finfish from the snapper.', 'Wheat from the flour dredge.', 'No egg, milk, soy, sesame, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Vocabulary tags ['tangy', 'spicy', 'crispy'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Compared with senegalese-fish-yassa: a sharp vinegar pickle with Scotch bonnet and allspice, not slow-cooked lemon-mustard onions. Compared with red-snapper-veracruzana: pan-fried fillets under a pickled vegetable escovitch, not fish braised in tomato-olive sauce. Compared with pan-fried-trout-lemon-capers: a hot vinegar pickle over the fish, not a lemon-caper butter. Compared with jamaican-jerk-p Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Viewed at full size against image-plating-brief.md and the recipe: main, sides and garnishes are as briefed; no invented ingredient or side; identity is unambiguous."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Image files byte-identical to r1 (no regeneration): source, master, card and any rejected files are absent from the r2\u2192r3 diff, and hashes still match image.file_hashes. Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r3` consistent across v1.json top level, recipe_version, image, d03 sidecar, image-state, README, brief and prompt; revision_history entry author-r2\u2192author-r3 with from/to culinary_hash. The auditor recomputed culinary_hash (b3211dac4b00da9f\u2026), which matches the field and the history. certification null, kitchen_tested false. FREEZE_INTEGRITY re-run on copies with both tool versions: PASS, 26/26. Structural preflight re-run: PASS."
+        }
+      }
+    },
+    "korean-japchae-vegetables": {
+      "title": "Japchae: Korean Sweet Potato Glass Noodles with Vegetables and Shiitake",
+      "round_judged": "r1",
+      "package_revision": "author-r2",
+      "byte_identical_to_r1": true,
+      "verdict": "PASS",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": []
+    },
+    "persian-sabzi-polo-salmon": {
+      "title": "Persian Sabzi Polo with Seared Salmon: Herbed Dill Rice and Lemon",
+      "round_judged": "r1",
+      "package_revision": "author-r2",
+      "byte_identical_to_r1": true,
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": [
+        "K: rice grains look shorter than long basmati and the plate is round rather than oval; still reads as sabzi polo with crispy-skin salmon. Non-blocking."
+      ]
+    },
+    "russian-mushroom-stroganoff": {
+      "title": "Mushroom Stroganoff with Sour Cream, Dill, and Buttered Egg Noodles",
+      "round_judged": "r1",
+      "package_revision": "author-r2",
+      "byte_identical_to_r1": true,
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": [
+        "F: broth contract ('vegetables, salt, herbs only') plausible. G: mustard disclosed."
+      ]
+    },
+    "sichuan-mapo-tofu-shiitake": {
+      "title": "Sichuan Mapo Tofu with Shiitake and Jasmine Rice",
+      "round_judged": "r1",
+      "package_revision": "author-r2",
+      "byte_identical_to_r1": true,
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": [
+        "Brief says 'silken'; the recipe uses soft or medium tofu; the image is consistent with soft tofu. E: rice timing exact (29 vs 29 min). Cosmetic."
+      ]
+    },
+    "sicilian-pasta-alla-norma": {
+      "title": "Sicilian Pasta alla Norma with Golden Eggplant and Ricotta Salata",
+      "round_judged": "r1",
+      "package_revision": "author-r2",
+      "byte_identical_to_r1": true,
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": [
+        "E: the rigatoni water boils ~1 minute into step 4 and the pasta finishes ~1 minute into step 6; slight overrun, tolerable. F: ricotta salata 'made with microbial or vegetable rennet' is hard to verify (ricotta salata is whey-based; vegetarian status depends on the source cheese's rennet). Keep the contract but expect few labels to state it."
+      ]
+    },
+    "southern-shrimp-and-grits": {
+      "title": "Shrimp and Grits with Smoky Garlic-Lemon Pan Sauce and Cheddar Grits",
+      "round_judged": "r1",
+      "package_revision": "author-r2",
+      "byte_identical_to_r1": true,
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": [
+        "B/E: 1 1/2 lb large shrimp in one layer in a 12-inch skillet is tight; tolerable. I: one of two shrimp meals in the wave (with ambot tik); distinct."
+      ]
+    },
+    "thai-yum-nua-beef-salad": {
+      "title": "Thai Yum Nua: Seared Steak Salad with Lime-Chile Dressing and Jasmine Rice",
+      "round_judged": "r1",
+      "package_revision": "author-r2",
+      "byte_identical_to_r1": true,
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": [
+        "K: lettuce reads as romaine on close inspection (ribs, elongated leaves); the heavy crinkle is the only cabbage-like cue. Round plate vs the brief's oval platter is vessel shape only. Both non-blocking; no regen required.",
+        "E/B: two 3/4-lb flank halves side by side in a 12-inch skillet (~10 in base) is tight; may need to sear one at a time on a smaller skillet. Tolerable.",
+        "G: fish sauce tokenized finfish; no fish label needed beyond the token."
+      ]
+    },
+    "turkish-mucver-zucchini-fritters": {
+      "title": "Turkish M\u00fccver: Zucchini-Feta Fritters with Garlic Yogurt and Tomato-Cucumber Salad",
+      "round_judged": "r2",
+      "package_revision": "author-r3",
+      "byte_identical_to_r1": false,
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "fixes": [],
+      "notes": [
+        "B: batch 2 adds a fresh 2/3 cup to whatever oil is left after batch 1, so the second batch runs slightly deeper than 1/8 inch (more oil, not less; safe direction). Non-blocking.",
+        "K: a few dark specks in the yogurt (pepper-like) remain; trivial. E: six 3.5-inch fritters per batch in a 12-inch skillet is still tight (carried)."
+      ],
+      "r1_verdict": "FAIL",
+      "r1_failed_gates": [
+        "B"
+      ],
+      "culinary_hash": "f8a2f157239511d8c610aad7ac92b4fb95546a4b02765fa47423237242311644",
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `involved` (sidecar score 7), ingredient_complexity `standard` (sidecar score 2, 14 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "r1 FAIL resolved. 2/3 cup = 9.6 cu in over \u224871-78 sq in \u22480.12-0.14 in: about 1/8 inch, as heat, food-safety, step 5 and scaling state. The neutral-oil line is 1 1/3 cups (2/3 per batch). 10-inch line: 1/2 cup over an \u22488 in base \u22480.14 in, about 1/8: consistent. Dill raised to 1/2 cup = 8 tbsp: 1 yogurt + 2 scatter + 5 batter, and steps 2/3 allocate it exactly (the batter gets \u22485 tbsp vs \u22483.3 before; a flavour shift only)."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 6+12+5+2 = 25; cook 21+2 = 23; total 48 (fields, time_clock, README agree). Step 5's 21 minutes = 3 to heat + 8 + ~1 drain/add oil + 1 reheat + 8: reconciles."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: **Eligibility:** meat False, poultry False, finfish False, shellfish False, dairy True, vegetarian True, plant-based False, nut_policy `none`; HH001 False (Not HH001: feta and yogurt are dairy.). Labels ['vegetarian'].\n\n**Allergens:** ['egg', 'milk', 'wheat']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid. Notes: ['Egg from the eggs in the batter.', 'Milk from the feta and yogurt.', 'Wheat from the flour.', 'No soy, sesame, fish, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Description and component now read 'garlic-dill yogurt' / 'yogurt flecked with dill', supported by step 2. PASS."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Compared with japanese-okonomiyaki: small herb-feta zucchini fritters with yogurt, not a cabbage pancake with mayo and sauce. Compared with shallow-fried-green-tomatoes: grated zucchini batter, not cornmeal-coated tomato slices. Compared with greek-spanakopita: fritters, not a phyllo pie, though both use feta and dill. Compared with turkish-lahmacun: vegetarian, no lamb flatbread. Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Image unchanged. The r1 K note (green flecks in a garlic-only yogurt) is resolved by the text: step 2 now stirs 1 tbsp dill into the yogurt, so the herb-flecked swoosh matches the recipe. Three fritters, one broken open, feta, dill, salad: as briefed."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Image files byte-identical to r1 (no regeneration): source, master, card and any rejected files are absent from the r2\u2192r3 diff, and hashes still match image.file_hashes. Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v2.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands. v1 moved to rejected/ with a superseded record and its hash; regeneration_count 1."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Unchanged since r1 except the revised fields (field-by-field diff of v1.json, README, brief, prompt, sidecar and image-state against the author-r2 backup tarball, which is byte-identical to the state audited in r1). r1 evidence stands. r1: Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r3` consistent across v1.json top level, recipe_version, image, d03 sidecar, image-state, README, brief and prompt; revision_history entry author-r2\u2192author-r3 with from/to culinary_hash. The auditor recomputed culinary_hash (f8a2f157239511d8\u2026), which matches the field and the history. certification null, kitchen_tested false. FREEZE_INTEGRITY re-run on copies with both tool versions: PASS, 26/26. Structural preflight re-run: PASS."
+        }
+      }
+    }
+  }
+}

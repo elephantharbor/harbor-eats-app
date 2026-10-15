@@ -1,0 +1,645 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-16, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-16-2026-10-15",
+  "batch_label": "wave-16",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-16",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "hawaiian-ahi-poke-bowl",
+    "slug": "hawaiian-ahi-poke-bowl",
+    "title": "Hawaiian Shoyu Ahi Poke Bowls with Seasoned Rice, Cucumber, Avocado, and Edamame",
+    "description": "Cubes of sashimi-grade ahi tuna tossed in a shoyu dressing of soy sauce, sesame oil, sweet onion, scallions, ginger, and red chile flakes, served over vinegar-seasoned short-grain rice with cucumber, avocado, edamame, nori strips, and toasted sesame seeds.",
+    "cuisine": "hawaiian",
+    "meal_format": "bowl",
+    "primary_ingredient": "ahi tuna",
+    "vocabulary_tag_ids": [
+      "bowls",
+      "fresh",
+      "umami",
+      "american"
+    ],
+    "current_recipe_id": "rcp_hawaiian-ahi-poke-bowl",
+    "current_version_id": "rv_hawaiian-ahi-poke-bowl_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_hawaiian-ahi-poke-bowl",
+    "dish_id": "hawaiian-ahi-poke-bowl",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-16-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_hawaiian-ahi-poke-bowl_v1",
+    "recipe_id": "rcp_hawaiian-ahi-poke-bowl",
+    "dish_id": "hawaiian-ahi-poke-bowl",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Hawaiian Shoyu Ahi Poke Bowls with Seasoned Rice, Cucumber, Avocado, and Edamame",
+    "description": "Cubes of sashimi-grade ahi tuna tossed in a shoyu dressing of soy sauce, sesame oil, sweet onion, scallions, ginger, and red chile flakes, served over vinegar-seasoned short-grain rice with cucumber, avocado, edamame, nori strips, and toasted sesame seeds.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "tuna",
+        "name": "sashimi-grade ahi tuna",
+        "display_name": "sashimi-grade ahi (yellowfin) tuna sold for raw use",
+        "quantity": 1.25,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 3/4-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "sweet-onion",
+        "name": "sweet onion",
+        "display_name": "sweet onion (Maui or Vidalia)",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "very thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "chile-flakes",
+        "name": "crushed red chile flakes",
+        "display_name": "crushed red chile flakes",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "short-grain white rice",
+        "display_name": "short-grain (calrose) white rice",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.5,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "rice-vinegar",
+        "name": "unseasoned rice vinegar",
+        "display_name": "unseasoned rice vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "English cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "avocado",
+        "name": "ripe avocados",
+        "display_name": "ripe avocados",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "edamame",
+        "name": "frozen shelled edamame",
+        "display_name": "frozen shelled edamame",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "thawed under the warm tap",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "nori",
+        "name": "toasted nori sheet",
+        "display_name": "toasted nori sheet (label lists seaweed only)",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "snipped into thin strips",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sesame-seeds",
+        "name": "toasted sesame seeds",
+        "display_name": "toasted sesame seeds",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Rinse the rice",
+        "body": "Rinse the rice in a fine-mesh strainer under the running tap, rubbing gently, until the rinse runs nearly clear, about 2 minutes.",
+        "ingredient_refs": [
+          "rice"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the rice",
+        "body": "Combine the rice and 2 1/2 cups water in a 2-quart saucepan. Bring to a boil over high, about 4 minutes, then cover, turn to low, and cook 15 minutes; leave it covered off the heat to rest 5 minutes. The covered cooking and rest run inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "rice",
+          "rice-water"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Season the vinegar",
+        "body": "Stir the rice vinegar, sugar, and salt in a small bowl until dissolved.",
+        "ingredient_refs": [
+          "rice-vinegar",
+          "sugar",
+          "kosher-salt"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 4,
+        "title": "Make the poke",
+        "body": "Cut the tuna into 3/4-inch cubes. In a mixing bowl stir the soy sauce, sesame oil, sweet onion, scallions, ginger, and chile flakes; fold in the tuna and keep the bowl cold while you prepare the toppings.",
+        "ingredient_refs": [
+          "tuna",
+          "soy-sauce",
+          "sesame-oil",
+          "sweet-onion",
+          "scallions",
+          "ginger",
+          "chile-flakes"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 5,
+        "title": "Prep the toppings",
+        "body": "Dice the cucumber and slice the avocados, about 6 minutes. Thaw the edamame in a strainer under the warm tap, about 1 minute, and drain. Snip the nori into thin strips.",
+        "ingredient_refs": [
+          "cucumber",
+          "avocado",
+          "edamame",
+          "nori"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 6,
+        "title": "Season the rice",
+        "body": "Spread the hot rice in a wide bowl and fold in the seasoned vinegar with a paddle until glossy, about 2 minutes.",
+        "ingredient_refs": [
+          "rice",
+          "rice-vinegar"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Assemble",
+        "body": "Divide the rice among bowls. Top with the poke, cucumber, avocado, and edamame in sections, then the nori strips and sesame seeds.",
+        "ingredient_refs": [
+          "rice",
+          "tuna",
+          "cucumber",
+          "avocado",
+          "edamame",
+          "nori",
+          "sesame-seeds"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "poke",
+        "name": "shoyu ahi poke",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ahi tuna",
+          "soy sauce",
+          "toasted sesame oil",
+          "sweet onion",
+          "scallions",
+          "ginger",
+          "red chile flakes"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "seasoned short-grain rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "short-grain rice",
+          "water",
+          "rice vinegar",
+          "sugar",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "toppings",
+        "name": "bowl toppings",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cucumber",
+          "avocado",
+          "edamame",
+          "nori",
+          "sesame seeds"
+        ]
+      }
+    ],
+    "equipment": [
+      "2-quart saucepan with lid",
+      "fine-mesh strainer",
+      "mixing bowls",
+      "sharp chef's knife",
+      "rice paddle or spatula"
+    ],
+    "methods": [
+      "no-cook",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 23,
+    "cook_time_minutes": 12,
+    "total_time_minutes": 35,
+    "prep_minutes": 23,
+    "cook_minutes": 12,
+    "total_minutes": 35,
+    "time_clock": "Prep 23 + cook 12 = 35 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 5 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 5 resting, 24 minutes against 25 minutes of steps 2 to 5.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "cook_steps": [
+        2,
+        6,
+        7
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Only the rice is cooked: 2-quart saucepan brought to a boil, then covered on low. The tuna is served raw.",
+    "doneness": "Rice tender and slightly sticky. Tuna cold, deep red, and freshly dressed.",
+    "effort_level": "easy",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-16",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: fish, rice, vegetables, soy sauce, sesame, and seaweed.",
+    "allergens": [
+      "finfish",
+      "soy",
+      "wheat",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Finfish from the tuna.",
+      "Soy from the soy sauce and edamame.",
+      "Wheat from the soy sauce.",
+      "Sesame from the sesame oil and sesame seeds.",
+      "No egg, milk, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Nori label lists seaweed only. No mayonnaise and no furikake blend.",
+    "vocabulary_tag_ids": [
+      "bowls",
+      "fresh",
+      "umami",
+      "american"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'hawaiian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "The tuna is eaten raw. Buy tuna the fish counter sells for raw consumption (sashimi-grade, previously frozen for parasite control), keep it cold, and serve it the day it is bought. Raw fish is not advised for pregnant people, young children, older adults, or anyone with a weakened immune system.",
+    "culinary_hash": "1bbad2ae38e38b9fe81b61257962746d4feba7cb943c4464de2adcc9deee29e9",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_hawaiian-ahi-poke-bowl_v1",
+    "dish_id": "hawaiian-ahi-poke-bowl",
+    "recipe_version_id": "rv_hawaiian-ahi-poke-bowl_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "hawaiian-ahi-poke-bowl.webp",
+    "card_ref": "hawaiian-ahi-poke-bowl-640.webp",
+    "master_filename": "hawaiian-ahi-poke-bowl.webp",
+    "card_filename": "hawaiian-ahi-poke-bowl-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "hawaiian-ahi-poke-bowl.webp",
+        "spec_catalog_path": "/images/meals/hawaiian-ahi-poke-bowl.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "hawaiian-ahi-poke-bowl-640.webp",
+        "spec_catalog_path": "/images/meals/hawaiian-ahi-poke-bowl-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "af7c66d13b26e8fba4fd73aeb5ce6568e8c732d5e44e2661ffcce53c0bf5d913",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "af7c66d13b26e8fba4fd73aeb5ce6568e8c732d5e44e2661ffcce53c0bf5d913",
+      "master_sha256": "29cee8c7a54919761b274723a7af569e93149d30dac9659fee884614c5ad09ee",
+      "card_sha256": "629c97891f635bd6abb82c8ecda458eac187d4a60a85e13442e1f7b04479df0d"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "af7c66d13b26e8fba4fd73aeb5ce6568e8c732d5e44e2661ffcce53c0bf5d913",
+      "hawaiian-ahi-poke-bowl.webp": "29cee8c7a54919761b274723a7af569e93149d30dac9659fee884614c5ad09ee",
+      "hawaiian-ahi-poke-bowl-640.webp": "629c97891f635bd6abb82c8ecda458eac187d4a60a85e13442e1f7b04479df0d"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 23 + cook 12 = 35 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 5 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 5 resting, 24 minutes against 25 minutes of steps 2 to 5."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "hawaiian-ahi-poke-bowl.webp 1200x900 and hawaiian-ahi-poke-bowl-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "5 oz tuna and a quarter of everything; cook 1/2 cup rice with 2/3 cup water in a 1-quart saucepan.",
+    "2": "Half of everything; 1 cup rice with 1 1/4 cups water in a 1-quart saucepan.",
+    "4": "As written.",
+    "do_not_scale": [
+      "dressing the tuna: toss it no more than 30 minutes before serving at any batch size"
+    ]
+  },
+  "coverage_contribution": "An easy, no-cook HH001 fish dinner around raw tuna; the catalog has a seared-tuna niçoise and a citrus-cured ceviche but no poke. Hawaiian is otherwise only huli-huli chicken.",
+  "near_duplicate_review": "Compared with peruvian-ceviche-sweet-potato-corn: raw tuna in a soy-sesame dressing over rice, not citrus-cured flounder. Compared with salade-nicoise-seared-tuna: raw shoyu tuna on rice, not seared tuna on a French salad. Compared with sesame-soba-noodle-bowl: a rice bowl topped with raw fish, not a soba bowl. Compared with teriyaki-tofu-bowls: raw tuna, no glaze.",
+  "not_duplicate_of": "Not a spicy-mayo poke; dairy-free and egg-free.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

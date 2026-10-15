@@ -1,0 +1,571 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-16, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-16-2026-10-15",
+  "batch_label": "wave-16",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-16",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "persian-sabzi-polo-salmon",
+    "slug": "persian-sabzi-polo-salmon",
+    "title": "Persian Sabzi Polo with Seared Salmon: Herbed Dill Rice and Lemon",
+    "description": "Basmati rice parboiled, then steamed in layers with a big handful of dill, parsley, cilantro, chives, and garlic until fluffy and green-flecked, served with skin-on salmon seared until the skin is crisp and finished with lemon.",
+    "cuisine": "persian",
+    "meal_format": "fish-with-herbed-rice",
+    "primary_ingredient": "salmon",
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "fresh",
+      "crispy",
+      "middle-eastern",
+      "salmon"
+    ],
+    "current_recipe_id": "rcp_persian-sabzi-polo-salmon",
+    "current_version_id": "rv_persian-sabzi-polo-salmon_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_persian-sabzi-polo-salmon",
+    "dish_id": "persian-sabzi-polo-salmon",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-16-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_persian-sabzi-polo-salmon_v1",
+    "recipe_id": "rcp_persian-sabzi-polo-salmon",
+    "dish_id": "persian-sabzi-polo-salmon",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Persian Sabzi Polo with Seared Salmon: Herbed Dill Rice and Lemon",
+    "description": "Basmati rice parboiled, then steamed in layers with a big handful of dill, parsley, cilantro, chives, and garlic until fluffy and green-flecked, served with skin-on salmon seared until the skin is crisp and finished with lemon.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "basmati-rice",
+        "name": "basmati rice",
+        "display_name": "basmati rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parboil-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 8,
+        "unit": "cup",
+        "note": "for parboiling",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "steam-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "for steaming",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.33,
+        "unit": "tbsp",
+        "note": "2 tbsp parboil water, 1 tsp salmon",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dill",
+        "name": "fresh dill",
+        "display_name": "fresh dill",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "chives",
+        "name": "chives",
+        "display_name": "chives",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 2,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "3 tbsp rice, 1 tbsp salmon",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "salmon",
+        "name": "skin-on salmon",
+        "display_name": "skin-on salmon portions, about 6 oz each",
+        "quantity": 4,
+        "unit": "fillet",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the rice in the strainer until the rinse runs nearly clear. Chop the dill, parsley, cilantro, and chives in a food processor with a few pulses (or by knife), mince the garlic, and mix them together. Pat the salmon dry and season with 1 tsp salt and the pepper. Cut the lemon into wedges.",
+        "ingredient_refs": [
+          "basmati-rice",
+          "dill",
+          "parsley",
+          "cilantro",
+          "chives",
+          "garlic",
+          "salmon",
+          "kosher-salt",
+          "black-pepper",
+          "lemon"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Parboil the rice",
+        "body": "Bring 8 cups water and 2 tbsp salt to a boil in a covered 4-quart pot over high, about 9 minutes to come to a boil. Add the rice and boil uncovered, stirring once, until the grains are tender outside but still firm at the center, 6 minutes. Drain in the strainer.",
+        "ingredient_refs": [
+          "parboil-water",
+          "kosher-salt",
+          "basmati-rice"
+        ],
+        "clock_minutes": 16,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Layer and steam",
+        "body": "Set the same pot over medium with 3 tbsp oil and 3 tbsp water. Spoon in a layer of rice, then a layer of herbs, and repeat, mounding it toward the center and ending with rice. Poke 4 holes to the bottom with a spoon handle. Wrap the lid in a clean towel, cover tightly, and cook over medium until steam escapes, about 3 minutes, then on low 20 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "steam-water",
+          "basmati-rice",
+          "dill",
+          "parsley",
+          "cilantro",
+          "chives",
+          "garlic"
+        ],
+        "clock_minutes": 23,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Sear the salmon",
+        "body": "During the last 10 minutes of step 3 (overlap stated): heat 1 tbsp oil in a 12-inch skillet over medium-high. Lay the salmon in skin side down, press each piece 10 seconds with a spatula, and cook until the skin is crisp, about 5 minutes. Flip and cook until it flakes and reaches 145 F, 2 to 3 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "salmon"
+        ],
+        "clock_minutes": 9,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Fluff the rice onto a platter so the herbs are spread through, set the salmon on top skin side up, and serve with the lemon wedges.",
+        "ingredient_refs": [
+          "basmati-rice",
+          "salmon",
+          "lemon"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "sabzi-polo",
+        "name": "herbed steamed rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "basmati rice",
+          "water",
+          "salt",
+          "dill",
+          "parsley",
+          "cilantro",
+          "chives",
+          "garlic",
+          "neutral oil"
+        ]
+      },
+      {
+        "component_id": "salmon",
+        "name": "seared salmon",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "salmon",
+          "salt",
+          "black pepper",
+          "neutral oil",
+          "lemon"
+        ]
+      }
+    ],
+    "equipment": [
+      "4-quart pot with lid",
+      "fine-mesh strainer",
+      "12-inch skillet",
+      "food processor or chef's knife",
+      "clean kitchen towel",
+      "thin spatula"
+    ],
+    "methods": [
+      "boil",
+      "steam",
+      "sear"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "crispy"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 41,
+    "total_time_minutes": 51,
+    "prep_minutes": 10,
+    "cook_minutes": 41,
+    "total_minutes": 51,
+    "time_clock": "Prep 10 + cook 41 = 51 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The salmon is seared during the last 10 minutes of the steaming (step 4 runs inside step 3, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        5
+      ],
+      "overlap_steps": [
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "4-quart pot at a full boil to parboil, then medium and low with a towel-wrapped lid to steam. 12-inch skillet over medium-high for the salmon.",
+    "doneness": "Rice grains long, separate, and tender; the herbs bright green. Salmon skin crisp and the flesh opaque and flaking at 145 F.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-16",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: rice, herbs, garlic, salmon, lemon, and oil; no butter.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish from the salmon.",
+      "No egg, milk, soy, wheat, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Oil only, no butter in the rice.",
+    "vocabulary_tag_ids": [
+      "herbaceous",
+      "fresh",
+      "crispy",
+      "middle-eastern",
+      "salmon"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'persian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook salmon to 145 F. Tie the towel corners up over the lid so they cannot reach the flame.",
+    "culinary_hash": "a75722a83eb0d380b193f63661c85a53f3434c545c1a1330826aed1e924d7d35",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_persian-sabzi-polo-salmon_v1",
+    "dish_id": "persian-sabzi-polo-salmon",
+    "recipe_version_id": "rv_persian-sabzi-polo-salmon_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "persian-sabzi-polo-salmon.webp",
+    "card_ref": "persian-sabzi-polo-salmon-640.webp",
+    "master_filename": "persian-sabzi-polo-salmon.webp",
+    "card_filename": "persian-sabzi-polo-salmon-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "persian-sabzi-polo-salmon.webp",
+        "spec_catalog_path": "/images/meals/persian-sabzi-polo-salmon.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "persian-sabzi-polo-salmon-640.webp",
+        "spec_catalog_path": "/images/meals/persian-sabzi-polo-salmon-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "6b4daba0d6c222864f95c372d5be093d6337c8dcc78c8ccd9076f2856747d4b3",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "6b4daba0d6c222864f95c372d5be093d6337c8dcc78c8ccd9076f2856747d4b3",
+      "master_sha256": "82c03ce6b24a4214bcb8965c40b0dd18af4c5f8c67d2ce537e615d5bb4b9c43a",
+      "card_sha256": "738c64eae3efa668c53f81a0962143758429c2b843bb45caa0094e07d8bce0f5"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "6b4daba0d6c222864f95c372d5be093d6337c8dcc78c8ccd9076f2856747d4b3",
+      "persian-sabzi-polo-salmon.webp": "82c03ce6b24a4214bcb8965c40b0dd18af4c5f8c67d2ce537e615d5bb4b9c43a",
+      "persian-sabzi-polo-salmon-640.webp": "738c64eae3efa668c53f81a0962143758429c2b843bb45caa0094e07d8bce0f5"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 41 = 51 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The salmon is seared during the last 10 minutes of the steaming (step 4 runs inside step 3, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "persian-sabzi-polo-salmon.webp 1200x900 and persian-sabzi-polo-salmon-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"crispy\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything: parboil 6 tbsp rice in 4 cups water in a 2-quart pot; one salmon portion in an 8-inch skillet.",
+    "2": "Half of everything: parboil in 6 cups water in a 3-quart pot; two salmon portions in a 10-inch skillet.",
+    "4": "As written.",
+    "do_not_scale": [
+      "parboil time: 6 minutes regardless of batch size"
+    ]
+  },
+  "coverage_contribution": "A third salmon meal (the others are a maple-mustard glaze and a miso glaze) and an HH001 fish dinner. Persian meals in the catalog are a lamb herb stew and lamb kebabs; this is the herbed rice with fish.",
+  "near_duplicate_review": "Compared with miso-ginger-salmon: crisp-skin salmon with a green herbed rice, no miso or ginger glaze. Compared with maple-mustard-glazed-salmon: unglazed seared salmon with lemon, and herbed rice. Compared with persian-ghormeh-sabzi: herbs steamed into rice, not a lamb stew. Compared with persian-lamb-koobideh-saffron-rice: herbed rice with fish, not saffron rice with lamb kebabs.",
+  "not_duplicate_of": "No tahdig crust is promised; the rice is steamed fluffy.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

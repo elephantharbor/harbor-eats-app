@@ -1,0 +1,650 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-16, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-16-2026-10-15",
+  "batch_label": "wave-16",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-16",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "cambodian-fish-amok",
+    "slug": "cambodian-fish-amok",
+    "title": "Cambodian Fish Amok: Steamed Coconut-Lemongrass Fish Custards with Jasmine Rice",
+    "description": "Chunks of white fish folded into a custard of coconut milk, eggs, fish sauce, and a fresh kroeung paste of lemongrass, ginger, turmeric, garlic, shallot, lime leaves, and red chile, steamed in spinach-lined ramekins until just firm. Topped with a spoonful of the thick coconut milk, slivered lime leaf, and chile, with jasmine rice.",
+    "cuisine": "cambodian",
+    "meal_format": "steamed-custard-with-rice",
+    "primary_ingredient": "cod",
+    "vocabulary_tag_ids": [
+      "creamy",
+      "herbaceous",
+      "tender",
+      "cod"
+    ],
+    "current_recipe_id": "rcp_cambodian-fish-amok",
+    "current_version_id": "rv_cambodian-fish-amok_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_cambodian-fish-amok",
+    "dish_id": "cambodian-fish-amok",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-16-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_cambodian-fish-amok_v1",
+    "recipe_id": "rcp_cambodian-fish-amok",
+    "dish_id": "cambodian-fish-amok",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Cambodian Fish Amok: Steamed Coconut-Lemongrass Fish Custards with Jasmine Rice",
+    "description": "Chunks of white fish folded into a custard of coconut milk, eggs, fish sauce, and a fresh kroeung paste of lemongrass, ginger, turmeric, garlic, shallot, lime leaves, and red chile, steamed in spinach-lined ramekins until just firm. Topped with a spoonful of the thick coconut milk, slivered lime leaf, and chile, with jasmine rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "fish",
+        "name": "cod or other firm white fish",
+        "display_name": "skinless cod or other firm white fish",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 1-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemongrass",
+        "name": "lemongrass",
+        "display_name": "lemongrass",
+        "quantity": 3,
+        "unit": "stalk",
+        "note": null,
+        "preparation": "tender lower 5 inches only, thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "shallots",
+        "name": "shallots",
+        "display_name": "shallots",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lime-leaves",
+        "name": "makrut lime leaves",
+        "display_name": "makrut lime leaves",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "center ribs removed; 3 for the paste, 1 slivered to garnish",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-chile",
+        "name": "red chile (Fresno)",
+        "display_name": "red chile (Fresno)",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "half chopped for the paste, half thinly sliced to garnish",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "coconut-milk",
+        "name": "full-fat coconut milk",
+        "display_name": "full-fat coconut milk (one 13.5-oz can)",
+        "quantity": 13.5,
+        "unit": "oz",
+        "note": "1/4 cup thick cream reserved for topping",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "fish-sauce",
+        "name": "fish sauce",
+        "display_name": "fish sauce (anchovy and salt; label lists no shrimp or shellfish)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "brown sugar",
+        "display_name": "brown sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "spinach",
+        "name": "spinach",
+        "display_name": "spinach leaves",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "steam-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "for the steamer",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Trim the lemongrass to the tender lower 5 inches and slice it thin. Slice the ginger, peel the garlic, and chop the shallots. Strip the ribs from the lime leaves; sliver 1 leaf very fine. Chop half the chile and thinly slice the rest. Cut the fish into 1-inch chunks. Rinse the rice.",
+        "ingredient_refs": [
+          "lemongrass",
+          "ginger",
+          "garlic",
+          "shallots",
+          "lime-leaves",
+          "red-chile",
+          "fish",
+          "jasmine-rice"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Make the kroeung",
+        "body": "Spoon off 1/4 cup of the thick cream from the top of the coconut milk and set it aside. In a food processor grind the lemongrass, ginger, turmeric, garlic, shallots, 3 lime leaves, and the chopped chile with 1/4 cup of the remaining coconut milk to a fine paste, scraping down often, about 4 minutes.",
+        "ingredient_refs": [
+          "coconut-milk",
+          "lemongrass",
+          "ginger",
+          "turmeric",
+          "garlic",
+          "shallots",
+          "lime-leaves",
+          "red-chile"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 3,
+        "title": "Mix and fill",
+        "body": "In a mixing bowl whisk the rest of the coconut milk, the eggs, fish sauce, brown sugar, and the kroeung. Fold in the fish. Line 6 ramekins with the spinach and divide the fish mixture among them, a scant 1 cup each, so each is about three-quarters full. Set 3 ramekins in each tier of the bamboo steamer.",
+        "ingredient_refs": [
+          "coconut-milk",
+          "eggs",
+          "fish-sauce",
+          "brown-sugar",
+          "fish",
+          "spinach"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 4,
+        "title": "Steam the custards",
+        "body": "Put 4 cups water in a 14-inch wok (6-quart), cover, and bring to a boil over high, about 6 minutes to come to a boil; it must sit below the base of the bamboo steamer. While it heats, start the rice: combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan, bring to a boil over high, about 4 minutes, cover, cook on low 15 minutes, then leave it covered off the heat 10 minutes (overlap stated). Set the stacked two-tier steamer in the wok, cover with its lid, and steam over medium, swapping the tiers after 11 minutes, until the custard no longer jiggles at the center and the fish reaches 145 F, about 22 minutes. Spoon the reserved coconut cream over the six custards, about 2 tsp each, and steam 1 minute more.",
+        "ingredient_refs": [
+          "steam-water",
+          "jasmine-rice",
+          "rice-water",
+          "kosher-salt",
+          "coconut-milk"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Lift out the ramekins with tongs, top with the slivered lime leaf and sliced chile, and serve with the rice, 1 or 2 ramekins per person.",
+        "ingredient_refs": [
+          "lime-leaves",
+          "red-chile",
+          "jasmine-rice"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "kroeung",
+        "name": "kroeung paste",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "lemongrass",
+          "ginger",
+          "turmeric",
+          "garlic",
+          "shallots",
+          "makrut lime leaves",
+          "red chile",
+          "coconut milk"
+        ]
+      },
+      {
+        "component_id": "amok",
+        "name": "steamed fish custards",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "white fish",
+          "coconut milk",
+          "eggs",
+          "fish sauce",
+          "brown sugar",
+          "kroeung",
+          "spinach"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "steamed jasmine rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "two-tier 12-inch bamboo steamer with lid",
+      "14-inch flat-bottomed wok (6-quart) that the steamer sits in",
+      "6 (10-ounce) ramekins, about 4 inches across",
+      "2-quart saucepan with lid",
+      "food processor or mini chopper",
+      "mixing bowl",
+      "tongs"
+    ],
+    "methods": [
+      "steam"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 22,
+    "cook_time_minutes": 32,
+    "total_time_minutes": 54,
+    "prep_minutes": 22,
+    "cook_minutes": 32,
+    "total_minutes": 54,
+    "time_clock": "Prep 22 + cook 32 = 54 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice is started while the steamer water heats and cooks and rests inside step 4 (overlap stated): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 32 minutes of steps 4 and 5.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        2,
+        3
+      ],
+      "cook_steps": [
+        4,
+        5
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "14-inch wok (6-quart) with 4 cups water over high to boil, then medium for a steady steam under a two-tier 12-inch bamboo steamer. 2-quart saucepan covered on low for the rice.",
+    "doneness": "Custard no longer jiggles at the center and a knife comes out clean; fish opaque and 145 F. Rice tender.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-16",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish and egg are allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: coconut milk, not dairy. The fish sauce label lists only anchovy, salt, and sugar.",
+    "allergens": [
+      "finfish",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Finfish from the white fish and the fish sauce (anchovy).",
+      "Egg from the eggs in the custard.",
+      "Coconut (coconut milk) has no FlavorWeave allergen token; disclosed here and in runtime_enum_gaps.",
+      "No milk, soy, wheat, sesame, shellfish, or tree nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish and egg are allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Fish sauce is anchovy, salt, and sugar only: the label lists no shrimp or shellfish. No shrimp paste (prahok or kapi).",
+    "vocabulary_tag_ids": [
+      "creamy",
+      "herbaceous",
+      "tender",
+      "cod"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'cambodian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids.",
+      "coconut": "Coconut (coconut milk) has no FlavorWeave allergen token. Disclosed in allergen_notes; carried as a wave-16 open item for the importer."
+    },
+    "food_safety_note": "Cook fish to 145 F. Lift the steamer lid away from you, and lift the hot ramekins out with tongs or a towel.",
+    "culinary_hash": "f942451e0ebd1da787161d41f1feaf9cb1d1e69a4ffeb302d43b08c753b275d0",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_cambodian-fish-amok_v1",
+    "dish_id": "cambodian-fish-amok",
+    "recipe_version_id": "rv_cambodian-fish-amok_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "cambodian-fish-amok.webp",
+    "card_ref": "cambodian-fish-amok-640.webp",
+    "master_filename": "cambodian-fish-amok.webp",
+    "card_filename": "cambodian-fish-amok-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "cambodian-fish-amok.webp",
+        "spec_catalog_path": "/images/meals/cambodian-fish-amok.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "cambodian-fish-amok-640.webp",
+        "spec_catalog_path": "/images/meals/cambodian-fish-amok-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "3b37595b507a88369ed0d33d47e6e05ea693c1011128f1dfaea69a16a2ac8163",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "3b37595b507a88369ed0d33d47e6e05ea693c1011128f1dfaea69a16a2ac8163",
+      "master_sha256": "df78f13ef269c410b5f3eeeba10e648bdef6dc3fd5a0cad683e1d216b0ce62d5",
+      "card_sha256": "e3fed08baeb1e37e169ba33d136f61587b01f7597b4f49e7b560a2f9a60d1b86"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "3b37595b507a88369ed0d33d47e6e05ea693c1011128f1dfaea69a16a2ac8163",
+      "cambodian-fish-amok.webp": "df78f13ef269c410b5f3eeeba10e648bdef6dc3fd5a0cad683e1d216b0ce62d5",
+      "cambodian-fish-amok-640.webp": "e3fed08baeb1e37e169ba33d136f61587b01f7597b4f49e7b560a2f9a60d1b86"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 22 + cook 32 = 54 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice is started while the steamer water heats and cooks and rests inside step 4 (overlap stated): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 32 minutes of steps 4 and 5."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "cambodian-fish-amok.webp 1200x900 and cambodian-fish-amok-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in 2 (10-ounce) ramekins, each about half full, in one tier of the bamboo steamer over the wok; start checking at 16 minutes. A quarter of the rice in a 1-quart saucepan.",
+    "2": "Half of everything in 3 (10-ounce) ramekins, three-quarters full, in one tier of the bamboo steamer; about 22 minutes, no tier swap. Half the rice in a 1-quart saucepan.",
+    "4": "As written (6 ramekins, three per tier, two tiers).",
+    "do_not_scale": [
+      "fill: each 10-ounce ramekin about three-quarters full (a scant 1 cup of mix) so the custard can puff; use more ramekins, not fuller ones",
+      "steaming time: about 22 minutes for three-quarters-full 10-ounce ramekins; with both tiers in use, swap them halfway"
+    ]
+  },
+  "coverage_contribution": "Cambodia has no meal in the catalog, and nothing is steamed in ramekins. An HH001 fish dinner with an easy, hands-off steaming step.",
+  "near_duplicate_review": "Compared with thai-fish-cakes-cucumber-relish: a soft steamed coconut custard with fish chunks, not fried fish cakes. Compared with brazilian-fish-moqueca: steamed and set with egg, not a stew. Compared with ginger-scallion-fish-packets: fish in a lemongrass-coconut custard in ramekins, not steamed in packets with ginger and scallion. Compared with thai-red-curry-kabocha: a fresh herb paste set into a custard, not a curry-paste stew.",
+  "not_duplicate_of": "Not served in banana-leaf cups; ramekins keep it practical.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "B",
+  "revision_history": [
+    {
+      "from": "author-r2",
+      "to": "author-r3",
+      "when": "2026-10-15",
+      "who": "Grok Bot (Curator, creator role), wave-16",
+      "trigger": "audit r1 gate B FAIL",
+      "scope": "recipe text only; image files unchanged and not regenerated",
+      "from_culinary_hash": "3b53ef3ac394b09adfb722b11bcdc4e688a62682f12a65d50c9b36e8fc0b144d",
+      "to_culinary_hash": "f942451e0ebd1da787161d41f1feaf9cb1d1e69a4ffeb302d43b08c753b275d0",
+      "changes": [
+        "Vessels: 4 (12-ounce) ramekins replaced by 6 (10-ounce) ramekins, each filled about three-quarters (a scant 1 cup of the ~1.3 L mix), so the custard has room to puff with the topping.",
+        "Steamer: 6-quart pot and collapsible basket replaced by a two-tier 12-inch bamboo steamer (3 ramekins per tier) over a 14-inch flat-bottomed wok with 4 cups water; all six steam at once, tiers swapped after 11 minutes.",
+        "Steps 3 and 4 rewritten to match; step 3 clock 4 -> 5 minutes (prep 21 -> 22, total 53 -> 54). Step 4 clock unchanged at 30; rice overlap unchanged.",
+        "Topping: the reserved 1/4 cup coconut cream is divided over six custards (about 2 tsp each); serve step says 1 or 2 ramekins per person and lifts them with tongs.",
+        "Heat, food-safety, effort note, and 1/2/4-serving scaling lines and do-not-scale notes updated for 10-ounce ramekins and the bamboo steamer.",
+        "Garnish wording unchanged: the recipe garnish is slivered makrut lime leaf and sliced chile, as before."
+      ]
+    }
+  ]
+}

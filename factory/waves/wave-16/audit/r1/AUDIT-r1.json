@@ -1,0 +1,1309 @@
+{
+  "wave": "wave-16",
+  "round": "r1",
+  "auditor": "independent (Vale role)",
+  "date": "2026-10-15",
+  "counts": {
+    "certified": 12,
+    "pass_with_notes": 10,
+    "pass_clean": 2,
+    "fail": 3,
+    "image_regenerations_required": 0
+  },
+  "candidates": {
+    "austrian-pork-schnitzel-potato-salad": {
+      "title": "Austrian Pork Schnitzel with Warm Viennese Potato Salad and Lemon",
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": false,
+      "effort_level": "involved",
+      "ingredient_complexity": "simple",
+      "image_source": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `involved` (sidecar score 7), ingredient_complexity `simple` (sidecar score 0, 11 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "17 ingredients, 6 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 12 + cook 38 = 50 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The cutlets are breaded while the potatoes come to a boil and simmer (step 3 runs inside step 2, overlap stated)."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Breadcrumbs: 'plain dry breadcrumbs, wheat flour, yeast, salt only' (see N note). Dijon mustard: disclosed in notes. Broth: vegetable broth contract."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "Pork; not HH001. Wheat and egg tokenized. Mustard (Dijon in the potato dressing) disclosed in allergen notes; the importer has no mustard token, the same handling as Wave-15 (cobb, rouladen, bengali mustard fish)."
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['crispy', 'tangy', 'savory'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with crispy-skillet-chicken-sandwiches: a pounded pork cutlet with a potato salad, not a chicken sandwich. Compared with air-fryer-honey-mustard-pork: breaded and shallow-fried thin cutlets, not a glazed tenderloin. Compared with southern-smothered-pork-chops: crisp breaded cutlets, not chops braised in gravy. Compared with kasespatzle-caramelized-onions: a cutlet and potato salad, not ch Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size against image-plating-brief.md and the recipe: main, sides and garnishes are as briefed; no invented ingredient or side; identity is unambiguous."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "F/N: breadcrumbs limited to 'wheat flour, yeast, salt only' are hard to find in US stores (most contain oil, sugar or whey); add a fallback (pulse stale plain white bread that meets the same rule, then dry it). B: 2 cups oil gives ~3/8 inch, more than the 'about 1/4 inch' stated; the cook has enough oil, so non-blocking. G: mustard disclosed."
+      ]
+    },
+    "cambodian-fish-amok": {
+      "title": "Cambodian Fish Amok: Steamed Coconut-Lemongrass Fish Custards with Jasmine Rice",
+      "verdict": "FAIL",
+      "certified": false,
+      "failed_gates": [
+        "B"
+      ],
+      "hh001_eligible": true,
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard",
+      "image_source": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 5), ingredient_complexity `standard` (sidecar score 3, 14 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "FAIL",
+          "evidence": "Ramekin capacity and steamer fit do not reconcile. (1) Volume: the custard mix is about 1.27-1.33 L (1.5 lb fish \u2248 650 ml packed, one 13.5-oz can of coconut milk less the 1/4 cup reserved \u2248 340 ml, kroeung paste \u2248 130 ml, 2 eggs \u2248 100 ml, fish sauce/sugar/liquid \u2248 45 ml, plus the spinach lining). Four 12-oz ramekins hold 1.42 L, so they are ~93% full before the reserved coconut-cream topping and ~97% with it. That is above the ~90% full FAIL line, and a steamed egg custard puffs. (2) Fit: four 12-oz ramekins (~4.5-5 in across each) need a ~11-12 in single layer; a collapsible steamer basket in a 6-quart pot gives ~6-8 in of flat base, so at most two fit per layer, yet step 4 steams all four at once for 22 minutes.",
+          "fix": "Pick one consistent setup and make equipment, steps 3-4, the time clock and scaling match it: (a) six 10-oz ramekins, or four 16-oz (2-cup) wide shallow heatproof bowls, so they are \u2264~85% full with the topping; and (b) a steamer that holds them all at once: a two-tier 12-inch bamboo steamer over a 12- to 14-inch wok or wide pot, or a wide 7- to 8-quart pot with a flat rack. Or keep the 6-quart pot and steam in two batches, adding ~22 minutes to the clock and rice overlap. As an alternative to (a), cut the fish to 1 1/4 lb and recompute the scaling lines. Re-hash after the edits."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 21 + cook 32 = 53 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice is started while the steamer water heats and cooks and rests inside step 4 (overlap stated): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 32 minutes of steps 4 and 5."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Fish sauce contract: anchovy, salt (sugar optional), no shrimp/shellfish (e.g. Red Boat-style); plausible and HH001-safe. Coconut milk: plain, no additives contract. Kroeung is made from scratch."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "Finfish only; no dairy, shellfish, meat or nuts; egg allowed. HH001 true. Coconut disclosed in allergen notes (no coconut token in the importer); fish sauce tokenized finfish."
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['creamy', 'herbaceous', 'tender', 'cod'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with thai-fish-cakes-cucumber-relish: a soft steamed coconut custard with fish chunks, not fried fish cakes. Compared with brazilian-fish-moqueca: steamed and set with egg, not a stew. Compared with ginger-scallion-fish-packets: fish in a lemongrass-coconut custard in ramekins, not steamed in packets with ginger and scallion. Compared with thai-red-curry-kabocha: a fresh herb paste set in Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size: two fluted ramekins lined with spinach, golden custard with fish chunks, coconut-cream topping and red chile, jasmine rice and a spoon; identity reads as amok. See notes on the garnish and custard texture."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [
+        "[B] Pick one consistent setup and make equipment, steps 3-4, the time clock and scaling match it: (a) six 10-oz ramekins, or four 16-oz (2-cup) wide shallow heatproof bowls, so they are \u2264~85% full with the topping; and (b) a steamer that holds them all at once: a two-tier 12-inch bamboo steamer over a 12- to 14-inch wok or wide pot, or a wide 7- to 8-quart pot with a flat rack. Or keep the 6-quart pot and steam in two batches, adding ~22 minutes to the clock and rice overlap. As an alternative to (a), cut the fish to 1 1/4 lb and recompute the scaling lines. Re-hash after the edits."
+      ],
+      "notes": [
+        "K: the green garnish reads as thick green-bean or scallion lengths rather than fine kaffir-lime-leaf slivers, and the custard surface looks loose and grainy rather than a smooth, just-set mousse. Identity still reads; non-blocking. If the B fix changes the vessel, regenerating is optional.",
+        "G: coconut disclosed in allergen notes (no importer token); fish-sauce contract plausible."
+      ]
+    },
+    "cuban-picadillo-rice": {
+      "title": "Cuban Picadillo with Green Olives, Capers, and Raisins over White Rice",
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": false,
+      "effort_level": "moderate",
+      "ingredient_complexity": "simple",
+      "image_source": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 4), ingredient_complexity `simple` (sidecar score 1, 12 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "17 ingredients, 6 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 10 + cook 35 = 45 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 6 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 35 minutes of steps 2 to 6."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat True, poultry False, finfish False, shellfish False, dairy False, vegetarian False, plant-based False, nut_policy `none`; HH001 False (Not HH001: beef is meat.). Labels ['dairy_free'].\n\n**Allergens:** ['meat']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid. Notes: ['Meat from the ground beef.', 'The tomato sauce label lists tomatoes and salt; the olive label lists olives, pimiento, water, salt, and vinegar.', 'No egg, milk, soy, wheat, sesame, fish, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['savory', 'tangy', 'tender'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with slow-cooker-ropa-vieja: ground beef simmered about 15 minutes, not shredded flank braised for hours. Compared with south-african-bobotie: no curry spices and no baked egg custard topping, though both use raisins. Compared with turkey-sloppy-joes: beef with olives, capers, and raisins over rice, not a sweet sauce on buns. Compared with cottage-pie: a skillet hash over rice, not a pota Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size against image-plating-brief.md and the recipe: main, sides and garnishes are as briefed; no invented ingredient or side; identity is unambiguous."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "F: the tomato-sauce ('tomatoes, salt') and olive ('olives, pimiento, water, salt, vinegar') label rules appear only in allergen notes, not on the ingredient lines; no allergen depends on them. K: olives are sliced rings rather than halved; still reads."
+      ]
+    },
+    "goan-shrimp-ambot-tik": {
+      "title": "Goan Shrimp Ambot Tik: Sour-Spicy Red Chile Curry with Basmati Rice",
+      "verdict": "PASS",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": false,
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard",
+      "image_source": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 4), ingredient_complexity `standard` (sidecar score 3, 13 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "18 ingredients, 6 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 10 + cook 30 = 40 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 6 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 30 minutes of steps 2 to 6."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat False, poultry False, finfish False, shellfish True, dairy False, vegetarian False, plant-based False, nut_policy `none`; HH001 False (Not HH001: shrimp is shellfish.). Labels ['dairy_free'].\n\n**Allergens:** ['shellfish']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid. Notes: ['Shellfish from the shrimp.', 'No egg, milk, soy, wheat, sesame, fish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['curries', 'spicy', 'tangy', 'indian', 'shrimp'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with malaysian-curry-laksa: a thick tamarind-vinegar curry over rice, not a coconut noodle soup. Compared with brazilian-fish-moqueca: shrimp in a chile-vinegar curry, no coconut milk or peppers. Compared with bengali-mustard-fish: shrimp in a red chile paste, not fish in mustard seed sauce. Compared with coconut-chickpea-curry: shellfish, and no coconut. Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size against image-plating-brief.md and the recipe: main, sides and garnishes are as briefed; no invented ingredient or side; identity is unambiguous."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [],
+      "notes": []
+    },
+    "hawaiian-ahi-poke-bowl": {
+      "title": "Hawaiian Shoyu Ahi Poke Bowls with Seasoned Rice, Cucumber, Avocado, and Edamame",
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": true,
+      "effort_level": "easy",
+      "ingredient_complexity": "standard",
+      "image_source": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `easy` (sidecar score 2), ingredient_complexity `standard` (sidecar score 2, 14 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "17 ingredients, 7 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 23 + cook 12 = 35 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 5 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 5 resting, 24 minutes against 25 minutes of steps 2 to 5."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "Finfish raw; HH001 true (no dairy, shellfish, meat, nuts; sesame allowed). Raw-fish copy: 'The tuna is eaten raw. Buy tuna the fish counter sells for raw consumption (sashimi-grade, previously frozen for parasite control), keep it cold, and serve it the day it is bought. Raw fish is not advised for pregnant people, young children, older adults, or anyone with a weakened immune system.' Step 4 keeps the bowl cold. Good. Soy/wheat and sesame tokenized."
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['bowls', 'fresh', 'umami', 'american'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with peruvian-ceviche-sweet-potato-corn: raw tuna in a soy-sesame dressing over rice, not citrus-cured flounder. Compared with salade-nicoise-seared-tuna: raw shoyu tuna on rice, not seared tuna on a French salad. Compared with sesame-soba-noodle-bowl: a rice bowl topped with raw fish, not a soba bowl. Compared with teriyaki-tofu-bowls: raw tuna, no glaze. Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size: cubed glossy ahi in shoyu dressing with sweet onion, scallion, sesame and nori strips; rice, cucumber, avocado fan and edamame, as briefed. Raw-tuna colour is natural. No invented items."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "G/N: the 'previously frozen for parasite control' wording is harmless but not required for tuna (FDA exempts tuna from the parasite-freeze guidance); consider 'sold for raw consumption' alone. E: 5-minute rice rest fine."
+      ]
+    },
+    "indonesian-gado-gado-tempeh": {
+      "title": "Indonesian Gado-Gado with Pan-Fried Tempeh, Eggs, and Peanut Sauce",
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": false,
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard",
+      "image_source": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 5), ingredient_complexity `standard` (sidecar score 3, 14 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "18 ingredients, 6 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 15 + cook 32 = 47 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The tempeh and the peanut sauce are made while the potatoes and eggs cook (steps 3 and 4 run inside step 2, overlap stated): 14 minutes of work inside 20 minutes of boiling and simmering."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat False, poultry False, finfish False, shellfish False, dairy False, vegetarian True, plant-based False, nut_policy `peanuts_present`; HH001 False (Not HH001: the sauce is peanut-based.). Labels ['dairy_free', 'vegetarian'].\n\n**Allergens:** ['peanut', 'egg', 'soy', 'wheat']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid. Notes: ['Peanut from the peanut butter.', 'Egg from the hard-cooked eggs.', 'Soy from the tempeh and soy sauce.', 'Wheat from the soy sauce.', 'No milk, sesame, fish, shellfish, or tree nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['savory', 'rich', 'fresh', 'crunchy'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with salade-nicoise-seared-tuna: no fish, olives, or vinaigrette; tempeh, cabbage, and sprouts under a warm peanut sauce. Compared with peanut-noodle-stir-fry: a composed plate of boiled vegetables, not noodles. Compared with ginger-glazed-tempeh-plate: tempeh pan-fried plain and served with peanut sauce, not glazed with ginger. Compared with malian-chicken-maafe: a cold-and-warm vegetabl Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size against image-plating-brief.md and the recipe: main, sides and garnishes are as briefed; no invented ingredient or side; identity is unambiguous."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "I: third peanut-sauce meal in the catalog (with malian maafe and the peanut noodle bowl); distinct dish. G: peanut token correct; tempeh grain contract present."
+      ]
+    },
+    "jamaican-escovitch-snapper": {
+      "title": "Jamaican Escovitch Fish: Pan-Fried Snapper with Pickled Pepper-Onion Escovitch and Rice",
+      "verdict": "FAIL",
+      "certified": false,
+      "failed_gates": [
+        "B",
+        "C"
+      ],
+      "hh001_eligible": true,
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard",
+      "image_source": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 4), ingredient_complexity `standard` (sidecar score 2, 13 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "FAIL",
+          "evidence": "The listed frying oil does not achieve the stated depth. The ingredient line is 1/2 cup neutral oil for a 12-inch skillet (~9.5-10 in flat base, 71-78 sq in). That is \u22487.2 cu in, a depth of about 1/10 inch. The do-not-scale note says 'Oil depth: keep about 1/4 inch in the skillet for any batch', which needs \u22481 1/4 to 1 1/3 cups. A cook who follows the depth instruction runs short of oil by 2.5x (shopping/quantity mismatch, the same class as the Wave-15 koobideh equipment precedent).",
+          "fix": "Either change the oil ingredient line (and shopping list) to 1 1/4 cups neutral oil, or change the do-not-scale note (and any heat/food-safety text) to 'a thin layer, about 1/8 inch (1/2 cup in a 12-inch skillet)'. Re-hash after the edit."
+        },
+        "C": {
+          "verdict": "FAIL",
+          "evidence": "The do-not-scale oil-depth rule (1/4 inch for any batch) contradicts the base quantity, so the 1- and 2-serving scaling of the oil cannot be followed as written.",
+          "fix": "Follows the B fix: once the depth and quantity agree, state the oil for the 10-inch skillet in the 1-2 serving line (\u22483/4 cup at 1/4 inch, or \u22481/3 cup at 1/8 inch)."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 12 + cook 31 = 43 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 5 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 31 minutes of steps 2 to 5."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat False, poultry False, finfish True, shellfish False, dairy False, vegetarian False, plant-based False, nut_policy `none`; HH001 True (Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.). Labels ['dairy_free', 'fish'].\n\n**Allergens:** ['finfish', 'wheat']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid. Notes: ['Finfish from the snapper.', 'Wheat from the flour dredge.', 'No egg, milk, soy, sesame, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['tangy', 'spicy', 'crispy'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with senegalese-fish-yassa: a sharp vinegar pickle with Scotch bonnet and allspice, not slow-cooked lemon-mustard onions. Compared with red-snapper-veracruzana: pan-fried fillets under a pickled vegetable escovitch, not fish braised in tomato-olive sauce. Compared with pan-fried-trout-lemon-capers: a hot vinegar pickle over the fish, not a lemon-caper butter. Compared with jamaican-jerk-p Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size against image-plating-brief.md and the recipe: main, sides and garnishes are as briefed; no invented ingredient or side; identity is unambiguous."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [
+        "[B] Either change the oil ingredient line (and shopping list) to 1 1/4 cups neutral oil, or change the do-not-scale note (and any heat/food-safety text) to 'a thin layer, about 1/8 inch (1/2 cup in a 12-inch skillet)'. Re-hash after the edit.",
+        "[C] Follows the B fix: once the depth and quantity agree, state the oil for the 10-inch skillet in the 1-2 serving line (\u22483/4 cup at 1/4 inch, or \u22481/3 cup at 1/8 inch)."
+      ],
+      "notes": [
+        "K: the Scotch bonnet rings look like seeded yellow banana-pepper rings rather than thin seeded slivers; the fillet shows only a sliver of red skin. Still reads as escovitch; non-blocking. G: HH001 true (finfish)."
+      ]
+    },
+    "korean-japchae-vegetables": {
+      "title": "Japchae: Korean Sweet Potato Glass Noodles with Vegetables and Shiitake",
+      "verdict": "PASS",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": true,
+      "effort_level": "moderate",
+      "ingredient_complexity": "simple",
+      "image_source": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 5), ingredient_complexity `simple` (sidecar score 1, 11 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "16 ingredients, 7 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 15 + cook 28 = 43 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The noodle pot comes to a boil (about 12 minutes) inside steps 3 and 4, which take 14 minutes (step 2 states the overlap)."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "Plant-based; HH001 true. Soy/wheat and sesame tokenized. Noodle contract: 100% sweet-potato starch (dangmyeon), plausible and widely sold."
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['stir-fries', 'savory', 'umami', 'fresh', 'korean'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with peanut-noodle-stir-fry: sweet potato glass noodles in sesame-soy, no peanut sauce, vegetables cooked separately. Compared with sesame-soba-noodle-bowl: chewy glass noodles tossed warm with stir-fried vegetables, not buckwheat soba. Compared with kimchi-fried-rice: noodles, not rice, and no kimchi. Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size against image-plating-brief.md and the recipe: main, sides and garnishes are as briefed; no invented ingredient or side; identity is unambiguous."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [],
+      "notes": []
+    },
+    "persian-sabzi-polo-salmon": {
+      "title": "Persian Sabzi Polo with Seared Salmon: Herbed Dill Rice and Lemon",
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": true,
+      "effort_level": "moderate",
+      "ingredient_complexity": "simple",
+      "image_source": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 5), ingredient_complexity `simple` (sidecar score 0, 8 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "13 ingredients, 5 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 10 + cook 41 = 51 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The salmon is seared during the last 10 minutes of the steaming (step 4 runs inside step 3, overlap stated)."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat False, poultry False, finfish True, shellfish False, dairy False, vegetarian False, plant-based False, nut_policy `none`; HH001 True (Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.). Labels ['dairy_free', 'fish'].\n\n**Allergens:** ['finfish']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid. Notes: ['Finfish from the salmon.', 'No egg, milk, soy, wheat, sesame, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['herbaceous', 'fresh', 'crispy', 'middle-eastern', 'salmon'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with miso-ginger-salmon: crisp-skin salmon with a green herbed rice, no miso or ginger glaze. Compared with maple-mustard-glazed-salmon: unglazed seared salmon with lemon, and herbed rice. Compared with persian-ghormeh-sabzi: herbs steamed into rice, not a lamb stew. Compared with persian-lamb-koobideh-saffron-rice: herbed rice with fish, not saffron rice with lamb kebabs. Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size against image-plating-brief.md and the recipe: main, sides and garnishes are as briefed; no invented ingredient or side; identity is unambiguous."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "K: rice grains look shorter than long basmati and the plate is round rather than oval; still reads as sabzi polo with crispy-skin salmon. Non-blocking."
+      ]
+    },
+    "russian-mushroom-stroganoff": {
+      "title": "Mushroom Stroganoff with Sour Cream, Dill, and Buttered Egg Noodles",
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": false,
+      "effort_level": "moderate",
+      "ingredient_complexity": "simple",
+      "image_source": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 5), ingredient_complexity `simple` (sidecar score 0, 11 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "15 ingredients, 8 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 10 + cook 31 = 41 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The noodle pot comes to a boil (about 12 minutes) inside steps 3 and 4 (18 minutes), and the noodles cook inside step 6 (steps 2 and 5 state the overlap)."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "Vegetarian (dairy: sour cream, butter); not HH001 (dairy). Wheat (egg noodles, flour) and egg tokenized; mustard (Dijon) disclosed in notes with no importer token, consistent with Wave-15."
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['creamy', 'savory', 'rich', 'mushrooms'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with hungarian-chicken-paprikash: mushrooms with Dijon and dill, no chicken, and a broth sauce finished with sour cream. Compared with mushroom-walnut-bolognese: a creamy sour cream sauce on egg noodles, not a tomato-walnut ragu on pasta. Compared with polish-mushroom-barley-krupnik: a sauced noodle dinner, not a barley soup. Compared with kasespatzle-caramelized-onions: mushrooms in a so Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size against image-plating-brief.md and the recipe: main, sides and garnishes are as briefed; no invented ingredient or side; identity is unambiguous."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "F: broth contract ('vegetables, salt, herbs only') plausible. G: mustard disclosed."
+      ]
+    },
+    "sichuan-mapo-tofu-shiitake": {
+      "title": "Sichuan Mapo Tofu with Shiitake and Jasmine Rice",
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": true,
+      "effort_level": "moderate",
+      "ingredient_complexity": "adventurous",
+      "image_source": "img_v2.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 5), ingredient_complexity `adventurous` (sidecar score 4, 13 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "18 ingredients, 8 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 10 + cook 31 = 41 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 7 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 29 minutes of steps 2 to 7, so the rice is ready as step 8 begins."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "Plant-based; HH001 true. Soy and wheat (doubanjiang, soy sauce) tokenized; no oyster sauce or fish products. Doubanjiang contract (broad bean, chile, salt, wheat flour; no shrimp or fish) plausible for Pixian-style brands."
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['spicy', 'umami', 'savory', 'chinese', 'tofu'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with korean-soft-tofu-stew: a thick chili-bean sauce spooned over rice, not a brothy gochugaru stew with egg. Compared with sichuan-green-bean-mushroom-stir-fry: soft tofu simmered and thickened in sauce, not dry-fried beans. Compared with teriyaki-tofu-bowls: soft tofu in fermented chili bean sauce, not seared tofu in a sweet glaze. Compared with taiwanese-three-cup-mushrooms: doubanjian Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size (v2): white tofu cubes in red chile-bean sauce with chopped shiitake, Sichuan pepper and scallion, rice alongside; the shiitake reads as mushroom, not ground meat. Good."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v2.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands. v1 moved to rejected/ with a superseded record and its hash; regeneration_count 1."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "Brief says 'silken'; the recipe uses soft or medium tofu; the image is consistent with soft tofu. E: rice timing exact (29 vs 29 min). Cosmetic."
+      ]
+    },
+    "sicilian-pasta-alla-norma": {
+      "title": "Sicilian Pasta alla Norma with Golden Eggplant and Ricotta Salata",
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": false,
+      "effort_level": "moderate",
+      "ingredient_complexity": "simple",
+      "image_source": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 5), ingredient_complexity `simple` (sidecar score 1, 7 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "10 ingredients, 7 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 12 + cook 32 = 44 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The pasta pot comes to a boil (about 16 minutes) inside steps 3 and 4 (26 minutes), and the rigatoni cooks inside step 4 (steps 2 and 5 state the overlap)."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat False, poultry False, finfish False, shellfish False, dairy True, vegetarian True, plant-based False, nut_policy `none`; HH001 False (Not HH001: ricotta salata is dairy.). Labels ['vegetarian'].\n\n**Allergens:** ['milk', 'wheat']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid. Notes: ['Milk from the ricotta salata.', 'Wheat from the rigatoni.', 'No egg, soy, sesame, fish, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['pasta', 'savory', 'rich', 'italian', 'eggplant'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with spaghetti-puttanesca: eggplant and ricotta salata, no anchovies, olives, or capers. Compared with thai-basil-eggplant-stir-fry: Italian tomato sauce on pasta, not a soy-chile stir-fry over rice. Compared with baked-ziti-italian-sausage: a stovetop tossed pasta with no sausage and no baking. Compared with sabich-pita-sandwiches: eggplant on pasta, not in a pita with eggs and tahini. Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size against image-plating-brief.md and the recipe: main, sides and garnishes are as briefed; no invented ingredient or side; identity is unambiguous."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "E: the rigatoni water boils ~1 minute into step 4 and the pasta finishes ~1 minute into step 6; slight overrun, tolerable. F: ricotta salata 'made with microbial or vegetable rennet' is hard to verify (ricotta salata is whey-based; vegetarian status depends on the source cheese's rennet). Keep the contract but expect few labels to state it."
+      ]
+    },
+    "southern-shrimp-and-grits": {
+      "title": "Shrimp and Grits with Smoky Garlic-Lemon Pan Sauce and Cheddar Grits",
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": false,
+      "effort_level": "moderate",
+      "ingredient_complexity": "simple",
+      "image_source": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 5), ingredient_complexity `simple` (sidecar score 0, 10 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "15 ingredients, 4 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 10 + cook 29 = 39 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The shrimp are seared during the last minutes of the grits (step 3 runs inside step 2, overlap stated)."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat False, poultry False, finfish False, shellfish True, dairy True, vegetarian False, plant-based False, nut_policy `none`; HH001 False (Not HH001: shrimp is shellfish, and the grits contain dairy.). Labels [].\n\n**Allergens:** ['shellfish', 'milk']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid. Notes: ['Shellfish from the shrimp.', 'Milk from the milk, cheddar, and butter.', 'No egg, soy, wheat, sesame, fish, or nuts. The grits are corn.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['creamy', 'smoky', 'savory', 'american', 'shrimp'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with sheet-pan-shrimp-boil: seared shrimp over cheddar grits, not roasted shrimp with corn and sausage. Compared with lemon-garlic-shrimp-pasta: grits, not pasta, and smoked paprika. Compared with herbed-polenta-tomato-stew: cheddar grits topped with shrimp, not polenta under a tomato stew. Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size against image-plating-brief.md and the recipe: main, sides and garnishes are as briefed; no invented ingredient or side; identity is unambiguous."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v1.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "B/E: 1 1/2 lb large shrimp in one layer in a 12-inch skillet is tight; tolerable. I: one of two shrimp meals in the wave (with ambot tik); distinct."
+      ]
+    },
+    "thai-yum-nua-beef-salad": {
+      "title": "Thai Yum Nua: Seared Steak Salad with Lime-Chile Dressing and Jasmine Rice",
+      "verdict": "PASS WITH NOTES",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": false,
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard",
+      "image_source": "img_v2.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 4), ingredient_complexity `standard` (sidecar score 2, 14 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "18 ingredients, 6 steps; every ingredient used; split quantities stated; equipment sized for the quantities."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 12 + cook 30 = 42 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 6 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 30 minutes of steps 2 to 6."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "Beef; not HH001. Fish sauce tokenized finfish (anchovy/salt contract, no shrimp). Food safety: cooked to 130 F medium-rare as the diner's choice, with the USDA 145 F + 3-minute rest guidance stated. Good."
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['fresh', 'spicy', 'citrusy', 'herbaceous', 'thai'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with thai-turkey-larb-lettuce-wraps: sliced seared steak with tomato and cucumber, not minced turkey with toasted rice in lettuce cups. Compared with gochujang-grilled-flank-steak: a lime-fish sauce herb salad, not a gochujang marinade. Compared with cobb-salad: a hot-sour Thai dressing with herbs, no bacon, egg, or cheese. Compared with argentine-chimichurri-steak-potatoes: sliced steak  Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size and in crops: the lettuce has long leaves with pale central ribs and the crinkled edges of romaine; on close inspection it reads as romaine, not napa or savoy cabbage, though the crinkle is heavier than ideal. Steak is rosy medium-rare (matches 130 F), with cucumber, tomato, shallot, mint, cilantro, scallion and chile-lime dressing as in the recipe; no invented items. The vessel is a large round plate, not the oval platter in the brief and step 6: vessel shape only, non-blocking."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v2.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands. v1 moved to rejected/ with a superseded record and its hash; regeneration_count 1."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "K: lettuce reads as romaine on close inspection (ribs, elongated leaves); the heavy crinkle is the only cabbage-like cue. Round plate vs the brief's oval platter is vessel shape only. Both non-blocking; no regen required.",
+        "E/B: two 3/4-lb flank halves side by side in a 12-inch skillet (~10 in base) is tight; may need to sear one at a time on a smaller skillet. Tolerable.",
+        "G: fish sauce tokenized finfish; no fish label needed beyond the token."
+      ]
+    },
+    "turkish-mucver-zucchini-fritters": {
+      "title": "Turkish M\u00fccver: Zucchini-Feta Fritters with Garlic Yogurt and Tomato-Cucumber Salad",
+      "verdict": "FAIL",
+      "certified": false,
+      "failed_gates": [
+        "B"
+      ],
+      "hh001_eligible": false,
+      "effort_level": "involved",
+      "ingredient_complexity": "standard",
+      "image_source": "img_v2.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug/dish_id/recipe ids consistent; version 1 immutable; draft; recommendation_eligible false. D-03: effort_level `involved` (sidecar score 7), ingredient_complexity `standard` (sidecar score 2, 14 counted ingredients). Bands \u226412/13-16/17+ and the sums recompute; enums match v1. Auditor re-run of the structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "FAIL",
+          "evidence": "The listed frying oil does not achieve the stated depth. Step 5 uses 1/4 cup neutral oil per batch (1/2 cup total) in a 12-inch nonstick skillet (~9.5-10 in base). That is \u22483.6 cu in over 71-78 sq in, a depth of about 1/20-1/16 inch. The HEAT section and food-safety copy both say the oil is 'about 1/8 inch' deep, which needs \u22482/3 cup per batch (\u22481 1/4 cups total). A cook who follows the stated depth runs short.",
+          "fix": "Either change the oil to 2/3 cup per batch (1 1/4 cups total; update the neutral-oil ingredient line, step 5 text and shopping list), or change the HEAT and food-safety text to 'a thin film of oil, about 1/16 inch (1/4 cup per batch)'. Re-hash after the edit."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4; 1/2/4 scaling present with do-not-scale items."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues stated; every component is completed; a serve step is present."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 25 + cook 21 = 46 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The salted zucchini drains for 10 minutes inside step 2 (step 1 states the overlap)."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard contracts, or none are required."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat False, poultry False, finfish False, shellfish False, dairy True, vegetarian True, plant-based False, nut_policy `none`; HH001 False (Not HH001: feta and yogurt are dairy.). Labels ['vegetarian'].\n\n**Allergens:** ['egg', 'milk', 'wheat']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid. Notes: ['Egg from the eggs in the batter.', 'Milk from the feta and yogurt.', 'Wheat from the flour.', 'No soy, sesame, fish, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['crispy', 'fresh', 'herbaceous', 'tangy', 'middle-eastern'] are supported by the recipe; the flavour build is coherent."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Compared with japanese-okonomiyaki: small herb-feta zucchini fritters with yogurt, not a cabbage pancake with mayo and sauce. Compared with shallow-fried-green-tomatoes: grated zucchini batter, not cornmeal-coated tomato slices. Compared with greek-spanakopita: fritters, not a phyllo pie, though both use feta and dill. Compared with turkish-lahmacun: vegetarian, no lamb flatbread. Checked against the 135 catalog meals, the 50 Wave-15 meals and the rest of Wave-16: no slug collision, not a cosmetic duplicate."
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and cooking object agree; the cooking field is deterministic deriveCookingMethod output; no cuisine/pantry bias points."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed at full size (v2): exactly three fritters, one broken open showing the green-flecked set interior, feta crumbles and dill on top, tomato-cucumber-red-onion salad. The yogurt swoosh carries visible green herb flecks and dark specks, but the recipe yogurt is garlic and salt only (herbs are scattered over the plate in step 6). In-recipe herbs placed in a different component: non-blocking under the Wave-14 paprikash precedent; see notes."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480 RGB; source img_v2.jpg 1280x720. SHA-256 match asset_sha256, image-state and notes/image-gen-map.txt. Master re-derived: it equals a LANCZOS 1.25x upscale of the centre 960x720 source crop (mean abs diff ~1.5-2.0), disclosed in method_detail; same pipeline as Waves 14-15; no objectionable softness at master or card size. No text, logos or hands. v1 moved to rejected/ with a superseded record and its hash; regeneration_count 1."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing and well lit; the food fills the frame and reads at card size; within the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both pass (K is judged separately)."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance `original_ai_assisted`; image `ai_illustration`, generator \"Cora via Grok Bot GenerateImage\", method_detail states the 1280x720 source; no stock/web photo; no metadata denies present assets."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r2` consistent across top-level, recipe_version, image, sidecar and docs; version 1; classification_history present; FREEZE_INTEGRITY re-run PASS (26/26)."
+        }
+      },
+      "fixes": [
+        "[B] Either change the oil to 2/3 cup per batch (1 1/4 cups total; update the neutral-oil ingredient line, step 5 text and shopping list), or change the HEAT and food-safety text to 'a thin film of oil, about 1/16 inch (1/4 cup per batch)'. Re-hash after the edit."
+      ],
+      "notes": [
+        "K (recommended with the B fix, no regen needed): add 'stir 1 tablespoon of the dill into the yogurt' to the yogurt step so the herb-flecked yogurt in the hero is exact; otherwise regenerate with plain white garlic yogurt in a later pass.",
+        "E: six ~3.5-inch fritters per batch in a 12-inch skillet is a tight fit; tolerable. G: feta microbial-rennet contract plausible; vegetarian claim relies on it.",
+        "v1 (two fritters) correctly rejected in self-review; v2 fixes the count."
+      ]
+    }
+  }
+}

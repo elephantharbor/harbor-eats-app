@@ -158,7 +158,7 @@ export async function checkMealApi(m, base, fetchImpl = fetch) {
   return p;
 }
 
-export async function runSmoke({ db, api, wave12 = false, expectedMeals = 185, fetchImpl = fetch, log = console.log } = {}) {
+export async function runSmoke({ db, api, wave12 = false, expectedMeals = 200, fetchImpl = fetch, log = console.log } = {}) {
   const meals = loadCatalogFromDb(db);
   const published = meals.filter((m) => m.publication_status === "published");
   const scope = wave12 ? published.filter((m) => WAVE12_SLUGS.includes(m.slug)) : published;

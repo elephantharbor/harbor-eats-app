@@ -1,0 +1,42 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "sichuan-mapo-tofu-shiitake.webp",
+    "sichuan-mapo-tofu-shiitake-640.webp"
+  ],
+  "present_files": [
+    "sichuan-mapo-tofu-shiitake.webp",
+    "sichuan-mapo-tofu-shiitake-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "bc90c763b8390bb3eb9dd51abd7e99e7135f0fd042503774d862db91c0c36551",
+    "sichuan-mapo-tofu-shiitake.webp": "f6e34e93064a901e3fef88c873548c19c8cd61bb1b1aca612f7791405e11a552",
+    "sichuan-mapo-tofu-shiitake-640.webp": "ab5b32781269801ee09274ef77dfd2ebecb5103dc64728c3fcf2b7218228b37c"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "creator_self_review_before_audit",
+    "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's creator self-review: The tofu looked golden and fried, the sauce read brown, and the shiitake crumbs read as ground meat.",
+    "prompt_change": "v2 prompt is Cora's rewrite of the v1 prompt, recorded verbatim in image-prompt.md 'Active prompt (v2)' (source notes/prompts-v2-selfreview.txt); the v1 prompt is kept under 'Superseded prompt (v1)', and image-plating-brief.md was rebuilt to match v2.",
+    "v2_prompt_sha256": "d9ab0f977842294d3e79da0ab4cec0b58e78a4edaf56dcb5be34e78e431274c5",
+    "changes": [
+      "Tofu described as pure white, soft, unbrowned silken cubes, never golden or fried.",
+      "Sauce described as translucent glossy red chili-bean sauce with a layer of bright red chili oil.",
+      "Shiitake described as small diced dark pieces, clearly mushroom, not crumbled meat.",
+      "Do not include adds golden, browned, seared, or fried tofu and anything that looks like crumbled ground meat.",
+      "The v2 prompt shortens the lighting line and drops the Chipotle Lime Black Bean Bowl quality-reference sentence; it keeps the no text, logos, watermarks, or hands line."
+    ]
+  },
+  "package_revision": "author-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

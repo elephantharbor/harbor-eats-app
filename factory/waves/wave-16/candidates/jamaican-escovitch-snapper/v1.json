@@ -1,0 +1,659 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-16, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-16-2026-10-15",
+  "batch_label": "wave-16",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-16",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "jamaican-escovitch-snapper",
+    "slug": "jamaican-escovitch-snapper",
+    "title": "Jamaican Escovitch Fish: Pan-Fried Snapper with Pickled Pepper-Onion Escovitch and Rice",
+    "description": "Skin-on red snapper fillets rubbed with lime, dredged in seasoned flour, and pan-fried until golden, then topped with a hot, tangy escovitch of onion, carrot, red bell pepper, garlic, and Scotch bonnet quick-cooked in vinegar with allspice and thyme. Served with steamed white rice.",
+    "cuisine": "jamaican",
+    "meal_format": "fried-fish-plate",
+    "primary_ingredient": "red snapper",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "spicy",
+      "crispy"
+    ],
+    "current_recipe_id": "rcp_jamaican-escovitch-snapper",
+    "current_version_id": "rv_jamaican-escovitch-snapper_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_jamaican-escovitch-snapper",
+    "dish_id": "jamaican-escovitch-snapper",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-16-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_jamaican-escovitch-snapper_v1",
+    "recipe_id": "rcp_jamaican-escovitch-snapper",
+    "dish_id": "jamaican-escovitch-snapper",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Jamaican Escovitch Fish: Pan-Fried Snapper with Pickled Pepper-Onion Escovitch and Rice",
+    "description": "Skin-on red snapper fillets rubbed with lime, dredged in seasoned flour, and pan-fried until golden, then topped with a hot, tangy escovitch of onion, carrot, red bell pepper, garlic, and Scotch bonnet quick-cooked in vinegar with allspice and thyme. Served with steamed white rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "snapper",
+        "name": "skin-on red snapper",
+        "display_name": "skin-on red snapper portions, about 6 oz each",
+        "quantity": 4,
+        "unit": "fillet",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lime",
+        "name": "lime",
+        "display_name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": "juiced",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 tsp fish, 1/2 tsp escovitch, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for pan-frying",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "vinegar",
+        "name": "distilled white vinegar",
+        "display_name": "distilled white vinegar",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "pickle-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "for the escovitch",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "allspice",
+        "name": "whole allspice berries",
+        "display_name": "whole allspice berries",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "thyme",
+        "name": "fresh thyme",
+        "display_name": "fresh thyme",
+        "quantity": 4,
+        "unit": "sprig",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scotch-bonnet",
+        "name": "Scotch bonnet chile",
+        "display_name": "Scotch bonnet chile",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "seeded and thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "large yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrot",
+        "name": "carrot",
+        "display_name": "large carrot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "julienned",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into thin strips",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 2,
+        "unit": "clove",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the rice. Slice the onion, julienne the carrot, cut the pepper into strips, and slice the garlic. Wearing gloves, seed and slice the Scotch bonnet. Pat the fish dry, rub with the lime juice, and season with 1 tsp salt and the pepper. Put the flour in a shallow dish.",
+        "ingredient_refs": [
+          "rice",
+          "yellow-onion",
+          "carrot",
+          "red-pepper",
+          "garlic",
+          "scotch-bonnet",
+          "snapper",
+          "lime",
+          "kosher-salt",
+          "black-pepper",
+          "flour"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the rice",
+        "body": "Combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan. Bring to a boil over high, about 4 minutes, then cover, turn to low, and cook 15 minutes; leave it covered off the heat to rest 10 minutes. The covered cooking and rest run inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "rice",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the escovitch",
+        "body": "In a 3-quart saucepan bring the vinegar, 1/4 cup water, sugar, allspice, thyme, and 1/2 tsp salt to a boil over high, about 3 minutes. Add the onion, carrot, pepper, Scotch bonnet, and garlic and simmer 2 minutes, until crisp-tender. Take off the heat.",
+        "ingredient_refs": [
+          "vinegar",
+          "pickle-water",
+          "sugar",
+          "allspice",
+          "thyme",
+          "kosher-salt",
+          "yellow-onion",
+          "carrot",
+          "red-pepper",
+          "scotch-bonnet",
+          "garlic"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Pan-fry the fish",
+        "body": "Heat the 1/2 cup oil in a 12-inch skillet (a thin layer, about 1/8 inch) over medium-high until shimmering, about 3 minutes. Dredge 2 fillets in flour, shake off the excess, and lay them in skin side down. Pan-fry until golden and crisp, about 4 minutes, flip, and cook until the fish flakes and reaches 145 F, 2 to 3 minutes. Drain on a rack and repeat with the other 2 fillets (2 batches).",
+        "ingredient_refs": [
+          "neutral-oil",
+          "flour",
+          "snapper"
+        ],
+        "clock_minutes": 17,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Plate the rice and fish and spoon the hot escovitch vegetables and some of the pickling liquid over the fish.",
+        "ingredient_refs": [
+          "rice",
+          "snapper",
+          "yellow-onion",
+          "vinegar"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "fish",
+        "name": "pan-fried snapper",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "red snapper",
+          "lime",
+          "salt",
+          "black pepper",
+          "flour",
+          "neutral oil"
+        ]
+      },
+      {
+        "component_id": "escovitch",
+        "name": "escovitch vegetables",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "vinegar",
+          "water",
+          "sugar",
+          "allspice",
+          "thyme",
+          "salt",
+          "onion",
+          "carrot",
+          "red bell pepper",
+          "Scotch bonnet",
+          "garlic"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "steamed white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long-grain rice",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "2-quart saucepan with lid",
+      "3-quart saucepan",
+      "12-inch skillet",
+      "shallow dish",
+      "wire rack",
+      "fish spatula"
+    ],
+    "methods": [
+      "pan-fry",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [
+        "pan"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 31,
+    "total_time_minutes": 43,
+    "prep_minutes": 12,
+    "cook_minutes": 31,
+    "total_minutes": 43,
+    "time_clock": "Prep 12 + cook 31 = 43 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 5 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 31 minutes of steps 2 to 5.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "12-inch skillet over medium-high with a thin layer of oil, about 1/8 inch (1/2 cup), for the fish. 3-quart saucepan brought to a boil, then a brief simmer, for the escovitch. 2-quart saucepan covered on low for the rice.",
+    "doneness": "Fish golden and crisp on the skin side, opaque and flaking at 145 F. Escovitch vegetables crisp-tender and glossy. Rice tender.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-16",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: fish, flour, vegetables, vinegar, spices, and oil.",
+    "allergens": [
+      "finfish",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Finfish from the snapper.",
+      "Wheat from the flour dredge.",
+      "No egg, milk, soy, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Fried in neutral oil, no butter.",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "spicy",
+      "crispy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'jamaican' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook fish to 145 F. Wear gloves to cut the Scotch bonnet. Pan-frying: stay at the stove and keep a lid nearby.",
+    "culinary_hash": "b3211dac4b00da9f19674cba1a9123c89bf522cad0af52e51b8119621efc7da8",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_jamaican-escovitch-snapper_v1",
+    "dish_id": "jamaican-escovitch-snapper",
+    "recipe_version_id": "rv_jamaican-escovitch-snapper_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "jamaican-escovitch-snapper.webp",
+    "card_ref": "jamaican-escovitch-snapper-640.webp",
+    "master_filename": "jamaican-escovitch-snapper.webp",
+    "card_filename": "jamaican-escovitch-snapper-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "jamaican-escovitch-snapper.webp",
+        "spec_catalog_path": "/images/meals/jamaican-escovitch-snapper.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "jamaican-escovitch-snapper-640.webp",
+        "spec_catalog_path": "/images/meals/jamaican-escovitch-snapper-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "571397b476cca42d0efa79357b9f23464cf12eced63071901dcd4111189989de",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "571397b476cca42d0efa79357b9f23464cf12eced63071901dcd4111189989de",
+      "master_sha256": "aac131dcc1b85e8ab1ff2abdc17d12c4c1747e6552636096d0f0ae476569ab76",
+      "card_sha256": "fcce95686a55f6b4e4a8d69e59002a7d327b69c54c6bccd2c558da9c0d13cd39"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "571397b476cca42d0efa79357b9f23464cf12eced63071901dcd4111189989de",
+      "jamaican-escovitch-snapper.webp": "aac131dcc1b85e8ab1ff2abdc17d12c4c1747e6552636096d0f0ae476569ab76",
+      "jamaican-escovitch-snapper-640.webp": "fcce95686a55f6b4e4a8d69e59002a7d327b69c54c6bccd2c558da9c0d13cd39"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 31 = 43 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 5 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 31 minutes of steps 2 to 5."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "jamaican-escovitch-snapper.webp 1200x900 and jamaican-escovitch-snapper-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"pan\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One fillet in a 10-inch skillet in one batch with about 1/3 cup oil (1/8 inch); a quarter of the escovitch in a 1-quart saucepan; a quarter of the rice in a 1-quart saucepan.",
+    "2": "Two fillets in one batch in the 12-inch skillet with the full 1/2 cup oil (1/8 inch); half the escovitch and rice.",
+    "4": "As written (1/2 cup oil, 2 batches).",
+    "do_not_scale": [
+      "oil depth: a thin layer, about 1/8 inch, whatever the batch: 1/2 cup in a 12-inch skillet, about 1/3 cup in a 10-inch skillet"
+    ]
+  },
+  "coverage_contribution": "An HH001 fish dinner with a pickled-vegetable topping, a flavor the catalog's fish meals lack. Jamaica is new as a label (live Caribbean meals are jerk pork chops and grilled mahi-mahi).",
+  "near_duplicate_review": "Compared with senegalese-fish-yassa: a sharp vinegar pickle with Scotch bonnet and allspice, not slow-cooked lemon-mustard onions. Compared with red-snapper-veracruzana: pan-fried fillets under a pickled vegetable escovitch, not fish braised in tomato-olive sauce. Compared with pan-fried-trout-lemon-capers: a hot vinegar pickle over the fish, not a lemon-caper butter. Compared with jamaican-jerk-pork-chops: fish, and no jerk marinade.",
+  "not_duplicate_of": "Fillets, not whole fried fish, to keep it weeknight-friendly.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "B",
+  "revision_history": [
+    {
+      "from": "author-r2",
+      "to": "author-r3",
+      "when": "2026-10-15",
+      "who": "Grok Bot (Curator, creator role), wave-16",
+      "trigger": "audit r1 gates B and C FAIL",
+      "scope": "recipe text only; image files unchanged and not regenerated",
+      "from_culinary_hash": "1c1ee55f033fbc084dc015d478292dcd84f70f7a05f0c1625e966f7b1f4eb04c",
+      "to_culinary_hash": "b3211dac4b00da9f19674cba1a9123c89bf522cad0af52e51b8119621efc7da8",
+      "changes": [
+        "Oil kept at 1/2 cup (a thin layer for pan-frying dredged fillets); the do-not-scale note changed from 'about 1/4 inch' to 'a thin layer, about 1/8 inch: 1/2 cup in a 12-inch skillet, about 1/3 cup in a 10-inch skillet'.",
+        "Heat line and step 4 now state the 1/2 cup thin layer, about 1/8 inch.",
+        "Scaling: 1 serving states about 1/3 cup oil in the 10-inch skillet; 2 servings state the full 1/2 cup in the 12-inch skillet."
+      ]
+    }
+  ]
+}
