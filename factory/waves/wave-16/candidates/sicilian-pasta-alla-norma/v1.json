@@ -1,0 +1,559 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-16, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-16-2026-10-15",
+  "batch_label": "wave-16",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-16",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "sicilian-pasta-alla-norma",
+    "slug": "sicilian-pasta-alla-norma",
+    "title": "Sicilian Pasta alla Norma with Golden Eggplant and Ricotta Salata",
+    "description": "Rigatoni tossed in a garlicky tomato-basil sauce with cubes of eggplant shallow-fried in olive oil until golden outside and creamy inside, finished with grated ricotta salata and torn basil.",
+    "cuisine": "italian",
+    "meal_format": "pasta",
+    "primary_ingredient": "eggplant",
+    "vocabulary_tag_ids": [
+      "pasta",
+      "savory",
+      "rich",
+      "italian",
+      "eggplant"
+    ],
+    "current_recipe_id": "rcp_sicilian-pasta-alla-norma",
+    "current_version_id": "rv_sicilian-pasta-alla-norma_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_sicilian-pasta-alla-norma",
+    "dish_id": "sicilian-pasta-alla-norma",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-16-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_sicilian-pasta-alla-norma_v1",
+    "recipe_id": "rcp_sicilian-pasta-alla-norma",
+    "dish_id": "sicilian-pasta-alla-norma",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Sicilian Pasta alla Norma with Golden Eggplant and Ricotta Salata",
+    "description": "Rigatoni tossed in a garlicky tomato-basil sauce with cubes of eggplant shallow-fried in olive oil until golden outside and creamy inside, finished with grated ricotta salata and torn basil.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "eggplant",
+        "name": "globe eggplants",
+        "display_name": "medium globe eggplants (about 2 lb total)",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 3/4-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 0.67,
+        "unit": "cup",
+        "note": "1/2 cup for the eggplant, 2 tbsp for the sauce, plus a little for the pan if needed",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-pepper-flakes",
+        "name": "crushed red pepper",
+        "display_name": "crushed red pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "canned whole peeled tomatoes",
+        "display_name": "whole peeled tomatoes (one 28-oz can)",
+        "quantity": 28,
+        "unit": "oz",
+        "note": null,
+        "preparation": "crushed by hand",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "basil",
+        "name": "fresh basil",
+        "display_name": "fresh basil leaves",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "rigatoni",
+        "name": "rigatoni",
+        "display_name": "rigatoni",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pasta-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 16,
+        "unit": "cup",
+        "note": "for the pasta",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "ricotta-salata",
+        "name": "ricotta salata",
+        "display_name": "ricotta salata made with microbial or vegetable rennet",
+        "quantity": 4,
+        "unit": "oz",
+        "note": null,
+        "preparation": "coarsely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tbsp",
+        "note": "2 tbsp pasta pot, 1/2 tbsp (1 1/2 tsp) eggplant and sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Cut the eggplants into 3/4-inch cubes. Thinly slice the garlic, crush the tomatoes by hand in a bowl, pick the basil leaves, and coarsely grate the ricotta salata.",
+        "ingredient_refs": [
+          "eggplant",
+          "garlic",
+          "tomatoes",
+          "basil",
+          "ricotta-salata"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Heat the pasta pot",
+        "body": "Fill an 8-quart pot with 16 cups water and 2 tbsp salt, cover, and set it over high heat. It takes about 16 minutes to come to a boil, which runs inside steps 3 and 4 (overlap stated).",
+        "ingredient_refs": [
+          "pasta-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 1,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Shallow-fry the eggplant",
+        "body": "Heat 1/4 cup olive oil in a 12-inch skillet over medium-high. Add half the eggplant in one layer and cook, turning with a slotted spoon, until golden on most sides and creamy inside, about 6 minutes per batch. Drain on a towel-lined plate and sprinkle with 1/2 tsp salt. Repeat with another 1/4 cup oil and the rest of the eggplant (2 batches).",
+        "ingredient_refs": [
+          "olive-oil",
+          "eggplant",
+          "kosher-salt"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Make the sauce",
+        "body": "Lower the heat to medium and add 2 tbsp oil. Cook the garlic and crushed red pepper until the garlic is pale gold, about 1 minute. Add the tomatoes and 1/2 tsp salt and simmer, stirring now and then, until thickened, about 10 minutes.",
+        "ingredient_refs": [
+          "olive-oil",
+          "garlic",
+          "red-pepper-flakes",
+          "tomatoes",
+          "kosher-salt"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Cook the rigatoni",
+        "body": "Once the pot boils (early in step 4), add the rigatoni and cook until al dente, about 11 minutes. Scoop out 1/2 cup of the cooking liquid, then drain. This runs inside step 4 (overlap stated).",
+        "ingredient_refs": [
+          "rigatoni"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Combine",
+        "body": "Add the rigatoni and two-thirds of the eggplant to the sauce with half the basil, torn, and toss 1 minute, adding splashes of the reserved cooking liquid until glossy.",
+        "ingredient_refs": [
+          "rigatoni",
+          "eggplant",
+          "basil"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Divide among bowls, top with the remaining eggplant and basil, and shower with the ricotta salata.",
+        "ingredient_refs": [
+          "eggplant",
+          "basil",
+          "ricotta-salata"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "eggplant",
+        "name": "shallow-fried eggplant",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "eggplant",
+          "olive oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "sauce",
+        "name": "tomato-basil sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "olive oil",
+          "garlic",
+          "crushed red pepper",
+          "tomatoes",
+          "basil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "pasta",
+        "name": "rigatoni",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rigatoni",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "8-quart pot with lid",
+      "12-inch skillet",
+      "colander",
+      "box grater",
+      "slotted spoon"
+    ],
+    "methods": [
+      "shallow-fry",
+      "simmer",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [
+        "shallow"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 32,
+    "total_time_minutes": 44,
+    "prep_minutes": 12,
+    "cook_minutes": 32,
+    "total_minutes": 44,
+    "time_clock": "Prep 12 + cook 32 = 44 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The pasta pot comes to a boil (about 16 minutes) inside steps 3 and 4 (26 minutes), and the rigatoni cooks inside step 4 (steps 2 and 5 state the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "overlap_steps": [
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "12-inch skillet over medium-high for the eggplant, medium for the sauce. 8-quart pot at a rolling boil for the pasta.",
+    "doneness": "Eggplant golden-brown on most sides and creamy inside. Sauce thickened, no longer watery. Rigatoni al dente.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-16",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: ricotta salata is dairy."
+    },
+    "dietary_labels": [
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional vegetarian: the ricotta salata must be made with microbial or vegetable rennet (stated on the ingredient line).",
+    "allergens": [
+      "milk",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Milk from the ricotta salata.",
+      "Wheat from the rigatoni.",
+      "No egg, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: ricotta salata is dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "pasta",
+      "savory",
+      "rich",
+      "italian",
+      "eggplant"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'italian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "c77ef9f4d3478394e5bd47ba00103ecf227b5648e28bf1d6c8d3092af3b1aa52",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_sicilian-pasta-alla-norma_v1",
+    "dish_id": "sicilian-pasta-alla-norma",
+    "recipe_version_id": "rv_sicilian-pasta-alla-norma_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "sicilian-pasta-alla-norma.webp",
+    "card_ref": "sicilian-pasta-alla-norma-640.webp",
+    "master_filename": "sicilian-pasta-alla-norma.webp",
+    "card_filename": "sicilian-pasta-alla-norma-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "sicilian-pasta-alla-norma.webp",
+        "spec_catalog_path": "/images/meals/sicilian-pasta-alla-norma.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "sicilian-pasta-alla-norma-640.webp",
+        "spec_catalog_path": "/images/meals/sicilian-pasta-alla-norma-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "53390ab1eb260c067e9781e9cfb822b33354b565f4ca7c2fd6dcdac61784b7e3",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "53390ab1eb260c067e9781e9cfb822b33354b565f4ca7c2fd6dcdac61784b7e3",
+      "master_sha256": "7f306fcb83991188619a802d60296279d61a1f637f5cdd86045f2568c7f61255",
+      "card_sha256": "fc73781fbc444539e4b2ad2d8f7c387226ddd7f1ebb7b76d738a7a30d9a7fa93"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "53390ab1eb260c067e9781e9cfb822b33354b565f4ca7c2fd6dcdac61784b7e3",
+      "sicilian-pasta-alla-norma.webp": "7f306fcb83991188619a802d60296279d61a1f637f5cdd86045f2568c7f61255",
+      "sicilian-pasta-alla-norma-640.webp": "fc73781fbc444539e4b2ad2d8f7c387226ddd7f1ebb7b76d738a7a30d9a7fa93"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 32 = 44 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The pasta pot comes to a boil (about 16 minutes) inside steps 3 and 4 (26 minutes), and the rigatoni cooks inside step 4 (steps 2 and 5 state the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "sicilian-pasta-alla-norma.webp 1200x900 and sicilian-pasta-alla-norma-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"shallow\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything: half a small eggplant in one batch in a 10-inch skillet; 4 oz rigatoni in a 4-quart pot with 8 cups water.",
+    "2": "Half of everything; fry the eggplant in one batch in the 12-inch skillet; 8 oz pasta in a 6-quart pot with 12 cups water.",
+    "4": "As written.",
+    "do_not_scale": [
+      "eggplant: one layer per batch; crowding steams it and it soaks up oil"
+    ]
+  },
+  "coverage_contribution": "A vegetarian Sicilian pasta. Eggplant leads are a Thai basil stir-fry and a sabich pita; no pasta uses it. Italian is a large cluster, so this is the only Italian meal in the wave.",
+  "near_duplicate_review": "Compared with spaghetti-puttanesca: eggplant and ricotta salata, no anchovies, olives, or capers. Compared with thai-basil-eggplant-stir-fry: Italian tomato sauce on pasta, not a soy-chile stir-fry over rice. Compared with baked-ziti-italian-sausage: a stovetop tossed pasta with no sausage and no baking. Compared with sabich-pita-sandwiches: eggplant on pasta, not in a pita with eggs and tahini.",
+  "not_duplicate_of": "Not eggplant parmesan; nothing is breaded or baked.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

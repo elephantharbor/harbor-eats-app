@@ -1,0 +1,171 @@
+{
+ "base_n": 185,
+ "live_n": 135,
+ "wave15_n": 50,
+ "new_n": 15,
+ "cuisine": {
+  "base": {
+   "vietnamese": 4,
+   "american": 21,
+   "indian": 4,
+   "italian-american": 1,
+   "british": 3,
+   "mexican": 9,
+   "brazilian": 2,
+   "burmese": 1,
+   "cajun": 2,
+   "chinese-american": 1,
+   "italian-inspired": 7,
+   "chilean": 1,
+   "chinese": 4,
+   "scandinavian-inspired": 1,
+   "indian-inspired": 4,
+   "colombian": 1,
+   "egyptian": 2,
+   "ethiopian": 2,
+   "filipino": 3,
+   "french": 5,
+   "mediterranean": 7,
+   "georgian": 1,
+   "ghanaian": 1,
+   "asian-fusion": 2,
+   "chinese-inspired": 2,
+   "korean": 5,
+   "greek": 4,
+   "caribbean": 2,
+   "californian": 2,
+   "north-african": 2,
+   "hungarian": 1,
+   "japanese": 8,
+   "german": 2,
+   "lebanese": 2,
+   "italian": 5,
+   "malaysian": 1,
+   "moroccan": 3,
+   "nigerian": 1,
+   "persian": 2,
+   "peruvian": 4,
+   "polish": 2,
+   "portuguese": 2,
+   "southwestern": 1,
+   "spanish": 5,
+   "middle-eastern": 1,
+   "israeli": 1,
+   "new-american": 1,
+   "west-african": 1,
+   "southern": 3,
+   "cuban": 2,
+   "south-african": 1,
+   "swedish": 1,
+   "swiss": 2,
+   "taiwanese": 2,
+   "japanese-inspired": 1,
+   "thai-inspired": 4,
+   "turkish": 2,
+   "ukrainian": 1,
+   "venezuelan": 1,
+   "argentine": 1,
+   "bengali": 1,
+   "cantonese": 1,
+   "cypriot": 1,
+   "dominican": 1,
+   "hawaiian": 1,
+   "irish": 1,
+   "kenyan": 1,
+   "malian": 1,
+   "nepali": 1,
+   "new-mexican": 1,
+   "pakistani": 1,
+   "puerto-rican": 1,
+   "thai": 3
+  },
+  "new": {
+   "austrian": 1,
+   "cambodian": 1,
+   "cuban": 1,
+   "goan": 1,
+   "hawaiian": 1,
+   "indonesian": 1,
+   "jamaican": 1,
+   "korean": 1,
+   "persian": 1,
+   "russian": 1,
+   "chinese": 1,
+   "italian": 1,
+   "southern": 1,
+   "thai": 1,
+   "turkish": 1
+  }
+ },
+ "effort": {
+  "base": {
+   "moderate": 105,
+   "easy": 34,
+   "involved": 46
+  },
+  "new": {
+   "involved": 2,
+   "moderate": 12,
+   "easy": 1
+  }
+ },
+ "complexity": {
+  "base": {
+   "standard": 95,
+   "simple": 84,
+   "adventurous": 6
+  },
+  "new": {
+   "simple": 7,
+   "standard": 7,
+   "adventurous": 1
+  }
+ },
+ "time": {
+  "base": {
+   "30-45": 58,
+   "46-90": 80,
+   "over 90": 25,
+   "under 30": 22
+  },
+  "new": {
+   "46-90": 5,
+   "30-45": 10
+  }
+ },
+ "hh001": {
+  "base": {
+   "true": 71,
+   "false": 114
+  },
+  "new": {
+   "false": 9,
+   "true": 6
+  }
+ },
+ "pair": {
+  "base": {
+   "moderate/standard": 55,
+   "easy/simple": 25,
+   "involved/standard": 31,
+   "moderate/simple": 48,
+   "involved/adventurous": 4,
+   "involved/simple": 11,
+   "easy/standard": 9,
+   "moderate/adventurous": 2
+  },
+  "new": {
+   "involved/simple": 1,
+   "moderate/standard": 5,
+   "moderate/simple": 6,
+   "easy/standard": 1,
+   "moderate/adventurous": 1,
+   "involved/standard": 1
+  }
+ },
+ "batches": {
+  "C": 3,
+  "B": 6,
+  "A": 6
+ }
+}

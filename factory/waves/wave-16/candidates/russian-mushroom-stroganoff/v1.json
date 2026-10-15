@@ -1,0 +1,623 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-16, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-16-2026-10-15",
+  "batch_label": "wave-16",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-16",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "russian-mushroom-stroganoff",
+    "slug": "russian-mushroom-stroganoff",
+    "title": "Mushroom Stroganoff with Sour Cream, Dill, and Buttered Egg Noodles",
+    "description": "Thick-sliced cremini mushrooms seared in batches until deeply browned, then simmered with onion, garlic, sweet paprika, Dijon mustard, and vegetable broth and finished with sour cream and fresh dill. Served over buttered wide egg noodles.",
+    "cuisine": "russian",
+    "meal_format": "sauce-over-noodles",
+    "primary_ingredient": "mushrooms",
+    "vocabulary_tag_ids": [
+      "creamy",
+      "savory",
+      "rich",
+      "mushrooms"
+    ],
+    "current_recipe_id": "rcp_russian-mushroom-stroganoff",
+    "current_version_id": "rv_russian-mushroom-stroganoff_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_russian-mushroom-stroganoff",
+    "dish_id": "russian-mushroom-stroganoff",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-16-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_russian-mushroom-stroganoff_v1",
+    "recipe_id": "rcp_russian-mushroom-stroganoff",
+    "dish_id": "russian-mushroom-stroganoff",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Mushroom Stroganoff with Sour Cream, Dill, and Buttered Egg Noodles",
+    "description": "Thick-sliced cremini mushrooms seared in batches until deeply browned, then simmered with onion, garlic, sweet paprika, Dijon mustard, and vegetable broth and finished with sour cream and fresh dill. Served over buttered wide egg noodles.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "mushrooms",
+        "name": "cremini mushrooms",
+        "display_name": "cremini mushrooms",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "sliced 1/3 inch thick",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "1 tbsp sauce, 2 tbsp noodles",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "medium yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "paprika",
+        "name": "sweet paprika",
+        "display_name": "sweet paprika",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "broth",
+        "name": "low-sodium vegetable broth",
+        "display_name": "low-sodium vegetable broth whose label lists vegetables, salt, and herbs only",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "mustard",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sour-cream",
+        "name": "full-fat sour cream",
+        "display_name": "full-fat sour cream",
+        "quantity": 0.67,
+        "unit": "cup",
+        "note": "at room temperature",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dill",
+        "name": "fresh dill",
+        "display_name": "fresh dill",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "egg-noodles",
+        "name": "wide egg noodles",
+        "display_name": "wide egg noodles whose label lists wheat flour and eggs",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "noodle-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 12,
+        "unit": "cup",
+        "note": "for the noodles",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": "1 tbsp noodle pot, 1/2 tbsp (1 1/2 tsp) sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Slice the mushrooms 1/3 inch thick, finely chop the onion, mince the garlic, and chop the dill. Set the sour cream out.",
+        "ingredient_refs": [
+          "mushrooms",
+          "yellow-onion",
+          "garlic",
+          "dill",
+          "sour-cream"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Heat the noodle pot",
+        "body": "Fill a 6-quart pot with 12 cups water and 1 tbsp salt, cover, and set it over high heat. It takes about 12 minutes to come to a boil, which runs inside steps 3 and 4 (overlap stated).",
+        "ingredient_refs": [
+          "noodle-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 1,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Sear the mushrooms",
+        "body": "Heat 1 tbsp olive oil in a 12-inch skillet over medium-high. Add half the mushrooms in one layer and leave them 3 minutes, then stir and cook until deep brown, 2 minutes more. Move to a plate and repeat with the remaining 1 tbsp oil and mushrooms. Season with 1/2 tsp salt.",
+        "ingredient_refs": [
+          "olive-oil",
+          "mushrooms",
+          "kosher-salt"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Soften the onion",
+        "body": "Lower the heat to medium and melt 1 tbsp butter in the skillet. Cook the onion, stirring, until soft and pale gold, about 4 minutes. Add the garlic and paprika for 1 minute, then sprinkle in the flour and stir 1 minute.",
+        "ingredient_refs": [
+          "butter",
+          "yellow-onion",
+          "garlic",
+          "paprika",
+          "flour"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Cook the noodles",
+        "body": "Add the noodles to the boiling pot and cook until tender, about 7 minutes. Drain, return to the pot, and toss with 2 tbsp butter. This runs inside step 6 (overlap stated).",
+        "ingredient_refs": [
+          "egg-noodles",
+          "butter"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Simmer the sauce",
+        "body": "Whisk in the broth and mustard, scraping up the browned bits, and bring to a simmer, about 1 minute. Return the mushrooms with 1 tsp salt and the pepper and simmer until the sauce coats a spoon, about 6 minutes.",
+        "ingredient_refs": [
+          "broth",
+          "mustard",
+          "mushrooms",
+          "kosher-salt",
+          "black-pepper"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Finish with sour cream",
+        "body": "Turn the heat to low. Stir a spoonful of sauce into the sour cream, then stir the sour cream into the skillet with half the dill and warm 1 minute without letting it boil.",
+        "ingredient_refs": [
+          "sour-cream",
+          "dill"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 8,
+        "title": "Serve",
+        "body": "Divide the buttered noodles among shallow bowls, spoon the stroganoff over, and scatter the remaining dill.",
+        "ingredient_refs": [
+          "egg-noodles",
+          "mushrooms",
+          "dill"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "stroganoff",
+        "name": "mushroom stroganoff",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cremini mushrooms",
+          "onion",
+          "garlic",
+          "butter",
+          "flour",
+          "paprika",
+          "Dijon mustard",
+          "vegetable broth",
+          "sour cream",
+          "dill"
+        ]
+      },
+      {
+        "component_id": "noodles",
+        "name": "buttered egg noodles",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "egg noodles",
+          "water",
+          "salt",
+          "butter"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart pot with lid",
+      "12-inch skillet",
+      "colander",
+      "wooden spoon"
+    ],
+    "methods": [
+      "sear",
+      "saute",
+      "simmer",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 31,
+    "total_time_minutes": 41,
+    "prep_minutes": 10,
+    "cook_minutes": 31,
+    "total_minutes": 41,
+    "time_clock": "Prep 10 + cook 31 = 41 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The noodle pot comes to a boil (about 12 minutes) inside steps 3 and 4 (18 minutes), and the noodles cook inside step 6 (steps 2 and 5 state the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "overlap_steps": [
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "12-inch skillet over medium-high to sear the mushrooms, medium for the onion and the sauce, low once the sour cream goes in. 6-quart pot at a rolling boil for the noodles.",
+    "doneness": "Mushrooms deep brown on the cut faces. Onion soft and pale gold. Sauce thick enough to coat a spoon; sour cream warmed through without boiling. Noodles tender.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-16",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: butter and sour cream are dairy."
+    },
+    "dietary_labels": [
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional vegetarian: mushrooms, vegetables, vegetable broth, dairy, and egg noodles. The broth label lists vegetables, salt, and herbs only.",
+    "allergens": [
+      "milk",
+      "wheat",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Milk from the butter and sour cream.",
+      "Wheat and egg from the egg noodles; wheat from the flour.",
+      "Mustard (Dijon) has no FlavorWeave allergen token; disclosed here and in runtime_enum_gaps.",
+      "The broth label lists vegetables, salt, and herbs, with no soy, wheat, or milk.",
+      "No soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: butter and sour cream are dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "creamy",
+      "savory",
+      "rich",
+      "mushrooms"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'russian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids.",
+      "mustard": "Mustard (Dijon) has no FlavorWeave allergen token. Disclosed in allergen_notes; carried as a wave-16 open item for the importer."
+    },
+    "culinary_hash": "b73562f955ca2f22ad5c789ec4e1eeeef356de777d96e4afcbbd4156dae9a247",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_russian-mushroom-stroganoff_v1",
+    "dish_id": "russian-mushroom-stroganoff",
+    "recipe_version_id": "rv_russian-mushroom-stroganoff_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "russian-mushroom-stroganoff.webp",
+    "card_ref": "russian-mushroom-stroganoff-640.webp",
+    "master_filename": "russian-mushroom-stroganoff.webp",
+    "card_filename": "russian-mushroom-stroganoff-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "russian-mushroom-stroganoff.webp",
+        "spec_catalog_path": "/images/meals/russian-mushroom-stroganoff.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "russian-mushroom-stroganoff-640.webp",
+        "spec_catalog_path": "/images/meals/russian-mushroom-stroganoff-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "0d4b8af0e6053f4679455ffb5b1379b712d523a784f1d0f30dd309d02514c65c",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "0d4b8af0e6053f4679455ffb5b1379b712d523a784f1d0f30dd309d02514c65c",
+      "master_sha256": "5df70c1ca18193c1545896b520c3dd47e06271a98608862f29f1a45b806c6127",
+      "card_sha256": "52112097ce30cb43c55c5effb34766f700341f2dfed8f4451c7fd843e4569c7c"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "0d4b8af0e6053f4679455ffb5b1379b712d523a784f1d0f30dd309d02514c65c",
+      "russian-mushroom-stroganoff.webp": "5df70c1ca18193c1545896b520c3dd47e06271a98608862f29f1a45b806c6127",
+      "russian-mushroom-stroganoff-640.webp": "52112097ce30cb43c55c5effb34766f700341f2dfed8f4451c7fd843e4569c7c"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 31 = 41 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The noodle pot comes to a boil (about 12 minutes) inside steps 3 and 4 (18 minutes), and the noodles cook inside step 6 (steps 2 and 5 state the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "russian-mushroom-stroganoff.webp 1200x900 and russian-mushroom-stroganoff-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 10-inch skillet, mushrooms in one batch; 3 oz noodles in a 4-quart pot with 8 cups water.",
+    "2": "Half of everything; sear the mushrooms in one batch in the 12-inch skillet.",
+    "4": "As written.",
+    "do_not_scale": [
+      "searing: never crowd the skillet; sear in batches so the mushrooms brown instead of steaming"
+    ]
+  },
+  "coverage_contribution": "Russia has no meal in the catalog. A vegetarian creamy-sauce dinner over noodles; the catalog's mushroom leads are a walnut bolognese, a ramen, a barley soup, a pozole, and a three-cup stir-fry.",
+  "near_duplicate_review": "Compared with hungarian-chicken-paprikash: mushrooms with Dijon and dill, no chicken, and a broth sauce finished with sour cream. Compared with mushroom-walnut-bolognese: a creamy sour cream sauce on egg noodles, not a tomato-walnut ragu on pasta. Compared with polish-mushroom-barley-krupnik: a sauced noodle dinner, not a barley soup. Compared with kasespatzle-caramelized-onions: mushrooms in a sour cream sauce, not cheese-baked spaetzle.",
+  "not_duplicate_of": "Not beef stroganoff; mushrooms are the only main.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

@@ -1,0 +1,711 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-16, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-16-2026-10-15",
+  "batch_label": "wave-16",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-16",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "turkish-mucver-zucchini-fritters",
+    "slug": "turkish-mucver-zucchini-fritters",
+    "title": "Turkish Mücver: Zucchini-Feta Fritters with Garlic Yogurt and Tomato-Cucumber Salad",
+    "description": "Grated zucchini, squeezed dry and mixed with feta, scallions, dill, mint, eggs, flour, and red pepper flakes, shallow-fried into golden fritters. Served with cool garlic yogurt flecked with dill and a tomato, cucumber, and red onion salad dressed with lemon and olive oil.",
+    "cuisine": "turkish",
+    "meal_format": "fritters-with-salad",
+    "primary_ingredient": "zucchini",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "fresh",
+      "herbaceous",
+      "tangy",
+      "middle-eastern"
+    ],
+    "current_recipe_id": "rcp_turkish-mucver-zucchini-fritters",
+    "current_version_id": "rv_turkish-mucver-zucchini-fritters_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_turkish-mucver-zucchini-fritters",
+    "dish_id": "turkish-mucver-zucchini-fritters",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-16-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_turkish-mucver-zucchini-fritters_v1",
+    "recipe_id": "rcp_turkish-mucver-zucchini-fritters",
+    "dish_id": "turkish-mucver-zucchini-fritters",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Turkish Mücver: Zucchini-Feta Fritters with Garlic Yogurt and Tomato-Cucumber Salad",
+    "description": "Grated zucchini, squeezed dry and mixed with feta, scallions, dill, mint, eggs, flour, and red pepper flakes, shallow-fried into golden fritters. Served with cool garlic yogurt flecked with dill and a tomato, cucumber, and red onion salad dressed with lemon and olive oil.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "zucchini",
+        "name": "zucchini",
+        "display_name": "medium zucchini (about 4)",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "coarsely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1 tsp zucchini, 1/4 tsp yogurt, 1/4 tsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "feta",
+        "name": "feta",
+        "display_name": "feta made with microbial or vegetable rennet",
+        "quantity": 6,
+        "unit": "oz",
+        "note": null,
+        "preparation": "crumbled",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dill",
+        "name": "fresh dill",
+        "display_name": "fresh dill",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "1 tbsp yogurt, 2 tbsp to scatter, the rest in the batter",
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mint",
+        "name": "fresh mint",
+        "display_name": "fresh mint",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 0.67,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pepper-flakes",
+        "name": "Aleppo or mild red pepper flakes",
+        "display_name": "Aleppo or mild red pepper flakes",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1.33,
+        "unit": "cup",
+        "note": "for shallow-frying, 2/3 cup per batch",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "yogurt",
+        "name": "plain whole-milk yogurt",
+        "display_name": "plain whole-milk yogurt",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": null,
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "plum tomatoes",
+        "display_name": "plum tomatoes",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "English cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "small red onion",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "juiced",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Grate and salt the zucchini",
+        "body": "Coarsely grate the zucchini on a box grater, toss it with 1 tsp salt in a colander set in the sink, and leave it to drain 10 minutes; the draining runs inside step 2 (overlap stated).",
+        "ingredient_refs": [
+          "zucchini",
+          "kosher-salt"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Prep the rest",
+        "body": "Crumble the feta, slice the scallions, and chop the dill and mint. Stir the garlic, 1 tbsp of the dill, and 1/4 tsp salt into the yogurt. Dice the tomatoes and cucumber, slice the red onion, and juice the lemon.",
+        "ingredient_refs": [
+          "feta",
+          "scallions",
+          "dill",
+          "mint",
+          "garlic",
+          "kosher-salt",
+          "yogurt",
+          "tomatoes",
+          "cucumber",
+          "red-onion",
+          "lemon"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 3,
+        "title": "Squeeze and mix",
+        "body": "A handful at a time, wring the zucchini very dry in a clean towel and drop it into the large bowl. Mix in the feta, scallions, the remaining dill and mint except 2 tbsp of each, the eggs, flour, and pepper flakes to a thick, spoonable batter.",
+        "ingredient_refs": [
+          "zucchini",
+          "feta",
+          "scallions",
+          "dill",
+          "mint",
+          "eggs",
+          "flour",
+          "pepper-flakes"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 4,
+        "title": "Dress the salad",
+        "body": "Toss the tomatoes, cucumber, and red onion with the lemon juice, olive oil, and 1/4 tsp salt.",
+        "ingredient_refs": [
+          "tomatoes",
+          "cucumber",
+          "red-onion",
+          "lemon",
+          "olive-oil",
+          "kosher-salt"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 5,
+        "title": "Shallow-fry the fritters",
+        "body": "Heat 2/3 cup neutral oil (about 1/8 inch) in a 12-inch skillet over medium until it shimmers, about 3 minutes. Drop in 6 mounds of batter, 1/3 cup each, and flatten to 3 1/2-inch rounds. Cook until deep golden and set through, turning once, about 8 minutes per batch. Drain on a rack. Add the remaining 2/3 cup oil, heat it about 1 minute, and shallow-fry the rest of the batter (2 batches, 12 fritters).",
+        "ingredient_refs": [
+          "neutral-oil",
+          "zucchini"
+        ],
+        "clock_minutes": 21,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Plate 3 fritters each, scatter the reserved dill and mint over them, and add a spoonful of garlic yogurt and the salad alongside.",
+        "ingredient_refs": [
+          "zucchini",
+          "dill",
+          "mint",
+          "yogurt",
+          "tomatoes"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "mucver",
+        "name": "zucchini-feta fritters",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "zucchini",
+          "salt",
+          "feta",
+          "scallions",
+          "dill",
+          "mint",
+          "eggs",
+          "flour",
+          "red pepper flakes",
+          "neutral oil"
+        ]
+      },
+      {
+        "component_id": "yogurt",
+        "name": "garlic-dill yogurt",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "yogurt",
+          "garlic",
+          "dill",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "tomato-cucumber salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomatoes",
+          "cucumber",
+          "red onion",
+          "lemon",
+          "olive oil",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "box grater",
+      "colander",
+      "clean kitchen towel",
+      "12-inch skillet",
+      "large mixing bowl",
+      "thin spatula",
+      "wire rack or towel-lined plate"
+    ],
+    "methods": [
+      "shallow-fry"
+    ],
+    "cooking": {
+      "frying": [
+        "shallow"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 25,
+    "cook_time_minutes": 23,
+    "total_time_minutes": 48,
+    "prep_minutes": 25,
+    "cook_minutes": 23,
+    "total_minutes": 48,
+    "time_clock": "Prep 25 + cook 23 = 48 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The salted zucchini drains for 10 minutes inside step 2 (step 1 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "cook_steps": [
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "12-inch skillet over medium for shallow-frying, oil about 1/8 inch deep (2/3 cup per batch).",
+    "doneness": "Fritters deep golden on both sides and set through the middle with no wet batter. Salad crisp and freshly dressed.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-16",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: feta and yogurt are dairy."
+    },
+    "dietary_labels": [
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional vegetarian: the feta must be made with microbial or vegetable rennet (stated on the ingredient line).",
+    "allergens": [
+      "egg",
+      "milk",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Egg from the eggs in the batter.",
+      "Milk from the feta and yogurt.",
+      "Wheat from the flour.",
+      "No soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: feta and yogurt are dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "crispy",
+      "fresh",
+      "herbaceous",
+      "tangy",
+      "middle-eastern"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'turkish' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Shallow-frying: keep the oil at about 1/8 inch (2/3 cup per batch in a 12-inch skillet), stay at the stove, and keep a lid nearby; let the oil cool before discarding.",
+    "culinary_hash": "f8a2f157239511d8c610aad7ac92b4fb95546a4b02765fa47423237242311644",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_turkish-mucver-zucchini-fritters_v2",
+    "dish_id": "turkish-mucver-zucchini-fritters",
+    "recipe_version_id": "rv_turkish-mucver-zucchini-fritters_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "turkish-mucver-zucchini-fritters.webp",
+    "card_ref": "turkish-mucver-zucchini-fritters-640.webp",
+    "master_filename": "turkish-mucver-zucchini-fritters.webp",
+    "card_filename": "turkish-mucver-zucchini-fritters-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "turkish-mucver-zucchini-fritters.webp",
+        "spec_catalog_path": "/images/meals/turkish-mucver-zucchini-fritters.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "turkish-mucver-zucchini-fritters-640.webp",
+        "spec_catalog_path": "/images/meals/turkish-mucver-zucchini-fritters-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "c222f09066363adc59e3ba1eb24cc3025fdf2a9e66b22b8c6ce48d7978f936a9",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "c222f09066363adc59e3ba1eb24cc3025fdf2a9e66b22b8c6ce48d7978f936a9",
+      "master_sha256": "98cd2af72082b5deba182e3ee634ccaf52a2fdf83fe314ab60b91f41ccd55240",
+      "card_sha256": "3dfbcaa44753e55567dc2cb3c7e65ffaaf6782d88fb2898de007bd93c3a59e34"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "c222f09066363adc59e3ba1eb24cc3025fdf2a9e66b22b8c6ce48d7978f936a9",
+      "turkish-mucver-zucchini-fritters.webp": "98cd2af72082b5deba182e3ee634ccaf52a2fdf83fe314ab60b91f41ccd55240",
+      "turkish-mucver-zucchini-fritters-640.webp": "3dfbcaa44753e55567dc2cb3c7e65ffaaf6782d88fb2898de007bd93c3a59e34"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "creator_self_review_before_audit",
+      "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's creator self-review: Only two fritters were on the plate; the brief and recipe serve three per plate.",
+      "prompt_change": "v2 prompt is Cora's rewrite of the v1 prompt, recorded verbatim in image-prompt.md 'Active prompt (v2)' (source notes/prompts-v2-selfreview.txt); the v1 prompt is kept under 'Superseded prompt (v1)', and image-plating-brief.md was rebuilt to match v2.",
+      "v2_prompt_sha256": "d2eec716ca17e60de74821672af80c2bce745f15a1ffc56d9909c2d3cdc21d26",
+      "changes": [
+        "Hero states exactly three (count them: three) round fritters overlapping in a row.",
+        "Must show adds one fritter broken open to show the set, green-flecked interior.",
+        "Do not include adds two or four fritters.",
+        "The v2 prompt has no separate Sauce or Color line; the sauce and color sections of image-plating-brief.md restate what the v2 hero and must-show lines already say.",
+        "The v2 prompt shortens the lighting line and drops the Chipotle Lime Black Bean Bowl quality-reference sentence; it keeps the no text, logos, watermarks, or hands line."
+      ]
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "creator_self_review_before_audit",
+        "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's creator self-review: Only two fritters were on the plate; the brief and recipe serve three per plate.",
+        "prompt_change": "v2 prompt is Cora's rewrite of the v1 prompt, recorded verbatim in image-prompt.md 'Active prompt (v2)' (source notes/prompts-v2-selfreview.txt); the v1 prompt is kept under 'Superseded prompt (v1)', and image-plating-brief.md was rebuilt to match v2.",
+        "v2_prompt_sha256": "d2eec716ca17e60de74821672af80c2bce745f15a1ffc56d9909c2d3cdc21d26",
+        "changes": [
+          "Hero states exactly three (count them: three) round fritters overlapping in a row.",
+          "Must show adds one fritter broken open to show the set, green-flecked interior.",
+          "Do not include adds two or four fritters.",
+          "The v2 prompt has no separate Sauce or Color line; the sauce and color sections of image-plating-brief.md restate what the v2 hero and must-show lines already say.",
+          "The v2 prompt shortens the lighting line and drops the Chipotle Lime Black Bean Bowl quality-reference sentence; it keeps the no text, logos, watermarks, or hands line."
+        ]
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_turkish-mucver-zucchini-fritters_v1",
+        "source_file": "img_v1.jpg",
+        "sha256": "1609fdbb69938646561427ac85895a9be0cc4deed08a95db94515f641520c172",
+        "generate_image_attachment_hash": "1609fdbb69938646561427ac85895a9be0cc4deed08a95db94515f641520c172",
+        "moved_to_rejected": "rejected/img_v1-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "Only two fritters were on the plate; the brief and recipe serve three per plate."
+      }
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 25 + cook 23 = 48 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The salted zucchini drains for 10 minutes inside step 2 (step 1 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "turkish-mucver-zucchini-fritters.webp 1200x900 and turkish-mucver-zucchini-fritters-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"shallow\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything (3 fritters) in one batch in a 10-inch skillet with about 1/2 cup oil (1/8 inch).",
+    "2": "Half of everything (6 fritters) in one batch in the 12-inch skillet with 2/3 cup oil (1/8 inch).",
+    "4": "As written (12 fritters, 2 batches, 2/3 cup oil each).",
+    "do_not_scale": [
+      "oil depth: about 1/8 inch whatever the batch: 2/3 cup in a 12-inch skillet, about 1/2 cup in a 10-inch skillet",
+      "squeezing: the zucchini must be squeezed very dry whatever the batch size, or the fritters will not hold"
+    ]
+  },
+  "coverage_contribution": "A vegetarian fritter dinner; zucchini has no lead in the catalog. Turkish meals in the catalog are lahmacun and iskender, both lamb.",
+  "near_duplicate_review": "Compared with japanese-okonomiyaki: small herb-feta zucchini fritters with yogurt, not a cabbage pancake with mayo and sauce. Compared with shallow-fried-green-tomatoes: grated zucchini batter, not cornmeal-coated tomato slices. Compared with greek-spanakopita: fritters, not a phyllo pie, though both use feta and dill. Compared with turkish-lahmacun: vegetarian, no lamb flatbread.",
+  "not_duplicate_of": "Not latkes; no potato.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "A",
+  "revision_history": [
+    {
+      "from": "author-r2",
+      "to": "author-r3",
+      "when": "2026-10-15",
+      "who": "Grok Bot (Curator, creator role), wave-16",
+      "trigger": "audit r1 gate B FAIL",
+      "scope": "recipe text only; image files unchanged and not regenerated",
+      "from_culinary_hash": "1e49f8d41cc7371c5f892cf27c1bf82f34651f4b0502ca13a2c725c115738b60",
+      "to_culinary_hash": "f8a2f157239511d8c610aad7ac92b4fb95546a4b02765fa47423237242311644",
+      "changes": [
+        "Oil: 1/2 cup total (1/4 cup per batch) -> 1 1/3 cups total, 2/3 cup per batch, which gives the stated ~1/8 inch in a 12-inch skillet; heat, food-safety, and step 5 text agree.",
+        "Step 5 clock 19 -> 21 minutes (3 minutes to heat the first oil, about 1 minute for the second); cook 21 -> 23, total 46 -> 48.",
+        "Garlic yogurt: 1 tbsp of the dill is stirred into the yogurt (matches the hero); dill raised from 1/3 to 1/2 cup (1 tbsp yogurt, 2 tbsp to scatter, the rest in the batter); description and yogurt component updated.",
+        "Scaling: 1 and 2 serving lines state the oil (about 1/2 cup in a 10-inch skillet, 2/3 cup in the 12-inch); a do-not-scale oil-depth note added."
+      ]
+    }
+  ]
+}

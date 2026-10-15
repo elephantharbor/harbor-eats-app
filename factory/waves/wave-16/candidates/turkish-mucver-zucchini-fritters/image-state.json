@@ -1,0 +1,42 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "turkish-mucver-zucchini-fritters.webp",
+    "turkish-mucver-zucchini-fritters-640.webp"
+  ],
+  "present_files": [
+    "turkish-mucver-zucchini-fritters.webp",
+    "turkish-mucver-zucchini-fritters-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "c222f09066363adc59e3ba1eb24cc3025fdf2a9e66b22b8c6ce48d7978f936a9",
+    "turkish-mucver-zucchini-fritters.webp": "98cd2af72082b5deba182e3ee634ccaf52a2fdf83fe314ab60b91f41ccd55240",
+    "turkish-mucver-zucchini-fritters-640.webp": "3dfbcaa44753e55567dc2cb3c7e65ffaaf6782d88fb2898de007bd93c3a59e34"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "creator_self_review_before_audit",
+    "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's creator self-review: Only two fritters were on the plate; the brief and recipe serve three per plate.",
+    "prompt_change": "v2 prompt is Cora's rewrite of the v1 prompt, recorded verbatim in image-prompt.md 'Active prompt (v2)' (source notes/prompts-v2-selfreview.txt); the v1 prompt is kept under 'Superseded prompt (v1)', and image-plating-brief.md was rebuilt to match v2.",
+    "v2_prompt_sha256": "d2eec716ca17e60de74821672af80c2bce745f15a1ffc56d9909c2d3cdc21d26",
+    "changes": [
+      "Hero states exactly three (count them: three) round fritters overlapping in a row.",
+      "Must show adds one fritter broken open to show the set, green-flecked interior.",
+      "Do not include adds two or four fritters.",
+      "The v2 prompt has no separate Sauce or Color line; the sauce and color sections of image-plating-brief.md restate what the v2 hero and must-show lines already say.",
+      "The v2 prompt shortens the lighting line and drops the Chipotle Lime Black Bean Bowl quality-reference sentence; it keeps the no text, logos, watermarks, or hands line."
+    ]
+  },
+  "package_revision": "author-r3",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

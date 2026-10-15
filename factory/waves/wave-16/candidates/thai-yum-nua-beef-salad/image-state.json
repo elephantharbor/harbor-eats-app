@@ -1,0 +1,42 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "thai-yum-nua-beef-salad.webp",
+    "thai-yum-nua-beef-salad-640.webp"
+  ],
+  "present_files": [
+    "thai-yum-nua-beef-salad.webp",
+    "thai-yum-nua-beef-salad-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "9e527277a90082289c336964e1ea1d89e17e04660276e9a72a3dc515fb038980",
+    "thai-yum-nua-beef-salad.webp": "ec96ee34abc03e16d72686e3c340b85a545ec1248cc2253adb780a754b9bf02e",
+    "thai-yum-nua-beef-salad-640.webp": "3b8934df597491b0bad666cf52b4a221811cac70b5b41c0603875ece3568b968"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "creator_self_review_before_audit",
+    "summary": "Active hero is a v2 regeneration. The v1 hero (rejected/img_v1-selfreview-rejected.jpg) was rejected in Cora's creator self-review: The lettuce read as savoy or napa cabbage, not romaine.",
+    "prompt_change": "v2 prompt is Cora's rewrite of the v1 prompt, recorded verbatim in image-prompt.md 'Active prompt (v2)' (source notes/prompts-v2-selfreview.txt); the v1 prompt is kept under 'Superseded prompt (v1)', and image-plating-brief.md was rebuilt to match v2.",
+    "v2_prompt_sha256": "9d27710b5f9691ff4d66719f41639a7b7020dd7f3b79c87184b9bbe4938d7f98",
+    "changes": [
+      "Romaine described as smooth, elongated, dark green romaine hearts with pale crunchy ribs, clearly romaine, not cabbage.",
+      "Do not include adds napa or savoy cabbage and crinkled cabbage leaves.",
+      "Image-prompt title drops 'and Jasmine Rice'; the rice is served separately and is not in the shot (as in v1). The recipe title is unchanged.",
+      "The v2 prompt has no separate Color line; the color section of image-plating-brief.md keeps the author-r1 colors, which the v2 hero and must-show lines already name.",
+      "The v2 prompt shortens the lighting line and drops the Chipotle Lime Black Bean Bowl quality-reference sentence; it keeps the no text, logos, watermarks, or hands line."
+    ]
+  },
+  "package_revision": "author-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

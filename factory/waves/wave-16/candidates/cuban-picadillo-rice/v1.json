@@ -1,0 +1,635 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-16, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-16-2026-10-15",
+  "batch_label": "wave-16",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-16",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "cuban-picadillo-rice",
+    "slug": "cuban-picadillo-rice",
+    "title": "Cuban Picadillo with Green Olives, Capers, and Raisins over White Rice",
+    "description": "Ground beef browned and simmered with a sofrito of onion, green bell pepper, and garlic, plus tomato sauce, cumin, oregano, bay leaf, green olives, capers, and raisins until thick and savory-sweet. Served over white rice.",
+    "cuisine": "cuban",
+    "meal_format": "hash-over-rice",
+    "primary_ingredient": "ground beef",
+    "vocabulary_tag_ids": [
+      "savory",
+      "tangy",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_cuban-picadillo-rice",
+    "current_version_id": "rv_cuban-picadillo-rice_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_cuban-picadillo-rice",
+    "dish_id": "cuban-picadillo-rice",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-16-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_cuban-picadillo-rice_v1",
+    "recipe_id": "rcp_cuban-picadillo-rice",
+    "dish_id": "cuban-picadillo-rice",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Cuban Picadillo with Green Olives, Capers, and Raisins over White Rice",
+    "description": "Ground beef browned and simmered with a sofrito of onion, green bell pepper, and garlic, plus tomato sauce, cumin, oregano, bay leaf, green olives, capers, and raisins until thick and savory-sweet. Served over white rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "ground-beef",
+        "name": "ground beef (85% lean)",
+        "display_name": "ground beef (85% lean)",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "1 tbsp beef, 1 tbsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "medium yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-pepper",
+        "name": "green bell pepper",
+        "display_name": "green bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bay-leaf",
+        "name": "bay leaf",
+        "display_name": "bay leaf",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tomato-sauce",
+        "name": "canned tomato sauce",
+        "display_name": "tomato sauce (one 8-oz can) whose label lists tomatoes and salt only",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sauce-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "for the picadillo",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "raisins",
+        "name": "raisins",
+        "display_name": "raisins",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olives",
+        "name": "pimiento-stuffed green olives",
+        "display_name": "pimiento-stuffed green olives whose label lists olives, pimiento, water, salt, and vinegar only",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "halved",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "capers",
+        "name": "capers",
+        "display_name": "capers",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "drained",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1 tsp picadillo, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the rice. Finely chop the onion and green pepper, mince the garlic, halve the olives, and drain the capers.",
+        "ingredient_refs": [
+          "rice",
+          "yellow-onion",
+          "green-pepper",
+          "garlic",
+          "olives",
+          "capers"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the rice",
+        "body": "Combine the rice, 2 1/4 cups water, 1 tbsp olive oil, and 1/2 tsp salt in a 2-quart saucepan. Bring to a boil over high, about 4 minutes, then cover, turn to low, and cook 15 minutes; leave it covered off the heat to rest 10 minutes. The covered cooking and rest run inside steps 3 to 6 (overlap stated).",
+        "ingredient_refs": [
+          "rice",
+          "rice-water",
+          "olive-oil",
+          "kosher-salt"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Brown the beef",
+        "body": "Heat 1 tbsp olive oil in a 12-inch skillet over medium-high. Add the beef and cook, breaking it up, until browned with no pink, about 7 minutes. Spoon off all but about 1 tbsp of the fat.",
+        "ingredient_refs": [
+          "olive-oil",
+          "ground-beef"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Cook the sofrito",
+        "body": "Lower the heat to medium. Add the onion and green pepper and cook, stirring, until soft, about 5 minutes. Add the garlic, cumin, and oregano and stir 1 minute.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "green-pepper",
+          "garlic",
+          "cumin",
+          "oregano"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Simmer",
+        "body": "Stir in the tomato sauce, 1/2 cup water, the bay leaf, raisins, 1 tsp salt, and the pepper. Bring to a simmer, about 1 minute, cover partly, and simmer 10 minutes. Stir in the olives and capers and simmer uncovered until thick, about 3 minutes. Remove the bay leaf.",
+        "ingredient_refs": [
+          "tomato-sauce",
+          "sauce-water",
+          "bay-leaf",
+          "raisins",
+          "kosher-salt",
+          "black-pepper",
+          "olives",
+          "capers"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Fluff the rice and spoon the picadillo alongside or over it.",
+        "ingredient_refs": [
+          "rice",
+          "ground-beef"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "picadillo",
+        "name": "beef picadillo",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ground beef",
+          "olive oil",
+          "onion",
+          "green bell pepper",
+          "garlic",
+          "cumin",
+          "oregano",
+          "bay leaf",
+          "tomato sauce",
+          "water",
+          "raisins",
+          "olives",
+          "capers",
+          "salt",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long-grain rice",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "2-quart saucepan with lid",
+      "12-inch skillet with lid",
+      "wooden spoon"
+    ],
+    "methods": [
+      "brown",
+      "saute",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 35,
+    "total_time_minutes": 45,
+    "prep_minutes": 10,
+    "cook_minutes": 35,
+    "total_minutes": 45,
+    "time_clock": "Prep 10 + cook 35 = 45 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 6 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 35 minutes of steps 2 to 6.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "12-inch skillet over medium-high to brown the beef, medium for the sofrito, a gentle partly covered simmer to finish. 2-quart saucepan covered on low for the rice.",
+    "doneness": "Beef browned with no pink (160 F). Sofrito vegetables soft. Sauce thick enough that a spoon leaves a trail. Rice tender.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-16",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: beef is meat."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: beef, vegetables, tomato sauce, olives, capers, raisins, spices, and oil.",
+    "allergens": [
+      "meat"
+    ],
+    "allergen_notes": [
+      "Meat from the ground beef.",
+      "The tomato sauce label lists tomatoes and salt; the olive label lists olives, pimiento, water, salt, and vinegar.",
+      "No egg, milk, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: beef is meat.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "savory",
+      "tangy",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'cuban' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook ground beef to 160 F, with no pink remaining.",
+    "culinary_hash": "2ccffe55ac66494fbd6cb122094e3b3e1dfa3b6d0bd6810b86d2d1821c91a74b",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_cuban-picadillo-rice_v1",
+    "dish_id": "cuban-picadillo-rice",
+    "recipe_version_id": "rv_cuban-picadillo-rice_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "cuban-picadillo-rice.webp",
+    "card_ref": "cuban-picadillo-rice-640.webp",
+    "master_filename": "cuban-picadillo-rice.webp",
+    "card_filename": "cuban-picadillo-rice-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "cuban-picadillo-rice.webp",
+        "spec_catalog_path": "/images/meals/cuban-picadillo-rice.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "cuban-picadillo-rice-640.webp",
+        "spec_catalog_path": "/images/meals/cuban-picadillo-rice-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "46572a89aef69221039b7e493bcd78aaf151c8f90c0e2f434aef9c9e20e4ecbf",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "46572a89aef69221039b7e493bcd78aaf151c8f90c0e2f434aef9c9e20e4ecbf",
+      "master_sha256": "5547f806ac7036d6324459e3140df93e020058f0c15eb9e4186d4ef4da6bf44e",
+      "card_sha256": "2ff8ee9f940785a8709d676847dc27157e065425de6d2394eba01506530bec33"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "46572a89aef69221039b7e493bcd78aaf151c8f90c0e2f434aef9c9e20e4ecbf",
+      "cuban-picadillo-rice.webp": "5547f806ac7036d6324459e3140df93e020058f0c15eb9e4186d4ef4da6bf44e",
+      "cuban-picadillo-rice-640.webp": "2ff8ee9f940785a8709d676847dc27157e065425de6d2394eba01506530bec33"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 35 = 45 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks covered and rests inside steps 3 to 6 (step 2 states the overlap): about 4 minutes to boil, 15 covered, 10 resting, 29 minutes against 35 minutes of steps 2 to 6."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "cuban-picadillo-rice.webp 1200x900 and cuban-picadillo-rice-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in an 8-inch skillet; a quarter of the rice and water in a 1-quart saucepan.",
+    "2": "Half of everything in a 10-inch skillet; half the rice in a 1-quart saucepan.",
+    "4": "As written.",
+    "do_not_scale": [
+      "browning: brown the beef in a single layer; for larger batches brown it in two batches"
+    ]
+  },
+  "coverage_contribution": "A quick ground-beef weeknight dinner. Cuba is in the catalog only as an all-day slow-cooker ropa vieja and a sandwich; this is about 45 minutes.",
+  "near_duplicate_review": "Compared with slow-cooker-ropa-vieja: ground beef simmered about 15 minutes, not shredded flank braised for hours. Compared with south-african-bobotie: no curry spices and no baked egg custard topping, though both use raisins. Compared with turkey-sloppy-joes: beef with olives, capers, and raisins over rice, not a sweet sauce on buns. Compared with cottage-pie: a skillet hash over rice, not a potato-topped bake.",
+  "not_duplicate_of": "No potatoes, so it does not repeat the cottage pie's meat-and-potato idea.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "C",
+  "revision_history": [
+    {
+      "from": "author-r2",
+      "to": "author-r3",
+      "when": "2026-10-15",
+      "who": "Grok Bot (Curator, creator role), wave-16",
+      "trigger": "audit r1 note (non-blocking, PASS WITH NOTES)",
+      "scope": "recipe text only; image files unchanged and not regenerated",
+      "from_culinary_hash": "cb4f876ef8525d1289f3ffbabd8a33a97d5f4a09908c04721c40a723d83cc704",
+      "to_culinary_hash": "2ccffe55ac66494fbd6cb122094e3b3e1dfa3b6d0bd6810b86d2d1821c91a74b",
+      "changes": [
+        "Tomato-sauce and olive label rules moved onto the ingredient lines ('label lists tomatoes and salt only'; 'label lists olives, pimiento, water, salt, and vinegar only'). Quantities and steps unchanged."
+      ]
+    }
+  ]
+}

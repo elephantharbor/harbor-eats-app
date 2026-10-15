@@ -1,0 +1,633 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-16, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-16-2026-10-15",
+  "batch_label": "wave-16",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-16",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "korean-japchae-vegetables",
+    "slug": "korean-japchae-vegetables",
+    "title": "Japchae: Korean Sweet Potato Glass Noodles with Vegetables and Shiitake",
+    "description": "Chewy sweet potato glass noodles tossed with stir-fried onion, carrot, red bell pepper, shiitake, and scallions plus blanched spinach in a garlicky sesame-soy sauce, finished with toasted sesame seeds.",
+    "cuisine": "korean",
+    "meal_format": "noodle-stir-fry",
+    "primary_ingredient": "sweet potato glass noodles",
+    "vocabulary_tag_ids": [
+      "stir-fries",
+      "savory",
+      "umami",
+      "fresh",
+      "korean"
+    ],
+    "current_recipe_id": "rcp_korean-japchae-vegetables",
+    "current_version_id": "rv_korean-japchae-vegetables_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_korean-japchae-vegetables",
+    "dish_id": "korean-japchae-vegetables",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-16-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_korean-japchae-vegetables_v1",
+    "recipe_id": "rcp_korean-japchae-vegetables",
+    "dish_id": "korean-japchae-vegetables",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Japchae: Korean Sweet Potato Glass Noodles with Vegetables and Shiitake",
+    "description": "Chewy sweet potato glass noodles tossed with stir-fried onion, carrot, red bell pepper, shiitake, and scallions plus blanched spinach in a garlicky sesame-soy sauce, finished with toasted sesame seeds.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "noodles",
+        "name": "sweet potato starch noodles (dangmyeon)",
+        "display_name": "sweet potato starch noodles (dangmyeon)",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "noodle-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 12,
+        "unit": "cup",
+        "note": "for the noodles and spinach",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "spinach",
+        "name": "spinach",
+        "display_name": "spinach leaves",
+        "quantity": 6,
+        "unit": "oz",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "medium yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrot",
+        "name": "carrots",
+        "display_name": "medium carrots",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "julienned",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into thin strips",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "shiitake",
+        "name": "fresh shiitake mushrooms",
+        "display_name": "fresh shiitake mushrooms",
+        "quantity": 6,
+        "unit": "oz",
+        "note": null,
+        "preparation": "stems removed, caps sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 2-inch lengths",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "sesame-seeds",
+        "name": "sesame seeds",
+        "display_name": "sesame seeds",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Thinly slice the onion, julienne the carrots, cut the pepper into strips, slice the shiitake caps, cut the scallions, and mince the garlic. In the large bowl stir the soy sauce, sugar, 2 tbsp of the sesame oil, the garlic, and the black pepper.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "carrot",
+          "red-pepper",
+          "shiitake",
+          "scallions",
+          "garlic",
+          "soy-sauce",
+          "sugar",
+          "sesame-oil",
+          "black-pepper"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Heat the noodle pot",
+        "body": "Fill a 6-quart pot with 12 cups water, cover, and set it over high heat. It takes about 12 minutes to come to a boil, which runs inside steps 3 and 4 (overlap stated).",
+        "ingredient_refs": [
+          "noodle-water"
+        ],
+        "clock_minutes": 1,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Stir-fry the vegetables",
+        "body": "Heat 1 tbsp neutral oil in a 12-inch skillet over medium-high. Stir-fry the onion and carrot with 1/4 tsp salt until crisp-tender, about 3 minutes, and add them to the sauce bowl. Add 1 tbsp oil and stir-fry the pepper about 2 minutes; add to the bowl. Add the last 1 tbsp oil and stir-fry the shiitake until browned, about 3 minutes, adding the scallions for the last minute; add to the bowl.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "yellow-onion",
+          "carrot",
+          "kosher-salt",
+          "red-pepper",
+          "shiitake",
+          "scallions"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Toast the sesame seeds",
+        "body": "Wipe the skillet, set it over medium, and toast the sesame seeds, shaking the pan, until golden, about 2 minutes. Tip them onto a plate.",
+        "ingredient_refs": [
+          "sesame-seeds"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Blanch the spinach and cook the noodles",
+        "body": "Drop the spinach into the boiling pot for 30 seconds, lift it out with tongs, cool it under the cold tap, squeeze it dry, and add it to the bowl with 1/4 tsp salt. Add the noodles to the same pot and boil until chewy and translucent, 6 to 7 minutes. Drain in the colander, rinse briefly under the cold tap, drain well, and snip them two or three times with scissors.",
+        "ingredient_refs": [
+          "spinach",
+          "kosher-salt",
+          "noodles"
+        ],
+        "clock_minutes": 9,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Toss",
+        "body": "Add the noodles and the remaining 1 tbsp sesame oil to the bowl and toss with tongs until the noodles are evenly glossy and the vegetables are spread through. Taste and add the last 1/4 tsp salt if needed.",
+        "ingredient_refs": [
+          "noodles",
+          "sesame-oil",
+          "kosher-salt"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Pile onto a platter and scatter the sesame seeds over.",
+        "ingredient_refs": [
+          "noodles",
+          "sesame-seeds"
+        ],
+        "clock_minutes": 1,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "noodles",
+        "name": "sweet potato glass noodles",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "dangmyeon"
+        ]
+      },
+      {
+        "component_id": "vegetables",
+        "name": "stir-fried vegetables and spinach",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "onion",
+          "carrot",
+          "red bell pepper",
+          "shiitake",
+          "scallions",
+          "spinach"
+        ]
+      },
+      {
+        "component_id": "sauce",
+        "name": "sesame-soy sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "soy sauce",
+          "sugar",
+          "toasted sesame oil",
+          "garlic",
+          "black pepper"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart pot with lid",
+      "12-inch skillet",
+      "tongs",
+      "colander",
+      "large mixing bowl",
+      "kitchen scissors"
+    ],
+    "methods": [
+      "stir-fry",
+      "boil",
+      "blanch",
+      "toast"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": true,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 28,
+    "total_time_minutes": 43,
+    "prep_minutes": 15,
+    "cook_minutes": 28,
+    "total_minutes": 43,
+    "time_clock": "Prep 15 + cook 28 = 43 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The noodle pot comes to a boil (about 12 minutes) inside steps 3 and 4, which take 14 minutes (step 2 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "6-quart pot over high for the noodles and spinach. 12-inch skillet over medium-high for the vegetables, medium for the sesame seeds.",
+    "doneness": "Onion and carrot crisp-tender; pepper bright; shiitake browned. Spinach just wilted and bright green. Noodles chewy and translucent, not mushy. Sesame seeds golden.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-16",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, egg, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional plant_based and dairy_free: sweet potato starch noodles, vegetables, soy sauce, sugar, sesame, and oil.",
+    "allergens": [
+      "soy",
+      "wheat",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Soy and wheat from the soy sauce.",
+      "Sesame from the toasted sesame oil and sesame seeds.",
+      "The noodles are sweet potato starch, with no wheat.",
+      "No egg, milk, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, egg, or nuts.",
+    "hh001_contract": "No beef and no egg garnish. The noodles are 100 percent sweet potato starch.",
+    "vocabulary_tag_ids": [
+      "stir-fries",
+      "savory",
+      "umami",
+      "fresh",
+      "korean"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'korean' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "3c002d580f55f9041b18555af2db02a7d9e4feacbb6c28aa933eab3e2b29c43e",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_korean-japchae-vegetables_v1",
+    "dish_id": "korean-japchae-vegetables",
+    "recipe_version_id": "rv_korean-japchae-vegetables_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "korean-japchae-vegetables.webp",
+    "card_ref": "korean-japchae-vegetables-640.webp",
+    "master_filename": "korean-japchae-vegetables.webp",
+    "card_filename": "korean-japchae-vegetables-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "korean-japchae-vegetables.webp",
+        "spec_catalog_path": "/images/meals/korean-japchae-vegetables.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "korean-japchae-vegetables-640.webp",
+        "spec_catalog_path": "/images/meals/korean-japchae-vegetables-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "6b15476330700f40fd3adc807a2fe03fc0ce8d5ef8e78c0c31c4bc39db26af2f",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "6b15476330700f40fd3adc807a2fe03fc0ce8d5ef8e78c0c31c4bc39db26af2f",
+      "master_sha256": "3267aae45ea477706fb52eb23adaadf98ff2f2eafce2b8618ebd94fded2be984",
+      "card_sha256": "3cd82310a55b7b94681e088564e11f7cb5b85dde2d19151413ea621573570c25"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "6b15476330700f40fd3adc807a2fe03fc0ce8d5ef8e78c0c31c4bc39db26af2f",
+      "korean-japchae-vegetables.webp": "3267aae45ea477706fb52eb23adaadf98ff2f2eafce2b8618ebd94fded2be984",
+      "korean-japchae-vegetables-640.webp": "3cd82310a55b7b94681e088564e11f7cb5b85dde2d19151413ea621573570c25"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 28 = 43 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The noodle pot comes to a boil (about 12 minutes) inside steps 3 and 4, which take 14 minutes (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "korean-japchae-vegetables.webp 1200x900 and korean-japchae-vegetables-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": true, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything; cook the noodles in a 4-quart pot with 8 cups water and use a 10-inch skillet.",
+    "2": "Half of everything; keep the 6-quart pot and 12-inch skillet.",
+    "4": "As written.",
+    "do_not_scale": [
+      "noodle water: never less than 8 cups, or the starch makes the noodles gummy"
+    ]
+  },
+  "coverage_contribution": "A plant-based HH001 noodle dinner from Korea, where the live and wave-15 Korean meals are a grilled steak, fried rice, a soft tofu stew, a mackerel braise, and braised short ribs. Adds a sweet potato starch noodle, which nothing else in the catalog uses.",
+  "near_duplicate_review": "Compared with peanut-noodle-stir-fry: sweet potato glass noodles in sesame-soy, no peanut sauce, vegetables cooked separately. Compared with sesame-soba-noodle-bowl: chewy glass noodles tossed warm with stir-fried vegetables, not buckwheat soba. Compared with kimchi-fried-rice: noodles, not rice, and no kimchi.",
+  "not_duplicate_of": "Not a beef japchae; the vegetable version keeps it HH001.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}
