@@ -1,0 +1,89 @@
+{
+  "dir": "/workspace/flavorweave-catalog-factory/wave-14/candidates/oven-bbq-baby-back-ribs",
+  "slug": "oven-bbq-baby-back-ribs",
+  "STRUCTURAL_PREFLIGHT": "PASS",
+  "hh001_eligible": false,
+  "fail_count": 0,
+  "checks": [
+    {
+      "id": "package_json",
+      "result": "PASS",
+      "detail": "v1.json parses"
+    },
+    {
+      "id": "importer_normalize",
+      "result": "PASS",
+      "detail": "rv_oven-bbq-baby-back-ribs_v1"
+    },
+    {
+      "id": "kitchen_tested",
+      "result": "PASS",
+      "detail": "version=false confidence=false"
+    },
+    {
+      "id": "cook_counts",
+      "result": "PASS",
+      "detail": "household cooks and ratings are 0"
+    },
+    {
+      "id": "d03_enums",
+      "result": "PASS",
+      "detail": "moderate / standard"
+    },
+    {
+      "id": "equipment",
+      "result": "PASS",
+      "detail": "6 items"
+    },
+    {
+      "id": "methods",
+      "result": "PASS",
+      "detail": "bake, broil, simmer, boil"
+    },
+    {
+      "id": "dietary_eligibility",
+      "result": "PASS",
+      "detail": "none"
+    },
+    {
+      "id": "hh001_contract",
+      "result": "PASS",
+      "detail": "not HH001"
+    },
+    {
+      "id": "no_conditional_claims",
+      "result": "PASS",
+      "detail": "none"
+    },
+    {
+      "id": "ingredient_refs",
+      "result": "PASS",
+      "detail": "17 ingredients referenced"
+    },
+    {
+      "id": "cooking_d061",
+      "result": "PASS",
+      "detail": "metadata frying=- crisp=baked stir=false"
+    },
+    {
+      "id": "plating_brief",
+      "result": "PASS",
+      "detail": "required sections present"
+    },
+    {
+      "id": "image_prompt",
+      "result": "PASS",
+      "detail": "image-prompt.md"
+    },
+    {
+      "id": "image_slot",
+      "result": "PASS",
+      "detail": "asset_generated; files oven-bbq-baby-back-ribs.webp, oven-bbq-baby-back-ribs-640.webp, img_v1.jpg; freeze integrity PASS"
+    },
+    {
+      "id": "d03_sidecar",
+      "result": "PASS",
+      "detail": "moderate / standard"
+    }
+  ]
+}

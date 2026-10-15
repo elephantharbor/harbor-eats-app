@@ -1,0 +1,27 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "steak-au-poivre-smashed-potatoes.webp",
+    "steak-au-poivre-smashed-potatoes-640.webp"
+  ],
+  "present_files": [
+    "steak-au-poivre-smashed-potatoes.webp",
+    "steak-au-poivre-smashed-potatoes-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "fd5b8bc16ac0d26464e28726b33a8ba5987109cefa216a2e251f82deca42fbd2",
+    "steak-au-poivre-smashed-potatoes.webp": "418b2d3097c46abea653321d8eb110f79124f7f9aca707bf34f7e5a2933c91e9",
+    "steak-au-poivre-smashed-potatoes-640.webp": "54a5699cfa4d87813c67a703065d26cd2e1e03e0b6895e0638597a031ebc4cd2"
+  },
+  "package_revision": "freeze-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

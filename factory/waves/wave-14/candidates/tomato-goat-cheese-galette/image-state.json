@@ -1,0 +1,27 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "tomato-goat-cheese-galette.webp",
+    "tomato-goat-cheese-galette-640.webp"
+  ],
+  "present_files": [
+    "tomato-goat-cheese-galette.webp",
+    "tomato-goat-cheese-galette-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "dcc8e67be923943b4d0f3cc803704a041af3ef54f05b028f2d9987ee74c2f9ec",
+    "tomato-goat-cheese-galette.webp": "516cd6d5a1cd6272f2a72aa57a21b1cb069d5f9d587ddfcecff4eca93145f82b",
+    "tomato-goat-cheese-galette-640.webp": "678e5b06e2e5b483451e85cf405b21ab70e4d79585f23aa9bb5b295d2798e6ce"
+  },
+  "package_revision": "freeze-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

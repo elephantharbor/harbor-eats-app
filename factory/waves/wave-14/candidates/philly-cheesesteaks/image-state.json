@@ -1,0 +1,27 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "philly-cheesesteaks.webp",
+    "philly-cheesesteaks-640.webp"
+  ],
+  "present_files": [
+    "philly-cheesesteaks.webp",
+    "philly-cheesesteaks-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "ca2ad6cbabd11a11074f711c63091e5a96b0135438f7c59e59e0a3257c2656ef",
+    "philly-cheesesteaks.webp": "a25cec1274747f8873757637f72fe92bd7dcee0e25ce2cff85d1679b1ffbb5e6",
+    "philly-cheesesteaks-640.webp": "0b677ce564a118611be9c079d9af162e2d43b68df16bf861b5315e8309a1685e"
+  },
+  "package_revision": "freeze-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

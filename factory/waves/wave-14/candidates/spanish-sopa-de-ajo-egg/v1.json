@@ -1,0 +1,504 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "spanish-sopa-de-ajo-egg",
+    "slug": "spanish-sopa-de-ajo-egg",
+    "title": "Castilian Garlic Soup with Poached Eggs and Spinach",
+    "description": "Sopa de ajo: golden sliced garlic and chunks of crusty bread toasted in olive oil, bloomed with smoked pimentón, simmered in vegetable stock with spinach, and finished by poaching eggs right in the soup. A sherry-vinegar splash brightens it.",
+    "cuisine": "spanish",
+    "meal_format": "soup",
+    "primary_ingredient": "eggs",
+    "vocabulary_tag_ids": [
+      "smoky",
+      "savory",
+      "tender",
+      "soups"
+    ],
+    "current_recipe_id": "rcp_spanish-sopa-de-ajo-egg",
+    "current_version_id": "rv_spanish-sopa-de-ajo-egg_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_spanish-sopa-de-ajo-egg",
+    "dish_id": "spanish-sopa-de-ajo-egg",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_spanish-sopa-de-ajo-egg_v1",
+    "recipe_id": "rcp_spanish-sopa-de-ajo-egg",
+    "dish_id": "spanish-sopa-de-ajo-egg",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Castilian Garlic Soup with Poached Eggs and Spinach",
+    "description": "Sopa de ajo: golden sliced garlic and chunks of crusty bread toasted in olive oil, bloomed with smoked pimentón, simmered in vegetable stock with spinach, and finished by poaching eggs right in the soup. A sherry-vinegar splash brightens it.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 10,
+        "unit": "clove",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "crusty-bread",
+        "name": "crusty bread",
+        "display_name": "day-old crusty bread with no milk or butter",
+        "quantity": 6,
+        "unit": "oz",
+        "note": null,
+        "preparation": "torn into 1-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "smoked-paprika",
+        "name": "smoked sweet pimentón (smoked paprika)",
+        "display_name": "smoked sweet pimentón (smoked paprika)",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "vegetable-stock",
+        "name": "low-sodium vegetable stock",
+        "display_name": "low-sodium vegetable stock",
+        "quantity": 6,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "spinach",
+        "name": "baby spinach",
+        "display_name": "baby spinach",
+        "quantity": 5,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "eggs",
+        "display_name": "large eggs",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "sherry-vinegar",
+        "name": "sherry vinegar",
+        "display_name": "sherry vinegar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 5,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Thinly slice the garlic, tear the bread, and chop the parsley. Crack each egg into its own small cup.",
+        "ingredient_refs": [
+          "garlic",
+          "crusty-bread",
+          "parsley",
+          "eggs"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Toast the garlic and bread",
+        "body": "Heat the olive oil in a wide 5-quart pot over medium-low. Cook the garlic, stirring, until pale gold, 2 to 3 minutes. Add the bread and toast, turning, until golden and crisp at the edges, 3 minutes.",
+        "ingredient_refs": [
+          "olive-oil",
+          "garlic",
+          "crusty-bread"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer",
+        "body": "Take the pot off the heat, stir in the pimentón for 10 seconds, then pour in the stock and add the salt. Return to medium heat, bring to a simmer, and cook 6 minutes so the bread softens. Stir in the spinach until wilted.",
+        "ingredient_refs": [
+          "smoked-paprika",
+          "vegetable-stock",
+          "kosher-salt",
+          "spinach"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Poach the eggs",
+        "body": "Lower the heat so the soup barely bubbles. Slip the eggs in one at a time, spaced apart, cover, and poach 4 minutes, until the whites are set and the yolks still runny.",
+        "ingredient_refs": [
+          "eggs"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Stir the sherry vinegar into the broth around the eggs. Ladle into bowls with one egg each and scatter parsley.",
+        "ingredient_refs": [
+          "sherry-vinegar",
+          "eggs",
+          "parsley"
+        ],
+        "clock_minutes": 1,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "soup",
+        "name": "garlic soup with eggs",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "garlic",
+          "bread",
+          "smoked paprika",
+          "vegetable stock",
+          "spinach",
+          "eggs",
+          "parsley",
+          "sherry vinegar",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "5-quart wide pot with lid",
+      "ladle",
+      "small cup for cracking eggs"
+    ],
+    "methods": [
+      "saute",
+      "simmer",
+      "poach"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 8,
+    "cook_time_minutes": 20,
+    "total_time_minutes": 28,
+    "prep_minutes": 8,
+    "cook_minutes": 20,
+    "total_minutes": 28,
+    "time_clock": "Prep 8 + cook 20 = 28 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Linear stovetop clock. Total under 30 minutes.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "Medium-low to toast the garlic and bread; medium simmer; low, barely bubbling for poaching the eggs.",
+    "doneness": "Garlic pale gold, not brown; bread softened in the broth but still in pieces; egg whites set and yolks runny.",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Eggs are allowed. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and vegetarian. Not plant_based because of the eggs.",
+    "allergens": [
+      "egg",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Egg from the poached eggs; runny yolks are not recommended for pregnant or immunocompromised diners (poach 2 minutes longer for set yolks).",
+      "Wheat from the bread.",
+      "No milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Eggs are allowed. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "Vegetable stock, not ham or chicken stock; plain crusty bread with no milk or butter; no jamón.",
+    "vocabulary_tag_ids": [
+      "smoky",
+      "savory",
+      "tender",
+      "soups"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'spanish' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "f53e45418a8ca8ff727f0df18cedad6fc25975e2f6a393c5214bc51b0ca04139",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_spanish-sopa-de-ajo-egg_v1",
+    "dish_id": "spanish-sopa-de-ajo-egg",
+    "recipe_version_id": "rv_spanish-sopa-de-ajo-egg_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "spanish-sopa-de-ajo-egg.webp",
+    "card_ref": "spanish-sopa-de-ajo-egg-640.webp",
+    "master_filename": "spanish-sopa-de-ajo-egg.webp",
+    "card_filename": "spanish-sopa-de-ajo-egg-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "spanish-sopa-de-ajo-egg.webp",
+        "spec_catalog_path": "/images/meals/spanish-sopa-de-ajo-egg.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "spanish-sopa-de-ajo-egg-640.webp",
+        "spec_catalog_path": "/images/meals/spanish-sopa-de-ajo-egg-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "d6fc289d6947426d56d73ff2aefe5ef7bae8c88b49b0c9a4817dfdc16f93f421",
+      "master_sha256": "6ddc428fd66818dd97e4f7fb5a3c07fb20190e7463f30cafb279375d234f2c41",
+      "card_sha256": "f984fae6e4e33d01dac87413915f6821e4b4f459c9b125ee636decd940b1546b"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "d6fc289d6947426d56d73ff2aefe5ef7bae8c88b49b0c9a4817dfdc16f93f421",
+      "spanish-sopa-de-ajo-egg.webp": "6ddc428fd66818dd97e4f7fb5a3c07fb20190e7463f30cafb279375d234f2c41",
+      "spanish-sopa-de-ajo-egg-640.webp": "f984fae6e4e33d01dac87413915f6821e4b4f459c9b125ee636decd940b1546b"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 8 + cook 20 = 28 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Linear stovetop clock. Total under 30 minutes."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "spanish-sopa-de-ajo-egg.webp 1200x900 and spanish-sopa-de-ajo-egg-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a small saucepan; 1 egg.",
+    "2": "Half; 2 eggs.",
+    "4": "As written; 4 eggs.",
+    "do_not_scale": [
+      "poach no more than 4 eggs at once"
+    ]
+  },
+  "coverage_contribution": "Under-30 band (28 minutes). An easy, very cheap egg dinner for HH001 that is a soup, not an egg bake.",
+  "near_duplicate_review": "Compared with skillet-shakshuka: eggs poached in a garlic-bread broth, not a tomato-pepper sauce. Compared with spanish-potato-tortilla: a soup, not an omelet. Compared with chinese-tomato-egg-stir-fry in this wave: poached whole eggs in broth.",
+  "not_duplicate_of": "Not avgolemono. Not French onion soup (batch D, cheese crouton).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

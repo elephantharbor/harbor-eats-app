@@ -1,0 +1,663 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "chicken-andouille-gumbo",
+    "slug": "chicken-andouille-gumbo",
+    "title": "Chicken and Andouille Gumbo with a Dark Roux",
+    "description": "A Louisiana gumbo built on a slowly stirred chocolate-brown roux and the holy trinity of onion, celery, and green pepper, simmered with smoky andouille, chicken thighs, thyme, and bay until rich and silky. Served over white rice with scallions and hot sauce.",
+    "cuisine": "cajun",
+    "meal_format": "stew-over-rice",
+    "primary_ingredient": "chicken",
+    "vocabulary_tag_ids": [
+      "smoky",
+      "savory",
+      "spicy",
+      "stews",
+      "chicken"
+    ],
+    "current_recipe_id": "rcp_chicken-andouille-gumbo",
+    "current_version_id": "rv_chicken-andouille-gumbo_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_chicken-andouille-gumbo",
+    "dish_id": "chicken-andouille-gumbo",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_chicken-andouille-gumbo_v1",
+    "recipe_id": "rcp_chicken-andouille-gumbo",
+    "dish_id": "chicken-andouille-gumbo",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Chicken and Andouille Gumbo with a Dark Roux",
+    "description": "A Louisiana gumbo built on a slowly stirred chocolate-brown roux and the holy trinity of onion, celery, and green pepper, simmered with smoky andouille, chicken thighs, thyme, and bay until rich and silky. Served over white rice with scallions and hot sauce.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "chicken-thighs",
+        "name": "boneless skinless chicken thighs",
+        "display_name": "boneless skinless chicken thighs",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "andouille",
+        "name": "andouille sausage",
+        "display_name": "smoked pork andouille whose label lists no milk, soy, wheat, or egg",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "store-bought; required: the ingredient list shows no milk, soy, wheat, or egg",
+        "preparation": "sliced 1/4 inch",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 0.67,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "large yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "celery",
+        "name": "celery",
+        "display_name": "celery ribs",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-bell-pepper",
+        "name": "green bell pepper",
+        "display_name": "green bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 5,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "chicken-stock",
+        "name": "low-sodium chicken stock",
+        "display_name": "low-sodium chicken stock",
+        "quantity": 6,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cajun-seasoning",
+        "name": "salt-free Cajun seasoning",
+        "display_name": "salt-free Cajun seasoning",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dried-thyme",
+        "name": "dried thyme",
+        "display_name": "dried thyme",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bay-leaves",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "hot-sauce",
+        "name": "Louisiana-style hot sauce",
+        "display_name": "Louisiana-style hot sauce",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "plus more at the table",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "long-grain-rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "1 tbsp browning, 2/3 cup roux",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 1/2 tsp gumbo, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Dice the onion, celery, and bell pepper and keep them together in one bowl. Mince the garlic, slice the andouille, and season the chicken with 1 tsp salt, the pepper, and the Cajun seasoning. Slice the scallions and chop the parsley.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "celery",
+          "green-bell-pepper",
+          "garlic",
+          "andouille",
+          "chicken-thighs",
+          "kosher-salt",
+          "black-pepper",
+          "cajun-seasoning",
+          "scallions",
+          "parsley"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the meats",
+        "body": "Heat 1 tbsp oil in the Dutch oven over medium-high. Brown the andouille 4 minutes and lift out. Brown the chicken thighs 3 minutes per side (they finish later) and lift out.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "andouille",
+          "chicken-thighs"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the dark roux",
+        "body": "Lower the heat to medium, add 2/3 cup oil and the flour, and whisk smooth. Stir constantly with a flat wooden spoon, scraping the whole bottom, lowering the heat to medium-low once it turns peanut-butter colored, until it reaches milk-chocolate brown, about 30 minutes. If you see black specks, it has burnt and must be restarted.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "flour"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Add the trinity",
+        "body": "Add the onion, celery, and bell pepper (they stop the roux from darkening) and cook, stirring, 6 minutes. Add the garlic for 2 minutes.",
+        "ingredient_refs": [
+          "yellow-onion",
+          "celery",
+          "green-bell-pepper",
+          "garlic"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Simmer the gumbo",
+        "body": "Whisk in the stock a cup at a time until smooth. Add the thyme, bay leaves, andouille, chicken, and the remaining 1 tsp salt. Bring to a boil, then simmer uncovered on low 45 minutes, skimming fat from the top now and then.",
+        "ingredient_refs": [
+          "chicken-stock",
+          "dried-thyme",
+          "bay-leaves",
+          "andouille",
+          "chicken-thighs",
+          "kosher-salt"
+        ],
+        "clock_minutes": 45,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Cook the rice",
+        "body": "During the last 25 minutes of the simmer, combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan, bring to a boil, cover, cook on low 15 minutes, and rest covered 10. Runs inside step 5 (overlap stated).",
+        "ingredient_refs": [
+          "long-grain-rice",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 25,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Shred and finish",
+        "body": "Lift out the chicken, shred it with two forks, and return it to the pot. Remove the bay leaves and stir in the hot sauce. Serve in bowls over a scoop of rice, topped with scallions and parsley, with more hot sauce at the table.",
+        "ingredient_refs": [
+          "chicken-thighs",
+          "bay-leaves",
+          "hot-sauce",
+          "long-grain-rice",
+          "scallions",
+          "parsley"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "gumbo",
+        "name": "chicken and andouille gumbo",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "chicken thighs",
+          "andouille",
+          "flour",
+          "oil",
+          "onion",
+          "celery",
+          "green pepper",
+          "garlic",
+          "chicken stock",
+          "Cajun seasoning",
+          "thyme",
+          "bay",
+          "hot sauce"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long-grain rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "7-quart Dutch oven",
+      "flat-edged wooden spoon",
+      "2-quart saucepan with lid",
+      "2 forks",
+      "cutting board"
+    ],
+    "methods": [
+      "sear",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 101,
+    "total_time_minutes": 121,
+    "prep_minutes": 20,
+    "cook_minutes": 101,
+    "total_minutes": 121,
+    "time_clock": "Prep 20 + cook 101 = 121 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks inside the long simmer (step 6 states the overlap). The roux needs 30 minutes of continuous stirring.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "overlap_steps": [
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium-high to brown the meats; medium to medium-low for the roux (constant stirring); low simmer for the gumbo.",
+    "doneness": "Roux the color of milk chocolate and smelling toasty, not burnt. Chicken tender enough to shred (175 F or more). Gumbo silky and coating a spoon thinly.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains chicken (poultry) and pork andouille (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: the roux is oil and flour.",
+    "allergens": [
+      "meat",
+      "poultry",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the andouille (pork).",
+      "Poultry from the chicken thighs and chicken stock.",
+      "Wheat from the flour in the roux.",
+      "The andouille is a store-bought hard contract: smoked pork andouille whose label lists no milk, soy, wheat, or egg.",
+      "No egg, milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains chicken (poultry) and pork andouille (meat).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "smoky",
+      "savory",
+      "spicy",
+      "stews",
+      "chicken"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'cajun' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "a6cadc8cb6a34d2f1e3e1d6592e73c2d37e1bce3f1494eb3b2bec0d13d79bfe8",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_chicken-andouille-gumbo_v1",
+    "dish_id": "chicken-andouille-gumbo",
+    "recipe_version_id": "rv_chicken-andouille-gumbo_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "chicken-andouille-gumbo.webp",
+    "card_ref": "chicken-andouille-gumbo-640.webp",
+    "master_filename": "chicken-andouille-gumbo.webp",
+    "card_filename": "chicken-andouille-gumbo-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "chicken-andouille-gumbo.webp",
+        "spec_catalog_path": "/images/meals/chicken-andouille-gumbo.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "chicken-andouille-gumbo-640.webp",
+        "spec_catalog_path": "/images/meals/chicken-andouille-gumbo-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "6b29327c1e2442b549953ffe4629d24e48e96febb680c44f65ffa7e57625b6ff",
+      "master_sha256": "ec8eb5b593cf35802b98e2b1aa2362a21493e80fc86de4f8044057fb43167eec",
+      "card_sha256": "3a37ea79c80cb765ca39a98b3644d46b4240374d9fc6faeb8860dce4a2ca000c"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "6b29327c1e2442b549953ffe4629d24e48e96febb680c44f65ffa7e57625b6ff",
+      "chicken-andouille-gumbo.webp": "ec8eb5b593cf35802b98e2b1aa2362a21493e80fc86de4f8044057fb43167eec",
+      "chicken-andouille-gumbo-640.webp": "3a37ea79c80cb765ca39a98b3644d46b4240374d9fc6faeb8860dce4a2ca000c"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 20 + cook 101 = 121 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks inside the long simmer (step 6 states the overlap). The roux needs 30 minutes of continuous stirring."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "chicken-andouille-gumbo.webp 1200x900 and chicken-andouille-gumbo-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make the full pot; it freezes well for 3 months.",
+    "2": "Make the full pot.",
+    "4": "As written; about 12 cups.",
+    "do_not_scale": [
+      "roux time does not shrink with a smaller batch"
+    ]
+  },
+  "coverage_contribution": "First roux-based stew. Andouille is a new protein. Cajun has one dish (blackened catfish); this adds a weekend project.",
+  "near_duplicate_review": "Compared with cajun-blackened-catfish: a long-simmered stew, not seared fish. Compared with spanish-chorizo-pepper-rice: roux stew served over rice, not a rice dish. Compared with sheet-pan-shrimp-boil: no seafood, no boil.",
+  "not_duplicate_of": "Not jambalaya (rice format). Not étouffée (shellfish, blond roux).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

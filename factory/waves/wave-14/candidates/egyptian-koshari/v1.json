@@ -1,0 +1,684 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "egyptian-koshari",
+    "slug": "egyptian-koshari",
+    "title": "Egyptian Koshari with Crispy Onions and Garlic-Vinegar Dakka",
+    "description": "Cairo's street-food favorite: brown lentils, toasted rice, and elbow macaroni layered under a cumin-spiced tomato sauce, topped with a tangle of shallow-fried crispy onions and splashed with a sharp garlic-vinegar dakka.",
+    "cuisine": "egyptian",
+    "meal_format": "layered-grains",
+    "primary_ingredient": "lentils",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "spicy",
+      "savory",
+      "crispy",
+      "lentils"
+    ],
+    "current_recipe_id": "rcp_egyptian-koshari",
+    "current_version_id": "rv_egyptian-koshari_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_egyptian-koshari",
+    "dish_id": "egyptian-koshari",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_egyptian-koshari_v1",
+    "recipe_id": "rcp_egyptian-koshari",
+    "dish_id": "egyptian-koshari",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Egyptian Koshari with Crispy Onions and Garlic-Vinegar Dakka",
+    "description": "Cairo's street-food favorite: brown lentils, toasted rice, and elbow macaroni layered under a cumin-spiced tomato sauce, topped with a tangle of shallow-fried crispy onions and splashed with a sharp garlic-vinegar dakka.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "brown-lentils",
+        "name": "brown lentils",
+        "display_name": "brown lentils",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed and picked over",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lentil-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "for the lentils",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "yellow-onions",
+        "name": "yellow onions",
+        "display_name": "large yellow onions",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved and thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "long-grain-rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "macaroni",
+        "name": "elbow macaroni",
+        "display_name": "elbow macaroni",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pasta-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 12,
+        "unit": "cup",
+        "note": "3 quarts, for the macaroni",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "crushed-tomatoes",
+        "name": "crushed tomatoes",
+        "display_name": "28-oz can crushed tomatoes",
+        "quantity": 28,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 8,
+        "unit": "clove",
+        "note": null,
+        "preparation": "4 minced for the sauce, 4 grated for the dakka",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ground-cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 1/2 tsp sauce, 1/2 tsp dakka",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-coriander",
+        "name": "ground coriander",
+        "display_name": "ground coriander",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chile-flakes",
+        "name": "red chile flakes",
+        "display_name": "red chile flakes",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "white-vinegar",
+        "name": "white vinegar",
+        "display_name": "white vinegar",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "2 tbsp sauce, 6 tbsp dakka",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dakka-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "for the dakka",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "for shallow-frying the onions; 3 tbsp of it is reused for the rice and sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 4,
+        "unit": "tsp",
+        "note": "1/2 tsp lentils, 1/2 tsp onions, 1/2 tsp rice, 2 tsp pasta water, 1/2 tsp sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the lentils and rice separately. Halve and thinly slice the onions and pat them dry. Mince 4 cloves garlic for the sauce and grate 4 for the dakka. Put 12 cups (3 quarts) water in a 5-quart pot over high heat with 2 tsp salt for the pasta.",
+        "ingredient_refs": [
+          "brown-lentils",
+          "long-grain-rice",
+          "yellow-onions",
+          "garlic",
+          "pasta-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Simmer the lentils",
+        "body": "Combine the lentils, 4 cups water, and 1/2 tsp salt in a 3-quart saucepan, bring to a boil, and simmer uncovered until tender but whole, about 20 minutes. Drain.",
+        "ingredient_refs": [
+          "brown-lentils",
+          "lentil-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Shallow-fry the onions",
+        "body": "While the lentils simmer, heat 1 cup oil in a 12-inch skillet over medium until it shimmers (about 325 F). Add the onions in a loose layer and shallow-fry, stirring every couple of minutes and more often as they color, until deep golden-brown, 15 to 18 minutes. Lift them onto paper towels with a slotted spoon, sprinkle with 1/2 tsp salt, and spread out to crisp. Keep the oil. Runs inside step 2 (overlap stated).",
+        "ingredient_refs": [
+          "neutral-oil",
+          "yellow-onions",
+          "kosher-salt"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Make the sauce",
+        "body": "Heat 2 tbsp of the onion oil in a 2-quart saucepan over medium. Add the minced garlic, 1 1/2 tsp cumin, the coriander, and chile flakes for 1 minute, then the crushed tomatoes, 2 tbsp vinegar, the sugar, and 1/2 tsp salt. Simmer, stirring now and then, until thick, 15 minutes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "garlic",
+          "ground-cumin",
+          "ground-coriander",
+          "chile-flakes",
+          "crushed-tomatoes",
+          "white-vinegar",
+          "sugar",
+          "kosher-salt"
+        ],
+        "clock_minutes": 16,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Cook the rice",
+        "body": "While the sauce simmers, toast the rice in 1 tbsp onion oil in a 2-quart saucepan over medium for 2 minutes, add 1 1/2 cups water and 1/2 tsp salt, boil, cover, and cook on low 15 minutes; rest covered. Runs inside step 4 (overlap stated).",
+        "ingredient_refs": [
+          "long-grain-rice",
+          "neutral-oil",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 17,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Boil the macaroni",
+        "body": "Also during the sauce, cook the macaroni in the 3 quarts of boiling water until tender, 8 minutes, and drain. Runs inside step 4 (overlap stated).",
+        "ingredient_refs": [
+          "macaroni",
+          "pasta-water"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Dakka and assemble",
+        "body": "Stir the grated garlic, 6 tbsp vinegar, 1/4 cup water, and 1/2 tsp cumin together for the dakka. Toss the lentils with the rice. Layer each bowl with lentil rice, then macaroni, a ladle of tomato sauce, and a big handful of crispy onions; serve the dakka for spooning over.",
+        "ingredient_refs": [
+          "garlic",
+          "white-vinegar",
+          "dakka-water",
+          "ground-cumin",
+          "brown-lentils",
+          "long-grain-rice",
+          "macaroni",
+          "crushed-tomatoes",
+          "yellow-onions"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "lentils",
+        "name": "brown lentils",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "brown lentils",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "onions",
+        "name": "crispy onions",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "onions",
+          "oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "toasted rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rice",
+          "onion oil",
+          "water"
+        ]
+      },
+      {
+        "component_id": "pasta",
+        "name": "elbow macaroni",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "macaroni",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "sauce",
+        "name": "spiced tomato sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "crushed tomatoes",
+          "garlic",
+          "cumin",
+          "coriander",
+          "chile flakes",
+          "vinegar",
+          "sugar"
+        ]
+      },
+      {
+        "component_id": "dakka",
+        "name": "garlic-vinegar dakka",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "garlic",
+          "vinegar",
+          "water",
+          "cumin"
+        ]
+      }
+    ],
+    "equipment": [
+      "3 saucepans (2- and 3-quart) with lids",
+      "5-quart pot",
+      "12-inch skillet",
+      "slotted spoon",
+      "paper towels",
+      "colander",
+      "small bowl"
+    ],
+    "methods": [
+      "simmer",
+      "shallow-fry",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [
+        "shallow"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 42,
+    "total_time_minutes": 57,
+    "prep_minutes": 15,
+    "cook_minutes": 42,
+    "total_minutes": 57,
+    "time_clock": "Prep 15 + cook 42 = 57 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The onions shallow-fry inside the lentil simmer (step 3 states the overlap). The rice and macaroni cook inside the sauce simmer (steps 5 and 6 state the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        7
+      ],
+      "overlap_steps": [
+        3,
+        5,
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium simmer for the lentils; oil at medium (about 325 F) for shallow-frying the onions; covered low for the rice; rolling boil for the pasta; medium simmer for the sauce.",
+    "doneness": "Lentils tender but whole; onions deep golden-brown and crisp once drained; rice and pasta tender; sauce thick.",
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and plant_based.",
+    "allergens": [
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Wheat from the macaroni.",
+      "No egg (use egg-free dried pasta, which standard elbow macaroni is), milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "Oil only, no ghee or butter. No chickpeas by design (chickpea cluster), no meat stock.",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "spicy",
+      "savory",
+      "crispy",
+      "lentils"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'egyptian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "5e91bfb3bbd7b7740c53babdd2cffc58bbdc4f9a74cc2eb8646fddc83244bb20",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_egyptian-koshari_v1",
+    "dish_id": "egyptian-koshari",
+    "recipe_version_id": "rv_egyptian-koshari_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "egyptian-koshari.webp",
+    "card_ref": "egyptian-koshari-640.webp",
+    "master_filename": "egyptian-koshari.webp",
+    "card_filename": "egyptian-koshari-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "egyptian-koshari.webp",
+        "spec_catalog_path": "/images/meals/egyptian-koshari.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "egyptian-koshari-640.webp",
+        "spec_catalog_path": "/images/meals/egyptian-koshari-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "4e3c0309d04c8f4ccd455448c89915c98b7e2be5cc77f839fe4c006c423ff242",
+      "master_sha256": "3a5d4068b9a5fa3038e822a1cd731d86485b7a45d3c13628e612a0f7aaff15dd",
+      "card_sha256": "7794dbfefd69984471659b6d2d61ac07abd6abdae3780a3e2caa56ef9638af1e"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "4e3c0309d04c8f4ccd455448c89915c98b7e2be5cc77f839fe4c006c423ff242",
+      "egyptian-koshari.webp": "3a5d4068b9a5fa3038e822a1cd731d86485b7a45d3c13628e612a0f7aaff15dd",
+      "egyptian-koshari-640.webp": "7794dbfefd69984471659b6d2d61ac07abd6abdae3780a3e2caa56ef9638af1e"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 42 = 57 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The onions shallow-fry inside the lentil simmer (step 3 states the overlap). The rice and macaroni cook inside the sauce simmer (steps 5 and 6 state the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "egyptian-koshari.webp 1200x900 and egyptian-koshari-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"shallow\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything; cook the onions in 1/2 cup oil in an 8-inch skillet.",
+    "2": "Half of everything.",
+    "4": "As written; generous portions.",
+    "do_not_scale": [
+      "onion slices must be in a single loose layer to crisp; batch them if the skillet is crowded"
+    ]
+  },
+  "coverage_contribution": "Egyptian 0 to 1. A filling, very low-cost plant main; layered-grains format is new. HH001 plant.",
+  "near_duplicate_review": "Compared with smoky-lentil-sweet-potato-stew and lentil-stuffed-cabbage: lentils as one layer of a grain-and-pasta dish, not a stew or filling. Compared with spaghetti-puttanesca: a spiced vinegar tomato sauce over mixed starches. Compared with spanish-chorizo-pepper-rice: no meat, layered not pilaf.",
+  "not_duplicate_of": "Not mujadara (no pasta or tomato). Not jollof (rejected rice format).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

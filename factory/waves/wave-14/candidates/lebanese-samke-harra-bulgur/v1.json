@@ -1,0 +1,670 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "lebanese-samke-harra-bulgur",
+    "slug": "lebanese-samke-harra-bulgur",
+    "title": "Lebanese Samke Harra: Spicy Tahini-Baked Cod with Bulgur Pilaf",
+    "description": "Cod fillets spread with a sizzling garlic, red chile, Aleppo pepper, and cilantro topping, blanketed in lemony tahini sauce, and baked until bubbling and just flaking. Served over a toasty onion and tomato bulgur pilaf.",
+    "cuisine": "lebanese",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "cod",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "herbaceous",
+      "rich",
+      "tender",
+      "middle-eastern",
+      "cod"
+    ],
+    "current_recipe_id": "rcp_lebanese-samke-harra-bulgur",
+    "current_version_id": "rv_lebanese-samke-harra-bulgur_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_lebanese-samke-harra-bulgur",
+    "dish_id": "lebanese-samke-harra-bulgur",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_lebanese-samke-harra-bulgur_v1",
+    "recipe_id": "rcp_lebanese-samke-harra-bulgur",
+    "dish_id": "lebanese-samke-harra-bulgur",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Lebanese Samke Harra: Spicy Tahini-Baked Cod with Bulgur Pilaf",
+    "description": "Cod fillets spread with a sizzling garlic, red chile, Aleppo pepper, and cilantro topping, blanketed in lemony tahini sauce, and baked until bubbling and just flaking. Served over a toasty onion and tomato bulgur pilaf.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "cod-fillets",
+        "name": "cod",
+        "display_name": "thick skinless cod fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 6 oz each, 1 1/2 lb total",
+        "preparation": "patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tahini",
+        "name": "tahini",
+        "display_name": "tahini",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "lemons",
+        "name": "lemons",
+        "display_name": "lemons",
+        "quantity": 2,
+        "unit": "count",
+        "note": "juiced, about 1/3 cup; plus wedges",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sauce-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "cold, to loosen the tahini sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": "2 grated for the sauce, 4 minced for the harra",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-chiles",
+        "name": "Fresno chiles",
+        "display_name": "red Fresno chiles",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "seeded and finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "aleppo-pepper",
+        "name": "Aleppo pepper",
+        "display_name": "Aleppo pepper",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "finely chopped, plus leaves for garnish",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "coarse-bulgur",
+        "name": "coarse bulgur",
+        "display_name": "coarse bulgur (#3 or #4)",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bulgur-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the bulgur",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 6,
+        "unit": "tbsp",
+        "note": "3 tbsp harra, 2 tbsp pilaf, 1 tbsp dish",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "1 tsp fish, 1/2 tsp sauce, 1 tsp bulgur",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat and prep",
+        "body": "Turn the oven on to 400 F to preheat with a rack in the middle; it heats for the next 28 minutes while you prep and cook the toppings. Pat the cod dry and season with 1 tsp salt. Dice the onion; seed and chop the chiles; mince 4 garlic cloves and grate 2; chop the cilantro. Whisk the tahini, lemon juice, grated garlic, and 1/2 tsp salt, then whisk in the 1/2 cup cold water a little at a time until smooth and pourable.",
+        "ingredient_refs": [
+          "cod-fillets",
+          "kosher-salt",
+          "yellow-onion",
+          "red-chiles",
+          "garlic",
+          "cilantro",
+          "tahini",
+          "lemons",
+          "sauce-water"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the bulgur",
+        "body": "Heat 2 tbsp olive oil in a 3-quart saucepan over medium. Cook the onion, stirring, until soft and golden at the edges, 5 minutes. Stir in the tomato paste and bulgur for 1 minute, add 2 1/4 cups water and 1 tsp salt, bring to a boil, cover, and cook on low 15 minutes; then rest covered off the heat. The covered cooking and rest run inside steps 3 to 5 (overlap stated).",
+        "ingredient_refs": [
+          "olive-oil",
+          "yellow-onion",
+          "tomato-paste",
+          "coarse-bulgur",
+          "bulgur-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the harra",
+        "body": "Heat 3 tbsp olive oil in a 10-inch skillet over medium. Add the minced garlic and chiles and sizzle, stirring, until fragrant and just turning golden, 2 minutes. Stir in the Aleppo pepper and cumin for 30 seconds, then take off the heat and stir in the chopped cilantro.",
+        "ingredient_refs": [
+          "olive-oil",
+          "garlic",
+          "red-chiles",
+          "aleppo-pepper",
+          "ground-cumin",
+          "cilantro"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Bake the fish",
+        "body": "Brush the baking dish with 1 tbsp olive oil and lay in the cod. Spread the harra over the fillets and pour the tahini sauce over and around them. Bake in the preheated 400 F oven until the sauce bubbles at the edges and the cod is opaque, flaking, and 145 F, 15 to 18 minutes.",
+        "ingredient_refs": [
+          "olive-oil",
+          "cod-fillets",
+          "tahini",
+          "red-chiles"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Fluff the bulgur and spoon it onto plates. Set a fillet with its sauce on each, scatter cilantro leaves, and serve with lemon wedges.",
+        "ingredient_refs": [
+          "coarse-bulgur",
+          "cod-fillets",
+          "cilantro",
+          "lemons"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "harra",
+        "name": "garlic-chile-cilantro harra",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "garlic",
+          "red chiles",
+          "Aleppo pepper",
+          "cumin",
+          "cilantro",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "tahini-sauce",
+        "name": "lemon tahini sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tahini",
+          "lemon",
+          "garlic",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "fish",
+        "name": "baked cod",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cod",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "bulgur",
+        "name": "onion-tomato bulgur pilaf",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "coarse bulgur",
+          "onion",
+          "tomato paste",
+          "water",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "9 x 13-inch baking dish",
+      "10-inch skillet",
+      "3-quart saucepan with lid",
+      "medium bowl",
+      "whisk"
+    ],
+    "methods": [
+      "bake",
+      "saute",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 34,
+    "total_time_minutes": 49,
+    "prep_minutes": 15,
+    "cook_minutes": 34,
+    "total_minutes": 49,
+    "time_clock": "Prep 15 + cook 34 = 49 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0; the fish goes in at minute 28 after 28 minutes of preheating. The bulgur simmers and rests covered inside the bake (step 2 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0; the fish goes in at minute 28 after 28 minutes of preheating. The bulgur simmers and rests covered inside the bake (step 2 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven preheated to 400 F, middle rack. Medium skillet for the harra topping. Covered low simmer for the bulgur.",
+    "doneness": "Tahini sauce bubbling at the edges and lightly golden in spots; cod opaque, flaking, and 145 F in the thickest part. Bulgur tender and separate with no liquid left.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish and sesame are allowed. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: the creamy sauce is tahini, lemon, garlic, and water.",
+    "allergens": [
+      "finfish",
+      "sesame",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Finfish from the cod.",
+      "Sesame from the tahini.",
+      "Wheat from the bulgur.",
+      "No egg, milk, soy, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish and sesame are allowed. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "No walnut or pine-nut garnish (a common samke harra topping) and no butter in the pilaf.",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "herbaceous",
+      "rich",
+      "tender",
+      "middle-eastern",
+      "cod"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'lebanese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "7a4c3d764e360ae331ff6f45adf7f85b1e1b1ec46a4bb023948f2cec8f746122",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_lebanese-samke-harra-bulgur_v3",
+    "dish_id": "lebanese-samke-harra-bulgur",
+    "recipe_version_id": "rv_lebanese-samke-harra-bulgur_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "lebanese-samke-harra-bulgur.webp",
+    "card_ref": "lebanese-samke-harra-bulgur-640.webp",
+    "master_filename": "lebanese-samke-harra-bulgur.webp",
+    "card_filename": "lebanese-samke-harra-bulgur-640.webp",
+    "active_source_jpeg": "img_v3.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "lebanese-samke-harra-bulgur.webp",
+        "spec_catalog_path": "/images/meals/lebanese-samke-harra-bulgur.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "lebanese-samke-harra-bulgur-640.webp",
+        "spec_catalog_path": "/images/meals/lebanese-samke-harra-bulgur-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v3.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 2,
+    "file_hashes": {
+      "source_jpeg_sha256": "473b04f3c719888369e7a98e962bf50346cf82e5efadd7df275a105037e18754",
+      "master_sha256": "9df52a04e9320b9e1fdf8655f92d3b740584ad43c06a178a2889439458fec313",
+      "card_sha256": "da92c7e91b9e3b531a2a0b6a659289b69c58c353b14e35e5a875dc0b3fa66f81"
+    },
+    "asset_sha256": {
+      "img_v3.jpg": "473b04f3c719888369e7a98e962bf50346cf82e5efadd7df275a105037e18754",
+      "lebanese-samke-harra-bulgur.webp": "9df52a04e9320b9e1fdf8655f92d3b740584ad43c06a178a2889439458fec313",
+      "lebanese-samke-harra-bulgur-640.webp": "da92c7e91b9e3b531a2a0b6a659289b69c58c353b14e35e5a875dc0b3fa66f81"
+    },
+    "superseded": [
+      {
+        "image_id": "img_lebanese-samke-harra-bulgur_v1",
+        "active_source_jpeg": "img_v1.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "5b22446bf22868fd754ebe95139f791b598e89630d9a0eab388b4caf5351a9f8",
+          "master_sha256": "3e7c66b2bbde7b3daa3130f7fd24f34339a06b7e12625c685692bbf671236207",
+          "card_sha256": "d8bcddb6157a1508c374903efdef308c5275b90df479bb9ad51e5a8ebbfc2ac3"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "lebanese-samke-harra-bulgur.webp": {
+            "rejected_path": "rejected/lebanese-samke-harra-bulgur-replaced-20261015103159.webp",
+            "sha256": "3e7c66b2bbde7b3daa3130f7fd24f34339a06b7e12625c685692bbf671236207"
+          },
+          "lebanese-samke-harra-bulgur-640.webp": {
+            "rejected_path": "rejected/lebanese-samke-harra-bulgur-640-replaced-20261015103159.webp",
+            "sha256": "d8bcddb6157a1508c374903efdef308c5275b90df479bb9ad51e5a8ebbfc2ac3"
+          },
+          "img_v1.jpg": {
+            "rejected_path": "rejected/img_v1-replaced-20261015103159.jpg",
+            "sha256": "5b22446bf22868fd754ebe95139f791b598e89630d9a0eab388b4caf5351a9f8"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "Audit r1 gate K FAIL (coarse #3/#4 angular bulgur, not fine round grain)"
+      },
+      {
+        "image_id": "img_lebanese-samke-harra-bulgur_v2",
+        "active_source_jpeg": "img_v2.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "8febbc4d8428c38759837df97ece19c8a26bbbdaf8f64dc99684446f36d6f928",
+          "master_sha256": "1444f5d3cb1b2cdc23531c5dc20d8a1818e65b9b5faf93299ff1e11c92d9ed91",
+          "card_sha256": "29f0027ae4d585d7c4c2b1c97785b70261fc459e7d638c65320e1245ca98911a"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "lebanese-samke-harra-bulgur.webp": {
+            "rejected_path": "rejected/lebanese-samke-harra-bulgur-replaced-20261015104231.webp",
+            "sha256": "1444f5d3cb1b2cdc23531c5dc20d8a1818e65b9b5faf93299ff1e11c92d9ed91"
+          },
+          "lebanese-samke-harra-bulgur-640.webp": {
+            "rejected_path": "rejected/lebanese-samke-harra-bulgur-640-replaced-20261015104231.webp",
+            "sha256": "29f0027ae4d585d7c4c2b1c97785b70261fc459e7d638c65320e1245ca98911a"
+          },
+          "img_v2.jpg": {
+            "rejected_path": "rejected/img_v2-replaced-20261015104231.jpg",
+            "sha256": "8febbc4d8428c38759837df97ece19c8a26bbbdaf8f64dc99684446f36d6f928"
+          }
+        },
+        "replaced_on": "2026-10-15",
+        "reason": "Audit r2 gate K FAIL (coarse #3/#4 angular bulgur, not fine round grain)"
+      }
+    ],
+    "regenerated_for_audit": "audit-r1"
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 34 = 49 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0; the fish goes in at minute 28 after 28 minutes of preheating. The bulgur simmers and rests covered inside the bake (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0; the fish goes in at minute 28 after 28 minutes of preheating. The bulgur simmers and rests covered inside the bake (step 2 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "lebanese-samke-harra-bulgur.webp 1200x900 and lebanese-samke-harra-bulgur-640.webp 640x480 exported from img_v3.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One 6-oz fillet in a small gratin dish with a quarter of the sauces; 1/2 cup bulgur.",
+    "2": "Half of everything in an 8-inch dish.",
+    "4": "As written.",
+    "do_not_scale": [
+      "bake time depends on fillet thickness, not quantity: about 10 minutes per inch"
+    ]
+  },
+  "coverage_contribution": "Lebanese 0 to 1 (the catalog has generic middle-eastern dishes but nothing Lebanese). Bulgur 0 to 1. A tahini-baked fish is a new format. HH001 fish bake.",
+  "near_duplicate_review": "Compared with deep-fried-cod-roasted-potatoes: baked under a spicy tahini blanket, not battered. Compared with ginger-scallion-fish-packets: open bake in a tahini sauce, no packets. Compared with roasted-cauliflower-shawarma-plate and sabich-pita-sandwiches: fish main over bulgur, no pita.",
+  "not_duplicate_of": "Not kafta (rejected for overlap). Not a mezze plate.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

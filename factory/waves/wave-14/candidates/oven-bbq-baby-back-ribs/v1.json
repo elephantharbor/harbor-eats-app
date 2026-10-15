@@ -1,0 +1,656 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "oven-bbq-baby-back-ribs",
+    "slug": "oven-bbq-baby-back-ribs",
+    "title": "Oven-Barbecued Baby Back Ribs with Corn and Quick Pickles",
+    "description": "Baby back ribs rubbed with brown sugar, smoked paprika, and chili powder, baked low and slow in foil until tender, then lacquered with a homemade tangy molasses barbecue sauce and broiled until sticky and caramelized. Served with boiled sweet corn and crisp quick-pickled cucumbers and red onion.",
+    "cuisine": "american",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "pork",
+    "vocabulary_tag_ids": [
+      "smoky",
+      "tangy",
+      "tender",
+      "american"
+    ],
+    "current_recipe_id": "rcp_oven-bbq-baby-back-ribs",
+    "current_version_id": "rv_oven-bbq-baby-back-ribs_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_oven-bbq-baby-back-ribs",
+    "dish_id": "oven-bbq-baby-back-ribs",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_oven-bbq-baby-back-ribs_v1",
+    "recipe_id": "rcp_oven-bbq-baby-back-ribs",
+    "dish_id": "oven-bbq-baby-back-ribs",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Oven-Barbecued Baby Back Ribs with Corn and Quick Pickles",
+    "description": "Baby back ribs rubbed with brown sugar, smoked paprika, and chili powder, baked low and slow in foil until tender, then lacquered with a homemade tangy molasses barbecue sauce and broiled until sticky and caramelized. Served with boiled sweet corn and crisp quick-pickled cucumbers and red onion.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "baby-back-ribs",
+        "name": "baby back pork ribs",
+        "display_name": "racks baby back ribs",
+        "quantity": 2,
+        "unit": "count",
+        "note": "about 4 1/2 lb total",
+        "preparation": "membrane removed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "light brown sugar",
+        "display_name": "light brown sugar",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "3 tbsp rub, the rest sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "smoked-paprika",
+        "name": "smoked paprika",
+        "display_name": "smoked paprika",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": "1 tbsp rub, 1/2 tbsp sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chili-powder",
+        "name": "chili powder",
+        "display_name": "chili powder",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic-powder",
+        "name": "garlic powder",
+        "display_name": "garlic powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "onion-powder",
+        "name": "onion powder",
+        "display_name": "onion powder",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ketchup",
+        "name": "ketchup",
+        "display_name": "ketchup",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "cider-vinegar",
+        "name": "apple cider vinegar",
+        "display_name": "apple cider vinegar",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "1/4 cup sauce, 1/2 cup pickles",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "molasses",
+        "name": "molasses",
+        "display_name": "molasses",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dijon-mustard",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "corn",
+        "name": "corn on the cob",
+        "display_name": "ears of sweet corn",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "husked",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "corn-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 16,
+        "unit": "cup",
+        "note": "4 quarts, for boiling the corn",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cucumbers",
+        "name": "Persian cucumbers",
+        "display_name": "Persian cucumbers",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced 1/4 inch",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pickle-sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the pickles",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 5,
+        "unit": "tsp",
+        "note": "1 tbsp rub, 1 tsp pickles, 1 tsp corn pot",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat and rub",
+        "body": "Turn the oven on to 275 F to preheat with a rack in the middle. Pull the thin membrane off the bone side of each rack with a paper towel. Mix 3 tbsp brown sugar, 1 tbsp smoked paprika, the chili powder, garlic powder, onion powder, 1 tbsp salt, and the pepper; rub all over the ribs. Wrap each rack tightly in heavy-duty foil, meat side up, and set on a sheet pan.",
+        "ingredient_refs": [
+          "baby-back-ribs",
+          "brown-sugar",
+          "smoked-paprika",
+          "chili-powder",
+          "garlic-powder",
+          "onion-powder",
+          "kosher-salt",
+          "black-pepper"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Slow-bake",
+        "body": "Bake the foil packets in the preheated 275 F oven 2 1/2 hours, until the meat has pulled back from the bone ends and is very tender.",
+        "ingredient_refs": [
+          "baby-back-ribs"
+        ],
+        "clock_minutes": 150,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the sauce",
+        "body": "During the bake, simmer the ketchup, 1/4 cup cider vinegar, molasses, Dijon, the remaining brown sugar, and the remaining smoked paprika in a small saucepan over medium-low, stirring, until thick, 15 minutes. Runs inside step 2 (overlap stated).",
+        "ingredient_refs": [
+          "ketchup",
+          "cider-vinegar",
+          "molasses",
+          "dijon-mustard",
+          "brown-sugar",
+          "smoked-paprika"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Quick-pickle",
+        "body": "Also during the bake, stir 1/2 cup cider vinegar, 1 tbsp sugar, and 1 tsp salt until dissolved; pour over the cucumbers and red onion and refrigerate at least 30 minutes. Runs inside step 2 (overlap stated).",
+        "ingredient_refs": [
+          "cider-vinegar",
+          "pickle-sugar",
+          "kosher-salt",
+          "cucumbers",
+          "red-onion"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Heat the broiler and sauce the ribs",
+        "body": "Take out the ribs, set the rack 6 inches below the broiler, and turn the broiler on high to preheat for 5 minutes. Carefully open the foil, move the racks meat side up to a clean foil-lined sheet pan, and brush thickly with sauce. Broil 4 minutes, brush again, and broil 3 to 4 minutes more until sticky and caramelized at the edges. Watch closely so the sugar does not burn.",
+        "ingredient_refs": [
+          "baby-back-ribs",
+          "ketchup"
+        ],
+        "clock_minutes": 13,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Boil the corn",
+        "body": "While the broiler heats and the ribs broil, bring 16 cups (4 quarts) water and 1 tsp salt to a boil in the large pot (start it at the end of step 2), add the corn, and boil 5 minutes. Runs inside steps 2 and 5 (overlap stated).",
+        "ingredient_refs": [
+          "corn-water",
+          "kosher-salt",
+          "corn"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Rest and serve",
+        "body": "Rest the ribs 5 minutes, cut between the bones, and serve with the corn, the drained pickles, and the remaining sauce.",
+        "ingredient_refs": [
+          "baby-back-ribs",
+          "corn",
+          "cucumbers",
+          "ketchup"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "ribs",
+        "name": "oven-barbecued ribs",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "baby back ribs",
+          "brown sugar",
+          "smoked paprika",
+          "chili powder",
+          "garlic powder",
+          "onion powder",
+          "salt",
+          "pepper"
+        ]
+      },
+      {
+        "component_id": "sauce",
+        "name": "molasses barbecue sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ketchup",
+          "cider vinegar",
+          "molasses",
+          "Dijon",
+          "brown sugar",
+          "smoked paprika"
+        ]
+      },
+      {
+        "component_id": "corn",
+        "name": "boiled corn",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "corn",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "pickles",
+        "name": "quick-pickled cucumbers",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cucumbers",
+          "red onion",
+          "cider vinegar",
+          "sugar",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "2 rimmed sheet pans",
+      "heavy-duty foil",
+      "small saucepan",
+      "large pot",
+      "pastry brush",
+      "medium bowl"
+    ],
+    "methods": [
+      "bake",
+      "broil",
+      "simmer",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "baked"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 168,
+    "total_time_minutes": 183,
+    "prep_minutes": 15,
+    "cook_minutes": 168,
+    "total_minutes": 183,
+    "time_clock": "Prep 15 + cook 168 = 183 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0. The broiler is turned on and given 5 minutes to heat in step 5 before the ribs go under it. The sauce, pickles, and corn are made inside the long bake and the broil (steps 3, 4, and 6 state the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        5,
+        7
+      ],
+      "overlap_steps": [
+        3,
+        4,
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Preheat and rub) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0. The broiler is turned on and given 5 minutes to heat in step 5 before the ribs go under it. The sauce, pickles, and corn are made inside the long bake and the broil (steps 3, 4, and 6 state the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven preheated to 275 F for the slow bake; broiler on high for the finish. Medium-low simmer for the sauce. Rolling boil for the corn.",
+    "doneness": "Meat pulls back from the bone ends about 1/2 inch and a rack bends deeply when lifted from the center (about 195 F). Sauce sticky and caramelized at the edges.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains pork (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: the corn is served with salt, not butter.",
+    "allergens": [
+      "meat"
+    ],
+    "allergen_notes": [
+      "Meat from the pork ribs.",
+      "No egg, milk, soy, wheat, sesame, fish, shellfish, or nuts; the sauce has no Worcestershire."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains pork (meat).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "smoky",
+      "tangy",
+      "tender",
+      "american"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'american' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "c60999e785fae14358fe0fccb89265e2fc6a930b05473a3d5a81f099cf3e1b78",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_oven-bbq-baby-back-ribs_v1",
+    "dish_id": "oven-bbq-baby-back-ribs",
+    "recipe_version_id": "rv_oven-bbq-baby-back-ribs_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "oven-bbq-baby-back-ribs.webp",
+    "card_ref": "oven-bbq-baby-back-ribs-640.webp",
+    "master_filename": "oven-bbq-baby-back-ribs.webp",
+    "card_filename": "oven-bbq-baby-back-ribs-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "oven-bbq-baby-back-ribs.webp",
+        "spec_catalog_path": "/images/meals/oven-bbq-baby-back-ribs.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "oven-bbq-baby-back-ribs-640.webp",
+        "spec_catalog_path": "/images/meals/oven-bbq-baby-back-ribs-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "34cd12cc4f83dea5168578a52c56286bb0e634c11cc4b1dafafdd3e70a0f015f",
+      "master_sha256": "b155547eebc6ed76bbe8c8f22ab119fb65deaf8e282c453397a9375ded574933",
+      "card_sha256": "8612eb260852f5afcb99de22c2d31a6a1d818fd44cff969575aa4a6b6d9dd7f1"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "34cd12cc4f83dea5168578a52c56286bb0e634c11cc4b1dafafdd3e70a0f015f",
+      "oven-bbq-baby-back-ribs.webp": "b155547eebc6ed76bbe8c8f22ab119fb65deaf8e282c453397a9375ded574933",
+      "oven-bbq-baby-back-ribs-640.webp": "8612eb260852f5afcb99de22c2d31a6a1d818fd44cff969575aa4a6b6d9dd7f1"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 168 = 183 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0. The broiler is turned on and given 5 minutes to heat in step 5 before the ribs go under it. The sauce, pickles, and corn are made inside the long bake and the broil (steps 3, 4, and 6 state the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Preheat and rub) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0. The broiler is turned on and given 5 minutes to heat in step 5 before the ribs go under it. The sauce, pickles, and corn are made inside the long bake and the broil (steps 3, 4, and 6 state the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "oven-bbq-baby-back-ribs.webp 1200x900 and oven-bbq-baby-back-ribs-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"baked\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Half a rack baked 2 hours in foil; a quarter of the sauce.",
+    "2": "One rack; half the sauce.",
+    "4": "As written; two racks.",
+    "do_not_scale": [
+      "bake time depends on rack thickness, not count"
+    ]
+  },
+  "coverage_contribution": "First ribs. A weekend barbecue dinner without a grill or smoker.",
+  "near_duplicate_review": "Compared with cider-braised-pork-shoulder: rib racks, barbecue sauce, no slaw (quick pickles instead). Compared with jamaican-jerk-pork-chops: low-and-slow ribs with a tomato-molasses sauce. Compared with air-fryer-honey-mustard-pork: slow-baked ribs.",
+  "not_duplicate_of": "Not pulled pork. Not a slaw-sided plate (avoids the cider-pork twin).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

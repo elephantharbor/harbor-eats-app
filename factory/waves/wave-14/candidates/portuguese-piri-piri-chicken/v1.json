@@ -1,0 +1,621 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "portuguese-piri-piri-chicken",
+    "slug": "portuguese-piri-piri-chicken",
+    "title": "Portuguese Piri-Piri Roast Chicken with Rice and Tomato Salad",
+    "description": "A spatchcocked whole chicken marinated in a fiery blended piri-piri sauce of red chiles, garlic, smoked paprika, lemon, and vinegar, then high-heat roasted until the skin is blistered and burnished. Served with onion rice and a sharp tomato and red-onion salad.",
+    "cuisine": "portuguese",
+    "meal_format": "roast-plate",
+    "primary_ingredient": "chicken",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "smoky",
+      "citrusy",
+      "chicken"
+    ],
+    "current_recipe_id": "rcp_portuguese-piri-piri-chicken",
+    "current_version_id": "rv_portuguese-piri-piri-chicken_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_portuguese-piri-piri-chicken",
+    "dish_id": "portuguese-piri-piri-chicken",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_portuguese-piri-piri-chicken_v1",
+    "recipe_id": "rcp_portuguese-piri-piri-chicken",
+    "dish_id": "portuguese-piri-piri-chicken",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Portuguese Piri-Piri Roast Chicken with Rice and Tomato Salad",
+    "description": "A spatchcocked whole chicken marinated in a fiery blended piri-piri sauce of red chiles, garlic, smoked paprika, lemon, and vinegar, then high-heat roasted until the skin is blistered and burnished. Served with onion rice and a sharp tomato and red-onion salad.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "whole-chicken",
+        "name": "whole chicken",
+        "display_name": "whole chicken, about 4 lb",
+        "quantity": 4,
+        "unit": "lb",
+        "note": null,
+        "preparation": "spatchcocked (backbone removed) and patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "fresno-chiles",
+        "name": "Fresno chiles",
+        "display_name": "red Fresno chiles",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "stemmed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "birds-eye-chiles",
+        "name": "bird's eye chiles",
+        "display_name": "red bird's eye (Thai) chiles",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "stemmed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": "peeled",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "smoked-paprika",
+        "name": "smoked paprika",
+        "display_name": "smoked paprika",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemons",
+        "display_name": "lemons",
+        "quantity": 2,
+        "unit": "count",
+        "note": "juiced, about 1/3 cup, plus wedges",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-wine-vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "2 tbsp sauce, 1 tbsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "dried-oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "long-grain-rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "ripe tomatoes",
+        "display_name": "ripe tomatoes",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "1/4 cup sauce, 2 tbsp rice, 2 tbsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 3,
+        "unit": "tsp",
+        "note": "2 tsp chicken, 1/2 tsp rice, 1/2 tsp salad",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat, spatchcock, and blend",
+        "body": "Turn the oven on to 425 F to preheat with a rack in the upper-middle; it heats through the marinade. Cut out the chicken's backbone with poultry shears, flip it, and press firmly on the breastbone to flatten. Pat dry and season all over with 2 tsp salt. Blend the Fresno and bird's eye chiles, garlic, smoked paprika, lemon juice, 2 tbsp vinegar, oregano, and 1/4 cup olive oil until smooth. Set aside 1/4 cup of the sauce for serving.",
+        "ingredient_refs": [
+          "whole-chicken",
+          "kosher-salt",
+          "fresno-chiles",
+          "birds-eye-chiles",
+          "garlic",
+          "smoked-paprika",
+          "lemon",
+          "red-wine-vinegar",
+          "dried-oregano",
+          "olive-oil"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Marinate",
+        "body": "Rub the rest of the sauce all over and under the skin of the chicken and let it sit at room temperature 30 minutes on the rack set in the sheet pan, skin side up.",
+        "ingredient_refs": [
+          "whole-chicken",
+          "fresno-chiles"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 3,
+        "title": "Roast",
+        "body": "Roast in the preheated 425 F oven until the skin is deep bronze with charred spots, the thigh reads 175 F, and the breast reads 160 F, 40 to 45 minutes.",
+        "ingredient_refs": [
+          "whole-chicken"
+        ],
+        "clock_minutes": 45,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Rest",
+        "body": "Rest the chicken 10 minutes, then cut into pieces.",
+        "ingredient_refs": [
+          "whole-chicken"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Cook the rice",
+        "body": "During the roast, heat 2 tbsp olive oil in a 2-quart saucepan over medium, cook the diced onion 4 minutes, then add the rice, 2 1/4 cups water, and 1/2 tsp salt. Boil, cover, cook on low 15 minutes, and rest covered 10. Runs inside step 3 (overlap stated).",
+        "ingredient_refs": [
+          "olive-oil",
+          "yellow-onion",
+          "long-grain-rice",
+          "rice-water",
+          "kosher-salt"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Make the salad and serve",
+        "body": "During the rest, toss the tomatoes and red onion with 1 tbsp vinegar, 2 tbsp olive oil, 1/2 tsp salt, and the parsley (overlap stated: inside step 4). Serve the chicken with the rice, salad, lemon wedges, and the reserved sauce.",
+        "ingredient_refs": [
+          "tomatoes",
+          "red-onion",
+          "red-wine-vinegar",
+          "olive-oil",
+          "kosher-salt",
+          "parsley",
+          "whole-chicken",
+          "long-grain-rice",
+          "lemon",
+          "fresno-chiles"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "overlap"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "chicken",
+        "name": "piri-piri roast chicken",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "whole chicken",
+          "Fresno chiles",
+          "bird's eye chiles",
+          "garlic",
+          "smoked paprika",
+          "lemon",
+          "red wine vinegar",
+          "oregano",
+          "olive oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "onion rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long-grain rice",
+          "onion",
+          "water",
+          "olive oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "tomato and red-onion salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomatoes",
+          "red onion",
+          "parsley",
+          "red wine vinegar",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "poultry shears",
+      "blender or mini food processor",
+      "rimmed sheet pan with a wire rack",
+      "2-quart saucepan with lid",
+      "instant-read thermometer",
+      "medium bowl"
+    ],
+    "methods": [
+      "roast",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 45,
+    "cook_time_minutes": 55,
+    "total_time_minutes": 100,
+    "prep_minutes": 45,
+    "cook_minutes": 55,
+    "total_minutes": 100,
+    "time_clock": "Prep 45 + cook 55 = 100 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0 and heats through the 30-minute marinade. The rice and salad are made inside the roast (steps 5 and 6 state the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        2
+      ],
+      "cook_steps": [
+        3,
+        4
+      ],
+      "overlap_steps": [
+        5,
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Preheat, spatchcock, and blend) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0 and heats through the 30-minute marinade. The rice and salad are made inside the roast (steps 5 and 6 state the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven preheated to 425 F, rack in the upper-middle. Covered low simmer for the rice.",
+    "doneness": "Thigh 175 F and breast 160 F (carryover to 165 F during the rest); skin deep bronze with charred spots; juices clear.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains chicken (poultry)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: the sauce is chiles, garlic, lemon, vinegar, and oil.",
+    "allergens": [
+      "poultry"
+    ],
+    "allergen_notes": [
+      "Poultry from the chicken.",
+      "No egg, milk, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains chicken (poultry).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "spicy",
+      "smoky",
+      "citrusy",
+      "chicken"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'portuguese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "5e43931cdddba288a7f614543174a675e87cc8c0cf1e0b7b30ec1ce8124fe649",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_portuguese-piri-piri-chicken_v1",
+    "dish_id": "portuguese-piri-piri-chicken",
+    "recipe_version_id": "rv_portuguese-piri-piri-chicken_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "portuguese-piri-piri-chicken.webp",
+    "card_ref": "portuguese-piri-piri-chicken-640.webp",
+    "master_filename": "portuguese-piri-piri-chicken.webp",
+    "card_filename": "portuguese-piri-piri-chicken-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "portuguese-piri-piri-chicken.webp",
+        "spec_catalog_path": "/images/meals/portuguese-piri-piri-chicken.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "portuguese-piri-piri-chicken-640.webp",
+        "spec_catalog_path": "/images/meals/portuguese-piri-piri-chicken-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "d630249b442c62dd4e9affdb8011117f273ae59bfde4bb5e8b9f63bb9c1d39f4",
+      "master_sha256": "36704350e72a36ba8b264ea5f56c96e24e4d1d923c8069ac72cd182d2b2f789e",
+      "card_sha256": "6e414956054559de4f95cebf14ce9e4554cde9d0c5bd0ca77026536d36d18905"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "d630249b442c62dd4e9affdb8011117f273ae59bfde4bb5e8b9f63bb9c1d39f4",
+      "portuguese-piri-piri-chicken.webp": "36704350e72a36ba8b264ea5f56c96e24e4d1d923c8069ac72cd182d2b2f789e",
+      "portuguese-piri-piri-chicken-640.webp": "6e414956054559de4f95cebf14ce9e4554cde9d0c5bd0ca77026536d36d18905"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 45 + cook 55 = 100 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0 and heats through the 30-minute marinade. The rice and salad are made inside the roast (steps 5 and 6 state the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Preheat, spatchcock, and blend) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0 and heats through the 30-minute marinade. The rice and salad are made inside the roast (steps 5 and 6 state the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "portuguese-piri-piri-chicken.webp 1200x900 and portuguese-piri-piri-chicken-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Roast 2 chicken legs (thighs and drumsticks) with a quarter of the sauce, 35 minutes.",
+    "2": "Roast a 2 1/2-lb chicken or 4 legs, 35 to 40 minutes.",
+    "4": "As written.",
+    "do_not_scale": [
+      "roast to temperature, not time"
+    ]
+  },
+  "coverage_contribution": "Portuguese 0 to 1. First whole roast (spatchcocked) chicken. A hot-chile roast.",
+  "near_duplicate_review": "Compared with sheet-pan-lemon-herb-chicken: a whole spatchcocked bird in a blended hot chile marinade, not pieces with herbs. Compared with greek-chicken-souvlaki: roasted whole, not skewered. Compared with filipino-chicken-adobo: dry roast with chile, not a vinegar-soy braise.",
+  "not_duplicate_of": "Not huli-huli chicken (rejected). Not tandoori.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

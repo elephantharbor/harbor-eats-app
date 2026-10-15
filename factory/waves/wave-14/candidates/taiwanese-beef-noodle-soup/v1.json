@@ -1,0 +1,673 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "taiwanese-beef-noodle-soup",
+    "slug": "taiwanese-beef-noodle-soup",
+    "title": "Taiwanese Red-Braised Beef Noodle Soup",
+    "description": "Taiwan's national dish: beef shank braised for two hours in a deep, spicy broth of chili bean paste, soy, star anise, Sichuan peppercorn, cinnamon, ginger, and tomato, ladled over chewy wheat noodles with baby bok choy, pickled mustard greens, scallions, and cilantro.",
+    "cuisine": "taiwanese",
+    "meal_format": "noodle-soup",
+    "primary_ingredient": "beef",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "umami",
+      "rich",
+      "soups"
+    ],
+    "current_recipe_id": "rcp_taiwanese-beef-noodle-soup",
+    "current_version_id": "rv_taiwanese-beef-noodle-soup_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_taiwanese-beef-noodle-soup",
+    "dish_id": "taiwanese-beef-noodle-soup",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_taiwanese-beef-noodle-soup_v1",
+    "recipe_id": "rcp_taiwanese-beef-noodle-soup",
+    "dish_id": "taiwanese-beef-noodle-soup",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Taiwanese Red-Braised Beef Noodle Soup",
+    "description": "Taiwan's national dish: beef shank braised for two hours in a deep, spicy broth of chili bean paste, soy, star anise, Sichuan peppercorn, cinnamon, ginger, and tomato, ladled over chewy wheat noodles with baby bok choy, pickled mustard greens, scallions, and cilantro.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "beef-shank",
+        "name": "boneless beef shank",
+        "display_name": "boneless beef shank",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 1 1/2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "blanch-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 12,
+        "unit": "cup",
+        "note": "3 quarts, for blanching the beef",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "doubanjiang",
+        "name": "doubanjiang (spicy chili bean paste)",
+        "display_name": "doubanjiang (spicy chili bean paste)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "brown sugar",
+        "display_name": "brown sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "star-anise",
+        "name": "star anise",
+        "display_name": "star anise",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sichuan-peppercorns",
+        "name": "Sichuan peppercorns",
+        "display_name": "Sichuan peppercorns",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cinnamon-stick",
+        "name": "cinnamon stick",
+        "display_name": "cinnamon stick",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 2,
+        "unit": "inch",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": "smashed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 6,
+        "unit": "count",
+        "note": null,
+        "preparation": "4 cut into lengths for the braise, 2 sliced for garnish",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "Roma tomatoes",
+        "display_name": "Roma tomatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "quartered",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "braise-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 10,
+        "unit": "cup",
+        "note": "for the braise",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "wheat-noodles",
+        "name": "fresh wheat noodles",
+        "display_name": "fresh thick wheat noodles (or 12 oz dried)",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "noodle-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 16,
+        "unit": "cup",
+        "note": "4 quarts, for the noodles and bok choy",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "bok-choy",
+        "name": "baby bok choy",
+        "display_name": "baby bok choy",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pickled-mustard-greens",
+        "name": "pickled mustard greens",
+        "display_name": "pickled mustard greens",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed and chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Cut the shank into chunks. Slice the ginger, smash the garlic, cut 4 scallions into lengths and slice 2, cut the onion into wedges, and quarter the tomatoes. Halve the bok choy, and rinse and chop the pickled greens.",
+        "ingredient_refs": [
+          "beef-shank",
+          "ginger",
+          "garlic",
+          "scallions",
+          "yellow-onion",
+          "tomatoes",
+          "bok-choy",
+          "pickled-mustard-greens",
+          "cilantro"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Blanch the beef",
+        "body": "Bring 12 cups (3 quarts) water to a boil in the Dutch oven, add the beef, and boil 5 minutes to release scum. Drain in a colander, rinse the beef, and wipe out the pot.",
+        "ingredient_refs": [
+          "blanch-water",
+          "beef-shank"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the aromatics",
+        "body": "Heat the oil in the pot over medium. Cook the ginger, garlic, scallion lengths, and onion 3 minutes, then stir in the doubanjiang, star anise, Sichuan peppercorns, and cinnamon stick for 1 minute, and add the tomatoes.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "ginger",
+          "garlic",
+          "scallions",
+          "yellow-onion",
+          "doubanjiang",
+          "star-anise",
+          "sichuan-peppercorns",
+          "cinnamon-stick",
+          "tomatoes"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Braise",
+        "body": "Add the beef, soy sauce, brown sugar, and 10 cups water. Bring to a boil, then cover and braise on low 2 hours, until the beef is fork-tender. Skim fat and fish out the whole spices and scallion lengths.",
+        "ingredient_refs": [
+          "beef-shank",
+          "soy-sauce",
+          "brown-sugar",
+          "braise-water",
+          "star-anise"
+        ],
+        "clock_minutes": 120,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Cook the noodles and bok choy",
+        "body": "During the last 15 minutes of the braise, bring 16 cups (4 quarts) water to a boil in the 5-quart pot (overlap stated). Then cook the noodles per the package, adding the bok choy for the last minute, and drain.",
+        "ingredient_refs": [
+          "noodle-water",
+          "wheat-noodles",
+          "bok-choy"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Divide the noodles and bok choy among deep bowls, ladle in the beef and broth, and top with pickled mustard greens, sliced scallions, and cilantro.",
+        "ingredient_refs": [
+          "wheat-noodles",
+          "beef-shank",
+          "pickled-mustard-greens",
+          "scallions",
+          "cilantro"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "braise",
+        "name": "red-braised beef and broth",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "beef shank",
+          "doubanjiang",
+          "soy sauce",
+          "brown sugar",
+          "star anise",
+          "Sichuan peppercorns",
+          "cinnamon",
+          "ginger",
+          "garlic",
+          "scallions",
+          "onion",
+          "tomatoes",
+          "water",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "noodles",
+        "name": "wheat noodles and bok choy",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "wheat noodles",
+          "bok choy",
+          "water"
+        ]
+      },
+      {
+        "component_id": "toppings",
+        "name": "pickled mustard greens, scallions, cilantro",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "pickled mustard greens",
+          "scallions",
+          "cilantro"
+        ]
+      }
+    ],
+    "equipment": [
+      "7-quart Dutch oven",
+      "5-quart pot",
+      "colander",
+      "slotted spoon",
+      "ladle"
+    ],
+    "methods": [
+      "boil",
+      "saute",
+      "braise"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 153,
+    "total_time_minutes": 173,
+    "prep_minutes": 20,
+    "cook_minutes": 153,
+    "total_minutes": 173,
+    "time_clock": "Prep 20 + cook 153 = 173 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The noodle pot heats during the end of the braise (step 5 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Rolling boil to blanch the beef; medium to cook the aromatics in oil; low covered braise.",
+    "doneness": "Beef shank fork-tender and gelatinous; broth deep red-brown and fragrant; noodles chewy-tender; bok choy bright green.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "adventurous",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "adventurous"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains beef (meat)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free.",
+    "allergens": [
+      "meat",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the beef shank.",
+      "Soy and wheat from the soy sauce and chili bean paste (doubanjiang).",
+      "Wheat from the noodles.",
+      "No egg, milk, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains beef (meat).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "spicy",
+      "umami",
+      "rich",
+      "soups"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'taiwanese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "0919e48405df63bc959685e987f557c2840b4a4ea2554248e43f775be4845b91",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_taiwanese-beef-noodle-soup_v1",
+    "dish_id": "taiwanese-beef-noodle-soup",
+    "recipe_version_id": "rv_taiwanese-beef-noodle-soup_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "taiwanese-beef-noodle-soup.webp",
+    "card_ref": "taiwanese-beef-noodle-soup-640.webp",
+    "master_filename": "taiwanese-beef-noodle-soup.webp",
+    "card_filename": "taiwanese-beef-noodle-soup-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "taiwanese-beef-noodle-soup.webp",
+        "spec_catalog_path": "/images/meals/taiwanese-beef-noodle-soup.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "taiwanese-beef-noodle-soup-640.webp",
+        "spec_catalog_path": "/images/meals/taiwanese-beef-noodle-soup-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "7f3cdbacb36ee38de63e5b0368089de8b593a4830e4d06c9bf1a023e77800248",
+      "master_sha256": "5a9293a8b26a6cc1eb023d574e3e78e31e13163f6c6133659ecfb7c15d3b68c3",
+      "card_sha256": "a9e69e9e3324ad2c31cda31158dc4d6f77d3956032d31ecbb8eef4d45e71d0ad"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "7f3cdbacb36ee38de63e5b0368089de8b593a4830e4d06c9bf1a023e77800248",
+      "taiwanese-beef-noodle-soup.webp": "5a9293a8b26a6cc1eb023d574e3e78e31e13163f6c6133659ecfb7c15d3b68c3",
+      "taiwanese-beef-noodle-soup-640.webp": "a9e69e9e3324ad2c31cda31158dc4d6f77d3956032d31ecbb8eef4d45e71d0ad"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 20 + cook 153 = 173 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The noodle pot heats during the end of the braise (step 5 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "taiwanese-beef-noodle-soup.webp 1200x900 and taiwanese-beef-noodle-soup-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make the full braise; refrigerate up to 4 days or freeze; cook noodles to order.",
+    "2": "Full braise.",
+    "4": "As written.",
+    "do_not_scale": [
+      "braise to tenderness, not time"
+    ]
+  },
+  "coverage_contribution": "Taiwanese 0 to 1. Adventurous complexity (rare in the catalog). Beef shank is a new cut.",
+  "near_duplicate_review": "Compared with vietnamese-chicken-pho: beef shank in a spicy red braise broth, wheat noodles. Compared with miso-mushroom-ramen: a braised beef broth, no miso. Compared with the burmese mohinga in this wave: beef, wheat noodles, chili-bean broth.",
+  "not_duplicate_of": "Not pho bo. Not ramen.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

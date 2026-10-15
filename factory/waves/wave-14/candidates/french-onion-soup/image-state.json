@@ -1,0 +1,27 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "french-onion-soup.webp",
+    "french-onion-soup-640.webp"
+  ],
+  "present_files": [
+    "french-onion-soup.webp",
+    "french-onion-soup-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "b9fa151f7dbc089f6d67e2c3b3fcc9f0635f12bd60e017d91bec0ae62c546d29",
+    "french-onion-soup.webp": "5b6edac052a8b686e2af2790d1f281b5659c83b813f8309b08707e63306deeb8",
+    "french-onion-soup-640.webp": "b6cf3ccf9a1c75ff182518de7a4dcecb0b6e01dc44aaf07a5dd62077ed6886d8"
+  },
+  "package_revision": "freeze-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

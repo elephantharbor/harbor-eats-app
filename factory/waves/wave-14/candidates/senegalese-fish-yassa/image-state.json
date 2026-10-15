@@ -1,0 +1,27 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "senegalese-fish-yassa.webp",
+    "senegalese-fish-yassa-640.webp"
+  ],
+  "present_files": [
+    "senegalese-fish-yassa.webp",
+    "senegalese-fish-yassa-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "b8af5dcc08df359603b0f21cdbe1d62f8f9696d08db68c86c45899cd09e749de",
+    "senegalese-fish-yassa.webp": "dce053baec49caf774f7ec3c74ca3c399dae5cff0975bcccf016de9153709c04",
+    "senegalese-fish-yassa-640.webp": "007e3fc6d0181c7883a940e627431fb8ceffc15fc036efcd53dd606fc36c3733"
+  },
+  "package_revision": "freeze-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

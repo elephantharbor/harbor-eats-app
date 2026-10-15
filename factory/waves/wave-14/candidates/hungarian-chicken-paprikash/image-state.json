@@ -1,0 +1,27 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "hungarian-chicken-paprikash.webp",
+    "hungarian-chicken-paprikash-640.webp"
+  ],
+  "present_files": [
+    "hungarian-chicken-paprikash.webp",
+    "hungarian-chicken-paprikash-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "481f0328b51822ae55ce588b0a57f220c81cd6fa4cfdd897f8ce4e7055a0214f",
+    "hungarian-chicken-paprikash.webp": "957192bc1b28a7ebbc9a22784f34d76c30083e4998f2afda64983609e94d4132",
+    "hungarian-chicken-paprikash-640.webp": "f4c585cec12e7b4ddae9395ba5168ef5b324a17603e1dd04a57f1d6110cb116d"
+  },
+  "package_revision": "freeze-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

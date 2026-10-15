@@ -1,0 +1,594 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "swiss-rosti-smoked-trout",
+    "slug": "swiss-rosti-smoked-trout",
+    "title": "Swiss Rösti with Smoked Trout and Dill-Caper Salad",
+    "description": "One large golden potato rösti, pan-fried in oil until shatteringly crisp outside and tender inside, cut into wedges and topped with flaked smoked trout and a lemony arugula, cucumber, radish, dill, and caper salad in a Dijon vinaigrette.",
+    "cuisine": "swiss",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "smoked-trout",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "smoky",
+      "fresh",
+      "savory"
+    ],
+    "current_recipe_id": "rcp_swiss-rosti-smoked-trout",
+    "current_version_id": "rv_swiss-rosti-smoked-trout_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_swiss-rosti-smoked-trout",
+    "dish_id": "swiss-rosti-smoked-trout",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_swiss-rosti-smoked-trout_v1",
+    "recipe_id": "rcp_swiss-rosti-smoked-trout",
+    "dish_id": "swiss-rosti-smoked-trout",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Swiss Rösti with Smoked Trout and Dill-Caper Salad",
+    "description": "One large golden potato rösti, pan-fried in oil until shatteringly crisp outside and tender inside, cut into wedges and topped with flaked smoked trout and a lemony arugula, cucumber, radish, dill, and caper salad in a Dijon vinaigrette.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "yukon-potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled and coarsely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "shallot",
+        "name": "shallot",
+        "display_name": "shallot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "smoked-trout",
+        "name": "hot-smoked trout",
+        "display_name": "hot-smoked trout fillets",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": "skin removed, flaked",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "arugula",
+        "name": "arugula",
+        "display_name": "arugula",
+        "quantity": 4,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "Persian cucumbers",
+        "display_name": "Persian cucumbers",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "radishes",
+        "name": "radishes",
+        "display_name": "radishes",
+        "quantity": 6,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dill",
+        "name": "fresh dill",
+        "display_name": "fresh dill",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "capers",
+        "name": "capers",
+        "display_name": "capers",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "drained",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chives",
+        "name": "chives",
+        "display_name": "chives",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "snipped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "dijon-mustard",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "juiced, about 3 tbsp; plus wedges",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "for the vinaigrette",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 5,
+        "unit": "tbsp",
+        "note": "3 tbsp first side, 2 tbsp second side",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1 1/4 tsp potatoes, 1/4 tsp dressing",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Grate and squeeze",
+        "body": "Peel and coarsely grate the potatoes and grate the shallot. Pile them in the center of a clean kitchen towel, twist it closed, and wring out as much liquid as you can (this is what makes the rösti crisp). Toss in a bowl with 1 1/4 tsp salt and the pepper. Slice the cucumbers and radishes, chop the dill, snip the chives, and flake the trout.",
+        "ingredient_refs": [
+          "yukon-potatoes",
+          "shallot",
+          "kosher-salt",
+          "black-pepper",
+          "cucumber",
+          "radishes",
+          "dill",
+          "chives",
+          "smoked-trout"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Pan-fry the first side",
+        "body": "Heat 3 tbsp neutral oil in a 12-inch skillet over medium-high until shimmering. Add the potatoes, spread them into an even 3/4-inch layer, and press flat with a spatula. Cook 2 minutes to set, then lower to medium and cook without stirring until the underside is deep golden and crisp, about 12 minutes more. Shake the pan now and then so the cake slides freely.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "yukon-potatoes",
+          "shallot"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the salad",
+        "body": "While the first side cooks, whisk the lemon juice, Dijon, olive oil, and 1/4 tsp salt in a bowl. Add the arugula, cucumbers, radishes, dill, and capers but do not toss yet. Runs inside step 2 (overlap stated).",
+        "ingredient_refs": [
+          "lemon",
+          "dijon-mustard",
+          "olive-oil",
+          "kosher-salt",
+          "arugula",
+          "cucumber",
+          "radishes",
+          "dill",
+          "capers"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Flip and finish",
+        "body": "Slide the rösti onto a large plate, cover it with a second plate, invert, and slide it back into the skillet with 2 tbsp more oil around the edges. Cook over medium until the second side is deep golden and a knife slides through the center easily, 12 minutes.",
+        "ingredient_refs": [
+          "yukon-potatoes",
+          "neutral-oil"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Top and serve",
+        "body": "Slide the rösti onto a board and cut into 4 wedges. Toss the salad. Top each wedge with trout and a handful of salad, scatter chives, and serve with lemon wedges.",
+        "ingredient_refs": [
+          "yukon-potatoes",
+          "arugula",
+          "smoked-trout",
+          "chives",
+          "lemon"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "rosti",
+        "name": "potato rösti",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "Yukon Gold potatoes",
+          "shallot",
+          "salt",
+          "pepper",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "trout",
+        "name": "hot-smoked trout",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "smoked trout"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "dill-caper salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "arugula",
+          "cucumber",
+          "radishes",
+          "dill",
+          "capers",
+          "Dijon",
+          "lemon",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch nonstick or well-seasoned cast-iron skillet",
+      "box grater",
+      "clean kitchen towel",
+      "large plate",
+      "2 bowls"
+    ],
+    "methods": [
+      "pan-fry"
+    ],
+    "cooking": {
+      "frying": [
+        "pan"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 31,
+    "total_time_minutes": 46,
+    "prep_minutes": 15,
+    "cook_minutes": 31,
+    "total_minutes": 46,
+    "time_clock": "Prep 15 + cook 31 = 46 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Linear stovetop clock; the salad and vinaigrette are made during the first side (step 3 states the overlap). No oven.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "Medium-high to set the rösti crust, then medium for even cooking; repeat on the second side.",
+    "doneness": "Deep golden-brown and crisp on both sides; a knife slides through the center with no raw crunch.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: oil-cooked rösti and an oil-and-lemon dressing.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish from the smoked trout.",
+      "No egg, milk, soy, wheat, sesame, shellfish, or nuts; Dijon and capers carry no FlavorWeave tokens."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "Oil instead of butter or lard, and no crème fraîche or sour cream: the topping is trout and a vinaigrette salad.",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "smoky",
+      "fresh",
+      "savory"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'swiss' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "5df03aabba47a28b1154e519b8759ec326cee6a7b6c5e8f40e235e9cf8c7e30a",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_swiss-rosti-smoked-trout_v1",
+    "dish_id": "swiss-rosti-smoked-trout",
+    "recipe_version_id": "rv_swiss-rosti-smoked-trout_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "swiss-rosti-smoked-trout.webp",
+    "card_ref": "swiss-rosti-smoked-trout-640.webp",
+    "master_filename": "swiss-rosti-smoked-trout.webp",
+    "card_filename": "swiss-rosti-smoked-trout-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "swiss-rosti-smoked-trout.webp",
+        "spec_catalog_path": "/images/meals/swiss-rosti-smoked-trout.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "swiss-rosti-smoked-trout-640.webp",
+        "spec_catalog_path": "/images/meals/swiss-rosti-smoked-trout-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "eda0f6531eafc9624dee64ffb8cc29f6dc579ccd8720dcc2f4f5ae2ffef60688",
+      "master_sha256": "e638234c32141cdbfacdb5c2fe47c6cfecc7456d834a55c3c9377f236ae321f7",
+      "card_sha256": "157c76e851a160c4f911bf32af07c3307f5f288b692ed05b814f2f6850bfd664"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "eda0f6531eafc9624dee64ffb8cc29f6dc579ccd8720dcc2f4f5ae2ffef60688",
+      "swiss-rosti-smoked-trout.webp": "e638234c32141cdbfacdb5c2fe47c6cfecc7456d834a55c3c9377f236ae321f7",
+      "swiss-rosti-smoked-trout-640.webp": "157c76e851a160c4f911bf32af07c3307f5f288b692ed05b814f2f6850bfd664"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 31 = 46 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Linear stovetop clock; the salad and vinaigrette are made during the first side (step 3 states the overlap). No oven."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "swiss-rosti-smoked-trout.webp 1200x900 and swiss-rosti-smoked-trout-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"pan\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One 8-inch rösti from 1/2 lb potatoes; 2 oz trout.",
+    "2": "A 10-inch rösti from 1 lb potatoes.",
+    "4": "As written, one 12-inch rösti cut into 4 wedges.",
+    "do_not_scale": [
+      "the cake thickness should stay about 3/4 inch; a thicker cake will not cook through"
+    ]
+  },
+  "coverage_contribution": "Swiss 0 to 1. First potato-cake format. Smoked trout is a new protein form (deli-ready fish). HH001 brunch-style dinner.",
+  "near_duplicate_review": "Compared with pan-fried trout with lemon and capers: no fresh fillet is cooked here; the potato cake is the main and the trout is cold-flaked. Compared with spanish-potato-tortilla and potato-leek-gratin: grated potato crisped in one cake, no egg, no cream. Compared with salade niçoise: hot crisp potato cake, not a composed cold salad.",
+  "not_duplicate_of": "Not latkes (egg and flour binder, small fritters). Not raclette (cheese-led).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

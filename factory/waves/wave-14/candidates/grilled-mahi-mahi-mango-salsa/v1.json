@@ -1,0 +1,545 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "grilled-mahi-mahi-mango-salsa",
+    "slug": "grilled-mahi-mahi-mango-salsa",
+    "title": "Grilled Mahi-Mahi with Mango-Jalapeño Salsa and Lime Rice",
+    "description": "Chile-lime rubbed mahi-mahi fillets grilled until just flaky, topped with a juicy mango, red pepper, red onion, jalapeño, and cilantro salsa, and served over cilantro-lime jasmine rice.",
+    "cuisine": "caribbean",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "mahi-mahi",
+    "vocabulary_tag_ids": [
+      "citrusy",
+      "fresh",
+      "spicy",
+      "grilled"
+    ],
+    "current_recipe_id": "rcp_grilled-mahi-mahi-mango-salsa",
+    "current_version_id": "rv_grilled-mahi-mahi-mango-salsa_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_grilled-mahi-mahi-mango-salsa",
+    "dish_id": "grilled-mahi-mahi-mango-salsa",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_grilled-mahi-mahi-mango-salsa_v1",
+    "recipe_id": "rcp_grilled-mahi-mahi-mango-salsa",
+    "dish_id": "grilled-mahi-mahi-mango-salsa",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Grilled Mahi-Mahi with Mango-Jalapeño Salsa and Lime Rice",
+    "description": "Chile-lime rubbed mahi-mahi fillets grilled until just flaky, topped with a juicy mango, red pepper, red onion, jalapeño, and cilantro salsa, and served over cilantro-lime jasmine rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "mahi-fillets",
+        "name": "mahi-mahi",
+        "display_name": "skinless mahi-mahi fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 6 oz each, 1 inch thick",
+        "preparation": "patted dry",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "chili-powder",
+        "name": "chili powder",
+        "display_name": "chili powder",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ground-cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "limes",
+        "name": "limes",
+        "display_name": "limes",
+        "quantity": 4,
+        "unit": "count",
+        "note": "2 juiced for salsa and rice, 1 zested for the fish, 1 in wedges",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mangoes",
+        "name": "ripe mangoes",
+        "display_name": "ripe mangoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "peeled and diced 1/2 inch",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-bell-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 0.25,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jalapeno",
+        "name": "jalapeño",
+        "display_name": "jalapeño",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "seeded and minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "component"
+      },
+      {
+        "ingredient_id": "jasmine-rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 tsp fish, 1/2 tsp salsa, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat, start the rice, and prep",
+        "body": "Turn the grill on to medium-high to preheat with the lid closed. Combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan, bring to a boil, cover, cook on low 15 minutes, then rest covered; it cooks inside this prep and the grilling (overlap stated). Mix the chili powder, cumin, the zest of 1 lime, and 1 tsp salt and rub over the fish with 1 tbsp oil. Toss the mango, bell pepper, red onion, jalapeño, half the cilantro, the juice of 1 lime, and 1/2 tsp salt.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "rice-water",
+          "kosher-salt",
+          "chili-powder",
+          "ground-cumin",
+          "limes",
+          "mahi-fillets",
+          "neutral-oil",
+          "mangoes",
+          "red-bell-pepper",
+          "red-onion",
+          "jalapeno",
+          "cilantro"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Grill the fish",
+        "body": "Brush the hot grates with 1 tbsp oil. Grill the fillets 4 minutes, turn with a fish spatula, and grill 3 to 4 minutes more until opaque and flaking.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "mahi-fillets"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Finish and serve",
+        "body": "Fluff the rice with the juice of the second lime and the remaining cilantro. Serve the fish over the rice, topped with the salsa, with lime wedges.",
+        "ingredient_refs": [
+          "jasmine-rice",
+          "limes",
+          "cilantro",
+          "mahi-fillets",
+          "mangoes"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "fish",
+        "name": "chile-lime grilled mahi-mahi",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "mahi-mahi",
+          "chili powder",
+          "cumin",
+          "lime",
+          "oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "salsa",
+        "name": "mango-jalapeño salsa",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "mango",
+          "red bell pepper",
+          "red onion",
+          "jalapeño",
+          "cilantro",
+          "lime",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "cilantro-lime rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water",
+          "lime",
+          "cilantro",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "gas grill or grill pan",
+      "2-quart saucepan with lid",
+      "medium bowl",
+      "fish spatula"
+    ],
+    "methods": [
+      "grill",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 11,
+    "total_time_minutes": 26,
+    "prep_minutes": 15,
+    "cook_minutes": 11,
+    "total_minutes": 26,
+    "time_clock": "Prep 15 + cook 11 = 26 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The grill is turned on to preheat in step 1 and heats through the 15-minute prep, while the rice cooks covered (step 1 states the overlap). Total under 30 minutes.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Preheat, start the rice, and prep) and it states the preheat. The grill is turned on to preheat in step 1 and heats through the 15-minute prep, while the rice cooks covered (step 1 states the overlap). Total under 30 minutes.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Gas grill or grill pan preheated to medium-high, clean oiled grates. Covered low simmer for the rice.",
+    "doneness": "Fish opaque and flaking, 137 to 145 F in the center, with grill marks.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. Fish because of the mahi-mahi.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish from the mahi-mahi.",
+      "No egg, milk, soy, wheat, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "No butter on the fish or rice; no coconut milk.",
+    "vocabulary_tag_ids": [
+      "citrusy",
+      "fresh",
+      "spicy",
+      "grilled"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'caribbean' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "20397b47fe7ed41ebf8e57b0f65b125cf14a225dd1ac889b0558b52d2d7c91a3",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_grilled-mahi-mahi-mango-salsa_v1",
+    "dish_id": "grilled-mahi-mahi-mango-salsa",
+    "recipe_version_id": "rv_grilled-mahi-mahi-mango-salsa_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "grilled-mahi-mahi-mango-salsa.webp",
+    "card_ref": "grilled-mahi-mahi-mango-salsa-640.webp",
+    "master_filename": "grilled-mahi-mahi-mango-salsa.webp",
+    "card_filename": "grilled-mahi-mahi-mango-salsa-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "grilled-mahi-mahi-mango-salsa.webp",
+        "spec_catalog_path": "/images/meals/grilled-mahi-mahi-mango-salsa.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "grilled-mahi-mahi-mango-salsa-640.webp",
+        "spec_catalog_path": "/images/meals/grilled-mahi-mahi-mango-salsa-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "30ccc3522023c9807d69192f1126e23d646139d0cd227b81d226f4582f6326b4",
+      "master_sha256": "c417be9d2687c100e7ea134a2b4e921f7a05a75a7a51a2e9a2955d55d07efb19",
+      "card_sha256": "dee19a1066a13bca74b6b178f26a97091fa48e67164fb81bf88b01311c7202b9"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "30ccc3522023c9807d69192f1126e23d646139d0cd227b81d226f4582f6326b4",
+      "grilled-mahi-mahi-mango-salsa.webp": "c417be9d2687c100e7ea134a2b4e921f7a05a75a7a51a2e9a2955d55d07efb19",
+      "grilled-mahi-mahi-mango-salsa-640.webp": "dee19a1066a13bca74b6b178f26a97091fa48e67164fb81bf88b01311c7202b9"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 11 = 26 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The grill is turned on to preheat in step 1 and heats through the 15-minute prep, while the rice cooks covered (step 1 states the overlap). Total under 30 minutes."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Preheat, start the rice, and prep) and it states the preheat. The grill is turned on to preheat in step 1 and heats through the 15-minute prep, while the rice cooks covered (step 1 states the overlap). Total under 30 minutes."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "grilled-mahi-mahi-mango-salsa.webp 1200x900 and grilled-mahi-mahi-mango-salsa-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One fillet, a quarter of the salsa, 1/3 cup rice.",
+    "2": "Half.",
+    "4": "As written.",
+    "do_not_scale": [
+      "grill time depends on thickness: about 4 minutes per side per inch"
+    ]
+  },
+  "coverage_contribution": "Under-30 band (26 minutes). Mahi-mahi 0 to 1. A quick summer grill dinner for HH001.",
+  "near_duplicate_review": "Compared with grilled-swordfish-olive-caper: mahi with fruit salsa and rice, not olives and capers. Compared with crispy-fish-tacos-cabbage-slaw: no batter or tortillas. Compared with grilled-peach-burrito-bowl: fish main, mango salsa, no beans.",
+  "not_duplicate_of": "Not fish tacos. Not the Senegalese yassa in this wave.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

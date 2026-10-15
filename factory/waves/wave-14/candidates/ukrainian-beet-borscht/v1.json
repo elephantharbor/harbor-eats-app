@@ -1,0 +1,606 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "freeze-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "ukrainian-beet-borscht",
+    "slug": "ukrainian-beet-borscht",
+    "title": "Ukrainian Beet Borscht with White Beans and Dill",
+    "description": "A ruby-red vegetable borscht of beets, cabbage, carrot, potato, and white beans in a tomato-and-vinegar broth sweetened with a little sugar and finished with garlic and fresh dill. Served with rye bread.",
+    "cuisine": "ukrainian",
+    "meal_format": "soup",
+    "primary_ingredient": "beets",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "herbaceous",
+      "savory",
+      "soups"
+    ],
+    "current_recipe_id": "rcp_ukrainian-beet-borscht",
+    "current_version_id": "rv_ukrainian-beet-borscht_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_ukrainian-beet-borscht",
+    "dish_id": "ukrainian-beet-borscht",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_ukrainian-beet-borscht_v1",
+    "recipe_id": "rcp_ukrainian-beet-borscht",
+    "dish_id": "ukrainian-beet-borscht",
+    "version_number": 1,
+    "package_revision": "freeze-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at freeze-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Ukrainian Beet Borscht with White Beans and Dill",
+    "description": "A ruby-red vegetable borscht of beets, cabbage, carrot, potato, and white beans in a tomato-and-vinegar broth sweetened with a little sugar and finished with garlic and fresh dill. Served with rye bread.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "beets",
+        "name": "beets",
+        "display_name": "red beets",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": "about 4 medium",
+        "preparation": "peeled and coarsely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-cabbage",
+        "name": "green cabbage",
+        "display_name": "green cabbage",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "about 1/4 head",
+        "preparation": "thinly shredded",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrot",
+        "name": "carrot",
+        "display_name": "large carrot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "peeled and coarsely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "medium Yukon Gold potatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "peeled, cut into 3/4-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "white-beans",
+        "name": "cannellini beans",
+        "display_name": "15-oz can cannellini beans",
+        "quantity": 1,
+        "unit": "can",
+        "note": null,
+        "preparation": "drained and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "red-wine-vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dill",
+        "name": "fresh dill",
+        "display_name": "fresh dill",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "bay-leaves",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sunflower-oil",
+        "name": "sunflower or neutral oil",
+        "display_name": "sunflower or neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "soup-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 8,
+        "unit": "cup",
+        "note": "for the broth",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rye-bread",
+        "name": "rye bread",
+        "display_name": "slices milk-free rye bread",
+        "quantity": 4,
+        "unit": "slice",
+        "note": "store-bought, a loaf with no milk or butter on the ingredient list; serve on the side",
+        "preparation": null,
+        "optional": false,
+        "role": "component"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Peel the beets and carrot and grate them on the large holes of a box grater. Dice the onion, shred the cabbage, and peel and cube the potatoes. Drain and rinse the beans, grate the garlic, and chop the dill.",
+        "ingredient_refs": [
+          "beets",
+          "carrot",
+          "yellow-onion",
+          "green-cabbage",
+          "potatoes",
+          "white-beans",
+          "garlic",
+          "dill"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Sauté the base",
+        "body": "Heat the oil in a 7-quart pot over medium. Cook the onion and carrot, stirring, until soft, 6 minutes. Add the beets, tomato paste, 1 tbsp of the vinegar, and the sugar and cook, stirring, until the beets darken and the paste coats them, 6 minutes.",
+        "ingredient_refs": [
+          "sunflower-oil",
+          "yellow-onion",
+          "carrot",
+          "beets",
+          "tomato-paste",
+          "red-wine-vinegar",
+          "sugar"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer",
+        "body": "Add 8 cups water, the potatoes, bay leaves, 2 tsp salt, and the pepper. Bring to a boil over high, about 8 minutes, then cover and simmer on medium-low 15 minutes.",
+        "ingredient_refs": [
+          "soup-water",
+          "potatoes",
+          "bay-leaves",
+          "kosher-salt",
+          "black-pepper"
+        ],
+        "clock_minutes": 23,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Add cabbage and beans",
+        "body": "Stir in the cabbage and beans and simmer, partly covered, until the cabbage and potatoes are tender, 10 minutes.",
+        "ingredient_refs": [
+          "green-cabbage",
+          "white-beans"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Finish and serve",
+        "body": "Remove the bay leaves. Stir in the garlic, the remaining 2 tbsp vinegar, the remaining 1/2 tsp salt, and half the dill; taste and balance with more vinegar or a pinch of sugar. Ladle into bowls, top with the rest of the dill, and serve the rye bread alongside.",
+        "ingredient_refs": [
+          "bay-leaves",
+          "garlic",
+          "red-wine-vinegar",
+          "kosher-salt",
+          "dill",
+          "rye-bread"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "borscht",
+        "name": "vegetable beet borscht",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "beets",
+          "cabbage",
+          "carrot",
+          "onion",
+          "potato",
+          "white beans",
+          "tomato paste",
+          "vinegar",
+          "sugar",
+          "garlic",
+          "dill",
+          "bay",
+          "water",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "bread",
+        "name": "rye bread",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "rye bread"
+        ]
+      }
+    ],
+    "equipment": [
+      "7-quart Dutch oven or soup pot",
+      "box grater",
+      "colander"
+    ],
+    "methods": [
+      "saute",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 47,
+    "total_time_minutes": 67,
+    "prep_minutes": 20,
+    "cook_minutes": 47,
+    "total_minutes": 67,
+    "time_clock": "Prep 20 + cook 47 = 67 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Linear: prep, sauté, simmer. No oven.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Medium sauté for the base, then a medium-low covered simmer.",
+    "doneness": "Beets and potatoes tender to a knife; cabbage soft; broth deep ruby and balanced sweet-sour.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and plant_based for the soup as written; no sour cream is part of this recipe.",
+    "allergens": [
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Wheat is from the rye bread (most rye breads contain wheat flour).",
+      "No egg, milk, soy, sesame, fish, shellfish, or nuts in the soup."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "Served without sour cream. Water-based broth. The bread is specified as a milk-free rye loaf (the shopping line names it).",
+    "vocabulary_tag_ids": [
+      "tangy",
+      "herbaceous",
+      "savory",
+      "soups"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'ukrainian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash": "184a2e0f669913e753267559ad21ab7a95f31bf3340d5cd4d45da940ca3ab420",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_ukrainian-beet-borscht_v1",
+    "dish_id": "ukrainian-beet-borscht",
+    "recipe_version_id": "rv_ukrainian-beet-borscht_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "ukrainian-beet-borscht.webp",
+    "card_ref": "ukrainian-beet-borscht-640.webp",
+    "master_filename": "ukrainian-beet-borscht.webp",
+    "card_filename": "ukrainian-beet-borscht-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "ukrainian-beet-borscht.webp",
+        "spec_catalog_path": "/images/meals/ukrainian-beet-borscht.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "ukrainian-beet-borscht-640.webp",
+        "spec_catalog_path": "/images/meals/ukrainian-beet-borscht-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "6bcf0e16fe515b823ff7af4f58c14da8153541036740ba40995316412970ee30",
+      "master_sha256": "343eb108a30bddd82af611f4663e65137d0d97d0b9eb4b68e3c03362371a370f",
+      "card_sha256": "dfbf9d37be57939b844b8440ab10d36c5c8a457977c3d5d5951778b8507e41c1"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "6bcf0e16fe515b823ff7af4f58c14da8153541036740ba40995316412970ee30",
+      "ukrainian-beet-borscht.webp": "343eb108a30bddd82af611f4663e65137d0d97d0b9eb4b68e3c03362371a370f",
+      "ukrainian-beet-borscht-640.webp": "dfbf9d37be57939b844b8440ab10d36c5c8a457977c3d5d5951778b8507e41c1"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 20 + cook 47 = 67 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Linear: prep, sauté, simmer. No oven."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "ukrainian-beet-borscht.webp 1200x900 and ukrainian-beet-borscht-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make the full pot; it keeps 4 days refrigerated and the flavor improves.",
+    "2": "Make the full pot.",
+    "4": "As written; about 12 cups.",
+    "do_not_scale": [
+      "vinegar and sugar balance; add to taste after scaling"
+    ]
+  },
+  "coverage_contribution": "Ukrainian 0 to 1. Beets 0 to 1 as the primary ingredient. A plant soup with a new flavor profile (sweet-sour). HH001 plant soup.",
+  "near_duplicate_review": "Compared with white-bean-kale-soup: beet-led, sweet-sour, cabbage instead of kale. Compared with smoky-lentil-sweet-potato-stew: brothy, no lentils, no smoke. Compared with tomato-soup-grilled-cheese: chunky beet soup, not puréed tomato, no cheese.",
+  "not_duplicate_of": "Not caldo verde (kale soup twin rejected). Not pierogi (dumpling cluster).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}
