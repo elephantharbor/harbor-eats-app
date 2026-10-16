@@ -186,6 +186,21 @@ describe("grocery server integration", () => {
     expect(unsupported.body.code).toBe("capability_unsupported");
     expect(calls).toHaveLength(0);
 
+    const bypass = await call(env, "POST", "/api/grocery/operation", {
+      token: auth.session_token,
+      body: {
+        provider_id: "instacart",
+        capability: "list_handoff",
+        title: "x",
+        linkback_url: "https://fw.test/shop",
+        lines: [{ name: "unreviewed", measurements: [{ quantity: 1, unit: "each" }] }],
+      },
+    });
+    expect(bypass.status).toBe(400);
+    expect(bypass.body.code).toBe("invalid_request");
+    expect(bypass.text).not.toContain("products_link_url");
+    expect(calls).toHaveLength(0);
+
     const version = plannerCatalog()[0].pkg.recipe_version_id;
     const created = createDinnerPlan(
       {
@@ -457,5 +472,32 @@ describe("grocery server integration", () => {
     expect(returned.body.message).toBe("Your list is still here.");
     const returnEvent = sqlite.prepare(`SELECT props_json FROM event WHERE event_name = 'shop_handoff_returned'`).get();
     expect(returnEvent.props_json).not.toContain("http");
+  });
+});
+
+describe("health grocery block", () => {
+  it("reports providers off by default, mock only outside production, never a key", async () => {
+    const off = await worker.fetch(new Request("https://fw.test/api/health"), { ENVIRONMENT: "production", DEPLOY_ENV: "production", GROCERY_PROVIDERS: "" });
+    const offBody = await off.json();
+    expect(offBody.grocery).toEqual({ providers_listed: [], instacart: "off", fixture_active: false });
+
+    const copied = await worker.fetch(new Request("https://fw.test/api/health"), {
+      ENVIRONMENT: "production",
+      DEPLOY_ENV: "production",
+      GROCERY_PROVIDERS: "instacart",
+      GROCERY_FIXTURE: "instacart_mock",
+    });
+    expect((await copied.json()).grocery).toEqual({ providers_listed: ["instacart"], instacart: "off", fixture_active: false });
+
+    const mock = await worker.fetch(new Request("https://fw.test/api/health"), {
+      ENVIRONMENT: "preview",
+      DEPLOY_ENV: "preview",
+      GROCERY_PROVIDERS: "instacart",
+      GROCERY_FIXTURE: "instacart_mock",
+      INSTACART_API_KEY: "keys.should-not-leak",
+    });
+    const text = await mock.text();
+    expect(JSON.parse(text).grocery).toEqual({ providers_listed: ["instacart"], instacart: "mock", fixture_active: true });
+    expect(text).not.toContain("keys.should-not-leak");
   });
 });

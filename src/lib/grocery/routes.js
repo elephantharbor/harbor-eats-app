@@ -222,6 +222,19 @@ export async function routeGroceryRequest(env, request, path, url, deps = {}) {
     if (body === null) return fail("invalid_json");
     const adapter = adapterFor(body.provider_id, { env });
     if (!adapter) return fail(groceryError({ code: "invalid_request", provider_id: body.provider_id || null, message: "That shop isn’t available." }));
+    // A list handoff only goes through review → /api/grocery/handoff, which checks the
+    // revision and the reviewed fingerprint, stores the row, and keeps the URL behind the
+    // logo gate. This generic probe never sends client-supplied lines to a provider.
+    if (body.capability === "list_handoff") {
+      return fail(
+        groceryError({
+          code: "invalid_request",
+          provider_id: body.provider_id,
+          capability: "list_handoff",
+          message: "Review the list before sending it.",
+        })
+      );
+    }
     const result = await adapter.invoke(body.capability, body);
     if (!result.ok) return fail(result);
     return json(result);

@@ -148,16 +148,18 @@ Take a backup or restore point first.
 Preview D1 `harbor-eats-cycle1-preview` (`65bc636d-7048-4e58-900b-9066edf6509f`), config `deploy/pages/preview/wrangler.toml`:
 
 ```
-npx wrangler d1 execute harbor-eats-cycle1-preview --remote --config deploy/pages/preview/wrangler.toml --file migrations/0018_grocery_handoff.sql
-npx wrangler d1 export harbor-eats-cycle1-preview --remote --config deploy/pages/preview/wrangler.toml --output /tmp/preview-0018.sqlite
+npx wrangler d1 migrations apply harbor-eats-cycle1-preview --remote --config deploy/pages/preview/wrangler.toml
+npx wrangler d1 export harbor-eats-cycle1-preview --remote --config deploy/pages/preview/wrangler.toml --output /tmp/preview-0018.sql
+sqlite3 /tmp/preview-0018.sqlite < /tmp/preview-0018.sql
 node scripts/shop-migration-0018.mjs --sqlite /tmp/preview-0018.sqlite --verify
 ```
 
 Production D1 `harbor-eats-db` (`23aa3db3-1090-471b-8c8a-b6fe71f5c053`), config `deploy/pages/production/wrangler.toml`:
 
 ```
-npx wrangler d1 execute harbor-eats-db --remote --config deploy/pages/production/wrangler.toml --file migrations/0018_grocery_handoff.sql
-npx wrangler d1 export harbor-eats-db --remote --config deploy/pages/production/wrangler.toml --output /tmp/prod-0018.sqlite
+npx wrangler d1 migrations apply harbor-eats-db --remote --config deploy/pages/production/wrangler.toml
+npx wrangler d1 export harbor-eats-db --remote --config deploy/pages/production/wrangler.toml --output /tmp/prod-0018.sql
+sqlite3 /tmp/prod-0018.sqlite < /tmp/prod-0018.sql
 node scripts/shop-migration-0018.mjs --sqlite /tmp/prod-0018.sqlite --verify
 ```
 
