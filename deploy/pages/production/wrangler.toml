@@ -30,3 +30,7 @@ AI_GLOBAL_PER_DAY = "100"
 AI_HOUSEHOLD_PER_MINUTE = "5"
 AI_HOUSEHOLD_PER_DAY = "30"
 AI_SOL_HOUSEHOLD_PER_DAY = "5"
+# S-03 grocery. Empty means no external provider. In-store does not read this.
+# Do not set GROCERY_FIXTURE here. Production refuses that fixture.
+# INSTACART_API_KEY is a Pages secret. Never put it here. S-04 is the activation gate.
+GROCERY_PROVIDERS = ""

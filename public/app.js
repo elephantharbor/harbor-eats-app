@@ -5123,6 +5123,9 @@
     if (inStoreBtn) inStoreBtn.hidden = !!state.shopInStore;
     if (orderBtn) orderBtn.hidden = !!state.shopInStore;
     renderShopChangesBanner();
+    if (window.FlavorWeaveShopHandoff) {
+      window.FlavorWeaveShopHandoff.syncReturnBanner({ apiPost: apiPost });
+    }
   }
 
   function openShopLineSheet(lineId) {
@@ -8035,12 +8038,18 @@
     renderShopList();
   });
   document.getElementById("btnShopOrder").addEventListener("click", function () {
-    const prefs = state.householdShop && state.householdShop.preferences;
-    const store = (prefs && prefs.member && prefs.member.usual_store) || (prefs && prefs.household && prefs.household.usual_store) || "";
-    const note = document.getElementById("shopOrderStore");
-    if (note) {
-      note.hidden = !store;
-      note.textContent = store ? "You usually shop at " + store + "." : "";
+    if (window.FlavorWeaveShopHandoff) {
+      window.FlavorWeaveShopHandoff.open({
+        apiGet: apiGet,
+        apiPost: apiPost,
+        getShop: function () {
+          return state.householdShop;
+        },
+        openLine: openShopLineSheet,
+        reload: loadHouseholdShop,
+        toast: toast,
+      });
+      return;
     }
     document.getElementById("shopOrderSheet").showModal();
   });
@@ -8298,6 +8307,15 @@
   // Deep links: /share/* · /invite/* · /recover/* (+ legacy ?query)
   (async function bootFromQuery() {
     const pathParts = location.pathname.replace(/\/+$/, "").split("/").filter(Boolean);
+    if (pathParts[0] === "shop" && pathParts.length === 1) {
+      const restoredShop = await restoreSession();
+      if (!restoredShop) {
+        show("welcome");
+        return;
+      }
+      show("shopList");
+      return;
+    }
     if (pathParts[0] === "shop" && pathParts[1] === "shared" && pathParts[2]) {
       let robots = document.querySelector('meta[name="robots"]');
       if (!robots) {

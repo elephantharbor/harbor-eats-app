@@ -28,3 +28,8 @@ AI_GLOBAL_PER_DAY = "250"
 AI_HOUSEHOLD_PER_MINUTE = "5"
 AI_HOUSEHOLD_PER_DAY = "30"
 AI_SOL_HOUSEHOLD_PER_DAY = "5"
+# S-03 grocery. Empty means no external provider. In-store does not read this.
+# A Preview mock is a dashboard var, not this file: GROCERY_PROVIDERS=instacart
+# and GROCERY_FIXTURE=instacart_mock. Production code refuses the fixture.
+# INSTACART_API_KEY is a Pages secret. Never put it here.
+GROCERY_PROVIDERS = ""

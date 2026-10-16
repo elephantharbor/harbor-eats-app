@@ -46,6 +46,7 @@ import { buildTasteProfile } from "./lib/taste-model.js";
 import { routeTasteRequest } from "./lib/taste-profile.js";
 import { routeDinnerPlanRequest } from "./lib/dinner-plan-routes.js";
 import { routeHouseholdShopRequest } from "./lib/household-shop-routes.js";
+import { routeGroceryRequest } from "./lib/grocery/routes.js";
 import { routeDiscoveryRequest } from "./discovery/http.js";
 import { routeWeaveRequest } from "./weave/routes.js";
 import { routeAlphaAiRequest } from "./ai/alpha-routes.js";
@@ -2487,6 +2488,12 @@ export default {
         {
           const shopRes = await routeHouseholdShopRequest(env, request, path, url, { writeOrigin });
           if (shopRes) return shopRes;
+        }
+
+        // S-03 grocery handoff. The household list stays canonical.
+        {
+          const groceryRes = await routeGroceryRequest(env, request, path, url, { writeOrigin });
+          if (groceryRes) return groceryRes;
         }
 
         // Alpha: recipe adaptation advice + recommendation explanations.

@@ -89,6 +89,22 @@ export function validateAiVars(configText) {
 }
 
 /**
+ * S-03: committed configs keep every external grocery provider off.
+ * A key or a preview fixture is never a committed var.
+ */
+export function validateGroceryVars(configText) {
+  const text = String(configText || "");
+  const vars = parseVars(text);
+  const problems = [];
+  if (/^\s*INSTACART_API_KEY\s*=/m.test(text)) problems.push("INSTACART_API_KEY must be a Pages secret, not a committed var");
+  if (vars.GROCERY_FIXTURE) problems.push("GROCERY_FIXTURE must not be set in a committed config");
+  if (!("GROCERY_PROVIDERS" in vars)) problems.push("missing GROCERY_PROVIDERS");
+  else if (String(vars.GROCERY_PROVIDERS).trim() !== "") problems.push("GROCERY_PROVIDERS must be empty in committed environment config");
+  if (problems.length) throw new DeploySafetyError(`grocery vars: ${problems.join("; ")}`);
+  return vars;
+}
+
+/**
  * Validate a requested deploy against the canonical target. Throws DeploySafetyError
  * for any wrong combination; returns the normalized plan otherwise.
  * @param {{env:string, project?:string, branch?:string, root?:string, d1Id?:string, configText:string}} req
@@ -119,6 +135,7 @@ export function validateDeployPlan(req) {
   if (cfg.deployEnv !== target.name || cfg.d1Var !== target.d1Id)
     throw new DeploySafetyError("config DEPLOY_ENV / D1_DATABASE_ID vars must match the target (post-deploy binding check)");
   validateAiVars(req.configText);
+  validateGroceryVars(req.configText);
   return { ...target, project, branch, root, d1Id };
 }
 
