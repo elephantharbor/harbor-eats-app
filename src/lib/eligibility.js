@@ -155,16 +155,99 @@ export function optionTags(option) {
     }
     if (attrs && Array.isArray(attrs.tags)) tags = attrs.tags.map((t) => String(t).toLowerCase());
   }
+  const attrs = parsedAttributes(option);
   const named = ingredientTagsFromName(option.name || option.title || "");
-  return [...new Set([...(tags || []), ...named])];
+  const elig = dietaryEligibility(option, attrs);
+  const suppressed = suppressedTitleTags(elig);
+  const inferred = named.filter((word) => !suppressed.has(word));
+  const declared = positiveTagsFromDeclaration(elig, declaredAllergenList(option, attrs));
+  return [...new Set([...(tags || []), ...declared, ...inferred])];
+}
+
+function parsedAttributes(option) {
+  let attrs = option && option.attributes_json;
+  if (typeof attrs === "string") {
+    try {
+      attrs = JSON.parse(attrs);
+    } catch {
+      attrs = null;
+    }
+  }
+  return attrs && typeof attrs === "object" ? attrs : null;
+}
+
+function dietaryEligibility(option, attrs) {
+  const direct = option && option.dietary_eligibility;
+  if (direct && typeof direct === "object") return direct;
+  const nested = attrs && attrs.dietary_eligibility;
+  if (nested && typeof nested === "object") return nested;
+  return null;
+}
+
+function declaredAllergenList(option, attrs) {
+  if (Array.isArray(option && option.allergens)) return option.allergens;
+  if (Array.isArray(attrs && attrs.allergens)) return attrs.allergens;
+  return null;
+}
+
+const MEAT_ONLY_TAGS = ["meat", "beef", "pork", "lamb", "bacon", "sausage"];
+
+/**
+ * Explicit false declarations win over title words. A missing field does not:
+ * the title scan stays in place when the package never said.
+ * Stored tags are not removed here.
+ * @param {object|null} elig
+ */
+function suppressedTitleTags(elig) {
+  const drop = new Set();
+  if (!elig) return drop;
+  if (elig.contains_shellfish === false) RULE_TO_TAGS.shellfish.forEach((word) => drop.add(word));
+  if (elig.contains_finfish === false) RULE_TO_TAGS.fish.forEach((word) => drop.add(word));
+  if (elig.contains_dairy === false) RULE_TO_TAGS.dairy.forEach((word) => drop.add(word));
+  if (elig.contains_meat === false) MEAT_ONLY_TAGS.forEach((word) => drop.add(word));
+  if (elig.contains_poultry === false && elig.contains_meat === false) {
+    RULE_TO_TAGS.poultry.forEach((word) => drop.add(word));
+  }
+  if (String(elig.nut_policy || "").toLowerCase() === "none") {
+    RULE_TO_TAGS.nuts.forEach((word) => drop.add(word));
+  }
+  return drop;
+}
+
+/**
+ * Explicit positives. An empty allergen list adds nothing and does not clear the title scan.
+ * @param {object|null} elig
+ * @param {string[]|null} allergens
+ */
+function positiveTagsFromDeclaration(elig, allergens) {
+  /** @type {string[]} */
+  const extra = [];
+  if (elig) {
+    if (elig.contains_shellfish === true) extra.push("shellfish");
+    if (elig.contains_finfish === true) extra.push("finfish");
+    if (elig.contains_dairy === true) extra.push("dairy");
+    if (elig.contains_meat === true) extra.push("meat");
+    if (elig.contains_poultry === true) extra.push("poultry");
+    if (String(elig.nut_policy || "").toLowerCase() === "cashews_only_ok") extra.push("cashew");
+  }
+  for (const token of allergens || []) {
+    const name = String(token || "").trim().toLowerCase();
+    if (name) extra.push(name);
+  }
+  return extra;
 }
 
 const NUT_BUTTER = /\b(peanut|almond|cashew|sunflower|seed|apple|nut)[- ]butter\b/g;
+// King oyster and oyster mushrooms are fungi. Oyster crackers are bread.
+// "Oyster" and "oyster sauce" stay shellfish words.
+const NOT_SHELLFISH_OYSTER =
+  /\bking[- ]oyster(?:[- ]mushrooms?)?(?:s|es)?\b|\boyster[- ]mushrooms?\b|\boyster[- ]crackers?\b/gi;
 
 /**
  * Ingredient words in a dish name count as tags even when the stored tags
  * miss them ("Mushroom-walnut bolognese" is a nut dish whatever its tags say).
  * Whole words only, so "coconut" is not a nut and "butternut" is not butter.
+ * "King oyster" is a mushroom, not a mollusk.
  * @param {string} name
  * @returns {string[]}
  */
@@ -174,7 +257,9 @@ function ingredientTagsFromName(name) {
   const found = new Set();
   for (const words of Object.values(RULE_TO_TAGS)) {
     for (const word of words) {
-      const source = lower.replace(word === "butter" ? NUT_BUTTER : /$^/, " ");
+      let source = lower;
+      if (word === "butter") source = lower.replace(NUT_BUTTER, " ");
+      else if (word === "oyster") source = lower.replace(NOT_SHELLFISH_OYSTER, " ");
       const pattern = word.replace(/[-\s]/g, "[-\\s]");
       if (new RegExp(`\\b${pattern}(?:s|es)?\\b`).test(source)) found.add(word);
     }

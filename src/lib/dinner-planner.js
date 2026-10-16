@@ -122,6 +122,8 @@ export function assessMealEligibility(entry, participantIds, constraints, tastes
     name: entry.concept.title || entry.pkg.title,
     title: entry.concept.title || entry.pkg.title,
     tags: entry.concept.tags || [],
+    allergens: entry.pkg.allergens || null,
+    dietary_eligibility: entry.pkg.dietary_eligibility || entry.concept.dietary_eligibility || null,
   };
   const rows = (constraints || []).filter((row) => !row.member_id || participantIds.includes(row.member_id));
   const live = isOptionEligibleForHousehold(option, rows);
