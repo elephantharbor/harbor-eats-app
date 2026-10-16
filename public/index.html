@@ -576,6 +576,7 @@
               <div id="shopChangesBody"></div>
               <button class="btn btn-secondary btn-sm" type="button" id="btnShopChangesGotIt">Got it</button>
             </div>
+            <p class="meta shop-return" id="shopReturnBanner" hidden>Your list is still here.</p>
             <form class="shop-add" id="shopAddForm">
               <label class="sr-only" for="shopAddInput">Add an item</label>
               <input id="shopAddInput" name="item" type="text" enterkeyhint="done" autocomplete="off" maxlength="80" placeholder="Add oat milk, paper towels…" />
@@ -1164,16 +1165,20 @@
       </dialog>
 
       <dialog class="sheet" id="shopOrderSheet" aria-labelledby="shopOrderTitle">
-        <form method="dialog" class="sheet__inner">
-          <h2 class="card-title" id="shopOrderTitle">Order online</h2>
-          <p class="meta" id="shopOrderStore" hidden></p>
-          <div class="shop-service" aria-disabled="true">
-            <strong>Instacart</strong>
-            <span>Not connected yet</span>
+        <form method="dialog" class="sheet__inner sheet__inner--split" id="shopOrderForm">
+          <div class="sheet__scroll" id="shopOrderBody">
+            <h2 class="card-title" id="shopOrderTitle">Order online</h2>
+            <p class="meta" id="shopOrderStore" hidden></p>
+            <div class="shop-service" aria-disabled="true">
+              <strong>Instacart</strong>
+              <span>Not connected yet</span>
+            </div>
+            <p class="meta">More stores later</p>
+            <p class="meta">Shop in store is ready now. Nothing is sent anywhere.</p>
           </div>
-          <p class="meta">More stores later</p>
-          <p class="meta">Shop in store is ready now. Nothing is sent anywhere.</p>
-          <button class="btn btn-primary" type="submit">Shop in store instead</button>
+          <div class="sheet__actions">
+            <button class="btn btn-primary" type="submit">Shop in store instead</button>
+          </div>
         </form>
       </dialog>
 
@@ -1240,6 +1245,7 @@
   <script src="/weave-bridge.js?v=42"></script>
   <script src="/recipe-weave.js"></script>
   <script src="/client-error.js"></script>
+  <script src="/shop-handoff.js"></script>
   <script src="/app.js"></script>
   <script>
     if ("serviceWorker" in navigator) {

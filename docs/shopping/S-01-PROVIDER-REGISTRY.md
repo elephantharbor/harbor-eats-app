@@ -1,6 +1,6 @@
 # S-01 Grocery Provider Registry
 
-**Status.** Maintenance contract. The table below is the registry until S-03 copies the rows into `src/lib/grocery/registry.js`. No adapter is production-enabled.
+**Status.** Maintenance contract. The table below is the 2026-10-16 research snapshot. The runtime rows live in `src/lib/grocery/registry.js`. See the S-03 addendum.
 
 **Verification date.** 2026-10-16.
 
@@ -40,6 +40,10 @@ Lifecycle is the highest mark that is true. A public doc page can be **accessibl
 ### S-02 addendum
 
 S-02 did not add adapter code and did not change any lifecycle mark. Order online still shows Instacart as “Not connected yet.” The household list is the in-store list. A typed usual store remains a label. The next review of this file is still a monthly read of the current rows plus the proactive quarterly scan above.
+
+### S-03 addendum
+
+S-03 copies the rows into `src/lib/grocery/registry.js`. Instacart `integration_status` is `mock_only`. Its lifecycle stays `documented`. `verified_capabilities` and `provider_tested_capabilities` stay empty. Shop in store is `production-enabled`. Walmart, Amazon, and Trader Joe’s stay documented with no adapter. The decision card is `docs/shopping/S-03-DECISION-CARD.md`. Committed environments still leave `GROCERY_PROVIDERS` empty, so a default deploy still shows “Not connected yet.”
 
 **Adding or upgrading an adapter.**
 

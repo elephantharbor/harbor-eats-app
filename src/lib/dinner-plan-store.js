@@ -33,9 +33,11 @@ export const DINNER_PLAN_LIST_LIMIT = 5;
 
 /**
  * Current plan: the most recently updated row for that household whose
- * status is not completed. Ties break on created_at, then dinner_plan_id,
- * both descending. A newer completed plan does not replace an older open
- * one. No open plan means there is no current plan.
+ * status is not completed and whose superseded_at is null. Ties break on
+ * created_at, then dinner_plan_id, both descending. A newer completed plan
+ * does not replace an older open one. Creating a plan stamps superseded_at
+ * on the household's other unfinished plans; that stamp is not backfilled.
+ * No open plan means there is no current plan.
  * The recent list is at most DINNER_PLAN_LIST_LIMIT rows: non-completed
  * first, then completed, each group in that same order.
  */
@@ -57,7 +59,7 @@ export async function findCurrentDinnerPlanId(db, householdId) {
   const row = await bindGet(
     db,
     `SELECT dinner_plan_id FROM dinner_plan
-     WHERE household_id = ? AND status != 'completed'
+     WHERE household_id = ? AND status != 'completed' AND superseded_at IS NULL
      ORDER BY ${DINNER_PLAN_RECENCY}
      LIMIT 1`,
     [householdId]
@@ -71,7 +73,7 @@ export async function listHouseholdDinnerPlans(db, householdId) {
     `SELECT dinner_plan_id, household_id, status, meal_count, entry_point,
             shopping_started_at, finalized_at, created_at, updated_at
      FROM dinner_plan
-     WHERE household_id = ?
+     WHERE household_id = ? AND superseded_at IS NULL
      ORDER BY CASE WHEN status = 'completed' THEN 1 ELSE 0 END, ${DINNER_PLAN_RECENCY}
      LIMIT ?`,
     [householdId, DINNER_PLAN_LIST_LIMIT]
@@ -83,7 +85,7 @@ export async function loadDinnerPlan(db, dinnerPlanId) {
     db,
     `SELECT dinner_plan_id, household_id, status, meal_count, entry_point, intent_json,
             shopping_started_at, data_origin, created_by_member_id, finalized_by_member_id,
-            finalized_at, created_at, updated_at
+            finalized_at, created_at, updated_at, superseded_at
      FROM dinner_plan WHERE dinner_plan_id = ?`,
     [dinnerPlanId]
   );
@@ -211,6 +213,7 @@ export async function loadDinnerPlan(db, dinnerPlanId) {
     votes_required: false,
     created_at: plan.created_at,
     updated_at: plan.updated_at,
+    superseded_at: plan.superseded_at || null,
     meals: [...byMeal.values()],
     shop_lines: lines.map((line) => ({
       line_id: line.line_id,
@@ -233,7 +236,7 @@ export async function loadDinnerPlan(db, dinnerPlanId) {
   return document;
 }
 
-export async function saveDinnerPlan(db, plan) {
+export async function saveDinnerPlan(db, plan, options = {}) {
   scopeShopLineIds(plan);
   const existing = await bindGet(
     db,
@@ -282,6 +285,17 @@ export async function saveDinnerPlan(db, plan) {
         plan.updated_at,
       ]
     );
+    if (options.supersedeOtherUnfinished) {
+      add(
+        `UPDATE dinner_plan
+         SET superseded_at = ?
+         WHERE household_id = ?
+           AND dinner_plan_id != ?
+           AND status != 'completed'
+           AND superseded_at IS NULL`,
+        [options.supersededAt || plan.updated_at, plan.household_id, plan.dinner_plan_id]
+      );
+    }
   } else {
     add(
       `UPDATE dinner_plan

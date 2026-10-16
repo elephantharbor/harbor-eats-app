@@ -25,6 +25,7 @@ export default [
       "public/discovery-relax-bridge.js",
       "public/nav-context.js",
       "public/client-error.js",
+      "public/shop-handoff.js",
     ],
     languageOptions: {
       ecmaVersion: 2022,

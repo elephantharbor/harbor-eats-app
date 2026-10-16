@@ -46,6 +46,8 @@ import { buildTasteProfile } from "./lib/taste-model.js";
 import { routeTasteRequest } from "./lib/taste-profile.js";
 import { routeDinnerPlanRequest } from "./lib/dinner-plan-routes.js";
 import { routeHouseholdShopRequest } from "./lib/household-shop-routes.js";
+import { routeGroceryRequest } from "./lib/grocery/routes.js";
+import { groceryFixtureActive, instacartActivation, providerIds } from "./lib/grocery/config.js";
 import { routeDiscoveryRequest } from "./discovery/http.js";
 import { routeWeaveRequest } from "./weave/routes.js";
 import { routeAlphaAiRequest } from "./ai/alpha-routes.js";
@@ -145,6 +147,15 @@ function matchPath(pathname, pattern) {
   return params;
 }
 
+function groceryHealth(env) {
+  const activation = instacartActivation(env);
+  return {
+    providers_listed: providerIds(env),
+    instacart: activation.mode,
+    fixture_active: groceryFixtureActive(env),
+  };
+}
+
 async function handleHealth(env, url) {
   let d1 = "unbound";
   let recent_errors = null;
@@ -194,6 +205,8 @@ async function handleHealth(env, url) {
     d1_database_id: env.D1_DATABASE_ID || null,
     d1,
     client_errors_24h: recent_errors,
+    // S-03: public, non-secret grocery config so a logged-out smoke can prove providers are off.
+    grocery: groceryHealth(env),
     catalog_quality_ok: catalog.ok,
     catalog_source,
     catalog_runtime_meals,
@@ -2487,6 +2500,12 @@ export default {
         {
           const shopRes = await routeHouseholdShopRequest(env, request, path, url, { writeOrigin });
           if (shopRes) return shopRes;
+        }
+
+        // S-03 grocery handoff. The household list stays canonical.
+        {
+          const groceryRes = await routeGroceryRequest(env, request, path, url, { writeOrigin });
+          if (groceryRes) return groceryRes;
         }
 
         // Alpha: recipe adaptation advice + recommendation explanations.

@@ -159,7 +159,10 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
     );
     if (!created.ok) return fail(created.error, created.status || 400, failureBody(created));
     try {
-      await saveDinnerPlan(env.DB, created.plan);
+      await saveDinnerPlan(env.DB, created.plan, {
+        supersedeOtherUnfinished: true,
+        supersededAt: now,
+      });
       await projectSavedPlan(env.DB, created.plan, now);
     } catch (error) {
       return fail("dinner_plan_save_failed", 500, { detail: String(error.message || error) });
