@@ -5830,9 +5830,10 @@ button.plan-meal-title {
    clearly inactive control with its reason beside it, not a faded live button. */
 .instacart-cta:disabled,
 .instacart-cta--off {
-  background: var(--color-surface-sunken, #ecebe8);
-  color: var(--color-text-secondary, #5f5c57);
-  border: 1px dashed var(--color-border-strong);
+  /* Fixed colors: the inset is always white, so theme tokens would lose contrast in dark mode. */
+  background: #ecebe8;
+  color: #3f3c37;
+  border: 1px dashed #8a857c;
   cursor: not-allowed;
   opacity: 1;
 }
@@ -5845,14 +5846,14 @@ button.plan-meal-title {
   padding: 2px 8px;
   border-radius: 999px;
   background: #fff;
-  color: var(--color-text-secondary, #5f5c57);
-  border: 1px solid var(--color-border-strong);
+  color: #3f3c37;
+  border: 1px solid #8a857c;
 }
 
 .instacart-cta__reason {
   margin: var(--space-2, 8px) 0 0;
   font-size: 0.875rem;
-  color: var(--color-text-secondary, #5f5c57);
+  color: #3f3c37;
 }
 
 .shop-mock-badge {

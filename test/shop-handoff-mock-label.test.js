@@ -77,5 +77,11 @@ describe("S-03 order-online labels", () => {
     expect(off[1]).not.toMatch(/#003d29/i);
     expect(off[1]).toMatch(/opacity: 1;/);
     expect(off[1]).toMatch(/cursor: not-allowed;/);
+    // The inset is always white: the off button, pill and reason use fixed dark text, not theme tokens.
+    for (const sel of [/\.instacart-cta:disabled,\s*\.instacart-cta--off \{([^}]*)\}/s, /\.instacart-cta__state \{([^}]*)\}/s, /\.instacart-cta__reason \{([^}]*)\}/s]) {
+      const block = sel.exec(css)[1];
+      expect(block).not.toMatch(/var\(--color-/);
+      expect(block).toMatch(/color: #3f3c37;/);
+    }
   });
 });
