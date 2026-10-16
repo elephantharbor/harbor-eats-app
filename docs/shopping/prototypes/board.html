@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>FlavorWeave shopping wireframes — S-01</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="proto.css" />
+</head>
+<body>
+  <main class="board">
+    <header class="board-head">
+      <p class="board-kicker">FlavorWeave · S-01 · static prototype</p>
+      <h1>The list, then the aisle or the handoff.</h1>
+      <p>Signature tokens from the live stylesheet. Coral is ours. The dark green control is Instacart’s specified button, with a slot for their logo rather than a redrawn mark. Not a runtime screen.</p>
+    </header>
+    <div class="grid">
+      <figure class="shot" id="s01">
+        <div class="phone" data-screen="01-list">
+          <div class="phone-bar">
+            <img src="../../../public/brand/flavorweave-lockup-horizontal.svg" alt="FlavorWeave" />
+            <span class="grow"></span>
+            <button class="icon-btn" type="button" aria-label="List options">⋯</button>
+          </div>
+          <div class="screen">
+            <p class="eyebrow">4 dinners · cooking for 2</p>
+            <h2 class="title">The list</h2>
+            <p class="meta">9 to get</p>
+            <div class="add">
+              <input aria-label="Add an item" placeholder="Add oat milk, paper towels…" />
+            </div>
+            <h3 class="section-label">From the dinners</h3>
+            <p class="aisle">Produce</p>
+            <div class="row">
+              <span class="check" aria-hidden="true"></span>
+              <span><span class="name">Yellow onion</span><span class="qty">2 <span class="meal">· miso salmon, tofu bowls</span></span></span>
+              <button class="more" type="button" aria-label="More for yellow onion">⋯</button>
+            </div>
+            <div class="row">
+              <span class="check" aria-hidden="true"></span>
+              <span><span class="name">Cilantro</span><span class="qty">1 bunch <span class="meal">· tofu bowls</span></span></span>
+              <button class="more" type="button" aria-label="More for cilantro">⋯</button>
+            </div>
+            <p class="aisle">Pantry</p>
+            <div class="row">
+              <span class="check" aria-hidden="true"></span>
+              <span><span class="name">White miso</span><span class="qty">2 tbsp <span class="meal">· miso salmon</span></span></span>
+              <button class="more" type="button" aria-label="More for white miso">⋯</button>
+            </div>
+            <h3 class="section-label">Around the house</h3>
+            <div class="row">
+              <span class="check" aria-hidden="true"></span>
+              <span><span class="name">Paper towels</span><span class="qty">1 package</span></span>
+              <button class="more" type="button" aria-label="More for paper towels">⋯</button>
+            </div>
+            <div class="row">
+              <span class="check" aria-hidden="true"></span>
+              <span><span class="name">Dish soap</span><span class="qty">1 bottle</span></span>
+              <button class="more" type="button" aria-label="More for dish soap">⋯</button>
+            </div>
+          </div>
+          <div class="sticky">
+            <button class="btn btn-primary" type="button">Shop in store</button>
+            <button class="btn btn-secondary" type="button">Order online</button>
+          </div>
+        </div>
+        <figcaption><strong>01 · The list.</strong> <span class="note">One household list. Dinners stay grouped by aisle. Everyday items sit in their own quiet section. One coral action.</span></figcaption>
+      </figure>
+
+      <figure class="shot" id="s02">
+        <div class="phone" data-screen="02-in-store">
+          <div class="phone-bar">
+            <button class="back" type="button">List</button>
+            <span class="grow"></span>
+          </div>
+          <div class="screen">
+            <p class="eyebrow">In the store</p>
+            <h2 class="title">6 left</h2>
+            <p class="meta">Tap when it’s in the basket.</p>
+            <p class="aisle">Produce</p>
+            <div class="row done">
+              <span class="check on" aria-hidden="true"></span>
+              <span><span class="name">Yellow onion</span><span class="qty">Bought · 2</span></span>
+            </div>
+            <div class="row">
+              <span class="check" aria-hidden="true"></span>
+              <span><span class="name">Cilantro</span><span class="qty">1 bunch</span></span>
+            </div>
+            <p class="aisle">Around the house</p>
+            <div class="row">
+              <span class="check" aria-hidden="true"></span>
+              <span><span class="name">Paper towels</span><span class="qty">1 package</span></span>
+            </div>
+            <div class="row done">
+              <span class="check on" aria-hidden="true"></span>
+              <span><span class="name">Dish soap</span><span class="qty">Bought</span></span>
+            </div>
+          </div>
+          <div class="sticky">
+            <button class="btn btn-secondary" type="button">Done</button>
+          </div>
+        </div>
+        <figcaption><strong>02 · In the store.</strong> <span class="note">The same rows, larger purpose. Bought stays visible so it can be undone. Done does not mean paid.</span></figcaption>
+      </figure>
+
+      <figure class="shot" id="s03">
+        <div class="phone" data-screen="03-order-online">
+          <div class="phone-bar">
+            <button class="back" type="button">List</button>
+          </div>
+          <div class="screen">
+            <p class="eyebrow">Order online</p>
+            <h2 class="title">Send the list</h2>
+            <p class="meta">FlavorWeave keeps the list. A service only carries it.</p>
+            <div class="card">
+              <div class="choice">
+                <span><span class="name">Instacart</span><span class="qty">Continues on Instacart. They choose the store.</span></span>
+                <span class="pill">First</span>
+              </div>
+              <div class="choice">
+                <span><span class="name">Other services</span><span class="qty">Not connected.</span></span>
+                <span class="pill wait">Later</span>
+              </div>
+            </div>
+            <p class="fine">While the connection is off, this sheet stops here and Shop in store remains the way to finish.</p>
+          </div>
+          <div class="sticky">
+            <button class="btn btn-primary" type="button">Review the list</button>
+            <button class="btn btn-quiet" type="button">Shop in store instead</button>
+          </div>
+        </div>
+        <figcaption><strong>03 · Choose a service.</strong> <span class="note">Instacart is named. Everyone else waits until their docs are tested. No checkout chrome.</span></figcaption>
+      </figure>
+
+      <figure class="shot" id="s04">
+        <div class="phone" data-screen="04-review">
+          <div class="phone-bar">
+            <button class="back" type="button">Back</button>
+          </div>
+          <div class="screen sheet-page">
+            <p class="eyebrow">Review</p>
+            <h2 class="title">Sending 3 items</h2>
+            <p class="meta">You usually shop at Market Street. You’ll confirm the store on Instacart.</p>
+            <div class="card">
+              <div class="row"><span><span class="name">Yellow onion</span><span class="qty">2 each</span></span></div>
+              <div class="row"><span><span class="name">Cilantro</span><span class="qty">1 bunch</span></span></div>
+              <div class="row"><span><span class="name">Paper towels</span><span class="qty">1 package</span></span></div>
+            </div>
+            <p class="fine">Instacart will show what’s at the store you pick. FlavorWeave doesn’t see that stock. You’ll confirm products there. We won’t swap items for you.</p>
+            <div style="height:12px"></div>
+            <button class="instacart-cta" type="button"><span class="logo-slot">logo</span> Shop on Instacart</button>
+            <p class="fine">Official 22px logo goes in the slot. Not drawn here. This button is theirs, not coral.</p>
+            <button class="btn btn-quiet" type="button">Not now</button>
+          </div>
+        </div>
+        <figcaption><strong>04 · Review the transfer.</strong> <span class="note">Measurements are the ones we will send. A handoff is not marked bought.</span></figcaption>
+      </figure>
+
+      <figure class="shot" id="s05">
+        <div class="phone" data-screen="05-settings">
+          <div class="phone-bar">
+            <img src="../../../public/brand/flavorweave-lockup-horizontal.svg" alt="FlavorWeave" />
+          </div>
+          <div class="screen">
+            <p class="eyebrow">Settings</p>
+            <h2 class="title">Your kitchen</h2>
+            <div class="card">
+              <h3>Shopping</h3>
+              <p class="meta">Household default. Anyone can switch for one trip.</p>
+              <div class="choice"><span>Shop in store</span><span class="pill">Default</span></div>
+              <div class="choice"><span>Order online</span><span class="pill wait">Instacart</span></div>
+              <div class="choice"><span><span class="name">Usual store</span><span class="qty">Market Street</span></span></div>
+              <div class="choice"><span><span class="name">Your favorite</span><span class="qty">Same as the household</span></span></div>
+            </div>
+          </div>
+        </div>
+        <figcaption><strong>05 · Settings.</strong> <span class="note">Household default, a typed store label, and this person’s favorite. Postal code stays optional and off this quiet view.</span></figcaption>
+      </figure>
+
+      <figure class="shot" id="s06">
+        <div class="phone" data-screen="06-onboarding">
+          <div class="phone-bar">
+            <img src="../../../public/brand/flavorweave-lockup-horizontal.svg" alt="FlavorWeave" />
+          </div>
+          <div class="screen">
+            <p class="eyebrow">Optional</p>
+            <h2 class="title">Where do you usually shop?</h2>
+            <p class="meta">You can skip this. The list works either way.</p>
+            <div class="card">
+              <div class="choice"><span class="name">Shop in store</span><span class="pill">Chosen</span></div>
+              <div class="choice"><span class="name">Order online</span></div>
+            </div>
+          </div>
+          <div class="sticky">
+            <button class="btn btn-primary" type="button">Save</button>
+            <button class="btn btn-quiet" type="button">Skip</button>
+          </div>
+        </div>
+        <figcaption><strong>06 · Onboarding.</strong> <span class="note">One card after invite. Skip writes nothing. No account linking.</span></figcaption>
+      </figure>
+
+      <figure class="shot" id="s07">
+        <div class="phone" data-screen="07-share">
+          <div class="phone-bar"><button class="back" type="button">List</button></div>
+          <div class="screen">
+            <p class="eyebrow">Share</p>
+            <h2 class="title">Send the list</h2>
+            <div class="card">
+              <div class="choice"><span>Copy</span></div>
+              <div class="choice"><span>Share sheet</span></div>
+              <div class="choice"><span>Print</span></div>
+              <div class="choice"><span>Download text or CSV</span></div>
+              <div class="choice"><span><span class="name">Read-only link</span><span class="qty">7 days · dietary limits stay in your kitchen</span></span></div>
+            </div>
+          </div>
+        </div>
+        <figcaption><strong>07 · Share and export.</strong> <span class="note">Names and quantities. The public link is not an Instacart URL.</span></figcaption>
+      </figure>
+
+      <figure class="shot" id="s08">
+        <div class="phone" data-screen="08-missing">
+          <div class="phone-bar"><button class="back" type="button">Review</button></div>
+          <div class="screen">
+            <p class="eyebrow">Still your list</p>
+            <h2 class="title">Two items stay here</h2>
+            <div class="quiet">
+              <h3>Garlic cloves</h3>
+              <p class="meta">They need a unit Instacart accepts. The cloves are still on your list.</p>
+              <div class="skip-row">
+                <button class="chip" type="button">Edit amount</button>
+                <button class="chip" type="button">Leave off this link</button>
+              </div>
+            </div>
+            <div class="quiet">
+              <h3>Rice</h3>
+              <p class="meta">4 servings isn’t a store unit. Shop this one in the aisle.</p>
+            </div>
+          </div>
+          <div class="sticky">
+            <button class="btn btn-primary" type="button">Shop in store</button>
+            <button class="btn btn-secondary" type="button">Send the rest</button>
+          </div>
+        </div>
+        <figcaption><strong>08 · Missing items.</strong> <span class="note">Oat panel, not an error screen. Nothing is dropped. No other store, no recipe rewrite.</span></figcaption>
+      </figure>
+
+      <figure class="shot" id="s09">
+        <div class="phone" data-screen="09-add">
+          <div class="phone-bar"><button class="back" type="button">Close</button></div>
+          <div class="screen">
+            <p class="eyebrow">Edit amount</p>
+            <h2 class="title">White miso</h2>
+            <p class="meta">Recipes need 2 tbsp.</p>
+            <div class="card">
+              <p class="aisle">Quantity</p>
+              <p class="name">3</p>
+              <p class="aisle">Unit</p>
+              <p class="name">tbsp</p>
+            </div>
+            <button class="btn btn-quiet" type="button">Use the recipe amount</button>
+          </div>
+          <div class="sticky">
+            <button class="btn btn-primary" type="button">Save</button>
+          </div>
+        </div>
+        <figcaption><strong>09 · Edit.</strong> <span class="note">A shopper override. The recipe amount stays underneath and can be restored.</span></figcaption>
+      </figure>
+    </div>
+  </main>
+  <script>
+    const screen = new URLSearchParams(location.search).get("screen");
+    if (screen) {
+      document.body.dataset.one = "1";
+      const phone = document.querySelector('[data-screen="' + screen + '"]');
+      if (phone) phone.closest(".shot").classList.add("is-on");
+    }
+  </script>
+</body>
+</html>
