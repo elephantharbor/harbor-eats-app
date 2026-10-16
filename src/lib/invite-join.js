@@ -6,6 +6,7 @@ import { validateInviteForHousehold } from "./auth.js";
 import { createMemberSession } from "./session.js";
 import { sessionClearCookieHeader } from "./cookies.js";
 import { constraintRowsFromKeys } from "./eligibility.js";
+import { isUniqueViolation, logDatabaseError } from "./db-error.js";
 
 function slugMemberId(display_name) {
   const base =
@@ -135,7 +136,9 @@ export async function joinHouseholdViaInvite(db, input, opts = {}) {
         )
         .run();
     } catch (e) {
-      return { error: "member_create_failed", status: 500, detail: String(e.message || e) };
+      logDatabaseError("invite_member_create", e);
+      if (isUniqueViolation(e)) return { error: "member_exists", status: 409 };
+      return { error: "member_create_failed", status: 500 };
     }
   }
 

@@ -55,6 +55,17 @@ describe("S-03 order-online labels", () => {
     ui.renderReview(sheet, review("live"));
     expect(sheet.innerHTML).not.toContain("Preview test");
     expect(sheet.innerHTML).toContain("Continues on Instacart. They choose the store and the products.");
+
+    const devCard = { innerHTML: "" };
+    ui.renderChoice(devCard, null, { id: "instacart", mode: "live", channel: "development" });
+    expect(devCard.innerHTML).toContain("Instacart development");
+    expect(devCard.innerHTML).toContain("Instacart (development)");
+    expect(devCard.innerHTML).not.toContain("Preview test — Not a real");
+    const devSheet = { innerHTML: "" };
+    ui.renderReview(devSheet, { ...review("live"), channel: "development" });
+    expect(devSheet.innerHTML).toContain("does not place an order");
+    expect(devSheet.innerHTML).toContain("Shop on Instacart");
+    expect(devSheet.innerHTML).toContain("aria-disabled=\"true\"");
   });
 
   it("the disabled CTA is unmistakably off, with aria-disabled and the reason beside it", () => {

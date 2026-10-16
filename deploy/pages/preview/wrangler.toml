@@ -33,3 +33,8 @@ AI_SOL_HOUSEHOLD_PER_DAY = "5"
 # (GROCERY_PROVIDERS=instacart, GROCERY_FIXTURE=instacart_mock); Pages refuses a
 # secret whose name is also a committed var. Production code refuses the fixture.
 # INSTACART_API_KEY is a Pages secret. Never put it here.
+# S-04A: GROCERY_RUNTIME (mock | dev | off) and GROCERY_MOCK_MODE are also
+# Preview secrets, read on each request. Changing them does not need a code
+# deploy. A request may also send X-FlavorWeave-Grocery-Mode (ok, timeout,
+# provider-error, dev). Production code ignores the fixture, the runtime
+# secret, and that header. Do not commit any of them.

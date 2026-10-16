@@ -48,6 +48,8 @@ import { routeDinnerPlanRequest } from "./lib/dinner-plan-routes.js";
 import { routeHouseholdShopRequest } from "./lib/household-shop-routes.js";
 import { routeGroceryRequest } from "./lib/grocery/routes.js";
 import { groceryFixtureActive, instacartActivation, providerIds } from "./lib/grocery/config.js";
+import { isUniqueViolation, logDatabaseError, stripDatabaseDetail } from "./lib/db-error.js";
+import { sanitizeClientErrorReport, summarizeClientErrors } from "./lib/client-error-class.js";
 import { routeDiscoveryRequest } from "./discovery/http.js";
 import { routeWeaveRequest } from "./weave/routes.js";
 import { routeAlphaAiRequest } from "./ai/alpha-routes.js";
@@ -82,7 +84,7 @@ import {
 const CORS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization, X-HE-Session, X-FlavorWeave-Data-Origin",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization, X-HE-Session, X-FlavorWeave-Data-Origin, X-FlavorWeave-Grocery-Mode",
 };
 
 function json(data, status = 200, extraHeaders = {}) {
@@ -97,7 +99,16 @@ function json(data, status = 200, extraHeaders = {}) {
 }
 
 function err(message, status = 400, extra = {}) {
-  return json({ ok: false, error: message, ...extra }, status);
+  return json(stripDatabaseDetail({ ok: false, error: message, ...extra }), status);
+}
+
+function dbFailure(scope, error, code, status = 500) {
+  logDatabaseError(scope, error);
+  return err(code, status);
+}
+
+function nameMarksSynthetic(displayName) {
+  return /^\[synthetic\]/i.test(String(displayName || "").trim());
 }
 
 function nowIso() {
@@ -149,16 +160,20 @@ function matchPath(pathname, pattern) {
 
 function groceryHealth(env) {
   const activation = instacartActivation(env);
+  const runtime = String(env?.GROCERY_RUNTIME || "").trim().toLowerCase();
   return {
     providers_listed: providerIds(env),
     instacart: activation.mode,
+    channel: activation.channel,
     fixture_active: groceryFixtureActive(env),
+    runtime: runtime || null,
   };
 }
 
 async function handleHealth(env, url) {
   let d1 = "unbound";
   let recent_errors = null;
+  let client_error_summary = null;
   /** @type {Record<string, unknown>|null} */
   let alpha_metrics = null;
   if (env.DB) {
@@ -167,14 +182,20 @@ async function handleHealth(env, url) {
       d1 = "ok";
       try {
         const since = new Date(Date.now() - 86400000).toISOString();
-        const row = await env.DB.prepare(
-          `SELECT COUNT(*) AS c FROM client_error WHERE created_at >= ?`
+        const listed = await env.DB.prepare(
+          `SELECT e.message, h.data_origin, h.display_name, h.acquisition_source
+           FROM client_error e
+           LEFT JOIN household h ON h.household_id = e.household_id
+           WHERE e.created_at >= ?`
         )
           .bind(since)
-          .first();
-        recent_errors = row ? row.c : 0;
+          .all();
+        const summary = summarizeClientErrors(listed?.results || []);
+        recent_errors = summary.total;
+        client_error_summary = summary;
       } catch {
         recent_errors = null;
+        client_error_summary = null;
       }
       if (url && url.searchParams.get("metrics") === "alpha") {
         alpha_metrics = await loadAlphaOpsMetrics(env.DB);
@@ -205,6 +226,15 @@ async function handleHealth(env, url) {
     d1_database_id: env.D1_DATABASE_ID || null,
     d1,
     client_errors_24h: recent_errors,
+    client_errors_24h_actionable: client_error_summary ? client_error_summary.actionable : null,
+    client_errors_24h_by_class: client_error_summary
+      ? {
+          actionable: client_error_summary.actionable,
+          expected_logged_out: client_error_summary.expected_logged_out,
+          negative_path: client_error_summary.negative_path,
+          synthetic: client_error_summary.synthetic,
+        }
+      : null,
     // S-03: public, non-secret grocery config so a logged-out smoke can prove providers are off.
     grocery: groceryHealth(env),
     catalog_quality_ok: catalog.ok,
@@ -268,7 +298,8 @@ async function createHousehold(env, body, request) {
   const servings_default = Number.isFinite(body.servings_default)
     ? body.servings_default
     : 2;
-  const origin = await writeOrigin(env, household_id, request, body);
+  let origin = await writeOrigin(env, household_id, request, body);
+  if (nameMarksSynthetic(display_name)) origin = SYNTHETIC_ORIGIN;
   const acquisition_source =
     origin === SYNTHETIC_ORIGIN ? "synthetic_qa" : body.acquisition_source || null;
   try {
@@ -290,7 +321,7 @@ async function createHousehold(env, body, request) {
       )
       .run();
   } catch (e) {
-    return err("household_create_failed", 500, { detail: String(e.message || e) });
+    return dbFailure("household_create", e, "household_create_failed");
   }
   return json({ ok: true, household_id, display_name, status, created_at: ts, data_origin: origin }, 201);
 }
@@ -350,7 +381,8 @@ async function addMember(env, household_id, body, request) {
       )
       .run();
   } catch (e) {
-    return err("member_create_failed", 500, { detail: String(e.message || e) });
+    if (isUniqueViolation(e)) return dbFailure("member_create", e, "member_exists", 409);
+    return dbFailure("member_create", e, "member_create_failed");
   }
   return json({ ok: true, member_id, household_id, display_name, role, status }, 201);
 }
@@ -443,7 +475,7 @@ async function setConstraints(env, member_id, body, session) {
         .run();
     }
   } catch (e) {
-    return err("constraints_save_failed", 500, { detail: String(e.message || e) });
+    return dbFailure("constraints_save", e, "constraints_save_failed");
   }
   return json({ ok: true, member_id, household_id, constraints: saved, replaced: replace });
 }
@@ -521,7 +553,7 @@ async function createPlan(env, body, session, request) {
     }
     return json({ ok: true, plan_id, household_id, meal_options: createdOptions }, 201);
   } catch (e) {
-    return err("plan_create_failed", 500, { detail: String(e.message || e) });
+    return dbFailure("plan_create", e, "plan_create_failed");
   }
 }
 
@@ -596,7 +628,7 @@ async function createSelection(env, body, session, request) {
       ),
     ]);
   } catch (e) {
-    return err("selection_failed", 500, { detail: String(e.message || e) });
+    return dbFailure("selection", e, "selection_failed");
   }
   return json({ ok: true, selection_id, plan_id, meal_option_id, status: nextStatus }, 201);
 }
@@ -665,7 +697,7 @@ async function createCook(env, body, session, request) {
       .run();
     return json({ ok: true, cook_id, plan_id, meal_option_id, status: nextStatus }, 201);
   } catch (e) {
-    return err("cook_failed", 500, { detail: String(e.message || e) });
+    return dbFailure("cook", e, "cook_failed");
   }
 }
 
@@ -812,7 +844,7 @@ async function createRating(env, body, session, request) {
       recipe_version_id,
     });
   } catch (e) {
-    return err("rating_failed", 500, { detail: String(e.message || e) });
+    return dbFailure("rating", e, "rating_failed");
   }
 }
 
@@ -891,7 +923,7 @@ async function createEvent(env, body, session, request) {
         .run();
     }
   } catch (e) {
-    return err("event_failed", 500, { detail: String(e.message || e) });
+    return dbFailure("event", e, "event_failed");
   }
   return json({ ok: true, event_id, event_name, data_origin: dataOrigin }, 201);
 }
@@ -1087,7 +1119,7 @@ async function createShare(env, body, requestUrl, session, request) {
       attribution_kind: body.attribution_kind || "share_object_id",
     }, dataOrigin);
   } catch (e) {
-    return err("plan_ensure_failed", 500, { detail: String(e.message || e) });
+    return dbFailure("plan_ensure", e, "plan_ensure_failed");
   }
 
   const token =
@@ -1132,10 +1164,10 @@ async function createShare(env, body, requestUrl, session, request) {
       .run();
   } catch (e) {
     // token unique conflict — retry once with fresh token if client didn't pin one
-    if (String(e.message || e).includes("UNIQUE") && !body.token && !body.share_object_id) {
-      return err("share_token_collision", 409, { detail: String(e.message || e) });
+    if (isUniqueViolation(e) && !body.token && !body.share_object_id) {
+      return dbFailure("share_create", e, "share_token_collision", 409);
     }
-    return err("share_create_failed", 500, { detail: String(e.message || e) });
+    return dbFailure("share_create", e, "share_create_failed");
   }
 
   // Analytics event (server-side mirror; client also fires share_choice_created)
@@ -1306,7 +1338,7 @@ async function createInvite(env, body, requestUrl, session, request) {
       .bind(invite_code, household_id, inviter_member_id, channel, ts, expires_at)
       .run();
   } catch (e) {
-    return err("invite_create_failed", 500, { detail: String(e.message || e) });
+    return dbFailure("invite_create", e, "invite_create_failed");
   }
 
   const inviteOrigin = await writeOrigin(env, household_id, request, body);
@@ -1650,28 +1682,22 @@ async function postPreferenceEvidence(env, body, session, request) {
 }
 
 async function postClientError(env, body, session) {
-  const error_id = body.error_id || id("cerr");
+  const error_id = id("cerr");
   const ts = nowIso();
-  const props = { ...body };
-  delete props.error_id;
-  delete props.surface;
-  delete props.code;
-  delete props.message;
-  delete props.path;
+  const safe = sanitizeClientErrorReport(body);
   await env.DB.prepare(
     `INSERT INTO client_error
       (error_id, household_id, member_id, surface, code, message, path, props_json, created_at)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+     VALUES (?, ?, ?, ?, ?, ?, ?, NULL, ?)`
   )
     .bind(
       error_id,
-      (session && session.household_id) || body.household_id || null,
-      (session && session.member_id) || body.member_id || null,
-      body.surface || "client",
-      body.code || null,
-      body.message || null,
-      body.path || null,
-      Object.keys(props).length ? JSON.stringify(props) : null,
+      (session && session.household_id) || null,
+      (session && session.member_id) || null,
+      safe.surface,
+      safe.code,
+      safe.message,
+      safe.path,
       ts
     )
     .run();
@@ -1856,7 +1882,7 @@ async function postMealVote(env, plan_id, body, session, request) {
       .bind(vote_id, plan_id, meal_option_id, household_id, session.member_id, ts, voteOrigin)
       .run();
   } catch (e) {
-    return err("vote_failed", 500, { detail: String(e.message || e) });
+    return dbFailure("vote", e, "vote_failed");
   }
 
   if (voteOrigin === SYNTHETIC_ORIGIN) {
@@ -2674,7 +2700,7 @@ export default {
         }
       }
     } catch (e) {
-      return err("internal_error", 500, { detail: String(e.message || e) });
+      return dbFailure("api", e, "internal_error");
     }
 
     // SPA deep-link routes → index.html (auth boundary handled client-side)

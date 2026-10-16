@@ -479,7 +479,7 @@ describe("health grocery block", () => {
   it("reports providers off by default, mock only outside production, never a key", async () => {
     const off = await worker.fetch(new Request("https://fw.test/api/health"), { ENVIRONMENT: "production", DEPLOY_ENV: "production", GROCERY_PROVIDERS: "" });
     const offBody = await off.json();
-    expect(offBody.grocery).toEqual({ providers_listed: [], instacart: "off", fixture_active: false });
+    expect(offBody.grocery).toEqual({ providers_listed: [], instacart: "off", channel: "off", fixture_active: false, runtime: null });
 
     const copied = await worker.fetch(new Request("https://fw.test/api/health"), {
       ENVIRONMENT: "production",
@@ -487,7 +487,7 @@ describe("health grocery block", () => {
       GROCERY_PROVIDERS: "instacart",
       GROCERY_FIXTURE: "instacart_mock",
     });
-    expect((await copied.json()).grocery).toEqual({ providers_listed: ["instacart"], instacart: "off", fixture_active: false });
+    expect((await copied.json()).grocery).toEqual({ providers_listed: ["instacart"], instacart: "off", channel: "off", fixture_active: false, runtime: null });
 
     const mock = await worker.fetch(new Request("https://fw.test/api/health"), {
       ENVIRONMENT: "preview",
@@ -497,7 +497,13 @@ describe("health grocery block", () => {
       INSTACART_API_KEY: "keys.should-not-leak",
     });
     const text = await mock.text();
-    expect(JSON.parse(text).grocery).toEqual({ providers_listed: ["instacart"], instacart: "mock", fixture_active: true });
+    expect(JSON.parse(text).grocery).toEqual({
+      providers_listed: ["instacart"],
+      instacart: "mock",
+      channel: "mock",
+      fixture_active: true,
+      runtime: null,
+    });
     expect(text).not.toContain("keys.should-not-leak");
   });
 });

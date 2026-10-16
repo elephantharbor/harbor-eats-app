@@ -5,6 +5,7 @@
  */
 
 import { isNormallyRecommendable } from "./catalog-publish.js";
+import { logDatabaseError } from "./db-error.js";
 
 /** D1 allows at most 100 bound parameters per statement. */
 export const D1_MAX_IN_PARAMS = 90;
@@ -358,11 +359,8 @@ export async function loadPublishedCatalog(db) {
       versionsById,
     };
   } catch (error) {
-    const message = String((error && error.message) || error);
-    if (/no such table/i.test(message)) {
-      return { ok: false, error: "catalog_unavailable", detail: message };
-    }
-    return { ok: false, error: "catalog_unavailable", detail: message };
+    logDatabaseError("catalog", error);
+    return { ok: false, error: "catalog_unavailable" };
   }
 }
 

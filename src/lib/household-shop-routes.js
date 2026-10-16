@@ -30,6 +30,7 @@ import {
   setTripMethod,
   shareSnapshot,
 } from "./household-shop.js";
+import { stripDatabaseDetail } from "./db-error.js";
 import { commitList, insertOpenList, isActiveMember, loadOpenList } from "./household-shop-store.js";
 import { applyPlanMutation } from "./plan-mutations.js";
 
@@ -53,7 +54,7 @@ function json(data, status = 200, headers = {}) {
 }
 
 function fail(error, status = 400, extra = {}) {
-  return json({ ok: false, error, ...extra }, status);
+  return json(stripDatabaseDetail({ ok: false, error, ...extra }), status);
 }
 
 function shopToken() {
@@ -289,7 +290,14 @@ async function mutate(env, session, list, plan, body, now, request, deps) {
   }
   const saved = await commitList(env.DB, result.list, list.revision, !!result.content_changed);
   if (!saved.ok) {
+    if (saved.error === "shop_save_failed") return fail("shop_save_failed", 500);
     const fresh = await loadOpenList(env.DB, session.household_id);
+    if (body.op === "add_item" && body.client_request_id && fresh) {
+      const replay = addGeneralItem(fresh, body.text, ctx);
+      if (replay.ok && replay.idempotent) {
+        return json({ ok: true, list: present(replay.list, plan), idempotent: true, line_id: replay.line_id || null });
+      }
+    }
     await recordShop(env, session, request, deps, "shopping_conflict", { op: body.op || "write" });
     return conflict(fresh || list, plan, attemptedFrom(body));
   }

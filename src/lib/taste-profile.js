@@ -8,6 +8,7 @@
  */
 
 import { requireSession } from "./auth.js";
+import { stripDatabaseDetail } from "./db-error.js";
 import {
   CONTRACT_TABLES,
   HARD_LIMIT_LABELS,
@@ -502,7 +503,7 @@ function respond(data, status = 200) {
 }
 
 function fail(error, status = 400, extra = {}) {
-  return respond({ ok: false, error, ...extra }, status);
+  return respond(stripDatabaseDetail({ ok: false, error, ...extra }), status);
 }
 
 function matchMember(path, suffix) {

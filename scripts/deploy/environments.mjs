@@ -105,6 +105,7 @@ export function validateGroceryVars(configText, envName = "production") {
   const previewOnly = envName === "preview";
   if (/^\s*INSTACART_API_KEY\s*=/m.test(text)) problems.push("INSTACART_API_KEY must be a Pages secret, not a committed var");
   if (/^\s*GROCERY_FIXTURE\s*=/m.test(text)) problems.push("GROCERY_FIXTURE must not be set in a committed config");
+  if (/^\s*GROCERY_RUNTIME\s*=/m.test(text)) problems.push("GROCERY_RUNTIME must be a Pages secret read at request time, not a committed var");
   if (!("GROCERY_PROVIDERS" in vars)) {
     if (!previewOnly) problems.push("missing GROCERY_PROVIDERS");
   } else if (String(vars.GROCERY_PROVIDERS).trim() !== "") {

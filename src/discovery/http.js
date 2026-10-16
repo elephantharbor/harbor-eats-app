@@ -7,6 +7,7 @@
  */
 
 import { requireSession } from "../lib/auth.js";
+import { stripDatabaseDetail } from "../lib/db-error.js";
 import { catalogReadsFromD1, loadPublishedCatalog } from "../lib/catalog-runtime.js";
 import {
   householdConstraints,
@@ -32,7 +33,7 @@ function json(data, status = 200) {
 }
 
 function fail(error, status = 400, extra = {}) {
-  return json({ ok: false, error, ...extra }, status);
+  return json(stripDatabaseDetail({ ok: false, error, ...extra }), status);
 }
 
 async function readJson(request) {

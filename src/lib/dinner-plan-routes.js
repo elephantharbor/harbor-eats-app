@@ -23,6 +23,7 @@ import {
   saveDinnerPlan,
 } from "./dinner-plan-store.js";
 import { projectSavedPlan } from "./household-shop-routes.js";
+import { logDatabaseError, stripDatabaseDetail } from "./db-error.js";
 
 function respond(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -35,7 +36,7 @@ function respond(data, status = 200) {
 }
 
 function fail(error, status = 400, extra = {}) {
-  return respond({ ok: false, error, ...extra }, status);
+  return respond(stripDatabaseDetail({ ok: false, error, ...extra }), status);
 }
 
 function failureBody(result) {
@@ -165,7 +166,8 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
       });
       await projectSavedPlan(env.DB, created.plan, now);
     } catch (error) {
-      return fail("dinner_plan_save_failed", 500, { detail: String(error.message || error) });
+      logDatabaseError("dinner_plan_save", error);
+      return fail("dinner_plan_save_failed", 500);
     }
     return respond(
       {
@@ -224,7 +226,8 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
     await saveDinnerPlan(env.DB, mutated.plan);
     await projectSavedPlan(env.DB, mutated.plan, now);
   } catch (error) {
-    return fail("dinner_plan_save_failed", 500, { detail: String(error.message || error) });
+    logDatabaseError("dinner_plan_save", error);
+    return fail("dinner_plan_save_failed", 500);
   }
   return respond({
     ok: true,

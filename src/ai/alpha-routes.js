@@ -5,6 +5,7 @@
 import { createHash } from "node:crypto";
 import { createD1Store, createGenerationService, resolveProvider } from "./index.js";
 import { requireSession } from "../lib/auth.js";
+import { stripDatabaseDetail } from "../lib/db-error.js";
 import {
   buildExplanationPacket,
   explanationColdTemplate,
@@ -132,7 +133,7 @@ function respond(data, status = 200) {
 }
 
 function fail(error, status = 400, extra = {}) {
-  return respond({ ok: false, error, ...extra }, status);
+  return respond(stripDatabaseDetail({ ok: false, error, ...extra }), status);
 }
 
 async function readJson(request) {

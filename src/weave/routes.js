@@ -15,6 +15,7 @@ import { elapsedMs, monotonicNow } from "../lib/clock.js";
 import { assertParticipants, presentDinnerPlan } from "../lib/plan-contract.js";
 import { planDinners } from "../lib/dinner-planner.js";
 import { requireSession } from "../lib/auth.js";
+import { logDatabaseError, stripDatabaseDetail } from "../lib/db-error.js";
 import { DISCOVERY_SCHEMA_VERSION } from "../discovery/constants.js";
 import { canonicalQuery, normalizeQuery } from "../discovery/query.js";
 import { projectDiscoveryMeal } from "../discovery/meal.js";
@@ -63,7 +64,7 @@ function json(data, status = 200) {
 }
 
 function fail(error, status = 400, extra = {}) {
-  return json({ ok: false, error, ...extra }, status);
+  return json(stripDatabaseDetail({ ok: false, error, ...extra }), status);
 }
 
 async function readJson(request) {
@@ -614,7 +615,8 @@ export async function routeWeaveRequest(env, request, path, deps = {}) {
     try {
       await saveDinnerPlan(env.DB, created.plan);
     } catch (error) {
-      return fail("dinner_plan_save_failed", 500, { detail: String(error.message || error) });
+      logDatabaseError("weave_plan_save", error);
+      return fail("dinner_plan_save_failed", 500);
     }
     return json({ ok: true, plan: presentDinnerPlan(created.plan), unfilled: created.unfilled });
   }
