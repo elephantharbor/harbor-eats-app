@@ -167,10 +167,12 @@ Verify checks zero rows for: household mismatch, missing list, purchase statuses
 
 ## Hosted Preview without a real key
 
-Committed config stays empty. On the Preview project only, set dashboard vars:
+The Preview wrangler.toml does not declare `GROCERY_PROVIDERS` (unset means off). Pages makes vars read-only for a toml-configured project and refuses a secret whose name is also a committed var, so on the Preview project only, set Pages secrets and redeploy with `npm run deploy:preview`:
 
 - `GROCERY_PROVIDERS=instacart`
 - `GROCERY_FIXTURE=instacart_mock`
+
+`npx wrangler pages secret put GROCERY_PROVIDERS --project-name harbor-eats-cycle1-preview` (same for the others). The Production config must declare `GROCERY_PROVIDERS = ""`; the deploy check refuses Production if it is missing or non-empty, or if any `GROCERY_FIXTURE` line is present.
 
 `ENVIRONMENT` is already `preview`. Do not set `INSTACART_API_KEY` for this fixture. Production code refuses the fixture even if those vars are copied.
 

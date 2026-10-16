@@ -91,15 +91,25 @@ export function validateAiVars(configText) {
 /**
  * S-03: committed configs keep every external grocery provider off.
  * A key or a preview fixture is never a committed var.
+ * Production must declare GROCERY_PROVIDERS and keep it empty. Preview may leave it
+ * out so a Preview-only Pages secret can turn on the mock (a committed var and a
+ * secret with the same name cannot coexist on Pages). If Preview declares it, it
+ * must still be empty. Any other or unknown environment gets the production rule.
+ * @param {string} configText
+ * @param {string} [envName]
  */
-export function validateGroceryVars(configText) {
+export function validateGroceryVars(configText, envName = "production") {
   const text = String(configText || "");
   const vars = parseVars(text);
   const problems = [];
+  const previewOnly = envName === "preview";
   if (/^\s*INSTACART_API_KEY\s*=/m.test(text)) problems.push("INSTACART_API_KEY must be a Pages secret, not a committed var");
-  if (vars.GROCERY_FIXTURE) problems.push("GROCERY_FIXTURE must not be set in a committed config");
-  if (!("GROCERY_PROVIDERS" in vars)) problems.push("missing GROCERY_PROVIDERS");
-  else if (String(vars.GROCERY_PROVIDERS).trim() !== "") problems.push("GROCERY_PROVIDERS must be empty in committed environment config");
+  if (/^\s*GROCERY_FIXTURE\s*=/m.test(text)) problems.push("GROCERY_FIXTURE must not be set in a committed config");
+  if (!("GROCERY_PROVIDERS" in vars)) {
+    if (!previewOnly) problems.push("missing GROCERY_PROVIDERS");
+  } else if (String(vars.GROCERY_PROVIDERS).trim() !== "") {
+    problems.push("GROCERY_PROVIDERS must be empty in committed environment config");
+  }
   if (problems.length) throw new DeploySafetyError(`grocery vars: ${problems.join("; ")}`);
   return vars;
 }
@@ -135,7 +145,7 @@ export function validateDeployPlan(req) {
   if (cfg.deployEnv !== target.name || cfg.d1Var !== target.d1Id)
     throw new DeploySafetyError("config DEPLOY_ENV / D1_DATABASE_ID vars must match the target (post-deploy binding check)");
   validateAiVars(req.configText);
-  validateGroceryVars(req.configText);
+  validateGroceryVars(req.configText, target.name);
   return { ...target, project, branch, root, d1Id };
 }
 
