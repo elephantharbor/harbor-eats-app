@@ -144,7 +144,11 @@ test.describe("household shopping list", () => {
       // Only a Preview fixture may configure Instacart here, and the UI must say it is a test.
       expect(instacart.mode).toBe("mock");
       expect(instacart.launch_enabled).toBe(false);
+      const badge = "Preview test — Not a real Instacart connection. Nothing is sent to Instacart.";
+      await expect(page.locator("#btnShopPickInstacart")).toContainText("Instacart (test)");
+      await expect(page.locator("[data-shop-mock-badge]")).toHaveText(badge);
       await page.locator("#btnShopPickInstacart").click();
+      await expect(page.locator("#shopOrderBody [data-shop-mock-badge]")).toHaveText(badge);
       await expect(page.getByText("This is a Preview test. It does not open Instacart")).toBeVisible();
       await expect(page.locator("#btnShopInstacartCta")).toBeDisabled();
     }
