@@ -44,13 +44,20 @@
       '<p class="meta">Shop in store is ready now. Nothing is sent anywhere.</p>';
   }
 
-  function renderChoice(root, shop) {
+  var MOCK_BADGE =
+    '<p class="shop-mock-badge" data-shop-mock-badge role="note">Preview test — Not a real Instacart connection. Nothing is sent to Instacart.</p>';
+
+  function renderChoice(root, shop, provider) {
     var note = storeNote(shop);
+    var mock = provider && provider.mode === "mock";
     root.innerHTML =
       '<h2 class="card-title" id="shopOrderTitle">Order online</h2>' +
+      (mock ? MOCK_BADGE : "") +
       (note ? '<p class="meta">' + escapeHtml(note) + "</p>" : "") +
       '<button type="button" class="shop-service shop-service--live" id="btnShopPickInstacart">' +
-      "<strong>Instacart</strong><span>Continues on Instacart. They choose the store and the products.</span></button>" +
+      "<strong>Instacart" + (mock ? " (test)" : "") + "</strong><span>" +
+      (mock ? "Preview test only. Shows what the list would send." : "Continues on Instacart. They choose the store and the products.") +
+      "</span></button>" +
       '<p class="meta">More stores later</p>';
   }
 
@@ -114,18 +121,19 @@
 
   function ctaHtml(review) {
     var disabled = !LOGO_SRC || !review.launch_enabled;
+    var reason = "The official Instacart logo isn’t in this app yet, so the button stays off.";
     return (
-      '<div class="instacart-cta-inset">' +
-      '<button type="button" class="instacart-cta" id="btnShopInstacartCta"' +
-      (disabled ? " disabled" : "") +
+      '<div class="instacart-cta-inset' + (disabled ? " instacart-cta-inset--off" : "") + '">' +
+      '<button type="button" class="instacart-cta' + (disabled ? " instacart-cta--off" : "") + '" id="btnShopInstacartCta"' +
+      (disabled ? ' disabled aria-describedby="shopCtaOffReason"' : "") +
       ' aria-disabled="' +
       (disabled ? "true" : "false") +
       '">' +
       escapeHtml(CTA_LABEL) +
-      "</button></div>" +
-      (disabled
-        ? '<p class="meta">The official Instacart logo isn’t in this app yet, so the button stays off.</p>'
-        : "") +
+      (disabled ? '<span class="instacart-cta__state">Off</span>' : "") +
+      "</button>" +
+      (disabled ? '<p class="instacart-cta__reason" id="shopCtaOffReason">' + reason + "</p>" : "") +
+      "</div>" +
       '<p class="meta">You’ll confirm products on Instacart. FlavorWeave won’t swap items for you.</p>' +
       '<p class="meta">Instacart will show what’s at the store you pick. FlavorWeave doesn’t see that stock.</p>'
     );
@@ -166,7 +174,7 @@
     root.innerHTML =
       '<div class="shop-handoff">' +
       '<h2 class="card-title" id="shopOrderTitle">Order online</h2>' +
-      '<p class="meta">Continues on Instacart. They choose the store and the products.</p>' +
+      (review.mode === "mock" ? MOCK_BADGE : '<p class="meta">Continues on Instacart. They choose the store and the products.</p>') +
       (review.usual_store_note ? '<p class="meta">' + escapeHtml(review.usual_store_note) + "</p>" : "") +
       statusHtml(review) +
       sectionsHtml(review) +
@@ -303,7 +311,7 @@
       renderUnavailable(root, bridge.getShop());
       return;
     }
-    renderChoice(root, bridge.getShop());
+    renderChoice(root, bridge.getShop(), instacart);
     var pick = document.getElementById("btnShopPickInstacart");
     if (pick) {
       pick.addEventListener("click", async function () {
@@ -343,6 +351,7 @@
     },
     safeLaunchUrl: safeLaunchUrl,
     renderUnavailable: renderUnavailable,
+    renderChoice: renderChoice,
     renderReview: renderReview,
     renderFailed: renderFailed,
     open: open,

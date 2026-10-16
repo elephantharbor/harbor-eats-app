@@ -5826,9 +5826,44 @@ button.plan-meal-title {
   cursor: pointer;
 }
 
-.instacart-cta:disabled {
+/* Enabled state keeps the documented Instacart colors above. Off is a neutral,
+   clearly inactive control with its reason beside it, not a faded live button. */
+.instacart-cta:disabled,
+.instacart-cta--off {
+  /* Fixed colors: the inset is always white, so theme tokens would lose contrast in dark mode. */
+  background: #ecebe8;
+  color: #3f3c37;
+  border: 1px dashed #8a857c;
   cursor: not-allowed;
-  opacity: 0.72;
+  opacity: 1;
+}
+
+.instacart-cta__state {
+  font-size: 0.8125rem;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #fff;
+  color: #3f3c37;
+  border: 1px solid #8a857c;
+}
+
+.instacart-cta__reason {
+  margin: var(--space-2, 8px) 0 0;
+  font-size: 0.875rem;
+  color: #3f3c37;
+}
+
+.shop-mock-badge {
+  margin: 0 0 var(--space-3, 12px);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #b7791f;
+  background: #fff7e6;
+  color: #6b4200;
+  font-weight: var(--weight-semibold);
 }
 
 .instacart-cta:focus-visible {
