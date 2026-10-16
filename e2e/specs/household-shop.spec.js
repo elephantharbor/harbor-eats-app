@@ -130,12 +130,24 @@ test.describe("household shopping list", () => {
     await expect.poll(() => page.evaluate(() => localStorage.getItem("he_shop_onboard"))).toBe("skip");
   });
 
-  test("order online stays disconnected", async ({ page }) => {
+  test("order online stays disconnected (or a labeled Preview mock)", async ({ page }) => {
     await page.goto("/");
     await openTheList(page);
     await expect(page.locator("[data-shop-more]").first()).toBeVisible({ timeout: 30000 });
+    const caps = page.waitForResponse((r) => r.url().includes("/api/grocery/capabilities"));
     await page.getByRole("button", { name: "Order online" }).click();
-    await expect(page.getByText("Not connected yet")).toBeVisible();
+    const body = await (await caps).json().catch(() => ({}));
+    const instacart = (body.providers || []).find((p) => p.id === "instacart");
+    if (!instacart) {
+      await expect(page.getByText("Not connected yet")).toBeVisible();
+    } else {
+      // Only a Preview fixture may configure Instacart here, and the UI must say it is a test.
+      expect(instacart.mode).toBe("mock");
+      expect(instacart.launch_enabled).toBe(false);
+      await page.locator("#btnShopPickInstacart").click();
+      await expect(page.getByText("This is a Preview test. It does not open Instacart")).toBeVisible();
+      await expect(page.locator("#btnShopInstacartCta")).toBeDisabled();
+    }
     await expect(page.getByRole("link", { name: /instacart/i })).toHaveCount(0);
   });
 });

@@ -36,6 +36,18 @@ describe("deploy configs (binding correct by construction)", () => {
     expect(validateDeployPlan({ env: "preview", configText: previewCfg }).project).toBe("harbor-eats-cycle1-preview");
     expect(validateDeployPlan({ env: "production", configText: prodCfg }).branch).toBe("main");
   });
+  it("S-03 grocery: production deploy plan refuses a missing or non-empty GROCERY_PROVIDERS or any fixture", () => {
+    const line = /^\s*GROCERY_PROVIDERS\s*=.*$/m;
+    expect(prodCfg).toMatch(line);
+    const plan = (configText) => () => validateDeployPlan({ env: "production", configText });
+    expect(plan(prodCfg.replace(line, ""))).toThrow(/missing GROCERY_PROVIDERS/);
+    expect(plan(prodCfg.replace(line, 'GROCERY_PROVIDERS = "instacart"'))).toThrow(/must be empty/);
+    expect(plan(`${prodCfg}\nGROCERY_FIXTURE = "instacart_mock"`)).toThrow(/GROCERY_FIXTURE/);
+    // The preview config (no GROCERY_PROVIDERS line) is fine for preview.
+    expect(previewCfg).not.toMatch(line);
+    expect(validateDeployPlan({ env: "preview", configText: previewCfg }).d1Id).toBe(PREVIEW_D1_ID);
+    expect(() => validateDeployPlan({ env: "preview", configText: `${previewCfg}\nGROCERY_FIXTURE = "instacart_mock"` })).toThrow(/GROCERY_FIXTURE/);
+  });
 });
 
 describe("deploy refusals", () => {

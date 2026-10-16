@@ -101,16 +101,37 @@ describe("grocery registry and config", () => {
     expect(providerIds({ GROCERY_PROVIDERS: "" })).toEqual([]);
   });
 
-  it("requires an empty GROCERY_PROVIDERS in committed env config", () => {
+  it("production config must declare GROCERY_PROVIDERS empty; preview may omit it", () => {
     const preview = readFileSync("deploy/pages/preview/wrangler.toml", "utf8");
     const production = readFileSync("deploy/pages/production/wrangler.toml", "utf8");
-    expect(validateGroceryVars(preview).GROCERY_PROVIDERS).toBe("");
-    expect(validateGroceryVars(production).GROCERY_PROVIDERS).toBe("");
-    expect(preview).not.toMatch(/INSTACART_API_KEY\s*=/);
-    expect(production).not.toMatch(/GROCERY_FIXTURE\s*=/);
-    expect(() => validateGroceryVars(`${preview}\nGROCERY_PROVIDERS = "instacart"`)).toThrow(/empty/);
-    expect(() => validateGroceryVars(`${production}\nINSTACART_API_KEY = "secret"`)).toThrow(/secret/);
-    expect(() => validateGroceryVars(`${preview}\nGROCERY_FIXTURE = "instacart_mock"`)).toThrow(/GROCERY_FIXTURE/);
+    expect(validateGroceryVars(production, "production").GROCERY_PROVIDERS).toBe("");
+    expect(preview).not.toMatch(/^\s*GROCERY_PROVIDERS\s*=/m);
+    expect("GROCERY_PROVIDERS" in validateGroceryVars(preview, "preview")).toBe(false);
+    expect(validateGroceryVars(`${preview}\nGROCERY_PROVIDERS = ""`, "preview").GROCERY_PROVIDERS).toBe("");
+    expect(preview).not.toMatch(/^\s*INSTACART_API_KEY\s*=/m);
+    expect(preview).not.toMatch(/^\s*GROCERY_FIXTURE\s*=/m);
+    expect(production).not.toMatch(/^\s*GROCERY_FIXTURE\s*=/m);
+  });
+
+  it("production check fails when GROCERY_PROVIDERS is missing, non-empty, or a fixture or key is present", () => {
+    const production = readFileSync("deploy/pages/production/wrangler.toml", "utf8");
+    const without = production.replace(/^\s*GROCERY_PROVIDERS\s*=.*$/m, "");
+    expect(without).not.toMatch(/GROCERY_PROVIDERS\s*=/);
+    expect(() => validateGroceryVars(without, "production")).toThrow(/missing GROCERY_PROVIDERS/);
+    expect(() => validateGroceryVars(without)).toThrow(/missing GROCERY_PROVIDERS/);
+    expect(() => validateGroceryVars(without, "staging")).toThrow(/missing GROCERY_PROVIDERS/);
+    const nonEmpty = production.replace(/^\s*GROCERY_PROVIDERS\s*=.*$/m, 'GROCERY_PROVIDERS = "instacart"');
+    expect(() => validateGroceryVars(nonEmpty, "production")).toThrow(/must be empty/);
+    expect(() => validateGroceryVars(`${production}\nGROCERY_FIXTURE = "instacart_mock"`, "production")).toThrow(/GROCERY_FIXTURE/);
+    expect(() => validateGroceryVars(`${production}\nGROCERY_FIXTURE = ""`, "production")).toThrow(/GROCERY_FIXTURE/);
+    expect(() => validateGroceryVars(`${production}\nINSTACART_API_KEY = "secret"`, "production")).toThrow(/secret/);
+  });
+
+  it("preview still refuses a non-empty provider list, a fixture, or a key in committed config", () => {
+    const preview = readFileSync("deploy/pages/preview/wrangler.toml", "utf8");
+    expect(() => validateGroceryVars(`${preview}\nGROCERY_PROVIDERS = "instacart"`, "preview")).toThrow(/empty/);
+    expect(() => validateGroceryVars(`${preview}\nGROCERY_FIXTURE = "instacart_mock"`, "preview")).toThrow(/GROCERY_FIXTURE/);
+    expect(() => validateGroceryVars(`${preview}\nINSTACART_API_KEY = "secret"`, "preview")).toThrow(/secret/);
   });
 });
 
