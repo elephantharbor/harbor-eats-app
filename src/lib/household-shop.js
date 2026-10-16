@@ -1028,12 +1028,42 @@ export const SHOP_EVENT_PROPS = {
   shopping_conflict: ["op"],
 };
 
+/** Edit patch keys editLine understands. Anything else never reaches telemetry. */
+export const SHOP_EDIT_FIELDS = ["category", "display_name", "list_state", "note", "quantity", "unit"];
+
+/** Mutation ops the list route accepts, plus the generic "write" fallback. */
+export const SHOP_CONFLICT_OPS = [
+  "add_item",
+  "clear_completed",
+  "delete_general",
+  "edit_line",
+  "resolve_override",
+  "set_state",
+  "set_trip_method",
+  "write",
+];
+
+function cleanEventValue(key, value) {
+  if (key === "fields") {
+    const known = String(value)
+      .split(",")
+      .map((field) => field.trim())
+      .filter((field) => SHOP_EDIT_FIELDS.includes(field));
+    const unique = [...new Set(known)].sort();
+    return unique.length ? unique.join(",") : null;
+  }
+  if (key === "op") return SHOP_CONFLICT_OPS.includes(value) ? value : null;
+  return value;
+}
+
 export function sanitizeShopEvent(name, props) {
   const allow = SHOP_EVENT_PROPS[name];
   if (!allow) return null;
   const out = {};
   for (const key of allow) {
-    if (props && props[key] != null) out[key] = props[key];
+    if (!props || props[key] == null) continue;
+    const value = cleanEventValue(key, props[key]);
+    if (value != null) out[key] = value;
   }
   return out;
 }

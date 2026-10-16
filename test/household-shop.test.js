@@ -22,6 +22,7 @@ import {
   renderExportCsv,
   renderRecipeExport,
   resolveOverride,
+  sanitizeShopEvent,
   setLineState,
   shareSnapshot,
 } from "../src/lib/household-shop.js";
@@ -759,5 +760,26 @@ describe("shopping stays off the model", () => {
       expect(src).not.toMatch(/from ["'].*\/ai/);
       expect(src).not.toMatch(/fetch\(|api\.instacart|developer\.instacart/i);
     }
+  });
+});
+
+describe("shopping telemetry allow-list", () => {
+  it("keeps only known edited-field names and drops item text", () => {
+    expect(
+      sanitizeShopEvent("shopping_item_edited", { fields: "note,quantity,secret sauce,display_name,quantity" })
+    ).toEqual({ fields: "display_name,note,quantity" });
+    expect(sanitizeShopEvent("shopping_item_edited", { fields: "paper towels from Market Street" })).toEqual({});
+  });
+
+  it("keeps only known conflict ops", () => {
+    expect(sanitizeShopEvent("shopping_conflict", { op: "set_state" })).toEqual({ op: "set_state" });
+    expect(sanitizeShopEvent("shopping_conflict", { op: "write" })).toEqual({ op: "write" });
+    expect(sanitizeShopEvent("shopping_conflict", { op: "add 2 bags oat milk" })).toEqual({});
+    expect(sanitizeShopEvent("shopping_conflict", { op: "set_state", text: "oat milk" })).toEqual({ op: "set_state" });
+  });
+
+  it("drops unknown events and props", () => {
+    expect(sanitizeShopEvent("shopping_item_text", { text: "x" })).toBeNull();
+    expect(sanitizeShopEvent("shopping_item_added", { origin: "general", text: "oat milk" })).toEqual({ origin: "general" });
   });
 });

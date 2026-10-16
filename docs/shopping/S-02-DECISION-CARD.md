@@ -44,6 +44,10 @@ There is no offline queue. The checkbox does not move until the server returns 2
 
 `HE-SHOP-` plus 24 random bytes, hex. Separate from `HE-SHARE`. Seven days. Revocable. The public page is the snapshot taken at creation. Later items are not on it. Missing, expired, and revoked all return the same 404. The page and the API are `no-store` and `noindex`.
 
+## Migration gate
+
+0017 is one shot. Rehearse on a backup copy with `node scripts/shop-migration-0017.mjs --sqlite FILE --dry-run|--apply|--verify` before the remote apply. Verify runs four zero-row checks: two open lists for one household; a household's current plan has shop lines but no open list pointing at it; a purchased or already-have mark not carried over; a duplicate line identity. "Current plan" is the latest unfinished plan by `updated_at`, `created_at`, `dinner_plan_id`, the same rule as `findCurrentDinnerPlanId`. Older unfinished drafts keep their lines in `dinner_shop_line` and are not on the list; verify reports them as `excluded_older_draft_lines`, not as a failure (Preview at rehearsal: 56 lines across 4 households).
+
 ## What S-03 can do
 
 Add `grocery_handoff` in migration 0018, an adapter, and the Instacart review inside the existing Order online sheet. The list, aisles, quantities, revision, and snapshot do not need a redesign. S-02 does not call a grocery API and does not store a handoff.

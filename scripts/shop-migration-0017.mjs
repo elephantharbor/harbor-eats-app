@@ -11,16 +11,33 @@ import { readFileSync } from "node:fs";
 import { DatabaseSync } from "node:sqlite";
 import { fileURLToPath } from "node:url";
 
+// The app's current-plan rule (DINNER_PLAN_RECENCY in dinner-plan-store.js).
+const CURRENT_PLAN = `SELECT p2.dinner_plan_id FROM dinner_plan p2
+  WHERE p2.household_id = p.household_id AND p2.status != 'completed'
+  ORDER BY p2.updated_at DESC, p2.created_at DESC, p2.dinner_plan_id DESC
+  LIMIT 1`;
+
+// Informational: lines on older unfinished drafts that the backfill leaves out.
+const EXCLUDED_SQL = `SELECT COUNT(l.line_id) AS lines, COUNT(DISTINCT p.household_id) AS households
+  FROM dinner_plan p
+  JOIN dinner_shop_line l ON l.dinner_plan_id = p.dinner_plan_id
+  WHERE p.status != 'completed' AND p.dinner_plan_id != (${CURRENT_PLAN})`;
+
 const VERIFY = [
   {
     name: "two open lists",
     sql: `SELECT household_id, COUNT(*) c FROM household_shop_list WHERE status = 'open' GROUP BY household_id HAVING c > 1`,
   },
   {
-    name: "active plan shop lines missing an open list",
+    // Current plan only: the latest unfinished plan, the same rule as
+    // findCurrentDinnerPlanId. One open list per household points at it.
+    // Older unfinished drafts keep their lines in dinner_shop_line and are
+    // reported as excluded_older_draft_lines, not as failures.
+    name: "current plan shop lines missing an open list",
     sql: `SELECT p.household_id, p.dinner_plan_id FROM dinner_plan p
           JOIN dinner_shop_line l ON l.dinner_plan_id = p.dinner_plan_id
           WHERE p.status != 'completed'
+            AND p.dinner_plan_id = (${CURRENT_PLAN})
             AND NOT EXISTS (
               SELECT 1 FROM household_shop_list s
               WHERE s.household_id = p.household_id AND s.status = 'open' AND s.dinner_plan_id = p.dinner_plan_id
@@ -89,7 +106,14 @@ function counts() {
        WHERE p.status != 'completed' AND l.list_state IN ('purchased', 'already_have')`
     )
     .get();
-  return { households: plans.households || 0, lines: plans.lines || 0, marked: purchased.c || 0 };
+  const excluded = db.prepare(EXCLUDED_SQL).get();
+  return {
+    households: plans.households || 0,
+    lines: plans.lines || 0,
+    marked: purchased.c || 0,
+    excluded_lines: excluded.lines || 0,
+    excluded_households: excluded.households || 0,
+  };
 }
 
 if (selected === "dry-run") {
@@ -102,6 +126,8 @@ if (selected === "dry-run") {
         would_backfill_households: before.households,
         would_backfill_lines: before.lines,
         marked_lines_to_preserve: before.marked,
+        excluded_older_draft_lines: before.excluded_lines,
+        excluded_older_draft_households: before.excluded_households,
         writes: false,
       },
       null,
@@ -141,5 +167,18 @@ for (const check of VERIFY) {
   if (rows.length) failed += 1;
   report.push({ name: check.name, rows: rows.length, sample: rows.slice(0, 5) });
 }
-console.log(JSON.stringify({ mode: "verify", ok: failed === 0, checks: report }, null, 2));
+const excluded = db.prepare(EXCLUDED_SQL).get();
+console.log(
+  JSON.stringify(
+    {
+      mode: "verify",
+      ok: failed === 0,
+      checks: report,
+      excluded_older_draft_lines: excluded.lines || 0,
+      excluded_older_draft_households: excluded.households || 0,
+    },
+    null,
+    2
+  )
+);
 process.exit(failed ? 1 : 0);
