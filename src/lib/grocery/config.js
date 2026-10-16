@@ -141,6 +141,46 @@ export function groceryEnvForRequest(env, request) {
   };
 }
 
+/**
+ * Live development calls are only for a household with data_origin synthetic.
+ * Production is returned unchanged. A non-synthetic household uses the mock
+ * when the original env has the fixture, and is blocked otherwise.
+ * The blocked env carries no key and no fetch, so a later adapter cannot call out.
+ * @param {object} baseEnv env before the per-request header overlay
+ * @param {object} requestEnv env after groceryEnvForRequest
+ * @param {{ data_origin?: string|null }|null|undefined} household
+ */
+export function groceryEnvForHousehold(baseEnv, requestEnv, household) {
+  if (!requestEnv || productionLocked(requestEnv) || productionLocked(baseEnv)) {
+    return { env: requestEnv, blocked: false };
+  }
+  if (household && household.data_origin === "synthetic") return { env: requestEnv, blocked: false };
+  const activation = instacartActivation(requestEnv);
+  if (activation.mode !== "live" || activation.channel !== "development") {
+    return { env: requestEnv, blocked: false };
+  }
+  if (groceryFixtureActive(baseEnv)) {
+    const mode = String(baseEnv?.GROCERY_MOCK_MODE || "ok").trim().toLowerCase().replace(/-/g, "_");
+    const next = {
+      ...requestEnv,
+      GROCERY_FIXTURE: "instacart_mock",
+      GROCERY_RUNTIME: "mock",
+      GROCERY_MOCK_MODE: MOCK_MODES.has(mode) ? mode : "ok",
+    };
+    delete next.GROCERY_FETCH;
+    delete next.GROCERY_DEV_BLOCKED;
+    return { env: next, blocked: false };
+  }
+  const next = {
+    ...requestEnv,
+    GROCERY_DEV_BLOCKED: "1",
+    GROCERY_RUNTIME: "off",
+    INSTACART_API_KEY: "",
+  };
+  delete next.GROCERY_FETCH;
+  return { env: next, blocked: true };
+}
+
 export function groceryTimeoutMs(env) {
   if (productionLocked(env)) return 8000;
   const raw = Number(env?.GROCERY_TIMEOUT_MS);

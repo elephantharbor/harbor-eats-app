@@ -4,13 +4,12 @@
 
 import { requireSession } from "../auth.js";
 import { logDatabaseError, stripDatabaseDetail } from "../db-error.js";
-import { householdIsSynthetic } from "../evidence-origin.js";
 import { parseMemberShopping, parseShoppingSettings } from "../household-settings.js";
 import { buyQuantity, presentLine } from "../household-shop.js";
 import { isActiveMember, loadOpenList } from "../household-shop-store.js";
 import { linkbackUrl } from "./allowlist.js";
 import { INSTACART_CTA_LABEL, INSTACART_LOGO_PRESENT } from "./branding.js";
-import { groceryEnvForRequest, instacartActivation, productionLocked } from "./config.js";
+import { groceryEnvForHousehold, groceryEnvForRequest, instacartActivation, productionLocked } from "./config.js";
 import { groceryError } from "./errors.js";
 import { contentFingerprintInput, fingerprint, requestFingerprintInput } from "./fingerprint.js";
 import {
@@ -176,15 +175,35 @@ function publicDiagnostic(diagnostic) {
   };
 }
 
+function devNotAllowedResponse() {
+  return json(
+    {
+      ok: false,
+      error: "dev_not_allowed",
+      code: "dev_not_allowed",
+      called: false,
+      blocker: "Development Instacart calls are only available for a synthetic household. No Instacart call was made.",
+    },
+    403
+  );
+}
+
+function developmentCallBlocked(env) {
+  return String(env?.GROCERY_DEV_BLOCKED || "") === "1";
+}
+
 async function devSmoke(env, request, session) {
   const household = await env.DB.prepare(
-    `SELECT data_origin, display_name, acquisition_source FROM household WHERE household_id = ?`
+    `SELECT data_origin FROM household WHERE household_id = ?`
   )
     .bind(session.household_id)
     .first();
-  const synthetic =
-    householdIsSynthetic(household) || /^\[synthetic\]/i.test(String(household?.display_name || "").trim());
-  if (!synthetic) {
+  const activation = instacartActivation(env);
+  const liveDevelopment = activation.mode === "live" && activation.channel === "development";
+  if (developmentCallBlocked(env) || (liveDevelopment && household?.data_origin !== "synthetic")) {
+    return devNotAllowedResponse();
+  }
+  if (household?.data_origin !== "synthetic") {
     return json(
       {
         ok: false,
@@ -195,7 +214,6 @@ async function devSmoke(env, request, session) {
       403
     );
   }
-  const activation = instacartActivation(env);
   if (activation.mode !== "live" || activation.channel !== "development") {
     const missing = activation.reason === "dev_key_missing";
     return json(
@@ -253,11 +271,26 @@ export async function routeGroceryRequest(env, request, path, url, deps = {}) {
   if (path === "/api/grocery/dev-smoke" && productionLocked(env)) {
     return json({ ok: false, error: "not_found" }, 404);
   }
+  const baseEnv = env;
   env = groceryEnvForRequest(env, request);
   const method = request.method;
   const gate = await requireShopper(env, request);
   if (gate.error) return gate.error;
   const session = gate.session;
+  const household = await env.DB.prepare(`SELECT data_origin FROM household WHERE household_id = ?`)
+    .bind(session.household_id)
+    .first();
+  env = groceryEnvForHousehold(baseEnv, env, household).env;
+  if (
+    developmentCallBlocked(env) &&
+    method === "POST" &&
+    (path === "/api/grocery/dev-smoke" ||
+      path === "/api/grocery/handoff" ||
+      path === "/api/grocery/retailers" ||
+      path === "/api/grocery/operation")
+  ) {
+    return devNotAllowedResponse();
+  }
   const now = new Date().toISOString();
 
   if (path === "/api/grocery/capabilities" && method === "GET") {

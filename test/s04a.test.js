@@ -26,7 +26,7 @@ import { createDinnerPlan } from "../src/lib/plan-mutations.js";
 import { plannerCatalog } from "../src/lib/dinner-planner.js";
 import { contentFingerprintInput, fingerprint } from "../src/lib/grocery/fingerprint.js";
 import { projectTransfer } from "../src/lib/grocery/projection.js";
-import { groceryEnvForRequest, instacartActivation, productionLocked } from "../src/lib/grocery/config.js";
+import { groceryEnvForHousehold, groceryEnvForRequest, instacartActivation, productionLocked } from "../src/lib/grocery/config.js";
 import { INSTACART_API_HOSTS } from "../src/lib/grocery/allowlist.js";
 import { createInstacartAdapter } from "../src/lib/grocery/instacart.js";
 
@@ -522,6 +522,149 @@ describe("request-time grocery mode", () => {
       { ...env, ENVIRONMENT: "production", DEPLOY_ENV: "production" }
     );
     expect(production.status).toBe(404);
+  });
+});
+
+describe("development calls require a synthetic household", () => {
+  function livePreview(extra = {}) {
+    return {
+      ENVIRONMENT: "preview",
+      DEPLOY_ENV: "preview",
+      GROCERY_PROVIDERS: "instacart",
+      GROCERY_FIXTURE: "",
+      INSTACART_API_KEY: "dev-key-not-for-logs",
+      ...extra,
+    };
+  }
+
+  function countingEnv(sqlite, extra = {}) {
+    const calls = [];
+    const env = livePreview({
+      DB: asD1(sqlite),
+      GROCERY_FETCH: async () => {
+        calls.push("live");
+        return new Response(JSON.stringify({ products_link_url: "https://www.instacart.com/store/shopping-list/dev" }), {
+          status: 200,
+          headers: { "x-request-id": "req_blocked", "content-type": "application/json" },
+        });
+      },
+      ...extra,
+    });
+    return { calls, env };
+  }
+
+  it("does not fetch for a non-synthetic household that sends the dev header", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite, "hh_real", "m_real", "The Parkers");
+    const { calls, env } = countingEnv(sqlite);
+    const session = await createMemberSession(env.DB, { household_id: "hh_real", member_id: "m_real" });
+    const headers = { "X-FlavorWeave-Grocery-Mode": "dev" };
+    const smoke = await call(env, "POST", "/api/grocery/dev-smoke", { token: session.session_token, headers, body: {} });
+    expect(smoke.status).toBe(403);
+    expect(smoke.body.error).toBe("dev_not_allowed");
+    expect(smoke.body.called).toBe(false);
+    const handoff = await call(env, "POST", "/api/grocery/handoff", { token: session.session_token, headers, body: {} });
+    expect(handoff.status).toBe(403);
+    expect(handoff.body.error).toBe("dev_not_allowed");
+    expect(handoff.body.called).toBe(false);
+    expect(calls).toEqual([]);
+    expect(smoke.text).not.toContain("dev-key-not-for-logs");
+  });
+
+  it("does not fetch for a non-synthetic household when GROCERY_RUNTIME is dev", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite, "hh_real", "m_real", "The Parkers");
+    const { calls, env } = countingEnv(sqlite, { GROCERY_RUNTIME: "dev" });
+    const session = await createMemberSession(env.DB, { household_id: "hh_real", member_id: "m_real" });
+    const smoke = await call(env, "POST", "/api/grocery/dev-smoke", { token: session.session_token, body: {} });
+    expect(smoke.status).toBe(403);
+    expect(smoke.body.error).toBe("dev_not_allowed");
+    expect(smoke.body.called).toBe(false);
+    const handoff = await call(env, "POST", "/api/grocery/handoff", { token: session.session_token, body: {} });
+    expect(handoff.body.error).toBe("dev_not_allowed");
+    expect(calls).toEqual([]);
+
+    const autoLive = countingEnv(sqlite);
+    const auto = await call(autoLive.env, "POST", "/api/grocery/dev-smoke", { token: session.session_token, body: {} });
+    expect(auto.body.error).toBe("dev_not_allowed");
+    expect(auto.body.called).toBe(false);
+    expect(autoLive.calls).toEqual([]);
+  });
+
+  it("uses the mock and does not fetch when a non-synthetic household asks for dev and a fixture is set", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite, "hh_real", "m_real", "The Parkers");
+    const { calls, env } = countingEnv(sqlite, { GROCERY_FIXTURE: "instacart_mock", GROCERY_RUNTIME: "dev" });
+    const session = await createMemberSession(env.DB, { household_id: "hh_real", member_id: "m_real" });
+    const caps = await call(env, "GET", "/api/grocery/capabilities", {
+      token: session.session_token,
+      headers: { "X-FlavorWeave-Grocery-Mode": "dev" },
+    });
+    expect(caps.body.providers.find((row) => row.id === "instacart").mode).toBe("mock");
+    const smoke = await call(env, "POST", "/api/grocery/dev-smoke", {
+      token: session.session_token,
+      headers: { "X-FlavorWeave-Grocery-Mode": "dev" },
+      body: {},
+    });
+    expect(smoke.body.called).toBe(false);
+    expect(calls).toEqual([]);
+  });
+
+  it("fetches once for a synthetic household in development and leaves production unchanged", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite, "hh_syn", "m_syn", "[synthetic] E2E Kitchen");
+    sqlite.prepare(`UPDATE household SET data_origin = 'synthetic' WHERE household_id = 'hh_syn'`).run();
+    const { calls, env } = countingEnv(sqlite, { GROCERY_RUNTIME: "dev" });
+    const session = await createMemberSession(env.DB, { household_id: "hh_syn", member_id: "m_syn" });
+    const smoke = await call(env, "POST", "/api/grocery/dev-smoke", {
+      token: session.session_token,
+      headers: { "X-FlavorWeave-Grocery-Mode": "dev" },
+      body: {},
+    });
+    expect(smoke.status).toBe(200);
+    expect(smoke.body.called).toBe(true);
+    expect(calls).toEqual(["live"]);
+
+    const productionCalls = [];
+    const production = await worker.fetch(
+      new Request("https://fw.test/api/grocery/dev-smoke", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-FlavorWeave-Grocery-Mode": "dev" },
+        body: "{}",
+      }),
+      {
+        ...livePreview(),
+        DB: asD1(sqlite),
+        ENVIRONMENT: "production",
+        DEPLOY_ENV: "production",
+        GROCERY_PROVIDERS: "",
+        INSTACART_API_KEY: "",
+        GROCERY_FETCH: async () => {
+          productionCalls.push("live");
+          return new Response("{}", { status: 200 });
+        },
+      }
+    );
+    expect(production.status).toBe(404);
+    expect(productionCalls).toEqual([]);
+    const productionEnv = {
+      ENVIRONMENT: "production",
+      DEPLOY_ENV: "production",
+      GROCERY_PROVIDERS: "instacart",
+      GROCERY_FIXTURE: "instacart_mock",
+      GROCERY_RUNTIME: "dev",
+      INSTACART_API_KEY: "prod-key-not-for-logs",
+    };
+    const overlaid = groceryEnvForRequest(
+      productionEnv,
+      new Request("https://fw.test/api/grocery/capabilities", { headers: { "X-FlavorWeave-Grocery-Mode": "dev" } })
+    );
+    expect(overlaid).toBe(productionEnv);
+    const gated = groceryEnvForHousehold(productionEnv, overlaid, { data_origin: "household" });
+    expect(gated.blocked).toBe(false);
+    expect(gated.env).toBe(productionEnv);
+    expect(instacartActivation(gated.env)).toMatchObject({ mode: "live", channel: "consumer" });
+    expect(productionLocked(productionEnv)).toBe(true);
   });
 });
 

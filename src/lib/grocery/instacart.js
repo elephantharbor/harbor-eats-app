@@ -24,6 +24,13 @@ export function resolveInstacartFetch(env, injected) {
   const deploy = String(env?.DEPLOY_ENV || "").toLowerCase();
   const locked = environment === "production" || environment === "prod" || deploy === "production";
   if (typeof env?.GROCERY_FETCH === "function" && !locked) return env.GROCERY_FETCH;
+  if (String(env?.GROCERY_DEV_BLOCKED || "") === "1") {
+    return async () => {
+      const error = new Error("dev_not_allowed");
+      error.code = "dev_not_allowed";
+      throw error;
+    };
+  }
   const activation = instacartActivation(env);
   // Unit tests stay on the mock unless they inject a fetch. Preview development uses the real fetch.
   if (activation.mode === "mock" || environment === "test") {
@@ -92,6 +99,15 @@ export function createInstacartAdapter({ env = {}, fetch: injected } = {}) {
       return capabilityUnsupported("instacart", capability);
     },
     async discoverRetailers({ postal_code, country_code } = {}) {
+      if (String(env?.GROCERY_DEV_BLOCKED || "") === "1") {
+        return groceryError({
+          code: "dev_not_allowed",
+          provider_id: "instacart",
+          capability: "retailer_discovery",
+          status: 403,
+          message: "Development Instacart calls are only available for a synthetic household.",
+        });
+      }
       if (!adapter.configured()) return notConfigured("instacart", "retailer_discovery");
       const postal = String(postal_code || "").trim();
       const country = String(country_code || "").trim().toUpperCase();
@@ -129,6 +145,15 @@ export function createInstacartAdapter({ env = {}, fetch: injected } = {}) {
       };
     },
     async createListHandoff({ title, linkback_url, lines, expires_in_days } = {}) {
+      if (String(env?.GROCERY_DEV_BLOCKED || "") === "1") {
+        return groceryError({
+          code: "dev_not_allowed",
+          provider_id: "instacart",
+          capability: "list_handoff",
+          status: 403,
+          message: "Development Instacart calls are only available for a synthetic household.",
+        });
+      }
       if (!adapter.configured()) return notConfigured("instacart", "list_handoff");
       const expires = Number(expires_in_days || LINK_DAYS);
       if (!Array.isArray(lines) || !lines.length) {

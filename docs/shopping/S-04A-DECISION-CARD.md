@@ -61,6 +61,8 @@ Read on each request, in this order. Production stops at the first step.
 
 `dev` uses `https://connect.dev.instacart.tools` and `Authorization: Bearer` with the server `INSTACART_API_KEY`. If the key is missing, the mode is off with reason `dev_key_missing`. The mock is not reported as a successful live call.
 
+A live development call, including the `dev` header, `GROCERY_RUNTIME=dev`, and key-plus-host auto-live, runs only when the session household has `data_origin = synthetic`. Any other household uses the mock when the fixture is set. Otherwise the call returns `403 dev_not_allowed` and does not use the network. Production does not consult this rule.
+
 The UI channel is `mock`, `development`, or `consumer`. Development copy says the list can go to Instacart’s development API and that nothing is ordered. The Shop on Instacart control stays disabled, with the existing off treatment, until an official logo file is committed and `INSTACART_LOGO_PRESENT` is set in that same change.
 
 ## Development smoke
