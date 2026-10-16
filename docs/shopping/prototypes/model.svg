@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">FlavorWeave shopping entities</title>
+  <desc id="desc">Household list in the center, recipe projection on the left, provider handoff on the right. Pantry is noted as not built.</desc>
+  <style>
+    text { font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif; fill: #17393A; }
+    .h { font-weight: 800; font-size: 18px; }
+    .s { font-size: 13px; fill: #4A6263; }
+    .box { fill: #FFFDF8; stroke: #E5DED7; }
+    .accent { fill: #FBE6DB; stroke: #F15D3C; }
+    .quiet { fill: #F7F2EC; stroke: #E5DED7; }
+  </style>
+  <rect width="1200" height="720" fill="#EFE8DF"/>
+  <text x="40" y="48" class="h">Canonical list, with fulfillment kept beside it</text>
+  <text x="40" y="72" class="s">S-01 sketch. Not a schema migration.</text>
+
+  <rect class="box" x="40" y="110" width="320" height="250" rx="20"/>
+  <text x="64" y="146" class="h">Dinner plan</text>
+  <text x="64" y="176" class="s">Existing. Pins, guests, adaptation.</text>
+  <text x="64" y="202" class="s">scaleForDiners stays here.</text>
+  <text x="64" y="228" class="s">dinner_shop_line is the projection</text>
+  <text x="64" y="250" class="s">cache, not the household list.</text>
+  <text x="64" y="286" class="s">Leftovers and eating out add nothing.</text>
+  <text x="64" y="320" class="s">Checks do not follow a new ingredient id.</text>
+
+  <rect class="accent" x="420" y="110" width="360" height="360" rx="20"/>
+  <text x="444" y="146" class="h">Household list</text>
+  <text x="444" y="176" class="s">One open list. Revision for handoff.</text>
+  <text x="444" y="210" class="s">Recipe lines  -  summed, with meal ids.</text>
+  <text x="444" y="234" class="s">General lines  -  typed, no model.</text>
+  <text x="444" y="268" class="s">States: open, already have, skipped, bought.</text>
+  <text x="444" y="292" class="s">still_needed is separate.</text>
+  <text x="444" y="326" class="s">Override quantity survives a resync.</text>
+  <text x="444" y="360" class="s">Sent, in-cart, and received are not states.</text>
+  <text x="444" y="400" class="s">A handoff does not mark bought.</text>
+  <text x="444" y="434" class="s">Two shoppers: updated_at or 409.</text>
+
+  <rect class="box" x="840" y="110" width="320" height="250" rx="20"/>
+  <text x="864" y="146" class="h">Handoff</text>
+  <text x="864" y="176" class="s">S-03. One URL at one revision.</text>
+  <text x="864" y="202" class="s">Instacart returns products_link_url.</text>
+  <text x="864" y="228" class="s">No order id until a provider sends one.</text>
+  <text x="864" y="264" class="s">Stale when the list revision moves.</text>
+  <text x="864" y="290" class="s">Cancelled means we stop showing it.</text>
+  <text x="864" y="326" class="s">Their page still does the shopping.</text>
+
+  <rect class="quiet" x="420" y="500" width="360" height="160" rx="20"/>
+  <text x="444" y="536" class="h">Pantry lot  -  not built</text>
+  <text x="444" y="566" class="s">Later table, same item key.</text>
+  <text x="444" y="590" class="s">On-hand, place, expiry, confidence.</text>
+  <text x="444" y="624" class="s">already_have is not a starting balance.</text>
+
+  <path d="M360 230 H420" stroke="#0F5D5B" stroke-width="2" fill="none"/>
+  <path d="M780 230 H840" stroke="#0F5D5B" stroke-width="2" fill="none"/>
+  <path d="M600 470 V500" stroke="#0F5D5B" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+</svg>
