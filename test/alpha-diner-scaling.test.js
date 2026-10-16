@@ -5,6 +5,7 @@ import { plannerCatalog } from "../src/lib/dinner-planner.js";
 import { scaleForDiners, neededLines } from "../src/lib/ingredient-identity.js";
 import { dinerCountForMeal, dinerExceptionCopy, shopCookingHeadline } from "../src/lib/diner-count.js";
 import { applyPlanMutation, createDinnerPlan } from "../src/lib/plan-mutations.js";
+import { emptyHouseholdList, projectPlanIntoList, setLineState } from "../src/lib/household-shop.js";
 
 function loadMigrations(db) {
   const dir = new URL("../migrations", import.meta.url).pathname;
@@ -132,5 +133,15 @@ describe("alpha diner scaling", () => {
     expect(mutated.ok).toBe(true);
     const again = mutated.plan.shop_lines.find((l) => l.ingredient_id === line.ingredient_id);
     expect(again.list_state).toBe("purchased");
+    const list = projectPlanIntoList(
+      emptyHouseholdList({ shop_list_id: "hsl_guest", household_id: "hh", now: ctx.now }),
+      plan,
+      { now: ctx.now }
+    ).list;
+    const marked = setLineState(list, { line_id: list.lines[0].line_id, list_state: "purchased" }, { now: ctx.now });
+    const projected = projectPlanIntoList(marked.list, mutated.plan, { now: ctx.now }).list;
+    const kept = projected.lines.find((row) => row.ingredient_id === line.ingredient_id && row.unit === line.unit);
+    expect(kept.list_state).toBe("purchased");
+    expect(projected.lines.filter((row) => row.ingredient_id === line.ingredient_id && row.unit === line.unit)).toHaveLength(1);
   });
 });

@@ -114,6 +114,16 @@ export async function advanceCookToRate(page) {
   await raterCard.waitFor({ state: "visible", timeout: 15000 });
 }
 
+/** The optional shopping card appears after onboarding invite. Skip writes nothing. */
+/** @param {import('@playwright/test').Page} page */
+export async function dismissShopOnboard(page) {
+  const onboard = page.locator("#shopOnboardSheet");
+  if (await onboard.waitFor({ state: "visible", timeout: 8000 }).then(() => true).catch(() => false)) {
+    await page.locator("#btnShopOnboardSkip").click();
+    await onboard.waitFor({ state: "hidden", timeout: 8000 });
+  }
+}
+
 /** @param {import('@playwright/test').Page} page */
 export async function skipToChoices(page) {
   await page.getByRole("button", { name: "Get started" }).click();
@@ -127,6 +137,7 @@ export async function skipToChoices(page) {
   await page.getByRole("button", { name: "Continue" }).click();
   await page.getByRole("button", { name: "Skip for now" }).click();
   await page.getByRole("button", { name: "Skip — show tonight’s picks" }).click();
+  await dismissShopOnboard(page);
   await reachTonightChoices(page);
 }
 

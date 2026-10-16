@@ -108,7 +108,14 @@
       return "home";
     }
     if (view === "planConfirm") return "planReview";
-    if (view === "shopList") return "choices";
+    if (view === "shopList") {
+      var shopOrigin = ctx && ctx.origin;
+      if (shopOrigin === "home") return "home";
+      if (shopOrigin === "planReview") return "planReview";
+      if (shopOrigin === "planConfirm") return "planConfirm";
+      if (shopOrigin === "choices" || shopOrigin === "tonightPlan") return "choices";
+      return "choices";
+    }
     if (view === "find" && ctx && ctx.mode !== "standalone") return ctx.origin || "home";
     if (view === "detail" && ctx && ctx.origin === "find") return "find";
     if (view === "detail" && ctx && ctx.origin === "planReview") return "planReview";
@@ -151,6 +158,7 @@
     if (view === "planCount" || view === "planConfirm") return "focus";
     if (view === "planReview") return ctx && (ctx.mode === "edit" || ctx.mode === "readonly") ? "full" : "focus";
     if (view === "shopList") return "focus";
+    if (view === "shopShare") return "brand";
     return "brand";
   }
 

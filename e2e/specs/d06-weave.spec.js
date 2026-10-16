@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { skipToChoices, reachTonightChoices } from "./helpers.js";
+import { dismissShopOnboard, skipToChoices, reachTonightChoices } from "./helpers.js";
 
 const repoRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
@@ -26,6 +26,7 @@ async function skipToChoicesShellfish(page) {
   await page.getByRole("button", { name: "Continue" }).click();
   await page.getByRole("button", { name: "Skip for now" }).click();
   await page.getByRole("button", { name: "Skip — show tonight’s picks" }).click();
+  await dismissShopOnboard(page);
   await reachTonightChoices(page);
 }
 

@@ -45,6 +45,7 @@ import {
 import { buildTasteProfile } from "./lib/taste-model.js";
 import { routeTasteRequest } from "./lib/taste-profile.js";
 import { routeDinnerPlanRequest } from "./lib/dinner-plan-routes.js";
+import { routeHouseholdShopRequest } from "./lib/household-shop-routes.js";
 import { routeDiscoveryRequest } from "./discovery/http.js";
 import { routeWeaveRequest } from "./weave/routes.js";
 import { routeAlphaAiRequest } from "./ai/alpha-routes.js";
@@ -2482,6 +2483,12 @@ export default {
           if (dinnerRes) return dinnerRes;
         }
 
+        // S-02 household shopping list. Recipe lines are projected from the plan save above.
+        {
+          const shopRes = await routeHouseholdShopRequest(env, request, path, url, { writeOrigin });
+          if (shopRes) return shopRes;
+        }
+
         // Alpha: recipe adaptation advice + recommendation explanations.
         {
           const alphaAiRes = await routeAlphaAiRequest(env, request, path);
@@ -2653,7 +2660,7 @@ export default {
 
     // SPA deep-link routes → index.html (auth boundary handled client-side)
     if (env.ASSETS) {
-      const spaPaths = ["/invite/", "/share/", "/recover/", "/rate/", "/meal/", "/find"];
+      const spaPaths = ["/invite/", "/share/", "/recover/", "/rate/", "/meal/", "/find", "/shop/"];
       if (spaPaths.some((p) => path.startsWith(p))) {
         // Serve SPA shell at deep-link URL (wrangler assets 307 /index.html → /).
         const shell = new URL(request.url);
@@ -2662,6 +2669,11 @@ export default {
         const res = await env.ASSETS.fetch(new Request(shell.toString(), request));
         const headers = new Headers(res.headers);
         headers.set("Content-Type", "text/html; charset=utf-8");
+        if (path.startsWith("/shop/")) {
+          headers.set("Cache-Control", "private, no-store");
+          headers.set("X-Robots-Tag", "noindex, nofollow");
+          headers.set("Referrer-Policy", "no-referrer");
+        }
         return new Response(res.body, { status: 200, headers });
       }
       return env.ASSETS.fetch(request);
