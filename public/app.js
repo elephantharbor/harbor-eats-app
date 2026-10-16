@@ -332,15 +332,52 @@
     }
   }
 
+  const clientErrorReporter = window.FlavorWeaveClientErrors
+    ? window.FlavorWeaveClientErrors.createReporter(function (path, body) {
+        return sendClientError(path, body);
+      })
+    : null;
+
   function reportClientError(surface, code, message, extra) {
-    apiPost("/api/client-errors", {
-      surface,
-      code,
-      message,
-      path: location.pathname + location.search,
-      household_id: API.householdId || state.householdId,
-      ...(extra || {}),
-    }).catch(function () {});
+    if (!clientErrorReporter) return;
+    clientErrorReporter
+      .report(
+        Object.assign(
+          {
+            surface: surface,
+            code: code,
+            message: message,
+            path: location.pathname + location.search,
+            household_id: API.householdId || state.householdId,
+          },
+          extra || {}
+        )
+      )
+      .catch(function () {});
+  }
+
+  function noteApiFailure(path, code, message, extra) {
+    if (path === "/api/client-errors") return;
+    reportClientError("api", code, message, extra);
+  }
+
+  async function sendClientError(path, body) {
+    if (!(await apiProbe())) return { ok: false, skipped: true };
+    try {
+      const r = await fetch(path, {
+        method: "POST",
+        headers: apiHeaders(),
+        credentials: "same-origin",
+        body: JSON.stringify(body || {}),
+      });
+      const j = await r.json().catch(function () {
+        return null;
+      });
+      if (!r.ok || (j && j.ok === false)) return { ok: false, status: r.status };
+      return { ok: true, status: r.status };
+    } catch (_) {
+      return { ok: false, status: 0 };
+    }
   }
 
   async function apiPost(path, body) {
@@ -355,13 +392,13 @@
       const j = await r.json().catch(() => null);
       if (!r.ok || (j && j.ok === false)) {
         console.warn("[he-api]", path, r.status, j);
-        reportClientError("api", j && j.error, path + " " + r.status, { response: j });
+        noteApiFailure(path, j && j.error, path + " " + r.status, { response: j });
         return Object.assign(j || {}, { ok: false, _httpStatus: r.status });
       }
       return j;
     } catch (e) {
       console.warn("[he-api]", path, e);
-      reportClientError("api", "network", String(e && e.message), { path });
+      noteApiFailure(path, "network", String(e && e.message), { path: path });
       return null;
     }
   }
@@ -376,13 +413,13 @@
       const j = await r.json().catch(() => null);
       if (!r.ok || (j && j.ok === false)) {
         console.warn("[he-api]", path, r.status, j);
-        reportClientError("api", j && j.error, path + " " + r.status, { response: j });
+        noteApiFailure(path, j && j.error, path + " " + r.status, { response: j });
         return Object.assign(j || {}, { ok: false, _httpStatus: r.status });
       }
       return j;
     } catch (e) {
       console.warn("[he-api]", path, e);
-      reportClientError("api", "network", String(e && e.message), { path });
+      noteApiFailure(path, "network", String(e && e.message), { path: path });
       return null;
     }
   }
@@ -398,12 +435,12 @@
       });
       const j = await r.json().catch(() => null);
       if (!r.ok || (j && j.ok === false)) {
-        reportClientError("api", j && j.error, path + " " + r.status, { response: j });
+        noteApiFailure(path, j && j.error, path + " " + r.status, { response: j });
         return Object.assign(j || {}, { ok: false, _httpStatus: r.status });
       }
       return j;
     } catch (e) {
-      reportClientError("api", "network", String(e && e.message), { path });
+      noteApiFailure(path, "network", String(e && e.message), { path: path });
       return null;
     }
   }

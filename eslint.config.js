@@ -24,6 +24,7 @@ export default [
       "public/discovery-ui.js",
       "public/discovery-relax-bridge.js",
       "public/nav-context.js",
+      "public/client-error.js",
     ],
     languageOptions: {
       ecmaVersion: 2022,
