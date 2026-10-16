@@ -96,6 +96,21 @@ function safeToken(value) {
     .slice(0, 80) || "x";
 }
 
+/**
+ * General-item primary key. The list id is part of the key, so two households
+ * can reuse one client request id. safeToken drops underscores, so this value
+ * always contains a second underscore and cannot equal a legacy `hrg_<request>` id.
+ */
+export function generalRequirementId(shopListId, clientRequestId) {
+  const request = clientRequestId ? safeToken(clientRequestId) : safeToken(crypto.randomUUID());
+  return `hrg_${safeToken(shopListId)}_${request}`;
+}
+
+/** Ids written before the list was part of the key. Still stored and still loaded. */
+export function legacyGeneralRequirementId(clientRequestId) {
+  return `hrg_${safeToken(clientRequestId || "x")}`;
+}
+
 function foldShopPlural(ingredientId) {
   if (!ingredientId) return ingredientId;
   if (SHOPPING_INGREDIENT_ALIASES[ingredientId]) return SHOPPING_INGREDIENT_ALIASES[ingredientId];
@@ -548,7 +563,8 @@ export function addGeneralItem(list, text, ctx = {}) {
     line = blankLine(next.shop_list_id, identity, parsed, now);
     next.lines.push(line);
   }
-  const reqId = ctx.requirement_id || `hrg_${safeToken(ctx.client_request_id || ctx.id || crypto.randomUUID())}`;
+  const reqId =
+    ctx.requirement_id || generalRequirementId(list.shop_list_id, ctx.client_request_id || ctx.id || null);
   line.requirements.push({
     requirement_id: reqId,
     origin: "general",

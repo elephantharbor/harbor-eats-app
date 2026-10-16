@@ -4,6 +4,7 @@
  * is stale, so two shoppers cannot both commit the same version.
  */
 
+import { logDatabaseError } from "./db-error.js";
 import { emptyHouseholdList } from "./household-shop.js";
 
 function parseJson(value, fallback) {
@@ -252,13 +253,14 @@ export async function commitList(db, list, expectedRevision, contentChanged) {
     return { ok: true, list };
   } catch (error) {
     const message = String(error?.message || error);
-    if (message.includes("household_shop_cas") || message.includes("NOT NULL constraint failed")) {
+    logDatabaseError("household_shop_commit", error);
+    if (message.includes("household_shop_cas") || /NOT NULL constraint failed/i.test(message)) {
       return { ok: false, error: "revision_conflict", status: 409 };
     }
-    if (message.includes("client_request_id") || message.includes("idx_household_shop_requirement_client")) {
+    if (/requirement_id|client_request_id|source_key|idx_household_shop_requirement_client/i.test(message)) {
       return { ok: false, error: "duplicate_request", status: 409 };
     }
-    throw error;
+    return { ok: false, error: "shop_save_failed", status: 500 };
   }
 }
 

@@ -53,14 +53,45 @@ export function instacartApiHost(env) {
  * Complete Instacart config is the flag plus either a non-empty server key
  * and a known host, or the preview/test fixture. The key itself is never returned.
  */
+function activation(fields) {
+  return { configured: false, mode: "off", reason: "incomplete", channel: "off", ...fields };
+}
+
+/**
+ * Request-time resolution. A Pages secret is read on each request, so
+ * GROCERY_RUNTIME can move Preview between mock and development without a code deploy.
+ * Production never honors the fixture, GROCERY_RUNTIME, or GROCERY_MOCK_MODE.
+ */
 export function instacartActivation(env) {
   const listed = providerIds(env).includes("instacart");
-  if (!listed) return { configured: false, mode: "off", reason: "not_listed" };
-  if (groceryFixtureActive(env)) return { configured: true, mode: "mock", reason: "fixture" };
+  if (!listed) return activation({ reason: "not_listed" });
+
+  if (productionLocked(env)) {
+    const key = String(env?.INSTACART_API_KEY || "").trim();
+    const host = instacartApiHost(env);
+    if (!key || !host) return activation({ reason: "incomplete" });
+    return activation({ configured: true, mode: "live", reason: "key", channel: "consumer" });
+  }
+
+  const runtime = String(env?.GROCERY_RUNTIME || "").trim().toLowerCase();
+  if (runtime === "off") return activation({ reason: "runtime_off" });
+  if (runtime === "dev") {
+    const key = String(env?.INSTACART_API_KEY || "").trim();
+    const host = instacartApiHost(env);
+    if (!key || !host) return activation({ reason: "dev_key_missing", channel: "development" });
+    return activation({ configured: true, mode: "live", reason: "dev", channel: "development" });
+  }
+  if (runtime === "mock" || groceryFixtureActive(env)) {
+    if (!["preview", "test", "development", "dev", "e2e"].includes(environmentName(env))) {
+      return activation({ reason: "incomplete" });
+    }
+    return activation({ configured: true, mode: "mock", reason: runtime === "mock" ? "runtime" : "fixture", channel: "mock" });
+  }
+
   const key = String(env?.INSTACART_API_KEY || "").trim();
   const host = instacartApiHost(env);
-  if (!key || !host) return { configured: false, mode: "off", reason: "incomplete" };
-  return { configured: true, mode: "live", reason: "key" };
+  if (!key || !host) return activation({ reason: "incomplete" });
+  return activation({ configured: true, mode: "live", reason: "key", channel: "development" });
 }
 
 export function instacartKey(env) {
@@ -70,9 +101,44 @@ export function instacartKey(env) {
 
 export function groceryMockMode(env) {
   if (productionLocked(env)) return "ok";
-  if (!groceryFixtureActive(env) && environmentName(env) !== "test") return "ok";
-  const mode = String(env?.GROCERY_MOCK_MODE || "ok");
+  const runtime = String(env?.GROCERY_RUNTIME || "").trim().toLowerCase();
+  const mock = runtime === "mock" || groceryFixtureActive(env) || environmentName(env) === "test";
+  if (!mock) return "ok";
+  const mode = String(env?.GROCERY_MOCK_MODE || "ok").trim().toLowerCase().replace(/-/g, "_");
   return MOCK_MODES.has(mode) ? mode : "ok";
+}
+
+const MODE_HEADER = "x-flavorweave-grocery-mode";
+
+function headerChoice(request) {
+  const raw = request?.headers?.get?.(MODE_HEADER);
+  if (!raw) return null;
+  const choice = String(raw).trim().toLowerCase().replace(/-/g, "_");
+  if (choice === "dev" || choice === "development") return { kind: "dev" };
+  if (choice === "mock") return { kind: "mock", mode: "ok" };
+  if (MOCK_MODES.has(choice)) return { kind: "mock", mode: choice };
+  return null;
+}
+
+/**
+ * Per-request overlay. Production returns the same env.
+ * A preview/test/dev header can select a mock mode or development without a redeploy.
+ * The header cannot set a key, a host, or a provider list.
+ */
+export function groceryEnvForRequest(env, request) {
+  if (!env || productionLocked(env)) return env;
+  if (!["preview", "test", "development", "dev", "e2e"].includes(environmentName(env))) return env;
+  const choice = headerChoice(request);
+  if (!choice) return env;
+  if (choice.kind === "dev") {
+    return { ...env, GROCERY_FIXTURE: "", GROCERY_RUNTIME: "dev" };
+  }
+  return {
+    ...env,
+    GROCERY_FIXTURE: "instacart_mock",
+    GROCERY_MOCK_MODE: choice.mode,
+    GROCERY_RUNTIME: "mock",
+  };
 }
 
 export function groceryTimeoutMs(env) {

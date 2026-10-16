@@ -125,6 +125,7 @@ describe("grocery registry and config", () => {
     expect(() => validateGroceryVars(`${production}\nGROCERY_FIXTURE = "instacart_mock"`, "production")).toThrow(/GROCERY_FIXTURE/);
     expect(() => validateGroceryVars(`${production}\nGROCERY_FIXTURE = ""`, "production")).toThrow(/GROCERY_FIXTURE/);
     expect(() => validateGroceryVars(`${production}\nINSTACART_API_KEY = "secret"`, "production")).toThrow(/secret/);
+    expect(() => validateGroceryVars(`${production}\nGROCERY_RUNTIME = "dev"`, "production")).toThrow(/GROCERY_RUNTIME/);
   });
 
   it("preview still refuses a non-empty provider list, a fixture, or a key in committed config", () => {

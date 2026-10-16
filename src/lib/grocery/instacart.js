@@ -21,13 +21,44 @@ const LINK_DAYS = 14;
 export function resolveInstacartFetch(env, injected) {
   if (typeof injected === "function") return injected;
   const environment = String(env?.ENVIRONMENT || "").toLowerCase();
-  if (typeof env?.GROCERY_FETCH === "function" && environment !== "production" && String(env?.DEPLOY_ENV || "").toLowerCase() !== "production") {
-    return env.GROCERY_FETCH;
-  }
-  if (environment === "test" || instacartActivation(env).mode === "mock") {
+  const deploy = String(env?.DEPLOY_ENV || "").toLowerCase();
+  const locked = environment === "production" || environment === "prod" || deploy === "production";
+  if (typeof env?.GROCERY_FETCH === "function" && !locked) return env.GROCERY_FETCH;
+  const activation = instacartActivation(env);
+  // Unit tests stay on the mock unless they inject a fetch. Preview development uses the real fetch.
+  if (activation.mode === "mock" || environment === "test") {
     return createInstacartMock({ mode: groceryMockMode(env) });
   }
   return globalThis.fetch.bind(globalThis);
+}
+
+export function instacartFetchIsMock(env, injected) {
+  const impl = resolveInstacartFetch(env, injected);
+  return Array.isArray(impl?.calls);
+}
+
+const REQUEST_ID_HEADERS = ["x-request-id", "x-instacart-request-id", "request-id"];
+
+export function safeInstacartRequestId(headers) {
+  if (!headers || typeof headers.get !== "function") return null;
+  for (const name of REQUEST_ID_HEADERS) {
+    const raw = headers.get(name);
+    if (!raw) continue;
+    const clean = String(raw).trim().slice(0, 80);
+    if (/^[A-Za-z0-9._:-]+$/.test(clean)) return clean;
+  }
+  return null;
+}
+
+export function logInstacartDiagnostic(diagnostic) {
+  console.error(
+    JSON.stringify({
+      event: "instacart_http",
+      http_status: diagnostic?.http_status ?? null,
+      request_id: diagnostic?.request_id ?? null,
+      timeout: diagnostic?.timeout === true,
+    })
+  );
 }
 
 async function readBody(response) {
@@ -76,7 +107,9 @@ export function createInstacartAdapter({ env = {}, fetch: injected } = {}) {
       const activation = instacartActivation(env);
       const url = `${host}/idp/v1/retailers?postal_code=${encodeURIComponent(postal)}&country_code=${country}`;
       const result = await call(fetchImpl, url, { method: "GET", headers: headers(env, activation) }, env);
-      if (!result.ok) return fromProviderHttp({ providerId: "instacart", capability: "retailer_discovery", ...result });
+      if (!result.ok) {
+        return { ...fromProviderHttp({ providerId: "instacart", capability: "retailer_discovery", ...result }), diagnostic: result.diagnostic };
+      }
       const rows = Array.isArray(result.body?.retailers) ? result.body.retailers : null;
       if (!rows) {
         return groceryError({
@@ -167,9 +200,12 @@ export function createInstacartAdapter({ env = {}, fetch: injected } = {}) {
           provider_id: "instacart",
           capability: "list_handoff",
           message: "Instacart took too long. Your list was not changed.",
+          extra: { diagnostic: result.diagnostic },
         });
       }
-      if (!result.ok) return fromProviderHttp({ providerId: "instacart", capability: "list_handoff", ...result });
+      if (!result.ok) {
+        return { ...fromProviderHttp({ providerId: "instacart", capability: "list_handoff", ...result }), diagnostic: result.diagnostic };
+      }
       const rawUrl = result.body && result.body.products_link_url;
       if (typeof rawUrl !== "string" || !rawUrl) {
         return groceryError({
@@ -194,6 +230,7 @@ export function createInstacartAdapter({ env = {}, fetch: injected } = {}) {
         ok: true,
         products_link_url: allowed.url,
         expires_at: expiresAt,
+        diagnostic: result.diagnostic,
       };
     },
   };
@@ -219,18 +256,31 @@ function httpsOnly(value) {
   }
 }
 
+function diagnosticFor(response, extra = {}) {
+  const diagnostic = {
+    http_status: response?.status ?? extra.http_status ?? null,
+    request_id: safeInstacartRequestId(response?.headers),
+    timeout: extra.timeout === true,
+  };
+  logInstacartDiagnostic(diagnostic);
+  return diagnostic;
+}
+
 async function call(fetchImpl, url, init, env) {
   const timeout = groceryTimeoutMs(env);
   const signal = AbortSignal.timeout(timeout);
   try {
     const response = await fetchImpl(url, { ...init, signal });
     const body = await readBody(response);
-    if (!response.ok) return { ok: false, httpStatus: response.status, body };
-    return { ok: true, httpStatus: response.status, body };
+    const diagnostic = diagnosticFor(response);
+    if (!response.ok) return { ok: false, httpStatus: response.status, body, diagnostic };
+    return { ok: true, httpStatus: response.status, body, diagnostic };
   } catch (error) {
     if (error?.name === "TimeoutError" || error?.name === "AbortError") {
-      return { ok: false, timeout: true, httpStatus: 408, body: null };
+      const diagnostic = diagnosticFor(null, { http_status: 408, timeout: true });
+      return { ok: false, timeout: true, httpStatus: 408, body: null, diagnostic };
     }
-    return { ok: false, httpStatus: 502, body: null };
+    const diagnostic = diagnosticFor(null, { http_status: 502 });
+    return { ok: false, httpStatus: 502, body: null, diagnostic };
   }
 }

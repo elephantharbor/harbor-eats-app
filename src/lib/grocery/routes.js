@@ -3,12 +3,14 @@
  */
 
 import { requireSession } from "../auth.js";
+import { logDatabaseError, stripDatabaseDetail } from "../db-error.js";
+import { householdIsSynthetic } from "../evidence-origin.js";
 import { parseMemberShopping, parseShoppingSettings } from "../household-settings.js";
 import { buyQuantity, presentLine } from "../household-shop.js";
 import { isActiveMember, loadOpenList } from "../household-shop-store.js";
 import { linkbackUrl } from "./allowlist.js";
 import { INSTACART_CTA_LABEL, INSTACART_LOGO_PRESENT } from "./branding.js";
-import { instacartActivation } from "./config.js";
+import { groceryEnvForRequest, instacartActivation, productionLocked } from "./config.js";
 import { groceryError } from "./errors.js";
 import { contentFingerprintInput, fingerprint, requestFingerprintInput } from "./fingerprint.js";
 import {
@@ -20,6 +22,7 @@ import {
   refreshHandoffStates,
   updateHandoff,
 } from "./handoff-store.js";
+import { instacartFetchIsMock } from "./instacart.js";
 import { projectTransfer } from "./projection.js";
 import { adapterFor, createGroceryAdapters } from "./registry.js";
 import { recordGroceryEvent } from "./telemetry.js";
@@ -43,7 +46,7 @@ function fail(error, status) {
     error && typeof error === "object" && error.code
       ? error
       : groceryError({ code: typeof error === "string" ? error : "invalid_request", message: "That didn’t work." });
-  return json(body, status || body.status || 400);
+  return json(stripDatabaseDetail(body), status || body.status || 400);
 }
 
 async function readJson(request) {
@@ -115,6 +118,7 @@ function reviewBody({ list, projection, requestHash, contentHash, store, activat
     launch_enabled: INSTACART_LOGO_PRESENT,
     cta_label: INSTACART_CTA_LABEL,
     mode: activation.mode,
+    channel: activation.channel,
     can_prepare: activation.mode === "mock" || INSTACART_LOGO_PRESENT,
     copy: {
       availability: "Instacart will show what’s at the store you pick. FlavorWeave doesn’t see that stock.",
@@ -165,8 +169,91 @@ async function requireShopper(env, request) {
   return { session: auth.session };
 }
 
+function publicDiagnostic(diagnostic) {
+  return {
+    http_status: diagnostic?.http_status ?? null,
+    request_id: diagnostic?.request_id ?? null,
+  };
+}
+
+async function devSmoke(env, request, session) {
+  const household = await env.DB.prepare(
+    `SELECT data_origin, display_name, acquisition_source FROM household WHERE household_id = ?`
+  )
+    .bind(session.household_id)
+    .first();
+  const synthetic =
+    householdIsSynthetic(household) || /^\[synthetic\]/i.test(String(household?.display_name || "").trim());
+  if (!synthetic) {
+    return json(
+      {
+        ok: false,
+        error: "synthetic_household_required",
+        called: false,
+        blocker: "Development smoke only runs for a synthetic household. No Instacart call was made.",
+      },
+      403
+    );
+  }
+  const activation = instacartActivation(env);
+  if (activation.mode !== "live" || activation.channel !== "development") {
+    const missing = activation.reason === "dev_key_missing";
+    return json(
+      {
+        ok: false,
+        error: missing ? "dev_key_missing" : "not_configured",
+        called: false,
+        channel: activation.channel,
+        blocker: missing
+          ? "INSTACART_API_KEY is not set on this server. No Instacart call was made."
+          : "Development mode is not selected. Set the GROCERY_RUNTIME secret to dev, or send X-FlavorWeave-Grocery-Mode: dev. No Instacart call was made.",
+      },
+      409
+    );
+  }
+  if (instacartFetchIsMock(env)) {
+    return json(
+      {
+        ok: false,
+        error: "mock_not_live",
+        called: false,
+        blocker: "Development smoke will not treat the mock as a real Instacart call. No Instacart call was made.",
+      },
+      409
+    );
+  }
+  const linkback = linkbackUrl(request.url) || "https://harbor-eats-app.pages.dev/shop";
+  const adapter = adapterFor("instacart", { env });
+  const result = await adapter.createListHandoff({
+    title: "FlavorWeave list",
+    linkback_url: linkback,
+    lines: [{ name: "banana", display_text: "1 banana", measurements: [{ quantity: 1, unit: "each" }] }],
+    expires_in_days: LINK_DAYS,
+  });
+  const urlOk = !!(result.ok && result.products_link_url);
+  const body = stripDatabaseDetail({
+    ok: urlOk,
+    called: true,
+    channel: "development",
+    host_class: "development",
+    error: result.ok ? null : result.code || "provider_rejected",
+    url_valid: urlOk,
+    products_link_url: urlOk ? result.products_link_url : undefined,
+    diagnostic: publicDiagnostic(result.diagnostic),
+    purchased: false,
+    message: urlOk
+      ? "Development link created. Nothing was marked bought."
+      : "Instacart did not return a usable development link. Nothing was marked bought.",
+  });
+  return json(body, urlOk ? 200 : result.status || 502);
+}
+
 export async function routeGroceryRequest(env, request, path, url, deps = {}) {
   if (!path.startsWith("/api/grocery")) return null;
+  if (path === "/api/grocery/dev-smoke" && productionLocked(env)) {
+    return json({ ok: false, error: "not_found" }, 404);
+  }
+  env = groceryEnvForRequest(env, request);
   const method = request.method;
   const gate = await requireShopper(env, request);
   if (gate.error) return gate.error;
@@ -194,10 +281,15 @@ export async function routeGroceryRequest(env, request, path, url, deps = {}) {
         fulfillment_methods: [...instacart.fulfillmentMethods()],
         configured: true,
         mode: activation.mode,
+        channel: activation.channel,
         launch_enabled: INSTACART_LOGO_PRESENT,
       });
     }
     return json({ ok: true, providers });
+  }
+
+  if (path === "/api/grocery/dev-smoke" && method === "POST") {
+    return devSmoke(env, request, session);
   }
 
   if (path === "/api/grocery/select" && method === "POST") {
@@ -482,7 +574,17 @@ async function create(env, request, session, deps, now, url) {
       updated_at: new Date().toISOString(),
     });
   } catch (error) {
-    if (!/UNIQUE/i.test(String(error.message || error))) throw error;
+    logDatabaseError("grocery_handoff", error);
+    if (!/UNIQUE/i.test(String(error.message || error))) {
+      return fail(
+        groceryError({
+          code: "provider_rejected",
+          provider_id: "instacart",
+          capability: "list_handoff",
+          message: "The list link could not be saved. Your list was not changed.",
+        })
+      );
+    }
     const winner = await findReusableHandoff(env.DB, {
       shopListId: list.shop_list_id,
       providerId: "instacart",

@@ -46,17 +46,37 @@
 
   var MOCK_BADGE =
     '<p class="shop-mock-badge" data-shop-mock-badge role="note">Preview test — Not a real Instacart connection. Nothing is sent to Instacart.</p>';
+  var DEV_BADGE =
+    '<p class="shop-mock-badge shop-dev-badge" data-shop-dev-badge role="note">Instacart development — This can send a list to Instacart’s development API. It does not place an order. Shop on Instacart stays off until the official logo is in the app.</p>';
+
+  function channelOf(source) {
+    return source && source.channel ? source.channel : "";
+  }
+
+  function badgeFor(source) {
+    if (!source) return "";
+    if (source.mode === "mock" || channelOf(source) === "mock") return MOCK_BADGE;
+    if (channelOf(source) === "development") return DEV_BADGE;
+    return "";
+  }
 
   function renderChoice(root, shop, provider) {
     var note = storeNote(shop);
-    var mock = provider && provider.mode === "mock";
+    var mock = provider && (provider.mode === "mock" || provider.channel === "mock");
+    var dev = provider && provider.channel === "development";
+    var label = mock ? " (test)" : dev ? " (development)" : "";
+    var detail = mock
+      ? "Preview test only. Shows what the list would send."
+      : dev
+        ? "Development only. Nothing is ordered."
+        : "Continues on Instacart. They choose the store and the products.";
     root.innerHTML =
       '<h2 class="card-title" id="shopOrderTitle">Order online</h2>' +
-      (mock ? MOCK_BADGE : "") +
+      badgeFor(provider) +
       (note ? '<p class="meta">' + escapeHtml(note) + "</p>" : "") +
       '<button type="button" class="shop-service shop-service--live" id="btnShopPickInstacart">' +
-      "<strong>Instacart" + (mock ? " (test)" : "") + "</strong><span>" +
-      (mock ? "Preview test only. Shows what the list would send." : "Continues on Instacart. They choose the store and the products.") +
+      "<strong>Instacart" + label + "</strong><span>" +
+      detail +
       "</span></button>" +
       '<p class="meta">More stores later</p>';
   }
@@ -174,7 +194,7 @@
     root.innerHTML =
       '<div class="shop-handoff">' +
       '<h2 class="card-title" id="shopOrderTitle">Order online</h2>' +
-      (review.mode === "mock" ? MOCK_BADGE : '<p class="meta">Continues on Instacart. They choose the store and the products.</p>') +
+      (badgeFor(review) || '<p class="meta">Continues on Instacart. They choose the store and the products.</p>') +
       (review.usual_store_note ? '<p class="meta">' + escapeHtml(review.usual_store_note) + "</p>" : "") +
       statusHtml(review) +
       sectionsHtml(review) +
