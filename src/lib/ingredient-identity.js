@@ -60,6 +60,18 @@ const UNIT_ALIASES = {
   count: "count",
   each: "count",
   serving: "serving",
+  // S-02 package words. Only the whole unit token maps. Carton stays carton
+  // so "2 cartons oat milk" does not collapse into a generic package.
+  bag: "package",
+  bags: "package",
+  box: "package",
+  boxes: "package",
+  roll: "package",
+  rolls: "package",
+  bottle: "package",
+  bottles: "package",
+  carton: "carton",
+  cartons: "carton",
 };
 
 /**

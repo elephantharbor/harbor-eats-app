@@ -598,6 +598,10 @@
     swapInFlight: false,
     pendingDinnerToast: null,
     dinnerShop: null,
+    householdShop: null,
+    shopInStore: false,
+    shopAttempt: null,
+    shopShareId: null,
     dinnerUnfilled: [],
     dinnerDetailMeal: null,
     dinnerCookMealId: null,
@@ -1823,11 +1827,14 @@
     if (name === "shopList") {
       track("shopping_opened", {
         dinner_plan_id: state.dinnerPlan && state.dinnerPlan.dinner_plan_id,
-        line_count: ((state.dinnerShop && state.dinnerShop.lines) || (state.dinnerPlan && state.dinnerPlan.shop_lines) || []).length,
+        line_count: ((state.householdShop && state.householdShop.list && state.householdShop.list.lines) || []).length,
       });
-      refreshDinnerShopping().then(function () {
-        renderShopList();
-      });
+      (async function () {
+        if (!state.dinnerPlan) await loadCurrentDinnerPlan();
+        await refreshDinnerShopping();
+        await loadHouseholdShop();
+        if (state.view === "shopList") renderShopList();
+      })();
     }
     if (name === "choices" && hasCurrentDinnerPlan()) {
       renderTonightPlan();
@@ -2711,6 +2718,25 @@
 
   function renderSettings() {
     document.getElementById("settingsHhName").value = state.householdName || "";
+    loadHouseholdShop().then(function (res) {
+      if (!res || !res.preferences) return;
+      const hh = res.preferences.household || {};
+      const member = res.preferences.member || {};
+      const method = document.querySelector('input[name="shopHouseholdMethod"][value="' + (hh.method || "instore") + '"]');
+      if (method) method.checked = true;
+      const service = document.getElementById("shopHouseholdService");
+      if (service) service.value = hh.service || "none";
+      const store = document.getElementById("shopUsualStore");
+      if (store) store.value = hh.usual_store || "";
+      const postal = document.getElementById("shopPostal");
+      if (postal) postal.value = hh.postal_code || "";
+      const memberMethod = document.querySelector('input[name="shopMemberMethod"][value="' + (member.method || "") + '"]');
+      if (memberMethod) memberMethod.checked = true;
+      const memberService = document.getElementById("shopMemberService");
+      if (memberService) memberService.value = member.service || "";
+      const memberStore = document.getElementById("shopMemberStore");
+      if (memberStore) memberStore.value = member.usual_store || "";
+    });
     document.getElementById("settingsChoiceCount").value = String(state.settingsChoiceCount || 3);
     document.getElementById("settingsCadence").value = state.settingsCadence || "on_demand";
     const root = document.getElementById("settingsMembers");
@@ -4766,169 +4792,357 @@
     return amount + " " + unit;
   }
 
+  const SHOP_AISLES = [
+    ["produce", "Produce"],
+    ["dairy", "Dairy"],
+    ["meat", "Meat"],
+    ["bakery", "Bakery"],
+    ["pantry", "Pantry"],
+    ["frozen", "Frozen"],
+    ["household", "Household"],
+    ["other", "Other"],
+  ];
+
+  function householdLines() {
+    return (state.householdShop && state.householdShop.list && state.householdShop.list.lines) || [];
+  }
+
+  function shopStateWord(listState) {
+    if (listState === "purchased") return "Bought";
+    if (listState === "already_have") return "Already have";
+    if (listState === "skipped") return "Skipping";
+    return "Still need";
+  }
+
+  function shopQtyLabel(line) {
+    if (line.buy_quantity == null || line.buy_quantity === "") return "";
+    const unit = !line.unit || line.unit === "unparsed" || line.unit === "count" ? "count" : line.unit;
+    return formatShopQty({ quantity: line.buy_quantity, unit: unit });
+  }
+
+  async function loadHouseholdShop() {
+    const res = await apiGet("/api/household-shop");
+    if (!res || !res.ok || !res.list) return null;
+    state.householdShop = res;
+    return res;
+  }
+
+  async function mutateHouseholdShop(body) {
+    const list = state.householdShop && state.householdShop.list;
+    const payload = Object.assign({ expected_revision: list ? list.revision : 1 }, body);
+    state.shopAttempt = payload;
+    const res = await apiPost("/api/household-shop", payload);
+    if (res && res.ok && res.list) {
+      state.householdShop = Object.assign({}, state.householdShop || {}, { list: res.list });
+      state.shopAttempt = null;
+      const conflict = document.getElementById("shopConflict");
+      if (conflict) conflict.hidden = true;
+      return res;
+    }
+    if (res && res._httpStatus === 409 && res.list) {
+      state.householdShop = Object.assign({}, state.householdShop || {}, { list: res.list });
+      state.shopAttempt = res.attempted || payload;
+      const conflict = document.getElementById("shopConflict");
+      if (conflict) conflict.hidden = false;
+      renderShopList();
+      return res;
+    }
+    if (!res) toast("Couldn’t reach the list. Your words are still here.");
+    else if (res.error === "item_name_required") toast("Add a bit more of a name.");
+    else toast("Couldn’t save that. Try again.");
+    return res;
+  }
+
+  function shopRequestId(prefix) {
+    return prefix + "_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
+  }
+
+  async function shopExport(kind) {
+    const format = kind === "csv" ? "csv" : kind === "print" ? "print" : "txt";
+    const res = await fetch("/api/household-shop/export?format=" + format, { credentials: "same-origin" });
+    if (!res.ok) {
+      toast("Couldn’t prepare the list. Your list is still here.");
+      return;
+    }
+    const text = await res.text();
+    if (kind === "copy") {
+      const ok = await copyText(text);
+      toast(ok ? "List copied" : "Couldn’t copy — try the download");
+      return;
+    }
+    if (kind === "print") {
+      const root = document.getElementById("shopPrintRoot");
+      if (root) {
+        root.hidden = false;
+        root.textContent = text;
+      }
+      window.print();
+      return;
+    }
+    const blob = new Blob([text], { type: kind === "csv" ? "text/csv" : "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = kind === "csv" ? "flavorweave-list.csv" : "flavorweave-list.txt";
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  async function shopNativeShare() {
+    const res = await fetch("/api/household-shop/export?format=txt", { credentials: "same-origin" });
+    if (!res.ok) {
+      toast("Couldn’t prepare the list. Your list is still here.");
+      return;
+    }
+    const text = await res.text();
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: "The list", text: text });
+        return;
+      } catch (err) {
+        if (err && err.name === "AbortError") return;
+      }
+    }
+    const ok = await copyText(text);
+    toast(ok ? "List copied" : "Sharing isn’t available here");
+  }
+
+  async function shopOpenShare() {
+    const res = await apiPost("/api/household-shop/shares", {});
+    if (!res || !res.ok) {
+      toast("Couldn’t make a link. The list is still here.");
+      return;
+    }
+    state.shopShareId = res.share_id;
+    const input = document.getElementById("shopShareUrl");
+    const exp = document.getElementById("shopShareExpires");
+    const url = location.origin + "/shop/shared/" + res.share_id;
+    if (input) {
+      input.value = url;
+      input.setSelectionRange(0, 0);
+      input.scrollLeft = 0;
+    }
+    if (exp) exp.textContent = "Stops working " + (res.expires_at || "").slice(0, 10) + ". You can stop it sooner.";
+    document.getElementById("shopShareSheet").showModal();
+  }
+
+  async function shopRevoke() {
+    if (!state.shopShareId) return;
+    const res = await apiPost("/api/household-shop/shares", { op: "revoke", share_id: state.shopShareId });
+    if (res && res.ok) {
+      state.shopShareId = null;
+      toast("Link stopped");
+      const sheet = document.getElementById("shopShareSheet");
+      if (sheet && sheet.open) sheet.close();
+    } else toast("Couldn’t stop the link");
+  }
+
+  function recipeExportAudience() {
+    const meal = detailMeal();
+    const raw = meal && meal.dinner_plan ? planMealById(meal.id) : null;
+    if (raw) {
+      return {
+        diner_count: dinerCountForPlanMeal(raw),
+        guest_count: Math.max(0, Number(raw.guest_count) || 0),
+      };
+    }
+    const viewing = state.detailViewingServings != null ? state.detailViewingServings : activeMemberCount();
+    return { diner_count: viewing, guest_count: 0 };
+  }
+
+  async function exportRecipe(kind) {
+    const recipe = state.activeRecipe;
+    if (!recipe) return;
+    const audience = recipeExportAudience();
+    const res = await apiPost("/api/household-shop/recipe-export", {
+      title: recipe.title || (detailMeal() && detailMeal().title) || "Recipe",
+      diner_count: audience.diner_count,
+      guest_count: audience.guest_count,
+      ingredients: (recipe.ingredients || []).map(function (item) {
+        const qty = typeof item.quantity === "number" ? item.quantity : Number(item.quantity);
+        return {
+          name: item.name,
+          quantity: Number.isFinite(qty) ? qty : null,
+          unit: item.unit || null,
+        };
+      }),
+      steps: (recipe.steps || []).map(function (step) {
+        return step.body || step.text || step.title || "";
+      }),
+    });
+    if (!res || !res.ok) {
+      toast("Couldn’t prepare the recipe");
+      return;
+    }
+    if (kind === "print") {
+      const root = document.getElementById("shopPrintRoot");
+      if (root) {
+        root.hidden = false;
+        root.textContent = res.text;
+      }
+      window.print();
+      return;
+    }
+    const ok = await copyText(res.text);
+    toast(ok ? "Recipe copied" : "Couldn’t copy");
+  }
+
   function renderShopList() {
-    const plan = state.dinnerPlan;
-    const shop = state.dinnerShop;
-    if (!plan || !shop) return;
-    if (planShoppingStarted()) ensureShopLineSnapshotForTags();
+    const page = document.getElementById("shopPage");
+    const lines = householdLines();
+    if (page) page.classList.toggle("shop-page--instore", !!state.shopInStore);
     const eyebrow = document.getElementById("shopEyebrow");
-    const recipeMeals = (plan.meals || []).filter(function (m) {
-      return m.kind === "recipe";
-    });
-    const hh = householdDinerCount();
-    const exceptions = recipeMeals.filter(function (m) {
-      return dinerCountForPlanMeal(m) !== hh;
-    });
-    const dinerSummary = recipeMeals.length
-      ? shopCookingHeadline(
-          plan.meal_count,
-          hh,
-          exceptions.map(function (m) {
-            return { label: planMealLabel(m), count: dinerCountForPlanMeal(m) };
-          })
-        )
-      : plan.meal_count + " dinners";
-    eyebrow.textContent = dinerSummary;
-    eyebrow.setAttribute("aria-label", "Who is eating. " + dinerSummary);
-    const lines = shop.lines || [];
-    const need = lines.filter(function (l) {
+    if (!state.householdShop) {
+      if (eyebrow) eyebrow.textContent = "The list";
+      document.getElementById("shopProgress").textContent = "Loading the list…";
+      return;
+    }
+    const plan = state.dinnerPlan;
+    if (plan && planShoppingStarted()) ensureShopLineSnapshotForTags();
+    const headline = state.householdShop.headline || "";
+    if (eyebrow) {
+      eyebrow.textContent = state.shopInStore ? "In the store" : headline || "For your household";
+    }
+    const title = document.getElementById("shopListTitle");
+    if (title) title.textContent = "The list";
+    const openNeed = lines.filter(function (l) {
       return l.still_needed && l.list_state === "open";
     });
-    const bought = lines.filter(function (l) {
-      return l.still_needed && l.list_state === "purchased";
+    document.getElementById("shopProgress").textContent = state.shopInStore
+      ? openNeed.length + " left"
+      : openNeed.length
+        ? openNeed.length + " to get"
+        : lines.length
+          ? "All set. Enjoy dinner."
+          : "Nothing on the list yet";
+    const dinners = [];
+    const house = [];
+    const hand = [];
+    const dropped = [];
+    lines.forEach(function (line) {
+      if (!line.still_needed) {
+        dropped.push(line);
+        return;
+      }
+      const parked = line.list_state === "already_have" || line.list_state === "skipped" || (line.list_state === "purchased" && !state.shopInStore);
+      if (parked) {
+        hand.push(line);
+        return;
+      }
+      if (line.origin === "general") house.push(line);
+      else dinners.push(line);
     });
-    const have = lines.filter(function (l) {
-      return l.still_needed && l.list_state === "already_have";
+    function byAisle(rows) {
+      return SHOP_AISLES.map(function (pair) {
+        const group = rows.filter(function (line) {
+          return (line.category || "other") === pair[0];
+        });
+        group.sort(function (a, b) {
+          const ap = a.list_state === "purchased" ? 1 : 0;
+          const bp = b.list_state === "purchased" ? 1 : 0;
+          return ap - bp || String(a.display_name).localeCompare(String(b.display_name));
+        });
+        if (!group.length) return "";
+        return '<section class="shop-aisle"><h2 class="shop-aisle__title">' + pair[1] + "</h2>" + group.map(rowHtml).join("") + "</section>";
+      }).join("");
+    }
+    const mealNames = new Set();
+    lines.forEach(function (line) {
+      (line.meal_titles || []).forEach(function (title) {
+        if (title) mealNames.add(title);
+      });
     });
-    const dropped = lines.filter(function (l) {
-      return !l.still_needed;
-    });
-    document.getElementById("shopProgress").textContent =
-      need.length === 0
-        ? "All set. Enjoy dinner."
-        : need.length + " to get · " + bought.length + " bought · " + have.length + " already have";
-    const colLeft = document.getElementById("shopColLeft");
-    const colRight = document.getElementById("shopColRight");
-    function rowHtml(l, section) {
-      const checked = l.list_state === "purchased";
-      const isHave = l.list_state === "already_have";
-      const name = (l.display_name || "").replace(/^\w/, function (c) {
+    const showMeal = mealNames.size > 1;
+    function rowHtml(line) {
+      const bought = line.list_state === "purchased";
+      const name = (line.display_name || "Item").replace(/^\w/, function (c) {
         return c.toUpperCase();
       });
-      const meta = shopLineChangeMeta(l);
-      const tag = meta && meta.tag
-        ? '<span class="badge ' + (meta.tagClass || "badge--sm") + '">' + escapeHtml(meta.tag) + "</span> "
-        : "";
-      let qtyLine = meta && meta.qtyLine ? meta.qtyLine : formatShopQty(l);
-      let statusNote = "";
-      if (section === "dropped") {
-        if (l.list_state === "purchased") statusNote = "Bought";
-        else if (l.list_state === "already_have") statusNote = "Already have";
-        else statusNote = "Skip it";
-      }
+      const qty = shopQtyLabel(line);
+      const note = line.reconcile_note
+        ? '<span class="shop-reconcile">' + escapeHtml(line.reconcile_note) + "</span>"
+        : showMeal && line.meal_titles && line.meal_titles.length
+          ? '<span class="shop-row__meals">' + escapeHtml(line.meal_titles.slice(0, 2).join(", ")) + "</span>"
+          : "";
+      const qtyText = qty || (line.list_state === "open" ? "" : shopStateWord(line.list_state));
       return (
-        '<div class="shop-row shop-row--' +
-        section +
+        '<div class="shop-row' +
+        (bought ? " shop-row--bought" : "") +
         '" data-line-id="' +
-        escapeHtml(l.line_id) +
+        escapeHtml(line.line_id) +
         '"><button type="button" class="shop-row__toggle" role="checkbox" aria-checked="' +
-        (checked || isHave ? "true" : "false") +
+        (bought ? "true" : "false") +
         '" aria-label="' +
-        escapeHtml(name) +
-        ", " +
-        escapeHtml(formatShopQty(l)) +
+        escapeHtml(shopStateWord(line.list_state) + ", " + name + (qty ? ", " + qty : "")) +
         '" data-shop-toggle="' +
-        escapeHtml(l.line_id) +
+        escapeHtml(line.line_id) +
         '"><span class="shop-row__check' +
-        (checked ? " is-on" : "") +
-        (isHave ? " shop-row__check--have" : "") +
+        (bought ? " is-on" : "") +
         '"></span><span><span class="shop-row__name">' +
         escapeHtml(name) +
-        "</span> " +
-        tag +
-        '<br /><span class="shop-row__qty">' +
-        escapeHtml(qtyLine) +
-        "</span></span></button>" +
-        (section !== "dropped"
-          ? '<button type="button" class="shop-row__more" data-shop-more="' +
-            escapeHtml(l.line_id) +
-            '" aria-label="More for ' +
-            escapeHtml(name) +
-            '">⋯</button>'
-          : '<span class="shop-row__status">' + escapeHtml(statusNote) + "</span>") +
-        "</div>"
+        "</span>" +
+        (qtyText ? '<span class="shop-row__qty">' + escapeHtml(qtyText) + "</span>" : "") +
+        note +
+        "</span></button>" +
+        '<button type="button" class="shop-row__more" data-shop-more="' +
+        escapeHtml(line.line_id) +
+        '" aria-label="More for ' +
+        escapeHtml(name) +
+        '">⋯</button></div>'
       );
     }
-    function sectionBlock(title, inner) {
-      return "<h2 class=\"section-title\">" + title + "</h2>" + inner;
+    const left = document.getElementById("shopColLeft");
+    const right = document.getElementById("shopColRight");
+    let leftHtml = '<h2 class="section-title">From the dinners</h2>' + (byAisle(dinners) || '<p class="meta">No dinner ingredients right now.</p>');
+    let rightHtml = '<h2 class="section-title">Around the house</h2>' + (byAisle(house) || '<p class="meta">Add paper towels, coffee, detergent — anything the dinners don’t cover.</p>');
+    if (hand.length) {
+      rightHtml +=
+        '<h2 class="section-title">In hand</h2><div id="shopHaveRows">' +
+        hand.map(rowHtml).join("") +
+        "</div>";
     }
-    let leftHtml = sectionBlock(
-      "Still need (" + need.length + ")",
-      need.map(function (l) {
-        return rowHtml(l, "need");
-      }).join("")
-    );
-    let rightHtml = "";
     if (dropped.length) {
       rightHtml +=
-        sectionBlock(
-          "No longer needed (" + dropped.length + ")",
-          '<p class="meta">Your plan changed. These stay so your checks aren’t lost.</p>' +
-            dropped
-              .map(function (l) {
-                return rowHtml(l, "dropped");
-              })
-              .join("")
-        );
-    }
-    rightHtml += sectionBlock(
-      "Bought (" + bought.length + ")",
-      bought
-        .map(function (l) {
-          return rowHtml(l, "bought");
-        })
-        .join("")
-    );
-    if (have.length) {
-      rightHtml +=
-        sectionBlock(
-          have.length + " already have · Show",
-          '<div id="shopHaveRows" hidden>' +
-            have
-              .map(function (l) {
-                return rowHtml(l, "have");
-              })
-              .join("") +
-            "</div>" +
-            '<button type="button" class="btn btn-quiet btn-sm" data-action="shop-show-have">Show</button>'
-        );
+        '<h2 class="section-title">No longer needed</h2><p class="meta">The plan moved on. Bought rows stay until you clear completed.</p>' +
+        dropped.map(rowHtml).join("");
     }
     if (!lines.length) {
-      leftHtml =
-        '<div class="empty-state"><strong>Nothing to shop for</strong><p class="meta">Leftovers and nights out don’t need a list.</p><button class="btn btn-primary" type="button" data-go="choices">What are we cooking tonight?</button></div>';
+      leftHtml = '<div class="empty-state"><strong>The list is open</strong><p class="meta">Add bananas, oat milk, or paper towels. Dinner ingredients land here when a plan is active.</p></div>';
       rightHtml = "";
     }
-    colLeft.innerHTML = leftHtml;
-    colRight.innerHTML = rightHtml;
+    if (left) left.innerHTML = leftHtml;
+    if (right) right.innerHTML = rightHtml;
+    const prefs = (state.householdShop.preferences && state.householdShop.preferences.household) || {};
+    const trip = state.householdShop.list.trip_method || prefs.method || "instore";
+    const inStoreBtn = document.getElementById("btnShopInStore");
+    const orderBtn = document.getElementById("btnShopOrder");
+    const doneBtn = document.getElementById("btnShopDone");
+    if (inStoreBtn) inStoreBtn.classList.toggle("is-emphasis", trip !== "order_online");
+    if (orderBtn) orderBtn.classList.toggle("is-emphasis", trip === "order_online");
+    if (doneBtn) doneBtn.hidden = !state.shopInStore;
+    if (inStoreBtn) inStoreBtn.hidden = !!state.shopInStore;
+    if (orderBtn) orderBtn.hidden = !!state.shopInStore;
     renderShopChangesBanner();
   }
 
   function openShopLineSheet(lineId) {
-    const line = (state.dinnerShop.lines || []).find(function (l) {
+    const line = householdLines().find(function (l) {
       return l.line_id === lineId;
     });
     if (!line) return;
     state.shopLineMenuId = lineId;
-    const name = (line.display_name || "").replace(/^\w/, function (c) {
+    const name = (line.display_name || "Item").replace(/^\w/, function (c) {
       return c.toUpperCase();
     });
     document.getElementById("shopLineTitle").textContent = name;
-    const mealTitles = (line.meal_ids || [])
-      .map(function (id) {
-        const m = planMealById(id);
-        return m ? planMealTitle(m) : "";
-      })
-      .filter(Boolean);
+    const mealTitles = line.meal_titles && line.meal_titles.length
+      ? line.meal_titles
+      : (line.meal_ids || [])
+          .map(function (id) {
+            const m = planMealById(id);
+            return m ? planMealTitle(m) : "";
+          })
+          .filter(Boolean);
     let mealCopy = mealTitles.slice(0, 3).join(", ");
     if (mealTitles.length > 3) mealCopy += " and " + (mealTitles.length - 3) + " more";
     document.getElementById("shopLineMeals").textContent = mealCopy ? "For " + mealCopy : "";
@@ -4937,9 +5151,29 @@
       prepEl.hidden = false;
       prepEl.textContent = line.preparation;
     } else prepEl.hidden = true;
+    const reconcile = document.getElementById("shopLineReconcile");
+    if (reconcile) {
+      reconcile.hidden = !line.reconcile_note;
+      reconcile.textContent = line.reconcile_note || "";
+    }
+    const nameInput = document.getElementById("shopEditName");
+    const qtyInput = document.getElementById("shopEditQty");
+    const unitInput = document.getElementById("shopEditUnit");
+    const catInput = document.getElementById("shopEditCategory");
+    if (nameInput) nameInput.value = line.display_name || "";
+    if (qtyInput) qtyInput.value = line.buy_quantity == null ? "" : String(line.buy_quantity);
+    if (unitInput) unitInput.value = line.unit || "unparsed";
+    if (catInput) catInput.value = line.category || "other";
     const actions = [];
+    if (line.override_stale) {
+      actions.push('<button type="button" class="sheet-menu__btn" data-action="shop-keep">Keep my amount</button>');
+      actions.push('<button type="button" class="sheet-menu__btn" data-action="shop-use-recipe">Use the recipe amount</button>');
+    }
     if (line.list_state !== "already_have") {
       actions.push('<button type="button" class="sheet-menu__btn" data-action="shop-set" data-state="already_have">Already have it</button>');
+    }
+    if (line.list_state !== "skipped") {
+      actions.push('<button type="button" class="sheet-menu__btn" data-action="shop-set" data-state="skipped">Skip this trip</button>');
     }
     if (line.list_state !== "purchased") {
       actions.push('<button type="button" class="sheet-menu__btn" data-action="shop-set" data-state="purchased">Mark bought</button>');
@@ -4950,13 +5184,16 @@
     const recipeMealId = (line.meal_ids || []).find(function (id) {
       const m = planMealById(id);
       return m && m.kind === "recipe";
-    });
-    if (recipeMealId) {
+    }) || (line.meal_ids || [])[0];
+    if (recipeMealId && planMealById(recipeMealId)) {
       actions.push(
         '<button type="button" class="sheet-menu__btn" data-action="shop-view-recipe" data-meal-id="' +
           escapeHtml(recipeMealId) +
           '">View recipe</button>'
       );
+    }
+    if (line.origin === "general" || (line.sources || []).some(function (src) { return src.origin === "general"; })) {
+      actions.push('<button type="button" class="sheet-menu__btn" data-action="shop-delete">Remove the typed item</button>');
     }
     document.getElementById("shopLineActions").innerHTML = actions.join("");
     document.getElementById("shopLineSheet").showModal();
@@ -6279,12 +6516,32 @@
     const shopSet = e.target.closest("[data-action='shop-set']");
     if (shopSet) {
       e.preventDefault();
-      await mutateDinnerPlan({
-        op: "set_line_state",
+      const saved = await mutateHouseholdShop({
+        op: "set_state",
         line_id: state.shopLineMenuId,
         list_state: shopSet.dataset.state,
       });
-      document.getElementById("shopLineSheet").close();
+      if (saved && saved.ok) document.getElementById("shopLineSheet").close();
+      renderShopList();
+      return true;
+    }
+    const shopKeep = e.target.closest("[data-action='shop-keep'], [data-action='shop-use-recipe']");
+    if (shopKeep) {
+      e.preventDefault();
+      const saved = await mutateHouseholdShop({
+        op: "resolve_override",
+        line_id: state.shopLineMenuId,
+        keep: shopKeep.dataset.action === "shop-keep",
+      });
+      if (saved && saved.ok) document.getElementById("shopLineSheet").close();
+      renderShopList();
+      return true;
+    }
+    const shopDelete = e.target.closest("[data-action='shop-delete']");
+    if (shopDelete) {
+      e.preventDefault();
+      const saved = await mutateHouseholdShop({ op: "delete_general", line_id: state.shopLineMenuId });
+      if (saved && saved.ok) document.getElementById("shopLineSheet").close();
       renderShopList();
       return true;
     }
@@ -6322,14 +6579,12 @@
     if (shopToggle) {
       e.preventDefault();
       const lineId = shopToggle.dataset.shopToggle;
-      const line = (state.dinnerShop.lines || []).find(function (l) {
+      const line = householdLines().find(function (l) {
         return l.line_id === lineId;
       });
       if (!line) return true;
-      let next = "open";
-      if (line.list_state === "open") next = "purchased";
-      else if (line.list_state === "purchased" || line.list_state === "already_have") next = "open";
-      await mutateDinnerPlan({ op: "set_line_state", line_id: lineId, list_state: next });
+      const next = line.list_state === "open" ? "purchased" : "open";
+      await mutateHouseholdShop({ op: "set_state", line_id: lineId, list_state: next });
       renderShopList();
       return true;
     }
@@ -7079,6 +7334,16 @@
     }
     show("home");
     updateHome();
+    let seen = false;
+    try {
+      seen = !!localStorage.getItem("he_shop_onboard");
+    } catch (_) {
+      seen = true;
+    }
+    if (!seen) {
+      const dlg = document.getElementById("shopOnboardSheet");
+      if (dlg && typeof dlg.showModal === "function" && !dlg.open) dlg.showModal();
+    }
   }
 
   function refreshInviteUi() {
@@ -7667,8 +7932,15 @@
       e.preventDefault();
       openContextMenu(document.getElementById("shopContextMenu"), shopMenuBtn, [
         { action: "plan-edit", label: "Edit plan" },
-        { action: "plan-ask-table", label: "Ask the table" },
-      ]);
+        { action: "shop-copy", label: "Copy list" },
+        { action: "shop-native", label: "Share" },
+        { action: "shop-print", label: "Print" },
+        { action: "shop-txt", label: "Download .txt" },
+        { action: "shop-csv", label: "Download .csv" },
+        { action: "shop-link", label: "Sharing link" },
+        state.shopShareId ? { action: "shop-revoke", label: "Stop sharing" } : null,
+        { action: "shop-clear", label: "Clear completed" },
+      ].filter(Boolean));
       return;
     }
     const tonightMenuBtn = e.target.closest("#btnTonightMenu");
@@ -7697,6 +7969,18 @@
         const dlg = document.getElementById("newPlanSheet");
         if (dlg && typeof dlg.showModal === "function") dlg.showModal();
       } else if (act === "plan-change-count") openChangeCountSheet();
+      else if (act === "shop-copy") void shopExport("copy");
+      else if (act === "shop-native") void shopNativeShare();
+      else if (act === "shop-print") void shopExport("print");
+      else if (act === "shop-txt") void shopExport("txt");
+      else if (act === "shop-csv") void shopExport("csv");
+      else if (act === "shop-link") void shopOpenShare();
+      else if (act === "shop-revoke") void shopRevoke();
+      else if (act === "shop-clear") {
+        void mutateHouseholdShop({ op: "clear_completed" }).then(function () {
+          renderShopList();
+        });
+      }
       else if (act === "plan-ask-table") {
         const url = appBaseUrl().replace(/\/$/, "") + "/?dinner_plan=" + encodeURIComponent(state.dinnerPlan.dinner_plan_id);
         document.getElementById("askTableUrl").value = url;
@@ -7709,6 +7993,132 @@
       document.getElementById("shopContextMenu").hidden = true;
       document.getElementById("tonightContextMenu").hidden = true;
     }
+  });
+
+  document.getElementById("shopAddForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const input = document.getElementById("shopAddInput");
+    const text = input.value;
+    if (!String(text || "").trim()) {
+      toast("Add a bit more of a name.");
+      return;
+    }
+    if (!state.shopAddRequest) state.shopAddRequest = shopRequestId("add");
+    const saved = await mutateHouseholdShop({
+      op: "add_item",
+      text: text,
+      client_request_id: state.shopAddRequest,
+    });
+    if (saved && saved.ok) {
+      input.value = "";
+      state.shopAddRequest = null;
+    }
+    renderShopList();
+  });
+  document.getElementById("btnShopRetry").addEventListener("click", async function () {
+    const attempt = state.shopAttempt;
+    if (!attempt || !state.householdShop) return;
+    const saved = await mutateHouseholdShop(Object.assign({}, attempt, {
+      expected_revision: state.householdShop.list.revision,
+    }));
+    renderShopList();
+    if (saved && saved.ok) {
+      const input = document.getElementById("shopAddInput");
+      if (input && attempt.op === "add_item") input.value = "";
+      state.shopAddRequest = null;
+    }
+  });
+  document.getElementById("btnShopInStore").addEventListener("click", async function () {
+    const saved = await mutateHouseholdShop({ op: "set_trip_method", trip_method: "instore" });
+    state.shopInStore = true;
+    if (!saved || !saved.ok) toast("You’re looking at the store list. This trip’s choice didn’t save.");
+    renderShopList();
+  });
+  document.getElementById("btnShopOrder").addEventListener("click", function () {
+    const prefs = state.householdShop && state.householdShop.preferences;
+    const store = (prefs && prefs.member && prefs.member.usual_store) || (prefs && prefs.household && prefs.household.usual_store) || "";
+    const note = document.getElementById("shopOrderStore");
+    if (note) {
+      note.hidden = !store;
+      note.textContent = store ? "You usually shop at " + store + "." : "";
+    }
+    document.getElementById("shopOrderSheet").showModal();
+  });
+  document.getElementById("btnShopDone").addEventListener("click", function () {
+    state.shopInStore = false;
+    show(Nav.backTarget("shopList", state.navContext.shopList));
+  });
+  document.getElementById("btnShopEditSave").addEventListener("click", async function () {
+    const qtyRaw = document.getElementById("shopEditQty").value.trim();
+    const saved = await mutateHouseholdShop({
+      op: "edit_line",
+      line_id: state.shopLineMenuId,
+      patch: {
+        display_name: document.getElementById("shopEditName").value,
+        quantity: qtyRaw === "" ? null : Number(qtyRaw),
+        unit: document.getElementById("shopEditUnit").value,
+        category: document.getElementById("shopEditCategory").value,
+      },
+    });
+    if (saved && saved.ok) document.getElementById("shopLineSheet").close();
+    renderShopList();
+  });
+  document.getElementById("btnShopShareCopy").addEventListener("click", async function () {
+    const ok = await copyText(document.getElementById("shopShareUrl").value);
+    toast(ok ? "Link copied" : "Couldn’t copy the link");
+  });
+  document.getElementById("btnShopShareRevoke").addEventListener("click", function () {
+    void shopRevoke();
+  });
+  document.getElementById("btnShopOnboardSkip").addEventListener("click", function () {
+    try { localStorage.setItem("he_shop_onboard", "skip"); } catch (_) { /* private mode */ }
+    document.getElementById("shopOnboardSheet").close();
+  });
+  async function finishShopOnboard(method) {
+    try { localStorage.setItem("he_shop_onboard", method); } catch (_) { /* private mode */ }
+    await apiPost("/api/household-shop/preferences", { scope: "household", method: method });
+    document.getElementById("shopOnboardSheet").close();
+  }
+  document.getElementById("btnShopOnboardStore").addEventListener("click", function () {
+    void finishShopOnboard("instore");
+  });
+  document.getElementById("btnShopOnboardOnline").addEventListener("click", function () {
+    void finishShopOnboard("order_online");
+  });
+  document.getElementById("btnSaveShopping").addEventListener("click", async function () {
+    const method = (document.querySelector('input[name="shopHouseholdMethod"]:checked') || {}).value || "instore";
+    const memberMethod = (document.querySelector('input[name="shopMemberMethod"]:checked') || {}).value;
+    const household = await apiPost("/api/household-shop/preferences", {
+      scope: "household",
+      method: method,
+      service: document.getElementById("shopHouseholdService").value,
+      usual_store: document.getElementById("shopUsualStore").value,
+      postal_code: document.getElementById("shopPostal").value,
+    });
+    const member = await apiPost("/api/household-shop/preferences", {
+      scope: "member",
+      method: memberMethod || null,
+      service: document.getElementById("shopMemberService").value || null,
+      usual_store: document.getElementById("shopMemberStore").value,
+    });
+    toast(household && household.ok && member && member.ok ? "Shopping saved" : "Couldn’t save shopping");
+  });
+  document.getElementById("btnShopForgetPostal").addEventListener("click", async function () {
+    document.getElementById("shopPostal").value = "";
+    await apiPost("/api/household-shop/preferences", { scope: "household", postal_code: "" });
+    toast("Postal code cleared");
+  });
+  document.getElementById("btnRecipeCopy").addEventListener("click", function () {
+    void exportRecipe("copy");
+  });
+  document.getElementById("btnRecipePrint").addEventListener("click", function () {
+    void exportRecipe("print");
+  });
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState !== "visible" || state.view !== "shopList") return;
+    loadHouseholdShop().then(function () {
+      if (state.view === "shopList") renderShopList();
+    });
   });
 
   document.getElementById("newPlanSheet").addEventListener("close", function () {
@@ -7888,6 +8298,49 @@
   // Deep links: /share/* · /invite/* · /recover/* (+ legacy ?query)
   (async function bootFromQuery() {
     const pathParts = location.pathname.replace(/\/+$/, "").split("/").filter(Boolean);
+    if (pathParts[0] === "shop" && pathParts[1] === "shared" && pathParts[2]) {
+      let robots = document.querySelector('meta[name="robots"]');
+      if (!robots) {
+        robots = document.createElement("meta");
+        robots.setAttribute("name", "robots");
+        document.head.appendChild(robots);
+      }
+      robots.setAttribute("content", "noindex");
+      show("shopShare");
+      const token = decodeURIComponent(pathParts[2]);
+      let body = null;
+      try {
+        const res = await fetch("/api/shop/shared/" + encodeURIComponent(token), { credentials: "same-origin" });
+        body = await res.json();
+        if (!res.ok) body = null;
+      } catch (_) {
+        body = null;
+      }
+      const host = document.getElementById("shopShareBody");
+      if (!body || !body.ok || !body.snapshot) {
+        if (host) host.innerHTML = '<p class="meta">This link has stopped working.</p>';
+        return;
+      }
+      const snap = body.snapshot;
+      const meta = document.getElementById("shopShareMeta");
+      if (meta) meta.textContent = (snap.headline ? snap.headline + " · " : "") + "A snapshot. It does not update.";
+      if (host) {
+        host.innerHTML = (snap.sections || [])
+          .map(function (section) {
+            const items = (section.items || [])
+              .map(function (item) {
+                const qty = item.quantity == null || item.quantity === "" ? "" : String(item.quantity);
+                const unit = item.unit || "";
+                const amount = qty ? (unit ? qty + " " + unit : qty) : "";
+                return "<li>" + escapeHtml((amount ? amount + " " : "") + (item.name || "Item")) + "</li>";
+              })
+              .join("");
+            return '<section class="shop-aisle"><h2 class="shop-aisle__title">' + escapeHtml(section.name || "") + "</h2><ul>" + items + "</ul></section>";
+          })
+          .join("");
+      }
+      return;
+    }
     if (pathParts[0] === "find" && Discovery) {
       const restored = await restoreSession();
       if (restored) {

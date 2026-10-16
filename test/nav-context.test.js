@@ -159,6 +159,14 @@ describe("Cycle 3 dinner plan navigation", () => {
     expect(r.ctx.origin).toBe("tonightPlan");
   });
 
+  it("the list returns to the screen that opened it", () => {
+    expect(open("shopList", "home").back).toBe("home");
+    expect(open("shopList", "planReview").back).toBe("planReview");
+    expect(open("shopList", "choices").back).toBe("choices");
+    expect(open("shopList", "home").label).toBe("Home");
+    expect(Nav.backLabel("shopList")).toBe("Shopping list");
+  });
+
   it("plan review and shop list use focus chrome while composing", () => {
     expect(Nav.chrome("planCount", Nav.contextFor("planCount", "home", { established: true }))).toBe("focus");
     expect(Nav.chrome("planReview", Nav.contextFor("planReview", "planCount", { established: true }))).toBe("focus");

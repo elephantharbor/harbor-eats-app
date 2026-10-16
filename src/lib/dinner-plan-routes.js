@@ -22,6 +22,7 @@ import {
   loadDinnerPlan,
   saveDinnerPlan,
 } from "./dinner-plan-store.js";
+import { projectSavedPlan } from "./household-shop-routes.js";
 
 function respond(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -159,6 +160,7 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
     if (!created.ok) return fail(created.error, created.status || 400, failureBody(created));
     try {
       await saveDinnerPlan(env.DB, created.plan);
+      await projectSavedPlan(env.DB, created.plan, now);
     } catch (error) {
       return fail("dinner_plan_save_failed", 500, { detail: String(error.message || error) });
     }
@@ -217,6 +219,7 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
   if (!mutated.ok) return fail(mutated.error, mutated.status || 400, failureBody(mutated));
   try {
     await saveDinnerPlan(env.DB, mutated.plan);
+    await projectSavedPlan(env.DB, mutated.plan, now);
   } catch (error) {
     return fail("dinner_plan_save_failed", 500, { detail: String(error.message || error) });
   }

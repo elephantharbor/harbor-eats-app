@@ -31,11 +31,15 @@ Lifecycle is the highest mark that is true. A public doc page can be **accessibl
 
 ## Operating routine
 
-**Monthly.** The owner re-reads the changelog or doc root for each row whose lifecycle is above documented, plus Instacart even while it is only documented. Update `last_verified` and the limitation notes. A missed month does not turn a provider off by itself.
+**Monthly.** The owner re-reads the changelog or doc root for each current row, including providers that are only documented. Instacart is on that list. Update `last_verified` and the limitation notes. A missed month does not turn a provider off by itself.
 
-**Quarterly.** Scan for one new provider only if a household has asked or a documented API appeared. Adding a row is not building an adapter.
+**Quarterly.** Proactive review of emerging providers and capabilities. This does not wait for a household to ask. The owner looks for a new documented API, a new fulfillment method, or a capability an existing row did not have. Adding a row is not building an adapter.
 
-**Triggered.** A production error spike, a changelog that deprecates a field we send, or a 401 after a key rotation starts a review in the same week. The adapter stays disabled until the contract test matches the new docs.
+**Triggered.** An API change, a vendor announcement, an integration failure, a production error spike, a changelog that deprecates a field we would send, or a 401 after a key rotation starts a review in the same week. The adapter stays disabled until the contract test matches the new docs.
+
+### S-02 addendum
+
+S-02 did not add adapter code and did not change any lifecycle mark. Order online still shows Instacart as “Not connected yet.” The household list is the in-store list. A typed usual store remains a label. The next review of this file is still a monthly read of the current rows plus the proactive quarterly scan above.
 
 **Adding or upgrading an adapter.**
 

@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { test, expect } from "@playwright/test";
-import { skipToChoices } from "./helpers.js";
+import { dismissShopOnboard, skipToChoices } from "./helpers.js";
 
 const repoRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
@@ -89,6 +89,7 @@ test.describe("D-06.1 weave UX", () => {
     await page.getByRole("button", { name: "Continue" }).click();
     await page.getByRole("button", { name: "Skip for now" }).click();
     await page.getByRole("button", { name: "Skip — show tonight’s picks" }).click();
+    await dismissShopOnboard(page);
 
     await page.locator('[data-go="find"]').filter({ visible: true }).first().click();
     await expect(page.getByRole("heading", { name: "Find a dinner" })).toBeVisible({ timeout: 30000 });

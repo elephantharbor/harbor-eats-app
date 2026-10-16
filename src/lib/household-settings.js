@@ -35,6 +35,52 @@ export function parseHouseholdSettings(row) {
   };
 }
 
+function cleanLabel(value, max) {
+  if (value == null) return "";
+  return String(value).trim().replace(/\s+/g, " ").slice(0, max);
+}
+
+/**
+ * Household shopping defaults. A typed store is a label, not a provider.
+ * Missing values stay at the in-store default. Nothing here is inferred.
+ */
+export function parseShoppingSettings(prefs) {
+  const raw = prefs && typeof prefs.shopping === "object" && prefs.shopping ? prefs.shopping : {};
+  return {
+    method: raw.method === "order_online" ? "order_online" : "instore",
+    service: raw.service === "instacart" ? "instacart" : "none",
+    usual_store: cleanLabel(raw.usual_store, 48),
+    postal_code: cleanLabel(raw.postal_code, 12),
+  };
+}
+
+export function shoppingSettingsPatch(currentPrefs, patch) {
+  const current = parseShoppingSettings(currentPrefs);
+  const next = { ...current };
+  if (patch.method != null) next.method = patch.method === "order_online" ? "order_online" : "instore";
+  if (patch.service != null) next.service = patch.service === "instacart" ? "instacart" : "none";
+  if (patch.usual_store != null) next.usual_store = cleanLabel(patch.usual_store, 48);
+  if (patch.postal_code != null) next.postal_code = cleanLabel(patch.postal_code, 12);
+  return next;
+}
+
+export function parseMemberShopping(rawJson) {
+  let raw = {};
+  if (rawJson) {
+    try {
+      raw = typeof rawJson === "string" ? JSON.parse(rawJson) : rawJson;
+    } catch {
+      raw = {};
+    }
+  }
+  if (!raw || typeof raw !== "object") raw = {};
+  return {
+    method: raw.method === "order_online" || raw.method === "instore" ? raw.method : null,
+    service: raw.service === "instacart" || raw.service === "none" ? raw.service : null,
+    usual_store: cleanLabel(raw.usual_store, 48),
+  };
+}
+
 export function clampChoiceCount(n) {
   const v = Number.isFinite(n) ? Math.round(n) : DEFAULT_MEAL_CHOICE_COUNT;
   return Math.min(MAX_MEAL_CHOICE_COUNT, Math.max(3, v));

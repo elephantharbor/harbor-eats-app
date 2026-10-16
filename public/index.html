@@ -442,6 +442,10 @@
                 <div class="link-card__body"><strong>Invite someone</strong><span>Share a link or code with your table</span></div>
                 <button class="btn btn-secondary btn-sm" type="button" data-go="invite">Invite</button>
               </div>
+              <button class="link-card" type="button" data-go="shopList">
+                <span class="link-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-list" /></svg></span>
+                <span class="link-card__body"><strong>The list</strong><span>Dinners and the rest of the house</span></span>
+              </button>
               <button class="link-card" type="button" data-go="meals">
                 <span class="link-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-history" /></svg></span>
                 <span class="link-card__body"><strong>Meals &amp; ratings</strong><span>What you’ve cooked and how it landed</span></span>
@@ -552,27 +556,49 @@
 
         <!-- DINNER PLAN: SHOP -->
         <section class="view" data-view="shopList" aria-labelledby="shopListTitle">
-          <div class="page page--medium shop-page">
+          <div class="page page--medium shop-page" id="shopPage">
             <button class="back" type="button" data-back="shopList"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left" /></svg> <span class="back__label">Tonight</span></button>
             <header class="page-head shop-head">
               <div>
                 <button type="button" class="eyebrow shop-eyebrow" id="shopEyebrow">For your plan</button>
-                <h1 class="title" id="shopListTitle">Shopping list</h1>
+                <h1 class="title" id="shopListTitle">The list</h1>
                 <p class="meta" id="shopProgress" aria-live="polite"></p>
               </div>
               <button class="btn btn-quiet btn-sm plan-overflow" type="button" id="btnShopMenu" aria-label="List options" aria-haspopup="menu">⋯</button>
             </header>
+            <div class="card shop-conflict" id="shopConflict" hidden role="status">
+              <p class="card-kicker">The list moved</p>
+              <p>Someone else saved first. Your change is still here.</p>
+              <button class="btn btn-secondary btn-sm" type="button" id="btnShopRetry">Apply again</button>
+            </div>
             <div class="card shop-changes-banner" id="shopChangesBanner" hidden>
               <p class="card-kicker">Your plan changed</p>
               <div id="shopChangesBody"></div>
               <button class="btn btn-secondary btn-sm" type="button" id="btnShopChangesGotIt">Got it</button>
             </div>
+            <form class="shop-add" id="shopAddForm">
+              <label class="sr-only" for="shopAddInput">Add an item</label>
+              <input id="shopAddInput" name="item" type="text" enterkeyhint="done" autocomplete="off" maxlength="80" placeholder="Add oat milk, paper towels…" />
+              <button class="btn btn-secondary" type="submit">Add</button>
+            </form>
             <div class="shop-page__columns" id="shopColumns">
               <div id="shopColLeft"></div>
               <div id="shopColRight"></div>
             </div>
-            <div id="shopSections" hidden></div>
-            <button class="btn btn-quiet shop-back-plan" type="button" data-go="choices">Back to your plan</button>
+            <div class="shop-dock" id="shopDock">
+              <button class="btn btn-primary btn-lg" type="button" id="btnShopInStore">Shop in store</button>
+              <button class="btn btn-secondary btn-lg" type="button" id="btnShopOrder">Order online</button>
+              <button class="btn btn-primary btn-lg" type="button" id="btnShopDone" hidden>Done</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" data-view="shopShare" aria-labelledby="shopShareTitle">
+          <div class="page page--medium shop-share-page">
+            <p class="eyebrow">A shared list</p>
+            <h1 class="title" id="shopShareTitle">The list</h1>
+            <p class="meta" id="shopShareMeta">A snapshot from the moment it was shared. It does not update.</p>
+            <div id="shopShareBody"></div>
           </div>
         </section>
 
@@ -618,6 +644,51 @@
                       </select>
                     </label>
                   </div>
+                </section>
+
+                <section class="card settings-section" aria-labelledby="shoppingSettingsTitle">
+                  <h2 class="card-title" id="shoppingSettingsTitle">Shopping</h2>
+                  <p class="meta">The household default, a favorite for you, and a store name you type. A typed store is a label, not a verified shop.</p>
+                  <fieldset class="shop-choice">
+                    <legend class="field__label">Household default</legend>
+                    <label><input type="radio" name="shopHouseholdMethod" value="instore" checked /> Shop in store</label>
+                    <label><input type="radio" name="shopHouseholdMethod" value="order_online" /> Order online</label>
+                  </fieldset>
+                  <label class="field">
+                    <span class="field__label">Preferred service</span>
+                    <select id="shopHouseholdService">
+                      <option value="none">None</option>
+                      <option value="instacart">Instacart</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Usual store</span>
+                    <input type="text" id="shopUsualStore" maxlength="48" placeholder="A name you use, like Market Street" />
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Postal code, optional</span>
+                    <input type="text" id="shopPostal" maxlength="12" autocomplete="postal-code" inputmode="text" />
+                  </label>
+                  <button class="btn btn-quiet btn-sm" type="button" id="btnShopForgetPostal">Forget code</button>
+                  <fieldset class="shop-choice">
+                    <legend class="field__label">Your favorite</legend>
+                    <label><input type="radio" name="shopMemberMethod" value="" checked /> Use the household default</label>
+                    <label><input type="radio" name="shopMemberMethod" value="instore" /> Shop in store</label>
+                    <label><input type="radio" name="shopMemberMethod" value="order_online" /> Order online</label>
+                  </fieldset>
+                  <label class="field">
+                    <span class="field__label">Your favorite service</span>
+                    <select id="shopMemberService">
+                      <option value="">Same as the household</option>
+                      <option value="none">None</option>
+                      <option value="instacart">Instacart</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span class="field__label">Your usual store</span>
+                    <input type="text" id="shopMemberStore" maxlength="48" placeholder="Only if yours is different" />
+                  </label>
+                  <button class="btn btn-secondary" type="button" id="btnSaveShopping">Save shopping</button>
                 </section>
 
                 <section class="card settings-section" aria-labelledby="membersSettingsTitle">
@@ -735,6 +806,10 @@
                   <div class="tab-panel" role="tabpanel" id="panel-ingredients" aria-labelledby="tab-ingredients" tabindex="0" hidden>
                     <p class="meta" id="detailServingsNote"></p>
                     <ul class="ing" id="detailIngredients"></ul>
+                    <div class="recipe-export">
+                      <button class="btn btn-secondary btn-sm" type="button" id="btnRecipeCopy">Copy recipe</button>
+                      <button class="btn btn-quiet btn-sm" type="button" id="btnRecipePrint">Print recipe</button>
+                    </div>
                     <div class="equip" id="detailEquipmentWrap" hidden>
                       <h3 class="equip__title">Equipment</h3>
                       <ul class="equip__list" id="detailEquipment"></ul>
@@ -1033,12 +1108,102 @@
       </dialog>
 
       <dialog class="sheet" id="shopLineSheet" aria-labelledby="shopLineTitle">
-        <form method="dialog" class="sheet__inner">
+        <form method="dialog" class="sheet__inner sheet__inner--split" id="shopLineForm">
+          <div class="sheet__scroll">
           <h2 class="card-title" id="shopLineTitle">Ingredient</h2>
           <p class="meta" id="shopLineMeals"></p>
           <p class="meta" id="shopLinePrep" hidden></p>
+          <p class="shop-reconcile" id="shopLineReconcile" hidden></p>
+          <label class="field">
+            <span class="field__label">Name</span>
+            <input type="text" id="shopEditName" maxlength="80" />
+          </label>
+          <div class="field-row">
+            <label class="field">
+              <span class="field__label">Quantity</span>
+              <input type="text" id="shopEditQty" inputmode="decimal" />
+            </label>
+            <label class="field">
+              <span class="field__label">Unit</span>
+              <select id="shopEditUnit">
+                <option value="unparsed">No unit</option>
+                <option value="count">count</option>
+                <option value="cup">cup</option>
+                <option value="tbsp">tbsp</option>
+                <option value="tsp">tsp</option>
+                <option value="oz">oz</option>
+                <option value="lb">lb</option>
+                <option value="g">g</option>
+                <option value="carton">carton</option>
+                <option value="package">package</option>
+                <option value="bunch">bunch</option>
+                <option value="can">can</option>
+              </select>
+            </label>
+          </div>
+          <label class="field">
+            <span class="field__label">Aisle</span>
+            <select id="shopEditCategory">
+              <option value="produce">Produce</option>
+              <option value="dairy">Dairy</option>
+              <option value="meat">Meat</option>
+              <option value="bakery">Bakery</option>
+              <option value="pantry">Pantry</option>
+              <option value="frozen">Frozen</option>
+              <option value="household">Household</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
           <div class="sheet-menu" id="shopLineActions"></div>
-          <button class="btn btn-quiet" type="submit">Close</button>
+          </div>
+          <div class="sheet__actions">
+            <button class="btn btn-primary" type="button" id="btnShopEditSave">Save</button>
+            <button class="btn btn-quiet" type="submit">Close</button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog class="sheet" id="shopOrderSheet" aria-labelledby="shopOrderTitle">
+        <form method="dialog" class="sheet__inner">
+          <h2 class="card-title" id="shopOrderTitle">Order online</h2>
+          <p class="meta" id="shopOrderStore" hidden></p>
+          <div class="shop-service" aria-disabled="true">
+            <strong>Instacart</strong>
+            <span>Not connected yet</span>
+          </div>
+          <p class="meta">More stores later</p>
+          <p class="meta">Shop in store is ready now. Nothing is sent anywhere.</p>
+          <button class="btn btn-primary" type="submit">Shop in store instead</button>
+        </form>
+      </dialog>
+
+      <dialog class="sheet" id="shopShareSheet" aria-labelledby="shopShareSheetTitle">
+        <form method="dialog" class="sheet__inner">
+          <h2 class="card-title" id="shopShareSheetTitle">Sharing link</h2>
+          <p class="meta">People with the link see a snapshot from now. Items you add later stay in the household.</p>
+          <label class="field">
+            <span class="field__label">Link</span>
+            <input type="text" id="shopShareUrl" readonly />
+          </label>
+          <p class="meta" id="shopShareExpires"></p>
+          <div class="sheet__actions">
+            <button class="btn btn-secondary" type="button" id="btnShopShareCopy">Copy link</button>
+            <button class="btn btn-quiet" type="button" id="btnShopShareRevoke">Stop sharing</button>
+            <button class="btn btn-quiet" type="submit">Close</button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog class="sheet" id="shopOnboardSheet" aria-labelledby="shopOnboardTitle">
+        <form method="dialog" class="sheet__inner">
+          <p class="eyebrow">Optional</p>
+          <h2 class="card-title" id="shopOnboardTitle">Where do you usually shop?</h2>
+          <p class="meta">You can skip this. It only sets the household default.</p>
+          <div class="sheet__actions">
+            <button class="btn btn-primary" type="button" id="btnShopOnboardStore">Shop in store</button>
+            <button class="btn btn-secondary" type="button" id="btnShopOnboardOnline">Order online</button>
+            <button class="btn btn-quiet" type="button" id="btnShopOnboardSkip">Skip</button>
+          </div>
         </form>
       </dialog>
 
@@ -1058,6 +1223,7 @@
       <menu class="context-menu" id="shopContextMenu" hidden></menu>
     </div>
   </div>
+  <pre id="shopPrintRoot" class="shop-print" hidden></pre>
   <script src="/meal-media-manifest.js"></script>
   <script src="/meal-media.js"></script>
   <script src="/meal-identity.js"></script>
