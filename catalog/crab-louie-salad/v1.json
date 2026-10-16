@@ -1,0 +1,649 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "crab-louie-salad",
+    "slug": "crab-louie-salad",
+    "title": "Crab Louie Salad with Asparagus, Eggs, and Louie Dressing",
+    "description": "Lump crab heaped over crisp romaine with blanched asparagus, boiled eggs, tomatoes, cucumber, and avocado, dressed with a tangy Louie dressing of mayonnaise, ketchup, sweet pickle relish, lemon, scallions, and paprika.",
+    "cuisine": "american",
+    "meal_format": "main-salad",
+    "primary_ingredient": "crab",
+    "vocabulary_tag_ids": [
+      "fresh",
+      "creamy",
+      "tangy",
+      "american"
+    ],
+    "current_recipe_id": "rcp_crab-louie-salad",
+    "current_version_id": "rv_crab-louie-salad_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_crab-louie-salad",
+    "dish_id": "crab-louie-salad",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_crab-louie-salad_v1",
+    "recipe_id": "rcp_crab-louie-salad",
+    "dish_id": "crab-louie-salad",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Crab Louie Salad with Asparagus, Eggs, and Louie Dressing",
+    "description": "Lump crab heaped over crisp romaine with blanched asparagus, boiled eggs, tomatoes, cucumber, and avocado, dressed with a tangy Louie dressing of mayonnaise, ketchup, sweet pickle relish, lemon, scallions, and paprika.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "for the eggs and asparagus",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "asparagus",
+        "name": "asparagus",
+        "display_name": "asparagus",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "woody ends snapped off",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "mayonnaise",
+        "name": "mayonnaise",
+        "display_name": "mayonnaise whose label lists oil, egg, vinegar, salt, and sugar",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ketchup",
+        "name": "ketchup",
+        "display_name": "ketchup whose label lists tomato concentrate, vinegar, sugar, salt, and spices",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "relish",
+        "name": "sweet pickle relish",
+        "display_name": "sweet pickle relish whose label lists cucumbers, sugar, vinegar, salt, and spices",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon-juice",
+        "name": "lemon juice",
+        "display_name": "lemon juice",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "paprika",
+        "name": "sweet paprika",
+        "display_name": "sweet paprika",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "romaine",
+        "name": "romaine lettuce",
+        "display_name": "romaine hearts",
+        "quantity": 2,
+        "unit": "head",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "crab",
+        "name": "lump crab",
+        "display_name": "pasteurized lump crab meat",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "picked over for shell",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "tomatoes",
+        "display_name": "tomatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "avocado",
+        "name": "avocados",
+        "display_name": "avocados",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Snap the woody ends off the asparagus, chop the romaine, cut the tomatoes into wedges, slice the cucumber and scallions, and pick over the crab for shell bits.",
+        "ingredient_refs": [
+          "asparagus",
+          "romaine",
+          "tomatoes",
+          "cucumber",
+          "scallions",
+          "crab"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil the eggs and asparagus",
+        "body": "Bring 4 cups water and the salt to a boil in the 2-quart saucepan over high, about 6 minutes to come to a boil. Lower in the eggs and simmer 10 minutes, lift them into a bowl under the cold tap for 2 minutes, then blanch the asparagus in the same pot until bright green, about 2 minutes, and drain under the cold tap. Peel and quarter the eggs.",
+        "ingredient_refs": [
+          "water",
+          "salt",
+          "eggs",
+          "asparagus"
+        ],
+        "clock_minutes": 22,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Make the dressing",
+        "body": "While the eggs cook (overlap stated): stir the mayonnaise, ketchup, relish, lemon juice, scallions, and paprika in the small bowl.",
+        "ingredient_refs": [
+          "mayonnaise",
+          "ketchup",
+          "relish",
+          "lemon-juice",
+          "scallions",
+          "paprika"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Compose",
+        "body": "Slice the avocados. Spread the romaine on the platter and arrange the asparagus, eggs, tomatoes, cucumber, and avocado around a central heap of crab. Spoon some dressing over the crab and serve the rest alongside with lemon wedges.",
+        "ingredient_refs": [
+          "avocado",
+          "romaine",
+          "asparagus",
+          "eggs",
+          "tomatoes",
+          "cucumber",
+          "crab",
+          "mayonnaise",
+          "lemon"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "eggs",
+        "name": "boiled eggs",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "eggs",
+          "water"
+        ]
+      },
+      {
+        "component_id": "asparagus",
+        "name": "blanched asparagus",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "asparagus",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "dressing",
+        "name": "Louie dressing",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "mayonnaise",
+          "ketchup",
+          "sweet pickle relish",
+          "lemon juice",
+          "scallions",
+          "paprika",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "salad",
+        "name": "salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "romaine",
+          "lump crab",
+          "tomatoes",
+          "cucumber",
+          "avocado",
+          "lemon"
+        ]
+      }
+    ],
+    "equipment": [
+      "2-quart saucepan",
+      "slotted spoon",
+      "colander",
+      "small bowl",
+      "large platter"
+    ],
+    "methods": [
+      "boil",
+      "blanch"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "crispy"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 28,
+    "total_time_minutes": 40,
+    "prep_minutes": 12,
+    "cook_minutes": 28,
+    "total_minutes": 40,
+    "time_clock": "Prep 12 + cook 28 = 40 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The dressing and vegetables are prepared while the eggs cook (step 3 runs inside step 2, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "2-quart saucepan for the eggs and then the asparagus.",
+    "doneness": "Eggs firm-cooked with no gray ring (10 minutes); asparagus bright green and crisp-tender (2 minutes).",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": true,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: crab is shellfish."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: crab, vegetables, eggs, and a mayonnaise-ketchup dressing with no milk. No Worcestershire sauce (it contains anchovy).",
+    "allergens": [
+      "shellfish",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Shellfish from the crab.",
+      "Egg from the boiled eggs and mayonnaise.",
+      "No milk, soy, wheat, sesame, finfish, or nuts.",
+      "The mayonnaise label lists oil, egg, vinegar, salt, and sugar; the relish label lists cucumbers, sugar, vinegar, salt, and spices."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: crab is shellfish.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "fresh",
+      "creamy",
+      "tangy",
+      "american"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'american' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Keep the crab and dressing cold until you assemble; pick the crab over for shell bits.",
+    "culinary_hash": "ba33fafae37398d84d96fc76947c85a4a94f44d8d4fdb5dca42cc4bff8950611",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_crab-louie-salad_v2",
+    "dish_id": "crab-louie-salad",
+    "recipe_version_id": "rv_crab-louie-salad_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "crab-louie-salad.webp",
+    "card_ref": "crab-louie-salad-640.webp",
+    "master_filename": "crab-louie-salad.webp",
+    "card_filename": "crab-louie-salad-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "crab-louie-salad.webp",
+        "spec_catalog_path": "/images/meals/crab-louie-salad.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "crab-louie-salad-640.webp",
+        "spec_catalog_path": "/images/meals/crab-louie-salad-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "8debd1dde0719028b7aed3ae300ed26f282fbc54e46d39e5c00f9fd00a1f4c4c",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "8debd1dde0719028b7aed3ae300ed26f282fbc54e46d39e5c00f9fd00a1f4c4c",
+      "master_sha256": "7f679d7080a73c58fc8ff25e493a29a60668764ad14aaa8df6f898ea5fc593ed",
+      "card_sha256": "ba6ac43af2183aa4204ae35041b8a46a4ac81ba135d962b4af254eb81f754389"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "8debd1dde0719028b7aed3ae300ed26f282fbc54e46d39e5c00f9fd00a1f4c4c",
+      "crab-louie-salad.webp": "7f679d7080a73c58fc8ff25e493a29a60668764ad14aaa8df6f898ea5fc593ed",
+      "crab-louie-salad-640.webp": "ba6ac43af2183aa4204ae35041b8a46a4ac81ba135d962b4af254eb81f754389"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "creator_self_review_before_audit",
+      "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: crab reads as red-streaked imitation crab, not lump crab.",
+      "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+      "prompt_sha256": {
+        "v2": "34a5e4a8a2be660258b1634e15e7d8ae8bd620139f701991f2913669f4b17f55"
+      },
+      "rejected_versions": [
+        1
+      ]
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "creator_self_review_before_audit",
+        "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: crab reads as red-streaked imitation crab, not lump crab.",
+        "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+        "prompt_sha256": {
+          "v2": "34a5e4a8a2be660258b1634e15e7d8ae8bd620139f701991f2913669f4b17f55"
+        },
+        "rejected_versions": [
+          1
+        ]
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_crab-louie-salad_v1",
+        "source_file": "img_v1.jpg",
+        "sha256": "01749bb2276cb49ecb65d8594aba834c3e1d44663091cf9b97be04fcfcf4c4f8",
+        "generate_image_attachment_hash": "01749bb2276cb49ecb65d8594aba834c3e1d44663091cf9b97be04fcfcf4c4f8",
+        "moved_to_rejected": "rejected/img_v1-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "crab reads as red-streaked imitation crab, not lump crab"
+      }
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 28 = 40 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The dressing and vegetables are prepared while the eggs cook (step 3 runs inside step 2, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "crab-louie-salad.webp 1200x900 and crab-louie-salad-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"crispy\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything; 1 egg and the asparagus in a 1-quart saucepan with 3 cups water.",
+    "2": "Half of everything; 2 eggs in the 2-quart saucepan with 4 cups water.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "Crab appears only as fried Maryland crab cakes, and the main salads are Cobb and nicoise; there is no crab salad. A light, no-oven West Coast dinner.",
+  "near_duplicate_review": "Compared with maryland-crab-cakes-slaw: cold lump crab on a composed salad, not pan-fried crab cakes with slaw. Compared with cobb-salad: crab with asparagus and Louie dressing, no chicken, bacon, or blue cheese. Compared with salade-nicoise-seared-tuna: crab, avocado, and a creamy dressing, not tuna, potatoes, olives, and vinaigrette.",
+  "not_duplicate_of": "Not a crab roll and not a seafood cocktail.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

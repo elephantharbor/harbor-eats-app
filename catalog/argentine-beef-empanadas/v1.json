@@ -1,0 +1,617 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "argentine-beef-empanadas",
+    "slug": "argentine-beef-empanadas",
+    "title": "Argentine Baked Beef Empanadas with Olives and Boiled Egg",
+    "description": "Pastry discs filled with ground beef cooked with onion, red bell pepper, cumin, sweet paprika, oregano, and chile flakes, folded with chopped boiled egg, green olives, and scallions, crimped, brushed with beaten egg, and baked golden.",
+    "cuisine": "argentine",
+    "meal_format": "hand-pies",
+    "primary_ingredient": "ground beef",
+    "vocabulary_tag_ids": [
+      "savory",
+      "crispy",
+      "tender",
+      "rich"
+    ],
+    "current_recipe_id": "rcp_argentine-beef-empanadas",
+    "current_version_id": "rv_argentine-beef-empanadas_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_argentine-beef-empanadas",
+    "dish_id": "argentine-beef-empanadas",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_argentine-beef-empanadas_v1",
+    "recipe_id": "rcp_argentine-beef-empanadas",
+    "dish_id": "argentine-beef-empanadas",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Argentine Baked Beef Empanadas with Olives and Boiled Egg",
+    "description": "Pastry discs filled with ground beef cooked with onion, red bell pepper, cumin, sweet paprika, oregano, and chile flakes, folded with chopped boiled egg, green olives, and scallions, crimped, brushed with beaten egg, and baked golden.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 3,
+        "unit": "count",
+        "note": "2 boiled for the filling, 1 beaten for brushing",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "egg-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "for the eggs",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onions",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bell-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 0.75,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "beef",
+        "name": "ground beef",
+        "display_name": "85 percent lean ground beef",
+        "quantity": 0.75,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "paprika",
+        "name": "sweet paprika",
+        "display_name": "sweet paprika",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chile-flakes",
+        "name": "red chile flakes",
+        "display_name": "red chile flakes",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olives",
+        "name": "green olives",
+        "display_name": "pitted green olives whose label lists olives, water, salt, and lactic acid",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "discs",
+        "name": "empanada discs",
+        "display_name": "5-inch empanada discs for baking whose label lists wheat flour, water, palm oil, salt, and sugar",
+        "quantity": 16,
+        "unit": "count",
+        "note": null,
+        "preparation": "thawed",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Preheat the oven to 400 F with racks in the upper and lower thirds, and line the 2 sheet pans with parchment. Dice the onion and bell pepper, chop the olives, and slice the scallions.",
+        "ingredient_refs": [
+          "onions",
+          "bell-pepper",
+          "olives",
+          "scallions"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil 2 eggs",
+        "body": "While the filling cooks (overlap stated): bring 4 cups water to a boil in the 2-quart saucepan over high, about 6 minutes to come to a boil. Lower in 2 eggs, simmer 10 minutes, cool under the cold tap 2 minutes, peel, and chop.",
+        "ingredient_refs": [
+          "egg-water",
+          "eggs"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the filling",
+        "body": "Heat the oil in the 12-inch skillet over medium-high, about 1 minute. Cook the onion and bell pepper until soft, about 7 minutes. Add the beef and cook, breaking it up, until no pink remains, about 7 minutes. Stir in the cumin, paprika, oregano, chile flakes, and salt for 1 minute, then spoon off excess fat.",
+        "ingredient_refs": [
+          "oil",
+          "onions",
+          "bell-pepper",
+          "beef",
+          "cumin",
+          "paprika",
+          "oregano",
+          "chile-flakes",
+          "salt"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Cool the filling",
+        "body": "Spread the filling on a large plate and let it cool 10 minutes, then fold in the chopped eggs, olives, and scallions.",
+        "ingredient_refs": [
+          "beef",
+          "eggs",
+          "olives",
+          "scallions"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Fill and crimp",
+        "body": "Beat the remaining egg in the small bowl. Divide the filling evenly among the 16 discs, about 3 tbsp (a scant 1/4 cup) each, brush the edge with egg, fold into a half-moon, and press with the fork or fold-crimp the edge. Set 8 on each sheet pan and brush the tops with egg.",
+        "ingredient_refs": [
+          "discs",
+          "beef",
+          "eggs"
+        ],
+        "clock_minutes": 22,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 6,
+        "title": "Bake",
+        "body": "Bake until deep golden, about 20 minutes, switching the pans halfway. Rest 5 minutes before serving.",
+        "ingredient_refs": [
+          "discs"
+        ],
+        "clock_minutes": 26,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "eggs",
+        "name": "boiled eggs",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "eggs",
+          "water"
+        ]
+      },
+      {
+        "component_id": "filling",
+        "name": "beef filling",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ground beef",
+          "neutral oil",
+          "yellow onion",
+          "red bell pepper",
+          "cumin",
+          "sweet paprika",
+          "dried oregano",
+          "red chile flakes",
+          "salt",
+          "eggs",
+          "green olives",
+          "scallions"
+        ]
+      },
+      {
+        "component_id": "pastry",
+        "name": "empanadas",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "empanada discs",
+          "eggs"
+        ]
+      }
+    ],
+    "equipment": [
+      "2 rimmed sheet pans (18x13 inch)",
+      "parchment paper",
+      "12-inch skillet",
+      "2-quart saucepan",
+      "small bowl",
+      "pastry brush",
+      "fork"
+    ],
+    "methods": [
+      "boil",
+      "saute",
+      "bake"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 34,
+    "cook_time_minutes": 55,
+    "total_time_minutes": 89,
+    "prep_minutes": 34,
+    "cook_minutes": 55,
+    "total_minutes": 89,
+    "time_clock": "Prep 34 + cook 55 = 89 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The eggs boil while the filling cooks (step 2 runs inside step 3, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        5
+      ],
+      "cook_steps": [
+        3,
+        4,
+        6
+      ],
+      "overlap_steps": [
+        2
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Prep) and it states the preheat. The eggs boil while the filling cooks (step 2 runs inside step 3, overlap stated).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven 400 F with racks in the upper and lower thirds; 12-inch skillet over medium-high; 2-quart saucepan for the eggs.",
+    "doneness": "Pastry deep golden and crisp at the crimp; filling steaming hot (165 F).",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: beef is meat."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: the empanada disc label lists wheat flour, water, palm oil, salt, and sugar, with no milk or butter.",
+    "allergens": [
+      "meat",
+      "wheat",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Meat from the beef.",
+      "Wheat from the pastry discs.",
+      "Egg from the filling and the egg wash.",
+      "No milk, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: beef is meat.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "savory",
+      "crispy",
+      "tender",
+      "rich"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'argentine' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook the beef to 160 F before filling; bake until the filling is 165 F.",
+    "culinary_hash": "1c2becd57927a16d01b5ead499f543fdc5f55595888d8dd773a65c47f2ed3200",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_argentine-beef-empanadas_v1",
+    "dish_id": "argentine-beef-empanadas",
+    "recipe_version_id": "rv_argentine-beef-empanadas_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "argentine-beef-empanadas.webp",
+    "card_ref": "argentine-beef-empanadas-640.webp",
+    "master_filename": "argentine-beef-empanadas.webp",
+    "card_filename": "argentine-beef-empanadas-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "argentine-beef-empanadas.webp",
+        "spec_catalog_path": "/images/meals/argentine-beef-empanadas.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "argentine-beef-empanadas-640.webp",
+        "spec_catalog_path": "/images/meals/argentine-beef-empanadas-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "006bda58fb88a6ef1792cfe8db89c854b3af843d7461dd8f88a5fcc0427c35ed",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "006bda58fb88a6ef1792cfe8db89c854b3af843d7461dd8f88a5fcc0427c35ed",
+      "master_sha256": "7c2411295df7b42653de705e31273e5d66be93915217202ff2117659ea069ca8",
+      "card_sha256": "a5721a2b84a30907e774bd14fec4e9adcff9c096993840d0a4c4d6b0bce9d254"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "006bda58fb88a6ef1792cfe8db89c854b3af843d7461dd8f88a5fcc0427c35ed",
+      "argentine-beef-empanadas.webp": "7c2411295df7b42653de705e31273e5d66be93915217202ff2117659ea069ca8",
+      "argentine-beef-empanadas-640.webp": "a5721a2b84a30907e774bd14fec4e9adcff9c096993840d0a4c4d6b0bce9d254"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 34 + cook 55 = 89 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The eggs boil while the filling cooks (step 2 runs inside step 3, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Prep) and it states the preheat. The eggs boil while the filling cooks (step 2 runs inside step 3, overlap stated)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "argentine-beef-empanadas.webp 1200x900 and argentine-beef-empanadas-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Four empanadas on 1 sheet pan with a quarter of the filling; 1 egg boiled in a 1-quart saucepan with 3 cups water.",
+    "2": "Eight empanadas on 1 sheet pan with half the filling; 1 egg boiled in the 2-quart saucepan.",
+    "4": "As written (16 on 2 sheet pans).",
+    "do_not_scale": [
+      "bake time stays about 20 minutes"
+    ]
+  },
+  "coverage_contribution": "The catalog has no hand pies or empanadas; Argentina appears only as chimichurri steak. A make-and-bake beef dinner.",
+  "near_duplicate_review": "Compared with argentine-chimichurri-steak-potatoes: a ground-beef pastry baked in hand pies, not grilled steak with potatoes. Compared with cuban-picadillo-rice: spiced beef sealed in pastry with egg and olives, not saucy beef over rice. Compared with greek-spanakopita: a beef filling in single crimped discs, not spinach and feta in phyllo.",
+  "not_duplicate_of": "Not Jamaican beef patties (no curry or turmeric pastry) and not fried empanadas.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "E",
+  "revision_history": [
+    {
+      "from": "author-r2",
+      "to": "author-r3",
+      "when": "2026-10-16",
+      "who": "Grok Bot (Curator, creator role), wave-17",
+      "trigger": "audit r1 gate B FAIL",
+      "scope": "recipe text only; image files unchanged and not regenerated",
+      "from_culinary_hash": "5a1eaf53abf9763917207cbfdf9c8013c7d4ba2179b88021441ebe02bea98e13",
+      "to_culinary_hash": "1c2becd57927a16d01b5ead499f543fdc5f55595888d8dd773a65c47f2ed3200",
+      "changes": [
+        "Filling trimmed to fit 16 discs at about 3 tbsp each (about 3 cups): ground beef 1 lb -> 3/4 lb; yellow onions 2 -> 1.",
+        "Rest of the filling scaled by 3/4: red bell pepper 1 -> 3/4; cumin 2 -> 1 1/2 tsp; sweet paprika 2 -> 1 1/2 tsp; dried oregano 1 -> 3/4 tsp; red chile flakes 1/2 -> 1/4 tsp (3/8 rounded to a standard spoon); kosher salt 1 1/4 -> 1 tsp; green olives 1/3 -> 1/4 cup; scallions 3 -> 2. The 2 boiled eggs are kept (audit fix text) and the third egg is still the wash.",
+        "Step 5: 'Place about 2 tbsp filling on each disc' -> 'Divide the filling evenly among the 16 discs, about 3 tbsp (a scant 1/4 cup) each'. Steps 1 and 3 and the description say 'onion' (singular).",
+        "Yield (16), discs, sheet pans, bake, clocks and total time (89 min) unchanged."
+      ]
+    }
+  ]
+}

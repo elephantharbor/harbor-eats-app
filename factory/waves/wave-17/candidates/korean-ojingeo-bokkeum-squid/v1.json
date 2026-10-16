@@ -1,0 +1,634 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "korean-ojingeo-bokkeum-squid",
+    "slug": "korean-ojingeo-bokkeum-squid",
+    "title": "Korean Ojingeo Bokkeum: Spicy Stir-Fried Squid with Vegetables and Rice",
+    "description": "Scored squid pieces and tentacles stir-fried over high heat with cabbage, carrot, onion, scallions, and jalapeno in a sweet-hot sauce of gochugaru, gochujang, soy sauce, sugar, garlic, and ginger, finished with toasted sesame oil and sesame seeds and served over short-grain rice.",
+    "cuisine": "korean",
+    "meal_format": "stir-fry-with-rice",
+    "primary_ingredient": "squid",
+    "vocabulary_tag_ids": [
+      "stir-fries",
+      "spicy",
+      "savory",
+      "korean"
+    ],
+    "current_recipe_id": "rcp_korean-ojingeo-bokkeum-squid",
+    "current_version_id": "rv_korean-ojingeo-bokkeum-squid_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_korean-ojingeo-bokkeum-squid",
+    "dish_id": "korean-ojingeo-bokkeum-squid",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_korean-ojingeo-bokkeum-squid_v1",
+    "recipe_id": "rcp_korean-ojingeo-bokkeum-squid",
+    "dish_id": "korean-ojingeo-bokkeum-squid",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Korean Ojingeo Bokkeum: Spicy Stir-Fried Squid with Vegetables and Rice",
+    "description": "Scored squid pieces and tentacles stir-fried over high heat with cabbage, carrot, onion, scallions, and jalapeno in a sweet-hot sauce of gochugaru, gochujang, soy sauce, sugar, garlic, and ginger, finished with toasted sesame oil and sesame seeds and served over short-grain rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "gochugaru",
+        "name": "gochugaru",
+        "display_name": "gochugaru (Korean chile flakes)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "gochujang",
+        "name": "gochujang",
+        "display_name": "gochujang whose label lists rice, chile, soybeans, wheat, and salt",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 5,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrot",
+        "name": "carrot",
+        "display_name": "carrot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into thin batons",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cabbage",
+        "name": "green cabbage",
+        "display_name": "green cabbage",
+        "quantity": 3,
+        "unit": "cup",
+        "note": null,
+        "preparation": "cut into 1-inch squares",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jalapeno",
+        "name": "jalapeno",
+        "display_name": "jalapeno",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "squid",
+        "name": "cleaned squid",
+        "display_name": "cleaned squid bodies and tentacles",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "bodies opened, scored, and cut into 2-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 2-inch lengths",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "sesame-seeds",
+        "name": "toasted sesame seeds",
+        "display_name": "toasted sesame seeds",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "short-grain rice",
+        "display_name": "short-grain rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1.75,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Rinse the rice",
+        "body": "Rinse the rice until the rinse runs clear.",
+        "ingredient_refs": [
+          "rice"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the rice",
+        "body": "While you prep and stir-fry (overlap stated): combine the rice and 1 3/4 cups water in a 2-quart saucepan, bring to a boil over high, about 4 minutes, then cover, turn to low, and cook 15 minutes. Leave it covered off the heat to rest 10 minutes.",
+        "ingredient_refs": [
+          "rice",
+          "rice-water"
+        ],
+        "clock_minutes": 29,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 3,
+        "title": "Prep the squid",
+        "body": "Pat the squid dry. Slit the bodies open, score the inside in a crosshatch, and cut into 2-inch pieces; halve large tentacle clusters.",
+        "ingredient_refs": [
+          "squid"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 4,
+        "title": "Sauce and vegetables",
+        "body": "Mince the garlic, grate the ginger, and stir them with the gochugaru, gochujang, soy sauce, and sugar in the small bowl. Slice the onion and jalapeno, cut the carrot into batons and the cabbage into squares, and cut the scallions.",
+        "ingredient_refs": [
+          "garlic",
+          "ginger",
+          "gochugaru",
+          "gochujang",
+          "soy-sauce",
+          "sugar",
+          "onion",
+          "jalapeno",
+          "carrot",
+          "cabbage",
+          "scallions"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 5,
+        "title": "Stir-fry",
+        "body": "Heat the oil in the 12-inch skillet over high until shimmering, about 2 minutes. Stir-fry the onion, carrot, and cabbage until crisp-tender, about 4 minutes. Add the sauce and jalapeno for 30 seconds, then the squid and scallions, and stir-fry until the squid just turns opaque and curls, about 2 minutes. Off the heat stir in the sesame oil.",
+        "ingredient_refs": [
+          "oil",
+          "onion",
+          "carrot",
+          "cabbage",
+          "garlic",
+          "jalapeno",
+          "squid",
+          "scallions",
+          "sesame-oil"
+        ],
+        "clock_minutes": 9,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Spoon over the rice and sprinkle with sesame seeds.",
+        "ingredient_refs": [
+          "rice",
+          "sesame-seeds"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "sauce",
+        "name": "chile sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "gochugaru",
+          "gochujang",
+          "soy sauce",
+          "sugar",
+          "garlic",
+          "ginger"
+        ]
+      },
+      {
+        "component_id": "stir-fry",
+        "name": "squid stir-fry",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "neutral oil",
+          "onion",
+          "carrot",
+          "green cabbage",
+          "jalapeno",
+          "squid",
+          "scallions",
+          "toasted sesame oil",
+          "sesame seeds"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "short-grain rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "short-grain rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "2-quart saucepan with lid",
+      "small bowl",
+      "wide spatula"
+    ],
+    "methods": [
+      "stir-fry",
+      "steam"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": true,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 24,
+    "cook_time_minutes": 11,
+    "total_time_minutes": 35,
+    "prep_minutes": 24,
+    "cook_minutes": 11,
+    "total_minutes": 35,
+    "time_clock": "Prep 24 + cook 11 = 35 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests while the squid and vegetables are prepped and stir-fried (step 2 runs inside steps 3-6, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        3,
+        4
+      ],
+      "cook_steps": [
+        5,
+        6
+      ],
+      "overlap_steps": [
+        2
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "12-inch skillet over high; 2-quart saucepan for the rice.",
+    "doneness": "Vegetables crisp-tender and glossy; squid just turned opaque and curled, tender rather than rubbery (about 2 minutes).",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": true,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: squid is shellfish (a mollusk)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: squid, vegetables, chile pastes, soy sauce, sugar, sesame, and rice.",
+    "allergens": [
+      "shellfish",
+      "soy",
+      "wheat",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Shellfish from the squid (a mollusk; most shellfish-allergy guidance includes squid).",
+      "Soy from the soy sauce and gochujang.",
+      "Wheat from the gochujang and soy sauce.",
+      "Sesame from the sesame oil and seeds.",
+      "No milk, egg, finfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: squid is shellfish (a mollusk).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "stir-fries",
+      "spicy",
+      "savory",
+      "korean"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'korean' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Squid toughens if cooked longer than about 3 minutes; pull it as soon as it turns opaque.",
+    "culinary_hash": "d40c93980f64e033835f449c0378a9a1ff2f86123a08cb4170ed2a545172a19d",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_korean-ojingeo-bokkeum-squid_v1",
+    "dish_id": "korean-ojingeo-bokkeum-squid",
+    "recipe_version_id": "rv_korean-ojingeo-bokkeum-squid_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "korean-ojingeo-bokkeum-squid.webp",
+    "card_ref": "korean-ojingeo-bokkeum-squid-640.webp",
+    "master_filename": "korean-ojingeo-bokkeum-squid.webp",
+    "card_filename": "korean-ojingeo-bokkeum-squid-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "korean-ojingeo-bokkeum-squid.webp",
+        "spec_catalog_path": "/images/meals/korean-ojingeo-bokkeum-squid.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "korean-ojingeo-bokkeum-squid-640.webp",
+        "spec_catalog_path": "/images/meals/korean-ojingeo-bokkeum-squid-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "b8e1f829d8ddcc0e0a705c9a756cc4822294bdcc2596447a21542a339f465182",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "b8e1f829d8ddcc0e0a705c9a756cc4822294bdcc2596447a21542a339f465182",
+      "master_sha256": "aa36743160ca81405e0dc74d2d108a5f4d0e4e14287b7bd7346353dfa700ba4a",
+      "card_sha256": "9fb0b9c24fad27b9bc45977056764a870eed367ac7190ef2dd5072b4b1d92df7"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "b8e1f829d8ddcc0e0a705c9a756cc4822294bdcc2596447a21542a339f465182",
+      "korean-ojingeo-bokkeum-squid.webp": "aa36743160ca81405e0dc74d2d108a5f4d0e4e14287b7bd7346353dfa700ba4a",
+      "korean-ojingeo-bokkeum-squid-640.webp": "9fb0b9c24fad27b9bc45977056764a870eed367ac7190ef2dd5072b4b1d92df7"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 24 + cook 11 = 35 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests while the squid and vegetables are prepped and stir-fried (step 2 runs inside steps 3-6, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "korean-ojingeo-bokkeum-squid.webp 1200x900 and korean-ojingeo-bokkeum-squid-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": true, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 10-inch skillet; 1/3 cup rice in a 1-quart saucepan.",
+    "2": "Half of everything in the 12-inch skillet; 3/4 cup rice in a 1-quart saucepan.",
+    "4": "As written.",
+    "do_not_scale": [
+      "squid cooking time: about 2 minutes at any size"
+    ]
+  },
+  "coverage_contribution": "Squid appears once, grilled Italian-style; there is no Korean seafood stir-fry. A quick, spicy shellfish dinner.",
+  "near_duplicate_review": "Compared with italian-grilled-calamari: squid stir-fried in a gochujang-gochugaru sauce with vegetables over rice, not grilled with tomato-caper salad and bread. Compared with xian-cumin-lamb-stir-fry: squid in a sweet-hot chile paste, not cumin lamb. Compared with gochujang-grilled-flank-steak: a seafood stir-fry, not grilled beef.",
+  "not_duplicate_of": "Not jjamppong (no noodles or broth) and not calamari rings.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

@@ -1,0 +1,591 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "bhutanese-ema-datshi",
+    "slug": "bhutanese-ema-datshi",
+    "title": "Bhutanese Ema Datshi: Green Chiles in Farmer's Cheese Sauce with Red Rice",
+    "description": "Halved Anaheim chiles and jalapenos, stems left on, simmered with onion, tomatoes, garlic, and butter, then melted into a loose, tangy sauce of farmer's cheese and feta, served over nutty Bhutanese red rice.",
+    "cuisine": "bhutanese",
+    "meal_format": "chile-cheese-stew-with-rice",
+    "primary_ingredient": "green chiles",
+    "vocabulary_tag_ids": [
+      "spicy",
+      "creamy",
+      "rich"
+    ],
+    "current_recipe_id": "rcp_bhutanese-ema-datshi",
+    "current_version_id": "rv_bhutanese-ema-datshi_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_bhutanese-ema-datshi",
+    "dish_id": "bhutanese-ema-datshi",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_bhutanese-ema-datshi_v1",
+    "recipe_id": "rcp_bhutanese-ema-datshi",
+    "dish_id": "bhutanese-ema-datshi",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Bhutanese Ema Datshi: Green Chiles in Farmer's Cheese Sauce with Red Rice",
+    "description": "Halved Anaheim chiles and jalapenos, stems left on, simmered with onion, tomatoes, garlic, and butter, then melted into a loose, tangy sauce of farmer's cheese and feta, served over nutty Bhutanese red rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "anaheims",
+        "name": "Anaheim chiles",
+        "display_name": "Anaheim chiles",
+        "quantity": 8,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved lengthwise, stems left on",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jalapenos",
+        "name": "jalapenos",
+        "display_name": "jalapenos",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved lengthwise, stems left on",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "datshi-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for the chiles",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "tomatoes",
+        "display_name": "tomatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "farmers-cheese",
+        "name": "farmer's cheese",
+        "display_name": "farmer's cheese whose label lists cultured milk and salt (acid-set, no animal rennet) or microbial enzymes",
+        "quantity": 6,
+        "unit": "oz",
+        "note": null,
+        "preparation": "crumbled",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "feta",
+        "name": "feta",
+        "display_name": "feta made with microbial or vegetable rennet",
+        "quantity": 4,
+        "unit": "oz",
+        "note": null,
+        "preparation": "crumbled",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "1/2 tsp stew, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "Bhutanese red rice",
+        "display_name": "Bhutanese red rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the rice until the rinse runs clear. Halve the Anaheims and jalapenos lengthwise, leaving the stems on. Slice the onion and garlic, chop the tomatoes, and crumble both cheeses.",
+        "ingredient_refs": [
+          "rice",
+          "anaheims",
+          "jalapenos",
+          "onion",
+          "garlic",
+          "tomatoes",
+          "farmers-cheese",
+          "feta"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the rice",
+        "body": "Combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan, bring to a boil over high, about 4 minutes, then cover, turn to low, and cook 20 minutes. Leave it covered off the heat to rest 10 minutes.",
+        "ingredient_refs": [
+          "rice",
+          "rice-water",
+          "salt"
+        ],
+        "clock_minutes": 34,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer the ema datshi",
+        "body": "While the rice cooks (overlap stated): put the chiles, onion, 1 1/2 cups water, butter, and 1/2 tsp salt in the 3-quart saucepan, cover, and simmer over medium until the chile halves soften, about 12 minutes. Add the tomatoes and garlic and simmer uncovered 4 minutes. Lower the heat, add both cheeses, and stir gently until melted into a loose sauce, about 3 minutes.",
+        "ingredient_refs": [
+          "anaheims",
+          "jalapenos",
+          "onion",
+          "datshi-water",
+          "butter",
+          "salt",
+          "tomatoes",
+          "garlic",
+          "farmers-cheese",
+          "feta"
+        ],
+        "clock_minutes": 21,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Serve",
+        "body": "Fluff the rice and serve the ema datshi spooned beside it.",
+        "ingredient_refs": [
+          "rice"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "datshi",
+        "name": "ema datshi",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "Anaheim chiles",
+          "jalapenos",
+          "yellow onion",
+          "water",
+          "butter",
+          "tomatoes",
+          "garlic",
+          "farmer's cheese",
+          "feta",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "Bhutanese red rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "red rice",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "3-quart saucepan with lid",
+      "2-quart saucepan with lid",
+      "fine-mesh strainer"
+    ],
+    "methods": [
+      "simmer",
+      "steam"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 14,
+    "cook_time_minutes": 36,
+    "total_time_minutes": 50,
+    "prep_minutes": 14,
+    "cook_minutes": 36,
+    "total_minutes": 50,
+    "time_clock": "Prep 14 + cook 36 = 50 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The ema datshi simmers while the rice cooks and rests (step 3 runs inside step 2, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "3-quart saucepan over medium, covered then uncovered, for the chiles; 2-quart saucepan for the rice.",
+    "doneness": "Chile halves soft and olive-green but holding their shape; cheese melted into a loose, creamy, slightly curdy sauce; rice tender with a little chew.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: farmer's cheese, feta, and butter are dairy."
+    },
+    "dietary_labels": [
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional vegetarian: the farmer's cheese is acid-set or uses microbial enzymes, and the feta uses microbial or vegetable rennet (both stated on the ingredient lines).",
+    "allergens": [
+      "milk"
+    ],
+    "allergen_notes": [
+      "Milk from the farmer's cheese, feta, and butter.",
+      "No egg, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: farmer's cheese, feta, and butter are dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "spicy",
+      "creamy",
+      "rich"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'bhutanese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Wear gloves or wash your hands well after cutting the chiles, and keep your hands away from your eyes.",
+    "culinary_hash": "500aa46d0644f0a3c757a505558299a595cb94235c5acca781f4860bc9422031",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_bhutanese-ema-datshi_v2",
+    "dish_id": "bhutanese-ema-datshi",
+    "recipe_version_id": "rv_bhutanese-ema-datshi_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "bhutanese-ema-datshi.webp",
+    "card_ref": "bhutanese-ema-datshi-640.webp",
+    "master_filename": "bhutanese-ema-datshi.webp",
+    "card_filename": "bhutanese-ema-datshi-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "bhutanese-ema-datshi.webp",
+        "spec_catalog_path": "/images/meals/bhutanese-ema-datshi.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "bhutanese-ema-datshi-640.webp",
+        "spec_catalog_path": "/images/meals/bhutanese-ema-datshi-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "b3e706166e55589541a8641e08d193e12df1786f9f221556dadbc34354463f24",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "b3e706166e55589541a8641e08d193e12df1786f9f221556dadbc34354463f24",
+      "master_sha256": "a1b95c2860a10d90dc27675824992638cd99d6ee118532a63a3c9e1f51104d98",
+      "card_sha256": "6413fce007551409fbfd86c1bf11a6c484fd6d9e26f5fd8bd6dea284ac01ed33"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "b3e706166e55589541a8641e08d193e12df1786f9f221556dadbc34354463f24",
+      "bhutanese-ema-datshi.webp": "a1b95c2860a10d90dc27675824992638cd99d6ee118532a63a3c9e1f51104d98",
+      "bhutanese-ema-datshi-640.webp": "6413fce007551409fbfd86c1bf11a6c484fd6d9e26f5fd8bd6dea284ac01ed33"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "creator_self_review_before_audit",
+      "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: chile strips read as green beans.",
+      "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+      "prompt_sha256": {
+        "v2": "cc2ffd6e2d2371c4fb8bcb1e7cc1d9efb951d8ed1d1c22708cce959012300780"
+      },
+      "rejected_versions": [
+        1
+      ]
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "creator_self_review_before_audit",
+        "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: chile strips read as green beans.",
+        "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+        "prompt_sha256": {
+          "v2": "cc2ffd6e2d2371c4fb8bcb1e7cc1d9efb951d8ed1d1c22708cce959012300780"
+        },
+        "rejected_versions": [
+          1
+        ]
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_bhutanese-ema-datshi_v1",
+        "source_file": "img_v1.jpg",
+        "sha256": "d506df8e11b6ab3e76b347736fecc3f50f63eaae7089ec9ecb5a54b934f25050",
+        "generate_image_attachment_hash": "d506df8e11b6ab3e76b347736fecc3f50f63eaae7089ec9ecb5a54b934f25050",
+        "moved_to_rejected": "rejected/img_v1-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "chile strips read as green beans"
+      }
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 14 + cook 36 = 50 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The ema datshi simmers while the rice cooks and rests (step 3 runs inside step 2, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "bhutanese-ema-datshi.webp 1200x900 and bhutanese-ema-datshi-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 1-quart saucepan for the chiles and a 1-quart saucepan for 1/3 cup rice.",
+    "2": "Half of everything in a 2-quart saucepan for the chiles and a 1-quart saucepan for 3/4 cup rice.",
+    "4": "As written.",
+    "do_not_scale": [
+      "add the cheese off a hard boil so it melts instead of seizing"
+    ]
+  },
+  "coverage_contribution": "Bhutan and the Himalaya have only a Nepali potato-bamboo curry in the catalog, and no chile-and-cheese stew exists. A vegetarian dinner with a new main vegetable (green chiles as the bulk).",
+  "near_duplicate_review": "Compared with chiles-rellenos-ranchero: chile strips melted into a cheese sauce over rice, not whole stuffed battered chiles. Compared with saag-paneer: green chiles in a loose melted farmer's cheese sauce, not spinach with cubes of paneer. Compared with mexican-rajas-con-crema-tacos: no crema and no tortillas; the cheese is the sauce and the rice is red rice.",
+  "not_duplicate_of": "Not queso fundido and not a chile con queso dip.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "B",
+  "revision_history": [
+    {
+      "from": "author-r2",
+      "to": "author-r3",
+      "when": "2026-10-16",
+      "who": "Grok Bot (Curator, creator role), wave-17",
+      "trigger": "audit r1 gate K FAIL",
+      "scope": "recipe text only; image files unchanged and not regenerated (the v2 hero is kept; the recipe now matches it)",
+      "from_culinary_hash": "594dccb9053131a0be7eb41f635df21ed65638be8536d588dda04791b9eca0bc",
+      "to_culinary_hash": "500aa46d0644f0a3c757a505558299a595cb94235c5acca781f4860bc9422031",
+      "changes": [
+        "Chiles are halved lengthwise with the stems left on (no longer stemmed and cut into 1/2-inch strips): Anaheim and jalapeno ingredient prep lines, step 1, and the description ('Strips of' -> 'Halved ... stems left on').",
+        "Step 3: the halves simmer covered about 12 minutes (was 10, for the thicker pieces); step 3 clock 19 -> 21, still inside the 34-minute rice step, so total time (50 min) is unchanged.",
+        "Doneness: 'holding their strips' -> 'chile halves ... holding their shape'; effort note 'Cutting ... into strips' -> 'Halving ... lengthwise' (points unchanged)."
+      ]
+    }
+  ]
+}

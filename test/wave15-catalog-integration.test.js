@@ -49,7 +49,7 @@ describe("Wave-15 certified catalog integration", () => {
 
   it("all 50 are published with media in the catalog", () => {
     const published = listPublishedMealMedia();
-    expect(published).toHaveLength(200);
+    expect(published).toHaveLength(250);
     const slugs = new Set(published.map((r) => r.slug));
     for (const slug of WAVE15) expect(slugs.has(slug), slug).toBe(true);
   });

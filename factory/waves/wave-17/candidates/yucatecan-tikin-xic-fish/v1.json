@@ -1,0 +1,639 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "yucatecan-tikin-xic-fish",
+    "slug": "yucatecan-tikin-xic-fish",
+    "title": "Yucatecan Tikin Xic: Achiote-Citrus Baked Fish with Pickled Red Onions",
+    "description": "Cod fillets rubbed with achiote paste blended with orange juice, lime, garlic, oregano, and cumin, layered with tomato and green bell pepper slices, baked in a foil packet, and served with habanero-pickled red onions, cilantro, and white rice.",
+    "cuisine": "yucatecan",
+    "meal_format": "baked-fish-with-rice",
+    "primary_ingredient": "cod",
+    "vocabulary_tag_ids": [
+      "cod",
+      "citrusy",
+      "tangy",
+      "mexican"
+    ],
+    "current_recipe_id": "rcp_yucatecan-tikin-xic-fish",
+    "current_version_id": "rv_yucatecan-tikin-xic-fish_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_yucatecan-tikin-xic-fish",
+    "dish_id": "yucatecan-tikin-xic-fish",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_yucatecan-tikin-xic-fish_v1",
+    "recipe_id": "rcp_yucatecan-tikin-xic-fish",
+    "dish_id": "yucatecan-tikin-xic-fish",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Yucatecan Tikin Xic: Achiote-Citrus Baked Fish with Pickled Red Onions",
+    "description": "Cod fillets rubbed with achiote paste blended with orange juice, lime, garlic, oregano, and cumin, layered with tomato and green bell pepper slices, baked in a foil packet, and served with habanero-pickled red onions, cilantro, and white rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "habanero",
+        "name": "habanero",
+        "display_name": "habanero",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "seeded and slivered",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lime-juice",
+        "name": "lime juice",
+        "display_name": "fresh lime juice (about 3 limes)",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "orange-juice",
+        "name": "orange juice",
+        "display_name": "fresh orange juice (about 2 oranges)",
+        "quantity": 0.67,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1/2 tsp onions, 1 tsp fish, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "achiote",
+        "name": "achiote paste",
+        "display_name": "achiote paste whose label lists annatto, vinegar, spices, garlic, salt, and corn starch",
+        "quantity": 2,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "oregano",
+        "name": "dried Mexican oregano",
+        "display_name": "dried Mexican oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "cod",
+        "name": "cod fillets",
+        "display_name": "skinless cod fillets (4 pieces, about 1 inch thick)",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato",
+        "name": "tomato",
+        "display_name": "ripe tomato",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bell-pepper",
+        "name": "green bell pepper",
+        "display_name": "green bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced into rings",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Pickle the onions",
+        "body": "Thinly slice the red onion and sliver the habanero. Toss them in a bowl with 1/4 cup lime juice, 1/3 cup orange juice, and 1/2 tsp salt; they pickle through the rest of the recipe, tossed now and then. Slice the tomato and bell pepper, chop the cilantro, and rinse the rice until the rinse runs clear.",
+        "ingredient_refs": [
+          "red-onion",
+          "habanero",
+          "lime-juice",
+          "orange-juice",
+          "salt",
+          "tomato",
+          "bell-pepper",
+          "cilantro",
+          "rice"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Marinate",
+        "body": "Preheat the oven to 425 F with a rack in the middle, about 15 minutes. Meanwhile blend the achiote paste with the remaining orange and lime juice, the garlic, oregano, cumin, oil, and 1 tsp salt until smooth. Rub it all over the cod on a large sheet of foil set on the sheet pan and leave it while the oven heats.",
+        "ingredient_refs": [
+          "achiote",
+          "orange-juice",
+          "lime-juice",
+          "garlic",
+          "oregano",
+          "cumin",
+          "oil",
+          "salt",
+          "cod"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the rice",
+        "body": "While the oven heats and the fish bakes (overlap stated): combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan, bring to a boil over high, about 4 minutes, then cover, turn to low, and cook 15 minutes. Leave it covered off the heat to rest 10 minutes.",
+        "ingredient_refs": [
+          "rice",
+          "rice-water",
+          "salt"
+        ],
+        "clock_minutes": 29,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Bake",
+        "body": "Lay the tomato and bell pepper slices over the fish, fold a second sheet of foil over the top, and crimp the edges to seal. Bake until the fish flakes and reads 145 F, about 15 minutes.",
+        "ingredient_refs": [
+          "tomato",
+          "bell-pepper",
+          "cod"
+        ],
+        "clock_minutes": 17,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Open the packet, spoon the fish and its juices beside the rice, and top with pickled onions and cilantro.",
+        "ingredient_refs": [
+          "cod",
+          "rice",
+          "red-onion",
+          "cilantro"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "onions",
+        "name": "pickled red onions",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "red onion",
+          "habanero",
+          "lime juice",
+          "orange juice",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "fish",
+        "name": "tikin xic",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cod fillets",
+          "achiote paste",
+          "orange juice",
+          "lime juice",
+          "garlic",
+          "dried oregano",
+          "ground cumin",
+          "salt",
+          "neutral oil",
+          "tomato",
+          "green bell pepper"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "white rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long-grain white rice",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "garnish",
+        "name": "cilantro",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cilantro"
+        ]
+      }
+    ],
+    "equipment": [
+      "rimmed sheet pan",
+      "heavy-duty aluminum foil",
+      "2-quart saucepan with lid",
+      "blender or small bowl and whisk",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "bake",
+      "steam",
+      "pickle"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 27,
+    "cook_time_minutes": 20,
+    "total_time_minutes": 47,
+    "prep_minutes": 27,
+    "cook_minutes": 20,
+    "total_minutes": 47,
+    "time_clock": "Prep 27 + cook 20 = 47 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks while the oven heats and the fish bakes (step 3 runs inside steps 2 and 4, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        2
+      ],
+      "cook_steps": [
+        4,
+        5
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 2 (Marinate) and it states the preheat. The rice cooks while the oven heats and the fish bakes (step 3 runs inside steps 2 and 4, overlap stated).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven at 425 F for the fish on a foil-lined sheet pan; 2-quart saucepan for the rice.",
+    "doneness": "Fish opaque, flaking, and 145 F at the thickest point; tomatoes and pepper softened; onions bright pink and tangy.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and fish: cod, achiote paste, citrus, spices, vegetables, rice, and oil.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish from the cod.",
+      "No milk, egg, soy, wheat, sesame, shellfish, or nuts.",
+      "Achiote paste: the label lists no wheat (corn starch only)."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "No butter or crema. The achiote paste label lists annatto, vinegar, spices, garlic, salt, and corn starch with no wheat.",
+    "vocabulary_tag_ids": [
+      "cod",
+      "citrusy",
+      "tangy",
+      "mexican"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'yucatecan' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook the fish to 145 F. Open the foil packet away from you; the steam is hot.",
+    "culinary_hash": "822a10eee0073769d786df89202ff4d6a4800c71bc8ff0ad253426760e2ee5eb",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_yucatecan-tikin-xic-fish_v1",
+    "dish_id": "yucatecan-tikin-xic-fish",
+    "recipe_version_id": "rv_yucatecan-tikin-xic-fish_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "yucatecan-tikin-xic-fish.webp",
+    "card_ref": "yucatecan-tikin-xic-fish-640.webp",
+    "master_filename": "yucatecan-tikin-xic-fish.webp",
+    "card_filename": "yucatecan-tikin-xic-fish-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "yucatecan-tikin-xic-fish.webp",
+        "spec_catalog_path": "/images/meals/yucatecan-tikin-xic-fish.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "yucatecan-tikin-xic-fish-640.webp",
+        "spec_catalog_path": "/images/meals/yucatecan-tikin-xic-fish-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "da385538f39292f3cd6f93ae6625572afa80b6634f40356cd72b12460a69a965",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "da385538f39292f3cd6f93ae6625572afa80b6634f40356cd72b12460a69a965",
+      "master_sha256": "26e6f07b785a3fb7a4a38a6873959c51b2fd56db17c98bb5467527d8e3fe81a4",
+      "card_sha256": "8c20e1df9694f9a1de7ba47640260e216a5fa856c0e92efc8707bf4f50dc5545"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "da385538f39292f3cd6f93ae6625572afa80b6634f40356cd72b12460a69a965",
+      "yucatecan-tikin-xic-fish.webp": "26e6f07b785a3fb7a4a38a6873959c51b2fd56db17c98bb5467527d8e3fe81a4",
+      "yucatecan-tikin-xic-fish-640.webp": "8c20e1df9694f9a1de7ba47640260e216a5fa856c0e92efc8707bf4f50dc5545"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 27 + cook 20 = 47 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks while the oven heats and the fish bakes (step 3 runs inside steps 2 and 4, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 2 (Marinate) and it states the preheat. The rice cooks while the oven heats and the fish bakes (step 3 runs inside steps 2 and 4, overlap stated)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "yucatecan-tikin-xic-fish.webp 1200x900 and yucatecan-tikin-xic-fish-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One fillet in a small foil packet on the same sheet pan; a quarter of the onions; 1/3 cup rice in a 1-quart saucepan.",
+    "2": "Two fillets in one packet; half the onions; 3/4 cup rice in a 1-quart saucepan.",
+    "4": "As written (one large packet).",
+    "do_not_scale": [
+      "bake time depends on fillet thickness (about 15 minutes per inch), not on how many fillets"
+    ]
+  },
+  "coverage_contribution": "The Mexican fish meals are fried fish tacos and snapper veracruzana; there is no Yucatecan achiote dish in the catalog. An easy, HH001-eligible baked fish dinner.",
+  "near_duplicate_review": "Compared with red-snapper-veracruzana: an achiote-orange marinade baked in foil with pickled onions, not a tomato-olive-caper sauce. Compared with ginger-scallion-fish-packets: an earthy red achiote-citrus packet, not ginger-scallion-soy. Compared with moroccan-chermoula-fish-tagine: achiote and orange, not chermoula with potatoes and olives.",
+  "not_duplicate_of": "Not cochinita pibil (no pork) and not fish tacos.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "B",
+  "revision_history": [
+    {
+      "from": "author-r2",
+      "to": "author-r3",
+      "when": "2026-10-16",
+      "who": "Grok Bot (Curator, creator role), wave-17",
+      "trigger": "audit r1 gate H FAIL",
+      "scope": "metadata only (taste tags); recipe text and image unchanged (culinary_hash unchanged)",
+      "from_culinary_hash": "822a10eee0073769d786df89202ff4d6a4800c71bc8ff0ad253426760e2ee5eb",
+      "to_culinary_hash": "822a10eee0073769d786df89202ff4d6a4800c71bc8ff0ad253426760e2ee5eb",
+      "changes": [
+        "vocabulary_tag_ids: 'smoky' removed (foil-baked, nothing smoked or charred); now cod, citrusy, tangy, mexican. No tag added."
+      ]
+    }
+  ]
+}

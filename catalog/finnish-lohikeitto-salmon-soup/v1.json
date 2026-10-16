@@ -1,0 +1,535 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "finnish-lohikeitto-salmon-soup",
+    "slug": "finnish-lohikeitto-salmon-soup",
+    "title": "Finnish Lohikeitto: Creamy Salmon Soup with Potatoes and Dill",
+    "description": "Yukon Gold potatoes, carrots, and leek simmered with allspice and bay leaves, enriched with heavy cream and butter, with chunks of salmon poached in at the end and a big handful of dill.",
+    "cuisine": "finnish",
+    "meal_format": "soup",
+    "primary_ingredient": "salmon",
+    "vocabulary_tag_ids": [
+      "salmon",
+      "soups",
+      "creamy",
+      "herbaceous",
+      "scandinavian"
+    ],
+    "current_recipe_id": "rcp_finnish-lohikeitto-salmon-soup",
+    "current_version_id": "rv_finnish-lohikeitto-salmon-soup_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_finnish-lohikeitto-salmon-soup",
+    "dish_id": "finnish-lohikeitto-salmon-soup",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_finnish-lohikeitto-salmon-soup_v1",
+    "recipe_id": "rcp_finnish-lohikeitto-salmon-soup",
+    "dish_id": "finnish-lohikeitto-salmon-soup",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Finnish Lohikeitto: Creamy Salmon Soup with Potatoes and Dill",
+    "description": "Yukon Gold potatoes, carrots, and leek simmered with allspice and bay leaves, enriched with heavy cream and butter, with chunks of salmon poached in at the end and a big handful of dill.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "leek",
+        "name": "leek",
+        "display_name": "large leek",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "white and pale green parts, halved, sliced, and washed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled and cut into 3/4-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "allspice",
+        "name": "allspice berries",
+        "display_name": "allspice berries",
+        "quantity": 6,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bay",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cream",
+        "name": "heavy cream",
+        "display_name": "heavy cream",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "salmon",
+        "name": "salmon fillet",
+        "display_name": "skinless salmon fillet",
+        "quantity": 1.25,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 1 1/2-inch chunks, pin bones removed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dill",
+        "name": "dill",
+        "display_name": "dill",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Halve, slice, and wash the leek. Peel and cube the potatoes, slice the carrots, cut the salmon into chunks (pulling any pin bones), and chop the dill.",
+        "ingredient_refs": [
+          "leek",
+          "potatoes",
+          "carrots",
+          "salmon",
+          "dill"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Soften the leek",
+        "body": "Melt the butter in the 5.5-quart Dutch oven over medium and cook the leek until soft, about 5 minutes.",
+        "ingredient_refs": [
+          "butter",
+          "leek"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer the vegetables",
+        "body": "Add the potatoes, carrots, and 5 cups water to the 5.5-quart Dutch oven with the allspice, bay leaves, and salt. Bring to a boil over high, about 9 minutes to come to a boil, then simmer until the potatoes are tender, about 12 minutes.",
+        "ingredient_refs": [
+          "potatoes",
+          "carrots",
+          "water",
+          "allspice",
+          "bay",
+          "salt"
+        ],
+        "clock_minutes": 21,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Poach the salmon",
+        "body": "Stir in the cream and bring back to a bare simmer, about 2 minutes. Add the salmon and poach without stirring until just opaque and 145 F, about 5 minutes. Stir in most of the dill and the pepper.",
+        "ingredient_refs": [
+          "cream",
+          "salmon",
+          "dill",
+          "black-pepper"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Fish out the bay leaves and allspice berries. Ladle into bowls and scatter with the remaining dill.",
+        "ingredient_refs": [
+          "bay",
+          "allspice",
+          "dill"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "soup",
+        "name": "lohikeitto",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "butter",
+          "leek",
+          "Yukon Gold potatoes",
+          "carrots",
+          "water",
+          "allspice berries",
+          "bay leaves",
+          "salt",
+          "heavy cream",
+          "salmon",
+          "dill",
+          "black pepper"
+        ]
+      }
+    ],
+    "equipment": [
+      "5.5-quart Dutch oven",
+      "ladle",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 14,
+    "cook_time_minutes": 37,
+    "total_time_minutes": 51,
+    "prep_minutes": 14,
+    "cook_minutes": 37,
+    "total_minutes": 51,
+    "time_clock": "Prep 14 + cook 37 = 51 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. A single pot; nothing overlaps.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "5.5-quart Dutch oven over medium for the leek, then a simmer.",
+    "doneness": "Potatoes tender; salmon just opaque and flaking, 145 F; broth creamy but thin.",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: cream and butter are dairy."
+    },
+    "dietary_labels": [
+      "fish"
+    ],
+    "dietary_label_note": "Fish label only: salmon with dairy (cream and butter).",
+    "allergens": [
+      "finfish",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Finfish from the salmon.",
+      "Milk from the cream and butter.",
+      "No egg, soy, wheat, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: cream and butter are dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "salmon",
+      "soups",
+      "creamy",
+      "herbaceous",
+      "scandinavian"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'finnish' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook the salmon to 145 F; keep the soup at a bare simmer once the cream is in.",
+    "culinary_hash": "be6203308d00b6dbef34250bacbdbd1eff51b2beffa991f4942a5b3f42ac6649",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_finnish-lohikeitto-salmon-soup_v1",
+    "dish_id": "finnish-lohikeitto-salmon-soup",
+    "recipe_version_id": "rv_finnish-lohikeitto-salmon-soup_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "finnish-lohikeitto-salmon-soup.webp",
+    "card_ref": "finnish-lohikeitto-salmon-soup-640.webp",
+    "master_filename": "finnish-lohikeitto-salmon-soup.webp",
+    "card_filename": "finnish-lohikeitto-salmon-soup-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "finnish-lohikeitto-salmon-soup.webp",
+        "spec_catalog_path": "/images/meals/finnish-lohikeitto-salmon-soup.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "finnish-lohikeitto-salmon-soup-640.webp",
+        "spec_catalog_path": "/images/meals/finnish-lohikeitto-salmon-soup-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "156a6b5c89119beec6d031ecfd57b2f9a38c63e431e7b5a0a48372e796091cfd",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "156a6b5c89119beec6d031ecfd57b2f9a38c63e431e7b5a0a48372e796091cfd",
+      "master_sha256": "6b80a88dcbf7da3c8e19ac42ba3460fa7c94a4dfff5101f11e7eadbcd52d5fb4",
+      "card_sha256": "1fdb91dfd68f2b0369a1477d03033118252b51481a5de3953548975ef391774c"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "156a6b5c89119beec6d031ecfd57b2f9a38c63e431e7b5a0a48372e796091cfd",
+      "finnish-lohikeitto-salmon-soup.webp": "6b80a88dcbf7da3c8e19ac42ba3460fa7c94a4dfff5101f11e7eadbcd52d5fb4",
+      "finnish-lohikeitto-salmon-soup-640.webp": "1fdb91dfd68f2b0369a1477d03033118252b51481a5de3953548975ef391774c"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 14 + cook 37 = 51 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. A single pot; nothing overlaps."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "finnish-lohikeitto-salmon-soup.webp 1200x900 and finnish-lohikeitto-salmon-soup-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 2-quart saucepan (1 1/4 cups water).",
+    "2": "Half of everything in a 3-quart saucepan (2 1/2 cups water).",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "Scandinavia has arctic char and Swedish meatballs; there is no Nordic soup and no salmon soup in the catalog. An easy cream-based fish soup.",
+  "near_duplicate_review": "Compared with new-england-clam-chowder: salmon and dill in a thin cream broth with allspice, no clams, bacon, or flour roux. Compared with colombian-ajiaco: a cream-and-salmon soup, not chicken with three potatoes and guascas. Compared with miso-ginger-salmon: poached salmon chunks in soup, not a glazed fillet.",
+  "not_duplicate_of": "Not a chowder (no roux, no bacon) and not bouillabaisse.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

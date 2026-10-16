@@ -1,0 +1,535 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "palestinian-musakhan-chicken",
+    "slug": "palestinian-musakhan-chicken",
+    "title": "Palestinian Musakhan: Sumac Chicken and Onions on Flatbread",
+    "description": "Boneless chicken thighs rubbed with sumac, allspice, and cardamom and roasted, then piled with a heap of onions slowly cooked in olive oil and sumac onto taboon-style flatbreads and baked until the edges crisp, finished with parsley and lemon.",
+    "cuisine": "palestinian",
+    "meal_format": "flatbread",
+    "primary_ingredient": "chicken thighs",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "middle-eastern",
+      "tangy",
+      "savory"
+    ],
+    "current_recipe_id": "rcp_palestinian-musakhan-chicken",
+    "current_version_id": "rv_palestinian-musakhan-chicken_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_palestinian-musakhan-chicken",
+    "dish_id": "palestinian-musakhan-chicken",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_palestinian-musakhan-chicken_v1",
+    "recipe_id": "rcp_palestinian-musakhan-chicken",
+    "dish_id": "palestinian-musakhan-chicken",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Palestinian Musakhan: Sumac Chicken and Onions on Flatbread",
+    "description": "Boneless chicken thighs rubbed with sumac, allspice, and cardamom and roasted, then piled with a heap of onions slowly cooked in olive oil and sumac onto taboon-style flatbreads and baked until the edges crisp, finished with parsley and lemon.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "chicken",
+        "name": "boneless skinless chicken thighs",
+        "display_name": "boneless skinless chicken thighs",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sumac",
+        "name": "ground sumac",
+        "display_name": "ground sumac",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "2 tbsp chicken, 2 tbsp onions",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "allspice",
+        "name": "ground allspice",
+        "display_name": "ground allspice",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cardamom",
+        "name": "ground cardamom",
+        "display_name": "ground cardamom",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 tsp chicken, 1 tsp onions",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 0.67,
+        "unit": "cup",
+        "note": "2 tbsp chicken, 1/2 cup onions",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onions",
+        "name": "yellow onions",
+        "display_name": "large yellow onions",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "flatbreads",
+        "name": "flatbreads",
+        "display_name": "8-inch taboon-style or pocketless pita flatbreads whose label lists wheat flour, water, yeast, salt, and sugar",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Preheat the oven to 425 F. Toss the chicken with 2 tbsp sumac, the allspice, cardamom, 1 tsp salt, and 2 tbsp oil and spread on a sheet pan. Thinly slice the onions, chop the parsley, and cut the lemon.",
+        "ingredient_refs": [
+          "chicken",
+          "sumac",
+          "allspice",
+          "cardamom",
+          "salt",
+          "oil",
+          "onions",
+          "parsley",
+          "lemon"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Roast the chicken",
+        "body": "Roast the chicken until browned at the edges and 175 F, about 22 minutes. Rest 5 minutes, then slice into strips. Leave the oven on.",
+        "ingredient_refs": [
+          "chicken"
+        ],
+        "clock_minutes": 28,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the onions",
+        "body": "While the chicken roasts (overlap stated): warm 1/2 cup oil in the 12-inch skillet over medium-low, add the onions and 1 tsp salt, and cook, stirring often, until very soft and sweet but not browned, about 25 minutes. Stir in 2 tbsp sumac.",
+        "ingredient_refs": [
+          "oil",
+          "onions",
+          "salt",
+          "sumac"
+        ],
+        "clock_minutes": 25,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Assemble and bake",
+        "body": "Lay 2 flatbreads on each sheet pan. Spread the onions and their oil over the breads and top with the chicken. Bake until the bread edges crisp, about 8 minutes.",
+        "ingredient_refs": [
+          "flatbreads",
+          "onions",
+          "chicken"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Finish",
+        "body": "Scatter parsley, cut each flatbread in quarters on the cutting board, and serve with lemon wedges.",
+        "ingredient_refs": [
+          "parsley",
+          "flatbreads",
+          "lemon"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "chicken",
+        "name": "spiced chicken",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "chicken thighs",
+          "sumac",
+          "allspice",
+          "cardamom",
+          "salt",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "onions",
+        "name": "sumac onions",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "yellow onions",
+          "olive oil",
+          "sumac",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "bread",
+        "name": "flatbreads",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "flatbreads",
+          "parsley",
+          "lemon"
+        ]
+      }
+    ],
+    "equipment": [
+      "2 rimmed sheet pans (18x13 inch)",
+      "12-inch skillet",
+      "instant-read thermometer",
+      "cutting board"
+    ],
+    "methods": [
+      "roast",
+      "saute",
+      "bake"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "baked",
+        "roasted"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 14,
+    "cook_time_minutes": 42,
+    "total_time_minutes": 56,
+    "prep_minutes": 14,
+    "cook_minutes": 42,
+    "total_minutes": 56,
+    "time_clock": "Prep 14 + cook 42 = 56 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The onions cook slowly while the chicken roasts (step 3 runs inside step 2, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Prep) and it states the preheat. The onions cook slowly while the chicken roasts (step 3 runs inside step 2, overlap stated).",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "Oven 425 F; 12-inch skillet over medium-low for the onions.",
+    "doneness": "Chicken 175 F with browned edges; onions very soft, sweet, and deep purple-red with sumac; flatbread edges crisp and the centers soaked with oil.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: chicken is poultry."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: olive oil, no butter or yogurt; the flatbread label lists wheat flour, water, yeast, salt, and sugar with no milk.",
+    "allergens": [
+      "poultry",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Poultry from the chicken.",
+      "Wheat from the flatbread.",
+      "No pine nuts in this version: no tree nuts, milk, egg, soy, sesame, fish, or shellfish."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: chicken is poultry.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "chicken",
+      "middle-eastern",
+      "tangy",
+      "savory"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'palestinian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook the chicken to 175 F.",
+    "culinary_hash": "49f7c4eeff2fda7fe421f0036bcd2d0589935a56281c72a9e5d8a276b93c3d9e",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_palestinian-musakhan-chicken_v1",
+    "dish_id": "palestinian-musakhan-chicken",
+    "recipe_version_id": "rv_palestinian-musakhan-chicken_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "palestinian-musakhan-chicken.webp",
+    "card_ref": "palestinian-musakhan-chicken-640.webp",
+    "master_filename": "palestinian-musakhan-chicken.webp",
+    "card_filename": "palestinian-musakhan-chicken-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "palestinian-musakhan-chicken.webp",
+        "spec_catalog_path": "/images/meals/palestinian-musakhan-chicken.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "palestinian-musakhan-chicken-640.webp",
+        "spec_catalog_path": "/images/meals/palestinian-musakhan-chicken-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "df003abfcda9c4b7d220ddfd6e835e7fbc8db1794302e9beb82b430788ebb424",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "df003abfcda9c4b7d220ddfd6e835e7fbc8db1794302e9beb82b430788ebb424",
+      "master_sha256": "476fe43aacd87e3145eac628a92e33f1a7d0753c915592039f08562bdd661763",
+      "card_sha256": "3a1e805e8c6f6e82a360e82c42bd451c9d74e45557db37838fa91e7d6dcb7fa9"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "df003abfcda9c4b7d220ddfd6e835e7fbc8db1794302e9beb82b430788ebb424",
+      "palestinian-musakhan-chicken.webp": "476fe43aacd87e3145eac628a92e33f1a7d0753c915592039f08562bdd661763",
+      "palestinian-musakhan-chicken-640.webp": "3a1e805e8c6f6e82a360e82c42bd451c9d74e45557db37838fa91e7d6dcb7fa9"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 14 + cook 42 = 56 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The onions cook slowly while the chicken roasts (step 3 runs inside step 2, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Prep) and it states the preheat. The onions cook slowly while the chicken roasts (step 3 runs inside step 2, overlap stated)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "palestinian-musakhan-chicken.webp 1200x900 and palestinian-musakhan-chicken-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"baked\", \"roasted\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One flatbread on 1 sheet pan; a quarter of the chicken and onions in a 10-inch skillet.",
+    "2": "Two flatbreads on 1 sheet pan; half the chicken and onions.",
+    "4": "As written (4 flatbreads on 2 sheet pans).",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "There is no Palestinian dish and no sumac-forward chicken in the catalog. A distinctive roast-and-bake poultry dinner.",
+  "near_duplicate_review": "Compared with turkish-lahmacun: whole roasted chicken pieces and slow onions on thick bread, not a thin minced-lamb flatbread. Compared with lebanese-baked-kibbeh: sumac chicken on bread, not a bulgur and lamb bake. Compared with roasted-cauliflower-shawarma-plate: a sumac-onion flatbread, not a shawarma-spiced vegetable plate.",
+  "not_duplicate_of": "Not chicken shawarma (no shawarma spice or garlic sauce) and not a pizza.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

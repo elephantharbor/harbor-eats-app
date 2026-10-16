@@ -1,0 +1,626 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "korean-spicy-cod-stew",
+    "slug": "korean-spicy-cod-stew",
+    "title": "Korean Maeuntang: Spicy Cod Stew with Radish, Tofu, and Watercress",
+    "description": "Chunks of cod simmered in a fiery broth of gochugaru, gochujang, garlic, soy sauce, and fish sauce with Korean radish, onion, zucchini, and tofu, finished with watercress, scallions, and sliced jalapeno and served with short-grain rice.",
+    "cuisine": "korean",
+    "meal_format": "stew-with-rice",
+    "primary_ingredient": "cod",
+    "vocabulary_tag_ids": [
+      "cod",
+      "spicy",
+      "soups",
+      "stews",
+      "korean"
+    ],
+    "current_recipe_id": "rcp_korean-spicy-cod-stew",
+    "current_version_id": "rv_korean-spicy-cod-stew_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_korean-spicy-cod-stew",
+    "dish_id": "korean-spicy-cod-stew",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_korean-spicy-cod-stew_v1",
+    "recipe_id": "rcp_korean-spicy-cod-stew",
+    "dish_id": "korean-spicy-cod-stew",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Korean Maeuntang: Spicy Cod Stew with Radish, Tofu, and Watercress",
+    "description": "Chunks of cod simmered in a fiery broth of gochugaru, gochujang, garlic, soy sauce, and fish sauce with Korean radish, onion, zucchini, and tofu, finished with watercress, scallions, and sliced jalapeno and served with short-grain rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "for the stew",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "radish",
+        "name": "Korean radish",
+        "display_name": "Korean radish (mu) or daikon",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": "peeled and cut into 1/4-inch-thick squares",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "gochugaru",
+        "name": "gochugaru",
+        "display_name": "gochugaru (Korean chile flakes)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "gochujang",
+        "name": "gochujang",
+        "display_name": "gochujang whose label lists rice, chile, soybeans, wheat, and salt",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "fish-sauce",
+        "name": "fish sauce",
+        "display_name": "fish sauce whose label lists anchovy and salt (sugar allowed), no shrimp",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "zucchini",
+        "name": "zucchini",
+        "display_name": "zucchini",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved lengthwise and sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tofu",
+        "name": "firm tofu",
+        "display_name": "firm tofu",
+        "quantity": 14,
+        "unit": "oz",
+        "note": null,
+        "preparation": "cut into 3/4-inch slabs",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cod",
+        "name": "cod fillets",
+        "display_name": "skinless cod fillets",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "watercress",
+        "name": "watercress",
+        "display_name": "watercress (standing in for crown daisy)",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 2-inch lengths",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jalapeno",
+        "name": "jalapeno",
+        "display_name": "jalapeno",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "short-grain rice",
+        "display_name": "short-grain rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1.75,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Peel and cut the radish, slice the onion and zucchini, mince the garlic, cut the tofu and cod, cut the scallions, slice the jalapeno, and rinse the rice until the rinse runs clear.",
+        "ingredient_refs": [
+          "radish",
+          "onion",
+          "zucchini",
+          "garlic",
+          "tofu",
+          "cod",
+          "scallions",
+          "jalapeno",
+          "rice"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Season the broth",
+        "body": "Stir the garlic, gochugaru, gochujang, soy sauce, fish sauce, and salt into 6 cups water in the 5.5-quart Dutch oven.",
+        "ingredient_refs": [
+          "garlic",
+          "gochugaru",
+          "gochujang",
+          "soy-sauce",
+          "fish-sauce",
+          "salt",
+          "water"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the rice",
+        "body": "While the stew cooks (overlap stated): combine the rice and 1 3/4 cups water in a 2-quart saucepan, bring to a boil over high, about 4 minutes, then cover, turn to low, and cook 15 minutes. Leave it covered off the heat to rest 10 minutes.",
+        "ingredient_refs": [
+          "rice",
+          "rice-water"
+        ],
+        "clock_minutes": 29,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer the radish",
+        "body": "Add the radish and onion to the broth, cover, and bring to a boil over high, about 10 minutes to come to a boil. Simmer until the radish turns translucent, about 10 minutes.",
+        "ingredient_refs": [
+          "radish",
+          "onion"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Poach the fish",
+        "body": "Add the zucchini and tofu and simmer 3 minutes. Slide in the cod and simmer gently, without stirring, until it flakes and reads 145 F, about 6 minutes. Lay the watercress, scallions, and jalapeno on top for the last minute.",
+        "ingredient_refs": [
+          "zucchini",
+          "tofu",
+          "cod",
+          "watercress",
+          "scallions",
+          "jalapeno"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Ladle into bowls with the rice alongside.",
+        "ingredient_refs": [
+          "rice"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "stew",
+        "name": "maeuntang",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "water",
+          "Korean radish",
+          "onion",
+          "garlic",
+          "gochugaru",
+          "gochujang",
+          "soy sauce",
+          "fish sauce",
+          "salt",
+          "zucchini",
+          "firm tofu",
+          "cod",
+          "watercress",
+          "scallions",
+          "jalapeno"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "short-grain rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "short-grain rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "5.5-quart Dutch oven",
+      "2-quart saucepan with lid",
+      "ladle",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "simmer",
+      "steam"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 16,
+    "cook_time_minutes": 32,
+    "total_time_minutes": 48,
+    "prep_minutes": 16,
+    "cook_minutes": 32,
+    "total_minutes": 48,
+    "time_clock": "Prep 16 + cook 32 = 48 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests while the broth and radish simmer and the fish poaches (step 3 runs inside steps 4-5, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        2
+      ],
+      "cook_steps": [
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "5.5-quart Dutch oven over high to a boil, then a steady simmer; 2-quart saucepan for the rice.",
+    "doneness": "Radish translucent and tender; cod opaque and just flaking, 145 F; watercress barely wilted.",
+    "effort_level": "easy",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, egg, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and fish: cod, tofu, vegetables, chile pastes, soy sauce, fish sauce, and rice.",
+    "allergens": [
+      "finfish",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Finfish from the cod and the anchovy fish sauce.",
+      "Soy from the tofu, soy sauce, and gochujang.",
+      "Wheat from the gochujang and soy sauce.",
+      "No milk, egg, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, egg, or nuts.",
+    "hh001_contract": "No clams, shrimp, or anchovy-shrimp stock. The fish sauce label lists anchovy and salt (sugar allowed) with no shrimp; the gochujang label lists no shellfish or meat.",
+    "vocabulary_tag_ids": [
+      "cod",
+      "spicy",
+      "soups",
+      "stews",
+      "korean"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'korean' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook the cod to 145 F; it breaks apart if boiled hard, so keep it at a simmer.",
+    "culinary_hash": "6c86905cac9f80ef0600d25a89b2d2abe0f3c7bd71682704b8d9126b29fc806f",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_korean-spicy-cod-stew_v1",
+    "dish_id": "korean-spicy-cod-stew",
+    "recipe_version_id": "rv_korean-spicy-cod-stew_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "korean-spicy-cod-stew.webp",
+    "card_ref": "korean-spicy-cod-stew-640.webp",
+    "master_filename": "korean-spicy-cod-stew.webp",
+    "card_filename": "korean-spicy-cod-stew-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "korean-spicy-cod-stew.webp",
+        "spec_catalog_path": "/images/meals/korean-spicy-cod-stew.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "korean-spicy-cod-stew-640.webp",
+        "spec_catalog_path": "/images/meals/korean-spicy-cod-stew-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "50b5cfd9818e210ee768455692477c4f8d63bfa7f523b074f82b1a2e470f3bb9",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "50b5cfd9818e210ee768455692477c4f8d63bfa7f523b074f82b1a2e470f3bb9",
+      "master_sha256": "1ef4cddaca5dbf017b5f477562dec73a78bbd8837fee99e867f28c60219e8516",
+      "card_sha256": "f06ab727f73bf00fb15cde99d5224a3519c6eb7430d48318a2ee0332587be32c"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "50b5cfd9818e210ee768455692477c4f8d63bfa7f523b074f82b1a2e470f3bb9",
+      "korean-spicy-cod-stew.webp": "1ef4cddaca5dbf017b5f477562dec73a78bbd8837fee99e867f28c60219e8516",
+      "korean-spicy-cod-stew-640.webp": "f06ab727f73bf00fb15cde99d5224a3519c6eb7430d48318a2ee0332587be32c"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 16 + cook 32 = 48 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests while the broth and radish simmer and the fish poaches (step 3 runs inside steps 4-5, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "korean-spicy-cod-stew.webp 1200x900 and korean-spicy-cod-stew-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 2-quart saucepan (1 1/2 cups water); 1/3 cup rice in a 1-quart saucepan.",
+    "2": "Half of everything in a 3-quart saucepan (3 cups water); 3/4 cup rice in a 1-quart saucepan.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "Korean fish in the catalog is a braised mackerel with radish; there is no spicy fish soup-stew (jjigae or tang) with fish. An easy, HH001-eligible fish dinner.",
+  "near_duplicate_review": "Compared with korean-braised-mackerel-radish: a brothy chile stew of cod, tofu, and greens eaten with a spoon, not mackerel braised down in a thick soy-chile glaze. Compared with korean-soft-tofu-stew: cod and radish in a clear red broth, not silken tofu and egg in a thick stew. Compared with filipino-fish-sinigang: chile-hot rather than tamarind-sour.",
+  "not_duplicate_of": "Not budae jjigae (no meat or noodles) and not haemul jeongol (no shellfish).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

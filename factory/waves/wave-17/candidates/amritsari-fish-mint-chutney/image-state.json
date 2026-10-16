@@ -1,0 +1,40 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "amritsari-fish-mint-chutney.webp",
+    "amritsari-fish-mint-chutney-640.webp"
+  ],
+  "present_files": [
+    "amritsari-fish-mint-chutney.webp",
+    "amritsari-fish-mint-chutney-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "c295df5cea6a515c689c659c5a6b5a7e19a5fde726d8568c722e079b42a8f99d",
+    "amritsari-fish-mint-chutney.webp": "cdd41495b9e7f882b620f0268050e5f1d4e46b443e810245e57d45f63e3ce5d8",
+    "amritsari-fish-mint-chutney-640.webp": "033ac0a8b880c3c3de4be8c37cdfd1bace2ea3fa7a99e0dd958eedacdb13baf6"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "creator_self_review_before_audit",
+    "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: lemon slice on the fish (explicitly excluded).",
+    "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+    "prompt_sha256": {
+      "v2": "6c376425bae36d437a7cba7cdfe9e48ac0581da55165bea3ae052692caeaa132"
+    },
+    "rejected_versions": [
+      1
+    ]
+  },
+  "package_revision": "author-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

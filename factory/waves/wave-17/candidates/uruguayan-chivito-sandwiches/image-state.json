@@ -1,0 +1,52 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "uruguayan-chivito-sandwiches.webp",
+    "uruguayan-chivito-sandwiches-640.webp"
+  ],
+  "present_files": [
+    "uruguayan-chivito-sandwiches.webp",
+    "uruguayan-chivito-sandwiches-640.webp"
+  ],
+  "source": "img_v6.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-16",
+  "sha256": {
+    "img_v6.jpg": "cbe2528faba71d14cfa0fb0e9def16acf0a55e73114643e8fd092343a2ec810b",
+    "uruguayan-chivito-sandwiches.webp": "77d2629a93041695e9cf4acc82b091863a2cbf6e4c87ec43614d9c1e4cdf38e9",
+    "uruguayan-chivito-sandwiches-640.webp": "eaa79f8ab19abfdac0c6f350a2fcb93f69ed3071e8f64b7a21f9c7a51ca2d39f"
+  },
+  "regeneration_count": 5,
+  "regeneration": {
+    "version": 6,
+    "basis": "audit_r1_r2_gate_K_after_creator_self_review",
+    "summary": "Active hero is the v6 regeneration (author-r4). Earlier versions: v1: rejected in Cora's creator self-review (steak reads as a ground-beef burger patty); v2: rejected in Cora's creator self-review (steak still reads as a thick burger patty); v3: rejected in Cora's creator self-review (steak fixed but fried egg missing (must-show)); v4: rejected by independent audit r1 gate K after being finalized at author-r2 (thick rosy steak vs 1/4 inch at 145F); v5: rejected by independent audit r2 gate K after being finalized at author-r3 (steak cut face has ground-beef texture, reads as smash-burger patty).",
+    "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v6 prompt.",
+    "prompt_sha256": {
+      "v2": "1c390a43a06c3297dd558d83bfa146076272bb1acad96da6c2dde6c0b1ebcbc0",
+      "v3": "de9273df3eb5d4e6c9fd8adb95f58a8bab8dbc91bf9b327dd7700d12b5ea94d3",
+      "v4": "1c058ec79137a2b84a9bacfc28ce398897d094d2616e064a209e1608a765afd6",
+      "v5": "8d2be7e5e7ade1cec073e4f69da1061eede4853b6a72d3ad2b4a419cbb4a78e5",
+      "v6": "2c61b1732e60ec54e8df2a94ff2d742accfc3f3110782c2e761e83e348dc970b"
+    },
+    "rejected_versions": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "audit_rejected_versions": [
+      4,
+      5
+    ]
+  },
+  "package_revision": "author-r4",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

@@ -1,0 +1,565 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "ivorian-chicken-kedjenou",
+    "slug": "ivorian-chicken-kedjenou",
+    "title": "Ivorian Chicken Kedjenou with Eggplant, Tomatoes, and Rice",
+    "description": "Bone-in chicken thighs layered in a sealed Dutch oven with onion, tomatoes, eggplant, red bell pepper, a whole Scotch bonnet, garlic, ginger, thyme, and bay, gently stewed in their own juices without added liquid, served over long-grain rice.",
+    "cuisine": "ivorian",
+    "meal_format": "stew-over-rice",
+    "primary_ingredient": "bone-in chicken thighs",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "stews",
+      "tender",
+      "spicy"
+    ],
+    "current_recipe_id": "rcp_ivorian-chicken-kedjenou",
+    "current_version_id": "rv_ivorian-chicken-kedjenou_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_ivorian-chicken-kedjenou",
+    "dish_id": "ivorian-chicken-kedjenou",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_ivorian-chicken-kedjenou_v1",
+    "recipe_id": "rcp_ivorian-chicken-kedjenou",
+    "dish_id": "ivorian-chicken-kedjenou",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Ivorian Chicken Kedjenou with Eggplant, Tomatoes, and Rice",
+    "description": "Bone-in chicken thighs layered in a sealed Dutch oven with onion, tomatoes, eggplant, red bell pepper, a whole Scotch bonnet, garlic, ginger, thyme, and bay, gently stewed in their own juices without added liquid, served over long-grain rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "chicken",
+        "name": "bone-in skinless chicken thighs",
+        "display_name": "bone-in skinless chicken thighs (8, about 5 oz each)",
+        "quantity": 2.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 3/4 tsp stew, 1/4 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "large yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "tomatoes",
+        "display_name": "ripe tomatoes",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "eggplant",
+        "name": "eggplant",
+        "display_name": "small eggplant (about 12 oz)",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bell-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scotch-bonnet",
+        "name": "Scotch bonnet",
+        "display_name": "Scotch bonnet chile, left whole and pricked once",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "thyme",
+        "name": "fresh thyme",
+        "display_name": "fresh thyme",
+        "quantity": 4,
+        "unit": "sprig",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bay",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Season the chicken with 1 3/4 tsp salt. Slice the onion and bell pepper, chop the tomatoes, cube the eggplant, mince the garlic, grate the ginger, prick the Scotch bonnet once, and rinse the rice.",
+        "ingredient_refs": [
+          "chicken",
+          "salt",
+          "onion",
+          "bell-pepper",
+          "tomatoes",
+          "eggplant",
+          "garlic",
+          "ginger",
+          "scotch-bonnet",
+          "rice"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Seal and stew",
+        "body": "Rub the oil over the bottom of the 5.5-quart Dutch oven. Layer half the onion, 4 thighs, half the vegetables, garlic, and ginger, then the remaining thighs and vegetables, the Scotch bonnet, thyme, and bay leaves. Cover tightly and cook over medium-low without adding liquid. Four or five times during cooking, hold the lid down with oven mitts and shake the pot instead of stirring. Cook until the chicken is 175 F at the bone and the vegetables collapse, about 50 minutes. Discard the chile, thyme stems, and bay leaves.",
+        "ingredient_refs": [
+          "oil",
+          "onion",
+          "chicken",
+          "tomatoes",
+          "eggplant",
+          "bell-pepper",
+          "garlic",
+          "ginger",
+          "scotch-bonnet",
+          "thyme",
+          "bay"
+        ],
+        "clock_minutes": 52,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the rice",
+        "body": "During the stew (overlap stated): combine the rice, 2 1/4 cups water, and 1/4 tsp salt in the lidded 2-quart saucepan, bring to a boil over high, about 4 minutes, cover, turn to low, and cook 15 minutes. Rest covered off the heat 10 minutes.",
+        "ingredient_refs": [
+          "rice",
+          "rice-water",
+          "salt"
+        ],
+        "clock_minutes": 29,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Serve",
+        "body": "Spoon rice into bowls and ladle the chicken and thick vegetable stew over it.",
+        "ingredient_refs": [
+          "rice",
+          "chicken"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "stew",
+        "name": "kedjenou",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "bone-in chicken thighs",
+          "salt",
+          "neutral oil",
+          "yellow onion",
+          "tomatoes",
+          "eggplant",
+          "red bell pepper",
+          "Scotch bonnet",
+          "garlic",
+          "ginger",
+          "thyme",
+          "bay leaves"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long-grain white rice",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "5.5-quart Dutch oven with tight lid",
+      "2-quart saucepan with lid",
+      "instant-read thermometer",
+      "oven mitts"
+    ],
+    "methods": [
+      "braise",
+      "steam"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 55,
+    "total_time_minutes": 70,
+    "prep_minutes": 15,
+    "cook_minutes": 55,
+    "total_minutes": 70,
+    "time_clock": "Prep 15 + cook 55 = 70 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests during the stew (step 3 runs inside step 2, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "5.5-quart Dutch oven with a tight lid over medium-low; 2-quart saucepan for the rice.",
+    "doneness": "Chicken 175 F at the bone and falling from it; vegetables collapsed into a thick red stew.",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: chicken is poultry."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: chicken, vegetables, a little oil, and rice.",
+    "allergens": [
+      "poultry"
+    ],
+    "allergen_notes": [
+      "Poultry from the chicken.",
+      "No milk, egg, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: chicken is poultry.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "chicken",
+      "stews",
+      "tender",
+      "spicy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'ivorian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook the chicken to 175 F at the bone. Keep the lid on when shaking the pot and use oven mitts on both handles; wash hands after handling the Scotch bonnet.",
+    "culinary_hash": "61e0a0ccf223f0be6562801229b94bd4af7472a2aeb61b55c11f71d82565d5a4",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_ivorian-chicken-kedjenou_v1",
+    "dish_id": "ivorian-chicken-kedjenou",
+    "recipe_version_id": "rv_ivorian-chicken-kedjenou_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "ivorian-chicken-kedjenou.webp",
+    "card_ref": "ivorian-chicken-kedjenou-640.webp",
+    "master_filename": "ivorian-chicken-kedjenou.webp",
+    "card_filename": "ivorian-chicken-kedjenou-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "ivorian-chicken-kedjenou.webp",
+        "spec_catalog_path": "/images/meals/ivorian-chicken-kedjenou.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "ivorian-chicken-kedjenou-640.webp",
+        "spec_catalog_path": "/images/meals/ivorian-chicken-kedjenou-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "d9b8db00f1adcee50792d02524fa1fcf60a7c7b605eb208ac98a12fee3637f78",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "d9b8db00f1adcee50792d02524fa1fcf60a7c7b605eb208ac98a12fee3637f78",
+      "master_sha256": "64b82d4b648ed32620f956b6914f168f7315c89df65695f2dcbc62b49d695708",
+      "card_sha256": "2160bf1a94b215d6d7ac7054c6c14128ab164b3bf6bc7f1270238b333c938cb7"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "d9b8db00f1adcee50792d02524fa1fcf60a7c7b605eb208ac98a12fee3637f78",
+      "ivorian-chicken-kedjenou.webp": "64b82d4b648ed32620f956b6914f168f7315c89df65695f2dcbc62b49d695708",
+      "ivorian-chicken-kedjenou-640.webp": "2160bf1a94b215d6d7ac7054c6c14128ab164b3bf6bc7f1270238b333c938cb7"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 55 = 70 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests during the stew (step 3 runs inside step 2, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "ivorian-chicken-kedjenou.webp 1200x900 and ivorian-chicken-kedjenou-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Two thighs with a quarter of the vegetables in a 2-quart saucepan with a tight lid; 1/3 cup rice in a 1-quart saucepan.",
+    "2": "Four thighs with half the vegetables in a 3-quart saucepan with a tight lid; 3/4 cup rice in a 1-quart saucepan.",
+    "4": "As written (8 thighs, 2 layers).",
+    "do_not_scale": [
+      "the Scotch bonnet: 1 whole chile up to 4 servings"
+    ]
+  },
+  "coverage_contribution": "West African dishes in the catalog are maafe, jollof, and egusi-style stews; there is no Ivorian dish and no liquid-free sealed-pot stew. A hands-off poultry dinner.",
+  "near_duplicate_review": "Compared with malian-chicken-maafe: a tomato-vegetable stew cooked in its own juices, not a peanut-butter sauce. Compared with puerto-rican-pollo-guisado: Scotch bonnet, ginger, and eggplant with no sofrito, olives, or potatoes. Compared with italian-chicken-cacciatore: a West African chile-ginger stew over rice, not a wine-tomato braise with mushrooms.",
+  "not_duplicate_of": "Not jollof (rice is served on the side) and not a peanut stew.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

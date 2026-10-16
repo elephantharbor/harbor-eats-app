@@ -1,0 +1,602 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "jamaican-ital-stew",
+    "slug": "jamaican-ital-stew",
+    "title": "Jamaican Ital Stew with Squash, Kidney Beans, and Coconut",
+    "description": "Butternut squash, sweet potato, carrots, okra, and red kidney beans simmered in coconut milk with onion, garlic, ginger, scallions, thyme, allspice, and a whole scotch bonnet, finished with spinach.",
+    "cuisine": "jamaican",
+    "meal_format": "stew",
+    "primary_ingredient": "butternut squash",
+    "vocabulary_tag_ids": [
+      "stews",
+      "rich",
+      "spicy",
+      "herbaceous"
+    ],
+    "current_recipe_id": "rcp_jamaican-ital-stew",
+    "current_version_id": "rv_jamaican-ital-stew_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_jamaican-ital-stew",
+    "dish_id": "jamaican-ital-stew",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_jamaican-ital-stew_v1",
+    "recipe_id": "rcp_jamaican-ital-stew",
+    "dish_id": "jamaican-ital-stew",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Jamaican Ital Stew with Squash, Kidney Beans, and Coconut",
+    "description": "Butternut squash, sweet potato, carrots, okra, and red kidney beans simmered in coconut milk with onion, garlic, ginger, scallions, thyme, allspice, and a whole scotch bonnet, finished with spinach.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced, whites and greens separate",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "thyme",
+        "name": "fresh thyme",
+        "display_name": "thyme",
+        "quantity": 6,
+        "unit": "sprig",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "allspice",
+        "name": "ground allspice",
+        "display_name": "ground allspice",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "squash",
+        "name": "butternut squash",
+        "display_name": "butternut squash",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled and cut into 1 1/2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sweet-potato",
+        "name": "sweet potato",
+        "display_name": "sweet potato",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "peeled and cut into 1 1/2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced 1/2 inch thick",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "coconut-milk",
+        "name": "coconut milk",
+        "display_name": "full-fat coconut milk (one 13.5-oz can) whose label lists coconut, water, and guar gum",
+        "quantity": 13.5,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "scotch-bonnet",
+        "name": "scotch bonnet chile",
+        "display_name": "scotch bonnet chile",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "left whole",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "beans",
+        "name": "red kidney beans",
+        "display_name": "red kidney beans (one 15-oz can) whose label lists beans, water, and salt",
+        "quantity": 15,
+        "unit": "oz",
+        "note": null,
+        "preparation": "drained and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "okra",
+        "name": "okra",
+        "display_name": "okra",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": "trimmed and cut into 1-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "spinach",
+        "name": "baby spinach",
+        "display_name": "baby spinach",
+        "quantity": 4,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Chop the onion, mince the garlic, grate the ginger, and slice the scallions, keeping whites and greens apart. Peel and cut the squash and sweet potato into 1 1/2-inch chunks, slice the carrots, and trim and cut the okra. Drain and rinse the beans.",
+        "ingredient_refs": [
+          "onion",
+          "garlic",
+          "ginger",
+          "scallions",
+          "squash",
+          "sweet-potato",
+          "carrots",
+          "okra",
+          "beans"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Aromatics",
+        "body": "Heat the oil in the 5.5-quart Dutch oven over medium, about 1 minute. Cook the onion and scallion whites until soft, about 5 minutes, then the garlic, ginger, thyme, and allspice for 1 minute.",
+        "ingredient_refs": [
+          "oil",
+          "onion",
+          "scallions",
+          "garlic",
+          "ginger",
+          "thyme",
+          "allspice"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer",
+        "body": "Add the squash, sweet potato, carrots, coconut milk, 2 cups water, salt, and the whole scotch bonnet. Bring to a simmer, about 6 minutes, then cover and simmer gently until the squash is just tender, about 20 minutes.",
+        "ingredient_refs": [
+          "squash",
+          "sweet-potato",
+          "carrots",
+          "coconut-milk",
+          "water",
+          "salt",
+          "scotch-bonnet"
+        ],
+        "clock_minutes": 26,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Finish",
+        "body": "Add the beans and okra and simmer uncovered until the okra is tender and the broth thickens slightly, about 10 minutes. Stir in the spinach until wilted, about 1 minute.",
+        "ingredient_refs": [
+          "beans",
+          "okra",
+          "spinach"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Lift out the scotch bonnet and thyme stems. Ladle into bowls and scatter with the scallion greens.",
+        "ingredient_refs": [
+          "scotch-bonnet",
+          "thyme",
+          "scallions"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "stew",
+        "name": "ital stew",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "neutral oil",
+          "yellow onion",
+          "garlic",
+          "ginger",
+          "scallions",
+          "thyme",
+          "allspice",
+          "butternut squash",
+          "sweet potato",
+          "carrots",
+          "coconut milk",
+          "water",
+          "salt",
+          "scotch bonnet",
+          "kidney beans",
+          "okra",
+          "baby spinach"
+        ]
+      }
+    ],
+    "equipment": [
+      "5.5-quart Dutch oven with lid",
+      "wooden spoon"
+    ],
+    "methods": [
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 18,
+    "cook_time_minutes": 46,
+    "total_time_minutes": 64,
+    "prep_minutes": 18,
+    "cook_minutes": 46,
+    "total_minutes": 64,
+    "time_clock": "Prep 18 + cook 46 = 64 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. A single pot; nothing overlaps.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "5.5-quart Dutch oven over medium, then a covered simmer.",
+    "doneness": "Squash and sweet potato tender with some edges melting into the broth; okra tender; broth creamy and lightly thickened.",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, egg, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional plant_based and dairy_free: vegetables, beans, coconut milk, aromatics, and oil.",
+    "allergens": [],
+    "allergen_notes": [
+      "No major allergen tokens: no milk, egg, soy, wheat, sesame, fish, shellfish, or nuts.",
+      "Coconut has no FlavorWeave allergen token; disclosed here and in runtime_enum_gaps."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, egg, or nuts.",
+    "hh001_contract": "Coconut milk, not dairy. The coconut milk label lists coconut, water, and guar gum; the kidney bean label lists beans, water, and salt.",
+    "vocabulary_tag_ids": [
+      "stews",
+      "rich",
+      "spicy",
+      "herbaceous"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'jamaican' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids.",
+      "coconut": "Coconut milk has no FlavorWeave allergen token. Disclosed in allergen_notes; carried as a wave-17 open item for the importer."
+    },
+    "food_safety_note": "Keep the scotch bonnet whole so it does not burst; lift it out before serving.",
+    "culinary_hash": "693adfc8ddb824344bc42700991b04ee1fca9591fb343a9d9f07a2ebbd4e3618",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_jamaican-ital-stew_v1",
+    "dish_id": "jamaican-ital-stew",
+    "recipe_version_id": "rv_jamaican-ital-stew_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "jamaican-ital-stew.webp",
+    "card_ref": "jamaican-ital-stew-640.webp",
+    "master_filename": "jamaican-ital-stew.webp",
+    "card_filename": "jamaican-ital-stew-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "jamaican-ital-stew.webp",
+        "spec_catalog_path": "/images/meals/jamaican-ital-stew.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "jamaican-ital-stew-640.webp",
+        "spec_catalog_path": "/images/meals/jamaican-ital-stew-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "7899b1ffea72861e2154d04f470246b97fae3227c8376cf88d287d44227e483f",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "7899b1ffea72861e2154d04f470246b97fae3227c8376cf88d287d44227e483f",
+      "master_sha256": "85535e566eb73aeb1d0b95a44eabbdec2e4d69c8fc24f1216b46b4dd87e83e48",
+      "card_sha256": "d9a4b2509d32bca3a10819ecb602684136e9af0313efb8981d4d65122fe1f2c0"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "7899b1ffea72861e2154d04f470246b97fae3227c8376cf88d287d44227e483f",
+      "jamaican-ital-stew.webp": "85535e566eb73aeb1d0b95a44eabbdec2e4d69c8fc24f1216b46b4dd87e83e48",
+      "jamaican-ital-stew-640.webp": "d9a4b2509d32bca3a10819ecb602684136e9af0313efb8981d4d65122fe1f2c0"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 18 + cook 46 = 64 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. A single pot; nothing overlaps."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "jamaican-ital-stew.webp 1200x900 and jamaican-ital-stew-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 2-quart saucepan; keep the scotch bonnet whole or use half a jalapeno.",
+    "2": "Half of everything in a 3-quart saucepan.",
+    "4": "As written.",
+    "do_not_scale": [
+      "scotch bonnet: one whole chile flavors any batch; do not add more for 4"
+    ]
+  },
+  "coverage_contribution": "Jamaica has escovitch fish and jerk pork in the catalog; there is no Rastafarian ital cooking and no coconut vegetable stew without curry paste. An easy vegan HH001 dinner.",
+  "near_duplicate_review": "Compared with coconut-chickpea-curry: a thyme-allspice coconut stew of squash, beans, and okra, not a curry-spiced chickpea curry. Compared with thai-red-curry-kabocha: no curry paste, fish sauce, or tofu; Jamaican aromatics and kidney beans. Compared with ghanaian-red-red-plantains: a coconut vegetable stew, not palm-oil black-eyed peas with plantains.",
+  "not_duplicate_of": "Not rice and peas (no rice) and not a curry.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

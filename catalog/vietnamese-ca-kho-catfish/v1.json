@@ -1,0 +1,664 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "vietnamese-ca-kho-catfish",
+    "slug": "vietnamese-ca-kho-catfish",
+    "title": "Vietnamese Ca Kho: Caramel-Braised Catfish with Black Pepper and Jasmine Rice",
+    "description": "Catfish pieces braised in a dark sugar caramel with fish sauce, coconut water, shallots, garlic, black pepper, and Thai chiles until glazed and sticky, scattered with scallions and served with jasmine rice and cucumber slices.",
+    "cuisine": "vietnamese",
+    "meal_format": "braise-with-rice",
+    "primary_ingredient": "catfish",
+    "vocabulary_tag_ids": [
+      "savory",
+      "umami",
+      "spicy"
+    ],
+    "current_recipe_id": "rcp_vietnamese-ca-kho-catfish",
+    "current_version_id": "rv_vietnamese-ca-kho-catfish_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_vietnamese-ca-kho-catfish",
+    "dish_id": "vietnamese-ca-kho-catfish",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_vietnamese-ca-kho-catfish_v1",
+    "recipe_id": "rcp_vietnamese-ca-kho-catfish",
+    "dish_id": "vietnamese-ca-kho-catfish",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Vietnamese Ca Kho: Caramel-Braised Catfish with Black Pepper and Jasmine Rice",
+    "description": "Catfish pieces braised in a dark sugar caramel with fish sauce, coconut water, shallots, garlic, black pepper, and Thai chiles until glazed and sticky, scattered with scallions and served with jasmine rice and cucumber slices.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "caramel-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "for the caramel",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "shallots",
+        "name": "shallots",
+        "display_name": "shallots",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "fish-sauce",
+        "name": "fish sauce",
+        "display_name": "fish sauce whose label lists anchovy and salt (sugar allowed), no shrimp",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "coconut-water",
+        "name": "coconut water",
+        "display_name": "coconut water whose label lists coconut water only",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "catfish",
+        "name": "catfish fillets",
+        "display_name": "US farm-raised catfish fillets",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into about 14 pieces, 2 by 2 1/2 inches",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": "coarsely ground",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chiles",
+        "name": "Thai chiles",
+        "display_name": "Thai chiles",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1-inch lengths",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Cut the catfish into 2-inch pieces and pat dry. Slice the shallots and chiles, mince the garlic, cut the scallions, slice the cucumber, and rinse the rice until the rinse runs clear.",
+        "ingredient_refs": [
+          "catfish",
+          "shallots",
+          "chiles",
+          "garlic",
+          "scallions",
+          "cucumber",
+          "rice"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the rice",
+        "body": "Combine the rice and 2 1/4 cups water in a 2-quart saucepan, bring to a boil over high, about 4 minutes, then cover, turn to low, and cook 15 minutes. Leave it covered off the heat to rest 10 minutes.",
+        "ingredient_refs": [
+          "rice",
+          "rice-water"
+        ],
+        "clock_minutes": 29,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Caramel-braise the fish",
+        "body": "While the rice cooks (overlap stated): heat the sugar and 2 tbsp water in the 12-inch heavy skillet over medium, swirling, until deep amber, about 5 minutes. Add the shallots and garlic for 30 seconds, then slowly add the fish sauce and 1 cup coconut water and stir until the caramel dissolves, about 2 minutes. Lay in the catfish in one layer with the pepper and chiles and simmer, basting and turning once, until the sauce reduces to a sticky glaze and the fish reaches 145 F, about 18 minutes. Add the scallions for the last minute.",
+        "ingredient_refs": [
+          "sugar",
+          "caramel-water",
+          "shallots",
+          "garlic",
+          "fish-sauce",
+          "coconut-water",
+          "catfish",
+          "black-pepper",
+          "chiles",
+          "scallions"
+        ],
+        "clock_minutes": 26,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Serve",
+        "body": "Fluff the rice and serve the catfish and its glaze beside it with the cucumber slices.",
+        "ingredient_refs": [
+          "rice",
+          "catfish",
+          "cucumber"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "ca-kho",
+        "name": "caramel catfish",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "sugar",
+          "water",
+          "shallots",
+          "garlic",
+          "fish sauce",
+          "coconut water",
+          "catfish",
+          "black pepper",
+          "Thai chiles",
+          "scallions"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "jasmine rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water"
+        ]
+      },
+      {
+        "component_id": "cucumber",
+        "name": "cucumber",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cucumber"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch heavy skillet",
+      "2-quart saucepan with lid",
+      "instant-read thermometer",
+      "thin spatula"
+    ],
+    "methods": [
+      "braise",
+      "steam"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 31,
+    "total_time_minutes": 41,
+    "prep_minutes": 10,
+    "cook_minutes": 31,
+    "total_minutes": 41,
+    "time_clock": "Prep 10 + cook 31 = 41 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The fish braises while the rice cooks and rests (step 3 runs inside step 2, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "12-inch heavy skillet over medium for the caramel, then a steady simmer; 2-quart saucepan for the rice.",
+    "doneness": "Caramel deep amber; sauce reduced to a thick, sticky glaze; catfish opaque, flaking, and 145 F.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and fish: catfish, caramel, fish sauce, coconut water, aromatics, rice, and cucumber.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish from the catfish and the anchovy fish sauce.",
+      "No milk, egg, soy, wheat, sesame, shellfish, or nuts.",
+      "Coconut water has no FlavorWeave allergen token; disclosed here and in runtime_enum_gaps."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "No pork belly. The fish sauce label lists anchovy and salt (sugar allowed) with no shrimp; the coconut water label lists coconut water only.",
+    "vocabulary_tag_ids": [
+      "savory",
+      "umami",
+      "spicy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'vietnamese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids.",
+      "coconut": "Coconut water has no FlavorWeave allergen token. Disclosed in allergen_notes; carried as a wave-17 open item for the importer."
+    },
+    "food_safety_note": "Cook the catfish to 145 F. Molten caramel is extremely hot: add the fish sauce and coconut water slowly at arm's length, as it will bubble up.",
+    "culinary_hash": "247f574f060d383e9f60b80c47becbda4663253a1048ae9ff23e7eed4cec3830",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_vietnamese-ca-kho-catfish_v3",
+    "dish_id": "vietnamese-ca-kho-catfish",
+    "recipe_version_id": "rv_vietnamese-ca-kho-catfish_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "vietnamese-ca-kho-catfish.webp",
+    "card_ref": "vietnamese-ca-kho-catfish-640.webp",
+    "master_filename": "vietnamese-ca-kho-catfish.webp",
+    "card_filename": "vietnamese-ca-kho-catfish-640.webp",
+    "active_source_jpeg": "img_v3.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "vietnamese-ca-kho-catfish.webp",
+        "spec_catalog_path": "/images/meals/vietnamese-ca-kho-catfish.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "vietnamese-ca-kho-catfish-640.webp",
+        "spec_catalog_path": "/images/meals/vietnamese-ca-kho-catfish-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v3.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-16",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "f1e7f5c0200b60555d04015c8c3e7a70b84fd279871d2e2e1753f7394f94a8c0",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 2,
+    "file_hashes": {
+      "source_jpeg_sha256": "f1e7f5c0200b60555d04015c8c3e7a70b84fd279871d2e2e1753f7394f94a8c0",
+      "master_sha256": "aaa1e63d298fbe090d9f850280452a6d47ccd8bcf36819a35bc6f20abbc13b6f",
+      "card_sha256": "457643f512cfff2f95b15f0e185c5c404a93a48880d1d666fd4e12923fd8996b"
+    },
+    "asset_sha256": {
+      "img_v3.jpg": "f1e7f5c0200b60555d04015c8c3e7a70b84fd279871d2e2e1753f7394f94a8c0",
+      "vietnamese-ca-kho-catfish.webp": "aaa1e63d298fbe090d9f850280452a6d47ccd8bcf36819a35bc6f20abbc13b6f",
+      "vietnamese-ca-kho-catfish-640.webp": "457643f512cfff2f95b15f0e185c5c404a93a48880d1d666fd4e12923fd8996b"
+    },
+    "regeneration": {
+      "version": 3,
+      "basis": "audit_r1_gate_K_after_creator_self_review",
+      "summary": "Active hero is the v3 regeneration (author-r3). Earlier versions: v1: rejected in Cora's creator self-review (pieces read as glazed chicken cutlets, not flaking fish); v2: rejected by independent audit r1 gate K after being finalized at author-r2 (skin-on cross-cut steaks vs skinless fillet pieces).",
+      "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v3 prompt.",
+      "prompt_sha256": {
+        "v2": "0e63884910e1e66612d9980349989835b6f0d5fe31e8f95f8b796e8f755cc7c5",
+        "v3": "47bd877442a27a644343e7d506a747ab513a3797684b215106c32774b77b36c6"
+      },
+      "rejected_versions": [
+        1,
+        2
+      ],
+      "audit_rejected_versions": [
+        2
+      ]
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "creator_self_review_before_audit",
+        "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: pieces read as glazed chicken cutlets, not flaking fish.",
+        "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+        "prompt_sha256": {
+          "v2": "0e63884910e1e66612d9980349989835b6f0d5fe31e8f95f8b796e8f755cc7c5"
+        },
+        "rejected_versions": [
+          1
+        ]
+      },
+      {
+        "version": 3,
+        "basis": "audit_r1_gate_K_after_creator_self_review",
+        "summary": "Active hero is the v3 regeneration (author-r3). Earlier versions: v1: rejected in Cora's creator self-review (pieces read as glazed chicken cutlets, not flaking fish); v2: rejected by independent audit r1 gate K after being finalized at author-r2 (skin-on cross-cut steaks vs skinless fillet pieces).",
+        "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v3 prompt.",
+        "prompt_sha256": {
+          "v2": "0e63884910e1e66612d9980349989835b6f0d5fe31e8f95f8b796e8f755cc7c5",
+          "v3": "47bd877442a27a644343e7d506a747ab513a3797684b215106c32774b77b36c6"
+        },
+        "rejected_versions": [
+          1,
+          2
+        ],
+        "audit_rejected_versions": [
+          2
+        ]
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_vietnamese-ca-kho-catfish_v1",
+        "source_file": "img_v1.jpg",
+        "sha256": "cec2d0ffd0e973b926032efc4c763bc9cc2f602d7a003cbd9133aec25988e8d5",
+        "generate_image_attachment_hash": "cec2d0ffd0e973b926032efc4c763bc9cc2f602d7a003cbd9133aec25988e8d5",
+        "moved_to_rejected": "rejected/img_v1-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "pieces read as glazed chicken cutlets, not flaking fish"
+      },
+      {
+        "image_id": "img_vietnamese-ca-kho-catfish_v2",
+        "active_source_jpeg": "img_v2.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "e2b47945f550633fb44db90117eb9a689c8bfd1de92ac0b39da8075ca2c942a5",
+          "master_sha256": "c5af59ed371a16164a587b549d0c8d12a40efd742ec7a95f74bebe42418a38ed",
+          "card_sha256": "13569bb9e85bc38d8ce785fe0b38a2ff67af1cf823c8820b55f2bf94dae27788"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "vietnamese-ca-kho-catfish.webp": {
+            "rejected_path": "rejected/vietnamese-ca-kho-catfish-replaced-20261016002402.webp",
+            "sha256": "c5af59ed371a16164a587b549d0c8d12a40efd742ec7a95f74bebe42418a38ed"
+          },
+          "vietnamese-ca-kho-catfish-640.webp": {
+            "rejected_path": "rejected/vietnamese-ca-kho-catfish-640-replaced-20261016002402.webp",
+            "sha256": "13569bb9e85bc38d8ce785fe0b38a2ff67af1cf823c8820b55f2bf94dae27788"
+          },
+          "img_v2.jpg": {
+            "rejected_path": "rejected/img_v2-replaced-20261016002402.jpg",
+            "sha256": "e2b47945f550633fb44db90117eb9a689c8bfd1de92ac0b39da8075ca2c942a5"
+          }
+        },
+        "replaced_on": "2026-10-16",
+        "reason": "Rejected by independent audit r1 gate K: skin-on cross-cut steaks vs skinless fillet pieces",
+        "rejected_by": "independent audit r1 (gate K)",
+        "finalized_at": "author-r2",
+        "rejected_on": "2026-10-16"
+      }
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 31 = 41 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The fish braises while the rice cooks and rests (step 3 runs inside step 2, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "vietnamese-ca-kho-catfish.webp 1200x900 and vietnamese-ca-kho-catfish-640.webp 640x480 exported from img_v3.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in an 8-inch skillet; 1/3 cup rice in a 1-quart saucepan.",
+    "2": "Half of everything in a 10-inch skillet; 3/4 cup rice in a 1-quart saucepan.",
+    "4": "As written.",
+    "do_not_scale": [
+      "caramel: make at least 2 tbsp sugar's worth so it does not burn before it colors"
+    ]
+  },
+  "coverage_contribution": "Catfish appears blackened and in a noodle soup; there is no caramel braise (kho) in the catalog. A Vietnamese home-style fish dinner that is HH001-eligible.",
+  "near_duplicate_review": "Compared with cajun-blackened-catfish: braised in a dark caramel and fish sauce, not spice-crusted and seared. Compared with burmese-mohinga-fish-noodle-soup: a sticky glazed braise with rice, not a lemongrass noodle soup. Compared with korean-braised-mackerel-radish: a sugar caramel and black pepper glaze with no radish or gochugaru.",
+  "not_duplicate_of": "Not thit kho (no pork, no eggs) and not a clay-pot dish needing a clay pot.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "B",
+  "revision_history": [
+    {
+      "from": "author-r2",
+      "to": "author-r3",
+      "when": "2026-10-16",
+      "who": "Grok Bot (Curator, creator role), wave-17",
+      "trigger": "audit r1 gate K FAIL",
+      "scope": "hero image only; recipe text unchanged (culinary_hash unchanged)",
+      "from_culinary_hash": "247f574f060d383e9f60b80c47becbda4663253a1048ae9ff23e7eed4cec3830",
+      "to_culinary_hash": "247f574f060d383e9f60b80c47becbda4663253a1048ae9ff23e7eed4cec3830",
+      "changes": [
+        "Hero image: v2 (e2b47945...) rejected by audit r1 K (skin-on cross-cut steaks vs skinless fillet pieces) and moved to rejected/; v3 (f1e7f5c0...) generated by Cora from the v3 prompt (v1 prompt plus one correction sentence: about fourteen skinless rectangular fillet pieces) is the active hero; WebPs re-exported.",
+        "Recipe text unchanged."
+      ]
+    }
+  ]
+}

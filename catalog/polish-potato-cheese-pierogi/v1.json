@@ -1,0 +1,647 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r3 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r3",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "polish-potato-cheese-pierogi",
+    "slug": "polish-potato-cheese-pierogi",
+    "title": "Polish Potato-and-Cheese Pierogi with Golden Onions and Sour Cream",
+    "description": "Handmade pierogi of tender flour-and-egg dough filled with mashed russet potatoes, farmer's cheese, and onions cooked in butter, boiled until they float, tossed in more golden butter onions, and served with sour cream and chives.",
+    "cuisine": "polish",
+    "meal_format": "dumplings",
+    "primary_ingredient": "potatoes",
+    "vocabulary_tag_ids": [
+      "rich",
+      "savory",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_polish-potato-cheese-pierogi",
+    "current_version_id": "rv_polish-potato-cheese-pierogi_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_polish-potato-cheese-pierogi",
+    "dish_id": "polish-potato-cheese-pierogi",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_polish-potato-cheese-pierogi_v1",
+    "recipe_id": "rcp_polish-potato-cheese-pierogi",
+    "dish_id": "polish-potato-cheese-pierogi",
+    "version_number": 1,
+    "package_revision": "author-r3",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r3. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Polish Potato-and-Cheese Pierogi with Golden Onions and Sour Cream",
+    "description": "Handmade pierogi of tender flour-and-egg dough filled with mashed russet potatoes, farmer's cheese, and onions cooked in butter, boiled until they float, tossed in more golden butter onions, and served with sour cream and chives.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "plus a little for rolling",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "egg",
+        "name": "large egg",
+        "display_name": "large egg",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dough-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": "warm, for the dough",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "dough-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.25,
+        "unit": "tsp",
+        "note": "1 tsp dough, 1 tsp potato water, 1/4 tsp filling",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "russet potatoes",
+        "display_name": "russet potatoes",
+        "quantity": 0.75,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled and cut into 2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potato-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 6,
+        "unit": "cup",
+        "note": "for the potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "farmers-cheese",
+        "name": "farmer's cheese",
+        "display_name": "farmer's cheese whose label lists cultured milk and salt (acid-set, no animal rennet) or microbial enzymes",
+        "quantity": 4,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onions",
+        "name": "yellow onions",
+        "display_name": "yellow onions",
+        "quantity": 1.5,
+        "unit": "count",
+        "note": "1 for the topping, 1/2 for the filling",
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "pot-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 16,
+        "unit": "cup",
+        "note": "for boiling the pierogi",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "pot-salt",
+        "name": "salt",
+        "display_name": "salt",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the pierogi pot",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sour-cream",
+        "name": "sour cream",
+        "display_name": "sour cream",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "chives",
+        "name": "chives",
+        "display_name": "chives",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Make the dough",
+        "body": "Mix the flour and 1 tsp salt in a bowl. Add the egg, 3/4 cup warm water, and the oil and stir to a shaggy dough, then knead on the counter until smooth and soft, about 5 minutes. Cover with the upturned bowl; it rests through steps 2-4 (overlap, about 30 minutes).",
+        "ingredient_refs": [
+          "flour",
+          "salt",
+          "egg",
+          "dough-water",
+          "dough-oil"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil the potatoes",
+        "body": "Put the potato chunks, 6 cups water, and 1 tsp salt in a 3-quart saucepan. Bring to a boil over high, about 8 minutes to come to a boil, then simmer until tender, about 12 minutes. Drain in the colander.",
+        "ingredient_refs": [
+          "potatoes",
+          "potato-water",
+          "salt"
+        ],
+        "clock_minutes": 21,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the onions",
+        "body": "While the potatoes cook (overlap stated): melt the butter in the 10-inch skillet over medium and cook the onions, stirring often, until deep golden, about 15 minutes. Set aside two-thirds (about 1 onion's worth) for the topping.",
+        "ingredient_refs": [
+          "butter",
+          "onions"
+        ],
+        "clock_minutes": 16,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Make the filling",
+        "body": "Mash the hot potatoes smooth with the farmer's cheese, the remaining third of the onions with their butter, the pepper, and 1/4 tsp salt (about 2 1/4 cups filling). Spread on a plate to cool for 5 minutes.",
+        "ingredient_refs": [
+          "potatoes",
+          "farmers-cheese",
+          "onions",
+          "butter",
+          "black-pepper",
+          "salt"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 5,
+        "title": "Fill the pierogi",
+        "body": "Roll half the dough on a floured counter to about 1/8 inch thick and cut 3-inch rounds; repeat with the rest and reroll the scraps once (about 36 rounds from the 3 cups flour). Put a level tablespoon of filling on each, fold into a half-moon, and pinch the edges tightly closed. Lay them on the floured sheet pan in 6 rows of 6.",
+        "ingredient_refs": [
+          "flour",
+          "potatoes"
+        ],
+        "clock_minutes": 35,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 6,
+        "title": "Heat the pot",
+        "body": "While you fill (overlap stated): bring 16 cups water and 1 tbsp salt to a boil in the covered 8-quart pot over high, about 16 minutes to come to a boil.",
+        "ingredient_refs": [
+          "pot-water",
+          "pot-salt"
+        ],
+        "clock_minutes": 16,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 7,
+        "title": "Boil the pierogi",
+        "body": "Lower 12 pierogi into the pot, stir once so they do not stick, and simmer until they float plus 3 minutes more, about 4 minutes per batch. Lift them out with the spider into the skillet with the reserved onions and toss over low heat. Repeat (3 batches).",
+        "ingredient_refs": [
+          "onions"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 8,
+        "title": "Serve",
+        "body": "Plate the pierogi with the onions spooned over, a spoonful of sour cream, and the chives.",
+        "ingredient_refs": [
+          "sour-cream",
+          "chives"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "dough",
+        "name": "pierogi dough",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "all-purpose flour",
+          "egg",
+          "warm water",
+          "neutral oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "filling",
+        "name": "potato-cheese filling",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "russet potatoes",
+          "water",
+          "farmer's cheese",
+          "yellow onions",
+          "butter",
+          "black pepper",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "topping",
+        "name": "onions and sour cream",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "yellow onions",
+          "butter",
+          "sour cream",
+          "chives"
+        ]
+      }
+    ],
+    "equipment": [
+      "3-quart saucepan",
+      "10-inch skillet",
+      "8-quart pot with lid",
+      "potato masher",
+      "rolling pin",
+      "3-inch round cutter or glass",
+      "rimmed sheet pan (18 by 13 inches)",
+      "spider or slotted spoon",
+      "colander"
+    ],
+    "methods": [
+      "boil",
+      "saute"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 52,
+    "cook_time_minutes": 38,
+    "total_time_minutes": 90,
+    "prep_minutes": 52,
+    "cook_minutes": 38,
+    "total_minutes": 90,
+    "time_clock": "Prep 52 + cook 38 = 90 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The dough rests while the potatoes and onions cook (steps 2-4, overlap stated); the pierogi water heats while you fill (step 6 runs inside step 5, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        4,
+        5
+      ],
+      "cook_steps": [
+        2,
+        7,
+        8
+      ],
+      "overlap_steps": [
+        3,
+        6
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "3-quart saucepan for the potatoes; 10-inch skillet over medium for the onions; 8-quart pot at a gentle boil for the pierogi.",
+    "doneness": "Potatoes tender enough to mash smooth; onions deep golden; pierogi float and the dough edges are tender, not floury, about 3 minutes after floating.",
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: farmer's cheese, butter, and sour cream are dairy."
+    },
+    "dietary_labels": [
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional vegetarian: the farmer's cheese label lists cultured milk and salt (acid-set, no rennet) or microbial enzymes, stated on the ingredient line.",
+    "allergens": [
+      "wheat",
+      "egg",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Wheat from the flour.",
+      "Egg from the dough.",
+      "Milk from the farmer's cheese, butter, and sour cream.",
+      "No soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: farmer's cheese, butter, and sour cream are dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "rich",
+      "savory",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'polish' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Lower the pierogi into the pot with the spider so nothing splashes.",
+    "culinary_hash": "218505b5394b62de8c871aa7eecc682ac9855a0c5d0e1683bc2d72bd1b202451",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_polish-potato-cheese-pierogi_v1",
+    "dish_id": "polish-potato-cheese-pierogi",
+    "recipe_version_id": "rv_polish-potato-cheese-pierogi_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "polish-potato-cheese-pierogi.webp",
+    "card_ref": "polish-potato-cheese-pierogi-640.webp",
+    "master_filename": "polish-potato-cheese-pierogi.webp",
+    "card_filename": "polish-potato-cheese-pierogi-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "polish-potato-cheese-pierogi.webp",
+        "spec_catalog_path": "/images/meals/polish-potato-cheese-pierogi.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "polish-potato-cheese-pierogi-640.webp",
+        "spec_catalog_path": "/images/meals/polish-potato-cheese-pierogi-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "395616bd170873fdc81da2ccb55a309b6e69c44a95eedb055f46cc3de19acfb5",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r3. asset_generated is true.",
+    "package_revision": "author-r3",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "395616bd170873fdc81da2ccb55a309b6e69c44a95eedb055f46cc3de19acfb5",
+      "master_sha256": "31bdef2f44969447870c3272659a077a0caf3fa04cf17cae20f60ffaf9ca94da",
+      "card_sha256": "01328807e299b5f1955b68be294c1fca3c653590c998a26ae820f8208e4d0f19"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "395616bd170873fdc81da2ccb55a309b6e69c44a95eedb055f46cc3de19acfb5",
+      "polish-potato-cheese-pierogi.webp": "31bdef2f44969447870c3272659a077a0caf3fa04cf17cae20f60ffaf9ca94da",
+      "polish-potato-cheese-pierogi-640.webp": "01328807e299b5f1955b68be294c1fca3c653590c998a26ae820f8208e4d0f19"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 52 + cook 38 = 90 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The dough rests while the potatoes and onions cook (steps 2-4, overlap stated); the pierogi water heats while you fill (step 6 runs inside step 5, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "polish-potato-cheese-pierogi.webp 1200x900 and polish-potato-cheese-pierogi-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r3."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Make a third of the dough (1 cup flour) and filling for 12 pierogi; boil in a 4-quart pot with 8 cups water.",
+    "2": "Make half the dough (1 1/2 cups flour) and filling for 18 pierogi; boil in a 6-quart pot with 12 cups water.",
+    "4": "As written (about 36 pierogi, 3 batches).",
+    "do_not_scale": [
+      "boil no more than 12 at a time so the pot stays at a boil"
+    ]
+  },
+  "coverage_contribution": "Poland has bigos and krupnik in the catalog but no pierogi, and the only dumplings are pan-seared pork-and-cabbage. A from-scratch vegetarian weekend project.",
+  "near_duplicate_review": "Compared with pan-fried-pork-dumplings: boiled soft dough with a potato-cheese filling and onions, not pan-seared pork wrappers. Compared with kasespatzle-caramelized-onions: filled dumplings, not cheese-tossed spaetzle (shared onion topping only). Compared with polish-bigos: a vegetarian dumpling plate, not a sauerkraut and meat stew.",
+  "not_duplicate_of": "Not vareniki with sweet cheese and not potato gnocchi.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r3_preflight_pass_awaiting_vale",
+  "creator_batch": "A",
+  "revision_history": [
+    {
+      "from": "author-r2",
+      "to": "author-r3",
+      "when": "2026-10-16",
+      "who": "Grok Bot (Curator, creator role), wave-17",
+      "trigger": "audit r1 gate B FAIL",
+      "scope": "recipe text only; image files unchanged and not regenerated",
+      "from_culinary_hash": "fa1ce057fc084856cea3a3fd6477f71232240952eb21fe64225787984881f580",
+      "to_culinary_hash": "218505b5394b62de8c871aa7eecc682ac9855a0c5d0e1683bc2d72bd1b202451",
+      "changes": [
+        "Filling halved: russet potatoes 1 1/2 -> 3/4 lb; farmer's cheese 8 -> 4 oz; filling salt 1/2 -> 1/4 tsp (total salt 2 1/2 -> 2 1/4 tsp); black pepper 1/2 -> 1/4 tsp.",
+        "Onions: the filling share is halved and the topping share kept: yellow onions 2 -> 1 1/2 (1 topping, 1/2 filling), butter 4 -> 3 tbsp, all cooked together in step 3; step 3 sets aside two-thirds for the topping and step 4 mashes in the remaining third (about 2 1/4 cups filling).",
+        "Step 5: roll to about 1/8 inch (was 1/16) and cut 3-inch rounds, about 36 from the 3 cups flour; a level tablespoon of filling each (was a heaping teaspoon).",
+        "Dough, potato water (6 cups, 3-quart saucepan), yield (about 36, 3 boiling batches), clocks and total time (90 min) unchanged."
+      ]
+    }
+  ]
+}

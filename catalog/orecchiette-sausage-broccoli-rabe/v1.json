@@ -1,0 +1,526 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "orecchiette-sausage-broccoli-rabe",
+    "slug": "orecchiette-sausage-broccoli-rabe",
+    "title": "Orecchiette with Italian Sausage, Broccoli Rabe, Garlic, and Pecorino",
+    "description": "Dried orecchiette tossed with crumbled browned Italian sausage, blanched broccoli rabe cooked down with garlic, chile flakes, and olive oil, loosened with starchy cooking liquid and finished with grated Pecorino Romano and lemon zest.",
+    "cuisine": "italian",
+    "meal_format": "pasta",
+    "primary_ingredient": "Italian sausage",
+    "vocabulary_tag_ids": [
+      "pasta",
+      "italian",
+      "savory",
+      "spicy"
+    ],
+    "current_recipe_id": "rcp_orecchiette-sausage-broccoli-rabe",
+    "current_version_id": "rv_orecchiette-sausage-broccoli-rabe_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_orecchiette-sausage-broccoli-rabe",
+    "dish_id": "orecchiette-sausage-broccoli-rabe",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_orecchiette-sausage-broccoli-rabe_v1",
+    "recipe_id": "rcp_orecchiette-sausage-broccoli-rabe",
+    "dish_id": "orecchiette-sausage-broccoli-rabe",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Orecchiette with Italian Sausage, Broccoli Rabe, Garlic, and Pecorino",
+    "description": "Dried orecchiette tossed with crumbled browned Italian sausage, blanched broccoli rabe cooked down with garlic, chile flakes, and olive oil, loosened with starchy cooking liquid and finished with grated Pecorino Romano and lemon zest.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 12,
+        "unit": "cup",
+        "note": "for blanching and pasta",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the pot",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rabe",
+        "name": "broccoli rabe",
+        "display_name": "broccoli rabe (2 bunches)",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "tough ends trimmed, cut into 2-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sausage",
+        "name": "Italian sausage",
+        "display_name": "sweet or hot Italian sausage whose label lists pork, salt, spices, fennel, and garlic",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "casings removed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 6,
+        "unit": "clove",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "chile-flakes",
+        "name": "red chile flakes",
+        "display_name": "red chile flakes",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "pasta",
+        "name": "orecchiette",
+        "display_name": "dried orecchiette whose label lists durum wheat semolina and water",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pecorino",
+        "name": "Pecorino Romano",
+        "display_name": "Pecorino Romano",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": null,
+        "preparation": "finely grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "zested",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Trim the broccoli rabe and cut into 2-inch pieces. Slice the garlic, grate the Pecorino, and zest the lemon. Remove the sausage casings.",
+        "ingredient_refs": [
+          "rabe",
+          "garlic",
+          "pecorino",
+          "lemon",
+          "sausage"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil and blanch",
+        "body": "Bring 12 cups water and 1 tbsp salt to a boil in the 6-quart pot over high, about 12 minutes to come to a boil. Blanch the rabe 2 minutes and lift it out with the slotted spoon.",
+        "ingredient_refs": [
+          "water",
+          "salt",
+          "rabe"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Brown the sausage",
+        "body": "While the pot heats (overlap stated): heat 1 tbsp oil in the 12-inch skillet over medium-high, about 1 minute. Cook the sausage, breaking it into small crumbles, until browned with no pink, about 8 minutes.",
+        "ingredient_refs": [
+          "olive-oil",
+          "sausage"
+        ],
+        "clock_minutes": 9,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Cook the pasta",
+        "body": "Cook the orecchiette in the 6-quart pot of 12 cups water until al dente, about 12 minutes. Scoop out 1 cup pasta cooking liquid in the liquid measuring cup, then drain in the colander.",
+        "ingredient_refs": [
+          "pasta",
+          "water"
+        ],
+        "clock_minutes": 13,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Garlic and rabe",
+        "body": "While the pasta cooks (overlap stated): push the sausage aside, add 2 tbsp oil, the garlic, and the chile flakes to the skillet over medium, and cook until the garlic is pale golden, about 2 minutes. Add the rabe and cook, tossing, 3 minutes.",
+        "ingredient_refs": [
+          "olive-oil",
+          "garlic",
+          "chile-flakes",
+          "rabe"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Toss and serve",
+        "body": "Add the pasta and 1/2 cup pasta cooking liquid to the skillet and toss over medium until glossy, about 2 minutes, adding more liquid if dry. Off the heat, toss in half the Pecorino and the lemon zest. Serve with the rest of the cheese.",
+        "ingredient_refs": [
+          "pasta",
+          "pecorino",
+          "lemon"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "pasta",
+        "name": "orecchiette with sausage and rabe",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "orecchiette",
+          "water",
+          "salt",
+          "broccoli rabe",
+          "Italian sausage",
+          "olive oil",
+          "garlic",
+          "red chile flakes",
+          "Pecorino Romano",
+          "lemon"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart pot",
+      "12-inch skillet",
+      "slotted spoon",
+      "liquid measuring cup",
+      "colander",
+      "microplane"
+    ],
+    "methods": [
+      "boil",
+      "blanch",
+      "saute"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 32,
+    "total_time_minutes": 42,
+    "prep_minutes": 10,
+    "cook_minutes": 32,
+    "total_minutes": 42,
+    "time_clock": "Prep 10 + cook 32 = 42 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The sausage browns while the pot comes to a boil (step 3 runs inside step 2, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        6
+      ],
+      "overlap_steps": [
+        3,
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "6-quart pot over high; 12-inch skillet over medium-high.",
+    "doneness": "Sausage browned with no pink; rabe tender with bite; pasta al dente and glossy with a light emulsified sauce.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: sausage is meat; Pecorino is dairy."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: meat and dairy. The sausage label lists pork, salt, spices, fennel, and garlic, with no wheat or milk; the orecchiette label lists durum wheat semolina and water.",
+    "allergens": [
+      "meat",
+      "wheat",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Meat from the sausage.",
+      "Wheat from the orecchiette.",
+      "Milk from the Pecorino.",
+      "No egg, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: sausage is meat; Pecorino is dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "pasta",
+      "italian",
+      "savory",
+      "spicy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'italian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook the sausage to 160 F (no pink).",
+    "culinary_hash": "4a36a2a57f7c38e1b09d277617083705c9055cf34dabb74a77082df57e515622",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_orecchiette-sausage-broccoli-rabe_v1",
+    "dish_id": "orecchiette-sausage-broccoli-rabe",
+    "recipe_version_id": "rv_orecchiette-sausage-broccoli-rabe_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "orecchiette-sausage-broccoli-rabe.webp",
+    "card_ref": "orecchiette-sausage-broccoli-rabe-640.webp",
+    "master_filename": "orecchiette-sausage-broccoli-rabe.webp",
+    "card_filename": "orecchiette-sausage-broccoli-rabe-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "orecchiette-sausage-broccoli-rabe.webp",
+        "spec_catalog_path": "/images/meals/orecchiette-sausage-broccoli-rabe.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "orecchiette-sausage-broccoli-rabe-640.webp",
+        "spec_catalog_path": "/images/meals/orecchiette-sausage-broccoli-rabe-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "f966d1e5d6e6ef32d1f50f170420c6c44a63b246ddcd6abe05e809ddf0889ae1",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "f966d1e5d6e6ef32d1f50f170420c6c44a63b246ddcd6abe05e809ddf0889ae1",
+      "master_sha256": "bfa0db80a32ade9246a4c957999db7ea96d45355ba1dfc9e294f82b49bd32e06",
+      "card_sha256": "845f7eb78e604b1ac12ea605f087e231b640c7558af8f92da1ae269709067add"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "f966d1e5d6e6ef32d1f50f170420c6c44a63b246ddcd6abe05e809ddf0889ae1",
+      "orecchiette-sausage-broccoli-rabe.webp": "bfa0db80a32ade9246a4c957999db7ea96d45355ba1dfc9e294f82b49bd32e06",
+      "orecchiette-sausage-broccoli-rabe-640.webp": "845f7eb78e604b1ac12ea605f087e231b640c7558af8f92da1ae269709067add"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 32 = 42 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The sausage browns while the pot comes to a boil (step 3 runs inside step 2, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "orecchiette-sausage-broccoli-rabe.webp 1200x900 and orecchiette-sausage-broccoli-rabe-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything; pasta in a 4-quart pot with 8 cups water; a 10-inch skillet.",
+    "2": "Half of everything; pasta in a 4-quart pot with 8 cups water.",
+    "4": "As written.",
+    "do_not_scale": [
+      "pasta pot: at least 8 cups water"
+    ]
+  },
+  "coverage_contribution": "Sausage appears in the catalog only in baked ziti; there is no bitter-greens pasta. A fast pork pasta.",
+  "near_duplicate_review": "Compared with baked-ziti-italian-sausage: a stovetop olive-oil pasta with bitter greens, not a baked tomato and cheese casserole. Compared with sicilian-pasta-alla-norma: sausage and broccoli rabe, not eggplant in tomato sauce with ricotta salata. Compared with lemon-garlic-shrimp-pasta: crumbled pork and greens with Pecorino, not shrimp in lemon garlic sauce.",
+  "not_duplicate_of": "Not penne alla vodka (no cream or tomato) in this wave, and not a broccoli pasta.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "E"
+}

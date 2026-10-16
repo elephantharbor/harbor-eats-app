@@ -1,0 +1,560 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "japanese-vegetable-omurice",
+    "slug": "japanese-vegetable-omurice",
+    "title": "Japanese Vegetable Omurice with Mushroom Ketchup Rice",
+    "description": "Short-grain rice stir-fried with onion, carrot, cremini mushrooms, peas, ketchup, and soy sauce, shaped into ovals and draped with a soft, barely set two-egg omelet, finished with a zigzag of ketchup.",
+    "cuisine": "japanese",
+    "meal_format": "rice-with-omelet",
+    "primary_ingredient": "eggs",
+    "vocabulary_tag_ids": [
+      "savory",
+      "tender",
+      "mushrooms",
+      "japanese"
+    ],
+    "current_recipe_id": "rcp_japanese-vegetable-omurice",
+    "current_version_id": "rv_japanese-vegetable-omurice_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_japanese-vegetable-omurice",
+    "dish_id": "japanese-vegetable-omurice",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_japanese-vegetable-omurice_v1",
+    "recipe_id": "rcp_japanese-vegetable-omurice",
+    "dish_id": "japanese-vegetable-omurice",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Japanese Vegetable Omurice with Mushroom Ketchup Rice",
+    "description": "Short-grain rice stir-fried with onion, carrot, cremini mushrooms, peas, ketchup, and soy sauce, shaped into ovals and draped with a soft, barely set two-egg omelet, finished with a zigzag of ketchup.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "rice",
+        "name": "Japanese short-grain rice",
+        "display_name": "Japanese short-grain rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1.75,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 3.33,
+        "unit": "tbsp",
+        "note": "2 tbsp rice, 4 tsp omelets",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrot",
+        "name": "carrot",
+        "display_name": "carrot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mushrooms",
+        "name": "cremini mushrooms",
+        "display_name": "cremini mushrooms",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "peas",
+        "name": "frozen peas",
+        "display_name": "frozen peas",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ketchup",
+        "name": "ketchup",
+        "display_name": "ketchup whose label lists tomato concentrate, vinegar, sugar, salt, and spices",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "1/3 cup rice, the rest on top",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 8,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Rinse the rice",
+        "body": "Rinse the rice in a strainer until the rinse runs clear.",
+        "ingredient_refs": [
+          "rice"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the rice",
+        "body": "Combine the rice with 1 3/4 cups water in a 2-quart saucepan and bring to a boil over high, about 4 minutes. Cover, turn to low, and cook 15 minutes, then leave it covered off the heat to rest 10 minutes.",
+        "ingredient_refs": [
+          "rice",
+          "rice-water"
+        ],
+        "clock_minutes": 29,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Prep",
+        "body": "While the rice cooks (overlap stated): finely chop the onion, dice the carrot and mushrooms, and beat the eggs in pairs with a pinch of salt each in 4 small cups.",
+        "ingredient_refs": [
+          "onion",
+          "carrot",
+          "mushrooms",
+          "eggs",
+          "salt"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Cook the vegetables",
+        "body": "Heat 2 tbsp oil in the 12-inch skillet over medium-high, about 1 minute. Cook the onion and carrot, stirring, about 4 minutes, add the mushrooms and cook until browned, about 4 minutes, then add the peas, about 1 minute.",
+        "ingredient_refs": [
+          "oil",
+          "onion",
+          "carrot",
+          "mushrooms",
+          "peas"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Stir-fry the rice",
+        "body": "Add the rice, 1/3 cup ketchup, the soy sauce, and the remaining salt and stir-fry until the rice is evenly red and the ketchup smells toasted, about 4 minutes. Press each quarter into an oval on 4 plates.",
+        "ingredient_refs": [
+          "rice",
+          "ketchup",
+          "soy-sauce",
+          "salt"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Make the omelets",
+        "body": "Heat 1 tsp oil in the 8-inch nonstick skillet over medium. Pour in one pair of eggs, stir with a fork for 30 seconds, then let it set until the bottom is firm and the top still glossy, about 1 1/2 minutes. Slide it over a rice oval. Repeat for each omelet.",
+        "ingredient_refs": [
+          "oil",
+          "eggs"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 7,
+        "title": "Serve",
+        "body": "Zigzag the remaining ketchup over each omelet.",
+        "ingredient_refs": [
+          "ketchup"
+        ],
+        "clock_minutes": 1,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "rice",
+        "name": "ketchup rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "short-grain rice",
+          "water",
+          "neutral oil",
+          "onion",
+          "carrot",
+          "cremini mushrooms",
+          "frozen peas",
+          "ketchup",
+          "soy sauce",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "omelets",
+        "name": "omelets",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "eggs",
+          "salt",
+          "neutral oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "2-quart saucepan with lid",
+      "12-inch skillet",
+      "8-inch nonstick skillet",
+      "rubber spatula",
+      "fork"
+    ],
+    "methods": [
+      "steam",
+      "stir-fry",
+      "omelet"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": true,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 2,
+    "cook_time_minutes": 58,
+    "total_time_minutes": 60,
+    "prep_minutes": 2,
+    "cook_minutes": 58,
+    "total_minutes": 60,
+    "time_clock": "Prep 2 + cook 58 = 60 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The vegetables are prepped and the eggs beaten while the rice cooks (step 3 runs inside step 2, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5,
+        6,
+        7
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "2-quart saucepan for the rice; 12-inch skillet over medium-high for the rice; 8-inch nonstick skillet over medium for the omelets.",
+    "doneness": "Rice evenly red and hot through with the ketchup lightly toasted; omelet set underneath and still soft and glossy on top.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Egg is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional vegetarian and dairy_free: rice, vegetables, ketchup, soy sauce, eggs, and oil.",
+    "allergens": [
+      "egg",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Egg from the omelets.",
+      "Soy and wheat from the soy sauce.",
+      "No milk, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Egg is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Oil, not butter, in the rice and omelets; no chicken and no milk in the eggs. The ketchup label lists tomato concentrate, vinegar, sugar, salt, and spices.",
+    "vocabulary_tag_ids": [
+      "savory",
+      "tender",
+      "mushrooms",
+      "japanese"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'japanese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Serve the soft omelets right away.",
+    "culinary_hash": "b566ebaa8764ad051d7084864142fe3894a97b1cffd6642f46f351f62df27bec",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_japanese-vegetable-omurice_v1",
+    "dish_id": "japanese-vegetable-omurice",
+    "recipe_version_id": "rv_japanese-vegetable-omurice_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "japanese-vegetable-omurice.webp",
+    "card_ref": "japanese-vegetable-omurice-640.webp",
+    "master_filename": "japanese-vegetable-omurice.webp",
+    "card_filename": "japanese-vegetable-omurice-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "japanese-vegetable-omurice.webp",
+        "spec_catalog_path": "/images/meals/japanese-vegetable-omurice.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "japanese-vegetable-omurice-640.webp",
+        "spec_catalog_path": "/images/meals/japanese-vegetable-omurice-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "d3f9133644be30345e5d362932dd1eb75f39eef66356462b5e8319a4e5cd1e9b",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "d3f9133644be30345e5d362932dd1eb75f39eef66356462b5e8319a4e5cd1e9b",
+      "master_sha256": "6ae971dc3734370222279a4053331d6ea5eb6319d3268e8f2e2515a5ff3588f6",
+      "card_sha256": "9a7dc484182149925d281b964469b5b927809c1ca0d2d57b1aec6de5a6e20328"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "d3f9133644be30345e5d362932dd1eb75f39eef66356462b5e8319a4e5cd1e9b",
+      "japanese-vegetable-omurice.webp": "6ae971dc3734370222279a4053331d6ea5eb6319d3268e8f2e2515a5ff3588f6",
+      "japanese-vegetable-omurice-640.webp": "9a7dc484182149925d281b964469b5b927809c1ca0d2d57b1aec6de5a6e20328"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 2 + cook 58 = 60 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The vegetables are prepped and the eggs beaten while the rice cooks (step 3 runs inside step 2, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "japanese-vegetable-omurice.webp 1200x900 and japanese-vegetable-omurice-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": true, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of the rice (1/3 cup dry in a 1-quart saucepan) and one omelet.",
+    "2": "Half the rice (3/4 cup dry in a 1-quart saucepan) and two omelets.",
+    "4": "As written (4 omelets, one at a time).",
+    "do_not_scale": [
+      "omelets: always 2 eggs each in the 8-inch skillet"
+    ]
+  },
+  "coverage_contribution": "No omurice or omelet-over-rice dinner is in the catalog; the egg mains are shakshuka, a Spanish tortilla, egg foo young, and tomato-egg stir-fry. A vegetarian Japanese home-cooking classic that is HH001-eligible.",
+  "near_duplicate_review": "Compared with chinese-egg-foo-young: a soft omelet draped over seasoned ketchup rice, not deep-golden egg patties with gravy. Compared with chinese-tomato-egg-stir-fry: rice shaped under a whole omelet, not scrambled eggs with tomato over rice. Compared with kimchi-fried-rice: a mild ketchup-mushroom rice under egg, not a spicy kimchi rice. Compared with japanese-hambagu: a vegetarian rice-and-omelet plate, not a beef patty.",
+  "not_duplicate_of": "Not a fried-rice dish: the rice is a base for the omelet and the omelet is the hero.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

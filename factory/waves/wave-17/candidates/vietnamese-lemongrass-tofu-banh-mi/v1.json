@@ -1,0 +1,642 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "vietnamese-lemongrass-tofu-banh-mi",
+    "slug": "vietnamese-lemongrass-tofu-banh-mi",
+    "title": "Vietnamese Lemongrass Tofu Banh Mi with Pickled Carrot and Daikon",
+    "description": "Slabs of extra-firm tofu marinated in lemongrass, garlic, soy sauce, and sugar and seared golden, tucked into toasted baguettes with sriracha mayonnaise, quick-pickled carrot and daikon, cucumber, jalapeno, and cilantro.",
+    "cuisine": "vietnamese",
+    "meal_format": "sandwich",
+    "primary_ingredient": "tofu",
+    "vocabulary_tag_ids": [
+      "sandwiches",
+      "tofu",
+      "tangy",
+      "fresh",
+      "crunchy"
+    ],
+    "current_recipe_id": "rcp_vietnamese-lemongrass-tofu-banh-mi",
+    "current_version_id": "rv_vietnamese-lemongrass-tofu-banh-mi_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_vietnamese-lemongrass-tofu-banh-mi",
+    "dish_id": "vietnamese-lemongrass-tofu-banh-mi",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_vietnamese-lemongrass-tofu-banh-mi_v1",
+    "recipe_id": "rcp_vietnamese-lemongrass-tofu-banh-mi",
+    "dish_id": "vietnamese-lemongrass-tofu-banh-mi",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Vietnamese Lemongrass Tofu Banh Mi with Pickled Carrot and Daikon",
+    "description": "Slabs of extra-firm tofu marinated in lemongrass, garlic, soy sauce, and sugar and seared golden, tucked into toasted baguettes with sriracha mayonnaise, quick-pickled carrot and daikon, cucumber, jalapeno, and cilantro.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "tofu",
+        "name": "extra-firm tofu",
+        "display_name": "extra-firm tofu (one 14-oz block)",
+        "quantity": 14,
+        "unit": "oz",
+        "note": null,
+        "preparation": "cut into 8 slabs",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemongrass",
+        "name": "lemongrass",
+        "display_name": "lemongrass",
+        "quantity": 2,
+        "unit": "stalk",
+        "note": null,
+        "preparation": "bottom 4 inches minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sugar",
+        "name": "sugar",
+        "display_name": "sugar",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "1 tbsp marinade, 2 tbsp pickles",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "1 tbsp marinade, 2 tbsp searing",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "carrot",
+        "name": "carrot",
+        "display_name": "large carrot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "julienned",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "daikon",
+        "name": "daikon radish",
+        "display_name": "daikon radish",
+        "quantity": 6,
+        "unit": "oz",
+        "note": null,
+        "preparation": "julienned",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-vinegar",
+        "name": "unseasoned rice vinegar",
+        "display_name": "unseasoned rice vinegar",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "pickle-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "warm, for the pickles",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "baguettes",
+        "name": "baguettes",
+        "display_name": "6-inch soft baguettes whose label lists wheat flour, water, yeast, and salt only",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mayonnaise",
+        "name": "mayonnaise",
+        "display_name": "mayonnaise whose label lists oil, egg, vinegar, salt, and sugar",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sriracha",
+        "name": "sriracha",
+        "display_name": "sriracha",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "cucumber",
+        "display_name": "English cucumber",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into thin spears",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jalapeno",
+        "name": "jalapeno",
+        "display_name": "jalapeno",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 12,
+        "unit": "sprig",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Quick-pickle",
+        "body": "Stir 1/2 cup warm water, the rice vinegar, 2 tbsp sugar, and the salt in the medium bowl until dissolved. Julienne the carrot and daikon and stir them in; they pickle through steps 2-5 (overlap, about 25 minutes).",
+        "ingredient_refs": [
+          "pickle-water",
+          "rice-vinegar",
+          "sugar",
+          "salt",
+          "carrot",
+          "daikon"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Marinate the tofu",
+        "body": "Pat the tofu dry and cut it lengthwise into 8 slabs about 1/2 inch thick. Mince the lemongrass and garlic and mix them in the shallow dish with the soy sauce, 1 tbsp sugar, and 1 tbsp oil. Turn the slabs in the marinade and leave them 10 minutes.",
+        "ingredient_refs": [
+          "tofu",
+          "lemongrass",
+          "garlic",
+          "soy-sauce",
+          "sugar",
+          "oil"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 3,
+        "title": "Prep the fillings",
+        "body": "While the tofu marinates (overlap stated): cut the cucumber into spears, slice the jalapeno, pick the cilantro sprigs, and stir the mayonnaise with the sriracha.",
+        "ingredient_refs": [
+          "cucumber",
+          "jalapeno",
+          "cilantro",
+          "mayonnaise",
+          "sriracha"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Sear the tofu",
+        "body": "Heat 2 tbsp oil in the 12-inch nonstick skillet over medium-high, about 2 minutes. Lay in the 8 slabs in one layer with any marinade bits and sear until deep golden, about 4 minutes, then turn and sear the second side, about 4 minutes. Move to a plate.",
+        "ingredient_refs": [
+          "oil",
+          "tofu"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Toast the bread",
+        "body": "Split the baguettes lengthwise, leaving a hinge. Turn the skillet to medium and toast them cut side down, 2 at a time, about 2 minutes per batch.",
+        "ingredient_refs": [
+          "baguettes"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Assemble",
+        "body": "Spread the sriracha mayo inside each baguette. Add 2 tofu slabs, a drained handful of pickles, cucumber spears, jalapeno slices, and cilantro sprigs.",
+        "ingredient_refs": [
+          "mayonnaise",
+          "baguettes",
+          "tofu",
+          "carrot",
+          "daikon",
+          "cucumber",
+          "jalapeno",
+          "cilantro"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "tofu",
+        "name": "lemongrass tofu",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "extra-firm tofu",
+          "lemongrass",
+          "garlic",
+          "soy sauce",
+          "sugar",
+          "neutral oil"
+        ]
+      },
+      {
+        "component_id": "pickles",
+        "name": "do chua pickles",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "carrot",
+          "daikon",
+          "rice vinegar",
+          "water",
+          "sugar",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "mayo",
+        "name": "sriracha mayonnaise",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "mayonnaise",
+          "sriracha"
+        ]
+      },
+      {
+        "component_id": "baguettes",
+        "name": "baguettes",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "baguettes"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch nonstick skillet",
+      "medium bowl",
+      "shallow dish",
+      "thin spatula",
+      "serrated knife"
+    ],
+    "methods": [
+      "sear",
+      "pickle"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 21,
+    "cook_time_minutes": 20,
+    "total_time_minutes": 41,
+    "prep_minutes": 21,
+    "cook_minutes": 20,
+    "total_minutes": 41,
+    "time_clock": "Prep 21 + cook 20 = 41 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The fillings are sliced while the tofu marinates (step 3 runs inside step 2, overlap stated); the pickles stand through steps 2-5.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        2
+      ],
+      "cook_steps": [
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "12-inch nonstick skillet over medium-high for the tofu, then medium to toast the bread.",
+    "doneness": "Tofu deep golden on both sides with caramelized edges; baguette cut sides crisp and lightly browned; pickles crisp and tangy.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Egg is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional vegetarian and dairy_free: tofu, vegetables, soy sauce, egg mayonnaise, and a baguette with no milk or butter.",
+    "allergens": [
+      "soy",
+      "wheat",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Soy from the tofu and soy sauce.",
+      "Wheat from the baguette and soy sauce.",
+      "Egg from the mayonnaise.",
+      "No milk, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Egg is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "No pate, ham, or fish sauce. The mayonnaise label lists oil, egg, vinegar, salt, and sugar with no milk. The baguette label lists wheat flour, water, yeast, and salt only.",
+    "vocabulary_tag_ids": [
+      "sandwiches",
+      "tofu",
+      "tangy",
+      "fresh",
+      "crunchy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'vietnamese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Keep the mayonnaise cold until you assemble.",
+    "culinary_hash": "fe315f42008afd1f226d24748e8f8de63b208d4510ff7f8d0aebea2279915797",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_vietnamese-lemongrass-tofu-banh-mi_v1",
+    "dish_id": "vietnamese-lemongrass-tofu-banh-mi",
+    "recipe_version_id": "rv_vietnamese-lemongrass-tofu-banh-mi_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "vietnamese-lemongrass-tofu-banh-mi.webp",
+    "card_ref": "vietnamese-lemongrass-tofu-banh-mi-640.webp",
+    "master_filename": "vietnamese-lemongrass-tofu-banh-mi.webp",
+    "card_filename": "vietnamese-lemongrass-tofu-banh-mi-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "vietnamese-lemongrass-tofu-banh-mi.webp",
+        "spec_catalog_path": "/images/meals/vietnamese-lemongrass-tofu-banh-mi.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "vietnamese-lemongrass-tofu-banh-mi-640.webp",
+        "spec_catalog_path": "/images/meals/vietnamese-lemongrass-tofu-banh-mi-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "99812c4f23818fce8e33070b73460ec6f3e2a9abff1c1735c869292958bf426f",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "99812c4f23818fce8e33070b73460ec6f3e2a9abff1c1735c869292958bf426f",
+      "master_sha256": "768331f8b590f970dbfc88513835fe63ad508ae32d0caaf287ee62ef5a350037",
+      "card_sha256": "9803369333cdda31d44f05ddff3b501f71864f01013ae66dc59873f3f6a39326"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "99812c4f23818fce8e33070b73460ec6f3e2a9abff1c1735c869292958bf426f",
+      "vietnamese-lemongrass-tofu-banh-mi.webp": "768331f8b590f970dbfc88513835fe63ad508ae32d0caaf287ee62ef5a350037",
+      "vietnamese-lemongrass-tofu-banh-mi-640.webp": "9803369333cdda31d44f05ddff3b501f71864f01013ae66dc59873f3f6a39326"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 21 + cook 20 = 41 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The fillings are sliced while the tofu marinates (step 3 runs inside step 2, overlap stated); the pickles stand through steps 2-5."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "vietnamese-lemongrass-tofu-banh-mi.webp 1200x900 and vietnamese-lemongrass-tofu-banh-mi-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything; sear 2 slabs in a 10-inch skillet.",
+    "2": "Half of everything; 4 slabs in a 10-inch skillet.",
+    "4": "As written (8 slabs in one layer).",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "There is no banh mi and no Vietnamese sandwich in the catalog, and the tofu meals are bowls, tacos, stews, or braises. A handheld vegetarian dinner that is HH001-eligible.",
+  "near_duplicate_review": "Compared with vietnamese-bun-cha: tofu in a baguette with pickles, not grilled pork patties with rice noodles. Compared with sichuan-mapo-tofu-shiitake: seared marinated slabs in a sandwich, not a chili-bean braise. Compared with sabich-pita-sandwiches: a lemongrass tofu baguette, not eggplant and egg in pita with tahini.",
+  "not_duplicate_of": "Not a tofu rice bowl: the bread, pickles, and mayo define the dish.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

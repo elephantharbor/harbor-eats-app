@@ -1,0 +1,326 @@
+"""Shared helpers for wave-17 package authoring (Grok Bot, Curator role).
+
+Copied from wave-16/tools with every fix since (props guard, pot/boil/untimed/scaling/description guards,
+v2 self-review records, text-only revision support). Wave-17 has no audit or regeneration history yet,
+so R3 and SELFREVIEW_V2 start empty.
+"""
+from __future__ import annotations
+import re
+
+
+def ing(iid, name, qty, unit, role="main", display=None, note=None, prep=None, optional=False):
+    return {
+        "ingredient_id": iid,
+        "name": name,
+        "display_name": display or name,
+        "quantity": qty,
+        "unit": unit,
+        "note": note,
+        "preparation": prep,
+        "optional": optional,
+        "role": role,
+    }
+
+
+def st(title, body, refs, minutes, phase):
+    """phase: prep | cook | overlap. overlap minutes run inside another step's clock and add 0."""
+    assert phase in ("prep", "cook", "overlap"), phase
+    return {"title": title, "body": body, "ingredient_refs": refs, "minutes": minutes, "phase": phase}
+
+
+MEALS = []
+
+
+def add(meal):
+    MEALS.append(meal)
+    return meal
+
+
+# --- revisions ---
+PENDING_REV = "author-r1"  # text frozen, image slot open (Cora generates heroes from image-prompt.md)
+REV = "author-r2"          # written by finalize_images.py once an approved hero is exported
+
+
+R3_REV = "author-r3"
+# Author round 3: revisions after independent audit r1 (42 PASS / 8 FAIL). Fixes chosen by Thomas.
+# from_culinary_hash is the author-r2 culinary_hash recorded before the edit (notes/pre-r3-v1-hashes.sha256 has the files).
+# culinary_changed False means the recipe text is untouched (image-only or metadata-only); the builder checks both ways.
+R3 = {
+    "argentine-beef-empanadas": {
+        "trigger": "audit r1 gate B FAIL", "culinary_changed": True, "image_changed": False,
+        "scope": "recipe text only; image files unchanged and not regenerated",
+        "from_culinary_hash": "5a1eaf53abf9763917207cbfdf9c8013c7d4ba2179b88021441ebe02bea98e13",
+        "changes": ["Filling trimmed to fit 16 discs at about 3 tbsp each (about 3 cups): ground beef 1 lb -> 3/4 lb; yellow onions 2 -> 1.",
+                    "Rest of the filling scaled by 3/4: red bell pepper 1 -> 3/4; cumin 2 -> 1 1/2 tsp; sweet paprika 2 -> 1 1/2 tsp; dried oregano 1 -> 3/4 tsp; red chile flakes 1/2 -> 1/4 tsp (3/8 rounded to a standard spoon); kosher salt 1 1/4 -> 1 tsp; green olives 1/3 -> 1/4 cup; scallions 3 -> 2. The 2 boiled eggs are kept (audit fix text) and the third egg is still the wash.",
+                    "Step 5: 'Place about 2 tbsp filling on each disc' -> 'Divide the filling evenly among the 16 discs, about 3 tbsp (a scant 1/4 cup) each'. Steps 1 and 3 and the description say 'onion' (singular).",
+                    "Yield (16), discs, sheet pans, bake, clocks and total time (89 min) unchanged."]},
+    "polish-potato-cheese-pierogi": {
+        "trigger": "audit r1 gate B FAIL", "culinary_changed": True, "image_changed": False,
+        "scope": "recipe text only; image files unchanged and not regenerated",
+        "from_culinary_hash": "fa1ce057fc084856cea3a3fd6477f71232240952eb21fe64225787984881f580",
+        "changes": ["Filling halved: russet potatoes 1 1/2 -> 3/4 lb; farmer's cheese 8 -> 4 oz; filling salt 1/2 -> 1/4 tsp (total salt 2 1/2 -> 2 1/4 tsp); black pepper 1/2 -> 1/4 tsp.",
+                    "Onions: the filling share is halved and the topping share kept: yellow onions 2 -> 1 1/2 (1 topping, 1/2 filling), butter 4 -> 3 tbsp, all cooked together in step 3; step 3 sets aside two-thirds for the topping and step 4 mashes in the remaining third (about 2 1/4 cups filling).",
+                    "Step 5: roll to about 1/8 inch (was 1/16) and cut 3-inch rounds, about 36 from the 3 cups flour; a level tablespoon of filling each (was a heaping teaspoon).",
+                    "Dough, potato water (6 cups, 3-quart saucepan), yield (about 36, 3 boiling batches), clocks and total time (90 min) unchanged."]},
+    "salvadoran-bean-cheese-pupusas": {
+        "trigger": "audit r1 gates B and K FAIL", "culinary_changed": True, "image_changed": True,
+        "scope": "recipe text and hero image (v3 rejected by audit r1 K; v4 is the new active hero)",
+        "from_culinary_hash": "7f2e9d2e0b580ab3a8233d50946a88f5e45ef521e67196f6e4c46174abcfc4fd",
+        "changes": ["Filling cut to fit 8 pupusas at 3 tbsp each: refried beans one 16-oz can -> 1 cup; low-moisture mozzarella 8 -> 4 oz (about 1 1/2 cups filling, stated in step 3).",
+                    "Bean named on the ingredient line: 'vegetarian refried small red beans, puréed smooth (about half a 16-oz can), whose label lists small red beans, water, oil, and salt, no lard'; description and pupusas component say refried small red beans.",
+                    "Hero image: v3 (af06246b...) rejected by audit r1 K (filling reads as meat, curtido reads creamy) and moved to rejected/; v4 (59c654ce...) generated by Cora from the v4 prompt (v1 prompt plus one correction sentence) is the active hero; WebPs re-exported.",
+                    "Yield (8), dough, clocks and total time (70 min) unchanged."]},
+    "swedish-pytt-i-panna": {
+        "trigger": "audit r1 gate B FAIL", "culinary_changed": True, "image_changed": False,
+        "scope": "recipe text only; image files unchanged and not regenerated",
+        "from_culinary_hash": "c344e937326f8766c147f86337875925321e0b7b5ebd0805ce3e61e094c977da",
+        "changes": ["Step 2 rewritten: the 2 lb of 1/2-inch potatoes are browned in 2 batches in the 12-inch skillet, each in one layer (1 tbsp oil + 1 tbsp butter and half the salt for batch 1, covered 7 then uncovered about 8 minutes; the remaining 1 tbsp oil and salt for batch 2, about 15 minutes), then both batches go back in the skillet.",
+                    "Step 2 clock 22 -> 32 minutes; cook and total time rise by 10 minutes (total 52 -> 62); time-derived fields recomputed by the builder.",
+                    "do-not-scale note now says to brown the 2 lb in 2 batches at 4 servings; the 1- and 2-serving lines say the potatoes go in one batch; effort note names the 2 batches (points unchanged).",
+                    "Quantities unchanged."]},
+    "vietnamese-ca-kho-catfish": {
+        "trigger": "audit r1 gate K FAIL", "culinary_changed": False, "image_changed": True,
+        "scope": "hero image only; recipe text unchanged (culinary_hash unchanged)",
+        "from_culinary_hash": "247f574f060d383e9f60b80c47becbda4663253a1048ae9ff23e7eed4cec3830",
+        "changes": ["Hero image: v2 (e2b47945...) rejected by audit r1 K (skin-on cross-cut steaks vs skinless fillet pieces) and moved to rejected/; v3 (f1e7f5c0...) generated by Cora from the v3 prompt (v1 prompt plus one correction sentence: about fourteen skinless rectangular fillet pieces) is the active hero; WebPs re-exported.",
+                    "Recipe text unchanged."]},
+    "bhutanese-ema-datshi": {
+        "trigger": "audit r1 gate K FAIL", "culinary_changed": True, "image_changed": False,
+        "scope": "recipe text only; image files unchanged and not regenerated (the v2 hero is kept; the recipe now matches it)",
+        "from_culinary_hash": "594dccb9053131a0be7eb41f635df21ed65638be8536d588dda04791b9eca0bc",
+        "changes": ["Chiles are halved lengthwise with the stems left on (no longer stemmed and cut into 1/2-inch strips): Anaheim and jalapeno ingredient prep lines, step 1, and the description ('Strips of' -> 'Halved ... stems left on').",
+                    "Step 3: the halves simmer covered about 12 minutes (was 10, for the thicker pieces); step 3 clock 19 -> 21, still inside the 34-minute rice step, so total time (50 min) is unchanged.",
+                    "Doneness: 'holding their strips' -> 'chile halves ... holding their shape'; effort note 'Cutting ... into strips' -> 'Halving ... lengthwise' (points unchanged)."]},
+    "uruguayan-chivito-sandwiches": {
+        "trigger": "audit r1 gate K FAIL", "culinary_changed": False, "image_changed": True,
+        "scope": "hero image only; recipe text unchanged (culinary_hash unchanged)",
+        "from_culinary_hash": "c76caf51533442afa3ad9ee46fae68b08c6f8c5a0623416458432baec4d228c1",
+        "changes": ["Hero image: v4 (6da2d7ee...) rejected by audit r1 K (thick rosy steak vs 1/4 inch at 145F) and moved to rejected/; v5 (e132a295...) generated by Cora from the v5 prompt (v1 prompt plus one correction sentence: thin steak cooked to medium, egg visible, olives inside) is the active hero; WebPs re-exported.",
+                    "Recipe text unchanged."]},
+    "yucatecan-tikin-xic-fish": {
+        "trigger": "audit r1 gate H FAIL", "culinary_changed": False, "image_changed": False,
+        "scope": "metadata only (taste tags); recipe text and image unchanged (culinary_hash unchanged)",
+        "from_culinary_hash": "822a10eee0073769d786df89202ff4d6a4800c71bc8ff0ad253426760e2ee5eb",
+        "changes": ["vocabulary_tag_ids: 'smoky' removed (foil-baked, nothing smoked or charred); now cod, citrusy, tangy, mexican. No tag added."]},
+}
+R3_WHEN = "2026-10-16"
+
+R4_REV = "author-r4"
+# Author round 4: images only, after independent audit r2 (48 PASS / 2 FAIL, both gate K on the hero).
+# Recipe text is unchanged (culinary_hash must equal from_culinary_hash, the author-r3 value).
+R4 = {
+    "salvadoran-bean-cheese-pupusas": {
+        "trigger": "audit r2 gate K FAIL", "culinary_changed": False, "image_changed": True,
+        "scope": "hero image only; recipe text unchanged (culinary_hash unchanged)",
+        "from_culinary_hash": "ff2b632367fb7b2db02344fd89abe27538589f38c08e807570783c5a76fb96a2",
+        "changes": ["Hero image: v4 (59c654ce...) rejected by audit r2 K (filling glossy, dark and lumpy, reads like chili or meat; contradicts 'puréed smooth') and moved to rejected/; v5 (ac633b85...) generated by Cora from the v5 prompt (v1 prompt plus one correction sentence) is the active hero; WebPs re-exported.",
+                    "Recipe text unchanged."]},
+    "uruguayan-chivito-sandwiches": {
+        "trigger": "audit r2 gate K FAIL", "culinary_changed": False, "image_changed": True,
+        "scope": "hero image only; recipe text unchanged (culinary_hash unchanged)",
+        "from_culinary_hash": "c76caf51533442afa3ad9ee46fae68b08c6f8c5a0623416458432baec4d228c1",
+        "changes": ["Hero image: v5 (e132a295...) rejected by audit r2 K (steak cut face has ground-beef texture, reads as smash-burger patty) and moved to rejected/; v6 (cbe2528f...) generated by Cora from the v6 prompt (v1 prompt plus one correction sentence) is the active hero; WebPs re-exported.",
+                    "Recipe text unchanged."]},
+}
+R4_WHEN = "2026-10-16"
+
+R5_REV = "author-r5"
+# Author round 5: image only, after independent audit r3 (49 PASS / 1 FAIL, pupusas gate K on the hero).
+R5 = {
+    "salvadoran-bean-cheese-pupusas": {
+        "trigger": "audit r3 gate K FAIL", "culinary_changed": False, "image_changed": True,
+        "scope": "hero image only; recipe text unchanged (culinary_hash unchanged)",
+        "from_culinary_hash": "ff2b632367fb7b2db02344fd89abe27538589f38c08e807570783c5a76fb96a2",
+        "changes": ["Hero image: v5 (ac633b85...) rejected by audit r3 K (thick near-black crumbly slab reads as ground beef; contradicts smooth red-bean paste and mixed bean-cheese filling) and moved to rejected/; v6 (f7bf2b7c...) generated by Cora from the v6 prompt (v1 prompt plus one correction sentence) is the active hero; WebPs re-exported.",
+                    "Recipe text unchanged."]},
+}
+R5_WHEN = "2026-10-16"
+# audit round -> the package revision at which the audit-rejected hero had been finalized
+AUDIT_FINALIZED_AT = {"r1": "author-r2", "r2": "author-r3", "r3": "author-r4"}
+NEXT_REV = {"author-r2": "author-r3", "author-r3": "author-r4", "author-r4": "author-r5"}
+
+
+def rev_for(slug):
+    return R5_REV if slug in R5 else R4_REV if slug in R4 else R3_REV if slug in R3 else REV
+
+
+def audit_rej(sr):
+    """{version: (audit round, reason)} from a SELFREVIEW entry; a bare string means audit r1."""
+    return {v: (x if isinstance(x, tuple) else ("r1", x)) for v, x in (sr or {}).get("audit_rejected", {}).items()}
+
+
+def audit_reasons():
+    """(slug, "vN") -> (audit round, reason) from notes/image-gen-map.txt "REJECTED audit rN K: " lines."""
+    from pathlib import Path
+    out = {}
+    for line in (Path(__file__).resolve().parent.parent / "notes" / "image-gen-map.txt").read_text().splitlines():
+        parts = line.split(None, 3)
+        mm = re.match(r"REJECTED audit (r\d+) K: (.*)$", parts[3]) if len(parts) == 4 else None
+        if mm:
+            out[(parts[0], parts[2])] = (mm.group(1), mm.group(2))
+    return out
+
+
+# Creator self-review regenerations (before any audit). Cora rejected one or more heroes in self-review
+# against image-plating-brief.md and regenerated. Every regeneration prompt is the author-r1 (v1) prompt
+# plus one appended sentence starting "Correction for this version:". All regeneration prompts are
+# recorded verbatim from notes/prompts-regen-selfreview.txt (a byte-for-byte copy of
+# /workspace/wave17-v2-prompts.txt): section "## <slug>" is v2, "## <slug> (vN)" is vN.
+# Rejection reasons are copied verbatim from notes/image-gen-map.txt (the builder checks they match).
+# Format: slug -> {"final": accepted version number, "rejected": {version: self-review reason},
+#                  "audit_rejected": {version: reason}}  (author-r3: a version that was accepted and finalized at
+# author-r2, then rejected by independent audit r1 gate K; reason verbatim from notes/image-gen-map.txt
+# "REJECTED audit r1 K: ..." lines). Every version below "final" is in exactly one of the two maps.
+QUALITY_SENTENCE = "Quality reference is the Chipotle Lime Black Bean Bowl standard"
+CORRECTION_LEAD = "Correction for this version: "
+SELFREVIEW = {
+    "bhutanese-ema-datshi": {"final": 2, "rejected": {1: "chile strips read as green beans"}},
+    "french-mushroom-bourguignon": {"final": 2, "rejected": {1: "some pieces read as beef cubes in a vegetarian dish"}},
+    "vietnamese-ca-kho-catfish": {"final": 3, "rejected": {1: "pieces read as glazed chicken cutlets, not flaking fish"},
+                                  "audit_rejected": {2: "skin-on cross-cut steaks vs skinless fillet pieces"}},
+    "amritsari-fish-mint-chutney": {"final": 2, "rejected": {1: "lemon slice on the fish (explicitly excluded)"}},
+    "crab-louie-salad": {"final": 2, "rejected": {1: "crab reads as red-streaked imitation crab, not lump crab"}},
+    "georgian-chkmeruli-garlic-chicken": {"final": 2, "rejected": {1: "shows eight thighs, brief says six"}},
+    "balkan-cevapi-ajvar": {"final": 2, "rejected": {1: "grill marks on the sausages (explicitly excluded)"}},
+    "salvadoran-bean-cheese-pupusas": {"final": 6, "rejected": {1: "bean filling reads as ground meat", 2: "bean filling still reads as ground meat"},
+                                       "audit_rejected": {3: "filling reads as meat, curtido reads creamy",
+                                                          4: ("r2", "filling glossy, dark and lumpy, reads like chili or meat; contradicts 'puréed smooth'"),
+                                                          5: ("r3", "thick near-black crumbly slab reads as ground beef; contradicts smooth red-bean paste and mixed bean-cheese filling")}},
+    "uruguayan-chivito-sandwiches": {"final": 6, "rejected": {1: "steak reads as a ground-beef burger patty", 2: "steak still reads as a thick burger patty",
+                                                             3: "steak fixed but fried egg missing (must-show)"},
+                                     "audit_rejected": {4: "thick rosy steak vs 1/4 inch at 145F",
+                                                        5: ("r2", "steak cut face has ground-beef texture, reads as smash-burger patty")}},
+}
+SELFREVIEW_V2 = SELFREVIEW  # legacy name kept so older call sites fail loudly rather than silently skip
+
+
+def _prompts_file(path):
+    from pathlib import Path
+    out, cur = {}, None
+    for line in Path(path).read_text().splitlines():
+        if line.startswith("## "):
+            cur = line[3:].strip()
+        elif cur and line.strip():
+            assert cur not in out, f"{cur}: more than one prompt line"
+            out[cur] = line
+    return out
+
+
+def v1_prompts():
+    """The author-r1 prompts exactly as handed to Cora (notes/prompts-author-r1.txt)."""
+    from pathlib import Path
+    return _prompts_file(Path(__file__).resolve().parent.parent / "notes" / "prompts-author-r1.txt")
+
+
+def regen_prompt(slug, n):
+    """The vN (N >= 2) regeneration prompt verbatim, as Cora used it (notes/prompts-regen-selfreview.txt)."""
+    from pathlib import Path
+    f = _prompts_file(Path(__file__).resolve().parent.parent / "notes" / "prompts-regen-selfreview.txt")
+    return f[slug if n == 2 else f"{slug} (v{n})"]
+
+
+def regen_sections():
+    """Every section header in notes/prompts-regen-selfreview.txt, as (slug, version)."""
+    from pathlib import Path
+    out = []
+    for h in _prompts_file(Path(__file__).resolve().parent.parent / "notes" / "prompts-regen-selfreview.txt"):
+        slug, _, v = h.partition(" (v")
+        out.append((slug, int(v.rstrip(")")) if v else 2))
+    return out
+
+
+AUDIT_REJECT_LEAD = "REJECTED audit r1 K: "
+
+
+def gen_map_reasons(lead="REJECTED self-review: "):
+    """(slug, "vN") -> rejection reason from notes/image-gen-map.txt (self-review by default; pass AUDIT_REJECT_LEAD for audit)."""
+    from pathlib import Path
+    out = {}
+    for line in (Path(__file__).resolve().parent.parent / "notes" / "image-gen-map.txt").read_text().splitlines():
+        parts = line.split(None, 3)
+        if len(parts) == 4 and parts[3].startswith(lead):
+            out[(parts[0], parts[2])] = parts[3][len(lead):]
+    return out
+
+
+def gen_map():
+    """slug -> {"v1": hash, ...} from notes/image-gen-map.txt (GenerateImage attachment hash == file sha256)."""
+    from pathlib import Path
+    out = {}
+    f = Path(__file__).resolve().parent.parent / "notes" / "image-gen-map.txt"
+    if not f.exists():
+        return out
+    for line in f.read_text().splitlines():
+        parts = line.split()
+        if len(parts) >= 2:
+            out.setdefault(parts[0], {})[parts[2] if len(parts) > 2 else "v1"] = parts[1]
+    return out
+
+
+def _aspect(w, h):
+    from math import gcd
+    g = gcd(w, h)
+    return f"{w // g}:{h // g}"
+
+
+def crop_43(w, h):
+    """The 4:3 center crop that export_meal_webps.py takes from a w x h source."""
+    if w / h > 4 / 3:
+        return int(h * 4 / 3), h
+    return w, int(w * 3 / 4)
+
+
+def method_detail(w, h):
+    cw, ch = crop_43(w, h)
+    def scale(target):
+        f = target / cw
+        return ("upscaled" if f > 1 else "downscaled" if f < 1 else "kept at") + f" {f:.2f}x"
+    crop = f"center-cropped to 4:3 ({cw}x{ch})" if (cw, ch) != (w, h) else "already 4:3, not cropped"
+    return (f"Source {w}x{h} ({_aspect(w, h)}) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; "
+            f"{crop}, then LANCZOS-{scale(1200)} to the 1200x900 master WebP and {scale(640)} to the 640x480 card WebP with export_meal_webps.py. "
+            "House-quality reference used for light and finish only.")
+
+
+NO_NUTS = "No peanuts, tree nuts, or cashews."
+
+
+def elig(meat=False, poultry=False, finfish=False, shellfish=False, dairy=False, plant=False, veg=False, nut="none", nut_note=NO_NUTS):
+    return {"contains_meat": meat, "contains_poultry": poultry, "contains_finfish": finfish,
+            "contains_shellfish": shellfish, "contains_dairy": dairy,
+            "plant_based_compatible": plant, "vegetarian_compatible": veg,
+            "nut_policy": nut, "nut_policy_note": nut_note}
+
+
+FISH = elig(finfish=True)
+PLANT = elig(plant=True, veg=True)
+EGG = elig(veg=True)
+
+
+def brief(hero, vessel, angle, visible, texture, sauce, garnish, props, color, forbid, crop, ambiguity):
+    return {"hero": hero, "vessel": vessel, "angle": angle, "visible": visible, "texture": texture, "sauce": sauce,
+            "garnish": garnish, "props": props, "color": color, "forbid": forbid, "crop": crop, "ambiguity": ambiguity}
+
+
+def comp(cid, name, ingredients, store_bought=False):
+    return {"component_id": cid, "name": name, "made_in_recipe": not store_bought, "store_bought": store_bought, "ingredients": ingredients}
+
+
+# The 50 planned wave-17 slugs, in file order. Batches of 10: A, B vegetarian (B ends with fish), C fish and shellfish,
+# D poultry then meat, E meat.
+PLANNED = """
+south-indian-sambar-rice vietnamese-lemongrass-tofu-banh-mi nigerian-jollof-rice-boiled-eggs japanese-vegetable-omurice mexican-rajas-con-crema-tacos
+polish-potato-cheese-pierogi indo-chinese-gobi-manchurian greek-fasolakia-green-beans chinese-hot-sour-soup-tofu salvadoran-bean-cheese-pupusas
+bhutanese-ema-datshi ecuadorian-locro-de-papa thai-pad-see-ew-tofu jamaican-ital-stew penne-alla-vodka
+french-mushroom-bourguignon persian-ash-reshteh vietnamese-ca-kho-catfish british-kedgeree-smoked-salmon yucatecan-tikin-xic-fish
+turkish-balik-ekmek-mackerel amritsari-fish-mint-chutney korean-spicy-cod-stew finnish-lohikeitto-salmon-soup indonesian-ikan-bakar-tilapia
+greek-shrimp-saganaki san-francisco-cioppino crab-louie-salad korean-ojingeo-bokkeum-squid galician-pulpo-potatoes
+japanese-chicken-nanban chicken-tinga-tostadas greek-avgolemono-chicken-soup georgian-chkmeruli-garlic-chicken moroccan-chicken-preserved-lemon-tagine
+southern-chicken-and-dumplings palestinian-musakhan-chicken ivorian-chicken-kedjenou uzbek-lamb-plov filipino-pork-menudo
+taiwanese-lu-rou-fan sichuan-dan-dan-noodles uruguayan-chivito-sandwiches argentine-beef-empanadas pakistani-lamb-keema-peas
+tex-mex-steak-fajitas balkan-cevapi-ajvar orecchiette-sausage-broccoli-rabe lebanese-arayes swedish-pytt-i-panna
+""".split()
+assert len(PLANNED) == 50 and len(set(PLANNED)) == 50
+
+# Brief props guard: every wave-17 brief is enforced (no grandfathered heroes, no waivers).
+PROPS_GRANDFATHERED = set()
+PROPS_WAIVER = {}

@@ -1,0 +1,623 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "filipino-pork-menudo",
+    "slug": "filipino-pork-menudo",
+    "title": "Filipino Pork Menudo with Potatoes, Carrots, Raisins, and Rice",
+    "description": "Pork shoulder marinated briefly in soy sauce and lemon juice, browned with garlic and onion, then simmered in tomato sauce with diced potatoes, carrots, red bell pepper, raisins, and bay until thick, served with long-grain rice.",
+    "cuisine": "filipino",
+    "meal_format": "stew-with-rice",
+    "primary_ingredient": "pork shoulder",
+    "vocabulary_tag_ids": [
+      "savory",
+      "stews",
+      "tangy",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_filipino-pork-menudo",
+    "current_version_id": "rv_filipino-pork-menudo_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_filipino-pork-menudo",
+    "dish_id": "filipino-pork-menudo",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_filipino-pork-menudo_v1",
+    "recipe_id": "rcp_filipino-pork-menudo",
+    "dish_id": "filipino-pork-menudo",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Filipino Pork Menudo with Potatoes, Carrots, Raisins, and Rice",
+    "description": "Pork shoulder marinated briefly in soy sauce and lemon juice, browned with garlic and onion, then simmered in tomato sauce with diced potatoes, carrots, red bell pepper, raisins, and bay until thick, served with long-grain rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "pork",
+        "name": "boneless pork shoulder",
+        "display_name": "boneless pork shoulder",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 3/4-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "lemon-juice",
+        "name": "lemon juice",
+        "display_name": "lemon juice (or calamansi juice)",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 5,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato-sauce",
+        "name": "tomato sauce",
+        "display_name": "tomato sauce (one 8-oz can) whose label lists tomatoes, salt, and spices",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "for the stew",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "medium Yukon Gold potatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1/2-inch dice",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1/2-inch dice",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bell-pepper",
+        "name": "red bell pepper",
+        "display_name": "red bell pepper",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1/2-inch dice",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "raisins",
+        "name": "raisins",
+        "display_name": "raisins",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bay",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "long-grain white rice",
+        "display_name": "long-grain white rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep and marinate",
+        "body": "Cube the pork and toss it in the medium bowl with the soy sauce and lemon juice; let it sit while you dice the onion, potatoes, carrots, and bell pepper, mince the garlic, and rinse the rice.",
+        "ingredient_refs": [
+          "pork",
+          "soy-sauce",
+          "lemon-juice",
+          "onion",
+          "potatoes",
+          "carrots",
+          "bell-pepper",
+          "garlic",
+          "rice"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the pork",
+        "body": "Heat the oil in the 5.5-quart Dutch oven over medium-high, about 2 minutes. Lift the pork from the marinade (save it) and brown it, about 8 minutes.",
+        "ingredient_refs": [
+          "oil",
+          "pork"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Aromatics and sauce",
+        "body": "Add the garlic and onion and cook until soft, about 4 minutes. Stir in the tomato sauce, the saved marinade, 1 1/2 cups water, and the bay leaves.",
+        "ingredient_refs": [
+          "garlic",
+          "onion",
+          "tomato-sauce",
+          "soy-sauce",
+          "water",
+          "bay"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer",
+        "body": "Bring to a boil, cover, and simmer on low until the pork is nearly tender, about 35 minutes. Add the potatoes and carrots and simmer covered 15 minutes, then the bell pepper, raisins, salt, and pepper and simmer uncovered until thick, about 6 minutes.",
+        "ingredient_refs": [
+          "potatoes",
+          "carrots",
+          "bell-pepper",
+          "raisins",
+          "salt",
+          "pepper"
+        ],
+        "clock_minutes": 58,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Cook the rice",
+        "body": "During the last 30 minutes of the simmer (overlap stated): combine the rice and 2 1/4 cups water in the lidded 2-quart saucepan, bring to a boil over high, about 4 minutes, cover, turn to low, and cook 15 minutes. Rest covered off the heat 10 minutes.",
+        "ingredient_refs": [
+          "rice",
+          "rice-water"
+        ],
+        "clock_minutes": 29,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Discard the bay leaves and serve the menudo beside the rice.",
+        "ingredient_refs": [
+          "bay",
+          "rice"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "menudo",
+        "name": "pork menudo",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "pork shoulder",
+          "soy sauce",
+          "lemon juice",
+          "neutral oil",
+          "garlic",
+          "yellow onion",
+          "tomato sauce",
+          "water",
+          "potatoes",
+          "carrots",
+          "red bell pepper",
+          "raisins",
+          "bay leaves",
+          "salt",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "long-grain white rice",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "5.5-quart Dutch oven with lid",
+      "2-quart saucepan with lid",
+      "medium bowl"
+    ],
+    "methods": [
+      "sear",
+      "simmer",
+      "steam"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 18,
+    "cook_time_minutes": 76,
+    "total_time_minutes": 94,
+    "prep_minutes": 18,
+    "cook_minutes": 76,
+    "total_minutes": 94,
+    "time_clock": "Prep 18 + cook 76 = 94 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests while the menudo simmers (step 5 runs inside step 4, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "overlap_steps": [
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "5.5-quart Dutch oven over medium-high to brown, then low; 2-quart saucepan for the rice.",
+    "doneness": "Pork tender when pierced; potatoes and carrots tender; sauce thick and glossy.",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: pork is meat."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: pork, soy sauce, tomato sauce, vegetables, and rice. The tomato sauce label lists tomatoes, salt, and spices.",
+    "allergens": [
+      "meat",
+      "soy",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the pork.",
+      "Soy and wheat from the soy sauce.",
+      "No liver or hot dogs in this version.",
+      "No milk, egg, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: pork is meat.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "savory",
+      "stews",
+      "tangy",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'filipino' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Simmer the pork until fork-tender (well above 145 F). Discard the marinade only after it has boiled with the pork.",
+    "culinary_hash": "72f9c32bf56612ce76332b4d773d157f6600ab53534712b1191113a0f0c81480",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_filipino-pork-menudo_v1",
+    "dish_id": "filipino-pork-menudo",
+    "recipe_version_id": "rv_filipino-pork-menudo_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "filipino-pork-menudo.webp",
+    "card_ref": "filipino-pork-menudo-640.webp",
+    "master_filename": "filipino-pork-menudo.webp",
+    "card_filename": "filipino-pork-menudo-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "filipino-pork-menudo.webp",
+        "spec_catalog_path": "/images/meals/filipino-pork-menudo.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "filipino-pork-menudo-640.webp",
+        "spec_catalog_path": "/images/meals/filipino-pork-menudo-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "66db9b1305e1f68624ae6ecd0f909dae0082bfbda6d473b0052e602728b4152c",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "66db9b1305e1f68624ae6ecd0f909dae0082bfbda6d473b0052e602728b4152c",
+      "master_sha256": "d64c1de21ad26d003d41e8a60b8d1b1c1799f51664f68a0928bc27c205a9c1af",
+      "card_sha256": "c75362139966237a1d3792f2cebf5913923720e20672bd2815e662288b661668"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "66db9b1305e1f68624ae6ecd0f909dae0082bfbda6d473b0052e602728b4152c",
+      "filipino-pork-menudo.webp": "d64c1de21ad26d003d41e8a60b8d1b1c1799f51664f68a0928bc27c205a9c1af",
+      "filipino-pork-menudo-640.webp": "c75362139966237a1d3792f2cebf5913923720e20672bd2815e662288b661668"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 18 + cook 76 = 94 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests while the menudo simmers (step 5 runs inside step 4, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "filipino-pork-menudo.webp 1200x900 and filipino-pork-menudo-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 2-quart saucepan; 1/3 cup rice in a 1-quart saucepan.",
+    "2": "Half of everything in a 3-quart saucepan; 3/4 cup rice in a 1-quart saucepan.",
+    "4": "As written.",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "Filipino food in the catalog is chicken adobo only. A homestyle tomato pork stew adds a second Filipino dish and a pork dinner.",
+  "near_duplicate_review": "Compared with filipino-chicken-adobo: pork in tomato sauce with potatoes, carrots, and raisins, not chicken braised in vinegar and soy. Compared with cuban-picadillo-rice: cubed pork stew with potatoes, not ground beef with olives. Compared with slow-cooker-ropa-vieja: a stovetop soy-tomato pork stew, not shredded slow-cooked beef.",
+  "not_duplicate_of": "Not Mexican menudo (no tripe or hominy) and not pork afritada (raisins and smaller dice).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}
