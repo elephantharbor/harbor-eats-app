@@ -1,0 +1,535 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "turkish-balik-ekmek-mackerel",
+    "slug": "turkish-balik-ekmek-mackerel",
+    "title": "Turkish Balik Ekmek: Seared Mackerel Sandwiches with Sumac Onions",
+    "description": "Skin-on Atlantic mackerel fillets seared crisp and tucked into toasted crusty rolls with shredded romaine, tomato, and a red onion salad tossed with sumac, parsley, and Aleppo pepper, with lemon squeezed over.",
+    "cuisine": "turkish",
+    "meal_format": "sandwich",
+    "primary_ingredient": "mackerel",
+    "vocabulary_tag_ids": [
+      "sandwiches",
+      "tangy",
+      "fresh",
+      "crispy",
+      "middle-eastern"
+    ],
+    "current_recipe_id": "rcp_turkish-balik-ekmek-mackerel",
+    "current_version_id": "rv_turkish-balik-ekmek-mackerel_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_turkish-balik-ekmek-mackerel",
+    "dish_id": "turkish-balik-ekmek-mackerel",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_turkish-balik-ekmek-mackerel_v1",
+    "recipe_id": "rcp_turkish-balik-ekmek-mackerel",
+    "dish_id": "turkish-balik-ekmek-mackerel",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Turkish Balik Ekmek: Seared Mackerel Sandwiches with Sumac Onions",
+    "description": "Skin-on Atlantic mackerel fillets seared crisp and tucked into toasted crusty rolls with shredded romaine, tomato, and a red onion salad tossed with sumac, parsley, and Aleppo pepper, with lemon squeezed over.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved and thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sumac",
+        "name": "ground sumac",
+        "display_name": "ground sumac",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "aleppo",
+        "name": "Aleppo pepper",
+        "display_name": "Aleppo pepper (pul biber)",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1/2 tsp onions, 1 tsp fish",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "1 tbsp salad, 2 tbsp searing",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "mackerel",
+        "name": "mackerel fillets",
+        "display_name": "skin-on Atlantic mackerel fillets (8 fillets, about 3 oz each)",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "pin bones removed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rolls",
+        "name": "crusty rolls",
+        "display_name": "crusty sandwich rolls (about 7 inches) whose label lists wheat flour, water, yeast, and salt",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "romaine",
+        "name": "romaine lettuce",
+        "display_name": "romaine heart",
+        "quantity": 1,
+        "unit": "head",
+        "note": null,
+        "preparation": "shredded",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "tomatoes",
+        "display_name": "tomatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Onion salad and prep",
+        "body": "Toss the sliced onion with the sumac, parsley, Aleppo pepper, 1/2 tsp salt, and 1 tbsp oil and let it stand while you cook. Shred the romaine, slice the tomatoes, and cut the lemon into wedges. Pat the fillets dry, run your fingers along them to pull any pin bones, and season the flesh with 1 tsp salt.",
+        "ingredient_refs": [
+          "red-onion",
+          "sumac",
+          "parsley",
+          "aleppo",
+          "salt",
+          "olive-oil",
+          "romaine",
+          "tomatoes",
+          "lemon",
+          "mackerel"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Sear the mackerel",
+        "body": "Heat 1 tbsp oil in the 12-inch heavy skillet over medium-high, about 2 minutes. Lay in 4 fillets skin side down, press each flat for 10 seconds, and sear until the skin is crisp, about 3 minutes, then turn for 1 minute until just opaque and 145 F. Repeat with the remaining oil and fillets (2 batches).",
+        "ingredient_refs": [
+          "olive-oil",
+          "mackerel"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Toast the rolls",
+        "body": "Split the rolls, turn the heat to medium, and toast them cut side down in the skillet, 2 at a time, about 1 minute per batch.",
+        "ingredient_refs": [
+          "rolls"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Assemble",
+        "body": "Fill each roll with romaine and tomato, 2 mackerel fillets, and a heap of sumac onions. Squeeze lemon over and serve with the remaining wedges.",
+        "ingredient_refs": [
+          "rolls",
+          "romaine",
+          "tomatoes",
+          "mackerel",
+          "red-onion",
+          "lemon"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "onions",
+        "name": "sumac onion salad",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "red onion",
+          "sumac",
+          "parsley",
+          "Aleppo pepper",
+          "salt",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "fish",
+        "name": "seared mackerel",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "mackerel fillets",
+          "salt",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "sandwich",
+        "name": "sandwich",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "crusty rolls",
+          "romaine",
+          "tomatoes",
+          "lemon"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch heavy skillet",
+      "thin fish spatula",
+      "instant-read thermometer",
+      "medium bowl",
+      "serrated knife"
+    ],
+    "methods": [
+      "sear"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "crispy"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 12,
+    "cook_time_minutes": 19,
+    "total_time_minutes": 31,
+    "prep_minutes": 12,
+    "cook_minutes": 19,
+    "total_minutes": 31,
+    "time_clock": "Prep 12 + cook 19 = 31 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The onion salad stands while the fish sears (stated inside step 1).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "12-inch heavy skillet over medium-high for the fish, then medium for the rolls.",
+    "doneness": "Mackerel skin crisp and blistered, flesh just opaque and flaking, 145 F; roll cut sides toasted.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, egg, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and fish: mackerel, bread with no milk, vegetables, sumac, lemon, and olive oil.",
+    "allergens": [
+      "finfish",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Finfish from the mackerel.",
+      "Wheat from the rolls.",
+      "No milk, egg, soy, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, egg, or nuts.",
+    "hh001_contract": "No butter on the rolls. The roll label lists wheat flour, water, yeast, and salt only.",
+    "vocabulary_tag_ids": [
+      "sandwiches",
+      "tangy",
+      "fresh",
+      "crispy",
+      "middle-eastern"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'turkish' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook the mackerel to 145 F. Check the fillets for pin bones with your fingertips and pull any out.",
+    "culinary_hash": "cb6cf14659e603d6ee74df3d41ef0f6337661869c9eb2baab1983933cb49834f",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_turkish-balik-ekmek-mackerel_v1",
+    "dish_id": "turkish-balik-ekmek-mackerel",
+    "recipe_version_id": "rv_turkish-balik-ekmek-mackerel_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "turkish-balik-ekmek-mackerel.webp",
+    "card_ref": "turkish-balik-ekmek-mackerel-640.webp",
+    "master_filename": "turkish-balik-ekmek-mackerel.webp",
+    "card_filename": "turkish-balik-ekmek-mackerel-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "turkish-balik-ekmek-mackerel.webp",
+        "spec_catalog_path": "/images/meals/turkish-balik-ekmek-mackerel.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "turkish-balik-ekmek-mackerel-640.webp",
+        "spec_catalog_path": "/images/meals/turkish-balik-ekmek-mackerel-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "33c8ceace54c596c7921357f5bc2a9199280178a3420e0bb8e0e17de87d0e9c4",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "33c8ceace54c596c7921357f5bc2a9199280178a3420e0bb8e0e17de87d0e9c4",
+      "master_sha256": "3201edd0b0d693fe6007d261fdafcadac4eb68361b8e283818454dfbbb62db1d",
+      "card_sha256": "a4d940bfda03680ba643d0c1838744a9c8498d3bfb6ad50e1a32175e75d8391f"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "33c8ceace54c596c7921357f5bc2a9199280178a3420e0bb8e0e17de87d0e9c4",
+      "turkish-balik-ekmek-mackerel.webp": "3201edd0b0d693fe6007d261fdafcadac4eb68361b8e283818454dfbbb62db1d",
+      "turkish-balik-ekmek-mackerel-640.webp": "a4d940bfda03680ba643d0c1838744a9c8498d3bfb6ad50e1a32175e75d8391f"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 12 + cook 19 = 31 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The onion salad stands while the fish sears (stated inside step 1)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "turkish-balik-ekmek-mackerel.webp 1200x900 and turkish-balik-ekmek-mackerel-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"crispy\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Two fillets seared together in a 10-inch skillet; one roll; a quarter of the salad.",
+    "2": "Four fillets in one batch in the 12-inch skillet; two rolls; half the salad.",
+    "4": "As written (8 fillets, 2 batches of 4).",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "Mackerel is grilled whole and braised with radish in the catalog; there is no fish sandwich of any kind besides fish tacos. A quick HH001-eligible Istanbul street-food dinner.",
+  "near_duplicate_review": "Compared with grilled-mackerel-fennel-orange: seared fillets in a crusty roll with sumac onions, not grilled fish with a fennel-orange salad. Compared with korean-braised-mackerel-radish: crisp-skinned fillets in bread, not a soy-chile braise. Compared with crispy-fish-tacos-cabbage-slaw: unbattered seared mackerel in rolls, not fried white fish in tortillas.",
+  "not_duplicate_of": "Not a fish burger and not a fish fillet sandwich with tartar sauce.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

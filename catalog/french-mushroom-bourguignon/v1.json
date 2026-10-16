@@ -1,0 +1,676 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "french-mushroom-bourguignon",
+    "slug": "french-mushroom-bourguignon",
+    "title": "French Mushroom Bourguignon over Olive Oil Mashed Potatoes",
+    "description": "Cremini mushrooms seared in batches and braised with pearl onions, carrots, onion, garlic, tomato paste, and thyme in red wine and vegetable broth thickened with flour and deepened with soy sauce, spooned over Yukon Gold potatoes mashed with olive oil and finished with parsley.",
+    "cuisine": "french",
+    "meal_format": "stew-over-mash",
+    "primary_ingredient": "mushrooms",
+    "vocabulary_tag_ids": [
+      "stews",
+      "mushrooms",
+      "rich",
+      "umami"
+    ],
+    "current_recipe_id": "rcp_french-mushroom-bourguignon",
+    "current_version_id": "rv_french-mushroom-bourguignon_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_french-mushroom-bourguignon",
+    "dish_id": "french-mushroom-bourguignon",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_french-mushroom-bourguignon_v1",
+    "recipe_id": "rcp_french-mushroom-bourguignon",
+    "dish_id": "french-mushroom-bourguignon",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "French Mushroom Bourguignon over Olive Oil Mashed Potatoes",
+    "description": "Cremini mushrooms seared in batches and braised with pearl onions, carrots, onion, garlic, tomato paste, and thyme in red wine and vegetable broth thickened with flour and deepened with soy sauce, spooned over Yukon Gold potatoes mashed with olive oil and finished with parsley.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "mushrooms",
+        "name": "cremini mushrooms",
+        "display_name": "cremini mushrooms",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "quartered (halved if small)",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "1/4 cup stew, 1/4 cup mash",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "carrots",
+        "name": "carrots",
+        "display_name": "carrots",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into 1/2-inch coins",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "flour",
+        "name": "all-purpose flour",
+        "display_name": "all-purpose flour",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "wine",
+        "name": "dry red wine",
+        "display_name": "dry red wine labeled vegan (such as a Pinot Noir or Burgundy)",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "broth",
+        "name": "vegetable broth",
+        "display_name": "vegetable broth whose label lists vegetables, salt, and spices",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "thyme",
+        "name": "fresh thyme",
+        "display_name": "thyme",
+        "quantity": 5,
+        "unit": "sprig",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bay",
+        "name": "bay leaf",
+        "display_name": "bay leaf",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "pearl-onions",
+        "name": "frozen pearl onions",
+        "display_name": "frozen pearl onions",
+        "quantity": 10,
+        "unit": "oz",
+        "note": null,
+        "preparation": "thawed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "1 tsp stew, 1 tsp potato pot, 1/2 tsp mash",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled and cut into 2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potato-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 8,
+        "unit": "cup",
+        "note": "for the potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Quarter the mushrooms, chop the onion, cut the carrots into coins, mince the garlic, peel and cut the potatoes into 2-inch chunks, and chop the parsley.",
+        "ingredient_refs": [
+          "mushrooms",
+          "onion",
+          "carrots",
+          "garlic",
+          "potatoes",
+          "parsley"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Sear the mushrooms",
+        "body": "Heat 2 tbsp oil in the 5.5-quart Dutch oven over medium-high, about 2 minutes. Sear half the mushrooms in one layer, stirring only twice, until deeply browned, about 6 minutes per batch. Move to a bowl and repeat with 1 tbsp more oil (2 batches).",
+        "ingredient_refs": [
+          "oil",
+          "mushrooms"
+        ],
+        "clock_minutes": 14,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Braise",
+        "body": "Add the last 1 tbsp stew oil, the onion, and carrots and cook 5 minutes. Stir in the garlic, tomato paste, and flour for 2 minutes. Pour in the wine, scrape up the browned bits, and simmer 3 minutes. Add the broth, thyme, bay leaf, soy sauce, pearl onions, 1 tsp salt, pepper, and the mushrooms. Bring to a simmer, about 4 minutes, then simmer uncovered, stirring now and then, until glossy and thick, about 25 minutes.",
+        "ingredient_refs": [
+          "oil",
+          "onion",
+          "carrots",
+          "garlic",
+          "tomato-paste",
+          "flour",
+          "wine",
+          "broth",
+          "thyme",
+          "bay",
+          "soy-sauce",
+          "pearl-onions",
+          "salt",
+          "black-pepper",
+          "mushrooms"
+        ],
+        "clock_minutes": 39,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Mash the potatoes",
+        "body": "While the stew simmers (overlap stated): put the potatoes, 8 cups water, and 1 tsp salt in the covered 4-quart pot and bring to a boil over high, about 10 minutes to come to a boil. Simmer until tender, about 15 minutes. Scoop out 1/2 cup of the cooking liquid, drain, and mash with 1/4 cup oil, 1/2 tsp salt, and enough of the liquid to make them smooth.",
+        "ingredient_refs": [
+          "potatoes",
+          "potato-water",
+          "salt",
+          "oil"
+        ],
+        "clock_minutes": 28,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Remove the thyme stems and bay leaf. Spoon the mash into shallow bowls, ladle the bourguignon over, and scatter with parsley.",
+        "ingredient_refs": [
+          "thyme",
+          "bay",
+          "potatoes",
+          "parsley"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "bourguignon",
+        "name": "mushroom bourguignon",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cremini mushrooms",
+          "olive oil",
+          "yellow onion",
+          "carrots",
+          "garlic",
+          "tomato paste",
+          "all-purpose flour",
+          "red wine",
+          "vegetable broth",
+          "thyme",
+          "bay leaf",
+          "soy sauce",
+          "pearl onions",
+          "salt",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "mash",
+        "name": "olive oil mashed potatoes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "Yukon Gold potatoes",
+          "water",
+          "salt",
+          "olive oil",
+          "parsley"
+        ]
+      }
+    ],
+    "equipment": [
+      "5.5-quart Dutch oven",
+      "4-quart pot with lid",
+      "colander",
+      "potato masher",
+      "wooden spoon"
+    ],
+    "methods": [
+      "sear",
+      "braise",
+      "boil"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 55,
+    "total_time_minutes": 70,
+    "prep_minutes": 15,
+    "cook_minutes": 55,
+    "total_minutes": 70,
+    "time_clock": "Prep 15 + cook 55 = 70 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The potatoes boil and are mashed while the stew simmers (step 4 runs inside step 3, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        5
+      ],
+      "overlap_steps": [
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "5.5-quart Dutch oven over medium-high to sear, then a steady simmer; 4-quart pot for the potatoes.",
+    "doneness": "Mushrooms deeply browned then tender; sauce glossy and thick enough to coat a spoon; potatoes fork-tender and mashed smooth.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, egg, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian",
+      "plant_based"
+    ],
+    "dietary_label_note": "Unconditional plant_based and dairy_free: mushrooms, vegetables, vegan-labeled wine, vegetable broth, flour, soy sauce, potatoes, and olive oil.",
+    "allergens": [
+      "wheat",
+      "soy"
+    ],
+    "allergen_notes": [
+      "Wheat from the flour and soy sauce.",
+      "Soy from the soy sauce.",
+      "No milk, egg, sesame, fish, shellfish, or nuts.",
+      "Contains red wine; much of the alcohol cooks off in the 25-minute simmer but not all."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Plant-based. No dairy, meat, poultry, shellfish, egg, or nuts.",
+    "hh001_contract": "Olive oil, not butter, in the stew and mash; vegetable broth, not beef stock. The red wine is labeled vegan (no gelatin, casein, egg white, or isinglass fining). The broth label lists vegetables, salt, and spices with no milk or meat.",
+    "vocabulary_tag_ids": [
+      "stews",
+      "mushrooms",
+      "rich",
+      "umami"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'french' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Sear the mushrooms in batches so they brown rather than steam.",
+    "culinary_hash": "683e694c8d489e31de481615b8dba0f583122b040e6814cf61cb03378990f837",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_french-mushroom-bourguignon_v2",
+    "dish_id": "french-mushroom-bourguignon",
+    "recipe_version_id": "rv_french-mushroom-bourguignon_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "french-mushroom-bourguignon.webp",
+    "card_ref": "french-mushroom-bourguignon-640.webp",
+    "master_filename": "french-mushroom-bourguignon.webp",
+    "card_filename": "french-mushroom-bourguignon-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "french-mushroom-bourguignon.webp",
+        "spec_catalog_path": "/images/meals/french-mushroom-bourguignon.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "french-mushroom-bourguignon-640.webp",
+        "spec_catalog_path": "/images/meals/french-mushroom-bourguignon-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "27c7a52d129cd99f59609924a1efa2c81a32967bda3ddf77ce8b3db487d5f596",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "27c7a52d129cd99f59609924a1efa2c81a32967bda3ddf77ce8b3db487d5f596",
+      "master_sha256": "7e6c2faa5a55d97345c9605209d32236a582324db20a576f4e505ae412630cd5",
+      "card_sha256": "f27d240d611a18263404ec1972bf2270f67f3cbf857c7e9dd04f8cebd6312a9d"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "27c7a52d129cd99f59609924a1efa2c81a32967bda3ddf77ce8b3db487d5f596",
+      "french-mushroom-bourguignon.webp": "7e6c2faa5a55d97345c9605209d32236a582324db20a576f4e505ae412630cd5",
+      "french-mushroom-bourguignon-640.webp": "f27d240d611a18263404ec1972bf2270f67f3cbf857c7e9dd04f8cebd6312a9d"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "creator_self_review_before_audit",
+      "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: some pieces read as beef cubes in a vegetarian dish.",
+      "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+      "prompt_sha256": {
+        "v2": "27810be5e6443fe63d7a1fa45f174cc576be5a1655edb1b148cc4f4a441f8ed5"
+      },
+      "rejected_versions": [
+        1
+      ]
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "creator_self_review_before_audit",
+        "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: some pieces read as beef cubes in a vegetarian dish.",
+        "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+        "prompt_sha256": {
+          "v2": "27810be5e6443fe63d7a1fa45f174cc576be5a1655edb1b148cc4f4a441f8ed5"
+        },
+        "rejected_versions": [
+          1
+        ]
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_french-mushroom-bourguignon_v1",
+        "source_file": "img_v1.jpg",
+        "sha256": "fe085c7d8cfa6855420ecc77bedd44f851ff201da1db184b78829d8e8c29b80a",
+        "generate_image_attachment_hash": "fe085c7d8cfa6855420ecc77bedd44f851ff201da1db184b78829d8e8c29b80a",
+        "moved_to_rejected": "rejected/img_v1-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "some pieces read as beef cubes in a vegetarian dish"
+      }
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 55 = 70 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The potatoes boil and are mashed while the stew simmers (step 4 runs inside step 3, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "french-mushroom-bourguignon.webp 1200x900 and french-mushroom-bourguignon-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything; stew in a 2-quart saucepan; potatoes in a 2-quart saucepan with 3 cups water.",
+    "2": "Half of everything; stew in a 3-quart saucepan; potatoes in a 3-quart saucepan with 5 cups water.",
+    "4": "As written.",
+    "do_not_scale": [
+      "sear the mushrooms in batches that fit one layer, whatever the total"
+    ]
+  },
+  "coverage_contribution": "The catalog's French meals are steak au poivre, duck, onion soup, a galette, and nicoise; there is no bourguignon and no vegan braise over mash. A rich, HH001-eligible plant-based dinner.",
+  "near_duplicate_review": "Compared with russian-mushroom-stroganoff: braised in red wine with carrots and pearl onions over mashed potatoes, not a sour-cream sauce over egg noodles. Compared with irish-beef-stew: mushrooms instead of beef and red wine instead of stout, served over mash. Compared with mushroom-walnut-bolognese: chunky braised mushrooms with no walnuts and no pasta.",
+  "not_duplicate_of": "Not boeuf bourguignon (no beef or bacon) and not a mushroom gravy.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

@@ -1,0 +1,654 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "persian-ash-reshteh",
+    "slug": "persian-ash-reshteh",
+    "title": "Persian Ash Reshteh: Herb, Bean, and Noodle Soup with Kashk and Mint Oil",
+    "description": "A thick soup of green lentils, chickpeas, and kidney beans simmered in vegetable broth with turmeric and heaps of parsley, cilantro, dill, spinach, and scallions, thickened with broken linguine, and topped with tangy kashk, deep-brown onions, garlic, and dried mint bloomed in oil.",
+    "cuisine": "persian",
+    "meal_format": "soup",
+    "primary_ingredient": "legumes and herbs",
+    "vocabulary_tag_ids": [
+      "soups",
+      "herbaceous",
+      "tangy",
+      "lentils",
+      "chickpeas",
+      "middle-eastern"
+    ],
+    "current_recipe_id": "rcp_persian-ash-reshteh",
+    "current_version_id": "rv_persian-ash-reshteh_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_persian-ash-reshteh",
+    "dish_id": "persian-ash-reshteh",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_persian-ash-reshteh_v1",
+    "recipe_id": "rcp_persian-ash-reshteh",
+    "dish_id": "persian-ash-reshteh",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Persian Ash Reshteh: Herb, Bean, and Noodle Soup with Kashk and Mint Oil",
+    "description": "A thick soup of green lentils, chickpeas, and kidney beans simmered in vegetable broth with turmeric and heaps of parsley, cilantro, dill, spinach, and scallions, thickened with broken linguine, and topped with tangy kashk, deep-brown onions, garlic, and dried mint bloomed in oil.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "lentils",
+        "name": "green lentils",
+        "display_name": "green lentils",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "broth",
+        "name": "vegetable broth",
+        "display_name": "vegetable broth whose label lists vegetables, salt, and spices",
+        "quantity": 6,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chickpeas",
+        "name": "chickpeas",
+        "display_name": "chickpeas (one 15-oz can) whose label lists chickpeas, water, and salt",
+        "quantity": 15,
+        "unit": "oz",
+        "note": null,
+        "preparation": "drained and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kidney-beans",
+        "name": "red kidney beans",
+        "display_name": "red kidney beans (one 15-oz can) whose label lists beans, water, and salt",
+        "quantity": 15,
+        "unit": "oz",
+        "note": null,
+        "preparation": "drained and rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dill",
+        "name": "dill",
+        "display_name": "dill",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "spinach",
+        "name": "baby spinach",
+        "display_name": "baby spinach",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 6,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "linguine",
+        "name": "linguine",
+        "display_name": "linguine (standing in for reshteh noodles)",
+        "quantity": 6,
+        "unit": "oz",
+        "note": null,
+        "preparation": "broken in half",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onions",
+        "name": "yellow onions",
+        "display_name": "yellow onions",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mint",
+        "name": "dried mint",
+        "display_name": "dried mint",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "kashk",
+        "name": "kashk",
+        "display_name": "liquid kashk whose label lists whey, water, and salt",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "thinned with a spoonful of the soup if very thick",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Rinse the lentils, drain and rinse the chickpeas and kidney beans, wash and chop the parsley, cilantro, dill, and spinach, slice the scallions, and thinly slice the onions and garlic.",
+        "ingredient_refs": [
+          "lentils",
+          "chickpeas",
+          "kidney-beans",
+          "parsley",
+          "cilantro",
+          "dill",
+          "spinach",
+          "scallions",
+          "onions",
+          "garlic"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Start the soup",
+        "body": "Put the lentils, broth, 2 cups water, turmeric, and salt in the 6-quart Dutch oven. Bring to a boil over high, about 10 minutes to come to a boil, then simmer until the lentils are nearly tender, about 20 minutes.",
+        "ingredient_refs": [
+          "lentils",
+          "broth",
+          "water",
+          "turmeric",
+          "salt"
+        ],
+        "clock_minutes": 30,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Herbs and noodles",
+        "body": "Add the chickpeas, kidney beans, parsley, cilantro, dill, spinach, scallions, and pepper and simmer 10 minutes. Add the linguine and simmer, stirring from the bottom often, until tender and the soup is thick, about 12 minutes.",
+        "ingredient_refs": [
+          "chickpeas",
+          "kidney-beans",
+          "parsley",
+          "cilantro",
+          "dill",
+          "spinach",
+          "scallions",
+          "black-pepper",
+          "linguine"
+        ],
+        "clock_minutes": 22,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Onions, garlic, and mint",
+        "body": "While the soup simmers (overlap stated): heat the oil in the 10-inch skillet over medium and cook the onions, stirring often, until deep brown, about 15 minutes. Add the garlic for 1 minute, then lift the onions and garlic onto a plate. Take the skillet off the heat and stir the dried mint into the oil for 10 seconds.",
+        "ingredient_refs": [
+          "oil",
+          "onions",
+          "garlic",
+          "mint"
+        ],
+        "clock_minutes": 17,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Stir half the onions and 1/4 cup kashk into the soup. Ladle into bowls and top each with a drizzle of kashk, the remaining onions and garlic, and a spoon of mint oil.",
+        "ingredient_refs": [
+          "onions",
+          "kashk",
+          "garlic",
+          "mint"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "ash",
+        "name": "ash reshteh",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "green lentils",
+          "vegetable broth",
+          "water",
+          "turmeric",
+          "salt",
+          "chickpeas",
+          "kidney beans",
+          "parsley",
+          "cilantro",
+          "dill",
+          "spinach",
+          "scallions",
+          "linguine",
+          "black pepper"
+        ]
+      },
+      {
+        "component_id": "toppings",
+        "name": "onion, garlic, and mint oil",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "neutral oil",
+          "yellow onions",
+          "garlic",
+          "dried mint"
+        ]
+      },
+      {
+        "component_id": "kashk",
+        "name": "kashk",
+        "made_in_recipe": false,
+        "store_bought": true,
+        "ingredients": [
+          "kashk"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart Dutch oven",
+      "10-inch skillet",
+      "ladle",
+      "small bowl"
+    ],
+    "methods": [
+      "simmer",
+      "saute"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 55,
+    "total_time_minutes": 75,
+    "prep_minutes": 20,
+    "cook_minutes": 55,
+    "total_minutes": 75,
+    "time_clock": "Prep 20 + cook 55 = 75 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The onion and mint toppings cook while the soup simmers (step 4 runs inside step 3, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        5
+      ],
+      "overlap_steps": [
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "6-quart Dutch oven over high to a boil, then a steady simmer; 10-inch skillet over medium for the onion and mint toppings.",
+    "doneness": "Lentils soft, herbs dark green and melted into the soup, noodles tender, soup thick enough to coat a ladle; onions deep brown.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: kashk is dairy (fermented whey)."
+    },
+    "dietary_labels": [
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional vegetarian: vegetable broth, legumes, herbs, linguine, oil, and kashk (fermented whey, no rennet). The kashk label lists whey, water, and salt.",
+    "allergens": [
+      "wheat",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Wheat from the linguine (standing in for reshteh noodles).",
+      "Milk from the kashk.",
+      "No egg, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: kashk is dairy (fermented whey).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "soups",
+      "herbaceous",
+      "tangy",
+      "lentils",
+      "chickpeas",
+      "middle-eastern"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'persian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Stir the thick soup from the bottom so the noodles do not stick and scorch.",
+    "culinary_hash": "18825785b2f732d3b885df4fdecf03b6ed2ca0c8529028e9c6422a182dbf3487",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_persian-ash-reshteh_v1",
+    "dish_id": "persian-ash-reshteh",
+    "recipe_version_id": "rv_persian-ash-reshteh_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "persian-ash-reshteh.webp",
+    "card_ref": "persian-ash-reshteh-640.webp",
+    "master_filename": "persian-ash-reshteh.webp",
+    "card_filename": "persian-ash-reshteh-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "persian-ash-reshteh.webp",
+        "spec_catalog_path": "/images/meals/persian-ash-reshteh.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "persian-ash-reshteh-640.webp",
+        "spec_catalog_path": "/images/meals/persian-ash-reshteh-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "167ae75bbdf21ca8409d8c7f57629f0c9102133a1118b2755537c68caf751bc7",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "167ae75bbdf21ca8409d8c7f57629f0c9102133a1118b2755537c68caf751bc7",
+      "master_sha256": "e7fa37fee1a37449476a5a4e0abe53118d42d55a9fef3ab6fa821de13e6a0f2f",
+      "card_sha256": "26e2a4266e04cae8ac9f33c2e0078aa5411dfd34447734837b1d42f2e998a0b2"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "167ae75bbdf21ca8409d8c7f57629f0c9102133a1118b2755537c68caf751bc7",
+      "persian-ash-reshteh.webp": "e7fa37fee1a37449476a5a4e0abe53118d42d55a9fef3ab6fa821de13e6a0f2f",
+      "persian-ash-reshteh-640.webp": "26e2a4266e04cae8ac9f33c2e0078aa5411dfd34447734837b1d42f2e998a0b2"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 20 + cook 55 = 75 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The onion and mint toppings cook while the soup simmers (step 4 runs inside step 3, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "persian-ash-reshteh.webp 1200x900 and persian-ash-reshteh-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 2-quart saucepan.",
+    "2": "Half of everything in a 4-quart pot.",
+    "4": "As written.",
+    "do_not_scale": [
+      "the onions brown best in a single layer; use the 10-inch skillet for any batch"
+    ]
+  },
+  "coverage_contribution": "Persia has ghormeh sabzi, koobideh, and sabzi polo in the catalog, all with meat or fish; there is no Persian vegetarian soup and no legume-herb-noodle soup. A vegetarian dinner with real heft.",
+  "near_duplicate_review": "Compared with persian-ghormeh-sabzi: a vegetarian soup of legumes, herbs, and noodles with kashk, not a lamb and dried-lime herb stew over rice. Compared with white-bean-kale-soup: three legumes, five herbs and greens, and noodles with tangy kashk, not a simple bean-and-kale broth. Compared with egyptian-koshari: a herb soup with noodles in it, not lentils, rice, and pasta under tomato sauce.",
+  "not_duplicate_of": "Not minestrone (no tomato, Persian herbs and kashk) and not a lentil soup.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

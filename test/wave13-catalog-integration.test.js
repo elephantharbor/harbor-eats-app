@@ -36,7 +36,7 @@ describe("Wave-13 certified catalog integration", () => {
 
   it("all 10 are published with media in the catalog", () => {
     const published = listPublishedMealMedia();
-    expect(published).toHaveLength(200);
+    expect(published).toHaveLength(250);
     const slugs = new Set(published.map((r) => r.slug));
     for (const slug of WAVE13) expect(slugs.has(slug), slug).toBe(true);
   });

@@ -1,0 +1,559 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "georgian-chkmeruli-garlic-chicken",
+    "slug": "georgian-chkmeruli-garlic-chicken",
+    "title": "Georgian Chkmeruli: Crisp Chicken Thighs in Garlic Cream Sauce",
+    "description": "Bone-in chicken thighs seared skin-side down until crackling, roasted in the same cast-iron skillet, then bathed in a sauce of garlic, butter, whole milk, and cream with ground coriander, scattered with cilantro, and served with crusty bread for the sauce.",
+    "cuisine": "georgian",
+    "meal_format": "skillet-chicken",
+    "primary_ingredient": "bone-in chicken thighs",
+    "vocabulary_tag_ids": [
+      "chicken",
+      "creamy",
+      "crispy",
+      "rich"
+    ],
+    "current_recipe_id": "rcp_georgian-chkmeruli-garlic-chicken",
+    "current_version_id": "rv_georgian-chkmeruli-garlic-chicken_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_georgian-chkmeruli-garlic-chicken",
+    "dish_id": "georgian-chkmeruli-garlic-chicken",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_georgian-chkmeruli-garlic-chicken_v1",
+    "recipe_id": "rcp_georgian-chkmeruli-garlic-chicken",
+    "dish_id": "georgian-chkmeruli-garlic-chicken",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Georgian Chkmeruli: Crisp Chicken Thighs in Garlic Cream Sauce",
+    "description": "Bone-in chicken thighs seared skin-side down until crackling, roasted in the same cast-iron skillet, then bathed in a sauce of garlic, butter, whole milk, and cream with ground coriander, scattered with cilantro, and served with crusty bread for the sauce.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "chicken",
+        "name": "bone-in skin-on chicken thighs",
+        "display_name": "bone-in skin-on chicken thighs (6, about 6 oz each)",
+        "quantity": 2.25,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "coriander",
+        "name": "ground coriander",
+        "display_name": "ground coriander",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 8,
+        "unit": "clove",
+        "note": null,
+        "preparation": "finely minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "milk",
+        "name": "whole milk",
+        "display_name": "whole milk",
+        "quantity": 0.75,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cream",
+        "name": "heavy cream",
+        "display_name": "heavy cream",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bread",
+        "name": "crusty bread",
+        "display_name": "crusty loaf whose label lists wheat flour, water, yeast, and salt",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Preheat the oven to 425 F. Pat the thighs very dry and season all over with the salt, pepper, and coriander. Mince the garlic and chop the cilantro.",
+        "ingredient_refs": [
+          "chicken",
+          "salt",
+          "pepper",
+          "coriander",
+          "garlic",
+          "cilantro"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Sear skin-side down",
+        "body": "Lay the thighs skin-side down in the cold 12-inch cast-iron skillet (6 fit in one layer). Set over medium and cook without moving until the skin is deep golden and crisp, about 12 minutes.",
+        "ingredient_refs": [
+          "chicken"
+        ],
+        "clock_minutes": 13,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Roast",
+        "body": "Turn the thighs skin-side up and roast in the oven until 175 F at the bone, about 20 minutes. With oven mitts, move the chicken to the large plate and pour off all but 1 tbsp fat.",
+        "ingredient_refs": [
+          "chicken"
+        ],
+        "clock_minutes": 22,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Garlic cream sauce",
+        "body": "Set the skillet over medium (handle hot). Melt the butter, add the garlic, and stir until fragrant, about 1 minute. Pour in the milk and cream, scrape up the browned bits, and simmer until slightly thickened, about 4 minutes.",
+        "ingredient_refs": [
+          "butter",
+          "garlic",
+          "milk",
+          "cream"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Return and serve",
+        "body": "Return the thighs skin-side up into the sauce, spoon sauce around (not over) the skin, scatter cilantro, and serve from the skillet with sliced bread.",
+        "ingredient_refs": [
+          "chicken",
+          "cilantro",
+          "bread"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "chicken",
+        "name": "chkmeruli",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "bone-in chicken thighs",
+          "salt",
+          "black pepper",
+          "ground coriander",
+          "garlic",
+          "butter",
+          "whole milk",
+          "heavy cream",
+          "cilantro"
+        ]
+      },
+      {
+        "component_id": "bread",
+        "name": "crusty bread",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "crusty bread"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch cast-iron skillet",
+      "instant-read thermometer",
+      "oven mitts",
+      "large plate",
+      "bread knife"
+    ],
+    "methods": [
+      "sear",
+      "roast",
+      "simmer"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "baked",
+        "roasted"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 8,
+    "cook_time_minutes": 44,
+    "total_time_minutes": 52,
+    "prep_minutes": 8,
+    "cook_minutes": 44,
+    "total_minutes": 52,
+    "time_clock": "Prep 8 + cook 44 = 52 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. ",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Prep) and it states the preheat. ",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "Oven 425 F; 12-inch cast-iron skillet over medium on the stove.",
+    "doneness": "Skin deep golden and crisp; chicken 175 F at the bone; sauce lightly thickened.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: chicken is poultry; milk, cream, and butter are dairy."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: poultry and dairy. The bread label lists wheat flour, water, yeast, and salt.",
+    "allergens": [
+      "poultry",
+      "milk",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Poultry from the chicken.",
+      "Milk from the butter, milk, and cream.",
+      "Wheat from the bread.",
+      "No egg, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: chicken is poultry; milk, cream, and butter are dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "chicken",
+      "creamy",
+      "crispy",
+      "rich"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'georgian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook the chicken to 175 F at the bone. The skillet handle stays very hot after the oven; use oven mitts.",
+    "culinary_hash": "62bc75960ba16da1fddf48ecec8c5280b651a7adf7f009652bbacae7856abf9e",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_georgian-chkmeruli-garlic-chicken_v2",
+    "dish_id": "georgian-chkmeruli-garlic-chicken",
+    "recipe_version_id": "rv_georgian-chkmeruli-garlic-chicken_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "georgian-chkmeruli-garlic-chicken.webp",
+    "card_ref": "georgian-chkmeruli-garlic-chicken-640.webp",
+    "master_filename": "georgian-chkmeruli-garlic-chicken.webp",
+    "card_filename": "georgian-chkmeruli-garlic-chicken-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "georgian-chkmeruli-garlic-chicken.webp",
+        "spec_catalog_path": "/images/meals/georgian-chkmeruli-garlic-chicken.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "georgian-chkmeruli-garlic-chicken-640.webp",
+        "spec_catalog_path": "/images/meals/georgian-chkmeruli-garlic-chicken-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "a8350794c8ead1e430522df420a7a6593569675c1cc410d8a399a08b7b8e7fbf",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "a8350794c8ead1e430522df420a7a6593569675c1cc410d8a399a08b7b8e7fbf",
+      "master_sha256": "6d4c246a5af4a1782f93a1b04e4abee9df8e37a599c70b9ba989d663384feb2f",
+      "card_sha256": "56673bddc8eca6e9443997548bf2bcab2884a431a284e430758beeb3221e4165"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "a8350794c8ead1e430522df420a7a6593569675c1cc410d8a399a08b7b8e7fbf",
+      "georgian-chkmeruli-garlic-chicken.webp": "6d4c246a5af4a1782f93a1b04e4abee9df8e37a599c70b9ba989d663384feb2f",
+      "georgian-chkmeruli-garlic-chicken-640.webp": "56673bddc8eca6e9443997548bf2bcab2884a431a284e430758beeb3221e4165"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "creator_self_review_before_audit",
+      "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: shows eight thighs, brief says six.",
+      "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+      "prompt_sha256": {
+        "v2": "21c8cc83e0898b7c98b69196739b2f566f72c2ac1212ddd9b5a9aea08384b373"
+      },
+      "rejected_versions": [
+        1
+      ]
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "creator_self_review_before_audit",
+        "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: shows eight thighs, brief says six.",
+        "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+        "prompt_sha256": {
+          "v2": "21c8cc83e0898b7c98b69196739b2f566f72c2ac1212ddd9b5a9aea08384b373"
+        },
+        "rejected_versions": [
+          1
+        ]
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_georgian-chkmeruli-garlic-chicken_v1",
+        "source_file": "img_v1.jpg",
+        "sha256": "77dc0be53f060681e739e693642ed8f5dd3886be4f894ba11f8be92065f54eaa",
+        "generate_image_attachment_hash": "77dc0be53f060681e739e693642ed8f5dd3886be4f894ba11f8be92065f54eaa",
+        "moved_to_rejected": "rejected/img_v1-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "shows eight thighs, brief says six"
+      }
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 8 + cook 44 = 52 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. "
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Prep) and it states the preheat. "
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "georgian-chkmeruli-garlic-chicken.webp 1200x900 and georgian-chkmeruli-garlic-chicken-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"baked\", \"roasted\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "Two thighs in a 10-inch cast-iron skillet; a quarter of the sauce.",
+    "2": "Three thighs in a 10-inch cast-iron skillet; half the sauce.",
+    "4": "As written (6 thighs).",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "There is no Georgian dish in the catalog and no garlic-cream chicken. A short-ingredient poultry dinner with a new flavor profile.",
+  "near_duplicate_review": "Compared with hungarian-chicken-paprikash: crisp-skinned roasted thighs in garlic cream, not braised chicken in a paprika sour-cream sauce with noodles. Compared with portuguese-piri-piri-chicken: mellow garlic and milk sauce, not a hot chile marinade. Compared with sheet-pan-lemon-herb-chicken: skillet-seared and sauced in garlic cream, not sheet-pan roasted with lemon and vegetables.",
+  "not_duplicate_of": "Not chicken Alfredo (no pasta or cheese) and not garlic butter chicken bites.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D"
+}

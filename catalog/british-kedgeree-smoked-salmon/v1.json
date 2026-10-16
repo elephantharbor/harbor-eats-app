@@ -1,0 +1,546 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "british-kedgeree-smoked-salmon",
+    "slug": "british-kedgeree-smoked-salmon",
+    "title": "British Kedgeree with Hot-Smoked Salmon, Jammy Eggs, and Peas",
+    "description": "Basmati rice cooked with onion and curry powder, folded with flakes of hot-smoked salmon and peas, and topped with jammy halved eggs, parsley, and lemon wedges.",
+    "cuisine": "british",
+    "meal_format": "rice-with-fish-and-eggs",
+    "primary_ingredient": "hot-smoked salmon",
+    "vocabulary_tag_ids": [
+      "salmon",
+      "smoky",
+      "savory"
+    ],
+    "current_recipe_id": "rcp_british-kedgeree-smoked-salmon",
+    "current_version_id": "rv_british-kedgeree-smoked-salmon_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_british-kedgeree-smoked-salmon",
+    "dish_id": "british-kedgeree-smoked-salmon",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_british-kedgeree-smoked-salmon_v1",
+    "recipe_id": "rcp_british-kedgeree-smoked-salmon",
+    "dish_id": "british-kedgeree-smoked-salmon",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "British Kedgeree with Hot-Smoked Salmon, Jammy Eggs, and Peas",
+    "description": "Basmati rice cooked with onion and curry powder, folded with flakes of hot-smoked salmon and peas, and topped with jammy halved eggs, parsley, and lemon wedges.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "curry-powder",
+        "name": "mild curry powder",
+        "display_name": "mild curry powder whose label lists spices only",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "basmati rice",
+        "display_name": "basmati rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "peas",
+        "name": "frozen peas",
+        "display_name": "frozen peas",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "salmon",
+        "name": "hot-smoked salmon",
+        "display_name": "hot-smoked salmon whose label lists salmon, salt, sugar, and natural smoke",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": "skin removed, flaked",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "egg-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "for the eggs",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into wedges",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Chop the onion and parsley, rinse the rice until the rinse runs clear, flake the salmon, and cut the lemon into wedges.",
+        "ingredient_refs": [
+          "onion",
+          "parsley",
+          "rice",
+          "salmon",
+          "lemon"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Soften the onion",
+        "body": "Heat the oil in the 3-quart saucepan over medium, about 1 minute. Cook the onion until soft, about 6 minutes, then stir in the curry powder and rice for 1 minute.",
+        "ingredient_refs": [
+          "oil",
+          "onion",
+          "curry-powder",
+          "rice"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the rice",
+        "body": "Add 2 1/4 cups water and the salt, bring to a boil over high, about 4 minutes, then cover, turn to low, and cook 15 minutes. Scatter the peas over the rice, cover again, and rest off the heat 10 minutes.",
+        "ingredient_refs": [
+          "rice-water",
+          "salt",
+          "peas"
+        ],
+        "clock_minutes": 29,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Boil the eggs",
+        "body": "While the rice cooks (overlap stated): bring 4 cups water to a boil in the 2-quart saucepan over high, about 6 minutes to come to a boil. Lower in the eggs and simmer 7 minutes, then cool under the cold tap for 2 minutes and peel.",
+        "ingredient_refs": [
+          "egg-water",
+          "eggs"
+        ],
+        "clock_minutes": 17,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Fold and serve",
+        "body": "Fluff the rice and peas with a fork and gently fold in the salmon and most of the parsley. Pile onto plates, top with the halved eggs and the remaining parsley, and serve with lemon wedges.",
+        "ingredient_refs": [
+          "rice",
+          "peas",
+          "salmon",
+          "parsley",
+          "eggs",
+          "lemon"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "rice",
+        "name": "curried rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "neutral oil",
+          "yellow onion",
+          "curry powder",
+          "basmati rice",
+          "water",
+          "salt",
+          "frozen peas",
+          "hot-smoked salmon",
+          "parsley",
+          "lemon"
+        ]
+      },
+      {
+        "component_id": "eggs",
+        "name": "jammy eggs",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "eggs",
+          "water"
+        ]
+      }
+    ],
+    "equipment": [
+      "3-quart saucepan with lid",
+      "2-quart saucepan",
+      "slotted spoon",
+      "fork"
+    ],
+    "methods": [
+      "steam",
+      "boil",
+      "saute"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 8,
+    "cook_time_minutes": 40,
+    "total_time_minutes": 48,
+    "prep_minutes": 8,
+    "cook_minutes": 40,
+    "total_minutes": 48,
+    "time_clock": "Prep 8 + cook 40 = 48 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The eggs boil and cool while the rice cooks (step 4 runs inside step 3, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        5
+      ],
+      "overlap_steps": [
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "3-quart saucepan over medium for the onion, then covered over low for the rice; 2-quart saucepan for the eggs.",
+    "doneness": "Rice tender and fluffy with a yellow tint; eggs with set whites and jammy yolks (7 minutes); salmon warmed through.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish and egg are allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and fish: rice, onion, spices, salmon, eggs, peas, lemon, and oil; no butter.",
+    "allergens": [
+      "finfish",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Finfish from the salmon.",
+      "Egg from the boiled eggs.",
+      "No milk, soy, wheat, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish and egg are allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Oil, not butter, in the rice; no cream. The hot-smoked salmon label lists salmon, salt, sugar, and natural smoke; the curry powder label lists spices only.",
+    "vocabulary_tag_ids": [
+      "salmon",
+      "smoky",
+      "savory"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'british' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Hot-smoked salmon is fully cooked; keep it refrigerated until you fold it in.",
+    "culinary_hash": "d11f7c25555e6d7d034733bf0c2be45c6697912d3f0a154800b16350f48a9fbe",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_british-kedgeree-smoked-salmon_v1",
+    "dish_id": "british-kedgeree-smoked-salmon",
+    "recipe_version_id": "rv_british-kedgeree-smoked-salmon_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "british-kedgeree-smoked-salmon.webp",
+    "card_ref": "british-kedgeree-smoked-salmon-640.webp",
+    "master_filename": "british-kedgeree-smoked-salmon.webp",
+    "card_filename": "british-kedgeree-smoked-salmon-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "british-kedgeree-smoked-salmon.webp",
+        "spec_catalog_path": "/images/meals/british-kedgeree-smoked-salmon.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "british-kedgeree-smoked-salmon-640.webp",
+        "spec_catalog_path": "/images/meals/british-kedgeree-smoked-salmon-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "0c1d6d46713f6fb1a11cb1f80e520c51cfbe6524413423bf7e20f7da5791b115",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "0c1d6d46713f6fb1a11cb1f80e520c51cfbe6524413423bf7e20f7da5791b115",
+      "master_sha256": "9de940eb7bac9783c018bfa5c6b5f1154f963b1b194bd0fa2b6ceddfbb66b2f7",
+      "card_sha256": "0e58ca16babdebd4317cbc9fe1ce77ecc8e5b008b697ce6daf4befdadd2f623f"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "0c1d6d46713f6fb1a11cb1f80e520c51cfbe6524413423bf7e20f7da5791b115",
+      "british-kedgeree-smoked-salmon.webp": "9de940eb7bac9783c018bfa5c6b5f1154f963b1b194bd0fa2b6ceddfbb66b2f7",
+      "british-kedgeree-smoked-salmon-640.webp": "0e58ca16babdebd4317cbc9fe1ce77ecc8e5b008b697ce6daf4befdadd2f623f"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 8 + cook 40 = 48 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The eggs boil and cool while the rice cooks (step 4 runs inside step 3, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "british-kedgeree-smoked-salmon.webp 1200x900 and british-kedgeree-smoked-salmon-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything; rice in a 1-quart saucepan; 1 egg in a 1-quart saucepan with 3 cups water.",
+    "2": "Half of everything; rice in a 2-quart saucepan; 2 eggs in the 2-quart saucepan with 4 cups water.",
+    "4": "As written.",
+    "do_not_scale": [
+      "eggs: 7 minutes from a boil for jammy yolks at any count"
+    ]
+  },
+  "coverage_contribution": "Britain has fish and chips, cottage pie, and bangers in the catalog; there is no kedgeree and no smoked-fish rice dinner. A quick HH001-eligible fish dinner.",
+  "near_duplicate_review": "Compared with persian-sabzi-polo-salmon: a curry-scented rice with flaked hot-smoked salmon and eggs, not herbed dill rice with a seared fillet. Compared with swiss-rosti-smoked-trout: smoked fish folded into rice, not on potato rosti. Compared with maple-mustard-glazed-salmon: flaked smoked salmon in rice, not a glazed fillet.",
+  "not_duplicate_of": "Not a fried rice and not a biryani.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}
