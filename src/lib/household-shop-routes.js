@@ -120,6 +120,13 @@ async function activeMemberCount(db, householdId) {
 
 export async function projectSavedPlan(db, plan, now) {
   if (!plan?.household_id || !plan.dinner_plan_id) return;
+  const stored = await db
+    .prepare(`SELECT superseded_at FROM dinner_plan WHERE dinner_plan_id = ?`)
+    .bind(plan.dinner_plan_id)
+    .first();
+  if (stored?.superseded_at) return;
+  const currentId = await findCurrentDinnerPlanId(db, plan.household_id);
+  if (currentId !== plan.dinner_plan_id) return;
   let list = await loadOpenList(db, plan.household_id);
   if (!list) {
     try {

@@ -33,3 +33,7 @@ CREATE INDEX idx_grocery_handoff_list
 CREATE UNIQUE INDEX idx_grocery_handoff_live
   ON grocery_handoff(shop_list_id, provider_id, request_hash)
   WHERE status = 'link_created';
+
+-- Which unfinished dinner plan the household list follows.
+-- Nullable. Rows that already exist stay NULL. This file does not rewrite them.
+ALTER TABLE dinner_plan ADD COLUMN superseded_at TEXT;

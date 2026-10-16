@@ -65,6 +65,12 @@ const VERIFY = [
           JOIN member m ON m.member_id = h.created_by_member_id
           WHERE m.household_id != h.household_id`,
   },
+  {
+    name: "dinner_plan.superseded_at column is missing",
+    sql: `SELECT 1 AS missing WHERE NOT EXISTS (
+            SELECT 1 FROM pragma_table_info('dinner_plan') WHERE name = 'superseded_at'
+          )`,
+  },
 ];
 
 function arg(name) {
@@ -99,6 +105,7 @@ if (selected === "dry-run") {
         mode: "dry-run",
         file: "migrations/0018_grocery_handoff.sql",
         creates: "grocery_handoff",
+        adds_column: "dinner_plan.superseded_at",
         updates_existing_rows: updatesExisting,
         backfill: false,
         writes: false,

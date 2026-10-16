@@ -131,9 +131,17 @@ The disabled Instacart button uses the documented colors at reduced opacity so i
 - The pre-launch checklist (Jun 18, 2026) says Impact.com, confirms 46px, 29.5px radius, 22px logo, and “Shop on Instacart”. S-01 noted a Tastemakers versus Impact disagreement. The June 18 page says Impact. The live page also contains the typo “PUse”.
 - The CTA page (May 14, 2026) confirms the dark theme `#003D29` / `#FAF1E5` and a 22px logo. Light and white theme extracts in that read were partial (strokes `#EFE9E1` and `#E8E9EB`). Missing hex values were not invented. This build uses the dark theme only.
 
+## Which plan the list follows
+
+Creating a dinner plan never used to close older unfinished ones. A plan with one cooked meal that nobody had rated stayed `active` forever. Any later write bumped `updated_at`, and the newest `updated_at` became the current plan, so `projectSavedPlan` could point the household list back at that older plan.
+
+`dinner_plan.superseded_at` is a nullable column added in migration 0018. Existing rows are not backfilled. They stay NULL and keep today’s rule: among unfinished plans, the latest `updated_at` is current.
+
+The create branch of `routeDinnerPlanRequest` is the only writer. In the same batch as the insert, it sets `superseded_at` to now on that household’s other unfinished plans that are not already superseded. It does not change their status, their meal states, or their `updated_at`. Completed plans are left alone. A later write to a superseded plan can still bump `updated_at`. `findCurrentDinnerPlanId` and the plan list both require `superseded_at IS NULL`, and `projectSavedPlan` returns without touching the list when the plan is superseded or is not the current plan. The older plan stays readable by id, including ratings.
+
 ## Migration 0018
 
-`migrations/0018_grocery_handoff.sql` creates `grocery_handoff` and its indexes. It does not UPDATE existing rows. Apply it once. Rehearse on a backup copy with `scripts/shop-migration-0018.mjs` (`--dry-run`, `--apply`, `--verify`). Do not run Wrangler against remote from this change. The box team runs Preview and Production.
+`migrations/0018_grocery_handoff.sql` creates `grocery_handoff` and its indexes, and adds nullable `dinner_plan.superseded_at`. It does not UPDATE existing rows. Apply it once. Rehearse on a backup copy with `scripts/shop-migration-0018.mjs` (`--dry-run`, `--apply`, `--verify`). Do not run Wrangler against remote from this change. The box team runs Preview and Production.
 
 Take a backup or restore point first.
 
