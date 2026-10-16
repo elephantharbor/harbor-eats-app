@@ -1,0 +1,53 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "salvadoran-bean-cheese-pupusas.webp",
+    "salvadoran-bean-cheese-pupusas-640.webp"
+  ],
+  "present_files": [
+    "salvadoran-bean-cheese-pupusas.webp",
+    "salvadoran-bean-cheese-pupusas-640.webp"
+  ],
+  "source": "img_v6.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-16",
+  "sha256": {
+    "img_v6.jpg": "f7bf2b7c85377e5e218e1d8fb971f47ec3978cb6fa47b026d95f0832195696d5",
+    "salvadoran-bean-cheese-pupusas.webp": "0d38791d9b757c1a358e1d546c8c69192bd9ee5b9d66efcb1f26997a7e2c9029",
+    "salvadoran-bean-cheese-pupusas-640.webp": "da149dc07b67aef661017a93d8406b449425c1065d0ef4d768df9c3f45472271"
+  },
+  "regeneration_count": 5,
+  "regeneration": {
+    "version": 6,
+    "basis": "audit_r1_r2_r3_gate_K_after_creator_self_review",
+    "summary": "Active hero is the v6 regeneration (author-r5). Earlier versions: v1: rejected in Cora's creator self-review (bean filling reads as ground meat); v2: rejected in Cora's creator self-review (bean filling still reads as ground meat); v3: rejected by independent audit r1 gate K after being finalized at author-r2 (filling reads as meat, curtido reads creamy); v4: rejected by independent audit r2 gate K after being finalized at author-r3 (filling glossy, dark and lumpy, reads like chili or meat; contradicts 'puréed smooth'); v5: rejected by independent audit r3 gate K after being finalized at author-r4 (thick near-black crumbly slab reads as ground beef; contradicts smooth red-bean paste and mixed bean-cheese filling).",
+    "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v6 prompt.",
+    "prompt_sha256": {
+      "v2": "2f0c62e44fc8cd9f0d7a6bcec5a85c135f0edcdab087b1086166d902a15b7d34",
+      "v3": "21d308cda6cf2b8646f00c5d59407a7168afb9c2556f91c578381dc1e2b0f681",
+      "v4": "0841ee8f8ae8d7272291fc31824dfc04b2658b27f30faa596a4059b431df7e1e",
+      "v5": "316cdfdc9266051f29cdf3d74545e3449249f5658f639fa5fb2b286e157e993c",
+      "v6": "1f6367acde929dbb1079127c1d5635706653ad86d80776d42e64b156196f2384"
+    },
+    "rejected_versions": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "audit_rejected_versions": [
+      3,
+      4,
+      5
+    ]
+  },
+  "package_revision": "author-r5",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

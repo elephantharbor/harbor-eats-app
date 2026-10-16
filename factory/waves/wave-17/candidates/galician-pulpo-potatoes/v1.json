@@ -1,0 +1,521 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "galician-pulpo-potatoes",
+    "slug": "galician-pulpo-potatoes",
+    "title": "Galician Pulpo a la Gallega: Octopus and Potatoes with Smoked Paprika",
+    "description": "Tender cooked octopus tentacles warmed in the potato pot and sliced over coins of boiled Yukon Gold potatoes, dusted with sweet and hot smoked paprika and flaky salt and dressed with plenty of olive oil, served with blistered shishito peppers, garlic, and parsley.",
+    "cuisine": "spanish",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "octopus",
+    "vocabulary_tag_ids": [
+      "smoky",
+      "tender",
+      "savory"
+    ],
+    "current_recipe_id": "rcp_galician-pulpo-potatoes",
+    "current_version_id": "rv_galician-pulpo-potatoes_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_galician-pulpo-potatoes",
+    "dish_id": "galician-pulpo-potatoes",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_galician-pulpo-potatoes_v1",
+    "recipe_id": "rcp_galician-pulpo-potatoes",
+    "dish_id": "galician-pulpo-potatoes",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Galician Pulpo a la Gallega: Octopus and Potatoes with Smoked Paprika",
+    "description": "Tender cooked octopus tentacles warmed in the potato pot and sliced over coins of boiled Yukon Gold potatoes, dusted with sweet and hot smoked paprika and flaky salt and dressed with plenty of olive oil, served with blistered shishito peppers, garlic, and parsley.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "peeled and sliced 1/2 inch thick",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 10,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tbsp",
+        "note": "for the pot, plus a pinch for the peppers",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "octopus",
+        "name": "cooked octopus",
+        "display_name": "cooked octopus tentacles whose label lists octopus and salt",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "1 tbsp peppers, the rest to dress",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "shishitos",
+        "name": "shishito peppers",
+        "display_name": "shishito peppers (standing in for padron peppers)",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "paprika-sweet",
+        "name": "smoked sweet paprika",
+        "display_name": "smoked sweet paprika (pimenton dulce)",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "paprika-hot",
+        "name": "smoked hot paprika",
+        "display_name": "smoked hot paprika (pimenton picante)",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "flaky-salt",
+        "name": "flaky salt",
+        "display_name": "flaky salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Peel the potatoes and slice them 1/2 inch thick. Thinly slice the garlic and chop the parsley.",
+        "ingredient_refs": [
+          "potatoes",
+          "garlic",
+          "parsley"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil the potatoes",
+        "body": "Put the potatoes, 10 cups water, and the salt in the covered 6-quart pot and bring to a boil over high, about 12 minutes to come to a boil. Simmer until just tender, about 10 minutes. Slip in the octopus for the last 3 minutes to heat through.",
+        "ingredient_refs": [
+          "potatoes",
+          "water",
+          "salt",
+          "octopus"
+        ],
+        "clock_minutes": 23,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Blister the peppers",
+        "body": "While the potatoes simmer (overlap stated): heat 1 tbsp oil in the 10-inch skillet over medium-high, about 1 minute. Cook the shishitos, tossing, until blistered, about 5 minutes, adding the garlic for the last minute. Season with a pinch of salt and the parsley.",
+        "ingredient_refs": [
+          "olive-oil",
+          "shishitos",
+          "garlic",
+          "salt",
+          "parsley"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Assemble",
+        "body": "Lift the potatoes onto the board or platter in an overlapping layer. Lift out the octopus, slice it into 1/2-inch coins, and scatter over the potatoes. Dust with both paprikas and the flaky salt and pour over the remaining olive oil. Serve with the peppers alongside.",
+        "ingredient_refs": [
+          "potatoes",
+          "octopus",
+          "paprika-sweet",
+          "paprika-hot",
+          "flaky-salt",
+          "olive-oil",
+          "shishitos"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "pulpo",
+        "name": "pulpo a la gallega",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "Yukon Gold potatoes",
+          "water",
+          "salt",
+          "cooked octopus",
+          "smoked sweet paprika",
+          "smoked hot paprika",
+          "flaky salt",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "peppers",
+        "name": "blistered peppers",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "shishito peppers",
+          "olive oil",
+          "garlic",
+          "parsley",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart pot with lid",
+      "10-inch skillet",
+      "slotted spoon",
+      "wooden board or platter"
+    ],
+    "methods": [
+      "boil",
+      "saute"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 28,
+    "total_time_minutes": 38,
+    "prep_minutes": 10,
+    "cook_minutes": 28,
+    "total_minutes": 38,
+    "time_clock": "Prep 10 + cook 28 = 38 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The peppers blister while the potatoes simmer (step 3 runs inside step 2, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "6-quart pot for the potatoes (the octopus warms in the same pot); 10-inch skillet over medium-high for the peppers.",
+    "doneness": "Potatoes tender but holding their slices; octopus hot through and tender to a knife; peppers blistered and soft.",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": true,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: octopus is shellfish (a mollusk)."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free: octopus, potatoes, peppers, garlic, paprika, and olive oil. The cooked octopus label lists octopus and salt only.",
+    "allergens": [
+      "shellfish"
+    ],
+    "allergen_notes": [
+      "Shellfish from the octopus (a mollusk; most shellfish-allergy guidance includes octopus).",
+      "No milk, egg, soy, wheat, sesame, finfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: octopus is shellfish (a mollusk).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "smoky",
+      "tender",
+      "savory"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'spanish' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "The octopus is sold fully cooked; it only needs warming through.",
+    "culinary_hash": "419251cad9d805c5a0e3d53e2d3475b7c1530d45f4f8a4e2d8d79c08322b6e78",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_galician-pulpo-potatoes_v1",
+    "dish_id": "galician-pulpo-potatoes",
+    "recipe_version_id": "rv_galician-pulpo-potatoes_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "galician-pulpo-potatoes.webp",
+    "card_ref": "galician-pulpo-potatoes-640.webp",
+    "master_filename": "galician-pulpo-potatoes.webp",
+    "card_filename": "galician-pulpo-potatoes-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "galician-pulpo-potatoes.webp",
+        "spec_catalog_path": "/images/meals/galician-pulpo-potatoes.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "galician-pulpo-potatoes-640.webp",
+        "spec_catalog_path": "/images/meals/galician-pulpo-potatoes-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "600ec5cb5ee5150bf81614b8ca0e55ed5e5b2259ee644b4904fb8c817493fcdc",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "600ec5cb5ee5150bf81614b8ca0e55ed5e5b2259ee644b4904fb8c817493fcdc",
+      "master_sha256": "c433d26c41e4ff02d9ec739fc8fc2c498ce6571cf529429fbd6de3ed6ee41f41",
+      "card_sha256": "e7db6981d9b360004f7909c380909d24dee488c650f57e9b9478f8f3a9faa16b"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "600ec5cb5ee5150bf81614b8ca0e55ed5e5b2259ee644b4904fb8c817493fcdc",
+      "galician-pulpo-potatoes.webp": "c433d26c41e4ff02d9ec739fc8fc2c498ce6571cf529429fbd6de3ed6ee41f41",
+      "galician-pulpo-potatoes-640.webp": "e7db6981d9b360004f7909c380909d24dee488c650f57e9b9478f8f3a9faa16b"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 28 = 38 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The peppers blister while the potatoes simmer (step 3 runs inside step 2, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "galician-pulpo-potatoes.webp 1200x900 and galician-pulpo-potatoes-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything; potatoes in a 2-quart saucepan with 3 cups water; peppers in an 8-inch skillet.",
+    "2": "Half of everything; potatoes in a 4-quart pot with 5 cups water; peppers in the 10-inch skillet.",
+    "4": "As written.",
+    "do_not_scale": [
+      "olive oil: be generous at any size; it is the sauce"
+    ]
+  },
+  "coverage_contribution": "Spain has a chorizo rice, a potato tortilla, garlic soup, and hake in salsa verde; octopus is absent from the catalog. A simple, distinctive shellfish dinner.",
+  "near_duplicate_review": "Compared with italian-grilled-calamari: tender octopus over boiled potatoes with smoked paprika, not grilled squid with tomato-caper salad and bread. Compared with portuguese-grilled-sardines-potatoes: warm octopus and paprika oil on potato coins, not grilled sardines with boiled potatoes and pepper salad. Compared with spanish-potato-tortilla: potatoes boiled and sliced under octopus, not cooked into an egg omelet.",
+  "not_duplicate_of": "Not grilled octopus (no char) and not an octopus salad (served warm).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

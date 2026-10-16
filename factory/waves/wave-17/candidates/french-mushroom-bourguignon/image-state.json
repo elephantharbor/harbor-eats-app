@@ -1,0 +1,40 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "french-mushroom-bourguignon.webp",
+    "french-mushroom-bourguignon-640.webp"
+  ],
+  "present_files": [
+    "french-mushroom-bourguignon.webp",
+    "french-mushroom-bourguignon-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "27c7a52d129cd99f59609924a1efa2c81a32967bda3ddf77ce8b3db487d5f596",
+    "french-mushroom-bourguignon.webp": "7e6c2faa5a55d97345c9605209d32236a582324db20a576f4e505ae412630cd5",
+    "french-mushroom-bourguignon-640.webp": "f27d240d611a18263404ec1972bf2270f67f3cbf857c7e9dd04f8cebd6312a9d"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "creator_self_review_before_audit",
+    "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: some pieces read as beef cubes in a vegetarian dish.",
+    "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+    "prompt_sha256": {
+      "v2": "27810be5e6443fe63d7a1fa45f174cc576be5a1655edb1b148cc4f4a441f8ed5"
+    },
+    "rejected_versions": [
+      1
+    ]
+  },
+  "package_revision": "author-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

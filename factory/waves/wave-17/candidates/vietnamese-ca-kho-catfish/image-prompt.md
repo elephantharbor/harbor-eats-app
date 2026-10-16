@@ -1,0 +1,49 @@
+# Image prompt — Vietnamese Ca Kho: Caramel-Braised Catfish with Black Pepper and Jasmine Rice
+
+Status: image pass complete. package_revision `author-r3`. asset_generated is true; files: `img_v3.jpg` (Grok Bot GenerateImage source 1280x720), `vietnamese-ca-kho-catfish.webp` (1200x900), and `vietnamese-ca-kho-catfish-640.webp` (640x480); both WebPs are 4:3 center crops of the source. The active image (img_v3.jpg) is the v3 regeneration, generated with Grok Bot GenerateImage on 2026-10-16 from the v3 prompt below. Earlier versions: v1 rejected in Cora's creator self-review before any audit, never finalized; v2 rejected by independent audit r1 gate K after it had been finalized at author-r2.
+
+## Active prompt (v3)
+
+Prompt:
+
+Editorial food photograph of Vietnamese Ca Kho: Caramel-Braised Catfish with Black Pepper and Jasmine Rice for a premium meal-planning app. Glossy mahogany pieces of caramel-braised catfish with a sticky dark glaze, coarse black pepper, red chile slices, and green scallion lengths, beside a mound of white jasmine rice and a few cucumber slices. Vessel: Wide off-white ceramic plate. Camera: Elevated three-quarter, about 35 degrees, so the glaze shine reads. Must show: Five or six catfish pieces lacquered deep mahogany; visible coarse black pepper; sliced red Thai chiles; green scallion lengths; white jasmine rice; pale green cucumber slices. Texture: Sticky lacquered glaze over soft flaking fish, fluffy rice, crisp cucumber. Sauce: Thick dark caramel glaze clinging to the fish with a little pooling. Garnish: Scallions, chiles, and black pepper only. Styling: Only the plate, chopsticks, and a linen napkin. Color from the recipe only: Deep mahogany fish, white rice, green scallions and cucumber, red chiles. Do not include: Pork, eggs, clay pot, noodles, herbs bouquet, soup, side bowls, drinks, text, logos, hands. Lighting: bright diffused daylight, soft shadows, real highlights, no harsh flash, no muddy dark, no synthetic gloss. Background: light neutral tabletop. 4:3 landscape, subject centered and crop-safe. Vietnamese ca kho caramel catfish. Not teriyaki salmon, not sweet-and-sour fish, not a fried fish. Quality reference is the Chipotle Lime Black Bean Bowl standard for light and appetite only. Not a copy of that bowl. No text, logos, watermarks, or hands. Correction for this version: the catfish is about fourteen skinless rectangular fillet pieces, each about two by two and a half inches, with no skin and no round cross-cut steaks, showing white flaky flesh under the dark lacquered glaze.
+
+image-plating-brief.md was rebuilt to match this prompt (author-r1 sections plus the v3 correction sentence).
+
+## Version history
+
+Every prompt below is word for word as used with Grok Bot GenerateImage.
+
+### v1 (rejected)
+
+Status: rejected in creator self-review, never finalized.
+
+- Reason: pieces read as glazed chicken cutlets, not flaking fish
+- Rejected source: `rejected/img_v1-selfreview-rejected.jpg` (sha256 `cec2d0ffd0e973b926032efc4c763bc9cc2f602d7a003cbd9133aec25988e8d5`)
+
+Prompt (the author-r1 prompt, unchanged; notes/prompts-author-r1.txt and /workspace/wave17-prompts.txt):
+
+Editorial food photograph of Vietnamese Ca Kho: Caramel-Braised Catfish with Black Pepper and Jasmine Rice for a premium meal-planning app. Glossy mahogany pieces of caramel-braised catfish with a sticky dark glaze, coarse black pepper, red chile slices, and green scallion lengths, beside a mound of white jasmine rice and a few cucumber slices. Vessel: Wide off-white ceramic plate. Camera: Elevated three-quarter, about 35 degrees, so the glaze shine reads. Must show: Five or six catfish pieces lacquered deep mahogany; visible coarse black pepper; sliced red Thai chiles; green scallion lengths; white jasmine rice; pale green cucumber slices. Texture: Sticky lacquered glaze over soft flaking fish, fluffy rice, crisp cucumber. Sauce: Thick dark caramel glaze clinging to the fish with a little pooling. Garnish: Scallions, chiles, and black pepper only. Styling: Only the plate, chopsticks, and a linen napkin. Color from the recipe only: Deep mahogany fish, white rice, green scallions and cucumber, red chiles. Do not include: Pork, eggs, clay pot, noodles, herbs bouquet, soup, side bowls, drinks, text, logos, hands. Lighting: bright diffused daylight, soft shadows, real highlights, no harsh flash, no muddy dark, no synthetic gloss. Background: light neutral tabletop. 4:3 landscape, subject centered and crop-safe. Vietnamese ca kho caramel catfish. Not teriyaki salmon, not sweet-and-sour fish, not a fried fish. Quality reference is the Chipotle Lime Black Bean Bowl standard for light and appetite only. Not a copy of that bowl. No text, logos, watermarks, or hands.
+
+### v2 (rejected by audit r1)
+
+Status: accepted at author-r2 and finalized (active hero for audit r1), then rejected by independent audit r1 gate K; superseded at author-r3.
+
+- Reason: audit r1 K: skin-on cross-cut steaks vs skinless fillet pieces
+- Rejected files: `vietnamese-ca-kho-catfish.webp` -> `rejected/vietnamese-ca-kho-catfish-replaced-20261016002402.webp` (sha256 `c5af59ed371a16164a587b549d0c8d12a40efd742ec7a95f74bebe42418a38ed`); `vietnamese-ca-kho-catfish-640.webp` -> `rejected/vietnamese-ca-kho-catfish-640-replaced-20261016002402.webp` (sha256 `13569bb9e85bc38d8ce785fe0b38a2ff67af1cf823c8820b55f2bf94dae27788`); `img_v2.jpg` -> `rejected/img_v2-replaced-20261016002402.jpg` (sha256 `e2b47945f550633fb44db90117eb9a689c8bfd1de92ac0b39da8075ca2c942a5`)
+- Source sha256 at generation: `e2b47945f550633fb44db90117eb9a689c8bfd1de92ac0b39da8075ca2c942a5`
+
+Prompt (recorded verbatim from notes/prompts-regen-selfreview.txt section `## vietnamese-ca-kho-catfish`; the v1 prompt plus one appended correction sentence):
+
+Editorial food photograph of Vietnamese Ca Kho: Caramel-Braised Catfish with Black Pepper and Jasmine Rice for a premium meal-planning app. Glossy mahogany pieces of caramel-braised catfish with a sticky dark glaze, coarse black pepper, red chile slices, and green scallion lengths, beside a mound of white jasmine rice and a few cucumber slices. Vessel: Wide off-white ceramic plate. Camera: Elevated three-quarter, about 35 degrees, so the glaze shine reads. Must show: Five or six catfish pieces lacquered deep mahogany; visible coarse black pepper; sliced red Thai chiles; green scallion lengths; white jasmine rice; pale green cucumber slices. Texture: Sticky lacquered glaze over soft flaking fish, fluffy rice, crisp cucumber. Sauce: Thick dark caramel glaze clinging to the fish with a little pooling. Garnish: Scallions, chiles, and black pepper only. Styling: Only the plate, chopsticks, and a linen napkin. Color from the recipe only: Deep mahogany fish, white rice, green scallions and cucumber, red chiles. Do not include: Pork, eggs, clay pot, noodles, herbs bouquet, soup, side bowls, drinks, text, logos, hands. Lighting: bright diffused daylight, soft shadows, real highlights, no harsh flash, no muddy dark, no synthetic gloss. Background: light neutral tabletop. 4:3 landscape, subject centered and crop-safe. Vietnamese ca kho caramel catfish. Not teriyaki salmon, not sweet-and-sour fish, not a fried fish. Quality reference is the Chipotle Lime Black Bean Bowl standard for light and appetite only. Not a copy of that bowl. No text, logos, watermarks, or hands. Correction for this version: the catfish pieces are thick crosswise steaks of fish with visible white flaky flesh at the cut edges and a ring of skin, clearly fish, not chicken cutlets.
+
+### v3 (accepted)
+
+Status: accepted; this is the active hero.
+
+- Source: `img_v3.jpg` (sha256 `f1e7f5c0200b60555d04015c8c3e7a70b84fd279871d2e2e1753f7394f94a8c0`)
+- Correction appended to v1: the catfish is about fourteen skinless rectangular fillet pieces, each about two by two and a half inches, with no skin and no round cross-cut steaks, showing white flaky flesh under the dark lacquered glaze.
+
+Prompt (recorded verbatim from notes/prompts-regen-selfreview.txt section `## vietnamese-ca-kho-catfish (v3)`; the v1 prompt plus one appended correction sentence):
+
+Editorial food photograph of Vietnamese Ca Kho: Caramel-Braised Catfish with Black Pepper and Jasmine Rice for a premium meal-planning app. Glossy mahogany pieces of caramel-braised catfish with a sticky dark glaze, coarse black pepper, red chile slices, and green scallion lengths, beside a mound of white jasmine rice and a few cucumber slices. Vessel: Wide off-white ceramic plate. Camera: Elevated three-quarter, about 35 degrees, so the glaze shine reads. Must show: Five or six catfish pieces lacquered deep mahogany; visible coarse black pepper; sliced red Thai chiles; green scallion lengths; white jasmine rice; pale green cucumber slices. Texture: Sticky lacquered glaze over soft flaking fish, fluffy rice, crisp cucumber. Sauce: Thick dark caramel glaze clinging to the fish with a little pooling. Garnish: Scallions, chiles, and black pepper only. Styling: Only the plate, chopsticks, and a linen napkin. Color from the recipe only: Deep mahogany fish, white rice, green scallions and cucumber, red chiles. Do not include: Pork, eggs, clay pot, noodles, herbs bouquet, soup, side bowls, drinks, text, logos, hands. Lighting: bright diffused daylight, soft shadows, real highlights, no harsh flash, no muddy dark, no synthetic gloss. Background: light neutral tabletop. 4:3 landscape, subject centered and crop-safe. Vietnamese ca kho caramel catfish. Not teriyaki salmon, not sweet-and-sour fish, not a fried fish. Quality reference is the Chipotle Lime Black Bean Bowl standard for light and appetite only. Not a copy of that bowl. No text, logos, watermarks, or hands. Correction for this version: the catfish is about fourteen skinless rectangular fillet pieces, each about two by two and a half inches, with no skin and no round cross-cut steaks, showing white flaky flesh under the dark lacquered glaze.

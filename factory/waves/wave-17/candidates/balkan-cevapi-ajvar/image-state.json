@@ -1,0 +1,40 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "balkan-cevapi-ajvar.webp",
+    "balkan-cevapi-ajvar-640.webp"
+  ],
+  "present_files": [
+    "balkan-cevapi-ajvar.webp",
+    "balkan-cevapi-ajvar-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "d111edae123a9cc9b73908fed2cbbf8d8d9e78f041e7254722bc7880fb810745",
+    "balkan-cevapi-ajvar.webp": "1fa1de83016cd1f037a0d7cd03a822d02dd257e18d001dd4d7677b26c5624305",
+    "balkan-cevapi-ajvar-640.webp": "e79a979d5a8ba89cdab5f8acdd2dac29c2fe8731afd332479924073647203fb3"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "creator_self_review_before_audit",
+    "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: grill marks on the sausages (explicitly excluded).",
+    "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+    "prompt_sha256": {
+      "v2": "0caa9d61c8f7df71f42d3f83b40f0cd6bc37f11b520516afecf580f78774f3a3"
+    },
+    "rejected_versions": [
+      1
+    ]
+  },
+  "package_revision": "author-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

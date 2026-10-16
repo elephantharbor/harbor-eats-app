@@ -1,0 +1,666 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "san-francisco-cioppino",
+    "slug": "san-francisco-cioppino",
+    "title": "San Francisco Cioppino with Clams, Mussels, Shrimp, and Cod",
+    "description": "A tomato and white wine broth built on onion, fennel, garlic, red pepper flakes, and tomato paste with crushed tomatoes, clam juice, bay, and oregano, in which littleneck clams, mussels, shrimp, and chunks of cod are cooked just until done, finished with parsley and served with toasted sourdough.",
+    "cuisine": "californian",
+    "meal_format": "seafood-stew-with-bread",
+    "primary_ingredient": "mixed seafood",
+    "vocabulary_tag_ids": [
+      "californian",
+      "shrimp",
+      "cod",
+      "stews",
+      "rich"
+    ],
+    "current_recipe_id": "rcp_san-francisco-cioppino",
+    "current_version_id": "rv_san-francisco-cioppino_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_san-francisco-cioppino",
+    "dish_id": "san-francisco-cioppino",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_san-francisco-cioppino_v1",
+    "recipe_id": "rcp_san-francisco-cioppino",
+    "dish_id": "san-francisco-cioppino",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "San Francisco Cioppino with Clams, Mussels, Shrimp, and Cod",
+    "description": "A tomato and white wine broth built on onion, fennel, garlic, red pepper flakes, and tomato paste with crushed tomatoes, clam juice, bay, and oregano, in which littleneck clams, mussels, shrimp, and chunks of cod are cooked just until done, finished with parsley and served with toasted sourdough.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "3 tbsp base, 1 tbsp bread",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "fennel",
+        "name": "fennel bulb",
+        "display_name": "fennel bulb",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cored and thinly sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 5,
+        "unit": "clove",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "pepper-flakes",
+        "name": "red pepper flakes",
+        "display_name": "red pepper flakes",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tomato-paste",
+        "name": "tomato paste",
+        "display_name": "tomato paste",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "wine",
+        "name": "dry white wine",
+        "display_name": "dry white wine",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "crushed tomatoes",
+        "display_name": "crushed tomatoes (one 28-oz can)",
+        "quantity": 28,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "clam-juice",
+        "name": "clam juice",
+        "display_name": "bottled clam juice (one 8-oz bottle)",
+        "quantity": 8,
+        "unit": "fl oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "bay",
+        "name": "bay leaves",
+        "display_name": "bay leaves",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oregano",
+        "name": "dried oregano",
+        "display_name": "dried oregano",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "clams",
+        "name": "littleneck clams",
+        "display_name": "littleneck clams (about 12)",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "scrubbed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mussels",
+        "name": "mussels",
+        "display_name": "mussels",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "scrubbed and debearded",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "shrimp",
+        "name": "large shrimp",
+        "display_name": "large shrimp, peeled and deveined",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cod",
+        "name": "cod fillet",
+        "display_name": "skinless cod fillet",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": "cut into 2-inch chunks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bread",
+        "name": "sourdough bread",
+        "display_name": "sourdough whose label lists wheat flour, water, salt, and culture",
+        "quantity": 8,
+        "unit": "slice",
+        "note": "cut 3/4 inch thick",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Scrub the clams and mussels, debearding the mussels and discarding any with cracked shells or that stay open when tapped. Chop the onion, slice the fennel and garlic, cut the cod, and chop the parsley.",
+        "ingredient_refs": [
+          "clams",
+          "mussels",
+          "onion",
+          "fennel",
+          "garlic",
+          "cod",
+          "parsley"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Build the base",
+        "body": "Heat 3 tbsp oil in the 6-quart Dutch oven over medium, about 1 minute. Cook the onion and fennel until soft, about 7 minutes, then the garlic, pepper flakes, and tomato paste for 2 minutes. Add the wine and simmer 2 minutes.",
+        "ingredient_refs": [
+          "olive-oil",
+          "onion",
+          "fennel",
+          "garlic",
+          "pepper-flakes",
+          "tomato-paste",
+          "wine"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Simmer the broth",
+        "body": "Add the crushed tomatoes, clam juice, 2 cups water, bay leaves, oregano, and salt. Bring to a simmer, about 5 minutes to come to a simmer, then simmer uncovered 15 minutes.",
+        "ingredient_refs": [
+          "tomatoes",
+          "clam-juice",
+          "water",
+          "bay",
+          "oregano",
+          "salt"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Toast the bread",
+        "body": "While the broth simmers (overlap stated): brush the bread with 1 tbsp oil and toast it in the 12-inch skillet over medium, 4 slices at a time, about 2 minutes per side.",
+        "ingredient_refs": [
+          "bread",
+          "olive-oil"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Cook the seafood",
+        "body": "Add the clams, cover, and cook 4 minutes. Add the mussels and cod, cover, and cook 3 minutes. Add the shrimp, cover, and cook until the shellfish open, the shrimp are pink, and the cod reads 145 F, about 3 minutes. Discard any shells that stay shut.",
+        "ingredient_refs": [
+          "clams",
+          "mussels",
+          "cod",
+          "shrimp"
+        ],
+        "clock_minutes": 11,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Remove the bay leaves, scatter with parsley, and ladle into wide bowls with the toast and a bowl for shells.",
+        "ingredient_refs": [
+          "bay",
+          "parsley",
+          "bread"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "broth",
+        "name": "cioppino base",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "olive oil",
+          "onion",
+          "fennel",
+          "garlic",
+          "red pepper flakes",
+          "tomato paste",
+          "white wine",
+          "crushed tomatoes",
+          "clam juice",
+          "water",
+          "bay leaves",
+          "dried oregano",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "seafood",
+        "name": "seafood",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "littleneck clams",
+          "mussels",
+          "shrimp",
+          "cod",
+          "parsley"
+        ]
+      },
+      {
+        "component_id": "bread",
+        "name": "toasted sourdough",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "sourdough bread",
+          "olive oil"
+        ]
+      }
+    ],
+    "equipment": [
+      "6-quart Dutch oven with lid",
+      "12-inch skillet",
+      "colander",
+      "ladle",
+      "large bowl for shells"
+    ],
+    "methods": [
+      "simmer",
+      "steam",
+      "toast"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 45,
+    "total_time_minutes": 60,
+    "prep_minutes": 15,
+    "cook_minutes": 45,
+    "total_minutes": 60,
+    "time_clock": "Prep 15 + cook 45 = 60 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The bread toasts while the broth simmers (step 4 runs inside step 3, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "6-quart Dutch oven over medium for the base, then a steady simmer and a covered steam for the shellfish; 12-inch skillet over medium for the bread.",
+    "doneness": "Clams and mussels opened (discard any that stay shut); shrimp pink and just opaque; cod flaking, 145 F.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": true,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: clams, mussels, and shrimp are shellfish."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and fish (the cod; shellfish is disclosed separately): seafood, vegetables, tomatoes, wine, clam juice, sourdough with no milk, and olive oil.",
+    "allergens": [
+      "shellfish",
+      "finfish",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Shellfish from the clams, mussels, shrimp, and clam juice.",
+      "Finfish from the cod.",
+      "Wheat from the sourdough.",
+      "No milk, egg, soy, sesame, or nuts.",
+      "Contains white wine; much of the alcohol cooks off in the simmer but not all."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: clams, mussels, and shrimp are shellfish.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "californian",
+      "shrimp",
+      "cod",
+      "stews",
+      "rich"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'californian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Scrub clams and mussels and discard any with cracked shells or that stay open when tapped before cooking, and any that stay shut after cooking. Cook the cod to 145 F.",
+    "culinary_hash": "7fa9eba01890687a9a176f722ac6d0f93bd3ed35bc8f68430bb158eaa8f47b6b",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_san-francisco-cioppino_v1",
+    "dish_id": "san-francisco-cioppino",
+    "recipe_version_id": "rv_san-francisco-cioppino_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "san-francisco-cioppino.webp",
+    "card_ref": "san-francisco-cioppino-640.webp",
+    "master_filename": "san-francisco-cioppino.webp",
+    "card_filename": "san-francisco-cioppino-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "san-francisco-cioppino.webp",
+        "spec_catalog_path": "/images/meals/san-francisco-cioppino.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "san-francisco-cioppino-640.webp",
+        "spec_catalog_path": "/images/meals/san-francisco-cioppino-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "73cf41111f3cbd67bc6ee8a4f5016c8f61d819c8ab682fef610385f0b17e2aa8",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "73cf41111f3cbd67bc6ee8a4f5016c8f61d819c8ab682fef610385f0b17e2aa8",
+      "master_sha256": "ab7bdac01d83a96cdf7d7a23b016843cc28a5ae1575f27cf55f2343ba69a847b",
+      "card_sha256": "2df5cdb257e39dae586112c2dbf821bfa5ee79b0ea209113aa34761e79baba5b"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "73cf41111f3cbd67bc6ee8a4f5016c8f61d819c8ab682fef610385f0b17e2aa8",
+      "san-francisco-cioppino.webp": "ab7bdac01d83a96cdf7d7a23b016843cc28a5ae1575f27cf55f2343ba69a847b",
+      "san-francisco-cioppino-640.webp": "2df5cdb257e39dae586112c2dbf821bfa5ee79b0ea209113aa34761e79baba5b"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 45 = 60 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The bread toasts while the broth simmers (step 4 runs inside step 3, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "san-francisco-cioppino.webp 1200x900 and san-francisco-cioppino-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 3-quart saucepan; toast 1 slice-pair in the skillet.",
+    "2": "Half of everything in a 4-quart pot.",
+    "4": "As written.",
+    "do_not_scale": [
+      "add clams first, then mussels and fish, then shrimp, at any size"
+    ]
+  },
+  "coverage_contribution": "Mussels, clams, and shrimp each appear alone in the catalog; there is no mixed-seafood stew and no Californian seafood dinner. A shellfish feast that is still a one-pot meal.",
+  "near_duplicate_review": "Compared with garlic-tomato-mussels: four kinds of seafood in a fennel-tomato-wine stew, not mussels alone in garlic tomato broth. Compared with linguine-with-clams: a brothy stew with bread, not clams with pasta. Compared with brazilian-fish-moqueca: tomato and white wine with fennel, not coconut milk, peppers, and dende oil.",
+  "not_duplicate_of": "Not bouillabaisse (no saffron, rouille, or fish stock) and not zuppa di pesce over pasta.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}

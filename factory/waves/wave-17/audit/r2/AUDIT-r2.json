@@ -1,0 +1,980 @@
+{
+  "wave": "wave-17",
+  "round": "r2",
+  "auditor": "independent",
+  "date": "2026-10-16",
+  "scope": "full A–O re-audit of the 8 author-r3 packages; byte-identity check of the 42 r1-PASS packages",
+  "counts": {
+    "r2_audited": 8,
+    "r2_pass": 6,
+    "r2_fail": 2,
+    "batch_pass": 48,
+    "batch_fail": 2,
+    "image_regenerations_required": 2
+  },
+  "unchanged_42_check": {
+    "result": "PASS: all 42 r1-PASS packages are unchanged",
+    "method": "sha256 of every file in each of the 42 package dirs compared with my r1 pre-audit copies (/tmp/w17/run, copied 2026-10-16 00:03 CT before the r1 audit). All content files are byte-identical. The only byte differences are FREEZE_INTEGRITY.json and STRUCTURAL_PREFLIGHT.json, because my r1 tool runs on the copies overwrote those two files there; their only difference is the embedded directory path (copy vs real path). After normalizing that path, all 84 are byte-identical. As a cross-check, all files in the 42 also match the author manifest notes/pre-r3-file-hashes.sha256 (0 mismatches). STRUCTURAL_PREFLIGHT.json in the 42 has a 00:25 CT mtime (the author-r3 structural re-run) but identical bytes.",
+    "packages": 42,
+    "files_compared": 467,
+    "content_mismatches": 0
+  },
+  "duplicate_check": {
+    "rerun": false,
+    "reason": "no title or slug changed in any of the 8 revised packages (titles and slugs are identical to r1; the 42 are byte-identical); the r1 result (PASS, no duplicates) stands"
+  },
+  "batch_certified": false,
+  "certification_record": null,
+  "candidates": {
+    "argentine-beef-empanadas": {
+      "title": "Argentine Baked Beef Empanadas with Olives and Boiled Egg",
+      "verdict": "PASS",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": false,
+      "effort_level": "moderate",
+      "ingredient_complexity": "simple",
+      "hero": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug, dish_id and recipe ids are consistent; version 1, immutable, draft, recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 5, floors none), ingredient_complexity `simple` (score 0, 11 counted ingredients; salt, water and oils excluded per EXCLUDE_NAMES). The sums, floors and bands (≤12/13-16/17+) recompute, and the enums match v1. My own run of structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "Re-checked by arithmetic. The filling is now 3/4 lb beef, 1 onion, 3/4 red pepper, 2 chopped boiled eggs, 1/4 cup olives and 2 scallions: about 560 g, roughly 3 cups cooked. Step 5 now divides it evenly among 16 discs at about 3 tbsp (a scant 1/4 cup) each = 48 tbsp = 3 cups. Made and used reconcile. Spices and salt are scaled by 3/4. All 15 ingredients are referenced by steps; the third egg is still the wash. The r1 defect is fixed."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4 servings; scaling lines for 1, 2 and 4 present, with do-not-scale items where relevant."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues are stated; every component is completed; there is a serve step."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 34 + cook 55 = 89 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The eggs boil while the filling cooks (step 2 runs inside step 3, overlap stated). Prep 34 + cook 55 = 89, unchanged; the smaller filling shortens no step materially. Preheat and egg boil are on the clock."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard label contracts where eligibility or allergens depend on them."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat True, poultry False, finfish False, shellfish False, dairy False, vegetarian False, plant-based False, nut_policy `none`. Labels ['dairy_free'], all unconditional. HH001 False: Not HH001: beef is meat.\n\n**Allergens:** ['meat', 'wheat', 'egg']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid; nothing appears only in the notes. Notes: ['Meat from the beef.', 'Wheat from the pastry discs.', 'Egg from the filling and the egg wash.', 'No milk, soy, sesame, fish, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['savory', 'crispy', 'tender', 'rich'] are supported by the method and ingredients."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Title and slug are unchanged since r1 (dish identity unchanged), so the r1 duplicate check (PASS against the other 49 and all 200 live meals) stands; I did not re-run it. Package review: Compared with argentine-chimichurri-steak-potatoes: a ground-beef pastry baked in hand pies, not grilled steak with potatoes. Compared with cuban-picadillo-rice: spiced beef sealed in pastry with egg and olives, not saucy beef over rice. Compared wit"
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and the cooking object agree with the steps. D-03 classification is plausible for the method and sourcing (not cuisine-driven; sidecar cultural_bias reviewed)."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed the hero at full size with Read, against image-plating-brief.md and the recipe. Hero unchanged (img_v1, hashes as r1): five baked repulgue empanadas, one open showing beef, egg, olive/scallion. Still matches the revised filling (same components, smaller quantity)."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480; source img_v1.jpg 1280x720. SHA-256 match file_hashes/asset_sha256 and image-gen-map. Master re-derived as a LANCZOS 1.25x upscale of the centre 960x720 source crop (r2 re-check: mean abs diff 1.6-1.9, card 2.2-2.6), disclosed in generation.method_detail; same pipeline as Waves 14-16, no objectionable softness at master or card size. No text, logos, hands or artifacts. regeneration_count 0."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing, well lit, abundant, and reads at card size; on par with the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both PASS."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance original_ai_assisted; image ai_illustration via Grok Bot GenerateImage, with the 1280x720 source disclosed; no stock or web photo; no metadata denies an asset that is present."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r3` is consistent across top level, recipe_version, image, sidecar and docs; version 1; classification_history present; certification null, kitchen_tested false. revision_history records the author-r2 → author-r3 entry (trigger, scope, before/after culinary_hash, changes), and it matches the field-level diff I made against my r1 pre-audit copy. My own run of FREEZE_INTEGRITY on a scratch copy: PASS (26/26). culinary_hash recomputes. The superseded/rejected records for audit-rejected heroes are complete, and the rejected files are byte-identical to the r1 heroes."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "C: the 1/2-serving lines say 'a quarter/half of the filling', which still works after the trim. Chile flakes 3/8 rounded to 1/4 tsp and 3/4 of a bell pepper are fine."
+      ]
+    },
+    "bhutanese-ema-datshi": {
+      "title": "Bhutanese Ema Datshi: Green Chiles in Farmer's Cheese Sauce with Red Rice",
+      "verdict": "PASS",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": false,
+      "effort_level": "moderate",
+      "ingredient_complexity": "simple",
+      "hero": "img_v2.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug, dish_id and recipe ids are consistent; version 1, immutable, draft, recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 3, floors none), ingredient_complexity `simple` (score 1, 9 counted ingredients; salt, water and oils excluded per EXCLUDE_NAMES). The sums, floors and bands (≤12/13-16/17+) recompute, and the enums match v1. My own run of structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "8 Anaheims and 2 jalapeños, halved with stems on (about 20 halves), simmer covered in 1 1/2 cups water in the 3-quart saucepan, partly stacked and steam-simmered. Plausible for a covered simmer. All 12 ingredients are used; the salt split is unchanged."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4 servings; scaling lines for 1, 2 and 4 present, with do-not-scale items where relevant."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues are stated; every component is completed; there is a serve step."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 14 + cook 36 = 50 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The ema datshi simmers while the rice cooks and rests (step 3 runs inside step 2, overlap stated). Step 3 overlap is 12 + 4 + 3 = 19 of cooking, recorded as 21, inside the 34-minute rice step (4 + 20 + 10 rest). Total 14 + 36 = 50, unchanged. A 12-minute covered simmer for halved Anaheims is realistic."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard label contracts where eligibility or allergens depend on them."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat False, poultry False, finfish False, shellfish False, dairy True, vegetarian True, plant-based False, nut_policy `none`. Labels ['vegetarian'], all unconditional. HH001 False: Not HH001: farmer's cheese, feta, and butter are dairy.\n\n**Allergens:** ['milk']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid; nothing appears only in the notes. Notes: [\"Milk from the farmer's cheese, feta, and butter.\", 'No egg, soy, wheat, sesame, fish, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['spicy', 'creamy', 'rich'] are supported by the method and ingredients."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Title and slug are unchanged since r1 (dish identity unchanged), so the r1 duplicate check (PASS against the other 49 and all 200 live meals) stands; I did not re-run it. Package review: Compared with chiles-rellenos-ranchero: chile strips melted into a cheese sauce over rice, not whole stuffed battered chiles. Compared with saag-paneer: green chiles in a loose melted farmer's cheese sauce, not spinach with cubes of paneer. Compared "
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and the cooking object agree with the steps. D-03 classification is plausible for the method and sourcing (not cuisine-driven; sidecar cultural_bias reviewed)."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed the hero at full size with Read, against image-plating-brief.md and the recipe. Hero unchanged (img_v2): long halved Anaheim/jalapeño chiles with a few stems, in a loose curdy cheese sauce with tomato, beside red rice. The revised recipe (halved lengthwise, stems left on) now matches the hero, which fixes the r1 defect."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480; source img_v2.jpg 1280x720. SHA-256 match file_hashes/asset_sha256 and image-gen-map. Master re-derived as a LANCZOS 1.25x upscale of the centre 960x720 source crop (r2 re-check: mean abs diff 1.6-1.9, card 2.2-2.6), disclosed in generation.method_detail; same pipeline as Waves 14-16, no objectionable softness at master or card size. No text, logos, hands or artifacts. regeneration_count 1; superseded versions are recorded (self-review rejects as never_finalized; the audit-r1 reject with rejected_by, its moved files and sha256), and none is the active hero."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing, well lit, abundant, and reads at card size; on par with the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both PASS."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance original_ai_assisted; image ai_illustration via Grok Bot GenerateImage, with the 1280x720 source disclosed; no stock or web photo; no metadata denies an asset that is present."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r3` is consistent across top level, recipe_version, image, sidecar and docs; version 1; classification_history present; certification null, kitchen_tested false. revision_history records the author-r2 → author-r3 entry (trigger, scope, before/after culinary_hash, changes), and it matches the field-level diff I made against my r1 pre-audit copy. My own run of FREEZE_INTEGRITY on a scratch copy: PASS (26/26). culinary_hash recomputes. The superseded/rejected records for audit-rejected heroes are complete, and the rejected files are byte-identical to the r1 heroes."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "I: near_duplicate_review still says 'chile strips melted into a cheese sauce' (stale wording, not culinary-hashed); the distinctness conclusion is unaffected. Update it on the next metadata touch.",
+        "Brief: the author-r1 sections of image-plating-brief.md still say strips. The appended v2 correction controls the image, and the recipe now matches it. A documentation note only."
+      ]
+    },
+    "polish-potato-cheese-pierogi": {
+      "title": "Polish Potato-and-Cheese Pierogi with Golden Onions and Sour Cream",
+      "verdict": "PASS",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": false,
+      "effort_level": "involved",
+      "ingredient_complexity": "simple",
+      "hero": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug, dish_id and recipe ids are consistent; version 1, immutable, draft, recommendation_eligible false. D-03: effort_level `involved` (sidecar score 8, floors ['technique_2_floor_involved (already met)']), ingredient_complexity `simple` (score 0, 8 counted ingredients; salt, water and oils excluded per EXCLUDE_NAMES). The sums, floors and bands (≤12/13-16/17+) recompute, and the enums match v1. My own run of structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "Re-checked by arithmetic. Filling: 3/4 lb russets mashed (~1 1/2 cups) + 4 oz farmer's cheese (~1/2 cup) + one-third of 1 1/2 onions cooked in butter (~1/4 cup) = ~2 1/4 cups, as step 4 states. Use: 36 × a level tablespoon = 36 tbsp = 2 1/4 cups. Reconciled. Dough: 3 cups flour rolled to 1/8 inch, 3-inch rounds (~7 sq in × 1/8 in ≈ 15 ml each) gives about 36 with one reroll, which is plausible. Topping keeps 1 onion's worth (two-thirds of the batch) in 3 tbsp butter. Salt split notes match (1 + 1 + 1/4 = 2 1/4 tsp). The r1 defect is fixed."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4 servings; scaling lines for 1, 2 and 4 present, with do-not-scale items where relevant."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues are stated; every component is completed; there is a serve step."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 52 + cook 38 = 90 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The dough rests while the potatoes and onions cook (steps 2-4, overlap stated); the pierogi water heats while you fill (step 6 runs inside step 5, overlap stated). Prep 52 + cook 38 = 90, unchanged. 3/4 lb potatoes cook in the same 6 cups of water. The step 3 onion overlap is unchanged. Rolling 1/8 inch is faster than 1/16 inch, so the clock is conservative."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard label contracts where eligibility or allergens depend on them."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat False, poultry False, finfish False, shellfish False, dairy True, vegetarian True, plant-based False, nut_policy `none`. Labels ['vegetarian'], all unconditional. HH001 False: Not HH001: farmer's cheese, butter, and sour cream are dairy.\n\n**Allergens:** ['wheat', 'egg', 'milk']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid; nothing appears only in the notes. Notes: ['Wheat from the flour.', 'Egg from the dough.', \"Milk from the farmer's cheese, butter, and sour cream.\", 'No soy, sesame, fish, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['rich', 'savory', 'tender'] are supported by the method and ingredients."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Title and slug are unchanged since r1 (dish identity unchanged), so the r1 duplicate check (PASS against the other 49 and all 200 live meals) stands; I did not re-run it. Package review: Compared with pan-fried-pork-dumplings: boiled soft dough with a potato-cheese filling and onions, not pan-seared pork wrappers. Compared with kasespatzle-caramelized-onions: filled dumplings, not cheese-tossed spaetzle (shared onion topping only). C"
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and the cooking object agree with the steps. D-03 classification is plausible for the method and sourcing (not cuisine-driven; sidecar cultural_bias reviewed)."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed the hero at full size with Read, against image-plating-brief.md and the recipe. Hero unchanged (img_v1): boiled pierogi with browned-onion topping, chives, sour cream. Matches the revised recipe (topping onions kept at 1 onion)."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480; source img_v1.jpg 1280x720. SHA-256 match file_hashes/asset_sha256 and image-gen-map. Master re-derived as a LANCZOS 1.25x upscale of the centre 960x720 source crop (r2 re-check: mean abs diff 1.6-1.9, card 2.2-2.6), disclosed in generation.method_detail; same pipeline as Waves 14-16, no objectionable softness at master or card size. No text, logos, hands or artifacts. regeneration_count 0."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing, well lit, abundant, and reads at card size; on par with the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both PASS."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance original_ai_assisted; image ai_illustration via Grok Bot GenerateImage, with the 1280x720 source disclosed; no stock or web photo; no metadata denies an asset that is present."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r3` is consistent across top level, recipe_version, image, sidecar and docs; version 1; classification_history present; certification null, kitchen_tested false. revision_history records the author-r2 → author-r3 entry (trigger, scope, before/after culinary_hash, changes), and it matches the field-level diff I made against my r1 pre-audit copy. My own run of FREEZE_INTEGRITY on a scratch copy: PASS (26/26). culinary_hash recomputes. The superseded/rejected records for audit-rejected heroes are complete, and the rejected files are byte-identical to the r1 heroes."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "E: the clock is unchanged although the filling is smaller and rolling is thicker. Conservative, not a defect."
+      ]
+    },
+    "salvadoran-bean-cheese-pupusas": {
+      "title": "Salvadoran Bean-and-Cheese Pupusas with Curtido and Salsa Roja",
+      "verdict": "FAIL",
+      "certified": false,
+      "failed_gates": [
+        "K"
+      ],
+      "hh001_eligible": false,
+      "effort_level": "involved",
+      "ingredient_complexity": "simple",
+      "hero": "img_v4.jpg",
+      "regenerate_image": true,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug, dish_id and recipe ids are consistent; version 1, immutable, draft, recommendation_eligible false. D-03: effort_level `involved` (sidecar score 7, floors none), ingredient_complexity `simple` (score 0, 11 counted ingredients; salt, water and oils excluded per EXCLUDE_NAMES). The sums, floors and bands (≤12/13-16/17+) recompute, and the enums match v1. My own run of structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "Re-checked by arithmetic. Filling: 1 cup refried small red beans + 4 oz shredded low-moisture mozzarella (~1 cup loose, packs down) = about 1 1/2 cups, as step 3 states. Use: 8 × 3 tbsp = 24 tbsp = 1 1/2 cups. Reconciled. The bean is now named on the ingredient line, the description and the component. The r1 B defect is fixed."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4 servings; scaling lines for 1, 2 and 4 present, with do-not-scale items where relevant."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues are stated; every component is completed; there is a serve step."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 37 + cook 33 = 70 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The curtido stands while everything else is made (step 1, about 45 minutes, stated). Prep 37 + cook 33 = 70, unchanged (yield and batches unchanged)."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard label contracts where eligibility or allergens depend on them."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat False, poultry False, finfish False, shellfish False, dairy True, vegetarian True, plant-based False, nut_policy `none`. Labels ['vegetarian'], all unconditional. HH001 False: Not HH001: mozzarella is dairy.\n\n**Allergens:** ['milk']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid; nothing appears only in the notes. Notes: ['Milk from the mozzarella.', 'Masa harina: the label lists corn treated with lime, so no wheat.', 'No egg, soy, wheat, sesame, fish, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['tangy', 'savory', 'crunchy'] are supported by the method and ingredients."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Title and slug are unchanged since r1 (dish identity unchanged), so the r1 duplicate check (PASS against the other 49 and all 200 live meals) stands; I did not re-run it. Package review: Compared with venezuelan-black-bean-plantain-arepas: thin stuffed masa harina rounds with curtido, not split cornmeal arepas filled after cooking. Compared with black-bean-quesadillas: the beans and cheese are sealed inside a thick masa dough, not fo"
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and the cooking object agree with the steps. D-03 classification is plausible for the method and sourcing (not cuisine-driven; sidecar cultural_bias reviewed)."
+        },
+        "K": {
+          "verdict": "FAIL",
+          "evidence": "Viewed v4 at full size and in a 1.5x crop of the cut pupusa. The r1 curtido defect is fixed: no creamy coating, loose shreds of cabbage, carrot and onion with jalapeño rings. The filling is not fixed. It is a glossy, dark red-brown, visibly lumpy mass with rounded chunks and saucy streaks, about 1/2 inch thick, and it reads like chili con carne or a braised-meat/chicharrón filling more than beans. The recipe now explicitly says 'vegetarian refried small red beans, puréed smooth', so the image also contradicts the stated texture. A vegetarian meal whose hero filling reads as meat is the same K defect as v1-v3 (four images now).",
+          "fix": "Regenerate (v5). Show the cut face with a thin, smooth, matte, uniform layer of refried red-bean purée (medium brown, like a spread, with no lumps, chunks or sauce sheen), cheese clearly dominant and stretching, and the masa wall visible around it. Keep the v4 curtido, salsa roja and griddle spotting. If the generator keeps producing chunks, change the plating so only a small, clean cut edge shows (cheese pull foreground, thin bean line) rather than an open wedge. Re-finalize, re-freeze, re-audit K/L."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480; source img_v4.jpg 1280x720. SHA-256 match file_hashes/asset_sha256 and image-gen-map. Master re-derived as a LANCZOS 1.25x upscale of the centre 960x720 source crop (r2 re-check: mean abs diff 1.6-1.9, card 2.2-2.6), disclosed in generation.method_detail; same pipeline as Waves 14-16, no objectionable softness at master or card size. No text, logos, hands or artifacts. regeneration_count 3; superseded versions are recorded (self-review rejects as never_finalized; the audit-r1 reject with rejected_by, its moved files and sha256), and none is the active hero."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing, well lit, abundant, and reads at card size; on par with the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both PASS."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance original_ai_assisted; image ai_illustration via Grok Bot GenerateImage, with the 1280x720 source disclosed; no stock or web photo; no metadata denies an asset that is present."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r3` is consistent across top level, recipe_version, image, sidecar and docs; version 1; classification_history present; certification null, kitchen_tested false. revision_history records the author-r2 → author-r3 entry (trigger, scope, before/after culinary_hash, changes), and it matches the field-level diff I made against my r1 pre-audit copy. My own run of FREEZE_INTEGRITY on a scratch copy: PASS (26/26). culinary_hash recomputes. The superseded/rejected records for audit-rejected heroes are complete, and the rejected files are byte-identical to the r1 heroes."
+        }
+      },
+      "fixes": [
+        "[K] Regenerate (v5). Show the cut face with a thin, smooth, matte, uniform layer of refried red-bean purée (medium brown, like a spread, with no lumps, chunks or sauce sheen), cheese clearly dominant and stretching, and the masa wall visible around it. Keep the v4 curtido, salsa roja and griddle spotting. If the generator keeps producing chunks, change the plating so only a small, clean cut edge shows (cheese pull foreground, thin bean line) rather than an open wedge. Re-finalize, re-freeze, re-audit K/L."
+      ],
+      "notes": [
+        "B, F and N pass. The refried small red bean contract (small red beans, water, oil, salt, no lard) is plausible for Salvadoran-style canned frijoles. Only about half a 16-oz can is used; the leftover is a shopping note, not a defect.",
+        "Curtido now reads as a plain pickled slaw, not creamy (r1 sub-defect fixed)."
+      ]
+    },
+    "swedish-pytt-i-panna": {
+      "title": "Swedish Pytt i Panna Ham and Potato Hash with Pan-Fried Eggs and Pickled Beets",
+      "verdict": "PASS",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": false,
+      "effort_level": "moderate",
+      "ingredient_complexity": "simple",
+      "hero": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug, dish_id and recipe ids are consistent; version 1, immutable, draft, recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 3, floors none), ingredient_complexity `simple` (score 0, 8 counted ingredients; salt, water and oils excluded per EXCLUDE_NAMES). The sums, floors and bands (≤12/13-16/17+) recompute, and the enums match v1. My own run of structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "Re-checked by arithmetic. Step 2 now browns the 2 lb of 1/2-inch dice in 2 batches: each ~1 lb (~50 sq in footprint) lies in one layer on the ~71-78 sq in floor of the 12-inch skillet. That satisfies the one-layer rule, and the do-not-scale note now says the same. Oil 1 + 1 tbsp = 2 tbsp listed; butter 1 (batch 1) + 1 (onion) + 1 (eggs) = 3 tbsp listed, matching the splits. The 1- and 2-serving lines (one batch) also fit. The r1 defect is fixed."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4 servings; scaling lines for 1, 2 and 4 present, with do-not-scale items where relevant."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues are stated; every component is completed; there is a serve step."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 15 + cook 47 = 62 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The eggs are pan-fried while the hash finishes browning (step 5 runs inside step 4, overlap stated). Step 2 is 2 min heat + 7 covered + 8 uncovered (batch 1) + ~15 (batch 2) = 32; step clocks sum to 15 + 47 = 62. The egg overlap (5) still sits inside step 4 (7). Realistic."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard label contracts where eligibility or allergens depend on them."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat True, poultry False, finfish False, shellfish False, dairy True, vegetarian False, plant-based False, nut_policy `none`. Labels [], all unconditional. HH001 False: Not HH001: ham and kielbasa are meat; butter is dairy.\n\n**Allergens:** ['meat', 'milk', 'egg']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid; nothing appears only in the notes. Notes: ['Meat from the ham and kielbasa.', 'Milk from the butter.', 'Egg from the pan-fried eggs.', 'No soy, wheat, sesame, fish, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['scandinavian', 'crispy', 'savory', 'rich'] are supported by the method and ingredients."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Title and slug are unchanged since r1 (dish identity unchanged), so the r1 duplicate check (PASS against the other 49 and all 200 live meals) stands; I did not re-run it. Package review: Compared with swedish-meatballs-lingonberry: a diced potato and ham hash with eggs, not meatballs in cream gravy. Compared with swiss-rosti-smoked-trout: diced browned potatoes with ham and sausage, not a shredded potato cake with fish. Compared with"
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and the cooking object agree with the steps. D-03 classification is plausible for the method and sourcing (not cuisine-driven; sidecar cultural_bias reviewed)."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed the hero at full size with Read, against image-plating-brief.md and the recipe. Hero unchanged (img_v1): browned diced potato, ham and kielbasa hash with a fried egg and pickled beets. The batch change is invisible on the plate; still matches."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480; source img_v1.jpg 1280x720. SHA-256 match file_hashes/asset_sha256 and image-gen-map. Master re-derived as a LANCZOS 1.25x upscale of the centre 960x720 source crop (r2 re-check: mean abs diff 1.6-1.9, card 2.2-2.6), disclosed in generation.method_detail; same pipeline as Waves 14-16, no objectionable softness at master or card size. No text, logos, hands or artifacts. regeneration_count 0."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing, well lit, abundant, and reads at card size; on par with the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both PASS."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance original_ai_assisted; image ai_illustration via Grok Bot GenerateImage, with the 1280x720 source disclosed; no stock or web photo; no metadata denies an asset that is present."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r3` is consistent across top level, recipe_version, image, sidecar and docs; version 1; classification_history present; certification null, kitchen_tested false. revision_history records the author-r2 → author-r3 entry (trigger, scope, before/after culinary_hash, changes), and it matches the field-level diff I made against my r1 pre-audit copy. My own run of FREEZE_INTEGRITY on a scratch copy: PASS (26/26). culinary_hash recomputes. The superseded/rejected records for audit-rejected heroes are complete, and the rejected files are byte-identical to the r1 heroes."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "B: in step 3 the onion cooks beside all 2 lb of returned potatoes, which is crowded for 'soft and golden'. Tolerable, since the hard browning is already done. Optional: cook the onion while batch 2 browns.",
+        "D-03 effort is unchanged (moderate, 3 points). The total-time band moves from 46-60 to 61-90, and coverage docs were regenerated (not audited here beyond consistency)."
+      ]
+    },
+    "uruguayan-chivito-sandwiches": {
+      "title": "Uruguayan Chivito Steak Sandwiches with Ham, Bacon, Mozzarella, and Egg",
+      "verdict": "FAIL",
+      "certified": false,
+      "failed_gates": [
+        "K"
+      ],
+      "hh001_eligible": false,
+      "effort_level": "moderate",
+      "ingredient_complexity": "simple",
+      "hero": "img_v5.jpg",
+      "regenerate_image": true,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug, dish_id and recipe ids are consistent; version 1, immutable, draft, recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 5, floors ['attention_2_floor_moderate (already met)']), ingredient_complexity `simple` (score 0, 10 counted ingredients; salt, water and oils excluded per EXCLUDE_NAMES). The sums, floors and bands (≤12/13-16/17+) recompute, and the enums match v1. My own run of structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "Recipe text unchanged since r1 (culinary_hash c76caf51… unchanged): 4 thin steaks, 2 per batch; bacon in 2 batches; every ingredient used."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4 servings; scaling lines for 1, 2 and 4 present, with do-not-scale items where relevant."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues are stated; every component is completed; there is a serve step."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 10 + cook 34 = 44 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0.  Unchanged: 10 + 34 = 44."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard label contracts where eligibility or allergens depend on them."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat True, poultry False, finfish False, shellfish False, dairy True, vegetarian False, plant-based False, nut_policy `none`. Labels [], all unconditional. HH001 False: Not HH001: beef, ham, and bacon are meat; mozzarella is dairy.\n\n**Allergens:** ['meat', 'milk', 'egg', 'wheat']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid; nothing appears only in the notes. Notes: ['Meat from the beef, ham, and bacon.', 'Milk from the mozzarella.', 'Egg from the eggs and mayonnaise.', 'Wheat from the rolls.', 'No soy, sesame, fish, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['sandwiches', 'rich', 'savory', 'crispy'] are supported by the method and ingredients."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Title and slug are unchanged since r1 (dish identity unchanged), so the r1 duplicate check (PASS against the other 49 and all 200 live meals) stands; I did not re-run it. Package review: Compared with philly-cheesesteaks: whole thin steaks stacked with ham, bacon, egg, and mozzarella, not chopped steak with onions and provolone. Compared with cuban-sandwiches: a hot steak and egg stack on a soft roll, not pressed roast pork with pick"
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and the cooking object agree with the steps. D-03 classification is plausible for the method and sourcing (not cuisine-driven; sidecar cultural_bias reviewed)."
+        },
+        "K": {
+          "verdict": "FAIL",
+          "evidence": "Viewed v5 at full size and in a 2x crop of the source. The r1 thickness and doneness defects are fixed: a thin (about 1/4- to 3/8-inch) layer, browned outside and grey-tan inside with at most a faint pink line, consistent with 145 F. The fried egg is visible in each half, and sliced green olives are now inside the sandwich. But the steak's cut face has the fine, pebbly, uniform crumb of ground beef, with no whole-muscle grain or fibres, and an irregular patty-like edge. It reads as a thin smash-burger patty, which is the exact defect self-review rejected v1 and v2 for. It also blurs the package's own near-duplicate distinction from classic-smash-burgers ('sliced sirloin, not ground beef patties').",
+          "fix": "Regenerate (v6). Keep v5's thinness, doneness, egg and olives, but make the steak read as whole-muscle sirloin: a smooth, slightly fibrous cut face with visible grain lines, a seared crust with a natural irregular steak outline, and ideally a steak edge overhanging the bun (typical chivito styling) so its shape reads as a pounded steak, not a round patty. Re-finalize, re-freeze, re-audit K/L."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480; source img_v5.jpg 1280x720. SHA-256 match file_hashes/asset_sha256 and image-gen-map. Master re-derived as a LANCZOS 1.25x upscale of the centre 960x720 source crop (r2 re-check: mean abs diff 1.6-1.9, card 2.2-2.6), disclosed in generation.method_detail; same pipeline as Waves 14-16, no objectionable softness at master or card size. No text, logos, hands or artifacts. regeneration_count 4; superseded versions are recorded (self-review rejects as never_finalized; the audit-r1 reject with rejected_by, its moved files and sha256), and none is the active hero."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing, well lit, abundant, and reads at card size; on par with the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both PASS."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance original_ai_assisted; image ai_illustration via Grok Bot GenerateImage, with the 1280x720 source disclosed; no stock or web photo; no metadata denies an asset that is present."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r3` is consistent across top level, recipe_version, image, sidecar and docs; version 1; classification_history present; certification null, kitchen_tested false. revision_history records the author-r2 → author-r3 entry (trigger, scope, before/after culinary_hash, changes), and it matches the field-level diff I made against my r1 pre-audit copy. My own run of FREEZE_INTEGRITY on a scratch copy: PASS (26/26). culinary_hash recomputes. The superseded/rejected records for audit-rejected heroes are complete, and the rejected files are byte-identical to the r1 heroes."
+        }
+      },
+      "fixes": [
+        "[K] Regenerate (v6). Keep v5's thinness, doneness, egg and olives, but make the steak read as whole-muscle sirloin: a smooth, slightly fibrous cut face with visible grain lines, a seared crust with a natural irregular steak outline, and ideally a steak edge overhanging the bun (typical chivito styling) so its shape reads as a pounded steak, not a round patty. Re-finalize, re-freeze, re-audit K/L."
+      ],
+      "notes": [
+        "Handoff point 3 (runny yolk): not a defect. The recipe offers soft or cooked-through yolks, and the food-safety note covers firm yolks.",
+        "Recipe text is unchanged and clean (as in r1)."
+      ]
+    },
+    "vietnamese-ca-kho-catfish": {
+      "title": "Vietnamese Ca Kho: Caramel-Braised Catfish with Black Pepper and Jasmine Rice",
+      "verdict": "PASS",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": true,
+      "effort_level": "moderate",
+      "ingredient_complexity": "simple",
+      "hero": "img_v3.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug, dish_id and recipe ids are consistent; version 1, immutable, draft, recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 4, floors none), ingredient_complexity `simple` (score 1, 10 counted ingredients; salt, water and oils excluded per EXCLUDE_NAMES). The sums, floors and bands (≤12/13-16/17+) recompute, and the enums match v1. My own run of structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "Recipe text unchanged since r1 (culinary_hash 247f574f… unchanged): 14 pieces (~70 sq in) in one layer in the 12-inch skillet; every ingredient used."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4 servings; scaling lines for 1, 2 and 4 present, with do-not-scale items where relevant."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues are stated; every component is completed; there is a serve step."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 10 + cook 31 = 41 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The fish braises while the rice cooks and rests (step 3 runs inside step 2, overlap stated). Unchanged: 10 + 31 = 41; braise overlap 26 inside the 29-minute rice step."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard label contracts where eligibility or allergens depend on them."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat False, poultry False, finfish True, shellfish False, dairy False, vegetarian False, plant-based False, nut_policy `none`. Labels ['dairy_free', 'fish'], all unconditional. HH001 True: Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.\n\n**Allergens:** ['finfish']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid; nothing appears only in the notes. Notes: ['Finfish from the catfish and the anchovy fish sauce.', 'No milk, egg, soy, wheat, sesame, shellfish, or nuts.', 'Coconut water has no FlavorWeave allergen token; disclosed here and in runtime_enum_gaps.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['savory', 'umami', 'spicy'] are supported by the method and ingredients."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Title and slug are unchanged since r1 (dish identity unchanged), so the r1 duplicate check (PASS against the other 49 and all 200 live meals) stands; I did not re-run it. Package review: Compared with cajun-blackened-catfish: braised in a dark caramel and fish sauce, not spice-crusted and seared. Compared with burmese-mohinga-fish-noodle-soup: a sticky glazed braise with rice, not a lemongrass noodle soup. Compared with korean-braise"
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and the cooking object agree with the steps. D-03 classification is plausible for the method and sourcing (not cuisine-driven; sidecar cultural_bias reviewed)."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed the hero at full size with Read, against image-plating-brief.md and the recipe. v3 viewed at full size and cropped. About 13-14 rectangular pieces of roughly 2 x 2 1/2 inches, with no skin ring. The cut sides show white, layered, flaking fish flesh. Each top is a dark, pepper-speckled, glossy caramel lacquer: on close crop it is a continuous glaze over flesh texture, with no skin grain, scales or grey skin edge, so it can't be mistaken for skin. Sliced Thai chiles, scallion lengths, pooled caramel, jasmine rice and cucumber slices match the recipe. The r1 defect is fixed."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480; source img_v3.jpg 1280x720. SHA-256 match file_hashes/asset_sha256 and image-gen-map. Master re-derived as a LANCZOS 1.25x upscale of the centre 960x720 source crop (r2 re-check: mean abs diff 1.6-1.9, card 2.2-2.6), disclosed in generation.method_detail; same pipeline as Waves 14-16, no objectionable softness at master or card size. No text, logos, hands or artifacts. regeneration_count 2; superseded versions are recorded (self-review rejects as never_finalized; the audit-r1 reject with rejected_by, its moved files and sha256), and none is the active hero."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing, well lit, abundant, and reads at card size; on par with the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both PASS."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance original_ai_assisted; image ai_illustration via Grok Bot GenerateImage, with the 1280x720 source disclosed; no stock or web photo; no metadata denies an asset that is present."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r3` is consistent across top level, recipe_version, image, sidecar and docs; version 1; classification_history present; certification null, kitchen_tested false. revision_history records the author-r2 → author-r3 entry (trigger, scope, before/after culinary_hash, changes), and it matches the field-level diff I made against my r1 pre-audit copy. My own run of FREEZE_INTEGRITY on a scratch copy: PASS (26/26). culinary_hash recomputes. The superseded/rejected records for audit-rejected heroes are complete, and the rejected files are byte-identical to the r1 heroes."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "Handoff point 2 (glaze vs skin): judged as glaze. L2: glossy, abundant, strong card-scale contrast with the rice and cucumber."
+      ]
+    },
+    "yucatecan-tikin-xic-fish": {
+      "title": "Yucatecan Tikin Xic: Achiote-Citrus Baked Fish with Pickled Red Onions",
+      "verdict": "PASS",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": true,
+      "effort_level": "moderate",
+      "ingredient_complexity": "standard",
+      "hero": "img_v1.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug, dish_id and recipe ids are consistent; version 1, immutable, draft, recommendation_eligible false. D-03: effort_level `moderate` (sidecar score 3, floors none), ingredient_complexity `standard` (score 2, 13 counted ingredients; salt, water and oils excluded per EXCLUDE_NAMES). The sums, floors and bands (≤12/13-16/17+) recompute, and the enums match v1. My own run of structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "Recipe text unchanged since r1 (culinary_hash 822a10ee… unchanged)."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4 servings; scaling lines for 1, 2 and 4 present, with do-not-scale items where relevant."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues are stated; every component is completed; there is a serve step."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 27 + cook 20 = 47 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks while the oven heats and the fish bakes (step 3 runs inside steps 2 and 4, overlap stated). Unchanged: 27 + 20 = 47, oven preheat on the clock."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard label contracts where eligibility or allergens depend on them."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat False, poultry False, finfish True, shellfish False, dairy False, vegetarian False, plant-based False, nut_policy `none`. Labels ['dairy_free', 'fish'], all unconditional. HH001 True: Finfish is allowed. No dairy, meat, poultry, shellfish, or nuts.\n\n**Allergens:** ['finfish']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid; nothing appears only in the notes. Notes: ['Finfish from the cod.', 'No milk, egg, soy, wheat, sesame, shellfish, or nuts.', 'Achiote paste: the label lists no wheat (corn starch only).']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "vocabulary_tag_ids are now [cod, citrusy, tangy, mexican]. 'smoky' was removed; nothing was added. Every tag is supported (citrus marinade, habanero-pickled onions, cod). The r1 defect is fixed. The culinary_hash is correctly unchanged (vocabulary isn't in the basis)."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Title and slug are unchanged since r1 (dish identity unchanged), so the r1 duplicate check (PASS against the other 49 and all 200 live meals) stands; I did not re-run it. Package review: Compared with red-snapper-veracruzana: an achiote-orange marinade baked in foil with pickled onions, not a tomato-olive-caper sauce. Compared with ginger-scallion-fish-packets: an earthy red achiote-citrus packet, not ginger-scallion-soy. Compared wi"
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and the cooking object agree with the steps. D-03 classification is plausible for the method and sourcing (not cuisine-driven; sidecar cultural_bias reviewed)."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed the hero at full size with Read, against image-plating-brief.md and the recipe. Hero unchanged (img_v1): achiote-red cod with tomato and pepper, pickled onions, cilantro, rice. Unchanged from the r1 PASS."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480; source img_v1.jpg 1280x720. SHA-256 match file_hashes/asset_sha256 and image-gen-map. Master re-derived as a LANCZOS 1.25x upscale of the centre 960x720 source crop (r2 re-check: mean abs diff 1.6-1.9, card 2.2-2.6), disclosed in generation.method_detail; same pipeline as Waves 14-16, no objectionable softness at master or card size. No text, logos, hands or artifacts. regeneration_count 0."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing, well lit, abundant, and reads at card size; on par with the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both PASS."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance original_ai_assisted; image ai_illustration via Grok Bot GenerateImage, with the 1280x720 source disclosed; no stock or web photo; no metadata denies an asset that is present."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r3` is consistent across top level, recipe_version, image, sidecar and docs; version 1; classification_history present; certification null, kitchen_tested false. revision_history records the author-r2 → author-r3 entry (trigger, scope, before/after culinary_hash, changes), and it matches the field-level diff I made against my r1 pre-audit copy. My own run of FREEZE_INTEGRITY on a scratch copy: PASS (26/26). culinary_hash recomputes. The superseded/rejected records for audit-rejected heroes are complete, and the rejected files are byte-identical to the r1 heroes."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "Metadata-only revision verified: the culinary_hash and image are unchanged."
+      ]
+    }
+  },
+  "batch_status": {
+    "amritsari-fish-mint-chutney": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "argentine-beef-empanadas": {
+      "round": "r2",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "balkan-cevapi-ajvar": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "bhutanese-ema-datshi": {
+      "round": "r2",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "british-kedgeree-smoked-salmon": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "chicken-tinga-tostadas": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "chinese-hot-sour-soup-tofu": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "crab-louie-salad": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "ecuadorian-locro-de-papa": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "filipino-pork-menudo": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "finnish-lohikeitto-salmon-soup": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "french-mushroom-bourguignon": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "galician-pulpo-potatoes": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "georgian-chkmeruli-garlic-chicken": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "greek-avgolemono-chicken-soup": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "greek-fasolakia-green-beans": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "greek-shrimp-saganaki": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "indo-chinese-gobi-manchurian": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "indonesian-ikan-bakar-tilapia": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "ivorian-chicken-kedjenou": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "jamaican-ital-stew": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "japanese-chicken-nanban": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "japanese-vegetable-omurice": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "korean-ojingeo-bokkeum-squid": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "korean-spicy-cod-stew": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "lebanese-arayes": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "mexican-rajas-con-crema-tacos": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "moroccan-chicken-preserved-lemon-tagine": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "nigerian-jollof-rice-boiled-eggs": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "orecchiette-sausage-broccoli-rabe": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "pakistani-lamb-keema-peas": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "palestinian-musakhan-chicken": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "penne-alla-vodka": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "persian-ash-reshteh": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "polish-potato-cheese-pierogi": {
+      "round": "r2",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "salvadoran-bean-cheese-pupusas": {
+      "round": "r2",
+      "verdict": "FAIL",
+      "failed_gates": [
+        "K"
+      ]
+    },
+    "san-francisco-cioppino": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "sichuan-dan-dan-noodles": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "south-indian-sambar-rice": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "southern-chicken-and-dumplings": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "swedish-pytt-i-panna": {
+      "round": "r2",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "taiwanese-lu-rou-fan": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "tex-mex-steak-fajitas": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "thai-pad-see-ew-tofu": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "turkish-balik-ekmek-mackerel": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "uruguayan-chivito-sandwiches": {
+      "round": "r2",
+      "verdict": "FAIL",
+      "failed_gates": [
+        "K"
+      ]
+    },
+    "uzbek-lamb-plov": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "vietnamese-ca-kho-catfish": {
+      "round": "r2",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "vietnamese-lemongrass-tofu-banh-mi": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "yucatecan-tikin-xic-fish": {
+      "round": "r2",
+      "verdict": "PASS",
+      "failed_gates": []
+    }
+  }
+}

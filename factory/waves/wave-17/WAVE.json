@@ -1,0 +1,808 @@
+{
+  "wave": "wave-17",
+  "batch_id": "wave-17-2026-10-15",
+  "generated_at": "2026-10-16T00:42:52-05:00",
+  "purpose": "50 new FlavorWeave dinner meals taking the live catalog from 200 to 250.",
+  "creator": "Grok Bot (Curator, creator role)",
+  "package_revision": "author-r2/author-r3/author-r4/author-r5",
+  "candidates": 50,
+  "base_meals": 200,
+  "catalog_after": 250,
+  "base_source": "harbor-eats-app main at 077bd14 (85 base + wave-14 + wave-15 + wave-16)",
+  "batches": {
+    "A": 10,
+    "B": 10,
+    "C": 10,
+    "D": 10,
+    "E": 10
+  },
+  "hh001_eligible": 17,
+  "protein_mix": {
+    "veg": 17,
+    "fish": 8,
+    "shellfish": 5,
+    "poultry": 8,
+    "meat": 12
+  },
+  "plant_based": 5,
+  "vegetarian_not_plant_based": 17,
+  "structural_preflight": "50/50 PASS",
+  "freeze_integrity": "50/50 PASS",
+  "heroes_generated": 50,
+  "prompts_file": "/workspace/wave17-prompts.txt (copy: notes/prompts-author-r1.txt)",
+  "regen_prompts_file": "/workspace/wave17-v2-prompts.txt (copy: notes/prompts-regen-selfreview.txt)",
+  "selfreview_regenerations": {
+    "bhutanese-ema-datshi": {
+      "accepted": "v2",
+      "rejected": {
+        "v1": "chile strips read as green beans"
+      }
+    },
+    "french-mushroom-bourguignon": {
+      "accepted": "v2",
+      "rejected": {
+        "v1": "some pieces read as beef cubes in a vegetarian dish"
+      }
+    },
+    "vietnamese-ca-kho-catfish": {
+      "accepted": "v3",
+      "rejected": {
+        "v1": "pieces read as glazed chicken cutlets, not flaking fish"
+      },
+      "audit_rejected": {
+        "v2": {
+          "round": "r1",
+          "reason": "skin-on cross-cut steaks vs skinless fillet pieces"
+        }
+      }
+    },
+    "amritsari-fish-mint-chutney": {
+      "accepted": "v2",
+      "rejected": {
+        "v1": "lemon slice on the fish (explicitly excluded)"
+      }
+    },
+    "crab-louie-salad": {
+      "accepted": "v2",
+      "rejected": {
+        "v1": "crab reads as red-streaked imitation crab, not lump crab"
+      }
+    },
+    "georgian-chkmeruli-garlic-chicken": {
+      "accepted": "v2",
+      "rejected": {
+        "v1": "shows eight thighs, brief says six"
+      }
+    },
+    "balkan-cevapi-ajvar": {
+      "accepted": "v2",
+      "rejected": {
+        "v1": "grill marks on the sausages (explicitly excluded)"
+      }
+    },
+    "salvadoran-bean-cheese-pupusas": {
+      "accepted": "v6",
+      "rejected": {
+        "v1": "bean filling reads as ground meat",
+        "v2": "bean filling still reads as ground meat"
+      },
+      "audit_rejected": {
+        "v3": {
+          "round": "r1",
+          "reason": "filling reads as meat, curtido reads creamy"
+        },
+        "v4": {
+          "round": "r2",
+          "reason": "filling glossy, dark and lumpy, reads like chili or meat; contradicts 'puréed smooth'"
+        },
+        "v5": {
+          "round": "r3",
+          "reason": "thick near-black crumbly slab reads as ground beef; contradicts smooth red-bean paste and mixed bean-cheese filling"
+        }
+      }
+    },
+    "uruguayan-chivito-sandwiches": {
+      "accepted": "v6",
+      "rejected": {
+        "v1": "steak reads as a ground-beef burger patty",
+        "v2": "steak still reads as a thick burger patty",
+        "v3": "steak fixed but fried egg missing (must-show)"
+      },
+      "audit_rejected": {
+        "v4": {
+          "round": "r1",
+          "reason": "thick rosy steak vs 1/4 inch at 145F"
+        },
+        "v5": {
+          "round": "r2",
+          "reason": "steak cut face has ground-beef texture, reads as smash-burger patty"
+        }
+      }
+    }
+  },
+  "audit_r1": {
+    "result": "42 PASS / 8 FAIL",
+    "findings": "audit/r1/",
+    "fixed_at": "author-r3",
+    "author_r3_revised": {
+      "argentine-beef-empanadas": {
+        "trigger": "audit r1 gate B FAIL",
+        "scope": "recipe text only; image files unchanged and not regenerated"
+      },
+      "polish-potato-cheese-pierogi": {
+        "trigger": "audit r1 gate B FAIL",
+        "scope": "recipe text only; image files unchanged and not regenerated"
+      },
+      "salvadoran-bean-cheese-pupusas": {
+        "trigger": "audit r1 gates B and K FAIL",
+        "scope": "recipe text and hero image (v3 rejected by audit r1 K; v4 is the new active hero)"
+      },
+      "swedish-pytt-i-panna": {
+        "trigger": "audit r1 gate B FAIL",
+        "scope": "recipe text only; image files unchanged and not regenerated"
+      },
+      "vietnamese-ca-kho-catfish": {
+        "trigger": "audit r1 gate K FAIL",
+        "scope": "hero image only; recipe text unchanged (culinary_hash unchanged)"
+      },
+      "bhutanese-ema-datshi": {
+        "trigger": "audit r1 gate K FAIL",
+        "scope": "recipe text only; image files unchanged and not regenerated (the v2 hero is kept; the recipe now matches it)"
+      },
+      "uruguayan-chivito-sandwiches": {
+        "trigger": "audit r1 gate K FAIL",
+        "scope": "hero image only; recipe text unchanged (culinary_hash unchanged)"
+      },
+      "yucatecan-tikin-xic-fish": {
+        "trigger": "audit r1 gate H FAIL",
+        "scope": "metadata only (taste tags); recipe text and image unchanged (culinary_hash unchanged)"
+      }
+    },
+    "untouched_passing_packages": 42
+  },
+  "audit_r2": {
+    "result": "48 PASS / 2 FAIL (both gate K, hero image only)",
+    "findings": "audit/r2/",
+    "fixed_at": "author-r4",
+    "author_r4_revised": {
+      "salvadoran-bean-cheese-pupusas": {
+        "trigger": "audit r2 gate K FAIL",
+        "scope": "hero image only; recipe text unchanged (culinary_hash unchanged)"
+      },
+      "uruguayan-chivito-sandwiches": {
+        "trigger": "audit r2 gate K FAIL",
+        "scope": "hero image only; recipe text unchanged (culinary_hash unchanged)"
+      }
+    },
+    "untouched_packages": 48
+  },
+  "audit_r3": {
+    "result": "49 PASS / 1 FAIL (pupusas gate K, hero image only)",
+    "findings": "audit/r3/",
+    "fixed_at": "author-r5",
+    "author_r5_revised": {
+      "salvadoran-bean-cheese-pupusas": {
+        "trigger": "audit r3 gate K FAIL",
+        "scope": "hero image only; recipe text unchanged (culinary_hash unchanged)"
+      }
+    },
+    "untouched_packages": 49
+  },
+  "image_gen_map": "notes/image-gen-map.txt",
+  "certified": true,
+  "imported": false,
+  "published": false,
+  "d1_touched": false,
+  "deployed": false,
+  "pull_request": "harbor-eats-app branch catalog/wave-17-certified-integration (import/deploy approved by Thomas 2026-10-16 12:46 AM CT; rollout recorded in DEPLOYMENTS.md)",
+  "meals": [
+    {
+      "slug": "south-indian-sambar-rice",
+      "title": "South Indian Vegetable Sambar with Toor Dal and Steamed Rice",
+      "cuisine": "south-indian",
+      "protein": "veg",
+      "batch": "A",
+      "total": 71,
+      "effort": "moderate",
+      "complexity": "standard",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "vietnamese-lemongrass-tofu-banh-mi",
+      "title": "Vietnamese Lemongrass Tofu Banh Mi with Pickled Carrot and Daikon",
+      "cuisine": "vietnamese",
+      "protein": "veg",
+      "batch": "A",
+      "total": 41,
+      "effort": "moderate",
+      "complexity": "standard",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "nigerian-jollof-rice-boiled-eggs",
+      "title": "Nigerian Jollof Rice with Boiled Eggs",
+      "cuisine": "nigerian",
+      "protein": "veg",
+      "batch": "A",
+      "total": 82,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "japanese-vegetable-omurice",
+      "title": "Japanese Vegetable Omurice with Mushroom Ketchup Rice",
+      "cuisine": "japanese",
+      "protein": "veg",
+      "batch": "A",
+      "total": 60,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "mexican-rajas-con-crema-tacos",
+      "title": "Mexican Rajas con Crema Tacos with Corn and Queso Fresco",
+      "cuisine": "mexican",
+      "protein": "veg",
+      "batch": "A",
+      "total": 57,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "polish-potato-cheese-pierogi",
+      "title": "Polish Potato-and-Cheese Pierogi with Golden Onions and Sour Cream",
+      "cuisine": "polish",
+      "protein": "veg",
+      "batch": "A",
+      "total": 90,
+      "effort": "involved",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r3_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "indo-chinese-gobi-manchurian",
+      "title": "Indo-Chinese Gobi Manchurian with Basmati Rice",
+      "cuisine": "indo-chinese",
+      "protein": "veg",
+      "batch": "A",
+      "total": 44,
+      "effort": "involved",
+      "complexity": "standard",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "greek-fasolakia-green-beans",
+      "title": "Greek Fasolakia: Green Beans and Potatoes Braised in Tomato and Olive Oil",
+      "cuisine": "greek",
+      "protein": "veg",
+      "batch": "A",
+      "total": 77,
+      "effort": "easy",
+      "complexity": "simple",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "chinese-hot-sour-soup-tofu",
+      "title": "Chinese Hot and Sour Soup with Tofu, Shiitake, and Egg Ribbons",
+      "cuisine": "chinese",
+      "protein": "veg",
+      "batch": "A",
+      "total": 55,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "salvadoran-bean-cheese-pupusas",
+      "title": "Salvadoran Bean-and-Cheese Pupusas with Curtido and Salsa Roja",
+      "cuisine": "salvadoran",
+      "protein": "veg",
+      "batch": "A",
+      "total": 70,
+      "effort": "involved",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r5_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "bhutanese-ema-datshi",
+      "title": "Bhutanese Ema Datshi: Green Chiles in Farmer's Cheese Sauce with Red Rice",
+      "cuisine": "bhutanese",
+      "protein": "veg",
+      "batch": "B",
+      "total": 50,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r3_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "ecuadorian-locro-de-papa",
+      "title": "Ecuadorian Locro de Papa: Potato Soup with Queso Fresco and Avocado",
+      "cuisine": "ecuadorian",
+      "protein": "veg",
+      "batch": "B",
+      "total": 60,
+      "effort": "easy",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "thai-pad-see-ew-tofu",
+      "title": "Thai Pad See Ew with Tofu, Broccoli, and Egg",
+      "cuisine": "thai",
+      "protein": "veg",
+      "batch": "B",
+      "total": 41,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "jamaican-ital-stew",
+      "title": "Jamaican Ital Stew with Squash, Kidney Beans, and Coconut",
+      "cuisine": "jamaican",
+      "protein": "veg",
+      "batch": "B",
+      "total": 64,
+      "effort": "easy",
+      "complexity": "simple",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "penne-alla-vodka",
+      "title": "Penne alla Vodka with Basil",
+      "cuisine": "italian-american",
+      "protein": "veg",
+      "batch": "B",
+      "total": 38,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "french-mushroom-bourguignon",
+      "title": "French Mushroom Bourguignon over Olive Oil Mashed Potatoes",
+      "cuisine": "french",
+      "protein": "veg",
+      "batch": "B",
+      "total": 70,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "persian-ash-reshteh",
+      "title": "Persian Ash Reshteh: Herb, Bean, and Noodle Soup with Kashk and Mint Oil",
+      "cuisine": "persian",
+      "protein": "veg",
+      "batch": "B",
+      "total": 75,
+      "effort": "moderate",
+      "complexity": "standard",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "vietnamese-ca-kho-catfish",
+      "title": "Vietnamese Ca Kho: Caramel-Braised Catfish with Black Pepper and Jasmine Rice",
+      "cuisine": "vietnamese",
+      "protein": "fish",
+      "batch": "B",
+      "total": 41,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": true,
+      "state": "author_r3_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "british-kedgeree-smoked-salmon",
+      "title": "British Kedgeree with Hot-Smoked Salmon, Jammy Eggs, and Peas",
+      "cuisine": "british",
+      "protein": "fish",
+      "batch": "B",
+      "total": 48,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "yucatecan-tikin-xic-fish",
+      "title": "Yucatecan Tikin Xic: Achiote-Citrus Baked Fish with Pickled Red Onions",
+      "cuisine": "yucatecan",
+      "protein": "fish",
+      "batch": "B",
+      "total": 47,
+      "effort": "moderate",
+      "complexity": "standard",
+      "hh001": true,
+      "state": "author_r3_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "turkish-balik-ekmek-mackerel",
+      "title": "Turkish Balik Ekmek: Seared Mackerel Sandwiches with Sumac Onions",
+      "cuisine": "turkish",
+      "protein": "fish",
+      "batch": "C",
+      "total": 31,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "amritsari-fish-mint-chutney",
+      "title": "Amritsari Fish with Cilantro-Mint Chutney, Kachumber, and Basmati Rice",
+      "cuisine": "punjabi",
+      "protein": "fish",
+      "batch": "C",
+      "total": 54,
+      "effort": "involved",
+      "complexity": "standard",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "korean-spicy-cod-stew",
+      "title": "Korean Maeuntang: Spicy Cod Stew with Radish, Tofu, and Watercress",
+      "cuisine": "korean",
+      "protein": "fish",
+      "batch": "C",
+      "total": 48,
+      "effort": "easy",
+      "complexity": "standard",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "finnish-lohikeitto-salmon-soup",
+      "title": "Finnish Lohikeitto: Creamy Salmon Soup with Potatoes and Dill",
+      "cuisine": "finnish",
+      "protein": "fish",
+      "batch": "C",
+      "total": 51,
+      "effort": "easy",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "indonesian-ikan-bakar-tilapia",
+      "title": "Indonesian Ikan Bakar: Broiled Kecap-Glazed Tilapia with Sambal Tomat",
+      "cuisine": "indonesian",
+      "protein": "fish",
+      "batch": "C",
+      "total": 42,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": true,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "greek-shrimp-saganaki",
+      "title": "Greek Shrimp Saganaki with Tomato, Feta, and Crusty Bread",
+      "cuisine": "greek",
+      "protein": "shellfish",
+      "batch": "C",
+      "total": 36,
+      "effort": "easy",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "san-francisco-cioppino",
+      "title": "San Francisco Cioppino with Clams, Mussels, Shrimp, and Cod",
+      "cuisine": "californian",
+      "protein": "shellfish",
+      "batch": "C",
+      "total": 60,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "crab-louie-salad",
+      "title": "Crab Louie Salad with Asparagus, Eggs, and Louie Dressing",
+      "cuisine": "american",
+      "protein": "shellfish",
+      "batch": "C",
+      "total": 40,
+      "effort": "easy",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "korean-ojingeo-bokkeum-squid",
+      "title": "Korean Ojingeo Bokkeum: Spicy Stir-Fried Squid with Vegetables and Rice",
+      "cuisine": "korean",
+      "protein": "shellfish",
+      "batch": "C",
+      "total": 35,
+      "effort": "moderate",
+      "complexity": "standard",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "galician-pulpo-potatoes",
+      "title": "Galician Pulpo a la Gallega: Octopus and Potatoes with Smoked Paprika",
+      "cuisine": "spanish",
+      "protein": "shellfish",
+      "batch": "C",
+      "total": 38,
+      "effort": "easy",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "japanese-chicken-nanban",
+      "title": "Japanese Chicken Nanban with Tartar Sauce, Shredded Cabbage, and Rice",
+      "cuisine": "japanese",
+      "protein": "poultry",
+      "batch": "D",
+      "total": 69,
+      "effort": "involved",
+      "complexity": "standard",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "chicken-tinga-tostadas",
+      "title": "Chicken Tinga Tostadas with Crema, Queso Fresco, and Avocado",
+      "cuisine": "mexican",
+      "protein": "poultry",
+      "batch": "D",
+      "total": 56,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "greek-avgolemono-chicken-soup",
+      "title": "Greek Avgolemono Chicken Soup with Rice, Lemon, and Dill",
+      "cuisine": "greek",
+      "protein": "poultry",
+      "batch": "D",
+      "total": 61,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "georgian-chkmeruli-garlic-chicken",
+      "title": "Georgian Chkmeruli: Crisp Chicken Thighs in Garlic Cream Sauce",
+      "cuisine": "georgian",
+      "protein": "poultry",
+      "batch": "D",
+      "total": 52,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "moroccan-chicken-preserved-lemon-tagine",
+      "title": "Moroccan Chicken Tagine with Preserved Lemon, Green Olives, and Couscous",
+      "cuisine": "moroccan",
+      "protein": "poultry",
+      "batch": "D",
+      "total": 81,
+      "effort": "easy",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "southern-chicken-and-dumplings",
+      "title": "Southern Chicken and Dumplings with Carrots, Celery, and Thyme",
+      "cuisine": "american",
+      "protein": "poultry",
+      "batch": "D",
+      "total": 69,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "palestinian-musakhan-chicken",
+      "title": "Palestinian Musakhan: Sumac Chicken and Onions on Flatbread",
+      "cuisine": "palestinian",
+      "protein": "poultry",
+      "batch": "D",
+      "total": 56,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "ivorian-chicken-kedjenou",
+      "title": "Ivorian Chicken Kedjenou with Eggplant, Tomatoes, and Rice",
+      "cuisine": "ivorian",
+      "protein": "poultry",
+      "batch": "D",
+      "total": 70,
+      "effort": "easy",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "uzbek-lamb-plov",
+      "title": "Uzbek Lamb Plov with Carrots, Chickpeas, and a Whole Garlic Head",
+      "cuisine": "uzbek",
+      "protein": "meat",
+      "batch": "D",
+      "total": 146,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "filipino-pork-menudo",
+      "title": "Filipino Pork Menudo with Potatoes, Carrots, Raisins, and Rice",
+      "cuisine": "filipino",
+      "protein": "meat",
+      "batch": "D",
+      "total": 94,
+      "effort": "easy",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "taiwanese-lu-rou-fan",
+      "title": "Taiwanese Lu Rou Fan: Braised Pork Belly over Rice with Soy Eggs and Bok Choy",
+      "cuisine": "taiwanese",
+      "protein": "meat",
+      "batch": "E",
+      "total": 97,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "sichuan-dan-dan-noodles",
+      "title": "Sichuan Dan Dan Noodles with Crisp Pork and Sesame Chili Sauce",
+      "cuisine": "sichuan",
+      "protein": "meat",
+      "batch": "E",
+      "total": 28,
+      "effort": "moderate",
+      "complexity": "standard",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "uruguayan-chivito-sandwiches",
+      "title": "Uruguayan Chivito Steak Sandwiches with Ham, Bacon, Mozzarella, and Egg",
+      "cuisine": "uruguayan",
+      "protein": "meat",
+      "batch": "E",
+      "total": 44,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r4_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "argentine-beef-empanadas",
+      "title": "Argentine Baked Beef Empanadas with Olives and Boiled Egg",
+      "cuisine": "argentine",
+      "protein": "meat",
+      "batch": "E",
+      "total": 89,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r3_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "pakistani-lamb-keema-peas",
+      "title": "Pakistani Lamb Keema Matar with Green Peas and Warm Chapatis",
+      "cuisine": "pakistani",
+      "protein": "meat",
+      "batch": "E",
+      "total": 64,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "tex-mex-steak-fajitas",
+      "title": "Tex-Mex Skirt Steak Fajitas with Peppers, Onions, and Pico de Gallo",
+      "cuisine": "tex-mex",
+      "protein": "meat",
+      "batch": "E",
+      "total": 50,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "balkan-cevapi-ajvar",
+      "title": "Balkan Cevapi with Ajvar, Raw Onion, and Warm Pita",
+      "cuisine": "balkan",
+      "protein": "meat",
+      "batch": "E",
+      "total": 49,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "orecchiette-sausage-broccoli-rabe",
+      "title": "Orecchiette with Italian Sausage, Broccoli Rabe, Garlic, and Pecorino",
+      "cuisine": "italian",
+      "protein": "meat",
+      "batch": "E",
+      "total": 42,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "lebanese-arayes",
+      "title": "Lebanese Arayes: Spiced Lamb-Stuffed Pita with Tahini Sauce",
+      "cuisine": "lebanese",
+      "protein": "meat",
+      "batch": "E",
+      "total": 42,
+      "effort": "moderate",
+      "complexity": "standard",
+      "hh001": false,
+      "state": "author_r2_preflight_pass_awaiting_vale"
+    },
+    {
+      "slug": "swedish-pytt-i-panna",
+      "title": "Swedish Pytt i Panna Ham and Potato Hash with Pan-Fried Eggs and Pickled Beets",
+      "cuisine": "swedish",
+      "protein": "meat",
+      "batch": "E",
+      "total": 62,
+      "effort": "moderate",
+      "complexity": "simple",
+      "hh001": false,
+      "state": "author_r3_preflight_pass_awaiting_vale"
+    }
+  ],
+  "certification": {
+    "record": "audit/r4/CERTIFICATION.json (vale-wave-17-2026-10-16-r4)",
+    "auditor": "Independent catalog auditor (Vale role)",
+    "date": "2026-10-16",
+    "rounds": "r1 42 PASS / 8 FAIL; r2 6/2; r3 1/1; r4 1/1 (others verified byte-identical each round)",
+    "combined": "CERTIFIED 50/50, FAIL 0",
+    "certified_revision": "author-r2 (42), author-r3 (6), author-r4 (1), author-r5 (1)"
+  }
+}

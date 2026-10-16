@@ -1,0 +1,28 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "san-francisco-cioppino.webp",
+    "san-francisco-cioppino-640.webp"
+  ],
+  "present_files": [
+    "san-francisco-cioppino.webp",
+    "san-francisco-cioppino-640.webp"
+  ],
+  "source": "img_v1.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v1.jpg": "73cf41111f3cbd67bc6ee8a4f5016c8f61d819c8ab682fef610385f0b17e2aa8",
+    "san-francisco-cioppino.webp": "ab7bdac01d83a96cdf7d7a23b016843cc28a5ae1575f27cf55f2343ba69a847b",
+    "san-francisco-cioppino-640.webp": "2df5cdb257e39dae586112c2dbf821bfa5ee79b0ea209113aa34761e79baba5b"
+  },
+  "regeneration_count": 0,
+  "package_revision": "author-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

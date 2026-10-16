@@ -1,0 +1,773 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r4 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r4",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "uruguayan-chivito-sandwiches",
+    "slug": "uruguayan-chivito-sandwiches",
+    "title": "Uruguayan Chivito Steak Sandwiches with Ham, Bacon, Mozzarella, and Egg",
+    "description": "Thin seared beef steaks layered on toasted rolls with ham, crisp bacon, melted mozzarella, a pan-fried egg, mayonnaise, lettuce, tomato, and sliced green olives.",
+    "cuisine": "uruguayan",
+    "meal_format": "sandwich",
+    "primary_ingredient": "beef sirloin",
+    "vocabulary_tag_ids": [
+      "sandwiches",
+      "rich",
+      "savory",
+      "crispy"
+    ],
+    "current_recipe_id": "rcp_uruguayan-chivito-sandwiches",
+    "current_version_id": "rv_uruguayan-chivito-sandwiches_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_uruguayan-chivito-sandwiches",
+    "dish_id": "uruguayan-chivito-sandwiches",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_uruguayan-chivito-sandwiches_v1",
+    "recipe_id": "rcp_uruguayan-chivito-sandwiches",
+    "dish_id": "uruguayan-chivito-sandwiches",
+    "version_number": 1,
+    "package_revision": "author-r4",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r4. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Uruguayan Chivito Steak Sandwiches with Ham, Bacon, Mozzarella, and Egg",
+    "description": "Thin seared beef steaks layered on toasted rolls with ham, crisp bacon, melted mozzarella, a pan-fried egg, mayonnaise, lettuce, tomato, and sliced green olives.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "steak",
+        "name": "beef sirloin",
+        "display_name": "beef sirloin, cut into 4 thin steaks",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": "pounded to 1/4 inch",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.75,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bacon",
+        "name": "bacon",
+        "display_name": "bacon whose label lists pork, water, salt, sugar, and sodium nitrite",
+        "quantity": 8,
+        "unit": "slice",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ham",
+        "name": "ham",
+        "display_name": "deli ham whose label lists pork, water, salt, sugar, sodium phosphate, and sodium nitrite",
+        "quantity": 4,
+        "unit": "slice",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mozzarella",
+        "name": "mozzarella",
+        "display_name": "low-moisture mozzarella",
+        "quantity": 4,
+        "unit": "slice",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rolls",
+        "name": "rolls",
+        "display_name": "soft sandwich rolls whose label lists wheat flour, water, yeast, sugar, salt, and oil",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "split",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mayonnaise",
+        "name": "mayonnaise",
+        "display_name": "mayonnaise whose label lists oil, egg, vinegar, salt, and sugar",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lettuce",
+        "name": "lettuce",
+        "display_name": "green leaf lettuce leaves",
+        "quantity": 4,
+        "unit": "leaf",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato",
+        "name": "tomato",
+        "display_name": "tomato",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olives",
+        "name": "green olives",
+        "display_name": "pitted green olives whose label lists olives, water, salt, and lactic acid",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Cut the sirloin into 4 thin steaks, pound each between plastic wrap to 1/4 inch, and season with the salt and pepper. Slice the tomato and olives and split the rolls.",
+        "ingredient_refs": [
+          "steak",
+          "salt",
+          "pepper",
+          "tomato",
+          "olives",
+          "rolls"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Crisp the bacon",
+        "body": "Cook the bacon in the 12-inch skillet over medium in 2 batches until crisp, about 6 minutes per batch. Drain on paper towels and pour off all but 1 tbsp fat.",
+        "ingredient_refs": [
+          "bacon"
+        ],
+        "clock_minutes": 13,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Toast the rolls",
+        "body": "Toast the cut sides of the rolls in the skillet over medium until golden, about 2 minutes per batch, and spread with mayonnaise.",
+        "ingredient_refs": [
+          "rolls",
+          "mayonnaise"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Sear the steaks",
+        "body": "Raise the heat to medium-high. Sear 2 steaks about 90 seconds, flip, top each with a ham slice and a mozzarella slice, cover, and cook until the cheese melts and the steak is 145 F, about 2 minutes. Move to the large plate and repeat (2 batches).",
+        "ingredient_refs": [
+          "steak",
+          "ham",
+          "mozzarella"
+        ],
+        "clock_minutes": 9,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Pan-fried eggs",
+        "body": "Lower the heat to medium. Crack the 4 eggs into the skillet and pan-fry until the whites set, about 3 minutes (cover for firmer yolks).",
+        "ingredient_refs": [
+          "eggs"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Assemble",
+        "body": "Layer each roll with lettuce, tomato, a steak with its ham and cheese, 2 bacon slices, an egg, and olives. Close and serve.",
+        "ingredient_refs": [
+          "rolls",
+          "lettuce",
+          "tomato",
+          "steak",
+          "bacon",
+          "eggs",
+          "olives"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "fillings",
+        "name": "steak, ham, bacon, and egg",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "beef sirloin",
+          "salt",
+          "black pepper",
+          "bacon",
+          "ham",
+          "mozzarella",
+          "eggs"
+        ]
+      },
+      {
+        "component_id": "sandwich",
+        "name": "sandwich",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "rolls",
+          "mayonnaise",
+          "lettuce",
+          "tomato",
+          "green olives"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet with lid",
+      "meat mallet or heavy pan",
+      "plastic wrap",
+      "paper towels",
+      "large plate",
+      "thin spatula"
+    ],
+    "methods": [
+      "sear",
+      "pan-fry",
+      "toast"
+    ],
+    "cooking": {
+      "frying": [
+        "pan"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 34,
+    "total_time_minutes": 44,
+    "prep_minutes": 10,
+    "cook_minutes": 34,
+    "total_minutes": 44,
+    "time_clock": "Prep 10 + cook 34 = 44 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. ",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "12-inch skillet over medium for the bacon, medium-high for the steaks, medium for the eggs.",
+    "doneness": "Bacon crisp; steaks browned and 145 F; cheese melted; egg whites set with yolks still soft or cooked through, as preferred.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: beef, ham, and bacon are meat; mozzarella is dairy."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: meat and dairy. The ham label lists pork, water, salt, sugar, sodium phosphate, and sodium nitrite; the bacon label lists pork, water, salt, sugar, and sodium nitrite; the roll label lists wheat flour, water, yeast, sugar, salt, and oil; the mayonnaise label lists oil, egg, vinegar, salt, and sugar.",
+    "allergens": [
+      "meat",
+      "milk",
+      "egg",
+      "wheat"
+    ],
+    "allergen_notes": [
+      "Meat from the beef, ham, and bacon.",
+      "Milk from the mozzarella.",
+      "Egg from the eggs and mayonnaise.",
+      "Wheat from the rolls.",
+      "No soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: beef, ham, and bacon are meat; mozzarella is dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "sandwiches",
+      "rich",
+      "savory",
+      "crispy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r4_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'uruguayan' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook the steaks to 145 F. For fully cooked eggs, cook until the yolks are firm. Pan-frying: lay eggs in gently and keep the lid nearby.",
+    "culinary_hash": "c76caf51533442afa3ad9ee46fae68b08c6f8c5a0623416458432baec4d228c1",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_uruguayan-chivito-sandwiches_v6",
+    "dish_id": "uruguayan-chivito-sandwiches",
+    "recipe_version_id": "rv_uruguayan-chivito-sandwiches_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "uruguayan-chivito-sandwiches.webp",
+    "card_ref": "uruguayan-chivito-sandwiches-640.webp",
+    "master_filename": "uruguayan-chivito-sandwiches.webp",
+    "card_filename": "uruguayan-chivito-sandwiches-640.webp",
+    "active_source_jpeg": "img_v6.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "uruguayan-chivito-sandwiches.webp",
+        "spec_catalog_path": "/images/meals/uruguayan-chivito-sandwiches.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "uruguayan-chivito-sandwiches-640.webp",
+        "spec_catalog_path": "/images/meals/uruguayan-chivito-sandwiches-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v6.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-16",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "cbe2528faba71d14cfa0fb0e9def16acf0a55e73114643e8fd092343a2ec810b",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r4. asset_generated is true.",
+    "package_revision": "author-r4",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 5,
+    "file_hashes": {
+      "source_jpeg_sha256": "cbe2528faba71d14cfa0fb0e9def16acf0a55e73114643e8fd092343a2ec810b",
+      "master_sha256": "77d2629a93041695e9cf4acc82b091863a2cbf6e4c87ec43614d9c1e4cdf38e9",
+      "card_sha256": "eaa79f8ab19abfdac0c6f350a2fcb93f69ed3071e8f64b7a21f9c7a51ca2d39f"
+    },
+    "asset_sha256": {
+      "img_v6.jpg": "cbe2528faba71d14cfa0fb0e9def16acf0a55e73114643e8fd092343a2ec810b",
+      "uruguayan-chivito-sandwiches.webp": "77d2629a93041695e9cf4acc82b091863a2cbf6e4c87ec43614d9c1e4cdf38e9",
+      "uruguayan-chivito-sandwiches-640.webp": "eaa79f8ab19abfdac0c6f350a2fcb93f69ed3071e8f64b7a21f9c7a51ca2d39f"
+    },
+    "regeneration": {
+      "version": 6,
+      "basis": "audit_r1_r2_gate_K_after_creator_self_review",
+      "summary": "Active hero is the v6 regeneration (author-r4). Earlier versions: v1: rejected in Cora's creator self-review (steak reads as a ground-beef burger patty); v2: rejected in Cora's creator self-review (steak still reads as a thick burger patty); v3: rejected in Cora's creator self-review (steak fixed but fried egg missing (must-show)); v4: rejected by independent audit r1 gate K after being finalized at author-r2 (thick rosy steak vs 1/4 inch at 145F); v5: rejected by independent audit r2 gate K after being finalized at author-r3 (steak cut face has ground-beef texture, reads as smash-burger patty).",
+      "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v6 prompt.",
+      "prompt_sha256": {
+        "v2": "1c390a43a06c3297dd558d83bfa146076272bb1acad96da6c2dde6c0b1ebcbc0",
+        "v3": "de9273df3eb5d4e6c9fd8adb95f58a8bab8dbc91bf9b327dd7700d12b5ea94d3",
+        "v4": "1c058ec79137a2b84a9bacfc28ce398897d094d2616e064a209e1608a765afd6",
+        "v5": "8d2be7e5e7ade1cec073e4f69da1061eede4853b6a72d3ad2b4a419cbb4a78e5",
+        "v6": "2c61b1732e60ec54e8df2a94ff2d742accfc3f3110782c2e761e83e348dc970b"
+      },
+      "rejected_versions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "audit_rejected_versions": [
+        4,
+        5
+      ]
+    },
+    "regeneration_history": [
+      {
+        "version": 4,
+        "basis": "creator_self_review_before_audit",
+        "summary": "Active hero is the v4 regeneration. Versions v1 to v3 were rejected in Cora's creator self-review: v1: steak reads as a ground-beef burger patty; v2: steak still reads as a thick burger patty; v3: steak fixed but fried egg missing (must-show).",
+        "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v4 prompt.",
+        "prompt_sha256": {
+          "v2": "1c390a43a06c3297dd558d83bfa146076272bb1acad96da6c2dde6c0b1ebcbc0",
+          "v3": "de9273df3eb5d4e6c9fd8adb95f58a8bab8dbc91bf9b327dd7700d12b5ea94d3",
+          "v4": "1c058ec79137a2b84a9bacfc28ce398897d094d2616e064a209e1608a765afd6"
+        },
+        "rejected_versions": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "version": 5,
+        "basis": "audit_r1_gate_K_after_creator_self_review",
+        "summary": "Active hero is the v5 regeneration (author-r3). Earlier versions: v1: rejected in Cora's creator self-review (steak reads as a ground-beef burger patty); v2: rejected in Cora's creator self-review (steak still reads as a thick burger patty); v3: rejected in Cora's creator self-review (steak fixed but fried egg missing (must-show)); v4: rejected by independent audit r1 gate K after being finalized at author-r2 (thick rosy steak vs 1/4 inch at 145F).",
+        "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v5 prompt.",
+        "prompt_sha256": {
+          "v2": "1c390a43a06c3297dd558d83bfa146076272bb1acad96da6c2dde6c0b1ebcbc0",
+          "v3": "de9273df3eb5d4e6c9fd8adb95f58a8bab8dbc91bf9b327dd7700d12b5ea94d3",
+          "v4": "1c058ec79137a2b84a9bacfc28ce398897d094d2616e064a209e1608a765afd6",
+          "v5": "8d2be7e5e7ade1cec073e4f69da1061eede4853b6a72d3ad2b4a419cbb4a78e5"
+        },
+        "rejected_versions": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "audit_rejected_versions": [
+          4
+        ]
+      },
+      {
+        "version": 6,
+        "basis": "audit_r1_r2_gate_K_after_creator_self_review",
+        "summary": "Active hero is the v6 regeneration (author-r4). Earlier versions: v1: rejected in Cora's creator self-review (steak reads as a ground-beef burger patty); v2: rejected in Cora's creator self-review (steak still reads as a thick burger patty); v3: rejected in Cora's creator self-review (steak fixed but fried egg missing (must-show)); v4: rejected by independent audit r1 gate K after being finalized at author-r2 (thick rosy steak vs 1/4 inch at 145F); v5: rejected by independent audit r2 gate K after being finalized at author-r3 (steak cut face has ground-beef texture, reads as smash-burger patty).",
+        "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v6 prompt.",
+        "prompt_sha256": {
+          "v2": "1c390a43a06c3297dd558d83bfa146076272bb1acad96da6c2dde6c0b1ebcbc0",
+          "v3": "de9273df3eb5d4e6c9fd8adb95f58a8bab8dbc91bf9b327dd7700d12b5ea94d3",
+          "v4": "1c058ec79137a2b84a9bacfc28ce398897d094d2616e064a209e1608a765afd6",
+          "v5": "8d2be7e5e7ade1cec073e4f69da1061eede4853b6a72d3ad2b4a419cbb4a78e5",
+          "v6": "2c61b1732e60ec54e8df2a94ff2d742accfc3f3110782c2e761e83e348dc970b"
+        },
+        "rejected_versions": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "audit_rejected_versions": [
+          4,
+          5
+        ]
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_uruguayan-chivito-sandwiches_v1",
+        "source_file": "img_v1.jpg",
+        "sha256": "53bcd4197a00611e24c3377900c2fa0aafbce4499a19b811b820901715e0979b",
+        "generate_image_attachment_hash": "53bcd4197a00611e24c3377900c2fa0aafbce4499a19b811b820901715e0979b",
+        "moved_to_rejected": "rejected/img_v1-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "steak reads as a ground-beef burger patty"
+      },
+      {
+        "image_id": "img_uruguayan-chivito-sandwiches_v2",
+        "source_file": "img_v2.jpg",
+        "sha256": "ee7c4e360d5f925bbc980c82476f9c67bbf76235ecc70693d487fc3a92c8c885",
+        "generate_image_attachment_hash": "ee7c4e360d5f925bbc980c82476f9c67bbf76235ecc70693d487fc3a92c8c885",
+        "moved_to_rejected": "rejected/img_v2-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "steak still reads as a thick burger patty"
+      },
+      {
+        "image_id": "img_uruguayan-chivito-sandwiches_v3",
+        "source_file": "img_v3.jpg",
+        "sha256": "5a92c8075ff69a45a7bc304c871b9150f2e7d19b549bc98a5b2ba56aecadb411",
+        "generate_image_attachment_hash": "5a92c8075ff69a45a7bc304c871b9150f2e7d19b549bc98a5b2ba56aecadb411",
+        "moved_to_rejected": "rejected/img_v3-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "steak fixed but fried egg missing (must-show)"
+      },
+      {
+        "image_id": "img_uruguayan-chivito-sandwiches_v4",
+        "active_source_jpeg": "img_v4.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "6da2d7ee25954a4277e232c911c90357cd66e52fd0eaa47b927905d7bad71733",
+          "master_sha256": "752e0812faf317595fda00fa899141b903c34b071176603b21b61e850e014946",
+          "card_sha256": "c10cec9b30494955900981904615ff7b51903a67e825fa925abcd4323d415f95"
+        },
+        "generation_date": "2026-10-15",
+        "moved_to_rejected": {
+          "uruguayan-chivito-sandwiches.webp": {
+            "rejected_path": "rejected/uruguayan-chivito-sandwiches-replaced-20261016002409.webp",
+            "sha256": "752e0812faf317595fda00fa899141b903c34b071176603b21b61e850e014946"
+          },
+          "uruguayan-chivito-sandwiches-640.webp": {
+            "rejected_path": "rejected/uruguayan-chivito-sandwiches-640-replaced-20261016002409.webp",
+            "sha256": "c10cec9b30494955900981904615ff7b51903a67e825fa925abcd4323d415f95"
+          },
+          "img_v4.jpg": {
+            "rejected_path": "rejected/img_v4-replaced-20261016002409.jpg",
+            "sha256": "6da2d7ee25954a4277e232c911c90357cd66e52fd0eaa47b927905d7bad71733"
+          }
+        },
+        "replaced_on": "2026-10-16",
+        "reason": "Rejected by independent audit r1 gate K: thick rosy steak vs 1/4 inch at 145F",
+        "rejected_by": "independent audit r1 (gate K)",
+        "finalized_at": "author-r2",
+        "rejected_on": "2026-10-16"
+      },
+      {
+        "image_id": "img_uruguayan-chivito-sandwiches_v5",
+        "active_source_jpeg": "img_v5.jpg",
+        "file_hashes": {
+          "source_jpeg_sha256": "e132a2952e0a0bfee0190888e086856a70d5185e7c2b5a18cf9176d3ee973dc4",
+          "master_sha256": "74fc5a404e678e8f9b0fda9bf597ce8075ed026c1db996eda2938a2c4a32afa1",
+          "card_sha256": "882b0a8f9f329228474bb2aa6c231482aff42b9e151701623423cbe4ad984538"
+        },
+        "generation_date": "2026-10-16",
+        "moved_to_rejected": {
+          "uruguayan-chivito-sandwiches.webp": {
+            "rejected_path": "rejected/uruguayan-chivito-sandwiches-replaced-20261016003718.webp",
+            "sha256": "74fc5a404e678e8f9b0fda9bf597ce8075ed026c1db996eda2938a2c4a32afa1"
+          },
+          "uruguayan-chivito-sandwiches-640.webp": {
+            "rejected_path": "rejected/uruguayan-chivito-sandwiches-640-replaced-20261016003718.webp",
+            "sha256": "882b0a8f9f329228474bb2aa6c231482aff42b9e151701623423cbe4ad984538"
+          },
+          "img_v5.jpg": {
+            "rejected_path": "rejected/img_v5-replaced-20261016003718.jpg",
+            "sha256": "e132a2952e0a0bfee0190888e086856a70d5185e7c2b5a18cf9176d3ee973dc4"
+          }
+        },
+        "replaced_on": "2026-10-16",
+        "reason": "Rejected by independent audit r2 gate K: steak cut face has ground-beef texture, reads as smash-burger patty",
+        "rejected_by": "independent audit r2 (gate K)",
+        "finalized_at": "author-r3",
+        "rejected_on": "2026-10-16"
+      }
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 34 = 44 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. "
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "uruguayan-chivito-sandwiches.webp 1200x900 and uruguayan-chivito-sandwiches-640.webp 640x480 exported from img_v6.jpg (1280x720); sha256 verified at author-r4."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"pan\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One of each layer in a 10-inch skillet.",
+    "2": "Two of each layer in one batch in the 12-inch skillet.",
+    "4": "As written (2 batches of 2 steaks).",
+    "do_not_scale": []
+  },
+  "coverage_contribution": "There is no Uruguayan dish in the catalog. A loaded steak sandwich unlike the cheesesteak, Cuban, and burger already listed.",
+  "near_duplicate_review": "Compared with philly-cheesesteaks: whole thin steaks stacked with ham, bacon, egg, and mozzarella, not chopped steak with onions and provolone. Compared with cuban-sandwiches: a hot steak and egg stack on a soft roll, not pressed roast pork with pickles and Swiss. Compared with classic-smash-burgers: sliced sirloin, not ground beef patties.",
+  "not_duplicate_of": "Not a steak and egg breakfast plate and not a club sandwich.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r4_preflight_pass_awaiting_vale",
+  "creator_batch": "E",
+  "revision_history": [
+    {
+      "from": "author-r2",
+      "to": "author-r3",
+      "when": "2026-10-16",
+      "who": "Grok Bot (Curator, creator role), wave-17",
+      "trigger": "audit r1 gate K FAIL",
+      "scope": "hero image only; recipe text unchanged (culinary_hash unchanged)",
+      "from_culinary_hash": "c76caf51533442afa3ad9ee46fae68b08c6f8c5a0623416458432baec4d228c1",
+      "to_culinary_hash": "c76caf51533442afa3ad9ee46fae68b08c6f8c5a0623416458432baec4d228c1",
+      "changes": [
+        "Hero image: v4 (6da2d7ee...) rejected by audit r1 K (thick rosy steak vs 1/4 inch at 145F) and moved to rejected/; v5 (e132a295...) generated by Cora from the v5 prompt (v1 prompt plus one correction sentence: thin steak cooked to medium, egg visible, olives inside) is the active hero; WebPs re-exported.",
+        "Recipe text unchanged."
+      ]
+    },
+    {
+      "from": "author-r3",
+      "to": "author-r4",
+      "when": "2026-10-16",
+      "who": "Grok Bot (Curator, creator role), wave-17",
+      "trigger": "audit r2 gate K FAIL",
+      "scope": "hero image only; recipe text unchanged (culinary_hash unchanged)",
+      "from_culinary_hash": "c76caf51533442afa3ad9ee46fae68b08c6f8c5a0623416458432baec4d228c1",
+      "to_culinary_hash": "c76caf51533442afa3ad9ee46fae68b08c6f8c5a0623416458432baec4d228c1",
+      "changes": [
+        "Hero image: v5 (e132a295...) rejected by audit r2 K (steak cut face has ground-beef texture, reads as smash-burger patty) and moved to rejected/; v6 (cbe2528f...) generated by Cora from the v6 prompt (v1 prompt plus one correction sentence) is the active hero; WebPs re-exported.",
+        "Recipe text unchanged."
+      ]
+    }
+  ]
+}

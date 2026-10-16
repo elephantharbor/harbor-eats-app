@@ -1,0 +1,40 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "bhutanese-ema-datshi.webp",
+    "bhutanese-ema-datshi-640.webp"
+  ],
+  "present_files": [
+    "bhutanese-ema-datshi.webp",
+    "bhutanese-ema-datshi-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "b3e706166e55589541a8641e08d193e12df1786f9f221556dadbc34354463f24",
+    "bhutanese-ema-datshi.webp": "a1b95c2860a10d90dc27675824992638cd99d6ee118532a63a3c9e1f51104d98",
+    "bhutanese-ema-datshi-640.webp": "6413fce007551409fbfd86c1bf11a6c484fd6d9e26f5fd8bd6dea284ac01ed33"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "creator_self_review_before_audit",
+    "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: chile strips read as green beans.",
+    "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+    "prompt_sha256": {
+      "v2": "cc2ffd6e2d2371c4fb8bcb1e7cc1d9efb951d8ed1d1c22708cce959012300780"
+    },
+    "rejected_versions": [
+      1
+    ]
+  },
+  "package_revision": "author-r3",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

@@ -1,0 +1,641 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "chinese-hot-sour-soup-tofu",
+    "slug": "chinese-hot-sour-soup-tofu",
+    "title": "Chinese Hot and Sour Soup with Tofu, Shiitake, and Egg Ribbons",
+    "description": "Dried shiitake mushrooms, bamboo shoots, ginger, and firm tofu simmered in vegetable broth with soy sauce, thickened with cornstarch, swirled with egg ribbons, and sharpened with rice vinegar, white pepper, and toasted sesame oil, served with jasmine rice and scallions.",
+    "cuisine": "chinese",
+    "meal_format": "soup-with-rice",
+    "primary_ingredient": "tofu",
+    "vocabulary_tag_ids": [
+      "soups",
+      "tofu",
+      "tangy",
+      "spicy",
+      "mushrooms",
+      "chinese"
+    ],
+    "current_recipe_id": "rcp_chinese-hot-sour-soup-tofu",
+    "current_version_id": "rv_chinese-hot-sour-soup-tofu_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_chinese-hot-sour-soup-tofu",
+    "dish_id": "chinese-hot-sour-soup-tofu",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_chinese-hot-sour-soup-tofu_v1",
+    "recipe_id": "rcp_chinese-hot-sour-soup-tofu",
+    "dish_id": "chinese-hot-sour-soup-tofu",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Chinese Hot and Sour Soup with Tofu, Shiitake, and Egg Ribbons",
+    "description": "Dried shiitake mushrooms, bamboo shoots, ginger, and firm tofu simmered in vegetable broth with soy sauce, thickened with cornstarch, swirled with egg ribbons, and sharpened with rice vinegar, white pepper, and toasted sesame oil, served with jasmine rice and scallions.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "shiitake",
+        "name": "dried shiitake mushrooms",
+        "display_name": "dried shiitake mushrooms",
+        "quantity": 1,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soak-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "cup",
+        "note": "hot tap, for soaking",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "broth",
+        "name": "vegetable broth",
+        "display_name": "vegetable broth whose label lists vegetables, salt, and spices",
+        "quantity": 6,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "cut into thin matchsticks",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "bamboo",
+        "name": "bamboo shoots",
+        "display_name": "sliced bamboo shoots (one 8-oz can) whose label lists bamboo shoots, water, and citric acid",
+        "quantity": 8,
+        "unit": "oz",
+        "note": null,
+        "preparation": "drained and cut into strips",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "tofu",
+        "name": "firm tofu",
+        "display_name": "firm tofu",
+        "quantity": 14,
+        "unit": "oz",
+        "note": null,
+        "preparation": "cut into thin strips",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cornstarch",
+        "name": "cornstarch",
+        "display_name": "cornstarch",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "slurry-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "for the slurry",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "beaten",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "vinegar",
+        "name": "unseasoned rice vinegar",
+        "display_name": "unseasoned rice vinegar",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "white-pepper",
+        "name": "ground white pepper",
+        "display_name": "ground white pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "sesame-oil",
+        "name": "toasted sesame oil",
+        "display_name": "toasted sesame oil",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "jasmine rice",
+        "display_name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Soak the shiitake",
+        "body": "Pour 2 cups hot tap water over the shiitake in the heatproof bowl and leave them to soften while the rice cooks (overlap, about 20 minutes). Rinse the rice until the rinse runs clear.",
+        "ingredient_refs": [
+          "shiitake",
+          "soak-water",
+          "rice"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the rice",
+        "body": "Combine the rice with 2 1/4 cups water and the salt in a 2-quart saucepan, bring to a boil over high, about 4 minutes, then cover, turn to low, and cook 15 minutes. Leave it covered off the heat to rest 10 minutes.",
+        "ingredient_refs": [
+          "rice",
+          "rice-water",
+          "salt"
+        ],
+        "clock_minutes": 29,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Prep",
+        "body": "While the rice cooks (overlap stated): lift out the shiitake, squeeze them over the bowl, and slice them thin, saving the soaking liquid. Cut the tofu and bamboo into strips, cut the ginger into matchsticks, beat the eggs, and slice the scallions.",
+        "ingredient_refs": [
+          "shiitake",
+          "tofu",
+          "bamboo",
+          "ginger",
+          "eggs",
+          "scallions"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Simmer",
+        "body": "In the 4-quart pot combine the broth, the shiitake with 1 1/2 cups of their soaking water (leave any grit behind), the ginger, bamboo, and soy sauce. Bring to a boil over high, about 9 minutes to come to a boil, then simmer 5 minutes. Add the tofu and simmer 2 minutes.",
+        "ingredient_refs": [
+          "broth",
+          "shiitake",
+          "soak-water",
+          "ginger",
+          "bamboo",
+          "soy-sauce",
+          "tofu"
+        ],
+        "clock_minutes": 16,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Thicken and swirl",
+        "body": "Stir the cornstarch into 1/4 cup water in the small bowl, stir it into the soup, and simmer until glossy, about 1 minute. Drizzle in the eggs in a thin stream while stirring slowly once around so they set in ribbons. Off the heat stir in the vinegar, white pepper, and sesame oil.",
+        "ingredient_refs": [
+          "cornstarch",
+          "slurry-water",
+          "eggs",
+          "vinegar",
+          "white-pepper",
+          "sesame-oil"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Ladle the soup into bowls, scatter with scallions, and serve the rice alongside.",
+        "ingredient_refs": [
+          "scallions",
+          "rice"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "soup",
+        "name": "hot and sour soup",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "dried shiitake mushrooms",
+          "water",
+          "vegetable broth",
+          "ginger",
+          "bamboo shoots",
+          "soy sauce",
+          "firm tofu",
+          "cornstarch",
+          "water",
+          "eggs",
+          "rice vinegar",
+          "white pepper",
+          "toasted sesame oil"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "jasmine rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "jasmine rice",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "garnish",
+        "name": "scallions",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "scallions"
+        ]
+      }
+    ],
+    "equipment": [
+      "4-quart pot",
+      "2-quart saucepan with lid",
+      "heatproof bowl",
+      "small bowl",
+      "ladle"
+    ],
+    "methods": [
+      "simmer",
+      "steam"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 4,
+    "cook_time_minutes": 51,
+    "total_time_minutes": 55,
+    "prep_minutes": 4,
+    "cook_minutes": 51,
+    "total_minutes": 55,
+    "time_clock": "Prep 4 + cook 51 = 55 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The shiitake soak and the prep run while the rice cooks (steps 1 and 3 overlap step 2, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "4-quart pot over high to a boil, then a simmer; 2-quart saucepan for the rice.",
+    "doneness": "Soup lightly thickened and glossy; egg set in thin ribbons; sour and peppery heat both clearly present.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Egg is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional vegetarian and dairy_free: mushrooms, tofu, bamboo, vegetable broth, soy sauce, egg, vinegar, sesame oil, and rice.",
+    "allergens": [
+      "soy",
+      "wheat",
+      "egg",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Soy from the tofu and soy sauce.",
+      "Wheat from the soy sauce.",
+      "Egg from the egg ribbons.",
+      "Sesame from the toasted sesame oil.",
+      "No milk, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Egg is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "Vegetable broth, no pork, and no oyster sauce. The broth label lists vegetables, salt, and spices with no meat, milk, or wheat. The bamboo shoot label lists bamboo shoots, water, and citric acid.",
+    "vocabulary_tag_ids": [
+      "soups",
+      "tofu",
+      "tangy",
+      "spicy",
+      "mushrooms",
+      "chinese"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'chinese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Pour the hot tap water over the mushrooms in a heatproof bowl.",
+    "culinary_hash": "871c85313228e74ba3743758418ffe06bfaa0bcb25759174b3120acaab3d479a",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_chinese-hot-sour-soup-tofu_v1",
+    "dish_id": "chinese-hot-sour-soup-tofu",
+    "recipe_version_id": "rv_chinese-hot-sour-soup-tofu_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "chinese-hot-sour-soup-tofu.webp",
+    "card_ref": "chinese-hot-sour-soup-tofu-640.webp",
+    "master_filename": "chinese-hot-sour-soup-tofu.webp",
+    "card_filename": "chinese-hot-sour-soup-tofu-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "chinese-hot-sour-soup-tofu.webp",
+        "spec_catalog_path": "/images/meals/chinese-hot-sour-soup-tofu.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "chinese-hot-sour-soup-tofu-640.webp",
+        "spec_catalog_path": "/images/meals/chinese-hot-sour-soup-tofu-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "d60773625db3e72b27cfd88584e824b8fc940dafc9d76c97a561f35543ac6411",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "d60773625db3e72b27cfd88584e824b8fc940dafc9d76c97a561f35543ac6411",
+      "master_sha256": "458d57731ad9f8d8110ad18b975f3eab76e5cb172fa4ee4d4125a9fcd2ba413a",
+      "card_sha256": "34fc97c4069bc45c2841c6c7686196ce752a8904ab641a83f91e4c6bf7c3524b"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "d60773625db3e72b27cfd88584e824b8fc940dafc9d76c97a561f35543ac6411",
+      "chinese-hot-sour-soup-tofu.webp": "458d57731ad9f8d8110ad18b975f3eab76e5cb172fa4ee4d4125a9fcd2ba413a",
+      "chinese-hot-sour-soup-tofu-640.webp": "34fc97c4069bc45c2841c6c7686196ce752a8904ab641a83f91e4c6bf7c3524b"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 4 + cook 51 = 55 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The shiitake soak and the prep run while the rice cooks (steps 1 and 3 overlap step 2, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "chinese-hot-sour-soup-tofu.webp 1200x900 and chinese-hot-sour-soup-tofu-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything in a 2-quart saucepan; 1/3 cup rice in a 1-quart saucepan.",
+    "2": "Half of everything in a 3-quart saucepan; 3/4 cup rice in a 1-quart saucepan.",
+    "4": "As written.",
+    "do_not_scale": [
+      "add the vinegar off the heat so it stays sharp"
+    ]
+  },
+  "coverage_contribution": "No hot and sour soup is in the catalog; the Chinese meals are stir-fries, mapo tofu, egg foo young, and char siu, and the Asian soups are pho, ramen, laksa, and beef noodle soup. A light, HH001-eligible vegetarian soup dinner.",
+  "near_duplicate_review": "Compared with sichuan-mapo-tofu-shiitake: a thin sour-peppery soup with egg ribbons, not a chili-bean braise. Compared with korean-soft-tofu-stew: thickened with cornstarch, soured with vinegar, and peppered, not a gochugaru stew. Compared with miso-mushroom-ramen: a cornstarch-thickened Chinese soup with tofu and rice, not a miso noodle broth. Compared with spanish-sopa-de-ajo-egg: egg ribbons in a sour Chinese broth, not poached eggs in garlic-paprika soup.",
+  "not_duplicate_of": "Not egg drop soup: vinegar, white pepper, mushrooms, bamboo, and tofu.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "A"
+}

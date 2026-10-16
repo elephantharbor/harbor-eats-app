@@ -1,0 +1,619 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "lebanese-arayes",
+    "slug": "lebanese-arayes",
+    "title": "Lebanese Arayes: Spiced Lamb-Stuffed Pita with Tahini Sauce",
+    "description": "Pita halves filled with a thin layer of ground lamb mixed with grated onion, parsley, garlic, allspice, cinnamon, cumin, and Aleppo pepper, brushed with olive oil and baked crisp, served with a lemony tahini sauce, sliced cucumber, and radishes.",
+    "cuisine": "lebanese",
+    "meal_format": "stuffed-flatbread",
+    "primary_ingredient": "ground lamb",
+    "vocabulary_tag_ids": [
+      "middle-eastern",
+      "crispy",
+      "savory",
+      "sandwiches"
+    ],
+    "current_recipe_id": "rcp_lebanese-arayes",
+    "current_version_id": "rv_lebanese-arayes_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_lebanese-arayes",
+    "dish_id": "lebanese-arayes",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_lebanese-arayes_v1",
+    "recipe_id": "rcp_lebanese-arayes",
+    "dish_id": "lebanese-arayes",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Lebanese Arayes: Spiced Lamb-Stuffed Pita with Tahini Sauce",
+    "description": "Pita halves filled with a thin layer of ground lamb mixed with grated onion, parsley, garlic, allspice, cinnamon, cumin, and Aleppo pepper, brushed with olive oil and baked crisp, served with a lemony tahini sauce, sliced cucumber, and radishes.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "lamb",
+        "name": "ground lamb",
+        "display_name": "ground lamb",
+        "quantity": 1,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 0.5,
+        "unit": "count",
+        "note": null,
+        "preparation": "grated and squeezed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": "2 filling, 1 sauce",
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "allspice",
+        "name": "ground allspice",
+        "display_name": "ground allspice",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cinnamon",
+        "name": "ground cinnamon",
+        "display_name": "ground cinnamon",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "aleppo",
+        "name": "Aleppo pepper",
+        "display_name": "Aleppo pepper",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": "1 1/4 tsp filling, 1/4 tsp sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "pita",
+        "name": "pita",
+        "display_name": "7-inch pocket pitas whose label lists wheat flour, water, yeast, sugar, and salt",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "tahini",
+        "name": "tahini",
+        "display_name": "tahini whose label lists sesame seeds",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon-juice",
+        "name": "lemon juice",
+        "display_name": "lemon juice",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "cold, for the sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "radishes",
+        "name": "radishes",
+        "display_name": "radishes",
+        "quantity": 6,
+        "unit": "count",
+        "note": null,
+        "preparation": "halved",
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Preheat the oven to 425 F with racks in the upper and lower thirds. Grate the onion on the box grater and squeeze it dry, chop the parsley, grate the garlic, and halve the pitas.",
+        "ingredient_refs": [
+          "onion",
+          "parsley",
+          "garlic",
+          "pita"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Stuff the pitas",
+        "body": "In the large bowl, mix the lamb, onion, parsley, 2 cloves garlic, allspice, cinnamon, cumin, Aleppo pepper, and 1 1/4 tsp salt. Open each pita half and spread an even 1/4-inch layer of filling inside, pressing it flat. Brush the outsides with the oil and set 4 on each sheet pan.",
+        "ingredient_refs": [
+          "lamb",
+          "onion",
+          "parsley",
+          "garlic",
+          "allspice",
+          "cinnamon",
+          "cumin",
+          "aleppo",
+          "salt",
+          "pita",
+          "olive-oil"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 3,
+        "title": "Bake",
+        "body": "Bake 8 minutes, flip with the thin spatula, switch the pans, and bake until crisp and the filling is 160 F, about 8 minutes more.",
+        "ingredient_refs": [
+          "pita",
+          "lamb"
+        ],
+        "clock_minutes": 17,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Tahini sauce and vegetables",
+        "body": "While the arayes bake (overlap stated): whisk the tahini, lemon juice, 1 clove garlic, 1/4 tsp salt, and 1/4 cup cold water in the small bowl until smooth and pourable. Slice the cucumber and halve the radishes.",
+        "ingredient_refs": [
+          "tahini",
+          "lemon-juice",
+          "garlic",
+          "salt",
+          "water",
+          "cucumber",
+          "radishes"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Cut each half in two and serve hot with the tahini sauce for dipping, cucumber, and radishes.",
+        "ingredient_refs": [
+          "pita",
+          "tahini",
+          "cucumber",
+          "radishes"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "arayes",
+        "name": "arayes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "ground lamb",
+          "yellow onion",
+          "parsley",
+          "garlic",
+          "allspice",
+          "cinnamon",
+          "cumin",
+          "Aleppo pepper",
+          "salt",
+          "pita",
+          "olive oil"
+        ]
+      },
+      {
+        "component_id": "tahini",
+        "name": "tahini sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tahini",
+          "lemon juice",
+          "garlic",
+          "water",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "veg",
+        "name": "cucumber and radishes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cucumber",
+          "radishes"
+        ]
+      }
+    ],
+    "equipment": [
+      "2 rimmed sheet pans (18x13 inch)",
+      "large bowl",
+      "small bowl",
+      "box grater",
+      "pastry brush",
+      "whisk",
+      "instant-read thermometer",
+      "thin spatula"
+    ],
+    "methods": [
+      "bake"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "baked"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 22,
+    "cook_time_minutes": 20,
+    "total_time_minutes": 42,
+    "prep_minutes": 22,
+    "cook_minutes": 20,
+    "total_minutes": 42,
+    "time_clock": "Prep 22 + cook 20 = 42 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The tahini sauce and vegetables are made while the arayes bake (step 4 runs inside step 3, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        2
+      ],
+      "cook_steps": [
+        3,
+        5
+      ],
+      "overlap_steps": [
+        4
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Prep) and it states the preheat. The tahini sauce and vegetables are made while the arayes bake (step 4 runs inside step 3, overlap stated).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven 425 F with racks in the upper and lower thirds.",
+    "doneness": "Pita crisp and deep golden on both sides; lamb filling 160 F at the center.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: lamb is meat."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. The pita label lists wheat flour, water, yeast, sugar, and salt; the tahini label lists sesame seeds.",
+    "allergens": [
+      "meat",
+      "wheat",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Meat from the lamb.",
+      "Wheat from the pita.",
+      "Sesame from the tahini.",
+      "No milk, egg, soy, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: lamb is meat.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "middle-eastern",
+      "crispy",
+      "savory",
+      "sandwiches"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'lebanese' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Bake until the lamb reaches 160 F at the center.",
+    "culinary_hash": "47048da635e3a968572c4b6a9186d4e8c5bc22dd7a62d5cf3381c8921882fc20",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_lebanese-arayes_v1",
+    "dish_id": "lebanese-arayes",
+    "recipe_version_id": "rv_lebanese-arayes_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "lebanese-arayes.webp",
+    "card_ref": "lebanese-arayes-640.webp",
+    "master_filename": "lebanese-arayes.webp",
+    "card_filename": "lebanese-arayes-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "lebanese-arayes.webp",
+        "spec_catalog_path": "/images/meals/lebanese-arayes.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "lebanese-arayes-640.webp",
+        "spec_catalog_path": "/images/meals/lebanese-arayes-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "5377eee64b57f437daf758888f90cda03994ee1ea94468440c809e7b0d98ee64",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "5377eee64b57f437daf758888f90cda03994ee1ea94468440c809e7b0d98ee64",
+      "master_sha256": "81d3f3cfacaa1e0c96c7700e3919dbc555dae79b87947ef3af92b17cfaa48180",
+      "card_sha256": "6c688da17bc745a8fb80d59fc7dca0dc5f18ea296be6bb1c60b61bc2f03a13e1"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "5377eee64b57f437daf758888f90cda03994ee1ea94468440c809e7b0d98ee64",
+      "lebanese-arayes.webp": "81d3f3cfacaa1e0c96c7700e3919dbc555dae79b87947ef3af92b17cfaa48180",
+      "lebanese-arayes-640.webp": "6c688da17bc745a8fb80d59fc7dca0dc5f18ea296be6bb1c60b61bc2f03a13e1"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 22 + cook 20 = 42 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The tahini sauce and vegetables are made while the arayes bake (step 4 runs inside step 3, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Prep) and it states the preheat. The tahini sauce and vegetables are made while the arayes bake (step 4 runs inside step 3, overlap stated)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "lebanese-arayes.webp 1200x900 and lebanese-arayes-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"baked\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "One pita (2 halves) on 1 sheet pan with a quarter of the filling.",
+    "2": "Two pitas (4 halves) on 1 sheet pan with half the filling.",
+    "4": "As written (8 halves on 2 sheet pans).",
+    "do_not_scale": [
+      "filling layer about 1/4 inch thick"
+    ]
+  },
+  "coverage_contribution": "Lebanese food in the catalog is baked kibbeh and samke harra; there is no stuffed bread. A crisp, hand-held lamb dinner.",
+  "near_duplicate_review": "Compared with turkish-lahmacun: lamb sealed inside pita and baked crisp, not spread thin over open dough. Compared with lebanese-baked-kibbeh: a raw lamb filling baked in bread, not a bulgur and lamb layered bake. Compared with sabich-pita-sandwiches: a hot baked lamb pocket, not eggplant and egg in pita.",
+  "not_duplicate_of": "Not a gyro and not kofta in pita. Unlike pakistani-lamb-keema-peas and balkan-cevapi-ajvar in this wave, the raw spiced lamb is baked inside the bread.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "E"
+}

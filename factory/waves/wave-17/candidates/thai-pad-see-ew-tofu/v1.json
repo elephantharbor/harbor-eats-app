@@ -1,0 +1,588 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "thai-pad-see-ew-tofu",
+    "slug": "thai-pad-see-ew-tofu",
+    "title": "Thai Pad See Ew with Tofu, Broccoli, and Egg",
+    "description": "Wide rice noodles stir-fried over high heat with seared extra-firm tofu, broccoli, garlic, and scrambled eggs in a sweet-salty sauce of dark soy sauce, soy sauce, brown sugar, and rice vinegar, finished with white pepper.",
+    "cuisine": "thai",
+    "meal_format": "stir-fried-noodles",
+    "primary_ingredient": "rice noodles",
+    "vocabulary_tag_ids": [
+      "rice-noodles",
+      "stir-fries",
+      "tofu",
+      "savory",
+      "umami",
+      "thai"
+    ],
+    "current_recipe_id": "rcp_thai-pad-see-ew-tofu",
+    "current_version_id": "rv_thai-pad-see-ew-tofu_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_thai-pad-see-ew-tofu",
+    "dish_id": "thai-pad-see-ew-tofu",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_thai-pad-see-ew-tofu_v1",
+    "recipe_id": "rcp_thai-pad-see-ew-tofu",
+    "dish_id": "thai-pad-see-ew-tofu",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Thai Pad See Ew with Tofu, Broccoli, and Egg",
+    "description": "Wide rice noodles stir-fried over high heat with seared extra-firm tofu, broccoli, garlic, and scrambled eggs in a sweet-salty sauce of dark soy sauce, soy sauce, brown sugar, and rice vinegar, finished with white pepper.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "noodles",
+        "name": "wide rice noodles",
+        "display_name": "dried wide rice noodles (about 3/8 inch) whose label lists rice and water",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "noodle-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 8,
+        "unit": "cup",
+        "note": "for the noodles",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "tofu",
+        "name": "extra-firm tofu",
+        "display_name": "extra-firm tofu",
+        "quantity": 14,
+        "unit": "oz",
+        "note": null,
+        "preparation": "patted dry and cut into 1-inch cubes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 4,
+        "unit": "tbsp",
+        "note": "1 tsp noodles, the rest for searing and stir-frying",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "broccoli",
+        "name": "broccoli",
+        "display_name": "broccoli crowns",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "preparation": "cut into small florets, stems peeled and sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "broccoli-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "to steam the broccoli",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "large eggs",
+        "display_name": "large eggs",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "dark-soy",
+        "name": "dark soy sauce",
+        "display_name": "dark soy sauce",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "soy-sauce",
+        "name": "soy sauce",
+        "display_name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "brown-sugar",
+        "name": "light brown sugar",
+        "display_name": "light brown sugar",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "vinegar",
+        "name": "rice vinegar",
+        "display_name": "rice vinegar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "white-pepper",
+        "name": "ground white pepper",
+        "display_name": "ground white pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Pat the tofu dry and cut it into 1-inch cubes. Cut the broccoli into small florets and slice the peeled stems. Mince the garlic. Stir the dark soy sauce, soy sauce, brown sugar, and vinegar in the small bowl.",
+        "ingredient_refs": [
+          "tofu",
+          "broccoli",
+          "garlic",
+          "dark-soy",
+          "soy-sauce",
+          "brown-sugar",
+          "vinegar"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Cook the noodles",
+        "body": "Bring 8 cups water to a boil in the 4-quart pot over high, about 10 minutes to come to a boil. Turn off the heat, add the noodles, and soak until pliable but still chewy, about 7 minutes. Drain, rinse under the cold tap for 1 minute, and toss with 1 tsp oil.",
+        "ingredient_refs": [
+          "noodle-water",
+          "noodles",
+          "oil"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Sear the tofu",
+        "body": "While the pot heats (overlap stated): heat 2 tbsp oil in the 12-inch nonstick skillet over medium-high, about 1 minute, and sear the tofu, turning, until golden on several sides, about 8 minutes. Move to a plate.",
+        "ingredient_refs": [
+          "oil",
+          "tofu"
+        ],
+        "clock_minutes": 9,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Cook the broccoli",
+        "body": "Add 1 tbsp oil and the garlic to the skillet for 30 seconds, then the broccoli and 2 tbsp water. Cover and cook until bright green and crisp-tender, about 2 minutes.",
+        "ingredient_refs": [
+          "oil",
+          "garlic",
+          "broccoli",
+          "broccoli-water"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Stir-fry",
+        "body": "Turn the heat to high. Push the broccoli aside, add the remaining oil and the eggs, and scramble until just set, about 1 minute. Add the noodles and the sauce and stir-fry, pressing the noodles against the pan and turning them, until glossy and charred in spots, about 4 minutes. Return the tofu and toss 1 minute.",
+        "ingredient_refs": [
+          "oil",
+          "eggs",
+          "noodles",
+          "dark-soy",
+          "tofu"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Dust with white pepper and serve right away.",
+        "ingredient_refs": [
+          "white-pepper"
+        ],
+        "clock_minutes": 1,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "noodles",
+        "name": "rice noodles",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "wide rice noodles",
+          "water",
+          "neutral oil"
+        ]
+      },
+      {
+        "component_id": "tofu",
+        "name": "seared tofu",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "extra-firm tofu",
+          "neutral oil"
+        ]
+      },
+      {
+        "component_id": "stir-fry",
+        "name": "pad see ew",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "garlic",
+          "broccoli",
+          "water",
+          "eggs",
+          "dark soy sauce",
+          "soy sauce",
+          "brown sugar",
+          "rice vinegar",
+          "white pepper"
+        ]
+      }
+    ],
+    "equipment": [
+      "4-quart pot",
+      "colander",
+      "12-inch nonstick skillet",
+      "wide spatula",
+      "small bowl"
+    ],
+    "methods": [
+      "boil",
+      "sear",
+      "stir-fry"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": true,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 31,
+    "total_time_minutes": 41,
+    "prep_minutes": 10,
+    "cook_minutes": 31,
+    "total_minutes": 41,
+    "time_clock": "Prep 10 + cook 31 = 41 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The tofu sears while the noodle pot comes to a boil (step 3 runs inside step 2, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "4-quart pot for the noodles; 12-inch nonstick skillet over medium-high for the tofu, then high for the noodles.",
+    "doneness": "Noodles tender-chewy with dark caramelized patches; tofu golden on several sides; broccoli bright green and crisp-tender; egg in soft set pieces.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Egg is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional vegetarian and dairy_free: rice noodles, tofu, broccoli, eggs, soy sauces, sugar, vinegar, and oil.",
+    "allergens": [
+      "soy",
+      "wheat",
+      "egg"
+    ],
+    "allergen_notes": [
+      "Soy from the tofu and both soy sauces.",
+      "Wheat from the soy sauces.",
+      "Egg from the scrambled eggs.",
+      "No milk, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Egg is allowed. No dairy, meat, poultry, shellfish, or nuts.",
+    "hh001_contract": "No oyster sauce and no fish sauce. The dried noodle label lists rice and water only.",
+    "vocabulary_tag_ids": [
+      "rice-noodles",
+      "stir-fries",
+      "tofu",
+      "savory",
+      "umami",
+      "thai"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'thai' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Rinse the drained noodles under the cold tap so they stop cooking and do not clump.",
+    "culinary_hash": "9ae9c203f16412a93885a261e5f446ced8c23dd834109f9d9e04779d8684b709",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_thai-pad-see-ew-tofu_v1",
+    "dish_id": "thai-pad-see-ew-tofu",
+    "recipe_version_id": "rv_thai-pad-see-ew-tofu_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "thai-pad-see-ew-tofu.webp",
+    "card_ref": "thai-pad-see-ew-tofu-640.webp",
+    "master_filename": "thai-pad-see-ew-tofu.webp",
+    "card_filename": "thai-pad-see-ew-tofu-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "thai-pad-see-ew-tofu.webp",
+        "spec_catalog_path": "/images/meals/thai-pad-see-ew-tofu.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "thai-pad-see-ew-tofu-640.webp",
+        "spec_catalog_path": "/images/meals/thai-pad-see-ew-tofu-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "c93c7aa097e6b6f78e5638111a0e3c5e5dff4d0fc0a035cda7f64c7ad11b4407",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "c93c7aa097e6b6f78e5638111a0e3c5e5dff4d0fc0a035cda7f64c7ad11b4407",
+      "master_sha256": "08c371058978939672bee4bf87327a1045d557357db7846b9186381f96598dc8",
+      "card_sha256": "8c699f35ceb87aba65aae9a229faef670da1b3a4cfb8f8e0a0455631e1562b1e"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "c93c7aa097e6b6f78e5638111a0e3c5e5dff4d0fc0a035cda7f64c7ad11b4407",
+      "thai-pad-see-ew-tofu.webp": "08c371058978939672bee4bf87327a1045d557357db7846b9186381f96598dc8",
+      "thai-pad-see-ew-tofu-640.webp": "8c699f35ceb87aba65aae9a229faef670da1b3a4cfb8f8e0a0455631e1562b1e"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 31 = 41 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The tofu sears while the noodle pot comes to a boil (step 3 runs inside step 2, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "thai-pad-see-ew-tofu.webp 1200x900 and thai-pad-see-ew-tofu-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": true, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything; 4 cups water in a 2-quart saucepan; stir-fry in a 10-inch skillet.",
+    "2": "Half of everything; 6 cups water in a 3-quart saucepan; stir-fry in the 12-inch skillet.",
+    "4": "As written.",
+    "do_not_scale": [
+      "stir-fry no more than 4 servings in one 12-inch skillet or the noodles steam instead of char"
+    ]
+  },
+  "coverage_contribution": "The catalog's noodle stir-fries are a peanut noodle stir-fry and japchae, and the only wide-noodle Thai dish is absent. An HH001-eligible vegetarian noodle dinner that is not peanut-based.",
+  "near_duplicate_review": "Compared with peanut-noodle-stir-fry: wide rice noodles charred in sweet soy with egg and broccoli, no peanut sauce. Compared with korean-japchae-vegetables: wide rice noodles and dark soy, not sweet potato glass noodles with sesame. Compared with thai-basil-eggplant-stir-fry: a noodle dish with tofu and egg, not a basil-chile eggplant over rice.",
+  "not_duplicate_of": "Not pad thai (no tamarind, peanuts, or sprouts) and not drunken noodles (no basil or chiles).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B"
+}

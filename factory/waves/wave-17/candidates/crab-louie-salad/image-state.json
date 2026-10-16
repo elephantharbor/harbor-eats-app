@@ -1,0 +1,40 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "crab-louie-salad.webp",
+    "crab-louie-salad-640.webp"
+  ],
+  "present_files": [
+    "crab-louie-salad.webp",
+    "crab-louie-salad-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "8debd1dde0719028b7aed3ae300ed26f282fbc54e46d39e5c00f9fd00a1f4c4c",
+    "crab-louie-salad.webp": "7f679d7080a73c58fc8ff25e493a29a60668764ad14aaa8df6f898ea5fc593ed",
+    "crab-louie-salad-640.webp": "ba6ac43af2183aa4204ae35041b8a46a4ac81ba135d962b4af254eb81f754389"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "creator_self_review_before_audit",
+    "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: crab reads as red-streaked imitation crab, not lump crab.",
+    "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+    "prompt_sha256": {
+      "v2": "34a5e4a8a2be660258b1634e15e7d8ae8bd620139f701991f2913669f4b17f55"
+    },
+    "rejected_versions": [
+      1
+    ]
+  },
+  "package_revision": "author-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

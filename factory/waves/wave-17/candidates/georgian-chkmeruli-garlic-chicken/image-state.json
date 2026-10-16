@@ -1,0 +1,40 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "georgian-chkmeruli-garlic-chicken.webp",
+    "georgian-chkmeruli-garlic-chicken-640.webp"
+  ],
+  "present_files": [
+    "georgian-chkmeruli-garlic-chicken.webp",
+    "georgian-chkmeruli-garlic-chicken-640.webp"
+  ],
+  "source": "img_v2.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-15",
+  "sha256": {
+    "img_v2.jpg": "a8350794c8ead1e430522df420a7a6593569675c1cc410d8a399a08b7b8e7fbf",
+    "georgian-chkmeruli-garlic-chicken.webp": "6d4c246a5af4a1782f93a1b04e4abee9df8e37a599c70b9ba989d663384feb2f",
+    "georgian-chkmeruli-garlic-chicken-640.webp": "56673bddc8eca6e9443997548bf2bcab2884a431a284e430758beeb3221e4165"
+  },
+  "regeneration_count": 1,
+  "regeneration": {
+    "version": 2,
+    "basis": "creator_self_review_before_audit",
+    "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: shows eight thighs, brief says six.",
+    "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+    "prompt_sha256": {
+      "v2": "21c8cc83e0898b7c98b69196739b2f566f72c2ac1212ddd9b5a9aea08384b373"
+    },
+    "rejected_versions": [
+      1
+    ]
+  },
+  "package_revision": "author-r2",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

@@ -1,0 +1,45 @@
+{
+  "slot_status": "frozen_for_audit",
+  "asset_generated": true,
+  "expected_files": [
+    "vietnamese-ca-kho-catfish.webp",
+    "vietnamese-ca-kho-catfish-640.webp"
+  ],
+  "present_files": [
+    "vietnamese-ca-kho-catfish.webp",
+    "vietnamese-ca-kho-catfish-640.webp"
+  ],
+  "source": "img_v3.jpg",
+  "generator": "Cora via Grok Bot GenerateImage",
+  "generation_date": "2026-10-16",
+  "sha256": {
+    "img_v3.jpg": "f1e7f5c0200b60555d04015c8c3e7a70b84fd279871d2e2e1753f7394f94a8c0",
+    "vietnamese-ca-kho-catfish.webp": "aaa1e63d298fbe090d9f850280452a6d47ccd8bcf36819a35bc6f20abbc13b6f",
+    "vietnamese-ca-kho-catfish-640.webp": "457643f512cfff2f95b15f0e185c5c404a93a48880d1d666fd4e12923fd8996b"
+  },
+  "regeneration_count": 2,
+  "regeneration": {
+    "version": 3,
+    "basis": "audit_r1_gate_K_after_creator_self_review",
+    "summary": "Active hero is the v3 regeneration (author-r3). Earlier versions: v1: rejected in Cora's creator self-review (pieces read as glazed chicken cutlets, not flaking fish); v2: rejected by independent audit r1 gate K after being finalized at author-r2 (skin-on cross-cut steaks vs skinless fillet pieces).",
+    "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v3 prompt.",
+    "prompt_sha256": {
+      "v2": "0e63884910e1e66612d9980349989835b6f0d5fe31e8f95f8b796e8f755cc7c5",
+      "v3": "47bd877442a27a644343e7d506a747ab513a3797684b215106c32774b77b36c6"
+    },
+    "rejected_versions": [
+      1,
+      2
+    ],
+    "audit_rejected_versions": [
+      2
+    ]
+  },
+  "package_revision": "author-r3",
+  "source_dimensions": {
+    "width": 1280,
+    "height": 720
+  },
+  "plating_brief": "image-plating-brief.md",
+  "prompt": "image-prompt.md"
+}

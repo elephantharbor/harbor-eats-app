@@ -1,0 +1,89 @@
+{
+  "dir": "/workspace/flavorweave-catalog-factory/wave-17/candidates/nigerian-jollof-rice-boiled-eggs",
+  "slug": "nigerian-jollof-rice-boiled-eggs",
+  "STRUCTURAL_PREFLIGHT": "PASS",
+  "hh001_eligible": true,
+  "fail_count": 0,
+  "checks": [
+    {
+      "id": "package_json",
+      "result": "PASS",
+      "detail": "v1.json parses"
+    },
+    {
+      "id": "importer_normalize",
+      "result": "PASS",
+      "detail": "rv_nigerian-jollof-rice-boiled-eggs_v1"
+    },
+    {
+      "id": "kitchen_tested",
+      "result": "PASS",
+      "detail": "version=false confidence=false"
+    },
+    {
+      "id": "cook_counts",
+      "result": "PASS",
+      "detail": "household cooks and ratings are 0"
+    },
+    {
+      "id": "d03_enums",
+      "result": "PASS",
+      "detail": "moderate / simple"
+    },
+    {
+      "id": "equipment",
+      "result": "PASS",
+      "detail": "5 items"
+    },
+    {
+      "id": "methods",
+      "result": "PASS",
+      "detail": "simmer, steam, boil"
+    },
+    {
+      "id": "dietary_eligibility",
+      "result": "PASS",
+      "detail": "none"
+    },
+    {
+      "id": "hh001_contract",
+      "result": "PASS",
+      "detail": "Egg is allowed. No dairy, meat, poultry, shellfish, or nuts."
+    },
+    {
+      "id": "no_conditional_claims",
+      "result": "PASS",
+      "detail": "none"
+    },
+    {
+      "id": "ingredient_refs",
+      "result": "PASS",
+      "detail": "14 ingredients referenced"
+    },
+    {
+      "id": "cooking_d061",
+      "result": "PASS",
+      "detail": "none frying=- crisp=- stir=false"
+    },
+    {
+      "id": "plating_brief",
+      "result": "PASS",
+      "detail": "required sections present"
+    },
+    {
+      "id": "image_prompt",
+      "result": "PASS",
+      "detail": "image-prompt.md"
+    },
+    {
+      "id": "image_slot",
+      "result": "PASS",
+      "detail": "asset_generated; files nigerian-jollof-rice-boiled-eggs.webp, nigerian-jollof-rice-boiled-eggs-640.webp, img_v1.jpg; freeze integrity PASS"
+    },
+    {
+      "id": "d03_sidecar",
+      "result": "PASS",
+      "detail": "moderate / simple"
+    }
+  ]
+}

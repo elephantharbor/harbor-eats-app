@@ -1,0 +1,420 @@
+{
+  "wave": "wave-17",
+  "round": "r4",
+  "auditor": "independent",
+  "date": "2026-10-16",
+  "scope": "full A–O re-audit of salvadoran-bean-cheese-pupusas (author-r5, image only); byte-identity check of the other 49",
+  "counts": {
+    "r4_audited": 1,
+    "r4_pass": 1,
+    "r4_fail": 0,
+    "batch_pass": 50,
+    "batch_fail": 0
+  },
+  "unchanged_49_check": {
+    "result": "PASS: all 49 are byte-identical to the state I passed",
+    "method": "all 558 files in the 49 package dirs compared byte-for-byte with my own pre-audit copies: /tmp/w17/run (42, pre-r1), /tmp/w17r2/run (6, pre-r2), /tmp/w17r3/run (chivito, pre-r3). The embedded directory path in the two QA JSONs my tools rewrote in the copies was normalized. 0 differences, so none needed re-audit. Cross-check against the author manifest notes/pre-r5-file-hashes.sha256: 0 mismatches.",
+    "packages": 49,
+    "files_compared": 558,
+    "mismatches": 0
+  },
+  "duplicate_check": {
+    "rerun": false,
+    "reason": "no title or slug changed; r1 PASS (no duplicates) stands"
+  },
+  "batch_certified": true,
+  "certification_record": "audit/r4/CERTIFICATION.json",
+  "open_non_blocking": [
+    "bhutanese-ema-datshi: stale \"chile strips\" wording in near_duplicate_review (not culinary-hashed; ruled non-blocking in r2)"
+  ],
+  "candidates": {
+    "salvadoran-bean-cheese-pupusas": {
+      "title": "Salvadoran Bean-and-Cheese Pupusas with Curtido and Salsa Roja",
+      "verdict": "PASS",
+      "certified": true,
+      "failed_gates": [],
+      "hh001_eligible": false,
+      "effort_level": "involved",
+      "ingredient_complexity": "simple",
+      "hero": "img_v6.jpg",
+      "regenerate_image": false,
+      "gates": {
+        "A": {
+          "verdict": "PASS",
+          "evidence": "Slug, dish_id and recipe ids are consistent; version 1, immutable, draft, recommendation_eligible false. D-03: effort_level `involved` (sidecar score 7, floors none), ingredient_complexity `simple` (score 0, 11 counted ingredients; salt, water and oils excluded per EXCLUDE_NAMES). The sums, floors and bands (≤12/13-16/17+) recompute, and the enums match v1. My own run of structural preflight: PASS."
+        },
+        "B": {
+          "verdict": "PASS",
+          "evidence": "Recipe text unchanged since r2 (culinary_hash ff2b632367fb… recomputes, unchanged): 1 1/2 cups filling = 8 × 3 tbsp; every ingredient used; bean named on the ingredient line."
+        },
+        "C": {
+          "verdict": "PASS",
+          "evidence": "Base 4 servings; scaling lines for 1, 2 and 4 present, with do-not-scale items where relevant."
+        },
+        "D": {
+          "verdict": "PASS",
+          "evidence": "Heat levels and doneness cues are stated; every component is completed; there is a serve step."
+        },
+        "E": {
+          "verdict": "PASS",
+          "evidence": "Prep 37 + cook 33 = 70 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The curtido stands while everything else is made (step 1, about 45 minutes, stated). Unchanged: 37 + 33 = 70, step clocks recompute."
+        },
+        "F": {
+          "verdict": "PASS",
+          "evidence": "Store-bought components carry hard label contracts where eligibility or allergens depend on them."
+        },
+        "G": {
+          "verdict": "PASS",
+          "evidence": "**Eligibility:** meat False, poultry False, finfish False, shellfish False, dairy True, vegetarian True, plant-based False, nut_policy `none`. Labels ['vegetarian'], all unconditional. HH001 False: Not HH001: mozzarella is dairy.\n\n**Allergens:** ['milk']. Re-derived from the ingredient lines and contracts; all tokens are importer-valid; nothing appears only in the notes. Notes: ['Milk from the mozzarella.', 'Masa harina: the label lists corn treated with lime, so no wheat.', 'No egg, soy, wheat, sesame, fish, shellfish, or nuts.']"
+        },
+        "H": {
+          "verdict": "PASS",
+          "evidence": "Vocabulary tags ['tangy', 'savory', 'crunchy'] are supported by the method and ingredients."
+        },
+        "I": {
+          "verdict": "PASS",
+          "evidence": "Title and slug are unchanged since r1 (dish identity unchanged), so the r1 duplicate check (PASS against the other 49 and all 200 live meals) stands; I did not re-run it. Package review: Compared with venezuelan-black-bean-plantain-arepas: thin stuffed masa harina rounds with curtido, not split cornmeal arepas filled after cooking. Compared with black-bean-quesadillas: the beans and cheese are sealed inside a thick masa dough, not fo"
+        },
+        "J": {
+          "verdict": "PASS",
+          "evidence": "Title, description, methods and the cooking object agree with the steps. D-03 classification is plausible for the method and sourcing (not cuisine-driven; sidecar cultural_bias reviewed)."
+        },
+        "K": {
+          "verdict": "PASS",
+          "evidence": "Viewed the hero at full size with Read, against image-plating-brief.md and the recipe. v6 viewed at full size and in a 2x crop of the source. It uses the r3 fallback composition: one whole griddled pupusa, plus one torn open, with curtido (cabbage, carrot, jalapeño rings; not creamy) and salsa roja. The filling is now what step 3 makes: a soft, reddish-brown refried-bean paste marbled throughout with stretched melted mozzarella. It isn't a separate layer, isn't near-black, and isn't crumbly or granular. In the crop it reads clearly as beans and cheese; nothing in it reads as ground meat or chicharrón. A few soft bean-sized lumps are consistent with refried beans and don't change the reading. The r1-r3 defect is fixed. Thickness: both rounds look domed, about 3/4 inch or a little more at image scale (the torn one more), against the recipe's 'about 1/2 inch' raw. Masa pupusas puff somewhat on the griddle, and the 4-inch diameter is right, so this is within tolerance (non-blocking; see notes). No invented items."
+        },
+        "L1": {
+          "verdict": "PASS",
+          "evidence": "Master WEBP 1200x900 RGB; card 640x480; source img_v6.jpg 1280x720. SHA-256 match file_hashes/asset_sha256 and image-gen-map. Master re-derived as a LANCZOS 1.25x upscale of the centre 960x720 source crop (r4 re-check: mean abs diff 1.80, card 2.50), disclosed in generation.method_detail; same pipeline as Waves 14-16, no objectionable softness at master or card size. No text, logos, hands or artifacts. regeneration_count 5; superseded versions are recorded (self-review rejects as never_finalized; the audit-r1 reject with rejected_by, its moved files and sha256), and none is the active hero."
+        },
+        "L2": {
+          "verdict": "PASS",
+          "evidence": "Appetizing, well lit, abundant, and reads at card size; on par with the house reference range."
+        },
+        "L": {
+          "verdict": "PASS",
+          "evidence": "L1 and L2 both PASS."
+        },
+        "M": {
+          "verdict": "PASS",
+          "evidence": "Text provenance original_ai_assisted; image ai_illustration via Grok Bot GenerateImage, with the 1280x720 source disclosed; no stock or web photo; no metadata denies an asset that is present."
+        },
+        "N": {
+          "verdict": "PASS",
+          "evidence": "Shopping list derivable; units and package sizes are shoppable."
+        },
+        "O": {
+          "verdict": "PASS",
+          "evidence": "package_revision `author-r5` is consistent across top level, recipe_version, image, sidecar and docs; version 1; classification_history present; certification null, kitchen_tested false. revision_history records the r2→r3, r3→r4 and r4→r5 entries (trigger, scope, before/after culinary_hash, changes), and it matches my field-level diff against my r3 copy (r5 changed only the image block and revision labels; the recipe is unchanged). My own run of FREEZE_INTEGRITY on a scratch copy: PASS (26/26). culinary_hash recomputes. The superseded/rejected records for audit-rejected heroes are complete, and the files rejected in r3 (v5) are byte-identical to the hero I audited in r3."
+        }
+      },
+      "fixes": [],
+      "notes": [
+        "K note: the pupusas look puffier than 1/2 inch (about 3/4 inch, domed). Within tolerance for griddled filled masa, and the identity still reads as pupusas with the curtido and salsa context. A flatter render is optional in any future image pass.",
+        "K note: small soft lumps in the bean paste are normal for refried beans; I checked in the crop that it doesn't read as meat.",
+        "B/curtido fixes from r1-r2 remain in place. L2: warm, appetizing, clear cheese pull, strong at card size."
+      ]
+    }
+  },
+  "batch_status": {
+    "amritsari-fish-mint-chutney": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "argentine-beef-empanadas": {
+      "round": "r2 (unchanged since, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "balkan-cevapi-ajvar": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "bhutanese-ema-datshi": {
+      "round": "r2 (unchanged since, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "british-kedgeree-smoked-salmon": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "chicken-tinga-tostadas": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "chinese-hot-sour-soup-tofu": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "crab-louie-salad": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "ecuadorian-locro-de-papa": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "filipino-pork-menudo": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "finnish-lohikeitto-salmon-soup": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "french-mushroom-bourguignon": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "galician-pulpo-potatoes": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "georgian-chkmeruli-garlic-chicken": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "greek-avgolemono-chicken-soup": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "greek-fasolakia-green-beans": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "greek-shrimp-saganaki": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "indo-chinese-gobi-manchurian": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "indonesian-ikan-bakar-tilapia": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "ivorian-chicken-kedjenou": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "jamaican-ital-stew": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "japanese-chicken-nanban": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "japanese-vegetable-omurice": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "korean-ojingeo-bokkeum-squid": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "korean-spicy-cod-stew": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "lebanese-arayes": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "mexican-rajas-con-crema-tacos": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "moroccan-chicken-preserved-lemon-tagine": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "nigerian-jollof-rice-boiled-eggs": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "orecchiette-sausage-broccoli-rabe": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "pakistani-lamb-keema-peas": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "palestinian-musakhan-chicken": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "penne-alla-vodka": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "persian-ash-reshteh": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "polish-potato-cheese-pierogi": {
+      "round": "r2 (unchanged since, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "salvadoran-bean-cheese-pupusas": {
+      "round": "r4",
+      "verdict": "PASS",
+      "failed_gates": []
+    },
+    "san-francisco-cioppino": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "sichuan-dan-dan-noodles": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "south-indian-sambar-rice": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "southern-chicken-and-dumplings": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "swedish-pytt-i-panna": {
+      "round": "r2 (unchanged since, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "taiwanese-lu-rou-fan": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "tex-mex-steak-fajitas": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "thai-pad-see-ew-tofu": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "turkish-balik-ekmek-mackerel": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "uruguayan-chivito-sandwiches": {
+      "round": "r3",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "uzbek-lamb-plov": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "vietnamese-ca-kho-catfish": {
+      "round": "r2 (unchanged since, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "vietnamese-lemongrass-tofu-banh-mi": {
+      "round": "r1 (unchanged, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    },
+    "yucatecan-tikin-xic-fish": {
+      "round": "r2 (unchanged since, byte-identical)",
+      "verdict": "PASS",
+      "failed_gates": [],
+      "unchanged_since_pass": true
+    }
+  }
+}

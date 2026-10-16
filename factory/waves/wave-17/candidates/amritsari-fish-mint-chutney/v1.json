@@ -1,0 +1,745 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "author-r2",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "amritsari-fish-mint-chutney",
+    "slug": "amritsari-fish-mint-chutney",
+    "title": "Amritsari Fish with Cilantro-Mint Chutney, Kachumber, and Basmati Rice",
+    "description": "Haddock pieces marinated in ginger, garlic, lemon, chili powder, turmeric, and ajwain, coated in a chickpea flour and rice flour batter and shallow-fried crisp, served with a bright cilantro-mint chutney, a red onion, cucumber, and tomato kachumber, and basmati rice.",
+    "cuisine": "punjabi",
+    "meal_format": "crisp-fish-with-rice",
+    "primary_ingredient": "haddock",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "spicy",
+      "fresh",
+      "indian"
+    ],
+    "current_recipe_id": "rcp_amritsari-fish-mint-chutney",
+    "current_version_id": "rv_amritsari-fish-mint-chutney_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_amritsari-fish-mint-chutney",
+    "dish_id": "amritsari-fish-mint-chutney",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_amritsari-fish-mint-chutney_v1",
+    "recipe_id": "rcp_amritsari-fish-mint-chutney",
+    "dish_id": "amritsari-fish-mint-chutney",
+    "version_number": 1,
+    "package_revision": "author-r2",
+    "immutable": true,
+    "immutability_note": "v1 has not been planned, shopped, cooked, or rated. Master and card WebPs are present and frozen for preflight/audit at author-r2. asset_generated is true. Not certified. Not published. kitchen_tested is false.",
+    "title": "Amritsari Fish with Cilantro-Mint Chutney, Kachumber, and Basmati Rice",
+    "description": "Haddock pieces marinated in ginger, garlic, lemon, chili powder, turmeric, and ajwain, coated in a chickpea flour and rice flour batter and shallow-fried crisp, served with a bright cilantro-mint chutney, a red onion, cucumber, and tomato kachumber, and basmati rice.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "haddock",
+        "name": "haddock fillets",
+        "display_name": "skinless haddock fillets",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 2-inch pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "ginger",
+        "name": "fresh ginger",
+        "display_name": "fresh ginger",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon-juice",
+        "name": "lemon juice",
+        "display_name": "fresh lemon juice (about 2 lemons)",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "2 tbsp marinade, 2 tbsp chutney, the rest kachumber",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chili-powder",
+        "name": "Kashmiri chili powder",
+        "display_name": "Kashmiri chili powder",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "turmeric",
+        "name": "ground turmeric",
+        "display_name": "ground turmeric",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "ajwain",
+        "name": "ajwain seeds",
+        "display_name": "ajwain seeds",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2.5,
+        "unit": "tsp",
+        "note": "1 tsp fish, 1/2 tsp chutney, 1/2 tsp kachumber, 1/2 tsp rice",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chickpea-flour",
+        "name": "chickpea flour",
+        "display_name": "chickpea flour (besan)",
+        "quantity": 0.67,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-flour",
+        "name": "rice flour",
+        "display_name": "rice flour",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "batter-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "for the batter",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "fry-oil",
+        "name": "neutral oil",
+        "display_name": "peanut-free neutral oil",
+        "quantity": 1.33,
+        "unit": "cup",
+        "note": "for shallow-frying, about 1/4 inch deep in the 12-inch skillet",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro (leaves and tender stems)",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "mint",
+        "name": "mint",
+        "display_name": "mint leaves",
+        "quantity": 1,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "green-chile",
+        "name": "serrano chile",
+        "display_name": "serrano chile",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "chutney-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "for the chutney",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "small red onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "finely chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cucumber",
+        "name": "cucumber",
+        "display_name": "English cucumber",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomato",
+        "name": "tomato",
+        "display_name": "tomato",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice",
+        "name": "basmati rice",
+        "display_name": "basmati rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": "rinsed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "rice-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "for the rice",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Cut the haddock into 2-inch pieces and pat dry. Grate the ginger and garlic, chop the onion, dice the cucumber and tomato, and rinse the rice until the rinse runs clear.",
+        "ingredient_refs": [
+          "haddock",
+          "ginger",
+          "garlic",
+          "red-onion",
+          "cucumber",
+          "tomato",
+          "rice"
+        ],
+        "clock_minutes": 12,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Marinate",
+        "body": "Toss the fish with the ginger, garlic, 2 tbsp lemon juice, the chili powder, turmeric, ajwain, and 1 tsp salt and leave it 15 minutes.",
+        "ingredient_refs": [
+          "haddock",
+          "ginger",
+          "garlic",
+          "lemon-juice",
+          "chili-powder",
+          "turmeric",
+          "ajwain",
+          "salt"
+        ],
+        "clock_minutes": 16,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 3,
+        "title": "Cook the rice",
+        "body": "While the fish marinates and fries (overlap stated): combine the rice, 2 1/4 cups water, and 1/2 tsp salt in a 2-quart saucepan, bring to a boil over high, about 4 minutes, then cover, turn to low, and cook 15 minutes. Leave it covered off the heat to rest 10 minutes.",
+        "ingredient_refs": [
+          "rice",
+          "rice-water",
+          "salt"
+        ],
+        "clock_minutes": 29,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Chutney and kachumber",
+        "body": "Blend the cilantro, mint, serrano, 2 tbsp lemon juice, 1/2 tsp salt, and 3 tbsp water until smooth. Toss the onion, cucumber, and tomato with the remaining lemon juice and 1/2 tsp salt.",
+        "ingredient_refs": [
+          "cilantro",
+          "mint",
+          "green-chile",
+          "lemon-juice",
+          "salt",
+          "chutney-water",
+          "red-onion",
+          "cucumber",
+          "tomato"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 5,
+        "title": "Shallow-fry",
+        "body": "Heat the oil (about 1/4 inch deep) in the 12-inch heavy skillet over medium-high to 350 F, about 5 minutes. Stir the chickpea flour, rice flour, and 1/3 cup water into the fish to coat it in a thick batter. Shallow-fry half the pieces, turning once, until crisp and deep golden and 145 F, about 3 minutes per side. Drain on the rack and repeat (2 batches).",
+        "ingredient_refs": [
+          "fry-oil",
+          "chickpea-flour",
+          "rice-flour",
+          "batter-water",
+          "haddock"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 6,
+        "title": "Serve",
+        "body": "Serve the fish with the rice, kachumber, and chutney for dipping.",
+        "ingredient_refs": [
+          "haddock",
+          "rice",
+          "red-onion",
+          "cilantro"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "fish",
+        "name": "Amritsari fish",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "haddock",
+          "ginger",
+          "garlic",
+          "lemon juice",
+          "chili powder",
+          "turmeric",
+          "ajwain",
+          "salt",
+          "chickpea flour",
+          "rice flour",
+          "water",
+          "neutral oil"
+        ]
+      },
+      {
+        "component_id": "chutney",
+        "name": "cilantro-mint chutney",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cilantro",
+          "mint",
+          "green chile",
+          "lemon juice",
+          "salt",
+          "water"
+        ]
+      },
+      {
+        "component_id": "kachumber",
+        "name": "kachumber",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "red onion",
+          "cucumber",
+          "tomato",
+          "lemon juice",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "rice",
+        "name": "basmati rice",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "basmati rice",
+          "water",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch heavy skillet",
+      "2-quart saucepan with lid",
+      "blender or mini food processor",
+      "wire rack set on a sheet pan",
+      "instant-read thermometer",
+      "spider or slotted spatula"
+    ],
+    "methods": [
+      "shallow-fry",
+      "steam"
+    ],
+    "cooking": {
+      "frying": [
+        "shallow"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 34,
+    "cook_time_minutes": 20,
+    "total_time_minutes": 54,
+    "prep_minutes": 34,
+    "cook_minutes": 20,
+    "total_minutes": 54,
+    "time_clock": "Prep 34 + cook 20 = 54 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests through the marinating, chutney, and frying (step 3 runs inside steps 2, 4, and 5, overlap stated).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1,
+        2,
+        4
+      ],
+      "cook_steps": [
+        5,
+        6
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "12-inch heavy skillet with oil about 1/4 inch deep over medium-high (350 F); 2-quart saucepan for the rice.",
+    "doneness": "Batter crisp and deep golden; fish opaque and flaking, 145 F at the thickest piece.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, egg, or nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and fish: haddock, chickpea and rice flours, spices, herbs, vegetables, lemon, rice, and oil.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish from the haddock.",
+      "Chickpea and rice flours, no wheat.",
+      "No milk, egg, soy, wheat, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, meat, poultry, shellfish, egg, or nuts.",
+    "hh001_contract": "No yogurt in the marinade or chutney and no egg in the batter; no chaat masala (it often contains wheat-cut asafoetida). Peanut-free neutral oil for frying.",
+    "vocabulary_tag_ids": [
+      "crispy",
+      "spicy",
+      "fresh",
+      "indian"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'punjabi' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook the fish to 145 F. Shallow-frying: keep the oil about 1/4 inch deep, stay at the stove, lay the fish in away from you, and keep a lid nearby; let the oil cool before discarding.",
+    "culinary_hash": "36e3ab9e00cb68ff16c11819d681ae006342fb2c8c277a9c3ba486cde9a398bf",
+    "culinary_hash_basis": "sha256 of canonical JSON of title, description, base_servings, ingredients, steps, components, equipment, prep/cook/total minutes, heat, doneness. Excludes classification and cooking."
+  },
+  "image": {
+    "image_id": "img_amritsari-fish-mint-chutney_v2",
+    "dish_id": "amritsari-fish-mint-chutney",
+    "recipe_version_id": "rv_amritsari-fish-mint-chutney_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "amritsari-fish-mint-chutney.webp",
+    "card_ref": "amritsari-fish-mint-chutney-640.webp",
+    "master_filename": "amritsari-fish-mint-chutney.webp",
+    "card_filename": "amritsari-fish-mint-chutney-640.webp",
+    "active_source_jpeg": "img_v2.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "amritsari-fish-mint-chutney.webp",
+        "spec_catalog_path": "/images/meals/amritsari-fish-mint-chutney.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "amritsari-fish-mint-chutney-640.webp",
+        "spec_catalog_path": "/images/meals/amritsari-fish-mint-chutney-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v2.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "c295df5cea6a515c689c659c5a6b5a7e19a5fde726d8568c722e079b42a8f99d",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 1,
+    "file_hashes": {
+      "source_jpeg_sha256": "c295df5cea6a515c689c659c5a6b5a7e19a5fde726d8568c722e079b42a8f99d",
+      "master_sha256": "cdd41495b9e7f882b620f0268050e5f1d4e46b443e810245e57d45f63e3ce5d8",
+      "card_sha256": "033ac0a8b880c3c3de4be8c37cdfd1bace2ea3fa7a99e0dd958eedacdb13baf6"
+    },
+    "asset_sha256": {
+      "img_v2.jpg": "c295df5cea6a515c689c659c5a6b5a7e19a5fde726d8568c722e079b42a8f99d",
+      "amritsari-fish-mint-chutney.webp": "cdd41495b9e7f882b620f0268050e5f1d4e46b443e810245e57d45f63e3ce5d8",
+      "amritsari-fish-mint-chutney-640.webp": "033ac0a8b880c3c3de4be8c37cdfd1bace2ea3fa7a99e0dd958eedacdb13baf6"
+    },
+    "regeneration": {
+      "version": 2,
+      "basis": "creator_self_review_before_audit",
+      "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: lemon slice on the fish (explicitly excluded).",
+      "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+      "prompt_sha256": {
+        "v2": "6c376425bae36d437a7cba7cdfe9e48ac0581da55165bea3ae052692caeaa132"
+      },
+      "rejected_versions": [
+        1
+      ]
+    },
+    "regeneration_history": [
+      {
+        "version": 2,
+        "basis": "creator_self_review_before_audit",
+        "summary": "Active hero is the v2 regeneration. Versions v1 to v1 were rejected in Cora's creator self-review: v1: lemon slice on the fish (explicitly excluded).",
+        "prompt_change": "Each regeneration prompt is the author-r1 v1 prompt plus one appended 'Correction for this version:' sentence, recorded verbatim in image-prompt.md 'Version history' (source notes/prompts-regen-selfreview.txt, a copy of /workspace/wave17-v2-prompts.txt); image-plating-brief.md was rebuilt to match the accepted v2 prompt.",
+        "prompt_sha256": {
+          "v2": "6c376425bae36d437a7cba7cdfe9e48ac0581da55165bea3ae052692caeaa132"
+        },
+        "rejected_versions": [
+          1
+        ]
+      }
+    ],
+    "superseded": [
+      {
+        "image_id": "img_amritsari-fish-mint-chutney_v1",
+        "source_file": "img_v1.jpg",
+        "sha256": "a9ac2ae58f7c9bb23d4189282b5458339056f0a3a413a2e0518302d400982ec1",
+        "generate_image_attachment_hash": "a9ac2ae58f7c9bb23d4189282b5458339056f0a3a413a2e0518302d400982ec1",
+        "moved_to_rejected": "rejected/img_v1-selfreview-rejected.jpg",
+        "never_finalized": true,
+        "generation_date": "2026-10-15",
+        "rejected_on": "2026-10-15",
+        "rejected_by": "Cora (creator self-review against image-plating-brief.md, before any audit)",
+        "reason": "lemon slice on the fish (explicitly excluded)"
+      }
+    ]
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 34 + cook 20 = 54 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The rice cooks and rests through the marinating, chutney, and frying (step 3 runs inside steps 2, 4, and 5, overlap stated)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "amritsari-fish-mint-chutney.webp 1200x900 and amritsari-fish-mint-chutney-640.webp 640x480 exported from img_v2.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"shallow\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "base_servings": 4,
+    "1": "A quarter of everything; shallow-fry in one batch in a 10-inch skillet with 3/4 cup oil; 1/3 cup rice in a 1-quart saucepan.",
+    "2": "Half of everything; one batch in the 12-inch skillet with the full 1 1/3 cups oil; 3/4 cup rice in a 1-quart saucepan.",
+    "4": "As written (2 batches).",
+    "do_not_scale": [
+      "oil depth: about 1/4 inch whatever the batch"
+    ]
+  },
+  "coverage_contribution": "Fried fish in the catalog is British cod with potatoes and Thai barramundi; there is no Indian fried fish and no chickpea-flour batter. A crisp, HH001-eligible fish dinner.",
+  "near_duplicate_review": "Compared with deep-fried-cod-roasted-potatoes: a spiced chickpea-flour batter shallow-fried, with chutney and rice, not a wheat beer batter with potatoes. Compared with thai-crispy-barramundi-tamarind: Punjabi spices and a mint chutney, not a tamarind sauce. Compared with bengali-mustard-fish: crisp-fried pieces, not fish simmered in mustard sauce.",
+  "not_duplicate_of": "Not pakoras (fish pieces, not vegetables) and not fish tikka (not grilled).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C"
+}
