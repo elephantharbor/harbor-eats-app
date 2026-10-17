@@ -356,9 +356,22 @@
       .catch(function () {});
   }
 
+  let pageUnloading = false;
+  window.addEventListener("pagehide", function () { pageUnloading = true; });
+  window.addEventListener("beforeunload", function () { pageUnloading = true; });
+
   function noteApiFailure(path, code, message, extra) {
     if (path === "/api/client-errors") return;
+    const signingOut = signOutBusy || !!(document.documentElement && document.documentElement.dataset.signingOut === "1");
+    const hidden = !!(document.hidden || document.visibilityState === "hidden");
+    if (!shouldReportApiFailure({ hidden: hidden, unloading: pageUnloading, signingOut: signingOut })) return;
     reportClientError("api", code, message, extra);
+  }
+
+  function shouldReportApiFailure(ctx) {
+    const gate = window.FlavorWeaveClientErrors && window.FlavorWeaveClientErrors.shouldReportClientApiFailure;
+    if (typeof gate === "function") return gate(ctx);
+    return !(ctx && (ctx.hidden || ctx.unloading || ctx.signingOut));
   }
 
   async function sendClientError(path, body) {
@@ -7464,7 +7477,6 @@
       if (wrong) wrong.hidden = false;
       if (joinOut) joinOut.hidden = false;
       toast("You’re signed into another kitchen — sign out first");
-      reportClientError("invite", res.error, "cross household join blocked");
       return;
     }
     if (res && (res.error === "invite_expired" || res.error === "invite_inactive")) {
@@ -8382,14 +8394,15 @@
       void trackShopExport("image", "failed", "shop_sheet");
       return;
     }
-    const body = await fetchAppExport("image");
-    if (body && body.aborted) {
-      void trackShopExport("image", "cancelled", "shop_sheet");
-      return;
+    let body = null;
+    try {
+      body = await fetchAppExport("image");
+    } catch (_) {
+      body = null;
     }
-    if (!body || !body.ok) {
+    if (!body || body.aborted || !body.ok) {
       howFeedback(image.imageHandoffFeedback({}).message);
-      void trackShopExport("image", "failed", "shop_sheet");
+      void trackShopExport("image", body && body.aborted ? "cancelled" : "failed", "shop_sheet");
       return;
     }
     let fontFamily = image.SHOP_IMAGE && image.SHOP_IMAGE.fontFamily;

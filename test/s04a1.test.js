@@ -440,6 +440,7 @@ describe("revision conflict logging", () => {
     expect(classifyClientError(abort)).toBe("expected_abort");
     expect(classifyClientError({ message: "AbortError: The operation was aborted." })).toBe("expected_abort");
     expect(classifyClientError({ message: "/api/sessions/logout 500" })).toBe("actionable");
+    expect(classifyClientError({ code: "wrong_household_logged_in", message: "/api/invites/join 409" })).toBe("expected_guard");
     expect(summarizeClientErrors(rows.concat(abort)).actionable).toBe(2);
   });
 });

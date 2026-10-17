@@ -139,6 +139,46 @@ test.describe("S-05C grocery app handoff", () => {
     await expect(sheet).toBeHidden();
   });
 
+  test("save image shows the sheet failure when the list fetch fails or aborts", async ({ page }) => {
+    const clientErrors = [];
+    page.on("request", (request) => {
+      if (request.method() === "POST" && request.url().includes("/api/client-errors")) clientErrors.push(request.postData() || "");
+    });
+    await openTheList(page);
+    await page.getByRole("button", { name: "How are you shopping?" }).click();
+    const sheet = page.locator("#shopHowSheet");
+    await expect(sheet).toBeVisible();
+    const failure = "Couldn’t prepare the image. Try Copy for my grocery app.";
+
+    await page.evaluate(() => {
+      const orig = window.fetch.bind(window);
+      window.fetch = function (input, init) {
+        const url = typeof input === "string" ? input : input && input.url;
+        if (String(url).includes("/api/household-shop/export") && String(url).includes("for=image")) {
+          return Promise.reject(Object.assign(new Error("The operation was aborted."), { name: "AbortError" }));
+        }
+        return orig(input, init);
+      };
+    });
+    const before = clientErrors.length;
+    await page.locator("#btnShopSaveImage").click();
+    await expect(sheet.locator("#shopHowStatus")).toHaveText(failure);
+
+    await page.evaluate(() => {
+      const orig = window.fetch.bind(window);
+      window.fetch = function (input, init) {
+        const url = typeof input === "string" ? input : input && input.url;
+        if (String(url).includes("/api/household-shop/export") && String(url).includes("for=image")) {
+          return Promise.reject(new TypeError("Load failed"));
+        }
+        return orig(input, init);
+      };
+    });
+    await page.locator("#btnShopSaveImage").click();
+    await expect(sheet.locator("#shopHowStatus")).toHaveText(failure);
+    expect(clientErrors.slice(before)).toEqual([]);
+  });
+
   test("sign out clears the device, survives reload and Back, then an invite can rejoin", async ({ page }) => {
     await page.locator("#topbar [data-nav='settings']").click();
     const inviteResponse = page.waitForResponse(

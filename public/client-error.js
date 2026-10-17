@@ -72,8 +72,15 @@
     };
   }
 
+  function shouldReportClientApiFailure(ctx) {
+    var state = ctx || {};
+    if (state.unloading || state.hidden || state.signingOut) return false;
+    return true;
+  }
+
   root.FlavorWeaveClientErrors = {
     createReporter: createReporter,
+    shouldReportClientApiFailure: shouldReportClientApiFailure,
     CLIENT_ERROR_PATH: CLIENT_ERROR_PATH,
     MAX_ATTEMPTS_UNTIL_PROVEN: MAX_ATTEMPTS_UNTIL_PROVEN,
     MAX_ATTEMPTS_PER_PAGE: MAX_ATTEMPTS_PER_PAGE,
