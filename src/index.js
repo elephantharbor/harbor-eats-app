@@ -20,6 +20,7 @@ import {
   loadPlanBundle,
   readSessionToken,
   resolveSession,
+  revokeMemberSession,
 } from "./lib/session.js";
 import { sessionClearCookieHeader } from "./lib/cookies.js";
 import {
@@ -46,6 +47,7 @@ import { buildTasteProfile } from "./lib/taste-model.js";
 import { routeTasteRequest } from "./lib/taste-profile.js";
 import { routeDinnerPlanRequest } from "./lib/dinner-plan-routes.js";
 import { routeHouseholdShopRequest } from "./lib/household-shop-routes.js";
+import { storedEventProps } from "./lib/household-shop.js";
 import { routeGroceryRequest } from "./lib/grocery/routes.js";
 import { groceryFixtureActive, instacartActivation, providerIds } from "./lib/grocery/config.js";
 import { isUniqueViolation, logDatabaseError, stripDatabaseDetail } from "./lib/db-error.js";
@@ -92,6 +94,7 @@ function json(data, status = 200, extraHeaders = {}) {
     status,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "private, no-store",
       ...CORS,
       ...extraHeaders,
     },
@@ -870,21 +873,25 @@ async function createEvent(env, body, session, request) {
   if (!share_object_id && typeof body.attribution_last_touch === "string" && body.attribution_last_touch.startsWith("HE-SHARE")) {
     share_object_id = body.attribution_last_touch;
   }
-  const props = { ...body };
-  delete props.event_name;
-  delete props.event;
-  delete props.event_id;
-  delete props.household_id;
-  delete props.member_id;
-  delete props.plan_id;
-  delete props.meal_option_id;
-  delete props.invite_code;
-  delete props.share_object_id;
-  delete props.channel;
-  delete props.attribution_last_touch;
-  delete props.created_at;
-  delete props.data_origin;
-  const dataOrigin = await writeOrigin(env, session.household_id, request, body);
+  const gated = storedEventProps(event_name, body);
+  if (gated.handled && gated.error) return err(gated.error);
+  const props = gated.handled ? { ...gated.props } : { ...body };
+  if (!gated.handled) {
+    delete props.event_name;
+    delete props.event;
+    delete props.event_id;
+    delete props.household_id;
+    delete props.member_id;
+    delete props.plan_id;
+    delete props.meal_option_id;
+    delete props.invite_code;
+    delete props.share_object_id;
+    delete props.channel;
+    delete props.attribution_last_touch;
+    delete props.created_at;
+    delete props.data_origin;
+  }
+  const dataOrigin = await writeOrigin(env, session.household_id, request, gated.handled ? {} : body);
   try {
     await env.DB.prepare(
       `INSERT INTO event
@@ -896,13 +903,13 @@ async function createEvent(env, body, session, request) {
         event_id,
         event_name,
         session.household_id,
-        body.member_id || session.member_id,
-        body.plan_id || null,
-        body.meal_option_id || null,
-        invite_code,
-        share_object_id,
-        body.channel || null,
-        body.attribution_last_touch || null,
+        gated.handled ? session.member_id : body.member_id || session.member_id,
+        gated.handled ? null : body.plan_id || null,
+        gated.handled ? null : body.meal_option_id || null,
+        gated.handled ? null : invite_code,
+        gated.handled ? null : share_object_id,
+        gated.handled ? null : body.channel || null,
+        gated.handled ? null : body.attribution_last_touch || null,
         Object.keys(props).length ? JSON.stringify(props) : null,
         ts,
         dataOrigin
@@ -2143,6 +2150,16 @@ async function getHouseholdState(env, household_id) {
   });
 }
 
+async function postSessionLogout(env, request, requestUrl) {
+  const secure = requestUrl.protocol === "https:";
+  const token = readSessionToken(request);
+  if (token) await revokeMemberSession(env.DB, token);
+  return json({ ok: true }, 200, {
+    "Set-Cookie": sessionClearCookieHeader({ secure }),
+    "Clear-Site-Data": '"cache"',
+  });
+}
+
 async function postSession(env, body, request, requestUrl) {
   const household_id = body.household_id;
   const member_id = body.member_id;
@@ -2428,6 +2445,11 @@ export default {
             if (auth.error) return auth.error;
             return getFunnelAnalytics(env, m.id, auth.session);
           }
+        }
+
+        // POST /api/sessions/logout — revoke the session and clear he_session
+        if (path === "/api/sessions/logout" && request.method === "POST") {
+          return postSessionLogout(env, request, url);
         }
 
         // POST /api/sessions — Set-Cookie he_session

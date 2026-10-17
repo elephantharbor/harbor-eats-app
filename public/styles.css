@@ -5895,6 +5895,111 @@ button.plan-meal-title {
   margin: auto;
 }
 
+.shop-how-sheet {
+  background: var(--color-bg, #FFFDF8);
+}
+
+.shop-how__rows {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.shop-how__row {
+  display: grid;
+  gap: var(--space-2);
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: var(--space-4);
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-quiet, #F7F2EC);
+  color: inherit;
+  text-align: left;
+  font: inherit;
+}
+
+.shop-how__row--static {
+  display: grid;
+}
+
+.shop-how__title {
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+}
+
+.shop-how__copy,
+.shop-how__note {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.shop-how__note {
+  color: var(--color-text-muted, #5c564f);
+  font-size: var(--text-sm);
+}
+
+/* Both handoff actions span the row at the same height; insets stay symmetric. */
+.shop-how__actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.shop-how__actions .btn,
+#btnShopHowConnected {
+  width: 100%;
+  min-width: 0;
+  min-height: 52px;
+  padding-inline: var(--space-4);
+  font-size: var(--text-md);
+  white-space: normal;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.shop-how__actions--pager {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.shop-how__actions--pager #btnShopCopyPart {
+  grid-column: 1 / -1;
+}
+
+.shop-how__status {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md, 12px);
+  background: color-mix(in srgb, var(--color-structure, #0F5D5B) 10%, #FFFFFF);
+  color: var(--color-structure, #0F5D5B);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-sm);
+}
+
+.shop-how__part-label {
+  margin: 0;
+  font-weight: var(--weight-bold);
+  color: var(--color-structure, #0F5D5B);
+}
+
+#shopHowSheet .btn-primary {
+  background: var(--color-primary, #F15D3C);
+}
+
+#shopHowConnected .btn {
+  color: var(--color-structure, #0F5D5B);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shop-how-sheet[open] {
+    animation: none;
+  }
+}
+
 #shopOrderSheet[open] .sheet__inner--split {
   width: 100%;
   max-height: calc(100dvh - 32px);

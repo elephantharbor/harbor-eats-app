@@ -116,6 +116,25 @@ export async function resolveSession(db, token) {
 }
 
 /**
+ * Invalidate one session server-side. The cookie clear is the caller's header.
+ * A missing token is still a successful sign-out (nothing left to revoke).
+ */
+export async function revokeMemberSession(db, token) {
+  if (!token || !db) return { ok: true, revoked: 0 };
+  const token_hash = await sha256Hex(token);
+  const now = new Date().toISOString();
+  const result = await db
+    .prepare(
+      `UPDATE member_session
+       SET revoked_at = ?
+       WHERE revoked_at IS NULL AND (session_token_hash = ? OR session_token = ?)`
+    )
+    .bind(now, token_hash, token)
+    .run();
+  return { ok: true, revoked: result?.meta?.changes || 0 };
+}
+
+/**
  * @param {import('@cloudflare/workers-types').D1Database} db
  * @param {string} household_id
  */

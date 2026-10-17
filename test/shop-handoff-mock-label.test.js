@@ -43,7 +43,9 @@ describe("S-03 order-online labels", () => {
     const off = { innerHTML: "" };
     ui.renderUnavailable(off, null);
     expect(off.innerHTML).not.toContain("Preview test");
-    expect(off.innerHTML).toContain("Not connected yet");
+    expect(off.innerHTML).toContain("No grocery service is connected");
+    expect(off.innerHTML).not.toContain("Not connected yet");
+    expect(off.innerHTML).not.toContain("Instacart");
 
     const card = { innerHTML: "" };
     ui.renderChoice(card, null, { id: "instacart", mode: "live" });

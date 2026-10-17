@@ -16,6 +16,7 @@
     "cookAdaptSheet",
     "adaptChangesSheet",
     "shopLineSheet",
+    "shopHowSheet",
     "newPlanSheet",
   ];
 

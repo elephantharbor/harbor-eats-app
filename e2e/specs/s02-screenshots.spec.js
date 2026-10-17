@@ -59,18 +59,20 @@ test.describe("S-02 screenshots", () => {
 
     await page.getByRole("checkbox", { name: /Still need, Carrot/i }).click();
     await expect(page.getByRole("checkbox", { name: /Bought, Carrot/i })).toBeVisible();
-    await page.getByRole("button", { name: "Shop in store" }).click();
+    await page.getByRole("button", { name: "How are you shopping?" }).click();
+    await page.locator("#shopHowSheet").getByRole("button", { name: /Shop in store/ }).click();
     await expect(page.locator("#shopEyebrow")).toHaveText("In the store");
     await settle(page);
     await page.screenshot({ path: `${dir}/phone-instore.png` });
     await page.locator("#btnShopDone").click();
 
     await page.locator(".view.is-active button.link-card[data-go='shopList']").click();
-    await page.getByRole("button", { name: "Order online" }).click();
-    await expect(page.getByText("Not connected yet")).toBeVisible();
+    await page.getByRole("button", { name: "How are you shopping?" }).click();
+    await expect(page.locator("#shopHowSheet")).toBeVisible();
+    await expect(page.getByText("No grocery service is connected")).toHaveCount(0);
     await settle(page);
     await page.screenshot({ path: `${dir}/phone-order.png` });
-    await page.locator("#shopOrderSheet").getByRole("button", { name: "Shop in store instead" }).click();
+    await page.locator("#shopHowSheet").getByRole("button", { name: "Close" }).click();
 
     await page.locator("#btnShopMenu").click();
     await page.getByRole("button", { name: "Sharing link" }).click();
