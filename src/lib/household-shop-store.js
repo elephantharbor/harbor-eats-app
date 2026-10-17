@@ -4,7 +4,7 @@
  * is stale, so two shoppers cannot both commit the same version.
  */
 
-import { logDatabaseError } from "./db-error.js";
+import { logDatabaseError, logRevisionConflict } from "./db-error.js";
 import { emptyHouseholdList } from "./household-shop.js";
 
 function parseJson(value, fallback) {
@@ -241,6 +241,18 @@ function statementsFor(db, list, expectedRevision, contentChanged) {
   return { stmts, nextRevision, nextContent };
 }
 
+/**
+ * A stale revision inserts NULL into household_shop_cas and SQLite reports
+ * NOT NULL. That is an expected conflict. A NOT NULL that names another table
+ * is a real constraint failure and must stay a database error.
+ * @param {unknown} message
+ */
+export function isExpectedRevisionConflict(message) {
+  const text = String(message || "");
+  if (/NOT NULL constraint failed:\s*(?!household_shop_cas\b)[A-Za-z0-9_]+\./i.test(text)) return false;
+  return text.includes("household_shop_cas") || /NOT NULL constraint failed/i.test(text);
+}
+
 export async function commitList(db, list, expectedRevision, contentChanged) {
   if (typeof db.batch !== "function") {
     throw new Error("household_shop_save_requires_transaction");
@@ -253,10 +265,11 @@ export async function commitList(db, list, expectedRevision, contentChanged) {
     return { ok: true, list };
   } catch (error) {
     const message = String(error?.message || error);
-    logDatabaseError("household_shop_commit", error);
-    if (message.includes("household_shop_cas") || /NOT NULL constraint failed/i.test(message)) {
+    if (isExpectedRevisionConflict(message)) {
+      logRevisionConflict("household_shop_commit");
       return { ok: false, error: "revision_conflict", status: 409 };
     }
+    logDatabaseError("household_shop_commit", error);
     if (/requirement_id|client_request_id|source_key|idx_household_shop_requirement_client/i.test(message)) {
       return { ok: false, error: "duplicate_request", status: 409 };
     }

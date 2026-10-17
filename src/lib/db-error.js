@@ -31,6 +31,15 @@ export function logDatabaseError(scope, error) {
 }
 
 /**
+ * Expected compare-and-swap miss. Not a database fault, so it is not a db_error.
+ * The line is only the event and a scope. No SQL and no bound values.
+ * @param {string} scope
+ */
+export function logRevisionConflict(scope) {
+  console.error(JSON.stringify({ event: "revision_conflict", scope: String(scope || "api").slice(0, 60) }));
+}
+
+/**
  * Drop leaked database text from an error body. User-facing grocery copy is kept
  * when it does not look like SQL.
  * @param {Record<string, unknown>|null|undefined} body

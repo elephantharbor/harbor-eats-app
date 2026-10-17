@@ -10,6 +10,7 @@
  */
 
 import { canonicalIngredient, normalizeUnit, roundQuantity, SHOPPING_INGREDIENT_ALIASES } from "./ingredient-identity.js";
+import { presentShopQuantity } from "./shop-display.js";
 
 const QTY_EPS = 0.0005;
 
@@ -838,6 +839,7 @@ function lineExportName(line) {
 
 export function presentLine(line, mealTitles = {}) {
   const buy = buyQuantity(line);
+  const spoken = presentShopQuantity({ quantity: buy, unit: line.unit, name: line.display_name });
   const titles = (line.meal_ids || []).map((id) => mealTitles[id]).filter(Boolean);
   const origins = new Set((line.requirements || []).map((req) => req.origin));
   let origin = "general";
@@ -859,6 +861,8 @@ export function presentLine(line, mealTitles = {}) {
     override_stale: !!line.override_stale,
     reconcile_note: line.reconcile_note,
     buy_quantity: buy,
+    quantity_label: spoken.display,
+    quantity_accessible: spoken.accessible,
     list_state: line.list_state,
     still_needed: !!line.still_needed,
     surplus_quantity: line.surplus_quantity || 0,

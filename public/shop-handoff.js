@@ -97,6 +97,15 @@
     );
   }
 
+  function quantityHtml(item) {
+    var label = item.quantity_label || "";
+    var accessible = item.quantity_accessible || "";
+    if (accessible && accessible !== label) {
+      return '<span aria-label="' + escapeHtml(accessible) + '">' + escapeHtml(label) + "</span>";
+    }
+    return escapeHtml(label);
+  }
+
   function sectionsHtml(review) {
     var included = (review.included || [])
       .map(function (item) {
@@ -104,7 +113,7 @@
           "<li class=\"shop-handoff__item\"><span>" +
           escapeHtml(item.display_text) +
           "</span><span>" +
-          escapeHtml(item.quantity_label) +
+          quantityHtml(item) +
           "</span></li>"
         );
       })

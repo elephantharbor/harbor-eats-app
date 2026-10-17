@@ -30,7 +30,7 @@ import {
   setTripMethod,
   shareSnapshot,
 } from "./household-shop.js";
-import { stripDatabaseDetail } from "./db-error.js";
+import { logDatabaseError, stripDatabaseDetail } from "./db-error.js";
 import { commitList, insertOpenList, isActiveMember, loadOpenList } from "./household-shop-store.js";
 import { applyPlanMutation } from "./plan-mutations.js";
 
@@ -119,33 +119,67 @@ async function activeMemberCount(db, householdId) {
   return Number(row?.c) || 1;
 }
 
+export const SHOP_PROJECTION_FAILED = "shop_projection_failed";
+const SHOP_PROJECTION_CONFLICT_RETRIES = 1;
+
+function projectionFailure(plan) {
+  return {
+    ok: false,
+    error: SHOP_PROJECTION_FAILED,
+    status: 500,
+    dinner_plan_id: plan?.dinner_plan_id || null,
+  };
+}
+
+async function openListForPlan(db, plan, now) {
+  let list = await loadOpenList(db, plan.household_id);
+  if (list) return list;
+  try {
+    return await insertOpenList(db, plan.household_id, now);
+  } catch (error) {
+    list = await loadOpenList(db, plan.household_id);
+    if (list) return list;
+    logDatabaseError("shop_projection", error);
+    return null;
+  }
+}
+
+async function writeProjection(db, list, plan, now, conflictsLeft) {
+  const projected = projectPlanIntoList(list, plan, { now });
+  if (!projected.changed) return { ok: true, projected: false, unchanged: true, list };
+  const saved = await commitList(db, projected.list, list.revision, projected.content_changed);
+  if (saved.ok) return { ok: true, projected: true, list: saved.list };
+  if (saved.error === "revision_conflict" && conflictsLeft > 0) {
+    const fresh = await loadOpenList(db, plan.household_id);
+    if (!fresh) return projectionFailure(plan);
+    return writeProjection(db, fresh, plan, now, conflictsLeft - 1);
+  }
+  return projectionFailure(plan);
+}
+
+/**
+ * Project the current plan onto the household list.
+ * The dinner-plan write and this projection are separate batches. A projection
+ * failure can leave the plan saved and the list unchanged. That result is
+ * `shop_projection_failed`. It is not success.
+ * A revision conflict is retried once against the reloaded list. Any other
+ * database failure is not retried.
+ * Recovery is idempotent and does not insert another plan: call this again
+ * for the same plan, or open the household list, which hydrates through here.
+ * @returns {Promise<{ ok: boolean, error?: string, status?: number, dinner_plan_id?: string|null, projected?: boolean, list?: object }>}
+ */
 export async function projectSavedPlan(db, plan, now) {
-  if (!plan?.household_id || !plan.dinner_plan_id) return;
+  if (!plan?.household_id || !plan.dinner_plan_id) return { ok: true, projected: false };
   const stored = await db
     .prepare(`SELECT superseded_at FROM dinner_plan WHERE dinner_plan_id = ?`)
     .bind(plan.dinner_plan_id)
     .first();
-  if (stored?.superseded_at) return;
+  if (stored?.superseded_at) return { ok: true, projected: false };
   const currentId = await findCurrentDinnerPlanId(db, plan.household_id);
-  if (currentId !== plan.dinner_plan_id) return;
-  let list = await loadOpenList(db, plan.household_id);
-  if (!list) {
-    try {
-      list = await insertOpenList(db, plan.household_id, now);
-    } catch (error) {
-      list = await loadOpenList(db, plan.household_id);
-      if (!list) throw error;
-    }
-  }
-  const projected = projectPlanIntoList(list, plan, { now });
-  if (!projected.changed) return;
-  const saved = await commitList(db, projected.list, list.revision, projected.content_changed);
-  if (!saved.ok) {
-    const fresh = await loadOpenList(db, plan.household_id);
-    if (!fresh) return;
-    const again = projectPlanIntoList(fresh, plan, { now });
-    if (again.changed) await commitList(db, again.list, fresh.revision, again.content_changed);
-  }
+  if (currentId !== plan.dinner_plan_id) return { ok: true, projected: false };
+  const list = await openListForPlan(db, plan, now);
+  if (!list) return projectionFailure(plan);
+  return writeProjection(db, list, plan, now, SHOP_PROJECTION_CONFLICT_RETRIES);
 }
 
 async function ensureList(db, householdId, now) {
@@ -165,12 +199,12 @@ async function hydrate(db, list, now) {
   if (!planId) return { list, plan: null };
   const plan = await loadDinnerPlan(db, planId);
   if (!plan) return { list, plan: null };
-  const projected = projectPlanIntoList(list, plan, { now });
-  if (!projected.changed) return { list, plan };
-  const saved = await commitList(db, projected.list, list.revision, projected.content_changed);
-  if (saved.ok) return { list: saved.list, plan };
-  const fresh = await loadOpenList(db, list.household_id);
-  return { list: fresh || list, plan };
+  const projected = await projectSavedPlan(db, plan, now);
+  if (!projected.ok) {
+    const fresh = await loadOpenList(db, list.household_id);
+    return { list: fresh || list, plan };
+  }
+  return { list: projected.list || list, plan };
 }
 
 function present(list, plan) {

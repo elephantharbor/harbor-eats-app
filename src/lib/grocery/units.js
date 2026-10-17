@@ -29,9 +29,3 @@ export function instacartUnit(unit) {
   if (!unit) return null;
   return INSTACART_UNIT_MAP[unit] || null;
 }
-
-export function quantityLabel(quantity, unit) {
-  const n = Number(quantity);
-  const shown = Number.isInteger(n) ? String(n) : String(Math.round(n * 1000) / 1000);
-  return `${shown} ${unit}`;
-}
