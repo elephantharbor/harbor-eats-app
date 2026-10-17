@@ -87,7 +87,8 @@ function classify(line) {
   if (!name) {
     return staying(line, "invalid_qty_unit", "Add a bit more of a name.", "edit");
   }
-  const spoken = presentShopQuantity({ quantity: rawQty, unit, name: line.display_name });
+  // Same native unit the list uses. `unit` above is only the Instacart measurement.
+  const spoken = presentShopQuantity({ quantity: rawQty, unit: line.unit, name: line.display_name });
   return {
     include: true,
     line_id: line.line_id,

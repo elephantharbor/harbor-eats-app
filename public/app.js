@@ -3418,10 +3418,16 @@
       payload
     );
     if (res && res.error === "shop_projection_failed") {
-      if (!(options && options.suppressToast)) dinnerPlanErrorToast(res);
-      await loadCurrentDinnerPlan();
+      const saved =
+        (await loadCurrentDinnerPlan()) ||
+        (await fetchDinnerPlanById(res.dinner_plan_id || plan.dinner_plan_id));
       renderActiveDinnerSurfaces();
-      return null;
+      if (options && options.suppressToast) {
+        state.pendingDinnerToast = { text: shopProjectionFailedCopy(), opts: null };
+      } else {
+        dinnerPlanErrorToast(res);
+      }
+      return saved;
     }
     if (!res || !res.ok) {
       if (!(options && options.suppressToast)) dinnerPlanErrorToast(res);
@@ -3498,10 +3504,13 @@
     return res.plan;
   }
 
+  function shopProjectionFailedCopy() {
+    return "The plan is saved. The shopping list didn’t update. Open the list to try again.";
+  }
+
   function dinnerPlanErrorToast(res) {
     const code = res && res.error;
-    if (code === "shop_projection_failed")
-      toast("The plan is saved. The shopping list didn’t update. Open the list to try again.");
+    if (code === "shop_projection_failed") toast(shopProjectionFailedCopy());
     else if (code === "hard_limit_blocked") toast("That one doesn’t work for everyone at this dinner. Pick another.");
     else if (code === "forbidden_member")
       toast("Only diners who’ve joined your kitchen can eat this one. Mark them active in Settings or use “They’re at the table”.");

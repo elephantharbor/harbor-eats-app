@@ -485,6 +485,62 @@ describe("quantity presentation", () => {
     expect(review.quantity_accessible).toBe(listed.quantity_accessible);
   });
 
+  it("uses the native unit words on review for weight, volume, and non-phrase counts", () => {
+    const rows = [
+      { line_id: "hl_butter", display_name: "butter", unit: "oz", quantity_required: 0.5, label: "½ oz", measure: "ounce" },
+      { line_id: "hl_flour", display_name: "flour", unit: "lb", quantity_required: 0.5, label: "½ lb", measure: "pound" },
+      { line_id: "hl_sugar", display_name: "sugar", unit: "g", quantity_required: 0.5, label: "½ g", measure: "gram" },
+      { line_id: "hl_rice", display_name: "rice", unit: "kg", quantity_required: 0.5, label: "½ kg", measure: "kilogram" },
+      { line_id: "hl_stock", display_name: "stock", unit: "ml", quantity_required: 0.5, label: "½ ml", measure: "milliliter" },
+      { line_id: "hl_water", display_name: "water", unit: "l", quantity_required: 0.5, label: "½ l", measure: "liter" },
+      { line_id: "hl_milk", display_name: "2% milk", unit: "count", quantity_required: 0.5, label: "½", measure: "each" },
+    ];
+    for (const row of rows) {
+      const line = {
+        line_id: row.line_id,
+        display_name: row.display_name,
+        unit: row.unit,
+        quantity_required: row.quantity_required,
+        quantity_manual: null,
+        quantity_override: null,
+        override_stale: 0,
+        still_needed: 1,
+        list_state: "open",
+        unparsed: 0,
+        requirements: [],
+        meal_ids: [],
+      };
+      const listed = presentLine(line);
+      const review = projectTransfer({ lines: [line] }).included[0];
+      expect(listed.quantity_label).toBe(row.label);
+      expect(review.quantity_label).toBe(listed.quantity_label);
+      expect(review.quantity_accessible).toBe(listed.quantity_accessible);
+      expect(review.our_quantity).toBe(0.5);
+      expect(review.measurements).toEqual([{ quantity: 0.5, unit: row.measure }]);
+    }
+  });
+
+  it("returns the saved plan after a projection failure so a later write still runs", () => {
+    const app = readFileSync(new URL("../public/app.js", import.meta.url), "utf8");
+    const mutate = app.slice(app.indexOf("async function mutateDinnerPlan"), app.indexOf("function shopProjectionFailedCopy"));
+    const fail = mutate.slice(mutate.indexOf('res.error === "shop_projection_failed"'), mutate.indexOf("if (!res || !res.ok)"));
+    expect(fail).toContain("loadCurrentDinnerPlan()");
+    expect(fail).toContain("fetchDinnerPlanById");
+    expect(fail).toContain("pendingDinnerToast");
+    expect(fail).toContain("shopProjectionFailedCopy()");
+    expect(fail).toContain("dinnerPlanErrorToast(res)");
+    expect(fail).toContain("return saved");
+    expect(fail).not.toMatch(/return null/);
+    expect(fail).not.toMatch(/toast\(/);
+    const replace = app.slice(app.indexOf("async function replaceSlotWithRecipe"), app.indexOf("function initPlanRatingsForMeal"));
+    expect(replace).toContain('op: "remove_meal"');
+    expect(replace).toContain('op: "add_meal"');
+    const find = app.slice(app.indexOf("async function startFindSomethingElse"), app.indexOf("function stillNeedCount"));
+    expect(find).toContain('op: "set_count"');
+    expect(find).toContain("if (!afterCount) return");
+    expect(find).toContain('op: "add_meal"');
+  });
+
   it("keeps canonical quantities and the provider payload byte-identical", () => {
     expect(INSTACART_UNIT_MAP.tsp).toBe("teaspoon");
     expect(INSTACART_UNIT_MAP.cup).toBe("cup");
