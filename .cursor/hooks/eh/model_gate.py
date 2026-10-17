@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Elephant Harbor model gate for Cursor hooks (portable: Linux/macOS/Windows, stdlib only).
 
+STATUS: UNPROVEN IN CLOUD AGENTS (monitoring only). Live test bc-bb2dd80a on postrema/ALC (2026-10-17) ran an Explore
+subagent on cursor-grok-4.6-low with no hook deny from the repo subagentStart/preToolUse hooks. Treat every "ENFORCING"
+below as the intended IDE/CLI behaviour, not a cloud-agent control, until a live deny is observed.
+
 Hook events handled (see https://cursor.com/docs/agent/hooks):
   subagentStart     -> checks the CHILD's model only: `subagent_model` (any depth), else model fields nested under
                        tool_input/subagent/... Never the root `model`/`model_id` (those are the parent's, per the
@@ -12,9 +16,10 @@ Hook events handled (see https://cursor.com/docs/agent/hooks):
                        runs (IDE/CLI); cloud agents skip hooks on early read-only turns, so treat as partial.
   stop/subagentStop/afterAgentResponse -> MONITORING only (append to the audit log, never block).
 
-Decision rule: deny-not-substitute. Exact allowlist (allowed_ids after trim/lowercase/alias map); everything else is
-denied, including a missing child model, suffix variants (grok-4.7-high, composer-2.5-fast) and floating aliases
-(auto, default, composer, composer-latest).
+Decision rule: deny-not-substitute. Exact allowlist (allowed_ids after trim/lowercase/alias map): grok-4.7,
+grok-4.7-{low,medium,high,xhigh}[-fast], composer-2.5, composer-2.5-fast. Everything else is denied, including a missing
+child model, cursor-grok-4.6-*, grok-4.7-fast, cursor-grok-4.7-*, and floating aliases (auto, default, composer,
+composer-latest).
 No environment-variable override exists by design: exceptions are added to allowed-models.json by PR with
 Thomas's explicit yes recorded in approved_exceptions.
 Exit code 2 = deny (documented equivalent to permission:"deny"); JSON is also printed.

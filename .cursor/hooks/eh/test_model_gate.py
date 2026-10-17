@@ -18,18 +18,29 @@ CASES = [
   ("cursor-shaped: preToolUse task_v2 string child claude", cur("preToolUse", tool_name="task_v2", tool_input=json.dumps({"subagent_type":"computerUse","model":"claude-4.5-sonnet"})), 2),
   ("cursor-shaped: preToolUse Task child grok-4.7", cur("preToolUse", tool_name="Task", tool_input={"subagent_type":"generalPurpose","model":"grok-4.7"}), 0),
   ("cursor-shaped: preToolUse Shell on grok parent", cur("preToolUse", tool_name="Shell", tool_input={"command":"ls"}), 0),
-  # --- exact ids, no prefix/suffix variants (B2/B3 regression guards) ---
+  # --- exact slugs from live test bc-bb2dd80a (2026-10-17); no prefix/regex matching ---
   ("grok-4.7 exact",              {"hook_event_name":"subagentStart","subagent_model":"grok-4.7"}, 0),
   ("GROK-4.7 case/space",         {"hook_event_name":"subagentStart","subagent_model":" GROK-4.7 "}, 0),
-  ("grok-4.7-high denied",        {"hook_event_name":"subagentStart","subagent_model":"grok-4.7-high"}, 2),
+] + [(f"{m} allowed", {"hook_event_name":"subagentStart","subagent_model":m}, 0) for m in
+     [f"grok-4.7-{e}{f}" for e in ("low","medium","high","xhigh") for f in ("","-fast")]] + [
+  ("cursor-shaped: Explore on grok-4.7-high", cur("subagentStart", subagent_type="explore", subagent_model="grok-4.7-high"), 0),
+  ("cursor-shaped: Explore on cursor-grok-4.6-low (live-test case)", cur("subagentStart", subagent_type="explore", subagent_model="cursor-grok-4.6-low"), 2),
+  ("grok-4.7-fast denied (not a live slug)", {"hook_event_name":"subagentStart","subagent_model":"grok-4.7-fast"}, 2),
+  ("grok-4.7-max denied",         {"hook_event_name":"subagentStart","subagent_model":"grok-4.7-max"}, 2),
+  ("grok-4.7-high-fast-x denied", {"hook_event_name":"subagentStart","subagent_model":"grok-4.7-high-fast-x"}, 2),
   ("cursor-grok-4.7-high-fast denied", {"hook_event_name":"subagentStart","subagent_model":"cursor-grok-4.7-high-fast"}, 2),
   ("grok-4.70 denied",            {"hook_event_name":"subagentStart","subagent_model":"grok-4.70"}, 2),
   ("composer-2.5 exact",          {"hook_event_name":"subagentStart","subagent_model":"composer-2.5"}, 0),
+  ("composer-2.5-fast allowed",   {"hook_event_name":"subagentStart","subagent_model":"composer-2.5-fast"}, 0),
   ("composer-2-5 normalized",     {"hook_event_name":"subagentStart","subagent_model":"composer-2-5"}, 0),
-  ("composer-2.5-fast denied",    {"hook_event_name":"subagentStart","subagent_model":"composer-2.5-fast"}, 2),
+  ("composer-2.5-fast-x denied",  {"hook_event_name":"subagentStart","subagent_model":"composer-2.5-fast-x"}, 2),
   ("composer (floats) denied",    {"hook_event_name":"subagentStart","subagent_model":"composer"}, 2),
   ("composer-latest denied",      {"hook_event_name":"subagentStart","subagent_model":"composer-latest"}, 2),
   ("composer-2 denied",           {"hook_event_name":"subagentStart","subagent_model":"composer-2"}, 2),
+] + [(f"live slug {m} denied", {"hook_event_name":"subagentStart","subagent_model":m}, 2) for m in
+     ["cursor-grok-4.6-low","cursor-grok-4.6-high-fast","cursor-grok-4.6-xhigh","grok-4.6",
+      "claude-fable-5-1-thinking-high","claude-opus-5-5-max","claude-sonnet-5-5-medium","gemini-4-argon-high",
+      "gpt-5.6-sol-none","gpt-5.6-sol-xhigh-fast","muse-wonder-1.0-minimal"]] + [
   ("old grok 4.5 denied",         {"hook_event_name":"subagentStart","subagent_model":"grok-4.5"}, 2),
 ] + [(f"{m} denied", {"hook_event_name":"subagentStart","subagent_model":m}, 2) for m in
      ["auto","default","opus","sonnet","haiku","gpt","codex","fable","muse-1","kimi-k3","glm-5","gemini-3-pro","claude-opus-5-5","gpt-5.6-sol"]] + [
