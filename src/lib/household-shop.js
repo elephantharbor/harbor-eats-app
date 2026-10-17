@@ -10,7 +10,7 @@
  */
 
 import { canonicalIngredient, normalizeUnit, roundQuantity, SHOPPING_INGREDIENT_ALIASES } from "./ingredient-identity.js";
-import { presentShopQuantity } from "./shop-display.js";
+import { machineUnit, presentShopFaces, shopNameForDisplay } from "./shop-display.js";
 
 const QTY_EPS = 0.0005;
 
@@ -36,30 +36,6 @@ const CATEGORY_RULES = [
   ["household", /\b(paper towel|detergent|soap|foil|trash|sponge|tissue|napkin|cleaner|bleach|laundry)\b/i],
   ["pantry", /\b(coffee|rice|oil|sauce|flour|sugar|salt|pasta|bean|oat|broth|spice|vinegar|soy|honey|cereal)\b/i],
 ];
-
-const UNIT_WORDS = {
-  cup: ["cup", "cups"],
-  tbsp: ["tbsp", "tbsp"],
-  tsp: ["tsp", "tsp"],
-  oz: ["oz", "oz"],
-  lb: ["lb", "lb"],
-  g: ["g", "g"],
-  kg: ["kg", "kg"],
-  ml: ["ml", "ml"],
-  l: ["l", "l"],
-  can: ["can", "cans"],
-  clove: ["clove", "cloves"],
-  bunch: ["bunch", "bunches"],
-  head: ["head", "heads"],
-  package: ["package", "packages"],
-  jar: ["jar", "jars"],
-  carton: ["carton", "cartons"],
-  serving: ["serving", "servings"],
-  dozen: ["dozen", "dozen"],
-  pack: ["pack", "packs"],
-  count: ["", ""],
-  unparsed: ["", ""],
-};
 
 const VULGAR_FRACTIONS = {
   "½": [1, 2],
@@ -201,7 +177,8 @@ export function parseGeneralItem(text) {
   rest = rest.trim();
   if (!rest) return { ok: false, error: "item_name_required" };
   const canon = canonicalIngredient(rest);
-  const display = canon.display_name || rest;
+  const folded = canon.display_name || rest;
+  const display = preserveTypedName(rest, folded);
   let ingredientId = canon.ingredient_id && canon.ingredient_id !== "unknown" ? canon.ingredient_id : null;
   ingredientId = foldShopPlural(ingredientId);
   const measured = quantity != null && !!unit;
@@ -210,7 +187,7 @@ export function parseGeneralItem(text) {
     display_name: display,
     preparation: canon.preparation,
     ingredient_id: ingredientId,
-    general_key: collapseKey(display),
+    general_key: collapseKey(folded),
     quantity,
     unit: measured ? unit : "unparsed",
     unparsed: measured ? 0 : 1,
@@ -836,11 +813,18 @@ export function formatTrueQuantity(value) {
 }
 
 export function humanUnit(unit, quantity) {
-  const pair = UNIT_WORDS[unit];
-  if (!pair) return "";
-  const n = numOrNull(quantity);
-  const plural = n != null && n > 1 + QTY_EPS;
-  return plural ? pair[1] : pair[0];
+  return machineUnit(unit, quantity);
+}
+
+/** The matching key is folded. The words the shopper typed keep their capitals. */
+function preserveTypedName(original, folded) {
+  const source = String(original || "").trim().replace(/\s+/g, " ");
+  const target = String(folded || "").trim();
+  if (!source) return target;
+  if (!target) return source;
+  const idx = source.toLowerCase().lastIndexOf(target.toLowerCase());
+  if (idx < 0) return source;
+  return source.slice(idx, idx + target.length);
 }
 
 export function csvCell(value) {
@@ -850,18 +834,14 @@ export function csvCell(value) {
   return text;
 }
 
-function titleCase(name) {
-  const text = String(name || "");
-  return text ? text.charAt(0).toUpperCase() + text.slice(1) : "";
-}
-
 function lineExportName(line) {
-  return titleCase(line.display_name);
+  return shopNameForDisplay(line.display_name);
 }
 
 export function presentLine(line, mealTitles = {}) {
   const buy = buyQuantity(line);
-  const spoken = presentShopQuantity({ quantity: buy, unit: line.unit, name: line.display_name });
+  const faces = presentShopFaces({ quantity: buy, unit: line.unit, name: line.display_name });
+  const spoken = { display: faces.humanQuantity, accessible: faces.humanAccessible };
   const titles = (line.meal_ids || []).map((id) => mealTitles[id]).filter(Boolean);
   const origins = new Set((line.requirements || []).map((req) => req.origin));
   let origin = "general";
@@ -873,6 +853,7 @@ export function presentLine(line, mealTitles = {}) {
     ingredient_id: line.ingredient_id,
     general_key: line.general_key,
     display_name: line.display_name,
+    product_name: faces.product,
     name_custom: !!line.name_custom,
     preparation: line.preparation,
     unit: line.unit,
@@ -1062,6 +1043,8 @@ export function recipeYieldLine({ dinerCount, guestCount }) {
 
 export const SHOP_EXPORT_TYPES = ["copy_app", "image", "copy", "share", "print", "download"];
 export const SHOP_EXPORT_SURFACES = ["shop_sheet", "shop_menu", "api"];
+/** generated is the payload. succeeded is the one completed handoff. */
+export const SHOP_EXPORT_STAGES = ["generated", "attempted", "succeeded", "cancelled", "failed"];
 
 export const SHOP_EVENT_PROPS = {
   shopping_item_added: ["origin", "unparsed", "has_quantity"],
@@ -1071,7 +1054,7 @@ export const SHOP_EVENT_PROPS = {
   shopping_list_shared: ["channel"],
   shopping_list_exported: ["format"],
   shopping_conflict: ["op"],
-  shop_export: ["type", "ok", "surface"],
+  shop_export: ["type", "ok", "surface", "stage"],
 };
 
 /** Edit patch keys editLine understands. Anything else never reaches telemetry. */
@@ -1101,6 +1084,7 @@ function cleanEventValue(key, value) {
   if (key === "op") return SHOP_CONFLICT_OPS.includes(value) ? value : null;
   if (key === "type") return SHOP_EXPORT_TYPES.includes(value) ? value : null;
   if (key === "surface") return SHOP_EXPORT_SURFACES.includes(value) ? value : null;
+  if (key === "stage") return SHOP_EXPORT_STAGES.includes(value) ? value : null;
   if (key === "ok") {
     if (value === true || value === 1 || value === "true") return true;
     if (value === false || value === 0 || value === "false") return false;
@@ -1115,9 +1099,32 @@ function cleanEventValue(key, value) {
  */
 export function storedEventProps(eventName, body) {
   if (eventName !== "shop_export") return { handled: false };
+  if (body && body.stage != null && !SHOP_EXPORT_STAGES.includes(body.stage)) {
+    return { handled: true, error: "invalid_event" };
+  }
   const safe = sanitizeShopEvent(eventName, body || {});
   if (!safe || !safe.type) return { handled: true, error: "invalid_event" };
   return { handled: true, props: safe };
+}
+
+/**
+ * One completed export per user action.
+ * A row with `stage` counts only when that stage is `succeeded`.
+ * A legacy row has no stage: the clipboard confirmation was surface shop_sheet.
+ * The server generation (surface api) is not a second completion.
+ */
+export function countCompletedShopExports(rows) {
+  let count = 0;
+  for (const row of rows || []) {
+    const props = row && row.props ? row.props : row;
+    if (!props || typeof props !== "object") continue;
+    if (props.stage) {
+      if (props.stage === "succeeded") count += 1;
+      continue;
+    }
+    if (props.surface === "shop_sheet" && (props.ok === true || props.ok === 1 || props.ok === "true")) count += 1;
+  }
+  return count;
 }
 
 export function sanitizeShopEvent(name, props) {

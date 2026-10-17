@@ -26,6 +26,9 @@
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
+  <div id="signOutCover" class="sign-out-cover" hidden>
+    <p role="status">Signing out…</p>
+  </div>
   <svg class="icon-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
     <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 10.5 12 4l8.5 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-4v-6h-6v6H5A1.5 1.5 0 0 1 3.5 19z" /></symbol>
     <symbol id="i-tonight" viewBox="0 0 24 24"><path d="M12 3.5c.9 2.6 4.5 4.6 4.5 8.6a4.5 4.5 0 0 1-9 0c0-1.7.8-3 1.8-4 .2 1.5 1 2.4 1.9 2.7-.4-2.6.2-5 .8-7.3z" /><path d="M5 20.5h14" /></symbol>
@@ -582,8 +585,8 @@
             <p class="meta shop-return" id="shopExportReturn" hidden>Back from shopping? Check off what you got.</p>
             <form class="shop-add" id="shopAddForm">
               <label class="sr-only" for="shopAddInput">Add an item</label>
-              <input id="shopAddInput" name="item" type="text" enterkeyhint="done" autocomplete="off" maxlength="80" placeholder="Add oat milk, paper towels…" />
-              <button class="btn btn-secondary" type="submit">Add</button>
+              <input id="shopAddInput" name="item" type="text" enterkeyhint="done" autocomplete="off" maxlength="80" placeholder="Add oat milk, paper towels…" disabled />
+              <button class="btn btn-secondary" type="submit" disabled>Add</button>
             </form>
             <div class="shop-page__columns" id="shopColumns">
               <div id="shopColLeft"></div>
@@ -1173,6 +1176,17 @@
         </form>
       </dialog>
 
+      <dialog class="sheet" id="signOutFailed" aria-labelledby="signOutFailedTitle" aria-describedby="signOutFailedBody">
+        <form method="dialog" class="sheet__inner">
+          <h2 class="card-title" id="signOutFailedTitle">Still signed in</h2>
+          <p id="signOutFailedBody">We couldn’t confirm sign-out. Your kitchen is still signed in on this device.</p>
+          <div class="sheet__actions">
+            <button class="btn btn-primary" type="button" id="btnSignOutRetry">Try again</button>
+            <button class="btn btn-secondary" type="submit" id="btnSignOutStay">Stay signed in</button>
+          </div>
+        </form>
+      </dialog>
+
       <dialog class="sheet shop-how-sheet" id="shopHowSheet" aria-labelledby="shopHowTitle">
         <form method="dialog" class="sheet__inner" id="shopHowForm">
           <p class="eyebrow">Shopping</p>
@@ -1180,7 +1194,7 @@
           <div class="shop-how__rows">
             <button type="button" class="shop-how__row" id="btnShopHowStore">
               <span class="shop-how__title">Shop in store</span>
-              <span class="shop-how__copy" id="shopHowStoreCopy">Your list, in aisle order, with check-offs.</span>
+              <span class="shop-how__copy" id="shopHowStoreCopy">Your list, in aisle order, with check&#8209;offs.</span>
             </button>
             <section class="shop-how__row shop-how__row--static" aria-labelledby="shopHowSendTitle">
               <h3 class="shop-how__title" id="shopHowSendTitle">Send to your grocery app</h3>
@@ -1288,6 +1302,7 @@
   <script src="/weave-bridge.js?v=42"></script>
   <script src="/recipe-weave.js"></script>
   <script src="/client-error.js"></script>
+  <script type="module" src="/sign-out.js"></script>
   <script src="/shop-handoff.js"></script>
   <script type="module" src="/shop-list-image.js"></script>
   <script src="/app.js"></script>

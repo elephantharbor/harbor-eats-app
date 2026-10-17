@@ -4,8 +4,8 @@
  * Part labels stay in the FlavorWeave UI. They are not part of the payload.
  */
 
-import { buyQuantity, CATEGORY_ORDER, humanUnit } from "./household-shop.js";
-import { formatShopQuantityAmount, presentShopQuantity, unicodeShopAmount } from "./shop-display.js";
+import { buyQuantity, CATEGORY_ORDER } from "./household-shop.js";
+import { presentShopFaces } from "./shop-display.js";
 
 export const APP_EXPORT_PART_LIMIT = 200;
 
@@ -14,46 +14,24 @@ function categoryIndex(category) {
   return index === -1 ? CATEGORY_ORDER.length : index;
 }
 
-function countableName(name, quantity) {
-  const amount = formatShopQuantityAmount(quantity);
-  const spoken = presentShopQuantity({ quantity, unit: "count", name });
-  if (spoken.display.startsWith(`${unicodeShopAmount(amount)} `)) {
-    return spoken.display.slice(unicodeShopAmount(amount).length + 1);
-  }
-  return String(name || "").trim();
-}
-
 /**
  * @param {object} line
- * @returns {{ quantity: string, quantity_unicode: string, name: string, text: string } | null}
+ * @returns {{ quantity: string, quantity_unicode: string, quantity_human: string, name: string, text: string } | null}
  */
 export function formatAppPurchaseLine(line) {
   const name = String(line?.display_name || "").trim().replace(/\s+/g, " ");
   if (!name) return null;
   const qty = buyQuantity(line);
+  const faces = presentShopFaces({ quantity: qty, unit: line.unit, name });
   if (qty == null) {
-    return { quantity: "", quantity_unicode: "", name, text: name };
+    return { quantity: "", quantity_unicode: "", quantity_human: "", name: faces.product || name, text: faces.product || name };
   }
-  const amount = formatShopQuantityAmount(qty);
-  const unicode = unicodeShopAmount(amount);
-  const unitKey = line.unit;
-  if (!unitKey || unitKey === "count" || unitKey === "each" || unitKey === "unparsed") {
-    const noun = countableName(name, qty);
-    return {
-      quantity: amount,
-      quantity_unicode: unicode,
-      name: noun,
-      text: `${amount} ${noun}`.trim(),
-    };
-  }
-  const unit = humanUnit(unitKey, qty);
-  const quantity = unit ? `${amount} ${unit}` : amount;
-  const quantityUnicode = unit ? `${unicode} ${unit}` : unicode;
   return {
-    quantity,
-    quantity_unicode: quantityUnicode,
-    name,
-    text: `${quantity} ${name}`.trim(),
+    quantity: faces.machineQuantity,
+    quantity_unicode: faces.machineQuantityUnicode,
+    quantity_human: faces.imageQuantity,
+    name: faces.exportName,
+    text: faces.machineText,
   };
 }
 
@@ -98,6 +76,7 @@ export function renderAppExport(list, { partLimit = APP_EXPORT_PART_LIMIT } = {}
     rows: formatted.map((row) => ({
       quantity: row.quantity,
       quantity_unicode: row.quantity_unicode,
+      quantity_human: row.quantity_human,
       name: row.name,
     })),
   };

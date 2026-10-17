@@ -93,4 +93,22 @@ describe("client error reporter", () => {
     await reporter.report({ surface: "api", code: "x", message: "two" });
     expect(paths).toEqual(["/api/client-errors"]);
   });
+
+  it("does not post an expected abort", async () => {
+    const calls = [];
+    const reporter = ClientErrors.createReporter((_path, body) => {
+      calls.push(body);
+      return Promise.resolve({ ok: true });
+    });
+    expect(await reporter.report({ surface: "share", code: "AbortError", message: "AbortError" })).toEqual({
+      sent: false,
+      reason: "expected_abort",
+    });
+    expect(await reporter.report({ surface: "share", code: "share_cancelled", message: "share cancelled" })).toEqual({
+      sent: false,
+      reason: "expected_abort",
+    });
+    expect((await reporter.report({ surface: "api", code: "internal", message: "/api/sessions/logout 500" })).sent).toBe(true);
+    expect(calls).toEqual([{ surface: "api", code: "internal", message: "/api/sessions/logout 500" }]);
+  });
 });

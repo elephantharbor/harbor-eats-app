@@ -8,6 +8,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { chromium } from "playwright";
 import { renderAppExport } from "../src/lib/shop-app-export.js";
+import { shopNameForDisplay } from "../src/lib/shop-display.js";
 
 const outDir = process.argv[2] || "/opt/cursor/artifacts/s05c";
 mkdirSync(outDir, { recursive: true });
@@ -63,9 +64,13 @@ const page = await browser.newPage();
 await page.goto(`http://127.0.0.1:${port}/`);
 await page.waitForFunction(() => window.FlavorWeaveShopImage, null, { timeout: 10000 });
 const pngs = await page.evaluate(async (rows) => {
-  const canvases = window.FlavorWeaveShopImage.renderShoppingListCanvases(rows, { dpr: 2 });
+  const face = await window.FlavorWeaveShopImage.ensureShopImageFont();
+  const canvases = window.FlavorWeaveShopImage.renderShoppingListCanvases(rows, {
+    dpr: 2,
+    fontFamily: face.fontFamily,
+  });
   return canvases.map((canvas) => canvas.toDataURL("image/png"));
-}, payload.rows.map((row) => ({ quantity: row.quantity_unicode, name: row.name })));
+}, payload.rows.map((row) => ({ quantity: row.quantity_human || row.quantity_unicode, name: shopNameForDisplay(row.name) })));
 pngs.forEach((url, index) => {
   const name = pngs.length === 1 ? "synthetic-app.png" : `synthetic-app-${index + 1}.png`;
   writeFileSync(`${outDir}/${name}`, Buffer.from(url.split(",")[1], "base64"));

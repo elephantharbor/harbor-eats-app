@@ -7,9 +7,9 @@ import { DatabaseSync } from "node:sqlite";
 import { describe, expect, it } from "vitest";
 import worker from "../src/index.js";
 import { createMemberSession, resolveSession } from "../src/lib/session.js";
-import { parseGeneralItem, storedEventProps } from "../src/lib/household-shop.js";
+import { countCompletedShopExports, parseGeneralItem, presentLine, storedEventProps } from "../src/lib/household-shop.js";
 import { renderAppExport, splitAppExportParts } from "../src/lib/shop-app-export.js";
-import { formatShopQuantityAmount, presentShopQuantity } from "../src/lib/shop-display.js";
+import { formatShopQuantityAmount, presentShopFaces, presentShopQuantity, shopNameForDisplay } from "../src/lib/shop-display.js";
 import { shopCookingHeadline } from "../src/lib/diner-count.js";
 import {
   GROCERY_REGISTRY,
@@ -187,6 +187,10 @@ describe("app export text", () => {
     expect(payload.rows[0]).toMatchObject({ quantity: "3", quantity_unicode: "3", name: "bananas" });
     expect(payload.rows.find((row) => row.name === "cilantro").quantity_unicode).toBe("½ cup");
     expect(payload.rows.find((row) => row.name === "rolled oats").quantity_unicode).toBe("⅔ cup");
+    expect(payload.rows.find((row) => row.name === "smoked paprika").quantity_human).toBe("1 tablespoon");
+    expect(payload.rows.find((row) => row.name === "kosher salt").quantity_human).toBe("⅛ teaspoon");
+    expect(payload.rows.find((row) => row.name === "bananas").quantity_human).toBe("3");
+    expect(payload.rows.find((row) => row.name === "paper towels").quantity_human).toBe("1 pack");
   });
 
   it("drops purchased, already-have, skipped, and no-longer-needed rows", () => {
@@ -257,6 +261,29 @@ describe("typed package lead words", () => {
       return line({ display_name: parsed.display_name, unit: parsed.unit, quantity_manual: parsed.quantity, category: "dairy" });
     });
     expect(renderAppExport({ lines: typed }).lines.sort()).toEqual(["1 dozen large eggs", "1 pack paper towels"]);
+    const eggs = presentLine(typed[0]);
+    const towels = presentLine(typed[1]);
+    expect(eggs.quantity_label).toBe("1 dozen");
+    expect(eggs.product_name).toBe("large eggs");
+    expect(towels.quantity_label).toBe("1 pack");
+    expect(towels.product_name).toBe("paper towels");
+    expect(`${towels.quantity_label} ${shopNameForDisplay(towels.product_name)}`).not.toBe("1 pack paper towels Pack paper towels");
+    const legacy = presentShopFaces({ quantity: 1, unit: "unparsed", name: "pack paper towels" });
+    expect(legacy.humanQuantity).toBe("1 pack");
+    expect(legacy.product).toBe("paper towels");
+    expect(legacy.machineText).toBe("1 pack paper towels");
+    const paprika = presentShopFaces({ quantity: 1, unit: "tbsp", name: "smoked paprika" });
+    expect(paprika.humanQuantity).toBe("1 tablespoon");
+    expect(paprika.imageQuantity).toBe("1 tablespoon");
+    expect(paprika.machineText).toBe("1 tbsp smoked paprika");
+    const named = parseGeneralItem("1 jar Rao's marinara sauce");
+    expect(named.display_name).toBe("Rao's marinara sauce");
+    expect(named.unit).toBe("jar");
+    const gold = parseGeneralItem("1 lb Yukon Gold potatoes");
+    expect(gold.display_name).toBe("Yukon Gold potatoes");
+    expect(gold.unit).toBe("lb");
+    expect(shopNameForDisplay("Rao's")).toBe("Rao's");
+    expect(shopNameForDisplay("yukon gold")).toBe("Yukon gold");
   });
 });
 
@@ -440,6 +467,35 @@ describe("shop_export privacy and sign-out", () => {
     expect(stored.channel).toBeNull();
     expect(storedEventProps("shop_export", { type: "nope" }).error).toBe("invalid_event");
     expect(storedEventProps("shopping_list_exported", { format: "copy" }).handled).toBe(false);
+    const badStage = await call(env, "POST", "/api/events", {
+      token: session.session_token,
+      body: { event_name: "shop_export", type: "copy_app", ok: true, surface: "shop_sheet", stage: "done" },
+    });
+    expect(badStage.status).toBe(400);
+    expect(storedEventProps("shop_export", { type: "copy_app", stage: "done" }).error).toBe("invalid_event");
+  });
+
+  it("counts one completed export when generation and confirmation are both stored", () => {
+    expect(
+      countCompletedShopExports([
+        { type: "copy_app", ok: true, surface: "api", stage: "generated" },
+        { type: "copy_app", surface: "shop_sheet", stage: "attempted" },
+        { type: "copy_app", ok: true, surface: "shop_sheet", stage: "succeeded" },
+      ])
+    ).toBe(1);
+    expect(
+      countCompletedShopExports([
+        { props: { type: "image", ok: true, surface: "api" } },
+        { props: { type: "copy_app", ok: true, surface: "shop_sheet" } },
+      ])
+    ).toBe(1);
+    expect(
+      countCompletedShopExports([
+        { type: "image", ok: false, surface: "shop_sheet", stage: "cancelled" },
+        { type: "copy_app", ok: false, surface: "shop_sheet", stage: "failed" },
+        { type: "download", ok: true, surface: "api", stage: "generated" },
+      ])
+    ).toBe(0);
   });
 
   it("records the app export fetch as image or copy_app, with closed fields only", async () => {
@@ -454,8 +510,8 @@ describe("shop_export privacy and sign-out", () => {
     expect(forCopy.status).toBe(200);
     const rows = sqlite.prepare(`SELECT props_json FROM event WHERE event_name = 'shop_export' ORDER BY created_at, rowid`).all();
     expect(rows.map((row) => JSON.parse(row.props_json))).toEqual([
-      { type: "image", ok: true, surface: "api" },
-      { type: "copy_app", ok: true, surface: "api" },
+      { type: "image", ok: true, surface: "api", stage: "generated" },
+      { type: "copy_app", ok: true, surface: "api", stage: "generated" },
     ]);
     const anonymous = await call(env, "GET", "/api/household-shop/export?format=app");
     expect(anonymous.status).toBe(401);

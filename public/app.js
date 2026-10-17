@@ -4913,6 +4913,14 @@
     });
   }
 
+  function shopDisplayName(line) {
+    const raw = (line && (line.product_name || line.display_name)) || "Item";
+    const text = String(raw).trim();
+    if (!text) return "Item";
+    if (text !== text.toLowerCase()) return text;
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }
+
   function shopQtyPresentation(line) {
     if (line && line.quantity_label) {
       return { display: line.quantity_label, accessible: line.quantity_accessible || line.quantity_label };
@@ -4923,14 +4931,25 @@
     return { display: unicodeShopQty(accessible), accessible: accessible };
   }
 
+  let shopListWriteEpoch = 0;
+
   async function loadHouseholdShop() {
+    const seenWrite = shopListWriteEpoch;
+    const epoch = sessionEpoch;
     const res = await apiGet("/api/household-shop");
+    if (!sessionStillCurrent(epoch) || (res && res.aborted)) return null;
     if (!res || !res.ok || !res.list) return null;
+    const current = state.householdShop && state.householdShop.list;
+    const currentRev = current ? Number(current.revision) : 0;
+    const incomingRev = Number(res.list.revision) || 0;
+    if (seenWrite !== shopListWriteEpoch && incomingRev <= currentRev) return state.householdShop;
+    if (current && incomingRev < currentRev) return state.householdShop;
     state.householdShop = res;
     return res;
   }
 
   async function mutateHouseholdShop(body) {
+    shopListWriteEpoch += 1;
     const list = state.householdShop && state.householdShop.list;
     const payload = Object.assign({ expected_revision: list ? list.revision : 1 }, body);
     state.shopAttempt = payload;
@@ -4960,8 +4979,16 @@
     return prefix + "_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
   }
 
-  async function trackShopExport(type, ok, surface) {
+  async function trackShopExport(type, stage, surface) {
     const epoch = sessionEpoch;
+    const body = {
+      event_name: "shop_export",
+      type: type,
+      surface: surface || "shop_sheet",
+      stage: stage,
+    };
+    if (stage === "succeeded" || stage === "generated") body.ok = true;
+    else if (stage === "failed" || stage === "cancelled") body.ok = false;
     try {
       await fetch("/api/events", {
         method: "POST",
@@ -4969,14 +4996,9 @@
         headers: apiHeaders(),
         cache: "no-store",
         signal: sessionAbort.signal,
-        body: JSON.stringify({
-          event_name: "shop_export",
-          type: type,
-          ok: !!ok,
-          surface: surface || "shop_sheet",
-        }),
+        body: JSON.stringify(body),
       });
-    } catch (_) { /* telemetry must not block the handoff */ }
+    } catch (_) { /* an aborted telemetry post is not a client error */ }
     return sessionStillCurrent(epoch);
   }
 
@@ -4984,15 +5006,27 @@
     const format = kind === "csv" ? "csv" : kind === "print" ? "print" : "txt";
     const exportType = kind === "print" ? "print" : kind === "copy" ? "copy" : "download";
     const epoch = sessionEpoch;
-    const res = await fetch("/api/household-shop/export?format=" + format, {
-      credentials: "same-origin",
-      cache: "no-store",
-      signal: sessionAbort.signal,
-    });
+    void trackShopExport(exportType, "attempted", "shop_menu");
+    let res;
+    try {
+      res = await fetch("/api/household-shop/export?format=" + format, {
+        credentials: "same-origin",
+        cache: "no-store",
+        signal: sessionAbort.signal,
+      });
+    } catch (error) {
+      if (error && error.name === "AbortError") {
+        void trackShopExport(exportType, "cancelled", "shop_menu");
+        return;
+      }
+      toast("Couldn’t prepare the list. Your list is still here.");
+      void trackShopExport(exportType, "failed", "shop_menu");
+      return;
+    }
     if (!sessionStillCurrent(epoch)) return;
     if (!res.ok) {
       toast("Couldn’t prepare the list. Your list is still here.");
-      void trackShopExport(exportType, false, "shop_menu");
+      void trackShopExport(exportType, "failed", "shop_menu");
       return;
     }
     const text = await res.text();
@@ -5000,7 +5034,7 @@
     if (kind === "copy") {
       const ok = await copyText(text);
       toast(ok ? "List copied" : "Couldn’t copy — try the download");
-      void trackShopExport("copy", ok, "shop_menu");
+      void trackShopExport("copy", ok ? "succeeded" : "failed", "shop_menu");
       return;
     }
     if (kind === "print") {
@@ -5010,7 +5044,7 @@
         root.textContent = text;
       }
       window.print();
-      void trackShopExport("print", true, "shop_menu");
+      void trackShopExport("print", "succeeded", "shop_menu");
       return;
     }
     const blob = new Blob([text], { type: kind === "csv" ? "text/csv" : "text/plain" });
@@ -5020,38 +5054,50 @@
     a.download = kind === "csv" ? "flavorweave-list.csv" : "flavorweave-list.txt";
     a.click();
     URL.revokeObjectURL(url);
-    void trackShopExport("download", true, "shop_menu");
+    void trackShopExport("download", "succeeded", "shop_menu");
   }
 
   async function shopNativeShare() {
     const epoch = sessionEpoch;
-    const res = await fetch("/api/household-shop/export?format=txt", {
-      credentials: "same-origin",
-      cache: "no-store",
-      signal: sessionAbort.signal,
-    });
+    void trackShopExport("share", "attempted", "shop_menu");
+    let res;
+    try {
+      res = await fetch("/api/household-shop/export?format=txt", {
+        credentials: "same-origin",
+        cache: "no-store",
+        signal: sessionAbort.signal,
+      });
+    } catch (error) {
+      if (error && error.name === "AbortError") {
+        void trackShopExport("share", "cancelled", "shop_menu");
+        return;
+      }
+      toast("Couldn’t prepare the list. Your list is still here.");
+      void trackShopExport("share", "failed", "shop_menu");
+      return;
+    }
     if (!sessionStillCurrent(epoch)) return;
     if (!res.ok) {
       toast("Couldn’t prepare the list. Your list is still here.");
-      void trackShopExport("share", false, "shop_menu");
+      void trackShopExport("share", "failed", "shop_menu");
       return;
     }
     const text = await res.text();
     if (navigator.share) {
       try {
         await navigator.share({ title: "The list", text: text });
-        void trackShopExport("share", true, "shop_menu");
+        void trackShopExport("share", "succeeded", "shop_menu");
         return;
       } catch (err) {
         if (err && err.name === "AbortError") {
-          void trackShopExport("share", false, "shop_menu");
+          void trackShopExport("share", "cancelled", "shop_menu");
           return;
         }
       }
     }
     const ok = await copyText(text);
     toast(ok ? "List copied" : "Sharing isn’t available here");
-    void trackShopExport(ok ? "copy" : "share", ok, "shop_menu");
+    void trackShopExport(ok ? "copy" : "share", ok ? "succeeded" : "failed", "shop_menu");
   }
 
   async function shopOpenShare() {
@@ -5139,6 +5185,11 @@
     const lines = householdLines();
     if (page) page.classList.toggle("shop-page--instore", !!state.shopInStore);
     const eyebrow = document.getElementById("shopEyebrow");
+    const addInput = document.getElementById("shopAddInput");
+    const addButton = document.querySelector("#shopAddForm button[type='submit']");
+    const listReady = !!(state.householdShop && state.householdShop.list);
+    if (addInput) addInput.disabled = !listReady;
+    if (addButton) addButton.disabled = !listReady;
     if (!state.householdShop) {
       if (eyebrow) eyebrow.textContent = "The list";
       document.getElementById("shopProgress").textContent = "Loading the list…";
@@ -5202,9 +5253,7 @@
     const showMeal = mealNames.size > 1;
     function rowHtml(line) {
       const bought = line.list_state === "purchased";
-      const name = (line.display_name || "Item").replace(/^\w/, function (c) {
-        return c.toUpperCase();
-      });
+      const name = shopDisplayName(line);
       const qtyBits = shopQtyPresentation(line);
       const qty = qtyBits.display;
       const qtyAccess = qtyBits.accessible || qty;
@@ -5289,9 +5338,7 @@
     });
     if (!line) return;
     state.shopLineMenuId = lineId;
-    const name = (line.display_name || "Item").replace(/^\w/, function (c) {
-      return c.toUpperCase();
-    });
+    const name = shopDisplayName(line);
     document.getElementById("shopLineTitle").textContent = name;
     const mealTitles = line.meal_titles && line.meal_titles.length
       ? line.meal_titles
@@ -8237,15 +8284,21 @@
 
   async function fetchAppExport(purpose) {
     const epoch = sessionEpoch;
-    const res = await fetch("/api/household-shop/export?format=app" + (purpose === "image" ? "&for=image" : ""), {
-      credentials: "same-origin",
-      cache: "no-store",
-      signal: sessionAbort.signal,
-    });
-    if (!sessionStillCurrent(epoch)) return null;
+    let res;
+    try {
+      res = await fetch("/api/household-shop/export?format=app" + (purpose === "image" ? "&for=image" : ""), {
+        credentials: "same-origin",
+        cache: "no-store",
+        signal: sessionAbort.signal,
+      });
+    } catch (error) {
+      if (error && error.name === "AbortError") return { ok: false, aborted: true };
+      return null;
+    }
+    if (!sessionStillCurrent(epoch)) return { ok: false, aborted: true };
     if (!res.ok) return null;
     const body = await res.json().catch(function () { return null; });
-    if (!sessionStillCurrent(epoch)) return null;
+    if (!sessionStillCurrent(epoch)) return { ok: false, aborted: true };
     return body;
   }
 
@@ -8263,22 +8316,28 @@
     const text = shopAppParts[shopAppPartIndex] || "";
     if (!text) {
       howFeedback("Nothing to copy. The list is empty.");
-      void trackShopExport("copy_app", false, "shop_sheet");
+      void trackShopExport("copy_app", "failed", "shop_sheet");
       return;
     }
     const ok = await copyText(text);
     howFeedback(ok
       ? "Copied. Paste this into your grocery app, then review the items before buying."
       : "Couldn’t copy. Your list is still here.");
-    void trackShopExport("copy_app", ok, "shop_sheet");
+    void trackShopExport("copy_app", ok ? "succeeded" : "failed", "shop_sheet");
     if (ok) showShopReturnNote();
   }
 
   async function shopCopyForApp() {
     const body = await fetchAppExport();
+    if (body && body.aborted) {
+      void trackShopExport("copy_app", "attempted", "shop_sheet");
+      void trackShopExport("copy_app", "cancelled", "shop_sheet");
+      return;
+    }
     if (!body || !body.ok) {
       howFeedback("Couldn’t prepare the list. Your list is still here.");
-      void trackShopExport("copy_app", false, "shop_sheet");
+      void trackShopExport("copy_app", "attempted", "shop_sheet");
+      void trackShopExport("copy_app", "failed", "shop_sheet");
       return;
     }
     shopAppParts = Array.isArray(body.parts) ? body.parts : [];
@@ -8286,10 +8345,12 @@
     renderAppPartPager();
     if (!shopAppParts.length) {
       howFeedback("Nothing to copy. The list is empty.");
-      void trackShopExport("copy_app", false, "shop_sheet");
+      void trackShopExport("copy_app", "attempted", "shop_sheet");
+      void trackShopExport("copy_app", "failed", "shop_sheet");
       return;
     }
     if (shopAppParts.length === 1) {
+      void trackShopExport("copy_app", "attempted", "shop_sheet");
       await copyCurrentAppPart();
       return;
     }
@@ -8301,8 +8362,8 @@
   function imageRowsFromExport(body) {
     return ((body && body.rows) || []).map(function (row) {
       return {
-        quantity: (row && (row.quantity_unicode || row.quantity)) || "",
-        name: (row && row.name) || "",
+        quantity: (row && (row.quantity_human || row.quantity_unicode || row.quantity)) || "",
+        name: shopDisplayName({ product_name: row && row.name, display_name: row && row.name }),
       };
     });
   }
@@ -8315,25 +8376,38 @@
 
   async function shopSaveImage() {
     const image = window.FlavorWeaveShopImage;
+    void trackShopExport("image", "attempted", "shop_sheet");
     if (!image) {
       howFeedback("Couldn’t prepare the image. Try Copy for my grocery app.");
-      void trackShopExport("image", false, "shop_sheet");
+      void trackShopExport("image", "failed", "shop_sheet");
       return;
     }
     const body = await fetchAppExport("image");
+    if (body && body.aborted) {
+      void trackShopExport("image", "cancelled", "shop_sheet");
+      return;
+    }
     if (!body || !body.ok) {
       howFeedback(image.imageHandoffFeedback({}).message);
-      void trackShopExport("image", false, "shop_sheet");
+      void trackShopExport("image", "failed", "shop_sheet");
       return;
+    }
+    let fontFamily = image.SHOP_IMAGE && image.SHOP_IMAGE.fontFamily;
+    if (typeof image.ensureShopImageFont === "function") {
+      try {
+        const face = await image.ensureShopImageFont();
+        if (face && face.fontFamily) fontFamily = face.fontFamily;
+      } catch (_) { /* keep the fallback stack */ }
     }
     let canvases = [];
     try {
       canvases = image.renderShoppingListCanvases(imageRowsFromExport(body), {
         dpr: Math.min(window.devicePixelRatio || 2, 3),
+        fontFamily: fontFamily,
       });
     } catch (_) {
       howFeedback(image.imageHandoffFeedback({}).message);
-      void trackShopExport("image", false, "shop_sheet");
+      void trackShopExport("image", "failed", "shop_sheet");
       return;
     }
     const blobs = [];
@@ -8344,7 +8418,7 @@
     });
     if (!files.length) {
       howFeedback(image.imageHandoffFeedback({}).message);
-      void trackShopExport("image", false, "shop_sheet");
+      void trackShopExport("image", "failed", "shop_sheet");
       return;
     }
     const plan = image.imageHandoffPlan({
@@ -8360,17 +8434,16 @@
       try {
         await navigator.share({ files: files, title: "Shopping list" });
         howFeedback(image.imageHandoffFeedback({ method: "share", completed: true }).message);
-        void trackShopExport("image", true, "shop_sheet");
+        void trackShopExport("image", "succeeded", "shop_sheet");
         showShopReturnNote();
         return;
       } catch (err) {
         if (err && err.name === "AbortError") {
           howFeedback(image.imageHandoffFeedback({ method: "share", errorName: "AbortError", completed: false }).message);
-          void trackShopExport("image", false, "shop_sheet");
+          void trackShopExport("image", "cancelled", "shop_sheet");
           return;
         }
         // NotAllowedError (gesture expired) or a share target failure: fall back honestly.
-        void trackShopExport("image", false, "shop_sheet");
         method = typeof document.createElement("a").download === "string" ? "download" : "open-tab";
       }
     }
@@ -8386,7 +8459,7 @@
         setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
       });
       howFeedback(image.imageHandoffFeedback({ method: "download" }).message);
-      void trackShopExport("download", true, "shop_sheet");
+      void trackShopExport("download", "succeeded", "shop_sheet");
       showShopReturnNote();
       return;
     }
@@ -8395,7 +8468,7 @@
       window.open(url, "_blank", "noopener");
     });
     howFeedback(image.imageHandoffFeedback({ method: "open-tab" }).message);
-    void trackShopExport("image", true, "shop_sheet");
+    void trackShopExport("image", "succeeded", "shop_sheet");
     showShopReturnNote();
   }
 
@@ -8480,23 +8553,59 @@
     if (Theme && Theme.useMember) Theme.useMember(null);
   }
 
+  let signOutBusy = false;
+  let signOutOpts = null;
+
+  function beginSignOutCover() {
+    document.documentElement.dataset.signingOut = "1";
+    const cover = document.getElementById("signOutCover");
+    if (cover) cover.hidden = false;
+  }
+
+  function endSignOutCover() {
+    delete document.documentElement.dataset.signingOut;
+    const cover = document.getElementById("signOutCover");
+    if (cover) cover.hidden = true;
+  }
+
+  function showSignOutFailure() {
+    endSignOutCover();
+    const sheet = document.getElementById("signOutFailed");
+    if (sheet && typeof sheet.showModal === "function" && !sheet.open) sheet.showModal();
+  }
+
   async function signOut(opts) {
+    if (signOutBusy) return;
+    signOutOpts = opts || null;
     const rejoin = !!(opts && opts.rejoin);
+    const api = window.FlavorWeaveSignOut;
+    if (!api || typeof api.confirmServerSignOut !== "function") {
+      showSignOutFailure();
+      return;
+    }
+    signOutBusy = true;
+    beginSignOutCover();
+    const failed = document.getElementById("signOutFailed");
+    if (failed && failed.open) failed.close();
+    let result;
     try {
-      await fetch("/api/sessions/logout", {
-        method: "POST",
-        credentials: "same-origin",
-        headers: { "Content-Type": "application/json" },
-        cache: "no-store",
-        body: "{}",
-      });
-    } catch (_) { /* still clear the device */ }
+      result = await api.confirmServerSignOut(fetch.bind(window), { timeoutMs: api.timeoutMs });
+    } catch (_) {
+      result = { ok: false, reason: "network" };
+    }
+    if (!result || !result.ok || !result.confirmed) {
+      signOutBusy = false;
+      showSignOutFailure();
+      return;
+    }
     wipePrivateClientState({ keepJoinDest: rejoin });
+    endSignOutCover();
     const wrong = document.getElementById("joinWrongHousehold");
     const joinOut = document.getElementById("btnJoinSignOut");
     if (wrong) wrong.hidden = true;
     if (joinOut) joinOut.hidden = true;
     if (rejoin) {
+      signOutBusy = false;
       show("join");
       toast("Signed out. Join with your name.");
       return;
@@ -8527,6 +8636,7 @@
     renderAppPartPager();
   });
   document.getElementById("btnShopCopyPart").addEventListener("click", function () {
+    void trackShopExport("copy_app", "attempted", "shop_sheet");
     void copyCurrentAppPart();
   });
   document.getElementById("btnShopHowConnected").addEventListener("click", function () {
@@ -8540,6 +8650,22 @@
   document.getElementById("btnJoinSignOut").addEventListener("click", function () {
     void signOut({ rejoin: true });
   });
+  const btnSignOutRetry = document.getElementById("btnSignOutRetry");
+  if (btnSignOutRetry) {
+    btnSignOutRetry.addEventListener("click", function () {
+      const sheet = document.getElementById("signOutFailed");
+      if (sheet && sheet.open) sheet.close();
+      void signOut(signOutOpts);
+    });
+  }
+  const btnSignOutStay = document.getElementById("btnSignOutStay");
+  if (btnSignOutStay) {
+    btnSignOutStay.addEventListener("click", function () {
+      const sheet = document.getElementById("signOutFailed");
+      if (sheet && sheet.open) sheet.close();
+      endSignOutCover();
+    });
+  }
   document.getElementById("btnShopOrder").addEventListener("click", function () {
     if (window.FlavorWeaveShopHandoff) {
       window.FlavorWeaveShopHandoff.open({
@@ -9005,25 +9131,34 @@
 
   window.addEventListener("pageshow", function (ev) {
     if (!ev.persisted) return;
+    const prior = state.view;
+    beginSignOutCover();
     show("welcome");
     fetch("/api/sessions/me", { credentials: "same-origin", cache: "no-store" })
       .then(function (response) {
-        if (!response.ok) {
+        if (response.status === 401) {
           wipePrivateClientState();
+          endSignOutCover();
           show("welcome");
+          return null;
+        }
+        if (!response.ok) {
+          endSignOutCover();
+          if (prior && prior !== "welcome") show(prior);
           return null;
         }
         return response.json();
       })
       .then(function (snap) {
         if (!snap || !snap.ok) return;
+        endSignOutCover();
         applyServerSnapshot(snap);
         const target = snap.next_action === "onboarding" ? onboardingResumeView(snap) : snap.next_view || "home";
         show(target);
       })
       .catch(function () {
-        wipePrivateClientState();
-        show("welcome");
+        endSignOutCover();
+        if (prior && prior !== "welcome") show(prior);
       });
   });
 })();

@@ -5,14 +5,13 @@
  */
 
 import { buyQuantity } from "../household-shop.js";
-import { presentShopQuantity } from "../shop-display.js";
+import { presentShopFaces, shopNameForDisplay } from "../shop-display.js";
 import { instacartUnit } from "./units.js";
 
 const TITLE = "FlavorWeave list";
 
 function titleCase(name) {
-  const text = String(name || "").trim();
-  return text ? text.charAt(0).toUpperCase() + text.slice(1) : "";
+  return shopNameForDisplay(name);
 }
 
 function searchName(line) {
@@ -28,9 +27,10 @@ function finiteQty(value) {
 }
 
 function staying(line, reason, message, action) {
+  const faces = presentShopFaces({ quantity: null, unit: line.unit, name: line.display_name });
   return {
     line_id: line.line_id,
-    display_text: titleCase(line.display_name),
+    display_text: titleCase(faces.product || line.display_name),
     reason,
     message,
     action,
@@ -65,7 +65,8 @@ function classify(line) {
   if (line.unparsed || qty == null || !unit) {
     const unsupported = !unit || line.unit === "unparsed" || line.unit === "clove" || line.unit === "jar" || line.unit === "serving" || line.unit === "carton";
     if (unsupported && line.unit && line.unit !== "unparsed") {
-      const label = titleCase(line.display_name);
+      const faces = presentShopFaces({ quantity: rawQty, unit: line.unit, name: line.display_name });
+      const label = titleCase(faces.product || line.display_name);
       return staying(
         line,
         "invalid_qty_unit",
@@ -87,17 +88,17 @@ function classify(line) {
   if (!name) {
     return staying(line, "invalid_qty_unit", "Add a bit more of a name.", "edit");
   }
-  // Same native unit the list uses. `unit` above is only the Instacart measurement.
-  const spoken = presentShopQuantity({ quantity: rawQty, unit: line.unit, name: line.display_name });
+  // Same native words the list uses. `unit` above is only the Instacart measurement.
+  const faces = presentShopFaces({ quantity: rawQty, unit: line.unit, name: line.display_name });
   return {
     include: true,
     line_id: line.line_id,
-    name,
-    display_text: titleCase(line.display_name),
+    name: faces.product ? faces.product.toLowerCase() : name,
+    display_text: titleCase(faces.product || line.display_name),
     our_unit: line.unit,
     our_quantity: qty,
-    quantity_label: spoken.display,
-    quantity_accessible: spoken.accessible,
+    quantity_label: faces.humanQuantity,
+    quantity_accessible: faces.humanAccessible,
     measurements: [{ quantity: qty, unit }],
   };
 }

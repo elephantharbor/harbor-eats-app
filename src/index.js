@@ -186,7 +186,7 @@ async function handleHealth(env, url) {
       try {
         const since = new Date(Date.now() - 86400000).toISOString();
         const listed = await env.DB.prepare(
-          `SELECT e.message, h.data_origin, h.display_name, h.acquisition_source
+          `SELECT e.message, e.code, h.data_origin, h.display_name, h.acquisition_source
            FROM client_error e
            LEFT JOIN household h ON h.household_id = e.household_id
            WHERE e.created_at >= ?`
@@ -234,6 +234,7 @@ async function handleHealth(env, url) {
       ? {
           actionable: client_error_summary.actionable,
           expected_logged_out: client_error_summary.expected_logged_out,
+          expected_abort: client_error_summary.expected_abort,
           negative_path: client_error_summary.negative_path,
           synthetic: client_error_summary.synthetic,
         }

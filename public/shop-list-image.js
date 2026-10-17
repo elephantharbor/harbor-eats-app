@@ -24,8 +24,44 @@ const SHOP_IMAGE = Object.freeze({
   brandSize: 22,
   brandColor: "#8A8178",
   background: "#FFFFFF",
-  fontFamily: 'Inter, "DejaVu Sans", "Noto Sans", sans-serif',
+  /** Plus Jakarta Sans is the UI face. Inter is the fallback if it does not load. */
+  fontFamily: '"Plus Jakarta Sans", Inter, "DejaVu Sans", "Noto Sans", sans-serif',
+  fontTimeoutMs: 1500,
 });
+
+/**
+ * Wait for the brand face before painting. A timeout or a failed load keeps the
+ * fallback stack so the image still renders.
+ * @param {{ fonts?: { load?: Function }, timeoutMs?: number, family?: string }} [options]
+ */
+export async function ensureShopImageFont(options = {}) {
+  const family = options.family || "Plus Jakarta Sans";
+  const timeoutMs = Number.isFinite(options.timeoutMs) ? options.timeoutMs : SHOP_IMAGE.fontTimeoutMs;
+  const fallback = SHOP_IMAGE.fontFamily;
+  const fonts = options.fonts || (typeof document !== "undefined" ? document.fonts : null);
+  if (!fonts || typeof fonts.load !== "function") return { loaded: false, fontFamily: fallback };
+  let timer;
+  try {
+    await Promise.race([
+      Promise.all([
+        fonts.load(`700 64px "${family}"`),
+        fonts.load(`400 44px "${family}"`),
+        fonts.load(`500 22px "${family}"`),
+      ]),
+      new Promise((_resolve, reject) => {
+        timer = setTimeout(() => reject(Object.assign(new Error("font timeout"), { name: "TimeoutError" })), timeoutMs);
+      }),
+    ]);
+    if (typeof fonts.check === "function" && !fonts.check(`400 44px "${family}"`)) {
+      return { loaded: false, fontFamily: fallback };
+    }
+    return { loaded: true, fontFamily: `"${family}", Inter, "DejaVu Sans", "Noto Sans", sans-serif` };
+  } catch {
+    return { loaded: false, fontFamily: fallback };
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
 
 function defaultMeasure(text, fontSize, weight) {
   const factor = Number(weight) >= 600 ? 0.62 : 0.56;
@@ -298,6 +334,7 @@ export { SHOP_IMAGE };
 if (typeof window !== "undefined") {
   window.FlavorWeaveShopImage = {
     SHOP_IMAGE,
+    ensureShopImageFont,
     layoutShoppingList,
     renderShoppingListCanvases,
     imageHandoffPlan,

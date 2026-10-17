@@ -338,6 +338,7 @@ describe("A3 actionable client errors", () => {
     expect(health.body.client_errors_24h_by_class).toEqual({
       actionable: 1,
       expected_logged_out: 1,
+      expected_abort: 0,
       negative_path: 1,
       synthetic: 1,
     });

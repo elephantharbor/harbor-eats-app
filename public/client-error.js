@@ -24,8 +24,20 @@
     var proven = false;
     var seen = new Set();
 
+    function isExpectedAbort(body) {
+      var code = String(body && body.code != null ? body.code : "").trim().toLowerCase();
+      if (code === "aborted" || code === "aborterror" || code === "cancelled" || code === "canceled" || code === "share_cancelled") {
+        return true;
+      }
+      var message = String(body && body.message != null ? body.message : "");
+      if (/AbortError/i.test(message)) return true;
+      if (/\b(aborted|share cancelled|share canceled)\b/i.test(message)) return true;
+      return false;
+    }
+
     function report(input) {
       var body = input || {};
+      if (isExpectedAbort(body)) return Promise.resolve({ sent: false, reason: "expected_abort" });
       if (stopped) return Promise.resolve({ sent: false, reason: "stopped" });
       var ceiling = proven ? MAX_ATTEMPTS_PER_PAGE : MAX_ATTEMPTS_UNTIL_PROVEN;
       if (attempts >= ceiling) return Promise.resolve({ sent: false, reason: "capped" });

@@ -1,5 +1,6 @@
 export {
   SHOP_IMAGE,
+  ensureShopImageFont,
   layoutShoppingList,
   renderShoppingListCanvases,
   imageHandoffPlan,

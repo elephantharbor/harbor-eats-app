@@ -54,3 +54,7 @@ The Schnucks draft in `S-05B-LOCAL-PROVIDERS.md` is **NOT SENT** and requires Ov
 ## Explicitly not in this unit
 
 Kroger, Walmart cart links, Instacart activation, Schnucks or Whole Foods APIs, pantry inventory, multi-store optimization, automatic substitution, ordering, purchase reconciliation, and a household switcher. No retailer was contacted. No migration.
+
+## S-05C.1
+
+Sign-out now waits for a confirmed revocation. The display split and the export stages are in `S-05C.1-DISPLAY-CONTRACT.md` and `S-05C.1-EXPORT-TELEMETRY.md`. The meal-loop recovery question is a decision card only: `docs/meal-loop/S-05C.1-MEAL-LOOP-DECISION-CARD.md`. It is not implemented. Instacart stays disabled. No new grocery provider.

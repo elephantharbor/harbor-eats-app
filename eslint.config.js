@@ -37,7 +37,7 @@ export default [
     },
   },
   {
-    files: ["public/shop-list-image.js"],
+    files: ["public/shop-list-image.js", "public/sign-out.js"],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",
