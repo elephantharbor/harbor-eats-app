@@ -5,7 +5,8 @@
  */
 
 import { buyQuantity } from "../household-shop.js";
-import { instacartUnit, quantityLabel } from "./units.js";
+import { presentShopQuantity } from "../shop-display.js";
+import { instacartUnit } from "./units.js";
 
 const TITLE = "FlavorWeave list";
 
@@ -58,7 +59,8 @@ function classify(line) {
       "edit"
     );
   }
-  const qty = finiteQty(buyQuantity(line));
+  const rawQty = buyQuantity(line);
+  const qty = finiteQty(rawQty);
   const unit = instacartUnit(line.unit);
   if (line.unparsed || qty == null || !unit) {
     const unsupported = !unit || line.unit === "unparsed" || line.unit === "clove" || line.unit === "jar" || line.unit === "serving" || line.unit === "carton";
@@ -85,6 +87,8 @@ function classify(line) {
   if (!name) {
     return staying(line, "invalid_qty_unit", "Add a bit more of a name.", "edit");
   }
+  // Same native unit the list uses. `unit` above is only the Instacart measurement.
+  const spoken = presentShopQuantity({ quantity: rawQty, unit: line.unit, name: line.display_name });
   return {
     include: true,
     line_id: line.line_id,
@@ -92,7 +96,8 @@ function classify(line) {
     display_text: titleCase(line.display_name),
     our_unit: line.unit,
     our_quantity: qty,
-    quantity_label: quantityLabel(qty, unit),
+    quantity_label: spoken.display,
+    quantity_accessible: spoken.accessible,
     measurements: [{ quantity: qty, unit }],
   };
 }

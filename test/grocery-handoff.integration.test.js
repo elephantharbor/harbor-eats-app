@@ -268,7 +268,8 @@ describe("grocery server integration", () => {
     expect(review.body.copy.staying_title).toBe("Staying on your FlavorWeave list");
     expect(review.body.usual_store_note).toContain("Market Street");
     expect(review.body.staying.some((row) => /garlic/i.test(row.display_text))).toBe(true);
-    expect(review.body.included.some((row) => /onion/i.test(row.display_text) && row.quantity_label === "5 each")).toBe(true);
+    expect(review.body.included.some((row) => /onion/i.test(row.display_text) && row.quantity_label === "5 yellow onions")).toBe(true);
+    expect(review.body.included.some((row) => /onion/i.test(row.display_text) && row.quantity_accessible === "5 yellow onions")).toBe(true);
     expect(review.body.included.some((row) => /paper towels/i.test(row.display_text))).toBe(true);
     expect(review.body.launch_enabled).toBe(false);
     expect(JSON.stringify(review.body)).not.toContain("peanut");

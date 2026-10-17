@@ -22,7 +22,7 @@ import {
   loadDinnerPlan,
   saveDinnerPlan,
 } from "./dinner-plan-store.js";
-import { projectSavedPlan } from "./household-shop-routes.js";
+import { projectSavedPlan, SHOP_PROJECTION_FAILED } from "./household-shop-routes.js";
 import { logDatabaseError, stripDatabaseDetail } from "./db-error.js";
 
 function respond(data, status = 200) {
@@ -37,6 +37,24 @@ function respond(data, status = 200) {
 
 function fail(error, status = 400, extra = {}) {
   return respond(stripDatabaseDetail({ ok: false, error, ...extra }), status);
+}
+
+async function savePlanAndProject(env, plan, now, saveOptions) {
+  try {
+    await saveDinnerPlan(env.DB, plan, saveOptions);
+  } catch (error) {
+    logDatabaseError("dinner_plan_save", error);
+    return fail("dinner_plan_save_failed", 500);
+  }
+  let projected;
+  try {
+    projected = await projectSavedPlan(env.DB, plan, now);
+  } catch (error) {
+    logDatabaseError("shop_projection", error);
+    return fail(SHOP_PROJECTION_FAILED, 500, { dinner_plan_id: plan.dinner_plan_id });
+  }
+  if (!projected.ok) return fail(SHOP_PROJECTION_FAILED, 500, { dinner_plan_id: plan.dinner_plan_id });
+  return null;
 }
 
 function failureBody(result) {
@@ -159,16 +177,11 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
       ctx
     );
     if (!created.ok) return fail(created.error, created.status || 400, failureBody(created));
-    try {
-      await saveDinnerPlan(env.DB, created.plan, {
-        supersedeOtherUnfinished: true,
-        supersededAt: now,
-      });
-      await projectSavedPlan(env.DB, created.plan, now);
-    } catch (error) {
-      logDatabaseError("dinner_plan_save", error);
-      return fail("dinner_plan_save_failed", 500);
-    }
+    const saved = await savePlanAndProject(env, created.plan, now, {
+      supersedeOtherUnfinished: true,
+      supersededAt: now,
+    });
+    if (saved) return saved;
     return respond(
       {
         ok: true,
@@ -222,13 +235,8 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
 
   const mutated = applyPlanMutation(plan, body, ctx);
   if (!mutated.ok) return fail(mutated.error, mutated.status || 400, failureBody(mutated));
-  try {
-    await saveDinnerPlan(env.DB, mutated.plan);
-    await projectSavedPlan(env.DB, mutated.plan, now);
-  } catch (error) {
-    logDatabaseError("dinner_plan_save", error);
-    return fail("dinner_plan_save_failed", 500);
-  }
+  const saved = await savePlanAndProject(env, mutated.plan, now);
+  if (saved) return saved;
   return respond({
     ok: true,
     plan: presentDinnerPlan(mutated.plan),

@@ -135,6 +135,93 @@ export function formatShopQty(line) {
   return amount + " " + unit;
 }
 
+/** Unicode for the fractions formatShopQuantityAmount already recognizes. No new rounding. */
+export const SHOP_QTY_UNICODE = Object.freeze({
+  "1/8": "⅛",
+  "1/4": "¼",
+  "3/8": "⅜",
+  "1/3": "⅓",
+  "1/2": "½",
+  "2/3": "⅔",
+  "3/4": "¾",
+});
+
+const DISPLAY_UNIT = Object.freeze({
+  tsp: "teaspoon",
+  tbsp: "tablespoon",
+  teaspoon: "teaspoon",
+  tablespoon: "tablespoon",
+  cup: "cup",
+  oz: "oz",
+  lb: "lb",
+  g: "g",
+  kg: "kg",
+  ml: "ml",
+  l: "l",
+  can: "can",
+  clove: "clove",
+  bunch: "bunch",
+  head: "head",
+  package: "package",
+  jar: "jar",
+  carton: "carton",
+  serving: "serving",
+  ounce: "ounce",
+  pound: "pound",
+  gram: "gram",
+  kilogram: "kilogram",
+  milliliter: "milliliter",
+  liter: "liter",
+});
+
+export function unicodeShopAmount(ascii) {
+  return String(ascii).replace(/\d+\/\d+/g, (token) => SHOP_QTY_UNICODE[token] || token);
+}
+
+function pluralNoun(word) {
+  if (/s$/i.test(word)) return word;
+  if (/[^aeiou]y$/i.test(word)) return `${word.slice(0, -1)}ies`;
+  if (/(?:s|x|z|ch|sh)$/i.test(word)) return `${word}es`;
+  return `${word}s`;
+}
+
+function countableNoun(name, quantity) {
+  const text = String(name || "").trim().replace(/\s+/g, " ");
+  if (!text || text.length > 48 || !/^[A-Za-z][A-Za-z' -]*$/.test(text)) return null;
+  const words = text.toLowerCase().split(" ");
+  const n = Math.abs(Number(quantity));
+  if (Number.isFinite(n) && n > 1 + QTY_EPS) words[words.length - 1] = pluralNoun(words[words.length - 1]);
+  return words.join(" ");
+}
+
+/**
+ * Shopper-facing quantity. The amount comes from formatShopQuantityAmount.
+ * Display swaps those fractions for unicode. Accessible text keeps the slash form.
+ * A countable each/count uses the item noun when the name is a plain word or phrase.
+ * @param {{ quantity?: unknown, unit?: string|null, name?: string|null }} input
+ */
+export function presentShopQuantity({ quantity, unit, name } = {}) {
+  if (quantity == null || quantity === "") return { display: "", accessible: "", unicode: false };
+  const num = typeof quantity === "number" ? quantity : Number(quantity);
+  if (!Number.isFinite(num)) return { display: "", accessible: "", unicode: false };
+  const accessibleAmount = formatShopQuantityAmount(num);
+  const displayAmount = unicodeShopAmount(accessibleAmount);
+  const unicode = displayAmount !== accessibleAmount;
+  const unitKey = unit == null ? "" : String(unit);
+  if (!unitKey || unitKey === "count" || unitKey === "each" || unitKey === "unparsed") {
+    const noun = countableNoun(name, num);
+    if (noun) {
+      return { display: `${displayAmount} ${noun}`, accessible: `${accessibleAmount} ${noun}`, unicode };
+    }
+    if (unitKey === "each") {
+      return { display: `${displayAmount} each`, accessible: `${accessibleAmount} each`, unicode };
+    }
+    return { display: displayAmount, accessible: accessibleAmount, unicode };
+  }
+  const label = DISPLAY_UNIT[unitKey] || unitKey;
+  return { display: `${displayAmount} ${label}`, accessible: `${accessibleAmount} ${label}`, unicode };
+}
+
 function lineKey(ingredientId, unit) {
   return ingredientId + "\0" + (unit || "");
 }

@@ -378,10 +378,10 @@ describe("E7 token cost", () => {
 
 describe("E8 service worker cache", () => {
   it("bumps the cache version and keeps the shell hash in step", () => {
-    expect(readSw().version).toBe("fw-sw-v76");
+    expect(readSw().version).toBe("fw-sw-v80");
     const check = checkSwInvariant();
     expect(check.ok, check.problems.join("; ")).toBe(true);
-    expect(check.version).toBe("fw-sw-v76");
+    expect(check.version).toBe("fw-sw-v80");
   });
 });
 

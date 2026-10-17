@@ -3249,6 +3249,11 @@
       keep_ingredients_simple: prefs.keep_ingredients_simple === true,
     };
     const res = await apiPost("/api/dinner-plans", body);
+    if (res && res.error === "shop_projection_failed") {
+      dinnerPlanErrorToast(res);
+      if (res.dinner_plan_id) return fetchDinnerPlanById(res.dinner_plan_id);
+      return loadCurrentDinnerPlan();
+    }
     if (!res || !res.ok) {
       dinnerPlanErrorToast(res);
       return null;
@@ -3386,7 +3391,10 @@
 
   async function mutateDinnerPlan(payload, options) {
     const plan = state.dinnerPlan;
-    if (!plan) return null;
+    if (!plan) {
+      showHeldShopProjectionNotice();
+      return null;
+    }
     const shopOps = {
       set_line_state: true,
       swap_meal: true,
@@ -3397,6 +3405,7 @@
       add_meal: true,
       skip_meal: true,
       set_count: true,
+      reorder: true,
       finalize: true,
     };
     const affectsList = shopOps[payload.op];
@@ -3412,7 +3421,21 @@
       "/api/dinner-plans/" + encodeURIComponent(plan.dinner_plan_id) + "/mutations",
       payload
     );
+    if (res && res.error === "shop_projection_failed") {
+      const saved =
+        (await loadCurrentDinnerPlan()) ||
+        (await fetchDinnerPlanById(res.dinner_plan_id || plan.dinner_plan_id));
+      renderActiveDinnerSurfaces();
+      if (options && options.suppressToast && saved) {
+        state.pendingDinnerToast = { text: shopProjectionFailedCopy(), opts: null };
+      } else {
+        clearHeldShopProjectionNotice();
+        dinnerPlanErrorToast(res);
+      }
+      return saved;
+    }
     if (!res || !res.ok) {
+      showHeldShopProjectionNotice();
       if (!(options && options.suppressToast)) dinnerPlanErrorToast(res);
       if (res && (res.error === "outcome_locked" || res.error === "version_locked" || res.error === "illegal_transition")) {
         await loadCurrentDinnerPlan();
@@ -3483,13 +3506,33 @@
           }
         }
       }
+      clearHeldShopProjectionNotice();
     }
     return res.plan;
   }
 
+  function shopProjectionFailedCopy() {
+    return "The plan is saved. The shopping list didn’t update. Open the list to try again.";
+  }
+
+  function isShopProjectionNotice(message) {
+    return !!(message && message.text === shopProjectionFailedCopy());
+  }
+
+  function showHeldShopProjectionNotice() {
+    if (!isShopProjectionNotice(state.pendingDinnerToast)) return;
+    flushDinnerToast();
+  }
+
+  function clearHeldShopProjectionNotice() {
+    if (!isShopProjectionNotice(state.pendingDinnerToast)) return;
+    state.pendingDinnerToast = null;
+  }
+
   function dinnerPlanErrorToast(res) {
     const code = res && res.error;
-    if (code === "hard_limit_blocked") toast("That one doesn’t work for everyone at this dinner. Pick another.");
+    if (code === "shop_projection_failed") toast(shopProjectionFailedCopy());
+    else if (code === "hard_limit_blocked") toast("That one doesn’t work for everyone at this dinner. Pick another.");
     else if (code === "forbidden_member")
       toast("Only diners who’ve joined your kitchen can eat this one. Mark them active in Settings or use “They’re at the table”.");
     else if (code === "plan_full") toast("Your plan is full. Add a night first.");
@@ -4814,10 +4857,22 @@
     return "Still need";
   }
 
-  function shopQtyLabel(line) {
-    if (line.buy_quantity == null || line.buy_quantity === "") return "";
+  const SHOP_QTY_UNICODE = { "1/8": "⅛", "1/4": "¼", "3/8": "⅜", "1/3": "⅓", "1/2": "½", "2/3": "⅔", "3/4": "¾" };
+
+  function unicodeShopQty(ascii) {
+    return String(ascii).replace(/\d+\/\d+/g, function (token) {
+      return SHOP_QTY_UNICODE[token] || token;
+    });
+  }
+
+  function shopQtyPresentation(line) {
+    if (line && line.quantity_label) {
+      return { display: line.quantity_label, accessible: line.quantity_accessible || line.quantity_label };
+    }
+    if (!line || line.buy_quantity == null || line.buy_quantity === "") return { display: "", accessible: "" };
     const unit = !line.unit || line.unit === "unparsed" || line.unit === "count" ? "count" : line.unit;
-    return formatShopQty({ quantity: line.buy_quantity, unit: unit });
+    const accessible = formatShopQty({ quantity: line.buy_quantity, unit: unit });
+    return { display: unicodeShopQty(accessible), accessible: accessible };
   }
 
   async function loadHouseholdShop() {
@@ -5058,7 +5113,9 @@
       const name = (line.display_name || "Item").replace(/^\w/, function (c) {
         return c.toUpperCase();
       });
-      const qty = shopQtyLabel(line);
+      const qtyBits = shopQtyPresentation(line);
+      const qty = qtyBits.display;
+      const qtyAccess = qtyBits.accessible || qty;
       const note = line.reconcile_note
         ? '<span class="shop-reconcile">' + escapeHtml(line.reconcile_note) + "</span>"
         : showMeal && line.meal_titles && line.meal_titles.length
@@ -5073,7 +5130,7 @@
         '"><button type="button" class="shop-row__toggle" role="checkbox" aria-checked="' +
         (bought ? "true" : "false") +
         '" aria-label="' +
-        escapeHtml(shopStateWord(line.list_state) + ", " + name + (qty ? ", " + qty : "")) +
+        escapeHtml(shopStateWord(line.list_state) + ", " + name + (qtyAccess ? ", " + qtyAccess : "")) +
         '" data-shop-toggle="' +
         escapeHtml(line.line_id) +
         '"><span class="shop-row__check' +
@@ -5081,7 +5138,13 @@
         '"></span><span><span class="shop-row__name">' +
         escapeHtml(name) +
         "</span>" +
-        (qtyText ? '<span class="shop-row__qty">' + escapeHtml(qtyText) + "</span>" : "") +
+        (qtyText
+          ? '<span class="shop-row__qty"' +
+            (qty && qtyAccess !== qty ? ' aria-label="' + escapeHtml(qtyAccess) + '"' : "") +
+            ">" +
+            escapeHtml(qtyText) +
+            "</span>"
+          : "") +
         note +
         "</span></button>" +
         '<button type="button" class="shop-row__more" data-shop-more="' +
@@ -6046,6 +6109,7 @@
     }, quiet);
     if (!added || added.failed) {
       await loadCurrentDinnerPlan();
+      showHeldShopProjectionNotice();
       if (!(options && options.suppressToast)) toast("That didn’t work. Your plan is unchanged.");
       return added && added.failed ? added : { failed: true, error: "swap_failed" };
     }
@@ -6314,6 +6378,7 @@
         );
       }
       if (res && res.failed) {
+        showHeldShopProjectionNotice();
         state.swapInFlight = false;
         swapUse.disabled = false;
         showSwapError(swapFailureCopy(res.error));

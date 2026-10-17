@@ -109,6 +109,7 @@ function reviewBody({ list, projection, requestHash, contentHash, store, activat
       line_id: line.line_id,
       display_text: line.display_text,
       quantity_label: line.quantity_label,
+      quantity_accessible: line.quantity_accessible,
     })),
     staying: projection.staying,
     fingerprint: requestHash,

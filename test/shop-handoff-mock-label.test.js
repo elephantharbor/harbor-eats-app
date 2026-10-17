@@ -68,6 +68,26 @@ describe("S-03 order-online labels", () => {
     expect(devSheet.innerHTML).toContain("aria-disabled=\"true\"");
   });
 
+  it("puts an ascii aria-label on a unicode fraction and leaves a plain amount alone", () => {
+    const sheet = { innerHTML: "" };
+    ui.renderReview(sheet, {
+      ...review("live"),
+      included: [
+        { line_id: "l1", display_text: "Salt", quantity_label: "⅛ teaspoon", quantity_accessible: "1/8 teaspoon" },
+        { line_id: "l2", display_text: "Milk", quantity_label: "½ cup", quantity_accessible: "1/2 cup" },
+      ],
+    });
+    expect(sheet.innerHTML).toContain("⅛ teaspoon");
+    expect(sheet.innerHTML).toContain('aria-label="1/8 teaspoon"');
+    expect(sheet.innerHTML).toContain("½ cup");
+    expect(sheet.innerHTML).toContain('aria-label="1/2 cup"');
+
+    const plain = { innerHTML: "" };
+    ui.renderReview(plain, review("live"));
+    expect(plain.innerHTML).toContain(">1 cup<");
+    expect(plain.innerHTML).not.toContain('aria-label="1 cup"');
+  });
+
   it("the disabled CTA is unmistakably off, with aria-disabled and the reason beside it", () => {
     for (const mode of ["mock", "live"]) {
       const sheet = { innerHTML: "" };
