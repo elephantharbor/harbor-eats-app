@@ -2,7 +2,9 @@
 """Elephant Harbor model gate for Cursor hooks (portable: Linux/macOS/Windows, stdlib only).
 
 Hook events handled (see https://cursor.com/docs/agent/hooks):
-  subagentStart     -> checks `subagent_model` (and any model field in the payload). ENFORCING: deny blocks the spawn.
+  subagentStart     -> checks the CHILD's model only: `subagent_model` (any depth), else model fields nested under
+                       tool_input/subagent/... Never the root `model`/`model_id` (those are the parent's, per the
+                       docs' common schema). No child model -> deny. ENFORCING: deny blocks the spawn.
   preToolUse        -> checks model fields inside `tool_input` (Task / task_v2 / any tool that carries a model)
                        and the agent's own `model_id`/`model`. ENFORCING for the tool call only; the parent's
                        own tokens for that turn are already spent.
@@ -10,7 +12,9 @@ Hook events handled (see https://cursor.com/docs/agent/hooks):
                        runs (IDE/CLI); cloud agents skip hooks on early read-only turns, so treat as partial.
   stop/subagentStop/afterAgentResponse -> MONITORING only (append to the audit log, never block).
 
-Decision rule: deny-not-substitute. Anything not matching allow_patterns is denied, including a missing model id.
+Decision rule: deny-not-substitute. Exact allowlist (allowed_ids after trim/lowercase/alias map); everything else is
+denied, including a missing child model, suffix variants (grok-4.7-high, composer-2.5-fast) and floating aliases
+(auto, default, composer, composer-latest).
 No environment-variable override exists by design: exceptions are added to allowed-models.json by PR with
 Thomas's explicit yes recorded in approved_exceptions.
 Exit code 2 = deny (documented equivalent to permission:"deny"); JSON is also printed.
@@ -53,14 +57,29 @@ def model_values(node, depth=0):
                 yield f"{k}.{kk}", vv
 
 
+def normalize(model, policy):
+    m = str(model).strip().lower()
+    return policy.get("aliases", {}).get(m, m)
+
+
 def allowed(model, policy):
-    m = model.lower()
-    for exc in policy.get("approved_exceptions", []):
-        if m == str(exc.get("model", "")).lower() and exc.get("approved_by") == "Thomas" and exc.get("expires", "") >= time.strftime("%Y-%m-%d"):
-            return True
-    if any(re.search(p, m) for p in policy.get("always_deny_patterns", [])) and not any(re.search(p, m) for p in policy["allow_patterns"]):
+    raw = str(model).strip().lower()
+    if raw in {a.lower() for a in policy.get("refused_aliases", [])}:
         return False
-    return any(re.search(p, m) for p in policy["allow_patterns"])
+    m = normalize(model, policy)
+    for exc in policy.get("approved_exceptions", []):
+        if m == str(exc.get("model", "")).strip().lower() and exc.get("approved_by") == "Thomas" and exc.get("expires", "") >= time.strftime("%Y-%m-%d"):
+            return True
+    return m in {i.lower() for i in policy.get("allowed_ids", [])}
+
+
+def child_models(payload):
+    """The subagent's own model. Root model/model_id belong to the parent and are never used here."""
+    found = list(model_values(payload))
+    child = [v for k, v in found if k.split(".")[-1] == "subagent_model"]
+    if not child:
+        child = [v for k, v in found if "." in k]  # nested under tool_input/subagent/...; root keys excluded
+    return child
 
 
 def audit(event, decision, models, payload):
@@ -85,14 +104,13 @@ def decide(payload, policy):
     if policy is None:
         return event, "deny", [], "model policy file missing (fail closed)"
     if event == "subagentStart":
-        found = list(model_values(payload))
-        # subagent_model is what the child will run on; fall back to the parent model only if absent.
-        child = [v for k, v in found if k == "subagent_model"] or [v for k, v in found]
+        child = child_models(payload)
         if not child:
             return event, "deny", [], "subagent model not reported (fail closed, deny-not-substitute)"
         bad = [m for m in child if not allowed(m, policy)]
         return event, ("deny" if bad else "allow"), child, (f"subagent model {bad} is not approved" if bad else None)
     if event == "preToolUse":
+        # Parent's own model (legitimately the root model_id, else legacy model) + any model the tool call names.
         own = [v for k, v in model_values({k: payload.get(k) for k in ("model_id", "model")})]
         tool = [v for k, v in model_values({"tool_input": payload.get("tool_input")})]
         checked = own[:1] + tool

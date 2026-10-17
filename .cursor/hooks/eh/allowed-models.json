@@ -1,15 +1,13 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "policy": "/workspace/elephant-harbor/ops/model-governance/POLICY-2026-10-17.md",
   "owner": "Wells (Portfolio Systems). Changes need Thomas's explicit yes for anything beyond Grok 4.7 / Composer 2.5.",
   "freeze": "2026-10-16 through at least 2026-11-03; does NOT auto-expire",
-  "allow_patterns": [
-    "^(cursor-)?grok-4\\.7([-_.].*)?$",
-    "^composer-2\\.5([-_.].*)?$"
-  ],
+  "allowed_ids": ["grok-4.7", "composer-2.5"],
+  "aliases": {"composer-2-5": "composer-2.5"},
+  "note_ids": "Exact ids from Cursor's cloud-agent model list (verified 2026-10-17 07:57 CT). Effort goes in reasoning_effort, not the id: there is no grok-4.7-high. Matching is exact after trim + lowercase + alias map. No prefixes, no suffix variants (composer-2.5-fast, cursor-grok-4.7-*, grok-4.7-high are denied).",
+  "refused_aliases": ["auto", "default", "composer", "composer-latest"],
+  "note_refused": "Floating aliases resolve to whatever Cursor points them at later, so they are denied even when they currently map to an approved model.",
   "note_allow": "Composer 2.5 is allowed only for trivial work chosen explicitly. A hook cannot tell explicit from silent selection, so that part stays a launch-time rule (cloud-agent-model-routing skill, bin/hq).",
-  "always_deny_patterns": [
-    "^auto$", "^default$", "claude", "opus", "sonnet", "haiku", "gpt", "o[0-9]", "gemini", "kimi", "glm", "deepseek", "qwen", "llama", "mistral", "grok-4\\.[0-6]", "^composer-[01]", "^composer-2(\\.0)?($|[-_])"
-  ],
   "approved_exceptions": []
 }

@@ -4,27 +4,40 @@ import json, os, subprocess, sys, tempfile
 from pathlib import Path
 _H = Path(__file__).resolve().parent
 GATE = _H / "model_gate.py" if (_H / "model_gate.py").is_file() else _H.parent / "model_gate.py"
+ROOT = {"conversation_id":"c1","generation_id":"g1","model":"grok-4.7","model_id":"grok-4.7","model_params":[{"id":"effort","value":"high"}],
+        "cursor_version":"2.x","workspace_roots":["/repo"],"user_email":None,"transcript_path":None}  # docs "Common schema": the PARENT's model
+def cur(event, **kw):
+    return {**ROOT, "hook_event_name": event, **kw}
 CASES = [
-  ("grok parent subagent grok",  {"hook_event_name":"subagentStart","model_id":"grok-4.7","subagent_type":"generalPurpose","subagent_model":"grok-4.7"}, 0),
-  ("slug variant allowed",       {"hook_event_name":"subagentStart","subagent_model":"cursor-grok-4.7-high-fast"}, 0),
-  ("composer 2.5 allowed",       {"hook_event_name":"subagentStart","subagent_model":"composer-2.5-fast"}, 0),
-  ("observed bc-5a937259 case",  {"hook_event_name":"subagentStart","model_id":"grok-4.7","subagent_type":"computerUse","subagent_model":"claude-4.5-sonnet"}, 2),
-  ("opus denied",                {"hook_event_name":"subagentStart","subagent_model":"claude-opus-5-5"}, 2),
-  ("gpt denied",                 {"hook_event_name":"subagentStart","subagent_model":"gpt-5.6-sol"}, 2),
-  ("gemini denied",              {"hook_event_name":"subagentStart","subagent_model":"gemini-3-pro"}, 2),
-  ("kimi denied",                {"hook_event_name":"subagentStart","subagent_model":"kimi-k3"}, 2),
-  ("glm denied",                 {"hook_event_name":"subagentStart","subagent_model":"glm-5"}, 2),
-  ("auto denied",                {"hook_event_name":"subagentStart","subagent_model":"auto"}, 2),
-  ("old grok 4.5 denied",        {"hook_event_name":"subagentStart","subagent_model":"grok-4.5"}, 2),
-  ("composer-2 denied",          {"hook_event_name":"subagentStart","subagent_model":"composer-2"}, 2),
-  ("missing model denied",       {"hook_event_name":"subagentStart","subagent_type":"generalPurpose"}, 2),
-  ("task tool explicit claude",  {"hook_event_name":"preToolUse","model_id":"grok-4.7","tool_name":"Task","tool_input":{"subagent_type":"computerUse","model":"claude-4.5-sonnet"}}, 2),
-  ("task_v2 string input",       {"hook_event_name":"preToolUse","model_id":"grok-4.7","tool_name":"task_v2","tool_input":json.dumps({"model":"gpt-6.1-sol"})}, 2),
-  ("shell on grok parent",       {"hook_event_name":"preToolUse","model_id":"grok-4.7","tool_name":"Shell","tool_input":{"command":"ls"}}, 0),
-  ("tool on opus parent",        {"hook_event_name":"preToolUse","model":"claude-opus-4-7-thinking-max","model_id":"claude-opus-4-7","tool_name":"Shell","tool_input":{"command":"ls"}}, 2),
-  ("prompt on opus blocked",     {"hook_event_name":"beforeSubmitPrompt","model_id":"claude-opus-4-7","prompt":"reply OK"}, 2),
-  ("prompt on grok ok",          {"hook_event_name":"beforeSubmitPrompt","model_id":"grok-4.7","prompt":"reply OK"}, 0),
-  ("stop is monitoring only",    {"hook_event_name":"stop","model_id":"claude-opus-4-7","status":"completed"}, 0),
+  # --- Cursor-shaped: root model = parent grok-4.7, child named separately (B1 regression guards) ---
+  ("cursor-shaped: subagentStart child claude",   cur("subagentStart", subagent_id="s1", subagent_type="generalPurpose", task="t", parent_conversation_id="c1", tool_call_id="tc1", subagent_model="claude-4.5-sonnet", is_parallel_worker=False), 2),
+  ("cursor-shaped: subagentStart computerUse claude (bc-5a937259 case)", cur("subagentStart", subagent_type="computerUse", subagent_model="claude-4.5-sonnet"), 2),
+  ("cursor-shaped: subagentStart child missing, root grok", cur("subagentStart", subagent_type="generalPurpose", task="t"), 2),
+  ("cursor-shaped: subagentStart child grok-4.7", cur("subagentStart", subagent_type="generalPurpose", subagent_model="grok-4.7"), 0),
+  ("cursor-shaped: preToolUse Task child claude", cur("preToolUse", tool_name="Task", tool_use_id="u1", cwd="/repo", tool_input={"subagent_type":"generalPurpose","model":"claude-4.5-sonnet","prompt":"x"}), 2),
+  ("cursor-shaped: preToolUse task_v2 string child claude", cur("preToolUse", tool_name="task_v2", tool_input=json.dumps({"subagent_type":"computerUse","model":"claude-4.5-sonnet"})), 2),
+  ("cursor-shaped: preToolUse Task child grok-4.7", cur("preToolUse", tool_name="Task", tool_input={"subagent_type":"generalPurpose","model":"grok-4.7"}), 0),
+  ("cursor-shaped: preToolUse Shell on grok parent", cur("preToolUse", tool_name="Shell", tool_input={"command":"ls"}), 0),
+  # --- exact ids, no prefix/suffix variants (B2/B3 regression guards) ---
+  ("grok-4.7 exact",              {"hook_event_name":"subagentStart","subagent_model":"grok-4.7"}, 0),
+  ("GROK-4.7 case/space",         {"hook_event_name":"subagentStart","subagent_model":" GROK-4.7 "}, 0),
+  ("grok-4.7-high denied",        {"hook_event_name":"subagentStart","subagent_model":"grok-4.7-high"}, 2),
+  ("cursor-grok-4.7-high-fast denied", {"hook_event_name":"subagentStart","subagent_model":"cursor-grok-4.7-high-fast"}, 2),
+  ("grok-4.70 denied",            {"hook_event_name":"subagentStart","subagent_model":"grok-4.70"}, 2),
+  ("composer-2.5 exact",          {"hook_event_name":"subagentStart","subagent_model":"composer-2.5"}, 0),
+  ("composer-2-5 normalized",     {"hook_event_name":"subagentStart","subagent_model":"composer-2-5"}, 0),
+  ("composer-2.5-fast denied",    {"hook_event_name":"subagentStart","subagent_model":"composer-2.5-fast"}, 2),
+  ("composer (floats) denied",    {"hook_event_name":"subagentStart","subagent_model":"composer"}, 2),
+  ("composer-latest denied",      {"hook_event_name":"subagentStart","subagent_model":"composer-latest"}, 2),
+  ("composer-2 denied",           {"hook_event_name":"subagentStart","subagent_model":"composer-2"}, 2),
+  ("old grok 4.5 denied",         {"hook_event_name":"subagentStart","subagent_model":"grok-4.5"}, 2),
+] + [(f"{m} denied", {"hook_event_name":"subagentStart","subagent_model":m}, 2) for m in
+     ["auto","default","opus","sonnet","haiku","gpt","codex","fable","muse-1","kimi-k3","glm-5","gemini-3-pro","claude-opus-5-5","gpt-5.6-sol"]] + [
+  ("missing model denied",        {"hook_event_name":"subagentStart","subagent_type":"generalPurpose"}, 2),
+  ("tool on opus parent",         {"hook_event_name":"preToolUse","model":"claude-opus-4-7-thinking-max","model_id":"claude-opus-4-7","tool_name":"Shell","tool_input":{"command":"ls"}}, 2),
+  ("prompt on opus blocked",      {"hook_event_name":"beforeSubmitPrompt","model_id":"claude-opus-4-7","prompt":"reply OK"}, 2),
+  ("prompt on grok ok",           cur("beforeSubmitPrompt", prompt="reply OK"), 0),
+  ("stop is monitoring only",     {"hook_event_name":"stop","model_id":"claude-opus-4-7","status":"completed"}, 0),
 ]
 def run(payload, env=None):
     p = subprocess.run([sys.executable, str(GATE)], input=json.dumps(payload), capture_output=True, text=True, env=env)
