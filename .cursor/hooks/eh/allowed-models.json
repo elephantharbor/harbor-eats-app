@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "policy": "/workspace/elephant-harbor/ops/model-governance/POLICY-2026-10-17.md",
+  "owner": "Wells (Portfolio Systems). Changes need Thomas's explicit yes for anything beyond Grok 4.7 / Composer 2.5.",
+  "freeze": "2026-10-16 through at least 2026-11-03; does NOT auto-expire",
+  "allow_patterns": [
+    "^(cursor-)?grok-4\\.7([-_.].*)?$",
+    "^composer-2\\.5([-_.].*)?$"
+  ],
+  "note_allow": "Composer 2.5 is allowed only for trivial work chosen explicitly. A hook cannot tell explicit from silent selection, so that part stays a launch-time rule (cloud-agent-model-routing skill, bin/hq).",
+  "always_deny_patterns": [
+    "^auto$", "^default$", "claude", "opus", "sonnet", "haiku", "gpt", "o[0-9]", "gemini", "kimi", "glm", "deepseek", "qwen", "llama", "mistral", "grok-4\\.[0-6]", "^composer-[01]", "^composer-2(\\.0)?($|[-_])"
+  ],
+  "approved_exceptions": []
+}
