@@ -31,11 +31,21 @@ test.describe("S-05C grocery app handoff", () => {
     await expect(page.getByRole("checkbox", { name: /Bought, Secret sauce/i })).toBeVisible();
 
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    const caps = page.waitForResponse((r) => r.url().includes("/api/grocery/capabilities"));
     await page.getByRole("button", { name: "How are you shopping?" }).click();
     const sheet = page.locator("#shopHowSheet");
     await expect(sheet).toBeVisible();
     await expect(sheet.getByText("Your list is ready to share. Review the items in your grocery app before checkout.")).toBeVisible();
-    await expect(sheet.locator("#shopHowConnected")).toBeHidden();
+    const capsBody = await (await caps).json().catch(() => ({}));
+    const connected = (capsBody.providers || []).filter((p) => p && p.configured && p.id !== "instore");
+    if (connected.length) {
+      // Only a Preview fixture may configure a provider; the sheet copy stays provider-neutral.
+      expect(connected.every((p) => p.mode === "mock")).toBe(true);
+      await expect(sheet.locator("#shopHowConnected")).toBeVisible();
+    } else {
+      await expect(sheet.locator("#shopHowConnected")).toBeHidden();
+    }
+    await expect(sheet).not.toContainText(/Instacart|Schnucks|Dierbergs|Walmart|Whole Foods|Amazon|Whisk/);
     await page.locator("#btnShopCopyApp").click();
     await expect(sheet.locator("#shopHowStatus")).toHaveText("Copied. Paste this into your grocery app, then review the items before buying.");
     await expect(sheet.locator("#shopHowStatus")).toBeVisible();
