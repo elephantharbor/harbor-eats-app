@@ -38,11 +38,12 @@ Against `test-list.txt`:
 
 `synthetic-app.png` is one 1080-wide canvas at device-pixel ratio 2.
 
-- White background, title “Shopping list,” quantities in bold, names in regular weight, ink `#17393A`.
+- White background, title “Shopping list,” ink `#17393A`.
+- Each item is one inline line: the quantity and unit in bold, one normal space, then the name (“**3** bananas”, “**½ cup** cilantro”). There is no quantity column and no wide gap, so text recognition does not split a quantity from its item. A wrapped name hangs under the name, not under the quantity. (Release review, 2026-10-17, replaced the earlier two-column layout.)
+- A wrap breaks before a parenthetical group such as “(24 oz)” when that group fits on the next line, instead of inside it. At 1080 px every synthetic line fits on one row, including “1 jar Rao's marinara sauce (24 oz)”.
 - Unicode fractions render: ½, 1 ½, 1 ¼, ⅔, ⅛. Rao's apostrophe is intact.
 - No group headings and no hairline rules. The reference image has both.
-- “Rao's marinara sauce (24 oz)” wraps, with “oz)” on the second line. The reference kept that line on one row. Nothing is clipped.
 - The FlavorWeave word sits at the bottom right, outside the item rows.
 - One image. The list does not exceed the page cap.
 
-Sheet screenshots at 375, 390, 414, and desktop are in `screens/`.
+Sheet screenshots at 375, 390, 414, and desktop are in `screens/`. They show the sheet after an image download (download fallback), with the in-sheet status line. Insets are symmetric and both actions span the row at 52 px.
