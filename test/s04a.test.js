@@ -422,6 +422,26 @@ describe("A3 actionable client errors", () => {
       { surface: "api", code: "nope", message: null, first_seen: "2026-10-17T00:00:00.000Z", count: 1 },
     ]);
   });
+
+  it("redacts ids that a stored request path carries before public health shows it", () => {
+    const at = "2026-10-17T00:00:00.000Z";
+    const rows = [
+      { surface: "api", code: "member_exists", message: "/api/households/hh_83f3c645af7a/members 409", created_at: at },
+      { surface: "api", code: "member_exists", message: "/api/households/hh_d74ad4933f3a/members 409", created_at: at },
+      { surface: "api", code: "invite_expired", message: "/api/invites/HE-INV-7Q2K9/preview 410", created_at: at },
+      { surface: "api", code: "conflict", message: "/api/dinner-plans/dp_1a2b3c/mutations 409", created_at: at },
+      { surface: "api", code: "session_invalid", message: "/api/sessions/me 401", created_at: at },
+    ];
+    const out = clientErrorSignatures(rows);
+    expect(out).toEqual([
+      { surface: "api", code: "member_exists", message: "/api/households/:id/members 409", first_seen: at, count: 2 },
+      { surface: "api", code: "invite_expired", message: "/api/invites/:id/preview 410", first_seen: at, count: 1 },
+      { surface: "api", code: "conflict", message: "/api/dinner-plans/:id/mutations 409", first_seen: at, count: 1 },
+      { surface: "api", code: "session_invalid", message: "/api/sessions/me 401", first_seen: at, count: 1 },
+    ]);
+    const dumped = JSON.stringify(out);
+    expect(dumped).not.toMatch(/hh_|HE-INV|dp_/);
+  });
 });
 
 describe("A4 onboarding origin and duplicate members", () => {
