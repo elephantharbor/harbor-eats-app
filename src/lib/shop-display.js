@@ -192,6 +192,7 @@ export function unicodeShopAmount(ascii) {
 }
 
 function pluralNoun(word) {
+  if (/^loaf$/i.test(word)) return `${word.slice(0, -1)}ves`;
   if (/s$/i.test(word)) return word;
   if (/[^aeiou]y$/i.test(word)) return `${word.slice(0, -1)}ies`;
   if (/(?:s|x|z|ch|sh)$/i.test(word)) return `${word}es`;

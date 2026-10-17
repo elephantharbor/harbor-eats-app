@@ -626,3 +626,26 @@ describe("synthetic household cleanup", () => {
     expect(sqlite.prepare(`SELECT count(*) n FROM household WHERE household_id = 'hh_keep'`).get().n).toBe(1);
   });
 });
+
+describe("S-05C.1 review fixes", () => {
+  it("speaks loaves on human surfaces and in the clipboard", () => {
+    expect(presentShopFaces({ quantity: 1, unit: "loaf", name: "crusty bread" }).humanQuantity).toBe("1 loaf");
+    const two = presentShopFaces({ quantity: 2, unit: "loaf", name: "crusty bread" });
+    expect(two.humanQuantity).toBe("2 loaves");
+    expect(two.imageQuantity).toBe("2 loaves");
+    expect(two.machineText).toBe("2 loaves crusty bread");
+    expect(presentShopQuantity({ quantity: 1.5, unit: "loaf", name: "crusty bread" }).display).toBe("1 ½ loaves");
+    for (const unit of ["case", "container", "tub", "bundle", "box", "bottle", "roll", "bag"]) {
+      expect(presentShopFaces({ quantity: 2, unit, name: "x" }).humanQuantity).not.toMatch(/fs$|xs$/);
+    }
+  });
+
+  it("orders list reads by revision only within the same shop list", () => {
+    const app = readFileSync(new URL("../public/app.js", import.meta.url), "utf8");
+    const start = app.indexOf("async function loadHouseholdShop()");
+    const body = app.slice(start, app.indexOf("async function mutateHouseholdShop", start));
+    expect(body).toMatch(/current\.shop_list_id === res\.list\.shop_list_id/);
+    expect(body).toMatch(/if \(sameList && seenWrite !== shopListWriteEpoch/);
+    expect(body).toMatch(/if \(sameList && incomingRev < currentRev\)/);
+  });
+});

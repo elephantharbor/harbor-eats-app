@@ -4953,10 +4953,13 @@
     if (!sessionStillCurrent(epoch) || (res && res.aborted)) return null;
     if (!res || !res.ok || !res.list) return null;
     const current = state.householdShop && state.householdShop.list;
-    const currentRev = current ? Number(current.revision) : 0;
+    // Revisions only order reads of the same list. An archived list is replaced
+    // by a new one whose revision starts again at 1.
+    const sameList = !!(current && current.shop_list_id && current.shop_list_id === res.list.shop_list_id);
+    const currentRev = sameList ? Number(current.revision) || 0 : 0;
     const incomingRev = Number(res.list.revision) || 0;
-    if (seenWrite !== shopListWriteEpoch && incomingRev <= currentRev) return state.householdShop;
-    if (current && incomingRev < currentRev) return state.householdShop;
+    if (sameList && seenWrite !== shopListWriteEpoch && incomingRev <= currentRev) return state.householdShop;
+    if (sameList && incomingRev < currentRev) return state.householdShop;
     state.householdShop = res;
     return res;
   }
