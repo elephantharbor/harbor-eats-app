@@ -93,4 +93,45 @@ describe("client error reporter", () => {
     await reporter.report({ surface: "api", code: "x", message: "two" });
     expect(paths).toEqual(["/api/client-errors"]);
   });
+
+  it("does not post an expected abort", async () => {
+    const calls = [];
+    const reporter = ClientErrors.createReporter((_path, body) => {
+      calls.push(body);
+      return Promise.resolve({ ok: true });
+    });
+    expect(await reporter.report({ surface: "share", code: "AbortError", message: "AbortError" })).toEqual({
+      sent: false,
+      reason: "expected_abort",
+    });
+    expect(await reporter.report({ surface: "share", code: "share_cancelled", message: "share cancelled" })).toEqual({
+      sent: false,
+      reason: "expected_abort",
+    });
+    expect((await reporter.report({ surface: "api", code: "internal", message: "/api/sessions/logout 500" })).sent).toBe(true);
+    expect(calls).toEqual([{ surface: "api", code: "internal", message: "/api/sessions/logout 500" }]);
+  });
+
+  it("skips the general API hook while the page is hidden, unloading, or signing out", () => {
+    const gate = ClientErrors.shouldReportClientApiFailure;
+    expect(gate({})).toBe(true);
+    expect(gate({ hidden: true })).toBe(false);
+    expect(gate({ unloading: true })).toBe(false);
+    expect(gate({ signingOut: true })).toBe(false);
+    const app = readFileSync(new URL("../public/app.js", import.meta.url), "utf8");
+    const note = app.slice(app.indexOf("function noteApiFailure"), app.indexOf("function shouldReportApiFailure"));
+    expect(note).toContain("shouldReportApiFailure");
+    expect(note).toContain("pageUnloading");
+    expect(note).toContain("signOutBusy");
+    const join = app.slice(
+      app.indexOf('res.error === "wrong_household_logged_in"'),
+      app.indexOf('res.error === "invite_expired"')
+    );
+    expect(join).not.toContain("reportClientError");
+    const save = app.slice(app.indexOf("async function shopSaveImage"), app.indexOf("function openHowSheet"));
+    const fetchArm = save.slice(save.indexOf("fetchAppExport"), save.indexOf("ensureShopImageFont"));
+    expect(fetchArm).toContain("imageHandoffFeedback");
+    expect(fetchArm).toContain("aborted");
+    expect(fetchArm).toContain("catch");
+  });
 });

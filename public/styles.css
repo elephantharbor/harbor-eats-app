@@ -5895,8 +5895,72 @@ button.plan-meal-title {
   margin: auto;
 }
 
+.sign-out-cover {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 24px;
+  background: var(--color-bg, #FFFDF8);
+  color: var(--color-text, #17393A);
+}
+
+.sign-out-cover[hidden] {
+  display: none !important;
+}
+
+.sign-out-cover p {
+  margin: 0;
+  font-size: var(--text-md, 1.05rem);
+  font-weight: var(--weight-bold, 700);
+}
+
+/* Hide private chrome while sign-out is unconfirmed. The cover sits outside #app. */
+html[data-signing-out="1"] #app {
+  visibility: hidden;
+}
+
 .shop-how-sheet {
   background: var(--color-bg, #FFFDF8);
+}
+
+/* Keep Close on screen when Preview shows the extra provider row. */
+#shopHowSheet[open] {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: min(440px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  height: fit-content;
+  margin: auto;
+}
+
+#shopHowSheet[open] .sheet__inner {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: calc(100dvh - 32px);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#shopHowSheet[open] .shop-how__rows {
+  overflow: auto;
+  min-height: 0;
+  flex: 1 1 auto;
+  align-content: start;
+  /* auto rows shrink inside a short sheet and paint over the next card. */
+  grid-auto-rows: max-content;
+  overscroll-behavior: contain;
+  padding-bottom: var(--space-2);
+}
+
+#shopHowSheet[open] .sheet__actions {
+  flex: 0 0 auto;
+  margin-top: var(--space-3);
 }
 
 .shop-how__rows {

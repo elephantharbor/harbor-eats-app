@@ -51,7 +51,7 @@ import { storedEventProps } from "./lib/household-shop.js";
 import { routeGroceryRequest } from "./lib/grocery/routes.js";
 import { groceryFixtureActive, instacartActivation, providerIds } from "./lib/grocery/config.js";
 import { isUniqueViolation, logDatabaseError, stripDatabaseDetail } from "./lib/db-error.js";
-import { sanitizeClientErrorReport, summarizeClientErrors } from "./lib/client-error-class.js";
+import { clientErrorSignatures, sanitizeClientErrorReport, summarizeClientErrors } from "./lib/client-error-class.js";
 import { routeDiscoveryRequest } from "./discovery/http.js";
 import { routeWeaveRequest } from "./weave/routes.js";
 import { routeAlphaAiRequest } from "./ai/alpha-routes.js";
@@ -186,14 +186,16 @@ async function handleHealth(env, url) {
       try {
         const since = new Date(Date.now() - 86400000).toISOString();
         const listed = await env.DB.prepare(
-          `SELECT e.message, h.data_origin, h.display_name, h.acquisition_source
+          `SELECT e.surface, e.code, e.message, e.created_at, h.data_origin, h.display_name, h.acquisition_source
            FROM client_error e
            LEFT JOIN household h ON h.household_id = e.household_id
            WHERE e.created_at >= ?`
         )
           .bind(since)
           .all();
-        const summary = summarizeClientErrors(listed?.results || []);
+        const results = listed?.results || [];
+        const summary = summarizeClientErrors(results);
+        summary.signatures = clientErrorSignatures(results);
         recent_errors = summary.total;
         client_error_summary = summary;
       } catch {
@@ -234,10 +236,13 @@ async function handleHealth(env, url) {
       ? {
           actionable: client_error_summary.actionable,
           expected_logged_out: client_error_summary.expected_logged_out,
+          expected_abort: client_error_summary.expected_abort,
+          expected_guard: client_error_summary.expected_guard,
           negative_path: client_error_summary.negative_path,
           synthetic: client_error_summary.synthetic,
         }
       : null,
+    client_errors_24h_signatures: client_error_summary ? client_error_summary.signatures : null,
     // S-03: public, non-secret grocery config so a logged-out smoke can prove providers are off.
     grocery: groceryHealth(env),
     catalog_quality_ok: catalog.ok,

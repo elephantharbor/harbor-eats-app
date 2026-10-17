@@ -1,5 +1,5 @@
 /* FlavorWeave — conservative SW: network-first, versioned, freshness over cache */
-const CACHE_VERSION = "fw-sw-v83";
+const CACHE_VERSION = "fw-sw-v86";
 const SHELL = [
   "/",
   "/index.html",
@@ -13,6 +13,7 @@ const SHELL = [
   "/weave-ui.js",
   "/weave-bridge.js",
   "/client-error.js",
+  "/sign-out.js",
   "/shop-handoff.js",
   "/shop-list-image.js",
   "/app.js",

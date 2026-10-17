@@ -192,20 +192,11 @@ export function unicodeShopAmount(ascii) {
 }
 
 function pluralNoun(word) {
+  if (/^loaf$/i.test(word)) return `${word.slice(0, -1)}ves`;
   if (/s$/i.test(word)) return word;
   if (/[^aeiou]y$/i.test(word)) return `${word.slice(0, -1)}ies`;
   if (/(?:s|x|z|ch|sh)$/i.test(word)) return `${word}es`;
   return `${word}s`;
-}
-
-function singularNoun(word) {
-  const lower = word.toLowerCase();
-  if (lower === "potatoes") return "potato";
-  if (lower === "tomatoes") return "tomato";
-  if (/ies$/i.test(word) && word.length > 4) return `${word.slice(0, -3)}y`;
-  if (/(?:ss|us|is)$/i.test(word)) return word;
-  if (/s$/i.test(word) && word.length > 3) return word.slice(0, -1);
-  return word;
 }
 
 /** Labels that stay the same above 1: abbreviations and dozen. */
@@ -229,16 +220,39 @@ const PACKAGE_LEAD = new Set([
   "loaf", "loaves", "roll", "rolls", "container", "containers", "tub", "tubs", "bundle", "bundles",
 ]);
 
+function matchHead(source, replacement) {
+  const next = String(replacement || "");
+  if (!source || !next) return next;
+  const first = String(source).charAt(0);
+  if (first.toLowerCase() !== first.toUpperCase() && first === first.toUpperCase()) {
+    return next.charAt(0).toUpperCase() + next.slice(1);
+  }
+  return next.charAt(0).toLowerCase() + next.slice(1);
+}
+
+function singularNoun(word) {
+  const lower = word.toLowerCase();
+  if (lower === "potatoes") return matchHead(word, "potato");
+  if (lower === "tomatoes") return matchHead(word, "tomato");
+  if (/ies$/i.test(word) && word.length > 4) return matchHead(word, `${word.slice(0, -3).toLowerCase()}y`);
+  if (/(?:ss|us|is)$/i.test(word)) return word;
+  if (/s$/i.test(word) && word.length > 3) return word.slice(0, -1);
+  return word;
+}
+
 function countableNoun(name, quantity) {
   const text = String(name || "").trim().replace(/\s+/g, " ");
   if (!text || text.length > 48 || !/^[A-Za-z][A-Za-z' -]*$/.test(text)) return null;
-  const words = text.toLowerCase().split(" ");
+  const words = text.split(" ");
+  const lower = words.map((word) => word.toLowerCase());
   const n = Math.abs(Number(quantity));
   const last = words.length - 1;
-  if (last > 0 && PACKAGE_LEAD.has(words[0])) return words.join(" ");
-  if (Number.isFinite(n) && n > 1 + QTY_EPS) words[last] = pluralNoun(words[last]);
-  else if (Number.isFinite(n) && Math.abs(n - 1) <= QTY_EPS) words[last] = singularNoun(words[last]);
-  return words.join(" ");
+  // A leading package word is the measure, not a noun to pluralize.
+  if (last > 0 && PACKAGE_LEAD.has(lower[0])) return text;
+  const next = words.slice();
+  if (Number.isFinite(n) && n > 1 + QTY_EPS) next[last] = pluralNoun(next[last]);
+  else if (Number.isFinite(n) && Math.abs(n - 1) <= QTY_EPS) next[last] = singularNoun(next[last]);
+  return next.join(" ");
 }
 
 /**
@@ -267,6 +281,179 @@ export function presentShopQuantity({ quantity, unit, name } = {}) {
   }
   const label = unitWord(unitKey, num);
   return { display: `${displayAmount} ${label}`, accessible: `${accessibleAmount} ${label}`, unicode };
+}
+
+/**
+ * Display contract (S-05C.1).
+ * Human surfaces speak the unit: native list, provider review, and the list image.
+ * The grocery-app clipboard stays compact (tbsp, tsp) so a cart field can parse it.
+ * A package word is the quantity, never a second copy of the product name.
+ */
+export const SHOP_DISPLAY = Object.freeze({
+  human_surfaces: ["native_list", "provider_review", "list_image"],
+  machine_surfaces: ["copy_app"],
+  human_unit: "spoken",
+  machine_unit: "compact",
+});
+
+/** Compact clipboard units. Spoken words live in DISPLAY_UNIT. */
+const MACHINE_UNITS = Object.freeze({
+  cup: ["cup", "cups"],
+  tbsp: ["tbsp", "tbsp"],
+  tsp: ["tsp", "tsp"],
+  oz: ["oz", "oz"],
+  lb: ["lb", "lb"],
+  g: ["g", "g"],
+  kg: ["kg", "kg"],
+  ml: ["ml", "ml"],
+  l: ["l", "l"],
+  can: ["can", "cans"],
+  clove: ["clove", "cloves"],
+  bunch: ["bunch", "bunches"],
+  head: ["head", "heads"],
+  package: ["package", "packages"],
+  jar: ["jar", "jars"],
+  carton: ["carton", "cartons"],
+  serving: ["serving", "servings"],
+  dozen: ["dozen", "dozen"],
+  pack: ["pack", "packs"],
+  bag: ["bag", "bags"],
+  box: ["box", "boxes"],
+  bottle: ["bottle", "bottles"],
+  case: ["case", "cases"],
+  loaf: ["loaf", "loaves"],
+  roll: ["roll", "rolls"],
+  container: ["container", "containers"],
+  tub: ["tub", "tubs"],
+  bundle: ["bundle", "bundles"],
+  count: ["", ""],
+  unparsed: ["", ""],
+});
+
+const LEAD_UNIT = Object.freeze({
+  dozen: "dozen",
+  pack: "pack",
+  packs: "pack",
+  package: "package",
+  packages: "package",
+  bag: "bag",
+  bags: "bag",
+  box: "box",
+  boxes: "box",
+  bottle: "bottle",
+  bottles: "bottle",
+  case: "case",
+  cases: "case",
+  carton: "carton",
+  cartons: "carton",
+  can: "can",
+  cans: "can",
+  jar: "jar",
+  jars: "jar",
+  bunch: "bunch",
+  bunches: "bunch",
+  head: "head",
+  heads: "head",
+  loaf: "loaf",
+  loaves: "loaf",
+  roll: "roll",
+  rolls: "roll",
+  container: "container",
+  containers: "container",
+  tub: "tub",
+  tubs: "tub",
+  bundle: "bundle",
+  bundles: "bundle",
+});
+
+export function machineUnit(unit, quantity) {
+  const pair = MACHINE_UNITS[unit];
+  if (!pair) return "";
+  const n = Number(quantity);
+  const plural = Number.isFinite(n) && Math.abs(n) > 1 + QTY_EPS;
+  return plural ? pair[1] : pair[0];
+}
+
+/** Keep a shopper's capitals. Only an all-lowercase recipe name gains a first capital. */
+export function shopNameForDisplay(name) {
+  const text = String(name || "").trim().replace(/\s+/g, " ");
+  if (!text) return "";
+  if (text !== text.toLowerCase()) return text;
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+function countLikeUnit(unit) {
+  return !unit || unit === "count" || unit === "each" || unit === "unparsed";
+}
+
+function packageLeadSplit(name, unitKey) {
+  const text = String(name || "").trim().replace(/\s+/g, " ");
+  const words = text.split(" ").filter(Boolean);
+  if (words.length < 2) return null;
+  const lead = LEAD_UNIT[words[0].toLowerCase()];
+  if (!lead) return null;
+  if (!countLikeUnit(unitKey) && lead !== unitKey) return null;
+  if (!countLikeUnit(unitKey) && lead === unitKey) {
+    return { unit: unitKey, product: words.slice(1).join(" ") };
+  }
+  if (!countLikeUnit(unitKey)) return null;
+  return { unit: lead, product: words.slice(1).join(" ") };
+}
+
+/**
+ * One line, two readings. `humanQuantity` is the native list and the provider review.
+ * `imageQuantity` is the same spoken unit with the product kept in `product`.
+ * `machineText` is the grocery-app clipboard line.
+ * @param {{ quantity?: unknown, unit?: string|null, name?: string|null }} input
+ */
+export function presentShopFaces({ quantity, unit, name } = {}) {
+  const rawName = String(name || "").trim().replace(/\s+/g, " ");
+  const unitKey = unit == null ? "" : String(unit);
+  const split = packageLeadSplit(rawName, unitKey);
+  const product = split ? split.product : rawName;
+  const measureUnit = split ? split.unit : unitKey;
+  const num = typeof quantity === "number" ? quantity : Number(quantity);
+  const finite = quantity != null && quantity !== "" && Number.isFinite(num);
+  const empty = {
+    product: product || rawName,
+    exportName: product || rawName,
+    humanQuantity: "",
+    humanAccessible: "",
+    imageQuantity: "",
+    machineQuantity: "",
+    machineQuantityUnicode: "",
+    machineText: product || rawName,
+  };
+  if (!finite) return empty;
+
+  const spoken = presentShopQuantity({
+    quantity: num,
+    unit: split ? measureUnit : unitKey,
+    name: split ? "" : product,
+  });
+  const image = presentShopQuantity({ quantity: num, unit: measureUnit, name: "" });
+  const amount = formatShopQuantityAmount(num);
+  const unicodeAmount = unicodeShopAmount(amount);
+  const compact = machineUnit(measureUnit, num);
+  const machineQuantity = compact ? `${amount} ${compact}` : amount;
+  const machineQuantityUnicode = compact ? `${unicodeAmount} ${compact}` : unicodeAmount;
+  let exportName = product;
+  if (!split && countLikeUnit(unitKey)) {
+    const noun = countableNoun(product, num);
+    if (noun) exportName = noun;
+  }
+  const machineText = machineQuantity ? `${machineQuantity} ${exportName}`.trim() : exportName;
+  const imageQuantity = split || !countLikeUnit(measureUnit) ? image.display : unicodeAmount;
+  return {
+    product,
+    exportName,
+    humanQuantity: spoken.display,
+    humanAccessible: spoken.accessible,
+    imageQuantity,
+    machineQuantity,
+    machineQuantityUnicode,
+    machineText,
+  };
 }
 
 function lineKey(ingredientId, unit) {

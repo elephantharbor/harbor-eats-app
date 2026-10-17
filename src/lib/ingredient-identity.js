@@ -72,6 +72,22 @@ const UNIT_ALIASES = {
   bottles: "package",
   carton: "carton",
   cartons: "carton",
+  // Count-package words the list already treats as measures. They stay
+  // themselves: a dozen is not 12, and a pack is not a retailer package size.
+  dozen: "dozen",
+  dozens: "dozen",
+  pack: "pack",
+  packs: "pack",
+  case: "case",
+  cases: "case",
+  loaf: "loaf",
+  loaves: "loaf",
+  container: "container",
+  containers: "container",
+  tub: "tub",
+  tubs: "tub",
+  bundle: "bundle",
+  bundles: "bundle",
 };
 
 /**

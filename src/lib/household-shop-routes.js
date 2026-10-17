@@ -457,6 +457,7 @@ export async function routeHouseholdShopRequest(env, request, path, url, deps = 
         type: url.searchParams.get("for") === "image" ? "image" : "copy_app",
         ok: true,
         surface: "api",
+        stage: "generated",
       });
       return json({
         ok: true,

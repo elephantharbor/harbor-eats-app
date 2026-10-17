@@ -435,7 +435,13 @@ describe("revision conflict logging", () => {
       { message: "/api/sessions/me 401", data_origin: "household", display_name: "The Parkers" },
     ];
     expect(rows.map(classifyClientError)).toEqual(["actionable", "actionable", "expected_logged_out"]);
-    expect(summarizeClientErrors(rows)).toMatchObject({ total: 3, actionable: 2, expected_logged_out: 1 });
+    expect(summarizeClientErrors(rows)).toMatchObject({ total: 3, actionable: 2, expected_logged_out: 1, expected_abort: 0 });
+    const abort = { code: "aborterror", message: null };
+    expect(classifyClientError(abort)).toBe("expected_abort");
+    expect(classifyClientError({ message: "AbortError: The operation was aborted." })).toBe("expected_abort");
+    expect(classifyClientError({ message: "/api/sessions/logout 500" })).toBe("actionable");
+    expect(classifyClientError({ code: "wrong_household_logged_in", message: "/api/invites/join 409" })).toBe("expected_guard");
+    expect(summarizeClientErrors(rows.concat(abort)).actionable).toBe(2);
   });
 });
 

@@ -8,7 +8,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { DatabaseSync } from "node:sqlite";
 import { describe, expect, it } from "vitest";
 import worker from "../src/index.js";
-import { classifyClientError, summarizeClientErrors } from "../src/lib/client-error-class.js";
+import { classifyClientError, clientErrorSignatures, summarizeClientErrors } from "../src/lib/client-error-class.js";
 import { databaseLeakText } from "../src/lib/db-error.js";
 import { createMemberSession } from "../src/lib/session.js";
 import {
@@ -338,6 +338,8 @@ describe("A3 actionable client errors", () => {
     expect(health.body.client_errors_24h_by_class).toEqual({
       actionable: 1,
       expected_logged_out: 1,
+      expected_abort: 0,
+      expected_guard: 0,
       negative_path: 1,
       synthetic: 1,
     });
@@ -363,6 +365,62 @@ describe("A3 actionable client errors", () => {
     expect(after.body.client_errors_24h_actionable).toBe(1);
     expect(after.body.client_errors_24h_by_class.expected_logged_out).toBe(2);
     expect(sqlite.prepare(`SELECT COUNT(*) AS c FROM client_error`).get().c).toBe(5);
+  });
+
+  it("classifies invite guards by code and summarizes them without identities", () => {
+    const guard = { code: "wrong_household_logged_in", message: "/api/invites/join 409", surface: "api" };
+    const blank = { code: "wrong_household_logged_in", message: null, surface: "invite" };
+    expect(classifyClientError(guard)).toBe("expected_guard");
+    expect(classifyClientError(blank)).toBe("expected_guard");
+    expect(classifyClientError({ code: "invite_expired", message: "/api/invites/join 410" })).toBe("expected_guard");
+    expect(classifyClientError({ code: "invite_inactive", message: "/api/invites/join 410" })).toBe("expected_guard");
+    expect(classifyClientError({ code: "db_error", message: "/api/invites/join 500" })).toBe("actionable");
+    const summary = summarizeClientErrors([guard, blank]);
+    expect(summary.expected_guard).toBe(2);
+    expect(summary.actionable).toBe(0);
+    expect(summary.total).toBe(2);
+  });
+
+  it("groups health signatures without household ids, member ids, or page URLs", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite, "hh_secret", "m_secret", "The Parkers");
+    const first = new Date(Date.now() - 60_000).toISOString();
+    const second = new Date(Date.now() - 30_000).toISOString();
+    const insert = sqlite.prepare(
+      `INSERT INTO client_error (error_id, household_id, member_id, surface, code, message, path, created_at)
+       VALUES (?, 'hh_secret', 'm_secret', ?, ?, ?, '/invite/HE-INV-SECRET?x=1', ?)`
+    );
+    insert.run("g1", "api", "wrong_household_logged_in", "/api/invites/join 409", first);
+    insert.run("g2", "api", "wrong_household_logged_in", "/api/invites/join 409", second);
+    insert.run("g3", "invite", "wrong_household_logged_in", null, second);
+    const env = { DB: asD1(sqlite), ENVIRONMENT: "test" };
+    const health = await call(env, "GET", "/api/health");
+    expect(health.body.client_errors_24h_actionable).toBe(0);
+    expect(health.body.client_errors_24h_by_class.expected_guard).toBe(3);
+    expect(health.body.client_errors_24h_signatures).toEqual([
+      {
+        surface: "api",
+        code: "wrong_household_logged_in",
+        message: "/api/invites/join 409",
+        first_seen: first,
+        count: 2,
+      },
+      {
+        surface: "invite",
+        code: "wrong_household_logged_in",
+        message: null,
+        first_seen: second,
+        count: 1,
+      },
+    ]);
+    const dumped = JSON.stringify(health.body.client_errors_24h_signatures);
+    expect(dumped).not.toContain("hh_secret");
+    expect(dumped).not.toContain("m_secret");
+    expect(dumped).not.toContain("HE-INV");
+    expect(dumped).not.toContain("/invite/");
+    expect(clientErrorSignatures([{ surface: "api", code: "nope", message: "user typed onions", created_at: "2026-10-17T00:00:00.000Z" }])).toEqual([
+      { surface: "api", code: "nope", message: null, first_seen: "2026-10-17T00:00:00.000Z", count: 1 },
+    ]);
   });
 });
 
