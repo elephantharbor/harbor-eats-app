@@ -101,6 +101,23 @@ export function summarizeClientErrors(rows) {
 }
 
 /**
+ * Health is public. A stored message keeps the request path, which can carry a
+ * household id, member id, plan id, or invite code. Keep only plain route words
+ * (lowercase letters and hyphens); every other segment becomes `:id`.
+ * @param {string|null} message
+ */
+export function signatureMessage(message) {
+  if (!message) return message ?? null;
+  const match = /^(\/[^ ]*) (\d{3})$/.exec(String(message));
+  if (!match) return null;
+  const route = match[1]
+    .split("/")
+    .map((segment, index) => (index === 0 || /^[a-z][a-z-]{0,31}$/.test(segment) ? segment : ":id"))
+    .join("/");
+  return `${route} ${match[2]}`;
+}
+
+/**
  * Group stored rows by surface, code, and sanitized message.
  * No household id, member id, or page URL.
  * @param {object[]} rows
@@ -115,7 +132,7 @@ export function clientErrorSignatures(rows) {
     });
     const surface = safe.surface;
     const code = safe.code;
-    const message = safe.message;
+    const message = signatureMessage(safe.message);
     const key = `${surface}\0${code || ""}\0${message || ""}`;
     const seen = row?.created_at ? String(row.created_at) : null;
     const current = grouped.get(key);
