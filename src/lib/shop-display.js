@@ -12,6 +12,12 @@ export const SHOP_QTY_FRACS = [
 
 const QTY_EPS = 1e-6;
 const SHOP_LINE_EPS = 1e-6;
+/**
+ * Stored quantities are rounded to 3 decimals (roundQuantity).
+ * 1/3 and 2/3 land as 0.333 and 0.667. Half a thousandth covers that
+ * pair only. Other fractions still need an exact match.
+ */
+const STORED_THIRD_TOL = 0.00051;
 
 /** @param {object} line */
 export function normalizeShopLineForCompare(line) {
@@ -103,6 +109,11 @@ export function shopListChangeCounts(beforeLines, afterLines) {
   return { added, removed };
 }
 
+function fractionTolerance(target) {
+  if (Math.abs(target - 1 / 3) < 1e-12 || Math.abs(target - 2 / 3) < 1e-12) return STORED_THIRD_TOL;
+  return QTY_EPS;
+}
+
 export function formatShopQuantityAmount(num) {
   const sign = num < 0 ? "-" : "";
   const abs = Math.abs(num);
@@ -111,7 +122,7 @@ export function formatShopQuantityAmount(num) {
   if (fracPart < QTY_EPS) return sign + String(whole);
   for (let i = 0; i < SHOP_QTY_FRACS.length; i++) {
     const pair = SHOP_QTY_FRACS[i];
-    if (Math.abs(fracPart - pair[0]) < QTY_EPS) {
+    if (Math.abs(fracPart - pair[0]) < fractionTolerance(pair[0])) {
       return whole > 0 ? sign + whole + " " + pair[1] : sign + pair[1];
     }
   }
@@ -166,6 +177,8 @@ const DISPLAY_UNIT = Object.freeze({
   jar: "jar",
   carton: "carton",
   serving: "serving",
+  dozen: "dozen",
+  pack: "pack",
   ounce: "ounce",
   pound: "pound",
   gram: "gram",
@@ -185,12 +198,34 @@ function pluralNoun(word) {
   return `${word}s`;
 }
 
+function singularNoun(word) {
+  const lower = word.toLowerCase();
+  if (lower === "potatoes") return "potato";
+  if (lower === "tomatoes") return "tomato";
+  if (/ies$/i.test(word) && word.length > 4) return `${word.slice(0, -3)}y`;
+  if (/(?:ss|us|is)$/i.test(word)) return word;
+  if (/s$/i.test(word) && word.length > 3) return word.slice(0, -1);
+  return word;
+}
+
+/** Labels that stay the same above 1: abbreviations and dozen. */
+const UNCOUNTED_UNIT = new Set(["oz", "lb", "g", "kg", "ml", "l", "dozen"]);
+
+function unitWord(unitKey, quantity) {
+  const label = DISPLAY_UNIT[unitKey] || unitKey;
+  const n = Math.abs(Number(quantity));
+  if (!Number.isFinite(n) || n <= 1 + QTY_EPS || UNCOUNTED_UNIT.has(label)) return label;
+  return pluralNoun(label);
+}
+
 function countableNoun(name, quantity) {
   const text = String(name || "").trim().replace(/\s+/g, " ");
   if (!text || text.length > 48 || !/^[A-Za-z][A-Za-z' -]*$/.test(text)) return null;
   const words = text.toLowerCase().split(" ");
   const n = Math.abs(Number(quantity));
-  if (Number.isFinite(n) && n > 1 + QTY_EPS) words[words.length - 1] = pluralNoun(words[words.length - 1]);
+  const last = words.length - 1;
+  if (Number.isFinite(n) && n > 1 + QTY_EPS) words[last] = pluralNoun(words[last]);
+  else if (Number.isFinite(n) && Math.abs(n - 1) <= QTY_EPS) words[last] = singularNoun(words[last]);
   return words.join(" ");
 }
 
@@ -218,7 +253,7 @@ export function presentShopQuantity({ quantity, unit, name } = {}) {
     }
     return { display: displayAmount, accessible: accessibleAmount, unicode };
   }
-  const label = DISPLAY_UNIT[unitKey] || unitKey;
+  const label = unitWord(unitKey, num);
   return { display: `${displayAmount} ${label}`, accessible: `${accessibleAmount} ${label}`, unicode };
 }
 

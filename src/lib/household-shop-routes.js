@@ -30,6 +30,7 @@ import {
   setTripMethod,
   shareSnapshot,
 } from "./household-shop.js";
+import { renderAppExport } from "./shop-app-export.js";
 import { logDatabaseError, stripDatabaseDetail } from "./db-error.js";
 import { commitList, insertOpenList, isActiveMember, loadOpenList } from "./household-shop-store.js";
 import { applyPlanMutation } from "./plan-mutations.js";
@@ -450,6 +451,22 @@ export async function routeHouseholdShopRequest(env, request, path, url, deps = 
   if (path === "/api/household-shop/export" && method === "GET") {
     const format = url.searchParams.get("format") || "txt";
     const includeSkipped = url.searchParams.get("skipped") === "1";
+    if (format === "app") {
+      const payload = renderAppExport(list);
+      await recordShop(env, session, request, deps, "shop_export", {
+        type: "copy_app",
+        ok: true,
+        surface: "api",
+      });
+      return json({
+        ok: true,
+        format: "app",
+        parts: payload.parts,
+        part_count: payload.part_count,
+        line_count: payload.line_count,
+        rows: payload.rows,
+      });
+    }
     const sections = exportSections(list, { includeSkipped, mealTitles: titles });
     await recordShop(env, session, request, deps, "shopping_list_exported", {
       format: format === "csv" ? "csv" : format === "print" ? "print" : "copy",

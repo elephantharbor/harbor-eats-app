@@ -463,8 +463,8 @@ describe("quantity presentation", () => {
     expect(presentShopQuantity({ quantity: 5, unit: "each", name: "yellow onion" }).display).toBe("5 yellow onions");
     expect(presentShopQuantity({ quantity: 1, unit: "each", name: "lime" }).display).toBe("1 lime");
     expect(presentShopQuantity({ quantity: 1.5, unit: "cup" })).toEqual({
-      display: "1 ½ cup",
-      accessible: "1 1/2 cup",
+      display: "1 ½ cups",
+      accessible: "1 1/2 cups",
       unicode: true,
     });
     expect(presentShopQuantity({ quantity: 1 / 3, unit: "cup" }).display).toBe("⅓ cup");
@@ -474,7 +474,10 @@ describe("quantity presentation", () => {
       unicode: false,
     });
     expect(presentShopQuantity({ quantity: 0.126, unit: "teaspoon" }).display).toBe("0.126 teaspoon");
-    expect(presentShopQuantity({ quantity: 0.333, unit: "cup" }).display).toBe("0.333 cup");
+    expect(presentShopQuantity({ quantity: 0.333, unit: "cup" }).display).toBe("⅓ cup");
+    expect(presentShopQuantity({ quantity: 0.667, unit: "cup" }).display).toBe("⅔ cup");
+    expect(presentShopQuantity({ quantity: 0.332, unit: "cup" }).display).toBe("0.332 cup");
+    expect(presentShopQuantity({ quantity: 0.334, unit: "cup" }).display).toBe("0.334 cup");
     expect(presentShopQuantity({ quantity: 0.5, unit: "each", name: "2% milk" }).display).toBe("½ each");
   });
 

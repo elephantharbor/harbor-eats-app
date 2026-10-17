@@ -55,11 +55,25 @@ const UNIT_WORDS = {
   jar: ["jar", "jars"],
   carton: ["carton", "cartons"],
   serving: ["serving", "servings"],
+  dozen: ["dozen", "dozen"],
+  pack: ["pack", "packs"],
   count: ["", ""],
   unparsed: ["", ""],
 };
 
-const QTY_TOKEN = String.raw`(?:\d+\s+\d+\/\d+|\d+\/\d+|\d+(?:\.\d+)?)`;
+const VULGAR_FRACTIONS = {
+  "½": [1, 2],
+  "⅓": [1, 3],
+  "⅔": [2, 3],
+  "¼": [1, 4],
+  "¾": [3, 4],
+  "⅛": [1, 8],
+  "⅜": [3, 8],
+  "⅝": [5, 8],
+  "⅞": [7, 8],
+};
+const VULGAR_CHARS = Object.keys(VULGAR_FRACTIONS).join("");
+const QTY_TOKEN = String.raw`(?:\d+\s+\d+\/\d+|\d+\/\d+|\d+\s*[${VULGAR_CHARS}]|[${VULGAR_CHARS}]|\d+(?:\.\d+)?)`;
 
 export function categoryForName(name) {
   const text = String(name || "");
@@ -126,6 +140,14 @@ function foldShopPlural(ingredientId) {
 }
 
 function parseQuantityToken(token) {
+  const compact = String(token || "").trim();
+  const vulgar = compact.match(new RegExp(`^(\\d+)?\\s*([${VULGAR_CHARS}])$`));
+  if (vulgar) {
+    const whole = vulgar[1] ? Number(vulgar[1]) : 0;
+    const pair = VULGAR_FRACTIONS[vulgar[2]];
+    if (!pair) return null;
+    return roundQuantity(whole + pair[0] / pair[1]);
+  }
   if (token.includes("/")) {
     const parts = token.trim().split(/\s+/);
     if (parts.length === 2) {
@@ -817,7 +839,7 @@ export function humanUnit(unit, quantity) {
   const pair = UNIT_WORDS[unit];
   if (!pair) return "";
   const n = numOrNull(quantity);
-  const plural = n == null || Math.abs(n - 1) > QTY_EPS;
+  const plural = n != null && n > 1 + QTY_EPS;
   return plural ? pair[1] : pair[0];
 }
 
@@ -1038,6 +1060,9 @@ export function recipeYieldLine({ dinerCount, guestCount }) {
   return `For ${n} ${n === 1 ? "person" : "people"}`;
 }
 
+export const SHOP_EXPORT_TYPES = ["copy_app", "image", "copy", "share", "print", "download"];
+export const SHOP_EXPORT_SURFACES = ["shop_sheet", "shop_menu", "api"];
+
 export const SHOP_EVENT_PROPS = {
   shopping_item_added: ["origin", "unparsed", "has_quantity"],
   shopping_item_edited: ["fields"],
@@ -1046,6 +1071,7 @@ export const SHOP_EVENT_PROPS = {
   shopping_list_shared: ["channel"],
   shopping_list_exported: ["format"],
   shopping_conflict: ["op"],
+  shop_export: ["type", "ok", "surface"],
 };
 
 /** Edit patch keys editLine understands. Anything else never reaches telemetry. */
@@ -1073,7 +1099,25 @@ function cleanEventValue(key, value) {
     return unique.length ? unique.join(",") : null;
   }
   if (key === "op") return SHOP_CONFLICT_OPS.includes(value) ? value : null;
+  if (key === "type") return SHOP_EXPORT_TYPES.includes(value) ? value : null;
+  if (key === "surface") return SHOP_EXPORT_SURFACES.includes(value) ? value : null;
+  if (key === "ok") {
+    if (value === true || value === 1 || value === "true") return true;
+    if (value === false || value === 0 || value === "false") return false;
+    return null;
+  }
   return value;
+}
+
+/**
+ * shop_export stores only the closed field set. Any other key is dropped.
+ * Returns { handled: false } for events that keep the legacy props path.
+ */
+export function storedEventProps(eventName, body) {
+  if (eventName !== "shop_export") return { handled: false };
+  const safe = sanitizeShopEvent(eventName, body || {});
+  if (!safe || !safe.type) return { handled: true, error: "invalid_event" };
+  return { handled: true, props: safe };
 }
 
 export function sanitizeShopEvent(name, props) {

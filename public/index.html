@@ -322,6 +322,8 @@
               <p class="section-label" id="joinLimitsLabel">Your diet limits</p>
               <div class="check-grid" id="joinConstraints" role="group" aria-labelledby="joinLimitsLabel"></div>
               <div class="flow__actions">
+                <p class="meta" id="joinWrongHousehold" hidden>You’re signed into another kitchen.</p>
+                <button class="btn btn-secondary btn-lg wide" type="button" id="btnJoinSignOut" hidden>Sign out, then join</button>
                 <button class="btn btn-primary btn-lg wide" type="button" id="btnAcceptInvite">Join kitchen</button>
               </div>
             </div>
@@ -577,6 +579,7 @@
               <button class="btn btn-secondary btn-sm" type="button" id="btnShopChangesGotIt">Got it</button>
             </div>
             <p class="meta shop-return" id="shopReturnBanner" hidden>Your list is still here.</p>
+            <p class="meta shop-return" id="shopExportReturn" hidden>Back from shopping? Check off what you got.</p>
             <form class="shop-add" id="shopAddForm">
               <label class="sr-only" for="shopAddInput">Add an item</label>
               <input id="shopAddInput" name="item" type="text" enterkeyhint="done" autocomplete="off" maxlength="80" placeholder="Add oat milk, paper towels…" />
@@ -587,8 +590,8 @@
               <div id="shopColRight"></div>
             </div>
             <div class="shop-dock" id="shopDock">
-              <button class="btn btn-primary btn-lg" type="button" id="btnShopInStore">Shop in store</button>
-              <button class="btn btn-secondary btn-lg" type="button" id="btnShopOrder">Order online</button>
+              <button class="btn btn-primary btn-lg" type="button" id="btnShopInStore">How are you shopping?</button>
+              <button class="btn btn-secondary btn-lg" type="button" id="btnShopOrder" hidden>Order online</button>
               <button class="btn btn-primary btn-lg" type="button" id="btnShopDone" hidden>Done</button>
             </div>
           </div>
@@ -703,6 +706,12 @@
                 <section class="card settings-section" aria-labelledby="limitsSettingsTitle">
                   <h2 class="card-title" id="limitsSettingsTitle">Your diet limits</h2>
                   <div class="check-grid" id="settingsConstraints" role="group" aria-labelledby="limitsSettingsTitle"></div>
+                </section>
+
+                <section class="card settings-section" aria-labelledby="signOutTitle">
+                  <h2 class="card-title" id="signOutTitle">This device</h2>
+                  <p class="meta">Sign out of this kitchen on this browser. The household list stays put. Nothing is marked bought.</p>
+                  <button class="btn btn-secondary btn-lg" type="button" id="btnSignOut">Sign out</button>
                 </section>
 
                 <div class="settings-actions">
@@ -1164,17 +1173,50 @@
         </form>
       </dialog>
 
+      <dialog class="sheet shop-how-sheet" id="shopHowSheet" aria-labelledby="shopHowTitle">
+        <form method="dialog" class="sheet__inner" id="shopHowForm">
+          <p class="eyebrow">Shopping</p>
+          <h2 class="card-title" id="shopHowTitle">How are you shopping?</h2>
+          <div class="shop-how__rows">
+            <button type="button" class="shop-how__row" id="btnShopHowStore">
+              <span class="shop-how__title">Shop in store</span>
+              <span class="shop-how__copy" id="shopHowStoreCopy">Your list, in aisle order, with check-offs.</span>
+            </button>
+            <section class="shop-how__row shop-how__row--static" aria-labelledby="shopHowSendTitle">
+              <h3 class="shop-how__title" id="shopHowSendTitle">Send to your grocery app</h3>
+              <p class="shop-how__copy">Your list is ready to share. Review the items in your grocery app before checkout.</p>
+              <p class="shop-how__note">Names and quantities only. Dietary notes stay in FlavorWeave.</p>
+              <div class="shop-how__actions">
+                <button class="btn btn-primary" type="button" id="btnShopCopyApp">Copy for my grocery app</button>
+                <button class="btn btn-secondary" type="button" id="btnShopSaveImage">Save/Share list image</button>
+              </div>
+              <div class="shop-how__parts" id="shopAppParts" hidden>
+                <p class="shop-how__part-label" id="shopAppPartLabel">Part 1 of 1</p>
+                <div class="shop-how__actions">
+                  <button class="btn btn-secondary" type="button" id="btnShopPartPrev">Previous</button>
+                  <button class="btn btn-secondary" type="button" id="btnShopPartNext">Next</button>
+                  <button class="btn btn-primary" type="button" id="btnShopCopyPart">Copy part</button>
+                </div>
+              </div>
+            </section>
+            <section class="shop-how__row shop-how__row--static" id="shopHowConnected" hidden>
+              <h3 class="shop-how__title">Shop online with a connected service</h3>
+              <p class="shop-how__copy" id="shopHowConnectedCopy"></p>
+              <button class="btn btn-secondary" type="button" id="btnShopHowConnected">Continue</button>
+            </section>
+          </div>
+          <div class="sheet__actions">
+            <button class="btn btn-quiet" type="submit">Close</button>
+          </div>
+        </form>
+      </dialog>
+
       <dialog class="sheet" id="shopOrderSheet" aria-labelledby="shopOrderTitle">
         <form method="dialog" class="sheet__inner sheet__inner--split" id="shopOrderForm">
           <div class="sheet__scroll" id="shopOrderBody">
             <h2 class="card-title" id="shopOrderTitle">Order online</h2>
             <p class="meta" id="shopOrderStore" hidden></p>
-            <div class="shop-service" aria-disabled="true">
-              <strong>Instacart</strong>
-              <span>Not connected yet</span>
-            </div>
-            <p class="meta">More stores later</p>
-            <p class="meta">Shop in store is ready now. Nothing is sent anywhere.</p>
+            <p class="meta">No grocery service is connected. Shop in store, or send the list to your grocery app. Nothing is sent anywhere.</p>
           </div>
           <div class="sheet__actions">
             <button class="btn btn-primary" type="submit">Shop in store instead</button>
@@ -1246,6 +1288,7 @@
   <script src="/recipe-weave.js"></script>
   <script src="/client-error.js"></script>
   <script src="/shop-handoff.js"></script>
+  <script type="module" src="/shop-list-image.js"></script>
   <script src="/app.js"></script>
   <script>
     if ("serviceWorker" in navigator) {

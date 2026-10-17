@@ -28,20 +28,22 @@
     }
   }
 
-  function storeNote(shop) {
+  function usualStore(shop) {
     var prefs = shop && shop.preferences;
-    var store = (prefs && prefs.member && prefs.member.usual_store) || (prefs && prefs.household && prefs.household.usual_store) || "";
+    return (prefs && prefs.member && prefs.member.usual_store) || (prefs && prefs.household && prefs.household.usual_store) || "";
+  }
+
+  function storeNote(shop) {
+    var store = usualStore(shop);
     return store ? "You usually shop at " + store + ". You’ll confirm the store on Instacart." : "";
   }
 
   function renderUnavailable(root, shop) {
-    var note = storeNote(shop);
+    var store = usualStore(shop);
     root.innerHTML =
       '<h2 class="card-title" id="shopOrderTitle">Order online</h2>' +
-      (note ? '<p class="meta">' + escapeHtml(note) + "</p>" : "") +
-      '<div class="shop-service" aria-disabled="true"><strong>Instacart</strong><span>Not connected yet</span></div>' +
-      '<p class="meta">More stores later</p>' +
-      '<p class="meta">Shop in store is ready now. Nothing is sent anywhere.</p>';
+      (store ? '<p class="meta">' + escapeHtml("You usually shop at " + store + ".") + "</p>" : "") +
+      '<p class="meta">No grocery service is connected. Shop in store, or send the list to your grocery app. Nothing is sent anywhere.</p>';
   }
 
   var MOCK_BADGE =

@@ -17,7 +17,7 @@
     "catalog:freeze-integrity": "node scripts/run-freeze-integrity.mjs",
     "pages:deploy": "node -e \"console.error('pages:deploy is retired: use npm run deploy:preview or deploy:production');process.exit(2)\"",
     "interim:prepare": "bash scripts/prepare-github-io.sh",
-    "lint": "eslint src public/app.js public/client-error.js public/theme.js public/meal-media.js public/taste-ui.js public/planning-ui.js public/discovery-ui.js public/discovery-relax-bridge.js public/nav-context.js public/nav-history.js public/weave-ui.js public/shop-handoff.js functions --max-warnings=0",
+    "lint": "eslint src public/app.js public/client-error.js public/theme.js public/meal-media.js public/taste-ui.js public/planning-ui.js public/discovery-ui.js public/discovery-relax-bridge.js public/nav-context.js public/nav-history.js public/weave-ui.js public/shop-handoff.js public/shop-list-image.js functions --max-warnings=0",
     "eval:d06:live": "node scripts/eval-d06-live.mjs",
     "eval:alpha:live": "node scripts/eval-alpha-live.mjs",
     "eval:d06:semantics": "node scripts/eval-d06-semantics.mjs",

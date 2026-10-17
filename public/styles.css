@@ -5895,6 +5895,80 @@ button.plan-meal-title {
   margin: auto;
 }
 
+.shop-how-sheet {
+  background: var(--color-bg, #FFFDF8);
+}
+
+.shop-how__rows {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.shop-how__row {
+  display: grid;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: 48px;
+  padding: var(--space-4);
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-quiet, #F7F2EC);
+  color: inherit;
+  text-align: left;
+  font: inherit;
+}
+
+.shop-how__row--static {
+  display: grid;
+}
+
+.shop-how__title {
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+}
+
+.shop-how__copy,
+.shop-how__note {
+  margin: 0;
+  color: var(--color-text);
+}
+
+.shop-how__note {
+  color: var(--color-text-muted, #5c564f);
+  font-size: var(--text-sm);
+}
+
+.shop-how__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.shop-how__actions .btn {
+  min-height: 48px;
+}
+
+.shop-how__part-label {
+  margin: 0;
+  font-weight: var(--weight-bold);
+  color: var(--color-structure, #0F5D5B);
+}
+
+#shopHowSheet .btn-primary {
+  background: var(--color-primary, #F15D3C);
+}
+
+#shopHowConnected .btn {
+  color: var(--color-structure, #0F5D5B);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shop-how-sheet[open] {
+    animation: none;
+  }
+}
+
 #shopOrderSheet[open] .sheet__inner--split {
   width: 100%;
   max-height: calc(100dvh - 32px);

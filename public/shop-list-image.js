@@ -1,0 +1,273 @@
+/**
+ * Shopping-list image. Layout is pure and DOM-free.
+ * Paint runs in the browser from that layout. Nothing is uploaded.
+ */
+const SHOP_IMAGE = Object.freeze({
+  width: 1080,
+  maxHeight: 4000,
+  padX: 72,
+  padTop: 88,
+  padBottom: 108,
+  title: "Shopping list",
+  titleSize: 64,
+  titleWeight: 700,
+  titleGap: 40,
+  itemSize: 44,
+  qtyWeight: 700,
+  nameWeight: 400,
+  lineHeight: 66,
+  qtyColumn: 320,
+  columnGap: 32,
+  rowGap: 20,
+  ink: "#17393A",
+  brand: "FlavorWeave",
+  brandSize: 22,
+  brandColor: "#8A8178",
+  background: "#FFFFFF",
+  fontFamily: 'Inter, "DejaVu Sans", "Noto Sans", sans-serif',
+});
+
+function defaultMeasure(text, fontSize, weight) {
+  const factor = Number(weight) >= 600 ? 0.62 : 0.56;
+  return Math.ceil(String(text || "").length * Number(fontSize) * factor);
+}
+
+function wrapText(text, maxWidth, fontSize, weight, measure) {
+  const words = String(text || "").split(/\s+/).filter(Boolean);
+  const lines = [];
+  let current = "";
+  const width = Math.max(40, maxWidth);
+  function pushWord(word) {
+    if (measure(word, fontSize, weight) <= width) {
+      current = word;
+      return;
+    }
+    let chunk = "";
+    for (const ch of Array.from(word)) {
+      const next = chunk + ch;
+      if (measure(next, fontSize, weight) <= width) chunk = next;
+      else {
+        if (chunk) lines.push(chunk);
+        chunk = ch;
+      }
+    }
+    current = chunk;
+  }
+  for (const word of words) {
+    const trial = current ? `${current} ${word}` : word;
+    if (current && measure(trial, fontSize, weight) <= width) {
+      current = trial;
+      continue;
+    }
+    if (current) lines.push(current);
+    pushWord(word);
+  }
+  if (current) lines.push(current);
+  if (!lines.length) lines.push("");
+  return lines;
+}
+
+function fontCss(weight, size, family) {
+  return `${weight} ${size}px ${family}`;
+}
+
+/**
+ * @param {{ quantity?: string, name?: string }[]} rows
+ * @param {object} [options]
+ */
+export function layoutShoppingList(rows, options = {}) {
+  const spec = { ...SHOP_IMAGE, ...options, fontFamily: options.fontFamily || SHOP_IMAGE.fontFamily };
+  const measure = options.measure || defaultMeasure;
+  const pages = [];
+
+  function blankPage() {
+    return {
+      width: spec.width,
+      maxHeight: spec.maxHeight,
+      background: spec.background,
+      ink: spec.ink,
+      fontFamily: spec.fontFamily,
+      title: spec.title,
+      titleSize: spec.titleSize,
+      titleWeight: spec.titleWeight,
+      titleX: spec.padX,
+      titleY: spec.padTop + spec.titleSize,
+      itemSize: spec.itemSize,
+      qtyWeight: spec.qtyWeight,
+      nameWeight: spec.nameWeight,
+      lineHeight: spec.lineHeight,
+      brand: spec.brand,
+      brandSize: spec.brandSize,
+      brandColor: spec.brandColor,
+      padX: spec.padX,
+      padBottom: spec.padBottom,
+      rows: [],
+      cursor: spec.padTop + spec.titleSize + spec.titleGap,
+    };
+  }
+
+  let page = blankPage();
+  const contentBottom = () => spec.maxHeight - spec.padBottom;
+
+  function finish(current) {
+    const last = current.rows.length ? current.rows[current.rows.length - 1] : null;
+    const contentEnd = last ? last.y + last.height : current.cursor;
+    const fitted = Math.min(spec.maxHeight, Math.max(contentEnd + spec.padBottom, spec.padTop + spec.titleSize + spec.padBottom));
+    const brandWidth = measure(spec.brand, spec.brandSize, 500);
+    return {
+      ...current,
+      height: fitted,
+      brandX: spec.width - spec.padX - brandWidth,
+      brandY: fitted - 36,
+    };
+  }
+
+  const source = Array.isArray(rows) ? rows : [];
+  for (const row of source) {
+    const quantity = String(row?.quantity || "");
+    const name = String(row?.name || "");
+    const qtyWidth = quantity ? measure(quantity, spec.itemSize, spec.qtyWeight) : 0;
+    const qtyColumn = Math.max(spec.qtyColumn, Math.ceil(qtyWidth) + 12);
+    const nameWidth = spec.width - spec.padX * 2 - qtyColumn - spec.columnGap;
+    const nameLines = wrapText(name, nameWidth, spec.itemSize, spec.nameWeight, measure);
+    const block = Math.max(spec.lineHeight, nameLines.length * spec.lineHeight);
+    const height = block + spec.rowGap;
+    if (page.rows.length && page.cursor + height > contentBottom()) {
+      pages.push(finish(page));
+      page = blankPage();
+    }
+    page.rows.push({
+      quantity,
+      quantityWidth: qtyWidth,
+      qtyColumn,
+      nameLines,
+      nameWidth,
+      xQty: spec.padX,
+      xName: spec.padX + qtyColumn + spec.columnGap,
+      y: page.cursor,
+      height,
+    });
+    page.cursor += height;
+  }
+  pages.push(finish(page));
+  const count = pages.length;
+  return {
+    width: spec.width,
+    maxHeight: spec.maxHeight,
+    pages: pages.map((item, index) => ({ ...item, index: index + 1, count })),
+  };
+}
+
+function paintPage(ctx, page) {
+  ctx.fillStyle = page.background;
+  ctx.fillRect(0, 0, page.width, page.height);
+  ctx.fillStyle = page.ink;
+  ctx.font = fontCss(page.titleWeight, page.titleSize, page.fontFamily);
+  ctx.textBaseline = "alphabetic";
+  ctx.fillText(page.title, page.titleX, page.titleY);
+  for (const row of page.rows) {
+    if (row.quantity) {
+      ctx.fillStyle = page.ink;
+      ctx.font = fontCss(page.qtyWeight, page.itemSize, page.fontFamily);
+      ctx.fillText(row.quantity, row.xQty, row.y + page.itemSize);
+    }
+    ctx.font = fontCss(page.nameWeight, page.itemSize, page.fontFamily);
+    ctx.fillStyle = page.ink;
+    row.nameLines.forEach((line, i) => {
+      ctx.fillText(line, row.xName, row.y + page.itemSize + i * page.lineHeight);
+    });
+  }
+  ctx.fillStyle = page.brandColor;
+  ctx.font = fontCss(500, page.brandSize, page.fontFamily);
+  const mark = page.count > 1 ? `${page.brand}  ·  ${page.index} / ${page.count}` : page.brand;
+  const markWidth = ctx.measureText(mark).width;
+  ctx.fillText(mark, page.width - page.padX - markWidth, page.brandY);
+}
+
+export function renderShoppingListCanvases(rows, options = {}) {
+  const dpr = options.dpr || (typeof window !== "undefined" && window.devicePixelRatio) || 2;
+  const probe = document.createElement("canvas").getContext("2d");
+  const family = options.fontFamily || SHOP_IMAGE.fontFamily;
+  const measure = (text, fontSize, weight) => {
+    probe.font = fontCss(weight, fontSize, family);
+    return probe.measureText(String(text || "")).width;
+  };
+  const layout = layoutShoppingList(rows, { ...options, fontFamily: family, measure });
+  return layout.pages.map((page) => {
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.round(page.width * dpr);
+    canvas.height = Math.round(page.height * dpr);
+    const ctx = canvas.getContext("2d");
+    ctx.scale(dpr, dpr);
+    paintPage(ctx, page);
+    return canvas;
+  });
+}
+
+export function imageHandoffPlan(nav) {
+  let canShareFiles = false;
+  try {
+    const file = typeof File !== "undefined" ? new File(["x"], "shopping-list.png", { type: "image/png" }) : null;
+    canShareFiles = !!(
+      file &&
+      nav &&
+      typeof nav.canShare === "function" &&
+      nav.canShare({ files: [file] }) &&
+      typeof nav.share === "function"
+    );
+  } catch {
+    canShareFiles = false;
+  }
+  if (canShareFiles) return { method: "share" };
+  if (!nav || nav.downloadAvailable !== false) return { method: "download" };
+  return { method: "open-tab" };
+}
+
+export function imageHandoffFeedback(outcome) {
+  const method = outcome && outcome.method;
+  if (method === "share" && outcome.errorName === "AbortError") {
+    return {
+      tone: "cancel",
+      claimedSaved: false,
+      message: "Share cancelled. Your list is still here.",
+    };
+  }
+  if (method === "share" && outcome.completed) {
+    return {
+      tone: "ready",
+      claimedSaved: false,
+      message: "Your shopping-list image is ready. Review the matched items in your grocery app.",
+    };
+  }
+  if (method === "download") {
+    return {
+      tone: "download",
+      claimedSaved: false,
+      message: "Download started. Check your downloads, then review the items in your grocery app.",
+    };
+  }
+  if (method === "open-tab") {
+    return {
+      tone: "fallback",
+      claimedSaved: false,
+      message: "The image is open in a new tab. Press and hold it to save, then review the items in your grocery app.",
+    };
+  }
+  return {
+    tone: "error",
+    claimedSaved: false,
+    message: "Couldn’t prepare the image. Try Copy for my grocery app.",
+  };
+}
+
+export { SHOP_IMAGE };
+
+if (typeof window !== "undefined") {
+  window.FlavorWeaveShopImage = {
+    SHOP_IMAGE,
+    layoutShoppingList,
+    renderShoppingListCanvases,
+    imageHandoffPlan,
+    imageHandoffFeedback,
+  };
+}

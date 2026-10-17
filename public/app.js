@@ -380,16 +380,35 @@
     }
   }
 
+  /** Bumped on sign-out so in-flight responses are ignored. */
+  let sessionEpoch = 0;
+  let sessionAbort = new AbortController();
+
+  function abortSessionWork() {
+    sessionEpoch += 1;
+    try { sessionAbort.abort(); } catch (_) { /* already aborted */ }
+    sessionAbort = new AbortController();
+  }
+
+  function sessionStillCurrent(epoch) {
+    return epoch === sessionEpoch;
+  }
+
   async function apiPost(path, body) {
     if (!(await apiProbe())) return null;
+    const epoch = sessionEpoch;
     try {
       const r = await fetch(path, {
         method: "POST",
         headers: apiHeaders(),
         credentials: "same-origin",
+        cache: "no-store",
+        signal: sessionAbort.signal,
         body: JSON.stringify(body || {}),
       });
+      if (!sessionStillCurrent(epoch)) return { ok: false, aborted: true };
       const j = await r.json().catch(() => null);
+      if (!sessionStillCurrent(epoch)) return { ok: false, aborted: true };
       if (!r.ok || (j && j.ok === false)) {
         console.warn("[he-api]", path, r.status, j);
         noteApiFailure(path, j && j.error, path + " " + r.status, { response: j });
@@ -397,6 +416,8 @@
       }
       return j;
     } catch (e) {
+      if (e && e.name === "AbortError") return { ok: false, aborted: true };
+      if (!sessionStillCurrent(epoch)) return { ok: false, aborted: true };
       console.warn("[he-api]", path, e);
       noteApiFailure(path, "network", String(e && e.message), { path: path });
       return null;
@@ -405,12 +426,17 @@
 
   async function apiGet(path) {
     if (!(await apiProbe())) return null;
+    const epoch = sessionEpoch;
     try {
       const r = await fetch(path, {
         method: "GET",
         credentials: "same-origin",
+        cache: "no-store",
+        signal: sessionAbort.signal,
       });
+      if (!sessionStillCurrent(epoch)) return { ok: false, aborted: true };
       const j = await r.json().catch(() => null);
+      if (!sessionStillCurrent(epoch)) return { ok: false, aborted: true };
       if (!r.ok || (j && j.ok === false)) {
         console.warn("[he-api]", path, r.status, j);
         noteApiFailure(path, j && j.error, path + " " + r.status, { response: j });
@@ -418,6 +444,8 @@
       }
       return j;
     } catch (e) {
+      if (e && e.name === "AbortError") return { ok: false, aborted: true };
+      if (!sessionStillCurrent(epoch)) return { ok: false, aborted: true };
       console.warn("[he-api]", path, e);
       noteApiFailure(path, "network", String(e && e.message), { path: path });
       return null;
@@ -426,20 +454,27 @@
 
   async function apiPatch(path, body) {
     if (!(await apiProbe())) return null;
+    const epoch = sessionEpoch;
     try {
       const r = await fetch(path, {
         method: "PATCH",
         headers: apiHeaders(),
         credentials: "same-origin",
+        cache: "no-store",
+        signal: sessionAbort.signal,
         body: JSON.stringify(body || {}),
       });
+      if (!sessionStillCurrent(epoch)) return { ok: false, aborted: true };
       const j = await r.json().catch(() => null);
+      if (!sessionStillCurrent(epoch)) return { ok: false, aborted: true };
       if (!r.ok || (j && j.ok === false)) {
         noteApiFailure(path, j && j.error, path + " " + r.status, { response: j });
         return Object.assign(j || {}, { ok: false, _httpStatus: r.status });
       }
       return j;
     } catch (e) {
+      if (e && e.name === "AbortError") return { ok: false, aborted: true };
+      if (!sessionStillCurrent(epoch)) return { ok: false, aborted: true };
       noteApiFailure(path, "network", String(e && e.message), { path: path });
       return null;
     }
@@ -627,6 +662,7 @@
     dinnerRateMealId: null,
     shopLineMenuId: null,
     shopLineSnapshot: {},
+    groceryProviders: [],
   };
 
   /** The diner using this device. Settings and "Your diet limits" belong to them, not to members[0]. */
@@ -738,8 +774,12 @@
     return activeMemberCount();
   }
 
+  function dinnerCountWord(mealCount) {
+    return Number(mealCount) === 1 ? "dinner" : "dinners";
+  }
+
   function shopCookingHeadline(mealCount, householdCount, exceptions) {
-    const base = mealCount + " dinners · cooking for " + householdCount;
+    const base = mealCount + " " + dinnerCountWord(mealCount) + " · cooking for " + householdCount;
     if (!exceptions.length) return base;
     if (exceptions.length > 2) return base + " · amounts match each dinner";
     return (
@@ -1833,6 +1873,7 @@
         if (!state.dinnerPlan) await loadCurrentDinnerPlan();
         await refreshDinnerShopping();
         await loadHouseholdShop();
+        await refreshGroceryProviders();
         if (state.view === "shopList") renderShopList();
       })();
     }
@@ -1905,7 +1946,7 @@
       const options = displayMeals();
       eye.textContent = state.previousMeal ? "Fresh picks · new round" : "Tonight’s picks";
       homeTitle.textContent = options.length
-        ? options.length + " dinners worth choosing"
+        ? options.length + " " + dinnerCountWord(options.length) + " worth choosing"
         : "Pick tonight’s meal";
       homeLede.textContent =
         (options.length
@@ -4484,7 +4525,7 @@
       return;
     }
     if (ctx.mode === "edit") {
-      eyebrow.textContent = "Your plan · " + plan.meal_count + " dinners";
+      eyebrow.textContent = "Your plan · " + plan.meal_count + " " + dinnerCountWord(plan.meal_count);
       title.textContent = "Your plan";
       lede.textContent = "Swap, move, or set aside any dinner that hasn’t been cooked.";
       return;
@@ -4495,7 +4536,7 @@
       lede.textContent = "Your table’s limits rule out every dinner we have right now.";
       return;
     }
-    eyebrow.textContent = "Your plan · " + plan.meal_count + " dinners";
+    eyebrow.textContent = "Your plan · " + plan.meal_count + " " + dinnerCountWord(plan.meal_count);
     title.textContent = "Here’s a good plan";
     lede.textContent = "One dinner per night, picked for your table. Swap anything that doesn’t feel right.";
   }
@@ -4689,7 +4730,7 @@
     const side = document.getElementById("planReviewSide");
     if (window.matchMedia("(min-width: 1024px)").matches && !state.planSingleMode) {
       side.hidden = false;
-      document.getElementById("planReviewSideKicker").textContent = "Your plan · " + plan.meal_count + " dinners";
+      document.getElementById("planReviewSideKicker").textContent = "Your plan · " + plan.meal_count + " " + dinnerCountWord(plan.meal_count);
       document.getElementById("planReviewSideShop").textContent =
         k === 0 ? "Nothing to shop for." : k + " things on your list";
     } else side.hidden = true;
@@ -4738,6 +4779,13 @@
     [3 / 4, "3/4"],
   ];
   const SHOP_QTY_EPS = 1e-6;
+  /** 1/3 and 2/3 are stored as 0.333 and 0.667. This tolerance is only for those two. */
+  const SHOP_STORED_THIRD_TOL = 0.00051;
+
+  function shopFractionTolerance(target) {
+    if (Math.abs(target - 1 / 3) < 1e-12 || Math.abs(target - 2 / 3) < 1e-12) return SHOP_STORED_THIRD_TOL;
+    return SHOP_QTY_EPS;
+  }
 
   function formatShopQuantityAmount(num) {
     const sign = num < 0 ? "-" : "";
@@ -4747,7 +4795,7 @@
     if (fracPart < SHOP_QTY_EPS) return sign + String(whole);
     for (let i = 0; i < SHOP_QTY_FRACS.length; i++) {
       const pair = SHOP_QTY_FRACS[i];
-      if (Math.abs(fracPart - pair[0]) < SHOP_QTY_EPS) {
+      if (Math.abs(fracPart - pair[0]) < shopFractionTolerance(pair[0])) {
         return whole > 0 ? sign + whole + " " + pair[1] : sign + pair[1];
       }
     }
@@ -4912,17 +4960,47 @@
     return prefix + "_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
   }
 
+  async function trackShopExport(type, ok, surface) {
+    const epoch = sessionEpoch;
+    try {
+      await fetch("/api/events", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: apiHeaders(),
+        cache: "no-store",
+        signal: sessionAbort.signal,
+        body: JSON.stringify({
+          event_name: "shop_export",
+          type: type,
+          ok: !!ok,
+          surface: surface || "shop_sheet",
+        }),
+      });
+    } catch (_) { /* telemetry must not block the handoff */ }
+    return sessionStillCurrent(epoch);
+  }
+
   async function shopExport(kind) {
     const format = kind === "csv" ? "csv" : kind === "print" ? "print" : "txt";
-    const res = await fetch("/api/household-shop/export?format=" + format, { credentials: "same-origin" });
+    const exportType = kind === "print" ? "print" : kind === "copy" ? "copy" : "download";
+    const epoch = sessionEpoch;
+    const res = await fetch("/api/household-shop/export?format=" + format, {
+      credentials: "same-origin",
+      cache: "no-store",
+      signal: sessionAbort.signal,
+    });
+    if (!sessionStillCurrent(epoch)) return;
     if (!res.ok) {
       toast("Couldn’t prepare the list. Your list is still here.");
+      void trackShopExport(exportType, false, "shop_menu");
       return;
     }
     const text = await res.text();
+    if (!sessionStillCurrent(epoch)) return;
     if (kind === "copy") {
       const ok = await copyText(text);
       toast(ok ? "List copied" : "Couldn’t copy — try the download");
+      void trackShopExport("copy", ok, "shop_menu");
       return;
     }
     if (kind === "print") {
@@ -4932,6 +5010,7 @@
         root.textContent = text;
       }
       window.print();
+      void trackShopExport("print", true, "shop_menu");
       return;
     }
     const blob = new Blob([text], { type: kind === "csv" ? "text/csv" : "text/plain" });
@@ -4941,25 +5020,38 @@
     a.download = kind === "csv" ? "flavorweave-list.csv" : "flavorweave-list.txt";
     a.click();
     URL.revokeObjectURL(url);
+    void trackShopExport("download", true, "shop_menu");
   }
 
   async function shopNativeShare() {
-    const res = await fetch("/api/household-shop/export?format=txt", { credentials: "same-origin" });
+    const epoch = sessionEpoch;
+    const res = await fetch("/api/household-shop/export?format=txt", {
+      credentials: "same-origin",
+      cache: "no-store",
+      signal: sessionAbort.signal,
+    });
+    if (!sessionStillCurrent(epoch)) return;
     if (!res.ok) {
       toast("Couldn’t prepare the list. Your list is still here.");
+      void trackShopExport("share", false, "shop_menu");
       return;
     }
     const text = await res.text();
     if (navigator.share) {
       try {
         await navigator.share({ title: "The list", text: text });
+        void trackShopExport("share", true, "shop_menu");
         return;
       } catch (err) {
-        if (err && err.name === "AbortError") return;
+        if (err && err.name === "AbortError") {
+          void trackShopExport("share", false, "shop_menu");
+          return;
+        }
       }
     }
     const ok = await copyText(text);
     toast(ok ? "List copied" : "Sharing isn’t available here");
+    void trackShopExport(ok ? "copy" : "share", ok, "shop_menu");
   }
 
   async function shopOpenShare() {
@@ -5184,7 +5276,7 @@
     if (orderBtn) orderBtn.classList.toggle("is-emphasis", trip === "order_online");
     if (doneBtn) doneBtn.hidden = !state.shopInStore;
     if (inStoreBtn) inStoreBtn.hidden = !!state.shopInStore;
-    if (orderBtn) orderBtn.hidden = !!state.shopInStore;
+    if (orderBtn) orderBtn.hidden = !!state.shopInStore || !(state.groceryProviders && state.groceryProviders.length);
     renderShopChangesBanner();
     if (window.FlavorWeaveShopHandoff) {
       window.FlavorWeaveShopHandoff.syncReturnBanner({ apiPost: apiPost });
@@ -7320,6 +7412,10 @@
       channel: "deep_link",
     });
     if (res && res.error === "wrong_household_logged_in") {
+      const wrong = document.getElementById("joinWrongHousehold");
+      const joinOut = document.getElementById("btnJoinSignOut");
+      if (wrong) wrong.hidden = false;
+      if (joinOut) joinOut.hidden = false;
       toast("You’re signed into another kitchen — sign out first");
       reportClientError("invite", res.error, "cross household join blocked");
       return;
@@ -8096,11 +8192,328 @@
       state.shopAddRequest = null;
     }
   });
-  document.getElementById("btnShopInStore").addEventListener("click", async function () {
+  let shopAppParts = [];
+  let shopAppPartIndex = 0;
+
+  function showShopReturnNote() {
+    const note = document.getElementById("shopExportReturn");
+    if (note) note.hidden = false;
+  }
+
+  async function refreshGroceryProviders() {
+    const res = await apiGet("/api/grocery/capabilities");
+    if (!res || res.aborted) return;
+    const providers = ((res && res.providers) || []).filter(function (provider) {
+      return provider && provider.configured && provider.id && provider.id !== "instore";
+    });
+    state.groceryProviders = providers;
+    const connected = document.getElementById("shopHowConnected");
+    const copy = document.getElementById("shopHowConnectedCopy");
+    if (connected) connected.hidden = providers.length === 0;
+    if (copy && providers.length) {
+      copy.textContent = "A grocery service is connected for this kitchen. You’ll review the items before anything leaves FlavorWeave.";
+    }
+    const orderBtn = document.getElementById("btnShopOrder");
+    if (orderBtn && state.view === "shopList") {
+      orderBtn.hidden = !!state.shopInStore || providers.length === 0;
+    }
+  }
+
+  function renderAppPartPager() {
+    const box = document.getElementById("shopAppParts");
+    const label = document.getElementById("shopAppPartLabel");
+    const prev = document.getElementById("btnShopPartPrev");
+    const next = document.getElementById("btnShopPartNext");
+    if (!box) return;
+    if (shopAppParts.length < 2) {
+      box.hidden = true;
+      return;
+    }
+    box.hidden = false;
+    if (label) label.textContent = "Part " + (shopAppPartIndex + 1) + " of " + shopAppParts.length;
+    if (prev) prev.disabled = shopAppPartIndex <= 0;
+    if (next) next.disabled = shopAppPartIndex >= shopAppParts.length - 1;
+  }
+
+  async function fetchAppExport() {
+    const epoch = sessionEpoch;
+    const res = await fetch("/api/household-shop/export?format=app", {
+      credentials: "same-origin",
+      cache: "no-store",
+      signal: sessionAbort.signal,
+    });
+    if (!sessionStillCurrent(epoch)) return null;
+    if (!res.ok) return null;
+    const body = await res.json().catch(function () { return null; });
+    if (!sessionStillCurrent(epoch)) return null;
+    return body;
+  }
+
+  async function copyCurrentAppPart() {
+    const text = shopAppParts[shopAppPartIndex] || "";
+    if (!text) {
+      toast("Nothing to copy. The list is empty.");
+      void trackShopExport("copy_app", false, "shop_sheet");
+      return;
+    }
+    const ok = await copyText(text);
+    toast(ok
+      ? "Copied. Paste this into your grocery app, then review the items before buying."
+      : "Couldn’t copy. Your list is still here.");
+    void trackShopExport("copy_app", ok, "shop_sheet");
+    if (ok) showShopReturnNote();
+  }
+
+  async function shopCopyForApp() {
+    const body = await fetchAppExport();
+    if (!body || !body.ok) {
+      toast("Couldn’t prepare the list. Your list is still here.");
+      void trackShopExport("copy_app", false, "shop_sheet");
+      return;
+    }
+    shopAppParts = Array.isArray(body.parts) ? body.parts : [];
+    shopAppPartIndex = 0;
+    renderAppPartPager();
+    if (!shopAppParts.length) {
+      toast("Nothing to copy. The list is empty.");
+      void trackShopExport("copy_app", false, "shop_sheet");
+      return;
+    }
+    if (shopAppParts.length === 1) {
+      await copyCurrentAppPart();
+      return;
+    }
+    toast("This list is in " + shopAppParts.length + " parts. Copy each part. Nothing is left out.");
+    const copyPart = document.getElementById("btnShopCopyPart");
+    if (copyPart) copyPart.focus();
+  }
+
+  function imageRowsFromExport(body) {
+    return ((body && body.rows) || []).map(function (row) {
+      return {
+        quantity: (row && (row.quantity_unicode || row.quantity)) || "",
+        name: (row && row.name) || "",
+      };
+    });
+  }
+
+  function canvasToBlob(canvas) {
+    return new Promise(function (resolve) {
+      canvas.toBlob(function (blob) { resolve(blob); }, "image/png");
+    });
+  }
+
+  async function shopSaveImage() {
+    const image = window.FlavorWeaveShopImage;
+    if (!image) {
+      toast("Couldn’t prepare the image. Try Copy for my grocery app.");
+      void trackShopExport("image", false, "shop_sheet");
+      return;
+    }
+    const body = await fetchAppExport();
+    if (!body || !body.ok) {
+      toast(image.imageHandoffFeedback({}).message);
+      void trackShopExport("image", false, "shop_sheet");
+      return;
+    }
+    let canvases = [];
+    try {
+      canvases = image.renderShoppingListCanvases(imageRowsFromExport(body), {
+        dpr: Math.min(window.devicePixelRatio || 2, 3),
+      });
+    } catch (_) {
+      toast(image.imageHandoffFeedback({}).message);
+      void trackShopExport("image", false, "shop_sheet");
+      return;
+    }
+    const blobs = [];
+    for (let i = 0; i < canvases.length; i++) blobs.push(await canvasToBlob(canvases[i]));
+    const files = blobs.filter(Boolean).map(function (blob, index) {
+      const name = blobs.length > 1 ? "shopping-list-" + (index + 1) + ".png" : "shopping-list.png";
+      return new File([blob], name, { type: "image/png" });
+    });
+    if (!files.length) {
+      toast(image.imageHandoffFeedback({}).message);
+      void trackShopExport("image", false, "shop_sheet");
+      return;
+    }
+    const plan = image.imageHandoffPlan({
+      canShare: navigator.canShare ? navigator.canShare.bind(navigator) : null,
+      share: navigator.share ? navigator.share.bind(navigator) : null,
+      downloadAvailable: typeof document.createElement("a").download === "string",
+    });
+    if (plan.method === "share") {
+      try {
+        await navigator.share({ files: files, title: "Shopping list" });
+        toast(image.imageHandoffFeedback({ method: "share", completed: true }).message);
+        void trackShopExport("image", true, "shop_sheet");
+        showShopReturnNote();
+      } catch (err) {
+        toast(image.imageHandoffFeedback({ method: "share", errorName: err && err.name, completed: false }).message);
+        void trackShopExport("image", false, "shop_sheet");
+      }
+      return;
+    }
+    if (plan.method === "download") {
+      files.forEach(function (file) {
+        const url = URL.createObjectURL(file);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = file.name;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      });
+      toast(image.imageHandoffFeedback({ method: "download" }).message);
+      void trackShopExport("download", true, "shop_sheet");
+      showShopReturnNote();
+      return;
+    }
+    files.forEach(function (file) {
+      const url = URL.createObjectURL(file);
+      window.open(url, "_blank", "noopener");
+    });
+    toast(image.imageHandoffFeedback({ method: "open-tab" }).message);
+    void trackShopExport("image", true, "shop_sheet");
+    showShopReturnNote();
+  }
+
+  function openHowSheet() {
+    const dlg = document.getElementById("shopHowSheet");
+    if (!dlg || typeof dlg.showModal !== "function") return;
+    void refreshGroceryProviders();
+    if (!dlg.open) dlg.showModal();
+    const first = document.getElementById("btnShopHowStore");
+    if (first) first.focus();
+  }
+
+  async function enterInStore() {
     const saved = await mutateHouseholdShop({ op: "set_trip_method", trip_method: "instore" });
+    if (saved && saved.aborted) return;
     state.shopInStore = true;
     if (!saved || !saved.ok) toast("You’re looking at the store list. This trip’s choice didn’t save.");
+    const dlg = document.getElementById("shopHowSheet");
+    if (dlg && dlg.open) dlg.close();
     renderShopList();
+  }
+
+  function privateStorageKey(key, keepJoinDest) {
+    if (!key) return false;
+    if (key === "fw_theme" || key.indexOf("fw_theme:") === 0 || key === "he_qa") return false;
+    if (keepJoinDest && key === "he_join_dest") return false;
+    if (key === "he_household_id" || key === "he_member_id" || key === "he_shop_onboard") return true;
+    if (key.indexOf("fw_dinner_plan") === 0) return true;
+    if (key.indexOf("fw_shop_seen:") === 0) return true;
+    if (key.indexOf("he_shop_snap_") === 0) return true;
+    if (key.indexOf("fw_weave") === 0) return true;
+    if (key.indexOf("fw_handoff") === 0) return true;
+    if (key.indexOf("he_disc_cache:") === 0) return true;
+    if (key === "he_find_standalone_url" || key === "he_join_dest") return true;
+    return false;
+  }
+
+  function clearNamedStorage(store, keepJoinDest) {
+    try {
+      const drop = [];
+      for (let i = 0; i < store.length; i++) {
+        const key = store.key(i);
+        if (privateStorageKey(key, keepJoinDest)) drop.push(key);
+      }
+      drop.forEach(function (key) { store.removeItem(key); });
+    } catch (_) { /* private mode */ }
+  }
+
+  function wipePrivateClientState(opts) {
+    const keepJoinDest = !!(opts && opts.keepJoinDest);
+    abortSessionWork();
+    state.householdId = null;
+    API.householdId = null;
+    API.planId = null;
+    state.householdName = "";
+    state.members = [];
+    state.meId = null;
+    state.householdShop = null;
+    state.dinnerPlan = null;
+    state.dinnerShop = null;
+    state.shopInStore = false;
+    state.shopShareId = null;
+    state.shopAttempt = null;
+    state.primaryConstraints = [];
+    state.savedConstraints = [];
+    state.ratings = {};
+    state.ratingsByOption = {};
+    state.currentMeals = null;
+    state.selectedMealId = null;
+    state.onboarded = false;
+    state.groceryProviders = [];
+    state.shopLineSnapshot = {};
+    shopAppParts = [];
+    shopAppPartIndex = 0;
+    clearNamedStorage(localStorage, keepJoinDest);
+    clearNamedStorage(sessionStorage, keepJoinDest);
+    if (Theme && Theme.useMember) Theme.useMember(null);
+  }
+
+  async function signOut(opts) {
+    const rejoin = !!(opts && opts.rejoin);
+    try {
+      await fetch("/api/sessions/logout", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        cache: "no-store",
+        body: "{}",
+      });
+    } catch (_) { /* still clear the device */ }
+    wipePrivateClientState({ keepJoinDest: rejoin });
+    const wrong = document.getElementById("joinWrongHousehold");
+    const joinOut = document.getElementById("btnJoinSignOut");
+    if (wrong) wrong.hidden = true;
+    if (joinOut) joinOut.hidden = true;
+    if (rejoin) {
+      show("join");
+      toast("Signed out. Join with your name.");
+      return;
+    }
+    location.replace("/");
+  }
+
+  document.getElementById("btnShopInStore").addEventListener("click", function () {
+    openHowSheet();
+  });
+  document.getElementById("btnShopHowStore").addEventListener("click", function () {
+    void enterInStore();
+  });
+  document.getElementById("btnShopCopyApp").addEventListener("click", function () {
+    void shopCopyForApp();
+  });
+  document.getElementById("btnShopSaveImage").addEventListener("click", function () {
+    void shopSaveImage();
+  });
+  document.getElementById("btnShopPartPrev").addEventListener("click", function () {
+    if (shopAppPartIndex <= 0) return;
+    shopAppPartIndex -= 1;
+    renderAppPartPager();
+  });
+  document.getElementById("btnShopPartNext").addEventListener("click", function () {
+    if (shopAppPartIndex >= shopAppParts.length - 1) return;
+    shopAppPartIndex += 1;
+    renderAppPartPager();
+  });
+  document.getElementById("btnShopCopyPart").addEventListener("click", function () {
+    void copyCurrentAppPart();
+  });
+  document.getElementById("btnShopHowConnected").addEventListener("click", function () {
+    const how = document.getElementById("shopHowSheet");
+    if (how && how.open) how.close();
+    document.getElementById("btnShopOrder").click();
+  });
+  document.getElementById("btnSignOut").addEventListener("click", function () {
+    void signOut();
+  });
+  document.getElementById("btnJoinSignOut").addEventListener("click", function () {
+    void signOut({ rejoin: true });
   });
   document.getElementById("btnShopOrder").addEventListener("click", function () {
     if (window.FlavorWeaveShopHandoff) {
@@ -8564,4 +8977,28 @@
     show("welcome");
     syncHouseholdChrome();
   })();
+
+  window.addEventListener("pageshow", function (ev) {
+    if (!ev.persisted) return;
+    show("welcome");
+    fetch("/api/sessions/me", { credentials: "same-origin", cache: "no-store" })
+      .then(function (response) {
+        if (!response.ok) {
+          wipePrivateClientState();
+          show("welcome");
+          return null;
+        }
+        return response.json();
+      })
+      .then(function (snap) {
+        if (!snap || !snap.ok) return;
+        applyServerSnapshot(snap);
+        const target = snap.next_action === "onboarding" ? onboardingResumeView(snap) : snap.next_view || "home";
+        show(target);
+      })
+      .catch(function () {
+        wipePrivateClientState();
+        show("welcome");
+      });
+  });
 })();

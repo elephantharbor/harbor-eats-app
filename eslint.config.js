@@ -36,4 +36,15 @@ export default [
       "no-unused-vars": "off",
     },
   },
+  {
+    files: ["public/shop-list-image.js"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "module",
+      globals: { ...globals.browser, window: "readonly", document: "readonly" },
+    },
+    rules: {
+      "no-unused-vars": "off",
+    },
+  },
 ];

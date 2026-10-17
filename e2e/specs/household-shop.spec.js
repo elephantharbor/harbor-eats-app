@@ -51,7 +51,8 @@ test.describe("household shopping list", () => {
     await page.getByRole("button", { name: "Skip this trip" }).click();
     await expect(page.getByRole("checkbox", { name: /Skipping, Paper towels/i })).toBeVisible();
 
-    await page.getByRole("button", { name: "Shop in store" }).click();
+    await page.getByRole("button", { name: "How are you shopping?" }).click();
+    await page.locator("#shopHowSheet").getByRole("button", { name: /Shop in store/ }).click();
     await expect(page.locator("#shopEyebrow")).toHaveText("In the store");
     await expect(page.locator("#btnShopDone")).toBeVisible();
     await page.locator("#btnShopDone").click();
@@ -135,12 +136,18 @@ test.describe("household shopping list", () => {
     await openTheList(page);
     await expect(page.locator("[data-shop-more]").first()).toBeVisible({ timeout: 30000 });
     const caps = page.waitForResponse((r) => r.url().includes("/api/grocery/capabilities"));
-    await page.getByRole("button", { name: "Order online" }).click();
+    await page.getByRole("button", { name: "How are you shopping?" }).click();
     const body = await (await caps).json().catch(() => ({}));
     const instacart = (body.providers || []).find((p) => p.id === "instacart");
+    await expect(page.locator("#shopHowSheet")).toBeVisible();
+    await expect(page.getByText("Your list is ready to share. Review the items in your grocery app before checkout.")).toBeVisible();
     if (!instacart) {
-      await expect(page.getByText("Not connected yet")).toBeVisible();
+      await expect(page.locator("#shopHowConnected")).toBeHidden();
+      await expect(page.locator("#btnShopOrder")).toBeHidden();
+      await expect(page.getByText("Not connected yet")).toHaveCount(0);
     } else {
+      await expect(page.locator("#btnShopHowConnected")).toBeVisible();
+      await page.locator("#btnShopHowConnected").click();
       // Only a Preview fixture may configure Instacart here, and the UI must say it is a test.
       expect(instacart.mode).toBe("mock");
       expect(instacart.launch_enabled).toBe(false);

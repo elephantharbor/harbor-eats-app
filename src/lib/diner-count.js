@@ -32,7 +32,8 @@ export function dinerCountForMeal(meal) {
  * @param {{ mealCount: number, householdCount: number, exceptions?: { label: string, count: number }[] }} input
  */
 export function shopCookingHeadline({ mealCount, householdCount, exceptions = [] }) {
-  const base = `${mealCount} dinners · cooking for ${householdCount}`;
+  const dinners = Number(mealCount) === 1 ? "dinner" : "dinners";
+  const base = `${mealCount} ${dinners} · cooking for ${householdCount}`;
   if (!exceptions.length) return base;
   if (exceptions.length > 2) return `${base} · amounts match each dinner`;
   return base + exceptions.map((row) => `, ${row.label} for ${row.count}`).join("");
