@@ -47,3 +47,7 @@ Static only. They are not served by the app.
 ## Explicit non-goals
 
 No change to `public/app.js`, `src/`, `migrations/`, Wrangler, flags, or catalog. No Instacart, Walmart, Amazon, or Impact account. No automatic multi-store search. No recipe replanning when an item is missing. No pantry quantities. No price comparison. No sixth tab.
+
+## Later research
+
+S-05B research and the S-05C decision live beside this index. Oversight refinements in `S-05C-DECISION.md` override the S-05B card where they conflict. The copied list is flat. Documented is not human-tested.
