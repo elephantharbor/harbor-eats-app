@@ -454,7 +454,7 @@ export async function routeHouseholdShopRequest(env, request, path, url, deps = 
     if (format === "app") {
       const payload = renderAppExport(list);
       await recordShop(env, session, request, deps, "shop_export", {
-        type: "copy_app",
+        type: url.searchParams.get("for") === "image" ? "image" : "copy_app",
         ok: true,
         surface: "api",
       });

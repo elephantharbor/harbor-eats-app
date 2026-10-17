@@ -16,8 +16,8 @@ const SHOP_IMAGE = Object.freeze({
   qtyWeight: 700,
   nameWeight: 400,
   lineHeight: 66,
-  qtyColumn: 320,
-  columnGap: 32,
+  /** A quantity wider than this share of the row wraps the name under the quantity instead. */
+  maxIndentRatio: 0.5,
   rowGap: 20,
   ink: "#17393A",
   brand: "FlavorWeave",
@@ -32,18 +32,42 @@ function defaultMeasure(text, fontSize, weight) {
   return Math.ceil(String(text || "").length * Number(fontSize) * factor);
 }
 
-function wrapText(text, maxWidth, fontSize, weight, measure) {
+/**
+ * Wrap units: words, except that a parenthetical group such as "(24 oz)"
+ * stays one unit when it fits on a line by itself. The line then breaks
+ * before the "(" instead of inside it.
+ */
+function wrapUnits(text, width, fontSize, weight, measure) {
   const words = String(text || "").split(/\s+/).filter(Boolean);
+  const units = [];
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].startsWith("(") && !words[i].includes(")")) {
+      let j = i;
+      while (j < words.length - 1 && !words[j].includes(")")) j++;
+      const group = words.slice(i, j + 1).join(" ");
+      if (words[j].includes(")") && measure(group, fontSize, weight) <= width) {
+        units.push(group);
+        i = j;
+        continue;
+      }
+    }
+    units.push(words[i]);
+  }
+  return units;
+}
+
+function wrapText(text, maxWidth, fontSize, weight, measure) {
+  const width = Math.max(40, maxWidth);
+  const units = wrapUnits(text, width, fontSize, weight, measure);
   const lines = [];
   let current = "";
-  const width = Math.max(40, maxWidth);
-  function pushWord(word) {
-    if (measure(word, fontSize, weight) <= width) {
-      current = word;
+  function pushUnit(unit) {
+    if (measure(unit, fontSize, weight) <= width) {
+      current = unit;
       return;
     }
     let chunk = "";
-    for (const ch of Array.from(word)) {
+    for (const ch of Array.from(unit)) {
       const next = chunk + ch;
       if (measure(next, fontSize, weight) <= width) chunk = next;
       else {
@@ -53,14 +77,14 @@ function wrapText(text, maxWidth, fontSize, weight, measure) {
     }
     current = chunk;
   }
-  for (const word of words) {
-    const trial = current ? `${current} ${word}` : word;
+  for (const unit of units) {
+    const trial = current ? `${current} ${unit}` : unit;
     if (current && measure(trial, fontSize, weight) <= width) {
       current = trial;
       continue;
     }
     if (current) lines.push(current);
-    pushWord(word);
+    pushUnit(unit);
   }
   if (current) lines.push(current);
   if (!lines.length) lines.push("");
@@ -123,13 +147,21 @@ export function layoutShoppingList(rows, options = {}) {
   }
 
   const source = Array.isArray(rows) ? rows : [];
+  const contentWidth = spec.width - spec.padX * 2;
   for (const row of source) {
     const quantity = String(row?.quantity || "");
     const name = String(row?.name || "");
+    // One inline line: bold quantity, one normal space, then the name.
+    // Wrapped name lines hang under the name, not under the quantity.
     const qtyWidth = quantity ? measure(quantity, spec.itemSize, spec.qtyWeight) : 0;
-    const qtyColumn = Math.max(spec.qtyColumn, Math.ceil(qtyWidth) + 12);
-    const nameWidth = spec.width - spec.padX * 2 - qtyColumn - spec.columnGap;
-    const nameLines = wrapText(name, nameWidth, spec.itemSize, spec.nameWeight, measure);
+    const spaceWidth = quantity ? measure(" ", spec.itemSize, spec.nameWeight) : 0;
+    const inlineIndent = quantity ? Math.ceil(qtyWidth + spaceWidth) : 0;
+    const hanging = inlineIndent <= contentWidth * spec.maxIndentRatio;
+    const xName = spec.padX + (hanging ? inlineIndent : 0);
+    const nameWidth = spec.width - spec.padX - xName;
+    const nameLines = hanging
+      ? wrapText(name, nameWidth, spec.itemSize, spec.nameWeight, measure)
+      : [""].concat(wrapText(name, nameWidth, spec.itemSize, spec.nameWeight, measure));
     const block = Math.max(spec.lineHeight, nameLines.length * spec.lineHeight);
     const height = block + spec.rowGap;
     if (page.rows.length && page.cursor + height > contentBottom()) {
@@ -139,11 +171,12 @@ export function layoutShoppingList(rows, options = {}) {
     page.rows.push({
       quantity,
       quantityWidth: qtyWidth,
-      qtyColumn,
+      spaceWidth,
       nameLines,
       nameWidth,
       xQty: spec.padX,
-      xName: spec.padX + qtyColumn + spec.columnGap,
+      xName,
+      hanging,
       y: page.cursor,
       height,
     });

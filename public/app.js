@@ -8235,9 +8235,9 @@
     if (next) next.disabled = shopAppPartIndex >= shopAppParts.length - 1;
   }
 
-  async function fetchAppExport() {
+  async function fetchAppExport(purpose) {
     const epoch = sessionEpoch;
-    const res = await fetch("/api/household-shop/export?format=app", {
+    const res = await fetch("/api/household-shop/export?format=app" + (purpose === "image" ? "&for=image" : ""), {
       credentials: "same-origin",
       cache: "no-store",
       signal: sessionAbort.signal,
@@ -8249,15 +8249,25 @@
     return body;
   }
 
+  /** The sheet is a modal in the top layer, so a toast can sit behind it. Mirror feedback inside the sheet. */
+  function howFeedback(message) {
+    toast(message);
+    const status = document.getElementById("shopHowStatus");
+    if (status) {
+      status.textContent = message;
+      status.hidden = false;
+    }
+  }
+
   async function copyCurrentAppPart() {
     const text = shopAppParts[shopAppPartIndex] || "";
     if (!text) {
-      toast("Nothing to copy. The list is empty.");
+      howFeedback("Nothing to copy. The list is empty.");
       void trackShopExport("copy_app", false, "shop_sheet");
       return;
     }
     const ok = await copyText(text);
-    toast(ok
+    howFeedback(ok
       ? "Copied. Paste this into your grocery app, then review the items before buying."
       : "Couldn’t copy. Your list is still here.");
     void trackShopExport("copy_app", ok, "shop_sheet");
@@ -8267,7 +8277,7 @@
   async function shopCopyForApp() {
     const body = await fetchAppExport();
     if (!body || !body.ok) {
-      toast("Couldn’t prepare the list. Your list is still here.");
+      howFeedback("Couldn’t prepare the list. Your list is still here.");
       void trackShopExport("copy_app", false, "shop_sheet");
       return;
     }
@@ -8275,7 +8285,7 @@
     shopAppPartIndex = 0;
     renderAppPartPager();
     if (!shopAppParts.length) {
-      toast("Nothing to copy. The list is empty.");
+      howFeedback("Nothing to copy. The list is empty.");
       void trackShopExport("copy_app", false, "shop_sheet");
       return;
     }
@@ -8283,7 +8293,7 @@
       await copyCurrentAppPart();
       return;
     }
-    toast("This list is in " + shopAppParts.length + " parts. Copy each part. Nothing is left out.");
+    howFeedback("This list is in " + shopAppParts.length + " parts. Copy each part. Nothing is left out.");
     const copyPart = document.getElementById("btnShopCopyPart");
     if (copyPart) copyPart.focus();
   }
@@ -8306,13 +8316,13 @@
   async function shopSaveImage() {
     const image = window.FlavorWeaveShopImage;
     if (!image) {
-      toast("Couldn’t prepare the image. Try Copy for my grocery app.");
+      howFeedback("Couldn’t prepare the image. Try Copy for my grocery app.");
       void trackShopExport("image", false, "shop_sheet");
       return;
     }
-    const body = await fetchAppExport();
+    const body = await fetchAppExport("image");
     if (!body || !body.ok) {
-      toast(image.imageHandoffFeedback({}).message);
+      howFeedback(image.imageHandoffFeedback({}).message);
       void trackShopExport("image", false, "shop_sheet");
       return;
     }
@@ -8322,7 +8332,7 @@
         dpr: Math.min(window.devicePixelRatio || 2, 3),
       });
     } catch (_) {
-      toast(image.imageHandoffFeedback({}).message);
+      howFeedback(image.imageHandoffFeedback({}).message);
       void trackShopExport("image", false, "shop_sheet");
       return;
     }
@@ -8333,7 +8343,7 @@
       return new File([blob], name, { type: "image/png" });
     });
     if (!files.length) {
-      toast(image.imageHandoffFeedback({}).message);
+      howFeedback(image.imageHandoffFeedback({}).message);
       void trackShopExport("image", false, "shop_sheet");
       return;
     }
@@ -8342,19 +8352,29 @@
       share: navigator.share ? navigator.share.bind(navigator) : null,
       downloadAvailable: typeof document.createElement("a").download === "string",
     });
-    if (plan.method === "share") {
+    let method = plan.method;
+    if (method === "share" && navigator.canShare && !navigator.canShare({ files: files })) {
+      method = typeof document.createElement("a").download === "string" ? "download" : "open-tab";
+    }
+    if (method === "share") {
       try {
         await navigator.share({ files: files, title: "Shopping list" });
-        toast(image.imageHandoffFeedback({ method: "share", completed: true }).message);
+        howFeedback(image.imageHandoffFeedback({ method: "share", completed: true }).message);
         void trackShopExport("image", true, "shop_sheet");
         showShopReturnNote();
+        return;
       } catch (err) {
-        toast(image.imageHandoffFeedback({ method: "share", errorName: err && err.name, completed: false }).message);
+        if (err && err.name === "AbortError") {
+          howFeedback(image.imageHandoffFeedback({ method: "share", errorName: "AbortError", completed: false }).message);
+          void trackShopExport("image", false, "shop_sheet");
+          return;
+        }
+        // NotAllowedError (gesture expired) or a share target failure: fall back honestly.
         void trackShopExport("image", false, "shop_sheet");
+        method = typeof document.createElement("a").download === "string" ? "download" : "open-tab";
       }
-      return;
     }
-    if (plan.method === "download") {
+    if (method === "download") {
       files.forEach(function (file) {
         const url = URL.createObjectURL(file);
         const a = document.createElement("a");
@@ -8365,7 +8385,7 @@
         a.remove();
         setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
       });
-      toast(image.imageHandoffFeedback({ method: "download" }).message);
+      howFeedback(image.imageHandoffFeedback({ method: "download" }).message);
       void trackShopExport("download", true, "shop_sheet");
       showShopReturnNote();
       return;
@@ -8374,7 +8394,7 @@
       const url = URL.createObjectURL(file);
       window.open(url, "_blank", "noopener");
     });
-    toast(image.imageHandoffFeedback({ method: "open-tab" }).message);
+    howFeedback(image.imageHandoffFeedback({ method: "open-tab" }).message);
     void trackShopExport("image", true, "shop_sheet");
     showShopReturnNote();
   }
@@ -8383,6 +8403,11 @@
     const dlg = document.getElementById("shopHowSheet");
     if (!dlg || typeof dlg.showModal !== "function") return;
     void refreshGroceryProviders();
+    const status = document.getElementById("shopHowStatus");
+    if (status) {
+      status.textContent = "";
+      status.hidden = true;
+    }
     if (!dlg.open) dlg.showModal();
     const first = document.getElementById("btnShopHowStore");
     if (first) first.focus();

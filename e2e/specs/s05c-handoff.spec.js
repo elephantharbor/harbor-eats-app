@@ -37,7 +37,8 @@ test.describe("S-05C grocery app handoff", () => {
     await expect(sheet.getByText("Your list is ready to share. Review the items in your grocery app before checkout.")).toBeVisible();
     await expect(sheet.locator("#shopHowConnected")).toBeHidden();
     await page.locator("#btnShopCopyApp").click();
-    await expect(page.getByText("Copied. Paste this into your grocery app, then review the items before buying.")).toBeVisible();
+    await expect(sheet.locator("#shopHowStatus")).toHaveText("Copied. Paste this into your grocery app, then review the items before buying.");
+    await expect(sheet.locator("#shopHowStatus")).toBeVisible();
     const copied = await page.evaluate(() => navigator.clipboard.readText());
     expect(copied).toContain("2 lb yellow onions");
     expect(copied).not.toContain("secret sauce");
@@ -51,7 +52,7 @@ test.describe("S-05C grocery app handoff", () => {
     await page.locator("#btnShopSaveImage").click();
     const download = await downloadPromise;
     expect(download.suggestedFilename()).toMatch(/shopping-list.*\.png/);
-    await expect(page.getByText("Download started. Check your downloads")).toBeVisible();
+    await expect(sheet.locator("#shopHowStatus")).toContainText("Download started. Check your downloads");
     const shots = [
       ["375", { width: 375, height: 812 }],
       ["390", { width: 390, height: 844 }],
@@ -60,7 +61,7 @@ test.describe("S-05C grocery app handoff", () => {
     ];
     for (const [name, size] of shots) {
       await page.setViewportSize(size);
-      await page.screenshot({ path: `/opt/cursor/artifacts/s05c/sheet-${name}.png` });
+      await page.screenshot({ path: process.env.S05C_SHOT_DIR ? `${process.env.S05C_SHOT_DIR}/sheet-${name}.png` : test.info().outputPath(`sheet-${name}.png`) });
     }
     await sheet.getByRole("button", { name: "Close" }).click();
     await expect(sheet).toBeHidden();

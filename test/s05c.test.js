@@ -274,20 +274,58 @@ describe("manual fractional parsing", () => {
 });
 
 describe("shopping list image layout", () => {
-  it("lays out a flat list and keeps the quantity column wide enough", () => {
+  it("lays out a flat list as inline rows with a hanging indent", () => {
     const layout = layoutShoppingList([
       { quantity: "1 ½ lb", name: "Yukon Gold potatoes" },
-      { quantity: "12 3/4 tablespoon", name: "a very long ingredient name that has to wrap onto another line in the name column" },
+      { quantity: "12 3/4 tbsp", name: "a very long ingredient name that has to wrap onto another line in the name column" },
+      { quantity: "", name: "coffee" },
     ]);
     expect(layout.pages).toHaveLength(1);
     const page = layout.pages[0];
     expect(page.title).toBe("Shopping list");
     expect(page.rows.every((row) => !/produce|pantry/i.test(row.nameLines.join(" ")))).toBe(true);
+    for (const row of page.rows.filter((item) => item.quantity)) {
+      // The name starts one normal space after the bold quantity: no column gap.
+      expect(row.xName).toBe(row.xQty + Math.ceil(row.quantityWidth + row.spaceWidth));
+      expect(row.xName - (row.xQty + row.quantityWidth)).toBeLessThanOrEqual(row.spaceWidth + 1);
+      expect(row.xName + row.nameWidth).toBeLessThanOrEqual(page.width - page.padX + 1);
+    }
     const wide = page.rows[1];
-    expect(wide.qtyColumn).toBeGreaterThan(320);
-    expect(wide.xName + wide.nameWidth).toBeLessThanOrEqual(page.width - page.padX + 1);
+    expect(wide.hanging).toBe(true);
     expect(wide.nameLines.length).toBeGreaterThan(1);
+    const bare = page.rows[2];
+    expect(bare.xName).toBe(page.padX);
+    expect(bare.nameLines).toEqual(["coffee"]);
     expect(page.brandY).toBeGreaterThan(page.rows.at(-1).y);
+  });
+
+  it("breaks before a parenthetical group instead of inside it", () => {
+    const measure = (text, size) => String(text).length * size * 0.5;
+    const layout = layoutShoppingList(
+      [{ quantity: "1 jar", name: "Rao's marinara sauce (24 oz)" }],
+      { width: 700, padX: 40, itemSize: 40, measure }
+    );
+    const [row] = layout.pages[0].rows;
+    expect(row.nameLines).toEqual(["Rao's marinara sauce", "(24 oz)"]);
+    expect(row.nameLines.some((text) => /\($|^oz\)/.test(text))).toBe(false);
+  });
+
+  it("keeps a whole name on one line when it fits", () => {
+    const measure = (text, size) => String(text).length * size * 0.5;
+    const layout = layoutShoppingList([{ quantity: "3", name: "bananas" }], { measure });
+    expect(layout.pages[0].rows[0].nameLines).toEqual(["bananas"]);
+  });
+
+  it("drops the hanging indent when a quantity is very wide", () => {
+    const measure = (text, size) => String(text).length * size * 0.5;
+    const layout = layoutShoppingList(
+      [{ quantity: "12 3/4 tablespoons plus a pinch", name: "salt" }],
+      { width: 600, padX: 40, itemSize: 40, measure }
+    );
+    const [row] = layout.pages[0].rows;
+    expect(row.hanging).toBe(false);
+    expect(row.xName).toBe(40);
+    expect(row.nameLines).toEqual(["", "salt"]);
   });
 
   it("splits a tall list into more than one image", () => {
@@ -387,6 +425,25 @@ describe("shop_export privacy and sign-out", () => {
     expect(stored.channel).toBeNull();
     expect(storedEventProps("shop_export", { type: "nope" }).error).toBe("invalid_event");
     expect(storedEventProps("shopping_list_exported", { format: "copy" }).handled).toBe(false);
+  });
+
+  it("records the app export fetch as image or copy_app, with closed fields only", async () => {
+    const sqlite = migrate();
+    seedHousehold(sqlite, "hh_exp", "m_exp");
+    const env = { DB: asD1(sqlite), ENVIRONMENT: "test" };
+    const session = await createMemberSession(env.DB, { household_id: "hh_exp", member_id: "m_exp" });
+    const forImage = await call(env, "GET", "/api/household-shop/export?format=app&for=image", { token: session.session_token });
+    expect(forImage.status).toBe(200);
+    expect(forImage.headers.get("cache-control")).toContain("no-store");
+    const forCopy = await call(env, "GET", "/api/household-shop/export?format=app", { token: session.session_token });
+    expect(forCopy.status).toBe(200);
+    const rows = sqlite.prepare(`SELECT props_json FROM event WHERE event_name = 'shop_export' ORDER BY created_at, rowid`).all();
+    expect(rows.map((row) => JSON.parse(row.props_json))).toEqual([
+      { type: "image", ok: true, surface: "api" },
+      { type: "copy_app", ok: true, surface: "api" },
+    ]);
+    const anonymous = await call(env, "GET", "/api/household-shop/export?format=app");
+    expect(anonymous.status).toBe(401);
   });
 
   it("revokes the session, clears the cookie, and blocks the next read", async () => {
