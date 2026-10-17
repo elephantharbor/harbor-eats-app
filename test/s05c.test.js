@@ -245,6 +245,21 @@ describe("stored thirds and countable copy", () => {
   });
 });
 
+describe("typed package lead words", () => {
+  it("keeps the shopper's noun when a package word leads the name", () => {
+    expect(presentShopQuantity({ quantity: 1, unit: "unparsed", name: "dozen large eggs" }).display).toBe("1 dozen large eggs");
+    expect(presentShopQuantity({ quantity: 1, unit: "unparsed", name: "pack paper towels" }).display).toBe("1 pack paper towels");
+    expect(presentShopQuantity({ quantity: 2, unit: "unparsed", name: "bag carrots" }).display).toBe("2 bag carrots");
+    expect(presentShopQuantity({ quantity: 1, unit: "each", name: "limes" }).display).toBe("1 lime");
+    expect(presentShopQuantity({ quantity: 1, unit: "each", name: "yellow onions" }).display).toBe("1 yellow onion");
+    const typed = ["1 dozen large eggs", "1 pack paper towels"].map((text) => {
+      const parsed = parseGeneralItem(text);
+      return line({ display_name: parsed.display_name, unit: parsed.unit, quantity_manual: parsed.quantity, category: "dairy" });
+    });
+    expect(renderAppExport({ lines: typed }).lines.sort()).toEqual(["1 dozen large eggs", "1 pack paper towels"]);
+  });
+});
+
 describe("manual fractional parsing", () => {
   const cases = [
     ["1/2 lime", { quantity: 0.5, unit: "unparsed", name: "lime" }],

@@ -218,12 +218,24 @@ function unitWord(unitKey, quantity) {
   return pluralNoun(label);
 }
 
+/**
+ * A typed item can lead with a package or measure word the parser does not
+ * treat as a unit ("1 dozen large eggs", "1 pack paper towels"). The head noun
+ * is that lead word, so the last word keeps the shopper's own number.
+ */
+const PACKAGE_LEAD = new Set([
+  "dozen", "pack", "packs", "package", "packages", "bag", "bags", "box", "boxes", "bottle", "bottles",
+  "case", "cases", "carton", "cartons", "can", "cans", "jar", "jars", "bunch", "bunches", "head", "heads",
+  "loaf", "loaves", "roll", "rolls", "container", "containers", "tub", "tubs", "bundle", "bundles",
+]);
+
 function countableNoun(name, quantity) {
   const text = String(name || "").trim().replace(/\s+/g, " ");
   if (!text || text.length > 48 || !/^[A-Za-z][A-Za-z' -]*$/.test(text)) return null;
   const words = text.toLowerCase().split(" ");
   const n = Math.abs(Number(quantity));
   const last = words.length - 1;
+  if (last > 0 && PACKAGE_LEAD.has(words[0])) return words.join(" ");
   if (Number.isFinite(n) && n > 1 + QTY_EPS) words[last] = pluralNoun(words[last]);
   else if (Number.isFinite(n) && Math.abs(n - 1) <= QTY_EPS) words[last] = singularNoun(words[last]);
   return words.join(" ");
