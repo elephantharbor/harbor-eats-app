@@ -2,7 +2,8 @@
 """Offline tests for model_gate.py. No model is called; payloads mirror https://cursor.com/docs/agent/hooks."""
 import json, os, subprocess, sys, tempfile
 from pathlib import Path
-GATE = Path(__file__).resolve().parents[1] / "model_gate.py"
+_H = Path(__file__).resolve().parent
+GATE = _H / "model_gate.py" if (_H / "model_gate.py").is_file() else _H.parent / "model_gate.py"
 CASES = [
   ("grok parent subagent grok",  {"hook_event_name":"subagentStart","model_id":"grok-4.7","subagent_type":"generalPurpose","subagent_model":"grok-4.7"}, 0),
   ("slug variant allowed",       {"hook_event_name":"subagentStart","subagent_model":"cursor-grok-4.7-high-fast"}, 0),
