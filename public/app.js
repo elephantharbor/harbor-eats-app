@@ -3391,7 +3391,10 @@
 
   async function mutateDinnerPlan(payload, options) {
     const plan = state.dinnerPlan;
-    if (!plan) return null;
+    if (!plan) {
+      showHeldShopProjectionNotice();
+      return null;
+    }
     const shopOps = {
       set_line_state: true,
       swap_meal: true,
@@ -3402,6 +3405,7 @@
       add_meal: true,
       skip_meal: true,
       set_count: true,
+      reorder: true,
       finalize: true,
     };
     const affectsList = shopOps[payload.op];
@@ -3422,14 +3426,16 @@
         (await loadCurrentDinnerPlan()) ||
         (await fetchDinnerPlanById(res.dinner_plan_id || plan.dinner_plan_id));
       renderActiveDinnerSurfaces();
-      if (options && options.suppressToast) {
+      if (options && options.suppressToast && saved) {
         state.pendingDinnerToast = { text: shopProjectionFailedCopy(), opts: null };
       } else {
+        clearHeldShopProjectionNotice();
         dinnerPlanErrorToast(res);
       }
       return saved;
     }
     if (!res || !res.ok) {
+      showHeldShopProjectionNotice();
       if (!(options && options.suppressToast)) dinnerPlanErrorToast(res);
       if (res && (res.error === "outcome_locked" || res.error === "version_locked" || res.error === "illegal_transition")) {
         await loadCurrentDinnerPlan();
@@ -3500,12 +3506,27 @@
           }
         }
       }
+      clearHeldShopProjectionNotice();
     }
     return res.plan;
   }
 
   function shopProjectionFailedCopy() {
     return "The plan is saved. The shopping list didn’t update. Open the list to try again.";
+  }
+
+  function isShopProjectionNotice(message) {
+    return !!(message && message.text === shopProjectionFailedCopy());
+  }
+
+  function showHeldShopProjectionNotice() {
+    if (!isShopProjectionNotice(state.pendingDinnerToast)) return;
+    flushDinnerToast();
+  }
+
+  function clearHeldShopProjectionNotice() {
+    if (!isShopProjectionNotice(state.pendingDinnerToast)) return;
+    state.pendingDinnerToast = null;
   }
 
   function dinnerPlanErrorToast(res) {
@@ -6088,6 +6109,7 @@
     }, quiet);
     if (!added || added.failed) {
       await loadCurrentDinnerPlan();
+      showHeldShopProjectionNotice();
       if (!(options && options.suppressToast)) toast("That didn’t work. Your plan is unchanged.");
       return added && added.failed ? added : { failed: true, error: "swap_failed" };
     }
@@ -6356,6 +6378,7 @@
         );
       }
       if (res && res.failed) {
+        showHeldShopProjectionNotice();
         state.swapInFlight = false;
         swapUse.disabled = false;
         showSwapError(swapFailureCopy(res.error));

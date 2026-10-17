@@ -5,6 +5,7 @@
  */
 import { readFileSync, readdirSync } from "node:fs";
 import { DatabaseSync } from "node:sqlite";
+import vm from "node:vm";
 import { describe, expect, it, vi } from "vitest";
 import { classifyClientError, summarizeClientErrors } from "../src/lib/client-error-class.js";
 import { databaseLeakText } from "../src/lib/db-error.js";
@@ -18,6 +19,22 @@ import { projectSavedPlan, routeHouseholdShopRequest } from "../src/lib/househol
 import { commitList, isExpectedRevisionConflict, loadOpenList } from "../src/lib/household-shop-store.js";
 import { createMemberSession } from "../src/lib/session.js";
 import { formatShopQty, presentShopQuantity, SHOP_QTY_UNICODE } from "../src/lib/shop-display.js";
+
+function loadShopNoticeClient() {
+  const app = readFileSync(new URL("../public/app.js", import.meta.url), "utf8");
+  const flushSrc = app.slice(app.indexOf("  function flushDinnerToast"), app.indexOf("  async function mutateDinnerPlan"));
+  const noticeSrc = app.slice(app.indexOf("  function shopProjectionFailedCopy"), app.indexOf("  function dinnerPlanErrorToast"));
+  const shown = [];
+  const sandbox = {
+    state: { pendingDinnerToast: null },
+    shown,
+    toast(text, opts) {
+      shown.push({ text, opts });
+    },
+  };
+  vm.runInNewContext(`${flushSrc}\n${noticeSrc}`, sandbox);
+  return sandbox;
+}
 
 function migrate() {
   const sqlite = new DatabaseSync(":memory:");
@@ -539,6 +556,58 @@ describe("quantity presentation", () => {
     expect(find).toContain('op: "set_count"');
     expect(find).toContain("if (!afterCount) return");
     expect(find).toContain('op: "add_meal"');
+  });
+
+  it("shows a held list notice when a swap's add fails hard, then leaves the next swap clear", () => {
+    const app = readFileSync(new URL("../public/app.js", import.meta.url), "utf8");
+    const mutate = app.slice(app.indexOf("async function mutateDinnerPlan"), app.indexOf("function shopProjectionFailedCopy"));
+    const hard = mutate.slice(mutate.indexOf("if (!res || !res.ok)"), mutate.indexOf("applyDinnerPlan(res.plan)"));
+    const shownAt = hard.indexOf("showHeldShopProjectionNotice()");
+    expect(shownAt).toBeGreaterThan(-1);
+    expect(shownAt).toBeLessThan(hard.indexOf("return { failed: true"));
+    expect(shownAt).toBeLessThan(hard.indexOf("return null"));
+    const early = mutate.slice(0, mutate.indexOf("const shopOps"));
+    expect(early).toContain("showHeldShopProjectionNotice()");
+    const replace = app.slice(app.indexOf("async function replaceSlotWithRecipe"), app.indexOf("function initPlanRatingsForMeal"));
+    const addFail = replace.slice(replace.indexOf("if (!added || added.failed)"), replace.indexOf("const newMeal"));
+    expect(addFail).toContain("showHeldShopProjectionNotice()");
+    const swap = app.slice(app.indexOf("data-action='swap-use'"), app.indexOf("data-action='open-participants'"));
+    const failedStart = swap.indexOf("if (res && res.failed)");
+    const failed = swap.slice(failedStart, swap.indexOf("if (res) {", failedStart + 1));
+    expect(failed).toContain("showHeldShopProjectionNotice()");
+    expect(swap).toContain('else toast("Swapped in.")');
+
+    const client = loadShopNoticeClient();
+    client.state.pendingDinnerToast = { text: client.shopProjectionFailedCopy(), opts: null };
+    client.showHeldShopProjectionNotice();
+    expect(client.shown.map((row) => row.text)).toEqual([client.shopProjectionFailedCopy()]);
+    expect(client.state.pendingDinnerToast).toBeNull();
+    client.flushDinnerToast();
+    expect(client.shown).toHaveLength(1);
+  });
+
+  it("clears a held list notice when reorder lands the projection", () => {
+    const app = readFileSync(new URL("../public/app.js", import.meta.url), "utf8");
+    const mutate = app.slice(app.indexOf("async function mutateDinnerPlan"), app.indexOf("function shopProjectionFailedCopy"));
+    const ops = mutate.slice(mutate.indexOf("const shopOps"), mutate.indexOf("const affectsList"));
+    expect(ops).toContain("reorder: true");
+    const success = mutate.slice(mutate.indexOf("if (affectsList)"), mutate.indexOf("return res.plan"));
+    expect(success.indexOf("clearHeldShopProjectionNotice()")).toBeGreaterThan(success.indexOf("if (listChanged)"));
+
+    const client = loadShopNoticeClient();
+    client.state.pendingDinnerToast = { text: client.shopProjectionFailedCopy(), opts: null };
+    client.clearHeldShopProjectionNotice();
+    expect(client.state.pendingDinnerToast).toBeNull();
+    client.flushDinnerToast();
+    expect(client.shown).toEqual([]);
+
+    client.state.pendingDinnerToast = { text: "List updated.", opts: null };
+    client.clearHeldShopProjectionNotice();
+    expect(client.state.pendingDinnerToast).toEqual({ text: "List updated.", opts: null });
+    client.showHeldShopProjectionNotice();
+    expect(client.shown).toEqual([]);
+    client.flushDinnerToast();
+    expect(client.shown.map((row) => row.text)).toEqual(["List updated."]);
   });
 
   it("keeps canonical quantities and the provider payload byte-identical", () => {
