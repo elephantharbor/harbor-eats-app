@@ -17,8 +17,13 @@ export const CLIENT_ERROR_CLASSES = Object.freeze([
 
 const EXPECTED_ABORT_CODE = new Set(["aborted", "aborterror", "cancelled", "canceled", "share_cancelled"]);
 
-/** Invite guards that worked. A 409 or 410 here is not a broken page. */
-const EXPECTED_GUARD_CODE = new Set(["wrong_household_logged_in", "invite_expired", "invite_inactive"]);
+/** Invite guards that worked, and a navigation guard that opened Home for an unknown view. */
+const EXPECTED_GUARD_CODE = new Set([
+  "wrong_household_logged_in",
+  "invite_expired",
+  "invite_inactive",
+  "unknown_view",
+]);
 
 const EXPECTED_LOGGED_OUT = new Set(["/api/sessions/me", "/api/events"]);
 
