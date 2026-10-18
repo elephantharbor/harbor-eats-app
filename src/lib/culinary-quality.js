@@ -43,8 +43,7 @@ const UNSALTED_REASON_RE =
 const RAW_TASTE_RE =
   /\btaste the (raw )?(chicken|salmon|fish fillet|shrimp|pork|ground beef|burger)\b/i;
 
-const OPTIONAL_TEMP_RE =
-  /\b(optional|not the safety|not a safety|not recommended as safe|personal texture preference|not the instruction)\b/i;
+const OPTIONAL_SPAN_RE = /\bOptional\b[\s\S]{0,800}?immunocompromised/gi;
 
 function asArray(value) {
   return Array.isArray(value) ? value : [];
@@ -157,9 +156,77 @@ function banHasReason(body, pkg) {
 function fdaFloor(kind) {
   if (kind === "poultry") return FDA_POULTRY_F;
   if (kind === "ground") return FDA_GROUND_F;
-  if (kind === "seafood") return FDA_SEAFOOD_F;
+  if (kind === "seafood" || kind === "shellfish") return FDA_SEAFOOD_F;
   if (kind === "whole_muscle") return FDA_WHOLE_MUSCLE_F;
   return null;
+}
+
+function labeledOptionalSpans(prose) {
+  /** @type {[number, number][]} */
+  const spans = [];
+  for (const match of prose.matchAll(OPTIONAL_SPAN_RE)) {
+    const slice = match[0];
+    if (!/does not meet/i.test(slice)) continue;
+    if (!/higher risk/i.test(slice)) continue;
+    if (!/USDA\/FDA|USDA|FDA/i.test(slice)) continue;
+    spans.push([match.index, match.index + slice.length]);
+  }
+  return spans;
+}
+
+function spanCovers(index, spans) {
+  return spans.some(([start, end]) => index >= start && index < end);
+}
+
+function blankSpans(prose, spans) {
+  let out = prose;
+  for (const [start, end] of [...spans].reverse()) {
+    out = `${out.slice(0, start)}${" ".repeat(end - start)}${out.slice(end)}`;
+  }
+  return out;
+}
+
+function temperatureWindowKind(window, dishKind) {
+  const text = window.replace(/\bfish sauce\b/gi, " ");
+  if (/\b(shrimp|scallops?)\b/i.test(text)) return "shellfish";
+  if (/\b(salmon|tuna|halibut|branzino|swordfish|cod|fish|fillet)\b/i.test(text)) return "seafood";
+  if (/\b(chicken|turkey|duck|breast)\b/i.test(text)) return "poultry";
+  if (/\b(steak|beef|pork|lamb|chop)\b/i.test(text)) return "whole_muscle";
+  if (/\bground\b/i.test(text)) return "ground";
+  return dishKind;
+}
+
+function mentionsInternalOrProtein(window) {
+  return /\b(internal|thickest|center|interior|doneness|chicken|turkey|duck|salmon|cod|fish|shrimp|scallop|tuna|steak|beef|pork|lamb|halibut|branzino|swordfish|chop|fillet|breast)\b/i.test(
+    window.replace(/\bfish sauce\b/gi, " ")
+  );
+}
+
+function looksLikeApplianceHeat(window) {
+  return (
+    /\b(oven|grill|grates|broiler|broil|preheat|direct high heat|smoking)\b/i.test(window) &&
+    !/\b(internal|thickest|center|interior)\b/i.test(window)
+  );
+}
+
+/**
+ * Shrimp and scallops may state the FDA primary as opaque and firm.
+ * Every other protein needs an internal temperature at or above the floor,
+ * outside any labeled optional note, and not an oven or grill setting.
+ */
+function primaryIsSafe(primary, windowKind, windowFloor) {
+  if (windowKind === "shellfish" && /\bopaque\b/i.test(primary) && /\bfirm\b/i.test(primary)) return true;
+  const temps = [...primary.matchAll(/(\d{2,3})(?:\s*°|\s*degrees)?\s*F\b/gi)];
+  for (const match of temps) {
+    const temp = Number(match[1]);
+    if (temp < windowFloor) continue;
+    const at = match.index || 0;
+    const window = primary.slice(Math.max(0, at - 90), at + 80);
+    if (looksLikeApplianceHeat(window)) continue;
+    if (!mentionsInternalOrProtein(window)) continue;
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -225,30 +292,49 @@ export function assessCulinaryQuality(pkg) {
   const kind = proteinClass(pkg);
   const floor = fdaFloor(kind);
   if (floor) {
+    const spans = labeledOptionalSpans(prose);
     const temps = [...prose.matchAll(/(\d{2,3})(?:\s*°|\s*degrees)?\s*F\b/gi)];
+    /** @type {{windowKind: string, windowFloor: number, temp: number}[]} */
+    const optionalLows = [];
     for (const match of temps) {
       const temp = Number(match[1]);
       if (temp >= floor) continue;
       const at = match.index || 0;
       const window = prose.slice(Math.max(0, at - 90), at + 80);
-      if (OPTIONAL_TEMP_RE.test(window)) continue;
-      const aboutProtein = /\b(internal|thickest|center|doneness|chicken|turkey|duck|salmon|cod|fish|shrimp|clam|tuna|steak|beef|pork|lamb|scallop|halibut|branzino|chop|fillet|breast)\b/i.test(
-        window
-      );
+      const aboutProtein =
+        /\b(internal|thickest|center|doneness|chicken|turkey|duck|salmon|cod|fish|shrimp|clam|tuna|steak|beef|pork|lamb|scallop|halibut|branzino|chop|fillet|breast)\b/i.test(
+          window
+        );
       if (!aboutProtein) continue;
-      const doneness = String(version.doneness || "");
-      const carryoverStated =
-        new RegExp(`(?:carryover|rises to|rising to)[\\s\\S]{0,40}\\b${floor}\\s*F\\b`, "i").test(doneness) ||
-        new RegExp(`(?:carryover|rises to|rising to)[\\s\\S]{0,40}\\b${floor}\\s*F\\b`, "i").test(window);
-      if (carryoverStated && temp >= floor - 10) continue;
-      const windowKind = /\b(shrimp|scallop|salmon|tuna|halibut|branzino|swordfish|fish)\b/i.test(window)
-        ? "seafood"
-        : /\b(chicken|turkey|duck|breast)\b/i.test(window)
-          ? "poultry"
-          : kind;
+      const windowKind = temperatureWindowKind(window, kind);
       const windowFloor = fdaFloor(windowKind) || floor;
       if (temp >= windowFloor) continue;
+      if (spanCovers(at, spans)) {
+        optionalLows.push({ windowKind, windowFloor, temp });
+        continue;
+      }
+      const doneness = String(version.doneness || "");
+      const carryoverStated =
+        new RegExp(`(?:carryover|rises to|rising to)[\\s\\S]{0,40}\\b${windowFloor}\\s*F\\b`, "i").test(doneness) ||
+        new RegExp(`(?:carryover|rises to|rising to)[\\s\\S]{0,40}\\b${windowFloor}\\s*F\\b`, "i").test(window);
+      if (carryoverStated && temp >= windowFloor - 10) continue;
       push(fails, "unsafe_temperature", `${windowKind} instruction ${temp} F is below the FDA ${windowFloor} F default`);
+    }
+    if (optionalLows.length) {
+      const primary = blankSpans(prose, spans);
+      const seen = new Set();
+      for (const item of optionalLows) {
+        const key = `${item.windowKind}:${item.windowFloor}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        if (!primaryIsSafe(primary, item.windowKind, item.windowFloor)) {
+          push(
+            fails,
+            "unsafe_temperature",
+            `${item.windowKind} names ${item.temp} F inside an optional note, and the primary instruction is not the FDA default`
+          );
+        }
+      }
     }
   }
 

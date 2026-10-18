@@ -23,4 +23,12 @@ No images were generated. Version ids still resolve to the existing WebP files, 
 | spanish-potato-tortilla | No. |
 | linguine-with-clams | No. |
 
-The three regen candidates are salmon, pesto, and Moroccan parsley. Thai basil flakes are the only other visible maybe.
+The three regen candidates are salmon, pesto, and Moroccan parsley. Thai basil flakes are the only other visible maybe. The twelve doneness revisions do not change the plate, so they do not need a new hero. Swordfish's existing brief still describes the v1 pull temperature; the photograph does not show an internal temperature, so that brief was left as the image record.
+
+Plating briefs, using the sections in `factory/IMAGE-SPEC.md`:
+
+- `docs/catalog/s08/image-plating-salmon.md`
+- `docs/catalog/s08/image-plating-pesto.md`
+- `docs/catalog/s08/image-plating-moroccan.md` — regenerate only if the current hero is a bare skillet
+
+`python3 factory/tools/export_meal_webps.py` can center-crop an already-generated source into the 1200×900 and 640×480 WebP pair. The repo has no image-generation pipeline and no generator credentials. Pixels are a later image pass. This cycle does not block on them.

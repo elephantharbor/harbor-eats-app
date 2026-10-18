@@ -1,0 +1,444 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-13. Image pass complete. Not certified. Not published. Not imported.",
+  "batch_id": "wave-13-2026-10-11",
+  "batch_label": "wave-13",
+  "mode": "author_batch",
+  "package_revision": "s08-doneness",
+  "authored_on": "2026-10-11",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Author (catalog factory cloud agent)",
+  "authored_by": "Cursor cloud agent, author role, wave-13",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "seared-duck-breast-cherry",
+    "slug": "seared-duck-breast-cherry",
+    "title": "Seared Duck Breast with Cherry Pan Sauce",
+    "description": "Duck breasts with the skin seared until crisp, a cherry pan sauce, and arugula. No butter.",
+    "cuisine": "french",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "duck breast",
+    "vocabulary_tag_ids": [
+      "rich",
+      "savory",
+      "tangy",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_seared-duck-breast-cherry",
+    "current_version_id": "rv_seared-duck-breast-cherry_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_seared-duck-breast-cherry",
+    "dish_id": "seared-duck-breast-cherry",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-11",
+      "curator": "Author (catalog factory cloud agent)",
+      "process": "FlavorWeave Catalog Factory wave-13-2026-10-11",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_seared-duck-breast-cherry_v2",
+    "recipe_id": "rcp_seared-duck-breast-cherry",
+    "dish_id": "seared-duck-breast-cherry",
+    "version_number": 2,
+    "package_revision": "s08-doneness",
+    "immutable": true,
+    "immutability_note": "v2 supersedes v1. Doneness instruction only. kitchen_tested is false. Not a household rating.",
+    "title": "Seared Duck Breast with Cherry Pan Sauce",
+    "description": "Duck breasts with the skin seared until crisp, a cherry pan sauce, and arugula. No butter.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "duck-breasts",
+        "name": "duck breast",
+        "display_name": "duck breast",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 7 oz each",
+        "preparation": "skin scored in a crosshatch, not through the meat",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "cherries",
+        "name": "cherries",
+        "display_name": "cherries",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "fresh or frozen, pitted",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "shallot",
+        "name": "shallot",
+        "display_name": "shallot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-wine-vinegar",
+        "name": "red wine vinegar",
+        "display_name": "red wine vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "red-wine",
+        "name": "red wine",
+        "display_name": "red wine",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "dry",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "honey",
+        "name": "honey",
+        "display_name": "honey",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "thyme",
+        "name": "thyme",
+        "display_name": "thyme sprigs",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "arugula",
+        "name": "arugula",
+        "display_name": "arugula",
+        "quantity": 4,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Score and season",
+        "body": "Score the duck skin. Salt the duck with 1 1/4 tsp salt and the pepper. Halve the cherries if they are large, and mince the shallot. Save the last 1/4 tsp salt for the arugula. About 10 minutes.",
+        "ingredient_refs": [
+          "duck-breasts",
+          "kosher-salt",
+          "black-pepper",
+          "cherries",
+          "shallot"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Sear the skin",
+        "body": "Put the breasts skin-side down in a cold skillet. Set the heat to medium. Sear until the skin is crisp and golden and the fat has rendered, about 10 minutes, pouring off fat as it collects and saving 1 tbsp. Flip and sear the flesh side about 7 minutes, to 165 F. Rest the duck on a plate for 5 minutes. Optional traditional preparation: a rosy interior, about 135 F, after about 3 minutes on the flesh side. That lower temperature does not meet the USDA/FDA recommendation and carries higher risk, especially for young children, pregnant people, older adults, and anyone immunocompromised.",
+        "ingredient_refs": [
+          "duck-breasts"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Cherry sauce and arugula",
+        "body": "Pour off all but 1 tsp of fat. Cook the shallot 30 seconds. Add the cherries, vinegar, wine, honey, and thyme. Simmer until the sauce coats a spoon, about 6 minutes, while the duck rests. Slice the duck. Toss the arugula with the reserved 1 tbsp of rendered fat and the last 1/4 tsp salt. Cook is 26 minutes.",
+        "ingredient_refs": [
+          "shallot",
+          "cherries",
+          "red-wine-vinegar",
+          "red-wine",
+          "honey",
+          "thyme",
+          "arugula",
+          "duck-breasts",
+          "kosher-salt"
+        ]
+      }
+    ],
+    "components": [
+      {
+        "component_id": "sauce",
+        "name": "cherry pan sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "cherries",
+          "shallot",
+          "red wine vinegar",
+          "red wine",
+          "honey",
+          "thyme"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "tongs",
+      "instant-read thermometer",
+      "small bowl"
+    ],
+    "methods": [
+      "sear"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "crispy"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 22,
+    "total_time_minutes": 32,
+    "prep_minutes": 10,
+    "cook_minutes": 26,
+    "total_minutes": 36,
+    "time_clock": "Prep 10 is scoring, salt, and the shallot and cherries. Cook 26 is about 10 minutes skin-side, 7 minutes on the flesh, and 8 minutes for the sauce while the duck rests. No oven.",
+    "heat": "Medium skillet, starting with a cold pan so the skin renders. Medium for the sauce.",
+    "doneness": "Skin crisp and golden, interior 165 F (USDA poultry), then a 5-minute rest. Sauce syrupy enough to coat a spoon. Optional traditional preparation: a rosy interior, about 135 F. That lower temperature does not meet the USDA/FDA recommendation and carries higher risk, especially for young children, pregnant people, older adults, and anyone immunocompromised.",
+    "effort_level": "involved",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Cursor cloud agent, author role, wave-13",
+        "when": "2026-10-11",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": true,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Duck is poultry, which HH001 does not eat. There is no dairy."
+    },
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. Not vegetarian and not plant-based. Poultry, so not HH001.",
+    "allergens": [
+      "poultry"
+    ],
+    "allergen_notes": [
+      "Poultry is the duck. No milk and no wheat."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Duck is poultry, which HH001 does not eat. There is no dairy.",
+    "hh001_contract": "Not an HH001 meal. The sauce has no butter: shallot, cherries, vinegar, red wine, and honey.",
+    "vocabulary_tag_ids": [
+      "rich",
+      "savory",
+      "tangy",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r1_image_pass_complete",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js. Warnings about other methods stay out of the title, description, and steps."
+    },
+    "culinary_hash_basis": "S-08 removed the v1 culinary hash because the doneness instruction changed. catalog-import.js computes the import content hash.",
+    "supersedes_recipe_version_id": "rv_seared-duck-breast-cherry_v1"
+  },
+  "image": {
+    "image_id": "img_seared-duck-breast-cherry_v1",
+    "dish_id": "seared-duck-breast-cherry",
+    "recipe_version_id": "rv_seared-duck-breast-cherry_v1",
+    "asset_generated": true,
+    "slot_status": "image_pass_complete",
+    "master_filename": "seared-duck-breast-cherry.webp",
+    "card_filename": "seared-duck-breast-cherry-640.webp",
+    "master_ref": "seared-duck-breast-cherry.webp",
+    "card_ref": "seared-duck-breast-cherry-640.webp",
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "seared-duck-breast-cherry.webp",
+        "spec_catalog_path": "/images/meals/seared-duck-breast-cherry.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "seared-duck-breast-cherry-640.webp",
+        "spec_catalog_path": "/images/meals/seared-duck-breast-cherry-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "dimensions_note": "Center-crop of the 1280x720 GenerateImage JPEG to 4:3, LANCZOS-resized with export_meal_webps.py.",
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_webp_export",
+      "generator": "Grok Bot GenerateImage",
+      "model": "unknown",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "factory/tools/image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generation_date": "2026-10-11",
+      "generation_window": "2026-10-11 13:08-13:15 CT",
+      "regeneration_count": 0
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "package_revision": "author-r1",
+    "rejected_dir": "rejected/",
+    "active_source_jpeg": "img_v1.jpg",
+    "provenance_note": "Original AI image generated with Grok Bot GenerateImage from this package's prompt and plating brief. No stock or web imagery.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "0ef570e4addc470a3dfb1c5076ba098305bf3324c72c4d79e1577b25e74335a1",
+      "master_sha256": "d298c1b38f288eae0947d615736447376582dfb299fb9bae07543170ba2a7f67",
+      "card_sha256": "9d83da4ec820d1479b4abed1e66c04949c54ef20c4bfa005bc4d13155a8f7773"
+    },
+    "regeneration_count": 0
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "AWAITING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 10 is scoring, salt, and the shallot and cherries. Cook 22 is about 10 minutes skin-side, 3 minutes on the flesh, and 8 minutes for the sauce while the duck rests. No oven."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "Master and card WebPs present from the image pass."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"crispy\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "1": "One breast, a quarter of the sauce, a handful of arugula.",
+    "2": "Two breasts, half the sauce.",
+    "4": "As written. Use two skillets if the breasts do not fit in one layer.",
+    "base_servings": 4,
+    "do_not_scale": [
+      "start in a cold pan",
+      "rest the meat"
+    ]
+  },
+  "coverage_contribution": "First duck. Second French meal after the niçoise, and a hot plate rather than a salad.",
+  "near_duplicate_review": "No other duck. Chicken skillets are a different bird and usually a different sauce. Scallops with parsnip are shellfish and dairy.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r1_image_pass_complete",
+  "evidence": {
+    "doneness_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "The primary instruction is the USDA/FDA safe minimum. Where the dish is traditionally served less done, that doneness is a labeled optional note and is not the instruction. This is not a kitchen test and not a household rating."
+  },
+  "kitchen_tested": false
+}

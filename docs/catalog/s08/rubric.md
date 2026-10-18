@@ -35,7 +35,7 @@ Do not print a precise sodium number from these kitchen measures. Brand Dijon, s
 
 `src/lib/culinary-quality.js` fails a package for an unnamed salt, a missing or unusable amount, a missing unit, an ingredient the steps never use, a step that cites an unlisted ingredient, a do-not-add with no culinary or dietary reason, a taste step on raw protein, and an internal temperature below the FDA default for the protein in that sentence.
 
-Seafood 145 F. Poultry 165 F. Ground meat 160 F. Whole-muscle beef, pork, and lamb 145 F. A pull temperature within 10 F of the floor is accepted when the doneness text says carryover or rising to the floor. A lower number that the text marks as not the instruction is accepted.
+Seafood 145 F. Poultry 165 F. Ground meat 160 F. Whole-muscle beef, pork, and lamb 145 F. Shrimp and scallops are cooked until the flesh is opaque and firm. A pull temperature within 10 F of the floor is accepted when the doneness text says carryover or rising to the floor. A lower number is accepted only inside a labeled optional note that says it does not meet the USDA/FDA recommendation and carries higher risk, and only when the text outside that note still gives the safe primary instruction. A recipe whose only temperature is below the default fails. The word optional by itself does not make a lower temperature the safe instruction.
 
 A missing boil-salt ratio is a warning. A reviewer override `boiling_salt_ratio`, or `do_not_add:<step number>`, records that a person accepted it.
 
@@ -43,4 +43,4 @@ Structural preflight runs the checks only when `evidence.culinary_reviewed` is s
 
 ## Evidence
 
-Structurally validated, culinary-reviewed, kitchen-tested, and household-rated are separate. Only a recorded human cook moves the last two. This cycle's revisions are culinary-reviewed and not kitchen-tested.
+Structurally validated, culinary-reviewed, kitchen-tested, and household-rated are separate. Only a recorded human cook moves the last two. The seasoning revisions are culinary-reviewed and not kitchen-tested. The doneness revisions record `doneness_reviewed` and do not set `culinary_reviewed`, because the salt text was left alone.

@@ -98,13 +98,13 @@ describe("catalog import", () => {
         expect(createHash("sha256").update(left).digest("hex")).toBe(createHash("sha256").update(right).digest("hex"));
       }
     }
-    expect(records).toHaveLength(293);
+    expect(records).toHaveLength(305);
     expect(records.filter((record) => record.version_number === 1 && record.source_contract === LEGACY_CONTRACT)).toHaveLength(
       24
     );
-    expect(records.filter((record) => record.version_number === 2)).toHaveLength(28);
+    expect(records.filter((record) => record.version_number === 2)).toHaveLength(40);
     expect(records.filter((record) => record.version_number === 3)).toHaveLength(15);
-    expect(records.filter((record) => record.provenance.factory_certified === 1)).toHaveLength(230);
+    expect(records.filter((record) => record.provenance.factory_certified === 1)).toHaveLength(242);
     expect(records.filter((record) => record.provenance.certification_class === "legacy_structural")).toHaveLength(63);
     const swordfish = records.find((record) => record.slug === "grilled-swordfish-olive-caper");
     expect(swordfish.provenance.kitchen_tested).toBe(0);
@@ -145,11 +145,11 @@ describe("catalog import", () => {
     expect(loaded.count).toBe(250);
     const again = await importOnce(database, records, retireVersionIds);
     expect(again.ok).toBe(true);
-    expect(again.unchanged).toHaveLength(293);
+    expect(again.unchanged).toHaveLength(305);
     const reloaded = await loadPublishedCatalog(shim);
     expect(reloaded.ok, reloaded.error || reloaded.detail).toBe(true);
     expect(reloaded.count).toBe(250);
-    expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_version").get().c).toBe(293);
+    expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_version").get().c).toBe(305);
     const salmon = database
       .prepare(
         `SELECT recipe_version_id, publication_status, version_number FROM catalog_version WHERE dish_id = 'maple-mustard-glazed-salmon' ORDER BY version_number`
@@ -196,6 +196,7 @@ describe("catalog import", () => {
     expect(database.prepare(`SELECT COUNT(*) AS c FROM catalog_ingredient WHERE recipe_version_id = 'rv_korean-soft-tofu-stew_v1'`).get().c).toBeGreaterThan(0);
     const allergens = (id) => database.prepare("SELECT allergen FROM catalog_allergen WHERE recipe_version_id = ?").all(id).map((r) => r.allergen);
     expect(allergens("rv_gochujang-grilled-flank-steak_v1")).toContain("wheat");
+    expect(allergens("rv_gochujang-grilled-flank-steak_v2")).toContain("wheat");
     expect(allergens("rv_sabich-pita-sandwiches_v1")).toContain("sesame");
     const chickenLabels = database.prepare("SELECT label FROM catalog_dietary_label WHERE recipe_version_id = 'rv_crispy-skillet-chicken-sandwiches_v1'").all().map((r) => r.label);
     expect(chickenLabels).not.toContain("dairy_free");
@@ -274,7 +275,7 @@ describe("catalog import", () => {
       }
     );
     expect(created.ok, JSON.stringify(created)).toBe(true);
-    expect(created.plan.meals[0].recipe_version_id).toBe("rv_grilled-swordfish-olive-caper_v1");
+    expect(created.plan.meals[0].recipe_version_id).toBe("rv_grilled-swordfish-olive-caper_v2");
     expect(created.plan.meals[0].pinned_ingredients[0].name).toBe(swordfish.pkg.ingredients[0].name);
     expect(created.plan.shop_lines.some((line) => line.ingredient_id === "swordfish-steak")).toBe(true);
     const mutated = {

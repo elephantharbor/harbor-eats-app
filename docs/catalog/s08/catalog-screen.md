@@ -2,7 +2,7 @@
 
 `node scripts/s08-catalog-screen.mjs` reads the live `vN.json` of every dish and runs `assessCulinaryQuality`. Flags are candidates. They are not automatic rewrites.
 
-Unbranded "kosher salt" on a package that is not an S-08 revision is counted and not flagged. The gram-and-brand rule applies to new and materially revised recipes. 217 live pre-S-08 dishes still say an unnamed kosher salt. That is recorded here. It is not a batch rewrite.
+Unbranded "kosher salt" on a package that is not culinary-reviewed is counted and not flagged. The gram-and-brand rule applies to seasoning revisions. 217 live dishes still say an unnamed kosher salt, including the 12 doneness revisions, which did not change salt. That is recorded here. It is not a batch rewrite.
 
 A boil-salt warning is not flagged when the steps already mention salt, soy, miso, broth, or stock. The first pass of that warning marked about 102 dishes, and 92 of those already season the pot or the sauce. Treating that list as defects would have been the heuristic, not the catalog.
 
@@ -11,15 +11,15 @@ A boil-salt warning is not flagged when the steps already mention salt, soy, mis
 | | |
 |---|---|
 | Screened | 250 |
-| Culinary-reviewed in this cycle (the 18 new versions) | 18 |
-| Flagged on the post-revision catalog | 13 |
-| Defects revised | 18 |
-| Dishes left on their previous version | 232 |
-| Needs a kitchen test before anyone calls a revision proven | 18 |
-| Sub-FDA internal temperatures found and not rewritten | 12 |
+| Culinary-reviewed in this cycle (seasoning revisions) | 18 |
+| Doneness revisions (safe primary instruction, not a seasoning rewrite) | 12 |
+| Flagged on the post-revision catalog | 1 |
+| Defects revised | 30 version files (18 seasoning, 12 doneness) |
+| Dishes left on their previous version | 220 |
+| Needs a kitchen test before anyone calls a revision proven | 30 |
 | Flag reviewed and left unchanged | 1 (`vietnamese-ca-kho-catfish`) |
 
-The 18 revisions are the fifteen legacy v3 files plus Steak au Poivre, Spanish Tortilla, and Linguine with Clams. They are not in the flagged 13 because they pass the objective checks.
+The 18 seasoning revisions are the fifteen legacy v3 files plus Steak au Poivre, Spanish Tortilla, and Linguine with Clams. The 12 doneness revisions are factory v2 files. They are not flagged because the primary instruction is the USDA/FDA minimum and any traditional lower temperature sits in a labeled optional note.
 
 ## Named factory dishes
 
@@ -31,24 +31,29 @@ Linguine with clams, v2. Salt is 38 g in 4 qt (about 1%). The clam sauce is tast
 
 New England clam chowder was a false screen hit. It already says to salt to taste because clam juice is salty. It was not revised.
 
-## The 13 flags, after review
+## Doneness revisions
 
-These were read. They were not given a new version in this cycle. Changing rare tuna, duck breast, or a medium-rare steak across the factory catalog is a safety-versus-identity decision for Oversight. The new check will fail a future culinary revision that keeps a lower number as the instruction.
+Oversight's rule: do not publish a lower temperature as universally safe. Each of these is a new factory v2. The primary instruction is the USDA/FDA minimum. Where the dish is traditionally served less done, that doneness is a labeled optional note and says the lower temperature does not meet the recommendation. No other recipe text changed. `evidence.culinary_reviewed` is not set, so the gram-and-brand salt rule was not applied to these twelve.
+
+| Dish | Version | Primary instruction | Optional note |
+|---|---|---|---|
+| ethiopian-beef-tibs | `rv_ethiopian-beef-tibs_v2` | 145 F, then a 3-minute rest. Cook 29, total 44. | Medium cubes, about 135 F to 140 F. |
+| gochujang-grilled-flank-steak | `rv_gochujang-grilled-flank-steak_v2` | 145 F, then the existing 5-minute rest. Cook 27, total 52. | Medium-rare, 130 F to 135 F. |
+| grilled-swordfish-olive-caper | `rv_grilled-swordfish-olive-caper_v2` | 145 F, then the existing 3-minute rest. Cook 30, total 48. | 130 F to 135 F. |
+| malaysian-curry-laksa | `rv_malaysian-curry-laksa_v2` | Shrimp pink, opaque, and firm. Cook 29, total 54. | Translucent center, about 120 F to 125 F. |
+| nigerian-beef-suya-skewers | `rv_nigerian-beef-suya-skewers_v2` | 145 F, then a 3-minute rest. Cook 41, total 61. | About 140 F. |
+| pan-seared-halibut-lemon-butter-corn | `rv_pan-seared-halibut-lemon-butter-corn_v2` | 145 F. Cook 18, total 26. | 130 F to 135 F. |
+| roasted-whole-branzino-salmoriglio | `rv_roasted-whole-branzino-salmoriglio_v2` | 145 F. Cook 49, total 64. | 135 F to 140 F. |
+| salade-nicoise-seared-tuna | `rv_salade-nicoise-seared-tuna_v2` | 145 F, 3 minutes per side. Cook 32, total 47. | Rare center, about 115 F. |
+| seared-duck-breast-cherry | `rv_seared-duck-breast-cherry_v2` | 165 F, then the existing 5-minute rest. Cook 26, total 36. | Rosy interior, about 135 F. |
+| seared-scallops-parsnip-puree | `rv_seared-scallops-parsnip-puree_v2` | Opaque and firm. Cook 41, total 51. | Translucent center, about 120 F to 125 F. |
+| tex-mex-steak-fajitas | `rv_tex-mex-steak-fajitas_v2` | 145 F, then the existing 5-minute rest. Cook 34, total 54. | Medium-rare, about 130 F. |
+| thai-yum-nua-beef-salad | `rv_thai-yum-nua-beef-salad_v2` | 145 F, then the existing 5-minute rest. Cook 32, total 44. | Medium-rare, about 130 F. `contains_finfish` is still fish sauce, not a fillet. |
+
+## The flag that stayed
 
 | Dish | What the screen saw | Decision |
 |---|---|---|
-| ethiopian-beef-tibs | Beef cubes at about 135–140 F | Left. No 145 F instruction beside it. |
-| gochujang-grilled-flank-steak | 135 F | Left. Medium-rare is the written instruction. |
-| grilled-swordfish-olive-caper | 135 F | Left. Seafood default is 145 F. |
-| malaysian-curry-laksa | Shrimp at 120–125 F | Left. The checker now calls this seafood, not the chicken in the same dish. |
-| nigerian-beef-suya-skewers | About 140 F | Left. |
-| pan-seared-halibut-lemon-butter-corn | 135 F | Left. |
-| roasted-whole-branzino-salmoriglio | 140 F | Left. |
-| salade-nicoise-seared-tuna | About 115 F, with 145 F as the cooked-through alternative | Left. Rare tuna is the dish. 115 F is still the first instruction. |
-| seared-duck-breast-cherry | 135 F | Left. 165 F would be a different dish. |
-| seared-scallops-parsnip-puree | 120–125 F, with 145 F described as the fully cooked recommendation | Left. The first instruction is still the lower one. |
-| tex-mex-steak-fajitas | 135 F and 130 F | Left. |
-| thai-yum-nua-beef-salad | Beef at 130 F, with a parenthetical USDA 145 F | Left. `contains_finfish` is true because of fish sauce, not a fish fillet. |
 | vietnamese-ca-kho-catfish | Rice brought to a boil with no salt word | Left. The salt is in the fish-sauce caramel. The rice is the plain side. Not a defect to rewrite from the screen. |
 
 Turkey breast and piri-piri chicken pull the poultry at 160 F and say it rises or carries over to 165 F. The checker treats that stated carryover as the safety target and does not flag them.

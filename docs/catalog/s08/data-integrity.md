@@ -38,12 +38,13 @@ A catalog import is required before new versions appear when `CATALOG_SOURCE=d1`
 
 Do not replay `data/staging-catalog-import.sql` onto an existing database. That file rewrites content hashes for rows that are already there.
 
-The path that matches the code:
+The path that matches the code is now generated:
 
-1. Build a fresh staging sqlite with `scripts/import-catalog.mjs --target staging`.
-2. Publish a delta of the new version ids only: insert those `catalog_version` rows and their child rows, set the superseded ids to `retired`, and point `catalog_dish.current_version_id` at the new id when the new version number is higher.
-3. Leave every other version row, every dinner plan, every rating, and every shop line alone.
+1. `node scripts/s08-catalog-delta.mjs` builds a fresh local sqlite with `loadCatalogFromDisk`, `planImport`, and `applyCatalogWrites`, then writes `data/s08-catalog-delta.sql`.
+2. The file inserts the 30 S-08 version rows (`package_revision` starting with `s08-`) with `INSERT OR IGNORE`, replaces child rows for those ids only, retires any other still-published version of those dishes, and updates `catalog_dish` the way `upsertDish` does (`current_version_id` plus the display columns). It inserts `recipe` with `ON CONFLICT DO NOTHING`.
+3. It does not rewrite `content_hash` on a version that is already stored. It has no `BEGIN`. It does not mention household, plan, rating, or shop tables.
+4. A second apply is a no-op for version count and published count.
 
-That delta was not generated or applied in this cycle. S-07 is landing first. This branch does not deploy.
+Verified locally, not applied. See `docs/catalog/s08/RELEASE.md` for Preview, then Production. S-07 is landing first. This branch does not deploy.
 
 `test/helpers/catalog-import-fixture.js` still publishes factory v1 only, on purpose, so older fixture tests do not change meaning. The production-shaped loader is `loadCatalogFromDisk`, which does publish factory v2 and legacy v3.

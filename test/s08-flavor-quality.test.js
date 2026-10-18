@@ -7,6 +7,7 @@ import { planImport } from "../src/lib/catalog-import.js";
 import { loadPublishedCatalog } from "../src/lib/catalog-runtime.js";
 import { applyCatalogWrites, loadExistingVersions, retireCatalogVersions } from "../src/lib/catalog-write.js";
 import { assessCulinaryQuality } from "../src/lib/culinary-quality.js";
+import { generateS08CatalogDelta, verifyS08CatalogDelta } from "../scripts/s08-catalog-delta.mjs";
 import { assessMealEligibility } from "../src/lib/dinner-planner.js";
 import { constraintRowsFromKeys } from "../src/lib/eligibility.js";
 import { neededLines, scaleForDiners } from "../src/lib/ingredient-identity.js";
@@ -317,5 +318,124 @@ describe("S-08 version pins, ratings, and shopping", () => {
     const salt = pin.find((item) => /salt/i.test(item.name));
     const scaled = scaleForDiners([salt], 4, 2);
     expect(scaled[0].quantity).toBe(4);
+  });
+});
+
+const OPTIONAL_RISK =
+  "That lower temperature does not meet the USDA/FDA recommendation and carries higher risk, especially for young children, pregnant people, older adults, and anyone immunocompromised.";
+
+describe("S-08 doneness primary instruction", () => {
+  it("fails a recipe whose only temperature is below the default, including one that only says optional", () => {
+    const only = assessCulinaryQuality({
+      dish: { title: "Salmon" },
+      recipe_version: {
+        dietary_eligibility: { contains_finfish: true },
+        ingredients: [{ name: "salmon fillets", quantity: 4, unit: "count" }],
+        steps: [{ body: "Cook the salmon fillets to 125 F.", ingredient_refs: ["salmon fillets"] }],
+      },
+    });
+    expect(only.fails.map((item) => item.code)).toContain("unsafe_temperature");
+
+    const wordOnly = assessCulinaryQuality({
+      dish: { title: "Salmon" },
+      recipe_version: {
+        dietary_eligibility: { contains_finfish: true },
+        doneness: "Optional: pull the salmon at 125 F.",
+        ingredients: [{ name: "salmon fillets", quantity: 4, unit: "count" }],
+        steps: [{ body: "Cook the salmon fillets to 125 F.", ingredient_refs: ["salmon fillets"] }],
+      },
+    });
+    expect(wordOnly.fails.map((item) => item.code)).toContain("unsafe_temperature");
+  });
+
+  it("accepts a safe primary temperature plus a labeled optional note, and rejects the note alone", () => {
+    const ok = assessCulinaryQuality({
+      dish: { title: "Salmon" },
+      recipe_version: {
+        dietary_eligibility: { contains_finfish: true },
+        doneness: `Cook the salmon to 145 F in the center. Optional traditional preparation: some cooks pull at 125 F. ${OPTIONAL_RISK}`,
+        ingredients: [{ name: "salmon fillets", quantity: 4, unit: "count" }],
+        steps: [{ body: "Cook the salmon fillets to 145 F in the center.", ingredient_refs: ["salmon fillets"] }],
+      },
+    });
+    expect(ok.fails.filter((item) => item.code === "unsafe_temperature")).toEqual([]);
+
+    const noteOnly = assessCulinaryQuality({
+      dish: { title: "Salmon" },
+      recipe_version: {
+        dietary_eligibility: { contains_finfish: true },
+        doneness: `Optional traditional preparation: pull the salmon at 125 F. ${OPTIONAL_RISK}`,
+        ingredients: [{ name: "salmon fillets", quantity: 4, unit: "count" }],
+        steps: [{ body: "Cook the salmon fillets until done.", ingredient_refs: ["salmon fillets"] }],
+      },
+    });
+    expect(noteOnly.fails.map((item) => item.code)).toContain("unsafe_temperature");
+  });
+
+  it("accepts opaque and firm shrimp with a labeled lower-temperature note", () => {
+    const ok = assessCulinaryQuality({
+      dish: { title: "Shrimp" },
+      recipe_version: {
+        dietary_eligibility: { contains_shellfish: true },
+        doneness: `Cook the shrimp until opaque and firm. Optional traditional preparation: shrimp still translucent, about 120 F to 125 F. ${OPTIONAL_RISK}`,
+        ingredients: [{ name: "shrimp", quantity: 1, unit: "lb" }],
+        steps: [{ body: "Simmer the shrimp until opaque and firm.", ingredient_refs: ["shrimp"] }],
+      },
+    });
+    expect(ok.fails.filter((item) => item.code === "unsafe_temperature")).toEqual([]);
+  });
+
+  it("publishes the twelve doneness revisions at the USDA/FDA primary instruction", () => {
+    const slugs = [
+      ["ethiopian-beef-tibs", 145, 29, 44],
+      ["gochujang-grilled-flank-steak", 145, 27, 52],
+      ["grilled-swordfish-olive-caper", 145, 30, 48],
+      ["malaysian-curry-laksa", null, 29, 54],
+      ["nigerian-beef-suya-skewers", 145, 41, 61],
+      ["pan-seared-halibut-lemon-butter-corn", 145, 18, 26],
+      ["roasted-whole-branzino-salmoriglio", 145, 49, 64],
+      ["salade-nicoise-seared-tuna", 145, 32, 47],
+      ["seared-duck-breast-cherry", 165, 26, 36],
+      ["seared-scallops-parsnip-puree", null, 41, 51],
+      ["tex-mex-steak-fajitas", 145, 34, 54],
+      ["thai-yum-nua-beef-salad", 145, 32, 44],
+    ];
+    for (const [slug, floor, cook, total] of slugs) {
+      const pkg = readPkg(slug, "v2.json");
+      expect(pkg.package_revision).toBe("s08-doneness");
+      expect(pkg.evidence?.culinary_reviewed).toBeUndefined();
+      expect(pkg.recipe_version.recipe_version_id).toBe(`rv_${slug}_v2`);
+      expect(pkg.recipe_version.cook_minutes).toBe(cook);
+      expect(pkg.recipe_version.total_minutes).toBe(total);
+      expect(pkg.kitchen_tested).toBe(false);
+      const culinary = assessCulinaryQuality(pkg);
+      expect(culinary.fails.filter((item) => item.code === "unsafe_temperature"), slug).toEqual([]);
+      const prose = `${pkg.recipe_version.doneness}\n${pkg.recipe_version.steps.map((step) => step.body).join("\n")}`;
+      expect(prose).toContain("Optional traditional preparation:");
+      expect(prose).toContain("does not meet the USDA/FDA recommendation");
+      expect(prose).toContain("immunocompromised");
+      if (floor) expect(prose).toContain(`${floor} F`);
+      else expect(prose).toMatch(/opaque/i);
+      const v1 = readFileSync(join(root, slug, "v1.json"), "utf8");
+      expect(v1).not.toContain('"package_revision": "s08-doneness"');
+    }
+  });
+});
+
+describe("S-08 catalog delta", () => {
+  it("matches the generator and keeps 250 published dishes with pinned versions resolvable", async () => {
+    const generated = await generateS08CatalogDelta();
+    const onDisk = readFileSync(join(process.cwd(), "data", "s08-catalog-delta.sql"), "utf8");
+    expect(onDisk).toBe(generated.sql);
+    expect(generated.versionIds).toHaveLength(30);
+    const verification = await verifyS08CatalogDelta(onDisk);
+    expect(verification.ok, JSON.stringify({ before: verification.before, after: verification.after, pin: verification.pin })).toBe(
+      true
+    );
+    expect(verification.after.published).toBe(250);
+    expect(verification.after.versions).toBe(305);
+    expect(verification.twice.versions).toBe(305);
+    expect(verification.pin.publication_status).toBe("retired");
+    expect(verification.salmonCurrent.current_version_id).toBe("rv_maple-mustard-glazed-salmon_v3");
   });
 });

@@ -32,6 +32,6 @@ The vocabulary itself can record that a person likes crispy, spicy, rich, or a c
 
 ## Proposal, not a change
 
-If Oversight wants these phrases, extend the targeted-feedback codes and the SQL check with: `bland`, `too_salty`, `too_sweet`, `needs_acid`, `needs_richness`, `excellent_seasoning`, `great_texture`. Map them the way `great_sauce` is mapped, with `vocabulary_slug` null, so one meal does not write a standing taste. That needs a forward migration. It was not applied.
+The proposal is `docs/catalog/s08/TASTE-FEEDBACK-PROPOSAL.md`. It extends the targeted-feedback codes with `bland`, `too_salty`, `too_sweet`, `needs_acid`, `needs_richness`, `excellent_seasoning`, and `great_texture`, mapped the way `great_sauce` is mapped, with `vocabulary_slug` null, so one meal does not write a standing taste. That needs a forward migration. The migration is not in S-08.
 
 The 1–10 score stays the household rating. These codes would be optional words on that same meal, not a new scale.
