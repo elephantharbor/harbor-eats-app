@@ -25,6 +25,8 @@ import {
 import { projectSavedPlan, SHOP_PROJECTION_FAILED } from "./household-shop-routes.js";
 import { logDatabaseError, stripDatabaseDetail } from "./db-error.js";
 
+const COOK_OPS = new Set(["finish_cook", "mark_cooked", "undo_cook"]);
+
 function respond(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -43,6 +45,7 @@ async function savePlanAndProject(env, plan, now, saveOptions) {
   try {
     await saveDinnerPlan(env.DB, plan, saveOptions);
   } catch (error) {
+    if (error && error.code === "revision_conflict") return fail("revision_conflict", 409);
     logDatabaseError("dinner_plan_save", error);
     return fail("dinner_plan_save_failed", 500);
   }
@@ -233,9 +236,32 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
     return respond({ ok: true, plan: presented });
   }
 
+  if (
+    COOK_OPS.has(body.op) &&
+    body.expected_updated_at &&
+    body.expected_updated_at !== plan.updated_at
+  ) {
+    return fail("revision_conflict", 409, { plan: presentDinnerPlan(plan) });
+  }
   const mutated = applyPlanMutation(plan, body, ctx);
   if (!mutated.ok) return fail(mutated.error, mutated.status || 400, failureBody(mutated));
-  const saved = await savePlanAndProject(env, mutated.plan, now);
+  if (mutated.unchanged) {
+    return respond({
+      ok: true,
+      plan: presentDinnerPlan(plan),
+      votes_required: false,
+      votes_cast: mutated.votes_cast,
+      shopping_started: mutated.shopping_started,
+      completed: false,
+      already_cooked: !!mutated.already_cooked,
+      unchanged: true,
+      prior_state: mutated.prior_state,
+      undone: false,
+    });
+  }
+  const saved = await savePlanAndProject(env, mutated.plan, now, {
+    expectedUpdatedAt: COOK_OPS.has(body.op) ? body.expected_updated_at || null : null,
+  });
   if (saved) return saved;
   return respond({
     ok: true,
@@ -243,5 +269,10 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
     votes_required: false,
     votes_cast: mutated.votes_cast,
     shopping_started: mutated.shopping_started,
+    completed: !!mutated.completed,
+    already_cooked: false,
+    unchanged: false,
+    prior_state: mutated.prior_state,
+    undone: !!mutated.undone,
   });
 }

@@ -72,6 +72,8 @@ export const MUTATION_EFFECTS = Object.freeze({
   begin_cook: "none",
   exit_cook: "none",
   finish_cook: "none",
+  mark_cooked: "none",
+  undo_cook: "none",
   rate_meal: "none",
   fulfill_meal: "none",
   vote: "none",
@@ -250,6 +252,19 @@ export function mealIsClosed(meal) {
   return Boolean(allowed && allowed.has(meal.state));
 }
 
+/**
+ * History shows a cooked meal, a meal still in the kitchen, and a rating
+ * that is still open. A planned or selected meal appears only after its plan
+ * was superseded, so tonight's list is not copied into History.
+ * @param {string} state
+ * @param {string|null|undefined} supersededAt
+ */
+export function dinnerHistoryIncludes(state, supersededAt) {
+  if (["cooking", "cooked", "partially_rated", "fully_rated"].includes(state)) return true;
+  if (["planned", "selected"].includes(state)) return Boolean(supersededAt);
+  return false;
+}
+
 export function planMealsClosed(plan) {
   if (!plan || !Array.isArray(plan.meals) || plan.meals.length !== plan.meal_count) return false;
   return plan.meals.every(mealIsClosed);
@@ -373,6 +388,7 @@ export function presentDinnerPlan(plan) {
     finalized_at: plan.finalized_at,
     created_at: plan.created_at,
     updated_at: plan.updated_at,
+    superseded_at: plan.superseded_at || null,
     meals: plan.meals,
     shop_lines: plan.shop_lines,
     shop_deltas: plan.shop_deltas,

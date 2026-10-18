@@ -595,6 +595,16 @@ describe("collaboration and share routes", () => {
     });
     expect(stale.status).toBe(409);
     expect(opened.body.list.lines).toHaveLength(1);
+    const replay = await post(env, deps, sessionA.session_token, {
+      expected_revision: 1,
+      op: "add_item",
+      text: "bananas",
+      client_request_id: "once",
+    });
+    expect(replay.status).toBe(200);
+    expect(replay.body.idempotent).toBe(true);
+    expect(replay.body.list.lines).toHaveLength(1);
+    expect(replay.body.list.lines[0].sources).toHaveLength(1);
     sqlite.prepare(`UPDATE member SET status = 'left' WHERE member_id = 'm_a'`).run();
     const blocked = await post(env, deps, sessionA.session_token, {
       expected_revision: opened.body.list.revision,

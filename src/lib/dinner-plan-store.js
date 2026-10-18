@@ -4,7 +4,18 @@
  * The whole write is one D1 batch, which commits as a single transaction.
  */
 
+import { logRevisionConflict } from "./db-error.js";
 import { scopeShopLineIds } from "./plan-mutations.js";
+
+/**
+ * Compare-and-swap without a new table. household_id is already NOT NULL.
+ * A stale updated_at makes the subquery NULL, the NOT NULL check aborts the
+ * batch, and the transaction rolls back. A match writes the same household id.
+ * @param {unknown} error
+ */
+export function isDinnerPlanRevisionConflict(error) {
+  return /NOT NULL constraint failed:\s*dinner_plan\.household_id/i.test(String(error?.message || error || ""));
+}
 
 function bindGet(db, sql, params) {
   return db.prepare(sql).bind(...params).first();
@@ -262,6 +273,17 @@ export async function saveDinnerPlan(db, plan, options = {}) {
     plan.updated_at,
     plan.dinner_plan_id,
   ];
+  if (options.expectedUpdatedAt) {
+    add(
+      `UPDATE dinner_plan
+       SET household_id = (
+         SELECT household_id FROM dinner_plan
+         WHERE dinner_plan_id = ? AND updated_at = ?
+       )
+       WHERE dinner_plan_id = ?`,
+      [plan.dinner_plan_id, options.expectedUpdatedAt, plan.dinner_plan_id]
+    );
+  }
   if (!existing) {
     add(
       `INSERT INTO dinner_plan
@@ -446,7 +468,17 @@ export async function saveDinnerPlan(db, plan, options = {}) {
       ]
     );
   }
-  await db.batch(statements);
+  try {
+    await db.batch(statements);
+  } catch (error) {
+    if (options.expectedUpdatedAt && isDinnerPlanRevisionConflict(error)) {
+      logRevisionConflict("dinner_plan_save");
+      const conflict = new Error("dinner_plan_revision_conflict");
+      conflict.code = "revision_conflict";
+      throw conflict;
+    }
+    throw error;
+  }
 }
 
 export async function householdMemberIds(db, householdId) {

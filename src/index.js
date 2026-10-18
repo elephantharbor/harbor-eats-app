@@ -66,6 +66,7 @@ import { runAllCatalogQualityChecks } from "./lib/catalog-quality.js";
 import {
   alphaOpsQueries,
   completedMealLoopSql,
+  funnelCookCompletionSql,
   funnelEventCountSql,
   householdIsSynthetic,
   originFromRequest,
@@ -1739,8 +1740,9 @@ async function getFunnelAnalytics(env, household_id, session) {
   ];
   const counts = {};
   for (const n of names) {
-    const row = await env.DB.prepare(funnelEventCountSql())
-      .bind(household_id, n)
+    const cook = n === "cook_recorded";
+    const row = await env.DB.prepare(cook ? funnelCookCompletionSql() : funnelEventCountSql())
+      .bind(...(cook ? [household_id] : [household_id, n]))
       .first();
     counts[n] = row ? row.c : 0;
   }

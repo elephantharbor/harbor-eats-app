@@ -269,9 +269,9 @@ function findLine(list, identity) {
   return list.lines.find((line) => lineIdentityKey(line) === key) || null;
 }
 
-function findClientRequest(list, clientRequestId) {
+export function findClientRequest(list, clientRequestId) {
   if (!clientRequestId) return null;
-  for (const line of list.lines) {
+  for (const line of list.lines || []) {
     const hit = (line.requirements || []).find((req) => req.client_request_id === clientRequestId);
     if (hit) return line;
   }
@@ -1113,18 +1113,50 @@ export function storedEventProps(eventName, body) {
  * A legacy row has no stage: the clipboard confirmation was surface shop_sheet.
  * The server generation (surface api) is not a second completion.
  */
+function shopExportProps(row) {
+  const props = row && row.props ? row.props : row;
+  if (!props || typeof props !== "object") return null;
+  return props;
+}
+
+function shopExportSucceeded(props) {
+  if (props.stage) return props.stage === "succeeded";
+  return props.surface === "shop_sheet" && (props.ok === true || props.ok === 1 || props.ok === "true");
+}
+
 export function countCompletedShopExports(rows) {
   let count = 0;
   for (const row of rows || []) {
-    const props = row && row.props ? row.props : row;
-    if (!props || typeof props !== "object") continue;
-    if (props.stage) {
-      if (props.stage === "succeeded") count += 1;
-      continue;
-    }
-    if (props.surface === "shop_sheet" && (props.ok === true || props.ok === 1 || props.ok === "true")) count += 1;
+    const props = shopExportProps(row);
+    if (props && shopExportSucceeded(props)) count += 1;
   }
   return count;
+}
+
+/**
+ * Image handoff completions.
+ * A share that falls back to a file save is type `download` on `shop_sheet`.
+ * That row is one image export. It is not a text-file download (`shop_menu`).
+ * Counting type `download` alone mixes the two and under-counts images.
+ */
+export function summarizeShopExports(rows) {
+  const summary = {
+    completed: 0,
+    image_exports: 0,
+    file_downloads: 0,
+    by_type: {},
+  };
+  for (const row of rows || []) {
+    const props = shopExportProps(row);
+    if (!props || !shopExportSucceeded(props)) continue;
+    summary.completed += 1;
+    const type = props.type || "unknown";
+    summary.by_type[type] = (summary.by_type[type] || 0) + 1;
+    const imageFallback = type === "download" && props.surface === "shop_sheet";
+    if (type === "image" || imageFallback) summary.image_exports += 1;
+    else if (type === "download") summary.file_downloads += 1;
+  }
+  return summary;
 }
 
 export function sanitizeShopEvent(name, props) {
