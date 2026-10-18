@@ -376,4 +376,197 @@ test.describe("S-06 meal completion", () => {
     expect(ids[1]).toBe(ids[0]);
     expect(saved).toEqual([{ qty: 2, sources: 1 }]);
   });
+
+  test("Finish retries once after another meal changes", async ({ page }) => {
+    const seeded = await seedMealPlan(page, { mealCount: 2, beginCook: true });
+    await page.reload();
+    await page.locator('[data-nav="home"]').filter({ visible: true }).first().click();
+    await page.locator(".view.is-active [data-action='dp-back-kitchen']").click();
+    await expect(page.locator(".view.is-active[data-view='cook']")).toBeVisible();
+
+    const skipped = await page.evaluate(async ({ planId, mealId }) => {
+      const res = await fetch("/api/dinner-plans/" + encodeURIComponent(planId) + "/mutations", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ op: "skip_meal", meal_id: mealId }),
+      }).then((r) => r.json());
+      return { ok: res.ok, state: res.plan && res.plan.meals[0].state, updatedAt: res.plan && res.plan.updated_at };
+    }, { planId: seeded.planId, mealId: seeded.mealIds[1] });
+    expect(skipped.ok).toBe(true);
+    expect(skipped.state).toBe("cooking");
+
+    const finishBodies = [];
+    page.on("request", (request) => {
+      if (request.method() !== "POST" || !request.url().includes("/mutations")) return;
+      const body = request.postDataJSON();
+      if (body && body.op === "finish_cook") finishBodies.push(body.expected_updated_at);
+    });
+    await clickCookFinish(page);
+    await expect(page.getByRole("heading", { name: "How was it?" })).toBeVisible();
+    expect(finishBodies).toHaveLength(2);
+    expect(finishBodies[1]).toBeTruthy();
+    expect(finishBodies[1]).not.toBe(finishBodies[0]);
+  });
+
+  test("a repeated finish conflict stops after one retry", async ({ page }) => {
+    const seeded = await seedMealPlan(page, { mealCount: 1, beginCook: true });
+    await page.reload();
+    await page.locator('[data-nav="home"]').filter({ visible: true }).first().click();
+    await page.locator(".view.is-active [data-action='dp-back-kitchen']").click();
+    await expect(page.locator(".view.is-active[data-view='cook']")).toBeVisible();
+    const current = await page.evaluate(async (planId) => {
+      const res = await fetch("/api/dinner-plans/" + encodeURIComponent(planId), { credentials: "include" }).then((r) => r.json());
+      return res.plan;
+    }, seeded.planId);
+    let conflicts = 0;
+    await page.route("**/api/dinner-plans/**/mutations", async (route) => {
+      let body = {};
+      try {
+        body = route.request().postDataJSON() || {};
+      } catch {
+        body = {};
+      }
+      if (body.op !== "finish_cook") {
+        await route.continue();
+        return;
+      }
+      conflicts += 1;
+      await route.fulfill({
+        status: 409,
+        contentType: "application/json",
+        body: JSON.stringify({
+          ok: false,
+          error: "revision_conflict",
+          plan: Object.assign({}, current, { updated_at: current.updated_at + "-conflict-" + conflicts }),
+        }),
+      });
+    });
+    await clickCookFinish(page);
+    await expect.poll(() => conflicts).toBe(2);
+    await page.waitForTimeout(400);
+    expect(conflicts).toBe(2);
+    await expect(page.getByText("That dinner changed. Have another look.")).toBeVisible();
+  });
+
+  test("a meal a partner already cooked opens rating without a second completion", async ({ page }) => {
+    const seeded = await seedMealPlan(page, { mealCount: 1, beginCook: true });
+    await page.reload();
+    await page.locator('[data-nav="home"]').filter({ visible: true }).first().click();
+    await page.locator(".view.is-active [data-action='dp-back-kitchen']").click();
+    await expect(page.locator(".view.is-active[data-view='cook']")).toBeVisible();
+    const marked = await page.evaluate(async ({ planId, mealId }) => {
+      const current = await fetch("/api/dinner-plans/" + encodeURIComponent(planId), { credentials: "include" }).then((r) => r.json());
+      const res = await fetch("/api/dinner-plans/" + encodeURIComponent(planId) + "/mutations", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          op: "mark_cooked",
+          meal_id: mealId,
+          expected_state: "cooking",
+          expected_updated_at: current.plan.updated_at,
+        }),
+      }).then((r) => r.json());
+      return { ok: res.ok, state: res.plan && res.plan.meals[0].state };
+    }, { planId: seeded.planId, mealId: seeded.mealIds[0] });
+    expect(marked.ok).toBe(true);
+    expect(marked.state).toBe("cooked");
+
+    const events = [];
+    let finishPosts = 0;
+    page.on("request", (request) => {
+      if (request.method() !== "POST") return;
+      if (request.url().includes("/api/events")) events.push(request.postDataJSON());
+      if (!request.url().includes("/mutations")) return;
+      const body = request.postDataJSON();
+      if (body && body.op === "finish_cook") finishPosts += 1;
+    });
+    await clickCookFinish(page);
+    await expect(page.getByRole("heading", { name: "How was it?" })).toBeVisible();
+    expect(finishPosts).toBe(1);
+    expect(events.filter((row) => row && (row.event_name === "cook_completed" || row.event_name === "cook_recorded"))).toHaveLength(0);
+  });
+
+  test("Finish waits for an in-flight begin cook", async ({ page }) => {
+    await seedMealPlan(page, { mealCount: 1, beginCook: false });
+    await page.reload();
+    let releaseCook = function () {};
+    const held = new Promise(function (resolve) {
+      releaseCook = resolve;
+    });
+    const ops = [];
+    await page.route("**/api/dinner-plans/**/mutations", async (route) => {
+      let body = {};
+      try {
+        body = route.request().postDataJSON() || {};
+      } catch {
+        body = {};
+      }
+      ops.push(body.op);
+      if (body.op === "begin_cook") await held;
+      await route.continue();
+    });
+    await page.locator('[data-nav="choices"]').filter({ visible: true }).first().click();
+    await page.locator(".view.is-active [data-action='cook-plan-meal']").click();
+    await page.locator("#btnStartCook").click();
+    await expect(page.locator(".view.is-active[data-view='cook']")).toBeVisible();
+    await expect.poll(() => ops.includes("begin_cook")).toBe(true);
+    const finishClick = clickCookFinish(page);
+    await page.waitForTimeout(300);
+    expect(ops.filter((op) => op === "finish_cook")).toHaveLength(0);
+    releaseCook();
+    await finishClick;
+    await expect(page.getByRole("heading", { name: "How was it?" })).toBeVisible();
+    expect(ops.filter((op) => op === "finish_cook")).toHaveLength(1);
+    expect(ops.indexOf("begin_cook")).toBeLessThan(ops.indexOf("finish_cook"));
+  });
 });
+
+async function seedMealPlan(page, { mealCount, beginCook }) {
+  return page.evaluate(async ({ mealCount, beginCook }) => {
+    const created = await fetch("/api/dinner-plans", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ meal_count: mealCount, entry_point: "plan_dinners", fill: "planner" }),
+    }).then((r) => r.json());
+    if (!created.ok) throw new Error("create failed " + JSON.stringify(created));
+    let plan = created.plan;
+    const id = plan.dinner_plan_id;
+    const mut = async (body) => {
+      const res = await fetch("/api/dinner-plans/" + encodeURIComponent(id) + "/mutations", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      }).then((r) => r.json());
+      if (res.ok && res.plan) plan = res.plan;
+      return res;
+    };
+    await mut({ op: "set_planning_preferences", keep_it_easy: true, keep_ingredients_simple: false });
+    const finalized = await mut({ op: "finalize" });
+    if (!finalized.ok) throw new Error("finalize failed " + JSON.stringify(finalized));
+    if (beginCook) {
+      const cooking = await mut({ op: "begin_cook", meal_id: plan.meals[0].meal_id });
+      if (!cooking.ok) throw new Error("begin_cook failed " + JSON.stringify(cooking));
+    }
+    return {
+      planId: id,
+      mealIds: plan.meals.map((meal) => meal.meal_id),
+      updatedAt: plan.updated_at,
+    };
+  }, { mealCount, beginCook });
+}
+
+async function clickCookFinish(page) {
+  const cook = page.locator(".view.is-active[data-view='cook']");
+  const finish = cook.getByRole("button", { name: "Finish" });
+  const next = cook.getByRole("button", { name: "Next" });
+  for (let step = 0; step < 20; step++) {
+    if (await finish.isVisible().catch(() => false)) break;
+    await next.click();
+  }
+  await expect(finish).toBeVisible();
+  await finish.click();
+}
