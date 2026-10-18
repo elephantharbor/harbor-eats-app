@@ -2657,6 +2657,28 @@
   }
 
   const cookWrites = new Set();
+  const mealCookChain = new Map();
+
+  function enqueueMealCook(planId, mealId, task) {
+    const key = planId + ":" + mealId;
+    const previous = mealCookChain.get(key) || Promise.resolve();
+    const current = previous.then(task, task);
+    mealCookChain.set(key, current);
+    return current;
+  }
+
+  function rememberConflictPlan(plan) {
+    if (!plan || !plan.dinner_plan_id) return null;
+    if (state.dinnerPlan && state.dinnerPlan.dinner_plan_id === plan.dinner_plan_id) applyDinnerPlan(plan);
+    if (state.ratingPlan && state.ratingPlan.dinner_plan_id === plan.dinner_plan_id) state.ratingPlan = plan;
+    return plan;
+  }
+
+  function completionAccepts(op, mealState) {
+    if (op === "finish_cook") return mealState === "cooking";
+    if (op === "mark_cooked") return mealState === "planned" || mealState === "selected" || mealState === "cooking";
+    return false;
+  }
 
   function planHoldingMeal(mealId) {
     if (state.ratingPlan && (state.ratingPlan.meals || []).some(function (meal) { return meal.meal_id === mealId; })) {
@@ -2766,22 +2788,50 @@
 
   async function completeDinnerMeal(plan, meal, op, returnView) {
     if (!plan || !meal || !meal.meal_id) return;
-    const key = plan.dinner_plan_id + ":" + meal.meal_id + ":" + op;
+    const planId = plan.dinner_plan_id;
+    const mealId = meal.meal_id;
+    const key = planId + ":" + mealId + ":" + op;
     if (cookWrites.has(key)) return;
     cookWrites.add(key);
     try {
-      const res = await writeMealMutation(plan, {
+      await enqueueMealCook(planId, mealId, function () {
+        const livePlan =
+          (state.dinnerPlan && state.dinnerPlan.dinner_plan_id === planId && state.dinnerPlan) ||
+          (state.ratingPlan && state.ratingPlan.dinner_plan_id === planId && state.ratingPlan) ||
+          plan;
+        const liveMeal = mealFromPlan(livePlan, mealId) || meal;
+        return settleDinnerCompletion(livePlan, liveMeal, op, returnView);
+      });
+    } finally {
+      cookWrites.delete(key);
+    }
+  }
+
+  async function settleDinnerCompletion(plan, meal, op, returnView) {
+    let currentPlan = plan;
+    let currentMeal = meal;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      if (!currentPlan || !currentMeal || !currentMeal.meal_id) {
+        toast("We couldn’t log that dinner. Try again.");
+        return;
+      }
+      const res = await writeMealMutation(currentPlan, {
         op: op,
-        meal_id: meal.meal_id,
-        expected_state: meal.state,
-        expected_updated_at: plan.updated_at,
+        meal_id: currentMeal.meal_id,
+        expected_state: currentMeal.state,
+        expected_updated_at: currentPlan.updated_at,
       });
       if (res && res.error === "revision_conflict") {
-        const fresh = res.plan || (await reloadPlanDocument(plan.dinner_plan_id));
-        const nowMeal = mealFromPlan(fresh, meal.meal_id);
+        const fresh = rememberConflictPlan(res.plan) || (await reloadPlanDocument(currentPlan.dinner_plan_id));
+        const nowMeal = mealFromPlan(fresh, currentMeal.meal_id);
         if (nowMeal && ["cooked", "partially_rated", "fully_rated"].indexOf(nowMeal.state) >= 0) {
-          openDinnerRating(fresh, meal.meal_id, returnView, null);
+          openDinnerRating(fresh, currentMeal.meal_id, returnView, null);
           return;
+        }
+        if (attempt === 0 && nowMeal && fresh && fresh.updated_at && completionAccepts(op, nowMeal.state)) {
+          currentPlan = fresh;
+          currentMeal = nowMeal;
+          continue;
         }
         toast("That dinner changed. Have another look.");
         renderActiveDinnerSurfaces();
@@ -2811,8 +2861,7 @@
           }
         : null;
       openDinnerRating(res.plan, meal.meal_id, returnView, undo);
-    } finally {
-      cookWrites.delete(key);
+      return;
     }
   }
 
@@ -2822,7 +2871,16 @@
     if (cookWrites.has(key)) return;
     cookWrites.add(key);
     try {
-      const holder =
+      await enqueueMealCook(record.planId, record.mealId, function () {
+        return sendUndoCook(record);
+      });
+    } finally {
+      cookWrites.delete(key);
+    }
+  }
+
+  async function sendUndoCook(record) {
+    const holder =
         (state.dinnerPlan && state.dinnerPlan.dinner_plan_id === record.planId && state.dinnerPlan) ||
         (state.ratingPlan && state.ratingPlan.dinner_plan_id === record.planId && state.ratingPlan) ||
         { dinner_plan_id: record.planId };
@@ -2833,12 +2891,14 @@
         expected_state: "cooked",
         expected_updated_at: record.updatedAt,
       });
-      if (res && (res.error === "undo_blocked_rating" || (res.error === "revision_conflict" && res.plan && mealHasRating(mealFromPlan(res.plan, record.mealId))))) {
+      if (res && res.error === "undo_blocked_rating") {
+        if (res.plan) rememberConflictPlan(res.plan);
         toast("A rating is in, so this stays cooked.");
         return;
       }
       if (res && res.error === "revision_conflict") {
-        const fresh = res.plan || (await reloadPlanDocument(record.planId));
+        const fresh = rememberConflictPlan(res.plan) || (await reloadPlanDocument(record.planId));
+        if (fresh && fresh.updated_at) record.updatedAt = fresh.updated_at;
         const meal = mealFromPlan(fresh, record.mealId);
         if (mealHasRating(meal) || (meal && (meal.state === "partially_rated" || meal.state === "fully_rated"))) {
           toast("A rating is in, so this stays cooked.");
@@ -2846,7 +2906,6 @@
           return;
         }
         if (meal && meal.state === record.priorState) {
-          if (fresh && state.dinnerPlan && state.dinnerPlan.dinner_plan_id === fresh.dinner_plan_id) applyDinnerPlan(fresh);
           noteCookUndone(record);
           showUndoneCook(record);
           return;
@@ -2863,11 +2922,8 @@
         toast("Couldn’t undo that. The dinner stays cooked.");
         return;
       }
-      if (res.undone) noteCookUndone(record);
-      showUndoneCook(record);
-    } finally {
-      cookWrites.delete(key);
-    }
+    if (res.undone) noteCookUndone(record);
+    showUndoneCook(record);
   }
 
   function noteCookUndone(record) {
@@ -8241,7 +8297,9 @@
       }
       state.cookStep = 0;
       state.dinnerCookPendingId = mealId;
-      mutateDinnerPlan({ op: "begin_cook", meal_id: mealId }).then(function (plan) {
+      const planId = state.dinnerPlan.dinner_plan_id;
+      void enqueueMealCook(planId, mealId, async function () {
+        const plan = await mutateDinnerPlan({ op: "begin_cook", meal_id: mealId });
         if (state.dinnerCookPendingId === mealId) state.dinnerCookPendingId = null;
         if (!plan) {
           const still = planMealById(mealId);
@@ -8249,11 +8307,12 @@
             state.dinnerCookMealId = null;
             if (state.view === "detail") renderDetail();
           }
-          return;
+          return null;
         }
         confirmCookSession(mealId);
         if (navigate !== false && state.view !== "cook") show("cook");
         else if (state.view === "detail") renderDetail();
+        return plan;
       });
       return true;
     }
