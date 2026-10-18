@@ -832,6 +832,10 @@ h2[tabindex="-1"]:focus {
   display: none;
 }
 
+.toast:not(.show) {
+  visibility: hidden;
+}
+
 .toast {
   position: fixed;
   left: 50%;
@@ -854,6 +858,21 @@ h2[tabindex="-1"]:focus {
 .toast.show {
   opacity: 1;
   transform: translate(-50%, 0);
+}
+
+.toast.show:has(.toast-undo) {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  border-radius: var(--radius-lg);
+  text-align: left;
+  width: min(92vw, 420px);
+  box-sizing: border-box;
+  top: calc(var(--header-h) + 52px + env(safe-area-inset-top));
+  bottom: auto;
+  transform: translateX(-50%);
 }
 
 .debug {
@@ -2075,6 +2094,16 @@ h2[tabindex="-1"]:focus {
 
 .hero-actions .btn {
   flex: 1 1 200px;
+}
+
+.hero-actions--stack {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.hero-actions--stack .btn {
+  flex: 1 1 auto;
+  width: 100%;
 }
 
 .insight-row {
@@ -3851,7 +3880,12 @@ html[data-keyboard="open"] .toast {
 }
 
 .toast-undo {
+  flex: none;
   margin-left: var(--space-2);
+  min-height: 44px;
+  min-width: 44px;
+  color: var(--color-inverse-text);
+  border: 1px solid color-mix(in srgb, var(--color-inverse-text) 50%, transparent);
 }
 
 .shop-eyebrow {
@@ -4876,7 +4910,20 @@ html[data-keyboard="open"] .toast {
 }
 
 .history-item__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-2);
   margin-top: var(--space-2);
+}
+
+.history-item__actions:empty {
+  display: none;
+}
+
+.history-item__actions .btn {
+  width: 100%;
+  min-height: 44px;
 }
 
 /* —— Cycle 3 dinner plan —— */
@@ -4975,6 +5022,12 @@ button.plan-meal-title {
   margin-bottom: var(--space-5);
 }
 
+@media (max-width: 767.98px) {
+  .tonight-plan-meal .plan-meal-card__media .meal-media {
+    aspect-ratio: 16 / 8;
+  }
+}
+
 .tonight-plan-meal .plan-meal-card {
   margin-bottom: var(--space-3);
 }
@@ -4989,6 +5042,17 @@ button.plan-meal-title {
   gap: var(--space-2);
   margin-top: var(--space-3);
   align-items: center;
+}
+
+.plan-meal-card__actions--stack {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.plan-meal-card__actions--stack .btn,
+.tonight-plan-meal > .btn {
+  width: 100%;
+  min-height: 44px;
 }
 
 .plan-meal-card--quiet {
@@ -5956,6 +6020,19 @@ html[data-signing-out="1"] #app {
   grid-auto-rows: max-content;
   overscroll-behavior: contain;
   padding-bottom: var(--space-2);
+  position: relative;
+}
+
+#shopHowSheet .shop-how__rows.is-more-below::after {
+  content: "";
+  position: sticky;
+  bottom: 0;
+  display: block;
+  height: 36px;
+  margin-top: -36px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255, 253, 248, 0), var(--color-bg, #fffdf8));
+  box-shadow: inset 0 -14px 14px -14px rgba(23, 57, 58, 0.38);
 }
 
 #shopHowSheet[open] .sheet__actions {
@@ -6056,6 +6133,18 @@ html[data-signing-out="1"] #app {
 
 #shopHowConnected .btn {
   color: var(--color-structure, #0F5D5B);
+}
+
+@media (max-width: 640px) {
+  #signOutFailed .sheet__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #signOutFailed .sheet__actions .btn {
+    width: 100%;
+    min-height: 48px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

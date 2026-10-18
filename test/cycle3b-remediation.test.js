@@ -395,7 +395,9 @@ describe("Cycle 3B history lists cooked and fully rated dinner-plan meals", () =
     });
 
     const synthHistory = await loadMealHistory(env.DB, "hh_c3b_synth");
-    expect(synthHistory.map((meal) => meal.meal_name)).toEqual([SALMON]);
+    expect(synthHistory.map((meal) => meal.meal_name)).toEqual([SALMON, "Still waiting on a score", "Cooked only"]);
+    expect(synthHistory.map((meal) => meal.meal_state)).toEqual(["fully_rated", "partially_rated", "cooked"]);
+    expect(synthHistory[2]).toMatchObject({ recoverable: false, can_rate: true, rating_state: "awaiting" });
     expect(synthHistory[0]).toMatchObject({
       plan_id: "dp_c3b_salmon",
       dinner_plan_id: "dp_c3b_salmon",
@@ -478,7 +480,7 @@ describe("Cycle 3B history lists cooked and fully rated dinner-plan meals", () =
     expect(realHistory[0].avg_score).toBe(8.5);
 
     const otherHistory = await loadMealHistory(env.DB, "hh_c3b_synth");
-    expect(otherHistory.map((meal) => meal.plan_id)).toEqual(["dp_c3b_salmon"]);
+    expect(otherHistory.map((meal) => meal.plan_id)).toEqual(["dp_c3b_salmon", "dp_c3b_partial", "dp_c3b_cooked"]);
 
     expect(sqlite.prepare(dinnerCompletedLoopSql()).get().c).toBe(1);
     expect(

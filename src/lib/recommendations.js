@@ -6,6 +6,7 @@ import { getCurrentVersionIdForSlug } from "./recipe-store.js";
 import { householdIsSynthetic, learningRows, productRows, sqlRealRow } from "./evidence-origin.js";
 import { learningTasteRows } from "./preference-concepts.js";
 import { historyFromActivity } from "./meal-identity.js";
+import { dinnerHistoryIncludes } from "./plan-contract.js";
 
 /**
  * @param {import('@cloudflare/workers-types').D1Database} db
@@ -208,8 +209,20 @@ export async function loadMealHistory(db, household_id, limit = 20) {
     .slice(0, limit);
 }
 
+const HISTORY_STATUS = {
+  fully_rated: { status: "Rated", rating_state: "full" },
+  partially_rated: { status: "Cooked", rating_state: "partial" },
+  cooked: { status: "Cooked", rating_state: "awaiting" },
+  cooking: { status: "Cooking", rating_state: "none" },
+  selected: { status: "Selected", rating_state: "none" },
+  planned: { status: "Planned", rating_state: "none" },
+};
+
 /**
- * History for dinner-plan meals that were cooked and fully rated.
+ * History for dinner-plan meals the household can revisit.
+ * Fully rated meals stay. Cooked and partly rated meals can still be rated.
+ * A cooking meal can be logged after the fact. Planned and selected meals
+ * appear only when the plan was superseded, so the current week is not listed twice.
  * Visibility follows the household's own product rows. Completed Meal Loop
  * counts stay on countsTowardCompletedMealLoop / dinnerCompletedLoopSql.
  * @param {import('@cloudflare/workers-types').D1Database} db
@@ -223,10 +236,12 @@ async function loadDinnerPlanMealHistory(db, household) {
       .prepare(
         `SELECT m.meal_id, m.title, m.recipe_slug, m.recipe_version_id, m.cooked_recipe_version_id,
                 m.state, m.updated_at, m.data_origin AS meal_origin,
-                p.dinner_plan_id, p.data_origin AS plan_origin, p.updated_at AS plan_updated_at
+                p.dinner_plan_id, p.data_origin AS plan_origin, p.updated_at AS plan_updated_at,
+                p.superseded_at
          FROM dinner_plan_meal m
          JOIN dinner_plan p ON p.dinner_plan_id = m.dinner_plan_id
-         WHERE p.household_id = ? AND m.kind = 'recipe' AND m.state = 'fully_rated'
+         WHERE p.household_id = ? AND m.kind = 'recipe'
+           AND m.state IN ('planned', 'selected', 'cooking', 'cooked', 'partially_rated', 'fully_rated')
          ORDER BY m.updated_at DESC`
       )
       .bind(household.household_id)
@@ -238,22 +253,37 @@ async function loadDinnerPlanMealHistory(db, household) {
   const visible = productRows(
     (mealRes.results || []).map((row) => ({ ...row, data_origin: row.plan_origin })),
     household
-  );
+  ).filter((row) => dinnerHistoryIncludes(row.state, row.superseded_at));
   if (!visible.length) return [];
   const mealIds = visible.map((row) => row.meal_id);
   const placeholders = mealIds.map(() => "?").join(",");
-  const ratingRes = await db
-    .prepare(
-      `SELECT meal_id, member_id, score, recipe_version_id, data_origin
-       FROM dinner_plan_rating WHERE household_id = ? AND meal_id IN (${placeholders})`
-    )
-    .bind(household.household_id, ...mealIds)
-    .all();
+  const [ratingRes, participantRes] = await Promise.all([
+    db
+      .prepare(
+        `SELECT meal_id, member_id, score, recipe_version_id, data_origin
+         FROM dinner_plan_rating WHERE household_id = ? AND meal_id IN (${placeholders})`
+      )
+      .bind(household.household_id, ...mealIds)
+      .all(),
+    db
+      .prepare(
+        `SELECT meal_id, member_id FROM dinner_plan_participant
+         WHERE active = 1 AND meal_id IN (${placeholders})`
+      )
+      .bind(...mealIds)
+      .all(),
+  ]);
   const ratingsByMeal = new Map();
   for (const row of productRows(ratingRes.results || [], household)) {
     const list = ratingsByMeal.get(row.meal_id) || [];
     list.push(row);
     ratingsByMeal.set(row.meal_id, list);
+  }
+  const participantsByMeal = new Map();
+  for (const row of participantRes.results || []) {
+    const list = participantsByMeal.get(row.meal_id) || [];
+    list.push(row.member_id);
+    participantsByMeal.set(row.meal_id, list);
   }
   return visible.map((row) => {
     const ratings = ratingsByMeal.get(row.meal_id) || [];
@@ -262,15 +292,19 @@ async function loadDinnerPlanMealHistory(db, household) {
         ? ratings.reduce((sum, item) => sum + Number(item.score), 0) / ratings.length
         : null;
     const pinned = row.cooked_recipe_version_id || row.recipe_version_id || null;
+    const labels = HISTORY_STATUS[row.state] || { status: "Planned", rating_state: "none" };
+    const recoverable = ["planned", "selected", "cooking"].includes(row.state);
     return {
       plan_id: row.dinner_plan_id,
       dinner_plan_id: row.dinner_plan_id,
       meal_id: row.meal_id,
-      status: "Rated",
+      meal_state: row.state,
+      status: labels.status,
       meal_option_id: row.meal_id,
       meal_name: row.title || null,
       recipe_slug: row.recipe_slug || null,
       recipe_version_id: pinned,
+      participant_ids: participantsByMeal.get(row.meal_id) || [],
       ratings: ratings.map((item) => ({
         member_id: item.member_id,
         score: item.score,
@@ -279,9 +313,13 @@ async function loadDinnerPlanMealHistory(db, household) {
       })),
       avg_score: avg,
       pending_feedback: false,
-      rating_state: "full",
-      favorite: avg != null && avg >= 8.5,
+      rating_state: labels.rating_state,
+      recoverable,
+      can_rate: row.state === "cooked" || row.state === "partially_rated",
+      favorite: avg != null && avg >= 8.5 && row.state === "fully_rated",
       cooked_at: row.updated_at || row.plan_updated_at || null,
+      plan_updated_at: row.plan_updated_at || null,
+      superseded: Boolean(row.superseded_at),
       source: "dinner_plan",
     };
   });

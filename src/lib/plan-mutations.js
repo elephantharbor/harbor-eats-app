@@ -726,13 +726,75 @@ function exitCook(plan, action) {
   return { ok: true };
 }
 
+const COOKED_STATES = ["cooked", "partially_rated", "fully_rated"];
+const OPENABLE_STATES = ["planned", "selected", "cooking"];
+
+/**
+ * The only write that records a cooked recipe.
+ * Sets state and the cooked recipe version. Leaves adaptation, pinned steps,
+ * ratings, duration, and equipment untouched.
+ */
+function recordCookedMeal(meal) {
+  const prior = meal.state;
+  meal.state = "cooked";
+  if (!meal.cooked_recipe_version_id) meal.cooked_recipe_version_id = meal.recipe_version_id || null;
+  return prior;
+}
+
 function finishCook(plan, action) {
   const meal = findMeal(plan, action.meal_id);
   if (!meal) return fail("meal_not_found", 404);
   if (meal.kind !== "recipe" || meal.state !== "cooking") return fail("illegal_transition", 409);
-  meal.state = "cooked";
-  meal.cooked_recipe_version_id = meal.recipe_version_id;
-  return { ok: true };
+  if (action.expected_state && action.expected_state !== "cooking") {
+    return fail("revision_conflict", 409);
+  }
+  const prior = recordCookedMeal(meal);
+  return { ok: true, completed: true, prior_state: prior };
+}
+
+/**
+ * Explicit "We made this". Guided Finish stays on finish_cook.
+ * Already cooked or rated is success and does not add a rating or a second completion.
+ * Skipped, abandoned, leftovers, and eating out are not cooked.
+ */
+function markCooked(plan, action) {
+  const meal = findMeal(plan, action.meal_id);
+  if (!meal) return fail("meal_not_found", 404);
+  if (meal.kind !== "recipe") return fail("illegal_transition", 409);
+  if (COOKED_STATES.includes(meal.state)) {
+    return { ok: true, completed: false, already_cooked: true, unchanged: true };
+  }
+  if (!OPENABLE_STATES.includes(meal.state)) return fail("illegal_transition", 409);
+  if (action.expected_state && action.expected_state !== meal.state) {
+    return fail("revision_conflict", 409);
+  }
+  const prior = recordCookedMeal(meal);
+  return { ok: true, completed: true, prior_state: prior };
+}
+
+/**
+ * Undo rules:
+ * - Only a meal still `cooked` with no rating rows can return to planned, selected, or cooking.
+ * - A rating, partial rating, or full rating blocks Undo. Ratings are not deleted.
+ * - A retry that finds the meal already in `prior_state` is success and writes nothing.
+ * - A stale expected state is a conflict. It does not reverse a newer outcome.
+ * Cook-step progress is client-only and is not rewritten here.
+ */
+function undoCook(plan, action) {
+  const meal = findMeal(plan, action.meal_id);
+  if (!meal) return fail("meal_not_found", 404);
+  if (meal.kind !== "recipe") return fail("illegal_transition", 409);
+  const prior = action.prior_state;
+  if (!OPENABLE_STATES.includes(prior)) return fail("prior_state_invalid");
+  if (countableRatings(plan, meal).length || meal.state === "partially_rated" || meal.state === "fully_rated") {
+    return fail("undo_blocked_rating", 409);
+  }
+  if (meal.state === prior) return { ok: true, unchanged: true, undone: false, prior_state: prior };
+  if (action.expected_state && action.expected_state !== meal.state) return fail("revision_conflict", 409);
+  if (meal.state !== "cooked") return fail("illegal_transition", 409);
+  meal.state = prior;
+  meal.cooked_recipe_version_id = null;
+  return { ok: true, undone: true, prior_state: prior };
 }
 
 function countableRatings(plan, meal) {
@@ -896,6 +958,10 @@ function dispatch(plan, action, ctx) {
       return exitCook(plan, action);
     case "finish_cook":
       return finishCook(plan, action);
+    case "mark_cooked":
+      return markCooked(plan, action);
+    case "undo_cook":
+      return undoCook(plan, action);
     case "rate_meal":
       return rateMeal(plan, action, ctx);
     case "skip_meal":
@@ -937,6 +1003,20 @@ export function applyPlanMutation(plan, action, ctx = {}) {
   }));
   const applied = dispatch(next, action, ctx);
   if (!applied.ok) return applied;
+  if (applied.unchanged) {
+    return {
+      ok: true,
+      plan,
+      votes_required: false,
+      votes_cast: (plan.votes || []).length,
+      shopping_started: shoppingHasStarted(plan),
+      completed: false,
+      already_cooked: !!applied.already_cooked,
+      unchanged: true,
+      prior_state: applied.prior_state || null,
+      undone: false,
+    };
+  }
   if (effect === "ingredients" && !applied.skip_ingredient_sync) syncShopping(next, previousLines, ctx);
   scopeShopLineIds(next);
   refreshStatus(next);
@@ -948,5 +1028,10 @@ export function applyPlanMutation(plan, action, ctx = {}) {
     votes_required: false,
     votes_cast: (next.votes || []).length,
     shopping_started: shoppingHasStarted(next),
+    completed: !!applied.completed,
+    already_cooked: false,
+    unchanged: false,
+    prior_state: applied.prior_state || null,
+    undone: !!applied.undone,
   };
 }

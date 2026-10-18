@@ -673,6 +673,9 @@
     changeCountValue: null,
     changeCountRemoveMealId: null,
     dinnerRateMealId: null,
+    ratingPlan: null,
+    rateReturnView: null,
+    cookUndoSealed: false,
     shopLineMenuId: null,
     shopLineSnapshot: {},
     groceryProviders: [],
@@ -1105,13 +1108,14 @@
     toast._t = setTimeout(function () {
       toastEl.classList.remove("show");
       toast._undo = null;
+      if (opts && opts.onDone) opts.onDone();
     }, duration);
   }
 
-  function toastUndo(message, undoFn) {
+  function toastUndo(message, undoFn, duration) {
     toast(
       message + ' <button type="button" class="btn btn-quiet btn-sm toast-undo">Undo</button>',
-      { html: true, undo: undoFn, duration: 6000 }
+      { html: true, undo: undoFn, duration: duration || 6000 }
     );
   }
 
@@ -2205,6 +2209,38 @@
     if (!mealId) return;
     state.dinnerCookMealId = mealId;
     if (state.dinnerCookPendingId === mealId) state.dinnerCookPendingId = null;
+    const planId = state.dinnerPlan && state.dinnerPlan.dinner_plan_id;
+    if (planId) {
+      const saved = readCookStep(planId, mealId);
+      if (saved > 0) state.cookStep = saved;
+    }
+  }
+
+  function cookStepKey(planId, mealId) {
+    return "fw_cook_step:" + planId + ":" + mealId;
+  }
+
+  function readCookStep(planId, mealId) {
+    if (!planId || !mealId) return 0;
+    try {
+      return Math.max(0, Number(sessionStorage.getItem(cookStepKey(planId, mealId)) || 0) || 0);
+    } catch (_) {
+      return 0;
+    }
+  }
+
+  function writeCookStep(planId, mealId, step) {
+    if (!planId || !mealId) return;
+    try {
+      sessionStorage.setItem(cookStepKey(planId, mealId), String(Math.max(0, Number(step) || 0)));
+    } catch (_) { /* private mode */ }
+  }
+
+  function clearCookStep(planId, mealId) {
+    if (!planId || !mealId) return;
+    try {
+      sessionStorage.removeItem(cookStepKey(planId, mealId));
+    } catch (_) { /* private mode */ }
   }
 
   function resumeStepNumber(meal) {
@@ -2619,18 +2655,240 @@
     }
   }
 
+  const cookWrites = new Set();
+
+  function planHoldingMeal(mealId) {
+    if (state.ratingPlan && (state.ratingPlan.meals || []).some(function (meal) { return meal.meal_id === mealId; })) {
+      return state.ratingPlan;
+    }
+    return state.dinnerPlan;
+  }
+
+  function dismissCookUndo() {
+    state.cookUndoSealed = true;
+    toast._undo = null;
+    clearTimeout(toast._t);
+    if (toastEl.querySelector(".toast-undo")) {
+      toastEl.classList.remove("show");
+      toastEl.replaceChildren();
+    }
+  }
+
+  function offerCookUndo(record) {
+    state.cookUndoSealed = false;
+    toast(
+      '<span>Logged as cooked.</span> <button type="button" class="btn btn-quiet btn-sm toast-undo" aria-label="Undo, this dinner is not cooked yet">Undo</button>',
+      {
+        html: true,
+        duration: 9000,
+        undo: function () {
+          return undoDinnerCook(record);
+        },
+      }
+    );
+  }
+
+  function setHowWasItCopy(meal) {
+    const title = document.getElementById("rateTitle");
+    const eyebrow = document.querySelector("[data-view='rate'] .eyebrow");
+    const lede = document.getElementById("rateLede");
+    const back = document.querySelector("[data-view='rate'] .back");
+    if (title) title.textContent = "How was it?";
+    if (eyebrow) eyebrow.textContent = meal ? planMealTitle(meal) : "How was dinner?";
+    if (lede) lede.textContent = "Each person scores separately. You can leave this and rate later.";
+    if (back) {
+      back.dataset.go = state.rateReturnView || "home";
+      const label = back.querySelector(".back__label");
+      if (label) label.textContent = "Not now";
+    }
+    if (title) {
+      title.setAttribute("tabindex", "-1");
+      title.focus();
+    }
+  }
+
+  function openDinnerRating(plan, mealId, returnView, undoRecord) {
+    state.dinnerRateMealId = mealId;
+    state.rateReturnView = returnView || "home";
+    const currentId = state.dinnerPlan && state.dinnerPlan.dinner_plan_id;
+    state.ratingPlan = plan && plan.dinner_plan_id && plan.dinner_plan_id !== currentId ? plan : null;
+    const meal = plan && (plan.meals || []).find(function (row) { return row.meal_id === mealId; });
+    show("rate", { context: Nav.contextFor("rate", state.rateReturnView, { established: true }) });
+    setHowWasItCopy(meal);
+    if (undoRecord) offerCookUndo(undoRecord);
+  }
+
+  async function writeMealMutation(plan, payload) {
+    if (!plan || !plan.dinner_plan_id) return null;
+    const res = await apiPost(
+      "/api/dinner-plans/" + encodeURIComponent(plan.dinner_plan_id) + "/mutations",
+      payload
+    );
+    if (res && res.ok && res.plan) {
+      if (state.dinnerPlan && state.dinnerPlan.dinner_plan_id === res.plan.dinner_plan_id) applyDinnerPlan(res.plan);
+      if (state.ratingPlan && state.ratingPlan.dinner_plan_id === res.plan.dinner_plan_id) state.ratingPlan = res.plan;
+    }
+    return res;
+  }
+
+  async function reloadPlanDocument(planId) {
+    if (!planId) return null;
+    const res = await apiGet("/api/dinner-plans/" + encodeURIComponent(planId));
+    if (!res || !res.ok || !res.plan) return null;
+    if (state.dinnerPlan && state.dinnerPlan.dinner_plan_id === planId) applyDinnerPlan(res.plan);
+    if (state.ratingPlan && state.ratingPlan.dinner_plan_id === planId) state.ratingPlan = res.plan;
+    return res.plan;
+  }
+
+  function mealFromPlan(plan, mealId) {
+    return plan && (plan.meals || []).find(function (meal) { return meal.meal_id === mealId; });
+  }
+
+  async function completeDinnerMeal(plan, meal, op, returnView) {
+    if (!plan || !meal || !meal.meal_id) return;
+    const key = plan.dinner_plan_id + ":" + meal.meal_id + ":" + op;
+    if (cookWrites.has(key)) return;
+    cookWrites.add(key);
+    try {
+      const res = await writeMealMutation(plan, {
+        op: op,
+        meal_id: meal.meal_id,
+        expected_state: meal.state,
+        expected_updated_at: plan.updated_at,
+      });
+      if (res && res.error === "revision_conflict") {
+        const fresh = res.plan || (await reloadPlanDocument(plan.dinner_plan_id));
+        const nowMeal = mealFromPlan(fresh, meal.meal_id);
+        if (nowMeal && ["cooked", "partially_rated", "fully_rated"].indexOf(nowMeal.state) >= 0) {
+          openDinnerRating(fresh, meal.meal_id, returnView, null);
+          return;
+        }
+        toast("That dinner changed. Have another look.");
+        renderActiveDinnerSurfaces();
+        if (state.view === "meals" || returnView === "meals") renderMealHistory();
+        return;
+      }
+      if (!res || !res.ok) {
+        toast(res && res.error === "illegal_transition" ? "That dinner can’t be logged as cooked." : "We couldn’t log that dinner. Try again.");
+        return;
+      }
+      if (res.completed) {
+        track("cook_completed", { dinner_plan_id: res.plan.dinner_plan_id, meal_id: meal.meal_id });
+        track("cook_recorded", {
+          dinner_plan_id: res.plan.dinner_plan_id,
+          meal_id: meal.meal_id,
+          plan_id: res.plan.dinner_plan_id,
+          meal_option_id: meal.meal_id,
+        });
+      }
+      const undo = res.completed && res.prior_state
+        ? {
+            planId: res.plan.dinner_plan_id,
+            mealId: meal.meal_id,
+            priorState: res.prior_state,
+            updatedAt: res.plan.updated_at,
+            returnView: returnView,
+          }
+        : null;
+      openDinnerRating(res.plan, meal.meal_id, returnView, undo);
+    } finally {
+      cookWrites.delete(key);
+    }
+  }
+
+  async function undoDinnerCook(record) {
+    if (!record || state.cookUndoSealed) return;
+    const key = record.planId + ":" + record.mealId + ":undo";
+    if (cookWrites.has(key)) return;
+    cookWrites.add(key);
+    try {
+      const holder =
+        (state.dinnerPlan && state.dinnerPlan.dinner_plan_id === record.planId && state.dinnerPlan) ||
+        (state.ratingPlan && state.ratingPlan.dinner_plan_id === record.planId && state.ratingPlan) ||
+        { dinner_plan_id: record.planId };
+      const res = await writeMealMutation(holder, {
+        op: "undo_cook",
+        meal_id: record.mealId,
+        prior_state: record.priorState,
+        expected_state: "cooked",
+        expected_updated_at: record.updatedAt,
+      });
+      if (res && (res.error === "undo_blocked_rating" || (res.error === "revision_conflict" && res.plan && mealHasRating(mealFromPlan(res.plan, record.mealId))))) {
+        toast("A rating is in, so this stays cooked.");
+        return;
+      }
+      if (res && res.error === "revision_conflict") {
+        const fresh = await reloadPlanDocument(record.planId);
+        const meal = mealFromPlan(fresh, record.mealId);
+        if (mealHasRating(meal) || (meal && (meal.state === "partially_rated" || meal.state === "fully_rated"))) {
+          toast("A rating is in, so this stays cooked.");
+          if (fresh) openDinnerRating(fresh, record.mealId, record.returnView, null);
+          return;
+        }
+        toast("Someone else already updated this dinner.");
+        renderActiveDinnerSurfaces();
+        return;
+      }
+      if (!res || !res.ok) {
+        toast("Couldn’t undo that. The dinner stays cooked.");
+        return;
+      }
+      if (record.priorState === "cooking") {
+        state.dinnerCookMealId = record.mealId;
+        state.cookStep = readCookStep(record.planId, record.mealId);
+      } else if (state.dinnerCookMealId === record.mealId) {
+        state.dinnerCookMealId = null;
+      }
+      state.dinnerRateMealId = null;
+      state.ratingPlan = null;
+      toast("Back to where you left it.");
+      const dest = record.priorState === "cooking" && record.returnView === "cook" ? "cook" : record.returnView || "home";
+      show(dest);
+      renderActiveDinnerSurfaces();
+      if (dest === "meals") renderMealHistory();
+    } finally {
+      cookWrites.delete(key);
+    }
+  }
+
+  async function loadHistoryPlan(planId) {
+    if (!planId) return null;
+    if (state.dinnerPlan && state.dinnerPlan.dinner_plan_id === planId) return state.dinnerPlan;
+    const res = await apiGet("/api/dinner-plans/" + encodeURIComponent(planId));
+    if (!res || !res.ok || !res.plan) return null;
+    return res.plan;
+  }
+
+  async function completeHistoryMeal(planId, mealId, priorState) {
+    const plan = await loadHistoryPlan(planId);
+    if (!plan) {
+      toast("Couldn’t open that dinner.");
+      return;
+    }
+    const meal = mealFromPlan(plan, mealId) || { meal_id: mealId, state: priorState || "cooking" };
+    await completeDinnerMeal(plan, meal, "mark_cooked", "meals");
+  }
+
+  async function openHistoryRating(planId, mealId) {
+    const plan = await loadHistoryPlan(planId);
+    if (!plan) {
+      toast("Couldn’t open that dinner.");
+      return;
+    }
+    openDinnerRating(plan, mealId, "meals", null);
+  }
+
+  function mealHasRating(meal) {
+    return !!(meal && (meal.ratings || []).some(function (row) { return row && row.score != null; }));
+  }
+
   function finishCook() {
     const cooking = cookingMeal();
     if (cooking && cooking.dinner_plan && state.dinnerPlan) {
-      mutateDinnerPlan({ op: "finish_cook", meal_id: cooking.id }).then(function (plan) {
-        if (plan) {
-          state.dinnerRateMealId = cooking.id;
-          state.dinnerCookMealId = null;
-          state.dinnerCookPendingId = null;
-          initPlanRatingsForMeal(cooking.id);
-          show("rate");
-        }
-      });
+      const raw = planMealById(cooking.id) || { meal_id: cooking.id, state: "cooking" };
+      const planId = state.dinnerPlan.dinner_plan_id;
+      writeCookStep(planId, raw.meal_id, state.cookStep);
+      void completeDinnerMeal(state.dinnerPlan, raw, "finish_cook", "cook");
       return;
     }
     const next = window.MealIdentity.reduceMealAction(identitySnapshot(), { type: "finish_cook" });
@@ -2840,12 +3098,45 @@
   }
 
   function historyStatus(m) {
+    if (m.meal_state === "cooking" || m.status === "Cooking") return { label: "Still cooking", cls: "badge--warning" };
+    if (m.meal_state === "selected" || m.status === "Selected") return { label: "Picked", cls: "badge--fit" };
+    if (m.meal_state === "planned" || m.status === "Planned") return { label: "Not logged", cls: "" };
     if (m.status === "Rated") return { label: "Rated", cls: "badge--success" };
     if (m.status === "Cooked") {
-      return { label: m.rating_state === "partial" ? "Partly rated" : "Rating waiting", cls: "badge--warning" };
+      return { label: m.rating_state === "partial" ? "Partly rated" : "Ready to rate", cls: "badge--warning" };
     }
-    if (m.status === "Selected") return { label: "Picked", cls: "badge--fit" };
     return { label: m.status || "Planned", cls: "" };
+  }
+
+  function historyRecoveryButton(m) {
+    if (!m || m.source !== "dinner_plan" || !m.meal_id || !m.dinner_plan_id) return "";
+    if (m.recoverable) {
+      return (
+        '<button class="btn btn-primary" type="button" data-action="history-mark-cooked" data-meal-id="' +
+        escapeHtml(m.meal_id) +
+        '" data-plan-id="' +
+        escapeHtml(m.dinner_plan_id) +
+        '" data-prior-state="' +
+        escapeAttr(m.meal_state || "") +
+        '">We made this</button>'
+      );
+    }
+    if (!m.can_rate) return "";
+    const me = meMember();
+    const rated =
+      me &&
+      (m.ratings || []).some(function (row) {
+        return row.member_id === me.id && row.score != null;
+      });
+    const inMeal = !m.participant_ids || !m.participant_ids.length || (me && m.participant_ids.indexOf(me.id) >= 0);
+    if (rated || !inMeal) return "";
+    return (
+      '<button class="btn btn-primary" type="button" data-action="history-rate" data-meal-id="' +
+      escapeHtml(m.meal_id) +
+      '" data-plan-id="' +
+      escapeHtml(m.dinner_plan_id) +
+      '">Rate it</button>'
+    );
   }
 
   async function renderMealHistory() {
@@ -2883,7 +3174,11 @@
               <div class="history-item__body">
                 <p class="history-item__title">${escapeHtml(m.meal_name)}</p>
                 <div class="badges"><span class="badge badge--sm ${status.cls}">${escapeHtml(status.label)}</span>${rating}${fav}</div>
-                ${m.recipe_slug || m.recipe_version_id ? `<div class="history-item__actions"><button class="btn btn-quiet btn-sm" type="button" data-history-recipe="${idx}">View recipe ${icon("arrow-right", "icon--forward")}</button></div>` : ""}
+                <div class="history-item__actions">${
+                  (m.recipe_slug || m.recipe_version_id
+                    ? `<button class="btn btn-quiet" type="button" data-history-recipe="${idx}">View recipe ${icon("arrow-right", "icon--forward")}</button>`
+                    : "") + historyRecoveryButton(m)
+                }</div>
               </div>
             </li>`;
         })
@@ -3886,9 +4181,16 @@
     } else if (cooking) {
       eye.textContent = "Your plan";
       homeTitle.textContent = planMealTitle(cooking) + " is cooking";
-      homeLede.textContent = "Pick up where you left off.";
-      primary = '<button class="btn btn-primary btn-lg" type="button" data-action="dp-back-kitchen">Back to the kitchen</button>';
-      secondary = '<button class="btn btn-secondary btn-lg" type="button" data-go="shopList">Shopping list</button>';
+      homeLede.textContent = "When it’s on the table, you can say so.";
+      primary =
+        '<button class="btn btn-primary btn-lg" type="button" data-action="mark-cooked" data-meal-id="' +
+        escapeHtml(cooking.meal_id) +
+        '">We made this</button>';
+      secondary =
+        '<button class="btn btn-secondary btn-lg" type="button" data-action="dp-back-kitchen" data-meal-id="' +
+        escapeHtml(cooking.meal_id) +
+        '">Back to the kitchen</button>' +
+        '<button class="btn btn-quiet btn-lg" type="button" data-go="shopList">Shopping list</button>';
       media.innerHTML = mealMediaHtml(uiMealFromPlanMeal(cooking), { eager: true });
     } else if (selected) {
       eye.textContent = "Tonight";
@@ -3899,6 +4201,17 @@
         '<button class="btn btn-secondary btn-lg" type="button" data-go="choices">See other dinners</button>' +
         '<button class="btn btn-quiet btn-lg" type="button" data-go="shopList">Shopping list</button>';
       media.innerHTML = mealMediaHtml(uiMealFromPlanMeal(selected), { eager: true });
+    } else if (mealsAwaitingMyRating().length) {
+      const waiting = mealsAwaitingMyRating()[0];
+      eye.textContent = "Your plan";
+      homeTitle.textContent = planMealTitle(waiting);
+      homeLede.textContent = "Cooked. Rate it whenever you’re ready.";
+      primary =
+        '<button class="btn btn-primary btn-lg" type="button" data-action="home-rate-cooked" data-meal-id="' +
+        escapeHtml(waiting.meal_id) +
+        '">How was it?</button>';
+      secondary = '<button class="btn btn-secondary btn-lg" type="button" data-go="shopList">Shopping list</button>';
+      media.innerHTML = mealMediaHtml(uiMealFromPlanMeal(waiting), { eager: true });
     } else if (!plan.shopping_started_at) {
       eye.textContent = "Your plan";
       homeTitle.textContent = n === 1 ? "1 dinner planned" : n + " dinners planned";
@@ -3921,6 +4234,7 @@
         })
         .join("");
     }
+    actions.classList.toggle("hero-actions--stack", !!cooking);
     actions.innerHTML = primary + secondary;
     if (selected && selected.kind === "recipe") {
       const reason = planMealReasonLine(selected);
@@ -5512,10 +5826,15 @@
         .map(function (m) {
           return (
             '<div class="tonight-plan-meal">' +
-            renderPlanMealCard(m) +
-            '<button class="btn btn-primary" data-action="dp-back-kitchen" data-meal-id="' +
+            '<div class="plan-meal-card__actions plan-meal-card__actions--stack">' +
+            '<button class="btn btn-primary" type="button" data-action="mark-cooked" data-meal-id="' +
             escapeHtml(m.meal_id) +
-            '">Back to the kitchen</button></div>'
+            '">We made this</button>' +
+            '<button class="btn btn-secondary" type="button" data-action="dp-back-kitchen" data-meal-id="' +
+            escapeHtml(m.meal_id) +
+            '">Back to the kitchen</button></div>' +
+            renderPlanMealCard(m) +
+            "</div>"
           );
         })
         .join("");
@@ -5529,14 +5848,20 @@
         .map(function (m) {
           let actions = "";
           if (m.kind === "recipe") {
-            actions =
-              '<div class="plan-meal-card__actions">' +
-              '<button type="button" class="btn btn-primary btn-sm" data-action="cook-plan-meal" data-meal-id="' +
+            actions = '<div class="plan-meal-card__actions plan-meal-card__actions--stack">';
+            actions +=
+              '<button type="button" class="btn btn-primary" data-action="cook-plan-meal" data-meal-id="' +
               escapeHtml(m.meal_id) +
               '">Cook this</button>';
+            if (m.state === "selected" || m.state === "planned") {
+              actions +=
+                '<button type="button" class="btn btn-secondary" data-action="mark-cooked" data-meal-id="' +
+                escapeHtml(m.meal_id) +
+                '">We made this</button>';
+            }
             if (m.state === "planned") {
               actions +=
-                '<button type="button" class="btn btn-secondary btn-sm" data-action="pick-for-tonight" data-meal-id="' +
+                '<button type="button" class="btn btn-quiet" data-action="pick-for-tonight" data-meal-id="' +
                 escapeHtml(m.meal_id) +
                 '">Pick for tonight</button>';
             }
@@ -5568,7 +5893,7 @@
               return r.member_id === me.id && r.score != null;
             });
           const rateBtn = owes
-            ? '<button type="button" class="btn btn-primary btn-sm" data-action="rate-plan-meal" data-meal-id="' +
+            ? '<button type="button" class="btn btn-primary" data-action="rate-plan-meal" data-meal-id="' +
               escapeHtml(m.meal_id) +
               '">Rate it</button>'
             : "";
@@ -5781,11 +6106,11 @@
   }
 
   function planMealById(mealId) {
-    const plan = state.dinnerPlan;
+    const plan = planHoldingMeal(mealId);
     if (!plan || !mealId) return null;
     return (plan.meals || []).find(function (m) {
       return m.meal_id === mealId;
-    });
+    }) || null;
   }
 
   function planShoppingStarted() {
@@ -6883,6 +7208,7 @@
       if (meal) {
         state.dinnerCookMealId = meal.meal_id;
         state.dinnerCookPendingId = null;
+        state.cookStep = readCookStep(state.dinnerPlan.dinner_plan_id, meal.meal_id);
         state.dinnerDetailMeal = uiMealFromPlanMeal(meal);
         show("cook");
       }
@@ -7046,9 +7372,37 @@
     const ratePlan = e.target.closest("[data-action='rate-plan-meal']");
     if (ratePlan) {
       e.preventDefault();
-      state.dinnerRateMealId = ratePlan.dataset.mealId;
       state.dinnerDetailMeal = mealById(ratePlan.dataset.mealId);
-      show("rate", { context: Nav.contextFor("rate", "choices", { established: true, origin: "tonightPlan" }) });
+      openDinnerRating(state.dinnerPlan, ratePlan.dataset.mealId, "choices", null);
+      return true;
+    }
+    const made = e.target.closest("[data-action='mark-cooked']");
+    if (made) {
+      e.preventDefault();
+      const raw = planMealById(made.dataset.mealId);
+      if (raw && state.dinnerPlan) {
+        void completeDinnerMeal(state.dinnerPlan, raw, "mark_cooked", state.view || "home");
+      }
+      return true;
+    }
+    const homeRate = e.target.closest("#btnHomeRateWait, [data-action='home-rate-cooked']");
+    if (homeRate) {
+      e.preventDefault();
+      const waiting = mealsAwaitingMyRating();
+      const mealId = homeRate.dataset.mealId || (waiting[0] && waiting[0].meal_id);
+      if (mealId) openDinnerRating(state.dinnerPlan, mealId, "home", null);
+      return true;
+    }
+    const historyMade = e.target.closest("[data-action='history-mark-cooked']");
+    if (historyMade) {
+      e.preventDefault();
+      void completeHistoryMeal(historyMade.dataset.planId, historyMade.dataset.mealId, historyMade.dataset.priorState);
+      return true;
+    }
+    const historyRate = e.target.closest("[data-action='history-rate']");
+    if (historyRate) {
+      e.preventDefault();
+      void openHistoryRating(historyRate.dataset.planId, historyRate.dataset.mealId);
       return true;
     }
     const cookElse = e.target.closest("[data-action='cook-this-tonight']");
@@ -7734,9 +8088,16 @@
     toast("Saved — join to cook & rate together");
   });
 
+  function rememberVisibleCookStep() {
+    const planId = state.dinnerPlan && state.dinnerPlan.dinner_plan_id;
+    const mealId = state.dinnerCookMealId || state.dinnerCookPendingId;
+    if (planId && mealId) writeCookStep(planId, mealId, state.cookStep);
+  }
+
   document.getElementById("btnPrevStep").addEventListener("click", () => {
     if (state.cookStep > 0) {
       state.cookStep -= 1;
+      rememberVisibleCookStep();
       renderCook();
     }
   });
@@ -7749,6 +8110,7 @@
     const steps = cookSteps();
     if (state.cookStep < steps.length - 1) {
       state.cookStep += 1;
+      rememberVisibleCookStep();
       renderCook();
     }
   });
@@ -7789,8 +8151,10 @@
       });
       if (leave) {
         await mutateDinnerPlan({ op: "exit_cook", meal_id: cooking.id });
+        clearCookStep(state.dinnerPlan && state.dinnerPlan.dinner_plan_id, cooking.id);
         state.dinnerCookMealId = null;
         state.dinnerCookPendingId = null;
+        state.cookStep = 0;
         show("choices");
         renderTonightPlan();
       }
@@ -7909,16 +8273,19 @@
     if (scoreBtn) {
       const id = scoreBtn.dataset.person;
       const score = Number(scoreBtn.dataset.score);
-      if (state.dinnerRateMealId && state.dinnerPlan) {
+      if (state.dinnerRateMealId && (state.dinnerPlan || state.ratingPlan)) {
+        state.cookUndoSealed = true;
+        dismissCookUndo();
         state.ratings[id] = state.ratings[id] || { score: null, note: "" };
         state.ratings[id].score = score;
-        mutateDinnerPlan({
+        const plan = planHoldingMeal(state.dinnerRateMealId);
+        writeMealMutation(plan, {
           op: "rate_meal",
           meal_id: state.dinnerRateMealId,
           member_id: id,
           score: score,
-        }).then(function (plan) {
-          if (plan) initPlanRatingsForMeal(state.dinnerRateMealId);
+        }).then(function (res) {
+          if (res && res.plan) initPlanRatingsForMeal(state.dinnerRateMealId);
           renderRaters();
         });
         return;
@@ -7984,9 +8351,12 @@
 
   document.getElementById("btnSavePartial").addEventListener("click", () => {
     if (state.dinnerRateMealId) {
-      show("choices");
-      renderTonightPlan();
-      toast("Saved — rate when you’re ready");
+      const dest = state.rateReturnView || "choices";
+      show(dest);
+      if (dest === "choices") renderTonightPlan();
+      if (dest === "meals") renderMealHistory();
+      if (dest === "home") updateHome();
+      if (!toast._undo) toast("Saved — rate when you’re ready");
       return;
     }
     if (state.lifecycle === "Selected" || state.lifecycle === "Unselected") state.lifecycle = "Cooked";
@@ -8225,20 +8595,20 @@
     e.preventDefault();
     const input = document.getElementById("shopAddInput");
     const text = input.value;
-    if (!String(text || "").trim()) {
+    const submitted = String(text || "");
+    if (!submitted.trim()) {
       toast("Add a bit more of a name.");
       return;
     }
-    if (!state.shopAddRequest) state.shopAddRequest = shopRequestId("add");
+    const requestId = shopRequestId("add");
+    state.shopAddRequest = requestId;
     const saved = await mutateHouseholdShop({
       op: "add_item",
-      text: text,
-      client_request_id: state.shopAddRequest,
+      text: submitted,
+      client_request_id: requestId,
     });
-    if (saved && saved.ok) {
-      input.value = "";
-      state.shopAddRequest = null;
-    }
+    if (saved && saved.ok && input.value === submitted) input.value = "";
+    if (state.shopAddRequest === requestId) state.shopAddRequest = null;
     renderShopList();
   });
   document.getElementById("btnShopRetry").addEventListener("click", async function () {
@@ -8250,7 +8620,7 @@
     renderShopList();
     if (saved && saved.ok) {
       const input = document.getElementById("shopAddInput");
-      if (input && attempt.op === "add_item") input.value = "";
+      if (input && attempt.op === "add_item" && input.value === attempt.text) input.value = "";
       state.shopAddRequest = null;
     }
   });
@@ -8488,18 +8858,33 @@
     showShopReturnNote();
   }
 
+  function syncShopHowMore() {
+    const rows = document.querySelector("#shopHowSheet .shop-how__rows");
+    if (!rows) return;
+    const more = rows.scrollTop + rows.clientHeight < rows.scrollHeight - 8;
+    rows.classList.toggle("is-more-below", more);
+  }
+
   function openHowSheet() {
     const dlg = document.getElementById("shopHowSheet");
     if (!dlg || typeof dlg.showModal !== "function") return;
-    void refreshGroceryProviders();
+    void refreshGroceryProviders().then(function () {
+      syncShopHowMore();
+    });
     const status = document.getElementById("shopHowStatus");
     if (status) {
       status.textContent = "";
       status.hidden = true;
     }
     if (!dlg.open) dlg.showModal();
+    const rows = dlg.querySelector(".shop-how__rows");
+    if (rows && !rows.dataset.moreBound) {
+      rows.dataset.moreBound = "1";
+      rows.addEventListener("scroll", syncShopHowMore, { passive: true });
+    }
     const first = document.getElementById("btnShopHowStore");
     if (first) first.focus();
+    requestAnimationFrame(syncShopHowMore);
   }
 
   async function enterInStore() {
@@ -8520,6 +8905,7 @@
     if (key.indexOf("fw_dinner_plan") === 0) return true;
     if (key.indexOf("fw_shop_seen:") === 0) return true;
     if (key.indexOf("he_shop_snap_") === 0) return true;
+    if (key.indexOf("fw_cook_step:") === 0) return true;
     if (key.indexOf("fw_weave") === 0) return true;
     if (key.indexOf("fw_handoff") === 0) return true;
     if (key.indexOf("he_disc_cache:") === 0) return true;
