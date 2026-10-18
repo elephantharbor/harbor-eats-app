@@ -728,6 +728,8 @@ function exitCook(plan, action) {
 
 const COOKED_STATES = ["cooked", "partially_rated", "fully_rated"];
 const OPENABLE_STATES = ["planned", "selected", "cooking"];
+/** Server bound for undo_cook. The client offers about 9 seconds; this covers a slow tap. */
+export const UNDO_COOK_WINDOW_MS = 3 * 60 * 1000;
 
 /**
  * The only write that records a cooked recipe.
@@ -774,27 +776,37 @@ function markCooked(plan, action) {
 
 /**
  * Undo rules:
- * - Only a meal still `cooked` with no rating rows can return to planned, selected, or cooking.
+ * - Requires expected_updated_at matching the plan, so the save batch compare-and-swaps.
+ * - Only a meal still `cooked`, with no countable rating, and cooked within UNDO_COOK_WINDOW_MS.
  * - A rating, partial rating, or full rating blocks Undo. Ratings are not deleted.
- * - A retry that finds the meal already in `prior_state` is success and writes nothing.
- * - A stale expected state is a conflict. It does not reverse a newer outcome.
+ * - Anything else is rejected. A meal already back in prior_state is not a second success.
  * Cook-step progress is client-only and is not rewritten here.
  */
-function undoCook(plan, action) {
+function undoCook(plan, action, ctx = {}) {
   const meal = findMeal(plan, action.meal_id);
   if (!meal) return fail("meal_not_found", 404);
   if (meal.kind !== "recipe") return fail("illegal_transition", 409);
   const prior = action.prior_state;
-  if (!OPENABLE_STATES.includes(prior)) return fail("prior_state_invalid");
+  if (!OPENABLE_STATES.includes(prior)) return fail("prior_state_invalid", 400);
   if (countableRatings(plan, meal).length || meal.state === "partially_rated" || meal.state === "fully_rated") {
     return fail("undo_blocked_rating", 409);
   }
-  if (meal.state === prior) return { ok: true, unchanged: true, undone: false, prior_state: prior };
+  if (!action.expected_updated_at) return fail("undo_requires_revision", 409);
+  if (action.expected_updated_at !== plan.updated_at) return fail("revision_conflict", 409);
   if (action.expected_state && action.expected_state !== meal.state) return fail("revision_conflict", 409);
-  if (meal.state !== "cooked") return fail("illegal_transition", 409);
+  if (meal.state !== "cooked") return fail("undo_not_cooked", 409);
+  if (!cookUndoStillOpen(plan.updated_at, ctx.now)) return fail("undo_expired", 409);
   meal.state = prior;
   meal.cooked_recipe_version_id = null;
   return { ok: true, undone: true, prior_state: prior };
+}
+
+function cookUndoStillOpen(updatedAt, now) {
+  const written = Date.parse(updatedAt);
+  const current = Date.parse(now);
+  if (!Number.isFinite(written) || !Number.isFinite(current)) return false;
+  const age = current - written;
+  return age >= -60_000 && age <= UNDO_COOK_WINDOW_MS;
 }
 
 function countableRatings(plan, meal) {
@@ -961,7 +973,7 @@ function dispatch(plan, action, ctx) {
     case "mark_cooked":
       return markCooked(plan, action);
     case "undo_cook":
-      return undoCook(plan, action);
+      return undoCook(plan, action, ctx);
     case "rate_meal":
       return rateMeal(plan, action, ctx);
     case "skip_meal":

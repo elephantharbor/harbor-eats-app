@@ -140,6 +140,25 @@ export function funnelEventCountSql() {
   return `SELECT COUNT(*) AS c FROM event WHERE household_id = ? AND event_name = ? AND ${sqlRealRow("event")}`;
 }
 
+/**
+ * Household funnel cook step. `cook_recorded` minus `cook_undone` for the same
+ * meal_option_id, and a meal counts at most once. A meal that was marked,
+ * undone, and marked again is one completion. A meal that was undone and not
+ * marked again is zero.
+ */
+export function funnelCookCompletionSql() {
+  return `SELECT COUNT(*) AS c FROM (
+    SELECT COALESCE(NULLIF(meal_option_id, ''), event_id) AS meal_key,
+           SUM(CASE WHEN event_name = 'cook_undone' THEN -1 ELSE 1 END) AS net
+    FROM event
+    WHERE household_id = ?
+      AND event_name IN ('cook_recorded', 'cook_undone')
+      AND ${sqlRealRow("event")}
+    GROUP BY COALESCE(NULLIF(meal_option_id, ''), event_id)
+  ) AS meals
+  WHERE net > 0`;
+}
+
 /** Per-household completed meal loops. Only explicit household plans count. */
 export function completedMealLoopSql() {
   return `SELECT COUNT(*) AS c FROM plan WHERE household_id = ? AND status = 'Rated' AND ${sqlRealRow("plan")}`;

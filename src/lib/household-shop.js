@@ -269,9 +269,9 @@ function findLine(list, identity) {
   return list.lines.find((line) => lineIdentityKey(line) === key) || null;
 }
 
-function findClientRequest(list, clientRequestId) {
+export function findClientRequest(list, clientRequestId) {
   if (!clientRequestId) return null;
-  for (const line of list.lines) {
+  for (const line of list.lines || []) {
     const hit = (line.requirements || []).find((req) => req.client_request_id === clientRequestId);
     if (hit) return line;
   }

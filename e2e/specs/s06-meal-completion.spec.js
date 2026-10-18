@@ -322,4 +322,58 @@ test.describe("S-06 meal completion", () => {
     expect(stacked.widths.every((width) => width >= stacked.parent - 8)).toBe(true);
     await page.locator("#btnSignOutStay").click();
   });
+
+  test("a lost add response then a re-tap keeps one requirement", async ({ page }) => {
+    await page.locator('[data-nav="home"]').filter({ visible: true }).first().click();
+    await page.locator(".view.is-active button.link-card[data-go='shopList']").click();
+    const input = page.locator("#shopAddInput");
+    await expect(input).toBeEnabled();
+
+    const ids = [];
+    let dropped = false;
+    await page.route("**/api/household-shop", async (route) => {
+      if (route.request().method() !== "POST") {
+        await route.continue();
+        return;
+      }
+      let body = {};
+      try {
+        body = route.request().postDataJSON() || {};
+      } catch {
+        body = {};
+      }
+      if (body.op !== "add_item" || body.text !== "2 limes") {
+        await route.continue();
+        return;
+      }
+      ids.push(body.client_request_id);
+      if (!dropped) {
+        dropped = true;
+        await route.fetch();
+        await route.abort();
+        return;
+      }
+      await route.continue();
+    });
+
+    await input.fill("2 limes");
+    await page.locator("#shopAddForm button[type='submit']").click();
+    await expect(input).toHaveValue("2 limes");
+    await page.locator("#shopAddForm button[type='submit']").click();
+    await expect(input).toHaveValue("");
+    await expect(page.getByRole("checkbox", { name: /lime/i })).toHaveCount(1);
+
+    const saved = await page.evaluate(async () => {
+      const res = await fetch("/api/household-shop", { credentials: "include" }).then((r) => r.json());
+      const lines = ((res.list && res.list.lines) || []).filter((line) => /lime/i.test(line.display_name || ""));
+      return lines.map((line) => ({
+        qty: line.quantity_manual,
+        sources: (line.sources || []).length,
+      }));
+    });
+    expect(ids).toHaveLength(2);
+    expect(ids[0]).toBeTruthy();
+    expect(ids[1]).toBe(ids[0]);
+    expect(saved).toEqual([{ qty: 2, sources: 1 }]);
+  });
 });

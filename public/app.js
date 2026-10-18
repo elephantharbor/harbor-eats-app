@@ -649,6 +649,7 @@
     householdShop: null,
     shopInStore: false,
     shopAttempt: null,
+    shopAddPending: null,
     shopShareId: null,
     dinnerUnfilled: [],
     dinnerDetailMeal: null,
@@ -2837,37 +2838,61 @@
         return;
       }
       if (res && res.error === "revision_conflict") {
-        const fresh = await reloadPlanDocument(record.planId);
+        const fresh = res.plan || (await reloadPlanDocument(record.planId));
         const meal = mealFromPlan(fresh, record.mealId);
         if (mealHasRating(meal) || (meal && (meal.state === "partially_rated" || meal.state === "fully_rated"))) {
           toast("A rating is in, so this stays cooked.");
           if (fresh) openDinnerRating(fresh, record.mealId, record.returnView, null);
           return;
         }
+        if (meal && meal.state === record.priorState) {
+          if (fresh && state.dinnerPlan && state.dinnerPlan.dinner_plan_id === fresh.dinner_plan_id) applyDinnerPlan(fresh);
+          noteCookUndone(record);
+          showUndoneCook(record);
+          return;
+        }
         toast("Someone else already updated this dinner.");
         renderActiveDinnerSurfaces();
+        return;
+      }
+      if (res && res.error === "undo_expired") {
+        toast("That window closed. This stays cooked.");
         return;
       }
       if (!res || !res.ok) {
         toast("Couldn’t undo that. The dinner stays cooked.");
         return;
       }
-      if (record.priorState === "cooking") {
-        state.dinnerCookMealId = record.mealId;
-        state.cookStep = readCookStep(record.planId, record.mealId);
-      } else if (state.dinnerCookMealId === record.mealId) {
-        state.dinnerCookMealId = null;
-      }
-      state.dinnerRateMealId = null;
-      state.ratingPlan = null;
-      toast("Back to where you left it.");
-      const dest = record.priorState === "cooking" && record.returnView === "cook" ? "cook" : record.returnView || "home";
-      show(dest);
-      renderActiveDinnerSurfaces();
-      if (dest === "meals") renderMealHistory();
+      if (res.undone) noteCookUndone(record);
+      showUndoneCook(record);
     } finally {
       cookWrites.delete(key);
     }
+  }
+
+  function noteCookUndone(record) {
+    track("cook_undone", {
+      dinner_plan_id: record.planId,
+      meal_id: record.mealId,
+      plan_id: record.planId,
+      meal_option_id: record.mealId,
+    });
+  }
+
+  function showUndoneCook(record) {
+    if (record.priorState === "cooking") {
+      state.dinnerCookMealId = record.mealId;
+      state.cookStep = readCookStep(record.planId, record.mealId);
+    } else if (state.dinnerCookMealId === record.mealId) {
+      state.dinnerCookMealId = null;
+    }
+    state.dinnerRateMealId = null;
+    state.ratingPlan = null;
+    toast("Back to where you left it.");
+    const dest = record.priorState === "cooking" && record.returnView === "cook" ? "cook" : record.returnView || "home";
+    show(dest);
+    renderActiveDinnerSurfaces();
+    if (dest === "meals") renderMealHistory();
   }
 
   async function loadHistoryPlan(planId) {
@@ -8619,7 +8644,9 @@
       toast("Add a bit more of a name.");
       return;
     }
-    const requestId = shopRequestId("add");
+    const pending = state.shopAddPending;
+    const requestId = pending && pending.text === submitted ? pending.requestId : shopRequestId("add");
+    state.shopAddPending = { text: submitted, requestId: requestId };
     state.shopAddRequest = requestId;
     const saved = await mutateHouseholdShop({
       op: "add_item",
@@ -8627,7 +8654,10 @@
       client_request_id: requestId,
     });
     if (saved && saved.ok && input.value === submitted) input.value = "";
-    if (state.shopAddRequest === requestId) state.shopAddRequest = null;
+    if (saved && saved.ok && state.shopAddPending && state.shopAddPending.requestId === requestId) {
+      state.shopAddPending = null;
+      state.shopAddRequest = null;
+    }
     renderShopList();
   });
   document.getElementById("btnShopRetry").addEventListener("click", async function () {
@@ -8640,6 +8670,9 @@
     if (saved && saved.ok) {
       const input = document.getElementById("shopAddInput");
       if (input && attempt.op === "add_item" && input.value === attempt.text) input.value = "";
+      if (state.shopAddPending && attempt.op === "add_item" && state.shopAddPending.text === attempt.text) {
+        state.shopAddPending = null;
+      }
       state.shopAddRequest = null;
     }
   });
@@ -8958,6 +8991,8 @@
     state.shopInStore = false;
     state.shopShareId = null;
     state.shopAttempt = null;
+    state.shopAddPending = null;
+    state.shopAddRequest = null;
     state.primaryConstraints = [];
     state.savedConstraints = [];
     state.ratings = {};

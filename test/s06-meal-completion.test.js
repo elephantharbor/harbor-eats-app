@@ -13,8 +13,9 @@ import {
   loadDinnerPlan,
   saveDinnerPlan,
 } from "../src/lib/dinner-plan-store.js";
-import { applyPlanMutation, createDinnerPlan } from "../src/lib/plan-mutations.js";
+import { applyPlanMutation, createDinnerPlan, UNDO_COOK_WINDOW_MS } from "../src/lib/plan-mutations.js";
 import { countsTowardCompletedMealLoop, dinnerHistoryIncludes } from "../src/lib/plan-contract.js";
+import { funnelCookCompletionSql } from "../src/lib/evidence-origin.js";
 import { summarizeShopExports } from "../src/lib/household-shop.js";
 import { loadMealHistory } from "../src/lib/recommendations.js";
 
@@ -144,14 +145,72 @@ describe("undo_cook", () => {
     const selected = mutate(plan, { op: "select_meal", meal_id: mealId });
     const cooked = mutate(selected.plan, { op: "mark_cooked", meal_id: mealId });
     expect(cooked.plan.meals[0].cooked_recipe_version_id).toBeTruthy();
-    const undone = mutate(cooked.plan, { op: "undo_cook", meal_id: mealId, prior_state: "selected", expected_state: "cooked" });
+    const undone = mutate(cooked.plan, {
+      op: "undo_cook",
+      meal_id: mealId,
+      prior_state: "selected",
+      expected_state: "cooked",
+      expected_updated_at: cooked.plan.updated_at,
+    });
     expect(undone.undone).toBe(true);
     expect(undone.plan.meals[0].state).toBe("selected");
     expect(undone.plan.meals[0].cooked_recipe_version_id).toBeNull();
-    const again = mutate(undone.plan, { op: "undo_cook", meal_id: mealId, prior_state: "selected" });
-    expect(again.unchanged).toBe(true);
-    expect(again.undone).toBe(false);
-    expect(again.plan.meals[0].state).toBe("selected");
+    const again = mutate(undone.plan, {
+      op: "undo_cook",
+      meal_id: mealId,
+      prior_state: "selected",
+      expected_updated_at: undone.plan.updated_at,
+    });
+    expect(again.ok).toBe(false);
+    expect(again.error).toBe("undo_not_cooked");
+    expect(undone.plan.meals[0].state).toBe("selected");
+  });
+
+  it("requires a matching revision, a cooked meal, and a recent stamp", () => {
+    const plan = recipePlan();
+    const mealId = plan.meals[0].meal_id;
+    const cooked = mutate(plan, { op: "mark_cooked", meal_id: mealId });
+    const missing = mutate(cooked.plan, { op: "undo_cook", meal_id: mealId, prior_state: "planned" });
+    expect(missing.error).toBe("undo_requires_revision");
+    expect(cooked.plan.meals[0].state).toBe("cooked");
+
+    const stale = mutate(cooked.plan, {
+      op: "undo_cook",
+      meal_id: mealId,
+      prior_state: "planned",
+      expected_updated_at: "2026-10-18T12:00:00.000Z",
+    });
+    expect(stale.error).toBe("revision_conflict");
+    expect(cooked.plan.meals[0].state).toBe("cooked");
+
+    const expiredAt = new Date(Date.parse(cooked.plan.updated_at) + UNDO_COOK_WINDOW_MS + 1000).toISOString();
+    const expired = mutate(
+      cooked.plan,
+      {
+        op: "undo_cook",
+        meal_id: mealId,
+        prior_state: "planned",
+        expected_updated_at: cooked.plan.updated_at,
+      },
+      expiredAt
+    );
+    expect(expired.error).toBe("undo_expired");
+    expect(cooked.plan.meals[0].state).toBe("cooked");
+    expect(cooked.plan.meals[0].cooked_recipe_version_id).toBeTruthy();
+
+    const soon = new Date(Date.parse(cooked.plan.updated_at) + 9000).toISOString();
+    const open = mutate(
+      cooked.plan,
+      {
+        op: "undo_cook",
+        meal_id: mealId,
+        prior_state: "planned",
+        expected_updated_at: cooked.plan.updated_at,
+      },
+      soon
+    );
+    expect(open.undone).toBe(true);
+    expect(open.plan.meals[0].state).toBe("planned");
   });
 
   it("keeps a rating and refuses to undo it", () => {
@@ -175,6 +234,7 @@ describe("undo_cook", () => {
       meal_id: mealId,
       prior_state: "planned",
       expected_state: "cooked",
+      expected_updated_at: cooking.plan.updated_at,
     });
     expect(conflict.error).toBe("revision_conflict");
     expect(cooking.plan.meals[0].state).toBe("cooking");
@@ -313,7 +373,7 @@ describe("saved completion", () => {
     const loaded = await loadDinnerPlan(db, plan.dinner_plan_id);
     loaded.meals[0].state = "cooked";
     loaded.meals[0].cooked_recipe_version_id = loaded.meals[0].recipe_version_id;
-    loaded.updated_at = "2026-10-18T15:00:00.000Z";
+    loaded.updated_at = new Date().toISOString();
     await expect(saveDinnerPlan(db, loaded, { expectedUpdatedAt: "1999-01-01T00:00:00.000Z" })).rejects.toMatchObject({
       code: "revision_conflict",
     });
@@ -495,5 +555,91 @@ describe("saved completion", () => {
     expect(recovered.recoverable).toBe(false);
     const cookingOnly = history.find((row) => row.dinner_plan_id === currentId);
     expect(cookingOnly).toBeUndefined();
+  });
+
+  it("rejects undo without a revision and undo after the window", async () => {
+    const sqlite = migrate();
+    const db = asD1(sqlite);
+    seed(sqlite);
+    const auth = await createMemberSession(db, { household_id: "hh_s06", member_id: "m_a" }, { secure: false });
+    const version = plannerCatalog()[0].pkg.recipe_version_id;
+    const env = { DB: db };
+    const deps = { writeOrigin: async () => "synthetic" };
+    async function call(path, method, body) {
+      const res = await routeDinnerPlanRequest(
+        env,
+        new Request(new URL(`https://fw.test${path}`), {
+          method,
+          headers: {
+            Authorization: `Bearer ${auth.session_token}`,
+            "Content-Type": "application/json",
+          },
+          body: body ? JSON.stringify(body) : undefined,
+        }),
+        path,
+        new URL(`https://fw.test${path}`),
+        deps
+      );
+      return { status: res.status, body: await res.json() };
+    }
+    const created = await call("/api/dinner-plans", "POST", {
+      meal_count: 1,
+      entry_point: "plan_dinners",
+      participant_ids: ["m_a"],
+      meals: [{ kind: "recipe", recipe_version_id: version, participant_ids: ["m_a"] }],
+    });
+    const planId = created.body.plan.dinner_plan_id;
+    const mealId = created.body.plan.meals[0].meal_id;
+    const marked = await call(`/api/dinner-plans/${planId}/mutations`, "POST", {
+      op: "mark_cooked",
+      meal_id: mealId,
+      expected_updated_at: created.body.plan.updated_at,
+    });
+    expect(marked.status).toBe(200);
+    const missing = await call(`/api/dinner-plans/${planId}/mutations`, "POST", {
+      op: "undo_cook",
+      meal_id: mealId,
+      prior_state: "planned",
+      expected_state: "cooked",
+    });
+    expect(missing.status).toBe(409);
+    expect(missing.body.error).toBe("undo_requires_revision");
+    expect(sqlite.prepare(`SELECT state FROM dinner_plan_meal WHERE meal_id = ?`).get(mealId).state).toBe("cooked");
+
+    const loaded = await loadDinnerPlan(db, planId);
+    loaded.updated_at = new Date(Date.now() - UNDO_COOK_WINDOW_MS - 60_000).toISOString();
+    await saveDinnerPlan(db, loaded);
+    const expired = await call(`/api/dinner-plans/${planId}/mutations`, "POST", {
+      op: "undo_cook",
+      meal_id: mealId,
+      prior_state: "planned",
+      expected_state: "cooked",
+      expected_updated_at: loaded.updated_at,
+    });
+    expect(expired.status).toBe(409);
+    expect(expired.body.error).toBe("undo_expired");
+    expect(sqlite.prepare(`SELECT state, cooked_recipe_version_id FROM dinner_plan_meal WHERE meal_id = ?`).get(mealId).state).toBe("cooked");
+  });
+});
+
+describe("cook funnel", () => {
+  it("counts a meal at most once after mark, undo, and mark", () => {
+    const sqlite = migrate();
+    const insert = sqlite.prepare(
+      `INSERT INTO event (event_id, event_name, household_id, meal_option_id, created_at, data_origin)
+       VALUES (?, ?, ?, ?, ?, ?)`
+    );
+    const rows = [
+      ["e1", "cook_recorded", "hh", "meal_a", "t", "household"],
+      ["e2", "cook_undone", "hh", "meal_a", "t", "household"],
+      ["e3", "cook_recorded", "hh", "meal_a", "t", "household"],
+      ["e4", "cook_recorded", "hh", "meal_b", "t", "household"],
+      ["e5", "cook_recorded", "hh", "meal_c", "t", "household"],
+      ["e6", "cook_undone", "hh", "meal_c", "t", "household"],
+      ["e7", "cook_recorded", "hh", "meal_d", "t", "synthetic"],
+    ];
+    for (const row of rows) insert.run(...row);
+    expect(sqlite.prepare(funnelCookCompletionSql()).get("hh").c).toBe(2);
+    expect(sqlite.prepare(`SELECT COUNT(*) AS c FROM event WHERE event_name = 'cook_recorded' AND household_id = 'hh' AND data_origin = 'household'`).get().c).toBe(4);
   });
 });

@@ -14,6 +14,7 @@ import {
 } from "./household-settings.js";
 import {
   addGeneralItem,
+  findClientRequest,
   clearCompleted,
   deleteGeneralSource,
   editLine,
@@ -288,6 +289,13 @@ function conflict(list, plan, attempted) {
 }
 
 async function mutate(env, session, list, plan, body, now, request, deps) {
+  // A lost response leaves the client on the old revision. The same request id is already stored, so this is the write, not a conflict.
+  if (body.op === "add_item" && body.client_request_id) {
+    const line = findClientRequest(list, body.client_request_id);
+    if (line) {
+      return json({ ok: true, list: present(list, plan), idempotent: true, line_id: line.line_id || null });
+    }
+  }
   if (Number(body.expected_revision) !== Number(list.revision)) {
     await recordShop(env, session, request, deps, "shopping_conflict", { op: body.op || "write" });
     return conflict(list, plan, attemptedFrom(body));
