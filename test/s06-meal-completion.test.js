@@ -8,6 +8,7 @@ import { describe, expect, it } from "vitest";
 import { createMemberSession } from "../src/lib/session.js";
 import { plannerCatalog } from "../src/lib/dinner-planner.js";
 import { routeDinnerPlanRequest } from "../src/lib/dinner-plan-routes.js";
+import { routeHouseholdShopRequest } from "../src/lib/household-shop-routes.js";
 import {
   findCurrentDinnerPlanId,
   loadDinnerPlan,
@@ -660,7 +661,7 @@ describe("concurrent plan writes", () => {
   function openPlan(sqlite) {
     let beforeBatch = async () => {};
     const db = asD1(sqlite, { beforeBatch: () => beforeBatch() });
-    function armGate() {
+    function armGate(skip = 0) {
       let release;
       const hold = new Promise((resolve) => {
         release = resolve;
@@ -669,10 +670,15 @@ describe("concurrent plan writes", () => {
       const waiting = new Promise((resolve) => {
         arrived = resolve;
       });
-      let pending = true;
+      let left = skip;
+      let armed = true;
       beforeBatch = async () => {
-        if (!pending) return;
-        pending = false;
+        if (!armed) return;
+        if (left > 0) {
+          left -= 1;
+          return;
+        }
+        armed = false;
         arrived();
         await hold;
       };
@@ -867,6 +873,75 @@ describe("concurrent plan writes", () => {
     expect(rated.body.error).toBe("rating_requires_cooked");
     expect(sqlite.prepare("SELECT state FROM dinner_plan_meal").get().state).toBe("planned");
     expect(sqlite.prepare("SELECT COUNT(*) AS n FROM dinner_plan_rating").get().n).toBe(0);
+    sqlite.close();
+  });
+
+  it("keeps a rating when the first shopping tick loaded the plan first", async () => {
+    const sqlite = migrate();
+    seed(sqlite);
+    const { db, armGate } = openPlan(sqlite);
+    const call = await caller(db);
+    const shopAuth = await createMemberSession(db, { household_id: "hh_s06", member_id: "m_a" }, { secure: false });
+    const env = { DB: db };
+    const deps = { writeOrigin: async () => "synthetic" };
+    async function shop(method, body) {
+      const res = await routeHouseholdShopRequest(
+        env,
+        new Request(new URL("https://fw.test/api/household-shop"), {
+          method,
+          headers: {
+            Authorization: `Bearer ${shopAuth.session_token}`,
+            "Content-Type": "application/json",
+          },
+          body: body ? JSON.stringify(body) : undefined,
+        }),
+        "/api/household-shop",
+        new URL("https://fw.test/api/household-shop"),
+        deps
+      );
+      return { status: res.status, body: await res.json() };
+    }
+    const version = plannerCatalog()[0].pkg.recipe_version_id;
+    const created = await call("/api/dinner-plans", "POST", {
+      meal_count: 1,
+      entry_point: "plan_dinners",
+      participant_ids: ["m_a"],
+      meals: [{ kind: "recipe", recipe_version_id: version, participant_ids: ["m_a"] }],
+    });
+    expect(created.status).toBe(201);
+    const plan = created.body.plan;
+    const mealId = plan.meals[0].meal_id;
+    const cooked = await call(`/api/dinner-plans/${plan.dinner_plan_id}/mutations`, "POST", {
+      op: "mark_cooked",
+      meal_id: mealId,
+    });
+    expect(cooked.body.completed).toBe(true);
+    const listed = await shop("GET");
+    expect(listed.status).toBe(200);
+    const line = (listed.body.list.lines || [])[0];
+    expect(line && line.line_id).toBeTruthy();
+    expect(listed.body.list.dinner_plan_id).toBe(plan.dinner_plan_id);
+    const gate = armGate(1);
+    const tick = shop("POST", {
+      expected_revision: listed.body.list.revision,
+      op: "set_state",
+      line_id: line.line_id,
+      list_state: "purchased",
+    });
+    await gate.waiting;
+    const rated = await call(`/api/dinner-plans/${plan.dinner_plan_id}/mutations`, "POST", {
+      op: "rate_meal",
+      meal_id: mealId,
+      member_id: "m_a",
+      score: 8,
+    });
+    gate.release();
+    const shopped = await tick;
+    expect(shopped.status).toBe(200);
+    expect(rated.status).toBe(200);
+    expect(sqlite.prepare("SELECT COUNT(*) AS n FROM dinner_plan_rating").get().n).toBe(1);
+    expect(sqlite.prepare("SELECT state FROM dinner_plan_meal").get().state).toBe("fully_rated");
+    expect(sqlite.prepare("SELECT shopping_started_at FROM dinner_plan").get().shopping_started_at).toBeTruthy();
     sqlite.close();
   });
 });
