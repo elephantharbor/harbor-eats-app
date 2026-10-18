@@ -1,6 +1,6 @@
 # S-01 Grocery Provider Registry
 
-**Status.** Maintenance contract. The table below is the 2026-10-16 research snapshot. The runtime rows live in `src/lib/grocery/registry.js`. See the S-03 addendum.
+**Status.** Maintenance contract. The table below is the 2026-10-16 research snapshot. The runtime rows live in `src/lib/grocery/registry.js`. See the S-03 addendum. Categories (native, integrated provider, consumer-assisted compatible application) are defined in PROVIDER-TERMINOLOGY.md and take precedence over the lifecycle words below.
 
 **Verification date.** 2026-10-16.
 
@@ -26,12 +26,15 @@ One row per provider. Status words are the only lifecycle.
 | `owner` | One integration owner. S-03 names them. S-01 owner is Grok 4.7 for the research. |
 | `limitations` | What we must not claim. |
 | `lifecycle` | `documented`, `accessible`, `tested`, or `production-enabled`. |
+| `category` | `native`, `integrated_provider` or `provider_research`. See PROVIDER-TERMINOLOGY.md. Consumer apps are not registry rows; they live in `compatible-apps.js`. |
+| `adapter_implemented` | True only when the id is in `createGroceryAdapters()`. |
+| `status` | B rows only: `documented`, `registration`, `credentials_obtained`, `mock_tested`, `provider_tested`, `production_enabled`, `monitoring`. |
 
 Lifecycle is the highest mark that is true. A public doc page can be **accessible** while the API is only **documented**. Production-enabled requires the flag on in production and a successful contract test against the production credential. None of these providers are production-enabled.
 
 ## Operating routine
 
-**Monthly.** The owner re-reads the changelog or doc root for each current row, including providers that are only documented. Instacart is on that list. Update `last_verified` and the limitation notes. A missed month does not turn a provider off by itself.
+**Monthly.** The owner re-reads the changelog or doc root for each current row, including providers that are only documented. Instacart is on that list. Update `last_verified` and the limitation notes. A missed month does not turn a provider off by itself. Instacart: an automated routine runs on the 1st of each month at 9:00 AM CT. It re-reads company.instacart.com/business/developers and the Shopping List help page (Android/web availability), and updates status.registration.last_verified. A change in either opens a review; it never flips a flag by itself.
 
 **Quarterly.** Proactive review of emerging providers and capabilities. This does not wait for a household to ask. The owner looks for a new documented API, a new fulfillment method, or a capability an existing row did not have. Adding a row is not building an adapter.
 

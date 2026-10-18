@@ -26,6 +26,13 @@ import { projectSavedPlan, SHOP_PROJECTION_FAILED } from "./household-shop-route
 import { logDatabaseError, stripDatabaseDetail } from "./db-error.js";
 
 const COOK_OPS = new Set(["finish_cook", "mark_cooked", "undo_cook"]);
+const MAX_PLAN_SAVE_ATTEMPTS = 3;
+
+function nextStamp(loadedStamp, now) {
+  const loadedMs = Date.parse(loadedStamp);
+  const nowMs = Date.parse(now);
+  return new Date(Math.max(nowMs, loadedMs + 1)).toISOString();
+}
 
 function respond(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -45,7 +52,7 @@ async function savePlanAndProject(env, plan, now, saveOptions) {
   try {
     await saveDinnerPlan(env.DB, plan, saveOptions);
   } catch (error) {
-    if (error && error.code === "revision_conflict") return fail("revision_conflict", 409);
+    if (error && error.code === "revision_conflict") return { conflict: true };
     logDatabaseError("dinner_plan_save", error);
     return fail("dinner_plan_save_failed", 500);
   }
@@ -184,7 +191,8 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
       supersedeOtherUnfinished: true,
       supersededAt: now,
     });
-    if (saved) return saved;
+    if (saved instanceof Response) return saved;
+    if (saved && saved.conflict) return fail("revision_conflict", 409);
     return respond(
       {
         ok: true,
@@ -216,7 +224,7 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
   const dinnerPlanId = planIdFrom(path, isShop ? "/shopping" : isMutate ? "/mutations" : "");
   const access = await authorizePlan(env.DB, session, dinnerPlanId);
   if (access.error) return access.error;
-  const plan = await loadDinnerPlan(env.DB, dinnerPlanId);
+  let plan = await loadDinnerPlan(env.DB, dinnerPlanId);
   if (!plan) return fail("plan_not_found", 404);
 
   if (isRead || isShop) {
@@ -236,43 +244,55 @@ export async function routeDinnerPlanRequest(env, request, path, url, deps) {
     return respond({ ok: true, plan: presented });
   }
 
-  if (
-    COOK_OPS.has(body.op) &&
-    body.expected_updated_at &&
-    body.expected_updated_at !== plan.updated_at
-  ) {
-    return fail("revision_conflict", 409, { plan: presentDinnerPlan(plan) });
-  }
-  const mutated = applyPlanMutation(plan, body, ctx);
-  if (!mutated.ok) return fail(mutated.error, mutated.status || 400, failureBody(mutated));
-  if (mutated.unchanged) {
+  const isCook = COOK_OPS.has(body.op);
+  const maxAttempts = isCook ? 1 : MAX_PLAN_SAVE_ATTEMPTS;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    if (attempt > 1) {
+      plan = await loadDinnerPlan(env.DB, dinnerPlanId);
+      if (!plan) return fail("plan_not_found", 404);
+    }
+    if (isCook && body.expected_updated_at && body.expected_updated_at !== plan.updated_at) {
+      return fail("revision_conflict", 409, { plan: presentDinnerPlan(plan) });
+    }
+    const loadedStamp = plan.updated_at;
+    ctx.now = nextStamp(loadedStamp, now);
+    const mutated = applyPlanMutation(plan, body, ctx);
+    if (!mutated.ok) return fail(mutated.error, mutated.status || 400, failureBody(mutated));
+    if (mutated.unchanged) {
+      return respond({
+        ok: true,
+        plan: presentDinnerPlan(plan),
+        votes_required: false,
+        votes_cast: mutated.votes_cast,
+        shopping_started: mutated.shopping_started,
+        completed: false,
+        already_cooked: !!mutated.already_cooked,
+        unchanged: true,
+        prior_state: mutated.prior_state,
+        undone: false,
+      });
+    }
+    const saved = await savePlanAndProject(env, mutated.plan, now, {
+      expectedUpdatedAt: isCook ? body.expected_updated_at || loadedStamp : loadedStamp,
+    });
+    if (saved && saved.conflict) {
+      if (attempt < maxAttempts) continue;
+      const fresh = await loadDinnerPlan(env.DB, dinnerPlanId);
+      if (!fresh) return fail("plan_not_found", 404);
+      return fail("revision_conflict", 409, { plan: presentDinnerPlan(fresh) });
+    }
+    if (saved) return saved;
     return respond({
       ok: true,
-      plan: presentDinnerPlan(plan),
+      plan: presentDinnerPlan(mutated.plan),
       votes_required: false,
       votes_cast: mutated.votes_cast,
       shopping_started: mutated.shopping_started,
-      completed: false,
-      already_cooked: !!mutated.already_cooked,
-      unchanged: true,
+      completed: !!mutated.completed,
+      already_cooked: false,
+      unchanged: false,
       prior_state: mutated.prior_state,
-      undone: false,
+      undone: !!mutated.undone,
     });
   }
-  const saved = await savePlanAndProject(env, mutated.plan, now, {
-    expectedUpdatedAt: COOK_OPS.has(body.op) ? body.expected_updated_at || null : null,
-  });
-  if (saved) return saved;
-  return respond({
-    ok: true,
-    plan: presentDinnerPlan(mutated.plan),
-    votes_required: false,
-    votes_cast: mutated.votes_cast,
-    shopping_started: mutated.shopping_started,
-    completed: !!mutated.completed,
-    already_cooked: false,
-    unchanged: false,
-    prior_state: mutated.prior_state,
-    undone: !!mutated.undone,
-  });
 }

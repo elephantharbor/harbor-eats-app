@@ -13,6 +13,8 @@
 | **Shop online with a connected service** | Only when an adapter is configured, active and allowed for this household (none in Production today) | Provider-specific, e.g. "Send to Instacart" | Existing S-03/S-04A copy. Never shown while `GROCERY_PROVIDERS` is empty. |
 | **Open your store's website** | Only if a preferred store has an allowlisted host | "Open Schnucks" (opens in a new tab) | "Opens Schnucks' site. Your list doesn't move over — use Copy or Save image first." |
 
+Superseded by S-07: the hint now reads 'Copy it into a grocery app that supports pasting multiple items, or save the image for one that reads list photos. Review the items there before checkout.'
+
 **Never:** "Send to Schnucks/Instacart/Whole Foods" for an export; "Order", "Checkout", "Pickup", "Delivery" buttons on export rows; stock, price or "matched" badges; provider logos as decoration; a row for a provider we have not human-tested by name.
 
 **After an export** (toast, then quiet inline note on the list): "Copied. In your grocery app, paste it into your list, then check each item before you buy." For image: "Saved. Upload it in your grocery app's list or assistant, then check each item." When the shopper returns: "Back from shopping? Check off what you got." Nothing is marked automatically.

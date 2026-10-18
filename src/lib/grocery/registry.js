@@ -5,12 +5,16 @@
  * Official Instacart pages re-read 2026-10-16.
  */
 
+import { CONSUMER_COMPATIBLE_APPS } from "./compatible-apps.js";
 import { createInStoreAdapter } from "./instore.js";
 import { createInstacartAdapter } from "./instacart.js";
 
+// export_text and export_image are native (A) features and never appear in handoff_mechanisms.
 export const GROCERY_REGISTRY = Object.freeze([
   {
     id: "instacart",
+    category: "integrated_provider",
+    adapter_implemented: true,
     display_name: "Instacart",
     fulfillment_methods: ["provider_checkout"],
     geography: "US and CA",
@@ -43,33 +47,31 @@ export const GROCERY_REGISTRY = Object.freeze([
       last_verified: "2026-10-17",
       evidence: "documented",
     },
+    status: Object.freeze({
+      documented: true,
+      registration: {
+        value: "unavailable",
+        waitlist: false,
+        source_url: "https://company.instacart.com/business/developers",
+        last_verified: "2026-10-18",
+        evidence: "documented",
+      },
+      credentials_obtained: false,
+      mock_tested: true,
+      provider_tested: false,
+      production_enabled: false,
+      monitoring: {
+        cadence: "monthly",
+        schedule: "1st 09:00 America/Chicago",
+        checks: ["registration", "android_web_shopping_list"],
+      },
+    }),
     handoff_mechanisms: [],
-    consumer_import: [
-      {
-        method: "shopping_list_paste",
-        platforms: ["ios"],
-        source_url: "https://www.instacart.com/help/section/2893565984",
-        last_verified: "2026-10-17",
-        evidence: "documented",
-      },
-      {
-        method: "shopping_list_photo",
-        platforms: ["ios"],
-        source_url: "https://www.instacart.com/help/section/2893565984",
-        last_verified: "2026-10-17",
-        evidence: "documented",
-      },
-      {
-        method: "assistant_image_upload",
-        platforms: ["ios", "android", "web"],
-        source_url: "https://company.instacart.com/",
-        last_verified: "2026-10-17",
-        evidence: "documented",
-      },
-    ],
   },
   {
     id: "walmart",
+    category: "provider_research",
+    adapter_implemented: false,
     display_name: "Walmart",
     fulfillment_methods: [],
     geography: "Walmart.com affiliate, US marketplace docs",
@@ -94,10 +96,11 @@ export const GROCERY_REGISTRY = Object.freeze([
       evidence: "documented",
     },
     handoff_mechanisms: ["cart_link"],
-    consumer_import: [],
   },
   {
     id: "amazon",
+    category: "provider_research",
+    adapter_implemented: false,
     display_name: "Whole Foods / Amazon",
     fulfillment_methods: [],
     geography: "Amazon.com Associates / Creators API",
@@ -122,18 +125,11 @@ export const GROCERY_REGISTRY = Object.freeze([
       evidence: "documented",
     },
     handoff_mechanisms: [],
-    consumer_import: [
-      {
-        method: "assistant_image_upload",
-        platforms: ["ios", "android"],
-        source_url: "https://www.aboutamazon.com/",
-        last_verified: "2026-10-17",
-        evidence: "documented",
-      },
-    ],
   },
   {
     id: "trader_joes",
+    category: "provider_research",
+    adapter_implemented: false,
     display_name: "Trader Joe’s",
     fulfillment_methods: [],
     geography: "Stores they operate",
@@ -158,10 +154,11 @@ export const GROCERY_REGISTRY = Object.freeze([
       evidence: "documented",
     },
     handoff_mechanisms: [],
-    consumer_import: [],
   },
   {
     id: "instore",
+    category: "native",
+    adapter_implemented: true,
     display_name: "Shop in store",
     fulfillment_methods: ["in_store"],
     geography: "Wherever the household shops",
@@ -185,11 +182,13 @@ export const GROCERY_REGISTRY = Object.freeze([
       last_verified: "2026-10-17",
       evidence: "documented",
     },
+    status: { production_enabled: true },
     handoff_mechanisms: ["native_checklist"],
-    consumer_import: [],
   },
   {
     id: "schnucks",
+    category: "provider_research",
+    adapter_implemented: false,
     display_name: "Schnucks",
     fulfillment_methods: [],
     geography: "Schnucks stores, St. Louis",
@@ -214,18 +213,11 @@ export const GROCERY_REGISTRY = Object.freeze([
       evidence: "documented",
     },
     handoff_mechanisms: [],
-    consumer_import: [
-      {
-        method: "assistant_image_upload",
-        platforms: ["web", "app"],
-        source_url: "https://schnucks.com/ask-schnucks",
-        last_verified: "2026-10-17",
-        evidence: "documented",
-      },
-    ],
   },
   {
     id: "dierbergs",
+    category: "provider_research",
+    adapter_implemented: false,
     display_name: "Dierbergs",
     fulfillment_methods: [],
     geography: "Dierbergs stores, St. Louis",
@@ -250,10 +242,11 @@ export const GROCERY_REGISTRY = Object.freeze([
       evidence: "documented",
     },
     handoff_mechanisms: [],
-    consumer_import: [],
   },
   {
     id: "whisk",
+    category: "provider_research",
+    adapter_implemented: false,
     display_name: "Whisk / Samsung Food",
     fulfillment_methods: [],
     geography: "Whisk sandbox",
@@ -278,7 +271,6 @@ export const GROCERY_REGISTRY = Object.freeze([
       evidence: "documented",
     },
     handoff_mechanisms: [],
-    consumer_import: [],
   },
 ]);
 
@@ -300,15 +292,12 @@ export function adapterFor(id, deps) {
 
 export function registryFacts(row) {
   if (!row) return [];
-  const facts = [];
-  if (row.registration) facts.push(row.registration);
-  for (const item of row.consumer_import || []) facts.push(item);
-  return facts;
+  return row.registration ? [row.registration] : [];
 }
 
-/** A provider name may appear in export guidance only after a human test. None qualify. */
-export function providersSafeToName(rows = GROCERY_REGISTRY) {
-  return rows
-    .filter((row) => registryFacts(row).some((fact) => fact && fact.evidence === "human_tested"))
-    .map((row) => row.id);
+/** A consumer app may be named in export guidance only after a human-tested input. None qualify. */
+export function providersSafeToName(apps = CONSUMER_COMPATIBLE_APPS) {
+  return apps
+    .filter((app) => (app.inputs || []).some((input) => input && input.evidence === "human_tested"))
+    .map((app) => app.id);
 }
