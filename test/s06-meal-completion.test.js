@@ -344,6 +344,78 @@ describe("saved completion", () => {
     expect(undo.body.plan.meals[0].cooked_recipe_version_id).toBeNull();
   });
 
+  it("a stale expected_updated_at leaves the other member's write intact", async () => {
+    const sqlite = migrate();
+    const db = asD1(sqlite);
+    seed(sqlite);
+    const auth = await createMemberSession(db, { household_id: "hh_s06", member_id: "m_a" }, { secure: false });
+    const version = plannerCatalog()[0].pkg.recipe_version_id;
+    const env = { DB: db };
+    const deps = { writeOrigin: async () => "synthetic" };
+    async function call(path, method, body) {
+      const res = await routeDinnerPlanRequest(
+        env,
+        new Request(new URL(`https://fw.test${path}`), {
+          method,
+          headers: {
+            Authorization: `Bearer ${auth.session_token}`,
+            "Content-Type": "application/json",
+          },
+          body: body ? JSON.stringify(body) : undefined,
+        }),
+        path,
+        new URL(`https://fw.test${path}`),
+        deps
+      );
+      return { status: res.status, body: await res.json() };
+    }
+
+    const created = await call("/api/dinner-plans", "POST", {
+      meal_count: 1,
+      entry_point: "plan_dinners",
+      participant_ids: ["m_a"],
+      meals: [{ kind: "recipe", recipe_version_id: version, participant_ids: ["m_a"] }],
+    });
+    expect(created.status).toBe(201);
+    const planId = created.body.plan.dinner_plan_id;
+    const mealId = created.body.plan.meals[0].meal_id;
+    const seenAt = created.body.plan.updated_at;
+    const cooking = await call(`/api/dinner-plans/${planId}/mutations`, "POST", {
+      op: "begin_cook",
+      meal_id: mealId,
+    });
+    expect(cooking.status).toBe(200);
+    const winnerAt = cooking.body.plan.updated_at;
+    expect(winnerAt).not.toBe(seenAt);
+
+    const rejected = await call(`/api/dinner-plans/${planId}/mutations`, "POST", {
+      op: "mark_cooked",
+      meal_id: mealId,
+      expected_state: "planned",
+      expected_updated_at: seenAt,
+    });
+    expect(rejected.status).toBe(409);
+    expect(rejected.body.error).toBe("revision_conflict");
+
+    const loaded = await loadDinnerPlan(db, planId);
+    const attack = structuredClone(loaded);
+    attack.meals[0].state = "cooked";
+    attack.meals[0].cooked_recipe_version_id = attack.meals[0].recipe_version_id;
+    attack.updated_at = "2026-10-18T18:00:00.000Z";
+    await expect(saveDinnerPlan(db, attack, { expectedUpdatedAt: seenAt })).rejects.toMatchObject({
+      code: "revision_conflict",
+    });
+
+    const meal = sqlite
+      .prepare(`SELECT state, cooked_recipe_version_id FROM dinner_plan_meal WHERE meal_id = ?`)
+      .get(mealId);
+    const parent = sqlite.prepare(`SELECT updated_at FROM dinner_plan WHERE dinner_plan_id = ?`).get(planId);
+    expect(meal.state).toBe("cooking");
+    expect(meal.cooked_recipe_version_id).toBeNull();
+    expect(parent.updated_at).toBe(winnerAt);
+    expect(sqlite.prepare(`SELECT COUNT(*) AS c FROM dinner_plan_rating`).get().c).toBe(0);
+  });
+
   it("completes a superseded cooking meal without moving the current plan or the shopping list", async () => {
     const sqlite = migrate();
     const db = asD1(sqlite);

@@ -2664,28 +2664,47 @@
     return state.dinnerPlan;
   }
 
+  let cookUndoFn = null;
+
+  function syncCookUndoSpace() {
+    const view = document.querySelector("[data-view='rate']");
+    const row = document.getElementById("cookUndoRow");
+    if (view) view.classList.toggle("has-cook-undo", !!(row && row.childElementCount));
+  }
+
+  function clearCookUndoRow() {
+    cookUndoFn = null;
+    clearTimeout(state.cookUndoTimer);
+    state.cookUndoTimer = null;
+    const row = document.getElementById("cookUndoRow");
+    if (row) row.replaceChildren();
+    syncCookUndoSpace();
+  }
+
   function dismissCookUndo() {
     state.cookUndoSealed = true;
-    toast._undo = null;
-    clearTimeout(toast._t);
-    if (toastEl.querySelector(".toast-undo")) {
-      toastEl.classList.remove("show");
-      toastEl.replaceChildren();
-    }
+    clearCookUndoRow();
   }
 
   function offerCookUndo(record) {
     state.cookUndoSealed = false;
-    toast(
-      '<span>Logged as cooked.</span> <button type="button" class="btn btn-quiet btn-sm toast-undo" aria-label="Undo, this dinner is not cooked yet">Undo</button>',
-      {
-        html: true,
-        duration: 9000,
-        undo: function () {
-          return undoDinnerCook(record);
-        },
-      }
-    );
+    const row = document.getElementById("cookUndoRow");
+    if (!row) return;
+    clearTimeout(state.cookUndoTimer);
+    cookUndoFn = function () {
+      return undoDinnerCook(record);
+    };
+    row.replaceChildren();
+    const label = document.createElement("span");
+    label.textContent = "Logged as cooked.";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "btn btn-quiet btn-sm cook-undo__btn";
+    button.setAttribute("aria-label", "Undo, this dinner is not cooked yet");
+    button.textContent = "Undo";
+    row.append(label, button);
+    syncCookUndoSpace();
+    state.cookUndoTimer = setTimeout(clearCookUndoRow, 9000);
   }
 
   function setHowWasItCopy(meal) {
@@ -9166,6 +9185,18 @@
       show("planCount", { context: Nav.contextFor("planCount", "choices", { established: true }) });
     }
   });
+
+  const cookUndoRow = document.getElementById("cookUndoRow");
+  if (cookUndoRow) {
+    cookUndoRow.addEventListener("click", function (e) {
+      const undo = e.target.closest(".cook-undo__btn");
+      if (!undo || !cookUndoFn || state.cookUndoSealed) return;
+      e.preventDefault();
+      const fn = cookUndoFn;
+      clearCookUndoRow();
+      void fn();
+    });
+  }
 
   toastEl.addEventListener("click", function (e) {
     const undo = e.target.closest(".toast-undo");

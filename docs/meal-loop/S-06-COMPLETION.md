@@ -25,7 +25,7 @@ Neither op writes guided-step progress, a cook duration, or equipment use. Adapt
 The client sends `expected_state` and `expected_updated_at` on cook ops.
 
 - A stale `expected_updated_at` is `revision_conflict` (409) before the write.
-- Inside the save batch, a compare-and-swap sets `dinner_plan.household_id` from a subquery that matches `updated_at`. A miss makes that column NULL. The existing NOT NULL check aborts the batch and rolls it back. No new column.
+- Inside the existing `saveDinnerPlan` batch, a compare-and-swap sets `dinner_plan.household_id` from a subquery that matches `updated_at`. A hit writes the same household id. A miss selects NULL. `household_id` is already NOT NULL, so that check aborts the batch. `db.batch` is one transaction, so the child-row rewrite rolls back with it and the other member’s meal state and `updated_at` stay. The CAS statement is the only assignment of `household_id` in that batch. No new column.
 - A second `mark_cooked` after success is `unchanged`. The client emits `cook_completed` and `cook_recorded` only when the response says `completed`. A lost first response followed by a retry therefore misses the event rather than recording it twice.
 - Two members who both pass the pre-check still serialize on the compare-and-swap. The loser reloads. If the meal is already cooked, the client opens rating and does not emit a second completion event.
 - In-flight taps for the same plan, meal, and op are dropped on the client.
@@ -34,7 +34,7 @@ The client sends `expected_state` and `expected_updated_at` on cook ops.
 
 `undo_cook` is separate from `exit_cook`. Exit always returns `cooking` to `planned`. Undo restores the state that completion left (`planned`, `selected`, or `cooking`) and clears `cooked_recipe_version_id`.
 
-- Offered for about 9 seconds, or until a score is tapped. The toast is a live region. The control is “Undo, this dinner is not cooked yet”.
+- Offered for about 9 seconds, or until a score is tapped. It is an inline row under the “How was it?” heading, so it does not cover that heading or the scores. The row is a live region (`role="status"`, `aria-live="polite"`). The control is a 44px button, “Undo, this dinner is not cooked yet”.
 - A score tap seals Undo. The server also refuses Undo when a countable rating exists, or when the meal is `partially_rated` or `fully_rated` (`undo_blocked_rating`). Ratings are not deleted.
 - Leaving the rating screen does not seal Undo. The window keeps running.
 - A retry that already finds `prior_state` is success and writes nothing.

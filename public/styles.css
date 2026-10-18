@@ -862,17 +862,6 @@ h2[tabindex="-1"]:focus {
 
 .toast.show:has(.toast-undo) {
   pointer-events: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  border-radius: var(--radius-lg);
-  text-align: left;
-  width: min(92vw, 420px);
-  box-sizing: border-box;
-  top: calc(var(--header-h) + 52px + env(safe-area-inset-top));
-  bottom: auto;
-  transform: translateX(-50%);
 }
 
 .debug {
@@ -3888,6 +3877,39 @@ html[data-keyboard="open"] .toast {
   border: 1px solid color-mix(in srgb, var(--color-inverse-text) 50%, transparent);
 }
 
+[data-view="rate"] .page-head > div {
+  width: 100%;
+}
+
+.cook-undo:empty {
+  display: none;
+}
+
+.cook-undo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  box-sizing: border-box;
+  margin: var(--space-4) 0 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-align: left;
+}
+
+.cook-undo__btn {
+  flex: none;
+  min-height: 44px;
+  min-width: 44px;
+  color: var(--color-inverse-text);
+  border: 1px solid color-mix(in srgb, var(--color-inverse-text) 50%, transparent);
+}
+
 .shop-eyebrow {
   display: block;
   width: 100%;
@@ -4337,6 +4359,17 @@ html[data-keyboard="open"] .toast {
 
   .app-shell[data-chrome="full"] .sticky-actions {
     bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+  }
+
+  /* The undo row is in the flow. Pinning the actions on top of it would cover the scores. */
+  [data-view="rate"].has-cook-undo .sticky-actions {
+    position: static;
+    bottom: auto;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    background: transparent;
   }
 
   .recipe {

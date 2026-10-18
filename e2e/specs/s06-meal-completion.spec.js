@@ -10,10 +10,63 @@ const SHOTS = [
   ["desktop", { width: 1280, height: 800 }],
 ];
 
+const RATE_SHOTS = SHOTS.concat([["375x667", { width: 375, height: 667 }]]);
+
 function shotPath(name) {
   const dir = process.env.S06_SHOT_DIR || "/opt/cursor/artifacts/s06";
   mkdirSync(dir, { recursive: true });
   return `${dir}/${name}.png`;
+}
+
+async function expectUndoClearOfContent(page) {
+  const report = await page.evaluate(() => {
+    function rect(el) {
+      if (!el) return null;
+      const box = el.getBoundingClientRect();
+      if (box.width < 1 || box.height < 1) return null;
+      return { top: box.top, bottom: box.bottom, left: box.left, right: box.right };
+    }
+    function overlaps(a, b) {
+      if (!a || !b) return false;
+      return a.top < b.bottom - 1 && a.bottom > b.top + 1 && a.left < b.right - 1 && a.right > b.left + 1;
+    }
+    const row = document.getElementById("cookUndoRow");
+    const button = row && row.querySelector("button");
+    const undo = rect(row);
+    const targets = [
+      ["heading", document.getElementById("rateTitle")],
+      ["lede", document.getElementById("rateLede")],
+      ["back", document.querySelector("[data-view='rate'] .back")],
+      ["score", document.querySelector("[data-view='rate'] .score")],
+      ["note", document.querySelector("[data-view='rate'] [data-note]")],
+      ["submit", document.getElementById("btnSubmitRated")],
+      ["save", document.getElementById("btnSavePartial")],
+    ];
+    const buttonBox = button ? button.getBoundingClientRect() : null;
+    const buttonStyle = button ? getComputedStyle(button) : null;
+    const submit = rect(document.getElementById("btnSubmitRated"));
+    const pinned = ["score", "note", "heading", "lede"]
+      .map((name) => {
+        const target = targets.find(([label]) => label === name);
+        return target && overlaps(submit, rect(target[1])) ? name : null;
+      })
+      .filter(Boolean);
+    return {
+      covered: targets.filter(([, el]) => overlaps(undo, rect(el))).map(([name]) => name),
+      pinned,
+      buttonHeight: buttonBox ? buttonBox.height : 0,
+      targetPx: buttonStyle ? parseFloat(buttonStyle.minHeight) : 0,
+      live: row ? row.getAttribute("aria-live") : "",
+      role: row ? row.getAttribute("role") : "",
+    };
+  });
+  expect(report.covered, "Undo overlaps " + report.covered.join(", ")).toEqual([]);
+  expect(report.pinned, "Actions cover " + report.pinned.join(", ")).toEqual([]);
+  expect(report.targetPx).toBe(44);
+  // Layout can report a hair under the CSS pixel; a real shrink (the 40px small button) still fails.
+  expect(report.buttonHeight).toBeGreaterThanOrEqual(43.5);
+  expect(report.live).toBe("polite");
+  expect(report.role).toBe("status");
 }
 
 async function shoot(page, name) {
@@ -91,9 +144,10 @@ test.describe("S-06 meal completion", () => {
     await expect(page.getByRole("heading", { name: "How was it?" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Undo, this dinner is not cooked yet" })).toBeVisible();
     await expect(page.locator("#rateLede")).toContainText("leave this and rate later");
-    for (const [label, size] of SHOTS) {
+    for (const [label, size] of RATE_SHOTS) {
       await page.setViewportSize(size);
       await page.waitForTimeout(200);
+      await expectUndoClearOfContent(page);
       await page.screenshot({ path: shotPath(`rating-entry-${label}`) });
       await page.screenshot({ path: shotPath(`undo-${label}`) });
     }
