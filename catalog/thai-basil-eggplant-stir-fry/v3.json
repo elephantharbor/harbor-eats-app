@@ -1,0 +1,337 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_curator_draft",
+  "draft_role": "Curator draft for Cora. Not an auditor. This file records no certification decision.",
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "source_v1": "https://raw.githubusercontent.com/elephantharbor/harbor-eats-app/cursor/catalog-architecture-fa5e/catalog/thai-basil-eggplant-stir-fry/v1.json",
+  "v1_sha256": "8b91e38c720faf8318f23c8dd49e145ee8afe0485c4748e83b5379742925d1e8",
+  "revision_reason": "Serving basis, unused oil, garlic added off heat, unmeasured rice, and missing soy and wheat allergens.",
+  "material_deltas": [
+    "Eggplant 2 to 4 medium (about 1.25 lb) so base_servings 4 is a meal over rice.",
+    "Jasmine rice set to 1.5 cups dry, 2.25 cups water, 0.5 tsp kosher salt. v1 said only for serving.",
+    "Neutral oil 2 tbsp to 3 tbsp: 2 tbsp to brown the eggplant, 1 tbsp to bloom the garlic. v1 listed 2 and the step used 1.",
+    "Garlic cooks 30 seconds in oil. v1 added garlic off the heat.",
+    "Soy sauce stays 2 tbsp and is specified as wheat-containing, not tamari and not fish sauce.",
+    "Allergens set to soy and wheat. Dietary tags stay plant and dairy-free. Gluten-free is not claimed.",
+    "Clock stays prep 15, cook 25, total 40. The rice simmers 15 minutes and rests 5 while the eggplant browns, including a second batch, so those blocks share the cook clock. No chili was added."
+  ],
+  "dish": {
+    "dish_id": "thai-basil-eggplant-stir-fry",
+    "slug": "thai-basil-eggplant-stir-fry",
+    "title": "Thai Basil Eggplant Stir-Fry",
+    "name": "Thai Basil Eggplant Stir-Fry",
+    "description": "Japanese eggplant stir-fried with garlic, soy, a little sugar, red pepper flakes, and Thai basil over rice.",
+    "cuisine": "thai-inspired",
+    "meal_format": "stir-fry",
+    "primary_ingredient": "eggplant",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "weeknight": true,
+    "exploration": 0.54,
+    "plate": "🍆",
+    "tone": "tone-b",
+    "tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "sparks": [],
+    "chips": [
+      "Plant",
+      "35 min"
+    ],
+    "current_recipe_id": "rcp_thai-basil-eggplant-stir-fry",
+    "current_version_id": "rv_thai-basil-eggplant-stir-fry_v3"
+  },
+  "recipe": {
+    "recipe_id": "rcp_thai-basil-eggplant-stir-fry",
+    "dish_id": "thai-basil-eggplant-stir-fry",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "copied_from_third_party": false,
+      "note": "Corrective draft against legacy v1. Authorship of the legacy text is not known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_thai-basil-eggplant-stir-fry_v3",
+    "recipe_id": "rcp_thai-basil-eggplant-stir-fry",
+    "dish_id": "thai-basil-eggplant-stir-fry",
+    "version_number": 3,
+    "supersedes": "rv_thai-basil-eggplant-stir-fry_v1",
+    "immutable": false,
+    "immutability_note": "Draft for audit. v1.json was not edited. Not kitchen-tested and not published.",
+    "title": "Thai Basil Eggplant Stir-Fry",
+    "description": "Japanese eggplant stir-fried with garlic, soy, a little sugar, red pepper flakes, and Thai basil over rice.",
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 25,
+    "total_minutes": 40,
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": "Stovetop.",
+    "doneness": "Eggplant creamy in the center with browned edges. Basil just wilted. Rice tender.",
+    "substitutions": {
+      "soy sauce": "Keep wheat-containing soy sauce. Wheat-free tamari would drop the wheat allergen and is not this version.",
+      "fish sauce": "Do not substitute fish sauce. It would drop the plant claim and add finfish."
+    },
+    "ingredients": [
+      {
+        "name": "Japanese eggplant",
+        "quantity": "4 count",
+        "note": "About 1 1/4 lb. Sliced 1/2 inch thick."
+      },
+      {
+        "name": "Thai basil",
+        "quantity": "1 cup",
+        "note": "Packed leaves."
+      },
+      {
+        "name": "soy sauce",
+        "quantity": "2 tbsp",
+        "note": "Wheat-containing soy sauce, not fish sauce."
+      },
+      {
+        "name": "garlic",
+        "quantity": "3 clove",
+        "note": "Minced."
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "3 tbsp",
+        "note": "2 tbsp to brown the eggplant, 1 tbsp for the garlic."
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": "1 tsp",
+        "note": "Balances the soy. Not a dessert sweetness."
+      },
+      {
+        "name": "red pepper flakes",
+        "quantity": "0.5 tsp",
+        "note": "The heat in this Thai basil stir-fry."
+      },
+      {
+        "name": "jasmine rice",
+        "quantity": "1.5 cup",
+        "note": "Dry."
+      },
+      {
+        "name": "water",
+        "quantity": "2.25 cup",
+        "note": "For the rice. Absorbed."
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": "4 g",
+        "note": "In the rice water, about 0.7% of 2.25 cups, absorbed. The stir-fry is seasoned by the soy sauce. 4 g Diamond Crystal kosher salt (1.5 tsp). The same weight is 0.75 tsp Morton coarse kosher salt or 0.75 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon."
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Cook the rice",
+        "body": "Rinse the jasmine rice. Bring it to a boil with the water and the Diamond Crystal kosher salt. Cover and simmer 15 minutes. Rest covered 5 minutes, then fluff. The 4 g in 2.25 cups is about 0.7% and the water is absorbed.",
+        "ingredient_refs": [
+          "jasmine rice",
+          "water",
+          "Diamond Crystal kosher salt"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Brown the eggplant",
+        "body": "While the rice cooks, heat 2 tbsp of the neutral oil in a wide skillet over high heat. Stir-fry the Japanese eggplant in a single layer, in two batches if needed, until browned and creamy in the center, 6 to 8 minutes per batch.",
+        "ingredient_refs": [
+          "neutral oil",
+          "Japanese eggplant"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Season",
+        "body": "Add the remaining 1 tbsp neutral oil, the garlic, and the red pepper flakes. Cook 30 seconds. Add the soy sauce and the granulated sugar and toss to coat. Take the pan off the heat and stir in the Thai basil until just wilted. Taste a piece of eggplant and add a splash more soy only if it tastes flat. Fish sauce is not in this version because it would add a finfish allergen and drop the plant-based claim.",
+        "ingredient_refs": [
+          "neutral oil",
+          "garlic",
+          "red pepper flakes",
+          "soy sauce",
+          "granulated sugar",
+          "Thai basil",
+          "Japanese eggplant"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Serve",
+        "body": "Serve the eggplant and basil over the rice.",
+        "ingredient_refs": [
+          "Japanese eggplant",
+          "Thai basil",
+          "jasmine rice"
+        ]
+      }
+    ],
+    "kitchen_tested": false,
+    "supersedes_version_id": "rv_thai-basil-eggplant-stir-fry_v2"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "eggplant",
+      "stir-fries",
+      "thai"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [
+      "soy",
+      "wheat"
+    ],
+    "allergen_note": "Soy and wheat come from standard soy sauce. Dietary eligibility is separate: plant and dairy-free. Gluten-free is not claimed.",
+    "equipment": [
+      "wide skillet",
+      "saucepan with lid"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "Japanese eggplant",
+        "quantity": 4,
+        "unit": "count",
+        "note": "About 1 1/4 lb. Sliced 1/2 inch thick.",
+        "raw_quantity": "4 count"
+      },
+      {
+        "name": "Thai basil",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "Packed leaves.",
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "soy sauce",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "Wheat-containing soy sauce, not fish sauce.",
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": "Minced.",
+        "raw_quantity": "3 clove"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "2 tbsp to brown the eggplant, 1 tbsp for the garlic.",
+        "raw_quantity": "3 tbsp"
+      },
+      {
+        "name": "granulated sugar",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": "Balances the soy. Not a dessert sweetness.",
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "red pepper flakes",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "The heat in this Thai basil stir-fry.",
+        "raw_quantity": "0.5 tsp"
+      },
+      {
+        "name": "jasmine rice",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "Dry.",
+        "raw_quantity": "1.5 cup"
+      },
+      {
+        "name": "water",
+        "quantity": 2.25,
+        "unit": "cup",
+        "note": "For the rice. Absorbed.",
+        "raw_quantity": "2.25 cup"
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": 4,
+        "unit": "g",
+        "note": "In the rice water, about 0.7% of 2.25 cups, absorbed. The stir-fry is seasoned by the soy sauce. 4 g Diamond Crystal kosher salt (1.5 tsp). The same weight is 0.75 tsp Morton coarse kosher salt or 0.75 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon.",
+        "raw_quantity": "4 g"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "thai-basil-eggplant-stir-fry.webp",
+    "card_ref": "thai-basil-eggplant-stir-fry-640.webp",
+    "master_filename": "thai-basil-eggplant-stir-fry.webp",
+    "card_filename": "thai-basil-eggplant-stir-fry-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": null,
+    "factory_certified": false,
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "decision": null,
+    "note": "Curator correction draft only. No certification decision is recorded. kitchen_tested is false."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "unpublished_curator_draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Not published. Does not replace live v1 and does not touch production, D1, or the app repo."
+  },
+  "package_revision": "s08-culinary",
+  "evidence": {
+    "structurally_validated": "s08-2026-10-18",
+    "culinary_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "Culinary review is a written judgment of the recipe text. It is not a kitchen test and not a household rating. Model confidence is not evidence of cooking."
+  },
+  "culinary_revision": {
+    "from": "rv_thai-basil-eggplant-stir-fry_v2",
+    "to": "rv_thai-basil-eggplant-stir-fry_v3",
+    "yield": "4 servings",
+    "expected_flavor": "Browned eggplant, Thai basil, soy, a little sugar, and chile. Still plant-based.",
+    "dietary": "Soy and wheat unchanged. No fish sauce. Plant and dairy-free stay.",
+    "safety": "Stir-fry is cooked through.",
+    "shopping": "Sugar, red pepper flakes, and weighed rice salt. Eggplant, basil, soy, garlic, oil, and rice stay.",
+    "uncertainties": "Chile heat at 1/2 tsp flakes is moderate. A household that wants it mild can use less; that is a preference, not a second recipe.",
+    "image_impact": "Low to moderate. A few red flakes may show. The plate is still eggplant and basil over rice."
+  }
+}

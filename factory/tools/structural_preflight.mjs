@@ -24,6 +24,7 @@ import { access, readdir, readFile, writeFile } from "node:fs/promises";
 import { join, basename } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { normalizeFactoryPackage } from "../../src/lib/catalog-import.js";
+import { assessCulinaryQuality } from "../../src/lib/culinary-quality.js";
 import { deriveCookingMethod } from "../../src/weave/semantics.js";
 
 const repoRoot = fileURLToPath(new URL("../../", import.meta.url));
@@ -230,6 +231,23 @@ async function preflightDir(dir) {
   const image = pkg.image || {};
   const slot = await assessImageSlot(dir, image, dish.slug || "");
   check(checks, "image_slot", slot.ok, slot.detail);
+
+  if (pkg.evidence?.culinary_reviewed) {
+    const culinary = assessCulinaryQuality(pkg);
+    check(
+      checks,
+      "culinary_objective",
+      culinary.fails.length === 0,
+      culinary.fails.length ? culinary.fails.map((item) => `${item.code}:${item.detail}`).join("; ") : "no objective culinary defects"
+    );
+    const uncovered = culinary.warnings.filter((item) => !asArray(pkg.reviewer_overrides).includes(item.code));
+    check(
+      checks,
+      "culinary_warnings",
+      uncovered.length === 0,
+      uncovered.length ? uncovered.map((item) => item.detail).join("; ") : "no uncovered warnings"
+    );
+  }
 
   const sidecar = join(dir, "d03-classification.json");
   if (!(await exists(sidecar))) {

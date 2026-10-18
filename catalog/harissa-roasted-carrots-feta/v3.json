@@ -1,0 +1,304 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "harissa-roasted-carrots-feta",
+    "slug": "harissa-roasted-carrots-feta",
+    "title": "Harissa Roasted Carrots with Feta",
+    "name": "Harissa Roasted Carrots with Feta",
+    "description": "Harissa-roasted carrots with feta, mint, lemon, and couscous cooked in salted water.",
+    "cuisine": "north-african",
+    "meal_format": "side-main",
+    "primary_ingredient": "carrots",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "weeknight": true,
+    "exploration": 0.5,
+    "plate": "🥕",
+    "tone": "tone-b",
+    "tags": [
+      "dairy"
+    ],
+    "sparks": [
+      "bright",
+      "sheet"
+    ],
+    "chips": [
+      "Vegetarian",
+      "45 min"
+    ],
+    "current_recipe_id": "rcp_harissa-roasted-carrots-feta",
+    "current_version_id": "rv_harissa-roasted-carrots-feta_v3"
+  },
+  "recipe": {
+    "recipe_id": "rcp_harissa-roasted-carrots-feta",
+    "dish_id": "harissa-roasted-carrots-feta",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_harissa-roasted-carrots-feta_v3",
+    "recipe_id": "rcp_harissa-roasted-carrots-feta",
+    "dish_id": "harissa-roasted-carrots-feta",
+    "version_number": 3,
+    "immutable": true,
+    "title": "Harissa Roasted Carrots with Feta",
+    "description": "Harissa-roasted carrots with feta, mint, lemon, and couscous cooked in salted water.",
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "total_minutes": 45,
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "methods": [
+      "oven",
+      "roast"
+    ],
+    "dietary_tags": [
+      "dairy"
+    ],
+    "heat": "Oven 425 F.",
+    "doneness": "Carrots tender and browned at the edges. Couscous fluffy.",
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "carrots",
+        "quantity": "2 lb",
+        "note": "Whole, peeled."
+      },
+      {
+        "name": "harissa paste",
+        "quantity": "2 tbsp",
+        "note": "Store-bought paste. Salt level varies by brand."
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "feta",
+        "quantity": "4 oz",
+        "note": "Crumbled."
+      },
+      {
+        "name": "mint",
+        "quantity": "0.25 cup",
+        "note": "Torn leaves."
+      },
+      {
+        "name": "couscous",
+        "quantity": "1 cup",
+        "note": "Dry wheat couscous."
+      },
+      {
+        "name": "water",
+        "quantity": "1 cup",
+        "note": "Boiling, for the couscous. It is absorbed."
+      },
+      {
+        "name": "lemon",
+        "quantity": "1 count",
+        "note": "Juice over the carrots after roasting. No plated wedge required."
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": "6 g",
+        "note": "Divided: 4 g on the carrots, 2 g in the couscous water (about 0.8% of 1 cup, and the water is absorbed). 6 g Diamond Crystal kosher salt (2.25 tsp). The same weight is 1.25 tsp Morton coarse kosher salt or 1 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon."
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Roast",
+        "body": "Heat the oven to 425 F. Toss the carrots with the harissa paste, neutral oil, and 4 g of the Diamond Crystal kosher salt. Roast 30 minutes, until tender and browned at the edges.",
+        "ingredient_refs": [
+          "carrots",
+          "harissa paste",
+          "neutral oil",
+          "Diamond Crystal kosher salt"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Couscous",
+        "body": "Stir the couscous and the remaining 2 g Diamond Crystal kosher salt into the boiling water. Cover 5 minutes off the heat, then fluff. The 2 g in 1 cup is about 0.8% and the water is absorbed.",
+        "ingredient_refs": [
+          "couscous",
+          "Diamond Crystal kosher salt",
+          "water"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Finish",
+        "body": "Squeeze the lemon over the carrots. Top with the feta and the mint. Serve over the couscous.",
+        "ingredient_refs": [
+          "lemon",
+          "feta",
+          "mint",
+          "carrots",
+          "couscous"
+        ]
+      }
+    ],
+    "corrects_version_id": "rv_harissa-roasted-carrots-feta_v1",
+    "kitchen_tested": false,
+    "supersedes_version_id": "rv_harissa-roasted-carrots-feta_v2"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "carrots",
+      "citrusy",
+      "north-african"
+    ],
+    "dietary_labels": [],
+    "allergens": [
+      "dairy",
+      "wheat"
+    ],
+    "equipment": [
+      "sheet-pan"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "carrots",
+        "quantity": 2,
+        "unit": "lb",
+        "note": "Whole, peeled.",
+        "raw_quantity": "2 lb"
+      },
+      {
+        "name": "harissa paste",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "Store-bought paste. Salt level varies by brand.",
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "feta",
+        "quantity": 4,
+        "unit": "oz",
+        "note": "Crumbled.",
+        "raw_quantity": "4 oz"
+      },
+      {
+        "name": "mint",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "Torn leaves.",
+        "raw_quantity": "0.25 cup"
+      },
+      {
+        "name": "couscous",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "Dry wheat couscous.",
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "water",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "Boiling, for the couscous. It is absorbed.",
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "Juice over the carrots after roasting. No plated wedge required.",
+        "raw_quantity": "1 count"
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": 6,
+        "unit": "g",
+        "note": "Divided: 4 g on the carrots, 2 g in the couscous water (about 0.8% of 1 cup, and the water is absorbed). 6 g Diamond Crystal kosher salt (2.25 tsp). The same weight is 1.25 tsp Morton coarse kosher salt or 1 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon.",
+        "raw_quantity": "6 g"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "harissa-roasted-carrots-feta.webp",
+    "card_ref": "harissa-roasted-carrots-feta-640.webp",
+    "master_filename": "harissa-roasted-carrots-feta.webp",
+    "card_filename": "harissa-roasted-carrots-feta-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "legacy_draft_correction",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_draft_correction",
+    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Adds 2 tbsp oil the roast step already required, sets cook time to the written 30 minute roast, and gives couscous 1 cup dry plus 1 cup water. Those amounts are draft, not a kitchen test. plant is not eligible because of the feta; dairy stays the allergen; wheat is an allergen because of the couscous. No dairy-free-if claim. kitchen_tested is false. Recipe provenance is legacy_unknown."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Proposed correction for Cora. Not published. Not a certification. v1.json was not edited."
+  },
+  "draft": {
+    "for": "Cora",
+    "role": "legacy_audit_drafter",
+    "is_auditor": false,
+    "disposition": "CREATE_V2",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_this_pass": false,
+    "v1_left_unchanged": true,
+    "reason": "The roast step uses oil that v1 does not list, the header undercuts a 30 minute roast, and couscous has no amount or method."
+  },
+  "package_revision": "s08-culinary",
+  "evidence": {
+    "structurally_validated": "s08-2026-10-18",
+    "culinary_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "Culinary review is a written judgment of the recipe text. It is not a kitchen test and not a household rating. Model confidence is not evidence of cooking."
+  },
+  "culinary_revision": {
+    "from": "rv_harissa-roasted-carrots-feta_v2",
+    "to": "rv_harissa-roasted-carrots-feta_v3",
+    "yield": "4 servings",
+    "expected_flavor": "Harissa sweetness backed by salt, feta, mint, and lemon. Couscous tastes seasoned instead of plain.",
+    "dietary": "Dairy and wheat unchanged. Lemon adds no allergen.",
+    "safety": "Vegetables only.",
+    "shopping": "Lemon and weighed salt. Feta, harissa, carrots, mint, and couscous stay.",
+    "uncertainties": "Harissa brands range from salty to mild. The 4 g on the carrots assumes a typical paste, not an unsalted one.",
+    "image_impact": "Low. Lemon is juiced, not set on the plate as a wedge. Feta and mint were already the finish."
+  }
+}

@@ -1,0 +1,321 @@
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
+import { DatabaseSync } from "node:sqlite";
+import { describe, expect, it } from "vitest";
+import { loadCatalogFromDisk } from "../src/lib/catalog-disk.js";
+import { planImport } from "../src/lib/catalog-import.js";
+import { loadPublishedCatalog } from "../src/lib/catalog-runtime.js";
+import { applyCatalogWrites, loadExistingVersions, retireCatalogVersions } from "../src/lib/catalog-write.js";
+import { assessCulinaryQuality } from "../src/lib/culinary-quality.js";
+import { assessMealEligibility } from "../src/lib/dinner-planner.js";
+import { constraintRowsFromKeys } from "../src/lib/eligibility.js";
+import { neededLines, scaleForDiners } from "../src/lib/ingredient-identity.js";
+import { createDinnerPlan, resolvedRecipe } from "../src/lib/plan-mutations.js";
+
+const root = join(process.cwd(), "catalog");
+const HH001 = constraintRowsFromKeys(["dairy", "meat", "poultry", "shellfish", "nuts", "cashew_ok"]);
+
+function readPkg(slug, file) {
+  return JSON.parse(readFileSync(join(root, slug, file), "utf8"));
+}
+
+function sqliteShim(database) {
+  return {
+    prepare(sql) {
+      const stmt = database.prepare(sql);
+      return {
+        bind: (...params) => ({
+          all: async () => ({ results: params.length ? stmt.all(...params) : stmt.all() }),
+          first: async () => (params.length ? stmt.get(...params) : stmt.get()) || null,
+          run: async () => {
+            if (params.length) stmt.run(...params);
+            else stmt.run();
+            return { success: true };
+          },
+        }),
+      };
+    },
+  };
+}
+
+function applyMigrations(database) {
+  database.exec("PRAGMA foreign_keys = ON;");
+  const dir = join(process.cwd(), "migrations");
+  for (const name of readdirSync(dir).filter((file) => file.endsWith(".sql")).sort()) {
+    database.exec(readFileSync(join(dir, name), "utf8"));
+  }
+}
+
+async function importCatalog(database) {
+  const stagingPolicy = JSON.parse(readFileSync(join(root, "staging-publication.json"), "utf8"));
+  const loaded = loadCatalogFromDisk(root, stagingPolicy);
+  expect(loaded.failures, JSON.stringify(loaded.failures, null, 2)).toEqual([]);
+  const shim = sqliteShim(database);
+  const existing = await loadExistingVersions(shim);
+  const plan = planImport(existing, loaded.records);
+  expect(plan.ok, JSON.stringify(plan.errors)).toBe(true);
+  await applyCatalogWrites(shim, plan.writes, "2026-10-18T00:00:00.000Z");
+  await retireCatalogVersions(shim, [...new Set(loaded.retireVersionIds)]);
+  return loaded;
+}
+
+describe("S-08 culinary objective checks", () => {
+  it("rejects an unexplained do-not-add, an unsafe fish temperature, and an unnamed salt", () => {
+    const ban = assessCulinaryQuality({
+      dish: { title: "Example" },
+      recipe_version: {
+        base_servings: 4,
+        ingredients: [{ name: "pasta", quantity: 12, unit: "oz" }],
+        steps: [{ body: "Boil the pasta. Do not add salt.", ingredient_refs: ["pasta"] }],
+      },
+    });
+    expect(ban.fails.map((item) => item.code)).toContain("unexplained_ban");
+
+    const fish = assessCulinaryQuality({
+      dish: { title: "Salmon" },
+      recipe_version: {
+        dietary_eligibility: { contains_finfish: true },
+        ingredients: [{ name: "salmon fillets", quantity: 4, unit: "count" }],
+        steps: [{ body: "Cook the salmon fillets to 125 F.", ingredient_refs: ["salmon fillets"] }],
+      },
+    });
+    expect(fish.fails.map((item) => item.code)).toContain("unsafe_temperature");
+
+    const salt = assessCulinaryQuality({
+      dish: { title: "Eggs" },
+      recipe_version: {
+        ingredients: [{ name: "kosher salt", quantity: 1, unit: "tsp" }],
+        steps: [{ body: "Season with the kosher salt.", ingredient_refs: ["kosher salt"] }],
+      },
+    });
+    expect(salt.fails.map((item) => item.code)).toContain("salt_type");
+  });
+
+  it("warns when pasta is boiled with no salt ratio, and an override can cover that warning", () => {
+    const bare = assessCulinaryQuality({
+      dish: { title: "Noodles" },
+      recipe_version: {
+        ingredients: [{ name: "spaghetti", quantity: 12, unit: "oz" }],
+        steps: [{ body: "Boil the spaghetti in water.", ingredient_refs: ["spaghetti"] }],
+      },
+    });
+    expect(bare.warnings.map((item) => item.code)).toContain("boiling_salt_ratio");
+
+    const covered = assessCulinaryQuality({
+      reviewer_overrides: ["boiling_salt_ratio"],
+      dish: { title: "Noodles" },
+      recipe_version: {
+        ingredients: [{ name: "spaghetti", quantity: 12, unit: "oz" }],
+        steps: [{ body: "Boil the spaghetti in water.", ingredient_refs: ["spaghetti"] }],
+      },
+    });
+    expect(covered.warnings).toEqual([]);
+    expect(covered.fails).toEqual([]);
+  });
+
+  it("accepts a stated ratio and does not require acid, garlic, or a garnish", () => {
+    const result = assessCulinaryQuality({
+      dish: { title: "Plain pasta" },
+      recipe_version: {
+        ingredients: [
+          { name: "spaghetti", quantity: 12, unit: "oz" },
+          { name: "Diamond Crystal kosher salt", quantity: 28, unit: "g" },
+        ],
+        steps: [
+          {
+            body: "Boil the spaghetti in 3 qt water with 28 g Diamond Crystal kosher salt, about 1% by weight.",
+            ingredient_refs: ["spaghetti", "Diamond Crystal kosher salt"],
+          },
+        ],
+      },
+    });
+    expect(result.fails).toEqual([]);
+    expect(result.warnings).toEqual([]);
+  });
+});
+
+describe("S-08 revised recipes", () => {
+  it("keeps salmon at 145 F with salt, acid, and one herb, and does not instruct 125 F", () => {
+    const pkg = readPkg("maple-mustard-glazed-salmon", "v3.json");
+    const blob = JSON.stringify(pkg.recipe_version);
+    expect(blob).toContain("145 F");
+    expect(blob).not.toMatch(/125\s*F/);
+    expect(blob).toContain("Diamond Crystal kosher salt");
+    expect(blob).toContain("fresh dill");
+    expect(blob).toContain("lemon");
+    expect(pkg.evidence.kitchen_tested).toBe(false);
+    expect(pkg.evidence.culinary_reviewed).toBe("s08-2026-10-18");
+    expect(assessCulinaryQuality(pkg).fails).toEqual([]);
+    expect(assessCulinaryQuality(pkg).warnings).toEqual([]);
+    const v2 = JSON.stringify(readPkg("maple-mustard-glazed-salmon", "v2.json"));
+    expect(v2).toContain("No oil is listed");
+  });
+
+  it("keeps cashew pesto dairy-free, cashew-allergen, and salted in the pot", () => {
+    const pkg = readPkg("cashew-pesto-pasta", "v3.json");
+    const names = pkg.recipe_version.ingredients.map((item) => item.name);
+    expect(names).not.toContain("parmesan");
+    expect(names.join(" ")).not.toMatch(/\bmilk\b|\bcheese\b|\bmiso\b/i);
+    expect(pkg.projection.allergens).toEqual(["cashew", "nuts", "wheat"]);
+    expect(pkg.projection.dietary_labels).toContain("dairy_free");
+    expect(JSON.stringify(pkg)).toContain("not nut-safe");
+    expect(JSON.stringify(pkg.recipe_version.steps)).toContain("28 g");
+    expect(JSON.stringify(pkg.recipe_version.steps)).toContain("extra-virgin olive oil");
+    expect(pkg.evidence.household_rated).toBe(false);
+    expect(assessCulinaryQuality(pkg).fails).toEqual([]);
+  });
+
+  it("passes every S-08 revision through the objective checker", () => {
+    const slugs = [
+      ["maple-mustard-glazed-salmon", "v3.json"],
+      ["cashew-pesto-pasta", "v3.json"],
+      ["chipotle-lime-black-bean-bowls", "v3.json"],
+      ["ginger-scallion-fish-packets", "v3.json"],
+      ["harissa-roasted-carrots-feta", "v3.json"],
+      ["lemon-garlic-shrimp-pasta", "v3.json"],
+      ["moroccan-chickpea-skillet", "v3.json"],
+      ["mushroom-walnut-bolognese", "v3.json"],
+      ["roasted-cauliflower-shawarma-plate", "v3.json"],
+      ["sesame-soba-noodle-bowl", "v3.json"],
+      ["sheet-pan-lemon-herb-chicken", "v3.json"],
+      ["smoky-lentil-sweet-potato-stew", "v3.json"],
+      ["thai-basil-eggplant-stir-fry", "v3.json"],
+      ["white-bean-kale-soup", "v3.json"],
+      ["black-bean-quesadillas", "v3.json"],
+      ["steak-au-poivre-smashed-potatoes", "v2.json"],
+      ["spanish-potato-tortilla", "v2.json"],
+      ["linguine-with-clams", "v2.json"],
+    ];
+    for (const [slug, file] of slugs) {
+      const pkg = readPkg(slug, file);
+      const result = assessCulinaryQuality(pkg);
+      expect(result, slug).toEqual({ fails: [], warnings: [] });
+      expect(pkg.evidence.kitchen_tested).toBe(false);
+    }
+  });
+});
+
+describe("S-08 version pins, ratings, and shopping", () => {
+  it("leaves a pinned older version, its rating, and its shop line in place when v3 is published", async () => {
+    const database = new DatabaseSync(":memory:");
+    applyMigrations(database);
+    await importCatalog(database);
+    const ts = "2026-10-18T12:00:00.000Z";
+    const v2Ingredients = readPkg("maple-mustard-glazed-salmon", "v2.json").recipe_version.ingredients;
+    database
+      .prepare(
+        `INSERT INTO household (household_id, display_name, status, timezone, servings_default, acquisition_source, created_at, updated_at, data_origin)
+         VALUES ('hh_s08', 'S08 kitchen', 'active', 'UTC', 4, 'synthetic_qa', ?, ?, 'synthetic')`
+      )
+      .run(ts, ts);
+    database
+      .prepare(
+        `INSERT INTO member (member_id, household_id, display_name, role, status, created_at, updated_at)
+         VALUES ('m_s08', 'hh_s08', 'Ada', 'member', 'active', ?, ?)`
+      )
+      .run(ts, ts);
+    database
+      .prepare(
+        `INSERT INTO dinner_plan (dinner_plan_id, household_id, status, meal_count, entry_point, created_by_member_id, created_at, updated_at, data_origin)
+         VALUES ('dp_s08', 'hh_s08', 'active', 1, 'plan_dinners', 'm_s08', ?, ?, 'synthetic')`
+      )
+      .run(ts, ts);
+    database
+      .prepare(
+        `INSERT INTO dinner_plan_meal (
+           meal_id, dinner_plan_id, position, kind, state, recipe_slug, recipe_id, recipe_version_id,
+           version_number, title, base_servings, pinned_ingredients_json, pinned_steps_json, created_at, updated_at, data_origin
+         ) VALUES (
+           'meal_s08', 'dp_s08', 1, 'recipe', 'cooked', 'maple-mustard-glazed-salmon', 'rcp_maple-mustard-glazed-salmon',
+           'rv_maple-mustard-glazed-salmon_v2', 2, 'Maple Mustard Glazed Salmon', 4, ?, '[]', ?, ?, 'synthetic'
+         )`
+      )
+      .run(JSON.stringify(v2Ingredients), ts, ts);
+    database
+      .prepare(
+        `INSERT INTO dinner_plan_rating (rating_id, meal_id, dinner_plan_id, household_id, member_id, recipe_version_id, score, data_origin, created_at, updated_at)
+         VALUES ('rate_s08', 'meal_s08', 'dp_s08', 'hh_s08', 'm_s08', 'rv_maple-mustard-glazed-salmon_v2', 6, 'synthetic', ?, ?)`
+      )
+      .run(ts, ts);
+    database
+      .prepare(
+        `INSERT INTO dinner_shop_line (line_id, dinner_plan_id, ingredient_id, display_name, unit, quantity, list_state, meal_ids_json, created_at, updated_at)
+         VALUES ('line_s08', 'dp_s08', 'dijon-mustard', 'Dijon mustard', 'tbsp', 2, 'purchased', '["meal_s08"]', ?, ?)`
+      )
+      .run(ts, ts);
+
+    await importCatalog(database);
+
+    const meal = database.prepare(`SELECT recipe_version_id, pinned_ingredients_json FROM dinner_plan_meal WHERE meal_id = 'meal_s08'`).get();
+    expect(meal.recipe_version_id).toBe("rv_maple-mustard-glazed-salmon_v2");
+    expect(JSON.parse(meal.pinned_ingredients_json)).toEqual(v2Ingredients);
+    const rating = database.prepare(`SELECT recipe_version_id, score FROM dinner_plan_rating WHERE rating_id = 'rate_s08'`).get();
+    expect(rating).toEqual({ recipe_version_id: "rv_maple-mustard-glazed-salmon_v2", score: 6 });
+    const shop = database.prepare(`SELECT display_name, quantity, list_state FROM dinner_shop_line WHERE line_id = 'line_s08'`).get();
+    expect(shop).toEqual({ display_name: "Dijon mustard", quantity: 2, list_state: "purchased" });
+
+    const current = database.prepare(`SELECT current_version_id FROM catalog_dish WHERE dish_id = 'maple-mustard-glazed-salmon'`).get();
+    expect(current.current_version_id).toBe("rv_maple-mustard-glazed-salmon_v3");
+    const v2Names = database
+      .prepare(`SELECT name FROM catalog_ingredient WHERE recipe_version_id = 'rv_maple-mustard-glazed-salmon_v2'`)
+      .all()
+      .map((row) => row.name);
+    expect(v2Names).not.toContain("fresh dill");
+    const v3Names = database
+      .prepare(`SELECT name FROM catalog_ingredient WHERE recipe_version_id = 'rv_maple-mustard-glazed-salmon_v3'`)
+      .all()
+      .map((row) => row.name);
+    expect(v3Names).toContain("fresh dill");
+    expect(v3Names).toContain("olive oil");
+  });
+
+  it("cooks from the pin until adopt_version, and shopping lines come from that pin", async () => {
+    const database = new DatabaseSync(":memory:");
+    applyMigrations(database);
+    await importCatalog(database);
+    const loaded = await loadPublishedCatalog(sqliteShim(database));
+    expect(loaded.count).toBe(250);
+    const salmon = loaded.planner.find((entry) => entry.concept.concept_id === "maple-mustard-glazed-salmon");
+    expect(salmon.pkg.recipe_version_id).toBe("rv_maple-mustard-glazed-salmon_v3");
+    expect(assessMealEligibility(salmon, ["tom"], HH001, []).eligible).toBe(true);
+    const ginger = loaded.planner.find((entry) => entry.concept.concept_id === "ginger-scallion-fish-packets");
+    expect(assessMealEligibility(ginger, ["tom"], HH001, []).eligible).toBe(true);
+
+    const created = createDinnerPlan(
+      {
+        household_id: "hh_s08_plan",
+        dinner_plan_id: "dp_s08_plan",
+        meal_count: 1,
+        entry_point: "plan_dinners",
+        participant_ids: ["ada"],
+        meals: [{ kind: "recipe", recipe_version_id: salmon.pkg.recipe_version_id, participant_ids: ["ada"] }],
+      },
+      {
+        now: "2026-10-18T00:00:00.000Z",
+        actor_member_id: "ada",
+        household_member_ids: ["ada"],
+        constraints: [],
+        data_origin: "synthetic",
+        catalog: loaded.planner,
+        versions: loaded.versionsById,
+        id: (prefix) => `${prefix}_s08`,
+      }
+    );
+    expect(created.ok, JSON.stringify(created)).toBe(true);
+    const meal = created.plan.meals[0];
+    const pin = structuredClone(meal.pinned_ingredients);
+    expect(pin.some((item) => item.name === "fresh dill")).toBe(true);
+    const resolved = resolvedRecipe(meal, {
+      pkg: { recipe_version_id: "rv_maple-mustard-glazed-salmon_v9", ingredients: [{ name: "not the pinned salmon" }] },
+    });
+    expect(resolved.recipe_version_id).toBe("rv_maple-mustard-glazed-salmon_v3");
+    expect(resolved.ingredients).toEqual(pin);
+    expect(resolved.catalog_version_id).toBe("rv_maple-mustard-glazed-salmon_v9");
+    const lines = neededLines([meal]);
+    expect(lines.some((line) => /dill/i.test(line.display_name || line.name || ""))).toBe(true);
+
+    const salt = pin.find((item) => /salt/i.test(item.name));
+    const scaled = scaleForDiners([salt], 4, 2);
+    expect(scaled[0].quantity).toBe(4);
+  });
+});

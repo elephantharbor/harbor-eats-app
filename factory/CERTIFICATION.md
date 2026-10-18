@@ -36,7 +36,7 @@ python3 factory/tools/freeze_integrity.py <candidate-dir>
 | A | Schema and identity, including D-03 enums |
 | B | Ingredient and instruction reconciliation |
 | C | Quantity integrity at 1, 2, and 4 servings |
-| D | Culinary completeness |
+| D | Culinary quality: seasoning, balance, aromatics, technique, texture, finishing, dietary compensation, and reproducibility |
 | E | Time realism |
 | F | Compound ingredients |
 | G | Dietary eligibility and allergen integrity, audited separately |
@@ -50,6 +50,46 @@ python3 factory/tools/freeze_integrity.py <candidate-dir>
 | O | Version and history |
 
 In every image audit, report K, L1, and L2 separately, then the rolled-up L. Report dietary eligibility and allergens as separate sections. Report `effort_level` and `ingredient_complexity` under A and under J-classification.
+
+## Gate D is culinary quality
+
+Gate D is a judgment of the dish as cooked, not a completeness checkbox and not a salt-per-serving floor. The auditor still does not rewrite the package. A FAIL names the dimension and the author revises.
+
+Judge these in the context of yield, ingredients, technique, and diet. Do not require acid, garlic, onion, umami, oil, or a garnish. Do not invent a universal salt minimum per serving.
+
+- Seasoning, including salt type and whether a boiled starch the dish relies on is salted
+- Balance
+- Aromatics
+- Technique
+- Texture
+- Finishing
+- Dietary adaptation compensation, when a swap removes salt, fat, or savoriness
+- Reproducibility
+
+Salt on a new or materially revised recipe is a gram weight plus a named salt. Diamond Crystal kosher, Morton coarse kosher, and table salt are not interchangeable. Weights are UC ANR publication 390575 (November 2023): Diamond Crystal 2.8 g per teaspoon, Morton coarse kosher 4.8 g per teaspoon, table salt 6 g per teaspoon. https://ucanr.edu/sites/default/files/2023-11/390575.pdf
+
+A "do not add" line needs a culinary, dietary, allergen, or food-safety reason in the step. "v1 did not list it" and "do not invent a colorful garnish" are not reasons to leave a savory dish unsalted, dry, or unfinished. Image fidelity does not outrank the recipe. If a real culinary addition changes the plate, flag the image for regeneration.
+
+Taste-and-adjust only where the food is already safe to eat: a sauce before serving, a cooked vegetable, pesto, a soup after it has simmered. Never taste raw poultry, meat, seafood, or egg.
+
+Protein instructions use the FDA default unless a lower temperature is explicitly not the instruction. Seafood 145 F, poultry 165 F, ground meat 160 F, whole-muscle beef, pork, and lamb 145 F. https://www.fda.gov/food/buy-store-serve-safe-food/selecting-and-serving-fresh-and-frozen-seafood-safely
+
+`src/lib/culinary-quality.js` checks objective defects only: unnamed salt, an ingredient the steps never use, a step that names an ingredient that is not listed, an invalid amount or unit, an unexplained do-not-add, a taste step on raw protein, and an internal temperature below the FDA default. A missing boil-salt ratio is a warning. `reviewer_overrides` may name `boiling_salt_ratio` or `do_not_add:<step number>` when a reviewer has a reason. Structural preflight runs these checks only when `evidence.culinary_reviewed` is set, so older packages are not failed in bulk.
+
+## Six passes and evidence
+
+Every new or materially revised recipe passes, in order: structural validation, dietary and allergen validation, serving and unit consistency, cooking and food safety, culinary quality, shopping and adaptation. Model confidence is not evidence of cooking. Do not copy protected third-party recipe text.
+
+Keep these evidence states separate. Only a recorded human preparation moves the last two.
+
+| State | Meaning |
+|---|---|
+| Structurally validated | The importer and the structural checks accept the package |
+| Culinary-reviewed | A person or an audited authoring pass judged the flavor text. Not a tasting |
+| Kitchen-tested | Someone cooked this version and recorded it |
+| Household-rated | A household score is stored on this `recipe_version_id` |
+
+`kitchen_tested: false` stays false until that cook exists. Source and revision provenance stay on the package. A new version supersedes; it does not edit the previous file.
 
 ### L2 checklist
 

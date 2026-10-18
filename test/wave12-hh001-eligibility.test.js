@@ -94,10 +94,13 @@ function loadRecords() {
     );
     if (v1.ok) records.push(v1.record);
     if (!names.includes("v2.json")) continue;
+    const later = names
+      .filter((name) => /^v\d+\.json$/.test(name) && Number(name.match(/\d+/)[0]) > 2)
+      .sort((a, b) => Number(a.match(/\d+/)[0]) - Number(b.match(/\d+/)[0]));
     const pkg2 = JSON.parse(readFileSync(join(dir, "v2.json"), "utf8"));
     const sidecar = { source_path: `catalog/${slug}/v2.json` };
     const v2Policy = {
-      publicationStatus: stagingPolicy.legacy_v2_publication_status || "published",
+      publicationStatus: later.length ? "retired" : stagingPolicy.legacy_v2_publication_status || "published",
       relaxTimeMismatch: true,
     };
     const v2 =
@@ -106,6 +109,18 @@ function loadRecords() {
         : normalizeLegacyPackage(pkg2, sidecar, v2Policy);
     if (!v2.ok) throw new Error(`${slug} v2: ${JSON.stringify(v2.errors)}`);
     records.push(v2.record);
+    later.forEach((fileName, index) => {
+      const pkgN = JSON.parse(readFileSync(join(dir, fileName), "utf8"));
+      const sidecarN = { source_path: `catalog/${slug}/${fileName}` };
+      const last = index === later.length - 1;
+      const policy = { publicationStatus: last ? stagingPolicy.legacy_v2_publication_status || "published" : "retired" };
+      const normalized =
+        pkgN.catalog_contract === LEGACY_AUDIT_DRAFT_CONTRACT
+          ? normalizeLegacyAuditDraftPackage(pkgN, sidecarN, policy)
+          : normalizeLegacyPackage(pkgN, sidecarN, policy);
+      if (!normalized.ok) throw new Error(`${slug} ${fileName}: ${JSON.stringify(normalized.errors)}`);
+      records.push(normalized.record);
+    });
   }
   return records;
 }

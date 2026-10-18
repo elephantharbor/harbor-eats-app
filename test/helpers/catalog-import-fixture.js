@@ -96,6 +96,30 @@ export function loadCatalogRecordsForTest() {
         retireVersionIds.push(v2.record.supersedes_version_id || `rv_${slug}_v1`);
       }
     }
+    const later = names
+      .filter((name) => /^v\d+\.json$/.test(name) && Number(name.match(/\d+/)[0]) > 2)
+      .sort((a, b) => Number(a.match(/\d+/)[0]) - Number(b.match(/\d+/)[0]));
+    let previousId = v2.ok ? v2.record.recipe_version_id : `rv_${slug}_v2`;
+    for (const fileName of later) {
+      const pkgN = JSON.parse(readFileSync(join(dir, fileName), "utf8"));
+      const versionNumber = Number(fileName.match(/\d+/)[0]);
+      const policy = {
+        publicationStatus: stagingPolicy.legacy_v2_publication_status || "published",
+      };
+      const normalized =
+        pkgN.catalog_contract === LEGACY_AUDIT_DRAFT_CONTRACT
+          ? normalizeLegacyAuditDraftPackage(pkgN, legacySidecar(slug, fileName), policy)
+          : pkgN.catalog_contract === LEGACY_CONTRACT
+            ? normalizeLegacyPackage(pkgN, legacySidecar(slug, fileName), policy)
+            : { ok: false, errors: [{ code: "unknown_contract", detail: pkgN.catalog_contract }] };
+      if (!normalized.ok) failures.push({ slug, file: fileName, errors: normalized.errors });
+      else {
+        records.push(normalized.record);
+        if (stagingPolicy.legacy_v1_retire_on_v2_import) retireVersionIds.push(previousId);
+        previousId = normalized.record.recipe_version_id;
+      }
+      if (versionNumber < 1) break;
+    }
   }
   if (failures.length) {
     throw new Error(`catalog fixture load failed: ${JSON.stringify(failures)}`);

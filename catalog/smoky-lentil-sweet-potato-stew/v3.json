@@ -1,0 +1,331 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "smoky-lentil-sweet-potato-stew",
+    "slug": "smoky-lentil-sweet-potato-stew",
+    "title": "Smoky Lentil Sweet Potato Stew",
+    "name": "Smoky Lentil Sweet Potato Stew",
+    "description": "Red lentils and sweet potato in a smoky tomato broth, with onion and garlic sweated first.",
+    "cuisine": "american",
+    "meal_format": "stew",
+    "primary_ingredient": "lentils",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "weeknight": true,
+    "exploration": 0.38,
+    "plate": "🍲",
+    "tone": "tone-c",
+    "tags": [
+      "plant",
+      "dairy-free",
+      "stew"
+    ],
+    "sparks": [
+      "stew",
+      "smoky"
+    ],
+    "chips": [
+      "Plant",
+      "40 min"
+    ],
+    "current_recipe_id": "rcp_smoky-lentil-sweet-potato-stew",
+    "current_version_id": "rv_smoky-lentil-sweet-potato-stew_v3"
+  },
+  "recipe": {
+    "recipe_id": "rcp_smoky-lentil-sweet-potato-stew",
+    "dish_id": "smoky-lentil-sweet-potato-stew",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "created_on": null,
+      "curator": null,
+      "process": "Legacy v1 corrected in draft only. Original authorship is not in the repo.",
+      "copied_from_third_party": null,
+      "note": "legacy_unknown. kitchen_tested is false. No cook count is known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_smoky-lentil-sweet-potato-stew_v3",
+    "recipe_id": "rcp_smoky-lentil-sweet-potato-stew",
+    "dish_id": "smoky-lentil-sweet-potato-stew",
+    "version_number": 3,
+    "immutable": true,
+    "title": "Smoky Lentil Sweet Potato Stew",
+    "description": "Red lentils and sweet potato in a smoky tomato broth, with onion and garlic sweated first.",
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "total_minutes": 45,
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": "Stovetop.",
+    "doneness": "Sweet potato tender, lentils broken down, stew thick enough to hold a spoon.",
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "red lentils",
+        "quantity": "1 cup",
+        "note": "Dry, rinsed."
+      },
+      {
+        "name": "sweet potato",
+        "quantity": "2 count",
+        "note": "About 8 oz each, cut into 3/4-inch cubes."
+      },
+      {
+        "name": "diced tomatoes",
+        "quantity": "1 can",
+        "note": "14.5 oz, with their juice."
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": "4 cup",
+        "note": "Salt level varies by carton."
+      },
+      {
+        "name": "yellow onion",
+        "quantity": "1 count",
+        "note": "Diced."
+      },
+      {
+        "name": "garlic",
+        "quantity": "2 clove",
+        "note": "Minced."
+      },
+      {
+        "name": "olive oil",
+        "quantity": "1 tbsp",
+        "note": "To sweat the onion and bloom the paprika."
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": "4 g",
+        "note": "With the onion. If the broth is already salty, start with 2 g and taste the finished stew. 4 g Diamond Crystal kosher salt (1.5 tsp). The same weight is 0.75 tsp Morton coarse kosher salt or 0.75 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon."
+      },
+      {
+        "name": "black pepper",
+        "quantity": "0.25 tsp",
+        "note": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Sweat and bloom",
+        "body": "Cook the yellow onion in the olive oil with the Diamond Crystal kosher salt over medium heat until soft, about 6 minutes. Add the garlic and smoked paprika and cook 1 minute.",
+        "ingredient_refs": [
+          "yellow onion",
+          "olive oil",
+          "Diamond Crystal kosher salt",
+          "garlic",
+          "smoked paprika"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Simmer",
+        "body": "Add the red lentils, sweet potato, diced tomatoes, vegetable broth, and black pepper. Simmer 25 minutes, until the sweet potato is tender and the lentils have broken down. Taste the stew and add salt only if the broth did not already season it.",
+        "ingredient_refs": [
+          "red lentils",
+          "sweet potato",
+          "diced tomatoes",
+          "vegetable broth",
+          "black pepper"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Thicken and serve",
+        "body": "Mash a portion of the stew against the side of the pot until it thickens. Leave some sweet potato cubes visible.",
+        "ingredient_refs": [
+          "sweet potato",
+          "red lentils"
+        ]
+      }
+    ],
+    "supersedes_version_id": "rv_smoky-lentil-sweet-potato-stew_v2",
+    "kitchen_tested": false
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "american",
+      "lentils",
+      "stews"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [],
+    "equipment": [
+      "stovetop",
+      "pot"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "red lentils",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "Dry, rinsed.",
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "sweet potato",
+        "quantity": 2,
+        "unit": "count",
+        "note": "About 8 oz each, cut into 3/4-inch cubes.",
+        "raw_quantity": "2 count"
+      },
+      {
+        "name": "diced tomatoes",
+        "quantity": 1,
+        "unit": "can",
+        "note": "14.5 oz, with their juice.",
+        "raw_quantity": "1 can"
+      },
+      {
+        "name": "smoked paprika",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "vegetable broth",
+        "quantity": 4,
+        "unit": "cup",
+        "note": "Salt level varies by carton.",
+        "raw_quantity": "4 cup"
+      },
+      {
+        "name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": "Diced.",
+        "raw_quantity": "1 count"
+      },
+      {
+        "name": "garlic",
+        "quantity": 2,
+        "unit": "clove",
+        "note": "Minced.",
+        "raw_quantity": "2 clove"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "To sweat the onion and bloom the paprika.",
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": 4,
+        "unit": "g",
+        "note": "With the onion. If the broth is already salty, start with 2 g and taste the finished stew. 4 g Diamond Crystal kosher salt (1.5 tsp). The same weight is 0.75 tsp Morton coarse kosher salt or 0.75 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon.",
+        "raw_quantity": "4 g"
+      },
+      {
+        "name": "black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "0.25 tsp"
+      }
+    ],
+    "allergen_note": "No allergen tokens. The optional crusty bread in v1 is not in v2, so wheat is not an allergen of this stew. Dietary labels are dairy_free and plant, kept separate from allergens."
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "smoky-lentil-sweet-potato-stew.webp",
+    "card_ref": "smoky-lentil-sweet-potato-stew-640.webp",
+    "master_filename": "smoky-lentil-sweet-potato-stew.webp",
+    "card_filename": "smoky-lentil-sweet-potato-stew-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "unreviewed_revision_draft",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_read_and_corrected_in_draft",
+    "evidence_note": "Draft recipe correction only. This object is not a certification result. kitchen_tested is false. Household cook count and rating count are unknown, not zero. Recipe provenance is legacy_unknown.",
+    "auditor": null
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Local draft for Cora. Not imported. Not published. v1 remains the published legacy version."
+  },
+  "catalog_contract_note": "Curator correction draft for Cora. Not an audit and not a certification. v1.json in this folder is the unchanged legacy package.",
+  "revision": {
+    "disposition": "CREATE_V2",
+    "from_version_id": "rv_smoky-lentil-sweet-potato-stew_v1",
+    "to_version_id": "rv_smoky-lentil-sweet-potato-stew_v2",
+    "reason_summary": "Sweet potato size and the tomato can size are unspecified, seasoning has no measured salt, and the package lists a sheet pan for a stovetop simmer.",
+    "authored_for": "Cora",
+    "authored_role": "catalog draft, not the auditor",
+    "authored_on": "2026-10-04",
+    "authored_timezone": "America/Chicago",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_generated": true
+  },
+  "package_revision": "s08-culinary",
+  "evidence": {
+    "structurally_validated": "s08-2026-10-18",
+    "culinary_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "Culinary review is a written judgment of the recipe text. It is not a kitchen test and not a household rating. Model confidence is not evidence of cooking."
+  },
+  "culinary_revision": {
+    "from": "rv_smoky-lentil-sweet-potato-stew_v2",
+    "to": "rv_smoky-lentil-sweet-potato-stew_v3",
+    "yield": "4 servings",
+    "expected_flavor": "A lentil stew that tastes like onion, garlic, and smoked paprika, not only boiled lentils.",
+    "dietary": "Plant and dairy-free. No new allergen. Broth label is still the cook's check for unexpected wheat or soy.",
+    "safety": "Simmered through.",
+    "shopping": "Onion, garlic, olive oil, and weighed salt. Lentils, sweet potato, tomatoes, paprika, and broth stay.",
+    "uncertainties": "Broth sodium is the main variable. The taste step is after the simmer.",
+    "image_impact": "Low. The bowl still looks like lentil and sweet potato stew."
+  }
+}

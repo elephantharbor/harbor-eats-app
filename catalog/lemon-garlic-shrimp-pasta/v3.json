@@ -1,0 +1,285 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "lemon-garlic-shrimp-pasta",
+    "slug": "lemon-garlic-shrimp-pasta",
+    "title": "Lemon Garlic Shrimp Pasta",
+    "name": "Lemon Garlic Shrimp Pasta",
+    "description": "Shrimp seared with garlic in olive oil and tossed with lemon, parsley, and pasta from a salted pot.",
+    "cuisine": "mediterranean",
+    "meal_format": "pasta",
+    "primary_ingredient": "shrimp",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "weeknight": true,
+    "exploration": 0.58,
+    "plate": "🦐",
+    "tone": "tone-c",
+    "tags": [],
+    "sparks": [
+      "bright"
+    ],
+    "chips": [
+      "Shellfish",
+      "30 min"
+    ],
+    "current_recipe_id": "rcp_lemon-garlic-shrimp-pasta",
+    "current_version_id": "rv_lemon-garlic-shrimp-pasta_v3"
+  },
+  "recipe": {
+    "recipe_id": "rcp_lemon-garlic-shrimp-pasta",
+    "dish_id": "lemon-garlic-shrimp-pasta",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_lemon-garlic-shrimp-pasta_v3",
+    "recipe_id": "rcp_lemon-garlic-shrimp-pasta",
+    "dish_id": "lemon-garlic-shrimp-pasta",
+    "version_number": 3,
+    "immutable": true,
+    "title": "Lemon Garlic Shrimp Pasta",
+    "description": "Shrimp seared with garlic in olive oil and tossed with lemon, parsley, and pasta from a salted pot.",
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 15,
+    "total_minutes": 30,
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [],
+    "heat": "Stovetop.",
+    "doneness": "Shrimp are pink and opaque and the thickest piece is 145 F. Pasta is al dente.",
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "linguine",
+        "quantity": "12 oz",
+        "note": null
+      },
+      {
+        "name": "large shrimp",
+        "quantity": "1 lb",
+        "note": "Peeled and deveined."
+      },
+      {
+        "name": "garlic",
+        "quantity": "4 clove",
+        "note": "Sliced."
+      },
+      {
+        "name": "lemon",
+        "quantity": "2 count",
+        "note": "Zest of both, juice of 1, the second as wedges."
+      },
+      {
+        "name": "parsley",
+        "quantity": "0.25 cup",
+        "note": "Chopped."
+      },
+      {
+        "name": "olive oil",
+        "quantity": "3 tbsp",
+        "note": "For searing the shrimp."
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": "31 g",
+        "note": "Divided: 28 g in 3 qt pasta water (about 1%), 3 g on the shrimp. 31 g Diamond Crystal kosher salt (11 tsp). The same weight is 6.5 tsp Morton coarse kosher salt or 5.25 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon."
+      },
+      {
+        "name": "black pepper",
+        "quantity": "0.25 tsp",
+        "note": null
+      },
+      {
+        "name": "water",
+        "quantity": "3 qt",
+        "note": "For the pasta."
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Boil the pasta",
+        "body": "Bring the water to a boil with 28 g of the Diamond Crystal kosher salt (about 1% by weight, 28 g per 3 qt). Boil the linguine until al dente. Reserve 1/2 cup pasta water, then drain.",
+        "ingredient_refs": [
+          "water",
+          "Diamond Crystal kosher salt",
+          "linguine"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Sear the shrimp",
+        "body": "Pat the large shrimp dry and season with the remaining 3 g Diamond Crystal kosher salt and the black pepper. Sear them in the olive oil with the garlic over medium-high heat, about 2 minutes per side, until pink, opaque, and 145 F in the thickest piece.",
+        "ingredient_refs": [
+          "large shrimp",
+          "Diamond Crystal kosher salt",
+          "black pepper",
+          "olive oil",
+          "garlic"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Finish",
+        "body": "Off the heat, toss the linguine with the shrimp, the lemon zest and juice, the parsley, and a splash of pasta water. Taste a noodle and a shrimp, both cooked, and add lemon or a pinch of salt only if the bowl needs it. Serve with the remaining lemon wedges.",
+        "ingredient_refs": [
+          "linguine",
+          "large shrimp",
+          "lemon",
+          "parsley"
+        ]
+      }
+    ],
+    "kitchen_tested": false,
+    "supersedes_version_id": "rv_lemon-garlic-shrimp-pasta_v2"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "citrusy",
+      "mediterranean",
+      "pasta",
+      "shrimp"
+    ],
+    "dietary_labels": [],
+    "allergens": [
+      "shellfish",
+      "wheat"
+    ],
+    "equipment": [],
+    "parsed_ingredients": [
+      {
+        "name": "linguine",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "raw_quantity": "12 oz"
+      },
+      {
+        "name": "large shrimp",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "Peeled and deveined.",
+        "raw_quantity": "1 lb"
+      },
+      {
+        "name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": "Sliced.",
+        "raw_quantity": "4 clove"
+      },
+      {
+        "name": "lemon",
+        "quantity": 2,
+        "unit": "count",
+        "note": "Zest of both, juice of 1, the second as wedges.",
+        "raw_quantity": "2 count"
+      },
+      {
+        "name": "parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "Chopped.",
+        "raw_quantity": "0.25 cup"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "For searing the shrimp.",
+        "raw_quantity": "3 tbsp"
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": 31,
+        "unit": "g",
+        "note": "Divided: 28 g in 3 qt pasta water (about 1%), 3 g on the shrimp. 31 g Diamond Crystal kosher salt (11 tsp). The same weight is 6.5 tsp Morton coarse kosher salt or 5.25 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon.",
+        "raw_quantity": "31 g"
+      },
+      {
+        "name": "black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "0.25 tsp"
+      },
+      {
+        "name": "water",
+        "quantity": 3,
+        "unit": "qt",
+        "note": "For the pasta.",
+        "raw_quantity": "3 qt"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "lemon-garlic-shrimp-pasta.webp",
+    "card_ref": "lemon-garlic-shrimp-pasta-640.webp",
+    "master_filename": "lemon-garlic-shrimp-pasta.webp",
+    "card_filename": "lemon-garlic-shrimp-pasta-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "legacy_structural",
+    "factory_certified": false,
+    "text_provenance": "unknown_unverified",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "recipe_store_structural_migration",
+    "evidence_note": "Structurally migrated from recipe-store.js. Provenance is unknown where the repo does not state it. Image rights are unverified. This is not a modern factory certification. kitchen_tested is false because the repo has no kitchen-test record for this meal. Household cook count and rating count are unknown, not zero."
+  },
+  "publication": {
+    "status": "published",
+    "artifact_status": "published",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Live alpha menu. Published means the version may be recommended. It does not mean factory-certified."
+  },
+  "package_revision": "s08-culinary",
+  "evidence": {
+    "structurally_validated": "s08-2026-10-18",
+    "culinary_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "Culinary review is a written judgment of the recipe text. It is not a kitchen test and not a household rating. Model confidence is not evidence of cooking."
+  },
+  "culinary_revision": {
+    "from": "rv_lemon-garlic-shrimp-pasta_v2",
+    "to": "rv_lemon-garlic-shrimp-pasta_v3",
+    "yield": "4 servings",
+    "expected_flavor": "Garlic, lemon, and olive oil on shrimp that were salted before they hit the pan, over pasta that was boiled in salted water.",
+    "dietary": "Shellfish and wheat unchanged. Dairy-free.",
+    "safety": "Shrimp cooked to 145 F.",
+    "shopping": "Salt, pepper, and a stated pasta-water volume. Oil was already listed and is now used by name.",
+    "uncertainties": "Shrimp size changes the minute count. Use the thermometer, not the clock, for the last minute.",
+    "image_impact": "No regen required. The plate is still shrimp, lemon, parsley, and pasta."
+  }
+}

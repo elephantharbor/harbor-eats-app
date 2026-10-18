@@ -1,0 +1,373 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "cashew-pesto-pasta",
+    "slug": "cashew-pesto-pasta",
+    "title": "Cashew Pesto Pasta",
+    "name": "Cashew Pesto Pasta",
+    "description": "Dairy-free basil pesto with toasted cashews, olive oil, lemon, and nutritional yeast, tossed with pasta boiled in salted water.",
+    "cuisine": "italian-inspired",
+    "meal_format": "pasta",
+    "primary_ingredient": "pasta",
+    "texture": "creamy",
+    "flavor_profile": "herbaceous",
+    "weeknight": true,
+    "exploration": 0.5,
+    "plate": "🍝",
+    "tone": "tone-b",
+    "tags": [
+      "plant",
+      "pasta",
+      "dairy-free"
+    ],
+    "sparks": [
+      "bright"
+    ],
+    "chips": [
+      "Plant",
+      "30 min"
+    ],
+    "current_recipe_id": "rcp_cashew-pesto-pasta",
+    "current_version_id": "rv_cashew-pesto-pasta_v3"
+  },
+  "recipe": {
+    "recipe_id": "rcp_cashew-pesto-pasta",
+    "dish_id": "cashew-pesto-pasta",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "legacy_unknown",
+      "created_on": null,
+      "curator": null,
+      "process": "Legacy v1 corrected in draft only. Original authorship is not in the repo.",
+      "copied_from_third_party": null,
+      "note": "legacy_unknown. kitchen_tested is false. No cook count is known."
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_cashew-pesto-pasta_v3",
+    "recipe_id": "rcp_cashew-pesto-pasta",
+    "dish_id": "cashew-pesto-pasta",
+    "version_number": 3,
+    "immutable": true,
+    "title": "Cashew Pesto Pasta",
+    "description": "Dairy-free basil pesto with toasted cashews, olive oil, lemon, and nutritional yeast, tossed with pasta boiled in salted water.",
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 15,
+    "total_minutes": 30,
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "methods": [
+      "stovetop"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": "Stovetop.",
+    "doneness": "Pasta al dente. Pesto thick and glossy on the noodles, not watery.",
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "short pasta",
+        "quantity": "12 oz",
+        "note": "Durum wheat, such as penne or fusilli."
+      },
+      {
+        "name": "raw cashews",
+        "quantity": "0.5 cup",
+        "note": "Toasted. Reserve 2 tbsp chopped for the top. This dish contains cashews and is not nut-safe."
+      },
+      {
+        "name": "basil",
+        "quantity": "3 cup",
+        "note": "Packed leaves, about 85 g. Added at the end of blending."
+      },
+      {
+        "name": "garlic",
+        "quantity": "2 clove",
+        "note": null
+      },
+      {
+        "name": "lemon",
+        "quantity": "1 count",
+        "note": "Zest, plus 3 tbsp juice."
+      },
+      {
+        "name": "extra-virgin olive oil",
+        "quantity": "0.25 cup",
+        "note": "3 tbsp in the pesto, 1 tsp on the tomatoes, the rest as a finish."
+      },
+      {
+        "name": "nutritional yeast",
+        "quantity": "0.25 cup",
+        "note": "Savory stand-in for cheese. Not dairy."
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": "31 g",
+        "note": "Divided: 28 g in 3 qt pasta water (about 1% by weight), 2.5 g in the pesto, 0.5 g on the tomatoes. 31 g Diamond Crystal kosher salt (11 tsp). The same weight is 6.5 tsp Morton coarse kosher salt or 5.25 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon."
+      },
+      {
+        "name": "black pepper",
+        "quantity": "0.25 tsp",
+        "note": "In the pesto."
+      },
+      {
+        "name": "cherry tomatoes",
+        "quantity": "1 cup",
+        "note": "Halved."
+      },
+      {
+        "name": "water",
+        "quantity": "3 qt",
+        "note": "For boiling the pasta. Up to 2 tbsp more only if the pesto will not blend."
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Toast the cashews",
+        "body": "Toast the raw cashews in a dry skillet over medium heat until golden, 4 to 5 minutes. Reserve 2 tbsp, chopped, for the top.",
+        "ingredient_refs": [
+          "raw cashews"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Blend the pesto",
+        "body": "Blend the remaining cashews with the garlic, lemon zest, 2 tbsp lemon juice, nutritional yeast, 2.5 g of the Diamond Crystal kosher salt, 3 tbsp extra-virgin olive oil, and the black pepper until thick. Add the basil and pulse until green and still a little coarse. Taste the pesto, which is meant to be eaten without further cooking, and add the remaining lemon juice if it tastes dull. No cheese: this pesto is dairy-free, and nutritional yeast plus salt replace the savoriness cheese would have brought.",
+        "ingredient_refs": [
+          "raw cashews",
+          "garlic",
+          "lemon",
+          "nutritional yeast",
+          "Diamond Crystal kosher salt",
+          "extra-virgin olive oil",
+          "black pepper",
+          "basil"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Boil the pasta",
+        "body": "Bring the water to a boil with 28 g of the Diamond Crystal kosher salt (about 1% by weight, 28 g per 3 qt). Boil the short pasta until al dente. Reserve 1 cup of the salted pasta water, then drain.",
+        "ingredient_refs": [
+          "water",
+          "Diamond Crystal kosher salt",
+          "short pasta"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Season the tomatoes",
+        "body": "Toss the cherry tomatoes with 1 tsp of the extra-virgin olive oil and the remaining 0.5 g Diamond Crystal kosher salt.",
+        "ingredient_refs": [
+          "cherry tomatoes",
+          "extra-virgin olive oil",
+          "Diamond Crystal kosher salt"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Toss and finish",
+        "body": "Off the heat, toss the pasta with the pesto and 1/4 to 1/2 cup of the salted pasta water until the sauce looks glossy. Taste a noodle and add salt or lemon only if that bite needs it. Finish with the rest of the olive oil, the toasted cashews, and a few basil leaves.",
+        "ingredient_refs": [
+          "short pasta",
+          "cherry tomatoes",
+          "raw cashews",
+          "basil",
+          "lemon",
+          "extra-virgin olive oil"
+        ]
+      }
+    ],
+    "supersedes_version_id": "rv_cashew-pesto-pasta_v2",
+    "time_note": "Cashews are toasted 4 to 5 minutes, not soaked. Prep is 15 minutes and cook is 15. Heat the pasta water while the pesto is blended.",
+    "kitchen_tested": false
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "citrusy",
+      "creamy",
+      "herbaceous",
+      "italian",
+      "pasta"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [
+      "cashew",
+      "nuts",
+      "wheat"
+    ],
+    "equipment": [
+      "stovetop",
+      "blender"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "short pasta",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "Durum wheat, such as penne or fusilli.",
+        "raw_quantity": "12 oz"
+      },
+      {
+        "name": "raw cashews",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "Toasted. Reserve 2 tbsp chopped for the top. This dish contains cashews and is not nut-safe.",
+        "raw_quantity": "0.5 cup"
+      },
+      {
+        "name": "basil",
+        "quantity": 3,
+        "unit": "cup",
+        "note": "Packed leaves, about 85 g. Added at the end of blending.",
+        "raw_quantity": "3 cup"
+      },
+      {
+        "name": "garlic",
+        "quantity": 2,
+        "unit": "clove",
+        "note": null,
+        "raw_quantity": "2 clove"
+      },
+      {
+        "name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "Zest, plus 3 tbsp juice.",
+        "raw_quantity": "1 count"
+      },
+      {
+        "name": "extra-virgin olive oil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "3 tbsp in the pesto, 1 tsp on the tomatoes, the rest as a finish.",
+        "raw_quantity": "0.25 cup"
+      },
+      {
+        "name": "nutritional yeast",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": "Savory stand-in for cheese. Not dairy.",
+        "raw_quantity": "0.25 cup"
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": 31,
+        "unit": "g",
+        "note": "Divided: 28 g in 3 qt pasta water (about 1% by weight), 2.5 g in the pesto, 0.5 g on the tomatoes. 31 g Diamond Crystal kosher salt (11 tsp). The same weight is 6.5 tsp Morton coarse kosher salt or 5.25 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon.",
+        "raw_quantity": "31 g"
+      },
+      {
+        "name": "black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "In the pesto.",
+        "raw_quantity": "0.25 tsp"
+      },
+      {
+        "name": "cherry tomatoes",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "Halved.",
+        "raw_quantity": "1 cup"
+      },
+      {
+        "name": "water",
+        "quantity": 3,
+        "unit": "qt",
+        "note": "For boiling the pasta. Up to 2 tbsp more only if the pesto will not blend.",
+        "raw_quantity": "3 qt"
+      }
+    ],
+    "allergen_note": "Cashew and nuts are allergens, not dietary labels. Wheat is the durum pasta. Dietary labels are dairy_free and plant. Nutritional yeast is not dairy. Wheat is recorded even though the legacy allergen enum has no wheat id."
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "cashew-pesto-pasta.webp",
+    "card_ref": "cashew-pesto-pasta-640.webp",
+    "master_filename": "cashew-pesto-pasta.webp",
+    "card_filename": "cashew-pesto-pasta-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "unreviewed_revision_draft",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_read_and_corrected_in_draft",
+    "evidence_note": "Draft recipe correction only. This object is not a certification result. kitchen_tested is false. Household cook count and rating count are unknown, not zero. Recipe provenance is legacy_unknown.",
+    "auditor": null
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Local draft for Cora. Not imported. Not published. v1 remains the published legacy version."
+  },
+  "catalog_contract_note": "Curator correction draft for Cora. Not an audit and not a certification. v1.json in this folder is the unchanged legacy package.",
+  "revision": {
+    "disposition": "CREATE_V2",
+    "from_version_id": "rv_cashew-pesto-pasta_v1",
+    "to_version_id": "rv_cashew-pesto-pasta_v2",
+    "reason_summary": "The pesto calls for salt and blend water that were not ingredients, the cashew soak has no time inside a 25-minute total, and wheat is missing from the allergens.",
+    "authored_for": "Cora",
+    "authored_role": "catalog draft, not the auditor",
+    "authored_on": "2026-10-04",
+    "authored_timezone": "America/Chicago",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_generated": false
+  },
+  "package_revision": "s08-culinary",
+  "evidence": {
+    "structurally_validated": "s08-2026-10-18",
+    "culinary_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "Culinary review is a written judgment of the recipe text. It is not a kitchen test and not a household rating. Model confidence is not evidence of cooking."
+  },
+  "culinary_revision": {
+    "from": "rv_cashew-pesto-pasta_v2",
+    "to": "rv_cashew-pesto-pasta_v3",
+    "yield": "4 servings",
+    "expected_flavor": "Basil-forward pesto that coats pasta, with salt in the noodle and the sauce, olive oil to carry the herbs, and lemon at the end. Cashews are toasted instead of soaked.",
+    "dietary": "Still plant-based and dairy-free. Allergens remain cashew, nuts, and wheat. Not nut-safe. No miso, so no new soy allergen.",
+    "safety": "No raw animal food. Garlic and nuts are eaten as pesto, which is the dish.",
+    "shopping": "Olive oil, a whole lemon, more basil, and a weighed salt line replace the unsalted boil and the oil-free blend. Salt scales by servings; the 3 qt water is the 4-serving pot.",
+    "uncertainties": "Cashew toast color and basil bruising vary. The 1% pasta-water target is a ratio, and most of that salt stays in the pot.",
+    "time_note": "Cashews are toasted 4 to 5 minutes, not soaked. Prep is 15 minutes and cook is 15. Heat the pasta water while the pesto is blended.",
+    "image_impact": "Regen recommended. Toasted cashews, a greener pesto, and an oil sheen will not match a pale oil-free photo."
+  }
+}

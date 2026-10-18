@@ -1,0 +1,300 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "black-bean-quesadillas",
+    "slug": "black-bean-quesadillas",
+    "title": "Black Bean Quesadillas",
+    "name": "Black Bean Quesadillas",
+    "description": "Black bean and cheese quesadillas, with the beans salted, garlicked, and finished with lime before they go in the tortilla.",
+    "cuisine": "mexican",
+    "meal_format": "handheld",
+    "primary_ingredient": "beans",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "weeknight": true,
+    "exploration": 0.3,
+    "plate": "🧀",
+    "tone": "tone-a",
+    "tags": [
+      "dairy"
+    ],
+    "sparks": [
+      "tacos"
+    ],
+    "chips": [
+      "Vegetarian",
+      "35 min"
+    ],
+    "current_recipe_id": "rcp_black-bean-quesadillas",
+    "current_version_id": "rv_black-bean-quesadillas_v3"
+  },
+  "recipe": {
+    "recipe_id": "rcp_black-bean-quesadillas",
+    "dish_id": "black-bean-quesadillas",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_black-bean-quesadillas_v3",
+    "recipe_id": "rcp_black-bean-quesadillas",
+    "dish_id": "black-bean-quesadillas",
+    "version_number": 3,
+    "immutable": true,
+    "title": "Black Bean Quesadillas",
+    "description": "Black bean and cheese quesadillas, with the beans salted, garlicked, and finished with lime before they go in the tortilla.",
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 20,
+    "total_minutes": 35,
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "methods": [
+      "skillet"
+    ],
+    "dietary_tags": [
+      "dairy"
+    ],
+    "heat": "Stovetop.",
+    "doneness": "Tortillas golden and the cheese melted.",
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "black beans",
+        "quantity": "1 can",
+        "note": "15 oz, drained, rinsed, and lightly mashed."
+      },
+      {
+        "name": "shredded cheese",
+        "quantity": "1.5 cup",
+        "note": null
+      },
+      {
+        "name": "flour tortillas",
+        "quantity": "4 count",
+        "note": "Large."
+      },
+      {
+        "name": "salsa",
+        "quantity": "0.5 cup",
+        "note": "Store-bought, for serving."
+      },
+      {
+        "name": "neutral oil",
+        "quantity": "1 tbsp",
+        "note": "For the skillet."
+      },
+      {
+        "name": "ground cumin",
+        "quantity": "1 tsp",
+        "note": null
+      },
+      {
+        "name": "garlic",
+        "quantity": "1 clove",
+        "note": "Minced, mixed into the beans."
+      },
+      {
+        "name": "lime",
+        "quantity": "1 count",
+        "note": "Juice stirred into the beans."
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": "3 g",
+        "note": "In the mashed beans. The cheese is salty too. 3 g Diamond Crystal kosher salt (1 tsp). The same weight is 0.75 tsp Morton coarse kosher salt or 0.5 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon."
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Season the beans",
+        "body": "Mash the black beans with the ground cumin, garlic, lime juice, and Diamond Crystal kosher salt. Taste the mash and add a pinch more salt only if it still tastes flat next to the cheese.",
+        "ingredient_refs": [
+          "black beans",
+          "ground cumin",
+          "garlic",
+          "lime",
+          "Diamond Crystal kosher salt"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Fill and crisp",
+        "body": "Spread the beans and half the shredded cheese on the flour tortillas, top with the rest of the cheese, and fold. Cook in the neutral oil over medium heat 2 to 3 minutes per side, until golden.",
+        "ingredient_refs": [
+          "black beans",
+          "shredded cheese",
+          "flour tortillas",
+          "neutral oil"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Serve",
+        "body": "Cut into wedges and serve with the salsa.",
+        "ingredient_refs": [
+          "salsa",
+          "flour tortillas"
+        ]
+      }
+    ],
+    "corrects_version_id": "rv_black-bean-quesadillas_v1",
+    "kitchen_tested": false,
+    "supersedes_version_id": "rv_black-bean-quesadillas_v2"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "mexican",
+      "tacos"
+    ],
+    "dietary_labels": [],
+    "allergens": [
+      "dairy",
+      "wheat"
+    ],
+    "equipment": [
+      "skillet"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "black beans",
+        "quantity": 1,
+        "unit": "can",
+        "note": "15 oz, drained, rinsed, and lightly mashed.",
+        "raw_quantity": "1 can"
+      },
+      {
+        "name": "shredded cheese",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": null,
+        "raw_quantity": "1.5 cup"
+      },
+      {
+        "name": "flour tortillas",
+        "quantity": 4,
+        "unit": "count",
+        "note": "Large.",
+        "raw_quantity": "4 count"
+      },
+      {
+        "name": "salsa",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "Store-bought, for serving.",
+        "raw_quantity": "0.5 cup"
+      },
+      {
+        "name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "For the skillet.",
+        "raw_quantity": "1 tbsp"
+      },
+      {
+        "name": "ground cumin",
+        "quantity": 1,
+        "unit": "tsp",
+        "note": null,
+        "raw_quantity": "1 tsp"
+      },
+      {
+        "name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": "Minced, mixed into the beans.",
+        "raw_quantity": "1 clove"
+      },
+      {
+        "name": "lime",
+        "quantity": 1,
+        "unit": "count",
+        "note": "Juice stirred into the beans.",
+        "raw_quantity": "1 count"
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": 3,
+        "unit": "g",
+        "note": "In the mashed beans. The cheese is salty too. 3 g Diamond Crystal kosher salt (1 tsp). The same weight is 0.75 tsp Morton coarse kosher salt or 0.5 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon.",
+        "raw_quantity": "3 g"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "black-bean-quesadillas.webp",
+    "card_ref": "black-bean-quesadillas-640.webp",
+    "master_filename": "black-bean-quesadillas.webp",
+    "card_filename": "black-bean-quesadillas-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "legacy_draft_correction",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_draft_correction",
+    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Removes the false sheet-pan spark. plant is not a dietary label because of the cheese; tacos is not a diet; dairy stays an allergen; wheat is an allergen because of the flour tortillas. No dairy-free claim. kitchen_tested is false. Recipe provenance is legacy_unknown."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Proposed correction for Cora. Not published. Not a certification. v1.json was not edited."
+  },
+  "draft": {
+    "for": "Cora",
+    "role": "legacy_audit_drafter",
+    "is_auditor": false,
+    "disposition": "CREATE_V2",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_this_pass": false,
+    "v1_left_unchanged": true,
+    "reason": "Spark sheet projected sheet-pan equipment onto a skillet quesadilla."
+  },
+  "package_revision": "s08-culinary",
+  "evidence": {
+    "structurally_validated": "s08-2026-10-18",
+    "culinary_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "Culinary review is a written judgment of the recipe text. It is not a kitchen test and not a household rating. Model confidence is not evidence of cooking."
+  },
+  "culinary_revision": {
+    "from": "rv_black-bean-quesadillas_v2",
+    "to": "rv_black-bean-quesadillas_v3",
+    "yield": "4 quesadillas",
+    "expected_flavor": "The bean filling tastes like cumin, garlic, lime, and salt, and the cheese still does the melting.",
+    "dietary": "Dairy and wheat unchanged. Not plant-based.",
+    "safety": "Skillet only.",
+    "shopping": "Garlic, lime, and weighed salt. Beans, cheese, tortillas, salsa, oil, and cumin stay.",
+    "uncertainties": "Cheese salt varies. The 3 g is for the beans, not a second salting of the cheese.",
+    "image_impact": "No regen. Still a cheese and bean quesadilla. Lime is mixed in, not a new garnish pile."
+  }
+}

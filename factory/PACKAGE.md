@@ -118,6 +118,18 @@ When the task leaves images pending, `image.asset_generated` is `false`, derivat
 
 When assets exist: master WebP 1200×900 and card WebP 640×480, dimensions recorded, generation provenance present (`method`, `generation_date`, `generator`, `model` — `unknown` is allowed), active paths not under `rejected/`. One active set. Superseded files live only in `rejected/`.
 
+## Salt, seasoning, and dietary compensation
+
+On a new or materially revised recipe, salt is grams plus a named salt, with a volume equivalent beside it. Diamond Crystal kosher salt is 2.8 g per teaspoon, Morton coarse kosher salt is 4.8 g per teaspoon, and table salt is 6 g per teaspoon (UC ANR publication 390575, November 2023, https://ucanr.edu/sites/default/files/2023-11/390575.pdf). The spoons are not swappable. Count salt already in soy sauce, broth, cheese, and other prepared ingredients before adding more. A lower-sodium version is allowed when the recipe says what was reduced and what still seasons the dish. Do not print a precise sodium total from these kitchen amounts.
+
+Pasta or potatoes boiled in water the dish relies on state the salt ratio or say why the water stays unsalted. About 1% by weight is the usual discarded-water target (28 g in 3 qt, 38 g in 4 qt). Rice, couscous, and other absorbed liquids use less, about 0.5% to 0.8%, because that water is eaten. Yield is the recipe's `base_servings`.
+
+If a dairy-free, nut-free, or other swap removes salt, fat, or savoriness, put the replacement in the ingredient list. Nutritional yeast can stand in for cheese. Do not add an allergen the package does not already declare. Cashews stay under the tree-nut and cashew rules. A cashew dish is not nut-safe.
+
+"Do not add …" is allowed when the sentence gives the reason: allergen, dietary claim, food safety, or the identity of the dish. It is not allowed as a way to freeze a thin v1.
+
+Taste and adjust only a component that is safe to eat. Do not taste raw chicken, meat, seafood, or egg.
+
 ## Certification record
 
 The author leaves `certification` null and `auditor` null. The auditor writes the gate record. The author does not.

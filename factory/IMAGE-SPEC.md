@@ -60,7 +60,7 @@ Bright diffused daylight, soft direction, real highlights, gentle shadows, textu
 
 ### Color
 
-Vibrant but believable from the recipe. Do not invent colorful ingredients. A monochrome meal improves through light, texture, plating, the vessel, and legitimate finishers.
+Vibrant but believable from the recipe. Do not invent colorful ingredients that the recipe does not list. A monochrome meal improves through light, texture, plating, the vessel, and legitimate finishers. Image fidelity is not a reason to delete salt, fat, acid, or a finisher from the recipe. If a culinary revision adds something the current hero would not show, keep the ingredient and flag the image for regeneration.
 
 ### Texture
 
