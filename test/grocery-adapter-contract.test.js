@@ -8,7 +8,7 @@ import { createInstacartMock } from "../src/lib/grocery/instacart-mock.js";
 import { createInstacartAdapter, resolveInstacartFetch } from "../src/lib/grocery/instacart.js";
 import { createInStoreAdapter } from "../src/lib/grocery/instore.js";
 import { instacartRequestBody, projectTransfer } from "../src/lib/grocery/projection.js";
-import { createGroceryAdapters, registryRow } from "../src/lib/grocery/registry.js";
+import { GROCERY_REGISTRY, createGroceryAdapters, registryRow } from "../src/lib/grocery/registry.js";
 import { sanitizeGroceryEvent } from "../src/lib/grocery/telemetry.js";
 import { validateGroceryVars } from "../scripts/deploy/environments.mjs";
 
@@ -63,6 +63,27 @@ describe("grocery registry and config", () => {
     expect(row.sources[0]).toContain("create_shopping_list_page");
     expect(registryRow("instore").lifecycle).toBe("production-enabled");
     expect(registryRow("walmart").integration_status).toBe("none");
+    expect(row.category).toBe("integrated_provider");
+    expect(row.adapter_implemented).toBe(true);
+    expect(row.status).toMatchObject({
+      documented: true,
+      credentials_obtained: false,
+      mock_tested: true,
+      provider_tested: false,
+      production_enabled: false,
+    });
+    expect(row.status.registration.value).toBe("unavailable");
+    expect(registryRow("instore").category).toBe("native");
+    expect(registryRow("instore").status).toEqual({ production_enabled: true });
+    const adapterIds = Object.keys(createGroceryAdapters());
+    for (const entry of GROCERY_REGISTRY) {
+      expect(entry.adapter_implemented).toBe(adapterIds.includes(entry.id));
+      if (entry.category === "provider_research") expect(entry.status).toBeUndefined();
+      if (entry.status && Object.prototype.hasOwnProperty.call(entry.status, "mock_tested")) {
+        expect(entry.status.mock_tested).toBe(entry.mock_tested_capabilities.length > 0);
+        expect(entry.status.provider_tested).toBe(entry.provider_tested_capabilities.length > 0);
+      }
+    }
   });
 
   it("refuses Instacart unless config is complete, and refuses the fixture in production", () => {

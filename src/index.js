@@ -48,6 +48,7 @@ import { routeTasteRequest } from "./lib/taste-profile.js";
 import { routeDinnerPlanRequest } from "./lib/dinner-plan-routes.js";
 import { routeHouseholdShopRequest } from "./lib/household-shop-routes.js";
 import { storedEventProps } from "./lib/household-shop.js";
+import { cleanCookEventProps } from "./lib/cook-telemetry.js";
 import { routeGroceryRequest } from "./lib/grocery/routes.js";
 import { groceryFixtureActive, instacartActivation, providerIds } from "./lib/grocery/config.js";
 import { isUniqueViolation, logDatabaseError, stripDatabaseDetail } from "./lib/db-error.js";
@@ -881,7 +882,7 @@ async function createEvent(env, body, session, request) {
   }
   const gated = storedEventProps(event_name, body);
   if (gated.handled && gated.error) return err(gated.error);
-  const props = gated.handled ? { ...gated.props } : { ...body };
+  let props = gated.handled ? { ...gated.props } : { ...body };
   if (!gated.handled) {
     delete props.event_name;
     delete props.event;
@@ -897,6 +898,7 @@ async function createEvent(env, body, session, request) {
     delete props.created_at;
     delete props.data_origin;
   }
+  props = cleanCookEventProps(event_name, props);
   const dataOrigin = await writeOrigin(env, session.household_id, request, gated.handled ? {} : body);
   try {
     await env.DB.prepare(

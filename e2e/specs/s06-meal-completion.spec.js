@@ -143,6 +143,10 @@ test.describe("S-06 meal completion", () => {
     await page.locator(".view.is-active [data-action='mark-cooked']").click();
     await expect(page.getByRole("heading", { name: "How was it?" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Undo, this dinner is not cooked yet" })).toBeVisible();
+    const undoEvents = [];
+    page.on("request", (request) => {
+      if (request.method() === "POST" && request.url().includes("/api/events")) undoEvents.push(request.postDataJSON());
+    });
     await expect(page.locator("#rateLede")).toContainText("leave this and rate later");
     for (const [label, size] of RATE_SHOTS) {
       await page.setViewportSize(size);
@@ -198,6 +202,13 @@ test.describe("S-06 meal completion", () => {
     expect(["cooked", "partially_rated", "fully_rated"]).toContain(repeat.state);
     const completions = events.filter((row) => row && row.event_name === "cook_completed");
     expect(completions).toHaveLength(1);
+    expect(completions[0].completion_source).toBe("mark_cooked");
+    const recorded = events.filter((row) => row && row.event_name === "cook_recorded");
+    expect(recorded).toHaveLength(1);
+    expect(recorded[0].completion_source).toBe("mark_cooked");
+    const undone = undoEvents.filter((row) => row && row.event_name === "cook_undone");
+    expect(undone.length).toBeGreaterThan(0);
+    expect(undone[0].completion_source).toBe("mark_cooked");
   });
 
   test("history can log a superseded cooking meal without changing the current list", async ({ page }) => {
@@ -227,6 +238,10 @@ test.describe("S-06 meal completion", () => {
     await expect(recover).toBeVisible({ timeout: 30000 });
     await expect(recover).toHaveText("We made this");
     await shoot(page, "history-recovery");
+    const historyEvents = [];
+    page.on("request", (request) => {
+      if (request.method() === "POST" && request.url().includes("/api/events")) historyEvents.push(request.postDataJSON());
+    });
     await recover.click();
     await expect(page.getByRole("heading", { name: "How was it?" })).toBeVisible();
     await page.locator("#btnSavePartial").click();
@@ -242,6 +257,9 @@ test.describe("S-06 meal completion", () => {
     });
     expect(still.currentId).toBe(after.newId);
     expect(still.shopPlanId).toBe(after.newId);
+    const historyCooks = historyEvents.filter((row) => row && (row.event_name === "cook_recorded" || row.event_name === "cook_completed"));
+    expect(historyCooks.length).toBeGreaterThan(0);
+    expect(historyCooks.every((row) => row.completion_source === "mark_cooked")).toBe(true);
   });
 
   test("a typed add survives an earlier save, the sheet hints at more, and sign-out stacks", async ({ page }) => {
@@ -652,6 +670,10 @@ test.describe("S-06 meal completion", () => {
     const meta = await reachFinish(page);
     const stepIndex = Number(meta.split("/")[0].trim()) - 1;
     expect(stepIndex).toBeGreaterThanOrEqual(0);
+    const finishEvents = [];
+    page.on("request", (request) => {
+      if (request.method() === "POST" && request.url().includes("/api/events")) finishEvents.push(request.postDataJSON());
+    });
     await page.locator(".view.is-active[data-view='cook']").getByRole("button", { name: "Finish" }).click();
     await expect(page.getByRole("heading", { name: "How was it?" })).toBeVisible();
     await expect.poll(() => cookStepsFor(page, seeded.mealIds[0])).toEqual([]);
@@ -659,6 +681,11 @@ test.describe("S-06 meal completion", () => {
     await expect(page.locator(".view.is-active[data-view='cook']")).toBeVisible();
     await expect(page.locator("#cookStepMeta")).toHaveText(meta);
     await expect.poll(() => cookStepsFor(page, seeded.mealIds[0])).toEqual([String(stepIndex)]);
+    for (const name of ["cook_recorded", "cook_undone"]) {
+      const rows = finishEvents.filter((row) => row && row.event_name === name);
+      expect(rows.length).toBeGreaterThan(0);
+      expect(rows.every((row) => row.completion_source === "finish_cook")).toBe(true);
+    }
   });
 });
 

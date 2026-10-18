@@ -509,6 +509,7 @@
       meal_id: p.meal_id || null,
       meal_count: p.meal_count,
       source: p.source,
+      completion_source: p.completion_source,
       op: p.op,
       recipe_slug: p.recipe_slug,
       kind: p.kind,
@@ -2930,12 +2931,17 @@
         return;
       }
       if (res.completed) {
-        track("cook_completed", { dinner_plan_id: res.plan.dinner_plan_id, meal_id: meal.meal_id });
+        track("cook_completed", {
+          dinner_plan_id: res.plan.dinner_plan_id,
+          meal_id: meal.meal_id,
+          completion_source: op,
+        });
         track("cook_recorded", {
           dinner_plan_id: res.plan.dinner_plan_id,
           meal_id: meal.meal_id,
           plan_id: res.plan.dinner_plan_id,
           meal_option_id: meal.meal_id,
+          completion_source: op,
         });
       }
       const planId = res.plan.dinner_plan_id;
@@ -2952,6 +2958,7 @@
             returnView: back,
             restoreCook: restoreCook,
             cookStep: restoreCook ? savedStep : null,
+            completionSource: op,
           }
         : null;
       openDinnerRating(res.plan, meal.meal_id, back, undo);
@@ -3026,6 +3033,7 @@
       meal_id: record.mealId,
       plan_id: record.planId,
       meal_option_id: record.mealId,
+      completion_source: record.completionSource,
     });
   }
 
@@ -3102,7 +3110,11 @@
       toast("Pick a meal first");
       return;
     }
-    track("cook_recorded", { plan_id: API.planId || PLAN_ID, meal_option_id: mealId });
+    track("cook_recorded", {
+      plan_id: API.planId || PLAN_ID,
+      meal_option_id: mealId,
+      completion_source: "finish_cook",
+    });
     (async () => {
       const planId = (await ensurePlan()) || PLAN_ID;
       const hh = API.householdId || state.householdId;
@@ -3985,7 +3997,10 @@
     if (!res || !res.ok) {
       showHeldShopProjectionNotice();
       if (!(options && options.suppressToast)) dinnerPlanErrorToast(res);
-      if (res && (res.error === "outcome_locked" || res.error === "version_locked" || res.error === "illegal_transition")) {
+      if (res && res.error === "revision_conflict") {
+        await loadCurrentDinnerPlan();
+        renderActiveDinnerSurfaces();
+      } else if (res && (res.error === "outcome_locked" || res.error === "version_locked" || res.error === "illegal_transition")) {
         await loadCurrentDinnerPlan();
         renderActiveDinnerSurfaces();
       }
@@ -4087,6 +4102,7 @@
     else if (code === "meal_count_too_small") toast("Remove a dinner first, then lower the number.");
     else if (code === "forbidden_cross_household" || code === "plan_not_found") toast("This plan isn’t in your kitchen.");
     else if (code === "unknown_recipe") toast("That dinner isn’t on the menu anymore. Pick another.");
+    else if (code === "revision_conflict") toast("That dinner changed. Have another look.");
     else if (code === "adaptation_not_applicable")
       toast(
         (res && res.acknowledgement) ||
@@ -5016,7 +5032,10 @@
       }) || discoveryResultRow(state.dinnerDetailMeal && state.dinnerDetailMeal.recipe_slug);
     const pickedTitle = (row && row.title) || (state.dinnerDetailMeal && state.dinnerDetailMeal.title) || "dinner";
     const plan = await mutateDinnerPlan(payload, { suppressToast: true });
-    if (!plan || plan.failed) return;
+    if (!plan || plan.failed) {
+      if (plan && plan.error === "revision_conflict") toast("That dinner changed. Have another look.");
+      return;
+    }
     if (action === "use_this" && sel.meal_id) {
       state.swappedMealIds = state.swappedMealIds || {};
       state.swappedMealIds[sel.meal_id] = true;
@@ -6805,12 +6824,15 @@
         return m.meal_id !== newMeal.meal_id;
       });
     ordered.splice(position - 1, 0, newMeal);
-    await mutateDinnerPlan({
+    const reordered = await mutateDinnerPlan({
       op: "reorder",
       meal_ids: ordered.map(function (m) {
         return m.meal_id;
       }),
     }, quiet);
+    if (!reordered || reordered.failed) {
+      return reordered && reordered.failed ? reordered : { failed: true, error: "reorder_failed" };
+    }
     renderActiveDinnerSurfaces();
     return true;
   }
@@ -8484,14 +8506,28 @@
         dismissCookUndo();
         state.ratings[id] = state.ratings[id] || { score: null, note: "" };
         state.ratings[id].score = score;
-        const plan = planHoldingMeal(state.dinnerRateMealId);
-        writeMealMutation(plan, {
-          op: "rate_meal",
-          meal_id: state.dinnerRateMealId,
-          member_id: id,
-          score: score,
-        }).then(function (res) {
-          if (res && res.plan) initPlanRatingsForMeal(state.dinnerRateMealId);
+        const mealId = state.dinnerRateMealId;
+        const plan = planHoldingMeal(mealId);
+        if (!plan || !plan.dinner_plan_id) {
+          renderRaters();
+          return;
+        }
+        enqueueMealCook(plan.dinner_plan_id, mealId, function () {
+          return writeMealMutation(plan, {
+            op: "rate_meal",
+            meal_id: mealId,
+            member_id: id,
+            score: score,
+          });
+        }).then(async function (res) {
+          if (!res || !res.ok) {
+            toast("That score didn’t save. Tap it again.");
+            await reloadPlanDocument(plan.dinner_plan_id);
+            initPlanRatingsForMeal(mealId);
+            renderRaters();
+            return;
+          }
+          if (res.plan) initPlanRatingsForMeal(mealId);
           renderRaters();
         });
         return;

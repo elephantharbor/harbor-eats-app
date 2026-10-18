@@ -43,6 +43,8 @@ Instacart registration is closed, with no waitlist, last verified 2026-10-17. In
 
 Two source URLs are hosts rather than article slugs because the S-05B notes truncated them: Instacart’s Clementine mention uses `https://company.instacart.com/`, and the Alexa mention uses `https://www.aboutamazon.com/`. The slugs were not reconstructed.
 
+Consumer import facts moved to src/lib/grocery/compatible-apps.js in S-07 (category C).
+
 ## Sign-out
 
 Sign out revokes the server session and clears the cookie. It does not switch households. Multi-household switching is not in this unit. The invite path is sign out, then join.

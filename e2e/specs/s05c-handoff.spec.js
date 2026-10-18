@@ -60,7 +60,7 @@ test.describe("S-05C grocery app handoff", () => {
     await page.getByRole("button", { name: "How are you shopping?" }).click();
     const sheet = page.locator("#shopHowSheet");
     await expect(sheet).toBeVisible();
-    await expect(sheet.getByText("Your list is ready to share. Review the items in your grocery app before checkout.")).toBeVisible();
+    await expect(sheet.getByText("Copy it into a grocery app that supports pasting multiple items, or save the image for one that reads list photos. Review the items there before checkout.")).toBeVisible();
     const capsBody = await (await caps).json().catch(() => ({}));
     const connected = (capsBody.providers || []).filter((p) => p && p.configured && p.id !== "instore");
     if (connected.length) {

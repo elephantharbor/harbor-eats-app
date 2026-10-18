@@ -28,6 +28,7 @@ The client sends `expected_state` and `expected_updated_at` on cook ops.
 - Inside the existing `saveDinnerPlan` batch, a compare-and-swap sets `dinner_plan.household_id` from a subquery that matches `updated_at`. A hit writes the same household id. A miss selects NULL. `household_id` is already NOT NULL, so that check aborts the batch. `db.batch` is one transaction, so the child-row rewrite rolls back with it and the other member’s meal state and `updated_at` stay. The CAS statement is the only assignment of `household_id` in that batch. No new column.
 - A second `mark_cooked` after success is `unchanged`. The client emits `cook_completed` and `cook_recorded` only when the response says `completed`. A lost first response followed by a retry therefore misses the event rather than recording it twice.
 - Undo emits `cook_undone` through the same event post, with the meal id in `meal_option_id`. The household funnel’s `cook_recorded` count is not a raw event total. It counts a meal at most once: `cook_recorded` rows minus `cook_undone` rows for that meal, and only when the net is still positive. Mark, undo, mark is one completion. Mark then undo is zero.
+- Cook events carry `completion_source` (`mark_cooked` or `finish_cook`). The server keeps only those two values. Events recorded before S-07 have none and count as `unknown`; they are never back-filled.
 - Two members who both pass the pre-check still serialize on the compare-and-swap. The loser reloads. If the meal is already cooked, the client opens rating and does not emit a second completion event.
 - A 409 applies the returned plan, so the stored stamp moves forward. If that meal is still in a state the action accepts, Finish or We made this retries once with the fresh stamp. A second 409 stops. It does not loop.
 - Cook ops for one meal run one at a time. Finish waits for an in-flight begin cook and uses the stamp that comes back.
@@ -44,7 +45,7 @@ The client sends `expected_state` and `expected_updated_at` on cook ops.
 - Leaving the rating screen does not seal Undo on this device and tab session. The window keeps running here only. Another device or a new tab does not show it.
 - A second Undo, once the meal is already back in `prior_state`, is `undo_not_cooked`. It does not write.
 - A stale `expected_state` or `expected_updated_at` is a conflict. It does not reverse a newer outcome.
-- If Undo is in flight and a rating lands first, the server blocks Undo. If Undo lands first, `rate_meal` rejects the score because the meal is no longer cooked.
+- If Undo is in flight and a rating lands first, the server blocks Undo. If Undo lands first, `rate_meal` rejects the score because the meal is no longer cooked. Ratings are compare-and-swapped since S-07.
 - Opening “Rate it” later does not offer Undo.
 
 ## Back from rating and the kitchen

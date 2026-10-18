@@ -140,7 +140,8 @@ test.describe("household shopping list", () => {
     const body = await (await caps).json().catch(() => ({}));
     const instacart = (body.providers || []).find((p) => p.id === "instacart");
     await expect(page.locator("#shopHowSheet")).toBeVisible();
-    await expect(page.getByText("Your list is ready to share. Review the items in your grocery app before checkout.")).toBeVisible();
+    await expect(page.getByText("Copy it into a grocery app that supports pasting multiple items, or save the image for one that reads list photos. Review the items there before checkout.")).toBeVisible();
+    await expect(page.getByText("Names and quantities only. Dietary notes stay in FlavorWeave, so check labels and any substitutions for allergens.")).toBeVisible();
     if (!instacart) {
       await expect(page.locator("#shopHowConnected")).toBeHidden();
       await expect(page.locator("#btnShopOrder")).toBeHidden();

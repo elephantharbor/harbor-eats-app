@@ -8,6 +8,7 @@ import { describe, expect, it } from "vitest";
 import { createMemberSession } from "../src/lib/session.js";
 import { plannerCatalog } from "../src/lib/dinner-planner.js";
 import { routeDinnerPlanRequest } from "../src/lib/dinner-plan-routes.js";
+import { routeHouseholdShopRequest } from "../src/lib/household-shop-routes.js";
 import {
   findCurrentDinnerPlanId,
   loadDinnerPlan,
@@ -277,7 +278,7 @@ function migrate() {
   return sqlite;
 }
 
-function asD1(sqlite) {
+function asD1(sqlite, hooks = {}) {
   return {
     prepare(sql) {
       return {
@@ -300,6 +301,7 @@ function asD1(sqlite) {
       };
     },
     async batch(statements) {
+      if (hooks.beforeBatch) await hooks.beforeBatch();
       sqlite.exec("BEGIN IMMEDIATE");
       try {
         for (const statement of statements) await statement.run();
@@ -641,5 +643,305 @@ describe("cook funnel", () => {
     for (const row of rows) insert.run(...row);
     expect(sqlite.prepare(funnelCookCompletionSql()).get("hh").c).toBe(2);
     expect(sqlite.prepare(`SELECT COUNT(*) AS c FROM event WHERE event_name = 'cook_recorded' AND household_id = 'hh' AND data_origin = 'household'`).get().c).toBe(4);
+  });
+});
+
+describe("concurrent plan writes", () => {
+  function seedPair(sqlite) {
+    seed(sqlite);
+    sqlite
+      .prepare(
+        `INSERT INTO member
+          (member_id, household_id, display_name, role, status, created_at, updated_at)
+         VALUES ('m_b', 'hh_s06', 'Blair', 'member', 'active', '2026-10-16T00:00:00Z', '2026-10-16T00:00:00Z')`
+      )
+      .run();
+  }
+
+  function openPlan(sqlite) {
+    let beforeBatch = async () => {};
+    const db = asD1(sqlite, { beforeBatch: () => beforeBatch() });
+    function armGate(skip = 0) {
+      let release;
+      const hold = new Promise((resolve) => {
+        release = resolve;
+      });
+      let arrived;
+      const waiting = new Promise((resolve) => {
+        arrived = resolve;
+      });
+      let left = skip;
+      let armed = true;
+      beforeBatch = async () => {
+        if (!armed) return;
+        if (left > 0) {
+          left -= 1;
+          return;
+        }
+        armed = false;
+        arrived();
+        await hold;
+      };
+      return {
+        waiting,
+        release() {
+          release();
+        },
+      };
+    }
+    return { db, armGate };
+  }
+
+  async function caller(db) {
+    const auth = await createMemberSession(db, { household_id: "hh_s06", member_id: "m_a" }, { secure: false });
+    const env = { DB: db };
+    const deps = { writeOrigin: async () => "synthetic" };
+    return async function call(path, method, body) {
+      const res = await routeDinnerPlanRequest(
+        env,
+        new Request(new URL(`https://fw.test${path}`), {
+          method,
+          headers: {
+            Authorization: `Bearer ${auth.session_token}`,
+            "Content-Type": "application/json",
+          },
+          body: body ? JSON.stringify(body) : undefined,
+        }),
+        path,
+        new URL(`https://fw.test${path}`),
+        deps
+      );
+      return { status: res.status, body: await res.json() };
+    };
+  }
+
+  it("keeps both ratings when two diners save at the same moment", async () => {
+    const sqlite = migrate();
+    seedPair(sqlite);
+    const { db, armGate } = openPlan(sqlite);
+    const call = await caller(db);
+    const version = plannerCatalog()[0].pkg.recipe_version_id;
+    const created = await call("/api/dinner-plans", "POST", {
+      meal_count: 1,
+      entry_point: "tonight",
+      participant_ids: ["m_a", "m_b"],
+      meals: [{ kind: "recipe", recipe_version_id: version, participant_ids: ["m_a", "m_b"] }],
+    });
+    expect(created.status).toBe(201);
+    const plan = created.body.plan;
+    const mealId = plan.meals[0].meal_id;
+    const cooked = await call(`/api/dinner-plans/${plan.dinner_plan_id}/mutations`, "POST", {
+      op: "mark_cooked",
+      meal_id: mealId,
+    });
+    expect(cooked.status).toBe(200);
+    const before = cooked.body.plan.updated_at;
+    const gate = armGate();
+    const path = `/api/dinner-plans/${plan.dinner_plan_id}/mutations`;
+    const first = call(path, "POST", { op: "rate_meal", meal_id: mealId, member_id: "m_a", score: 8 });
+    await gate.waiting;
+    const second = await call(path, "POST", { op: "rate_meal", meal_id: mealId, member_id: "m_b", score: 6 });
+    gate.release();
+    const lead = await first;
+    expect(lead.status).toBe(200);
+    expect(second.status).toBe(200);
+    expect(sqlite.prepare("SELECT COUNT(*) AS n FROM dinner_plan_rating").get().n).toBe(2);
+    const stored = await loadDinnerPlan(db, plan.dinner_plan_id);
+    expect(stored.meals[0].state).toBe("fully_rated");
+    expect(Date.parse(stored.updated_at)).toBeGreaterThan(Date.parse(before));
+    sqlite.close();
+  });
+
+  it("keeps a rating and a date saved on another meal at the same moment", async () => {
+    const sqlite = migrate();
+    seedPair(sqlite);
+    const { db, armGate } = openPlan(sqlite);
+    const call = await caller(db);
+    const [firstVersion, secondVersion] = plannerCatalog().slice(0, 2).map((row) => row.pkg.recipe_version_id);
+    const created = await call("/api/dinner-plans", "POST", {
+      meal_count: 2,
+      entry_point: "plan_dinners",
+      participant_ids: ["m_a", "m_b"],
+      meals: [
+        { kind: "recipe", recipe_version_id: firstVersion, participant_ids: ["m_a", "m_b"] },
+        { kind: "recipe", recipe_version_id: secondVersion, participant_ids: ["m_a"] },
+      ],
+    });
+    expect(created.status).toBe(201);
+    const plan = created.body.plan;
+    const [mealId, otherId] = plan.meals.map((meal) => meal.meal_id);
+    const cooked = await call(`/api/dinner-plans/${plan.dinner_plan_id}/mutations`, "POST", {
+      op: "mark_cooked",
+      meal_id: mealId,
+    });
+    expect(cooked.body.completed).toBe(true);
+    const gate = armGate();
+    const path = `/api/dinner-plans/${plan.dinner_plan_id}/mutations`;
+    const rating = call(path, "POST", { op: "rate_meal", meal_id: mealId, member_id: "m_a", score: 8 });
+    await gate.waiting;
+    const dated = await call(path, "POST", { op: "set_date", meal_id: otherId, date: "2026-10-20" });
+    gate.release();
+    const rated = await rating;
+    expect(rated.status).toBe(200);
+    expect(dated.status).toBe(200);
+    const rows = sqlite.prepare("SELECT meal_id, state, scheduled_date FROM dinner_plan_meal").all();
+    const ratedMeal = rows.find((row) => row.meal_id === mealId);
+    const datedMeal = rows.find((row) => row.meal_id === otherId);
+    expect(ratedMeal.state).toBe("partially_rated");
+    expect(sqlite.prepare("SELECT COUNT(*) AS n FROM dinner_plan_rating WHERE meal_id = ?").get(mealId).n).toBe(1);
+    expect(datedMeal.scheduled_date).toBe("2026-10-20");
+    sqlite.close();
+  });
+
+  it("keeps a cooked meal when a date change loaded first", async () => {
+    const sqlite = migrate();
+    seed(sqlite);
+    const { db, armGate } = openPlan(sqlite);
+    const call = await caller(db);
+    const [firstVersion, secondVersion] = plannerCatalog().slice(0, 2).map((row) => row.pkg.recipe_version_id);
+    const created = await call("/api/dinner-plans", "POST", {
+      meal_count: 2,
+      entry_point: "plan_dinners",
+      participant_ids: ["m_a"],
+      meals: [
+        { kind: "recipe", recipe_version_id: firstVersion, participant_ids: ["m_a"] },
+        { kind: "recipe", recipe_version_id: secondVersion, participant_ids: ["m_a"] },
+      ],
+    });
+    expect(created.status).toBe(201);
+    const plan = created.body.plan;
+    const [mealId, otherId] = plan.meals.map((meal) => meal.meal_id);
+    const gate = armGate();
+    const path = `/api/dinner-plans/${plan.dinner_plan_id}/mutations`;
+    const dating = call(path, "POST", { op: "set_date", meal_id: otherId, date: "2026-10-20" });
+    await gate.waiting;
+    const cooked = await call(path, "POST", {
+      op: "mark_cooked",
+      meal_id: mealId,
+      expected_state: "planned",
+      expected_updated_at: plan.updated_at,
+    });
+    gate.release();
+    const dated = await dating;
+    expect(cooked.status).toBe(200);
+    expect(cooked.body.completed).toBe(true);
+    expect(dated.status).toBe(200);
+    const rows = sqlite.prepare("SELECT meal_id, state, scheduled_date FROM dinner_plan_meal").all();
+    expect(rows.find((row) => row.meal_id === mealId).state).toBe("cooked");
+    expect(rows.find((row) => row.meal_id === otherId).scheduled_date).toBe("2026-10-20");
+    sqlite.close();
+  });
+
+  it("rejects a rating that loaded before Undo committed", async () => {
+    const sqlite = migrate();
+    seedPair(sqlite);
+    const { db, armGate } = openPlan(sqlite);
+    const call = await caller(db);
+    const version = plannerCatalog()[0].pkg.recipe_version_id;
+    const created = await call("/api/dinner-plans", "POST", {
+      meal_count: 1,
+      entry_point: "tonight",
+      participant_ids: ["m_a", "m_b"],
+      meals: [{ kind: "recipe", recipe_version_id: version, participant_ids: ["m_a", "m_b"] }],
+    });
+    expect(created.status).toBe(201);
+    const plan = created.body.plan;
+    const mealId = plan.meals[0].meal_id;
+    const cooked = await call(`/api/dinner-plans/${plan.dinner_plan_id}/mutations`, "POST", {
+      op: "mark_cooked",
+      meal_id: mealId,
+      expected_state: "planned",
+      expected_updated_at: plan.updated_at,
+    });
+    expect(cooked.body.completed).toBe(true);
+    const gate = armGate();
+    const path = `/api/dinner-plans/${plan.dinner_plan_id}/mutations`;
+    const rating = call(path, "POST", { op: "rate_meal", meal_id: mealId, member_id: "m_a", score: 8 });
+    await gate.waiting;
+    const undo = await call(path, "POST", {
+      op: "undo_cook",
+      meal_id: mealId,
+      prior_state: "planned",
+      expected_state: "cooked",
+      expected_updated_at: cooked.body.plan.updated_at,
+    });
+    gate.release();
+    const rated = await rating;
+    expect(undo.status).toBe(200);
+    expect(undo.body.undone).toBe(true);
+    expect(rated.status).toBe(409);
+    expect(rated.body.error).toBe("rating_requires_cooked");
+    expect(sqlite.prepare("SELECT state FROM dinner_plan_meal").get().state).toBe("planned");
+    expect(sqlite.prepare("SELECT COUNT(*) AS n FROM dinner_plan_rating").get().n).toBe(0);
+    sqlite.close();
+  });
+
+  it("keeps a rating when the first shopping tick loaded the plan first", async () => {
+    const sqlite = migrate();
+    seed(sqlite);
+    const { db, armGate } = openPlan(sqlite);
+    const call = await caller(db);
+    const shopAuth = await createMemberSession(db, { household_id: "hh_s06", member_id: "m_a" }, { secure: false });
+    const env = { DB: db };
+    const deps = { writeOrigin: async () => "synthetic" };
+    async function shop(method, body) {
+      const res = await routeHouseholdShopRequest(
+        env,
+        new Request(new URL("https://fw.test/api/household-shop"), {
+          method,
+          headers: {
+            Authorization: `Bearer ${shopAuth.session_token}`,
+            "Content-Type": "application/json",
+          },
+          body: body ? JSON.stringify(body) : undefined,
+        }),
+        "/api/household-shop",
+        new URL("https://fw.test/api/household-shop"),
+        deps
+      );
+      return { status: res.status, body: await res.json() };
+    }
+    const version = plannerCatalog()[0].pkg.recipe_version_id;
+    const created = await call("/api/dinner-plans", "POST", {
+      meal_count: 1,
+      entry_point: "plan_dinners",
+      participant_ids: ["m_a"],
+      meals: [{ kind: "recipe", recipe_version_id: version, participant_ids: ["m_a"] }],
+    });
+    expect(created.status).toBe(201);
+    const plan = created.body.plan;
+    const mealId = plan.meals[0].meal_id;
+    const cooked = await call(`/api/dinner-plans/${plan.dinner_plan_id}/mutations`, "POST", {
+      op: "mark_cooked",
+      meal_id: mealId,
+    });
+    expect(cooked.body.completed).toBe(true);
+    const listed = await shop("GET");
+    expect(listed.status).toBe(200);
+    const line = (listed.body.list.lines || [])[0];
+    expect(line && line.line_id).toBeTruthy();
+    expect(listed.body.list.dinner_plan_id).toBe(plan.dinner_plan_id);
+    const gate = armGate(1);
+    const tick = shop("POST", {
+      expected_revision: listed.body.list.revision,
+      op: "set_state",
+      line_id: line.line_id,
+      list_state: "purchased",
+    });
+    await gate.waiting;
+    const rated = await call(`/api/dinner-plans/${plan.dinner_plan_id}/mutations`, "POST", {
+      op: "rate_meal",
+      meal_id: mealId,
+      member_id: "m_a",
+      score: 8,
+    });
+    gate.release();
+    const shopped = await tick;
+    expect(shopped.status).toBe(200);
+    expect(rated.status).toBe(200);
+    expect(sqlite.prepare("SELECT COUNT(*) AS n FROM dinner_plan_rating").get().n).toBe(1);
+    expect(sqlite.prepare("SELECT state FROM dinner_plan_meal").get().state).toBe("fully_rated");
+    expect(sqlite.prepare("SELECT shopping_started_at FROM dinner_plan").get().shopping_started_at).toBeTruthy();
+    sqlite.close();
   });
 });

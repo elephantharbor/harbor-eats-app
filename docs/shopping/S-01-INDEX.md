@@ -23,6 +23,7 @@ FlavorWeave owns one household list. Recipe aggregation, diner counts, and adapt
 
 | # | File | Contract |
 |---|---|---|
+| 0 | PROVIDER-TERMINOLOGY.md | Native vs integrated provider vs consumer-assisted app |
 | 1 | `S-01-CURRENT-STATE.md` | What the repo does today, what to extend, what is a new primitive |
 | 2 | `S-01-ARCHITECTURE-DECISION-CARD.md` | Canonical list, states, provenance, inventory extension points |
 | 3 | `S-01-PROVIDER-ADAPTER.md` | Capability contract, errors, credentials, tests |
@@ -51,3 +52,13 @@ No change to `public/app.js`, `src/`, `migrations/`, Wrangler, flags, or catalog
 ## Later research
 
 S-05B research and the S-05C decision live beside this index. Oversight refinements in `S-05C-DECISION.md` override the S-05B card where they conflict. The copied list is flat. Documented is not human-tested.
+
+## S-07 research
+
+| File | What it holds |
+|---|---|
+| `S-07-COMPATIBILITY-MATRIX.md` | St. Louis-first compatibility matrix. No row is Human-tested. |
+| `S-07-PROVIDER-ROADMAP.md` | Provider inventory. Recommendation E accepted: no more provider work until household use produces stronger evidence. |
+| `S-07-CONSUMER-TEST-KIT.md` | Human test kit for the native export. Synthetic list only. |
+| `S-07-SOURCES.md` | Public-page sources for the matrix and roadmap. |
+| `S-07-UX-REVIEW.md` | Shopping-sheet review. 1 and 2 accepted; 3 declined. |

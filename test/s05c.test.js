@@ -11,6 +11,7 @@ import { countCompletedShopExports, parseGeneralItem, presentLine, storedEventPr
 import { renderAppExport, splitAppExportParts } from "../src/lib/shop-app-export.js";
 import { formatShopQuantityAmount, presentShopFaces, presentShopQuantity, shopNameForDisplay } from "../src/lib/shop-display.js";
 import { shopCookingHeadline } from "../src/lib/diner-count.js";
+import { CONSUMER_COMPATIBLE_APPS, compatibleAppFacts } from "../src/lib/grocery/compatible-apps.js";
 import {
   GROCERY_REGISTRY,
   createGroceryAdapters,
@@ -429,6 +430,34 @@ describe("registry facts", () => {
     expect(instacart.handoff_mechanisms).toEqual([]);
     expect(registryRow("walmart").handoff_mechanisms).toEqual(["cart_link"]);
     expect(GROCERY_REGISTRY.some((row) => (row.documented_capabilities || []).includes("export_image"))).toBe(false);
+    const evidence = new Set(["documented", "human_tested", "provider_tested", "unverified", "closed"]);
+    for (const app of CONSUMER_COMPATIBLE_APPS) {
+      const facts = compatibleAppFacts(app);
+      expect(facts.length).toBeGreaterThan(0);
+      for (const fact of facts) {
+        expect(fact.source_url).toMatch(/^https:\/\//);
+        expect(evidence.has(fact.evidence)).toBe(true);
+        expect(fact.evidence).not.toBe("human_tested");
+        expect(fact.last_verified).toBe("2026-10-18");
+      }
+    }
+    expect(CONSUMER_COMPATIBLE_APPS.some((app) => app.id === "walmart_sparky")).toBe(false);
+  });
+
+  it("does not wire compatible apps into adapters, routes, or the public app", () => {
+    const adapterIds = Object.keys(createGroceryAdapters());
+    for (const app of CONSUMER_COMPATIBLE_APPS) {
+      expect(adapterIds).not.toContain(app.id);
+    }
+    const routes = readFileSync(new URL("../src/lib/grocery/routes.js", import.meta.url), "utf8");
+    expect(routes).not.toMatch(/compatible-apps/);
+    const publicDir = new URL("../public/", import.meta.url);
+    const names = readdirSync(publicDir);
+    for (const name of names) {
+      if (!/\.(js|html|mjs|css|json)$/.test(name)) continue;
+      const text = readFileSync(new URL(`../public/${name}`, import.meta.url), "utf8");
+      expect(text).not.toMatch(/compatible-apps/);
+    }
   });
 });
 

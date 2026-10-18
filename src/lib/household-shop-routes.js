@@ -36,6 +36,14 @@ import { logDatabaseError, stripDatabaseDetail } from "./db-error.js";
 import { commitList, insertOpenList, isActiveMember, loadOpenList } from "./household-shop-store.js";
 import { applyPlanMutation } from "./plan-mutations.js";
 
+const MAX_PLAN_SAVE_ATTEMPTS = 3;
+
+function nextStamp(loadedStamp, now) {
+  const loadedMs = Date.parse(loadedStamp);
+  const nowMs = Date.parse(now);
+  return new Date(Math.max(nowMs, loadedMs + 1)).toISOString();
+}
+
 const PRIVATE_HEADERS = {
   "Content-Type": "application/json; charset=utf-8",
   "Cache-Control": "private, no-store",
@@ -261,10 +269,27 @@ async function maybeStartShopping(db, list, now) {
   if (!list?.dinner_plan_id) return;
   const touched = (list.lines || []).some((line) => line.list_state === "purchased" || line.list_state === "already_have");
   if (!touched) return;
-  const plan = await loadDinnerPlan(db, list.dinner_plan_id);
-  if (!plan || plan.shopping_started_at) return;
-  const mutated = applyPlanMutation(plan, { op: "start_shopping" }, { now, actor_member_id: plan.created_by_member_id });
-  if (mutated.ok) await saveDinnerPlan(db, mutated.plan);
+  for (let attempt = 1; attempt <= MAX_PLAN_SAVE_ATTEMPTS; attempt++) {
+    const plan = await loadDinnerPlan(db, list.dinner_plan_id);
+    if (!plan || plan.shopping_started_at) return;
+    const loadedStamp = plan.updated_at;
+    const mutated = applyPlanMutation(
+      plan,
+      { op: "start_shopping" },
+      { now: nextStamp(loadedStamp, now), actor_member_id: plan.created_by_member_id }
+    );
+    if (!mutated.ok) return;
+    try {
+      await saveDinnerPlan(db, mutated.plan, { expectedUpdatedAt: loadedStamp });
+      return;
+    } catch (error) {
+      if (error && error.code === "revision_conflict") {
+        if (attempt < MAX_PLAN_SAVE_ATTEMPTS) continue;
+        return;
+      }
+      throw error;
+    }
+  }
 }
 
 function attemptedFrom(body) {
