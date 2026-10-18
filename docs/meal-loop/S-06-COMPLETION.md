@@ -16,7 +16,7 @@ Skipped, abandoned, leftovers, and eating out are not cooked. `mark_cooked` reje
 
 `mark_cooked` accepts `planned`, `selected`, and `cooking`. A meal already `cooked`, `partially_rated`, or `fully_rated` returns success with `unchanged` and `already_cooked`. It does not insert a rating and it does not bump `updated_at`.
 
-Neither op writes guided-step progress, a cook duration, or equipment use. Adaptation and pinned steps are left as they were. Undo returns to cooking with progress intact only on the same device and tab session. The step lives in `sessionStorage` (`fw_cook_step:{planId}:{mealId}`) and is cleared on sign-out. Another device or a new tab starts without it.
+Neither op writes guided-step progress, a cook duration, or equipment use. Adaptation and pinned steps are left as they were. The step lives in `sessionStorage` (`fw_cook_step:{planId}:{mealId}`) on this device and tab. A successful completion clears that key and the open cook meal. Undo of a guided Finish writes the step back and reopens the kitchen on this same tab. Undo of “We made this” returns to the screen that logged it (Home, Tonight, or History) and does not reopen the kitchen. Sign-out clears the key. Another device or a new tab starts without it.
 
 `MUTATION_EFFECTS` for `finish_cook`, `mark_cooked`, and `undo_cook` is `none`, so the shopping projection is not rebuilt. `saveDinnerPlan` does not clear `superseded_at`. A historical completion cannot become the current plan and cannot change the household list.
 
@@ -46,6 +46,14 @@ The client sends `expected_state` and `expected_updated_at` on cook ops.
 - A stale `expected_state` or `expected_updated_at` is a conflict. It does not reverse a newer outcome.
 - If Undo is in flight and a rating lands first, the server blocks Undo. If Undo lands first, `rate_meal` rejects the score because the meal is no longer cooked.
 - Opening “Rate it” later does not offer Undo.
+
+## Back from rating and the kitchen
+
+Rating’s Not now control, Save for later, and the browser Back button use the same real screen. Home returns Home. Tonight, including the older `tonightPlan` origin, returns Tonight (`choices`). History returns History. The finished-cooking screen returns there. Guided Finish returns to Tonight and never to the kitchen.
+
+An unknown view name opens Home. The client reports one `unknown_view` error, classified as `expected_guard`.
+
+Cook mode does not render a meal that is already `cooked`, `partially_rated`, or `fully_rated`. Reaching it opens the rating screen (or Tonight when that meal is not on the open plan). The in-kitchen Exit control still leaves a meal that is actually cooking. Browser Back from the kitchen still opens the recipe.
 
 ## History
 

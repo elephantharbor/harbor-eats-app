@@ -521,6 +521,145 @@ test.describe("S-06 meal completion", () => {
     expect(ops.filter((op) => op === "finish_cook")).toHaveLength(1);
     expect(ops.indexOf("begin_cook")).toBeLessThan(ops.indexOf("finish_cook"));
   });
+
+  test("Back and Not now from Home rating return Home", async ({ page }) => {
+    await seedMealPlan(page, { mealCount: 2, beginCook: "all" });
+    await page.reload();
+    await page.locator('[data-nav="home"]').filter({ visible: true }).first().click();
+    await page.locator(".view.is-active [data-action='mark-cooked']").click();
+    await expectRatingTarget(page, "home");
+    await hardwareBackFromRating(page, "home");
+    await page.locator(".view.is-active [data-action='mark-cooked']").click();
+    await expectRatingTarget(page, "home");
+    await page.locator("[data-view='rate'] .back").click();
+    await expectLanded(page, "home");
+  });
+
+  test("Back and Not now from Tonight We made this return Tonight", async ({ page }) => {
+    await seedMealPlan(page, { mealCount: 2, beginCook: "all" });
+    await page.reload();
+    await page.locator('[data-nav="choices"]').filter({ visible: true }).first().click();
+    await page.locator(".view.is-active [data-action='mark-cooked']").first().click();
+    await expectRatingTarget(page, "choices");
+    await hardwareBackFromRating(page, "choices");
+    await page.locator(".view.is-active [data-action='mark-cooked']").first().click();
+    await expectRatingTarget(page, "choices");
+    await page.locator("[data-view='rate'] .back").click();
+    await expectLanded(page, "choices");
+  });
+
+  test("Back and Not now from Tonight Rate it return Tonight", async ({ page }) => {
+    const seeded = await seedMealPlan(page, { mealCount: 1, beginCook: true });
+    await markCooked(page, seeded.planId, seeded.mealIds[0]);
+    await page.reload();
+    await page.locator('[data-nav="choices"]').filter({ visible: true }).first().click();
+    const rate = page.locator(".view.is-active [data-action='rate-plan-meal']");
+    await expect(rate).toHaveText("Rate it");
+    await rate.click();
+    await expectRatingTarget(page, "choices");
+    await hardwareBackFromRating(page, "choices");
+    await page.locator(".view.is-active [data-action='rate-plan-meal']").click();
+    await expectRatingTarget(page, "choices");
+    await page.locator("[data-view='rate'] .back").click();
+    await expectLanded(page, "choices");
+  });
+
+  test("Back and Not now from History rating return History", async ({ page }) => {
+    await seedMealPlan(page, { mealCount: 2, beginCook: "all" });
+    await seedMealPlan(page, { mealCount: 1, beginCook: false });
+    await page.reload();
+    await page.locator('[data-nav="meals"]').filter({ visible: true }).first().click();
+    const recover = page.locator("[data-action='history-mark-cooked']");
+    await expect(recover).toHaveCount(2);
+    await recover.first().click();
+    await expectRatingTarget(page, "meals");
+    await hardwareBackFromRating(page, "meals");
+    await page.locator("[data-action='history-mark-cooked']").first().click();
+    await expectRatingTarget(page, "meals");
+    await page.locator("[data-view='rate'] .back").click();
+    await expectLanded(page, "meals");
+  });
+
+  test("Back and Not now after guided Finish return Tonight, not the kitchen", async ({ page }) => {
+    await seedMealPlan(page, { mealCount: 2, beginCook: "all" });
+    await page.reload();
+    await page.locator('[data-nav="choices"]').filter({ visible: true }).first().click();
+    await page.locator(".view.is-active [data-action='dp-back-kitchen']").first().click();
+    await expect(page.locator(".view.is-active[data-view='cook']")).toBeVisible();
+    await clickCookFinish(page);
+    await expectRatingTarget(page, "choices");
+    await hardwareBackFromRating(page, "choices");
+    await expect(page.locator(".view.is-active").getByRole("button", { name: "Finish" })).toHaveCount(0);
+    await page.locator(".view.is-active [data-action='dp-back-kitchen']").first().click();
+    await clickCookFinish(page);
+    await expectRatingTarget(page, "choices");
+    await page.locator("[data-view='rate'] .back").click();
+    await expectLanded(page, "choices");
+    await expect(page.locator(".view.is-active").getByRole("button", { name: "Finish" })).toHaveCount(0);
+  });
+
+  test("an unknown view opens Home and reports one guard", async ({ page }) => {
+    const reports = [];
+    page.on("request", (request) => {
+      if (request.method() === "POST" && request.url().includes("/api/client-errors")) reports.push(request.postDataJSON());
+    });
+    await page.evaluate(() => {
+      const btn = document.createElement("button");
+      btn.id = "qaUnknownView";
+      btn.dataset.go = "tonightPlan";
+      btn.textContent = "Missing";
+      document.getElementById("app").appendChild(btn);
+      btn.click();
+    });
+    await expectLanded(page, "home");
+    await expect.poll(() => reports.filter((row) => row && row.code === "unknown_view")).toHaveLength(1);
+    await page.evaluate(() => {
+      const btn = document.getElementById("qaUnknownView");
+      btn.dataset.go = "notAView";
+      btn.click();
+    });
+    await expectLanded(page, "home");
+    await page.waitForTimeout(400);
+    expect(reports.filter((row) => row && row.code === "unknown_view")).toHaveLength(1);
+  });
+
+  test("cook mode refuses a meal that is already cooked", async ({ page }) => {
+    const seeded = await seedMealPlan(page, { mealCount: 1, beginCook: true });
+    await markCooked(page, seeded.planId, seeded.mealIds[0]);
+    await page.reload();
+    await page.locator('[data-nav="home"]').filter({ visible: true }).first().click();
+    await expect(page.getByRole("button", { name: "How was it?" })).toBeVisible({ timeout: 30000 });
+    await page.evaluate((mealId) => {
+      const btn = document.createElement("button");
+      btn.dataset.action = "dp-back-kitchen";
+      btn.dataset.mealId = mealId;
+      btn.textContent = "Open cooked kitchen";
+      document.getElementById("app").appendChild(btn);
+      btn.click();
+    }, seeded.mealIds[0]);
+    await expect(page.getByRole("heading", { name: "How was it?" })).toBeVisible();
+    await expect(page.locator(".view.is-active")).toHaveAttribute("data-view", "rate");
+    await expect(page.locator(".view.is-active").getByRole("button", { name: "Finish" })).toHaveCount(0);
+    await expect(page.locator("[data-view='rate'] .back")).toHaveAttribute("data-go", "choices");
+  });
+
+  test("Undo after guided Finish returns to the same step on this tab", async ({ page }) => {
+    const seeded = await seedMealPlan(page, { mealCount: 1, beginCook: true });
+    await page.reload();
+    await page.locator('[data-nav="home"]').filter({ visible: true }).first().click();
+    await page.locator(".view.is-active [data-action='dp-back-kitchen']").click();
+    await expect(page.locator(".view.is-active[data-view='cook']")).toBeVisible();
+    const meta = await reachFinish(page);
+    const stepIndex = Number(meta.split("/")[0].trim()) - 1;
+    expect(stepIndex).toBeGreaterThanOrEqual(0);
+    await page.locator(".view.is-active[data-view='cook']").getByRole("button", { name: "Finish" }).click();
+    await expect(page.getByRole("heading", { name: "How was it?" })).toBeVisible();
+    await expect.poll(() => cookStepsFor(page, seeded.mealIds[0])).toEqual([]);
+    await page.getByRole("button", { name: "Undo, this dinner is not cooked yet" }).click();
+    await expect(page.locator(".view.is-active[data-view='cook']")).toBeVisible();
+    await expect(page.locator("#cookStepMeta")).toHaveText(meta);
+    await expect.poll(() => cookStepsFor(page, seeded.mealIds[0])).toEqual([String(stepIndex)]);
+  });
 });
 
 async function seedMealPlan(page, { mealCount, beginCook }) {
@@ -547,8 +686,9 @@ async function seedMealPlan(page, { mealCount, beginCook }) {
     await mut({ op: "set_planning_preferences", keep_it_easy: true, keep_ingredients_simple: false });
     const finalized = await mut({ op: "finalize" });
     if (!finalized.ok) throw new Error("finalize failed " + JSON.stringify(finalized));
-    if (beginCook) {
-      const cooking = await mut({ op: "begin_cook", meal_id: plan.meals[0].meal_id });
+    const toCook = beginCook === "all" ? plan.meals.filter((meal) => !meal.kind || meal.kind === "recipe") : beginCook ? [plan.meals[0]] : [];
+    for (const meal of toCook) {
+      const cooking = await mut({ op: "begin_cook", meal_id: meal.meal_id });
       if (!cooking.ok) throw new Error("begin_cook failed " + JSON.stringify(cooking));
     }
     return {
@@ -557,6 +697,71 @@ async function seedMealPlan(page, { mealCount, beginCook }) {
       updatedAt: plan.updated_at,
     };
   }, { mealCount, beginCook });
+}
+
+async function expectLanded(page, view) {
+  await expect(page.locator(".view.is-active")).toHaveAttribute("data-view", view);
+  await expect(page.locator(".app-shell")).toHaveAttribute("data-chrome", "full");
+  // Desktop uses the header nav. A phone shows the tab bar. The blank-screen bug had neither.
+  const width = page.viewportSize() ? page.viewportSize().width : 1280;
+  if (width >= 768) await expect(page.locator(".top-nav")).toBeVisible();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.locator("#tabbar")).toBeVisible();
+}
+
+async function expectRatingTarget(page, view) {
+  await expect(page.getByRole("heading", { name: "How was it?" })).toBeVisible();
+  const back = page.locator("[data-view='rate'] .back");
+  await expect(back).toContainText("Not now");
+  await expect(back).toHaveAttribute("data-go", view);
+}
+
+async function hardwareBackFromRating(page, view) {
+  await page.waitForFunction(() => history.state && history.state.fwGuard && history.state.view === "rate");
+  await page.goBack();
+  await expectLanded(page, view);
+}
+
+async function markCooked(page, planId, mealId) {
+  const marked = await page.evaluate(async ({ planId, mealId }) => {
+    const current = await fetch("/api/dinner-plans/" + encodeURIComponent(planId), { credentials: "include" }).then((r) => r.json());
+    const res = await fetch("/api/dinner-plans/" + encodeURIComponent(planId) + "/mutations", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        op: "mark_cooked",
+        meal_id: mealId,
+        expected_state: "cooking",
+        expected_updated_at: current.plan.updated_at,
+      }),
+    }).then((r) => r.json());
+    return res.ok;
+  }, { planId, mealId });
+  expect(marked).toBe(true);
+}
+
+async function reachFinish(page) {
+  const cook = page.locator(".view.is-active[data-view='cook']");
+  const finish = cook.getByRole("button", { name: "Finish" });
+  const next = cook.getByRole("button", { name: "Next" });
+  for (let step = 0; step < 20; step++) {
+    if (await finish.isVisible().catch(() => false)) break;
+    await next.click();
+  }
+  await expect(finish).toBeVisible();
+  return (await page.locator("#cookStepMeta").innerText()).trim();
+}
+
+function cookStepsFor(page, mealId) {
+  return page.evaluate((mealId) => {
+    const hits = [];
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const key = sessionStorage.key(i);
+      if (key && key.indexOf("fw_cook_step:") === 0 && key.endsWith(":" + mealId)) hits.push(sessionStorage.getItem(key));
+    }
+    return hits;
+  }, mealId);
 }
 
 async function clickCookFinish(page) {

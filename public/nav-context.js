@@ -123,7 +123,14 @@
     if (view === "detail" && ctx && ctx.origin === "shopList") return "shopList";
     if (view === "detail" && ctx && ctx.origin === "cook") return "cook";
     if (view === "cook") return "detail";
-    return (ctx && ctx.origin) || "home";
+    if (view === "rate") {
+      var rateOrigin = ctx && ctx.origin;
+      // tonightPlan is a plan origin, not a screen. cook is the kitchen the meal just left.
+      if (rateOrigin === "tonightPlan" || rateOrigin === "choices" || rateOrigin === "cook") return "choices";
+    }
+    var origin = ctx && ctx.origin;
+    if (origin === "tonightPlan") return "choices";
+    return origin || "home";
   }
 
   function backLabel(target) {

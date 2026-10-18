@@ -374,6 +374,7 @@ describe("A3 actionable client errors", () => {
     expect(classifyClientError(blank)).toBe("expected_guard");
     expect(classifyClientError({ code: "invite_expired", message: "/api/invites/join 410" })).toBe("expected_guard");
     expect(classifyClientError({ code: "invite_inactive", message: "/api/invites/join 410" })).toBe("expected_guard");
+    expect(classifyClientError({ code: "unknown_view", message: "Unknown view", surface: "nav" })).toBe("expected_guard");
     expect(classifyClientError({ code: "db_error", message: "/api/invites/join 500" })).toBe("actionable");
     const summary = summarizeClientErrors([guard, blank]);
     expect(summary.expected_guard).toBe(2);

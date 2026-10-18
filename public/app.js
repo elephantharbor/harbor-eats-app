@@ -1712,14 +1712,43 @@
     back.setAttribute("aria-label", target === "finished" || target === "taste" ? "Back" : "Back to " + Nav.backLabel(target));
   }
 
+  let unknownViewNoted = false;
+
+  function isKnownView(name) {
+    if (!name || typeof name !== "string") return false;
+    if (!/^[A-Za-z][A-Za-z0-9_-]{0,40}$/.test(name)) return false;
+    return !!app.querySelector('.view[data-view="' + name + '"]');
+  }
+
+  function noteUnknownView() {
+    if (unknownViewNoted) return;
+    unknownViewNoted = true;
+    reportClientError("nav", "unknown_view", "Unknown view");
+  }
+
   /**
    * @param {string} requested view name
    * @param {{ context?: object, parent?: string, source?: string, force?: boolean }} [opts]
    */
   function show(requested, opts) {
     const o = opts || {};
+    let name = o.force ? requested : Nav.guardView(requested, householdEstablished());
+    if (!isKnownView(name)) {
+      noteUnknownView();
+      name = "home";
+    }
+    if (name === "cook" && cookTargetIsFinished()) {
+      const meal = cookingMeal();
+      const mealId = meal && meal.id;
+      const planId = state.dinnerPlan && state.dinnerPlan.dinner_plan_id;
+      releaseCookSession(planId, mealId);
+      if (state.dinnerPlan && mealId) {
+        openDinnerRating(state.dinnerPlan, mealId, "choices", null);
+        return;
+      }
+      name = "choices";
+    }
     const prev = state.view;
-    const name = o.force ? requested : Nav.guardView(requested, householdEstablished());
     if (name === "detail" && prev !== "detail") state.detailTabFor = null;
     if (prev === "constraints" && name !== "constraints") {
       const keys = state.primaryConstraints.slice();
@@ -2244,6 +2273,54 @@
     } catch (_) { /* private mode */ }
   }
 
+  function mealIsLoggedCooked(mealState) {
+    return mealState === "cooked" || mealState === "partially_rated" || mealState === "fully_rated";
+  }
+
+  function captureCookStep(planId, mealId) {
+    if (mealId && state.dinnerCookMealId === mealId) return Math.max(0, Number(state.cookStep) || 0);
+    return readCookStep(planId, mealId);
+  }
+
+  /** Drop the open kitchen for a meal that is now cooked. Undo restores the step from its own record. */
+  function releaseCookSession(planId, mealId) {
+    if (!mealId) return;
+    if (state.dinnerCookMealId === mealId) {
+      state.dinnerCookMealId = null;
+      state.cookStep = 0;
+    }
+    if (state.dinnerCookPendingId === mealId) state.dinnerCookPendingId = null;
+    if (state.cookingMealId === mealId) state.cookingMealId = null;
+    clearCookStep(planId, mealId);
+  }
+
+  function cookTargetIsFinished() {
+    const meal = cookingMeal();
+    if (!meal || !meal.dinner_plan) return false;
+    const raw = planMealById(meal.id);
+    return !!(raw && mealIsLoggedCooked(raw.state));
+  }
+
+  function normalizeRatingReturn(view) {
+    if (view === "choices" || view === "tonightPlan" || view === "cook") return "choices";
+    if (
+      view === "home" ||
+      view === "meals" ||
+      view === "finished" ||
+      view === "detail" ||
+      view === "find" ||
+      view === "settings" ||
+      view === "tasteProfile" ||
+      view === "planReview" ||
+      view === "planConfirm" ||
+      view === "shopList" ||
+      view === "planCount"
+    ) {
+      return view;
+    }
+    return "home";
+  }
+
   function resumeStepNumber(meal) {
     const id = planMealId(meal);
     if (id && state.dinnerCookMealId === id) return Math.max(1, (Number(state.cookStep) || 0) + 1);
@@ -2591,6 +2668,14 @@
   }
 
   function renderCook() {
+    if (cookTargetIsFinished()) {
+      const meal = cookingMeal();
+      const mealId = meal && meal.id;
+      releaseCookSession(state.dinnerPlan && state.dinnerPlan.dinner_plan_id, mealId);
+      if (state.dinnerPlan && mealId) openDinnerRating(state.dinnerPlan, mealId, "choices", null);
+      else show("choices");
+      return;
+    }
     const steps = cookSteps();
     const i = state.cookStep;
     const cookMeal = document.getElementById("cookMealTitle");
@@ -2742,6 +2827,7 @@
       back.dataset.go = state.rateReturnView || "home";
       const label = back.querySelector(".back__label");
       if (label) label.textContent = "Not now";
+      back.setAttribute("aria-label", "Not now");
     }
     if (title) {
       title.setAttribute("tabindex", "-1");
@@ -2751,7 +2837,7 @@
 
   function openDinnerRating(plan, mealId, returnView, undoRecord) {
     state.dinnerRateMealId = mealId;
-    state.rateReturnView = returnView || "home";
+    state.rateReturnView = normalizeRatingReturn(returnView);
     const currentId = state.dinnerPlan && state.dinnerPlan.dinner_plan_id;
     state.ratingPlan = plan && plan.dinner_plan_id && plan.dinner_plan_id !== currentId ? plan : null;
     const meal = plan && (plan.meals || []).find(function (row) { return row.meal_id === mealId; });
@@ -2824,7 +2910,8 @@
       if (res && res.error === "revision_conflict") {
         const fresh = rememberConflictPlan(res.plan) || (await reloadPlanDocument(currentPlan.dinner_plan_id));
         const nowMeal = mealFromPlan(fresh, currentMeal.meal_id);
-        if (nowMeal && ["cooked", "partially_rated", "fully_rated"].indexOf(nowMeal.state) >= 0) {
+        if (nowMeal && mealIsLoggedCooked(nowMeal.state)) {
+          releaseCookSession(fresh && fresh.dinner_plan_id, currentMeal.meal_id);
           openDinnerRating(fresh, currentMeal.meal_id, returnView, null);
           return;
         }
@@ -2851,16 +2938,23 @@
           meal_option_id: meal.meal_id,
         });
       }
+      const planId = res.plan.dinner_plan_id;
+      const savedStep = captureCookStep(planId, meal.meal_id);
+      const restoreCook = !!(res.completed && op === "finish_cook" && res.prior_state === "cooking");
+      releaseCookSession(planId, meal.meal_id);
+      const back = normalizeRatingReturn(returnView);
       const undo = res.completed && res.prior_state
         ? {
-            planId: res.plan.dinner_plan_id,
+            planId: planId,
             mealId: meal.meal_id,
             priorState: res.prior_state,
             updatedAt: res.plan.updated_at,
-            returnView: returnView,
+            returnView: back,
+            restoreCook: restoreCook,
+            cookStep: restoreCook ? savedStep : null,
           }
         : null;
-      openDinnerRating(res.plan, meal.meal_id, returnView, undo);
+      openDinnerRating(res.plan, meal.meal_id, back, undo);
       return;
     }
   }
@@ -2936,16 +3030,21 @@
   }
 
   function showUndoneCook(record) {
-    if (record.priorState === "cooking") {
+    let dest = normalizeRatingReturn(record.returnView);
+    if (record.restoreCook && record.priorState === "cooking") {
+      const step = record.cookStep != null ? Math.max(0, Number(record.cookStep) || 0) : readCookStep(record.planId, record.mealId);
+      writeCookStep(record.planId, record.mealId, step);
       state.dinnerCookMealId = record.mealId;
-      state.cookStep = readCookStep(record.planId, record.mealId);
+      state.dinnerCookPendingId = null;
+      state.cookStep = step;
+      dest = "cook";
     } else if (state.dinnerCookMealId === record.mealId) {
       state.dinnerCookMealId = null;
+      state.cookStep = 0;
     }
     state.dinnerRateMealId = null;
     state.ratingPlan = null;
     toast("Back to where you left it.");
-    const dest = record.priorState === "cooking" && record.returnView === "cook" ? "cook" : record.returnView || "home";
     show(dest);
     renderActiveDinnerSurfaces();
     if (dest === "meals") renderMealHistory();
@@ -2988,7 +3087,7 @@
       const raw = planMealById(cooking.id) || { meal_id: cooking.id, state: "cooking" };
       const planId = state.dinnerPlan.dinner_plan_id;
       writeCookStep(planId, raw.meal_id, state.cookStep);
-      void completeDinnerMeal(state.dinnerPlan, raw, "finish_cook", "cook");
+      void completeDinnerMeal(state.dinnerPlan, raw, "finish_cook", "choices");
       return;
     }
     const next = window.MealIdentity.reduceMealAction(identitySnapshot(), { type: "finish_cook" });
@@ -8283,6 +8382,10 @@
     }
     if (meal.dinner_plan && state.dinnerPlan) {
       const raw = planMealById(mealId);
+      if (raw && mealIsLoggedCooked(raw.state)) {
+        openDinnerRating(state.dinnerPlan, mealId, "choices", null);
+        return true;
+      }
       const confirmed = state.dinnerCookMealId === mealId;
       const serverCooking = !!(raw && raw.state === "cooking") || meal.state === "cooking";
       if (confirmed || serverCooking) {
@@ -8454,7 +8557,7 @@
 
   document.getElementById("btnSavePartial").addEventListener("click", () => {
     if (state.dinnerRateMealId) {
-      const dest = state.rateReturnView || "choices";
+      const dest = state.rateReturnView || "home";
       show(dest);
       if (dest === "choices") renderTonightPlan();
       if (dest === "meals") renderMealHistory();

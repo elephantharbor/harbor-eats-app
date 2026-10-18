@@ -121,10 +121,57 @@ describe("FW-05 invite navigation", () => {
 });
 
 describe("rate screen origin", () => {
+  const REAL_VIEWS = [
+    "home",
+    "choices",
+    "find",
+    "meals",
+    "tasteProfile",
+    "settings",
+    "detail",
+    "cook",
+    "finished",
+    "rate",
+    "planReview",
+    "planConfirm",
+    "planCount",
+    "shopList",
+  ];
+
   it("returns to the finished screen or the section it came from", () => {
     expect(open("rate", "finished").back).toBe("finished");
     expect(open("rate", "meals").back).toBe("meals");
+    expect(open("rate", "home").back).toBe("home");
     expect(open("rate", "finished").nav).toBe("home");
+  });
+
+  it("maps a Tonight origin onto the Tonight screen", () => {
+    const fromTonight = open("rate", "choices");
+    expect(fromTonight.ctx.origin).toBe("tonightPlan");
+    expect(fromTonight.back).toBe("choices");
+    expect(fromTonight.nav).toBe("choices");
+    expect(Nav.backTarget("rate", { origin: "tonightPlan" })).toBe("choices");
+  });
+
+  it("never sends rating Back into the kitchen", () => {
+    expect(Nav.backTarget("rate", { origin: "cook" })).toBe("choices");
+  });
+
+  it("resolves every rating and kitchen Back target to a real view", () => {
+    const entries = [
+      open("rate", "home"),
+      open("rate", "choices"),
+      open("rate", "meals"),
+      open("rate", "finished"),
+      open("rate", "settings"),
+      { back: Nav.backTarget("rate", { origin: "tonightPlan" }) },
+      { back: Nav.backTarget("rate", { origin: "cook" }) },
+      { back: Nav.backTarget("cook", null) },
+      { back: Nav.backTarget("cook", { origin: "home" }) },
+      { back: Nav.backTarget("cook", { origin: "tonightPlan" }) },
+      { back: Nav.backTarget("detail", { origin: "cook" }) },
+    ];
+    for (const entry of entries) expect(REAL_VIEWS).toContain(entry.back);
   });
 });
 
