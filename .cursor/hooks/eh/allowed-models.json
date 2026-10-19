@@ -1,0 +1,33 @@
+{
+  "schema_version": 3,
+  "policy": "/workspace/elephant-harbor/ops/model-governance/POLICY-2026-10-17.md",
+  "owner": "Wells (Portfolio Systems). Changes need Thomas's explicit yes for anything beyond Grok 4.7 / Composer 2.5.",
+  "freeze": "2026-10-16 through at least 2026-11-03; does NOT auto-expire",
+  "allowed_ids": [
+    "grok-4.7",
+    "grok-4.7-low",
+    "grok-4.7-medium",
+    "grok-4.7-high",
+    "grok-4.7-xhigh",
+    "grok-4.7-low-fast",
+    "grok-4.7-medium-fast",
+    "grok-4.7-high-fast",
+    "grok-4.7-xhigh-fast",
+    "composer-2.5",
+    "composer-2.5-fast"
+  ],
+  "aliases": {
+    "composer-2-5": "composer-2.5"
+  },
+  "note_ids": "Exact slugs. Source: live cloud-agent test bc-bb2dd80a (2026-10-17, ~08:30 CT) listing valid Task subagent slugs. Allowed: grok-4.7, grok-4.7-{low,medium,high,xhigh} and their -fast variants; composer-2.5 and composer-2.5-fast (trivial work, chosen explicitly). Everything else is denied, including cursor-grok-4.6-*, grok-4.7-fast, cursor-grok-4.7-*, claude-*, gpt-5.6-sol-*, gemini-4-argon-*, muse-wonder-*. Matching is exact after trim + lowercase + alias map; no prefix or regex matching.",
+  "refused_aliases": [
+    "auto",
+    "default",
+    "composer",
+    "composer-latest"
+  ],
+  "note_refused": "Floating aliases resolve to whatever Cursor points them at later, so they are denied even when they currently map to an approved model.",
+  "note_allow": "Composer 2.5 is allowed only for trivial work chosen explicitly. A hook cannot tell explicit from silent selection, so that part stays a launch-time rule (cloud-agent-model-routing skill, bin/hq).",
+  "approved_exceptions": [],
+  "note_enforcement": "UNPROVEN IN CLOUD AGENTS: the live test showed repo subagentStart/preToolUse hooks did not deny an Explore subagent on cursor-grok-4.6-low. Treat this file and model_gate.py as monitoring in cloud agents until a live deny is observed. Only the account-level Enterprise model allowlist can block a subagent's slug choice."
+}
