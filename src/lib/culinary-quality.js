@@ -202,6 +202,44 @@ function mentionsInternalOrProtein(window) {
   );
 }
 
+/** A doneness cue, including "pull at 120 F" with no protein noun in the window. */
+function aboutDoneness(window) {
+  const text = window.replace(/\bfish sauce\b/gi, " ");
+  return (
+    /\b(internal|thickest|center|doneness|chicken|turkey|duck|salmon|cod|fish|shrimp|clam|tuna|steak|beef|pork|lamb|scallop|halibut|branzino|chop|fillet|breast|pull|target|at least|medium-rare|medium rare)\b/i.test(
+      text
+    )
+  );
+}
+
+/**
+ * Oven, grill, and skillet settings are not a doneness target.
+ * A window that also says pull, target, or at least is still doneness.
+ */
+function applianceSettingOnly(window) {
+  if (!looksLikeApplianceHeat(window)) return false;
+  return !/\b(pull|target|at least|medium-rare|medium rare|internal|doneness)\b/i.test(window);
+}
+
+/** "130 F is a diner's choice" names a preference. It does not tell the cook to stop there. */
+function dinerChoiceAside(window) {
+  return /diner['’]s choice/i.test(window) && !/\b(pull|target|at least)\b/i.test(window);
+}
+
+function collectText(value, out) {
+  if (typeof value === "string") {
+    out.push(value);
+    return;
+  }
+  if (Array.isArray(value)) {
+    for (const item of value) collectText(item, out);
+    return;
+  }
+  if (value && typeof value === "object") {
+    for (const item of Object.values(value)) collectText(item, out);
+  }
+}
+
 function looksLikeApplianceHeat(window) {
   return (
     /\b(oven|grill|grates|broiler|broil|preheat|direct high heat|smoking)\b/i.test(window) &&
@@ -288,40 +326,42 @@ export function assessCulinaryQuality(pkg) {
     }
   });
 
-  const prose = `${version.doneness || ""}\n${steps.map((step) => step?.body || "").join("\n")}`;
+  const fields = [];
+  collectText(pkg, fields);
+  const served = `${version.doneness || ""}\n${steps.map((step) => step?.body || "").join("\n")}`;
   const kind = proteinClass(pkg);
   const floor = fdaFloor(kind);
   if (floor) {
-    const spans = labeledOptionalSpans(prose);
-    const temps = [...prose.matchAll(/(\d{2,3})(?:\s*°|\s*degrees)?\s*F\b/gi)];
     /** @type {{windowKind: string, windowFloor: number, temp: number}[]} */
     const optionalLows = [];
-    for (const match of temps) {
-      const temp = Number(match[1]);
-      if (temp >= floor) continue;
-      const at = match.index || 0;
-      const window = prose.slice(Math.max(0, at - 90), at + 80);
-      const aboutProtein =
-        /\b(internal|thickest|center|doneness|chicken|turkey|duck|salmon|cod|fish|shrimp|clam|tuna|steak|beef|pork|lamb|scallop|halibut|branzino|chop|fillet|breast)\b/i.test(
-          window
-        );
-      if (!aboutProtein) continue;
-      const windowKind = temperatureWindowKind(window, kind);
-      const windowFloor = fdaFloor(windowKind) || floor;
-      if (temp >= windowFloor) continue;
-      if (spanCovers(at, spans)) {
-        optionalLows.push({ windowKind, windowFloor, temp });
-        continue;
+    for (const prose of fields) {
+      const spans = labeledOptionalSpans(prose);
+      const temps = [...prose.matchAll(/(\d{2,3})(?:\s*°|\s*degrees)?\s*F\b/gi)];
+      for (const match of temps) {
+        const temp = Number(match[1]);
+        if (temp >= floor) continue;
+        const at = match.index || 0;
+        const window = prose.slice(Math.max(0, at - 90), at + 80);
+        if (!aboutDoneness(window)) continue;
+        const windowKind = temperatureWindowKind(window, kind);
+        const windowFloor = fdaFloor(windowKind) || floor;
+        if (temp >= windowFloor) continue;
+        if (spanCovers(at, spans)) {
+          optionalLows.push({ windowKind, windowFloor, temp });
+          continue;
+        }
+        if (applianceSettingOnly(window)) continue;
+        if (dinerChoiceAside(window)) continue;
+        const doneness = String(version.doneness || "");
+        const carryoverStated =
+          new RegExp(`(?:carryover|rises to|rising to)[\\s\\S]{0,40}\\b${windowFloor}\\s*F\\b`, "i").test(doneness) ||
+          new RegExp(`(?:carryover|rises to|rising to)[\\s\\S]{0,40}\\b${windowFloor}\\s*F\\b`, "i").test(window);
+        if (carryoverStated && temp >= windowFloor - 10) continue;
+        push(fails, "unsafe_temperature", `${windowKind} instruction ${temp} F is below the FDA ${windowFloor} F default`);
       }
-      const doneness = String(version.doneness || "");
-      const carryoverStated =
-        new RegExp(`(?:carryover|rises to|rising to)[\\s\\S]{0,40}\\b${windowFloor}\\s*F\\b`, "i").test(doneness) ||
-        new RegExp(`(?:carryover|rises to|rising to)[\\s\\S]{0,40}\\b${windowFloor}\\s*F\\b`, "i").test(window);
-      if (carryoverStated && temp >= windowFloor - 10) continue;
-      push(fails, "unsafe_temperature", `${windowKind} instruction ${temp} F is below the FDA ${windowFloor} F default`);
     }
     if (optionalLows.length) {
-      const primary = blankSpans(prose, spans);
+      const primary = blankSpans(served, labeledOptionalSpans(served));
       const seen = new Set();
       for (const item of optionalLows) {
         const key = `${item.windowKind}:${item.windowFloor}`;

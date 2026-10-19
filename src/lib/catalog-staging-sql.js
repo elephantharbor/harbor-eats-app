@@ -1,7 +1,8 @@
 /**
  * Render a D1-ready SQL script from a catalog sqlite database produced by import-catalog.
  * Child rows are deleted once per recipe_version_id, then all rows for that version are inserted.
- * No BEGIN TRANSACTION wrapper (D1 remote execute is statement-by-statement).
+ * No BEGIN TRANSACTION wrapper. wrangler d1 execute applies a file atomically per batch,
+ * and the delta guard allows only INSERT, UPDATE, and DELETE.
  */
 
 const CHILD_TABLES = [
@@ -232,7 +233,9 @@ export function assertCatalogDeltaTargets(sql) {
  * Idempotent catalog delta. Inserts the named version rows and their children,
  * retires any other still-published version of those dishes, and repoints
  * catalog_dish the way upsertDish does. INSERT OR IGNORE so a second apply
- * does not rewrite content_hash. No BEGIN. No household tables.
+ * does not rewrite content_hash. No BEGIN: a file execute is atomic per batch, so a dish
+ * can show two published versions for a few seconds. That window is harmless, and
+ * running the file again is idempotent. No household tables.
  *
  * @param {import("node:sqlite").DatabaseSync} database fully imported catalog
  * @param {string[]} versionIds new version ids, already present in database

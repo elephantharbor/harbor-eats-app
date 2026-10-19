@@ -364,6 +364,76 @@ export async function loadPublishedCatalog(db) {
   }
 }
 
+const VERSION_CHILD_TABLES = [
+  "catalog_ingredient",
+  "catalog_step",
+  "catalog_taste_tag",
+  "catalog_dietary_label",
+  "catalog_allergen",
+  "catalog_equipment",
+  "catalog_eligibility_tag",
+  "catalog_image_ref",
+  "catalog_provenance",
+];
+
+/**
+ * One catalog version by id, including a retired row. Catalog tables only.
+ * A global row (household_id null) is visible to the signed-in household.
+ * A household row is visible only to that household.
+ * @param {object} db
+ * @param {string} versionId
+ * @param {{ householdId?: string|null }} [options]
+ * @returns {Promise<object|null>} planner entry, or null when missing or out of scope
+ */
+export async function loadCatalogVersionById(db, versionId, options = {}) {
+  const id = String(versionId || "").trim();
+  if (!id) return null;
+  const householdId = options.householdId || null;
+  try {
+    const row = await db
+      .prepare(
+        `SELECT v.recipe_version_id, v.recipe_id, v.dish_id, v.version_number, v.title, v.description,
+                v.base_servings, v.prep_minutes, v.cook_minutes, v.total_minutes,
+                v.effort_level, v.ingredient_complexity, v.classification_hash, v.heat,
+                v.doneness, v.methods_json, v.dietary_tags_json, v.substitutions_json, v.components_json,
+                v.publication_status, v.artifact_publication_status, v.visibility, v.household_id,
+                v.content_hash, v.source_contract, v.source_path,
+                d.slug, d.title AS dish_title, d.name, d.description AS dish_description, d.cuisine,
+                d.meal_format, d.primary_ingredient, d.texture, d.flavor_profile,
+                d.weeknight, d.exploration, d.plate, d.tone, d.tags_json, d.sparks_json, d.chips_json
+           FROM catalog_version v
+           JOIN catalog_dish d ON d.dish_id = v.dish_id
+          WHERE v.recipe_version_id = ?`
+      )
+      .bind(id)
+      .first();
+    if (!row) return null;
+    if (row.household_id && row.household_id !== householdId) return null;
+    const childRows = [];
+    for (const table of VERSION_CHILD_TABLES) {
+      childRows.push(await all(db, `SELECT * FROM ${table} WHERE recipe_version_id = ?`, id));
+    }
+    const [ingredients, steps, taste, dietary, allergens, equipment, eligibility, images, provenance] = childRows;
+    const children = {
+      ingredients: groupBy(ingredients),
+      steps: groupBy(steps),
+      taste: groupBy(taste),
+      dietary: groupBy(dietary),
+      allergens: groupBy(allergens),
+      equipment: groupBy(equipment),
+      eligibility: groupBy(eligibility),
+      images: groupBy(images),
+      provenance: new Map(provenance.map((item) => [item.recipe_version_id, item])),
+    };
+    const record = recordFromParts(row, children);
+    record.source_contract = row.source_contract;
+    return plannerEntryFromRecord(record);
+  } catch (error) {
+    logDatabaseError("catalog", error);
+    return null;
+  }
+}
+
 export function coverageFromMeals(meals) {
   /** @type {Record<string, number>} */
   const cuisines = {};

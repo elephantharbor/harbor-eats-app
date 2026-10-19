@@ -1055,11 +1055,13 @@
     }
     const servingsQs = servings != null ? "?servings=" + servings : "";
     let path = null;
-    if (meal.historical && versionId) {
-      path = "/api/recipes/version/" + encodeURIComponent(versionId) + (servings != null ? "?servings=" + servings : "");
+    // Planned and history meals render the pinned version, including a retired one.
+    // A new selection and a discovery preview keep the latest published recipe.
+    if ((meal.dinner_plan || meal.historical) && versionId) {
+      path = "/api/recipes/version/" + encodeURIComponent(versionId) + servingsQs;
     } else if (slug) path = "/api/recipes/" + encodeURIComponent(slug) + servingsQs;
     else if (versionId) {
-      path = "/api/recipes/version/" + encodeURIComponent(versionId) + (servings != null ? "?servings=" + servings : "");
+      path = "/api/recipes/version/" + encodeURIComponent(versionId) + servingsQs;
     }
     if (!path) return null;
     const res = await apiGet(path);
@@ -1069,10 +1071,18 @@
 
   async function ensureRecipeForMeal(meal) {
     if (!meal) return null;
-    if (state.activeRecipe && state.activeRecipe._mealId === meal.id) return state.activeRecipe;
+    const versionId = meal.recipe_version_id || "";
+    if (
+      state.activeRecipe &&
+      state.activeRecipe._mealId === meal.id &&
+      (state.activeRecipe._pinnedVersionId || "") === versionId
+    ) {
+      return state.activeRecipe;
+    }
     const loaded = await fetchRecipeForMeal(meal);
     if (loaded) {
       loaded._mealId = meal.id;
+      loaded._pinnedVersionId = versionId;
       const raw = meal.dinner_plan ? planMealById(meal.id) : null;
       if (raw && window.FlavorWeaveMealRecipe) {
         state.activeRecipe = window.FlavorWeaveMealRecipe.mergeIntoRecipe(loaded, raw);

@@ -13,6 +13,7 @@ import { generateS08CatalogDelta, verifyS08CatalogDelta } from "../scripts/s08-c
 import { assessMealEligibility } from "../src/lib/dinner-planner.js";
 import { constraintRowsFromKeys } from "../src/lib/eligibility.js";
 import { neededLines, scaleForDiners } from "../src/lib/ingredient-identity.js";
+import { presentShopQuantity } from "../src/lib/shop-display.js";
 import { createDinnerPlan, resolvedRecipe } from "../src/lib/plan-mutations.js";
 
 const root = join(process.cwd(), "catalog");
@@ -412,6 +413,10 @@ describe("S-08 doneness primary instruction", () => {
       expect(pkg.kitchen_tested).toBe(false);
       const culinary = assessCulinaryQuality(pkg);
       expect(culinary.fails.filter((item) => item.code === "unsafe_temperature"), slug).toEqual([]);
+      const raw = readFileSync(join(root, slug, "v2.json"), "utf8");
+      expect(raw, slug).not.toContain("pull at 120 to 125 F");
+      expect(raw, slug).not.toContain("130-135 F target");
+      expect(raw, slug).not.toContain("at least 130 F");
       const prose = `${pkg.recipe_version.doneness}\n${pkg.recipe_version.steps.map((step) => step.body).join("\n")}`;
       expect(prose).toContain("Optional traditional preparation:");
       expect(prose).toContain("does not meet the USDA/FDA recommendation");
@@ -421,6 +426,96 @@ describe("S-08 doneness primary instruction", () => {
       const v1 = readFileSync(join(root, slug, "v1.json"), "utf8");
       expect(v1).not.toContain('"package_revision": "s08-doneness"');
     }
+  });
+
+  it("flags a below-minimum temperature in any text field, including one with no protein name", () => {
+    const base = {
+      dish: { title: "Scallops" },
+      recipe_version: {
+        dietary_eligibility: { contains_shellfish: true },
+        doneness: "Scallops opaque and firm throughout.",
+        ingredients: [{ name: "scallops", quantity: 1, unit: "lb" }],
+        steps: [{ body: "Sear the scallops until opaque and firm.", ingredient_refs: ["scallops"] }],
+      },
+    };
+    const pull = assessCulinaryQuality({
+      ...base,
+      scaling_notes: { do_not_scale: ["pull at 120 to 125 F"] },
+    });
+    expect(pull.fails.map((item) => item.code)).toContain("unsafe_temperature");
+
+    const instructed = assessCulinaryQuality({
+      dish: { title: "Steak fajitas" },
+      recipe_version: {
+        dietary_eligibility: { contains_meat: true },
+        doneness: "Steak at 145 F.",
+        ingredients: [{ name: "steak", quantity: 1.5, unit: "lb" }],
+        steps: [{ body: "Sear the steak to 145 F.", ingredient_refs: ["steak"] }],
+      },
+      food_safety_note: "Cook the steak to at least 130 F and rest 5 minutes.",
+    });
+    expect(instructed.fails.map((item) => item.code)).toContain("unsafe_temperature");
+
+    const oven = assessCulinaryQuality({
+      ...base,
+      scaling_notes: { 4: "Preheat the oven to 400 F." },
+    });
+    expect(oven.fails.filter((item) => item.code === "unsafe_temperature")).toEqual([]);
+
+    const choice = assessCulinaryQuality(readPkg("thai-yum-nua-beef-salad", "v2.json"));
+    expect(choice.fails.filter((item) => item.code === "unsafe_temperature")).toEqual([]);
+    expect(readPkg("thai-yum-nua-beef-salad", "v2.json").recipe_version.food_safety_note).toContain("diner's choice");
+  });
+});
+
+describe("S-08 pasta water on the shopping list", () => {
+  function pinnedMeal(slug, file) {
+    const pkg = readPkg(slug, file);
+    const ingredients = pkg.recipe_version.ingredients.map((item) => ({
+      name: item.name,
+      quantity: typeof item.quantity === "number" ? item.quantity : null,
+      unit: item.unit || null,
+      raw_quantity:
+        item.raw_quantity ||
+        (typeof item.quantity === "number" && item.unit ? `${item.quantity} ${item.unit}` : item.quantity) ||
+        null,
+      note: item.note || null,
+    }));
+    return {
+      meal_id: slug,
+      kind: "recipe",
+      state: "planned",
+      base_servings: pkg.recipe_version.base_servings,
+      participant_ids: ["a", "b", "c", "d"],
+      pinned_ingredients: ingredients,
+    };
+  }
+
+  it("does not shop pasta-pot water given in quarts, and still shops a cup of water", () => {
+    for (const slug of [
+      "cashew-pesto-pasta",
+      "lemon-garlic-shrimp-pasta",
+      "mushroom-walnut-bolognese",
+      "sesame-soba-noodle-bowl",
+    ]) {
+      const lines = neededLines([pinnedMeal(slug, "v3.json")]);
+      const water = lines.filter((line) => line.display_name === "water" || line.ingredient_id === "water");
+      expect(water, slug).toEqual([]);
+    }
+
+    const sauce = neededLines([
+      {
+        meal_id: "sauce",
+        kind: "recipe",
+        state: "planned",
+        base_servings: 4,
+        participant_ids: ["a", "b", "c", "d"],
+        pinned_ingredients: [{ name: "water", quantity: 0.25, unit: "cup", raw_quantity: "0.25 cup", note: "to loosen the sauce" }],
+      },
+    ]);
+    const cup = sauce.find((line) => line.display_name === "water");
+    expect(cup?.unparsed).toBe(false);
+    expect(presentShopQuantity({ quantity: cup.quantity, unit: cup.unit, name: cup.display_name }).display).toMatch(/cup/);
   });
 });
 

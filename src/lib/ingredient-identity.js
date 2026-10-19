@@ -150,6 +150,20 @@ function isPerDinerLine(item) {
 }
 
 /**
+ * Pasta-pot water is tap water, not a shopping line. A measured cup of
+ * water for a sauce, a soak, or a blend still shops. Quarts are the pot.
+ * @param {object} item
+ */
+function isPastaPotWater(item) {
+  const name = String(item?.name || item?.display_name || "").trim().toLowerCase();
+  if (name !== "water") return false;
+  const unit = String(item?.unit || "").trim().toLowerCase();
+  if (unit === "qt" || unit === "quart" || unit === "quarts") return true;
+  const raw = `${item?.raw_quantity ?? ""} ${typeof item?.quantity === "string" ? item.quantity : ""}`.toLowerCase();
+  return /\b(?:qt|quarts?)\b/.test(raw);
+}
+
+/**
  * Scale one pinned ingredient by the dinner-plan serving ratio.
  * Numeric quantities stay numeric so cups are not snapped to a display step.
  * @param {object} item
@@ -240,6 +254,7 @@ export function contributionsFromMeals(meals) {
     if (!diners) continue;
     const scaled = scaleForDiners(meal.pinned_ingredients || [], meal.base_servings, diners);
     for (const item of scaled) {
+      if (isPastaPotWater(item)) continue;
       const canon = canonicalIngredient(item.name, item.note || null);
       const unit = normalizeUnit(item.unit);
       rows.push({

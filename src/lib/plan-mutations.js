@@ -176,6 +176,7 @@ function recipeLocked(meal) {
 /**
  * Cook instructions and ingredients come from the pin, never from a later
  * catalog version, until adopt_version replaces the pin.
+ * The running app does not call this. Recipe and cook screens load the version id.
  */
 export function resolvedRecipe(meal, latest) {
   if (!meal || meal.kind !== "recipe") return null;
