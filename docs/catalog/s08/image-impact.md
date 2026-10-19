@@ -4,7 +4,7 @@ The three regen heroes are exported under `public/images/meals/`. Lookup still s
 
 | Dish | Regen |
 |---|---|
-| maple-mustard-glazed-salmon | Exported. Independent audit: FAIL. The center crop clips the asparagus tips and the right plate rim. |
+| maple-mustard-glazed-salmon | Re-exported from chosen-r3. Independent audit: PASS. r1 failed the crop. r2 was rejected for grill stripes. |
 | cashew-pesto-pasta | Exported. Independent audit: PASS. Green oily pesto, toasted cashews, no dairy-looking topping. |
 | moroccan-chickpea-skillet | Exported. Independent audit: PASS. Parsley, couscous under the chickpeas, preserved lemon as slivers. |
 | thai-basil-eggplant-stir-fry | Optional. A few red pepper flakes may show. The plate is still eggplant and basil over rice. |
@@ -31,4 +31,4 @@ Plating briefs, using the sections in `factory/IMAGE-SPEC.md`:
 - `docs/catalog/s08/image-plating-pesto.md`
 - `docs/catalog/s08/image-plating-moroccan.md`
 
-`python3 factory/tools/export_meal_webps.py` center-cropped the three sources into the 1200×900 and 640×480 WebP pairs. Hashes, prompts, and the audit are in `IMAGE-PROVENANCE.md`. Salmon fails that audit because the crop clips the asparagus.
+`python3 factory/tools/export_meal_webps.py` center-cropped the three sources into the 1200×900 and 640×480 WebP pairs. Hashes, prompts, and the audit are in `IMAGE-PROVENANCE.md`. Salmon r3 passes that audit.

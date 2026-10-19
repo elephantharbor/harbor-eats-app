@@ -1,6 +1,8 @@
 # Image prompt — maple-mustard-glazed-salmon (S-08 v3 hero)
 
-Shipped source: `chosen-r1.jpg`, sha256 `84867b68cb2e9a7d8abcf8be8b3d1ad120e8b784fe4ee4d983269944e7f73ccc`. Measured 1280×720. The 2026-10-18 8:10 PM CT regeneration reused the chosen prompt below. Tool: Grok Bot GenerateImage. Date 2026-10-18.
+Shipped source: `chosen-r3.jpg`, sha256 `b99df43ec8ba0a7810ef381ee147d69800290185c232ebb217f176a3b82b15c1`. Measured 1280×720. Tool: Grok Bot GenerateImage. Date 2026-10-18. The plate sits in the central portion of the width so the 4:3 center crop keeps the rim and the asparagus.
+
+Not shipped: r1 `84867b68cb2e9a7d8abcf8be8b3d1ad120e8b784fe4ee4d983269944e7f73ccc` failed the independent crop audit (asparagus tips and the right rim clipped). r2 `7951252f…` was rejected before export for grill-stripe marks.
 
 Recipe: catalog/maple-mustard-glazed-salmon/v3.json (rv_maple-mustard-glazed-salmon_v3) on origin/cursor/s08-flavor-quality @ 19336ab.
 Brief: image-plating-brief.md (= docs/catalog/s08/image-plating-salmon.md).

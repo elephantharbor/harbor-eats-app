@@ -428,10 +428,10 @@ describe("S-08 hero images", () => {
   const heroes = [
     {
       slug: "maple-mustard-glazed-salmon",
-      source: "84867b68cb2e9a7d8abcf8be8b3d1ad120e8b784fe4ee4d983269944e7f73ccc",
-      master: "1081308097bb04a918b06fc57bd57262fd9c85a1c97954f2c771fd4cfb33ad4f",
-      card: "a8cb3984ca071074ff7e867d0719471ce394fad83582d978385e9801f2f42519",
-      qa: "audit_fail",
+      source: "b99df43ec8ba0a7810ef381ee147d69800290185c232ebb217f176a3b82b15c1",
+      master: "0073b40dea7b0325fa9fd559105e5f4e66f1287185edc68df2f973e4dbf33e60",
+      card: "34229d7d199c5fe40fb55e642173be37776d8eb2aa28da5574c6b16cafc1278c",
+      qa: "audit_pass",
       prompt: "docs/catalog/s08/image-prompt-maple-mustard-glazed-salmon.md",
     },
     {
