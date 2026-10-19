@@ -54,4 +54,21 @@ describe("recipe scaling", () => {
     expect(scaleIngredientQuantity("4 cups", 0.25, "broth")).toBe("1 cup");
     expect(scaleIngredientQuantity("2 cups", 0.5, "rice")).toBe("1 cup");
   });
+
+  it("shows a quarter cup and tablespoons instead of rounding up to a half cup", () => {
+    expect(scaleIngredientQuantity("0.5 cup", 0.5, "raw cashews")).toBe("¼ cup");
+    expect(scaleIngredientQuantity("0.25 cup", 0.5, "extra-virgin olive oil")).toBe("2 tbsp");
+    expect(scaleIngredientQuantity("0.25 cup", 0.5, "nutritional yeast")).toBe("2 tbsp");
+  });
+
+  it("does not treat words inside a name as a count", () => {
+    expect(scaleIngredientQuantity("1 lb", 0.5, "large shrimp")).toBe("½ lb");
+    expect(scaleIngredientQuantity("1 tsp", 0.5, "onion powder")).toBe("½ tsp");
+    expect(scaleIngredientQuantity("2 clove", 0.5, "garlic")).toBe("1 clove");
+  });
+
+  it("keeps gram salt on a half-gram step", () => {
+    expect(scaleIngredientQuantity("31 g", 0.5, "Diamond Crystal kosher salt")).toBe("15½ g");
+    expect(scaleIngredientQuantity("8 g", 0.25, "Diamond Crystal kosher salt")).toBe("2 g");
+  });
 });

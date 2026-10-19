@@ -1048,7 +1048,9 @@
     if (!meal) return null;
     const slug = meal.recipe_slug;
     const versionId = meal.recipe_version_id;
-    let servings = servingCountForMeal();
+    // Pass the meal. Without it, a planned dinner uses the household size
+    // while the header and the shopping list use that meal's diner count.
+    let servings = servingCountForMeal(meal);
     if (meal.discovery) {
       const n = discoveryParticipantCount();
       servings = n != null ? n : null;
@@ -1072,10 +1074,14 @@
   async function ensureRecipeForMeal(meal) {
     if (!meal) return null;
     const versionId = meal.recipe_version_id || "";
+    const servingsKey = meal.discovery
+      ? String(discoveryParticipantCount() ?? "")
+      : String(servingCountForMeal(meal));
     if (
       state.activeRecipe &&
       state.activeRecipe._mealId === meal.id &&
-      (state.activeRecipe._pinnedVersionId || "") === versionId
+      (state.activeRecipe._pinnedVersionId || "") === versionId &&
+      (state.activeRecipe._servingCount || "") === servingsKey
     ) {
       return state.activeRecipe;
     }
@@ -1083,6 +1089,7 @@
     if (loaded) {
       loaded._mealId = meal.id;
       loaded._pinnedVersionId = versionId;
+      loaded._servingCount = servingsKey;
       const raw = meal.dinner_plan ? planMealById(meal.id) : null;
       if (raw && window.FlavorWeaveMealRecipe) {
         state.activeRecipe = window.FlavorWeaveMealRecipe.mergeIntoRecipe(loaded, raw);
@@ -2476,7 +2483,7 @@
       else if (recipe.base_servings != null) serves = recipe.base_servings;
       else if (recipe.servings != null) serves = recipe.servings;
     } else if (!serves) {
-      serves = servingCountForMeal();
+      serves = servingCountForMeal(meal);
     }
     if (chipsEl) {
       const badges = [

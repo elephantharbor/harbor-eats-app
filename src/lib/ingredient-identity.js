@@ -150,13 +150,21 @@ function isPerDinerLine(item) {
 }
 
 /**
- * Pasta-pot water is tap water, not a shopping line. A measured cup of
- * water for a sauce, a soak, or a blend still shops. Quarts are the pot.
+ * Cooking water is tap water for a pot, not a shopping line: pasta, noodles,
+ * potatoes, or anything boiled and drained, in cups or quarts.
+ * Water that stays in the dish still shops: a sauce, a braise, a dough,
+ * rice or couscous that absorbs it.
  * @param {object} item
  */
-function isPastaPotWater(item) {
+function isCookingWater(item) {
   const name = String(item?.name || item?.display_name || "").trim().toLowerCase();
   if (name !== "water") return false;
+  const note = `${item?.note || ""} ${item?.preparation || ""}`.toLowerCase();
+  const inDish =
+    /\b(sauce|braise|broth|dough|skillet|tagine|stew|soup|loosen|absorbed|couscous|quinoa|deglaze|batter|stock)\b/.test(note) ||
+    (/\brice\b/.test(note) && !/\bparboil/.test(note));
+  if (inDish) return false;
+  if (/\b(pasta|noodles?|parboil|boil|boiling|pierogi|potato(?:es)?|corn|eggs?|discard)\b/.test(note)) return true;
   const unit = String(item?.unit || "").trim().toLowerCase();
   if (unit === "qt" || unit === "quart" || unit === "quarts") return true;
   const raw = `${item?.raw_quantity ?? ""} ${typeof item?.quantity === "string" ? item.quantity : ""}`.toLowerCase();
@@ -165,7 +173,9 @@ function isPastaPotWater(item) {
 
 /**
  * Scale one pinned ingredient by the dinner-plan serving ratio.
- * Numeric quantities stay numeric so cups are not snapped to a display step.
+ * Numeric quantities stay exact to three decimal places, in the recipe's unit.
+ * The recipe screen may show that same amount in tablespoons. The list does
+ * not round a small cup up to a larger purchasable unit.
  * @param {object} item
  * @param {number} ratio
  * @param {number} dinerCount
@@ -254,7 +264,7 @@ export function contributionsFromMeals(meals) {
     if (!diners) continue;
     const scaled = scaleForDiners(meal.pinned_ingredients || [], meal.base_servings, diners);
     for (const item of scaled) {
-      if (isPastaPotWater(item)) continue;
+      if (isCookingWater(item)) continue;
       const canon = canonicalIngredient(item.name, item.note || null);
       const unit = normalizeUnit(item.unit);
       rows.push({

@@ -491,14 +491,15 @@ describe("S-08 pasta water on the shopping list", () => {
     };
   }
 
-  it("does not shop pasta-pot water given in quarts, and still shops a cup of water", () => {
-    for (const slug of [
-      "cashew-pesto-pasta",
-      "lemon-garlic-shrimp-pasta",
-      "mushroom-walnut-bolognese",
-      "sesame-soba-noodle-bowl",
+  it("does not shop cooking water in any unit, and still shops water used in the dish", () => {
+    for (const [slug, file] of [
+      ["cashew-pesto-pasta", "v3.json"],
+      ["lemon-garlic-shrimp-pasta", "v3.json"],
+      ["mushroom-walnut-bolognese", "v3.json"],
+      ["sesame-soba-noodle-bowl", "v3.json"],
+      ["steak-au-poivre-smashed-potatoes", "v2.json"],
     ]) {
-      const lines = neededLines([pinnedMeal(slug, "v3.json")]);
+      const lines = neededLines([pinnedMeal(slug, file)]);
       const water = lines.filter((line) => line.display_name === "water" || line.ingredient_id === "water");
       expect(water, slug).toEqual([]);
     }
@@ -516,6 +517,9 @@ describe("S-08 pasta water on the shopping list", () => {
     const cup = sauce.find((line) => line.display_name === "water");
     expect(cup?.unparsed).toBe(false);
     expect(presentShopQuantity({ quantity: cup.quantity, unit: cup.unit, name: cup.display_name }).display).toMatch(/cup/);
+
+    const rice = neededLines([pinnedMeal("thai-basil-eggplant-stir-fry", "v3.json")]);
+    expect(rice.some((line) => line.display_name === "water" || line.ingredient_id === "water")).toBe(true);
   });
 });
 
