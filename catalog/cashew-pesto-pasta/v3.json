@@ -305,12 +305,22 @@
     },
     "generation": {
       "method": "original_ai_generation",
-      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "generator": "Grok Bot GenerateImage",
       "model": "unknown",
-      "generation_date": "2026-10-04"
+      "generation_date": "2026-10-18",
+      "prompt_file": "docs/catalog/s08/image-prompt-cashew-pesto-pasta.md",
+      "plating_brief_file": "docs/catalog/s08/image-plating-pesto.md",
+      "source_sha256": "8658a59c684d5a3a8bcc3585f3b1a18b18533eb481ed121e32130d245fdaa69f",
+      "source_dimensions": { "width": 1280, "height": 720 },
+      "dimensions_basis": "Measured source is 1280x720. Center-cropped to 4:3 (960x720), then LANCZOS to 1200x900 q90 and 640x480 q88 with factory/tools/export_meal_webps.py."
     },
     "provenance": "ai_illustration",
-    "qa_state": "awaiting_audit"
+    "qa_state": "audit_pass",
+    "file_hashes": {
+      "source_jpeg_sha256": "8658a59c684d5a3a8bcc3585f3b1a18b18533eb481ed121e32130d245fdaa69f",
+      "master_sha256": "fbfa4b712bc4308d83cebfbd258bc9565f0ab155a4e40111dcd2534a0c67749d",
+      "card_sha256": "d5727b20bf247add3736dff038788afd90b7ec66c7097ceb149ed5f58af08d3c"
+    }
   },
   "certification": {
     "certification_class": "unreviewed_revision_draft",
@@ -368,6 +378,6 @@
     "shopping": "Olive oil, a whole lemon, more basil, and a weighed salt line replace the unsalted boil and the oil-free blend. Salt scales by servings; the 3 qt water is the 4-serving pot.",
     "uncertainties": "Cashew toast color and basil bruising vary. The 1% pasta-water target is a ratio, and most of that salt stays in the pot.",
     "time_note": "Cashews are toasted 4 to 5 minutes, not soaked. Prep is 15 minutes and cook is 15. Heat the pasta water while the pesto is blended.",
-    "image_impact": "Regen recommended. Toasted cashews, a greener pesto, and an oil sheen will not match a pale oil-free photo."
+    "image_impact": "2026-10-18 hero is in public/images/meals. Independent audit of the exported WebP: PASS. Green oily pesto, toasted cashews, tomatoes, no dairy-looking topping. See docs/catalog/s08/IMAGE-PROVENANCE.md."
   }
 }

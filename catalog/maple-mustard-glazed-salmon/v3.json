@@ -268,12 +268,22 @@
     },
     "generation": {
       "method": "original_ai_generation",
-      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "generator": "Grok Bot GenerateImage",
       "model": "unknown",
-      "generation_date": "2026-10-04"
+      "generation_date": "2026-10-18",
+      "prompt_file": "docs/catalog/s08/image-prompt-maple-mustard-glazed-salmon.md",
+      "plating_brief_file": "docs/catalog/s08/image-plating-salmon.md",
+      "source_sha256": "84867b68cb2e9a7d8abcf8be8b3d1ad120e8b784fe4ee4d983269944e7f73ccc",
+      "source_dimensions": { "width": 1280, "height": 720 },
+      "dimensions_basis": "Measured source is 1280x720. Center-cropped to 4:3 (960x720), then LANCZOS to 1200x900 q90 and 640x480 q88 with factory/tools/export_meal_webps.py."
     },
     "provenance": "ai_illustration",
-    "qa_state": "awaiting_audit"
+    "qa_state": "audit_fail",
+    "file_hashes": {
+      "source_jpeg_sha256": "84867b68cb2e9a7d8abcf8be8b3d1ad120e8b784fe4ee4d983269944e7f73ccc",
+      "master_sha256": "1081308097bb04a918b06fc57bd57262fd9c85a1c97954f2c771fd4cfb33ad4f",
+      "card_sha256": "a8cb3984ca071074ff7e867d0719471ce394fad83582d978385e9801f2f42519"
+    }
   },
   "package_revision": "s08-culinary",
   "evidence": {
@@ -292,6 +302,6 @@
     "safety": "Default doneness is 145 F internal per FDA. No lower pull temperature is given.",
     "shopping": "New lines are olive oil, garlic, lemon, dill, salt, and pepper. Quantities are numbers with units and scale by servings.",
     "uncertainties": "Broil time depends on the oven. Dill versus chives is a cook's choice of one herb, not a stack of garnishes.",
-    "image_impact": "Regen. The current hero was audited as having no lemon and no herbs. Dill and lemon wedges will show."
+    "image_impact": "2026-10-18 hero is in public/images/meals. Independent audit of the exported WebP: FAIL. The center 4:3 crop clips the asparagus tips and the right plate rim. See docs/catalog/s08/IMAGE-PROVENANCE.md."
   }
 }

@@ -1,12 +1,12 @@
 # Image impact
 
-No images were generated. Version ids still resolve to the existing WebP files, because image lookup strips `rv_` and `_vN` down to the slug. A regen is a later image pass, not a blocker for the recipe text.
+The three regen heroes are exported under `public/images/meals/`. Lookup still strips `rv_` and `_vN` down to the slug, so the new files replace the old heroes for every version of that dish. Audit verdicts are in `IMAGE-PROVENANCE.md`.
 
 | Dish | Regen |
 |---|---|
-| maple-mustard-glazed-salmon | Yes. Dill and lemon wedges will show. The current hero was audited with neither. |
-| cashew-pesto-pasta | Yes. Toasted cashews, a greener pesto, and an oil sheen will not match a pale oil-free photo. |
-| moroccan-chickpea-skillet | Yes if the hero is a bare skillet. Chopped parsley on top is visible. |
+| maple-mustard-glazed-salmon | Exported. Independent audit: FAIL. The center crop clips the asparagus tips and the right plate rim. |
+| cashew-pesto-pasta | Exported. Independent audit: PASS. Green oily pesto, toasted cashews, no dairy-looking topping. |
+| moroccan-chickpea-skillet | Exported. Independent audit: PASS. Parsley, couscous under the chickpeas, preserved lemon as slivers. |
 | thai-basil-eggplant-stir-fry | Optional. A few red pepper flakes may show. The plate is still eggplant and basil over rice. |
 | sheet-pan-lemon-herb-chicken | No, unless a later pass wants minced garlic to read. |
 | smoky-lentil-sweet-potato-stew | No. Same bowl. |
@@ -29,6 +29,6 @@ Plating briefs, using the sections in `factory/IMAGE-SPEC.md`:
 
 - `docs/catalog/s08/image-plating-salmon.md`
 - `docs/catalog/s08/image-plating-pesto.md`
-- `docs/catalog/s08/image-plating-moroccan.md` — regenerate only if the current hero is a bare skillet
+- `docs/catalog/s08/image-plating-moroccan.md`
 
-`python3 factory/tools/export_meal_webps.py` can center-crop an already-generated source into the 1200×900 and 640×480 WebP pair. The repo has no image-generation pipeline and no generator credentials. Pixels are a later image pass. This cycle does not block on them.
+`python3 factory/tools/export_meal_webps.py` center-cropped the three sources into the 1200×900 and 640×480 WebP pairs. Hashes, prompts, and the audit are in `IMAGE-PROVENANCE.md`. Salmon fails that audit because the crop clips the asparagus.

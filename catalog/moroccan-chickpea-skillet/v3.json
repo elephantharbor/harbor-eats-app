@@ -294,12 +294,22 @@
     },
     "generation": {
       "method": "original_ai_generation",
-      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "generator": "Grok Bot GenerateImage",
       "model": "unknown",
-      "generation_date": "2026-10-04"
+      "generation_date": "2026-10-18",
+      "prompt_file": "docs/catalog/s08/image-prompt-moroccan-chickpea-skillet.md",
+      "plating_brief_file": "docs/catalog/s08/image-plating-moroccan.md",
+      "source_sha256": "28b9518ab52a69cd89af51f6e17f63a915f937d0f83413b13a7a875ffc170296",
+      "source_dimensions": { "width": 1280, "height": 720 },
+      "dimensions_basis": "Measured source is 1280x720. Center-cropped to 4:3 (960x720), then LANCZOS to 1200x900 q90 and 640x480 q88 with factory/tools/export_meal_webps.py."
     },
     "provenance": "ai_illustration",
-    "qa_state": "awaiting_audit"
+    "qa_state": "audit_pass",
+    "file_hashes": {
+      "source_jpeg_sha256": "28b9518ab52a69cd89af51f6e17f63a915f937d0f83413b13a7a875ffc170296",
+      "master_sha256": "0b4aca78927b035dd564e13c92579988514d88339ac22e3cdf1888eea48cfb52",
+      "card_sha256": "d882e7b6e61a9e686888c1f1acecc64e4eadcf021312c11aae83e1033b7ff490"
+    }
   },
   "certification": {
     "certification_class": null,
@@ -336,6 +346,6 @@
     "safety": "No raw protein.",
     "shopping": "Garlic, parsley, and weighed salt join the existing cans, lemon, spice, spinach, and couscous.",
     "uncertainties": "Preserved-lemon salt is the main unknown. The taste step exists for that reason.",
-    "image_impact": "Regen recommended if the hero shows a bare skillet. Chopped parsley on top is a visible change."
+    "image_impact": "2026-10-18 hero is in public/images/meals. Independent audit of the exported WebP: PASS. Parsley on chickpeas, couscous underneath, preserved lemon as slivers. See docs/catalog/s08/IMAGE-PROVENANCE.md."
   }
 }

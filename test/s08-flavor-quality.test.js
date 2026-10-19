@@ -1,8 +1,10 @@
+import { createHash } from "node:crypto";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import { describe, expect, it } from "vitest";
 import { loadCatalogFromDisk } from "../src/lib/catalog-disk.js";
+import { webpDimensions } from "../src/lib/freeze-integrity.js";
 import { planImport } from "../src/lib/catalog-import.js";
 import { loadPublishedCatalog } from "../src/lib/catalog-runtime.js";
 import { applyCatalogWrites, loadExistingVersions, retireCatalogVersions } from "../src/lib/catalog-write.js";
@@ -420,6 +422,65 @@ describe("S-08 doneness primary instruction", () => {
       expect(v1).not.toContain('"package_revision": "s08-doneness"');
     }
   });
+});
+
+describe("S-08 hero images", () => {
+  const heroes = [
+    {
+      slug: "maple-mustard-glazed-salmon",
+      source: "84867b68cb2e9a7d8abcf8be8b3d1ad120e8b784fe4ee4d983269944e7f73ccc",
+      master: "1081308097bb04a918b06fc57bd57262fd9c85a1c97954f2c771fd4cfb33ad4f",
+      card: "a8cb3984ca071074ff7e867d0719471ce394fad83582d978385e9801f2f42519",
+      qa: "audit_fail",
+      prompt: "docs/catalog/s08/image-prompt-maple-mustard-glazed-salmon.md",
+    },
+    {
+      slug: "cashew-pesto-pasta",
+      source: "8658a59c684d5a3a8bcc3585f3b1a18b18533eb481ed121e32130d245fdaa69f",
+      master: "fbfa4b712bc4308d83cebfbd258bc9565f0ab155a4e40111dcd2534a0c67749d",
+      card: "d5727b20bf247add3736dff038788afd90b7ec66c7097ceb149ed5f58af08d3c",
+      qa: "audit_pass",
+      prompt: "docs/catalog/s08/image-prompt-cashew-pesto-pasta.md",
+    },
+    {
+      slug: "moroccan-chickpea-skillet",
+      source: "28b9518ab52a69cd89af51f6e17f63a915f937d0f83413b13a7a875ffc170296",
+      master: "0b4aca78927b035dd564e13c92579988514d88339ac22e3cdf1888eea48cfb52",
+      card: "d882e7b6e61a9e686888c1f1acecc64e4eadcf021312c11aae83e1033b7ff490",
+      qa: "audit_pass",
+      prompt: "docs/catalog/s08/image-prompt-moroccan-chickpea-skillet.md",
+    },
+  ];
+
+  for (const hero of heroes) {
+    it(`${hero.slug} WebP matches the v3 image record`, () => {
+      const pkg = readPkg(hero.slug, "v3.json");
+      expect(pkg.image.generation.method).toBe("original_ai_generation");
+      expect(pkg.image.generation.generator).toBe("Grok Bot GenerateImage");
+      expect(pkg.image.generation.generation_date).toBe("2026-10-18");
+      expect(pkg.image.generation.prompt_file).toBe(hero.prompt);
+      expect(pkg.image.generation.source_sha256).toBe(hero.source);
+      expect(pkg.image.provenance).toBe("ai_illustration");
+      expect(pkg.image.qa_state).toBe(hero.qa);
+      expect(pkg.image.file_hashes).toEqual({
+        source_jpeg_sha256: hero.source,
+        master_sha256: hero.master,
+        card_sha256: hero.card,
+      });
+      const masterPath = join(process.cwd(), "public/images/meals", `${hero.slug}.webp`);
+      const cardPath = join(process.cwd(), "public/images/meals", `${hero.slug}-640.webp`);
+      const masterBuf = readFileSync(masterPath);
+      const cardBuf = readFileSync(cardPath);
+      expect(createHash("sha256").update(masterBuf).digest("hex")).toBe(hero.master);
+      expect(createHash("sha256").update(cardBuf).digest("hex")).toBe(hero.card);
+      expect(webpDimensions(masterBuf)).toEqual({ width: 1200, height: 900 });
+      expect(webpDimensions(cardBuf)).toEqual({ width: 640, height: 480 });
+      expect(readFileSync(join(process.cwd(), hero.prompt), "utf8")).toContain(hero.source);
+      expect(readFileSync(join(process.cwd(), "docs/catalog/s08/IMAGE-PROVENANCE.md"), "utf8")).toContain(
+        hero.qa === "audit_fail" ? `${hero.slug} — FAIL` : `${hero.slug} — PASS`
+      );
+    });
+  }
 });
 
 describe("S-08 catalog delta", () => {
