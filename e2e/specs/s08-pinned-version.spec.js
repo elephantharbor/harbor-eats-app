@@ -11,6 +11,8 @@ import { DatabaseSync } from "node:sqlite";
 import { skipToChoices } from "./helpers.js";
 import { openPlanReviewFromHome } from "./alpha-helpers.js";
 
+test.skip(!!process.env.PLAYWRIGHT_BASE_URL, "edits the local miniflare D1; local CI only");
+
 const V2 = "rv_maple-mustard-glazed-salmon_v2";
 const V3 = "rv_maple-mustard-glazed-salmon_v3";
 const DISH = "maple-mustard-glazed-salmon";
