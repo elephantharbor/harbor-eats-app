@@ -370,11 +370,11 @@ describe("J4 acknowledgement wording", () => {
 });
 
 describe("J5 service worker shell", () => {
-  it("keeps fw-sw-v99 while the shell hash still matches", () => {
+  it("keeps fw-sw-v100 while the shell hash still matches", () => {
     const check = checkSwInvariant();
     expect(check.ok, check.problems.join("; ")).toBe(true);
-    expect(readSw().version).toBe("fw-sw-v99");
-    expect(check.version).toBe("fw-sw-v99");
+    expect(readSw().version).toBe("fw-sw-v100");
+    expect(check.version).toBe("fw-sw-v100");
     expect(readSw().shell).toContain("/sign-out.js");
   });
 });
