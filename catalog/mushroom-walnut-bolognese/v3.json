@@ -1,0 +1,309 @@
+{
+  "catalog_contract": "flavorweave-legacy-catalog-package",
+  "catalog_contract_version": 1,
+  "evidence_class": "legacy_structural",
+  "dish": {
+    "dish_id": "mushroom-walnut-bolognese",
+    "slug": "mushroom-walnut-bolognese",
+    "title": "Mushroom Walnut Bolognese",
+    "name": "Mushroom Walnut Bolognese",
+    "description": "Mushroom and walnut sauce over spaghetti, salted as the mushrooms brown and in the pasta water.",
+    "cuisine": "italian-inspired",
+    "meal_format": "pasta",
+    "primary_ingredient": "mushrooms",
+    "texture": "mixed",
+    "flavor_profile": "savory",
+    "weeknight": true,
+    "exploration": 0.41,
+    "plate": "🍝",
+    "tone": "tone-b",
+    "tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "sparks": [],
+    "chips": [
+      "Plant",
+      "45 min"
+    ],
+    "current_recipe_id": "rcp_mushroom-walnut-bolognese",
+    "current_version_id": "rv_mushroom-walnut-bolognese_v3"
+  },
+  "recipe": {
+    "recipe_id": "rcp_mushroom-walnut-bolognese",
+    "dish_id": "mushroom-walnut-bolognese",
+    "visibility": "global",
+    "household_id": null
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_mushroom-walnut-bolognese_v3",
+    "recipe_id": "rcp_mushroom-walnut-bolognese",
+    "dish_id": "mushroom-walnut-bolognese",
+    "version_number": 3,
+    "immutable": true,
+    "title": "Mushroom Walnut Bolognese",
+    "description": "Mushroom and walnut sauce over spaghetti, salted as the mushrooms brown and in the pasta water.",
+    "base_servings": 4,
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "total_minutes": 45,
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "methods": [
+      "skillet"
+    ],
+    "dietary_tags": [
+      "plant",
+      "dairy-free"
+    ],
+    "heat": "Stovetop.",
+    "doneness": "Mushrooms deeply browned. Sauce thick. Pasta al dente.",
+    "substitutions": null,
+    "ingredients": [
+      {
+        "name": "cremini mushrooms",
+        "quantity": "1 lb",
+        "note": "Cut into small cubes."
+      },
+      {
+        "name": "walnuts",
+        "quantity": "0.5 cup",
+        "note": "Chopped."
+      },
+      {
+        "name": "crushed tomatoes",
+        "quantity": "28 oz",
+        "note": "One can."
+      },
+      {
+        "name": "spaghetti",
+        "quantity": "12 oz",
+        "note": null
+      },
+      {
+        "name": "garlic",
+        "quantity": "3 clove",
+        "note": "Minced."
+      },
+      {
+        "name": "olive oil",
+        "quantity": "2 tbsp",
+        "note": null
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": "32 g",
+        "note": "Divided: 28 g in 3 qt pasta water (about 1%), 4 g on the mushrooms as they brown. 32 g Diamond Crystal kosher salt (11.5 tsp). The same weight is 6.75 tsp Morton coarse kosher salt or 5.25 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon."
+      },
+      {
+        "name": "black pepper",
+        "quantity": "0.25 tsp",
+        "note": "In the sauce."
+      },
+      {
+        "name": "water",
+        "quantity": "3 qt",
+        "note": "For the pasta."
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Brown",
+        "body": "Cook the cremini mushrooms and the walnuts in the olive oil with 4 g of the Diamond Crystal kosher salt until the mushrooms are deeply browned. Work in batches if the pan is crowded.",
+        "ingredient_refs": [
+          "cremini mushrooms",
+          "walnuts",
+          "olive oil",
+          "Diamond Crystal kosher salt"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Simmer and boil",
+        "body": "Add the garlic, crushed tomatoes, and black pepper. Simmer 20 minutes. Meanwhile bring the water to a boil with the remaining 28 g Diamond Crystal kosher salt (about 1% by weight, 28 g per 3 qt) and boil the spaghetti until al dente. Reserve 1/2 cup pasta water.",
+        "ingredient_refs": [
+          "garlic",
+          "crushed tomatoes",
+          "black pepper",
+          "water",
+          "Diamond Crystal kosher salt",
+          "spaghetti"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Toss",
+        "body": "Taste the sauce and add salt only if it still tastes flat. Toss the spaghetti with the sauce, loosening it with pasta water if it looks thick.",
+        "ingredient_refs": [
+          "spaghetti",
+          "cremini mushrooms"
+        ]
+      }
+    ],
+    "corrects_version_id": "rv_mushroom-walnut-bolognese_v1",
+    "kitchen_tested": false,
+    "supersedes_version_id": "rv_mushroom-walnut-bolognese_v2"
+  },
+  "projection": {
+    "vocabulary_tag_ids": [
+      "italian",
+      "mushrooms",
+      "pasta"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "allergens": [
+      "nuts",
+      "walnut",
+      "wheat"
+    ],
+    "equipment": [
+      "skillet"
+    ],
+    "parsed_ingredients": [
+      {
+        "name": "cremini mushrooms",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "Cut into small cubes.",
+        "raw_quantity": "1 lb"
+      },
+      {
+        "name": "walnuts",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": "Chopped.",
+        "raw_quantity": "0.5 cup"
+      },
+      {
+        "name": "crushed tomatoes",
+        "quantity": 28,
+        "unit": "oz",
+        "note": "One can.",
+        "raw_quantity": "28 oz"
+      },
+      {
+        "name": "spaghetti",
+        "quantity": 12,
+        "unit": "oz",
+        "note": null,
+        "raw_quantity": "12 oz"
+      },
+      {
+        "name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": "Minced.",
+        "raw_quantity": "3 clove"
+      },
+      {
+        "name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "raw_quantity": "2 tbsp"
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": 32,
+        "unit": "g",
+        "note": "Divided: 28 g in 3 qt pasta water (about 1%), 4 g on the mushrooms as they brown. 32 g Diamond Crystal kosher salt (11.5 tsp). The same weight is 6.75 tsp Morton coarse kosher salt or 5.25 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon.",
+        "raw_quantity": "32 g"
+      },
+      {
+        "name": "black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": "In the sauce.",
+        "raw_quantity": "0.25 tsp"
+      },
+      {
+        "name": "water",
+        "quantity": 3,
+        "unit": "qt",
+        "note": "For the pasta.",
+        "raw_quantity": "3 qt"
+      }
+    ]
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "mushroom-walnut-bolognese.webp",
+    "card_ref": "mushroom-walnut-bolognese-640.webp",
+    "master_filename": "mushroom-walnut-bolognese.webp",
+    "card_filename": "mushroom-walnut-bolognese-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04",
+      "round": "r9",
+      "note": "Active photo is small mushroom cubes tossed through the sauce with walnut pieces. Finer mince rendered as ground meat or grated cheese and was not installed."
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "certification": {
+    "certification_class": "legacy_draft_correction",
+    "factory_certified": false,
+    "text_provenance": "legacy_unknown",
+    "text_provenance_raw": null,
+    "image_provenance": "unknown",
+    "image_rights": "unverified",
+    "kitchen_tested": false,
+    "household_cook_count": null,
+    "rating_count": null,
+    "freeze_integrity": null,
+    "gates_a_o": null,
+    "image_gates": null,
+    "evidence_basis": "legacy_v1_draft_correction",
+    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Adds a boil step, 2 tbsp olive oil so the mushrooms can brown, and treats 1 can as 28 oz. dairy_free and plant stay unconditional dietary labels. nuts and walnut stay allergens, and wheat is added for the spaghetti. Pasta is not a diet. No cheese and no dairy-free-if wording. kitchen_tested is false. Recipe provenance is legacy_unknown."
+  },
+  "publication": {
+    "status": "draft",
+    "artifact_status": "draft",
+    "visibility": "global",
+    "household_id": null,
+    "note": "Proposed correction for Cora. Not published. Not a certification. v1.json was not edited."
+  },
+  "draft": {
+    "for": "Cora",
+    "role": "legacy_audit_drafter",
+    "is_auditor": false,
+    "disposition": "CREATE_V2",
+    "kitchen_tested": false,
+    "recipe_provenance": "legacy_unknown",
+    "images_this_pass": false,
+    "v1_left_unchanged": true,
+    "reason": "Spaghetti is never cooked, the browning step has no fat, and spark sheet is a false sheet pan.",
+    "evidence_note": "Draft v2 for Cora. v1 was not rewritten. Adds a boil step, 2 tbsp olive oil so the mushrooms can brown, and treats 1 can as 28 oz. dairy_free and plant stay unconditional dietary labels. nuts and walnut are allergens, not diets, and wheat is an allergen for the spaghetti. Pasta is not a diet. No cheese and no dairy-free-if wording. kitchen_tested is false. Recipe provenance is legacy_unknown. The written mushroom cut is small cubes, matching the active photo. A finer mince was not used because those images read as meat or cheese."
+  },
+  "package_revision": "s08-culinary",
+  "evidence": {
+    "structurally_validated": "s08-2026-10-18",
+    "culinary_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "Culinary review is a written judgment of the recipe text. It is not a kitchen test and not a household rating. Model confidence is not evidence of cooking."
+  },
+  "culinary_revision": {
+    "from": "rv_mushroom-walnut-bolognese_v2",
+    "to": "rv_mushroom-walnut-bolognese_v3",
+    "yield": "4 servings",
+    "expected_flavor": "Browned mushrooms and walnuts, tomato, garlic, and salt both in the sauce and in the pasta.",
+    "dietary": "Nuts, walnut, and wheat unchanged. Dairy-free and plant-based. No cheese added.",
+    "safety": "No raw protein.",
+    "shopping": "Salt is now a weighed, divided line, and the pasta pot has a volume.",
+    "uncertainties": "How dark the mushrooms get changes the savoriness more than another teaspoon of salt would.",
+    "image_impact": "No regen. The plate is still mushroom sauce on spaghetti."
+  }
+}

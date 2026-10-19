@@ -10,6 +10,7 @@ import { constraintRowsFromKeys, filterEligibleOptions, isKnownRestrictionKey } 
 import {
   catalogReadsFromD1,
   coverageFromMeals,
+  loadCatalogVersionById,
   loadPublishedCatalog,
   recipeShapeFromEntry,
 } from "./lib/catalog-runtime.js";
@@ -1852,9 +1853,17 @@ async function getRecipeByVersionId(env, versionId, request) {
   if (catalogReadsFromD1(env)) {
     const loaded = await publishedCatalog(env);
     if (loaded?.error) return loaded.error;
-    const entry = loaded.versionsById[versionId];
-    if (!entry) return err("recipe_version_not_found", 404);
-    return respondRecipe(recipeShapeFromEntry(entry), request);
+    const published = loaded.versionsById[versionId];
+    if (published) return respondRecipe(recipeShapeFromEntry(published), request);
+    // Retired and other unpublished catalog rows are not on the public menu.
+    // A signed-in household can still read the version a plan pinned.
+    const auth = await requireSession(env.DB, request);
+    if (auth.error) return auth.error;
+    const pinned = await loadCatalogVersionById(env.DB, versionId, {
+      householdId: auth.session.household_id,
+    });
+    if (!pinned) return err("recipe_version_not_found", 404);
+    return respondRecipe(recipeShapeFromEntry(pinned), request);
   }
   const loaded = getRecipeVersion(versionId);
   if (!loaded || !loaded.concept) return err("recipe_version_not_found", 404);

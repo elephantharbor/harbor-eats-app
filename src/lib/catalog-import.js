@@ -278,6 +278,12 @@ export function normalizeLegacyPackage(pkg, source, policy = {}) {
   }
   if (!Number.isInteger(versionNumber) || versionNumber < 1) {
     errors.push(error("bad_version_number", "recipe_version.version_number"));
+  } else if (versionNumber > 2) {
+    const prior = version.supersedes_version_id || version.replaces_recipe_version_id || null;
+    const expected = `rv_${dish.dish_id}_v${versionNumber - 1}`;
+    if (prior !== expected) {
+      errors.push(error("bad_version_number", "recipe_version.supersedes_version_id", String(prior || "")));
+    }
   }
   if (!Number.isInteger(version.base_servings) || version.base_servings < 1) {
     errors.push(error("bad_servings", "recipe_version.base_servings"));
@@ -358,6 +364,7 @@ export function normalizeLegacyPackage(pkg, source, policy = {}) {
       artifact_certification_class: certification.certification_class || null,
       vale_audit: source.vale_audit || null,
       supersedes_version_id: version.supersedes_version_id || null,
+      ...(pkg.evidence ? { evidence: pkg.evidence } : {}),
     },
   });
   stampHashes(record);
@@ -391,7 +398,15 @@ export function normalizeLegacyAuditDraftPackage(pkg, source, policy = {}) {
   if (version.recipe_version_id !== expectedVersionId) {
     errors.push(error("version_identity", "recipe_version.recipe_version_id"));
   }
-  if (versionNumber !== 2) errors.push(error("bad_version_number", "recipe_version.version_number"));
+  if (!Number.isInteger(versionNumber) || versionNumber < 2) {
+    errors.push(error("bad_version_number", "recipe_version.version_number"));
+  } else if (versionNumber > 2) {
+    const prior = version.replaces_recipe_version_id || version.supersedes_version_id || null;
+    const expected = `rv_${dish.dish_id}_v${versionNumber - 1}`;
+    if (prior !== expected) {
+      errors.push(error("bad_version_number", "recipe_version.replaces_recipe_version_id", String(prior || "")));
+    }
+  }
   if (version.kitchen_tested !== false) errors.push(error("legacy_kitchen_tested", "recipe_version.kitchen_tested"));
   if (!Number.isInteger(version.base_servings) || version.base_servings < 1) {
     errors.push(error("bad_servings", "recipe_version.base_servings"));
@@ -480,6 +495,7 @@ export function normalizeLegacyAuditDraftPackage(pkg, source, policy = {}) {
       supersedes_version_id: version.replaces_recipe_version_id || version.supersedes_version_id || null,
       source_v1: pkg.source_v1 || null,
       artifact_certification_class: certification.certification_class || null,
+      ...(pkg.evidence ? { evidence: pkg.evidence } : {}),
     },
   });
   stampHashes(record);
@@ -607,6 +623,7 @@ export function normalizeFactoryPackage(pkg, source, policy = {}) {
     freeze_integrity: source.freeze_integrity || "not_in_package",
     freeze_detail: source.freeze_detail || null,
     recommendation_eligible: pkg.recommendation_eligible === true,
+    ...(pkg.evidence ? { evidence: pkg.evidence } : {}),
   };
   const evidenceNote = factoryEvidenceNote(selfReport, version);
   const record = baseRecord({

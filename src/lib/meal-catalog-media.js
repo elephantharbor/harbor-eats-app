@@ -50,30 +50,17 @@ export function listPublishedMealMedia(catalogRoot = catalogRootFromModule()) {
     const v1Path = join(dir, "v1.json");
     if (!existsSync(v1Path)) continue;
     const v1 = JSON.parse(readFileSync(v1Path, "utf8"));
-    if (v1.catalog_contract === FACTORY_CATALOG_CONTRACT) {
-      meals.push({
-        slug: v1.dish.slug,
-        title: v1.dish.title,
-        recipe_version_id: v1.dish.current_version_id,
-      });
-      continue;
-    }
-    if (v1.catalog_contract !== LEGACY_CATALOG_CONTRACT) continue;
-    const v2Path = join(dir, "v2.json");
-    if (existsSync(v2Path)) {
-      const v2 = JSON.parse(readFileSync(v2Path, "utf8"));
-      meals.push({
-        slug: v2.dish.slug,
-        title: v2.dish.title,
-        recipe_version_id: v2.dish.current_version_id,
-      });
-    } else {
-      meals.push({
-        slug: v1.dish.slug,
-        title: v1.dish.title,
-        recipe_version_id: v1.dish.current_version_id,
-      });
-    }
+    if (v1.catalog_contract !== FACTORY_CATALOG_CONTRACT && v1.catalog_contract !== LEGACY_CATALOG_CONTRACT) continue;
+    const versions = readdirSync(dir)
+      .filter((name) => /^v\d+\.json$/.test(name))
+      .sort((a, b) => Number(a.match(/\d+/)[0]) - Number(b.match(/\d+/)[0]));
+    const current = JSON.parse(readFileSync(join(dir, versions[versions.length - 1]), "utf8"));
+    const dish = current.dish || v1.dish;
+    meals.push({
+      slug: dish.slug,
+      title: dish.title,
+      recipe_version_id: dish.current_version_id || current.recipe_version?.recipe_version_id,
+    });
   }
   meals.sort((a, b) => a.slug.localeCompare(b.slug));
   return meals;

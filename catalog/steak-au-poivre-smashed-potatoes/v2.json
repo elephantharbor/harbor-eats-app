@@ -1,0 +1,592 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "s08-culinary",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "steak-au-poivre-smashed-potatoes",
+    "slug": "steak-au-poivre-smashed-potatoes",
+    "title": "Steak au Poivre with Crispy Smashed Potatoes",
+    "description": "Strip steaks pressed into cracked black peppercorns, seared to a dark crust, and finished with a classic French pan sauce of shallot, brandy, Dijon, and cream. Served with baby potatoes boiled, smashed, and oven-roasted until crispy.",
+    "cuisine": "french",
+    "meal_format": "composed-plate",
+    "primary_ingredient": "beef",
+    "vocabulary_tag_ids": [
+      "rich",
+      "spicy",
+      "savory",
+      "crispy"
+    ],
+    "current_recipe_id": "rcp_steak-au-poivre-smashed-potatoes",
+    "current_version_id": "rv_steak-au-poivre-smashed-potatoes_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_steak-au-poivre-smashed-potatoes",
+    "dish_id": "steak-au-poivre-smashed-potatoes",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_steak-au-poivre-smashed-potatoes_v2",
+    "recipe_id": "rcp_steak-au-poivre-smashed-potatoes",
+    "dish_id": "steak-au-poivre-smashed-potatoes",
+    "version_number": 2,
+    "package_revision": "s08-culinary",
+    "immutable": true,
+    "immutability_note": "v2 supersedes v1. Culinary seasoning revision only. kitchen_tested is false. Not a household rating.",
+    "title": "Steak au Poivre with Crispy Smashed Potatoes",
+    "description": "Strip steaks pressed into cracked black peppercorns, seared to a dark crust, and finished with a classic French pan sauce of shallot, brandy, Dijon, and cream. Served with baby potatoes boiled, smashed, and oven-roasted until crispy.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "strip-steaks",
+        "name": "New York strip steaks",
+        "display_name": "1-inch-thick strip steaks",
+        "quantity": 4,
+        "unit": "count",
+        "note": "about 10 oz each",
+        "preparation": "patted dry, at room temperature 20 minutes",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "black-peppercorns",
+        "name": "black peppercorns",
+        "display_name": "black peppercorns",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "coarsely cracked",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "shallot",
+        "name": "shallot",
+        "display_name": "large shallot",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "brandy",
+        "name": "brandy or cognac",
+        "display_name": "brandy or cognac",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "heavy-cream",
+        "name": "heavy cream",
+        "display_name": "heavy cream",
+        "quantity": 0.67,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "dijon-mustard",
+        "name": "Dijon mustard",
+        "display_name": "Dijon mustard",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "baby-potatoes",
+        "name": "baby Yukon Gold potatoes",
+        "display_name": "baby Yukon Gold potatoes",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "potato-water",
+        "name": "water",
+        "display_name": "water",
+        "quantity": 10,
+        "unit": "cup",
+        "note": "for boiling the potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "liquid"
+      },
+      {
+        "ingredient_id": "chives",
+        "name": "chives",
+        "display_name": "chives",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "snipped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "for the potatoes",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "for the steaks",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "Diamond Crystal kosher salt",
+        "display_name": "Diamond Crystal kosher salt",
+        "quantity": 38,
+        "unit": "g",
+        "note": "Divided: 11 g on the steaks (about 2.8 g each), 24 g in 10 cups potato water (about 1% by weight), 2 g on the smashed potatoes, 1 g in the sauce. 38 g Diamond Crystal kosher salt (13.5 tsp). The same weight is 8 tsp Morton coarse kosher salt or 6.25 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat and prep",
+        "body": "Turn the oven on to 450 F to preheat. Put the potatoes in a 4-quart pot with 10 cups cold water and 24 g of the Diamond Crystal kosher salt (about 1% by weight) over high heat. Crack the peppercorns coarsely. Season the steaks with 11 g of the Diamond Crystal kosher salt and press the cracked pepper into both sides. Mince the shallot and snip the chives.",
+        "ingredient_refs": [
+          "potato-water",
+          "baby-potatoes",
+          "kosher-salt",
+          "black-peppercorns",
+          "strip-steaks",
+          "shallot",
+          "chives"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Boil the potatoes",
+        "body": "Bring the 10 cups of salted water to a boil and cook the potatoes until a knife slides in, about 18 minutes. Drain and let them steam dry 2 minutes.",
+        "ingredient_refs": [
+          "potato-water",
+          "baby-potatoes"
+        ],
+        "clock_minutes": 18,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Smash",
+        "body": "Spread the potatoes on the sheet pan, press each one flat to about 1/2 inch, drizzle with the olive oil, and sprinkle with 2 g of the Diamond Crystal kosher salt.",
+        "ingredient_refs": [
+          "baby-potatoes",
+          "olive-oil",
+          "kosher-salt"
+        ],
+        "clock_minutes": 3,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Roast the potatoes",
+        "body": "Roast in the preheated 450 F oven until deep golden and crispy at the edges, 22 minutes.",
+        "ingredient_refs": [
+          "baby-potatoes"
+        ],
+        "clock_minutes": 22,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Sear the steaks",
+        "body": "With 12 minutes left on the potatoes, heat the oil in the cast-iron skillet over high until smoking. Sear the steaks, turning as needed, until the center of each steak is 145 F. Move them to a plate and rest 3 minutes. A pinker center is a personal texture preference and is not the instruction in this recipe. Runs inside the potato roast (overlap stated).",
+        "ingredient_refs": [
+          "neutral-oil",
+          "strip-steaks"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 6,
+        "title": "Make the sauce",
+        "body": "Pour off all but a thin film of fat and lower the heat to medium. Add the butter and shallot and cook 1 minute. Take the pan off the heat, add the brandy, return it to the heat, and simmer until almost gone, about 1 minute. Whisk in the cream, the Dijon, and the remaining 1 g Diamond Crystal kosher salt. Simmer until the sauce coats a spoon, 2 to 3 minutes, adding the steak juices. Taste the sauce and add salt only if it still tastes flat. Spoon it over the steaks and serve with the potatoes and chives.",
+        "ingredient_refs": [
+          "butter",
+          "shallot",
+          "brandy",
+          "heavy-cream",
+          "dijon-mustard",
+          "strip-steaks",
+          "baby-potatoes",
+          "chives"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "steak",
+        "name": "peppercorn-crusted strip steaks with pan sauce",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "strip steaks",
+          "black peppercorns",
+          "shallot",
+          "brandy",
+          "Dijon",
+          "cream",
+          "butter",
+          "salt",
+          "oil"
+        ]
+      },
+      {
+        "component_id": "potatoes",
+        "name": "crispy smashed potatoes",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "baby potatoes",
+          "water",
+          "olive oil",
+          "salt",
+          "chives"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch cast-iron skillet",
+      "4-quart pot",
+      "rimmed sheet pan",
+      "instant-read thermometer",
+      "heavy pan or zip-top bag for cracking pepper",
+      "colander"
+    ],
+    "methods": [
+      "boil",
+      "roast",
+      "sear"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "baked",
+        "roasted"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 10,
+    "cook_time_minutes": 49,
+    "total_time_minutes": 59,
+    "prep_minutes": 10,
+    "cook_minutes": 49,
+    "total_minutes": 59,
+    "time_clock": "Prep 10 + cook 49 = 59 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0 and has heated 31 minutes when the potatoes go in. The steaks sear inside the potato roast (step 5 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "overlap_steps": [
+        5
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0 and has heated 31 minutes when the potatoes go in. The steaks sear inside the potato roast (step 5 states the overlap).",
+      "gate_b_water": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    "heat": "Oven preheated to 450 F for the potatoes. High heat cast iron for the steaks; medium for the sauce.",
+    "doneness": "Whole-muscle beef steaks to 145 F in the center, then a 3-minute rest (FDA). Potatoes tender, then crisp at the edges.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "standard",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "standard"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains beef (meat), cream, and butter."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: contains beef and dairy.",
+    "allergens": [
+      "meat",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Meat from the strip steaks.",
+      "Milk from the cream and butter.",
+      "No egg, soy, wheat, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains beef (meat), cream, and butter.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "rich",
+      "spicy",
+      "savory",
+      "crispy"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'french' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "alcohol_note": "Brandy is simmered in the pan sauce; some alcohol remains.",
+    "culinary_hash_basis": "S-08 removed the v1 culinary hash because the culinary text changed. catalog-import.js computes the import content hash.",
+    "supersedes_recipe_version_id": "rv_steak-au-poivre-smashed-potatoes_v1"
+  },
+  "image": {
+    "image_id": "img_steak-au-poivre-smashed-potatoes_v1",
+    "dish_id": "steak-au-poivre-smashed-potatoes",
+    "recipe_version_id": "rv_steak-au-poivre-smashed-potatoes_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "steak-au-poivre-smashed-potatoes.webp",
+    "card_ref": "steak-au-poivre-smashed-potatoes-640.webp",
+    "master_filename": "steak-au-poivre-smashed-potatoes.webp",
+    "card_filename": "steak-au-poivre-smashed-potatoes-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "steak-au-poivre-smashed-potatoes.webp",
+        "spec_catalog_path": "/images/meals/steak-au-poivre-smashed-potatoes.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "steak-au-poivre-smashed-potatoes-640.webp",
+        "spec_catalog_path": "/images/meals/steak-au-poivre-smashed-potatoes-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "fd5b8bc16ac0d26464e28726b33a8ba5987109cefa216a2e251f82deca42fbd2",
+      "master_sha256": "418b2d3097c46abea653321d8eb110f79124f7f9aca707bf34f7e5a2933c91e9",
+      "card_sha256": "54a5699cfa4d87813c67a703065d26cd2e1e03e0b6895e0638597a031ebc4cd2"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "fd5b8bc16ac0d26464e28726b33a8ba5987109cefa216a2e251f82deca42fbd2",
+      "steak-au-poivre-smashed-potatoes.webp": "418b2d3097c46abea653321d8eb110f79124f7f9aca707bf34f7e5a2933c91e9",
+      "steak-au-poivre-smashed-potatoes-640.webp": "54a5699cfa4d87813c67a703065d26cd2e1e03e0b6895e0638597a031ebc4cd2"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 10 + cook 49 = 59 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0 and has heated 31 minutes when the potatoes go in. The steaks sear inside the potato roast (step 5 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0 and has heated 31 minutes when the potatoes go in. The steaks sear inside the potato roast (step 5 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "Every use of water is its own measured ingredient line and each step that uses it states the amount."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "steak-au-poivre-smashed-potatoes.webp 1200x900 and steak-au-poivre-smashed-potatoes-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"baked\", \"roasted\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "1": "One 10-oz steak and a quarter of the sauce in a 10-inch skillet.",
+    "2": "Two steaks and half the sauce.",
+    "4": "As written; four steaks fit a 12-inch skillet if they are not oversized.",
+    "base_servings": 4,
+    "do_not_scale": [
+      "take the pan off the heat before adding brandy"
+    ]
+  },
+  "coverage_contribution": "French 0 to 1 in this catalog. A special-occasion steak night with a classic pan sauce.",
+  "near_duplicate_review": "Compared with gochujang-grilled-flank-steak: seared strip steak with a French cream sauce. Compared with seared-duck-breast-cherry: beef, peppercorn crust. Compared with peruvian-lomo-saltado: whole steaks, no stir-fry or soy.",
+  "not_duplicate_of": "Not the philly-cheesesteaks in this wave. Not steak frites (no fries).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "B",
+  "evidence": {
+    "structurally_validated": "s08-2026-10-18",
+    "culinary_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "Culinary review is a written judgment of the recipe text. It is not a kitchen test and not a household rating. Model confidence is not evidence of cooking."
+  },
+  "kitchen_tested": false,
+  "culinary_revision": {
+    "from": "rv_steak-au-poivre-smashed-potatoes_v1",
+    "to": "rv_steak-au-poivre-smashed-potatoes_v2",
+    "yield": "4 servings",
+    "expected_flavor": "Pepper-crusted steaks seasoned like steaks, potatoes boiled in a real salt ratio and smashed, and a sauce that is salted and tasted.",
+    "dietary": "Meat and milk unchanged.",
+    "safety": "The instruction is 145 F and a 3-minute rest for whole-muscle beef. A pinker center is not given as a temperature.",
+    "shopping": "The salt line changes from 3.5 tsp of an unnamed kosher salt to 38 g Diamond Crystal, most of it in the potato water.",
+    "uncertainties": "Sear time to reach 145 F depends on thickness. The thermometer decides.",
+    "image_impact": "No regen. Same steak, sauce, and smashed potatoes."
+  }
+}

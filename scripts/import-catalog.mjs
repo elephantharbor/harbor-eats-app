@@ -9,15 +9,8 @@ import { createHash } from "node:crypto";
 import { readdir, readFile, mkdir, writeFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { DatabaseSync } from "node:sqlite";
-import {
-  FACTORY_CONTRACT,
-  assertStagingTarget,
-  normalizeFactoryPackage,
-  normalizeLegacyAuditDraftPackage,
-  normalizeLegacyPackage,
-  planImport,
-} from "../src/lib/catalog-import.js";
-import { LEGACY_AUDIT_DRAFT_CONTRACT, LEGACY_CONTRACT } from "../src/lib/catalog-legacy.js";
+import { FACTORY_CONTRACT, assertStagingTarget, planImport } from "../src/lib/catalog-import.js";
+import { loadCatalogFromDisk } from "../src/lib/catalog-disk.js";
 import { applyCatalogWrites, loadExistingVersions, retireCatalogVersions } from "../src/lib/catalog-write.js";
 import { renderStagingD1Sql } from "../src/lib/catalog-staging-sql.js";
 
@@ -49,141 +42,10 @@ if (sqlitePath.includes(PRODUCTION_D1_ID)) {
 
 const catalogRoot = join(process.cwd(), "catalog");
 const stagingPolicy = JSON.parse(await readFile(join(catalogRoot, "staging-publication.json"), "utf8"));
-/** @type {object[]} */
-const records = [];
-/** @type {object[]} */
-const failures = [];
-/** @type {string[]} */
-const retireVersionIds = [];
-
-async function legacySidecar(dir, slug, fileName) {
-  const names = await readdir(dir);
-  let freezeIntegrity = "not_in_package";
-  let freezeDetail = null;
-  if (names.includes("FREEZE_INTEGRITY.json")) {
-    const freeze = JSON.parse(await readFile(join(dir, "FREEZE_INTEGRITY.json"), "utf8"));
-    freezeIntegrity = freeze.FREEZE_INTEGRITY || "present";
-    freezeDetail = `fail_count=${freeze.fail_count}`;
-  } else if (names.includes("FREEZE.txt")) {
-    const text = await readFile(join(dir, "FREEZE.txt"), "utf8");
-    freezeIntegrity = /awaiting/i.test(text) ? "awaiting_reaudit" : "present";
-    freezeDetail = text.split("\n")[0];
-  }
-  let valeAudit = null;
-  if (names.includes("VALE-AUDIT.json")) {
-    valeAudit = JSON.parse(await readFile(join(dir, "VALE-AUDIT.json"), "utf8"));
-  }
-  let readmeDeclares = false;
-  if (names.includes("README.md")) {
-    const readme = await readFile(join(dir, "README.md"), "utf8");
-    readmeDeclares = /not certified/i.test(readme);
-  }
-  return {
-    source_path: `catalog/${slug}/${fileName}`,
-    freeze_integrity: freezeIntegrity,
-    freeze_detail: freezeDetail,
-    readme_declares_not_certified: readmeDeclares,
-    vale_audit: valeAudit,
-  };
-}
-
-async function factorySidecar(dir, slug, file = "v1.json") {
-  const names = await readdir(dir);
-  let freezeIntegrity = "not_in_package";
-  let freezeDetail = null;
-  if (names.includes("FREEZE_INTEGRITY.json")) {
-    const freeze = JSON.parse(await readFile(join(dir, "FREEZE_INTEGRITY.json"), "utf8"));
-    freezeIntegrity = freeze.FREEZE_INTEGRITY || "present";
-    freezeDetail = `fail_count=${freeze.fail_count}`;
-  } else if (names.includes("FREEZE.txt")) {
-    const text = await readFile(join(dir, "FREEZE.txt"), "utf8");
-    freezeIntegrity = /awaiting/i.test(text) ? "awaiting_reaudit" : "present";
-    freezeDetail = text.split("\n")[0];
-  }
-  let readmeDeclares = false;
-  if (names.includes("README.md")) {
-    const readme = await readFile(join(dir, "README.md"), "utf8");
-    readmeDeclares = /not certified/i.test(readme);
-  }
-  return {
-    source_path: `catalog/${slug}/${file}`,
-    freeze_integrity: freezeIntegrity,
-    freeze_detail: freezeDetail,
-    readme_declares_not_certified: readmeDeclares,
-  };
-}
-
-const entries = (await readdir(catalogRoot, { withFileTypes: true })).filter((entry) => entry.isDirectory());
-
-for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name))) {
-  const dir = join(catalogRoot, entry.name);
-  const names = await readdir(dir);
-  if (!names.includes("v1.json")) continue;
-  const pkg = JSON.parse(await readFile(join(dir, "v1.json"), "utf8"));
-  if (pkg.catalog_contract === FACTORY_CONTRACT) {
-    if (pkg.dish?.slug !== entry.name || pkg.dish?.dish_id !== entry.name) {
-      failures.push({ slug: entry.name, errors: [{ code: "directory_slug_mismatch", detail: entry.name }] });
-      continue;
-    }
-    const hasFactoryV2 = names.includes("v2.json");
-    const published = stagingPolicy.publication_status || "published";
-    const normalized = normalizeFactoryPackage(pkg, await factorySidecar(dir, entry.name), {
-      publicationStatus: hasFactoryV2 ? "retired" : published,
-    });
-    if (!normalized.ok) failures.push({ slug: entry.name, errors: normalized.errors });
-    else records.push(normalized.record);
-    if (hasFactoryV2) {
-      // Factory successor: v1 is kept as retired history, v2 becomes current.
-      const pkg2 = JSON.parse(await readFile(join(dir, "v2.json"), "utf8"));
-      const v2 = normalizeFactoryPackage(pkg2, await factorySidecar(dir, entry.name, "v2.json"), { publicationStatus: published });
-      if (!v2.ok) failures.push({ slug: entry.name, file: "v2.json", errors: v2.errors });
-      else if (v2.record.supersedes_version_id !== normalized.record?.recipe_version_id) {
-        failures.push({ slug: entry.name, file: "v2.json", errors: [{ code: "supersedes_mismatch", detail: v2.record.supersedes_version_id }] });
-      } else {
-        records.push(v2.record);
-        retireVersionIds.push(normalized.record.recipe_version_id);
-      }
-    }
-    continue;
-  }
-  if (pkg.catalog_contract !== LEGACY_CONTRACT) {
-    failures.push({ slug: entry.name, errors: [{ code: "unknown_contract", detail: pkg.catalog_contract || null }] });
-    continue;
-  }
-  if (pkg.dish?.slug !== entry.name) {
-    failures.push({ slug: entry.name, errors: [{ code: "directory_slug_mismatch", detail: entry.name }] });
-    continue;
-  }
-  const retireV1 = names.includes("v2.json") && stagingPolicy.legacy_v1_retire_on_v2_import;
-  const v1 = normalizeLegacyPackage(
-    pkg,
-    await legacySidecar(dir, entry.name, "v1.json"),
-    retireV1 ? { publicationStatus: "retired" } : {}
-  );
-  if (!v1.ok) failures.push({ slug: entry.name, file: "v1.json", errors: v1.errors });
-  else records.push(v1.record);
-
-  if (!names.includes("v2.json")) continue;
-  const pkg2 = JSON.parse(await readFile(join(dir, "v2.json"), "utf8"));
-  const v2Sidecar = await legacySidecar(dir, entry.name, "v2.json");
-  const v2Policy = {
-    publicationStatus: stagingPolicy.legacy_v2_publication_status || stagingPolicy.publication_status || "published",
-    relaxTimeMismatch: true,
-  };
-  const v2 =
-    pkg2.catalog_contract === LEGACY_AUDIT_DRAFT_CONTRACT
-      ? normalizeLegacyAuditDraftPackage(pkg2, v2Sidecar, v2Policy)
-      : pkg2.catalog_contract === LEGACY_CONTRACT
-        ? normalizeLegacyPackage(pkg2, v2Sidecar, v2Policy)
-        : { ok: false, errors: [{ code: "unknown_contract", field: "catalog_contract", detail: pkg2.catalog_contract }] };
-  if (!v2.ok) failures.push({ slug: entry.name, file: "v2.json", errors: v2.errors });
-  else {
-    records.push(v2.record);
-    if (stagingPolicy.legacy_v1_retire_on_v2_import) {
-      retireVersionIds.push(v2.record.supersedes_version_id || `rv_${entry.name}_v1`);
-    }
-  }
-}
+const loaded = loadCatalogFromDisk(catalogRoot, stagingPolicy);
+const records = loaded.records;
+const failures = loaded.failures;
+const retireVersionIds = loaded.retireVersionIds;
 
 if (failures.length) {
   console.error(JSON.stringify({ ok: false, imported: false, failures }, null, 2));

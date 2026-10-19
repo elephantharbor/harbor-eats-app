@@ -1,0 +1,556 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "s08-doneness",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "roasted-whole-branzino-salmoriglio",
+    "slug": "roasted-whole-branzino-salmoriglio",
+    "title": "Roasted Whole Branzino with Salmoriglio and Lemon Potatoes",
+    "description": "Two whole branzino stuffed with lemon, garlic, and oregano and roasted on a bed of crisp-edged sliced potatoes and red onion, then spooned with salmoriglio, the Sicilian lemon, oregano, garlic, and olive oil sauce.",
+    "cuisine": "italian",
+    "meal_format": "roast-plate",
+    "primary_ingredient": "branzino",
+    "vocabulary_tag_ids": [
+      "citrusy",
+      "herbaceous",
+      "fresh",
+      "tender"
+    ],
+    "current_recipe_id": "rcp_roasted-whole-branzino-salmoriglio",
+    "current_version_id": "rv_roasted-whole-branzino-salmoriglio_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_roasted-whole-branzino-salmoriglio",
+    "dish_id": "roasted-whole-branzino-salmoriglio",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_roasted-whole-branzino-salmoriglio_v2",
+    "recipe_id": "rcp_roasted-whole-branzino-salmoriglio",
+    "dish_id": "roasted-whole-branzino-salmoriglio",
+    "version_number": 2,
+    "package_revision": "s08-doneness",
+    "immutable": true,
+    "immutability_note": "v2 supersedes v1. Doneness instruction only. kitchen_tested is false. Not a household rating.",
+    "title": "Roasted Whole Branzino with Salmoriglio and Lemon Potatoes",
+    "description": "Two whole branzino stuffed with lemon, garlic, and oregano and roasted on a bed of crisp-edged sliced potatoes and red onion, then spooned with salmoriglio, the Sicilian lemon, oregano, garlic, and olive oil sauce.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "branzino",
+        "name": "whole branzino",
+        "display_name": "whole branzino, cleaned and scaled",
+        "quantity": 2,
+        "unit": "count",
+        "note": "about 1 1/2 lb each",
+        "preparation": "patted dry, scored 3 times per side",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemons",
+        "name": "lemons",
+        "display_name": "lemons",
+        "quantity": 3,
+        "unit": "count",
+        "note": "1 sliced for the cavities, 2 juiced for the sauce (about 1/3 cup), plus zest",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 4,
+        "unit": "clove",
+        "note": null,
+        "preparation": "2 sliced, 2 grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "fresh-oregano",
+        "name": "fresh oregano",
+        "display_name": "fresh oregano",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "leaves chopped, plus 4 sprigs",
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "yukon-potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 1.75,
+        "unit": "lb",
+        "note": null,
+        "preparation": "sliced 1/4 inch",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "red-onion",
+        "name": "red onion",
+        "display_name": "red onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "cut into thin wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "chile-flakes",
+        "name": "red chile flakes",
+        "display_name": "red chile flakes",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "extra-virgin olive oil",
+        "display_name": "extra-virgin olive oil",
+        "quantity": 0.67,
+        "unit": "cup",
+        "note": "3 tbsp potatoes, 2 tbsp fish, 1/3 cup sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 3,
+        "unit": "tsp",
+        "note": "1 1/4 tsp potatoes, 1 1/2 tsp fish, 1/4 tsp sauce",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Preheat and prep",
+        "body": "Turn the oven on to 450 F to preheat with a rack in the middle. Slice the potatoes and onion. Slice 1 lemon and juice and zest the other 2. Slice 2 cloves garlic and grate 2. Pat the fish dry inside and out and score each side 3 times.",
+        "ingredient_refs": [
+          "yukon-potatoes",
+          "red-onion",
+          "lemons",
+          "garlic",
+          "branzino"
+        ],
+        "clock_minutes": 15,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Roast the potatoes",
+        "body": "Toss the potatoes and onion with 3 tbsp olive oil, 1 1/4 tsp salt, and the pepper, spread on the sheet pan, and roast in the preheated 450 F oven 20 minutes, until starting to brown.",
+        "ingredient_refs": [
+          "yukon-potatoes",
+          "red-onion",
+          "olive-oil",
+          "kosher-salt",
+          "black-pepper"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Season the fish and make the salmoriglio",
+        "body": "While the potatoes roast, season the fish inside and out with 1 1/2 tsp salt, stuff each cavity with lemon slices, sliced garlic, and 2 oregano sprigs, and rub with 2 tbsp olive oil. Whisk the lemon juice and zest, grated garlic, chopped oregano, parsley, chile flakes, 1/4 tsp salt, and 1/3 cup olive oil. Runs inside step 2 (overlap stated).",
+        "ingredient_refs": [
+          "branzino",
+          "kosher-salt",
+          "lemons",
+          "garlic",
+          "fresh-oregano",
+          "olive-oil",
+          "parsley",
+          "chile-flakes"
+        ],
+        "clock_minutes": 10,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Roast the fish",
+        "body": "Flip the potatoes, lay the fish on top, and roast 18 to 22 minutes, until the flesh is opaque at the backbone and 145 F at the thickest point and the potatoes are golden. Optional traditional preparation: 135 F to 140 F at the thickest point. That lower temperature does not meet the USDA/FDA recommendation and carries higher risk, especially for young children, pregnant people, older adults, and anyone immunocompromised.",
+        "ingredient_refs": [
+          "yukon-potatoes",
+          "branzino"
+        ],
+        "clock_minutes": 22,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Fillet and serve",
+        "body": "Run a knife along the backbone, lift off the top fillets, pull out the spine, and lift the bottom fillets off the skin. Serve with the potatoes and spoon the salmoriglio over everything.",
+        "ingredient_refs": [
+          "branzino",
+          "yukon-potatoes",
+          "lemons"
+        ],
+        "clock_minutes": 7,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "fish",
+        "name": "roasted whole branzino",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "branzino",
+          "lemon",
+          "garlic",
+          "oregano",
+          "olive oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "potatoes",
+        "name": "lemon potatoes and onion",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "Yukon Gold potatoes",
+          "red onion",
+          "olive oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "salmoriglio",
+        "name": "salmoriglio",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "lemon",
+          "oregano",
+          "garlic",
+          "parsley",
+          "chile flakes",
+          "olive oil",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "large rimmed sheet pan",
+      "small bowl",
+      "fish spatula",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "roast"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [
+        "baked",
+        "roasted"
+      ],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 45,
+    "total_time_minutes": 60,
+    "prep_minutes": 15,
+    "cook_minutes": 49,
+    "total_minutes": 64,
+    "time_clock": "Prep 15 + cook 49 = 64 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0 and has heated 15 minutes when the potatoes go in; the fish joins them at minute 35. The salmoriglio is made during the potato roast (step 3 states the overlap).",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0 and has heated 15 minutes when the potatoes go in; the fish joins them at minute 35. The salmoriglio is made during the potato roast (step 3 states the overlap).",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "Oven preheated to 450 F, rack in the middle.",
+    "doneness": "Fish flesh opaque and lifting easily from the backbone, 145 F at the thickest point (FDA finfish); skin crisp at the edges. Potatoes golden and tender. Optional traditional preparation: 135 F to 140 F at the thickest point. That lower temperature does not meet the USDA/FDA recommendation and carries higher risk, especially for young children, pregnant people, older adults, and anyone immunocompromised.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Finfish is allowed. No dairy, no shellfish, no meat, no poultry, no nuts."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "fish"
+    ],
+    "dietary_label_note": "Unconditional dairy_free. Fish because of the branzino.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish from the branzino.",
+      "Whole fish contain pin bones; fillet carefully at the table.",
+      "No egg, milk, soy, wheat, sesame, shellfish, or nuts."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Finfish is allowed. No dairy, no shellfish, no meat, no poultry, no nuts.",
+    "hh001_contract": "Olive oil only; no butter.",
+    "vocabulary_tag_ids": [
+      "citrusy",
+      "herbaceous",
+      "fresh",
+      "tender"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'italian' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash_basis": "S-08 removed the v1 culinary hash because the doneness instruction changed. catalog-import.js computes the import content hash.",
+    "supersedes_recipe_version_id": "rv_roasted-whole-branzino-salmoriglio_v1"
+  },
+  "image": {
+    "image_id": "img_roasted-whole-branzino-salmoriglio_v1",
+    "dish_id": "roasted-whole-branzino-salmoriglio",
+    "recipe_version_id": "rv_roasted-whole-branzino-salmoriglio_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "roasted-whole-branzino-salmoriglio.webp",
+    "card_ref": "roasted-whole-branzino-salmoriglio-640.webp",
+    "master_filename": "roasted-whole-branzino-salmoriglio.webp",
+    "card_filename": "roasted-whole-branzino-salmoriglio-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "roasted-whole-branzino-salmoriglio.webp",
+        "spec_catalog_path": "/images/meals/roasted-whole-branzino-salmoriglio.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "roasted-whole-branzino-salmoriglio-640.webp",
+        "spec_catalog_path": "/images/meals/roasted-whole-branzino-salmoriglio-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "81825f026e73ca2e440af30c0b54aa4c33affcf531992070791cbbb2aa18c741",
+      "master_sha256": "800e7c29248bbc07bb2eb4cd9dba119f06e507739ee474fb03ef1b91d62ddf79",
+      "card_sha256": "a53850f6a69e2645770eee5d0fc342434572431a36f1457d2b18565b5bada700"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "81825f026e73ca2e440af30c0b54aa4c33affcf531992070791cbbb2aa18c741",
+      "roasted-whole-branzino-salmoriglio.webp": "800e7c29248bbc07bb2eb4cd9dba119f06e507739ee474fb03ef1b91d62ddf79",
+      "roasted-whole-branzino-salmoriglio-640.webp": "a53850f6a69e2645770eee5d0fc342434572431a36f1457d2b18565b5bada700"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 15 + cook 45 = 60 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. The oven is turned on to preheat in step 1 at minute 0 and has heated 15 minutes when the potatoes go in; the fish joins them at minute 35. The salmoriglio is made during the potato roast (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "First heat-source step is step 1 (Preheat and prep) and it states the preheat. The oven is turned on to preheat in step 1 at minute 0 and has heated 15 minutes when the potatoes go in; the fish joins them at minute 35. The salmoriglio is made during the potato roast (step 3 states the overlap)."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "roasted-whole-branzino-salmoriglio.webp 1200x900 and roasted-whole-branzino-salmoriglio-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [\"baked\", \"roasted\"], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "1": "One small (1-lb) branzino with a quarter of the potatoes.",
+    "2": "One large branzino.",
+    "4": "As written; two 1 1/2-lb fish.",
+    "base_servings": 4,
+    "do_not_scale": [
+      "roast to temperature: about 15 to 18 minutes for a 1 1/2-lb fish"
+    ]
+  },
+  "coverage_contribution": "First whole fish; branzino 0 to 1. HH001 roast dinner.",
+  "near_duplicate_review": "Compared with grilled-swordfish-olive-caper and citrus-fennel-arctic-char: whole fish roasted on potatoes with a lemon-oregano sauce, no capers, olives, or fennel. Compared with ginger-scallion-fish-packets: open-roasted whole fish, Italian. Compared with grilled-mahi-mahi in this wave: whole roasted, not grilled fillets with fruit salsa.",
+  "not_duplicate_of": "Not fish in tomato (rejected). Not salt-baked fish.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "C",
+  "evidence": {
+    "doneness_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "The primary instruction is the USDA/FDA safe minimum. Where the dish is traditionally served less done, that doneness is a labeled optional note and is not the instruction. This is not a kitchen test and not a household rating."
+  },
+  "kitchen_tested": false
+}

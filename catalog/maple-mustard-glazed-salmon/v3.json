@@ -1,0 +1,307 @@
+{
+  "catalog_contract": "flavorweave-legacy-audit-draft",
+  "catalog_contract_note": "Draft v2 for Cora. Not an audit. Not a certification. v1.json is the untouched GitHub download.",
+  "draft_for": "Cora",
+  "auditor": null,
+  "certification": null,
+  "not_a_certification": true,
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "kitchen_tested": false,
+  "provenance": "legacy_unknown",
+  "source_v1": {
+    "repo": "elephantharbor/harbor-eats-app",
+    "ref": "cursor/catalog-architecture-fa5e",
+    "path": "catalog/maple-mustard-glazed-salmon/v1.json",
+    "raw_url": "https://raw.githubusercontent.com/elephantharbor/harbor-eats-app/cursor/catalog-architecture-fa5e/catalog/maple-mustard-glazed-salmon/v1.json",
+    "git_blob_sha": "1931c29d886b3493cfb504199b94f4999e102c80",
+    "sha256": "2487330a2e9b20de6ab5b6d05a6438a833cd05c6ee015d842f9b562493e80dbf",
+    "edited": false
+  },
+  "dish": {
+    "dish_id": "maple-mustard-glazed-salmon",
+    "slug": "maple-mustard-glazed-salmon",
+    "title": "Maple Mustard Glazed Salmon",
+    "name": "Maple Mustard Glazed Salmon",
+    "description": "Salmon fillets roasted with a maple-Dijon glaze until the center reaches 145 F, with asparagus roasted beside them and a lemon-dill finish.",
+    "cuisine": "american",
+    "meal_format": "fillet",
+    "primary_ingredient": "salmon",
+    "chips": [
+      "Fish",
+      "25 min"
+    ],
+    "sparks": [
+      "fish",
+      "sheet"
+    ],
+    "current_recipe_id": "rcp_maple-mustard-glazed-salmon",
+    "current_version_id": "rv_maple-mustard-glazed-salmon_v3",
+    "live_catalog_still_points_at": "rv_maple-mustard-glazed-salmon_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_maple-mustard-glazed-salmon",
+    "dish_id": "maple-mustard-glazed-salmon",
+    "visibility": "draft",
+    "household_id": null,
+    "provenance": "legacy_unknown",
+    "provenance_note": "Legacy menu text of unknown origin. This draft reconciles that text. It does not claim a kitchen test."
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_maple-mustard-glazed-salmon_v3",
+    "replaces_recipe_version_id": "rv_maple-mustard-glazed-salmon_v2",
+    "version_number": 3,
+    "immutable": false,
+    "draft": true,
+    "title": "Maple Mustard Glazed Salmon",
+    "description": "Salmon fillets roasted with a maple-Dijon glaze until the center reaches 145 F, with asparagus roasted beside them and a lemon-dill finish.",
+    "base_servings": 4,
+    "serving_basis_note": "Quantities are for 4 servings. One- and two-serving floors are not in this draft.",
+    "prep_minutes": 15,
+    "cook_minutes": 15,
+    "total_minutes": 30,
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "methods": [
+      "oven"
+    ],
+    "heat": "Oven 425 F, then a short broil.",
+    "doneness": "Cook the salmon to 145 F in the thickest part (FDA seafood guidance: https://www.fda.gov/food/buy-store-serve-safe-food/selecting-and-serving-fresh-and-frozen-seafood-safely). The center is opaque and the fish flakes. Rest 3 minutes. A thin fillet does not need to be pulled early for carryover.",
+    "ingredients": [
+      {
+        "name": "salmon fillets",
+        "quantity": 4,
+        "unit": "count",
+        "note": "About 6 oz each, 1.5 lb total. Skin-on or skinless.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "asparagus",
+        "quantity": 1,
+        "unit": "lb",
+        "note": "Trimmed. About one bunch.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "Dijon mustard",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "Store-bought. Not a dairy food in this catalog.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "maple syrup",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "Maple syrup, not pancake syrup.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "olive oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "1 tbsp for the asparagus, 1 tbsp in the glaze.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "garlic",
+        "quantity": 1,
+        "unit": "clove",
+        "note": "Grated.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": "Zest in the glaze, 1 tbsp juice in the reserved glaze, the rest as wedges.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "fresh dill",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": "Chopped. Chives work if dill is out.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": 8,
+        "unit": "g",
+        "note": "Divided: 5 g on the salmon, 2 g on the asparagus, 1 g in the glaze. 8 g Diamond Crystal kosher salt (2.75 tsp). The same weight is 1.75 tsp Morton coarse kosher salt or 1.25 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": "Divided between the salmon and the asparagus.",
+        "preparation": null,
+        "role": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Heat the oven and season",
+        "body": "Heat the oven to 425 F with a rack in the upper third. Pat the salmon fillets dry. Season them with 5 g of the Diamond Crystal kosher salt and most of the black pepper.",
+        "ingredient_refs": [
+          "salmon fillets",
+          "Diamond Crystal kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Season the asparagus",
+        "body": "Toss the asparagus with 1 tbsp of the olive oil, 2 g of the Diamond Crystal kosher salt, and the rest of the black pepper. Do not brush the glaze onto the asparagus, because the glaze is for the salmon and would make the stalks sticky instead of roasted.",
+        "ingredient_refs": [
+          "asparagus",
+          "olive oil",
+          "Diamond Crystal kosher salt",
+          "black pepper"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Make the glaze",
+        "body": "Whisk the Dijon mustard, maple syrup, grated garlic, the lemon zest, the remaining 1 tbsp olive oil, and the remaining 1 g Diamond Crystal kosher salt. Set aside 2 tbsp of this glaze for the finish.",
+        "ingredient_refs": [
+          "Dijon mustard",
+          "maple syrup",
+          "garlic",
+          "lemon",
+          "olive oil",
+          "Diamond Crystal kosher salt"
+        ]
+      },
+      {
+        "step_number": 4,
+        "title": "Roast and broil",
+        "body": "Roast the salmon fillets and the asparagus on a sheet pan at 425 F until the thickest part of the salmon is 145 F, opaque in the center, and flakes, about 8 to 12 minutes. Broil 1 to 3 minutes, watching, until the glaze spots amber. Rest 3 minutes.",
+        "ingredient_refs": [
+          "salmon fillets",
+          "asparagus"
+        ]
+      },
+      {
+        "step_number": 5,
+        "title": "Finish",
+        "body": "Whisk 1 tbsp lemon juice into the reserved glaze and spoon it over the salmon. Scatter the fresh dill and serve the remaining lemon as wedges.",
+        "ingredient_refs": [
+          "lemon",
+          "fresh dill",
+          "salmon fillets"
+        ]
+      }
+    ],
+    "equipment": [
+      "sheet pan",
+      "small bowl",
+      "spoon",
+      "oven"
+    ],
+    "dietary_labels": [
+      "dairy_free"
+    ],
+    "dietary_label_note": "Dairy-free. Dijon and maple syrup are not dairy. Not plant and not vegetarian. fish and finfish are not dietary labels. No wheat ingredient is listed. Gluten-free is not claimed.",
+    "allergens": [
+      "finfish"
+    ],
+    "allergen_notes": [
+      "Finfish from salmon.",
+      "Dijon is not an allergen token here and it is not dairy.",
+      "No egg, milk, soy, wheat, sesame, peanut, tree_nut, or shellfish in the named foods."
+    ],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "hh001_eligible": false,
+      "hh001_reason": "Finfish. Not an HH001 plant meal."
+    },
+    "vocabulary_tag_ids": [
+      "american",
+      "salmon"
+    ],
+    "kitchen_tested": false,
+    "provenance": "legacy_unknown",
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "changes_from_v1": [
+      "Methods were stovetop. The cook is a 400 F roast, and the equipment already said sheet pan. v2 method is oven.",
+      "Clock was prep 15 plus cook 25 equals 40. The roast is 12 to 15 minutes and the chip said 25. v2 is prep 10 plus cook 15 equals 25.",
+      "Four fillets had no weight. v2 says about 6 oz each. One bunch of asparagus had no weight. v2 says about 1 lb. Both are drafter amounts.",
+      "Maple syrup was in the glaze sentence and missing from the glaze step ingredient refs.",
+      "Doneness was null. v2 keeps the v1 criterion, opaque at the center, and states that this is cooked through."
+    ],
+    "v1_v2_record": [
+      "Title, American cuisine, fillet format, 4 salmon fillets, 2 tbsp Dijon, 2 tbsp maple syrup, 1 bunch asparagus, 400 F, 12 to 15 minutes, glaze brushed on both fish and asparagus. No oil, salt, pepper, lemon, or garlic added."
+    ],
+    "revision_note": "S-08 v3 revises seasoning and technique. v1.json and v2.json bytes are unchanged. v1_v2_record is what the v2 draft said had not changed from v1. It does not describe v3."
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "maple-mustard-glazed-salmon.webp",
+    "card_ref": "maple-mustard-glazed-salmon-640.webp",
+    "master_filename": "maple-mustard-glazed-salmon.webp",
+    "card_filename": "maple-mustard-glazed-salmon-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Bot GenerateImage",
+      "model": "unknown",
+      "generation_date": "2026-10-18",
+      "prompt_file": "docs/catalog/s08/image-prompt-maple-mustard-glazed-salmon.md",
+      "plating_brief_file": "docs/catalog/s08/image-plating-salmon.md",
+      "source_sha256": "b99df43ec8ba0a7810ef381ee147d69800290185c232ebb217f176a3b82b15c1",
+      "source_dimensions": { "width": 1280, "height": 720 },
+      "dimensions_basis": "Measured source is 1280x720. Center-cropped to 4:3 (960x720), then LANCZOS to 1200x900 q90 and 640x480 q88 with factory/tools/export_meal_webps.py."
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "audit_pass",
+    "file_hashes": {
+      "source_jpeg_sha256": "b99df43ec8ba0a7810ef381ee147d69800290185c232ebb217f176a3b82b15c1",
+      "master_sha256": "0073b40dea7b0325fa9fd559105e5f4e66f1287185edc68df2f973e4dbf33e60",
+      "card_sha256": "34229d7d199c5fe40fb55e642173be37776d8eb2aa28da5574c6b16cafc1278c"
+    }
+  },
+  "package_revision": "s08-culinary",
+  "evidence": {
+    "structurally_validated": "s08-2026-10-18",
+    "culinary_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "Culinary review is a written judgment of the recipe text. It is not a kitchen test and not a household rating. Model confidence is not evidence of cooking."
+  },
+  "culinary_revision": {
+    "from": "rv_maple-mustard-glazed-salmon_v2",
+    "to": "rv_maple-mustard-glazed-salmon_v3",
+    "yield": "4 servings",
+    "expected_flavor": "Savory maple-mustard salmon with enough salt to keep the sweetness from tasting flat, lemon and dill at the end, and asparagus that roasts instead of steaming.",
+    "dietary": "Still finfish only. Dairy-free. No new allergen. HH001 may eat finfish; eligibility booleans are unchanged.",
+    "safety": "Default doneness is 145 F internal per FDA. No lower pull temperature is given.",
+    "shopping": "New lines are olive oil, garlic, lemon, dill, salt, and pepper. Quantities are numbers with units and scale by servings.",
+    "uncertainties": "Broil time depends on the oven. Dill versus chives is a cook's choice of one herb, not a stack of garnishes.",
+    "image_impact": "2026-10-18 hero is chosen-r3 in public/images/meals. Independent audit of the exported WebP: PASS. r1 failed the crop; r2 was rejected for grill stripes. See docs/catalog/s08/IMAGE-PROVENANCE.md."
+  }
+}

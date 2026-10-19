@@ -1,0 +1,621 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-17, frozen at author-r2 with an original AI image (Cora via Grok Bot GenerateImage; master and card WebPs present). Not audited. Not certified. Not published. Not imported.",
+  "batch_id": "wave-17-2026-10-15",
+  "batch_label": "wave-17",
+  "mode": "author_batch",
+  "package_revision": "s08-doneness",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Grok Bot)",
+  "authored_by": "Grok Bot (Curator, creator role), wave-17",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "tex-mex-steak-fajitas",
+    "slug": "tex-mex-steak-fajitas",
+    "title": "Tex-Mex Skirt Steak Fajitas with Peppers, Onions, and Pico de Gallo",
+    "description": "Skirt steak marinated in lime juice, garlic, cumin, and chili powder, seared hard in cast iron and sliced across the grain, served with charred bell peppers and onion, warm flour tortillas, fresh pico de gallo of tomato, onion, jalapeno, and cilantro, avocado, and sour cream.",
+    "cuisine": "tex-mex",
+    "meal_format": "fajitas",
+    "primary_ingredient": "skirt steak",
+    "vocabulary_tag_ids": [
+      "smoky",
+      "savory",
+      "tacos",
+      "fresh",
+      "mexican"
+    ],
+    "current_recipe_id": "rcp_tex-mex-steak-fajitas",
+    "current_version_id": "rv_tex-mex-steak-fajitas_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_tex-mex-steak-fajitas",
+    "dish_id": "tex-mex-steak-fajitas",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Grok Bot, Curator (creator role)",
+      "process": "FlavorWeave Catalog Factory wave-17-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_tex-mex-steak-fajitas_v2",
+    "recipe_id": "rcp_tex-mex-steak-fajitas",
+    "dish_id": "tex-mex-steak-fajitas",
+    "version_number": 2,
+    "package_revision": "s08-doneness",
+    "immutable": true,
+    "immutability_note": "v2 supersedes v1. Doneness instruction only. kitchen_tested is false. Not a household rating.",
+    "title": "Tex-Mex Skirt Steak Fajitas with Peppers, Onions, and Pico de Gallo",
+    "description": "Skirt steak marinated in lime juice, garlic, cumin, and chili powder, seared hard in cast iron and sliced across the grain, served with charred bell peppers and onion, warm flour tortillas, fresh pico de gallo of tomato, onion, jalapeno, and cilantro, avocado, and sour cream.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "steak",
+        "name": "skirt steak",
+        "display_name": "skirt steak",
+        "quantity": 1.5,
+        "unit": "lb",
+        "note": null,
+        "preparation": "cut into 4 pieces",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lime-juice",
+        "name": "lime juice",
+        "display_name": "fresh lime juice (about 3 limes)",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": "1/4 cup marinade, the rest pico",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "grated",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cumin",
+        "name": "ground cumin",
+        "display_name": "ground cumin",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "chili-powder",
+        "name": "chili powder",
+        "display_name": "chili powder whose label lists chile, cumin, oregano, garlic, and salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": "1 tbsp marinade, 2 tbsp skillet",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 2,
+        "unit": "tsp",
+        "note": "1 1/4 tsp steak, 1/2 tsp peppers, 1/4 tsp pico",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "bell-peppers",
+        "name": "bell peppers",
+        "display_name": "mixed red, yellow, and green bell peppers",
+        "quantity": 3,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced into strips",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "onion",
+        "name": "white onion",
+        "display_name": "white onion",
+        "quantity": 1.25,
+        "unit": "count",
+        "note": "1 sliced for the skillet, 1/4 diced for pico",
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tomatoes",
+        "name": "tomatoes",
+        "display_name": "ripe Roma tomatoes",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "diced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "jalapeno",
+        "name": "jalapeno",
+        "display_name": "jalapeno",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "seeded and minced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cilantro",
+        "name": "cilantro",
+        "display_name": "cilantro",
+        "quantity": 0.33,
+        "unit": "cup",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "tortillas",
+        "name": "flour tortillas",
+        "display_name": "8-inch flour tortillas whose label lists wheat flour, water, vegetable shortening, baking powder, and salt (no lard)",
+        "quantity": 8,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "avocado",
+        "name": "avocado",
+        "display_name": "avocado",
+        "quantity": 2,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "sour-cream",
+        "name": "sour cream",
+        "display_name": "sour cream",
+        "quantity": 0.5,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep and marinate",
+        "body": "Toss the steak in the medium bowl with 1/4 cup lime juice, the garlic, cumin, chili powder, 1 tbsp oil, and 1 1/4 tsp salt, and let it sit 15 minutes while you work. Slice the peppers and 1 onion. Dice the tomatoes and 1/4 onion, mince the jalapeno, and chop the cilantro; stir them in the small bowl with the remaining lime juice and 1/4 tsp salt for pico. Slice the avocado.",
+        "ingredient_refs": [
+          "steak",
+          "lime-juice",
+          "garlic",
+          "cumin",
+          "chili-powder",
+          "oil",
+          "salt",
+          "bell-peppers",
+          "onion",
+          "tomatoes",
+          "jalapeno",
+          "cilantro",
+          "avocado"
+        ],
+        "clock_minutes": 20,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Sear the steak",
+        "body": "Heat the cast-iron skillet over high until smoking, about 4 minutes. Add 1 tbsp oil and sear 2 pieces of steak (pat off excess marinade) until deeply browned and 145 F, about 4 minutes per side. Repeat (2 batches). Rest on the cutting board 5 minutes. Optional traditional preparation: medium-rare, about 130 F. That lower temperature does not meet the USDA/FDA recommendation and carries higher risk, especially for young children, pregnant people, older adults, and anyone immunocompromised.",
+        "ingredient_refs": [
+          "oil",
+          "steak"
+        ],
+        "clock_minutes": 24,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Char the peppers",
+        "body": "While the steak rests (overlap stated): add 1 tbsp oil, the peppers, sliced onion, and 1/2 tsp salt to the skillet and cook, tossing, until charred at the edges and crisp-tender, about 6 minutes.",
+        "ingredient_refs": [
+          "oil",
+          "bell-peppers",
+          "onion",
+          "salt"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "overlap"
+      },
+      {
+        "step_number": 4,
+        "title": "Warm the tortillas",
+        "body": "Warm each tortilla in the skillet over medium, about 20 seconds per side, and wrap in the kitchen towel.",
+        "ingredient_refs": [
+          "tortillas"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Slice and serve",
+        "body": "Slice the steak thinly across the grain and pile it with the peppers and onions. Serve with tortillas, pico, avocado, and sour cream.",
+        "ingredient_refs": [
+          "steak",
+          "bell-peppers",
+          "onion",
+          "tortillas",
+          "avocado",
+          "sour-cream"
+        ],
+        "clock_minutes": 4,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "steak",
+        "name": "steak",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "skirt steak",
+          "lime juice",
+          "garlic",
+          "cumin",
+          "chili powder",
+          "neutral oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "peppers",
+        "name": "peppers and onions",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "bell peppers",
+          "white onion",
+          "neutral oil",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "pico",
+        "name": "pico de gallo",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "tomatoes",
+          "white onion",
+          "jalapeno",
+          "cilantro",
+          "lime juice",
+          "salt"
+        ]
+      },
+      {
+        "component_id": "serve",
+        "name": "tortillas and toppings",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "flour tortillas",
+          "avocado",
+          "sour cream"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch cast-iron skillet",
+      "medium bowl",
+      "small bowl",
+      "cutting board",
+      "instant-read thermometer",
+      "clean kitchen towel"
+    ],
+    "methods": [
+      "sear",
+      "saute",
+      "toast"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 20,
+    "cook_time_minutes": 30,
+    "total_time_minutes": 50,
+    "prep_minutes": 20,
+    "cook_minutes": 34,
+    "total_minutes": 54,
+    "time_clock": "Prep 20 + cook 34 = 54 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. ",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        4,
+        5
+      ],
+      "overlap_steps": [
+        3
+      ],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "12-inch cast-iron skillet over high.",
+    "doneness": "Steak deeply browned outside and 145 F in the center, then a 5-minute rest (USDA whole-muscle beef); peppers charred at the edges but still crisp-tender. Optional traditional preparation: medium-rare, 130 F to 135 F. That lower temperature does not meet the USDA/FDA recommendation and carries higher risk, especially for young children, pregnant people, older adults, and anyone immunocompromised.",
+    "effort_level": "moderate",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Grok Bot (Curator, creator role), wave-17",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "moderate",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": true,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Not HH001: beef is meat; sour cream is dairy."
+    },
+    "dietary_labels": [],
+    "dietary_label_note": "No dietary labels: meat and dairy. The flour tortilla label lists wheat flour, water, vegetable shortening, baking powder, and salt, with no lard; the chili powder label lists chile, cumin, oregano, garlic, and salt.",
+    "allergens": [
+      "meat",
+      "wheat",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Meat from the steak.",
+      "Wheat from the flour tortillas.",
+      "Milk from the sour cream.",
+      "No egg, soy, sesame, fish, shellfish, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Not HH001: beef is meat; sour cream is dairy.",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "smoky",
+      "savory",
+      "tacos",
+      "fresh",
+      "mexican"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'tex-mex' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "food_safety_note": "Cook the steak to 145 F and rest 5 minutes, the USDA whole-cut minimum. A smoking-hot skillet: turn on the vent fan.",
+    "culinary_hash_basis": "S-08 removed the v1 culinary hash because the doneness instruction changed. catalog-import.js computes the import content hash.",
+    "supersedes_recipe_version_id": "rv_tex-mex-steak-fajitas_v1"
+  },
+  "image": {
+    "image_id": "img_tex-mex-steak-fajitas_v1",
+    "dish_id": "tex-mex-steak-fajitas",
+    "recipe_version_id": "rv_tex-mex-steak-fajitas_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "tex-mex-steak-fajitas.webp",
+    "card_ref": "tex-mex-steak-fajitas-640.webp",
+    "master_filename": "tex-mex-steak-fajitas.webp",
+    "card_filename": "tex-mex-steak-fajitas-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "tex-mex-steak-fajitas.webp",
+        "spec_catalog_path": "/images/meals/tex-mex-steak-fajitas.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "tex-mex-steak-fajitas-640.webp",
+        "spec_catalog_path": "/images/meals/tex-mex-steak-fajitas-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generate_image_attachment_hash": "c6771f2349c0420f55735dd09241d37a40898954e166d74b01e011567df7735e",
+      "generate_image_attachment_hash_note": "From notes/image-gen-map.txt; equals the sha256 of the active source file."
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at author-r2. asset_generated is true.",
+    "package_revision": "author-r2",
+    "rejected_dir": "rejected/",
+    "regeneration_count": 0,
+    "file_hashes": {
+      "source_jpeg_sha256": "c6771f2349c0420f55735dd09241d37a40898954e166d74b01e011567df7735e",
+      "master_sha256": "c31d2d0dccbccbc2610946fe78362122064004164623f94e2dec4f0f768e267d",
+      "card_sha256": "eb3a6cd14d3a26475f949d4a6f78b6547647b70e135dae970e2bbd59acfdbf92"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "c6771f2349c0420f55735dd09241d37a40898954e166d74b01e011567df7735e",
+      "tex-mex-steak-fajitas.webp": "c31d2d0dccbccbc2610946fe78362122064004164623f94e2dec4f0f768e267d",
+      "tex-mex-steak-fajitas-640.webp": "eb3a6cd14d3a26475f949d4a6f78b6547647b70e135dae970e2bbd59acfdbf92"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 20 + cook 30 = 50 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. "
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "tex-mex-steak-fajitas.webp 1200x900 and tex-mex-steak-fajitas-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at author-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "1": "A quarter of everything; sear one piece in a 10-inch cast-iron skillet; 2 tortillas.",
+    "2": "Half of everything in one batch in the 12-inch skillet; 4 tortillas.",
+    "4": "As written (2 batches of steak, 8 tortillas).",
+    "base_servings": 4,
+    "do_not_scale": [
+      "sear in batches; never crowd the skillet"
+    ]
+  },
+  "coverage_contribution": "Steak in the catalog is chimichurri, au poivre, gochujang flank, lomo saltado, and cheesesteaks; there is no fajita night. A build-your-own beef dinner.",
+  "near_duplicate_review": "Compared with peruvian-lomo-saltado: lime-cumin skirt steak with peppers in flour tortillas, not a soy-vinegar stir-fry with fries and rice. Compared with philly-cheesesteaks: sliced seared steak with pico and avocado in tortillas, not chopped steak and cheese in rolls. Compared with gochujang-grilled-flank-steak: a Tex-Mex lime and chili marinade, not a Korean chile paste glaze.",
+  "not_duplicate_of": "Not carne asada tacos (flour tortillas, peppers and onions) and not a steak burrito.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "E",
+  "evidence": {
+    "doneness_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "The primary instruction is the USDA/FDA safe minimum. Where the dish is traditionally served less done, that doneness is a labeled optional note and is not the instruction. This is not a kitchen test and not a household rating."
+  },
+  "kitchen_tested": false
+}

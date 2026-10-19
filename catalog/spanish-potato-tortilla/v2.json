@@ -1,0 +1,406 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-13. Image pass complete. Not certified. Not published. Not imported.",
+  "batch_id": "wave-13-2026-10-11",
+  "batch_label": "wave-13",
+  "mode": "author_batch",
+  "package_revision": "s08-culinary",
+  "authored_on": "2026-10-11",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Author (catalog factory cloud agent)",
+  "authored_by": "Cursor cloud agent, author role, wave-13",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "spanish-potato-tortilla",
+    "slug": "spanish-potato-tortilla",
+    "title": "Spanish Potato Tortilla",
+    "description": "Yukon Gold potatoes and onion shallow-fried in olive oil, folded into egg, and set in a skillet. No cheese and no chorizo.",
+    "cuisine": "spanish",
+    "meal_format": "skillet",
+    "primary_ingredient": "potatoes",
+    "vocabulary_tag_ids": [
+      "savory",
+      "tender",
+      "herbaceous"
+    ],
+    "current_recipe_id": "rcp_spanish-potato-tortilla",
+    "current_version_id": "rv_spanish-potato-tortilla_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_spanish-potato-tortilla",
+    "dish_id": "spanish-potato-tortilla",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-11",
+      "curator": "Author (catalog factory cloud agent)",
+      "process": "FlavorWeave Catalog Factory wave-13-2026-10-11",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_spanish-potato-tortilla_v2",
+    "recipe_id": "rcp_spanish-potato-tortilla",
+    "dish_id": "spanish-potato-tortilla",
+    "version_number": 2,
+    "package_revision": "s08-culinary",
+    "immutable": true,
+    "immutability_note": "v2 supersedes v1. Culinary seasoning revision only. kitchen_tested is false. Not a household rating.",
+    "title": "Spanish Potato Tortilla",
+    "description": "Yukon Gold potatoes and onion shallow-fried in olive oil, folded into egg, and set in a skillet. No cheese and no chorizo.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "yukon-gold-potatoes",
+        "name": "Yukon Gold potatoes",
+        "display_name": "Yukon Gold potatoes",
+        "quantity": 2,
+        "unit": "lb",
+        "note": null,
+        "preparation": "sliced into 1/8-inch rounds",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "yellow-onion",
+        "name": "yellow onion",
+        "display_name": "yellow onion",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced thin",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "eggs",
+        "name": "eggs",
+        "display_name": "large eggs",
+        "quantity": 8,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 1.5,
+        "unit": "cup",
+        "note": "enough for a shallow layer in a 10-inch skillet; most is drained off and can be saved; 2 tbsp goes back into the skillet",
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "Diamond Crystal kosher salt",
+        "display_name": "Diamond Crystal kosher salt",
+        "quantity": 11,
+        "unit": "g",
+        "note": "Divided: 8 g on the potatoes and onion while they cook, 3 g in the eggs. 11 g Diamond Crystal kosher salt (4 tsp). The same weight is 2.25 tsp Morton coarse kosher salt or 1.75 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon.",
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.25,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "parsley",
+        "name": "flat-leaf parsley",
+        "display_name": "flat-leaf parsley",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": "chopped",
+        "optional": false,
+        "role": "garnish"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Slice",
+        "body": "Slice the potatoes into thin rounds and the onion thin. About 15 minutes.",
+        "ingredient_refs": [
+          "yukon-gold-potatoes",
+          "yellow-onion"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Shallow-fry the potatoes",
+        "body": "Heat the olive oil in a 10-inch skillet over medium. Add the potatoes and onion, keep them in a shallow layer of oil, and cook, turning gently, until the potatoes are tender but not browned hard, about 18 minutes. Salt them with 8 g of the Diamond Crystal kosher salt as they cook. Taste one potato, which is cooked, before it goes into the eggs, and add a pinch more salt only if it tastes flat. Drain, and reserve the oil.",
+        "ingredient_refs": [
+          "olive-oil",
+          "yukon-gold-potatoes",
+          "yellow-onion",
+          "kosher-salt"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Set and flip",
+        "body": "Beat the eggs with the remaining 3 g Diamond Crystal kosher salt and the pepper. Fold in the potatoes and onion. Return 2 tbsp of the oil to the skillet over medium-low. Pour in the eggs and cook until the edge is set and the top is still moist, about 8 minutes. Invert onto a plate, slide it back, and cook about 4 minutes more, until the center is just firm. Scatter the parsley and cut into wedges.",
+        "ingredient_refs": [
+          "eggs",
+          "kosher-salt",
+          "black-pepper",
+          "yukon-gold-potatoes",
+          "yellow-onion",
+          "olive-oil",
+          "parsley"
+        ]
+      }
+    ],
+    "components": [],
+    "equipment": [
+      "10-inch nonstick skillet",
+      "plate wider than the skillet",
+      "mixing bowl",
+      "slotted spoon",
+      "knife"
+    ],
+    "methods": [
+      "shallow-fry"
+    ],
+    "cooking": {
+      "frying": [
+        "shallow"
+      ],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "metadata",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 15,
+    "cook_time_minutes": 30,
+    "total_time_minutes": 45,
+    "prep_minutes": 15,
+    "cook_minutes": 30,
+    "total_minutes": 45,
+    "time_clock": "Prep 15 is slicing. Cook 30 is 18 minutes to shallow-fry the potatoes and onion, then about 12 minutes to set and flip the eggs. No oven.",
+    "heat": "Medium for the potatoes, then medium-low to set the eggs. No oven.",
+    "doneness": "Potatoes tender, not browned hard. Tortilla set at the edge, the center just firm, not dry. A knife comes out with a moist crumb.",
+    "effort_level": "involved",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Cursor cloud agent, author role, wave-13",
+        "when": "2026-10-11",
+        "from": null,
+        "to": {
+          "effort_level": "involved",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": true,
+      "hh001_reason": "Eggs and potatoes only. No dairy, no meat, no poultry, no fish, no shellfish, and no nuts. Olive oil is the fat."
+    },
+    "dietary_labels": [
+      "dairy_free",
+      "vegetarian"
+    ],
+    "dietary_label_note": "Unconditional dairy_free and vegetarian. Not plant-based, because of the eggs.",
+    "allergens": [
+      "egg"
+    ],
+    "allergen_notes": [
+      "Egg is the eight large eggs. No milk and no wheat."
+    ],
+    "hh001_eligible": true,
+    "hh001_reason": "Eggs and potatoes only. No dairy, no meat, no poultry, no fish, no shellfish, and no nuts. Olive oil is the fat.",
+    "hh001_contract": "No cheese of any kind and no chorizo. Olive oil only, not butter.",
+    "vocabulary_tag_ids": [
+      "savory",
+      "tender",
+      "herbaceous"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "author_r1_image_pass_complete",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js. Warnings about other methods stay out of the title, description, and steps."
+    },
+    "culinary_hash_basis": "S-08 removed the v1 culinary hash because the culinary text changed. catalog-import.js computes the import content hash.",
+    "supersedes_recipe_version_id": "rv_spanish-potato-tortilla_v1"
+  },
+  "image": {
+    "image_id": "img_spanish-potato-tortilla_v1",
+    "dish_id": "spanish-potato-tortilla",
+    "recipe_version_id": "rv_spanish-potato-tortilla_v1",
+    "asset_generated": true,
+    "slot_status": "image_pass_complete",
+    "master_filename": "spanish-potato-tortilla.webp",
+    "card_filename": "spanish-potato-tortilla-640.webp",
+    "master_ref": "spanish-potato-tortilla.webp",
+    "card_ref": "spanish-potato-tortilla-640.webp",
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "spanish-potato-tortilla.webp",
+        "spec_catalog_path": "/images/meals/spanish-potato-tortilla.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "spanish-potato-tortilla-640.webp",
+        "spec_catalog_path": "/images/meals/spanish-potato-tortilla-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "dimensions_note": "Center-crop of the 1280x720 GenerateImage JPEG to 4:3, LANCZOS-resized with export_meal_webps.py.",
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_webp_export",
+      "generator": "Grok Bot GenerateImage",
+      "model": "unknown",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "factory/tools/image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png",
+      "generation_date": "2026-10-11",
+      "generation_window": "2026-10-11 13:08-13:15 CT",
+      "regeneration_count": 0
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "package_revision": "author-r1",
+    "rejected_dir": "rejected/",
+    "active_source_jpeg": "img_v1.jpg",
+    "provenance_note": "Original AI image generated with Grok Bot GenerateImage from this package's prompt and plating brief. No stock or web imagery.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "file_hashes": {
+      "source_jpeg_sha256": "baaefce6e319cd9a06372b4caa55675c5102295f6c4c15b3a622abab8a1d41a4",
+      "master_sha256": "1627561318312d262f8d41e7db60385feee947d2445dc7ea6d523150aa8a4957",
+      "card_sha256": "2e753c496ae62db92db35e9f539d7c9e8f6c0e6977bdb8e4c2e4073b302e96cb"
+    },
+    "regeneration_count": 0
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "AWAITING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_with_stated_clock",
+      "detail": "Prep 15 is slicing. Cook 30 is 18 minutes to shallow-fry the potatoes and onion, then about 12 minutes to set and flip the eggs. No oven."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "Master and card WebPs present from the image pass."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [\"shallow\"], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"metadata\"}"
+    }
+  ],
+  "scaling_notes": {
+    "1": "One potato, a quarter onion, two eggs, in an 8-inch skillet. The flip is the same move.",
+    "2": "Half, in an 8- or 9-inch skillet.",
+    "4": "As written, 10-inch skillet.",
+    "base_servings": 4,
+    "do_not_scale": [
+      "oil must cover the potatoes while they cook",
+      "do not rush the medium-low set"
+    ]
+  },
+  "coverage_contribution": "Second egg-built dinner after shakshuka, and the first HH001 Spanish meal. Explicit shallow-fry of the potatoes.",
+  "near_duplicate_review": "Shakshuka is eggs in a pepper-tomato sauce. Spanish chorizo rice is meat. This is a potato tortilla with neither.",
+  "recommendation_eligible": false,
+  "structural_qa_state": "author_r1_image_pass_complete",
+  "evidence": {
+    "structurally_validated": "s08-2026-10-18",
+    "culinary_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "Culinary review is a written judgment of the recipe text. It is not a kitchen test and not a household rating. Model confidence is not evidence of cooking."
+  },
+  "kitchen_tested": false,
+  "culinary_revision": {
+    "from": "rv_spanish-potato-tortilla_v1",
+    "to": "rv_spanish-potato-tortilla_v2",
+    "yield": "4 servings",
+    "expected_flavor": "Potatoes and onion cooked in olive oil and salted while they are still in the pan, eggs salted separately.",
+    "dietary": "Egg only. Dairy-free and vegetarian. HH001 booleans unchanged.",
+    "safety": "Eggs are cooked until the center is just firm. No runny-egg instruction.",
+    "shopping": "Salt changes from 1.5 tsp unnamed kosher salt to 11 g Diamond Crystal.",
+    "uncertainties": "Potato thickness changes the fry. Salt is the part that was thin.",
+    "image_impact": "No regen. Same tortilla and parsley."
+  }
+}

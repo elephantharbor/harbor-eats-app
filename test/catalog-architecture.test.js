@@ -3,13 +3,9 @@ import { join } from "node:path";
 import { createHash } from "node:crypto";
 import { DatabaseSync } from "node:sqlite";
 import { describe, expect, it } from "vitest";
-import {
-  normalizeFactoryPackage,
-  normalizeLegacyAuditDraftPackage,
-  normalizeLegacyPackage,
-  planImport,
-} from "../src/lib/catalog-import.js";
-import { LEGACY_AUDIT_DRAFT_CONTRACT, LEGACY_CONTRACT } from "../src/lib/catalog-legacy.js";
+import { normalizeFactoryPackage, planImport } from "../src/lib/catalog-import.js";
+import { LEGACY_CONTRACT } from "../src/lib/catalog-legacy.js";
+import { loadCatalogFromDisk } from "../src/lib/catalog-disk.js";
 import { parityCatalog } from "../src/lib/catalog-parity.js";
 import {
   loadPublishedCatalog,
@@ -58,109 +54,9 @@ function applyMigrations(database) {
   }
 }
 
-function factorySidecar(slug) {
-  const dir = join(root, slug);
-  const names = readdirSync(dir);
-  let freeze_integrity = "not_in_package";
-  let freeze_detail = null;
-  if (names.includes("FREEZE_INTEGRITY.json")) {
-    const freeze = JSON.parse(readFileSync(join(dir, "FREEZE_INTEGRITY.json"), "utf8"));
-    freeze_integrity = freeze.FREEZE_INTEGRITY || "present";
-    freeze_detail = `fail_count=${freeze.fail_count}`;
-  } else if (names.includes("FREEZE.txt")) {
-    const text = readFileSync(join(dir, "FREEZE.txt"), "utf8");
-    freeze_integrity = /awaiting/i.test(text) ? "awaiting_reaudit" : "present";
-    freeze_detail = text.split("\n")[0];
-  }
-  const readme = names.includes("README.md") ? readFileSync(join(dir, "README.md"), "utf8") : "";
-  return {
-    source_path: `catalog/${slug}/v1.json`,
-    freeze_integrity,
-    freeze_detail,
-    readme_declares_not_certified: /not certified/i.test(readme),
-  };
-}
-
-function legacySidecar(slug, fileName) {
-  const dir = join(root, slug);
-  const names = readdirSync(dir);
-  let freeze_integrity = "not_in_package";
-  let freeze_detail = null;
-  if (names.includes("FREEZE_INTEGRITY.json")) {
-    const freeze = JSON.parse(readFileSync(join(dir, "FREEZE_INTEGRITY.json"), "utf8"));
-    freeze_integrity = freeze.FREEZE_INTEGRITY || "present";
-    freeze_detail = `fail_count=${freeze.fail_count}`;
-  }
-  let vale_audit = null;
-  if (names.includes("VALE-AUDIT.json")) {
-    vale_audit = JSON.parse(readFileSync(join(dir, "VALE-AUDIT.json"), "utf8"));
-  }
-  return {
-    source_path: `catalog/${slug}/${fileName}`,
-    freeze_integrity,
-    freeze_detail,
-    vale_audit,
-  };
-}
-
 function loadRecords() {
-  const failures = [];
-  const records = [];
-  /** @type {string[]} */
-  const retireVersionIds = [];
   const stagingPolicy = JSON.parse(readFileSync(join(root, "staging-publication.json"), "utf8"));
-  for (const entry of readdirSync(root, { withFileTypes: true }).filter((row) => row.isDirectory())) {
-    const slug = entry.name;
-    const dir = join(root, slug);
-    const names = readdirSync(dir);
-    if (!names.includes("v1.json")) continue;
-    const pkg = JSON.parse(readFileSync(join(dir, "v1.json"), "utf8"));
-    if (pkg.catalog_contract === "flavorweave-catalog-package") {
-      const hasV2 = names.includes("v2.json");
-      const normalized = normalizeFactoryPackage(pkg, factorySidecar(slug), { publicationStatus: hasV2 ? "retired" : "published" });
-      if (!normalized.ok) failures.push({ slug, errors: normalized.errors });
-      else records.push(normalized.record);
-      if (hasV2) {
-        const pkg2 = JSON.parse(readFileSync(join(dir, "v2.json"), "utf8"));
-        const v2 = normalizeFactoryPackage(pkg2, { ...factorySidecar(slug), source_path: `catalog/${slug}/v2.json` }, { publicationStatus: "published" });
-        if (!v2.ok) failures.push({ slug, file: "v2.json", errors: v2.errors });
-        else {
-          records.push(v2.record);
-          retireVersionIds.push(normalized.record.recipe_version_id);
-        }
-      }
-      continue;
-    }
-    if (pkg.catalog_contract !== LEGACY_CONTRACT) continue;
-    const retireV1 = names.includes("v2.json") && stagingPolicy.legacy_v1_retire_on_v2_import;
-    const v1 = normalizeLegacyPackage(
-      pkg,
-      legacySidecar(slug, "v1.json"),
-      retireV1 ? { publicationStatus: "retired" } : {}
-    );
-    if (!v1.ok) failures.push({ slug, file: "v1.json", errors: v1.errors });
-    else records.push(v1.record);
-    if (!names.includes("v2.json")) continue;
-    const pkg2 = JSON.parse(readFileSync(join(dir, "v2.json"), "utf8"));
-    const v2Policy = {
-      publicationStatus: stagingPolicy.legacy_v2_publication_status || "published",
-      relaxTimeMismatch: true,
-    };
-    const v2 =
-      pkg2.catalog_contract === LEGACY_AUDIT_DRAFT_CONTRACT
-        ? normalizeLegacyAuditDraftPackage(pkg2, legacySidecar(slug, "v2.json"), v2Policy)
-        : pkg2.catalog_contract === LEGACY_CONTRACT
-          ? normalizeLegacyPackage(pkg2, legacySidecar(slug, "v2.json"), v2Policy)
-          : { ok: false, errors: [{ code: "unknown_contract", detail: pkg2.catalog_contract }] };
-    if (!v2.ok) failures.push({ slug, file: "v2.json", errors: v2.errors });
-    else {
-      records.push(v2.record);
-      if (stagingPolicy.legacy_v1_retire_on_v2_import) {
-        retireVersionIds.push(v2.record.supersedes_version_id || `rv_${slug}_v1`);
-      }
-    }
-  }
-  return { failures, records, retireVersionIds };
+  return loadCatalogFromDisk(root, stagingPolicy);
 }
 
 async function importOnce(database, records, retireVersionIds = []) {
@@ -202,13 +98,14 @@ describe("catalog import", () => {
         expect(createHash("sha256").update(left).digest("hex")).toBe(createHash("sha256").update(right).digest("hex"));
       }
     }
-    expect(records).toHaveLength(275);
+    expect(records).toHaveLength(305);
     expect(records.filter((record) => record.version_number === 1 && record.source_contract === LEGACY_CONTRACT)).toHaveLength(
       24
     );
-    expect(records.filter((record) => record.version_number === 2)).toHaveLength(25);
-    expect(records.filter((record) => record.provenance.factory_certified === 1)).toHaveLength(227);
-    expect(records.filter((record) => record.provenance.certification_class === "legacy_structural")).toHaveLength(48);
+    expect(records.filter((record) => record.version_number === 2)).toHaveLength(40);
+    expect(records.filter((record) => record.version_number === 3)).toHaveLength(15);
+    expect(records.filter((record) => record.provenance.factory_certified === 1)).toHaveLength(242);
+    expect(records.filter((record) => record.provenance.certification_class === "legacy_structural")).toHaveLength(63);
     const swordfish = records.find((record) => record.slug === "grilled-swordfish-olive-caper");
     expect(swordfish.provenance.kitchen_tested).toBe(0);
     expect(swordfish.provenance.household_cook_count).toBe(0);
@@ -248,11 +145,34 @@ describe("catalog import", () => {
     expect(loaded.count).toBe(250);
     const again = await importOnce(database, records, retireVersionIds);
     expect(again.ok).toBe(true);
-    expect(again.unchanged).toHaveLength(275);
+    expect(again.unchanged).toHaveLength(305);
     const reloaded = await loadPublishedCatalog(shim);
     expect(reloaded.ok, reloaded.error || reloaded.detail).toBe(true);
     expect(reloaded.count).toBe(250);
-    expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_version").get().c).toBe(275);
+    expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_version").get().c).toBe(305);
+    const salmon = database
+      .prepare(
+        `SELECT recipe_version_id, publication_status, version_number FROM catalog_version WHERE dish_id = 'maple-mustard-glazed-salmon' ORDER BY version_number`
+      )
+      .all();
+    expect(salmon).toEqual([
+      { recipe_version_id: "rv_maple-mustard-glazed-salmon_v1", publication_status: "retired", version_number: 1 },
+      { recipe_version_id: "rv_maple-mustard-glazed-salmon_v2", publication_status: "retired", version_number: 2 },
+      { recipe_version_id: "rv_maple-mustard-glazed-salmon_v3", publication_status: "published", version_number: 3 },
+    ]);
+    expect(
+      database.prepare(`SELECT current_version_id FROM catalog_dish WHERE dish_id = 'maple-mustard-glazed-salmon'`).get()
+        .current_version_id
+    ).toBe("rv_maple-mustard-glazed-salmon_v3");
+    const steak = database
+      .prepare(
+        `SELECT recipe_version_id, publication_status FROM catalog_version WHERE dish_id = 'steak-au-poivre-smashed-potatoes' ORDER BY version_number`
+      )
+      .all();
+    expect(steak).toEqual([
+      { recipe_version_id: "rv_steak-au-poivre-smashed-potatoes_v1", publication_status: "retired" },
+      { recipe_version_id: "rv_steak-au-poivre-smashed-potatoes_v2", publication_status: "published" },
+    ]);
     expect(database.prepare("SELECT COUNT(*) AS c FROM catalog_ingredient").get().c).toBe(
       records.reduce((sum, record) => sum + record.ingredients.length, 0)
     );
@@ -276,6 +196,7 @@ describe("catalog import", () => {
     expect(database.prepare(`SELECT COUNT(*) AS c FROM catalog_ingredient WHERE recipe_version_id = 'rv_korean-soft-tofu-stew_v1'`).get().c).toBeGreaterThan(0);
     const allergens = (id) => database.prepare("SELECT allergen FROM catalog_allergen WHERE recipe_version_id = ?").all(id).map((r) => r.allergen);
     expect(allergens("rv_gochujang-grilled-flank-steak_v1")).toContain("wheat");
+    expect(allergens("rv_gochujang-grilled-flank-steak_v2")).toContain("wheat");
     expect(allergens("rv_sabich-pita-sandwiches_v1")).toContain("sesame");
     const chickenLabels = database.prepare("SELECT label FROM catalog_dietary_label WHERE recipe_version_id = 'rv_crispy-skillet-chicken-sandwiches_v1'").all().map((r) => r.label);
     expect(chickenLabels).not.toContain("dairy_free");
@@ -354,7 +275,7 @@ describe("catalog import", () => {
       }
     );
     expect(created.ok, JSON.stringify(created)).toBe(true);
-    expect(created.plan.meals[0].recipe_version_id).toBe("rv_grilled-swordfish-olive-caper_v1");
+    expect(created.plan.meals[0].recipe_version_id).toBe("rv_grilled-swordfish-olive-caper_v2");
     expect(created.plan.meals[0].pinned_ingredients[0].name).toBe(swordfish.pkg.ingredients[0].name);
     expect(created.plan.shop_lines.some((line) => line.ingredient_id === "swordfish-steak")).toBe(true);
     const mutated = {

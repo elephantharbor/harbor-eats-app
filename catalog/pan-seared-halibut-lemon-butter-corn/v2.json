@@ -1,0 +1,551 @@
+{
+  "catalog_contract": "flavorweave-catalog-package",
+  "catalog_contract_note": "Author package for wave-14, frozen at freeze-r2 with an original Grok Bot image (master and card WebPs present). Revised after audit r1. Not certified. Not published. Not imported.",
+  "batch_id": "wave-14-2026-10-15",
+  "batch_label": "wave-14",
+  "mode": "author_batch",
+  "package_revision": "s08-doneness",
+  "authored_on": "2026-10-15",
+  "authored_timezone": "America/Chicago",
+  "curator_role": "Curator (creator role, Juniper)",
+  "authored_by": "Juniper (Curator role) via Grok Bot, wave-14",
+  "auditor": null,
+  "certification": null,
+  "dish": {
+    "dish_id": "pan-seared-halibut-lemon-butter-corn",
+    "slug": "pan-seared-halibut-lemon-butter-corn",
+    "title": "Pan-Seared Halibut with Lemon Butter and Sweet Corn Saute",
+    "description": "A 25-minute summer plate: thick halibut fillets seared golden and basted in garlicky lemon butter, served over a quick saute of sweet corn, cherry tomatoes, and scallions with torn basil.",
+    "cuisine": "american",
+    "meal_format": "plate",
+    "primary_ingredient": "halibut",
+    "vocabulary_tag_ids": [
+      "fresh",
+      "citrusy",
+      "savory",
+      "tender",
+      "american"
+    ],
+    "current_recipe_id": "rcp_pan-seared-halibut-lemon-butter-corn",
+    "current_version_id": "rv_pan-seared-halibut-lemon-butter-corn_v2"
+  },
+  "recipe": {
+    "recipe_id": "rcp_pan-seared-halibut-lemon-butter-corn",
+    "dish_id": "pan-seared-halibut-lemon-butter-corn",
+    "visibility": "global",
+    "household_id": null,
+    "provenance": {
+      "source_class": "original_ai_assisted",
+      "created_on": "2026-10-15",
+      "curator": "Juniper, Curator (creator role), Grok Bot",
+      "process": "FlavorWeave Catalog Factory wave-14-2026-10-15",
+      "copied_from_third_party": false
+    }
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_pan-seared-halibut-lemon-butter-corn_v2",
+    "recipe_id": "rcp_pan-seared-halibut-lemon-butter-corn",
+    "dish_id": "pan-seared-halibut-lemon-butter-corn",
+    "version_number": 2,
+    "package_revision": "s08-doneness",
+    "immutable": true,
+    "immutability_note": "v2 supersedes v1. Doneness instruction only. kitchen_tested is false. Not a household rating.",
+    "title": "Pan-Seared Halibut with Lemon Butter and Sweet Corn Saute",
+    "description": "A 25-minute summer plate: thick halibut fillets seared golden and basted in garlicky lemon butter, served over a quick saute of sweet corn, cherry tomatoes, and scallions with torn basil.",
+    "base_servings": 4,
+    "ingredients": [
+      {
+        "ingredient_id": "halibut",
+        "name": "halibut fillets",
+        "display_name": "6-oz skinless halibut fillets, about 1 inch thick",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "butter",
+        "name": "unsalted butter",
+        "display_name": "unsalted butter",
+        "quantity": 3,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "garlic",
+        "name": "garlic",
+        "display_name": "garlic",
+        "quantity": 3,
+        "unit": "clove",
+        "note": null,
+        "preparation": "smashed",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "lemon",
+        "name": "lemon",
+        "display_name": "lemon",
+        "quantity": 1,
+        "unit": "count",
+        "note": null,
+        "preparation": "half juiced, half cut into wedges",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "corn",
+        "name": "corn kernels",
+        "display_name": "corn kernels (from 4 ears or frozen, thawed)",
+        "quantity": 3,
+        "unit": "cup",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "cherry-tomatoes",
+        "name": "cherry tomatoes",
+        "display_name": "cherry tomatoes",
+        "quantity": 1,
+        "unit": "pint",
+        "note": null,
+        "preparation": "halved",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "scallions",
+        "name": "scallions",
+        "display_name": "scallions",
+        "quantity": 4,
+        "unit": "count",
+        "note": null,
+        "preparation": "sliced",
+        "optional": false,
+        "role": "main"
+      },
+      {
+        "ingredient_id": "basil",
+        "name": "fresh basil",
+        "display_name": "fresh basil",
+        "quantity": 0.25,
+        "unit": "cup",
+        "note": null,
+        "preparation": "torn",
+        "optional": false,
+        "role": "garnish"
+      },
+      {
+        "ingredient_id": "neutral-oil",
+        "name": "neutral oil",
+        "display_name": "neutral oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "olive-oil",
+        "name": "olive oil",
+        "display_name": "olive oil",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "fat"
+      },
+      {
+        "ingredient_id": "kosher-salt",
+        "name": "kosher salt",
+        "display_name": "kosher salt",
+        "quantity": 1.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      },
+      {
+        "ingredient_id": "black-pepper",
+        "name": "black pepper",
+        "display_name": "black pepper",
+        "quantity": 0.5,
+        "unit": "tsp",
+        "note": null,
+        "preparation": null,
+        "optional": false,
+        "role": "seasoning"
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Prep",
+        "body": "Pat the halibut very dry and season with 1 tsp salt and the pepper. Halve the tomatoes, slice the scallions, smash the garlic, and juice half the lemon.",
+        "ingredient_refs": [
+          "halibut",
+          "kosher-salt",
+          "black-pepper",
+          "cherry-tomatoes",
+          "scallions",
+          "garlic",
+          "lemon"
+        ],
+        "clock_minutes": 8,
+        "clock_phase": "prep"
+      },
+      {
+        "step_number": 2,
+        "title": "Saute the corn",
+        "body": "Heat the olive oil in the 10-inch skillet over medium-high. Cook the corn and scallions until lightly browned, 4 minutes, add the tomatoes and 1/2 tsp salt for 2 minutes, and move off the heat.",
+        "ingredient_refs": [
+          "olive-oil",
+          "corn",
+          "scallions",
+          "cherry-tomatoes",
+          "kosher-salt"
+        ],
+        "clock_minutes": 6,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 3,
+        "title": "Sear the halibut",
+        "body": "Heat the neutral oil in the 12-inch skillet over medium-high until shimmering. Sear the fillets without moving until golden, 4 minutes, then flip.",
+        "ingredient_refs": [
+          "neutral-oil",
+          "halibut"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 4,
+        "title": "Baste with lemon butter",
+        "body": "Lower to medium, add the butter and garlic, and spoon the foaming butter over the fish until opaque at the center and 145 F, 4 minutes. Add the lemon juice. Optional traditional preparation: just opaque at 130 F to 135 F after about 3 minutes. That lower temperature does not meet the USDA/FDA recommendation and carries higher risk, especially for young children, pregnant people, older adults, and anyone immunocompromised.",
+        "ingredient_refs": [
+          "butter",
+          "garlic",
+          "halibut",
+          "lemon"
+        ],
+        "clock_minutes": 5,
+        "clock_phase": "cook"
+      },
+      {
+        "step_number": 5,
+        "title": "Serve",
+        "body": "Spoon the corn onto plates, top with the halibut and pan butter, and scatter with basil. Serve with lemon wedges.",
+        "ingredient_refs": [
+          "corn",
+          "halibut",
+          "basil",
+          "lemon"
+        ],
+        "clock_minutes": 2,
+        "clock_phase": "cook"
+      }
+    ],
+    "components": [
+      {
+        "component_id": "fish",
+        "name": "halibut with lemon butter",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "halibut",
+          "oil",
+          "butter",
+          "garlic",
+          "lemon",
+          "salt",
+          "pepper"
+        ]
+      },
+      {
+        "component_id": "corn",
+        "name": "corn saute",
+        "made_in_recipe": true,
+        "store_bought": false,
+        "ingredients": [
+          "corn",
+          "cherry tomatoes",
+          "scallions",
+          "basil",
+          "olive oil",
+          "salt"
+        ]
+      }
+    ],
+    "equipment": [
+      "12-inch skillet",
+      "10-inch skillet",
+      "fish spatula",
+      "instant-read thermometer"
+    ],
+    "methods": [
+      "sear",
+      "saute"
+    ],
+    "cooking": {
+      "frying": [],
+      "crispy_non_fry": [],
+      "stir_fry": false,
+      "source": "none",
+      "intent": "The stored lists, crisp tokens, stir flag, and source are the deriveCookingMethod result for this title, description, methods, and steps."
+    },
+    "prep_time_minutes": 8,
+    "cook_time_minutes": 17,
+    "total_time_minutes": 25,
+    "prep_minutes": 8,
+    "cook_minutes": 18,
+    "total_minutes": 26,
+    "time_clock": "Prep 8 + cook 18 = 26 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Sequential steps. Total under 30 minutes.",
+    "time_reconstruction": {
+      "prep_steps": [
+        1
+      ],
+      "cook_steps": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "overlap_steps": [],
+      "rule": "prep_minutes = sum(clock_minutes of prep steps); cook_minutes = sum(clock_minutes of cook steps); overlap steps are timed inside the step they name.",
+      "gate_e_heat_source": "No oven, broiler, or grill in this recipe.",
+      "gate_b_water": "No water in this recipe."
+    },
+    "heat": "Medium-high for the corn; medium-high to sear the fish, then medium to baste.",
+    "doneness": "Halibut golden on one side, opaque, and 145 F in the center (FDA finfish). Corn bright and lightly browned. Optional traditional preparation: just opaque at 130 F to 135 F. That lower temperature does not meet the USDA/FDA recommendation and carries higher risk, especially for young children, pregnant people, older adults, and anyone immunocompromised.",
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "classification_history": [
+      {
+        "version_number": 1,
+        "who": "Juniper (Curator role) via Grok Bot, wave-14",
+        "when": "2026-10-15",
+        "from": null,
+        "to": {
+          "effort_level": "easy",
+          "ingredient_complexity": "simple"
+        },
+        "reason": "Initial D-03 assignment before any audit. Factor scores are in d03-classification.json."
+      }
+    ],
+    "classification_sidecar": "d03-classification.json",
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": true,
+      "contains_shellfish": false,
+      "contains_dairy": true,
+      "plant_based_compatible": false,
+      "vegetarian_compatible": false,
+      "nut_policy": "none",
+      "nut_policy_note": "No peanuts, tree nuts, or cashews.",
+      "hh001_eligible": false,
+      "hh001_reason": "Contains butter (dairy)."
+    },
+    "dietary_labels": [
+      "fish"
+    ],
+    "dietary_label_note": "Fish label: halibut is the protein, no meat or poultry. Not dairy_free.",
+    "allergens": [
+      "finfish",
+      "milk"
+    ],
+    "allergen_notes": [
+      "Finfish from the halibut.",
+      "Milk from the butter.",
+      "No egg, soy, wheat, sesame, shellfish, meat, or nuts."
+    ],
+    "hh001_eligible": false,
+    "hh001_reason": "Contains butter (dairy).",
+    "hh001_contract": null,
+    "vocabulary_tag_ids": [
+      "fresh",
+      "citrusy",
+      "savory",
+      "tender",
+      "american"
+    ],
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+    "culinary_audit_state": "not_audited",
+    "kitchen_tested": false,
+    "validation_kind": "author_structural_preflight_only",
+    "provenance": "original_ai_assisted",
+    "visibility": "global",
+    "household_id": null,
+    "data_origin": "synthetic",
+    "rights_state": "not_cleared_for_external_release",
+    "runtime_enum_gaps": {
+      "provenance": "Factory value is original_ai_assisted. The importer maps it to ai_assisted. Keep the factory token on the package.",
+      "publication_state": "Draft. Not published.",
+      "allergens": "Factory tokens. tree_nut plus cashew with nut_policy cashews_only_ok imports as cashew. Other tree_nut imports as nuts.",
+      "dietary_labels": "plant_based imports as plant. fish is a factory label for finfish meals.",
+      "classification": "effort_level and ingredient_complexity only. No legacy effort or complexity string.",
+      "cooking": "methods and the cooking object match deriveCookingMethod in src/weave/semantics.js.",
+      "cuisine": "dish.cuisine 'american' is a factory label; the D-02 vocabulary has no term for it unless listed in vocabulary_tag_ids."
+    },
+    "culinary_hash_basis": "S-08 removed the v1 culinary hash because the doneness instruction changed. catalog-import.js computes the import content hash.",
+    "supersedes_recipe_version_id": "rv_pan-seared-halibut-lemon-butter-corn_v1"
+  },
+  "image": {
+    "image_id": "img_pan-seared-halibut-lemon-butter-corn_v1",
+    "dish_id": "pan-seared-halibut-lemon-butter-corn",
+    "recipe_version_id": "rv_pan-seared-halibut-lemon-butter-corn_v1",
+    "asset_generated": true,
+    "slot_status": "frozen_for_audit",
+    "master_ref": "pan-seared-halibut-lemon-butter-corn.webp",
+    "card_ref": "pan-seared-halibut-lemon-butter-corn-640.webp",
+    "master_filename": "pan-seared-halibut-lemon-butter-corn.webp",
+    "card_filename": "pan-seared-halibut-lemon-butter-corn-640.webp",
+    "active_source_jpeg": "img_v1.jpg",
+    "dimensions_target": {
+      "width": 1200,
+      "height": 900,
+      "aspect": "4:3"
+    },
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "derivatives": [
+      {
+        "role": "master",
+        "format": "webp",
+        "width": 1200,
+        "height": 900,
+        "aspect": "4:3",
+        "path": "pan-seared-halibut-lemon-butter-corn.webp",
+        "spec_catalog_path": "/images/meals/pan-seared-halibut-lemon-butter-corn.webp",
+        "status": "frozen_for_audit"
+      },
+      {
+        "role": "thumb",
+        "format": "webp",
+        "width": 640,
+        "height": 480,
+        "aspect": "4:3",
+        "path": "pan-seared-halibut-lemon-butter-corn-640.webp",
+        "spec_catalog_path": "/images/meals/pan-seared-halibut-lemon-butter-corn-640.webp",
+        "status": "frozen_for_audit"
+      }
+    ],
+    "dimensions_basis": "Center-crop the 1280x720 GenerateImage source (img_v1.jpg) to 4:3 (960x720), then LANCZOS-resize to the 1200x900 master and 640x480 card WebPs with export_meal_webps.py.",
+    "source_dimensions": {
+      "width": 1280,
+      "height": 720
+    },
+    "generation": {
+      "method": "grok_bot_GenerateImage_then_format_size_conversion",
+      "method_detail": "Source 1280x720 (16:9) from Grok Bot GenerateImage, prompted from image-prompt.md and image-plating-brief.md; center-cropped to 4:3 (960x720), then LANCZOS-upscaled 1.25x to the 1200x900 master WebP and downscaled 0.67x to the 640x480 card WebP with export_meal_webps.py. House-quality reference used for light and finish only.",
+      "generator": "Cora via Grok Bot GenerateImage",
+      "model": "unknown",
+      "model_note": "GenerateImage model slug not independently verified from tool metadata.",
+      "prompt_authored_on": "2026-10-15",
+      "generation_date": "2026-10-15",
+      "prompt_file": "image-prompt.md",
+      "plating_brief_file": "image-plating-brief.md",
+      "external_image_api_called": false,
+      "stock_or_web_photo_used": false,
+      "house_quality_reference": "image-standards/house-quality-reference-chipotle-lime-black-bean-bowl.png"
+    },
+    "qa_state": "frozen_for_audit",
+    "recipe_fidelity_state": "awaiting_audit",
+    "rights": "not_cleared_for_external_release",
+    "provenance": "ai_illustration",
+    "provenance_note": "Original AI illustration generated with Grok Bot GenerateImage from this package's recipe and plating brief. Master and card WebPs are present and frozen for audit at freeze-r2. asset_generated is true.",
+    "package_revision": "freeze-r2",
+    "rejected_dir": "rejected/",
+    "file_hashes": {
+      "source_jpeg_sha256": "286d4485742de6880703d8e101318d43d8304bfd632f6137e4b2ba5c7169a535",
+      "master_sha256": "c482ec2ae0e7f6be7187a7c59877b4019345be3b0c4545498dd22574c1560593",
+      "card_sha256": "b4529fd7e268721362174692658823f81eda61dafe13ae125c25f7dd90d50644"
+    },
+    "asset_sha256": {
+      "img_v1.jpg": "286d4485742de6880703d8e101318d43d8304bfd632f6137e4b2ba5c7169a535",
+      "pan-seared-halibut-lemon-butter-corn.webp": "c482ec2ae0e7f6be7187a7c59877b4019345be3b0c4545498dd22574c1560593",
+      "pan-seared-halibut-lemon-butter-corn-640.webp": "b4529fd7e268721362174692658823f81eda61dafe13ae125c25f7dd90d50644"
+    }
+  },
+  "catalog_confidence": {
+    "structural_validation": "SEE_STRUCTURAL_PREFLIGHT_JSON",
+    "culinary_audit": "NOT_RUN",
+    "dietary_audit": "NOT_RUN",
+    "image_fidelity": "PENDING_AUDIT",
+    "provenance": "KNOWN_TEXT_AND_IMAGE",
+    "image_rights_provenance": "KNOWN_NOT_CLEARED_FOR_EXTERNAL",
+    "kitchen_tested": false,
+    "household_cooks": 0,
+    "household_completed_ratings": 0,
+    "image_provenance": "PRESENT_AI"
+  },
+  "curator_preflight": [
+    {
+      "check": "times",
+      "result": "pass_reconstructed_from_steps",
+      "detail": "Prep 8 + cook 17 = 25 minutes. Prep is the sum of prep-phase steps, cook is the sum of cook-phase steps, and overlap steps run inside another step's minutes and add 0. Sequential steps. Total under 30 minutes."
+    },
+    {
+      "check": "gate_e_preheat",
+      "result": "pass",
+      "detail": "No oven, broiler, or grill in this recipe."
+    },
+    {
+      "check": "gate_b_water",
+      "result": "pass",
+      "detail": "No water in this recipe."
+    },
+    {
+      "check": "kitchen_tested",
+      "result": "pass",
+      "detail": "kitchen_tested is false."
+    },
+    {
+      "check": "image",
+      "result": "pass",
+      "detail": "pan-seared-halibut-lemon-butter-corn.webp 1200x900 and pan-seared-halibut-lemon-butter-corn-640.webp 640x480 exported from img_v1.jpg (1280x720); sha256 verified at freeze-r2."
+    },
+    {
+      "check": "cooking",
+      "result": "pass",
+      "detail": "{\"frying\": [], \"crispy_non_fry\": [], \"stir_fry\": false, \"source\": \"none\"}"
+    }
+  ],
+  "scaling_notes": {
+    "1": "One fillet; quarter the corn.",
+    "2": "Half.",
+    "4": "As written.",
+    "base_servings": 4,
+    "do_not_scale": []
+  },
+  "coverage_contribution": "Easy under-30 band. Halibut appears in the catalog only inside brazilian-fish-moqueca; this is the first seared white-fish plate with a vegetable saute. Summery and fresh.",
+  "near_duplicate_review": "Compared with pan-fried-trout-lemon-capers: halibut seared without flour, lemon butter, corn. Compared with deep-fried-cod-roasted-potatoes: seared, not fried. Compared with the grilled mahi-mahi in this wave: seared halibut, corn instead of mango salsa.",
+  "not_duplicate_of": "Not fish meuniere (no flour dredge).",
+  "recommendation_eligible": false,
+  "structural_qa_state": "freeze_r2_preflight_pass_awaiting_vale",
+  "creator_batch": "D",
+  "evidence": {
+    "doneness_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "The primary instruction is the USDA/FDA safe minimum. Where the dish is traditionally served less done, that doneness is a labeled optional note and is not the instruction. This is not a kitchen test and not a household rating."
+  },
+  "kitchen_tested": false
+}

@@ -325,7 +325,7 @@ describe("swap version resolution", () => {
       tastes: [],
     });
     expect(preview.slots.map((slot) => slot.recipe_version_id).sort()).toEqual([
-      "rv_maple-mustard-glazed-salmon_v2",
+      "rv_maple-mustard-glazed-salmon_v3",
       "rv_miso-ginger-salmon_v2",
     ]);
     const ctx = {
@@ -370,6 +370,13 @@ describe("swap version resolution", () => {
     );
     expect(retired.ok).toBe(false);
     expect(retired.error).toBe("unknown_recipe");
+    const retiredSalmon = applyPlanMutation(
+      created.plan,
+      { op: "swap_meal", meal_id: first.meal_id, recipe_version_id: "rv_maple-mustard-glazed-salmon_v2" },
+      ctx
+    );
+    expect(retiredSalmon.ok).toBe(false);
+    expect(retiredSalmon.error).toBe("unknown_recipe");
     database.close();
   });
 });

@@ -1,0 +1,269 @@
+{
+  "catalog_contract": "flavorweave-legacy-audit-draft",
+  "catalog_contract_note": "Draft v2 for Cora. Not an audit. Not a certification. v1.json is the untouched GitHub download.",
+  "draft_for": "Cora",
+  "auditor": null,
+  "certification": null,
+  "not_a_certification": true,
+  "authored_on": "2026-10-04",
+  "authored_timezone": "America/Chicago",
+  "kitchen_tested": false,
+  "provenance": "legacy_unknown",
+  "source_v1": {
+    "repo": "elephantharbor/harbor-eats-app",
+    "ref": "cursor/catalog-architecture-fa5e",
+    "path": "catalog/sesame-soba-noodle-bowl/v1.json",
+    "raw_url": "https://raw.githubusercontent.com/elephantharbor/harbor-eats-app/cursor/catalog-architecture-fa5e/catalog/sesame-soba-noodle-bowl/v1.json",
+    "git_blob_sha": "97a41e9e0722cc68cee727d44ea9cb7550750ade",
+    "sha256": "fd35b3caadbec2d34cd76a43944f7a702422b665eb10e517de9801243a3e35be",
+    "edited": false
+  },
+  "dish": {
+    "dish_id": "sesame-soba-noodle-bowl",
+    "slug": "sesame-soba-noodle-bowl",
+    "title": "Sesame Soba Noodle Bowl",
+    "name": "Sesame Soba Noodle Bowl",
+    "description": "Cold soba with sesame oil, rice vinegar, soy, and a measured salt in the dressing.",
+    "cuisine": "japanese",
+    "meal_format": "bowl",
+    "primary_ingredient": "soba",
+    "chips": [
+      "Plant",
+      "25 min"
+    ],
+    "sparks": [
+      "bright"
+    ],
+    "current_recipe_id": "rcp_sesame-soba-noodle-bowl",
+    "current_version_id": "rv_sesame-soba-noodle-bowl_v3",
+    "live_catalog_still_points_at": "rv_sesame-soba-noodle-bowl_v1"
+  },
+  "recipe": {
+    "recipe_id": "rcp_sesame-soba-noodle-bowl",
+    "dish_id": "sesame-soba-noodle-bowl",
+    "visibility": "draft",
+    "household_id": null,
+    "provenance": "legacy_unknown",
+    "provenance_note": "Legacy menu text of unknown origin. This draft reconciles that text. It does not claim a kitchen test."
+  },
+  "recipe_version": {
+    "recipe_version_id": "rv_sesame-soba-noodle-bowl_v3",
+    "replaces_recipe_version_id": "rv_sesame-soba-noodle-bowl_v2",
+    "version_number": 3,
+    "immutable": false,
+    "draft": true,
+    "title": "Sesame Soba Noodle Bowl",
+    "description": "Cold soba with sesame oil, rice vinegar, soy, and a measured salt in the dressing.",
+    "base_servings": 4,
+    "serving_basis_note": "Quantities are for 4 servings. One- and two-serving floors are not in this draft.",
+    "prep_minutes": 15,
+    "cook_minutes": 10,
+    "total_minutes": 25,
+    "effort_level": "easy",
+    "ingredient_complexity": "simple",
+    "methods": [
+      "stovetop"
+    ],
+    "heat": "Stovetop.",
+    "doneness": "Soba tender, not mushy, rinsed cold. Dressing clinging, not pooled.",
+    "ingredients": [
+      {
+        "name": "soba noodles",
+        "quantity": 12,
+        "unit": "oz",
+        "note": "Wheat-and-buckwheat soba, not egg soba.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "sesame oil",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "rice vinegar",
+        "quantity": 2,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "soy sauce",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": "Regular soy sauce. Wheat and soy.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "carrot",
+        "quantity": 1,
+        "unit": "count",
+        "note": "Julienned.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "edamame",
+        "quantity": 1,
+        "unit": "cup",
+        "note": "Shelled. Thawed if frozen.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "sesame seeds",
+        "quantity": 1,
+        "unit": "tbsp",
+        "note": null,
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "Diamond Crystal kosher salt",
+        "quantity": 2,
+        "unit": "g",
+        "note": "In the dressing, with the soy sauce. The boil is unsalted on purpose. 2 g Diamond Crystal kosher salt (0.75 tsp). The same weight is 0.5 tsp Morton coarse kosher salt or 0.25 tsp table salt. UC ANR publication 390575 (November 2023): Diamond Crystal kosher salt 2.8 g per teaspoon, Morton coarse kosher salt 4.8 g per teaspoon, table salt 6 g per teaspoon.",
+        "preparation": null,
+        "role": null
+      },
+      {
+        "name": "water",
+        "quantity": 3,
+        "unit": "qt",
+        "note": "Unsalted boil. The dressing seasons the noodles.",
+        "preparation": null,
+        "role": null
+      }
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "title": "Cook the noodles",
+        "body": "Boil the soba noodles in the unsalted water for 4 to 5 minutes, until tender. The water is unsalted because the soy dressing seasons the noodles, which is how this cold bowl is built, not a 1% pasta pot. Drain and rinse under cold water.",
+        "ingredient_refs": [
+          "soba noodles",
+          "water"
+        ]
+      },
+      {
+        "step_number": 2,
+        "title": "Dress",
+        "body": "Toss the cooled noodles with the sesame oil, rice vinegar, soy sauce, Diamond Crystal kosher salt, and the carrot. Taste a noodle and add a pinch more salt only if the soy still tastes thin.",
+        "ingredient_refs": [
+          "sesame oil",
+          "rice vinegar",
+          "soy sauce",
+          "Diamond Crystal kosher salt",
+          "carrot",
+          "soba noodles"
+        ]
+      },
+      {
+        "step_number": 3,
+        "title": "Top",
+        "body": "Top with the edamame and the sesame seeds.",
+        "ingredient_refs": [
+          "edamame",
+          "sesame seeds"
+        ]
+      }
+    ],
+    "equipment": [
+      "saucepan",
+      "colander"
+    ],
+    "dietary_labels": [
+      "dairy_free",
+      "plant"
+    ],
+    "dietary_label_note": "Plant and dairy-free for wheat-and-buckwheat soba with no egg. Egg soba would void plant and add egg. Not gluten-free. The legacy dietary tag bowl is a format, not a diet.",
+    "allergens": [
+      "wheat",
+      "soy",
+      "sesame"
+    ],
+    "allergen_notes": [
+      "Wheat from ordinary soba and from soy sauce. Soy from soy sauce and edamame. Sesame from sesame oil and sesame seeds.",
+      "No egg, milk, peanut, tree_nut, shellfish, or finfish when the soba is the egg-free kind named above.",
+      "v1 allergens were an empty array."
+    ],
+    "dietary_eligibility": {
+      "contains_meat": false,
+      "contains_poultry": false,
+      "contains_finfish": false,
+      "contains_shellfish": false,
+      "contains_dairy": false,
+      "plant_based_compatible": true,
+      "vegetarian_compatible": true,
+      "nut_policy": "none",
+      "nut_policy_note": "Sesame is not a nut. No peanut.",
+      "hh001_eligible": true,
+      "hh001_reason": "Plant ingredients. Wheat is allowed for HH001. No dairy, meat, poultry, finfish, shellfish, or nuts. Not kitchen-tested."
+    },
+    "vocabulary_tag_ids": [
+      "japanese",
+      "bowls",
+      "soba"
+    ],
+    "kitchen_tested": false,
+    "provenance": "legacy_unknown",
+    "publication_state": "Draft",
+    "publication_status": "draft",
+    "changes_from_v1": [
+      "Sesame seeds are in the last step and in the title, and they were not an ingredient. v2 lists 1 tbsp, a drafter amount, untoasted.",
+      "Cook clock was 25 minutes inside a 40-minute total, and the chip said 25. A 25-minute boil would ruin soba. v2 boils 4 to 5 minutes. Prep 15 plus cook 10 equals 25.",
+      "Allergens were empty. Content has wheat, soy, and sesame.",
+      "vocabulary citrusy was dropped. There is no citrus. Rice vinegar is not citrus. No lime was added.",
+      "Doneness was null. v2 states tender but not mushy, then rinsed cold."
+    ],
+    "v1_v2_record": [
+      "Title, Japanese cuisine, bowl format, 12 oz soba, 1 cup shelled edamame, 1 julienned carrot, 2 tbsp sesame oil, 2 tbsp rice vinegar, 1 tbsp soy sauce, stovetop boil, cold rinse, and the toss-and-top order."
+    ],
+    "revision_note": "S-08 v3 revises seasoning and technique. v1.json and v2.json bytes are unchanged. v1_v2_record is what the v2 draft said had not changed from v1. It does not describe v3."
+  },
+  "image": {
+    "asset_generated": true,
+    "master_ref": "sesame-soba-noodle-bowl.webp",
+    "card_ref": "sesame-soba-noodle-bowl-640.webp",
+    "master_filename": "sesame-soba-noodle-bowl.webp",
+    "card_filename": "sesame-soba-noodle-bowl-640.webp",
+    "dimensions": {
+      "master_width": 1200,
+      "master_height": 900,
+      "card_width": 640,
+      "card_height": 480
+    },
+    "generation": {
+      "method": "original_ai_generation",
+      "generator": "Grok Imagine via Harbor Eats Grok Bot",
+      "model": "unknown",
+      "generation_date": "2026-10-04"
+    },
+    "provenance": "ai_illustration",
+    "qa_state": "awaiting_audit"
+  },
+  "package_revision": "s08-culinary",
+  "evidence": {
+    "structurally_validated": "s08-2026-10-18",
+    "culinary_reviewed": "s08-2026-10-18",
+    "kitchen_tested": false,
+    "household_rated": false,
+    "note": "Culinary review is a written judgment of the recipe text. It is not a kitchen test and not a household rating. Model confidence is not evidence of cooking."
+  },
+  "culinary_revision": {
+    "from": "rv_sesame-soba-noodle-bowl_v2",
+    "to": "rv_sesame-soba-noodle-bowl_v3",
+    "yield": "4 servings",
+    "expected_flavor": "Sesame, vinegar, and soy, with a small measured salt so the noodles are not only as salty as 1 tbsp of soy.",
+    "dietary": "Wheat, soy, and sesame unchanged. Plant and dairy-free. HH001-eligible booleans unchanged. No peanut.",
+    "safety": "Noodles are boiled.",
+    "shopping": "A 2 g salt line. The rest of the bowl is unchanged.",
+    "uncertainties": "Soy salt varies. The taste step is one noodle, after cooking.",
+    "image_impact": "No regen. Same bowl."
+  }
+}
